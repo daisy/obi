@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DDEB9FA1-8435-456F-91E8-3C23125BE427}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PipelineInterface</RootNamespace>
+    <AssemblyName>PipelineInterface</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="DataTypes\BoolDataType.cs" />
+    <Compile Include="DataTypes\EnumDataType.cs" />
+    <Compile Include="DataTypes\IntDataType.cs" />
+    <Compile Include="DataTypes\PathDataType.cs" />
+    <Compile Include="DataTypes\StringDataType.cs" />
+    <Compile Include="Localizer.cs" />
+    <Compile Include="messages.Designer.cs" />
+    <Compile Include="ParameterControls\BaseUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParameterControls\BaseUserControl.designer.cs">
+      <DependentUpon>BaseUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterControls\BoolControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParameterControls\BoolControl.designer.cs">
+      <DependentUpon>BoolControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterControls\EnumControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParameterControls\EnumControl.designer.cs">
+      <DependentUpon>EnumControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterControls\IntControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParameterControls\IntControl.Designer.cs">
+      <DependentUpon>IntControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterControls\PathBrowserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParameterControls\PathBrowserControl.Designer.cs">
+      <DependentUpon>PathBrowserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParameterControls\StringControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParameterControls\StringControl.designer.cs">
+      <DependentUpon>StringControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PipelineInfo.cs" />
+    <Compile Include="PipelineInterfaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PipelineInterfaceForm.designer.cs">
+      <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptParameter.cs" />
+    <Compile Include="ScriptParser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="messages.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\BaseUserControl.resx">
+      <DependentUpon>BaseUserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\BoolControl.resx">
+      <DependentUpon>BoolControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\EnumControl.resx">
+      <DependentUpon>EnumControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\IntControl.resx">
+      <DependentUpon>IntControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\PathBrowserControl.resx">
+      <DependentUpon>PathBrowserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\StringControl.resx">
+      <DependentUpon>StringControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PipelineInterfaceForm.resx">
+      <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="scripts\Daisy202DTBValidator.taskScript" />
+    <None Include="scripts\Daisy3DTBValidator.taskScript" />
+    <None Include="scripts\DTBAudioEncoder.taskScript" />
+    <None Include="scripts\FilesetRenamer.taskScript" />
+    <None Include="scripts\PrettyPrinter.taskScript-hidden" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
