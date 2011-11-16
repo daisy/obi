@@ -42,6 +42,7 @@ namespace Obi.ProjectView
         private delegate void RemoveControlForSectionNodeDelegate ( SectionNode node );
         private bool m_IsWaveformRenderingPaused;
         private Waveform m_RenderingWaveform = null;
+        private EmptyNode m_BeginSpecialNode = null;
 
         /// <summary>
         /// A new strips view.
@@ -5126,7 +5127,34 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
         }
 
+        private void Context_EndSpecialNodeMark_Click(object sender, EventArgs e)
+        {
+            int index = m_BeginSpecialNode.Index;
+            List<EmptyNode> listOfEmptyNodesToMarkAsSpecialNodes = new List<EmptyNode>();
+            string customClass = "";
+
+            Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();
+            if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
+                customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
+
+            for (int i = index; i < mProjectView.Selection.EmptyNodeForSelection.Index; i++ )
+            {
+                mProjectView.SetCustomTypeOnEmptyNode(m_BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i), EmptyNode.Role.Custom, customClass);
+                listOfEmptyNodesToMarkAsSpecialNodes.Add(m_BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i));
+            }
         }
+
+        private void Context_BeginSpecialNodeMark_Click(object sender, EventArgs e)
+        {
+            m_BeginSpecialNode = mProjectView.Selection.EmptyNodeForSelection;
+        }
+
+        private void Context_AssociateSpecialNodeMark_Click(object sender, EventArgs e)
+        {
+            Dialogs.AssociateSpecialNode AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(mProjectView);
+            AssociateSpecialNode.ShowDialog();
+        }
+    }
 
     /// <summary>
     /// Common interface for selection of strips and blocks.
