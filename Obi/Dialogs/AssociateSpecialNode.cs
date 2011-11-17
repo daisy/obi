@@ -15,10 +15,9 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             m_View = projView;
-            MessageBox.Show(m_View.Selection.ToString());
             textBox1.Text = m_View.Selection.ToString();
-            int j = 0;
-            int k = 0;
+            int firstIndex = -1;
+            int lastIndex = -1;
             List<SectionNode> listOfAllSections = new List<SectionNode>();
             listOfAllSections = ((ObiRootNode)m_View.Presentation.RootNode).GetListOfAllSections();
             foreach (SectionNode node in listOfAllSections)
@@ -29,31 +28,89 @@ namespace Obi.Dialogs
                     {
                         if (node.PhraseChild(i).CustomRole == "Footnote")
                         {
-                            Console.WriteLine("GOES HERE in FOOTNOTE  " + node);
-                            if (j == 0)
-                                j = i;
+
+                            if (firstIndex == -1)
+                                firstIndex = i;
                             else
-                                k = i;
+                                lastIndex = i;
+                            if (i == node.PhraseChildCount - 1)
+                            {
+                                m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " Footnote " + (firstIndex + 1) + " to " + (lastIndex + 1));
+                                firstIndex = -1;
+                                lastIndex = -1;
+                            }
                         }
                         if (node.PhraseChild(i).CustomRole == "Sidebar")
                         {
-                            Console.WriteLine("GOES HERE  in SIDE BAR  " + node);
-                            if (j == 0)
-                                j = i;
+                            if (firstIndex == -1)
+                                firstIndex = i;
                             else
-                                k = i;
+                                lastIndex = i;
+                            if (i == node.PhraseChildCount - 1)
+                            {
+                                m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " Sidebar " + (firstIndex + 1) + " to " + (lastIndex + 1));
+                                firstIndex = -1;
+                                lastIndex = -1;
+                            }
                         }
+                        if (node.PhraseChild(i).CustomRole == "Annotation")
+                        {
+                            if (firstIndex == -1)
+                                firstIndex = i;
+                            else
+                                lastIndex = i;
+                            if (i == node.PhraseChildCount - 1)
+                            {
+                                m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " Annotation " + (firstIndex + 1) + " to " + (lastIndex + 1));
+                                firstIndex = -1;
+                                lastIndex = -1;
+                            }
+                        }
+                        if (node.PhraseChild(i).CustomRole == "Producer note")
+                        {
+                            if (firstIndex == -1)
+                                firstIndex = i;
+                            else
+                                lastIndex = i;
+                            if (i == node.PhraseChildCount - 1)
+                            {
+                                m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " Producer note " + (firstIndex + 1) + " to " + (lastIndex + 1));
+                                firstIndex = -1;
+                                lastIndex = -1;
+                            }
+                        }
+                        if (node.PhraseChild(i).CustomRole == "End note")
+                        {
+                            if (firstIndex == -1)
+                                firstIndex = i;
+                            else
+                                lastIndex = i;
+                            if (i == node.PhraseChildCount - 1)
+                            {
+                                m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " End note " + (firstIndex + 1) + " to " + (lastIndex + 1));
+                                firstIndex = -1;
+                                lastIndex = -1;
+                            }
+                        } 
+
                     }
-                    else if (j != 0)
+                    else if (firstIndex != -1)
                     {
-                        if (k == 0)
-                            k = j;
-                        if (node.PhraseChild(j).CustomRole == "Footnote")
-                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " Footnote " + (j + 1) + " to " + (k + 1));
-                        if (node.PhraseChild(j).CustomRole == "Sidebar")
-                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " Sidebar " + (j + 1) + " to " + (k + 1));
-                        j = 0;
-                        k = 0;
+                        if (lastIndex == -1)
+                            lastIndex = firstIndex;
+                        if (node.PhraseChild(firstIndex).CustomRole == "Footnote")
+                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " Footnote " + (firstIndex + 1) + " to " + (lastIndex + 1));
+                        if (node.PhraseChild(firstIndex).CustomRole == "Sidebar")
+                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " Sidebar " + (firstIndex + 1) + " to " + (lastIndex + 1));
+                        if (node.PhraseChild(firstIndex).CustomRole == "Annotation")
+                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " Annotation " + (firstIndex + 1) + " to " + (lastIndex + 1));
+                        if (node.PhraseChild(firstIndex).CustomRole == "Producer note")
+                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " Producer note " + (firstIndex + 1) + " to " + (lastIndex + 1));
+                        if (node.PhraseChild(firstIndex).CustomRole == "End note")
+                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " End note " + (firstIndex + 1) + " to " + (lastIndex + 1));
+
+                        firstIndex = -1;
+                        lastIndex = -1;
                     }
                 }
             }
@@ -61,3 +118,4 @@ namespace Obi.Dialogs
 
     }
 }
+
