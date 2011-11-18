@@ -1259,14 +1259,21 @@ namespace Obi.ProjectView
                     mPresentation = value;
                     mTransportBar.Enabled = mPresentation != null;
                     if (mPresentation != null)
-                        {
-                        mTOCView.SetNewPresentation ();
-                        mContentView.NewPresentation ();
-                        mTransportBar.NewPresentation ();
-                        mMetadataView.NewPresentation ();
+                    {
+                        mTOCView.SetNewPresentation();
+                        mContentView.NewPresentation();
+                        mTransportBar.NewPresentation();
+                        mMetadataView.NewPresentation();
                         if (mContentView.ActiveStrip != null && this.Selection == null) mTOCView.HighlightNodeWithoutSelection = mContentView.ActiveStrip.Node;
-                        }
+
+                        mPresentation.AddCustomClass("Footnote", null);
+                        mPresentation.AddCustomClass("Sidebar", null);
+                        mPresentation.AddCustomClass("Producer note", null);
+                        mPresentation.AddCustomClass("Annotation", null);
+                        mPresentation.AddCustomClass("End note", null);
                     }
+                    }
+                
                 }
             }
 
@@ -2050,6 +2057,17 @@ for (int j = 0;
             {
             mPresentation.Do ( new Commands.Node.AssignRole ( this, SelectedNodeAs<EmptyNode> (), kind, custom ) );
             }
+
+        public void SetCustomTypeOnEmptyNode(EmptyNode node, EmptyNode.Role nodeKind, string customClass)
+        {
+            if (node != null)
+            {
+                if (node.Role_ != nodeKind || node.CustomRole != customClass)
+                {
+                    mPresentation.Do(new Obi.Commands.Node.AssignRole(this, node, customClass));
+                }
+            }
+        }
 
         public void SetSilenceRoleForSelectedPhrase ()
             {
