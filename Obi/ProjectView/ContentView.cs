@@ -5148,6 +5148,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_BeginSpecialNodeMark_Click(object sender, EventArgs e)
         {
+            Context_EndSpecialNodeMark.Enabled = true;
             m_BeginSpecialNode = mProjectView.Selection.EmptyNodeForSelection;
         }
 

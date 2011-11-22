@@ -33,6 +33,8 @@ namespace Obi
         private static readonly string XUK_ATTR_NAME_PAGE_KIND = "pageKind";  // name of the pageKind attribute
         private static readonly string XUK_ATTR_NAME_PAGE_TEXT = "pageText";  // name of the pageText attribute
         private static readonly string XUK_ATTR_NAME_TODO = "TODO";           // name of the TODO attribute
+        private EmptyNode m_AssociatedNode = null;
+        private Obi.Dialogs.AssociateSpecialNode m_AssociatedSpecialode;
 
         /// <summary>
         /// Different roles for content nodes.
@@ -123,6 +125,10 @@ namespace Obi
         /// </summary>
         public EmptyNode(string customRole) : this(Role.Custom, customRole) { }
 
+        public EmptyNode(Obi.Dialogs.AssociateSpecialNode associatedSpecialNode)
+        {
+            m_AssociatedSpecialode = associatedSpecialNode;
+        }
 
         /// <summary>
         /// Copy all attributes of this node to another.
@@ -152,6 +158,12 @@ namespace Obi
         {
             get { return mCustomRole; }
             set { SetRole(Role.Custom, value); }
+        }
+
+        public EmptyNode AssociatedNode
+        {
+            get { return m_AssociatedNode; }
+            set { m_AssociatedNode =  value; }
         }
 
         /// <summary>
