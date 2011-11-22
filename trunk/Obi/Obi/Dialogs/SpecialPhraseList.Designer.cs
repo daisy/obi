@@ -84,9 +84,10 @@
             // m_lbSpecialPhrasesList
             // 
             this.m_lbSpecialPhrasesList.FormattingEnabled = true;
+            this.m_lbSpecialPhrasesList.HorizontalScrollbar = true;
             this.m_lbSpecialPhrasesList.Location = new System.Drawing.Point(12, 122);
             this.m_lbSpecialPhrasesList.Name = "m_lbSpecialPhrasesList";
-            this.m_lbSpecialPhrasesList.Size = new System.Drawing.Size(270, 277);
+            this.m_lbSpecialPhrasesList.Size = new System.Drawing.Size(400, 238);
             this.m_lbSpecialPhrasesList.TabIndex = 1;
             this.m_lbSpecialPhrasesList.SelectedIndexChanged += new System.EventHandler(this.m_lbSpecialPhrasesList_SelectedIndexChanged);
             // 
@@ -96,7 +97,7 @@
             this.m_btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_btnOK.Location = new System.Drawing.Point(300, 325);
+            this.m_btnOK.Location = new System.Drawing.Point(80, 372);
             this.m_btnOK.Name = "m_btnOK";
             this.m_btnOK.Size = new System.Drawing.Size(100, 28);
             this.m_btnOK.TabIndex = 2;
@@ -109,7 +110,7 @@
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_btnCancel.Location = new System.Drawing.Point(300, 372);
+            this.m_btnCancel.Location = new System.Drawing.Point(205, 372);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(100, 28);
             this.m_btnCancel.TabIndex = 3;
@@ -120,11 +121,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 410);
+            this.ClientSize = new System.Drawing.Size(423, 410);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOK);
             this.Controls.Add(this.m_lbSpecialPhrasesList);
             this.Controls.Add(this.m_grpSelectSpecialPhrases);
+            this.MaximizeBox = false;
             this.Name = "SpecialPhraseList";
             this.Text = "SpecialPhraseList";
             this.m_grpSelectSpecialPhrases.ResumeLayout(false);

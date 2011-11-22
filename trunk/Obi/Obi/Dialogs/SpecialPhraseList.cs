@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,21 +13,25 @@ namespace Obi.Dialogs
     {
         private readonly ProjectView.ProjectView mView;
         private EmptyNode selectedItem = null;
-        
+        private readonly List<EmptyNode> backendList = new List<EmptyNode>();
+       
         public SpecialPhraseList(Obi.ProjectView.ProjectView projectView)
         {
             mView = projectView;
             InitializeComponent();
-            m_btnOK.Enabled = m_lbSpecialPhrasesList.Items.Count != 0;
+            m_btnOK.Enabled = false;
         }
 
         public EmptyNode SpecialPhraseSelected
         {
             get { return selectedItem; }
         }
-       private void m_btnFind_Click(object sender, EventArgs e)
+       
+        private void m_btnFind_Click(object sender, EventArgs e)
         {
-            this.m_lbSpecialPhrasesList.Items.Clear();
+           m_btnOK.Enabled = false;
+           this.m_lbSpecialPhrasesList.Items.Clear();
+           string sectionName = null;
             mView.Presentation.RootNode.AcceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                         {
@@ -35,58 +40,77 @@ namespace Obi.Dialogs
                                 case 0:
                                     if (n is EmptyNode && ((EmptyNode) n).TODO)
                                     {
-                                        m_lbSpecialPhrasesList.Items.Add(((EmptyNode) n));
+                                       sectionName = ((EmptyNode) n).ParentAs<SectionNode>().Label + " : " + ((EmptyNode)n);
+                                       m_lbSpecialPhrasesList.Items.Add(sectionName);
+                                       backendList.Add(((EmptyNode)n));
                                     }
+
                                     break;
                                 case 1:
                                     if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Heading)
                                     {
-                                        m_lbSpecialPhrasesList.Items.Add(((EmptyNode) n));
+                                        sectionName = ((EmptyNode)n).ParentAs<SectionNode>().Label + " : " + ((EmptyNode)n);
+                                        m_lbSpecialPhrasesList.Items.Add(sectionName);
+                                        backendList.Add(((EmptyNode)n));
+                                       
                                     }
                                     break;
                                 case 2:
                                     if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Silence)
                                     {
-                                        m_lbSpecialPhrasesList.Items.Add(((EmptyNode) n));
+                                        sectionName = ((EmptyNode)n).ParentAs<SectionNode>().Label + " : " + ((EmptyNode)n);
+                                        m_lbSpecialPhrasesList.Items.Add(sectionName);
+                                        backendList.Add(((EmptyNode)n));
                                     }
                                     break;
                                 case 3:
                                     if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Page)
                                     {
-                                        m_lbSpecialPhrasesList.Items.Add(((EmptyNode) n));
+                                        sectionName = ((EmptyNode)n).ParentAs<SectionNode>().Label + " : " + ((EmptyNode)n);
+                                        m_lbSpecialPhrasesList.Items.Add(sectionName);
+                                        backendList.Add(((EmptyNode)n));
                                     }
                                     break;
                                 case 4:
                                     if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Page &&
                                         ((EmptyNode) n).PageNumber.Kind == PageKind.Front)
                                     {
-                                        m_lbSpecialPhrasesList.Items.Add(((EmptyNode) n));
+                                        sectionName = ((EmptyNode)n).ParentAs<SectionNode>().Label + " : " + ((EmptyNode)n);
+                                        m_lbSpecialPhrasesList.Items.Add(sectionName);
+                                        backendList.Add(((EmptyNode)n));
                                     }
                                     break;
                                 case 5:
                                     if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Page &&
                                         ((EmptyNode) n).PageNumber.Kind == PageKind.Normal)
                                     {
-                                        m_lbSpecialPhrasesList.Items.Add(((EmptyNode) n));
+                                        sectionName = ((EmptyNode)n).ParentAs<SectionNode>().Label + " : " + ((EmptyNode)n);
+                                        m_lbSpecialPhrasesList.Items.Add(sectionName);
+                                        backendList.Add(((EmptyNode)n));
                                     }
                                     break;
                                 case 6:
                                     if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Page &&
                                         ((EmptyNode) n).PageNumber.Kind == PageKind.Special)
                                     {
-                                        m_lbSpecialPhrasesList.Items.Add(((EmptyNode) n));
+                                        sectionName = ((EmptyNode)n).ParentAs<SectionNode>().Label + " : " + ((EmptyNode)n);
+                                        m_lbSpecialPhrasesList.Items.Add(sectionName);
+                                        backendList.Add(((EmptyNode)n));
                                     }
                                     break;
                             }
                             return true;
                         },
                     delegate(urakawa.core.TreeNode n) { });
-            m_btnOK.Enabled = m_lbSpecialPhrasesList.Items.Count != 0;
         }
-       
-        private void m_lbSpecialPhrasesList_SelectedIndexChanged(object sender, EventArgs e)
+
+      private void m_lbSpecialPhrasesList_SelectedIndexChanged(object sender, EventArgs e)
         {
-             selectedItem = (EmptyNode)(m_lbSpecialPhrasesList.SelectedItem);
+           int selectedeNode = m_lbSpecialPhrasesList.SelectedIndex;
+           selectedItem = backendList[selectedeNode];
+
+           m_btnOK.Enabled = m_lbSpecialPhrasesList.SelectedIndex >= 0;
         }
-        }
+
+      }
     }
