@@ -31,7 +31,7 @@ namespace Obi.Dialogs
             this.m_lb_ListOfSpecialNodes = new System.Windows.Forms.ListBox();
             this.m_btn_OK = new System.Windows.Forms.Button();
             this.m_btn_Cancel = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.m_txtBox_SectionName = new System.Windows.Forms.TextBox();
             this.m_btn_Associate = new System.Windows.Forms.Button();
             this.m_btn_Deassociate = new System.Windows.Forms.Button();
             this.m_lb_listOfAllAnchorNodes = new System.Windows.Forms.ListBox();
@@ -56,6 +56,7 @@ namespace Obi.Dialogs
             this.m_btn_OK.TabIndex = 1;
             this.m_btn_OK.Text = "OK";
             this.m_btn_OK.UseVisualStyleBackColor = true;
+            this.m_btn_OK.Click += new System.EventHandler(this.m_btn_OK_Click);
             // 
             // m_btn_Cancel
             // 
@@ -67,12 +68,12 @@ namespace Obi.Dialogs
             this.m_btn_Cancel.Text = "Cancel";
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // m_txtBox_SectionName
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 3;
+            this.m_txtBox_SectionName.Location = new System.Drawing.Point(6, 38);
+            this.m_txtBox_SectionName.Name = "m_txtBox_SectionName";
+            this.m_txtBox_SectionName.Size = new System.Drawing.Size(120, 20);
+            this.m_txtBox_SectionName.TabIndex = 3;
             // 
             // m_btn_Associate
             // 
@@ -101,6 +102,7 @@ namespace Obi.Dialogs
             this.m_lb_listOfAllAnchorNodes.Name = "m_lb_listOfAllAnchorNodes";
             this.m_lb_listOfAllAnchorNodes.Size = new System.Drawing.Size(120, 147);
             this.m_lb_listOfAllAnchorNodes.TabIndex = 6;
+            this.m_lb_listOfAllAnchorNodes.Visible = false;
             this.m_lb_listOfAllAnchorNodes.SelectedIndexChanged += new System.EventHandler(this.m_lb_listOfAllAnchorNodes_SelectedIndexChanged);
             // 
             // m_btn_ShowAll
@@ -122,7 +124,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_lb_listOfAllAnchorNodes);
             this.Controls.Add(this.m_btn_Deassociate);
             this.Controls.Add(this.m_btn_Associate);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.m_txtBox_SectionName);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_lb_ListOfSpecialNodes);
@@ -138,7 +140,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ListBox m_lb_ListOfSpecialNodes;
         private System.Windows.Forms.Button m_btn_OK;
         private System.Windows.Forms.Button m_btn_Cancel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox m_txtBox_SectionName;
         private System.Windows.Forms.Button m_btn_Associate;
         private System.Windows.Forms.Button m_btn_Deassociate;
         private System.Windows.Forms.ListBox m_lb_listOfAllAnchorNodes;
