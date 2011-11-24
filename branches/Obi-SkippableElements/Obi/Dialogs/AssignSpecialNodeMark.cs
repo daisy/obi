@@ -24,7 +24,7 @@ namespace Obi.Dialogs
 
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
-            m_SelectedSpecialNode = m_cmbBoxSpecialNode.SelectedItem.ToString();
+            m_SelectedSpecialNode = m_cmbBoxSpecialNode.SelectedItem.ToString();            
         }
 
     }
