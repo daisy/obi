@@ -77,6 +77,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_Associate
             // 
+            this.m_btn_Associate.Enabled = false;
             this.m_btn_Associate.Location = new System.Drawing.Point(11, 238);
             this.m_btn_Associate.Name = "m_btn_Associate";
             this.m_btn_Associate.Size = new System.Drawing.Size(95, 23);
@@ -87,6 +88,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_Deassociate
             // 
+            this.m_btn_Deassociate.Enabled = false;
             this.m_btn_Deassociate.Location = new System.Drawing.Point(122, 238);
             this.m_btn_Deassociate.Name = "m_btn_Deassociate";
             this.m_btn_Deassociate.Size = new System.Drawing.Size(88, 23);
