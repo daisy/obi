@@ -37,7 +37,6 @@ namespace Obi.Dialogs
             listOfAllSections = ((ObiRootNode)m_View.Presentation.RootNode).GetListOfAllSections();
             string tempString = "";
             int firstIndex = -1;
-            //temp string mein store kare custin ckass. n put this string in list box/
             foreach (SectionNode node in listOfAllSections)
             {
                 for (int i = 0; i < node.PhraseChildCount; i++)
@@ -45,19 +44,19 @@ namespace Obi.Dialogs
                     if (node.PhraseChild(i).Role_ == EmptyNode.Role.Custom)
                     {
                         tempString = node.PhraseChild(i).CustomRole;
-                        if (tempString != node.PhraseChild(i + 1).CustomRole)
+                        if ( i < node.PhraseChildCount - 1 && tempString != node.PhraseChild(i + 1).CustomRole )
                         {
                             if (!m_IsShowAll)
                             {
-                                m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + i);
-                                listOfFirstNodeOfSpecialNodes.Add(node.PhraseChild(i));
+                               if (firstIndex == -1 && !m_IsShowAll)
+                                  m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (i + 1));
+                               else
+                                  m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));                               
                             }
                             
                             if (m_IsShowAll)
-                            {
-                                m_lb_listOfAllAnchorNodes.Items.Add(node.Label);
-                                
-                            }
+                               m_lb_listOfAllAnchorNodes.Items.Add(node.Label);
+                            firstIndex = -1;
                         }
                         else
                         {
@@ -65,11 +64,17 @@ namespace Obi.Dialogs
                             {
                                 firstIndex = i;
                                 listOfFirstNodeOfSpecialNodes.Add(node.PhraseChild(i));
-                               // firstIndex = -1;
+                            }
+                            if (i == node.PhraseChildCount - 1)
+                            {
+                                if(!m_IsShowAll)
+                                m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
+                                if(m_IsShowAll)
+                                m_lb_listOfAllAnchorNodes.Items.Add(node.Label);
+                                firstIndex = -1;
                             }
                         }
                     }
-
                 }
             }
         }
