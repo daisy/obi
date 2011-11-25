@@ -3567,6 +3567,16 @@ public bool ShowOnlySelectedSection
         }
         */
 
+
+        public void ShowSpecialPhraseList()
+        {
+            if (mPresentation == null) return;
+            Dialogs.SpecialPhraseList dialogs = new Dialogs.SpecialPhraseList(this);
+            if (dialogs.ShowDialog() == DialogResult.OK)
+            {
+                SelectedBlockNode = dialogs.SpecialPhraseSelected;
+            }
+        }
         }
 
     public class ImportingFileEventArgs

@@ -139,6 +139,7 @@ namespace Obi
             this.mNextTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_GoToPageToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_GoToCollectSpecialPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteFollowingPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -954,7 +955,8 @@ namespace Obi
             this.mGoToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mNextTODOPhraseToolStripMenuItem,
             this.mPreviousTODOPhraseToolStripMenuItem,
-            this.m_GoToPageToolStrip});
+            this.m_GoToPageToolStrip,
+            this.m_GoToCollectSpecialPhrasesToolStripMenuItem});
             this.mGoToToolStripMenuItem.Name = "mGoToToolStripMenuItem";
             resources.ApplyResources(this.mGoToToolStripMenuItem, "mGoToToolStripMenuItem");
             // 
@@ -975,6 +977,12 @@ namespace Obi
             resources.ApplyResources(this.m_GoToPageToolStrip, "m_GoToPageToolStrip");
             this.m_GoToPageToolStrip.Name = "m_GoToPageToolStrip";
             this.m_GoToPageToolStrip.Click += new System.EventHandler(this.nextPageToolStripMenuItem_Click_1);
+            // 
+            // m_GoToCollectSpecialPhrasesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_GoToCollectSpecialPhrasesToolStripMenuItem, "m_GoToCollectSpecialPhrasesToolStripMenuItem");
+            this.m_GoToCollectSpecialPhrasesToolStripMenuItem.Name = "m_GoToCollectSpecialPhrasesToolStripMenuItem";
+            this.m_GoToCollectSpecialPhrasesToolStripMenuItem.Click += new System.EventHandler(this.m_GoToCollectSpecialPhrasesToolStripMenuItem_Click);
             // 
             // mDeleteFollowingPhrasesToolStripMenuItem
             // 
@@ -1509,6 +1517,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mEdit_GotoBookmarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_RestoreFromBackupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_RestoreFromOriginalProjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_GoToCollectSpecialPhrasesToolStripMenuItem;
     }
 }
 

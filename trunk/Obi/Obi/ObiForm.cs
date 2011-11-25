@@ -3440,6 +3440,10 @@ namespace Obi
             return null;
         }
 
+        private void m_GoToCollectSpecialPhrasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ShowSpecialPhraseList();
+        }
        
     }
     }

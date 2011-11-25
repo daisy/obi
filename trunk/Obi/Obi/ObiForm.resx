@@ -1176,6 +1176,15 @@
   <data name="m_GoToPageToolStrip.Text" xml:space="preserve">
     <value>Pa&amp;ge / Phrase/ Time</value>
   </data>
+  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Collect Special Phrases</value>
+  </data>
+  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 22</value>
+  </data>
+  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Collect &amp;Special Phrases</value>
+  </data>
   <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
@@ -1699,7 +1708,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.7.1.32950, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=2.0.0.23993, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2627,6 +2636,12 @@
     <value>m_GoToPageToolStrip</value>
   </data>
   <data name="&gt;&gt;m_GoToPageToolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_GoToCollectSpecialPhrasesToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_GoToCollectSpecialPhrasesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_GoToCollectSpecialPhrasesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mDeleteFollowingPhrasesToolStripMenuItem.Name" xml:space="preserve">
