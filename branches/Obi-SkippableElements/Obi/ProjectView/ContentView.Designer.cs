@@ -54,6 +54,7 @@ namespace Obi.ProjectView
             this.Context_AssignRole_HeadingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AssignRole_PageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AssignRole_SilenceMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_AssignRole_AnchorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_AssignRole_NewCustomRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +64,7 @@ namespace Obi.ProjectView
             this.Context_BeginSpecialNodeMark = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_EndSpecialNodeMark = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AssociateSpecialNodeMark = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_GotoAssociatedNodeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioSelection_BeginMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioSelection_EndMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +112,7 @@ namespace Obi.ProjectView
             this.Context_BeginSpecialNodeMark,
             this.Context_EndSpecialNodeMark,
             this.Context_AssociateSpecialNodeMark,
+            this.Context_GotoAssociatedNodeMenuItem,
             this.Context_AudioSelectionMenuItem,
             this.toolStripSeparator4,
             this.Context_CutMenuItem,
@@ -123,7 +126,7 @@ namespace Obi.ProjectView
             this.Context_ExportAudioToolStripMenuItem,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(209, 666);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(209, 688);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -273,6 +276,7 @@ namespace Obi.ProjectView
             this.Context_AssignRole_HeadingMenuItem,
             this.Context_AssignRole_PageMenuItem,
             this.Context_AssignRole_SilenceMenuItem,
+            this.Context_AssignRole_AnchorMenuItem,
             this.toolStripSeparator3,
             this.Context_AssignRole_NewCustomRoleMenuItem});
             this.Context_AssignRoleMenuItem.Name = "Context_AssignRoleMenuItem";
@@ -306,6 +310,13 @@ namespace Obi.ProjectView
             this.Context_AssignRole_SilenceMenuItem.Size = new System.Drawing.Size(173, 22);
             this.Context_AssignRole_SilenceMenuItem.Text = "&Silence";
             this.Context_AssignRole_SilenceMenuItem.Click += new System.EventHandler(this.Context_AssignRole_SilenceMenuItem_Click);
+            // 
+            // Context_AssignRole_AnchorMenuItem
+            // 
+            this.Context_AssignRole_AnchorMenuItem.Name = "Context_AssignRole_AnchorMenuItem";
+            this.Context_AssignRole_AnchorMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.Context_AssignRole_AnchorMenuItem.Text = "Anch&or";
+            this.Context_AssignRole_AnchorMenuItem.Click += new System.EventHandler(this.Context_AssignRole_AnchorMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -366,10 +377,18 @@ namespace Obi.ProjectView
             // 
             // Context_AssociateSpecialNodeMark
             // 
+            this.Context_AssociateSpecialNodeMark.Enabled = false;
             this.Context_AssociateSpecialNodeMark.Name = "Context_AssociateSpecialNodeMark";
             this.Context_AssociateSpecialNodeMark.Size = new System.Drawing.Size(208, 22);
             this.Context_AssociateSpecialNodeMark.Text = "Associate special node mark";
             this.Context_AssociateSpecialNodeMark.Click += new System.EventHandler(this.Context_AssociateSpecialNodeMark_Click);
+            // 
+            // Context_GotoAssociatedNodeMenuItem
+            // 
+            this.Context_GotoAssociatedNodeMenuItem.Name = "Context_GotoAssociatedNodeMenuItem";
+            this.Context_GotoAssociatedNodeMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.Context_GotoAssociatedNodeMenuItem.Text = "Go to associated no&de";
+            this.Context_GotoAssociatedNodeMenuItem.Click += new System.EventHandler(this.Context_GotoAssociatedNodeMenuItem_Click);
             // 
             // Context_AudioSelectionMenuItem
             // 
@@ -624,5 +643,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_BeginSpecialNodeMark;
         private System.Windows.Forms.ToolStripMenuItem Context_EndSpecialNodeMark;
         private System.Windows.Forms.ToolStripMenuItem Context_AssociateSpecialNodeMark;
+        private System.Windows.Forms.ToolStripMenuItem Context_AssignRole_AnchorMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_GotoAssociatedNodeMenuItem;
     }
 }

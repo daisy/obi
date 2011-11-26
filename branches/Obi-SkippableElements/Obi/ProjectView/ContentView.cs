@@ -4645,6 +4645,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Merge_MergeWithPrecedingPhrasesMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
             Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
+            Context_AssociateSpecialNodeMark.Enabled = mProjectView.Selection != null;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -4735,6 +4736,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
             if (mProjectView.CanAssignARole) mProjectView.ShowPhrasePropertiesDialog ( true );
             }
+
+        private void Context_AssignRole_AnchorMenuItem_Click(object sender, EventArgs e)
+        {
+            // mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Anchor, "Anchor");     // @Anchor
+            ((EmptyNode)mProjectView.Selection.Node).Role_ = EmptyNode.Role.Anchor;
+        }
 
         // Clear role context menu item
         private void Context_ClearRoleMenuItem_Click ( object sender, EventArgs e )
@@ -5157,6 +5164,12 @@ Block lastBlock = ActiveStrip.LastBlock ;
             Dialogs.AssociateSpecialNode AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(mProjectView);
             AssociateSpecialNode.ShowDialog();
         }
+
+        private void Context_GotoAssociatedNodeMenuItem_Click(object sender, EventArgs e)
+        {
+            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
+                mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
+        }        
     }
 
     /// <summary>

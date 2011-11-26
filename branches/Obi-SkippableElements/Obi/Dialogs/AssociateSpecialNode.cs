@@ -15,7 +15,8 @@ namespace Obi.Dialogs
         private int m_SpecialNodeIndex = 0;
         private bool m_IsShowAll = false;
         List<EmptyNode> listOfFirstNodeOfSpecialNodes = new List<EmptyNode>();
-
+        List<EmptyNode> listOfAnchorNodes = new List<EmptyNode>();
+        
         public AssociateSpecialNode(ProjectView.ProjectView projView)
         {
             m_View = projView;
@@ -28,12 +29,14 @@ namespace Obi.Dialogs
         {
             m_IsShowAll = true;
             m_lb_listOfAllAnchorNodes.Visible = true;
+            
             AddToListBox();            
         }
 
         public void AddToListBox()
         {
             List<SectionNode> listOfAllSections = new List<SectionNode>();
+            
             listOfAllSections = ((ObiRootNode)m_View.Presentation.RootNode).GetListOfAllSections();
             string tempString = "";
             int firstIndex = -1;
@@ -54,8 +57,8 @@ namespace Obi.Dialogs
                                   m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));                               
                             }
                             
-                            if (m_IsShowAll)
-                               m_lb_listOfAllAnchorNodes.Items.Add(node.Label);
+                           // if (m_IsShowAll)
+                             //  m_lb_listOfAllAnchorNodes.Items.Add(node.Label);
                             firstIndex = -1;
                         }
                         else
@@ -69,31 +72,41 @@ namespace Obi.Dialogs
                             {
                                 if(!m_IsShowAll)
                                 m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
-                                if(m_IsShowAll)
-                                m_lb_listOfAllAnchorNodes.Items.Add(node.Label);
+                               // if(m_IsShowAll)
+                               // m_lb_listOfAllAnchorNodes.Items.Add(node.Label);
                                 firstIndex = -1;
                             }
                         }
                     }
+                    if (node.PhraseChild(i).Role_ == EmptyNode.Role.Anchor && m_IsShowAll)
+                    {
+                        m_lb_listOfAllAnchorNodes.Items.Add(node.PhraseChild(i));
+                        listOfAnchorNodes.Add(node.PhraseChild(i));
+                    }
+                       // m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " +node.PhraseChild(i));
                 }
             }
         }
 
         private void m_btn_Associate_Click(object sender, EventArgs e)
         {
-           // if (m_lb_ListOfSpecialNodes.Items[m_AnchorNodeIndex] == "")
+           //''' if (m_lb_ListOfSpecialNodes.Items[m_AnchorNodeIndex] == "")
             {
+                
+                if(m_IsShowAll)
+                    listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
+                else
                 ((EmptyNode)m_View.Selection.Node).AssociatedNode = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
-                m_lb_ListOfSpecialNodes.Items.Remove(m_lb_ListOfSpecialNodes.Items[m_AnchorNodeIndex]);
-                m_lb_ListOfSpecialNodes.Items.Insert(m_AnchorNodeIndex, m_lb_ListOfSpecialNodes.Items[m_SpecialNodeIndex - 1]);               
+             //   m_lb_ListOfSpecialNodes.Items.Remove(m_lb_ListOfSpecialNodes.Items[m_AnchorNodeIndex]);
+             //   m_lb_ListOfSpecialNodes.Items.Insert(m_AnchorNodeIndex, m_lb_ListOfSpecialNodes.Items[m_SpecialNodeIndex - 1]);               
             }
         }
 
         private void m_btn_Deassociate_Click(object sender, EventArgs e)
         {
              ((EmptyNode)m_View.Selection.Node).AssociatedNode = null;
-             m_lb_ListOfSpecialNodes.Items.Insert(m_lb_ListOfSpecialNodes.SelectedIndex, ""); 
-             m_lb_ListOfSpecialNodes.Items.Remove(m_lb_ListOfSpecialNodes.SelectedItem);
+            // m_lb_ListOfSpecialNodes.Items.Insert(m_lb_ListOfSpecialNodes.SelectedIndex, ""); 
+            //  m_lb_ListOfSpecialNodes.Items.Remove(m_lb_ListOfSpecialNodes.SelectedItem);
         }
 
         private void m_lb_ListOfSpecialNodes_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,13 +120,17 @@ namespace Obi.Dialogs
         {
             m_btn_Associate.Enabled = true;
             m_AnchorNodeIndex = m_lb_listOfAllAnchorNodes.SelectedIndex;
+
         }
 
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
-            m_View.SelectedBlockNode = ((EmptyNode)m_View.Selection.Node).AssociatedNode ;
+            for (int i = 0; i < listOfAnchorNodes.Count; i++ )
+                Console.WriteLine("JUMP  " + listOfAnchorNodes[i] + "   " + listOfAnchorNodes[i].AssociatedNode);
+           // m_View.SelectedBlockNode = ((EmptyNode)m_View.Selection.Node).AssociatedNode ;
         }
     }
 }
 
 
+//custom role.anchor
