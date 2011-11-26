@@ -44,7 +44,7 @@ namespace Obi
         /// Silence is a silence node for phrase detection.
         /// Custom is a node with a custom class (e.g. sidebar, etc.)
         /// </summary>
-        public enum Role { Plain, Page, Heading, Silence, Custom };
+        public enum Role { Plain, Page, Heading, Silence, Anchor, Custom };
 
         public static readonly LocalizedRole LOCALIZED_PLAIN = new LocalizedRole(Role.Plain);
         public static readonly LocalizedRole LOCALIZED_PAGE = new LocalizedRole(Role.Page);
@@ -363,7 +363,8 @@ namespace Obi
                 if (role != null) mRole = role == Role.Custom.ToString() ? Role.Custom :
                                           role == Role.Heading.ToString() ? Role.Heading :
                                           role == Role.Page.ToString() ? Role.Page :
-                                          role == Role.Silence.ToString() ? Role.Silence : Role.Plain;
+                                          role == Role.Silence.ToString() ? Role.Silence :
+                                          role == Role.Anchor.ToString() ? Role.Anchor : Role.Plain;
                 if (role != null && role != mRole.ToString()) throw new Exception("Unknown kind: " + role);
                 mCustomRole = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
                 if (mRole == Role.Heading)
