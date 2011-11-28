@@ -34,7 +34,9 @@ namespace Obi
         private static readonly string XUK_ATTR_NAME_PAGE_TEXT = "pageText";  // name of the pageText attribute
         private static readonly string XUK_ATTR_NAME_TODO = "TODO";           // name of the TODO attribute
         private EmptyNode m_AssociatedNode = null;
-        private Obi.Dialogs.AssociateSpecialNode m_AssociatedSpecialode;
+        private static readonly string XUK_ATTR_NAME_AssociateNode = "ANode"; //attribute for associate node location
+        private string m_AssociatedNodeLocation;
+        
 
         /// <summary>
         /// Different roles for content nodes.
@@ -125,11 +127,7 @@ namespace Obi
         /// </summary>
         public EmptyNode(string customRole) : this(Role.Custom, customRole) { }
 
-        public EmptyNode(Obi.Dialogs.AssociateSpecialNode associatedSpecialNode)
-        {
-            m_AssociatedSpecialode = associatedSpecialNode;
-        }
-
+        
         /// <summary>
         /// Copy all attributes of this node to another.
         /// </summary>
@@ -162,8 +160,27 @@ namespace Obi
 
         public EmptyNode AssociatedNode
         {
-            get { return m_AssociatedNode; }
-            set { m_AssociatedNode =  value; }
+            get 
+            {
+                if (m_AssociatedNode == null && !string.IsNullOrEmpty(m_AssociatedNodeLocation))
+                {
+                    string [] locationArray = m_AssociatedNodeLocation.Split('_') ;
+                    TreeNode iterationNode =this.Root ;
+                    for ( int i = locationArray.Length-1 ; i >= 0 ; i-- )
+                    {
+                        int childIndex = -1;
+                        int.TryParse( locationArray[i], out childIndex );
+                        
+                        iterationNode = iterationNode.Children.Get(childIndex) ;
+                    }
+                    m_AssociatedNode = (EmptyNode) iterationNode ;
+                }
+                return m_AssociatedNode; 
+            }
+            set 
+            { 
+                m_AssociatedNode =  value; 
+            }
         }
 
         /// <summary>
@@ -412,6 +429,8 @@ namespace Obi
 
                 string todo = source.GetAttribute(XUK_ATTR_NAME_TODO);
                 if (todo != null) mTODO = todo == "True";
+                m_AssociatedNodeLocation = source.GetAttribute(XUK_ATTR_NAME_AssociateNode);
+
             }
             base.XukInAttributes(source);
         }
@@ -454,6 +473,19 @@ namespace Obi
                     wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_TEXT, mPageNumber.Unquoted);
                 }
                 if (mTODO) wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
+                if (AssociatedNode != null && AssociatedNode.IsRooted)
+                {
+                    ObiNode iterationNode = AssociatedNode;
+                    m_AssociatedNodeLocation = "";
+                    while (iterationNode != this.Root)
+                    {
+                        if (AssociatedNode  != iterationNode) m_AssociatedNodeLocation += "_";
+                        m_AssociatedNodeLocation += iterationNode.Index.ToString();
+                        iterationNode = iterationNode.ParentAs<ObiNode> () ;
+                    }
+                    
+                    wr.WriteAttributeString(XUK_ATTR_NAME_AssociateNode, m_AssociatedNodeLocation);
+                }
             }
             base.XukOutAttributes(wr, baseUri);
         }
