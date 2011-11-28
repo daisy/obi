@@ -40,6 +40,19 @@ namespace Obi.Commands.Node
         public AssignRole(ProjectView.ProjectView view, EmptyNode node, EmptyNode.Role role)
             : this(view, node, role, null) { }
 
+        public static urakawa.command.CompositeCommand GetCompositeCommandForAssigningRoleOnMultipleNodes(ProjectView.ProjectView view, EmptyNode startNode, EmptyNode endNode, EmptyNode.Role role, string customeClassName)
+        {
+            SectionNode section = startNode.ParentAs<SectionNode>();
+            urakawa.command.CompositeCommand command = view.Presentation.CommandFactory.CreateCompositeCommand(); 
+
+            for ( int i = startNode.Index; i <= endNode.Index; i++)
+            {
+                command.ChildCommands.Insert ( command.ChildCommands.Count,
+                    new Commands.Node.AssignRole(view, section.PhraseChild(i), role, customeClassName));
+            }
+            return null;
+        }
+
         public override bool CanExecute { get { return true; } }
 
         public override void Execute()
