@@ -112,6 +112,8 @@
     <Compile Include="Commands\Metadata\ModifyContent.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
     <Compile Include="Commands\Node\AddNode.cs" />
+    <Compile Include="Commands\Node\AssociateAnchorNode.cs" />
+    <Compile Include="Commands\Node\DeAssociateAnchorNode.cs" />
     <Compile Include="Commands\Node\SetNodeAsHeadingPhrase.cs" />
     <Compile Include="Commands\Node\AssignRole.cs" />
     <Compile Include="Commands\Node\Copy.cs" />
