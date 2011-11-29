@@ -3472,6 +3472,16 @@ for (int j = 0;
             }
         }
 
+        public void AssociateNodeToSpecialNode()
+        {
+            Dialogs.AssociateSpecialNode AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), ((EmptyNode)mSelection.Node));
+            if (AssociateSpecialNode.ShowDialog() == DialogResult.OK)
+            {
+                foreach (KeyValuePair<EmptyNode, EmptyNode> pair in AssociateSpecialNode.DictionaryToMapValues)
+                    pair.Key.AssociatedNode = pair.Value;                
+            }
+        }
+
         public void ExportAudioOfSelectedNode()
         {
             if (!CanExportSelectedNodeAudio) return;

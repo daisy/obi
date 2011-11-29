@@ -10,20 +10,33 @@ namespace Obi.Dialogs
 {
     public partial class AssociateSpecialNode : Form
     {
-        private ProjectView.ProjectView m_View;
+        private ObiRootNode m_ObiNode;
         private int m_AnchorNodeIndex = 0;
         private int m_SpecialNodeIndex = 0;
         private bool m_IsShowAll = false;
         List<EmptyNode> listOfFirstNodeOfSpecialNodes = new List<EmptyNode>();
         List<EmptyNode> listOfAnchorNodes = new List<EmptyNode>();
+        private EmptyNode m_SelectedNode = null;
+        Dictionary<EmptyNode, EmptyNode> nodes_phraseMap = new Dictionary<EmptyNode, EmptyNode>(); // used for importing sections
         
-        public AssociateSpecialNode(ProjectView.ProjectView projView)
+
+        public AssociateSpecialNode(ObiRootNode obiNode, EmptyNode selectedNode)
         {
-            m_View = projView;
+            m_ObiNode = obiNode;
+            m_SelectedNode = selectedNode;
             InitializeComponent();
-            m_txtBox_SectionName.Text = m_View.Selection.ToString();
+            m_txtBox_SectionName.Text = m_SelectedNode.ToString();
             AddToListBox();           
         }
+
+        public List<EmptyNode> AnchorNode
+        { get { return listOfAnchorNodes; } }
+
+        public List<EmptyNode> SpecialNode
+        { get { return listOfFirstNodeOfSpecialNodes; } }
+
+        public Dictionary<EmptyNode,EmptyNode> DictionaryToMapValues
+        { get { return nodes_phraseMap; } }
 
         private void m_btn_ShowAll_Click(object sender, EventArgs e)
         {
@@ -36,8 +49,7 @@ namespace Obi.Dialogs
         public void AddToListBox()
         {
             List<SectionNode> listOfAllSections = new List<SectionNode>();
-            
-            listOfAllSections = ((ObiRootNode)m_View.Presentation.RootNode).GetListOfAllSections();
+            listOfAllSections = m_ObiNode.GetListOfAllSections();
             string tempString = "";
             int firstIndex = -1;
             foreach (SectionNode node in listOfAllSections)
@@ -90,21 +102,20 @@ namespace Obi.Dialogs
 
         private void m_btn_Associate_Click(object sender, EventArgs e)
         {
-           //''' if (m_lb_ListOfSpecialNodes.Items[m_AnchorNodeIndex] == "")
-            {
-                
-                if(m_IsShowAll)
-                    listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
-                else
-                ((EmptyNode)m_View.Selection.Node).AssociatedNode = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
+
+            nodes_phraseMap.Add(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex], listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
+            //  listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode = c;
+           //  if(m_IsShowAll)
+            //     listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
+            // else
+              //  ((EmptyNode)m_View.Selection.Node).AssociatedNode = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
              //   m_lb_ListOfSpecialNodes.Items.Remove(m_lb_ListOfSpecialNodes.Items[m_AnchorNodeIndex]);
-             //   m_lb_ListOfSpecialNodes.Items.Insert(m_AnchorNodeIndex, m_lb_ListOfSpecialNodes.Items[m_SpecialNodeIndex - 1]);               
-            }
+             //   m_lb_ListOfSpecialNodes.Items.Insert(m_AnchorNodeIndex, m_lb_ListOfSpecialNodes.Items[m_SpecialNodeIndex - 1]);                           
         }
 
         private void m_btn_Deassociate_Click(object sender, EventArgs e)
         {
-             ((EmptyNode)m_View.Selection.Node).AssociatedNode = null;
+           //  ((EmptyNode)m_View.Selection.Node).AssociatedNode = null;
             // m_lb_ListOfSpecialNodes.Items.Insert(m_lb_ListOfSpecialNodes.SelectedIndex, ""); 
             //  m_lb_ListOfSpecialNodes.Items.Remove(m_lb_ListOfSpecialNodes.SelectedItem);
         }
@@ -126,11 +137,9 @@ namespace Obi.Dialogs
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < listOfAnchorNodes.Count; i++ )
-                Console.WriteLine("JUMP  " + listOfAnchorNodes[i] + "   " + listOfAnchorNodes[i].AssociatedNode);
-           // m_View.SelectedBlockNode = ((EmptyNode)m_View.Selection.Node).AssociatedNode ;
+                Console.WriteLine("JUMP  " + listOfAnchorNodes[i] + "   " + listOfAnchorNodes[i].AssociatedNode);           
         }
     }
 }
 
 
-//custom role.anchor
