@@ -5161,8 +5161,9 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_AssociateSpecialNodeMark_Click(object sender, EventArgs e)
         {
-            Dialogs.AssociateSpecialNode AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(mProjectView);
-            AssociateSpecialNode.ShowDialog();
+          //  Dialogs.AssociateSpecialNode AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode((ObiRootNode)mProjectView.Presentation.RootNode, ((EmptyNode)mSelection.Node));
+          //  AssociateSpecialNode.ShowDialog();
+            mProjectView.AssociateNodeToSpecialNode();
         }
 
         private void Context_GotoAssociatedNodeMenuItem_Click(object sender, EventArgs e)
