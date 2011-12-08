@@ -28,6 +28,7 @@ namespace Obi.ProjectView
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
+        Dialogs.AssociateSpecialNode AssociateSpecialNode; 
 
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
@@ -623,6 +624,12 @@ namespace Obi.ProjectView
         /// </summary>
         public void Delete ()
             {
+                if (AssociateSpecialNode == null)
+                {
+                    AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), ((EmptyNode)mSelection.Node));
+                    MessageBox.Show(AssociateSpecialNode.DictionaryToMapValues.Count.ToString());
+                }
+
             if (Selection != null && Selection is TextSelection) return;
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop ();
             try
@@ -652,6 +659,27 @@ namespace Obi.ProjectView
                 }
                 else if (CanRemoveBlock)
                 {
+                    if(((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
+                    {
+                        if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
+                        {
+                            mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
+                            Localizer.Message("delete_phrase")));
+                        }
+                        else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
+                        {                                                    
+                        }
+                        else
+                        {
+                            if (MessageBox.Show("Node is between chunk. Do you want to want to delete?", "Delete", MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question) == DialogResult.Yes)
+                                mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
+                                   Localizer.Message("delete_phrase")));
+                            else
+                                return;
+                        }                       
+                    }                 
+                    else
                     mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
                         Localizer.Message("delete_phrase")));
                 }
@@ -3474,11 +3502,14 @@ for (int j = 0;
 
         public void AssociateNodeToSpecialNode()
         {
-            Dialogs.AssociateSpecialNode AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), ((EmptyNode)mSelection.Node));
-            if (AssociateSpecialNode.ShowDialog() == DialogResult.OK)
+            AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), ((EmptyNode)mSelection.Node));
+            if (mSelection.Node is EmptyNode)
             {
-                foreach (KeyValuePair<EmptyNode, EmptyNode> pair in AssociateSpecialNode.DictionaryToMapValues)
-                    pair.Key.AssociatedNode = pair.Value;                
+                if (AssociateSpecialNode.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (KeyValuePair<EmptyNode, EmptyNode> pair in AssociateSpecialNode.DictionaryToMapValues)
+                        pair.Key.AssociatedNode = pair.Value;
+                }
             }
         }
 
