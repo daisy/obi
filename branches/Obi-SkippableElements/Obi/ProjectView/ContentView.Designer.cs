@@ -362,6 +362,7 @@ namespace Obi.ProjectView
             // 
             // Context_BeginSpecialNodeMark
             // 
+            this.Context_BeginSpecialNodeMark.Enabled = false;
             this.Context_BeginSpecialNodeMark.Name = "Context_BeginSpecialNodeMark";
             this.Context_BeginSpecialNodeMark.Size = new System.Drawing.Size(208, 22);
             this.Context_BeginSpecialNodeMark.Text = "Begin special node mark";
@@ -385,6 +386,7 @@ namespace Obi.ProjectView
             // 
             // Context_GotoAssociatedNodeMenuItem
             // 
+            this.Context_GotoAssociatedNodeMenuItem.Enabled = false;
             this.Context_GotoAssociatedNodeMenuItem.Name = "Context_GotoAssociatedNodeMenuItem";
             this.Context_GotoAssociatedNodeMenuItem.Size = new System.Drawing.Size(208, 22);
             this.Context_GotoAssociatedNodeMenuItem.Text = "Go to associated no&de";

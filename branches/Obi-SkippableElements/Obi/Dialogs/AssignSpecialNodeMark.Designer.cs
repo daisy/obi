@@ -38,7 +38,6 @@ namespace Obi.Dialogs
             this.m_cmbBoxSpecialNode.FormattingEnabled = true;
             this.m_cmbBoxSpecialNode.Items.AddRange(new object[] {
             "Footnote",
-            "Sidebar",
             "Producer note",
             "Annotation",
             "End note"});

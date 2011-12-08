@@ -4646,6 +4646,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
             Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             Context_AssociateSpecialNodeMark.Enabled = mProjectView.Selection != null;
+            Context_BeginSpecialNodeMark.Enabled = mProjectView.Selection != null;
+            Context_GotoAssociatedNodeMenuItem.Enabled = mProjectView.Selection != null;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5168,8 +5170,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_GotoAssociatedNodeMenuItem_Click(object sender, EventArgs e)
         {
-            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
-                mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
+            if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
+                mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;           
         }        
     }
 
