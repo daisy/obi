@@ -667,7 +667,17 @@ namespace Obi.ProjectView
                             Localizer.Message("delete_phrase")));
                         }
                         else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
-                        {                                                    
+                        {
+                            MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase.");
+                            foreach (EmptyNode key in AssociateSpecialNode.DictionaryToMapValues.Keys)
+                            {
+                                if (AssociateSpecialNode.DictionaryToMapValues[key] == ((EmptyNode)Selection.Node))
+                                {
+                                    mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
+                                    Localizer.Message("delete_phrase")));
+                                    key.AssociatedNode = ((EmptyNode)Selection.Node);
+                                }
+                            }                  
                         }
                         else
                         {
