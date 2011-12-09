@@ -596,8 +596,43 @@ namespace Obi.ProjectView
                 {
                 CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand ();
                 command.ShortDescription = Localizer.Message ( "cut_phrase" );
-                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy ( this, true ) );
-                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete ( this, mSelection.Node ) );
+                if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
+                {
+                    if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
+                    {
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
+                    }
+                    else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
+                    {
+                        MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase.");
+                        foreach (EmptyNode key in AssociateSpecialNode.DictionaryToMapValues.Keys)
+                        {
+                            if (AssociateSpecialNode.DictionaryToMapValues[key] == ((EmptyNode)Selection.Node))
+                            {
+                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
+                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
+                                key.AssociatedNode = ((EmptyNode)Selection.Node);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (MessageBox.Show("Node is between chunk. Do you want to want to delete?", "Delete", MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
+                        }
+                        else
+                            return;
+                    }
+                }
+                else
+                {
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
+                }
                 mPresentation.Do ( command );
                 }
             else if (CanRemoveAudio)
