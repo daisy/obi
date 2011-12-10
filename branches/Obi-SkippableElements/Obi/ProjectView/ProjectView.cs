@@ -596,7 +596,7 @@ namespace Obi.ProjectView
                 {
                 CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand ();
                 command.ShortDescription = Localizer.Message ( "cut_phrase" );
-                if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
+                if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom && AssociateSpecialNode.DictionaryToMapValues.Count > 0)
                 {
                     if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
                     {
@@ -662,7 +662,7 @@ namespace Obi.ProjectView
                 if (AssociateSpecialNode == null)
                 {
                     AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), ((EmptyNode)mSelection.Node));
-                    MessageBox.Show(AssociateSpecialNode.DictionaryToMapValues.Count.ToString());
+                   // MessageBox.Show(AssociateSpecialNode.DictionaryToMapValues.Count.ToString());
                 }
 
             if (Selection != null && Selection is TextSelection) return;
@@ -694,7 +694,7 @@ namespace Obi.ProjectView
                 }
                 else if (CanRemoveBlock)
                 {
-                    if(((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
+                    if(((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom && AssociateSpecialNode.DictionaryToMapValues.Count > 0)
                     {
                         if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
                         {
