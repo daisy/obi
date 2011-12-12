@@ -110,6 +110,7 @@ namespace Obi
             mRole = role;
             mCustomRole = customRole;
             mPageNumber = null;
+            m_AssociatedNodeLocation = null;
         }
 
         /// <summary>
@@ -174,8 +175,9 @@ namespace Obi
                         iterationNode = iterationNode.Children.Get(childIndex) ;
                     }
                     m_AssociatedNode = (EmptyNode) iterationNode ;
+                    m_AssociatedNodeLocation = null;
                 }
-                return m_AssociatedNode; 
+                return m_AssociatedNode.IsRooted? m_AssociatedNode:null; 
             }
             set 
             { 
