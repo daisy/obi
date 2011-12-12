@@ -28,9 +28,8 @@ namespace Obi.ProjectView
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
-        Dialogs.AssociateSpecialNode AssociateSpecialNode; 
-
-
+        Dialogs.AssociateSpecialNode AssociateSpecialNode;       
+        
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
@@ -571,6 +570,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Cut ()
             {
+                List<SectionNode> listOfAllSections = new List<SectionNode>();
             if (Selection != null && Selection is TextSelection) return;
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop ();
 
@@ -596,7 +596,7 @@ namespace Obi.ProjectView
                 {
                 CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand ();
                 command.ShortDescription = Localizer.Message ( "cut_phrase" );
-                if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom && AssociateSpecialNode.DictionaryToMapValues.Count > 0)
+                if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
                 {
                     if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
                     {
@@ -605,14 +605,19 @@ namespace Obi.ProjectView
                     }
                     else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
                     {
-                        MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase.");
-                        foreach (EmptyNode key in AssociateSpecialNode.DictionaryToMapValues.Keys)
+                        listOfAllSections = ((ObiRootNode)mPresentation.RootNode).GetListOfAllSections();
+                        foreach (SectionNode node in listOfAllSections)
                         {
-                            if (AssociateSpecialNode.DictionaryToMapValues[key] == ((EmptyNode)Selection.Node))
+                            for (int i = 0; i < node.PhraseChildCount; i++)
                             {
-                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
-                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
-                                key.AssociatedNode = ((EmptyNode)Selection.Node);
+
+                                if (((EmptyNode)Selection.Node) == node.PhraseChild(i).AssociatedNode)
+                                {
+                                    MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase.");
+                                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
+                                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
+                                    node.PhraseChild(i).AssociatedNode = ((EmptyNode)Selection.Node);
+                                }
                             }
                         }
                     }
@@ -659,12 +664,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Delete ()
             {
-                if (AssociateSpecialNode == null)
-                {
-                    AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), ((EmptyNode)mSelection.Node));
-                   // MessageBox.Show(AssociateSpecialNode.DictionaryToMapValues.Count.ToString());
-                }
-
+            List<SectionNode> listOfAllSections = new List<SectionNode>();
             if (Selection != null && Selection is TextSelection) return;
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop ();
             try
@@ -694,7 +694,9 @@ namespace Obi.ProjectView
                 }
                 else if (CanRemoveBlock)
                 {
-                    if(((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom && AssociateSpecialNode.DictionaryToMapValues.Count > 0)
+                    listOfAllSections = ((ObiRootNode)mPresentation.RootNode).GetListOfAllSections();
+                    
+                    if(((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
                     {
                         if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
                         {
@@ -703,8 +705,21 @@ namespace Obi.ProjectView
                         }
                         else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
                         {
-                            MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase.");
-                            foreach (EmptyNode key in AssociateSpecialNode.DictionaryToMapValues.Keys)
+                            for (int j = ((EmptyNode)Selection.Node).ParentAs<SectionNode>().Index; j >= 0; j-- )
+                            {
+                                for (int i = 0; i < listOfAllSections[j].PhraseChildCount; i++)
+                                {
+                                    if (((EmptyNode)Selection.Node) == listOfAllSections[j].PhraseChild(i).AssociatedNode)
+                                    {
+                                        MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase.");
+                                        mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
+                                    Localizer.Message("delete_phrase")));
+                                        listOfAllSections[j].PhraseChild(i).AssociatedNode = ((EmptyNode)Selection.Node);
+                                    }
+                                }
+                            }
+
+                         /*   foreach (EmptyNode key in AssociateSpecialNode.DictionaryToMapValues.Keys)
                             {
                                 if (AssociateSpecialNode.DictionaryToMapValues[key] == ((EmptyNode)Selection.Node))
                                 {
@@ -712,7 +727,7 @@ namespace Obi.ProjectView
                                     Localizer.Message("delete_phrase")));
                                     key.AssociatedNode = ((EmptyNode)Selection.Node);
                                 }
-                            }                  
+                            }   */               
                         }
                         else
                         {
