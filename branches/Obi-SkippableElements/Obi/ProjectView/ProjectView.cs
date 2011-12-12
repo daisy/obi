@@ -3553,9 +3553,53 @@ for (int j = 0;
                 if (AssociateSpecialNode.ShowDialog() == DialogResult.OK)
                 {
                     foreach (KeyValuePair<EmptyNode, EmptyNode> pair in AssociateSpecialNode.DictionaryToMapValues)
-                        pair.Key.AssociatedNode = pair.Value;
+                    {
+                        if (pair.Key.AssociatedNode != pair.Value)
+                        {
+                            urakawa.command.CompositeCommand cmd = Presentation.CreateCompositeCommand("Associate anchor node");//todo:localize
+                            if (pair.Key.AssociatedNode != null) cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.DeAssociateAnchorNode(this, pair.Key));
+
+                            cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, pair.Key, pair.Value));
+
+                            try
+                            {
+                                Presentation.Do(cmd);
+                            }
+                            catch (System.Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                            }
+                            //pair.Key.AssociatedNode = pair.Value;
+                        }
+                    }//foreach ends
+                }//dialog ok ends
+
+            }
+        }
+
+        public void AssignRoleToMarkedContinuousNodes()
+        {
+            EmptyNode startNode = null ;
+            EmptyNode endNode = null ;
+            
+            string customClass = "";
+
+            Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();
+            AssignSpecialNodeDialog.ShowDialog();
+            if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
+            {
+                customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
+
+                try
+                {
+                    Presentation.Do(Commands.Node.AssignRole.GetCompositeCommandForAssigningRoleOnMultipleNodes(this, startNode, endNode, EmptyNode.Role.Custom, customClass));
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
                 }
             }
+
         }
 
         public void ExportAudioOfSelectedNode()
