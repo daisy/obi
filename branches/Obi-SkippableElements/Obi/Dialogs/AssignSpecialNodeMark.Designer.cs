@@ -41,7 +41,7 @@ namespace Obi.Dialogs
             "Producer note",
             "Annotation",
             "End note"});
-            this.m_cmbBoxSpecialNode.Location = new System.Drawing.Point(53, 33);
+            this.m_cmbBoxSpecialNode.Location = new System.Drawing.Point(53, 28);
             this.m_cmbBoxSpecialNode.Name = "m_cmbBoxSpecialNode";
             this.m_cmbBoxSpecialNode.Size = new System.Drawing.Size(181, 21);
             this.m_cmbBoxSpecialNode.TabIndex = 0;
@@ -49,7 +49,7 @@ namespace Obi.Dialogs
             // m_btn_OK
             // 
             this.m_btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.m_btn_OK.Location = new System.Drawing.Point(53, 99);
+            this.m_btn_OK.Location = new System.Drawing.Point(53, 73);
             this.m_btn_OK.Name = "m_btn_OK";
             this.m_btn_OK.Size = new System.Drawing.Size(75, 23);
             this.m_btn_OK.TabIndex = 1;
@@ -59,7 +59,8 @@ namespace Obi.Dialogs
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(159, 99);
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.Location = new System.Drawing.Point(159, 73);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -70,12 +71,12 @@ namespace Obi.Dialogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 160);
+            this.ClientSize = new System.Drawing.Size(292, 115);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_cmbBoxSpecialNode);
             this.Name = "AssignSpecialNodeMark";
-            this.Text = "AssignSpecialNode";
+            this.Text = "Assign Special Node";
             this.ResumeLayout(false);
 
         }

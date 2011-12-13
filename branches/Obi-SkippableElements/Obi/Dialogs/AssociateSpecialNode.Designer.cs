@@ -41,19 +41,19 @@ namespace Obi.Dialogs
             // m_lb_ListOfSpecialNodes
             // 
             this.m_lb_ListOfSpecialNodes.FormattingEnabled = true;
-            this.m_lb_ListOfSpecialNodes.Location = new System.Drawing.Point(146, 38);
+            this.m_lb_ListOfSpecialNodes.Location = new System.Drawing.Point(185, 38);
             this.m_lb_ListOfSpecialNodes.Name = "m_lb_ListOfSpecialNodes";
-            this.m_lb_ListOfSpecialNodes.Size = new System.Drawing.Size(256, 147);
-            this.m_lb_ListOfSpecialNodes.TabIndex = 0;
+            this.m_lb_ListOfSpecialNodes.Size = new System.Drawing.Size(217, 147);
+            this.m_lb_ListOfSpecialNodes.TabIndex = 1;
             this.m_lb_ListOfSpecialNodes.SelectedIndexChanged += new System.EventHandler(this.m_lb_ListOfSpecialNodes_SelectedIndexChanged);
             // 
             // m_btn_OK
             // 
             this.m_btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.m_btn_OK.Location = new System.Drawing.Point(222, 238);
+            this.m_btn_OK.Location = new System.Drawing.Point(92, 250);
             this.m_btn_OK.Name = "m_btn_OK";
             this.m_btn_OK.Size = new System.Drawing.Size(75, 23);
-            this.m_btn_OK.TabIndex = 1;
+            this.m_btn_OK.TabIndex = 5;
             this.m_btn_OK.Text = "OK";
             this.m_btn_OK.UseVisualStyleBackColor = true;
             this.m_btn_OK.Click += new System.EventHandler(this.m_btn_OK_Click);
@@ -61,10 +61,10 @@ namespace Obi.Dialogs
             // m_btn_Cancel
             // 
             this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btn_Cancel.Location = new System.Drawing.Point(314, 238);
+            this.m_btn_Cancel.Location = new System.Drawing.Point(214, 250);
             this.m_btn_Cancel.Name = "m_btn_Cancel";
             this.m_btn_Cancel.Size = new System.Drawing.Size(88, 23);
-            this.m_btn_Cancel.TabIndex = 2;
+            this.m_btn_Cancel.TabIndex = 6;
             this.m_btn_Cancel.Text = "Cancel";
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             // 
@@ -78,10 +78,10 @@ namespace Obi.Dialogs
             // m_btn_Associate
             // 
             this.m_btn_Associate.Enabled = false;
-            this.m_btn_Associate.Location = new System.Drawing.Point(11, 238);
+            this.m_btn_Associate.Location = new System.Drawing.Point(146, 204);
             this.m_btn_Associate.Name = "m_btn_Associate";
             this.m_btn_Associate.Size = new System.Drawing.Size(95, 23);
-            this.m_btn_Associate.TabIndex = 4;
+            this.m_btn_Associate.TabIndex = 3;
             this.m_btn_Associate.Text = "Associate";
             this.m_btn_Associate.UseVisualStyleBackColor = true;
             this.m_btn_Associate.Click += new System.EventHandler(this.m_btn_Associate_Click);
@@ -89,10 +89,10 @@ namespace Obi.Dialogs
             // m_btn_Deassociate
             // 
             this.m_btn_Deassociate.Enabled = false;
-            this.m_btn_Deassociate.Location = new System.Drawing.Point(122, 238);
+            this.m_btn_Deassociate.Location = new System.Drawing.Point(304, 204);
             this.m_btn_Deassociate.Name = "m_btn_Deassociate";
             this.m_btn_Deassociate.Size = new System.Drawing.Size(88, 23);
-            this.m_btn_Deassociate.TabIndex = 5;
+            this.m_btn_Deassociate.TabIndex = 4;
             this.m_btn_Deassociate.Text = "Deasscociate";
             this.m_btn_Deassociate.UseVisualStyleBackColor = true;
             this.m_btn_Deassociate.Click += new System.EventHandler(this.m_btn_Deassociate_Click);
@@ -100,10 +100,10 @@ namespace Obi.Dialogs
             // m_lb_listOfAllAnchorNodes
             // 
             this.m_lb_listOfAllAnchorNodes.FormattingEnabled = true;
-            this.m_lb_listOfAllAnchorNodes.Location = new System.Drawing.Point(6, 38);
+            this.m_lb_listOfAllAnchorNodes.Location = new System.Drawing.Point(7, 38);
             this.m_lb_listOfAllAnchorNodes.Name = "m_lb_listOfAllAnchorNodes";
-            this.m_lb_listOfAllAnchorNodes.Size = new System.Drawing.Size(120, 147);
-            this.m_lb_listOfAllAnchorNodes.TabIndex = 6;
+            this.m_lb_listOfAllAnchorNodes.Size = new System.Drawing.Size(147, 147);
+            this.m_lb_listOfAllAnchorNodes.TabIndex = 0;
             this.m_lb_listOfAllAnchorNodes.Visible = false;
             this.m_lb_listOfAllAnchorNodes.SelectedIndexChanged += new System.EventHandler(this.m_lb_listOfAllAnchorNodes_SelectedIndexChanged);
             // 
@@ -112,7 +112,7 @@ namespace Obi.Dialogs
             this.m_btn_ShowAll.Location = new System.Drawing.Point(12, 204);
             this.m_btn_ShowAll.Name = "m_btn_ShowAll";
             this.m_btn_ShowAll.Size = new System.Drawing.Size(75, 23);
-            this.m_btn_ShowAll.TabIndex = 7;
+            this.m_btn_ShowAll.TabIndex = 2;
             this.m_btn_ShowAll.Text = "Show all";
             this.m_btn_ShowAll.UseVisualStyleBackColor = true;
             this.m_btn_ShowAll.Click += new System.EventHandler(this.m_btn_ShowAll_Click);
@@ -121,7 +121,7 @@ namespace Obi.Dialogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 273);
+            this.ClientSize = new System.Drawing.Size(414, 288);
             this.Controls.Add(this.m_btn_ShowAll);
             this.Controls.Add(this.m_lb_listOfAllAnchorNodes);
             this.Controls.Add(this.m_btn_Deassociate);
@@ -131,7 +131,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_lb_ListOfSpecialNodes);
             this.Name = "AssociateSpecialNode";
-            this.Text = "AssociateSpecialNode";
+            this.Text = "Associate Special Node";
             this.ResumeLayout(false);
             this.PerformLayout();
 
