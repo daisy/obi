@@ -54,10 +54,13 @@ namespace Obi.Dialogs
                         {
                             if (!m_IsShowAll)
                             {
-                               if (firstIndex == -1 && !m_IsShowAll)
-                                  m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (i + 1));
-                               else
-                                  m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));                               
+                                if (firstIndex == -1)
+                                {
+                                    m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (i + 1));
+                                    listOfFirstNodeOfSpecialNodes.Add(node.PhraseChild(i));
+                                }
+                                else
+                                    m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));                               
                             }
                            
                             firstIndex = -1;
