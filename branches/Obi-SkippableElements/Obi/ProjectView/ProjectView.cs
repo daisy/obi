@@ -3569,13 +3569,24 @@ for (int j = 0;
                 {
                     foreach (KeyValuePair<EmptyNode, EmptyNode> pair in AssociateSpecialNode.DictionaryToMapValues)
                     {
-                        if (pair.Key.AssociatedNode != pair.Value)
+                        
+                        if (pair.Key.AssociatedNode == null
+                            || pair.Key.AssociatedNode != pair.Value)
                         {
+                            
                             urakawa.command.CompositeCommand cmd = Presentation.CreateCompositeCommand("Associate anchor node");//todo:localize
                             if (pair.Key.AssociatedNode != null) cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.DeAssociateAnchorNode(this, pair.Key));
 
-                            cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, pair.Key, pair.Value));
-
+                            if (pair.Value != null)
+                            {
+                                
+                                cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, pair.Key, pair.Value));
+                            }
+                            else if (pair.Value == null && pair.Key.AssociatedNode != null)
+                            {
+                                
+                                cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.DeAssociateAnchorNode(this, pair.Key));
+                            }
                             try
                             {
                                 Presentation.Do(cmd);

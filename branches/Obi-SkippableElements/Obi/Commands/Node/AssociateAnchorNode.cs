@@ -32,7 +32,7 @@ namespace Obi.Commands.Node
 
         public override void UnExecute()
         {
-            m_Node = m_PreviouslyAssociatedNode;
+            m_Node.AssociatedNode = m_PreviouslyAssociatedNode;
             base.UnExecute();
         }
     
