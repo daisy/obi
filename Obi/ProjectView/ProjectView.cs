@@ -28,8 +28,10 @@ namespace Obi.ProjectView
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
-        Dialogs.AssociateSpecialNode AssociateSpecialNode;       
-        
+        Dialogs.AssociateSpecialNode AssociateSpecialNode;
+        private bool m_CanDeleteSpecialNode = false;
+      //  private bool m_CanCutSpecialNode = false;
+
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
@@ -570,7 +572,6 @@ namespace Obi.ProjectView
         /// </summary>
         public void Cut ()
             {
-                List<SectionNode> listOfAllSections = new List<SectionNode>();
             if (Selection != null && Selection is TextSelection) return;
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop ();
 
@@ -594,51 +595,14 @@ namespace Obi.ProjectView
                 }
             else if (CanRemoveBlock)
                 {
-                CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand ();
-                command.ShortDescription = Localizer.Message ( "cut_phrase" );
-                if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
-                {
-                    if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
+                    if (CanDeleteSpecialNode())
                     {
+                        CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand();
+                        command.ShortDescription = Localizer.Message("cut_phrase");
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
+                        mPresentation.Do(command);                       
                     }
-                    else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
-                    {
-                        listOfAllSections = ((ObiRootNode)mPresentation.RootNode).GetListOfAllSections();
-                        foreach (SectionNode node in listOfAllSections)
-                        {
-                            for (int i = 0; i < node.PhraseChildCount; i++)
-                            {
-
-                                if (((EmptyNode)Selection.Node) == node.PhraseChild(i).AssociatedNode)
-                                {
-                                    MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase.");
-                                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
-                                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
-                                    node.PhraseChild(i).AssociatedNode = ((EmptyNode)Selection.Node);
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (MessageBox.Show("Node is between chunk. Do you want to want to delete?", "Delete", MessageBoxButtons.YesNo,
-                               MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
-                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
-                        }
-                        else
-                            return;
-                    }
-                }
-                else
-                {
-                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
-                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
-                }
-                mPresentation.Do ( command );
                 }
             else if (CanRemoveAudio)
                 {
@@ -659,12 +623,12 @@ namespace Obi.ProjectView
             }
             }
 
+     
         /// <summary>
         /// Delete the current selection. Noop if there is no selection.
         /// </summary>
         public void Delete ()
             {
-            List<SectionNode> listOfAllSections = new List<SectionNode>();
             if (Selection != null && Selection is TextSelection) return;
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop ();
             try
@@ -693,55 +657,10 @@ namespace Obi.ProjectView
                     mPresentation.Do(mContentView.DeleteStripCommand());
                 }
                 else if (CanRemoveBlock)
-                {
-                    listOfAllSections = ((ObiRootNode)mPresentation.RootNode).GetListOfAllSections();
-                    
-                    if(((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
-                    {
-                        if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
-                        {
-                            mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
-                            Localizer.Message("delete_phrase")));
-                        }
-                        else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
-                        {
-                            for (int j = ((EmptyNode)Selection.Node).ParentAs<SectionNode>().Index; j >= 0; j-- )
-                            {
-                                for (int i = 0; i < listOfAllSections[j].PhraseChildCount; i++)
-                                {
-                                    if (((EmptyNode)Selection.Node) == listOfAllSections[j].PhraseChild(i).AssociatedNode)
-                                    {
-                                        MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase.");
-                                        mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
-                                    Localizer.Message("delete_phrase")));
-                                        listOfAllSections[j].PhraseChild(i).AssociatedNode = ((EmptyNode)Selection.Node);
-                                    }
-                                }
-                            }
-
-                         /*   foreach (EmptyNode key in AssociateSpecialNode.DictionaryToMapValues.Keys)
-                            {
-                                if (AssociateSpecialNode.DictionaryToMapValues[key] == ((EmptyNode)Selection.Node))
-                                {
-                                    mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
-                                    Localizer.Message("delete_phrase")));
-                                    key.AssociatedNode = ((EmptyNode)Selection.Node);
-                                }
-                            }   */               
-                        }
-                        else
-                        {
-                            if (MessageBox.Show("Node is between chunk. Do you want to want to delete?", "Delete", MessageBoxButtons.YesNo,
-                                   MessageBoxIcon.Question) == DialogResult.Yes)
-                                mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
-                                   Localizer.Message("delete_phrase")));
-                            else
-                                return;
-                        }                       
-                    }                 
-                    else
-                    mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
-                        Localizer.Message("delete_phrase")));
+                {                 
+                    if(CanDeleteSpecialNode())
+                        mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
+                           Localizer.Message("delete_phrase")));                    
                 }
                 else if (CanRemoveAudio)
                 {
@@ -757,6 +676,67 @@ namespace Obi.ProjectView
                 MessageBox.Show(ex.ToString());
             }
             }
+
+        public bool CanDeleteSpecialNode()
+        {
+            if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
+            {
+                List<SectionNode> listOfAllSections = new List<SectionNode>();
+                listOfAllSections = ((ObiRootNode)mPresentation.RootNode).GetListOfAllSections();
+                if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
+                    m_CanDeleteSpecialNode = true;
+                else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
+                {
+                    for (int j = ((EmptyNode)Selection.Node).ParentAs<SectionNode>().Index; j >= 0; j--)
+                    {
+                        for (int i = 0; i < listOfAllSections[j].PhraseChildCount; i++)
+                        {
+                            if (((EmptyNode)Selection.Node) == listOfAllSections[j].PhraseChild(i).AssociatedNode)
+                            {
+                                if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    listOfAllSections[j].PhraseChild(i).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
+                                    m_CanDeleteSpecialNode = true;
+                                }
+                                else
+                                    return false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("Node is between chunk. Do you want to want to delete?", "Delete", MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Question) == DialogResult.Yes)
+                        m_CanDeleteSpecialNode = true;
+                    else
+                        return false;
+                }
+            }
+            else
+                m_CanDeleteSpecialNode = true;
+            return m_CanDeleteSpecialNode;
+        }
+
+        public void EndSpecialNodeMark()
+        {
+            int startIndex = mContentView.BeginSpecialNode.Index;
+            int endIndex =  Selection.EmptyNodeForSelection.Index;
+            List<EmptyNode> listOfEmptyNodesToMarkAsSpecialNodes = new List<EmptyNode>();
+            string customClass = "";
+
+            Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();
+            AssignSpecialNodeDialog.ShowDialog();
+            if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
+                customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
+
+            for (int i = startIndex; i <= endIndex; i++ )
+            {
+                SetCustomTypeOnEmptyNode(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i), EmptyNode.Role.Custom, customClass);
+                listOfEmptyNodesToMarkAsSpecialNodes.Add(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i));
+            }
+        }
 
         public bool CanDeleteMetadataEntry ( urakawa.metadata.Metadata m )
             {
