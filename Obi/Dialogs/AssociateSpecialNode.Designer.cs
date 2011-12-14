@@ -41,9 +41,9 @@ namespace Obi.Dialogs
             // m_lb_ListOfSpecialNodes
             // 
             this.m_lb_ListOfSpecialNodes.FormattingEnabled = true;
-            this.m_lb_ListOfSpecialNodes.Location = new System.Drawing.Point(185, 38);
+            this.m_lb_ListOfSpecialNodes.Location = new System.Drawing.Point(262, 38);
             this.m_lb_ListOfSpecialNodes.Name = "m_lb_ListOfSpecialNodes";
-            this.m_lb_ListOfSpecialNodes.Size = new System.Drawing.Size(217, 147);
+            this.m_lb_ListOfSpecialNodes.Size = new System.Drawing.Size(140, 147);
             this.m_lb_ListOfSpecialNodes.TabIndex = 1;
             this.m_lb_ListOfSpecialNodes.SelectedIndexChanged += new System.EventHandler(this.m_lb_ListOfSpecialNodes_SelectedIndexChanged);
             // 
@@ -100,9 +100,10 @@ namespace Obi.Dialogs
             // m_lb_listOfAllAnchorNodes
             // 
             this.m_lb_listOfAllAnchorNodes.FormattingEnabled = true;
+            this.m_lb_listOfAllAnchorNodes.HorizontalScrollbar = true;
             this.m_lb_listOfAllAnchorNodes.Location = new System.Drawing.Point(7, 38);
             this.m_lb_listOfAllAnchorNodes.Name = "m_lb_listOfAllAnchorNodes";
-            this.m_lb_listOfAllAnchorNodes.Size = new System.Drawing.Size(147, 147);
+            this.m_lb_listOfAllAnchorNodes.Size = new System.Drawing.Size(249, 147);
             this.m_lb_listOfAllAnchorNodes.TabIndex = 0;
             this.m_lb_listOfAllAnchorNodes.Visible = false;
             this.m_lb_listOfAllAnchorNodes.SelectedIndexChanged += new System.EventHandler(this.m_lb_listOfAllAnchorNodes_SelectedIndexChanged);

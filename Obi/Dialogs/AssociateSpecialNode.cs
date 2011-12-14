@@ -34,6 +34,7 @@ namespace Obi.Dialogs
             m_IsShowAll = true;
             m_lb_listOfAllAnchorNodes.Visible = true;
             AddToListBox();
+
             m_btn_ShowAll.Enabled = false;
         }
 
@@ -82,7 +83,8 @@ namespace Obi.Dialogs
                     }
                     if (node.PhraseChild(i).Role_ == EmptyNode.Role.Anchor && m_IsShowAll)
                     {
-                        m_lb_listOfAllAnchorNodes.Items.Add(node.PhraseChild(i));
+        //                m_lb_listOfAllAnchorNodes.Items.Add(node.PhraseChild(i));
+                        m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
                         listOfAnchorNodes.Add(node.PhraseChild(i));
                     }                    
                 }
@@ -99,21 +101,27 @@ namespace Obi.Dialogs
 
         private void m_btn_Deassociate_Click(object sender, EventArgs e)
         {
-           //  ((EmptyNode)m_View.Selection.Node).AssociatedNode = null;
+            listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode = null;
+           
+            m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex,"Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " "+ listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex] + " = ");
+            m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
+          //  m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedIndex);
+            // ((EmptyNode)m_View.Selection.Node).AssociatedNode = null;             
             // m_lb_ListOfSpecialNodes.Items.Insert(m_lb_ListOfSpecialNodes.SelectedIndex, ""); 
-            //  m_lb_ListOfSpecialNodes.Items.Remove(m_lb_ListOfSpecialNodes.SelectedItem);
+            
         }
 
         private void m_lb_ListOfSpecialNodes_SelectedIndexChanged(object sender, EventArgs e)
         {
             //m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count >0;
             m_btn_Associate.Enabled = true;
-            m_btn_Deassociate.Enabled = true;        
+        
         }
 
         private void m_lb_listOfAllAnchorNodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_btn_Associate.Enabled = (m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count > 0);           
+            m_btn_Associate.Enabled = (m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count > 0);
+            m_btn_Deassociate.Enabled = true;        
         }
 
         private void m_btn_OK_Click(object sender, EventArgs e)
