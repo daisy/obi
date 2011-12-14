@@ -232,9 +232,12 @@ namespace Obi.ProjectView
                 }
             }
 
+        public EmptyNode BeginSpecialNode  { get { return m_BeginSpecialNode; } }
+
         /// <summary>
         /// Add a custom class to the context menu.
         /// </summary>
+        /// 
         public void AddCustomRoleToContextMenu ( string name, ObiForm from )
             {
             from.AddCustomRoleToMenu ( name, Context_AssignRoleMenuItem.DropDownItems, Context_AssignRole_NewCustomRoleMenuItem );
@@ -5138,21 +5141,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_EndSpecialNodeMark_Click(object sender, EventArgs e)
         {
-            int startIndex = m_BeginSpecialNode.Index;
-            int endIndex = mProjectView.Selection.EmptyNodeForSelection.Index;
-            List<EmptyNode> listOfEmptyNodesToMarkAsSpecialNodes = new List<EmptyNode>();
-            string customClass = "";
-
-            Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();
-            AssignSpecialNodeDialog.ShowDialog();
-            if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
-                customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
-
-            for (int i = startIndex; i <= endIndex; i++ )
-            {
-                mProjectView.SetCustomTypeOnEmptyNode(m_BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i), EmptyNode.Role.Custom, customClass);
-                listOfEmptyNodesToMarkAsSpecialNodes.Add(m_BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i));
-            }
+            mProjectView.EndSpecialNodeMark();
         }
 
         private void Context_BeginSpecialNodeMark_Click(object sender, EventArgs e)
