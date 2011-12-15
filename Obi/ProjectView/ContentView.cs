@@ -5141,7 +5141,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_EndSpecialNodeMark_Click(object sender, EventArgs e)
         {
-            mProjectView.EndSpecialNodeMark();
+            mProjectView.AssignRoleToMarkedContinuousNodes();
         }
 
         private void Context_BeginSpecialNodeMark_Click(object sender, EventArgs e)

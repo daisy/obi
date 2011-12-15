@@ -719,25 +719,6 @@ namespace Obi.ProjectView
             return m_CanDeleteSpecialNode;
         }
 
-        public void EndSpecialNodeMark()
-        {
-            int startIndex = mContentView.BeginSpecialNode.Index;
-            int endIndex =  Selection.EmptyNodeForSelection.Index;
-            List<EmptyNode> listOfEmptyNodesToMarkAsSpecialNodes = new List<EmptyNode>();
-            string customClass = "";
-
-            Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();
-            AssignSpecialNodeDialog.ShowDialog();
-            if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
-                customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
-
-            for (int i = startIndex; i <= endIndex; i++ )
-            {
-                SetCustomTypeOnEmptyNode(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i), EmptyNode.Role.Custom, customClass);
-                listOfEmptyNodesToMarkAsSpecialNodes.Add(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i));
-            }
-        }
-
         public bool CanDeleteMetadataEntry ( urakawa.metadata.Metadata m )
             {
             return mPresentation.Metadatas.ContentsAs_ListCopy.Contains ( m );
@@ -3585,17 +3566,23 @@ for (int j = 0;
 
         public void AssignRoleToMarkedContinuousNodes()
         {
-            EmptyNode startNode = null ;
-            EmptyNode endNode = null ;
-            
+            EmptyNode startNode = mContentView.BeginSpecialNode;
+            EmptyNode endNode = Selection.EmptyNodeForSelection;
+
             string customClass = "";
+            List<EmptyNode> listOfEmptyNodesToMarkAsSpecialNodes = new List<EmptyNode>();
 
             Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();
             AssignSpecialNodeDialog.ShowDialog();
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
-
+               
+                for (int i = startNode.Index; i <= endNode.Index; i++)
+                {
+                    SetCustomTypeOnEmptyNode(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i), EmptyNode.Role.Custom, customClass);
+                    listOfEmptyNodesToMarkAsSpecialNodes.Add(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i));
+                }
                 try
                 {
                     Presentation.Do(Commands.Node.AssignRole.GetCompositeCommandForAssigningRoleOnMultipleNodes(this, startNode, endNode, EmptyNode.Role.Custom, customClass));
@@ -3605,7 +3592,6 @@ for (int j = 0;
                     MessageBox.Show(ex.ToString());
                 }
             }
-
         }
 
         public void ExportAudioOfSelectedNode()
