@@ -41,6 +41,7 @@ namespace Obi.Dialogs
             // m_lb_ListOfSpecialNodes
             // 
             this.m_lb_ListOfSpecialNodes.FormattingEnabled = true;
+            this.m_lb_ListOfSpecialNodes.HorizontalScrollbar = true;
             this.m_lb_ListOfSpecialNodes.Location = new System.Drawing.Point(262, 38);
             this.m_lb_ListOfSpecialNodes.Name = "m_lb_ListOfSpecialNodes";
             this.m_lb_ListOfSpecialNodes.Size = new System.Drawing.Size(140, 147);

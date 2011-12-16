@@ -3577,12 +3577,17 @@ for (int j = 0;
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
-               
                 for (int i = startNode.Index; i <= endNode.Index; i++)
-                {
-                    SetCustomTypeOnEmptyNode(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i), EmptyNode.Role.Custom, customClass);
-                    listOfEmptyNodesToMarkAsSpecialNodes.Add(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i));
-                }
+                    {
+                        if ((((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom) && ((EmptyNode)this.Selection.Node).CustomRole != customClass)
+                            break;
+                        else
+                        {
+                            SetCustomTypeOnEmptyNode(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i), EmptyNode.Role.Custom, customClass);
+                            listOfEmptyNodesToMarkAsSpecialNodes.Add(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i));
+                        }
+                    }
+                
                 try
                 {
                     Presentation.Do(Commands.Node.AssignRole.GetCompositeCommandForAssigningRoleOnMultipleNodes(this, startNode, endNode, EmptyNode.Role.Custom, customClass));
