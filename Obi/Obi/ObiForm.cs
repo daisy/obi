@@ -1773,7 +1773,7 @@ namespace Obi
                                     mSession.Presentation, exportPath, dialog.EncodeToMP3, AudioLib.SampleRate.Hz44100, audioFileSectionLevel);
                             }
                             DAISYExport.BitRate_Mp3 = dialog.BitRate;
-                            DAISYExport.EnableExplicitGarbageCollection = Settings.OptimizeMemory;
+                            //DAISYExport.EnableExplicitGarbageCollection = Settings.OptimizeMemory;
                         Status(String.Format(Localizer.Message("ObiFormStatusMsg_ExportingProject") , exportPath));
                                                 
                         ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "export_progress_dialog_title" ),
