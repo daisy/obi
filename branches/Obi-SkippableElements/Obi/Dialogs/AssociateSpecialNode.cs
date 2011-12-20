@@ -16,7 +16,7 @@ namespace Obi.Dialogs
         List<EmptyNode> listOfAnchorNodes = new List<EmptyNode>();
         private EmptyNode m_SelectedNode = null;
         Dictionary<EmptyNode, EmptyNode> nodes_phraseMap = new Dictionary<EmptyNode, EmptyNode>(); // used for importing sections
-      
+        
         public AssociateSpecialNode(ObiRootNode obiNode, EmptyNode selectedNode)
         {
             m_ObiNode = obiNode;
@@ -93,7 +93,7 @@ namespace Obi.Dialogs
 
         private void m_btn_Associate_Click(object sender, EventArgs e)
         {
-            if (m_IsShowAll)
+            if (m_IsShowAll && listOfAnchorNodes.Count > 0)
                 nodes_phraseMap.Add(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex], listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
             else
                 nodes_phraseMap.Add(m_SelectedNode, listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]); 
@@ -115,12 +115,13 @@ namespace Obi.Dialogs
         {
             //m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count >0;
             m_btn_Associate.Enabled = true;
-        
+            m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;       
         }
 
         private void m_lb_listOfAllAnchorNodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_btn_Associate.Enabled = (m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count > 0);
+            //m_btn_Associate.Enabled = (m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count > 0);
+            m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
             m_btn_Deassociate.Enabled = true;        
         }
 
