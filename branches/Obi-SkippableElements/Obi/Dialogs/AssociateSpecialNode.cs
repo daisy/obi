@@ -93,22 +93,53 @@ namespace Obi.Dialogs
 
         private void m_btn_Associate_Click(object sender, EventArgs e)
         {
+            EmptyNode anchorNode = null;
             if (m_IsShowAll && listOfAnchorNodes.Count > 0)
-                nodes_phraseMap.Add(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex], listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
+            {
+                anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];
+
+            }
             else
-                nodes_phraseMap.Add(m_SelectedNode, listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]); 
+            {
+                anchorNode = m_SelectedNode;
+
+            }
+            if (nodes_phraseMap.ContainsKey(anchorNode))
+            {
+                nodes_phraseMap[anchorNode] = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
+            }
+            else
+            {
+                nodes_phraseMap.Add(anchorNode, listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
+            }
+            
         }
 
         private void m_btn_Deassociate_Click(object sender, EventArgs e)
         {
-            listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode = null;
-           
+            EmptyNode anchorNode = null;
+            if (m_IsShowAll && listOfAnchorNodes.Count > 0)
+            {
+                anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];
+                
+            }
+            else
+            {
+                anchorNode = m_SelectedNode;
+                
+            }
+            if (nodes_phraseMap.ContainsKey(anchorNode))
+            {
+                nodes_phraseMap[anchorNode] = null;
+            }
+            else
+            {
+                nodes_phraseMap.Add(anchorNode, null);
+            }
+
+            
             m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex,"Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " "+ listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex] + " = ");
             m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
-          //  m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedIndex);
-            // ((EmptyNode)m_View.Selection.Node).AssociatedNode = null;             
-            // m_lb_ListOfSpecialNodes.Items.Insert(m_lb_ListOfSpecialNodes.SelectedIndex, ""); 
-            
         }
 
         private void m_lb_ListOfSpecialNodes_SelectedIndexChanged(object sender, EventArgs e)
