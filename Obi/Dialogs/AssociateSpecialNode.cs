@@ -34,7 +34,7 @@ namespace Obi.Dialogs
             m_IsShowAll = true;
             m_lb_listOfAllAnchorNodes.Visible = true;
             AddToListBox();
-
+            m_txtBox_SectionName.Visible = false;
             m_btn_ShowAll.Enabled = false;
         }
 
@@ -145,8 +145,10 @@ namespace Obi.Dialogs
         private void m_lb_ListOfSpecialNodes_SelectedIndexChanged(object sender, EventArgs e)
         {
             //m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count >0;
-            m_btn_Associate.Enabled = true;
-            m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;       
+            if (m_lb_listOfAllAnchorNodes.Visible)
+                m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
+            else
+                m_btn_Associate.Enabled = m_lb_ListOfSpecialNodes.SelectedItem != null;
         }
 
         private void m_lb_listOfAllAnchorNodes_SelectedIndexChanged(object sender, EventArgs e)
