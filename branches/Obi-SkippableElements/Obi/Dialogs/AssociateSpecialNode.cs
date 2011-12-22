@@ -31,11 +31,20 @@ namespace Obi.Dialogs
 
         private void m_btn_ShowAll_Click(object sender, EventArgs e)
         {
-            m_IsShowAll = true;
-            m_lb_listOfAllAnchorNodes.Visible = true;
-            AddToListBox();
-            m_txtBox_SectionName.Visible = false;
-            m_btn_ShowAll.Enabled = false;
+            if (m_btn_ShowAll.Text == "Show all")
+            {
+                m_IsShowAll = true;
+                m_lb_listOfAllAnchorNodes.Visible = true;
+                AddToListBox();
+                m_txtBox_SectionName.Visible = false;
+                m_btn_ShowAll.Text = "Show selected";
+            }
+            else if (m_btn_ShowAll.Text == "Show selected")
+            {
+                m_txtBox_SectionName.Visible = true;
+                m_lb_listOfAllAnchorNodes.Visible = false;
+                m_btn_ShowAll.Text = "Show all";
+            }
         }
 
         public void AddToListBox()
