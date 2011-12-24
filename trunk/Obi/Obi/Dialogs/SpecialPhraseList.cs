@@ -20,6 +20,16 @@ namespace Obi.Dialogs
             mView = projectView;
             InitializeComponent();
             m_btnOK.Enabled = false;
+            AddCustomRoles();
+        }
+
+        private void AddCustomRoles()
+        {
+            foreach (string str in mView.Presentation.CustomClasses)
+            {
+                m_cb_SpecialPhrases.Items.Add(str);  
+            }
+            
         }
 
         public EmptyNode SpecialPhraseSelected
@@ -98,7 +108,43 @@ namespace Obi.Dialogs
                                         backendList.Add(((EmptyNode)n));
                                     }
                                     break;
-                            }
+                                case 7: case 8: case 9:case 10:case 11:
+                                    string itemString = (string)m_cb_SpecialPhrases.SelectedItem;
+                                    if (n is EmptyNode 
+                                        && !string.IsNullOrEmpty(itemString)
+                                        && ((EmptyNode) n).Role_ == EmptyNode.Role.Custom && ((EmptyNode)n).CustomRole == itemString)
+                                        {
+                                            SectionNode section = ((EmptyNode)n).ParentAs<SectionNode>();
+                                        int phraseIndex = ((EmptyNode)n).Index ;
+
+                                                                                    if (phraseIndex < section.PhraseChildCount -1
+                                                                                        &&    ((EmptyNode)n).CustomRole == section.PhraseChild(phraseIndex+1).CustomRole )
+                                                                                    {
+                                                                                        int customRoleEndIndex = phraseIndex;
+                                                                                        for (int i = phraseIndex; i < section.PhraseChildCount -1; i++)
+                                                                                        {
+                                                                                            if (section.PhraseChild(i).CustomRole != section.PhraseChild(i + 1).CustomRole)
+                                                                                            {
+                                                                                                customRoleEndIndex = i;
+                                                                                                break;
+                                                                                            }
+                                                                                        }
+                                                                                        
+                                                                                        sectionName = ((EmptyNode)n).ParentAs<SectionNode>().Label + " : " +
+                                                              itemString +": " +   phraseIndex.ToString() + " - " + customRoleEndIndex.ToString();
+                                                                                        m_lbSpecialPhrasesList.Items.Add(sectionName);
+                                                                                        backendList.Add(((EmptyNode)n));
+                                            n = section.PhraseChild(customRoleEndIndex +1);
+                                            Console.WriteLine(" Phrase chunk : " +n);
+                                            }
+                                            else
+                                                sectionName = ((EmptyNode) n).ParentAs<SectionNode>().Label + " : " +
+                                                              ((EmptyNode) n);
+                                            m_lbSpecialPhrasesList.Items.Add(sectionName);
+                                            backendList.Add(((EmptyNode)n)); 
+                                    }
+                                    break;
+                               }
                             return true;
                         },
                     delegate(urakawa.core.TreeNode n) { });
