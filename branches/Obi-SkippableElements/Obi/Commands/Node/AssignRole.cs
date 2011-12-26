@@ -50,7 +50,7 @@ namespace Obi.Commands.Node
                 command.ChildCommands.Insert ( command.ChildCommands.Count,
                     new Commands.Node.AssignRole(view, section.PhraseChild(i), role, customeClassName));
             }
-            return null;
+            return command;
         }
 
         public override bool CanExecute { get { return true; } }
