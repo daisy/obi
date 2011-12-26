@@ -3568,28 +3568,49 @@ for (int j = 0;
         {
             EmptyNode startNode = mContentView.BeginSpecialNode;
             EmptyNode endNode = Selection.EmptyNodeForSelection;
+            MessageBox.Show(endNode.ToString());
+            bool IsAdded = false;
 
             string customClass = "";
             List<EmptyNode> listOfEmptyNodesToMarkAsSpecialNodes = new List<EmptyNode>();
-
+            ObiNode parentNode = startNode.ParentAs<SectionNode>();
             Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();
             AssignSpecialNodeDialog.ShowDialog();
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
-                for (int i = startNode.Index; i <= endNode.Index; i++)
+                if (startNode.Index < endNode.Index)
+                {
+                    for (int i = startNode.Index; i <= endNode.Index; i++)
                     {
-                        if ((((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom) && ((EmptyNode)this.Selection.Node).CustomRole != customClass)
-                            break;
-                        else
+                        if (((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ || ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
+                            IsAdded = false;
+                       
+                        if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Custom && parentNode.PhraseChild(i).CustomRole != customClass)
                         {
-                            SetCustomTypeOnEmptyNode(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i), EmptyNode.Role.Custom, customClass);
-                            listOfEmptyNodesToMarkAsSpecialNodes.Add(mContentView.BeginSpecialNode.ParentAs<SectionNode>().PhraseChild(i));
+                            if (!IsAdded)
+                            {
+                                if (MessageBox.Show("The special node chunk already contain custom phrases. Do you want to convert them all into current custom role?", "Delete", MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.Yes)
+                                    IsAdded = true;
+                                else
+                                {
+                                    MessageBox.Show("ame here");
+                                    endNode = parentNode.PhraseChild(i);
+                                    break;
+                                }
+                            }
+                            
+                            
                         }
                     }
-                
+                   
+                }
+                else
+                    MessageBox.Show("Begin node index is greater than end node index. Please choose again.");
                 try
                 {
+                    MessageBox.Show(startNode.ToString() + " " + endNode.ToString());
                     Presentation.Do(Commands.Node.AssignRole.GetCompositeCommandForAssigningRoleOnMultipleNodes(this, startNode, endNode, EmptyNode.Role.Custom, customClass));
                 }
                 catch (System.Exception ex)
