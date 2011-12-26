@@ -59,10 +59,27 @@ namespace Obi.Commands.Node
             }
         }
 
+        private void AssignRoleToEmptyNodeSurroundedByCustomRoles()
+        {
+            if (mNode is EmptyNode)
+            {
+                ObiNode preceeding = mNode.PrecedingNode;
+                ObiNode following = mNode.FollowingNode;
+                if (preceeding != null && following != null
+                    && ((EmptyNode)preceeding).Role_ == EmptyNode.Role.Custom
+                    && ((EmptyNode)preceeding).Role_ == ((EmptyNode)following).Role_
+                    && ((EmptyNode)preceeding).CustomRole == ((EmptyNode)following).CustomRole)
+                {
+                    EmptyNode currentNode = (EmptyNode)mNode;
+                    currentNode.SetRole(((EmptyNode)preceeding).Role_, ((EmptyNode)preceeding).CustomRole);
+                }
+            }
+        }
 
         public override void Execute()
         {
             mParent.Insert(mNode, mIndex);
+            AssignRoleToEmptyNodeSurroundedByCustomRoles();
             if (UpdateSelection) View.Selection = mSelection;
             TriggerProgressChanged ();
         }
