@@ -3568,7 +3568,6 @@ for (int j = 0;
         {
             EmptyNode startNode = mContentView.BeginSpecialNode;
             EmptyNode endNode = Selection.EmptyNodeForSelection;
-            MessageBox.Show(endNode.ToString());
             bool IsAdded = false;
 
             string customClass = "";
@@ -3579,15 +3578,16 @@ for (int j = 0;
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
-                if (startNode.Index < endNode.Index)
+                if (startNode.Index <= endNode.Index)
                 {
                     for (int i = startNode.Index; i <= endNode.Index; i++)
                     {
-                        if (((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ || ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
-                            IsAdded = false;
-                       
+                        /*  if (((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole && ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom)
+                          //if (((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
+                              IsAdded = false;  */
                         if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Custom && parentNode.PhraseChild(i).CustomRole != customClass)
                         {
+
                             if (!IsAdded)
                             {
                                 if (MessageBox.Show("The special node chunk already contain custom phrases. Do you want to convert them all into current custom role?", "Delete", MessageBoxButtons.YesNo,
@@ -3595,22 +3595,22 @@ for (int j = 0;
                                     IsAdded = true;
                                 else
                                 {
-                                    MessageBox.Show("ame here");
                                     endNode = parentNode.PhraseChild(i);
                                     break;
                                 }
                             }
-                            
-                            
                         }
+                        if ((((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ || ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
+                            IsAdded = false;
                     }
-                   
                 }
                 else
+                {
                     MessageBox.Show("Begin node index is greater than end node index. Please choose again.");
+                    return;
+                }
                 try
                 {
-                    MessageBox.Show(startNode.ToString() + " " + endNode.ToString());
                     Presentation.Do(Commands.Node.AssignRole.GetCompositeCommandForAssigningRoleOnMultipleNodes(this, startNode, endNode, EmptyNode.Role.Custom, customClass));
                 }
                 catch (System.Exception ex)
