@@ -59,9 +59,19 @@ namespace Obi.Commands.Node
             }
         }
 
+        private bool m_AllowRoleChangeAccordingToSurroundingSpecialNodes;
+        /// <summary>
+        /// <Allows the added phrase to change its role according to special roles surrounding it. Its true by default
+        /// </summary>
+        public bool AllowRoleChangeAccordingToSurroundingSpecialNodes
+        {
+            get { return m_AllowRoleChangeAccordingToSurroundingSpecialNodes; }
+            set { m_AllowRoleChangeAccordingToSurroundingSpecialNodes = value; }
+        }
+
         private void AssignRoleToEmptyNodeSurroundedByCustomRoles()
         {
-            if (mNode is EmptyNode)
+            if (AllowRoleChangeAccordingToSurroundingSpecialNodes &&  mNode is EmptyNode && ((EmptyNode)mNode).Role_ == EmptyNode.Role.Plain)
             {
                 ObiNode preceeding = mNode.PrecedingNode;
                 ObiNode following = mNode.FollowingNode;
