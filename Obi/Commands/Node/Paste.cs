@@ -54,6 +54,16 @@ namespace Obi.Commands.Node
         /// </summary>
         public bool DeleteSelectedBlock { get { return mDeleteSelectedBlock; } }
 
+        private bool m_AllowRoleChangeAccordingToSurroundingSpecialNodes = true;
+        /// <summary>
+        /// <Allows the added phrase to change its role according to special roles surrounding it. Its true by default
+        /// </summary>
+        public bool AllowRoleChangeAccordingToSurroundingSpecialNodes
+        {
+            get { return m_AllowRoleChangeAccordingToSurroundingSpecialNodes; }
+            set { m_AllowRoleChangeAccordingToSurroundingSpecialNodes = value; }
+        }
+
 
         public override IEnumerable<MediaData> UsedMediaData
         {
@@ -100,6 +110,7 @@ namespace Obi.Commands.Node
         public override void Execute ()
         {
             mParent.Insert(mCopy, mIndex);
+            if (AllowRoleChangeAccordingToSurroundingSpecialNodes) AssignRole.AssignRoleToEmptyNodeSurroundedByCustomRoles(mCopy);
             if (UpdateSelection) View.Selection = mSelection;
             if (mParent != null && mParent is SectionNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
         }
