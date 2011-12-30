@@ -42,7 +42,7 @@ namespace Obi.ProjectView
         private delegate void RemoveControlForSectionNodeDelegate ( SectionNode node );
         private bool m_IsWaveformRenderingPaused;
         private Waveform m_RenderingWaveform = null;
-        private EmptyNode m_BeginSpecialNode = null;
+        private EmptyNode m_BeginSpecialNode = null; //@AssociateNode
 
         /// <summary>
         /// A new strips view.
@@ -232,7 +232,7 @@ namespace Obi.ProjectView
                 }
             }
 
-        public EmptyNode BeginSpecialNode  { get { return m_BeginSpecialNode; } }
+            public EmptyNode BeginSpecialNode { get { return m_BeginSpecialNode; } }  //@AssociateNode
 
         /// <summary>
         /// Add a custom class to the context menu.
@@ -4648,9 +4648,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Merge_MergeWithPrecedingPhrasesMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
             Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
-            Context_AssociateSpecialNodeMark.Enabled = mProjectView.Selection != null;
-            Context_BeginSpecialNodeMark.Enabled = mProjectView.Selection != null;
-            Context_GotoAssociatedNodeMenuItem.Enabled = mProjectView.Selection != null;
+            Context_AssociateSpecialNodeMark.Enabled = mProjectView.Selection != null; //@AssociateNode
+            Context_BeginSpecialNodeMark.Enabled = mProjectView.Selection != null; //@AssociateNode
+            Context_GotoAssociatedNodeMenuItem.Enabled = mProjectView.Selection != null; //@AssociateNode
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5139,25 +5139,25 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
         }
 
-        private void Context_EndSpecialNodeMark_Click(object sender, EventArgs e)
+        private void Context_EndSpecialNodeMark_Click(object sender, EventArgs e) //@AssociateNode
         {
             mProjectView.AssignRoleToMarkedContinuousNodes();
         }
 
-        private void Context_BeginSpecialNodeMark_Click(object sender, EventArgs e)
+        private void Context_BeginSpecialNodeMark_Click(object sender, EventArgs e) //@AssociateNode
         {
             Context_EndSpecialNodeMark.Enabled = true;
             m_BeginSpecialNode = mProjectView.Selection.EmptyNodeForSelection;
         }
 
-        private void Context_AssociateSpecialNodeMark_Click(object sender, EventArgs e)
+        private void Context_AssociateSpecialNodeMark_Click(object sender, EventArgs e) //@AssociateNode
         {
           //  Dialogs.AssociateSpecialNode AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode((ObiRootNode)mProjectView.Presentation.RootNode, ((EmptyNode)mSelection.Node));
           //  AssociateSpecialNode.ShowDialog();
-            mProjectView.AssociateNodeToSpecialNode();
+            mProjectView.AssociateNodeToSpecialNode(); //@AssociateNode
         }
 
-        private void Context_GotoAssociatedNodeMenuItem_Click(object sender, EventArgs e)
+        private void Context_GotoAssociatedNodeMenuItem_Click(object sender, EventArgs e)  //@AssociateNode
         {
             if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
                 mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;           
