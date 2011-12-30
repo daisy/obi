@@ -30,6 +30,7 @@ namespace Obi.ProjectView
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
         Dialogs.AssociateSpecialNode AssociateSpecialNode; //@AssociateNode
         private bool m_CanDeleteSpecialNode = false; //@AssociateNode
+        private bool m_CanPasteSpecialNode = false; //@AssociateNode
      
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
@@ -1248,17 +1249,46 @@ namespace Obi.ProjectView
                 }
                 bool PlaySelectionFlagStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
-                try
+
+                if (CanPasteSpecialNode())
                 {
-                    mPresentation.Do(mSelection.PasteCommand(this, true));
+                    try
+                    {
+                        mPresentation.Do(mSelection.PasteCommand(this, true));
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
-                catch (System.Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.ToString());
+                    try
+                    {
+                        mPresentation.Do(mSelection.PasteCommand(this, false));
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
                 mTransportBar.SelectionChangedPlaybackEnabled = PlaySelectionFlagStatus;
                 }
             }
+
+        public bool CanPasteSpecialNode()
+        {
+            EmptyNode stripIndexNode = (EmptyNode)Selection.EmptyNodeForSelection;
+            if ((Selection is StripIndexSelection && stripIndexNode != null && stripIndexNode.CustomRole == ((EmptyNode)stripIndexNode.FollowingNode).CustomRole && ((EmptyNode)stripIndexNode.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && stripIndexNode.CustomRole != ((EmptyNode)mClipboard.Node).CustomRole)
+                || (Selection.Node is PhraseNode && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole == ((EmptyNode)this.Selection.Node).CustomRole && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && ((EmptyNode)this.Selection.Node).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole))
+            {
+                if (((EmptyNode)mClipboard.Node).Role_ == EmptyNode.Role.Plain)
+                    m_CanPasteSpecialNode = true;
+                else
+                    m_CanPasteSpecialNode = false;
+            }            
+            return m_CanPasteSpecialNode;
+        }
 
         /// <summary>
         /// Paste the contents of the clipboard before the selected section.
