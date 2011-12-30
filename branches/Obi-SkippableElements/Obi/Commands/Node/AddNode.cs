@@ -59,7 +59,7 @@ namespace Obi.Commands.Node
             }
         }
 
-        private bool m_AllowRoleChangeAccordingToSurroundingSpecialNodes;
+        private bool m_AllowRoleChangeAccordingToSurroundingSpecialNodes = true;
         /// <summary>
         /// <Allows the added phrase to change its role according to special roles surrounding it. Its true by default
         /// </summary>
