@@ -28,10 +28,9 @@ namespace Obi.ProjectView
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
-        Dialogs.AssociateSpecialNode AssociateSpecialNode;
-        private bool m_CanDeleteSpecialNode = false;
-      //  private bool m_CanCutSpecialNode = false;
-
+        Dialogs.AssociateSpecialNode AssociateSpecialNode; //@AssociateNode
+        private bool m_CanDeleteSpecialNode = false; //@AssociateNode
+     
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
@@ -595,7 +594,7 @@ namespace Obi.ProjectView
                 }
             else if (CanRemoveBlock)
                 {
-                    if (CanDeleteSpecialNode())
+                    if (CanDeleteSpecialNode()) //@AssociateNode
                     {
                         CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand();
                         command.ShortDescription = Localizer.Message("cut_phrase");
@@ -658,7 +657,7 @@ namespace Obi.ProjectView
                 }
                 else if (CanRemoveBlock)
                 {                 
-                    if(CanDeleteSpecialNode())
+                    if(CanDeleteSpecialNode())              //@AssociateNode
                         mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
                            Localizer.Message("delete_phrase")));                    
                 }
@@ -677,7 +676,7 @@ namespace Obi.ProjectView
             }
             }
 
-        public bool CanDeleteSpecialNode()
+        public bool CanDeleteSpecialNode()   //@AssociateNode
         {
             if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
             {
@@ -3521,7 +3520,7 @@ for (int j = 0;
             }
         }
 
-        public void AssociateNodeToSpecialNode()
+        public void AssociateNodeToSpecialNode()  //@AssociateNode
         { 
             if (mSelection.Node is EmptyNode)
             {
@@ -3564,7 +3563,7 @@ for (int j = 0;
             }
         }
 
-        public void AssignRoleToMarkedContinuousNodes()
+        public void AssignRoleToMarkedContinuousNodes()  //@AssociateNode
         {
             EmptyNode startNode = mContentView.BeginSpecialNode;
             EmptyNode endNode = Selection.EmptyNodeForSelection;
@@ -3587,7 +3586,7 @@ for (int j = 0;
                               IsAdded = false;  */
                         if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Custom && parentNode.PhraseChild(i).CustomRole != customClass)
                         {
-
+                            
                             if (!IsAdded)
                             {
                                 if (MessageBox.Show("The special node chunk already contain custom phrases. Do you want to convert them all into current custom role?", "Delete", MessageBoxButtons.YesNo,
@@ -3595,7 +3594,8 @@ for (int j = 0;
                                     IsAdded = true;
                                 else
                                 {
-                                    endNode = parentNode.PhraseChild(i);
+                                    MessageBox.Show(i.ToString());
+                                    endNode = parentNode.PhraseChild(i -1);
                                     break;
                                 }
                             }
