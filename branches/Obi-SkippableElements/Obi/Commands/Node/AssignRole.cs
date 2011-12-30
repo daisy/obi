@@ -53,6 +53,23 @@ namespace Obi.Commands.Node
             return command;
         }
 
+        public static void AssignRoleToEmptyNodeSurroundedByCustomRoles( ObiNode roleNode)
+        {
+            if (roleNode is EmptyNode && ((EmptyNode)roleNode).Role_ == EmptyNode.Role.Plain)
+            {
+                ObiNode preceeding = roleNode.PrecedingNode;
+                ObiNode following = roleNode.FollowingNode;
+                if (preceeding != null && following != null
+                    && ((EmptyNode)preceeding).Role_ == EmptyNode.Role.Custom
+                    && ((EmptyNode)preceeding).Role_ == ((EmptyNode)following).Role_
+                    && ((EmptyNode)preceeding).CustomRole == ((EmptyNode)following).CustomRole)
+                {
+                    EmptyNode currentNode = (EmptyNode)roleNode;
+                    currentNode.SetRole(((EmptyNode)preceeding).Role_, ((EmptyNode)preceeding).CustomRole);
+                }
+            }
+        }
+
         public override bool CanExecute { get { return true; } }
 
         public override void Execute()

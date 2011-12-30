@@ -132,7 +132,7 @@ namespace Obi.Commands.Node
 
         public override void UnExecute()
         {
-            SplitAudio.Split(View, mNode, mNextNode, mSplitTime, UpdateSelection);
+            SplitAudio.Split(View, mNode, mNextNode, mSplitTime, UpdateSelection, false);
             if (!m_IsNextNodeRooted) mNextNode.Detach();
             base.UnExecute();
         }
