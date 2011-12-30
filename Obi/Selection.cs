@@ -110,9 +110,9 @@ namespace Obi
         /// <summary>
         /// Create the paste command for pasting whatever is in the clipboard in the current selection.
         /// </summary>
-        public virtual urakawa.command.Command PasteCommand(ProjectView.ProjectView view)
+        public virtual urakawa.command.Command PasteCommand(ProjectView.ProjectView view, bool allowAutoSpecialRole)
         {
-            return view.Clipboard is AudioClipboard ? PasteCommandAudio(view) : PasteCommandNode(view);
+            return view.Clipboard is AudioClipboard ? PasteCommandAudio(view) : PasteCommandNode(view, allowAutoSpecialRole);
         }
 
         /// <summary>
@@ -181,9 +181,10 @@ namespace Obi
         }
 
         // Paste a node in or after another node.
-        protected virtual urakawa.command.Command PasteCommandNode(ProjectView.ProjectView view)
+        protected virtual urakawa.command.Command PasteCommandNode(ProjectView.ProjectView view, bool allowAutoSpecialRoleAssign)
         {
             Commands.Node.Paste paste = new Commands.Node.Paste(view);
+            paste.AllowRoleChangeAccordingToSurroundingSpecialNodes = allowAutoSpecialRoleAssign;
             CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.ShortDescription);
             p.ChildCommands.Insert(p.ChildCommands.Count, paste);
             if (paste.DeleteSelectedBlock)
@@ -256,7 +257,7 @@ namespace Obi
         /// <summary>
         /// Create a paste command for this selection and the clipboard selection.
         /// </summary>
-        public override urakawa.command.Command PasteCommand(Obi.ProjectView.ProjectView view)
+        public override urakawa.command.Command PasteCommand(Obi.ProjectView.ProjectView view, bool allowAutoSpecialRole)
         {
             return new Commands.Audio.Paste(view);
         }

@@ -1250,7 +1250,7 @@ namespace Obi.ProjectView
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
                 try
                 {
-                    mPresentation.Do(mSelection.PasteCommand(this));
+                    mPresentation.Do(mSelection.PasteCommand(this, true));
                 }
                 catch (System.Exception ex)
                 {
