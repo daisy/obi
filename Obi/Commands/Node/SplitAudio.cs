@@ -247,7 +247,7 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
         {
             nodeAfter.Audio = node.SplitAudio(splitTime);
             node.InsertAfterSelf(nodeAfter);
-            if (allowSpecialRoleMarkForSurrounding ) AssignRole.AssignRoleToEmptyNodeSurroundedByCustomRoles(node);
+            if (allowSpecialRoleMarkForSurrounding) AssignRole.AssignRoleToEmptyNodeSurroundedByCustomRoles(nodeAfter);
             if (updateSelection) view.SelectedBlockNode = nodeAfter;
             view.UpdateBlocksLabelInStrip(node.AncestorAs<SectionNode>());
         }

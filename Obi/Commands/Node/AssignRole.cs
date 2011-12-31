@@ -60,6 +60,7 @@ namespace Obi.Commands.Node
                 ObiNode preceeding = roleNode.PrecedingNode;
                 ObiNode following = roleNode.FollowingNode;
                 if (preceeding != null && following != null
+                    && preceeding is EmptyNode && following is EmptyNode
                     && ((EmptyNode)preceeding).Role_ == EmptyNode.Role.Custom
                     && ((EmptyNode)preceeding).Role_ == ((EmptyNode)following).Role_
                     && ((EmptyNode)preceeding).CustomRole == ((EmptyNode)following).CustomRole)
