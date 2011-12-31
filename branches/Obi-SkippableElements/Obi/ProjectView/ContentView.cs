@@ -4649,7 +4649,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
             Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             Context_AssociateSpecialNodeMark.Enabled = mProjectView.Selection != null; //@AssociateNode
-            Context_BeginSpecialNodeMark.Enabled = mProjectView.Selection != null; //@AssociateNode
+            Context_BeginSpecialNodeMark.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is PhraseNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
             Context_GotoAssociatedNodeMenuItem.Enabled = mProjectView.Selection != null; //@AssociateNode
             }
 

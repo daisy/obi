@@ -22,7 +22,7 @@ namespace Obi.Dialogs
             m_ObiNode = obiNode;
             m_SelectedNode = selectedNode;
             InitializeComponent();
-            m_txtBox_SectionName.Text = selectedNode.ToString();
+            m_txtBox_SectionName.Text = selectedNode.ToString() + " = ";
             AddToListBox();           
         }
 

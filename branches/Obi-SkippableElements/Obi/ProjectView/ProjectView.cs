@@ -29,9 +29,7 @@ namespace Obi.ProjectView
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
         Dialogs.AssociateSpecialNode AssociateSpecialNode; //@AssociateNode
-        private bool m_CanDeleteSpecialNode = false; //@AssociateNode
-        private bool m_CanPasteSpecialNode = false; //@AssociateNode
-     
+        
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
@@ -679,6 +677,7 @@ namespace Obi.ProjectView
 
         public bool CanDeleteSpecialNode()   //@AssociateNode
         {
+            bool m_CanDeleteSpecialNode = false;             
             if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
             {
                 List<SectionNode> listOfAllSections = new List<SectionNode>();
@@ -1276,11 +1275,12 @@ namespace Obi.ProjectView
                 }
             }
 
-        public bool CanPasteSpecialNode()
+        public bool CanPasteSpecialNode()   //@AssociateNode
         {
             EmptyNode stripIndexNode = (EmptyNode)Selection.EmptyNodeForSelection;
-            if ((Selection is StripIndexSelection && stripIndexNode != null && stripIndexNode.CustomRole == ((EmptyNode)stripIndexNode.FollowingNode).CustomRole && ((EmptyNode)stripIndexNode.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && stripIndexNode.CustomRole != ((EmptyNode)mClipboard.Node).CustomRole)
-                || (Selection.Node is PhraseNode && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole == ((EmptyNode)this.Selection.Node).CustomRole && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && ((EmptyNode)this.Selection.Node).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole))
+            bool m_CanPasteSpecialNode = false;
+            if ((Selection is StripIndexSelection && stripIndexNode != null && ((EmptyNode)stripIndexNode.FollowingNode) != null && stripIndexNode.CustomRole == ((EmptyNode)stripIndexNode.FollowingNode).CustomRole && ((EmptyNode)stripIndexNode.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && stripIndexNode.CustomRole != ((EmptyNode)mClipboard.Node).CustomRole)
+                || (Selection.Node is PhraseNode && ((EmptyNode)this.Selection.Node.FollowingNode) != null && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole == ((EmptyNode)this.Selection.Node).CustomRole && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && ((EmptyNode)this.Selection.Node).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole))
             {
                 if (((EmptyNode)mClipboard.Node).Role_ == EmptyNode.Role.Plain)
                     m_CanPasteSpecialNode = true;
@@ -2229,6 +2229,7 @@ for (int j = 0;
         public void MergeBlockWithNext ()
             {
                 double duration;
+               
             if (CanMergeBlockWithNext)
                 {
                 if (TransportBar.IsPlayerActive) TransportBar.Pause ();
