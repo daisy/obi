@@ -2189,6 +2189,7 @@ for (int j = 0;
         /// </summary>
         public void SplitPhrase ()
             {
+            EmptyNode currentNode = (EmptyNode)Selection.Node;
             bool wasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
             if (TransportBar.CurrentState == TransportBar.State.Playing && !PauseAndCreatePlayingSection()) return;
             if (TransportBar.PlaybackPhrase != null && TransportBar.CurrentPlaylist.PlaybackRate != 0)
@@ -2210,7 +2211,9 @@ for (int j = 0;
                     // reselect the selected node: work around for disable scrolling problem. 
                     //earlier selection was assigned twice before command, it do not happen now so this happens post command execution
                     Selection = new NodeSelection ( Selection.Node, mContentView );
-                    }
+                    if (currentNode.Role_ == EmptyNode.Role.Custom)
+                        SetRoleForSelectedBlock(EmptyNode.Role.Custom, currentNode.CustomRole);
+                }
                 catch (System.Exception ex)
                     {
                     MessageBox.Show ( ex.ToString () );
