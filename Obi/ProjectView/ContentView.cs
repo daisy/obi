@@ -4648,9 +4648,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Merge_MergeWithPrecedingPhrasesMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
             Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
-            Context_AssociateSpecialNodeMark.Enabled = mProjectView.Selection != null; //@AssociateNode
+            Context_AssociateSpecialNodeMark.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is PhraseNode; //@AssociateNode
             Context_BeginSpecialNodeMark.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is PhraseNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
-            Context_GotoAssociatedNodeMenuItem.Enabled = mProjectView.Selection != null; //@AssociateNode
+            Context_GotoAssociatedNodeMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is PhraseNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor; //@AssociateNode
+         //   if (mProjectView.Presentation == null)
+           //     m_BeginSpecialNode = null;
+            Context_EndSpecialNodeMark.Enabled = mProjectView.Presentation != null && m_BeginSpecialNode != null;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5146,7 +5149,6 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_BeginSpecialNodeMark_Click(object sender, EventArgs e) //@AssociateNode
         {
-            Context_EndSpecialNodeMark.Enabled = true;
             m_BeginSpecialNode = mProjectView.Selection.EmptyNodeForSelection;
         }
 
@@ -5159,6 +5161,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_GotoAssociatedNodeMenuItem_Click(object sender, EventArgs e)  //@AssociateNode
         {
+            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)
+                MessageBox.Show("There is no node associated with this anchor node. Please associate a node with this anchor node.");
             if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
                 mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;           
         }        

@@ -3623,7 +3623,7 @@ for (int j = 0;
                             
                             if (!IsAdded)
                             {
-                                if (MessageBox.Show("The special node chunk already contain custom phrases. Do you want to convert them all into current custom role?", "Delete", MessageBoxButtons.YesNo,
+                                if (MessageBox.Show("The special node chunk already contain custom phrase '" + parentNode.PhraseChild(i).CustomRole + "'. Do you want to convert them all into current custom role?", "Assign", MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
                                     IsAdded = true;
                                 else
