@@ -1350,6 +1350,10 @@ namespace Obi.ProjectView
                         mPresentation.AddCustomClass("Annotation", null);
                         mPresentation.AddCustomClass("End note", null);
                     }
+                    else
+                    {
+                        mContentView.BeginSpecialNode = null ;
+                    }
                     }
                 
                 }

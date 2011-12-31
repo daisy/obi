@@ -232,7 +232,11 @@ namespace Obi.ProjectView
                 }
             }
 
-            public EmptyNode BeginSpecialNode { get { return m_BeginSpecialNode; } }  //@AssociateNode
+            public EmptyNode BeginSpecialNode 
+            { 
+                get { return m_BeginSpecialNode; }
+                set { m_BeginSpecialNode = value; } 
+            }  //@AssociateNode
 
         /// <summary>
         /// Add a custom class to the context menu.
