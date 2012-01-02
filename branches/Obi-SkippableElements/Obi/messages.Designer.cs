@@ -3580,6 +3580,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anchor.
+        /// </summary>
+        internal static string phrase_short_Anchor {
+            get {
+                return ResourceManager.GetString("phrase_short_Anchor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;{0}&quot;.
         /// </summary>
         internal static string phrase_short_custom {
