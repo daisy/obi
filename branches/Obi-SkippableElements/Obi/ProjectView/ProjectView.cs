@@ -3605,7 +3605,7 @@ for (int j = 0;
         {
             EmptyNode startNode = mContentView.BeginSpecialNode;
             EmptyNode endNode = Selection.EmptyNodeForSelection;
-            bool IsAdded = false;
+            bool IsSpecialNodeAdded = false;
 
             string customClass = "";
             List<EmptyNode> listOfEmptyNodesToMarkAsSpecialNodes = new List<EmptyNode>();
@@ -3624,29 +3624,29 @@ for (int j = 0;
                 {
                     for (int i = startNode.Index; i <= endNode.Index; i++)
                     {
-                   //     MessageBox.Show(i.ToString());
-                        /*  if (((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole && ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom)
-                          //if (((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
-                              IsAdded = false;  */
                         if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Custom && parentNode.PhraseChild(i).CustomRole != customClass)
                         {
-                            
-                            if (!IsAdded)
+                            if (!IsSpecialNodeAdded)
                             {
-                                if (MessageBox.Show("The special node chunk already contain custom phrase '" + parentNode.PhraseChild(i).CustomRole + "'. Do you want to convert them all into current custom role?", "Assign", MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.Yes)
-                                    IsAdded = true;
+                                Dialogs.AssignSpecialNodeToChunk assignSpecialNodeToChunk = new Obi.Dialogs.AssignSpecialNodeToChunk();
+                               
+                                if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
+                                    IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
+                                else if (assignSpecialNodeToChunk.Is_YesToAll)
+                                {
+                                    endNode = (EmptyNode)this.Selection.Node;
+                                    break;
+                                }
                                 else
                                 {
-                                    MessageBox.Show(i.ToString());
-                                    endNode = parentNode.PhraseChild(i -1);
+                                    endNode = parentNode.PhraseChild(i - 1);
                                     break;
                                 }
                             }
                         }
-                        if ((((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ || ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
-                            IsAdded = false;
-                    }
+                        if (((((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ && ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) || ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
+                           IsSpecialNodeAdded = false;                        
+                  }
                 }
                 else
                 {
