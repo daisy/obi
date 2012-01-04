@@ -3628,8 +3628,28 @@ for (int j = 0;
                         {
                             if (!IsSpecialNodeAdded)
                             {
-                                Dialogs.AssignSpecialNodeToChunk assignSpecialNodeToChunk = new Obi.Dialogs.AssignSpecialNodeToChunk();
-                               
+                                Dialogs.ExtendedMessageBox assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageBox();
+
+                                if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
+                                    IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
+                                else if (assignSpecialNodeToChunk.Is_YesToAll)
+                                {
+                                    endNode = (EmptyNode)this.Selection.Node;
+                                    break;
+                                }
+                                else
+                                {
+                                    endNode = parentNode.PhraseChild(i - 1);
+                                    break;
+                                }
+                            }
+                        }
+                        else if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Heading || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Silence || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Page || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Anchor)
+                        {
+                           // if (!IsSpecialNodeAdded)
+                            {
+                                Dialogs.ExtendedMessageBox assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageBox();
+
                                 if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
                                     IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
                                 else if (assignSpecialNodeToChunk.Is_YesToAll)
