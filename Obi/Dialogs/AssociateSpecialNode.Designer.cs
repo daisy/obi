@@ -79,6 +79,7 @@ namespace Obi.Dialogs
             // 
             this.m_txtBox_SectionName.Location = new System.Drawing.Point(8, 22);
             this.m_txtBox_SectionName.Name = "m_txtBox_SectionName";
+            this.m_txtBox_SectionName.ReadOnly = true;
             this.m_txtBox_SectionName.Size = new System.Drawing.Size(222, 20);
             this.m_txtBox_SectionName.TabIndex = 3;
             // 
