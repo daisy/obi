@@ -22,7 +22,10 @@ namespace Obi.Dialogs
             m_ObiNode = obiNode;
             m_SelectedNode = selectedNode;
             InitializeComponent();
-            m_txtBox_SectionName.Text = selectedNode.ToString() + " = ";
+            if (selectedNode.AssociatedNode != null)
+                m_txtBox_SectionName.Text = selectedNode.ToString() + " = ";
+            else
+                m_txtBox_SectionName.Text = selectedNode.ToString();
             AddToListBox();           
         }
 
@@ -165,7 +168,10 @@ namespace Obi.Dialogs
         {
             //m_btn_Associate.Enabled = (m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count > 0);
             m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
-            m_btn_Deassociate.Enabled = true;        
+            if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null)
+                m_btn_Deassociate.Enabled = true;
+            else
+                m_btn_Deassociate.Enabled = false;           
         }
 
         private void m_btn_OK_Click(object sender, EventArgs e)
@@ -173,5 +179,4 @@ namespace Obi.Dialogs
         }
     }
 }
-
 
