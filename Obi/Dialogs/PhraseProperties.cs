@@ -100,6 +100,7 @@ namespace Obi.Dialogs
             if ( mView.CanAssignPlainRole || mNode.Role_ == EmptyNode.Role.Plain)  m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_PLAIN );
             if ( mView.CanAssignSilenceRole || mNode.Role_ == EmptyNode.Role.Silence)  m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_SILENCE );
             if ( mView.CanAssignARole ) m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_CUSTOM );
+            if (mView.CanAssignAnchorRole || mNode.Role_ == EmptyNode.Role.Anchor) m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_ANCHOR);
             m_comboPhraseRole.SelectedItem = EmptyNode.LocalizedRoleFor ( mNode.Role_ );
             
             // load custom class combobox
