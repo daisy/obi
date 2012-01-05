@@ -350,6 +350,15 @@ namespace Obi.ProjectView
                 }
             }
 
+        public bool CanAssignAnchorRole
+        {
+            get
+            {
+                PhraseNode node = SelectedNodeAs<PhraseNode>();
+                return node != null && node.Role_ != EmptyNode.Role.Anchor;
+            }
+        }
+
         /// <summary>
         /// Can assign this custom role if there is an empty node to assign to,
         /// and the role is different from the one of this node.

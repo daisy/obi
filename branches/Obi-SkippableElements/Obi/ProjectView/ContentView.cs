@@ -4633,6 +4633,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_AssignRole_PageMenuItem.Enabled = mProjectView.CanAssignARole;
             Context_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             Context_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
+            Context_AssignRole_AnchorMenuItem.Enabled = mProjectView.CanAssignAnchorRole;
             Context_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
             Context_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Enabled = mProjectView.CanApplyPhraseDetectionInWholeProject;

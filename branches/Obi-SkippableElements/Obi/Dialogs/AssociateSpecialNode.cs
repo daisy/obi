@@ -39,14 +39,15 @@ namespace Obi.Dialogs
                 m_IsShowAll = true;
                 m_lb_listOfAllAnchorNodes.Visible = true;
                 AddToListBox();
-                m_txtBox_SectionName.Visible = false;
+                m_txtBox_SectionName.Visible = false;               
                 m_btn_ShowAll.Text = "Show selected";
             }
             else if (m_btn_ShowAll.Text == "Show selected")
             {
                 m_txtBox_SectionName.Visible = true;
                 m_lb_listOfAllAnchorNodes.Visible = false;
-                m_btn_ShowAll.Text = "Show all";
+                m_lb_listOfAllAnchorNodes.Items.Clear();
+                m_btn_ShowAll.Text = "Show all";               
             }
         }
 
@@ -96,7 +97,10 @@ namespace Obi.Dialogs
                     if (node.PhraseChild(i).Role_ == EmptyNode.Role.Anchor && m_IsShowAll)
                     {
         //                m_lb_listOfAllAnchorNodes.Items.Add(node.PhraseChild(i));
+                        if(node.PhraseChild(i).AssociatedNode != null)
                         m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
+                        else
+                        m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) +" "+ node.PhraseChild(i).AssociatedNode);
                         listOfAnchorNodes.Add(node.PhraseChild(i));
                     }                    
                 }

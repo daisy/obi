@@ -1983,4 +1983,7 @@ Error text: {1}</value>
   <data name="phrase_short_Anchor" xml:space="preserve">
     <value>Anchor</value>
   </data>
+  <data name="role_Anchor" xml:space="preserve">
+    <value>Anchor</value>
+  </data>
 </root>

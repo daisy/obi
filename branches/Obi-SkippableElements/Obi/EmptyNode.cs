@@ -53,6 +53,7 @@ namespace Obi
         public static readonly LocalizedRole LOCALIZED_HEADING = new LocalizedRole(Role.Heading);
         public static readonly LocalizedRole LOCALIZED_SILENCE = new LocalizedRole(Role.Silence);
         public static readonly LocalizedRole LOCALIZED_CUSTOM = new LocalizedRole(Role.Custom);
+        public static readonly LocalizedRole LOCALIZED_ANCHOR = new LocalizedRole(Role.Anchor);
         
         public override string ToString() { return BaseString(); }
 
@@ -506,6 +507,7 @@ namespace Obi
             return role == Role.Custom ? LOCALIZED_CUSTOM :
                 role == Role.Heading ? LOCALIZED_HEADING :
                 role == Role.Page ? LOCALIZED_PAGE :
+                role == Role.Anchor ? LOCALIZED_ANCHOR :
                 role == Role.Plain ? LOCALIZED_PLAIN : LOCALIZED_SILENCE;
         }
     }
