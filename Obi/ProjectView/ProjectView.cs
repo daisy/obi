@@ -3637,7 +3637,7 @@ for (int j = 0;
                         {
                             if (!IsSpecialNodeAdded)
                             {
-                                Dialogs.ExtendedMessageBox assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageBox();
+                                Dialogs.AssignSpecialNodeToChunk assignSpecialNodeToChunk = new Obi.Dialogs.AssignSpecialNodeToChunk();
 
                                 if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
                                     IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
@@ -3646,10 +3646,10 @@ for (int j = 0;
                                     endNode = (EmptyNode)this.Selection.Node;
                                     break;
                                 }
-                                else
+                                else if(assignSpecialNodeToChunk.Is_Abort)
                                 {
                                     endNode = parentNode.PhraseChild(i - 1);
-                                    break;
+                                    return;
                                 }
                             }
                         }
@@ -3657,7 +3657,7 @@ for (int j = 0;
                         {
                            // if (!IsSpecialNodeAdded)
                             {
-                                Dialogs.ExtendedMessageBox assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageBox();
+                                Dialogs.AssignSpecialNodeToChunk assignSpecialNodeToChunk = new Obi.Dialogs.AssignSpecialNodeToChunk();
 
                                 if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
                                     IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
@@ -3666,10 +3666,10 @@ for (int j = 0;
                                     endNode = (EmptyNode)this.Selection.Node;
                                     break;
                                 }
-                                else
+                                else if(assignSpecialNodeToChunk.Is_Abort)
                                 {
                                     endNode = parentNode.PhraseChild(i - 1);
-                                    break;
+                                    return;
                                 }
                             }
                         }
@@ -3691,6 +3691,7 @@ for (int j = 0;
                     MessageBox.Show(ex.ToString());
                 }
             }
+            mContentView.BeginSpecialNode = null;
         }
 
         public void ExportAudioOfSelectedNode()

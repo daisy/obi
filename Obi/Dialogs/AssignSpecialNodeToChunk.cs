@@ -15,6 +15,7 @@ namespace Obi.Dialogs
         private EmptyNode m_EndNode = null;
         private bool m_AssignRole = false;
         private bool m_IsYesToAll = false;
+        private bool m_Abort = false;
 
         public EmptyNode EndNode
         { get { return m_EndNode; } }
@@ -32,6 +33,9 @@ namespace Obi.Dialogs
         public bool Is_YesToAll
         { get { return m_IsYesToAll; } }
 
+        public bool Is_Abort
+        { get { return m_Abort; } }
+
         private void m_btn_YesToAll_Click(object sender, EventArgs e)
         {
             m_IsYesToAll = true;
@@ -45,6 +49,7 @@ namespace Obi.Dialogs
 
         private void m_btn_No_Click(object sender, EventArgs e)
         {
+            m_Abort = true;
             Close();
         }
 
