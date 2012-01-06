@@ -16,11 +16,12 @@ namespace Obi.Dialogs
         List<EmptyNode> listOfAnchorNodes = new List<EmptyNode>();
         private EmptyNode m_SelectedNode = null;
         Dictionary<EmptyNode, EmptyNode> nodes_phraseMap = new Dictionary<EmptyNode, EmptyNode>(); // used for importing sections
-        
+       
         public AssociateSpecialNode(ObiRootNode obiNode, EmptyNode selectedNode)
         {
             m_ObiNode = obiNode;
             m_SelectedNode = selectedNode;
+            
             InitializeComponent();
             if (selectedNode.AssociatedNode != null)
                 m_txtBox_SectionName.Text = selectedNode.ToString() + " = ";
@@ -37,10 +38,14 @@ namespace Obi.Dialogs
             if (m_btn_ShowAll.Text == "Show all")
             {
                 m_IsShowAll = true;
-                m_lb_listOfAllAnchorNodes.Visible = true;
+                m_lb_listOfAllAnchorNodes.Visible = true;              
+                
                 AddToListBox();
-                m_txtBox_SectionName.Visible = false;               
-                m_btn_ShowAll.Text = "Show selected";
+                int index = m_lb_listOfAllAnchorNodes.FindString("=> Section " + m_SelectedNode.ParentAs<SectionNode>().Label + " " + m_txtBox_SectionName.Text);
+                if (index != -1)
+                    m_lb_listOfAllAnchorNodes.SetSelected(index, true);
+                m_txtBox_SectionName.Visible = false;
+                m_btn_ShowAll.Text = "Show selected";               
             }
             else if (m_btn_ShowAll.Text == "Show selected")
             {
@@ -57,6 +62,7 @@ namespace Obi.Dialogs
             listOfAllSections = m_ObiNode.GetListOfAllSections();
             string tempString = "";
             int firstIndex = -1;
+           
             foreach (SectionNode node in listOfAllSections)
             {
                 for (int i = 0; i < node.PhraseChildCount; i++)
@@ -97,10 +103,12 @@ namespace Obi.Dialogs
                     if (node.PhraseChild(i).Role_ == EmptyNode.Role.Anchor && m_IsShowAll)
                     {
         //                m_lb_listOfAllAnchorNodes.Items.Add(node.PhraseChild(i));
-                        if(node.PhraseChild(i).AssociatedNode != null)
-                        m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
+                        if (m_SelectedNode == node.PhraseChild(i))
+                            m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);                        
+                        else if (node.PhraseChild(i).AssociatedNode != null)
+                            m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
                         else
-                        m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) +" "+ node.PhraseChild(i).AssociatedNode);
+                            m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i));
                         listOfAnchorNodes.Add(node.PhraseChild(i));
                     }                    
                 }
@@ -180,7 +188,7 @@ namespace Obi.Dialogs
 
         private void m_btn_OK_Click(object sender, EventArgs e)
         {   
-        }
+        }    
     }
 }
 
