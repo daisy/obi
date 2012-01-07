@@ -23,11 +23,24 @@ namespace Obi.Dialogs
             m_SelectedNode = selectedNode;
             
             InitializeComponent();
-            if (selectedNode.AssociatedNode != null)
-                m_txtBox_SectionName.Text = selectedNode.ToString() + " = ";
+            if (selectedNode != null && selectedNode is EmptyNode)
+            {                
+                m_txtBox_SectionName.Visible = true;
+                m_lb_listOfAllAnchorNodes.Visible = false;
+                if (selectedNode.AssociatedNode != null)
+                    m_txtBox_SectionName.Text = selectedNode.ToString() + " = ";
+                else
+                    m_txtBox_SectionName.Text = selectedNode.ToString();
+                AddToListBox();
+            }
             else
-                m_txtBox_SectionName.Text = selectedNode.ToString();
-            AddToListBox();           
+            {
+                AddToListBox();
+                m_btn_ShowAll.Enabled = false;
+                m_txtBox_SectionName.Visible = false;
+                m_lb_listOfAllAnchorNodes.Visible = true;
+            }
+                       
         }
 
         public Dictionary<EmptyNode,EmptyNode> DictionaryToMapValues
@@ -35,15 +48,19 @@ namespace Obi.Dialogs
 
         private void m_btn_ShowAll_Click(object sender, EventArgs e)
         {
+            if (m_lb_listOfAllAnchorNodes.Items.Count > 0)
+                m_lb_listOfAllAnchorNodes.Items.Clear();
             if (m_btn_ShowAll.Text == "Show all")
             {
                 m_IsShowAll = true;
-                m_lb_listOfAllAnchorNodes.Visible = true;              
-                
+                m_lb_listOfAllAnchorNodes.Visible = true;      
                 AddToListBox();
-                int index = m_lb_listOfAllAnchorNodes.FindString("=> Section " + m_SelectedNode.ParentAs<SectionNode>().Label + " " + m_txtBox_SectionName.Text);
-                if (index != -1)
-                    m_lb_listOfAllAnchorNodes.SetSelected(index, true);
+                if (m_SelectedNode != null)
+                {
+                    int index = m_lb_listOfAllAnchorNodes.FindString("=> Section " + m_SelectedNode.ParentAs<SectionNode>().Label + " " + m_txtBox_SectionName.Text);
+                    if (index != -1)
+                        m_lb_listOfAllAnchorNodes.SetSelected(index, true);
+                }
                 m_txtBox_SectionName.Visible = false;
                 m_btn_ShowAll.Text = "Show selected";               
             }
@@ -51,7 +68,6 @@ namespace Obi.Dialogs
             {
                 m_txtBox_SectionName.Visible = true;
                 m_lb_listOfAllAnchorNodes.Visible = false;
-                m_lb_listOfAllAnchorNodes.Items.Clear();
                 m_btn_ShowAll.Text = "Show all";               
             }
         }
@@ -72,8 +88,10 @@ namespace Obi.Dialogs
                         tempString = node.PhraseChild(i).CustomRole;
                         if ( i < node.PhraseChildCount - 1 && tempString != node.PhraseChild(i + 1).CustomRole )
                         {
+                            MessageBox.Show("dw" + m_IsShowAll.ToString());
                             if (!m_IsShowAll)
                             {
+                               
                                 if (firstIndex == -1)
                                 {
                                     m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (i + 1));
@@ -100,16 +118,19 @@ namespace Obi.Dialogs
                             }
                         }
                     }
-                    if (node.PhraseChild(i).Role_ == EmptyNode.Role.Anchor && m_IsShowAll)
+                    if (node.PhraseChild(i).Role_ == EmptyNode.Role.Anchor)
                     {
         //                m_lb_listOfAllAnchorNodes.Items.Add(node.PhraseChild(i));
-                        if (m_SelectedNode == node.PhraseChild(i))
-                            m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);                        
-                        else if (node.PhraseChild(i).AssociatedNode != null)
-                            m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
-                        else
-                            m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i));
-                        listOfAnchorNodes.Add(node.PhraseChild(i));
+                        if (m_IsShowAll || m_SelectedNode == null)
+                        {
+                            if (m_SelectedNode == node.PhraseChild(i))
+                                m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
+                            else if (node.PhraseChild(i).AssociatedNode != null)
+                                m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
+                            else
+                                m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i));
+                            listOfAnchorNodes.Add(node.PhraseChild(i));
+                        }
                     }                    
                 }
             }
@@ -118,12 +139,12 @@ namespace Obi.Dialogs
         private void m_btn_Associate_Click(object sender, EventArgs e)
         {
             EmptyNode anchorNode = null;
-            if (m_IsShowAll && listOfAnchorNodes.Count > 0)
+            if (listOfAnchorNodes.Count > 0 && (m_SelectedNode == null || m_IsShowAll))
             {
                 anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];
 
             }
-            else
+            else 
             {
                 anchorNode = m_SelectedNode;
 
@@ -142,7 +163,7 @@ namespace Obi.Dialogs
         private void m_btn_Deassociate_Click(object sender, EventArgs e)
         {
             EmptyNode anchorNode = null;
-            if (m_IsShowAll && listOfAnchorNodes.Count > 0)
+            if (listOfAnchorNodes.Count > 0 && (m_SelectedNode == null || m_IsShowAll))
             {
                 anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];
                 
