@@ -4652,11 +4652,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Merge_MergeWithFollowingPhrasesMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
             Context_Merge_MergeWithPrecedingPhrasesMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
-            Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
-            //Context_AssociateSpecialNodeMark.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode; //@AssociateNode
-            Context_BeginSpecialNodeMark.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
-            Context_GotoAssociatedNodeMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor; //@AssociateNode
-            Context_EndSpecialNodeMark.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginSpecialNode != null &&  mProjectView.Selection.Node is EmptyNode && m_BeginSpecialNode != mProjectView.Selection.Node;           
+            Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;            
+            Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
+            Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginSpecialNode != null && mProjectView.Selection.Node is EmptyNode && m_BeginSpecialNode != mProjectView.Selection.Node; //@AssociateNode
+            Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor; //@AssociateNode           
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5145,30 +5144,28 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
         }
 
-        private void Context_EndSpecialNodeMark_Click(object sender, EventArgs e) //@AssociateNode
+        private void Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.AssignRoleToMarkedContinuousNodes();
+            m_BeginSpecialNode = mProjectView.Selection.EmptyNodeForSelection; //@AssociateNode
         }
 
-        private void Context_BeginSpecialNodeMark_Click(object sender, EventArgs e) //@AssociateNode
+        private void Context_Skippable_EndSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            m_BeginSpecialNode = mProjectView.Selection.EmptyNodeForSelection;
+            mProjectView.AssignRoleToMarkedContinuousNodes(); //@AssociateNode
         }
 
-        private void Context_AssociateSpecialNodeMark_Click(object sender, EventArgs e) //@AssociateNode
+        private void Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          //  Dialogs.AssociateSpecialNode AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode((ObiRootNode)mProjectView.Presentation.RootNode, ((EmptyNode)mSelection.Node));
-          //  AssociateSpecialNode.ShowDialog();
             mProjectView.AssociateNodeToSpecialNode(); //@AssociateNode
         }
 
-        private void Context_GotoAssociatedNodeMenuItem_Click(object sender, EventArgs e)  //@AssociateNode
+        private void Context_Skippable_GotoAssociatedNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)
+            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)  //@AssociateNode 
                 MessageBox.Show("There is no node associated with this anchor node. Please associate a node with this anchor node.");
             if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
-                mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;           
-        }        
+                mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
+        }      
     }
 
     /// <summary>
