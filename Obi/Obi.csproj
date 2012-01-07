@@ -139,11 +139,11 @@
     <Compile Include="Dialogs\AssignSpecialNodeMark.Designer.cs">
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\AssignSpecialNodeToChunk.cs">
+    <Compile Include="Dialogs\ExtendedMessageToAssociate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\AssignSpecialNodeToChunk.Designer.cs">
-      <DependentUpon>AssignSpecialNodeToChunk.cs</DependentUpon>
+    <Compile Include="Dialogs\ExtendedMessageToAssociate.Designer.cs">
+      <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\AssociateSpecialNode.cs">
       <SubType>Form</SubType>
@@ -758,8 +758,8 @@
       <SubType>Designer</SubType>
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\AssignSpecialNodeToChunk.resx">
-      <DependentUpon>AssignSpecialNodeToChunk.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\ExtendedMessageToAssociate.resx">
+      <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AssociateSpecialNode.resx">

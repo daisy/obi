@@ -76,7 +76,7 @@ namespace Obi.Dialogs
             this.textBox1.Text = "The special node chunk already contain custom phrase. Do you want to convert them" +
                 " all into current custom role?";
             // 
-            // AssociateSpecialNodeDeletePhrases
+            // ExtendedMessageToAssociate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -85,8 +85,8 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_btn_No);
             this.Controls.Add(this.m_btn_YesToAll);
             this.Controls.Add(this.m_btn_Yes);
-            this.Name = "AssociateSpecialNodeDeletePhrases";
-            this.Text = "AssociateSpecialNodeDeletePhrases";
+            this.Name = "ExtendedMessageToAssociate";
+            this.Text = "Extended message box";
             this.ResumeLayout(false);
             this.PerformLayout();
 
