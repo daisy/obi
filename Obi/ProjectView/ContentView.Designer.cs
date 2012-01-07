@@ -378,7 +378,6 @@ namespace Obi.ProjectView
             // 
             // Context_AssociateSpecialNodeMark
             // 
-            this.Context_AssociateSpecialNodeMark.Enabled = false;
             this.Context_AssociateSpecialNodeMark.Name = "Context_AssociateSpecialNodeMark";
             this.Context_AssociateSpecialNodeMark.Size = new System.Drawing.Size(208, 22);
             this.Context_AssociateSpecialNodeMark.Text = "Associate special node mark";

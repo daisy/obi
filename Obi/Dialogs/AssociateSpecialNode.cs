@@ -88,7 +88,6 @@ namespace Obi.Dialogs
                         tempString = node.PhraseChild(i).CustomRole;
                         if ( i < node.PhraseChildCount - 1 && tempString != node.PhraseChild(i + 1).CustomRole )
                         {
-                            MessageBox.Show("dw" + m_IsShowAll.ToString());
                             if (!m_IsShowAll)
                             {
                                
