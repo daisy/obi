@@ -3569,9 +3569,12 @@ for (int j = 0;
 
         public void AssociateNodeToSpecialNode()  //@AssociateNode
         { 
-            if (mSelection.Node is EmptyNode)
+           // if (mSelection.Node is EmptyNode)
             {
+                if(mSelection != null && mSelection.Node is EmptyNode)
                 AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), ((EmptyNode)mSelection.Node));
+                else
+                AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), null);
                 if (AssociateSpecialNode.ShowDialog() == DialogResult.OK)
                 {
                     foreach (KeyValuePair<EmptyNode, EmptyNode> pair in AssociateSpecialNode.DictionaryToMapValues)

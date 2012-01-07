@@ -4633,7 +4633,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_AssignRole_PageMenuItem.Enabled = mProjectView.CanAssignARole;
             Context_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             Context_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
-            Context_AssignRole_AnchorMenuItem.Enabled = mProjectView.CanAssignAnchorRole;
+            Context_AssignRole_AnchorMenuItem.Enabled = mProjectView.CanAssignAnchorRole && !mProjectView.TransportBar.IsRecorderActive;
             Context_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
             Context_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Enabled = mProjectView.CanApplyPhraseDetectionInWholeProject;
@@ -4653,12 +4653,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Merge_MergeWithPrecedingPhrasesMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
             Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
-            Context_AssociateSpecialNodeMark.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode; //@AssociateNode
+            //Context_AssociateSpecialNodeMark.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode; //@AssociateNode
             Context_BeginSpecialNodeMark.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
             Context_GotoAssociatedNodeMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor; //@AssociateNode
-         //   if (mProjectView.Presentation == null)
-           //     m_BeginSpecialNode = null;
-          //  MessageBox.Show(m_BeginSpecialNode.ToString() + "  " + mProjectView.Selection.Node.ToString());
             Context_EndSpecialNodeMark.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginSpecialNode != null &&  mProjectView.Selection.Node is EmptyNode && m_BeginSpecialNode != mProjectView.Selection.Node;           
             }
 
