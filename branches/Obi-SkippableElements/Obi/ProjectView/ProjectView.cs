@@ -3637,7 +3637,7 @@ for (int j = 0;
                         {
                             if (!IsSpecialNodeAdded)
                             {
-                                Dialogs.AssignSpecialNodeToChunk assignSpecialNodeToChunk = new Obi.Dialogs.AssignSpecialNodeToChunk();
+                                Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate();
 
                                 if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
                                     IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
@@ -3657,7 +3657,7 @@ for (int j = 0;
                         {
                            // if (!IsSpecialNodeAdded)
                             {
-                                Dialogs.AssignSpecialNodeToChunk assignSpecialNodeToChunk = new Obi.Dialogs.AssignSpecialNodeToChunk();
+                                Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate();
 
                                 if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
                                     IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
