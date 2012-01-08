@@ -44,6 +44,7 @@ namespace Obi
         
         private string m_RestoreProjectFilePath= null;
         private string m_OriginalPath = null;
+     //   private EmptyNode m_BeginNote = null;
 
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
@@ -1417,6 +1418,9 @@ namespace Obi
             mPhrases_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             mPhrases_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
             m_GoToPageToolStrip.Enabled = mSession.Presentation != null && ! mProjectView.TransportBar.IsRecorderActive;
+            mSkippableBeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
+            mSkippableEndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && mProjectView.BeginNote != null && mProjectView.Selection.Node is EmptyNode && mProjectView.BeginNote != mProjectView.Selection.Node; //@AssociateNode
+            mSkippableGotoAssociatedNodeToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor; //@AssociateNode           
             UpdateAudioSelectionBlockMenuItems ();
             }
 
@@ -3440,6 +3444,28 @@ namespace Obi
             return null;
         }
 
-       
+        private void mSkippableBeginSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.BeginNote = mProjectView.Selection.EmptyNodeForSelection; //@AssociateNode
+        }
+
+        private void mSkippableEndSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AssignRoleToMarkedContinuousNodes(); //@AssociateNode
+        }
+
+        private void mSkippableAssociateSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AssociateNodeToSpecialNode(); //@AssociateNode
+        }
+
+        private void mSkippableGotoAssociatedNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)  //@AssociateNode 
+                MessageBox.Show("There is no node associated with this anchor node. Please associate a node with this anchor node.");
+            if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
+                mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
+        }
+            
     }
     }

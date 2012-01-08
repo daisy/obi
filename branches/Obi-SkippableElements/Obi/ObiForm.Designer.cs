@@ -118,6 +118,11 @@ namespace Obi
             this.mCropAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_PhraseIsTODOMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhraseIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.skippableNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableBeginSpecialNodeMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableEndSpecialNodeMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableAssociateSpecialNodeMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableGotoAssociatedNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mPhrases_AssignRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_AssignRole_PlainMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -753,6 +758,7 @@ namespace Obi
             this.mCropAudiotoolStripMenuItem,
             this.mPhrases_PhraseIsTODOMenuItem,
             this.mPhraseIsUsedToolStripMenuItem,
+            this.skippableNodesToolStripMenuItem,
             this.toolStripSeparator6,
             this.mPhrases_AssignRoleMenuItem,
             this.mPhrases_ClearRoleMenuItem,
@@ -839,6 +845,40 @@ namespace Obi
             this.mPhraseIsUsedToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mPhraseIsUsedToolStripMenuItem.Name = "mPhraseIsUsedToolStripMenuItem";
             this.mPhraseIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mPhraseIsUsedToolStripMenuItem_CheckedChanged);
+            // 
+            // skippableNodesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.skippableNodesToolStripMenuItem, "skippableNodesToolStripMenuItem");
+            this.skippableNodesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mSkippableBeginSpecialNodeMarkToolStripMenuItem,
+            this.mSkippableEndSpecialNodeMarkToolStripMenuItem,
+            this.mSkippableAssociateSpecialNodeMarkToolStripMenuItem,
+            this.mSkippableGotoAssociatedNodeToolStripMenuItem});
+            this.skippableNodesToolStripMenuItem.Name = "skippableNodesToolStripMenuItem";
+            // 
+            // mSkippableBeginSpecialNodeMarkToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableBeginSpecialNodeMarkToolStripMenuItem, "mSkippableBeginSpecialNodeMarkToolStripMenuItem");
+            this.mSkippableBeginSpecialNodeMarkToolStripMenuItem.Name = "mSkippableBeginSpecialNodeMarkToolStripMenuItem";
+            this.mSkippableBeginSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.mSkippableBeginSpecialNodeMarkToolStripMenuItem_Click);
+            // 
+            // mSkippableEndSpecialNodeMarkToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableEndSpecialNodeMarkToolStripMenuItem, "mSkippableEndSpecialNodeMarkToolStripMenuItem");
+            this.mSkippableEndSpecialNodeMarkToolStripMenuItem.Name = "mSkippableEndSpecialNodeMarkToolStripMenuItem";
+            this.mSkippableEndSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.mSkippableEndSpecialNodeMarkToolStripMenuItem_Click);
+            // 
+            // mSkippableAssociateSpecialNodeMarkToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableAssociateSpecialNodeMarkToolStripMenuItem, "mSkippableAssociateSpecialNodeMarkToolStripMenuItem");
+            this.mSkippableAssociateSpecialNodeMarkToolStripMenuItem.Name = "mSkippableAssociateSpecialNodeMarkToolStripMenuItem";
+            this.mSkippableAssociateSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.mSkippableAssociateSpecialNodeMarkToolStripMenuItem_Click);
+            // 
+            // mSkippableGotoAssociatedNodeToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableGotoAssociatedNodeToolStripMenuItem, "mSkippableGotoAssociatedNodeToolStripMenuItem");
+            this.mSkippableGotoAssociatedNodeToolStripMenuItem.Name = "mSkippableGotoAssociatedNodeToolStripMenuItem";
+            this.mSkippableGotoAssociatedNodeToolStripMenuItem.Click += new System.EventHandler(this.mSkippableGotoAssociatedNodeToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
@@ -1313,6 +1353,7 @@ namespace Obi
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
+            this.mProjectView.BeginNote = null;
             this.mProjectView.Clipboard = null;
             resources.ApplyResources(this.mProjectView, "mProjectView");
             this.mProjectView.FindInTextVisible = false;
@@ -1509,6 +1550,11 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mEdit_GotoBookmarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_RestoreFromBackupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_RestoreFromOriginalProjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem skippableNodesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableBeginSpecialNodeMarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableEndSpecialNodeMarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableAssociateSpecialNodeMarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableGotoAssociatedNodeToolStripMenuItem;
     }
 }
 
