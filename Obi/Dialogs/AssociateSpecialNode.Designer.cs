@@ -170,7 +170,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
             this.Name = "AssociateSpecialNode";
-            this.Text = "Associate Special Node";
+            this.Text = "Add/Remove reference (Associate/Deassociate)";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
