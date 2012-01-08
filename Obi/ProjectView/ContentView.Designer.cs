@@ -360,6 +360,7 @@ namespace Obi.ProjectView
             // 
             // Context_SkippablesMenuItem
             // 
+            this.Context_SkippablesMenuItem.AccessibleName = "Skippable notes";
             this.Context_SkippablesMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem,
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem,
@@ -367,34 +368,38 @@ namespace Obi.ProjectView
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem});
             this.Context_SkippablesMenuItem.Name = "Context_SkippablesMenuItem";
             this.Context_SkippablesMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.Context_SkippablesMenuItem.Text = "Skippable nodes";
+            this.Context_SkippablesMenuItem.Text = "Skippa&ble notes";
             // 
             // Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem
             // 
+            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName = "Begin note";
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Name = "Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem";
-            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text = "Begin Special Node Mark";
+            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text = "Be&gin note";
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem_Click);
             // 
             // Context_Skippable_EndSpecialNodeMarkToolStripMenuItem
             // 
+            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.AccessibleName = "End note";
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Name = "Context_Skippable_EndSpecialNodeMarkToolStripMenuItem";
-            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Text = "End Special Node Mark";
+            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Text = "En&d note";
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem_Click);
             // 
             // Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem
             // 
+            this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.AccessibleName = "Add reference";
             this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Name = "Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem";
-            this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Text = "Associate Special Node Mark";
+            this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Text = "Add re&ference";
             this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem_Click);
             // 
             // Context_Skippable_GotoAssociatedNodeToolStripMenuItem
             // 
+            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.AccessibleName = "Goto referred note";
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Name = "Context_Skippable_GotoAssociatedNodeToolStripMenuItem";
-            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Text = "Goto associated node";
+            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Text = "Goto &referred note";
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem_Click);
             // 
             // Context_AudioSelectionMenuItem

@@ -25,6 +25,7 @@ namespace Obi.ProjectView
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
         private Timer mTabbingTimer;         // ??
         private bool m_DisableSectionSelection;//@singleSection
+        private EmptyNode m_BeginNote = null;
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
@@ -34,8 +35,7 @@ namespace Obi.ProjectView
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
         public event ProgressChangedEventHandler ProgressChanged; //Updates the toolstrip progress bar on obi form
-
-
+                
         /// <summary>
         /// Create a new project view with no project yet.
         /// </summary>
@@ -106,6 +106,12 @@ namespace Obi.ProjectView
                 return addable;
                 }
             }
+
+        public EmptyNode BeginNote
+        { 
+            get { return mContentView.BeginSpecialNode; }
+            set { mContentView.BeginSpecialNode = value; }
+        }//@AssociateNode
 
         /// <summary>
         /// Add a new metadata entry to the project
@@ -3615,6 +3621,7 @@ for (int j = 0;
 
         public void AssignRoleToMarkedContinuousNodes()  //@AssociateNode
         {
+           // m_BeginNote = mContentView.BeginSpecialNode;
             EmptyNode startNode = mContentView.BeginSpecialNode;
             EmptyNode endNode = Selection.EmptyNodeForSelection;
             bool IsSpecialNodeAdded = false;
