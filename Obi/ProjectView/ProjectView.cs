@@ -3706,7 +3706,17 @@ for (int j = 0;
 
         public void DeassociateSpecialNode()
         {
-            ((EmptyNode)this.Selection.Node).AssociatedNode = null;            
+            if(Selection.Node != null)
+            {
+                try
+                {
+                    Presentation.Do(new Commands.Node.DeAssociateAnchorNode(this, (EmptyNode)this.Selection.Node));
+                }
+                catch (System.Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
+            }
         }
 
         public void ExportAudioOfSelectedNode()
