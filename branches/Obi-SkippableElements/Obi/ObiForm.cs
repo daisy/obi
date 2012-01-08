@@ -3466,6 +3466,11 @@ namespace Obi
             if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
                 mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
         }
+
+        private void mSkippableRemoveReferenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.DeassociateSpecialNode();
+        }
             
     }
     }

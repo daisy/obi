@@ -5165,6 +5165,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 MessageBox.Show("There is no node associated with this anchor node. Please associate a node with this anchor node.");
             if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
                 mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
+        }
+
+        private void Context_Skippable_RemoveAssociatedNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.DeassociateSpecialNode(); //@AssociateNode
         }      
     }
 

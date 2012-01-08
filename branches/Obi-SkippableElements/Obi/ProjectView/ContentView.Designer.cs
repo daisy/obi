@@ -87,6 +87,7 @@ namespace Obi.ProjectView
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
+            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -365,7 +366,8 @@ namespace Obi.ProjectView
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem,
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem,
             this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem,
-            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem});
+            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem,
+            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem});
             this.Context_SkippablesMenuItem.Name = "Context_SkippablesMenuItem";
             this.Context_SkippablesMenuItem.Size = new System.Drawing.Size(191, 22);
             this.Context_SkippablesMenuItem.Text = "Skippa&ble notes";
@@ -578,6 +580,14 @@ namespace Obi.ProjectView
             this.contentViewLabel1.TabIndex = 5;
             this.contentViewLabel1.zoomFactor = 1F;
             // 
+            // Context_Skippable_RemoveAssociatedNodeToolStripMenuItem
+            // 
+            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.AccessibleName = "Remove reference";
+            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Name = "Context_Skippable_RemoveAssociatedNodeToolStripMenuItem";
+            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Text = "Remove refere&nce";
+            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem_Click);
+            // 
             // ContentView
             // 
             this.ContextMenuStrip = this.mContextMenuStrip;
@@ -658,5 +668,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_EndSpecialNodeMarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_GotoAssociatedNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_Skippable_RemoveAssociatedNodeToolStripMenuItem;
     }
 }
