@@ -193,6 +193,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mSkippableRemoveReferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -853,7 +854,8 @@ namespace Obi
             this.mSkippableBeginSpecialNodeMarkToolStripMenuItem,
             this.mSkippableEndSpecialNodeMarkToolStripMenuItem,
             this.mSkippableAssociateSpecialNodeMarkToolStripMenuItem,
-            this.mSkippableGotoAssociatedNodeToolStripMenuItem});
+            this.mSkippableGotoAssociatedNodeToolStripMenuItem,
+            this.mSkippableRemoveReferenceToolStripMenuItem});
             this.skippableNodesToolStripMenuItem.Name = "skippableNodesToolStripMenuItem";
             // 
             // mSkippableBeginSpecialNodeMarkToolStripMenuItem
@@ -1365,6 +1367,12 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
+            // mSkippableRemoveReferenceToolStripMenuItem
+            // 
+            this.mSkippableRemoveReferenceToolStripMenuItem.Name = "mSkippableRemoveReferenceToolStripMenuItem";
+            resources.ApplyResources(this.mSkippableRemoveReferenceToolStripMenuItem, "mSkippableRemoveReferenceToolStripMenuItem");
+            this.mSkippableRemoveReferenceToolStripMenuItem.Click += new System.EventHandler(this.mSkippableRemoveReferenceToolStripMenuItem_Click);
+            // 
             // ObiForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1555,6 +1563,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mSkippableEndSpecialNodeMarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSkippableAssociateSpecialNodeMarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSkippableGotoAssociatedNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableRemoveReferenceToolStripMenuItem;
     }
 }
 

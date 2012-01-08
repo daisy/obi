@@ -3704,6 +3704,11 @@ for (int j = 0;
             mContentView.BeginSpecialNode = null;
         }
 
+        public void DeassociateSpecialNode()
+        {
+            ((EmptyNode)this.Selection.Node).AssociatedNode = null;            
+        }
+
         public void ExportAudioOfSelectedNode()
         {
             if (!CanExportSelectedNodeAudio) return;
