@@ -87,7 +87,7 @@ namespace Obi.ProjectView
             this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_Skippable_MoveToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_Skippable_MoveToEndNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
             this.mContextMenuStrip.SuspendLayout();
@@ -371,7 +371,7 @@ namespace Obi.ProjectView
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem,
             this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem,
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem,
-            this.Context_Skippable_MoveToToolStripMenuItem});
+            this.Context_Skippable_MoveToEndNoteToolStripMenuItem});
             this.Context_SkippablesMenuItem.Name = "Context_SkippablesMenuItem";
             this.Context_SkippablesMenuItem.Size = new System.Drawing.Size(191, 22);
             this.Context_SkippablesMenuItem.Text = "Skippa&ble notes";
@@ -569,13 +569,13 @@ namespace Obi.ProjectView
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem.Text = "Move to s&tart note";
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableMoveToStartNoteToolStripMenuItem_Click);
             // 
-            // Context_Skippable_MoveToToolStripMenuItem
+            // Context_Skippable_MoveToEndNoteToolStripMenuItem
             // 
-            this.Context_Skippable_MoveToToolStripMenuItem.AccessibleName = "Move to end note";
-            this.Context_Skippable_MoveToToolStripMenuItem.Name = "Context_Skippable_MoveToToolStripMenuItem";
-            this.Context_Skippable_MoveToToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.Context_Skippable_MoveToToolStripMenuItem.Text = "Mo&ve to end note";
-            this.Context_Skippable_MoveToToolStripMenuItem.Click += new System.EventHandler(this.mSkippableMoveToToolStripMenuItem_Click);
+            this.Context_Skippable_MoveToEndNoteToolStripMenuItem.AccessibleName = "Move to end note";
+            this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Name = "Context_Skippable_MoveToEndNoteToolStripMenuItem";
+            this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Text = "Mo&ve to end note";
+            this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableMoveToToolStripMenuItem_Click);
             // 
             // verticalScrollToolStripContainer1
             // 
@@ -690,6 +690,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_GotoAssociatedNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_RemoveAssociatedNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_MoveToStartNoteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_Skippable_MoveToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_Skippable_MoveToEndNoteToolStripMenuItem;
     }
 }

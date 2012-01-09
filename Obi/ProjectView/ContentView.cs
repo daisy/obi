@@ -4656,6 +4656,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
             Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && m_BeginNote != mProjectView.Selection.Node; //@AssociateNode
             Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor; //@AssociateNode           
+            Context_Skippable_MoveToEndNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index < mProjectView.Selection.Node.ParentAs<SectionNode>().PhraseChildCount - 1;
+            Context_Skippable_MoveToStartNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index > 0;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
