@@ -5170,6 +5170,16 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void Context_Skippable_RemoveAssociatedNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.DeassociateSpecialNode(); //@AssociateNode
+        }
+
+        private void mSkippableMoveToStartNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.GotoFootnote(true);
+        }
+
+        private void mSkippableMoveToToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.GotoFootnote(false);
         }      
     }
 

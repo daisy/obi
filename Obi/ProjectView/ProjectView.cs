@@ -3719,6 +3719,33 @@ for (int j = 0;
             }
         }
 
+        public void GotoFootnote(bool GotoBegin)
+        {
+            SectionNode parentSection = this.Selection.Node.ParentAs<SectionNode>();
+            if (GotoBegin)
+            { 
+                for(int i = this.Selection.Node.Index; i>0; i--)
+                {
+                    if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i - 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i - 1).CustomRole)
+                    {
+                        SelectedBlockNode = parentSection.PhraseChild(i);
+                        break;
+                    }
+                }
+            }
+            else
+            { 
+                for(int i = Selection.Node.Index; i<parentSection.PhraseChildCount ;i++)
+                {
+                    if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i + 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i + 1).CustomRole)
+                    {
+                        SelectedBlockNode = parentSection.PhraseChild(i);
+                        break;
+                    }
+                }
+            }
+        }
+
         public void ExportAudioOfSelectedNode()
         {
             if (!CanExportSelectedNodeAudio) return;
