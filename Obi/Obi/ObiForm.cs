@@ -1417,6 +1417,11 @@ namespace Obi
             mPhrases_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             mPhrases_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
             m_GoToPageToolStrip.Enabled = mSession.Presentation != null && ! mProjectView.TransportBar.IsRecorderActive;
+            mSkippableBeginNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
+            mSkippableEndNoteToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && mProjectView.BeginNote != null && mProjectView.Selection.Node is EmptyNode && mProjectView.BeginNote != mProjectView.Selection.Node; //@AssociateNode
+            mSkippableGotoToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor; //@AssociateNode           
+            mSkippableMoveToStartNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index > 0;
+            mSkippableMoveToEndNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index < mProjectView.Selection.Node.ParentAs<SectionNode>().PhraseChildCount - 1;
             UpdateAudioSelectionBlockMenuItems ();
             }
 
@@ -3443,6 +3448,45 @@ namespace Obi
         private void m_GoToCollectSpecialPhrasesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.ShowSpecialPhraseList();
+        }
+
+        private void mSkippableBeginNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.BeginNote = mProjectView.Selection.EmptyNodeForSelection; 
+        }
+
+        private void mSkippableEndNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AssignRoleToMarkedContinuousNodes(); 
+        }
+
+        private void mSkippableAddReferenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AssociateNodeToSpecialNode(); 
+        }
+
+        private void mSkippableGotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)
+                MessageBox.Show("There is no node associated with this anchor node. Please associate a node with this anchor node.");
+            if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
+                mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
+        
+        }
+
+        private void mSkippableRemoveReferenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.DeassociateSpecialNode();
+        }
+
+        private void mSkippableMoveToStartNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.GotoFootnote(true);
+        }
+
+        private void mSkippableMoveToEndNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.GotoFootnote(false);
         }
        
     }

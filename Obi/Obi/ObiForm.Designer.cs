@@ -118,6 +118,14 @@ namespace Obi
             this.mCropAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_PhraseIsTODOMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhraseIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableBeginNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableEndNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableAddReferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableGotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableRemoveReferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableMoveToStartNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableMoveToEndNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mPhrases_AssignRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_AssignRole_PlainMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -754,6 +762,7 @@ namespace Obi
             this.mCropAudiotoolStripMenuItem,
             this.mPhrases_PhraseIsTODOMenuItem,
             this.mPhraseIsUsedToolStripMenuItem,
+            this.mSkippableNoteToolStripMenuItem,
             this.toolStripSeparator6,
             this.mPhrases_AssignRoleMenuItem,
             this.mPhrases_ClearRoleMenuItem,
@@ -840,6 +849,61 @@ namespace Obi
             this.mPhraseIsUsedToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mPhraseIsUsedToolStripMenuItem.Name = "mPhraseIsUsedToolStripMenuItem";
             this.mPhraseIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mPhraseIsUsedToolStripMenuItem_CheckedChanged);
+            // 
+            // mSkippableNoteToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableNoteToolStripMenuItem, "mSkippableNoteToolStripMenuItem");
+            this.mSkippableNoteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mSkippableBeginNoteToolStripMenuItem,
+            this.mSkippableEndNoteToolStripMenuItem,
+            this.mSkippableAddReferenceToolStripMenuItem,
+            this.mSkippableGotoToolStripMenuItem,
+            this.mSkippableRemoveReferenceToolStripMenuItem,
+            this.mSkippableMoveToStartNoteToolStripMenuItem,
+            this.mSkippableMoveToEndNoteToolStripMenuItem});
+            this.mSkippableNoteToolStripMenuItem.Name = "mSkippableNoteToolStripMenuItem";
+            // 
+            // mSkippableBeginNoteToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableBeginNoteToolStripMenuItem, "mSkippableBeginNoteToolStripMenuItem");
+            this.mSkippableBeginNoteToolStripMenuItem.Name = "mSkippableBeginNoteToolStripMenuItem";
+            this.mSkippableBeginNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableBeginNoteToolStripMenuItem_Click);
+            // 
+            // mSkippableEndNoteToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableEndNoteToolStripMenuItem, "mSkippableEndNoteToolStripMenuItem");
+            this.mSkippableEndNoteToolStripMenuItem.Name = "mSkippableEndNoteToolStripMenuItem";
+            this.mSkippableEndNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableEndNoteToolStripMenuItem_Click);
+            // 
+            // mSkippableAddReferenceToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableAddReferenceToolStripMenuItem, "mSkippableAddReferenceToolStripMenuItem");
+            this.mSkippableAddReferenceToolStripMenuItem.Name = "mSkippableAddReferenceToolStripMenuItem";
+            this.mSkippableAddReferenceToolStripMenuItem.Click += new System.EventHandler(this.mSkippableAddReferenceToolStripMenuItem_Click);
+            // 
+            // mSkippableGotoToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableGotoToolStripMenuItem, "mSkippableGotoToolStripMenuItem");
+            this.mSkippableGotoToolStripMenuItem.Name = "mSkippableGotoToolStripMenuItem";
+            this.mSkippableGotoToolStripMenuItem.Click += new System.EventHandler(this.mSkippableGotoToolStripMenuItem_Click);
+            // 
+            // mSkippableRemoveReferenceToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableRemoveReferenceToolStripMenuItem, "mSkippableRemoveReferenceToolStripMenuItem");
+            this.mSkippableRemoveReferenceToolStripMenuItem.Name = "mSkippableRemoveReferenceToolStripMenuItem";
+            this.mSkippableRemoveReferenceToolStripMenuItem.Click += new System.EventHandler(this.mSkippableRemoveReferenceToolStripMenuItem_Click);
+            // 
+            // mSkippableMoveToStartNoteToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableMoveToStartNoteToolStripMenuItem, "mSkippableMoveToStartNoteToolStripMenuItem");
+            this.mSkippableMoveToStartNoteToolStripMenuItem.Name = "mSkippableMoveToStartNoteToolStripMenuItem";
+            this.mSkippableMoveToStartNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableMoveToStartNoteToolStripMenuItem_Click);
+            // 
+            // mSkippableMoveToEndNoteToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mSkippableMoveToEndNoteToolStripMenuItem, "mSkippableMoveToEndNoteToolStripMenuItem");
+            this.mSkippableMoveToEndNoteToolStripMenuItem.Name = "mSkippableMoveToEndNoteToolStripMenuItem";
+            this.mSkippableMoveToEndNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableMoveToEndNoteToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
@@ -1321,6 +1385,7 @@ namespace Obi
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
+            this.mProjectView.BeginNote = null;
             this.mProjectView.Clipboard = null;
             resources.ApplyResources(this.mProjectView, "mProjectView");
             this.mProjectView.FindInTextVisible = false;
@@ -1518,6 +1583,14 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_RestoreFromBackupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_RestoreFromOriginalProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_GoToCollectSpecialPhrasesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableBeginNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableEndNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableAddReferenceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableGotoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableRemoveReferenceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableMoveToStartNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableMoveToEndNoteToolStripMenuItem;
     }
 }
 
