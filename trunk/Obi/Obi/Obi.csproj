@@ -278,6 +278,12 @@
     <Compile Include="Dialogs\ShowSource.designer.cs">
       <DependentUpon>ShowSource.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SpecialPhraseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SpecialPhraseList.Designer.cs">
+      <DependentUpon>SpecialPhraseList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\WelcomeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -790,6 +796,10 @@
     <EmbeddedResource Include="Dialogs\SelectPhraseDetectionSections.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SpecialPhraseList.resx">
+      <DependentUpon>SpecialPhraseList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ContentViewLabel.resx">
       <DependentUpon>ContentViewLabel.cs</DependentUpon>
