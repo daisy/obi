@@ -105,11 +105,11 @@ namespace Obi.ProjectView
                 }
             }
 
-        public EmptyNode BeginNote
+        public EmptyNode BeginNote    //@AssociateNode
         { 
             get { return mContentView.BeginSpecialNode; }
             set { mContentView.BeginSpecialNode = value; }
-        }//@AssociateNode
+        }
 
         /// <summary>
         /// Add a new metadata entry to the project
@@ -354,7 +354,7 @@ namespace Obi.ProjectView
                 }
             }
 
-        public bool CanAssignAnchorRole
+        public bool CanAssignAnchorRole   //@AssociateNode
         {
             get
             {
@@ -1262,7 +1262,7 @@ namespace Obi.ProjectView
                 bool PlaySelectionFlagStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
 
-                if (CanPasteSpecialNode())
+                if (CanPasteSpecialNode())    //@AssociateNode
                 {
                     try
                     {
@@ -1357,15 +1357,15 @@ namespace Obi.ProjectView
                         mMetadataView.NewPresentation();
                         if (mContentView.ActiveStrip != null && this.Selection == null) mTOCView.HighlightNodeWithoutSelection = mContentView.ActiveStrip.Node;
 
-                        mPresentation.AddCustomClass("Footnote", null);
-                        mPresentation.AddCustomClass("Sidebar", null);
-                        mPresentation.AddCustomClass("Producer note", null);
-                        mPresentation.AddCustomClass("Annotation", null);
-                        mPresentation.AddCustomClass("End note", null);
+                        mPresentation.AddCustomClass("Footnote", null);   //@AssociateNode
+                        mPresentation.AddCustomClass("Sidebar", null);    //@AssociateNode
+                        mPresentation.AddCustomClass("Producer note", null);      //@AssociateNode
+                        mPresentation.AddCustomClass("Annotation", null);         //@AssociateNode   
+                        mPresentation.AddCustomClass("End note", null);           //@AssociateNode 
                     }
                     else
                     {
-                        mContentView.BeginSpecialNode = null ;
+                        mContentView.BeginSpecialNode = null;            //@AssociateNode
                     }
                     }
                 
@@ -2153,7 +2153,7 @@ for (int j = 0;
             mPresentation.Do ( new Commands.Node.AssignRole ( this, SelectedNodeAs<EmptyNode> (), kind, custom ) );
             }
 
-        public void SetCustomTypeOnEmptyNode(EmptyNode node, EmptyNode.Role nodeKind, string customClass)
+        public void SetCustomTypeOnEmptyNode(EmptyNode node, EmptyNode.Role nodeKind, string customClass)   //@AssociateNode
         {
             if (node != null)
             {
@@ -2228,7 +2228,7 @@ for (int j = 0;
                     // reselect the selected node: work around for disable scrolling problem. 
                     //earlier selection was assigned twice before command, it do not happen now so this happens post command execution
                     Selection = new NodeSelection ( Selection.Node, mContentView );
-                    if (currentNode.Role_ == EmptyNode.Role.Custom)
+                    if (currentNode.Role_ == EmptyNode.Role.Custom)     //@AssociateNode
                         SetRoleForSelectedBlock(EmptyNode.Role.Custom, currentNode.CustomRole);
                 }
                 catch (System.Exception ex)
@@ -3703,7 +3703,7 @@ for (int j = 0;
             mContentView.BeginSpecialNode = null;
         }
 
-        public void DeassociateSpecialNode()
+        public void DeassociateSpecialNode()  //@AssociateNode
         {
             if(Selection.Node != null)
             {
@@ -3718,7 +3718,7 @@ for (int j = 0;
             }
         }
 
-        public void GotoFootnote(bool GotoBegin)
+        public void GotoFootnote(bool GotoBegin)  //@AssociateNode
         {
             SectionNode parentSection = this.Selection.Node.ParentAs<SectionNode>();
             if (GotoBegin)

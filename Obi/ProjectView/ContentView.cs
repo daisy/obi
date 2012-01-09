@@ -232,11 +232,11 @@ namespace Obi.ProjectView
                 }
             }
 
-            public EmptyNode BeginSpecialNode 
+        public EmptyNode BeginSpecialNode   //@AssociateNode
             { 
                 get { return m_BeginNote; }
                 set { m_BeginNote = value; } 
-            }  //@AssociateNode
+            }  
 
         /// <summary>
         /// Add a custom class to the context menu.
@@ -4633,7 +4633,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_AssignRole_PageMenuItem.Enabled = mProjectView.CanAssignARole;
             Context_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             Context_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
-            Context_AssignRole_AnchorMenuItem.Enabled = mProjectView.CanAssignAnchorRole && !mProjectView.TransportBar.IsRecorderActive;
+            Context_AssignRole_AnchorMenuItem.Enabled = mProjectView.CanAssignAnchorRole && !mProjectView.TransportBar.IsRecorderActive; Context_AssignRole_AnchorMenuItem.Enabled = mProjectView.CanAssignAnchorRole && !mProjectView.TransportBar.IsRecorderActive;    //@AssociateNode
             Context_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
             Context_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Enabled = mProjectView.CanApplyPhraseDetectionInWholeProject;
@@ -4656,8 +4656,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
             Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && m_BeginNote != mProjectView.Selection.Node; //@AssociateNode
             Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor; //@AssociateNode           
-            Context_Skippable_MoveToEndNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index < mProjectView.Selection.Node.ParentAs<SectionNode>().PhraseChildCount - 1;
-            Context_Skippable_MoveToStartNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index > 0;
+            Context_Skippable_MoveToEndNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index < mProjectView.Selection.Node.ParentAs<SectionNode>().PhraseChildCount - 1;   //@AssociateNode
+            Context_Skippable_MoveToStartNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index > 0;  //@AssociateNode
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -4749,7 +4749,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             if (mProjectView.CanAssignARole) mProjectView.ShowPhrasePropertiesDialog ( true );
             }
 
-        private void Context_AssignRole_AnchorMenuItem_Click(object sender, EventArgs e)
+        private void Context_AssignRole_AnchorMenuItem_Click(object sender, EventArgs e)   //@AssociateNode
         {
             // mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Anchor, "Anchor");     // @Anchor
             ((EmptyNode)mProjectView.Selection.Node).Role_ = EmptyNode.Role.Anchor;
@@ -5161,9 +5161,9 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.AssociateNodeToSpecialNode(); //@AssociateNode
         }
 
-        private void Context_Skippable_GotoAssociatedNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Context_Skippable_GotoAssociatedNodeToolStripMenuItem_Click(object sender, EventArgs e)   //@AssociateNode
         {
-            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)  //@AssociateNode 
+            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)  
                 MessageBox.Show("There is no node associated with this anchor node. Please associate a node with this anchor node.");
             if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
                 mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
@@ -5176,12 +5176,12 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void mSkippableMoveToStartNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.GotoFootnote(true);
+            mProjectView.GotoFootnote(true);  //@AssociateNode
         }
 
         private void mSkippableMoveToToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.GotoFootnote(false);
+            mProjectView.GotoFootnote(false);   //@AssociateNode
         }      
     }
 
