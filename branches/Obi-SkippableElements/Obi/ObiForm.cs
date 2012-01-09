@@ -3471,6 +3471,16 @@ namespace Obi
         {
             mProjectView.DeassociateSpecialNode();
         }
+
+        private void mSkippableMoveToStartNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.GotoFootnote(true);
+        }
+
+        private void mSkippableMoveToEndNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.GotoFootnote(false);
+        }
             
     }
     }
