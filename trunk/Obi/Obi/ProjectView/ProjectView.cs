@@ -28,14 +28,12 @@ namespace Obi.ProjectView
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
-
-
+                
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
         public event ProgressChangedEventHandler ProgressChanged; //Updates the toolstrip progress bar on obi form
-
-
+                
         /// <summary>
         /// Create a new project view with no project yet.
         /// </summary>
@@ -106,6 +104,12 @@ namespace Obi.ProjectView
                 return addable;
                 }
             }
+
+        public EmptyNode BeginNote    //@AssociateNode
+        { 
+            get { return mContentView.BeginSpecialNode; }
+            set { mContentView.BeginSpecialNode = value; }
+        }
 
         /// <summary>
         /// Add a new metadata entry to the project
@@ -350,6 +354,15 @@ namespace Obi.ProjectView
                 }
             }
 
+        public bool CanAssignAnchorRole   //@AssociateNode
+        {
+            get
+            {
+                PhraseNode node = SelectedNodeAs<PhraseNode>();
+                return node != null && node.Role_ != EmptyNode.Role.Anchor;
+            }
+        }
+
         /// <summary>
         /// Can assign this custom role if there is an empty node to assign to,
         /// and the role is different from the one of this node.
@@ -593,11 +606,14 @@ namespace Obi.ProjectView
                 }
             else if (CanRemoveBlock)
                 {
-                CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand ();
-                command.ShortDescription = Localizer.Message ( "cut_phrase" );
-                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy ( this, true ) );
-                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete ( this, mSelection.Node ) );
-                mPresentation.Do ( command );
+                    if (CanDeleteSpecialNode()) //@AssociateNode
+                    {
+                        CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand();
+                        command.ShortDescription = Localizer.Message("cut_phrase");
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
+                        mPresentation.Do(command);                       
+                    }
                 }
             else if (CanRemoveAudio)
                 {
@@ -618,6 +634,7 @@ namespace Obi.ProjectView
             }
             }
 
+     
         /// <summary>
         /// Delete the current selection. Noop if there is no selection.
         /// </summary>
@@ -651,9 +668,10 @@ namespace Obi.ProjectView
                     mPresentation.Do(mContentView.DeleteStripCommand());
                 }
                 else if (CanRemoveBlock)
-                {
-                    mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
-                        Localizer.Message("delete_phrase")));
+                {                 
+                    if(CanDeleteSpecialNode())              //@AssociateNode
+                        mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
+                           Localizer.Message("delete_phrase")));                    
                 }
                 else if (CanRemoveAudio)
                 {
@@ -669,6 +687,49 @@ namespace Obi.ProjectView
                 MessageBox.Show(ex.ToString());
             }
             }
+
+        public bool CanDeleteSpecialNode()   //@AssociateNode
+        {
+            bool m_CanDeleteSpecialNode = false;             
+            if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
+            {
+                List<SectionNode> listOfAllSections = new List<SectionNode>();
+                listOfAllSections = ((ObiRootNode)mPresentation.RootNode).GetListOfAllSections();
+                if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
+                    m_CanDeleteSpecialNode = true;
+                else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
+                {
+                    for (int j = ((EmptyNode)Selection.Node).ParentAs<SectionNode>().Index; j >= 0; j--)
+                    {
+                        for (int i = 0; i < listOfAllSections[j].PhraseChildCount; i++)
+                        {
+                            if (((EmptyNode)Selection.Node) == listOfAllSections[j].PhraseChild(i).AssociatedNode)
+                            {
+                                if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    listOfAllSections[j].PhraseChild(i).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
+                                    m_CanDeleteSpecialNode = true;
+                                }
+                                else
+                                    return false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("Node is between chunk. Do you want to want to delete?", "Delete", MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Question) == DialogResult.Yes)
+                        m_CanDeleteSpecialNode = true;
+                    else
+                        return false;
+                }
+            }
+            else
+                m_CanDeleteSpecialNode = true;
+            return m_CanDeleteSpecialNode;
+        }
 
         public bool CanDeleteMetadataEntry ( urakawa.metadata.Metadata m )
             {
@@ -1200,17 +1261,47 @@ namespace Obi.ProjectView
                 }
                 bool PlaySelectionFlagStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
-                try
+
+                if (CanPasteSpecialNode())    //@AssociateNode
                 {
-                    mPresentation.Do(mSelection.PasteCommand(this));
+                    try
+                    {
+                        mPresentation.Do(mSelection.PasteCommand(this, true));
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
-                catch (System.Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.ToString());
+                    try
+                    {
+                        mPresentation.Do(mSelection.PasteCommand(this, false));
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
                 mTransportBar.SelectionChangedPlaybackEnabled = PlaySelectionFlagStatus;
                 }
             }
+
+        public bool CanPasteSpecialNode()   //@AssociateNode
+        {
+            EmptyNode stripIndexNode = (EmptyNode)Selection.EmptyNodeForSelection;
+            bool m_CanPasteSpecialNode = false;
+            if ((Selection is StripIndexSelection && stripIndexNode != null && ((EmptyNode)stripIndexNode.FollowingNode) != null && stripIndexNode.CustomRole == ((EmptyNode)stripIndexNode.FollowingNode).CustomRole && ((EmptyNode)stripIndexNode.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && stripIndexNode.CustomRole != ((EmptyNode)mClipboard.Node).CustomRole)
+                || (Selection.Node is PhraseNode && ((EmptyNode)this.Selection.Node.FollowingNode) != null && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole == ((EmptyNode)this.Selection.Node).CustomRole && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && ((EmptyNode)this.Selection.Node).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole))
+            {
+                if (((EmptyNode)mClipboard.Node).Role_ == EmptyNode.Role.Plain)
+                    m_CanPasteSpecialNode = true;
+                else
+                    m_CanPasteSpecialNode = false;
+            }            
+            return m_CanPasteSpecialNode;
+        }
 
         /// <summary>
         /// Paste the contents of the clipboard before the selected section.
@@ -1259,14 +1350,25 @@ namespace Obi.ProjectView
                     mPresentation = value;
                     mTransportBar.Enabled = mPresentation != null;
                     if (mPresentation != null)
-                        {
-                        mTOCView.SetNewPresentation ();
-                        mContentView.NewPresentation ();
-                        mTransportBar.NewPresentation ();
-                        mMetadataView.NewPresentation ();
+                    {
+                        mTOCView.SetNewPresentation();
+                        mContentView.NewPresentation();
+                        mTransportBar.NewPresentation();
+                        mMetadataView.NewPresentation();
                         if (mContentView.ActiveStrip != null && this.Selection == null) mTOCView.HighlightNodeWithoutSelection = mContentView.ActiveStrip.Node;
-                        }
+
+                        mPresentation.AddCustomClass("Footnote", null);   //@AssociateNode
+                        mPresentation.AddCustomClass("Sidebar", null);    //@AssociateNode
+                        mPresentation.AddCustomClass("Producer note", null);      //@AssociateNode
+                        mPresentation.AddCustomClass("Annotation", null);         //@AssociateNode   
+                        mPresentation.AddCustomClass("End note", null);           //@AssociateNode 
                     }
+                    else
+                    {
+                        mContentView.BeginSpecialNode = null;            //@AssociateNode
+                    }
+                    }
+                
                 }
             }
 
@@ -2051,6 +2153,17 @@ for (int j = 0;
             mPresentation.Do ( new Commands.Node.AssignRole ( this, SelectedNodeAs<EmptyNode> (), kind, custom ) );
             }
 
+        public void SetCustomTypeOnEmptyNode(EmptyNode node, EmptyNode.Role nodeKind, string customClass)   //@AssociateNode
+        {
+            if (node != null)
+            {
+                if (node.Role_ != nodeKind || node.CustomRole != customClass)
+                {
+                    mPresentation.Do(new Obi.Commands.Node.AssignRole(this, node, customClass));
+                }
+            }
+        }
+
         public void SetSilenceRoleForSelectedPhrase ()
             {
             PhraseNode node = SelectedNodeAs<PhraseNode> ();
@@ -2093,6 +2206,7 @@ for (int j = 0;
         /// </summary>
         public void SplitPhrase ()
             {
+            EmptyNode currentNode = (EmptyNode)Selection.Node;
             bool wasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
             if (TransportBar.CurrentState == TransportBar.State.Playing && !PauseAndCreatePlayingSection()) return;
             if (TransportBar.PlaybackPhrase != null && TransportBar.CurrentPlaylist.PlaybackRate != 0)
@@ -2114,7 +2228,9 @@ for (int j = 0;
                     // reselect the selected node: work around for disable scrolling problem. 
                     //earlier selection was assigned twice before command, it do not happen now so this happens post command execution
                     Selection = new NodeSelection ( Selection.Node, mContentView );
-                    }
+                    if (currentNode.Role_ == EmptyNode.Role.Custom)     //@AssociateNode
+                        SetRoleForSelectedBlock(EmptyNode.Role.Custom, currentNode.CustomRole);
+                }
                 catch (System.Exception ex)
                     {
                     MessageBox.Show ( ex.ToString () );
@@ -2130,6 +2246,7 @@ for (int j = 0;
         public void MergeBlockWithNext ()
             {
                 double duration;
+               
             if (CanMergeBlockWithNext)
                 {
                 if (TransportBar.IsPlayerActive) TransportBar.Pause ();
@@ -3451,6 +3568,180 @@ for (int j = 0;
             if (mContentView.ActiveStrip != null)
             {
                 mContentView.RemoveBlocksInStrip(mContentView.ActiveStrip.Node);
+            }
+        }
+
+        public void AssociateNodeToSpecialNode()  //@AssociateNode
+        {
+            Dialogs.AssociateSpecialNode AssociateSpecialNode;
+           // if (mSelection.Node is EmptyNode)
+            {
+                if(mSelection != null && mSelection.Node is EmptyNode)
+                AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), ((EmptyNode)mSelection.Node));
+                else
+                AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), null);
+                if (AssociateSpecialNode.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (KeyValuePair<EmptyNode, EmptyNode> pair in AssociateSpecialNode.DictionaryToMapValues)
+                    {
+                        
+                        if (pair.Key.AssociatedNode == null
+                            || pair.Key.AssociatedNode != pair.Value)
+                        {
+                            
+                            urakawa.command.CompositeCommand cmd = Presentation.CreateCompositeCommand("Associate anchor node");//todo:localize
+                            if (pair.Key.AssociatedNode != null) cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.DeAssociateAnchorNode(this, pair.Key));
+
+                            if (pair.Value != null)
+                            {
+                                
+                                cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, pair.Key, pair.Value));
+                            }
+                            else if (pair.Value == null && pair.Key.AssociatedNode != null)
+                            {
+                                
+                                cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.DeAssociateAnchorNode(this, pair.Key));
+                            }
+                            try
+                            {
+                                Presentation.Do(cmd);
+                            }
+                            catch (System.Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                            }
+                            //pair.Key.AssociatedNode = pair.Value;
+                        }
+                    }//foreach ends
+                }//dialog ok ends
+
+            }
+        }
+
+        public void AssignRoleToMarkedContinuousNodes()  //@AssociateNode
+        {
+           // m_BeginNote = mContentView.BeginSpecialNode;
+            EmptyNode startNode = mContentView.BeginSpecialNode;
+            EmptyNode endNode = Selection.EmptyNodeForSelection;
+            bool IsSpecialNodeAdded = false;
+
+            string customClass = "";
+            List<EmptyNode> listOfEmptyNodesToMarkAsSpecialNodes = new List<EmptyNode>();
+            ObiNode parentNode = startNode.ParentAs<SectionNode>();
+            Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();
+            AssignSpecialNodeDialog.ShowDialog();
+            if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
+            {
+                customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
+                if (startNode.Index == endNode.Index)
+                {
+                    MessageBox.Show("The start node should not be same as end node. Please select a different end node.");
+                    return;
+                }
+                else if (startNode.Index < endNode.Index)
+                {
+                    for (int i = startNode.Index; i <= endNode.Index; i++)
+                    {
+                        if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Custom && parentNode.PhraseChild(i).CustomRole != customClass)
+                        {
+                            if (!IsSpecialNodeAdded)
+                            {
+                                Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate();
+
+                                if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
+                                    IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
+                                else if (assignSpecialNodeToChunk.Is_YesToAll)
+                                {
+                                    endNode = (EmptyNode)this.Selection.Node;
+                                    break;
+                                }
+                                else if(assignSpecialNodeToChunk.Is_Abort)
+                                {
+                                    endNode = parentNode.PhraseChild(i - 1);
+                                    return;
+                                }
+                            }
+                        }
+                        else if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Heading || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Silence || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Page || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Anchor)
+                        {
+                           // if (!IsSpecialNodeAdded)
+                            {
+                                Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate();
+
+                                if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
+                                    IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
+                                else if (assignSpecialNodeToChunk.Is_YesToAll)
+                                {
+                                    endNode = (EmptyNode)this.Selection.Node;
+                                    break;
+                                }
+                                else if(assignSpecialNodeToChunk.Is_Abort)
+                                {
+                                    endNode = parentNode.PhraseChild(i - 1);
+                                    return;
+                                }
+                            }
+                        }
+                        if (parentNode.PhraseChild(i).Index < parentNode.PhraseChildCount - 1 && ((((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ && ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) || ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
+                           IsSpecialNodeAdded = false;                        
+                  }
+                }
+                else
+                {
+                    MessageBox.Show("Begin node index is greater than end node index. Please choose again.");
+                    return;
+                }
+                try
+                {
+                    Presentation.Do(Commands.Node.AssignRole.GetCompositeCommandForAssigningRoleOnMultipleNodes(this, startNode, endNode, EmptyNode.Role.Custom, customClass));
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            mContentView.BeginSpecialNode = null;
+        }
+
+        public void DeassociateSpecialNode()  //@AssociateNode
+        {
+            if(Selection.Node != null)
+            {
+                try
+                {
+                    Presentation.Do(new Commands.Node.DeAssociateAnchorNode(this, (EmptyNode)this.Selection.Node));
+                }
+                catch (System.Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
+            }
+        }
+
+        public void GotoFootnote(bool GotoBegin)  //@AssociateNode
+        {
+            SectionNode parentSection = this.Selection.Node.ParentAs<SectionNode>();
+            if (GotoBegin)
+            { 
+                for(int i = this.Selection.Node.Index; i>0; i--)
+                {                    
+                    if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i - 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i - 1).CustomRole)
+                        {
+                            SelectedBlockNode = parentSection.PhraseChild(i);
+                            break;
+                        }                   
+                }
+            }
+            else
+            {
+                for(int i = Selection.Node.Index; i<= parentSection.PhraseChildCount ;i++)
+                { 
+                    if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i + 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i + 1).CustomRole)
+                        {
+                            SelectedBlockNode = parentSection.PhraseChild(i);
+                            break;
+                        }                    
+                }
             }
         }
 

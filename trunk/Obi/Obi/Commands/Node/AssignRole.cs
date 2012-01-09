@@ -40,6 +40,37 @@ namespace Obi.Commands.Node
         public AssignRole(ProjectView.ProjectView view, EmptyNode node, EmptyNode.Role role)
             : this(view, node, role, null) { }
 
+        public static urakawa.command.CompositeCommand GetCompositeCommandForAssigningRoleOnMultipleNodes(ProjectView.ProjectView view, EmptyNode startNode, EmptyNode endNode, EmptyNode.Role role, string customeClassName)
+        {
+            SectionNode section = startNode.ParentAs<SectionNode>();
+            urakawa.command.CompositeCommand command = view.Presentation.CommandFactory.CreateCompositeCommand(); 
+
+            for ( int i = startNode.Index; i <= endNode.Index; i++)
+            {
+                command.ChildCommands.Insert ( command.ChildCommands.Count,
+                    new Commands.Node.AssignRole(view, section.PhraseChild(i), role, customeClassName));
+            }
+            return command;
+        }
+
+        public static void AssignRoleToEmptyNodeSurroundedByCustomRoles( ObiNode roleNode)
+        {
+            if (roleNode is EmptyNode && ((EmptyNode)roleNode).Role_ == EmptyNode.Role.Plain)
+            {
+                ObiNode preceeding = roleNode.PrecedingNode;
+                ObiNode following = roleNode.FollowingNode;
+                if (preceeding != null && following != null
+                    && preceeding is EmptyNode && following is EmptyNode
+                    && ((EmptyNode)preceeding).Role_ == EmptyNode.Role.Custom
+                    && ((EmptyNode)preceeding).Role_ == ((EmptyNode)following).Role_
+                    && ((EmptyNode)preceeding).CustomRole == ((EmptyNode)following).CustomRole)
+                {
+                    EmptyNode currentNode = (EmptyNode)roleNode;
+                    currentNode.SetRole(((EmptyNode)preceeding).Role_, ((EmptyNode)preceeding).CustomRole);
+                }
+            }
+        }
+
         public override bool CanExecute { get { return true; } }
 
         public override void Execute()
