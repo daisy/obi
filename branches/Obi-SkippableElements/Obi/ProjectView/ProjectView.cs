@@ -25,12 +25,10 @@ namespace Obi.ProjectView
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
         private Timer mTabbingTimer;         // ??
         private bool m_DisableSectionSelection;//@singleSection
-        private EmptyNode m_BeginNote = null;
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
-        Dialogs.AssociateSpecialNode AssociateSpecialNode; //@AssociateNode
-        
+                
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
@@ -3574,7 +3572,8 @@ for (int j = 0;
         }
 
         public void AssociateNodeToSpecialNode()  //@AssociateNode
-        { 
+        {
+            Dialogs.AssociateSpecialNode AssociateSpecialNode;
            // if (mSelection.Node is EmptyNode)
             {
                 if(mSelection != null && mSelection.Node is EmptyNode)

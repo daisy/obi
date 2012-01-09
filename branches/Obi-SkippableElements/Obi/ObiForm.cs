@@ -44,7 +44,6 @@ namespace Obi
         
         private string m_RestoreProjectFilePath= null;
         private string m_OriginalPath = null;
-     //   private EmptyNode m_BeginNote = null;
 
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
@@ -1421,6 +1420,8 @@ namespace Obi
             mSkippableBeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
             mSkippableEndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && mProjectView.BeginNote != null && mProjectView.Selection.Node is EmptyNode && mProjectView.BeginNote != mProjectView.Selection.Node; //@AssociateNode
             mSkippableGotoAssociatedNodeToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor; //@AssociateNode           
+            mSkippableMoveToStartNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index > 0;
+            mSkippableMoveToEndNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index < mProjectView.Selection.Node.ParentAs<SectionNode>().PhraseChildCount - 1;
             UpdateAudioSelectionBlockMenuItems ();
             }
 
@@ -3444,40 +3445,40 @@ namespace Obi
             return null;
         }
 
-        private void mSkippableBeginSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mSkippableBeginSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e) //@AssociateNode
         {
-            mProjectView.BeginNote = mProjectView.Selection.EmptyNodeForSelection; //@AssociateNode
+            mProjectView.BeginNote = mProjectView.Selection.EmptyNodeForSelection; 
         }
 
-        private void mSkippableEndSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mSkippableEndSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)  //@AssociateNode
         {
-            mProjectView.AssignRoleToMarkedContinuousNodes(); //@AssociateNode
+            mProjectView.AssignRoleToMarkedContinuousNodes(); 
         }
 
-        private void mSkippableAssociateSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mSkippableAssociateSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)   //@AssociateNode
         {
-            mProjectView.AssociateNodeToSpecialNode(); //@AssociateNode
+            mProjectView.AssociateNodeToSpecialNode(); 
         }
 
-        private void mSkippableGotoAssociatedNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mSkippableGotoAssociatedNodeToolStripMenuItem_Click(object sender, EventArgs e) //@AssociateNode 
         {
-            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)  //@AssociateNode 
+            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)  
                 MessageBox.Show("There is no node associated with this anchor node. Please associate a node with this anchor node.");
             if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
                 mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
         }
 
-        private void mSkippableRemoveReferenceToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mSkippableRemoveReferenceToolStripMenuItem_Click(object sender, EventArgs e)  //@AssociateNode 
         {
             mProjectView.DeassociateSpecialNode();
         }
 
-        private void mSkippableMoveToStartNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mSkippableMoveToStartNoteToolStripMenuItem_Click(object sender, EventArgs e)  //@AssociateNode 
         {
             mProjectView.GotoFootnote(true);
         }
 
-        private void mSkippableMoveToEndNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mSkippableMoveToEndNoteToolStripMenuItem_Click(object sender, EventArgs e)   //@AssociateNode 
         {
             mProjectView.GotoFootnote(false);
         }
