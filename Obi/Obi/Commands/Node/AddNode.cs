@@ -59,10 +59,21 @@ namespace Obi.Commands.Node
             }
         }
 
+        private bool m_AllowRoleChangeAccordingToSurroundingSpecialNodes = true;
+        /// <summary>
+        /// <Allows the added phrase to change its role according to special roles surrounding it. Its true by default
+        /// </summary>
+        public bool AllowRoleChangeAccordingToSurroundingSpecialNodes
+        {
+            get { return m_AllowRoleChangeAccordingToSurroundingSpecialNodes; }
+            set { m_AllowRoleChangeAccordingToSurroundingSpecialNodes = value; }
+        }
 
+        
         public override void Execute()
         {
             mParent.Insert(mNode, mIndex);
+            if ( AllowRoleChangeAccordingToSurroundingSpecialNodes) AssignRole.AssignRoleToEmptyNodeSurroundedByCustomRoles(mNode);
             if (UpdateSelection) View.Selection = mSelection;
             TriggerProgressChanged ();
         }

@@ -42,6 +42,7 @@ namespace Obi.ProjectView
         private delegate void RemoveControlForSectionNodeDelegate ( SectionNode node );
         private bool m_IsWaveformRenderingPaused;
         private Waveform m_RenderingWaveform = null;
+        private EmptyNode m_BeginNote = null; //@AssociateNode
 
         /// <summary>
         /// A new strips view.
@@ -231,9 +232,16 @@ namespace Obi.ProjectView
                 }
             }
 
+        public EmptyNode BeginSpecialNode   //@AssociateNode
+            { 
+                get { return m_BeginNote; }
+                set { m_BeginNote = value; } 
+            }  
+
         /// <summary>
         /// Add a custom class to the context menu.
         /// </summary>
+        /// 
         public void AddCustomRoleToContextMenu ( string name, ObiForm from )
             {
             from.AddCustomRoleToMenu ( name, Context_AssignRoleMenuItem.DropDownItems, Context_AssignRole_NewCustomRoleMenuItem );
@@ -4625,6 +4633,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_AssignRole_PageMenuItem.Enabled = mProjectView.CanAssignARole;
             Context_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             Context_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
+            Context_AssignRole_AnchorMenuItem.Enabled = mProjectView.CanAssignAnchorRole && !mProjectView.TransportBar.IsRecorderActive;  //@AssociateNode
             Context_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
             Context_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Enabled = mProjectView.CanApplyPhraseDetectionInWholeProject;
@@ -4643,7 +4652,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Merge_MergeWithFollowingPhrasesMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
             Context_Merge_MergeWithPrecedingPhrasesMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
-            Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
+            Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;            
+            Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
+            Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && m_BeginNote != mProjectView.Selection.Node; //@AssociateNode
+            Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor; //@AssociateNode           
+            Context_Skippable_MoveToEndNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index < mProjectView.Selection.Node.ParentAs<SectionNode>().PhraseChildCount - 1;   //@AssociateNode
+            Context_Skippable_MoveToStartNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index > 0;  //@AssociateNode
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -4734,6 +4748,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
             if (mProjectView.CanAssignARole) mProjectView.ShowPhrasePropertiesDialog ( true );
             }
+
+        private void Context_AssignRole_AnchorMenuItem_Click(object sender, EventArgs e)   //@AssociateNode
+        {
+            // mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Anchor, "Anchor");     // @Anchor
+            ((EmptyNode)mProjectView.Selection.Node).Role_ = EmptyNode.Role.Anchor;
+        }
 
         // Clear role context menu item
         private void Context_ClearRoleMenuItem_Click ( object sender, EventArgs e )
@@ -5126,7 +5146,44 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
         }
 
+        private void Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_BeginNote = mProjectView.Selection.EmptyNodeForSelection; //@AssociateNode
         }
+
+        private void Context_Skippable_EndSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AssignRoleToMarkedContinuousNodes(); //@AssociateNode
+        }
+
+        private void Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.AssociateNodeToSpecialNode(); //@AssociateNode
+        }
+
+        private void Context_Skippable_GotoAssociatedNodeToolStripMenuItem_Click(object sender, EventArgs e)   //@AssociateNode
+        {
+            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)  
+                MessageBox.Show("There is no node associated with this anchor node. Please associate a node with this anchor node.");
+            if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
+                mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
+        }
+
+        private void Context_Skippable_RemoveAssociatedNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.DeassociateSpecialNode(); //@AssociateNode
+        }
+
+        private void mSkippableMoveToStartNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.GotoFootnote(true);  //@AssociateNode
+        }
+
+        private void mSkippableMoveToToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.GotoFootnote(false);   //@AssociateNode
+        }      
+    }
 
     /// <summary>
     /// Common interface for selection of strips and blocks.

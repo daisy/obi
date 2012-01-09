@@ -243,13 +243,25 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
 
         // Perform a split given a time and a node with no audio, optionally updating the selection in the view afterward.
         public static void Split(ProjectView.ProjectView view, PhraseNode node, PhraseNode nodeAfter, Time splitTime,
-            bool updateSelection)
+            bool updateSelection, bool allowSpecialRoleMarkForSurrounding)
         {
             nodeAfter.Audio = node.SplitAudio(splitTime);
             node.InsertAfterSelf(nodeAfter);
+            if (allowSpecialRoleMarkForSurrounding) AssignRole.AssignRoleToEmptyNodeSurroundedByCustomRoles(nodeAfter);
             if (updateSelection) view.SelectedBlockNode = nodeAfter;
             view.UpdateBlocksLabelInStrip(node.AncestorAs<SectionNode>());
         }
+
+        private bool m_AllowRoleChangeAccordingToSurroundingSpecialNodes = true;
+        /// <summary>
+        /// <Allows the added phrase to change its role according to special roles surrounding it. Its true by default
+        /// </summary>
+        public bool AllowRoleChangeAccordingToSurroundingSpecialNodes
+        {
+            get { return m_AllowRoleChangeAccordingToSurroundingSpecialNodes; }
+            set { m_AllowRoleChangeAccordingToSurroundingSpecialNodes = value; }
+        }
+
 
         public override IEnumerable<MediaData> UsedMediaData
         {
@@ -268,7 +280,7 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
 
         public override void Execute()
         {
-            Split(View, mNode, mNodeAfter, mSplitTime, UpdateSelection);
+            Split(View, mNode, mNodeAfter, mSplitTime, UpdateSelection, AllowRoleChangeAccordingToSurroundingSpecialNodes);
             TriggerProgressChanged ();
         }
 

@@ -33,6 +33,10 @@ namespace Obi
         private static readonly string XUK_ATTR_NAME_PAGE_KIND = "pageKind";  // name of the pageKind attribute
         private static readonly string XUK_ATTR_NAME_PAGE_TEXT = "pageText";  // name of the pageText attribute
         private static readonly string XUK_ATTR_NAME_TODO = "TODO";           // name of the TODO attribute
+        private EmptyNode m_AssociatedNode = null;                            //@AssociateNode  
+        private static readonly string XUK_ATTR_NAME_AssociateNode = "ANode"; //attribute for associate node location
+        private string m_AssociatedNodeLocation;                              //@AssociateNode
+        
 
         /// <summary>
         /// Different roles for content nodes.
@@ -42,13 +46,14 @@ namespace Obi
         /// Silence is a silence node for phrase detection.
         /// Custom is a node with a custom class (e.g. sidebar, etc.)
         /// </summary>
-        public enum Role { Plain, Page, Heading, Silence, Custom };
-
+        public enum Role { Plain, Page, Heading, Silence, Anchor, Custom };   //@AssociateNode
+         
         public static readonly LocalizedRole LOCALIZED_PLAIN = new LocalizedRole(Role.Plain);
         public static readonly LocalizedRole LOCALIZED_PAGE = new LocalizedRole(Role.Page);
         public static readonly LocalizedRole LOCALIZED_HEADING = new LocalizedRole(Role.Heading);
         public static readonly LocalizedRole LOCALIZED_SILENCE = new LocalizedRole(Role.Silence);
         public static readonly LocalizedRole LOCALIZED_CUSTOM = new LocalizedRole(Role.Custom);
+        public static readonly LocalizedRole LOCALIZED_ANCHOR = new LocalizedRole(Role.Anchor);  //@AssociateNode
         
         public override string ToString() { return BaseString(); }
 
@@ -106,6 +111,7 @@ namespace Obi
             mRole = role;
             mCustomRole = customRole;
             mPageNumber = null;
+            m_AssociatedNodeLocation = null;   //@AssociateNode
         }
 
         /// <summary>
@@ -123,7 +129,7 @@ namespace Obi
         /// </summary>
         public EmptyNode(string customRole) : this(Role.Custom, customRole) { }
 
-
+        
         /// <summary>
         /// Copy all attributes of this node to another.
         /// </summary>
@@ -152,6 +158,32 @@ namespace Obi
         {
             get { return mCustomRole; }
             set { SetRole(Role.Custom, value); }
+        }
+
+        public EmptyNode AssociatedNode   //@AssociateNode
+        {
+            get 
+            {
+                if (m_AssociatedNode == null && !string.IsNullOrEmpty(m_AssociatedNodeLocation))
+                {
+                    string [] locationArray = m_AssociatedNodeLocation.Split('_') ;
+                    TreeNode iterationNode =this.Root ;
+                    for ( int i = locationArray.Length-1 ; i >= 0 ; i-- )
+                    {
+                        int childIndex = -1;
+                        int.TryParse( locationArray[i], out childIndex );
+                        
+                        iterationNode = iterationNode.Children.Get(childIndex) ;
+                    }
+                    m_AssociatedNode = (EmptyNode) iterationNode ;
+                    m_AssociatedNodeLocation = null;
+                }
+                return m_AssociatedNode != null &&  m_AssociatedNode.IsRooted? m_AssociatedNode:null; 
+            }
+            set 
+            { 
+                m_AssociatedNode =  value; 
+            }
         }
 
         /// <summary>
@@ -351,7 +383,8 @@ namespace Obi
                 if (role != null) mRole = role == Role.Custom.ToString() ? Role.Custom :
                                           role == Role.Heading.ToString() ? Role.Heading :
                                           role == Role.Page.ToString() ? Role.Page :
-                                          role == Role.Silence.ToString() ? Role.Silence : Role.Plain;
+                                          role == Role.Silence.ToString() ? Role.Silence :
+                        role == Role.Anchor.ToString() ? Role.Anchor : Role.Plain;  //@AssociateNode
                 if (role != null && role != mRole.ToString()) throw new Exception("Unknown kind: " + role);
                 mCustomRole = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
                 if (mRole == Role.Heading)
@@ -399,6 +432,8 @@ namespace Obi
 
                 string todo = source.GetAttribute(XUK_ATTR_NAME_TODO);
                 if (todo != null) mTODO = todo == "True";
+                m_AssociatedNodeLocation = source.GetAttribute(XUK_ATTR_NAME_AssociateNode);  //@AssociateNode
+
             }
             base.XukInAttributes(source);
         }
@@ -441,6 +476,19 @@ namespace Obi
                     wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_TEXT, mPageNumber.Unquoted);
                 }
                 if (mTODO) wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
+                if (AssociatedNode != null && AssociatedNode.IsRooted)       //@AssociateNode
+                {
+                    ObiNode iterationNode = AssociatedNode;
+                    m_AssociatedNodeLocation = "";
+                    while (iterationNode != this.Root)
+                    {
+                        if (AssociatedNode  != iterationNode) m_AssociatedNodeLocation += "_";
+                        m_AssociatedNodeLocation += iterationNode.Index.ToString();
+                        iterationNode = iterationNode.ParentAs<ObiNode> () ;
+                    }
+                    
+                    wr.WriteAttributeString(XUK_ATTR_NAME_AssociateNode, m_AssociatedNodeLocation);
+                }
             }
             base.XukOutAttributes(wr, baseUri);
         }
@@ -459,6 +507,7 @@ namespace Obi
             return role == Role.Custom ? LOCALIZED_CUSTOM :
                 role == Role.Heading ? LOCALIZED_HEADING :
                 role == Role.Page ? LOCALIZED_PAGE :
+                role == Role.Anchor ? LOCALIZED_ANCHOR :    //@AssociateNode
                 role == Role.Plain ? LOCALIZED_PLAIN : LOCALIZED_SILENCE;
         }
     }
