@@ -29,7 +29,7 @@ namespace Obi.ImportExport
         private List<string> m_ErrorsList;
 
         public DAISY3_ObiImport(Session session,Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate)
-            : base(bookfile, outDir, skipACM, audioProjectSampleRate)
+            : base(bookfile, outDir, skipACM, audioProjectSampleRate, true)
         {
             m_Session = session;
             m_Settings = settings;
