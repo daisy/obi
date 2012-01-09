@@ -3683,7 +3683,7 @@ for (int j = 0;
                                 }
                             }
                         }
-                        if (((((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ && ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) || ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
+                        if (parentNode.PhraseChild(i).Index < parentNode.PhraseChildCount - 1 && ((((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ && ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) || ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
                            IsSpecialNodeAdded = false;                        
                   }
                 }
@@ -3725,23 +3725,23 @@ for (int j = 0;
             if (GotoBegin)
             { 
                 for(int i = this.Selection.Node.Index; i>0; i--)
-                {
+                {                    
                     if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i - 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i - 1).CustomRole)
-                    {
-                        SelectedBlockNode = parentSection.PhraseChild(i);
-                        break;
-                    }
+                        {
+                            SelectedBlockNode = parentSection.PhraseChild(i);
+                            break;
+                        }                   
                 }
             }
             else
-            { 
-                for(int i = Selection.Node.Index; i<parentSection.PhraseChildCount ;i++)
-                {
+            {
+                for(int i = Selection.Node.Index; i<= parentSection.PhraseChildCount ;i++)
+                { 
                     if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i + 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i + 1).CustomRole)
-                    {
-                        SelectedBlockNode = parentSection.PhraseChild(i);
-                        break;
-                    }
+                        {
+                            SelectedBlockNode = parentSection.PhraseChild(i);
+                            break;
+                        }                    
                 }
             }
         }
