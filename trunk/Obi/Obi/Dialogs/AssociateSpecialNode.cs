@@ -83,7 +83,7 @@ namespace Obi.Dialogs
             {
                 for (int i = 0; i < node.PhraseChildCount; i++)
                 {
-                    if (node.PhraseChild(i).Role_ == EmptyNode.Role.Custom)
+                    if (node.PhraseChild(i).Role_ == EmptyNode.Role.Custom && node.PhraseChild(i).CustomRole != "Sidebar")
                     {
                         tempString = node.PhraseChild(i).CustomRole;
                         if ( i < node.PhraseChildCount - 1 && tempString != node.PhraseChild(i + 1).CustomRole )
