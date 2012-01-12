@@ -1416,6 +1416,7 @@ namespace Obi
             mPhrases_AssignRole_PageMenuItem.Enabled = mProjectView.CanAssignARole;
             mPhrases_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             mPhrases_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
+            mPhrases_AssignRole_AnchorMenuItem.Enabled = mProjectView.CanAssignAnchorRole && !mProjectView.TransportBar.IsRecorderActive;  //@AssociateNode
             m_GoToPageToolStrip.Enabled = mSession.Presentation != null && ! mProjectView.TransportBar.IsRecorderActive;
             mSkippableBeginNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
             mSkippableEndNoteToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && mProjectView.BeginNote != null && mProjectView.Selection.Node is EmptyNode && mProjectView.BeginNote != mProjectView.Selection.Node; //@AssociateNode
@@ -3491,6 +3492,11 @@ namespace Obi
         private void mSkippableMoveToEndNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.GotoFootnote(false);
+        }
+
+        private void mPhrases_AssignRole_AnchorMenuItem_Click(object sender, EventArgs e)
+        {
+            ((EmptyNode)mProjectView.Selection.Node).Role_ = EmptyNode.Role.Anchor;
         }
        
     }

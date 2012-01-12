@@ -83,14 +83,13 @@ namespace Obi.Dialogs
             {
                 for (int i = 0; i < node.PhraseChildCount; i++)
                 {
-                    if (node.PhraseChild(i).Role_ == EmptyNode.Role.Custom && node.PhraseChild(i).CustomRole != "Sidebar")
+                    if (node.PhraseChild(i).Role_ == EmptyNode.Role.Custom && (node.PhraseChild(i).CustomRole == EmptyNode.Footnote || node.PhraseChild(i).CustomRole == EmptyNode.EndNote || node.PhraseChild(i).CustomRole == EmptyNode.Annotation || node.PhraseChild(i).CustomRole == EmptyNode.ProducerNote))
                     {
                         tempString = node.PhraseChild(i).CustomRole;
                         if ( i < node.PhraseChildCount - 1 && tempString != node.PhraseChild(i + 1).CustomRole )
                         {
                             if (!m_IsShowAll)
                             {
-                               
                                 if (firstIndex == -1)
                                 {
                                     m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (i + 1));
@@ -184,7 +183,6 @@ namespace Obi.Dialogs
             
             m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex,"Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " "+ listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]);
             m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
-            m_btn_Deassociate.Enabled = false;
         }
 
         private void m_lb_ListOfSpecialNodes_SelectedIndexChanged(object sender, EventArgs e)
@@ -198,12 +196,24 @@ namespace Obi.Dialogs
 
         private void m_lb_listOfAllAnchorNodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //m_btn_Associate.Enabled = (m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count > 0);
-            m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
-            if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null)
+            if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 &&
+                ((listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null && !nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex])) ||
+                (nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) && nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]] != null)))
                 m_btn_Deassociate.Enabled = true;
             else
-                m_btn_Deassociate.Enabled = false;           
+                m_btn_Deassociate.Enabled = false;      
+            /*
+            //m_btn_Associate.Enabled = (m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count > 0);
+            m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
+          //  if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null || nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex] != null )
+            //    MessageBox.Show(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode.ToString());
+            if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
+            {
+                if (listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null || (nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) && nodes_phraseMap.ContainsValue(nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]]) && nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]] != null))
+                    m_btn_Deassociate.Enabled = true;
+                else
+                    m_btn_Deassociate.Enabled = false;
+            }*/
         }
 
         private void m_btn_OK_Click(object sender, EventArgs e)

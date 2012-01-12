@@ -1357,11 +1357,11 @@ namespace Obi.ProjectView
                         mMetadataView.NewPresentation();
                         if (mContentView.ActiveStrip != null && this.Selection == null) mTOCView.HighlightNodeWithoutSelection = mContentView.ActiveStrip.Node;
 
-                        mPresentation.AddCustomClass("Footnote", null);   //@AssociateNode
-                        mPresentation.AddCustomClass("Sidebar", null);    //@AssociateNode
-                        mPresentation.AddCustomClass("Producer note", null);      //@AssociateNode
-                        mPresentation.AddCustomClass("Annotation", null);         //@AssociateNode   
-                        mPresentation.AddCustomClass("End note", null);           //@AssociateNode 
+                        mPresentation.AddCustomClass(EmptyNode.Footnote, null);   //@AssociateNode
+                        mPresentation.AddCustomClass(EmptyNode.Sidebar, null);    //@AssociateNode
+                        mPresentation.AddCustomClass(EmptyNode.ProducerNote, null);      //@AssociateNode
+                        mPresentation.AddCustomClass(EmptyNode.Annotation, null);         //@AssociateNode   
+                        mPresentation.AddCustomClass(EmptyNode.EndNote, null);           //@AssociateNode 
                     }
                     else
                     {
