@@ -132,6 +132,7 @@ namespace Obi
             this.mPhrases_AssignRole_HeadingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_AssignRole_PageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_AssignRole_SilenceMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_AssignRole_AnchorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCustomRoleToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.mPhrases_AssignRole_NewCustomRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -917,6 +918,7 @@ namespace Obi
             this.mPhrases_AssignRole_HeadingMenuItem,
             this.mPhrases_AssignRole_PageMenuItem,
             this.mPhrases_AssignRole_SilenceMenuItem,
+            this.mPhrases_AssignRole_AnchorMenuItem,
             this.mCustomRoleToolStripSeparator,
             this.mPhrases_AssignRole_NewCustomRoleMenuItem});
             this.mPhrases_AssignRoleMenuItem.Name = "mPhrases_AssignRoleMenuItem";
@@ -945,6 +947,12 @@ namespace Obi
             resources.ApplyResources(this.mPhrases_AssignRole_SilenceMenuItem, "mPhrases_AssignRole_SilenceMenuItem");
             this.mPhrases_AssignRole_SilenceMenuItem.Name = "mPhrases_AssignRole_SilenceMenuItem";
             this.mPhrases_AssignRole_SilenceMenuItem.Click += new System.EventHandler(this.mPhrases_AssignRole_SilenceMenuItem_Click);
+            // 
+            // mPhrases_AssignRole_AnchorMenuItem
+            // 
+            this.mPhrases_AssignRole_AnchorMenuItem.Name = "mPhrases_AssignRole_AnchorMenuItem";
+            resources.ApplyResources(this.mPhrases_AssignRole_AnchorMenuItem, "mPhrases_AssignRole_AnchorMenuItem");
+            this.mPhrases_AssignRole_AnchorMenuItem.Click += new System.EventHandler(this.mPhrases_AssignRole_AnchorMenuItem_Click);
             // 
             // mCustomRoleToolStripSeparator
             // 
@@ -1591,6 +1599,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mSkippableRemoveReferenceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSkippableMoveToStartNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSkippableMoveToEndNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_AssignRole_AnchorMenuItem;
     }
 }
 
