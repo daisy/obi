@@ -159,9 +159,11 @@ namespace Obi.Dialogs
             // 
             // AssociateSpecialNode
             // 
+            this.AcceptButton = this.m_btn_OK;
             this.AccessibleName = "Associate Special Node";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btn_Cancel;
             this.ClientSize = new System.Drawing.Size(642, 252);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);

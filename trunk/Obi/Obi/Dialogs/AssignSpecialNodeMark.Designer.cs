@@ -30,7 +30,7 @@ namespace Obi.Dialogs
         {
             this.m_cmbBoxSpecialNode = new System.Windows.Forms.ComboBox();
             this.m_btn_OK = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.m_btn_Cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // m_cmbBoxSpecialNode
@@ -58,22 +58,24 @@ namespace Obi.Dialogs
             this.m_btn_OK.UseVisualStyleBackColor = true;
             this.m_btn_OK.Click += new System.EventHandler(this.m_btn_OK_Click);
             // 
-            // button1
+            // m_btn_Cancel
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(159, 73);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
+            this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.m_btn_Cancel.Location = new System.Drawing.Point(159, 73);
+            this.m_btn_Cancel.Name = "m_btn_Cancel";
+            this.m_btn_Cancel.Size = new System.Drawing.Size(75, 23);
+            this.m_btn_Cancel.TabIndex = 2;
+            this.m_btn_Cancel.Text = "Cancel";
+            this.m_btn_Cancel.UseVisualStyleBackColor = true;
             // 
             // AssignSpecialNodeMark
             // 
+            this.AcceptButton = this.m_btn_OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btn_Cancel;
             this.ClientSize = new System.Drawing.Size(292, 115);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_cmbBoxSpecialNode);
             this.Name = "AssignSpecialNodeMark";
@@ -86,6 +88,6 @@ namespace Obi.Dialogs
 
         private System.Windows.Forms.ComboBox m_cmbBoxSpecialNode;
         private System.Windows.Forms.Button m_btn_OK;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button m_btn_Cancel;
     }
 }
