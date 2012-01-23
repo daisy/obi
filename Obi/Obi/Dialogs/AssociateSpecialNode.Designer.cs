@@ -135,7 +135,6 @@ namespace Obi.Dialogs
             this.groupBox1.Size = new System.Drawing.Size(236, 239);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "List of &anchor nodes";
             // 
             // groupBox2
             // 
@@ -173,6 +172,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_btn_OK);
             this.Name = "AssociateSpecialNode";
             this.Text = "Add/Remove reference (Associate/Deassociate)";
+            this.Load += new System.EventHandler(this.AssociateSpecialNode_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

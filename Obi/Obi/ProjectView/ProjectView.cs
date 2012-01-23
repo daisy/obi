@@ -3628,17 +3628,23 @@ for (int j = 0;
             string customClass = "";
             List<EmptyNode> listOfEmptyNodesToMarkAsSpecialNodes = new List<EmptyNode>();
             ObiNode parentNode = startNode.ParentAs<SectionNode>();
+            if (startNode.Index == endNode.Index)
+                {
+                    MessageBox.Show("The start node should not be same as end node. Please select a different end node.");
+                    return;
+                }
+            else if (startNode.Index > endNode.Index)
+                {
+                    MessageBox.Show("Begin node index is greater than end node index. Please choose again.");
+                    return;
+                }
             Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();
             AssignSpecialNodeDialog.ShowDialog();
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
-                if (startNode.Index == endNode.Index)
-                {
-                    MessageBox.Show("The start node should not be same as end node. Please select a different end node.");
-                    return;
-                }
-                else if (startNode.Index < endNode.Index)
+                
+                if (startNode.Index < endNode.Index)
                 {
                     for (int i = startNode.Index; i <= endNode.Index; i++)
                     {
@@ -3685,11 +3691,6 @@ for (int j = 0;
                         if (parentNode.PhraseChild(i).Index < parentNode.PhraseChildCount - 1 && ((((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ && ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) || ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
                            IsSpecialNodeAdded = false;                        
                   }
-                }
-                else
-                {
-                    MessageBox.Show("Begin node index is greater than end node index. Please choose again.");
-                    return;
                 }
                 try
                 {
