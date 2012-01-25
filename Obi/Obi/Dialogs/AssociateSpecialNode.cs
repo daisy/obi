@@ -155,14 +155,12 @@ namespace Obi.Dialogs
             {
                 if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
                     anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];
-              //  else
-                //    anchorNode = listOfAnchorNodes[0];
+                else
+                    anchorNode = listOfAnchorNodes[0];
             }
             else 
             {
-                anchorNode = listOfAnchorNodes[0];
-                    //m_SelectedNode;
-
+                anchorNode = m_SelectedNode;
             }
             if (nodes_phraseMap.ContainsKey(anchorNode))
             {
@@ -172,7 +170,7 @@ namespace Obi.Dialogs
             {
                 nodes_phraseMap.Add(anchorNode, listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
             }
-            if(listOfAnchorNodes.Count == 1)
+          //  if(listOfAnchorNodes.Count == 1)
             m_btn_Deassociate.Enabled = true;
         }
 
@@ -202,7 +200,7 @@ namespace Obi.Dialogs
             m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex,"Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " "+ listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]);
             m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
             }
-            if(listOfAnchorNodes.Count == 1)
+    //        if(listOfAnchorNodes.Count == 1)
             m_btn_Deassociate.Enabled = false;
         }
 
@@ -222,7 +220,11 @@ namespace Obi.Dialogs
                 (nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) && nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]] != null)))
                 m_btn_Deassociate.Enabled = true;
             else
-                m_btn_Deassociate.Enabled = false;      
+                m_btn_Deassociate.Enabled = false;
+            if (m_lb_listOfAllAnchorNodes.Visible)
+                m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
+            else
+                m_btn_Associate.Enabled = m_lb_ListOfSpecialNodes.SelectedItem != null;
             /*
             //m_btn_Associate.Enabled = (m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count > 0);
             m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
