@@ -33,7 +33,8 @@ namespace Obi.ProjectView
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
         public event ProgressChangedEventHandler ProgressChanged; //Updates the toolstrip progress bar on obi form
-                
+        
+    
         /// <summary>
         /// Create a new project view with no project yet.
         /// </summary>
@@ -57,7 +58,7 @@ namespace Obi.ProjectView
             //mShowOnlySelected = false;
             MaxVisibleBlocksCount = 10000; // @phraseLimit
             MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
-            m_DisableSectionSelection = false;
+            m_DisableSectionSelection = false;            
             }
 
 
@@ -699,24 +700,18 @@ namespace Obi.ProjectView
                     m_CanDeleteSpecialNode = true;
                 else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
                 {
-                   // for (int j = ((EmptyNode)Selection.Node).ParentAs<SectionNode>().Index; j >= 0; j--)
-                    {
-                     //   for (int i = 0; i < listOfAllSections[j].PhraseChildCount; i++)
-                        for (int i = 0; i < ((EmptyNode)Selection.Node).ParentAs<SectionNode>().PhraseChildCount; i++)
-                        {
-                           // if (((EmptyNode)Selection.Node) == listOfAllSections[j].PhraseChild(i).AssociatedNode)
-                            if (((EmptyNode)Selection.Node) == ((EmptyNode)Selection.Node).ParentAs<SectionNode>().PhraseChild(i).AssociatedNode)
-                            {
-                                if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
-                           MessageBoxIcon.Question) == DialogResult.Yes)
-                                {
-                                    //listOfAllSections[j].PhraseChild(i).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
-                                    ((EmptyNode)Selection.Node).ParentAs<SectionNode>().PhraseChild(i).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
-                                    m_CanDeleteSpecialNode = true;
-                                }
-                                else
-                                    return false;
-                            }
+                   for (int j = 0; j < mContentView.ListOfAllAnchorNodes.Count; j++)     //@Associatednode:Anchorlist
+                   {
+                       if (((EmptyNode)Selection.Node) == mContentView.ListOfAllAnchorNodes[j].AssociatedNode)
+                       {
+                           if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
+                              MessageBoxIcon.Question) == DialogResult.Yes)
+                           {
+                               mContentView.ListOfAllAnchorNodes[j].AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
+                               m_CanDeleteSpecialNode = true;
+                           }
+                           else
+                               return false;                           
                         }
                     }
                 }
@@ -3614,6 +3609,7 @@ for (int j = 0;
                                 MessageBox.Show(ex.ToString());
                             }
                             //pair.Key.AssociatedNode = pair.Value;
+                            mContentView.ListOfAllAnchorNodes.Add(pair.Key);
                         }
                     }//foreach ends
                 }//dialog ok ends
