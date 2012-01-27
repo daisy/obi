@@ -43,6 +43,7 @@ namespace Obi.ProjectView
         private bool m_IsWaveformRenderingPaused;
         private Waveform m_RenderingWaveform = null;
         private EmptyNode m_BeginNote = null; //@AssociateNode
+        List<EmptyNode> listOfAnchorNodes = new List<EmptyNode>();   
 
         /// <summary>
         /// A new strips view.
@@ -171,6 +172,9 @@ namespace Obi.ProjectView
                     && node.Index < node.ParentAs<ObiNode> ().PhraseChildCount - 1;
                 }
             }
+
+        public List<EmptyNode> ListOfAllAnchorNodes  //@Associatednode:Anchorlist
+        { get { return listOfAnchorNodes; } }
 
         /*//@singleSection: moved to project view to enable merge in TOC
         public bool CanMergeStripWithNext
@@ -383,7 +387,16 @@ namespace Obi.ProjectView
             UpdateSize ();
             mVScrollBar.Value = 0;
             mHScrollBar.Value = 0;
-
+            List<SectionNode> listOfAllSections = new List<SectionNode>();
+            listOfAllSections = ((ObiRootNode)mProjectView.Presentation.RootNode).GetListOfAllSections();  //@Associatednode:Anchorlist
+            for (int j = 0; j < listOfAllSections.Count; j++)
+            {
+                for (int i = 0; i < listOfAllSections[j].PhraseChildCount; i++)
+                {
+                    if (listOfAllSections[j].PhraseChild(i).Role_ == EmptyNode.Role.Anchor)
+                       listOfAnchorNodes.Add(listOfAllSections[j].PhraseChild(i));                    
+                }
+            }
             m_CreatingGUIForNewPresentation = false;
             }
 
