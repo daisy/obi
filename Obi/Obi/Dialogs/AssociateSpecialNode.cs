@@ -124,7 +124,7 @@ namespace Obi.Dialogs
                             }
                         }
                     }
-                    if (node.PhraseChild(i).Role_ == EmptyNode.Role.Anchor || node.PhraseChild(i) == m_SelectedNode)
+                    if (node.PhraseChild(i).Role_ == EmptyNode.Role.Anchor || (node == m_SelectedNode.ParentAs<SectionNode>() && node.PhraseChild(i) == m_SelectedNode))
                     {
         //                m_lb_listOfAllAnchorNodes.Items.Add(node.PhraseChild(i));
                         if (m_IsShowAll || m_SelectedNode == null)

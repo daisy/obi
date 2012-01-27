@@ -699,16 +699,19 @@ namespace Obi.ProjectView
                     m_CanDeleteSpecialNode = true;
                 else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
                 {
-                    for (int j = ((EmptyNode)Selection.Node).ParentAs<SectionNode>().Index; j >= 0; j--)
+                   // for (int j = ((EmptyNode)Selection.Node).ParentAs<SectionNode>().Index; j >= 0; j--)
                     {
-                        for (int i = 0; i < listOfAllSections[j].PhraseChildCount; i++)
+                     //   for (int i = 0; i < listOfAllSections[j].PhraseChildCount; i++)
+                        for (int i = 0; i < ((EmptyNode)Selection.Node).ParentAs<SectionNode>().PhraseChildCount; i++)
                         {
-                            if (((EmptyNode)Selection.Node) == listOfAllSections[j].PhraseChild(i).AssociatedNode)
+                           // if (((EmptyNode)Selection.Node) == listOfAllSections[j].PhraseChild(i).AssociatedNode)
+                            if (((EmptyNode)Selection.Node) == ((EmptyNode)Selection.Node).ParentAs<SectionNode>().PhraseChild(i).AssociatedNode)
                             {
                                 if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
                            MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
-                                    listOfAllSections[j].PhraseChild(i).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
+                                    //listOfAllSections[j].PhraseChild(i).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
+                                    ((EmptyNode)Selection.Node).ParentAs<SectionNode>().PhraseChild(i).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
                                     m_CanDeleteSpecialNode = true;
                                 }
                                 else
