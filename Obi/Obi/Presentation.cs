@@ -31,6 +31,7 @@ namespace Obi
         private bool mInitialized;                                   // initialization flag
         private Dictionary<string, List<EmptyNode>> mCustomClasses;  // custom classes and which nodes have them
         private ObiNodeFactory m_ObiNodeFactory; //sdk2 :local ObiNode factory used
+        List<EmptyNode> listOfAnchorNodes = new List<EmptyNode>(); 
 
         /// <summary>
         /// Create an uninitialized presentation.
@@ -61,6 +62,8 @@ namespace Obi
 
         public event EventHandler<urakawa.events.command.CommandEventArgs> BeforeCommandExecuted;
 
+        public List<EmptyNode> ListOfAnchorNodes
+        { get { return listOfAnchorNodes; } }
 
         /// <summary>
         /// Add a new metadata entry (with event.)
