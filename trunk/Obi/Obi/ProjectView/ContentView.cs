@@ -3379,7 +3379,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         // @phraseLimit
         private Block AddBlockForNodeConsideringPhraseLimit ( Strip stripControl, EmptyNode node )
             {
-                if (node != null &&  node.Role_ == EmptyNode.Role.Anchor && mProjectView.Presentation.ListOfAnchorNodes.Contains(node)) mProjectView.Presentation.ListOfAnchorNodes.Add(node);
+                if (node != null &&  node.Role_ == EmptyNode.Role.Anchor && !mProjectView.Presentation.ListOfAnchorNodes.Contains(node)) mProjectView.Presentation.ListOfAnchorNodes.Add(node);
             // if the node is above max phrase limit per section, do not add block and return
             if (node.Index > mProjectView.MaxVisibleBlocksCount
                 || stripControl == null)//@singleSection: this null check shuld surely be replaced by strip creation code
