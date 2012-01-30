@@ -214,7 +214,17 @@ namespace Obi.ProjectView
         private void Node_ChangedKind(object sender, ChangedRoleEventArgs e) 
             {
             UpdateColors ();
-            UpdateLabel(); 
+            UpdateLabel();
+            if (e.PreviousRole == EmptyNode.Role.Anchor && e.Node.Role_ != EmptyNode.Role.Anchor)
+            {
+                ObiPresentation pres = (ObiPresentation)mNode.Presentation;
+                if ( pres.ListOfAnchorNodes.Contains (e.Node)) pres.ListOfAnchorNodes.Remove ( e.Node ) ;
+            }
+            else if (e.Node.Role_ == EmptyNode.Role.Anchor && e.PreviousRole != EmptyNode.Role.Anchor)
+            {
+                ObiPresentation pres = (ObiPresentation)mNode.Presentation;
+                if ( !pres.ListOfAnchorNodes.Contains (e.Node)) pres.ListOfAnchorNodes.Add( e.Node ) ;
+            }
             }
 
         // update label when to do status changes
