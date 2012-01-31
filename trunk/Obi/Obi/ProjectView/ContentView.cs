@@ -5169,8 +5169,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_Skippable_GotoAssociatedNodeToolStripMenuItem_Click(object sender, EventArgs e)   //@AssociateNode
         {
-            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)  
-                MessageBox.Show("There is no node associated with this anchor node. Please associate a node with this anchor node.");
+            if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)
+                MessageBox.Show(Localizer.Message( "Associate_node_with_anchor_node"));
             if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
                 mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
         }

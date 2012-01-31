@@ -700,7 +700,7 @@ namespace Obi.ProjectView
                 {
                     if (mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node) != null)
                     {
-                            if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
+                            if (MessageBox.Show(Localizer.Message("Associate_next_phrase"), "Delete", MessageBoxButtons.YesNo,
                                   MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
@@ -727,7 +727,7 @@ namespace Obi.ProjectView
                 }
                 else
                 {
-                    if (MessageBox.Show("Node is between chunk. Do you want to want to delete?", "Delete", MessageBoxButtons.YesNo,
+                    if (MessageBox.Show(Localizer.Message("Node_between_chunk"), "Delete", MessageBoxButtons.YesNo,
                            MessageBoxIcon.Question) == DialogResult.Yes)
                         m_CanDeleteSpecialNode = true;
                     else
@@ -3638,12 +3638,12 @@ for (int j = 0;
             ObiNode parentNode = startNode.ParentAs<SectionNode>();
             if (startNode.Index == endNode.Index)
                 {
-                    MessageBox.Show("The start node should not be same as end node. Please select a different end node.");
+                    MessageBox.Show(Localizer.Message("Start_node_different_from_end_node"));
                     return;
                 }
             else if (startNode.Index > endNode.Index)
                 {
-                    MessageBox.Show("Begin node index is greater than end node index. Please choose again.");
+                    MessageBox.Show(Localizer.Message( "Start_node_index_greater_than_end"));
                     return;
                 }
             Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();

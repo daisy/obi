@@ -1986,4 +1986,25 @@ Error text: {1}</value>
   <data name="role_Anchor" xml:space="preserve">
     <value>Anchor</value>
   </data>
+  <data name="Associate_next_phrase" xml:space="preserve">
+    <value>The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?</value>
+  </data>
+  <data name="Associate_node_with_anchor_node" xml:space="preserve">
+    <value>There is no special phrase associated with this anchor node. Please associate a node with this anchor node.</value>
+  </data>
+  <data name="Associate_show_all" xml:space="preserve">
+    <value>Show all</value>
+  </data>
+  <data name="Associate_show_selected" xml:space="preserve">
+    <value>Show selected</value>
+  </data>
+  <data name="Node_between_chunk" xml:space="preserve">
+    <value>Selected special phrase is between the chunk. Do you want to want to delete it?</value>
+  </data>
+  <data name="Start_node_different_from_end_node" xml:space="preserve">
+    <value>Start node should not be same as end node. Please select a different end node.</value>
+  </data>
+  <data name="Start_node_index_greater_than_end" xml:space="preserve">
+    <value>Begin node index is greater than end node index. Please choose again.</value>
+  </data>
 </root>

@@ -52,7 +52,7 @@ namespace Obi.Dialogs
         {
             if (m_lb_listOfAllAnchorNodes.Items.Count > 0)
                 m_lb_listOfAllAnchorNodes.Items.Clear();
-            if (m_btn_ShowAll.Text == "Show all")
+            if (m_btn_ShowAll.Text == Localizer.Message("Associate_show_all"))
             {
                 listOfAnchorNodes.Clear();
                 m_IsShowAll = true;
@@ -66,15 +66,15 @@ namespace Obi.Dialogs
                 }
                 groupBox1.Text = "List of anchor nodes";
                 m_txtBox_SectionName.Visible = false;
-                m_btn_ShowAll.Text = "Show selected";               
+                m_btn_ShowAll.Text = Localizer.Message("Associate_show_selected");               
             }
-            else if (m_btn_ShowAll.Text == "Show selected")
+            else if (m_btn_ShowAll.Text == Localizer.Message("Associate_show_selected"))
             {
                 listOfAnchorNodes.Clear();
                 m_txtBox_SectionName.Visible = true;
                 m_lb_listOfAllAnchorNodes.Visible = false;
                 groupBox1.Text = "Selected node";
-                m_btn_ShowAll.Text = "Show all";
+                m_btn_ShowAll.Text = Localizer.Message("Associate_show_all");
                 AddToListBox();
             }
         }
@@ -250,7 +250,8 @@ namespace Obi.Dialogs
                (nodes_phraseMap.ContainsKey(listOfAnchorNodes[0]) && nodes_phraseMap[listOfAnchorNodes[0]] != null)))
                 m_btn_Deassociate.Enabled = true;
             else
-                m_btn_Deassociate.Enabled = false;      
+                m_btn_Deassociate.Enabled = false;
+           
         }    
     }
 }
