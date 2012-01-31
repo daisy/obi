@@ -33,7 +33,8 @@ namespace Obi.ProjectView
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
         public event ProgressChangedEventHandler ProgressChanged; //Updates the toolstrip progress bar on obi form
-                
+        
+    
         /// <summary>
         /// Create a new project view with no project yet.
         /// </summary>
@@ -57,7 +58,7 @@ namespace Obi.ProjectView
             //mShowOnlySelected = false;
             MaxVisibleBlocksCount = 10000; // @phraseLimit
             MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
-            m_DisableSectionSelection = false;
+            m_DisableSectionSelection = false;            
             }
 
 
@@ -642,6 +643,7 @@ namespace Obi.ProjectView
             {
             if (Selection != null && Selection is TextSelection) return;
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop ();
+            
             try
             {
                 if (CanRemoveSection)
@@ -662,6 +664,9 @@ namespace Obi.ProjectView
                         {
                             mContentView.CreateStripForSelectedSection(landingSectionNode, false);
                         }
+                        //for(int i =0; i < section.PhraseChildCount; i++)
+                          //  if (section.PhraseChild(i).Role_ == EmptyNode.Role.Anchor)
+                            //    this.Presentation.ListOfAnchorNodes.Remove(section.PhraseChild(i));
 
                     }//@singleSection: end
 
@@ -671,7 +676,9 @@ namespace Obi.ProjectView
                 {                 
                     if(CanDeleteSpecialNode())              //@AssociateNode
                         mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
-                           Localizer.Message("delete_phrase")));                    
+                           Localizer.Message("delete_phrase")));
+                    if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Anchor)
+                        mPresentation.ListOfAnchorNodes_Remove((EmptyNode)Selection.Node);
                 }
                 else if (CanRemoveAudio)
                 {
@@ -693,29 +700,39 @@ namespace Obi.ProjectView
             bool m_CanDeleteSpecialNode = false;             
             if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
             {
-                List<SectionNode> listOfAllSections = new List<SectionNode>();
-                listOfAllSections = ((ObiRootNode)mPresentation.RootNode).GetListOfAllSections();
+              //  List<SectionNode> listOfAllSections = new List<SectionNode>();
+              //  listOfAllSections = ((ObiRootNode)mPresentation.RootNode).GetListOfAllSections();
                 if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
                     m_CanDeleteSpecialNode = true;
                 else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
                 {
-                    for (int j = ((EmptyNode)Selection.Node).ParentAs<SectionNode>().Index; j >= 0; j--)
+                    if (mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node) != null)
                     {
-                        for (int i = 0; i < listOfAllSections[j].PhraseChildCount; i++)
+                        if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
+                              MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            if (((EmptyNode)Selection.Node) == listOfAllSections[j].PhraseChild(i).AssociatedNode)
-                            {
-                                if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
-                           MessageBoxIcon.Question) == DialogResult.Yes)
-                                {
-                                    listOfAllSections[j].PhraseChild(i).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
-                                    m_CanDeleteSpecialNode = true;
-                                }
-                                else
-                                    return false;
-                            }
+                            mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
+                            m_CanDeleteSpecialNode = true;
                         }
+                        else
+                            return false;
                     }
+                    
+                  /* for (int j = 0; j < mPresentation.ListOfAnchorNodes.Count; j++)     //@Associatednode:Anchorlist
+                   {
+                       if (((EmptyNode)Selection.Node) == mPresentation.ListOfAnchorNodes[j].AssociatedNode)
+                       {
+                           if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
+                              MessageBoxIcon.Question) == DialogResult.Yes)
+                           {
+                               mPresentation.ListOfAnchorNodes[j].AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
+                               m_CanDeleteSpecialNode = true;
+                           }
+                           else
+
+                               return false;                           
+                        }
+                    }*/
                 }
                 else
                 {
@@ -725,6 +742,11 @@ namespace Obi.ProjectView
                     else
                         return false;
                 }
+            }
+            else if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Anchor)
+            {
+                mPresentation.ListOfAnchorNodes_Remove((EmptyNode)Selection.Node);
+                m_CanDeleteSpecialNode = true;
             }
             else
                 m_CanDeleteSpecialNode = true;
@@ -1261,7 +1283,6 @@ namespace Obi.ProjectView
                 }
                 bool PlaySelectionFlagStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
-
                 if (CanPasteSpecialNode())    //@AssociateNode
                 {
                     try
@@ -3573,6 +3594,7 @@ for (int j = 0;
 
         public void AssociateNodeToSpecialNode()  //@AssociateNode
         {
+
             Dialogs.AssociateSpecialNode AssociateSpecialNode;
            // if (mSelection.Node is EmptyNode)
             {
@@ -3611,6 +3633,7 @@ for (int j = 0;
                                 MessageBox.Show(ex.ToString());
                             }
                             //pair.Key.AssociatedNode = pair.Value;
+                            mPresentation.ListOfAnchorNodes_Add(pair.Key);
                         }
                     }//foreach ends
                 }//dialog ok ends
