@@ -31,7 +31,8 @@ namespace Obi
         private bool mInitialized;                                   // initialization flag
         private Dictionary<string, List<EmptyNode>> mCustomClasses;  // custom classes and which nodes have them
         private ObiNodeFactory m_ObiNodeFactory; //sdk2 :local ObiNode factory used
-        private List<EmptyNode> m_ListOfAnchorNodes = new List<EmptyNode>(); 
+        private List<EmptyNode> m_ListOfAnchorNodes = new List<EmptyNode>();
+        private List<SectionNode> m_ListOfSectionsToBeIteratedForAnchors = new List<SectionNode> ();
 
         /// <summary>
         /// Create an uninitialized presentation.
@@ -70,20 +71,46 @@ namespace Obi
             for (int i = 0; i < m_ListOfAnchorNodes.Count; i++ )
             {
                 EmptyNode n = m_ListOfAnchorNodes[i];
-                if (!n.IsRooted || n.AssociatedNode == null)
+                if (!n.IsRooted )
                 {
                     m_ListOfAnchorNodes.Remove(n);
                     --i;
                     continue;
                     
                 }
-                if (n.AssociatedNode == referencedNode) return n;
+                if (n.AssociatedNode != null &&  n.AssociatedNode == referencedNode) return n;
 
+            }
+            for (int i = 0; i < m_ListOfSectionsToBeIteratedForAnchors.Count; i++)
+            {
+                SectionNode section = m_ListOfSectionsToBeIteratedForAnchors[i];
+                EmptyNode anchor = null ;
+                for ( int j=0;j<section.PhraseChildCount;j++)
+                {
+                    EmptyNode n = section.PhraseChild(j);
+                    if (n.Role_ == EmptyNode.Role.Anchor)
+                    {
+                        ListOfAnchorNodes_Add(n);
+                        if (n.AssociatedNode == referencedNode) anchor = n;
+                    }
+                }
+                
+                m_ListOfSectionsToBeIteratedForAnchors.Remove(section);
+                i--;
+                if (anchor != null) return anchor;
             }
             return null;
         }
+        public void ListOfSectionsToBeIteratedForAnchors_Add(SectionNode section) 
+        { 
+            if(!m_ListOfSectionsToBeIteratedForAnchors.Contains(section)) m_ListOfSectionsToBeIteratedForAnchors.Add(section);
+            for (int i = 0; i < section.SectionChildCount; i++)
+            {
+                ListOfSectionsToBeIteratedForAnchors_Add(section.SectionChild(i));
+            }
+        }
 
-        
+
         /// <summary>
         /// Add a new metadata entry (with event.)
         /// </summary>

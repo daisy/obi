@@ -3366,7 +3366,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         // Add a new strip for a newly added section node or a new block for a newly added empty node.
         private void TreeNodeAdded ( ObjectAddedEventArgs<urakawa.core.TreeNode> e )
             {
-
+                if (e.m_AddedObject is SectionNode) mProjectView.Presentation.ListOfSectionsToBeIteratedForAnchors_Add((SectionNode)e.m_AddedObject);
             //@singleSection : AddStripForSection_Safe replaced by CreateStripForAddedSectionNode
             // this will remove existing strips before creating new strip in content view
             Control c = e.m_AddedObject is SectionNode ? (Control)CreateStripForAddedSectionNode ( (SectionNode)e.m_AddedObject, true ) :
