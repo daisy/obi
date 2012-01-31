@@ -31,7 +31,7 @@ namespace Obi
         private bool mInitialized;                                   // initialization flag
         private Dictionary<string, List<EmptyNode>> mCustomClasses;  // custom classes and which nodes have them
         private ObiNodeFactory m_ObiNodeFactory; //sdk2 :local ObiNode factory used
-        List<EmptyNode> listOfAnchorNodes = new List<EmptyNode>(); 
+        private List<EmptyNode> m_ListOfAnchorNodes = new List<EmptyNode>(); 
 
         /// <summary>
         /// Create an uninitialized presentation.
@@ -62,9 +62,28 @@ namespace Obi
 
         public event EventHandler<urakawa.events.command.CommandEventArgs> BeforeCommandExecuted;
 
-        public List<EmptyNode> ListOfAnchorNodes
-        { get { return listOfAnchorNodes; } }
+        public void ListOfAnchorNodes_Add ( EmptyNode node) { if ( !m_ListOfAnchorNodes.Contains ( node))  m_ListOfAnchorNodes.Add (node) ; }
+        public void ListOfAnchorNodes_Remove(EmptyNode node) { if (m_ListOfAnchorNodes.Contains(node)) m_ListOfAnchorNodes.Remove(node); }
+        public EmptyNode GetAnchorForReferencedNode(EmptyNode referencedNode)
+        {
+            List<EmptyNode> nodesToRemove = new List<EmptyNode>();
+            for (int i = 0; i < m_ListOfAnchorNodes.Count; i++ )
+            {
+                EmptyNode n = m_ListOfAnchorNodes[i];
+                if (!n.IsRooted || n.AssociatedNode == null)
+                {
+                    m_ListOfAnchorNodes.Remove(n);
+                    --i;
+                    continue;
+                    
+                }
+                if (n.AssociatedNode == referencedNode) return n;
 
+            }
+            return null;
+        }
+
+        
         /// <summary>
         /// Add a new metadata entry (with event.)
         /// </summary>
