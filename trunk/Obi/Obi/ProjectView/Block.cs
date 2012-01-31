@@ -218,12 +218,12 @@ namespace Obi.ProjectView
             if (e.PreviousRole == EmptyNode.Role.Anchor && e.Node.Role_ != EmptyNode.Role.Anchor)
             {
                 ObiPresentation pres = (ObiPresentation)mNode.Presentation;
-                if ( pres.ListOfAnchorNodes.Contains (e.Node)) pres.ListOfAnchorNodes.Remove ( e.Node ) ;
+                pres.ListOfAnchorNodes_Remove( e.Node ) ;
             }
             else if (e.Node.Role_ == EmptyNode.Role.Anchor && e.PreviousRole != EmptyNode.Role.Anchor)
             {
                 ObiPresentation pres = (ObiPresentation)mNode.Presentation;
-                if ( !pres.ListOfAnchorNodes.Contains (e.Node)) pres.ListOfAnchorNodes.Add( e.Node ) ;
+                pres.ListOfAnchorNodes_Add( e.Node ) ;
             }
             }
 

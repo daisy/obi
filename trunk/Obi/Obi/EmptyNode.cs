@@ -440,7 +440,7 @@ namespace Obi
                 m_AssociatedNodeLocation = source.GetAttribute(XUK_ATTR_NAME_AssociateNode);  //@AssociateNode
 
             }
-            if (Role_ == Role.Anchor) ((ObiPresentation)Presentation).ListOfAnchorNodes.Add(this);
+            if (Role_ == Role.Anchor) ((ObiPresentation)Presentation).ListOfAnchorNodes_Add(this);
             base.XukInAttributes(source);
         }
 
