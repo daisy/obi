@@ -664,10 +664,6 @@ namespace Obi.ProjectView
                         {
                             mContentView.CreateStripForSelectedSection(landingSectionNode, false);
                         }
-                        //for(int i =0; i < section.PhraseChildCount; i++)
-                          //  if (section.PhraseChild(i).Role_ == EmptyNode.Role.Anchor)
-                            //    this.Presentation.ListOfAnchorNodes.Remove(section.PhraseChild(i));
-
                     }//@singleSection: end
 
                     mPresentation.Do(mContentView.DeleteStripCommand());
@@ -677,8 +673,6 @@ namespace Obi.ProjectView
                     if(CanDeleteSpecialNode())              //@AssociateNode
                         mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
                            Localizer.Message("delete_phrase")));
-                    if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Anchor)
-                        mPresentation.ListOfAnchorNodes_Remove((EmptyNode)Selection.Node);
                 }
                 else if (CanRemoveAudio)
                 {
@@ -700,22 +694,20 @@ namespace Obi.ProjectView
             bool m_CanDeleteSpecialNode = false;             
             if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
             {
-              //  List<SectionNode> listOfAllSections = new List<SectionNode>();
-              //  listOfAllSections = ((ObiRootNode)mPresentation.RootNode).GetListOfAllSections();
                 if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
                     m_CanDeleteSpecialNode = true;
                 else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
                 {
                     if (mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node) != null)
                     {
-                        if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
-                              MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
-                            m_CanDeleteSpecialNode = true;
-                        }
-                        else
-                            return false;
+                            if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
+                                  MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
+                                m_CanDeleteSpecialNode = true;
+                            }
+                            else
+                                return false;
                     }
                     
                   /* for (int j = 0; j < mPresentation.ListOfAnchorNodes.Count; j++)     //@Associatednode:Anchorlist
@@ -729,7 +721,6 @@ namespace Obi.ProjectView
                                m_CanDeleteSpecialNode = true;
                            }
                            else
-
                                return false;                           
                         }
                     }*/
@@ -742,11 +733,6 @@ namespace Obi.ProjectView
                     else
                         return false;
                 }
-            }
-            else if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Anchor)
-            {
-                mPresentation.ListOfAnchorNodes_Remove((EmptyNode)Selection.Node);
-                m_CanDeleteSpecialNode = true;
             }
             else
                 m_CanDeleteSpecialNode = true;
@@ -3633,7 +3619,6 @@ for (int j = 0;
                                 MessageBox.Show(ex.ToString());
                             }
                             //pair.Key.AssociatedNode = pair.Value;
-                            mPresentation.ListOfAnchorNodes_Add(pair.Key);
                         }
                     }//foreach ends
                 }//dialog ok ends
