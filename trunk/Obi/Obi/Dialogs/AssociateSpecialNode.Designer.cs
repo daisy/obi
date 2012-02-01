@@ -170,6 +170,8 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_btn_ShowAll);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "AssociateSpecialNode";
             this.Text = "Add/Remove reference (Associate/Deassociate)";
             this.Load += new System.EventHandler(this.AssociateSpecialNode_Load);
