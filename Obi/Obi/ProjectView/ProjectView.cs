@@ -711,36 +711,24 @@ namespace Obi.ProjectView
                 {
                     if (mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node) != null)
                     {
-                            if (MessageBox.Show(Localizer.Message("Associate_next_phrase"), "Delete", MessageBoxButtons.YesNo,
-                                  MessageBoxIcon.Question) == DialogResult.Yes)
-                            {
-                                anchor = mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node);
-                                m_CanDeleteSpecialNode = true;
-                            }
-                            else
-                                return false;
-                    }
-                    
-                  /* for (int j = 0; j < mPresentation.ListOfAnchorNodes.Count; j++)     //@Associatednode:Anchorlist
-                   {
-                       if (((EmptyNode)Selection.Node) == mPresentation.ListOfAnchorNodes[j].AssociatedNode)
-                       {
-                           if (MessageBox.Show("The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?", "Delete", MessageBoxButtons.YesNo,
+                        if (MessageBox.Show(Localizer.Message("Associate_next_phrase"), "Delete", MessageBoxButtons.YesNo,
                               MessageBoxIcon.Question) == DialogResult.Yes)
-                           {
-                               mPresentation.ListOfAnchorNodes[j].AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
-                               m_CanDeleteSpecialNode = true;
-                           }
-                           else
-                               return false;                           
+                        {
+                            anchor = mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node);
+                            m_CanDeleteSpecialNode = true;
                         }
-                    }*/
+                        else
+                            return false;
+                    }
+                    else
+                        m_CanDeleteSpecialNode = true;
                 }
                 else
                 {
                     if (MessageBox.Show(Localizer.Message("Node_between_chunk"), "Delete", MessageBoxButtons.YesNo,
                            MessageBoxIcon.Question) == DialogResult.Yes)
                         m_CanDeleteSpecialNode = true;
+                    
                     else
                         return false;
                 }
