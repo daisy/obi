@@ -607,10 +607,12 @@ namespace Obi.ProjectView
                 }
             else if (CanRemoveBlock)
                 {
-                    if (CanDeleteSpecialNode()) //@AssociateNode
+                    EmptyNode anchor = null;
+                    if (CanDeleteSpecialNode( anchor)) //@AssociateNode
                     {
                         CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand();
                         command.ShortDescription = Localizer.Message("cut_phrase");
+                        if (anchor != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, anchor, (EmptyNode)Selection.Node));
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
                         mPresentation.Do(command);                       
@@ -669,10 +671,17 @@ namespace Obi.ProjectView
                     mPresentation.Do(mContentView.DeleteStripCommand());
                 }
                 else if (CanRemoveBlock)
-                {                 
-                    if(CanDeleteSpecialNode())              //@AssociateNode
-                        mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
+                {
+                    EmptyNode anchor = null;
+                    if (CanDeleteSpecialNode( anchor))              //@AssociateNode
+                    {
+                        urakawa.command.CompositeCommand deleteCmd = mPresentation.CreateCompositeCommand("Delete command");
+
+                        if (anchor != null) deleteCmd.ChildCommands.Insert(deleteCmd.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, anchor, (EmptyNode) Selection.Node));
+                        deleteCmd.ChildCommands.Insert(deleteCmd.ChildCommands.Count, new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
                            Localizer.Message("delete_phrase")));
+                        mPresentation.Do(deleteCmd);
+                    }
                 }
                 else if (CanRemoveAudio)
                 {
@@ -689,7 +698,7 @@ namespace Obi.ProjectView
             }
             }
 
-        public bool CanDeleteSpecialNode()   //@AssociateNode
+        public bool CanDeleteSpecialNode(EmptyNode anchor)   //@AssociateNode
         {
             bool m_CanDeleteSpecialNode = false;             
             if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
@@ -703,7 +712,7 @@ namespace Obi.ProjectView
                             if (MessageBox.Show(Localizer.Message("Associate_next_phrase"), "Delete", MessageBoxButtons.YesNo,
                                   MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node).AssociatedNode = (EmptyNode)((EmptyNode)Selection.Node).FollowingNode;
+                                anchor = mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node);
                                 m_CanDeleteSpecialNode = true;
                             }
                             else
