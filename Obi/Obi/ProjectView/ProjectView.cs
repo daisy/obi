@@ -608,12 +608,13 @@ namespace Obi.ProjectView
             else if (CanRemoveBlock)
                 {
                     EmptyNode anchor = null;
-                    if (CanDeleteSpecialNode( anchor)) //@AssociateNode
+                    if (CanDeleteSpecialNode(out anchor)) //@AssociateNode
                     {
                         CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand();
                         command.ShortDescription = Localizer.Message("cut_phrase");
-                        if (anchor != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, anchor, (EmptyNode)Selection.Node));
+                        
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, true));
+                        if (anchor != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, anchor, (EmptyNode)Selection.Node.FollowingNode));
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
                         mPresentation.Do(command);                       
                     }
@@ -673,11 +674,11 @@ namespace Obi.ProjectView
                 else if (CanRemoveBlock)
                 {
                     EmptyNode anchor = null;
-                    if (CanDeleteSpecialNode( anchor))              //@AssociateNode
+                    if (CanDeleteSpecialNode(out anchor))              //@AssociateNode
                     {
                         urakawa.command.CompositeCommand deleteCmd = mPresentation.CreateCompositeCommand("Delete command");
 
-                        if (anchor != null) deleteCmd.ChildCommands.Insert(deleteCmd.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, anchor, (EmptyNode) Selection.Node));
+                        if (anchor != null) deleteCmd.ChildCommands.Insert(deleteCmd.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, anchor, (EmptyNode) Selection.Node.FollowingNode));
                         deleteCmd.ChildCommands.Insert(deleteCmd.ChildCommands.Count, new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
                            Localizer.Message("delete_phrase")));
                         mPresentation.Do(deleteCmd);
@@ -698,8 +699,9 @@ namespace Obi.ProjectView
             }
             }
 
-        public bool CanDeleteSpecialNode(EmptyNode anchor)   //@AssociateNode
+        public bool CanDeleteSpecialNode(out EmptyNode anchor)   //@AssociateNode
         {
+            anchor = null;
             bool m_CanDeleteSpecialNode = false;             
             if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
             {
@@ -3569,7 +3571,7 @@ for (int j = 0;
         /// returns true if limited phrases in a strip are created and content view is not completely filled
         /// </summary>
         /// <returns></returns>
-        public bool IsLimitedPhraseBlocksCreatedAfterCommand() { return mContentView.IsLimitedPhraseBlocksCreatedAfterCommand(); }
+                public bool IsLimitedPhraseBlocksCreatedAfterCommand() { return mContentView.IsLimitedPhraseBlocksCreatedAfterCommand(); }
 
         /// <summary>
         /// Work around specificallly for disabling scrolling during some conditions of playback @AudioScrolling
