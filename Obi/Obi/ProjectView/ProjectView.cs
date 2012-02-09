@@ -705,9 +705,14 @@ namespace Obi.ProjectView
             bool m_CanDeleteSpecialNode = false;             
             if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
             {
+                if (((EmptyNode)Selection.Node).Index == ((EmptyNode)Selection.Node).ParentAs<SectionNode>().PhraseChildCount - 1)
+                    return true;
+                if (((EmptyNode)Selection.Node).Index == 0 && (((EmptyNode)Selection.Node).Index == 0 && ((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole))
+                    return true;
                 if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
                     m_CanDeleteSpecialNode = true;
-                else if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole)
+                else if ((((EmptyNode)Selection.Node).Index == 0 && ((EmptyNode)Selection.Node).CustomRole == ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole) 
+                    || (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole))
                 {
                     if (mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node) != null)
                     {
