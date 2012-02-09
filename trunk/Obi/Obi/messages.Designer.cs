@@ -151,7 +151,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show all.
+        ///   Looks up a localized string similar to Sho&amp;w all.
         /// </summary>
         internal static string Associate_show_all {
             get {
@@ -160,7 +160,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show selected.
+        ///   Looks up a localized string similar to Show se&amp;lected.
         /// </summary>
         internal static string Associate_show_selected {
             get {

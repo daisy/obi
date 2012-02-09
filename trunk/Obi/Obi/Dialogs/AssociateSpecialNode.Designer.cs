@@ -122,7 +122,7 @@ namespace Obi.Dialogs
             this.m_btn_ShowAll.Name = "m_btn_ShowAll";
             this.m_btn_ShowAll.Size = new System.Drawing.Size(131, 23);
             this.m_btn_ShowAll.TabIndex = 2;
-            this.m_btn_ShowAll.Text = "Show all";
+            this.m_btn_ShowAll.Text = "Sho&w all";
             this.m_btn_ShowAll.UseVisualStyleBackColor = true;
             this.m_btn_ShowAll.Click += new System.EventHandler(this.m_btn_ShowAll_Click);
             // 

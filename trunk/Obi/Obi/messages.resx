@@ -1993,10 +1993,10 @@ Error text: {1}</value>
     <value>There is no special phrase associated with this anchor node. Please associate a node with this anchor node.</value>
   </data>
   <data name="Associate_show_all" xml:space="preserve">
-    <value>Show all</value>
+    <value>Sho&amp;w all</value>
   </data>
   <data name="Associate_show_selected" xml:space="preserve">
-    <value>Show selected</value>
+    <value>Show se&amp;lected</value>
   </data>
   <data name="Node_between_chunk" xml:space="preserve">
     <value>Selected special phrase is between the chunk. Do you want to want to delete it?</value>
