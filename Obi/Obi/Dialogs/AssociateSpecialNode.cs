@@ -52,6 +52,8 @@ namespace Obi.Dialogs
         {
             if (m_lb_listOfAllAnchorNodes.Items.Count > 0)
                 m_lb_listOfAllAnchorNodes.Items.Clear();
+            if (m_lb_ListOfSpecialNodes.Items.Count > 0)
+                m_lb_ListOfSpecialNodes.Items.Clear();
             if (m_btn_ShowAll.Text == Localizer.Message("Associate_show_all"))
             {
                 listOfAnchorNodes.Clear();
@@ -95,7 +97,7 @@ namespace Obi.Dialogs
                         tempString = node.PhraseChild(i).CustomRole;
                         if ( i < node.PhraseChildCount - 1 && tempString != node.PhraseChild(i + 1).CustomRole )
                         {
-                            if (!m_IsShowAll)
+                          //  if (!m_IsShowAll)
                             {
                                 if (firstIndex == -1)
                                 {
@@ -134,7 +136,12 @@ namespace Obi.Dialogs
                         if (m_IsShowAll || m_SelectedNode == null)
                         {
                             if (m_SelectedNode == node.PhraseChild(i))
+                            {
+                                if(m_SelectedNode.AssociatedNode != null)
                                 m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
+                                else
+                                m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i));
+                            }
                             else if (node.PhraseChild(i).AssociatedNode != null)
                                 m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
                             else
