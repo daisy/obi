@@ -60,7 +60,8 @@
             "All Pages",
             "Front Pages",
             "Normal Pages",
-            "Special Pages"});
+            "Special Pages",
+            "Anchor"});
             this.m_cb_SpecialPhrases.Location = new System.Drawing.Point(6, 42);
             this.m_cb_SpecialPhrases.Name = "m_cb_SpecialPhrases";
             this.m_cb_SpecialPhrases.Size = new System.Drawing.Size(264, 24);
