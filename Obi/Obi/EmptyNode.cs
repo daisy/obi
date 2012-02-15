@@ -186,7 +186,7 @@ namespace Obi
                 return m_AssociatedNode != null &&  m_AssociatedNode.IsRooted? m_AssociatedNode:null; 
             }
             set 
-            { 
+            { if(this.Role_ == Role.Anchor)
                 m_AssociatedNode =  value; 
             }
         }
