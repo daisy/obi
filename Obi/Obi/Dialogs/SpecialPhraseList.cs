@@ -45,7 +45,7 @@ namespace Obi.Dialogs
            string sectionName = null;
            EmptyNode lastNodeOfChunk = null;
             mView.Presentation.RootNode.AcceptDepthFirst(
-                n =>
+                delegate(urakawa.core.TreeNode n)
                     {
                         switch (m_cb_SpecialPhrases.SelectedIndex)
                         {
