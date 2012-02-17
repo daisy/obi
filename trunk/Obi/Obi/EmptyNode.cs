@@ -183,6 +183,7 @@ namespace Obi
                     m_AssociatedNode = (EmptyNode) iterationNode ;
                     m_AssociatedNodeLocation = null;
                 }
+                if (Role_ != Role.Anchor) m_AssociatedNode = null;
                 return m_AssociatedNode != null &&  m_AssociatedNode.IsRooted? m_AssociatedNode:null; 
             }
             set 
