@@ -3738,12 +3738,13 @@ for (int j = 0;
                         CompositeCommand k = Presentation.CreateCompositeCommand(cmd.ShortDescription);
                        
                         for (ObiNode n = BeginNote; n != null; n = n.FollowingNode )
-                        {                            
+                        {
                                 if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
                                     ((EmptyNode)n).PageNumber.Kind == number.Kind)
-                                {
-                                    number = number.NextPageNumber();
+                                {                                
+                                    //number = number.NextPageNumber();
                                     k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber(this, (EmptyNode)n, number));
+                                    number = number.NextPageNumber();
                                 }
                             
                         }
@@ -3787,13 +3788,18 @@ for (int j = 0;
             }
             else
             {
-                for(int i = Selection.Node.Index; i<= parentSection.PhraseChildCount ;i++)
-                { 
-                    if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i + 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i + 1).CustomRole)
+                for(int i = Selection.Node.Index; i< parentSection.PhraseChildCount ;i++)
+                {
+                    if (i == parentSection.PhraseChildCount - 1)
+                    { SelectedBlockNode = parentSection.PhraseChild(i); }
+                    else
+                    {
+                        if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i + 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i + 1).CustomRole)
                         {
                             SelectedBlockNode = parentSection.PhraseChild(i);
                             break;
-                        }                    
+                        }
+                    }
                 }
             }
         }
