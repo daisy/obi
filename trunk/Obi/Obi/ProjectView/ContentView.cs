@@ -43,6 +43,7 @@ namespace Obi.ProjectView
         private bool m_IsWaveformRenderingPaused;
         private Waveform m_RenderingWaveform = null;
         private EmptyNode m_BeginNote = null; //@AssociateNode
+        private EmptyNode m_EndNote = null;  //@AssociateNode
 
         /// <summary>
         /// A new strips view.
@@ -236,8 +237,13 @@ namespace Obi.ProjectView
             { 
                 get { return m_BeginNote; }
                 set { m_BeginNote = value; } 
-            }  
+            }
 
+        public EmptyNode EndSpecialNode     //@AssociateNode
+        {
+            get { return m_EndNote; }
+            set { m_EndNote = value; }
+        }
         /// <summary>
         /// Add a custom class to the context menu.
         /// </summary>
@@ -4658,7 +4664,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
             Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;            
             Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
-            Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && m_BeginNote != mProjectView.Selection.Node && mProjectView.Selection.Node.ParentAs<SectionNode>() == m_BeginNote.ParentAs<SectionNode>(); //@AssociateNode
+         //   Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && m_BeginNote != mProjectView.Selection.Node && mProjectView.Selection.Node.ParentAs<SectionNode>() == m_BeginNote.ParentAs<SectionNode>(); //@AssociateNode
+            Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && (m_BeginNote != m_EndNote || m_BeginNote != mProjectView.Selection.Node)&& mProjectView.Selection.Node.ParentAs<SectionNode>() == m_BeginNote.ParentAs<SectionNode>();
             Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null; //@AssociateNode           
             Context_Skippable_MoveToEndNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index < mProjectView.Selection.Node.ParentAs<SectionNode>().PhraseChildCount - 1 && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Custom;   //@AssociateNode
             Context_Skippable_MoveToStartNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Custom && mProjectView.Selection.Node.Index > 0;  //@AssociateNode()
@@ -5159,6 +5166,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_Skippable_EndSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            m_EndNote = mProjectView.Selection.EmptyNodeForSelection; //@AssociateNode
             mProjectView.AssignRoleToMarkedContinuousNodes(); //@AssociateNode
         }
 
