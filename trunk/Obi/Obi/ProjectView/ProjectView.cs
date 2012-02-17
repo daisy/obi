@@ -705,6 +705,7 @@ namespace Obi.ProjectView
             bool m_CanDeleteSpecialNode = false;             
             if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
             {
+              //  MessageBox.Show(((EmptyNode)Selection.Node).Index.ToString());
                 if (((EmptyNode)Selection.Node).Index == ((EmptyNode)Selection.Node).ParentAs<SectionNode>().PhraseChildCount - 1)
                     return true;
                 if (((EmptyNode)Selection.Node).Index == 0 && (((EmptyNode)Selection.Node).Index == 0 && ((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole))
@@ -3584,7 +3585,6 @@ for (int j = 0;
 
         public void AssociateNodeToSpecialNode()  //@AssociateNode
         {
-
             Dialogs.AssociateSpecialNode AssociateSpecialNode;
            // if (mSelection.Node is EmptyNode)
             {
@@ -3634,7 +3634,8 @@ for (int j = 0;
         {
            // m_BeginNote = mContentView.BeginSpecialNode;
             EmptyNode startNode = mContentView.BeginSpecialNode;
-            EmptyNode endNode = Selection.EmptyNodeForSelection;
+           // EmptyNode endNode = Selection.EmptyNodeForSelection;
+            EmptyNode endNode = mContentView.EndSpecialNode;
             bool IsSpecialNodeAdded = false;
 
             string customClass = "";
@@ -3655,65 +3656,104 @@ for (int j = 0;
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
-                
-                if (startNode.Index < endNode.Index)
+
+                if (AssignSpecialNodeDialog.IsRenumberChecked)
+                    RenumberPage();
+                else
                 {
-                    for (int i = startNode.Index; i <= endNode.Index; i++)
+                    if (startNode.Index < endNode.Index)
                     {
-                        if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Custom && parentNode.PhraseChild(i).CustomRole != customClass)
+                        for (int i = startNode.Index; i <= endNode.Index; i++)
                         {
-                            if (!IsSpecialNodeAdded)
+                            if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Custom && parentNode.PhraseChild(i).CustomRole != customClass)
                             {
-                                Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate();
+                                if (!IsSpecialNodeAdded)
+                                {
+                                    Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate();
 
-                                if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
-                                    IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
-                                else if (assignSpecialNodeToChunk.Is_YesToAll)
-                                {
-                                    endNode = (EmptyNode)this.Selection.Node;
-                                    break;
-                                }
-                                else if(assignSpecialNodeToChunk.Is_Abort)
-                                {
-                                    endNode = parentNode.PhraseChild(i - 1);
-                                    return;
+                                    if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
+                                        IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
+                                    else if (assignSpecialNodeToChunk.Is_YesToAll)
+                                    {
+                                        endNode = (EmptyNode)this.Selection.Node;
+                                        break;
+                                    }
+                                    else if (assignSpecialNodeToChunk.Is_Abort)
+                                    {
+                                        endNode = parentNode.PhraseChild(i - 1);
+                                        return;
+                                    }
                                 }
                             }
-                        }
-                        else if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Heading || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Silence || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Page || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Anchor)
-                        {
-                           // if (!IsSpecialNodeAdded)
+                            else if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Heading || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Silence || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Page || parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Anchor)
                             {
-                                Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate();
+                                // if (!IsSpecialNodeAdded)
+                                {
+                                    Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate();
 
-                                if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
-                                    IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
-                                else if (assignSpecialNodeToChunk.Is_YesToAll)
-                                {
-                                    endNode = (EmptyNode)this.Selection.Node;
-                                    break;
-                                }
-                                else if(assignSpecialNodeToChunk.Is_Abort)
-                                {
-                                    endNode = parentNode.PhraseChild(i - 1);
-                                    return;
+                                    if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
+                                        IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
+                                    else if (assignSpecialNodeToChunk.Is_YesToAll)
+                                    {
+                                        endNode = (EmptyNode)this.Selection.Node;
+                                        break;
+                                    }
+                                    else if (assignSpecialNodeToChunk.Is_Abort)
+                                    {
+                                        endNode = parentNode.PhraseChild(i - 1);
+                                        return;
+                                    }
                                 }
                             }
+                            if (parentNode.PhraseChild(i).Index < parentNode.PhraseChildCount - 1 && ((((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ && ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) || ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
+                                IsSpecialNodeAdded = false;
                         }
-                        if (parentNode.PhraseChild(i).Index < parentNode.PhraseChildCount - 1 && ((((EmptyNode)parentNode.PhraseChild(i)).Role_ != ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ && ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) || ((EmptyNode)parentNode.PhraseChild(i + 1)).Role_ == EmptyNode.Role.Custom) && ((EmptyNode)parentNode.PhraseChild(i)).CustomRole != ((EmptyNode)parentNode.PhraseChild(i + 1)).CustomRole)
-                           IsSpecialNodeAdded = false;                        
-                  }
-                }
-                try
-                {
-                    Presentation.Do(Commands.Node.AssignRole.GetCompositeCommandForAssigningRoleOnMultipleNodes(this, startNode, endNode, EmptyNode.Role.Custom, customClass));
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
+                    }
+
+                    try
+                    {
+                        Presentation.Do(Commands.Node.AssignRole.GetCompositeCommandForAssigningRoleOnMultipleNodes(this, startNode, endNode, EmptyNode.Role.Custom, customClass));
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
             }
             mContentView.BeginSpecialNode = null;
+        }
+
+        public void RenumberPage()
+        {
+            if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause();
+
+            Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(CurrentOrNextPageNumber, false, false);    
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                bool renumber = dialog.Renumber;
+                PageNumber number = dialog.Number;              
+                urakawa.command.Command cmd = new Commands.Node.SetPageNumber(this, SelectedNodeAs<EmptyNode>(), number);
+                if (renumber)
+                    {
+                        CompositeCommand k = Presentation.CreateCompositeCommand(cmd.ShortDescription);
+                       
+                        for (ObiNode n = BeginNote; n != null; n = n.FollowingNode )
+                        {                            
+                                if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
+                                    ((EmptyNode)n).PageNumber.Kind == number.Kind)
+                                {
+                                    number = number.NextPageNumber();
+                                    k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber(this, (EmptyNode)n, number));
+                                }
+                            
+                        }
+                        if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Plain) { }
+                        else
+                        k.ChildCommands.Insert(k.ChildCommands.Count, cmd);
+                        cmd = k;
+                    }
+                    mPresentation.Do(cmd);        
+            }
         }
 
         public void DeassociateSpecialNode()  //@AssociateNode
