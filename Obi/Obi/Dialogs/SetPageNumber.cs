@@ -12,7 +12,8 @@ namespace Obi.Dialogs
     {
         private PageNumber mInitialNumber;
         private int mNumberOfPages;
-        protected bool m_GoToPage; 
+        protected bool m_GoToPage;
+        private bool m_IsRenumber;
 
         public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages): this()
         {
@@ -24,6 +25,7 @@ namespace Obi.Dialogs
             mNumberOfPagesBox.Text = mNumberOfPages.ToString();
             mNumberOfPagesBox.Enabled = canSetNumberOfPages;
             m_GoToPage = false;
+            
         }
 
 
@@ -47,6 +49,23 @@ namespace Obi.Dialogs
                         mInitialNumber.Clone();
                 }
             } 
+        }
+
+        public bool IsRenumberChecked
+        {
+            get { return m_IsRenumber; }
+            set
+            {
+                m_IsRenumber = value; 
+                if (m_IsRenumber)
+                {
+                    mPageKindComboBox.Items.RemoveAt(2);
+                    mRenumber.Checked = true;
+                    mNumberBox.Text = (mInitialNumber.Number + 1).ToString();
+                    
+
+                }
+            }
         }
 
         public int NumberOfPages
