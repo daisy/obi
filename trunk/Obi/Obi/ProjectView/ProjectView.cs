@@ -3726,8 +3726,18 @@ for (int j = 0;
         public void RenumberPage()
         {
             if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause();
-
-            Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(CurrentOrNextPageNumber, false, false);    
+            PageNumber num = null;
+            for (int i = BeginNote.Index; i > 0; i--)
+            {
+                if (this.Selection.Node.ParentAs<SectionNode>().PhraseChild(i).Role_ == EmptyNode.Role.Page)
+                {
+                    num = this.Selection.Node.ParentAs<SectionNode>().PhraseChild(i).PageNumber;
+                    
+                    break;
+                } 
+            }
+            Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false);
+            dialog.IsRenumberChecked = true;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 bool renumber = dialog.Renumber;
