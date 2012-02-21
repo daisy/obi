@@ -3727,12 +3727,11 @@ for (int j = 0;
         {
             if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause();
             PageNumber num = null;
-            for (int i = BeginNote.Index; i > 0; i--)
+            for (ObiNode n = BeginNote.PrecedingNode; n != null; n = n.PrecedingNode)
             {
-                if (this.Selection.Node.ParentAs<SectionNode>().PhraseChild(i).Role_ == EmptyNode.Role.Page)
+                if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                 {
-                    num = this.Selection.Node.ParentAs<SectionNode>().PhraseChild(i).PageNumber;
-                    
+                    num = ((EmptyNode)n).PageNumber;
                     break;
                 } 
             }
@@ -3747,7 +3746,7 @@ for (int j = 0;
                     {
                         CompositeCommand k = Presentation.CreateCompositeCommand(cmd.ShortDescription);
                        
-                        for (ObiNode n = BeginNote; n != null; n = n.FollowingNode )
+                        for (ObiNode n = BeginNote; n != mContentView.EndSpecialNode.FollowingNode; n = n.FollowingNode )
                         {
                                 if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
                                     ((EmptyNode)n).PageNumber.Kind == number.Kind)
@@ -3755,12 +3754,10 @@ for (int j = 0;
                                     //number = number.NextPageNumber();
                                     k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber(this, (EmptyNode)n, number));
                                     number = number.NextPageNumber();
-                                }
-                            
+                                }                            
                         }
-                        if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Plain) { }
-                        else
-                        k.ChildCommands.Insert(k.ChildCommands.Count, cmd);
+                        if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Page)
+                            k.ChildCommands.Insert(k.ChildCommands.Count, cmd);
                         cmd = k;
                     }
                     mPresentation.Do(cmd);        

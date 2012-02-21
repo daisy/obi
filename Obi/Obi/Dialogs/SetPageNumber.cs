@@ -19,8 +19,17 @@ namespace Obi.Dialogs
         {
             mInitialNumber = number;
             mNumberOfPages = 1;
-            mNumberBox.Text = number.ArabicNumberOrLabel;
-            mPageKindComboBox.SelectedIndex = number.Kind == PageKind.Front ? 0 : number.Kind == PageKind.Normal ? 1 : 2;
+            if (mInitialNumber != null)
+            {
+                mNumberBox.Text = number.ArabicNumberOrLabel;
+                mPageKindComboBox.SelectedIndex = number.Kind == PageKind.Front ? 0 : number.Kind == PageKind.Normal ? 1 : 2;
+            }
+            else
+            {
+                mNumberBox.Text = "1";
+                mPageKindComboBox.SelectedIndex = 1;
+            }
+            
             mRenumber.Checked = renumber;
             mNumberOfPagesBox.Text = mNumberOfPages.ToString();
             mNumberOfPagesBox.Enabled = canSetNumberOfPages;
@@ -61,9 +70,8 @@ namespace Obi.Dialogs
                 {
                     mPageKindComboBox.Items.RemoveAt(2);
                     mRenumber.Checked = true;
+                    if(mInitialNumber != null)
                     mNumberBox.Text = (mInitialNumber.Number + 1).ToString();
-                    
-
                 }
             }
         }
