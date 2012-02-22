@@ -3748,14 +3748,16 @@ for (int j = 0;
                        
                         for (ObiNode n = BeginNote; n != mContentView.EndSpecialNode.FollowingNode; n = n.FollowingNode )
                         {
-                                if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
+                                if (n is EmptyNode &&( (EmptyNode)n).Role_ == EmptyNode.Role.Page &&
                                     ((EmptyNode)n).PageNumber.Kind == number.Kind)
-                                {                                
-                                    //number = number.NextPageNumber();
+                                { 
+                                    if(n == mContentView.EndSpecialNode)
+                                    cmd = new Commands.Node.SetPageNumber(this, SelectedNodeAs<EmptyNode>(), number);
                                     k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber(this, (EmptyNode)n, number));
                                     number = number.NextPageNumber();
                                 }                            
                         }
+                        
                         if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Page)
                             k.ChildCommands.Insert(k.ChildCommands.Count, cmd);
                         cmd = k;
