@@ -3757,8 +3757,8 @@ for (int j = 0;
                                     number = number.NextPageNumber();
                                 }                            
                         }
-                        
-                        if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Page)
+
+                        if (mContentView.EndSpecialNode.Role_ == EmptyNode.Role.Page)
                             k.ChildCommands.Insert(k.ChildCommands.Count, cmd);
                         cmd = k;
                     }
