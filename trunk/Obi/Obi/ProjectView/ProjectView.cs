@@ -3725,6 +3725,7 @@ for (int j = 0;
 
         public void RenumberPage()
         {
+            bool pageFound = false;
             if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause();
             PageNumber num = null;
             for (ObiNode n = BeginNote.PrecedingNode; n != null; n = n.PrecedingNode)
@@ -3750,14 +3751,21 @@ for (int j = 0;
                         {
                                 if (n is EmptyNode &&( (EmptyNode)n).Role_ == EmptyNode.Role.Page &&
                                     ((EmptyNode)n).PageNumber.Kind == number.Kind)
-                                { 
-                                    if(n == mContentView.EndSpecialNode)
-                                    cmd = new Commands.Node.SetPageNumber(this, SelectedNodeAs<EmptyNode>(), number);
+                                {
+                                    if (n == mContentView.EndSpecialNode)
+                                    {
+                                        cmd = new Commands.Node.SetPageNumber(this, SelectedNodeAs<EmptyNode>(), number);
+                                        pageFound = true;
+                                    }
                                     k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber(this, (EmptyNode)n, number));
                                     number = number.NextPageNumber();
-                                }                            
+                                }                                
                         }
-
+                        if(!pageFound)
+                        {
+                            MessageBox.Show("No page was found in the chunk.");
+                            return;
+                        }
                         if (mContentView.EndSpecialNode.Role_ == EmptyNode.Role.Page)
                             k.ChildCommands.Insert(k.ChildCommands.Count, cmd);
                         cmd = k;
