@@ -1744,6 +1744,11 @@ namespace Obi
 
             mProjectView.TransportBar.Enabled = false;
 
+            List<string> navList = new List<string>();
+            navList.Add(EmptyNode.Annotation);
+            navList.Add(EmptyNode.Footnote);
+            navList.Add(EmptyNode.Sidebar);
+            navList.Add(EmptyNode.ProducerNote);
             if (CheckedPageNumbers () && CheckedForEmptySections ())
                 {
                 //Dialogs.ExportDirectory dialog =
