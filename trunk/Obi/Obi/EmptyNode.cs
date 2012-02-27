@@ -33,11 +33,11 @@ namespace Obi
         private static readonly string XUK_ATTR_NAME_PAGE_KIND = "pageKind";  // name of the pageKind attribute
         private static readonly string XUK_ATTR_NAME_PAGE_TEXT = "pageText";  // name of the pageText attribute
         private static readonly string XUK_ATTR_NAME_TODO = "TODO";           // name of the TODO attribute
-        public static readonly string Footnote = "Footnote";
-        public static readonly string Sidebar = "Sidebar";
-        public static readonly string ProducerNote = "Producer note";
-        public static readonly string EndNote = "End note";
-        public static readonly string Annotation = "Annotation";
+        public static readonly string Footnote = "footnote";
+        public static readonly string Sidebar = "sidebar";
+        public static readonly string ProducerNote = "producer note";
+        public static readonly string EndNote = "end note";
+        public static readonly string Annotation = "annotation";
         private EmptyNode m_AssociatedNode = null;                            //@AssociateNode  
         private static readonly string XUK_ATTR_NAME_AssociateNode = "ANode"; //attribute for associate node location
         private string m_AssociatedNodeLocation;                              //@AssociateNode

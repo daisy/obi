@@ -155,14 +155,14 @@ namespace Obi.ImportExport
                     }
 
                 //if ((IsHeadingNode(n) || IsEscapableNode(n) || IsSkippableNode(n))
-                if (n is EmptyNode &&  (((EmptyNode)n).Role_ == EmptyNode.Role.Heading || ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                    if (n is EmptyNode && (((EmptyNode)n).Role_ == EmptyNode.Role.Heading || ((EmptyNode)n).Role_ == EmptyNode.Role.Page || ((EmptyNode)n).Role_ == EmptyNode.Role.Anchor || IsSkippable((EmptyNode)n) )
                     && (special_UrakawaNode != n))
                 {
                     // if this candidate special node is child of existing special node then ad existing special node to stack for nesting.
                     if (special_UrakawaNode != null && Seq_SpecialNode != null
                         && n.IsDescendantOf(special_UrakawaNode))
                     {
-                        specialParentNodeStack.Push(special_UrakawaNode);
+                        //specialParentNodeStack.Push(special_UrakawaNode);
                         specialSeqNodeStack.Push(Seq_SpecialNode);
                     }
                     special_UrakawaNode = n;
@@ -244,7 +244,12 @@ namespace Obi.ImportExport
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "id", strSeqID);
                     //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", special_UrakawaNode.GetXmlElementQName().LocalName);
                     if (n is EmptyNode &&  ((EmptyNode)n).Role_ == EmptyNode.Role.Page )  XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "pagenum");
-
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Custom && special_UrakawaNode == n)
+                    {
+                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", ((EmptyNode)n).CustomRole);
+                        if (!currentSmilCustomTestList.Contains(((EmptyNode)n).CustomRole)) currentSmilCustomTestList.Add(((EmptyNode)n).CustomRole);
+                        
+                    }
                     //comment following as obi do not have escapable node yet
                     //if (IsEscapableNode(special_UrakawaNode))
                     //{
@@ -314,7 +319,7 @@ namespace Obi.ImportExport
                 // decide the parent node for this new par node.
                 // if node n is child of current specialParentNode than append to it 
                 //else check if it has to be appended to parent of this special node in stack or to main seq.
-                if (special_UrakawaNode != null && (special_UrakawaNode == n || n.IsDescendantOf(special_UrakawaNode)))
+                if (special_UrakawaNode != null && (special_UrakawaNode == n || (((EmptyNode)n).Role_ == EmptyNode.Role.Custom && ((EmptyNode)n).CustomRole == ((EmptyNode)special_UrakawaNode).CustomRole)))
                 {
                     Seq_SpecialNode.AppendChild(parNode);
                 }
@@ -484,11 +489,13 @@ namespace Obi.ImportExport
                     
                 }
                     //obi: commented for now
-                /*
-            else if (special_UrakawaNode != null
-                && m_NavListElementNamesList.Contains(special_UrakawaNode.GetXmlElementQName().LocalName) && !specialParentNodesAddedToNavList.Contains(special_UrakawaNode))
+                
+            else if (special_UrakawaNode != null && n == special_UrakawaNode
+                && n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Custom )
+                    //&&  m_NavListElementNamesList.Contains(((EmptyNode)n).CustomRole) && !specialParentNodesAddedToNavList.Contains(special_UrakawaNode))
             {
-                string navListNodeName = special_UrakawaNode.GetXmlElementQName().LocalName;
+                
+                string navListNodeName = ((EmptyNode)special_UrakawaNode).CustomRole ;
                 specialParentNodesAddedToNavList.Add(special_UrakawaNode);
                 XmlNode navListNode = null;
 
@@ -531,7 +538,7 @@ namespace Obi.ImportExport
                 XmlNode txtNode = ncxDocument.CreateElement(null, "text", navTargetNode.NamespaceURI);
                 navLabelNode.AppendChild(txtNode);
                 txtNode.AppendChild(
-                    ncxDocument.CreateTextNode(n.GetTextFlattened(true)));
+                    ncxDocument.CreateTextNode(((EmptyNode)n).CustomRole ));
 
                 // create audio node only if external audio media is not null
                 if (externalAudio != null)
@@ -548,7 +555,7 @@ namespace Obi.ImportExport
                 XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, contentNode, "src", smilFileName + "#" + par_id);
             
             }
-            */
+            
                 if (!IsNcxNativeNodeAdded)
                 {
                     if (!isDocTitleAdded)
@@ -753,6 +760,7 @@ namespace Obi.ImportExport
                     // add smil custon test list items to ncx custom test list
                     foreach (string customTestName in currentSmilCustomTestList)
                     {
+                        
                         if (!ncxCustomTestList.Contains(customTestName))
                             ncxCustomTestList.Add(customTestName);
                     }
@@ -804,6 +812,18 @@ namespace Obi.ImportExport
             SaveXukAction.WriteXmlDocument(ncxDocument, Path.Combine(m_OutputDirectory, m_Filename_Ncx));
         }
 
+        private bool IsSkippable (EmptyNode node)
+        {
+            if ( node.Role_ == EmptyNode.Role.Custom && (node.PrecedingNode == null ||  node.Role_ != ((EmptyNode) node.PrecedingNode).Role_ || node.CustomRole != ((EmptyNode)node.PrecedingNode).CustomRole )
+                && ( node.CustomRole == EmptyNode.Annotation
+                || node.CustomRole == EmptyNode.Footnote
+                || node.CustomRole == EmptyNode.Sidebar
+                || node.CustomRole == EmptyNode.ProducerNote))
+            {
+                return true;
+            }
+            return false;
+        }
 
     }
 }
