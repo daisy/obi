@@ -145,6 +145,7 @@ namespace Obi.ProjectView
                     {
                         TreeNode n1 = FindTreeNode((SectionNode)mSelection.Node);
                         n1.EndEdit(false);
+                        if(n1.ForeColor != SystemColors.ControlText )  n1.ForeColor = SystemColors.ControlText;
                     }
                     if (value != null && !this.ContainsFocus) this.Focus();
                     mSelection = value;
