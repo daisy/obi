@@ -39,12 +39,12 @@ namespace Obi.Dialogs
             // 
             this.m_cmbBoxSpecialNode.FormattingEnabled = true;
             this.m_cmbBoxSpecialNode.Items.AddRange(new object[] {
-            "Annotation",
-            "End note",
-            "Footnote",
-            "Producer note",
-            "Sidebar",
-            "Pages"});
+            "annotation",
+            "end note",
+            "footnote",
+            "prodnote",
+            "sidebar",
+            "pages"});
             this.m_cmbBoxSpecialNode.Location = new System.Drawing.Point(53, 46);
             this.m_cmbBoxSpecialNode.Name = "m_cmbBoxSpecialNode";
             this.m_cmbBoxSpecialNode.Size = new System.Drawing.Size(181, 21);
