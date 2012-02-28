@@ -20,6 +20,7 @@ namespace Obi.ImportExport
     {
         private int m_AudioFileSectionLevel;
         private Dictionary<XmlNode, urakawa.core.TreeNode> m_AnchorXmlNodeToReferedNodeMap = new Dictionary<XmlNode, urakawa.core.TreeNode>();
+        private Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
         
         public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3, SampleRate sampleRate, bool skipACM, int audioFileSectionLevel)
         :base (presentation, exportDirectory, navListElementNamesList, encodeToMp3, sampleRate, skipACM)
@@ -265,6 +266,7 @@ namespace Obi.ImportExport
                         Seq_SpecialNode.AppendChild(anchorNode);
                         XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "external", "false");
                         XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "");
+                        m_AnchorSmilDoc_SmileFileNameMap.Add(smilDocument, smilFileName);
                         //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "#" + ID_SmilPrefix + m_TreeNode_XmlNodeMap[n].Attributes.GetNamedItem("idref").Value.Replace("#", ""));
 
                         //isBranchingActive = true;
@@ -284,7 +286,7 @@ namespace Obi.ImportExport
                                 //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", smilFileName + "#" + strSeqID);
                                 //anchorNode.Attributes.GetNamedItem("href").Value= smilFileName + "#" + strSeqID;
 
-                                anchorNode.Attributes.GetNamedItem("href").Value = "#" + strSeqID;
+                                anchorNode.Attributes.GetNamedItem("href").Value =smilFileName + "#" + strSeqID;
                                 break;
                             }
                         }
@@ -813,7 +815,12 @@ namespace Obi.ImportExport
                     //System.Windows.Forms.MessageBox.Show ( contentNode_Src );
                 }
             }
-
+            // rewrite the smil files that has anchor references
+            foreach (XmlDocument sd in m_AnchorSmilDoc_SmileFileNameMap.Keys)
+            {
+                SaveXukAction.WriteXmlDocument(sd, Path.Combine(m_OutputDirectory, m_AnchorSmilDoc_SmileFileNameMap[sd] ));
+            }
+            m_AnchorSmilDoc_SmileFileNameMap = null;
             if (RequestCancellation)
             {
                 //m_DTBDocument = null;
