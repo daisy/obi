@@ -35,7 +35,7 @@ namespace Obi
         private static readonly string XUK_ATTR_NAME_TODO = "TODO";           // name of the TODO attribute
         public static readonly string Footnote = "footnote";
         public static readonly string Sidebar = "sidebar";
-        public static readonly string ProducerNote = "producer note";
+        public static readonly string ProducerNote = "prodnote";
         public static readonly string EndNote = "end note";
         public static readonly string Annotation = "annotation";
         private EmptyNode m_AssociatedNode = null;                            //@AssociateNode  
