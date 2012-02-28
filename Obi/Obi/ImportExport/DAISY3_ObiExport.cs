@@ -19,8 +19,8 @@ namespace Obi.ImportExport
     public class DAISY3_ObiExport : Daisy3_Export
     {
         private int m_AudioFileSectionLevel;
+        private Dictionary<XmlNode, urakawa.core.TreeNode> m_AnchorXmlNodeToReferedNodeMap = new Dictionary<XmlNode, urakawa.core.TreeNode>();
         
-
         public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3, SampleRate sampleRate, bool skipACM, int audioFileSectionLevel)
         :base (presentation, exportDirectory, navListElementNamesList, encodeToMp3, sampleRate, skipACM)
         {
@@ -258,23 +258,45 @@ namespace Obi.ImportExport
                     //}
 
                     //if (IsSkippableNode(special_UrakawaNode))
+                    if (((EmptyNode)special_UrakawaNode).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)special_UrakawaNode).AssociatedNode != null)
+                    {
+                        m_AnchorXmlNodeToReferedNodeMap.Add(Seq_SpecialNode, ((EmptyNode)special_UrakawaNode).AssociatedNode);
+                        XmlNode anchorNode = smilDocument.CreateElement(null, "a", Seq_SpecialNode.NamespaceURI);
+                        Seq_SpecialNode.AppendChild(anchorNode);
+                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "external", "false");
+                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "");
+                        //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "#" + ID_SmilPrefix + m_TreeNode_XmlNodeMap[n].Attributes.GetNamedItem("idref").Value.Replace("#", ""));
+
+                        //isBranchingActive = true;
+
+                        //branchStartTreeNode = GetReferedTreeNode(special_UrakawaNode);
+
+                    }
+                    if (IsSkippable((EmptyNode)n))
+                    {
+                        
+                        foreach (XmlNode xn in m_AnchorXmlNodeToReferedNodeMap.Keys)
+                        {
+                            if (m_AnchorXmlNodeToReferedNodeMap[xn] == n)
+                            {
+                                
+                                XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementWithName(xn, true, "a", xn.NamespaceURI); 
+                                //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", smilFileName + "#" + strSeqID);
+                                //anchorNode.Attributes.GetNamedItem("href").Value= smilFileName + "#" + strSeqID;
+
+                                anchorNode.Attributes.GetNamedItem("href").Value = "#" + strSeqID;
+                                break;
+                            }
+                        }
+                    }
+
                     if ( n is EmptyNode &&  ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                     {
                         //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", special_UrakawaNode.GetXmlElementQName().LocalName);
                         XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "pagenum");
 
-                        //if (special_UrakawaNode.GetXmlElementQName().LocalName == "noteref" || special_UrakawaNode.GetXmlElementQName().LocalName == "annoref")
-                        //{
-                            //XmlNode anchorNode = smilDocument.CreateElement(null, "a", Seq_SpecialNode.NamespaceURI);
-                            //Seq_SpecialNode.AppendChild(anchorNode);
-                            //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "external", "false");
-                            //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "#" + ID_SmilPrefix + m_TreeNode_XmlNodeMap[n].Attributes.GetNamedItem("idref").Value.Replace("#", ""));
+                        
 
-                            //isBranchingActive = true;
-
-                            //branchStartTreeNode = GetReferedTreeNode(special_UrakawaNode);
-
-                        //}
                         if (!currentSmilCustomTestList.Contains("pagenum"))
                         {
                             currentSmilCustomTestList.Add("pagenum");
