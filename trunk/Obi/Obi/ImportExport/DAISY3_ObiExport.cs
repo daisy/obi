@@ -247,9 +247,26 @@ namespace Obi.ImportExport
                     if (n is EmptyNode &&  ((EmptyNode)n).Role_ == EmptyNode.Role.Page )  XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "pagenum");
                     if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Custom && special_UrakawaNode == n)
                     {
+                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", ((EmptyNode)n).CustomRole);
                         XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", ((EmptyNode)n).CustomRole);
                         if (!currentSmilCustomTestList.Contains(((EmptyNode)n).CustomRole)) currentSmilCustomTestList.Add(((EmptyNode)n).CustomRole);
                         
+                    }
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)n).AssociatedNode != null)
+                    {
+                        //if (((EmptyNode)n).AssociatedNode.CustomRole == EmptyNode.Annotation)
+                        //{
+                            //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "annoref");
+                            //if (!currentSmilCustomTestList.Contains("annoref")) currentSmilCustomTestList.Add("annoref");
+                            //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "annoref");
+                        //}
+                        //else
+                        //{
+                            
+                            XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "noteref");
+                            if (!currentSmilCustomTestList.Contains("noteref")) currentSmilCustomTestList.Add("noteref");
+                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "noteref");
+                        //}
                     }
                     //comment following as obi do not have escapable node yet
                     //if (IsEscapableNode(special_UrakawaNode))
