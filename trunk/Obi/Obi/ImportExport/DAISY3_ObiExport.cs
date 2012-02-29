@@ -254,19 +254,19 @@ namespace Obi.ImportExport
                     }
                     if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)n).AssociatedNode != null)
                     {
-                        //if (((EmptyNode)n).AssociatedNode.CustomRole == EmptyNode.Annotation)
-                        //{
-                            //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "annoref");
-                            //if (!currentSmilCustomTestList.Contains("annoref")) currentSmilCustomTestList.Add("annoref");
-                            //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "annoref");
-                        //}
-                        //else
-                        //{
+                        if (IsAnnoref((EmptyNode)n))
+                        {
+                            XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "annoref");
+                            if (!currentSmilCustomTestList.Contains("annoref")) currentSmilCustomTestList.Add("annoref");
+                                                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "annoref");
+                        }
+                        else
+                        {
                             
                             XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "noteref");
                             if (!currentSmilCustomTestList.Contains("noteref")) currentSmilCustomTestList.Add("noteref");
                         XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "noteref");
-                        //}
+                        }
                     }
                     //comment following as obi do not have escapable node yet
                     //if (IsEscapableNode(special_UrakawaNode))
@@ -535,8 +535,8 @@ namespace Obi.ImportExport
                 && n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Custom )
                     //&&  m_NavListElementNamesList.Contains(((EmptyNode)n).CustomRole) && !specialParentNodesAddedToNavList.Contains(special_UrakawaNode))
             {
-                
-                string navListNodeName = ((EmptyNode)special_UrakawaNode).CustomRole ;
+                EmptyNode eSpecialNode = (EmptyNode)special_UrakawaNode;
+                string navListNodeName = eSpecialNode.CustomRole;
                 specialParentNodesAddedToNavList.Add(special_UrakawaNode);
                 XmlNode navListNode = null;
 
@@ -871,6 +871,18 @@ namespace Obi.ImportExport
             }
             return false;
         }
+
+        bool IsAnnoref(EmptyNode node)
+        {
+            if (node.Role_ == EmptyNode.Role.Anchor
+                && node.AssociatedNode != null
+                && node.AssociatedNode.CustomRole == EmptyNode.Annotation)
+            {
+                return true;
+            }
+            return false;
+                    }
+
 
     }
 }
