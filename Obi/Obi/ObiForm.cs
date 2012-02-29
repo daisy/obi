@@ -1746,6 +1746,7 @@ namespace Obi
 
             List<string> navList = new List<string>();
             navList.Add(EmptyNode.Annotation);
+            navList.Add(EmptyNode.EndNote);
             navList.Add(EmptyNode.Footnote);
             navList.Add(EmptyNode.Sidebar);
             navList.Add(EmptyNode.ProducerNote);
