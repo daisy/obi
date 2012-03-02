@@ -860,8 +860,8 @@ namespace Obi.ImportExport
 
         private bool IsSkippable (EmptyNode node)
         {
-            if (!(node is EmptyNode)) return false;
-            if ( node.Role_ == EmptyNode.Role.Custom && (node.PrecedingNode == null ||  node.Role_ != ((EmptyNode) node.PrecedingNode).Role_ || node.CustomRole != ((EmptyNode)node.PrecedingNode).CustomRole )
+            
+            if ( node.Role_ == EmptyNode.Role.Custom && ( node.PrecedingNode == null || node.PrecedingNode is SectionNode ||  node.Role_ != ((EmptyNode) node.PrecedingNode).Role_ || node.CustomRole != ((EmptyNode)node.PrecedingNode).CustomRole )
                 && ( node.CustomRole == EmptyNode.Annotation
                 || node.CustomRole == EmptyNode.EndNote
                 || node.CustomRole == EmptyNode.Footnote
