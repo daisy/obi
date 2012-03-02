@@ -32,8 +32,9 @@ namespace Obi.Commands.Node
 
         public override void Execute()
         {
-            m_Node.AssociatedNode = m_NodeToBeAssociated ;
             if (m_Node.Role_ != EmptyNode.Role.Anchor) m_Node.SetRole(EmptyNode.Role.Anchor, null);
+            m_Node.AssociatedNode = m_NodeToBeAssociated ;
+            
             if (UpdateSelection) View.SelectedBlockNode = m_Node;
         }
 
