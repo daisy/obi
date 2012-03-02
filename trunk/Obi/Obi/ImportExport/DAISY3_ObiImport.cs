@@ -56,9 +56,9 @@ namespace Obi.ImportExport
         {
             
             //m_Project = new Project();
-            Project = m_Session.Presentation.Project;
+            m_Project = m_Session.Presentation.Project;
 #if (DEBUG)
-            Project.SetPrettyFormat(true);
+            m_Project.SetPrettyFormat(true);
 #else
             Project.SetPrettyFormat(false);
 #endif
@@ -344,7 +344,7 @@ namespace Obi.ImportExport
 
                         if (bodyElement != null)
                         {
-                            Presentation presentation = Project.Presentations.Get(0);
+                            Presentation presentation = m_Project.Presentations.Get(0);
                             presentation.PropertyFactory.DefaultXmlNamespaceUri = bodyElement.NamespaceURI;
                             /*
                             // preserve internal DTD if it exists in dtbook 
@@ -364,7 +364,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                     }
                 case XmlNodeType.Element:
                     {
-                        Presentation presentation = Project.Presentations.Get(0);
+                        Presentation presentation = m_Project.Presentations.Get(0);
 
                         TreeNode treeNode = null ;
 

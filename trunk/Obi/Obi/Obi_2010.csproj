@@ -117,6 +117,8 @@
     <Compile Include="Commands\Metadata\ModifyContent.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
     <Compile Include="Commands\Node\AddNode.cs" />
+    <Compile Include="Commands\Node\AssociateAnchorNode.cs" />
+    <Compile Include="Commands\Node\DeAssociateAnchorNode.cs" />
     <Compile Include="Commands\Node\SetNodeAsHeadingPhrase.cs" />
     <Compile Include="Commands\Node\AssignRole.cs" />
     <Compile Include="Commands\Node\Copy.cs" />
@@ -136,6 +138,14 @@
     <Compile Include="Dialogs\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AssignSpecialNodeMark.cs" />
+    <Compile Include="Dialogs\AssignSpecialNodeMark.Designer.cs">
+      <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AssociateSpecialNode.cs" />
+    <Compile Include="Dialogs\AssociateSpecialNode.Designer.cs">
+      <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\chooseDaisy3orDaisy202.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +164,10 @@
     </Compile>
     <Compile Include="Dialogs\EmptySection.Designer.cs">
       <DependentUpon>EmptySection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExtendedMessageToAssociate.cs" />
+    <Compile Include="Dialogs\ExtendedMessageToAssociate.Designer.cs">
+      <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\GoToPageOrPhrase.cs">
       <SubType>Form</SubType>
@@ -476,6 +490,15 @@
       <DependentUpon>Waveform.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialogs\AssignSpecialNodeMark.resx">
+      <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AssociateSpecialNode.resx">
+      <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExtendedMessageToAssociate.resx">
+      <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MultipleOptionDialog.resx">
       <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
     </EmbeddedResource>
