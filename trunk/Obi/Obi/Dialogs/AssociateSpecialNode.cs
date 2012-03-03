@@ -16,6 +16,7 @@ namespace Obi.Dialogs
         List<EmptyNode> listOfAnchorNodes = new List<EmptyNode>();
         private EmptyNode m_SelectedNode = null;
         Dictionary<EmptyNode, EmptyNode> nodes_phraseMap = new Dictionary<EmptyNode, EmptyNode>(); // used for importing sections
+        private List<EmptyNode> listOfAnchorNodesCopy = new List<EmptyNode>();
        
         public AssociateSpecialNode(ObiRootNode obiNode, EmptyNode selectedNode)
         {
@@ -54,6 +55,7 @@ namespace Obi.Dialogs
                 m_lb_listOfAllAnchorNodes.Items.Clear();
             if (m_lb_ListOfSpecialNodes.Items.Count > 0)
                 m_lb_ListOfSpecialNodes.Items.Clear();
+            listOfAnchorNodesCopy.Clear();
             if (m_btn_ShowAll.Text == Localizer.Message("Associate_show_all"))
             {
                 listOfAnchorNodes.Clear();
@@ -146,14 +148,15 @@ namespace Obi.Dialogs
                                 m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
                             else
                                 m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i));
-                            listOfAnchorNodes.Add(node.PhraseChild(i));
+                            listOfAnchorNodes.Add(node.PhraseChild(i));                           
                         }
+                        listOfAnchorNodesCopy.Add(node.PhraseChild(i));
                     }
                     if (m_txtBox_SectionName.Visible == false)
                     {
                         listOfAnchorNodes.Clear();
                         //m_lb_listOfAllAnchorNodes.Items.Add("Section " + m_SelectedNode.ParentAs<SectionNode>() + " " + m_SelectedNode);
-                        listOfAnchorNodes.Add(m_SelectedNode);        
+                        listOfAnchorNodes.Add(m_SelectedNode);
                     }
                 }
             }
@@ -161,27 +164,60 @@ namespace Obi.Dialogs
 
         private void m_btn_Associate_Click(object sender, EventArgs e)
         {
-            EmptyNode anchorNode = null;
-            if (listOfAnchorNodes.Count > 0 && (m_SelectedNode == null || m_IsShowAll))
+            EmptyNode anchorNode = null; 
+            bool IsAssociated = false;
+            
+            for (int i = 0; i < listOfAnchorNodesCopy.Count; i++)
             {
-                if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
-                    anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];
+                
+                if (listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex] == listOfAnchorNodesCopy[i].AssociatedNode)
+                {
+                    if (MessageBox.Show("The node is already associated with some other anchor node. Do you want to continue associating?",
+                           "Associate", MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Question) == DialogResult.No)
+                        IsAssociated = true;
+                    break;
+                }
                 else
-                    anchorNode = listOfAnchorNodes[0];
+                    IsAssociated = false;
             }
-            else 
-            {
-                anchorNode = m_SelectedNode;
-            }
-            if (nodes_phraseMap.ContainsKey(anchorNode))
-            {
-                nodes_phraseMap[anchorNode] = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
-            }
-            else
-            {
-                nodes_phraseMap.Add(anchorNode, listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
-            }
-          //  if(listOfAnchorNodes.Count == 1)
+
+            foreach (KeyValuePair<EmptyNode, EmptyNode> pair in nodes_phraseMap)
+                {
+                    if (nodes_phraseMap.ContainsKey(pair.Key) && listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex] == pair.Key.AssociatedNode)
+                    {
+                        if (MessageBox.Show("The node is already associated with some other anchor node. Do you want to continue associating?",
+                               "Associate", MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Question) == DialogResult.No)
+                           IsAssociated = true;
+                        break;
+                    }
+                    else
+                        IsAssociated = false;
+                }
+            
+            if (!IsAssociated)
+            { 
+                if (listOfAnchorNodes.Count > 0 && (m_SelectedNode == null || m_IsShowAll))
+                    {
+                        if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
+                            anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];
+                        else
+                            anchorNode = listOfAnchorNodes[0];
+                    }
+                    else
+                    {
+                        anchorNode = m_SelectedNode;
+                    }
+                    if (nodes_phraseMap.ContainsKey(anchorNode))
+                    {
+                        nodes_phraseMap[anchorNode] = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
+                    }
+                    else
+                    {
+                        nodes_phraseMap.Add(anchorNode, listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
+                    }                  
+        }
             m_btn_Deassociate.Enabled = true;
         }
 
