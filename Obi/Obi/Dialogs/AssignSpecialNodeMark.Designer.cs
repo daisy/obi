@@ -43,8 +43,7 @@ namespace Obi.Dialogs
             "end note",
             "footnote",
             "prodnote",
-            "sidebar",
-            "pages"});
+            "sidebar"});
             this.m_cmbBoxSpecialNode.Location = new System.Drawing.Point(53, 46);
             this.m_cmbBoxSpecialNode.Name = "m_cmbBoxSpecialNode";
             this.m_cmbBoxSpecialNode.Size = new System.Drawing.Size(181, 21);
