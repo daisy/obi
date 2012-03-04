@@ -60,7 +60,7 @@ namespace Obi.ImportExport
 #if (DEBUG)
             m_Project.SetPrettyFormat(true);
 #else
-            Project.SetPrettyFormat(false);
+            m_Project.SetPrettyFormat(false);
 #endif
 
             //Presentation presentation = m_Project.AddNewPresentation(new Uri(m_outDirectory), Path.GetFileName(m_Book_FilePath));
