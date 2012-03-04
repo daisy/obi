@@ -201,6 +201,35 @@ namespace Obi.ImportExport
              
         }
 
+        protected override TreeNode AddAnchorNode(TreeNode navPointTreeNode, XmlNode smilNode, string fullSmilPath)
+        {
+            XmlNode seqParent = smilNode != null ? smilNode.ParentNode : null;
+            while (seqParent != null)
+            {
+                if (seqParent.Name == "seq" || seqParent.Attributes.GetNamedItem("customTest") != null) break;
+                seqParent = seqParent.ParentNode;
+
+            }
+            if (seqParent == null || XmlDocumentHelper.GetFirstChildElementWithName(smilNode, true, "audio", smilNode.NamespaceURI) == null) return null;
+
+            EmptyNode anchor = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
+            ((SectionNode)navPointTreeNode).AppendChild(anchor);
+
+            if (smilNode != null)
+            {
+                string strReference = smilNode.Attributes.GetNamedItem("href").Value;
+                anchor.SetRole(EmptyNode.Role.Anchor, null);
+                if (!m_AnchorNodeSmilRefMap.ContainsKey(anchor))
+                {
+                    string[] refArray = strReference.Split('#');
+                    if (refArray.Length == 1 || string.IsNullOrEmpty(refArray[0])) strReference = Path.GetFileName(fullSmilPath) + "#" + refArray[refArray.Length - 1];
+                    m_AnchorNodeSmilRefMap.Add(anchor, strReference);
+
+                }
+            }
+            return anchor;
+        }
+
         private void AssignSkippableToAnchorNode()
         {
             List<EmptyNode> nodeToRemove = new List<EmptyNode>();
