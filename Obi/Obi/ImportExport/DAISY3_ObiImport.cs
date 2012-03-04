@@ -132,41 +132,48 @@ namespace Obi.ImportExport
         protected override TreeNode CreateTreeNodeForAudioNode(TreeNode navPointTreeNode, bool isHeadingNode, XmlNode smilNode)
         {
             PhraseNode audioWrapperNode = m_Presentation.CreatePhraseNode ();
-            if ( smilNode == null || !m_SmilXmlNodeToTreeNodeMap.ContainsKey (smilNode))
+            if (smilNode == null || !m_SmilXmlNodeToTreeNodeMap.ContainsKey(smilNode))
             {
-            ((SectionNode)navPointTreeNode).AppendChild(audioWrapperNode);
-            }
-            else
-            {
-                ((SectionNode)navPointTreeNode).InsertAfter(audioWrapperNode, m_SmilXmlNodeToTreeNodeMap[smilNode]);
-                m_SmilXmlNodeToTreeNodeMap[smilNode]=audioWrapperNode;
-            }
-            
-            return audioWrapperNode;
-            /*
-            if (isHeadingNode)
-            {
-                foreach (TreeNode txtNode in navPointTreeNode.Children.ContentsAs_YieldEnumerable)
+                ((SectionNode)navPointTreeNode).AppendChild(audioWrapperNode);
+
+                XmlNode seqParent = smilNode != null ? smilNode.ParentNode : null;
+                while (seqParent != null)
                 {
-                    if (txtNode.GetTextMedia() != null)
+                    if (seqParent.Name == "seq" || seqParent.Attributes.GetNamedItem("customTest") != null) break;
+                    seqParent = seqParent.ParentNode;
+                    if (seqParent != null) System.Windows.Forms.MessageBox.Show(seqParent.Name);
+                }
+
+                if (seqParent != null && seqParent.Attributes.GetNamedItem("class") != null)
+                {
+                    string strClass = seqParent.Attributes.GetNamedItem("class").Value;
+
+                    if (strClass == EmptyNode.Annotation || strClass == EmptyNode.EndNote || strClass == EmptyNode.Footnote
+                        || strClass == EmptyNode.ProducerNote || strClass == EmptyNode.Sidebar)
                     {
-                        audioWrapperNode = txtNode;
-                        break;
+                        audioWrapperNode.SetRole(EmptyNode.Role.Custom, strClass);
+                    }
+                    else
+                    {
+                        XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementWithName(seqParent, true, "a", seqParent.NamespaceURI);
+                        if (anchorNode != null)
+                        {
+                            string strReference = anchorNode.Attributes.GetNamedItem("href").Value;
+                            audioWrapperNode.SetRole(EmptyNode.Role.Anchor, null);
+                        }
+
                     }
                 }
             }
             else
             {
-                if (navPointTreeNode == null) return null;
-                audioWrapperNode = navPointTreeNode.Presentation.TreeNodeFactory.Create();
 
-                navPointTreeNode.AppendChild(audioWrapperNode);
+                ((SectionNode)navPointTreeNode).InsertAfter(audioWrapperNode, m_SmilXmlNodeToTreeNodeMap[smilNode]);
+                m_SmilXmlNodeToTreeNodeMap[smilNode] = audioWrapperNode;
             }
-            //XmlProperty xmlProp = navPointTreeNode.Presentation.PropertyFactory.CreateXmlProperty();
-            //audioWrapperNode.AddProperty(xmlProp);
-            //xmlProp.LocalName = "phrase"; // +":" + navPointTreeNode.GetTextFlattened(false);
+
             return audioWrapperNode;
-             */ 
+             
         }
 
         protected override void AddPagePropertiesToAudioNode(TreeNode audioWrapperNode, XmlNode pageTargetNode)
