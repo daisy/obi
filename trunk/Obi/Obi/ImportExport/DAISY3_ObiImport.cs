@@ -141,7 +141,7 @@ namespace Obi.ImportExport
                 {
                     if (seqParent.Name == "seq" || seqParent.Attributes.GetNamedItem("customTest") != null) break;
                     seqParent = seqParent.ParentNode;
-                    if (seqParent != null) System.Windows.Forms.MessageBox.Show(seqParent.Name);
+                    
                 }
 
                 if (seqParent != null && seqParent.Attributes.GetNamedItem("class") != null)
