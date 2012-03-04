@@ -128,8 +128,9 @@ namespace Obi.ImportExport
 
             return treeNode;
         }
-
-        protected override TreeNode CreateTreeNodeForAudioNode(TreeNode navPointTreeNode, bool isHeadingNode, XmlNode smilNode)
+        private Dictionary<EmptyNode, string> m_AnchorNodeSmilRefMap = new Dictionary<EmptyNode, string>();
+        private Dictionary<EmptyNode, List <string>> m_Skippable_IdMap = new Dictionary<EmptyNode,List <string>>();
+        protected override TreeNode CreateTreeNodeForAudioNode(TreeNode navPointTreeNode, bool isHeadingNode, XmlNode smilNode, string fullSmilPath)
         {
             PhraseNode audioWrapperNode = m_Presentation.CreatePhraseNode ();
             if (smilNode == null || !m_SmilXmlNodeToTreeNodeMap.ContainsKey(smilNode))
@@ -152,6 +153,23 @@ namespace Obi.ImportExport
                         || strClass == EmptyNode.ProducerNote || strClass == EmptyNode.Sidebar)
                     {
                         audioWrapperNode.SetRole(EmptyNode.Role.Custom, strClass);
+                        if (!m_Skippable_IdMap.ContainsKey(audioWrapperNode))
+                        {
+                            ObiNode preceedingNode = audioWrapperNode.PrecedingNode ;
+                            if (preceedingNode == null || preceedingNode is SectionNode || ((EmptyNode)preceedingNode).CustomRole != audioWrapperNode.CustomRole)
+                            {
+                                m_Skippable_IdMap.Add(audioWrapperNode, new List<string>());
+                                XmlNode seqChild = seqParent;
+                                while (seqChild != smilNode)
+                                {
+                                    if (seqChild.Attributes.GetNamedItem("id") != null) m_Skippable_IdMap[audioWrapperNode].Add(Path.GetFileName(fullSmilPath) + "#" + seqChild.Attributes.GetNamedItem("id").Value);
+                                    seqChild = seqChild.FirstChild;
+                                }
+
+
+                                AssignSkippableToAnchorNode();
+                            }
+                        }
                     }
                     else
                     {
@@ -160,6 +178,13 @@ namespace Obi.ImportExport
                         {
                             string strReference = anchorNode.Attributes.GetNamedItem("href").Value;
                             audioWrapperNode.SetRole(EmptyNode.Role.Anchor, null);
+                            if (!m_AnchorNodeSmilRefMap.ContainsKey(audioWrapperNode))
+                            {
+                                string[] refArray = strReference.Split('#');
+                                if (refArray.Length == 1 || string.IsNullOrEmpty(refArray[0])) strReference = Path.GetFileName(fullSmilPath) + "#" + refArray[refArray.Length - 1];
+                                m_AnchorNodeSmilRefMap.Add(audioWrapperNode, strReference);
+                                
+                            }
                         }
 
                     }
@@ -174,6 +199,29 @@ namespace Obi.ImportExport
 
             return audioWrapperNode;
              
+        }
+
+        private void AssignSkippableToAnchorNode()
+        {
+            List<EmptyNode> nodeToRemove = new List<EmptyNode>();
+            foreach ( EmptyNode anchor in m_AnchorNodeSmilRefMap.Keys )
+            {
+                string strRef = m_AnchorNodeSmilRefMap[anchor];
+                foreach (EmptyNode skippable in m_Skippable_IdMap.Keys)
+                {
+                    List<string> idList = m_Skippable_IdMap[skippable];
+                    foreach (string id in idList)
+                    {
+                        if (strRef == id)
+                        {
+                            anchor.AssociatedNode = skippable;
+                            nodeToRemove.Add(anchor);
+                        }
+                    }
+
+                }
+            }
+            foreach (EmptyNode n in nodeToRemove) m_AnchorNodeSmilRefMap.Remove(n);
         }
 
         protected override void AddPagePropertiesToAudioNode(TreeNode audioWrapperNode, XmlNode pageTargetNode)
