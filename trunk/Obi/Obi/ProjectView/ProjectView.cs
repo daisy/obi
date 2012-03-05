@@ -1372,8 +1372,9 @@ namespace Obi.ProjectView
                         mPresentation.AddCustomClass(EmptyNode.Footnote, null);   //@AssociateNode
                         mPresentation.AddCustomClass(EmptyNode.Sidebar, null);    //@AssociateNode
                         mPresentation.AddCustomClass(EmptyNode.ProducerNote, null);      //@AssociateNode
+                        mPresentation.AddCustomClass(EmptyNode.Note, null);           //@AssociateNode 
                         mPresentation.AddCustomClass(EmptyNode.Annotation, null);         //@AssociateNode   
-                        mPresentation.AddCustomClass(EmptyNode.EndNote, null);           //@AssociateNode 
+                        mPresentation.AddCustomClass(EmptyNode.EndNote, null);           //@AssociateNode
                     }
                     else
                     {
@@ -3596,7 +3597,7 @@ for (int j = 0;
                 {
                     foreach (KeyValuePair<EmptyNode, EmptyNode> pair in AssociateSpecialNode.DictionaryToMapValues)
                     {
-                        
+                          
                         if (pair.Key.AssociatedNode == null
                             || pair.Key.AssociatedNode != pair.Value)
                         {
@@ -3606,7 +3607,6 @@ for (int j = 0;
 
                             if (pair.Value != null)
                             {
-                                
                                 cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.AssociateAnchorNode(this, pair.Key, pair.Value));
                             }
                             else if (pair.Value == null && pair.Key.AssociatedNode != null)
@@ -3622,7 +3622,7 @@ for (int j = 0;
                             {
                                 MessageBox.Show(ex.ToString());
                             }
-                            //pair.Key.AssociatedNode = pair.Value;
+                            //pair.Key.AssociatedNode = pair.Value;                         
                         }
                     }//foreach ends
                 }//dialog ok ends
