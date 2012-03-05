@@ -1748,6 +1748,7 @@ namespace Obi
             navList.Add(EmptyNode.Annotation);
             navList.Add(EmptyNode.EndNote);
             navList.Add(EmptyNode.Footnote);
+            navList.Add(EmptyNode.Note);
             navList.Add(EmptyNode.Sidebar);
             navList.Add(EmptyNode.ProducerNote);
             if (CheckedPageNumbers () && CheckedForEmptySections ())

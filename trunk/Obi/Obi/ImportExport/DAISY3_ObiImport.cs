@@ -140,7 +140,7 @@ namespace Obi.ImportExport
                 XmlNode seqParent = smilNode != null ? smilNode.ParentNode : null;
                 while (seqParent != null)
                 {
-                    if (seqParent.Name == "seq" || seqParent.Attributes.GetNamedItem("customTest") != null) break;
+                    if (seqParent.Name == "seq" || (seqParent.Attributes != null && seqParent.Attributes.GetNamedItem("customTest") != null)) break;
                     seqParent = seqParent.ParentNode;
                     
                 }
@@ -150,7 +150,7 @@ namespace Obi.ImportExport
                     string strClass = seqParent.Attributes.GetNamedItem("class").Value;
 
                     if (strClass == EmptyNode.Annotation || strClass == EmptyNode.EndNote || strClass == EmptyNode.Footnote
-                        || strClass == EmptyNode.ProducerNote || strClass == EmptyNode.Sidebar)
+                        || strClass == EmptyNode.ProducerNote || strClass == EmptyNode.Sidebar || strClass == EmptyNode.Note)
                     {
                         audioWrapperNode.SetRole(EmptyNode.Role.Custom, strClass);
                         if (!m_Skippable_IdMap.ContainsKey(audioWrapperNode))
@@ -160,7 +160,7 @@ namespace Obi.ImportExport
                             {
                                 m_Skippable_IdMap.Add(audioWrapperNode, new List<string>());
                                 XmlNode seqChild = seqParent;
-                                while (seqChild != smilNode)
+                                while (seqChild != null && seqChild != smilNode)
                                 {
                                     if (seqChild.Attributes.GetNamedItem("id") != null) m_Skippable_IdMap[audioWrapperNode].Add(Path.GetFileName(fullSmilPath) + "#" + seqChild.Attributes.GetNamedItem("id").Value);
                                     seqChild = seqChild.FirstChild;
