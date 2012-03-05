@@ -145,12 +145,12 @@ namespace Obi.ImportExport
                     
                 }
 
-                if (seqParent != null && seqParent.Attributes.GetNamedItem("class") != null)
-                {
-                    string strClass = seqParent.Attributes.GetNamedItem("class").Value;
+                string strClass = null;
 
-                    if (strClass == EmptyNode.Annotation || strClass == EmptyNode.EndNote || strClass == EmptyNode.Footnote
-                        || strClass == EmptyNode.ProducerNote || strClass == EmptyNode.Sidebar || strClass == EmptyNode.Note)
+                if (seqParent != null && seqParent.Attributes.GetNamedItem("class") != null
+                && (strClass = seqParent.Attributes.GetNamedItem("class").Value) != null
+                && (strClass == EmptyNode.Annotation || strClass == EmptyNode.EndNote || strClass == EmptyNode.Footnote
+                || strClass == EmptyNode.ProducerNote || strClass == EmptyNode.Sidebar || strClass == EmptyNode.Note))
                     {
                         audioWrapperNode.SetRole(EmptyNode.Role.Custom, strClass);
                         if (!m_Skippable_IdMap.ContainsKey(audioWrapperNode))
@@ -170,9 +170,9 @@ namespace Obi.ImportExport
                                 AssignSkippableToAnchorNode();
                             }
                         }
-                    }
-                    else if (seqParent != null && seqParent.Attributes != null && seqParent.Attributes.GetNamedItem("customTest") != null )
-                    {
+                }
+                else if (seqParent != null && seqParent.Attributes != null && seqParent.Attributes.GetNamedItem("customTest") != null )
+                {
                         
                         XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementWithName(seqParent, true, "a", seqParent.NamespaceURI);
                         if (anchorNode != null)
@@ -187,9 +187,9 @@ namespace Obi.ImportExport
                                 m_AnchorNodeSmilRefMap.Add(audioWrapperNode, strReference);
                                 
                             }
-                        }
+                        
 
-                    }
+                }
                 }
             }
             else
