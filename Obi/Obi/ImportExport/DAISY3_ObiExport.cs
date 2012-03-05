@@ -20,6 +20,7 @@ namespace Obi.ImportExport
     {
         private int m_AudioFileSectionLevel;
         private Dictionary<XmlNode, urakawa.core.TreeNode> m_AnchorXmlNodeToReferedNodeMap = new Dictionary<XmlNode, urakawa.core.TreeNode>();
+        private Dictionary<urakawa.core.TreeNode, string> m_Skippable_UpstreamIdMap = new Dictionary<TreeNode, string>();
         private Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
         
         public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3, SampleRate sampleRate, bool skipACM, int audioFileSectionLevel)
@@ -283,6 +284,10 @@ namespace Obi.ImportExport
                         Seq_SpecialNode.AppendChild(anchorNode);
                         XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "external", "false");
                         XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "");
+                        if (m_Skippable_UpstreamIdMap.Count > 0 && m_Skippable_UpstreamIdMap.ContainsKey(((EmptyNode) special_UrakawaNode).AssociatedNode))
+                        {
+                            anchorNode.Attributes.GetNamedItem("href").Value = m_Skippable_UpstreamIdMap[((EmptyNode) special_UrakawaNode).AssociatedNode];
+                        }
                         if (!m_AnchorSmilDoc_SmileFileNameMap.ContainsKey(smilDocument))  m_AnchorSmilDoc_SmileFileNameMap.Add(smilDocument, smilFileName);
                         //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "#" + ID_SmilPrefix + m_TreeNode_XmlNodeMap[n].Attributes.GetNamedItem("idref").Value.Replace("#", ""));
 
@@ -294,6 +299,7 @@ namespace Obi.ImportExport
                     if (IsSkippable((EmptyNode)n))
                     {
                         
+                        bool foundAnchor = false;
                         foreach (XmlNode xn in m_AnchorXmlNodeToReferedNodeMap.Keys)
                         {
                             if (m_AnchorXmlNodeToReferedNodeMap[xn] == n)
@@ -304,9 +310,11 @@ namespace Obi.ImportExport
                                 //anchorNode.Attributes.GetNamedItem("href").Value= smilFileName + "#" + strSeqID;
 
                                 anchorNode.Attributes.GetNamedItem("href").Value =smilFileName + "#" + strSeqID;
+                                foundAnchor = true;
                                 break;
                             }
                         }
+                        if ( !foundAnchor ) m_Skippable_UpstreamIdMap.Add ( n, smilFileName + "#" + strSeqID);
                     }
 
                     if ( n is EmptyNode &&  ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
