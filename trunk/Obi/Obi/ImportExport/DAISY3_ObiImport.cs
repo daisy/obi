@@ -140,7 +140,7 @@ namespace Obi.ImportExport
                 XmlNode seqParent = smilNode != null ? smilNode.ParentNode : null;
                 while (seqParent != null)
                 {
-                    if (seqParent.Name == "seq" || (seqParent.Attributes != null && seqParent.Attributes.GetNamedItem("customTest") != null)) break;
+                    if ((seqParent.Name == "seq" || seqParent.Name == "par"  ) && (seqParent.Attributes != null && seqParent.Attributes.GetNamedItem("customTest") != null)) break;
                     seqParent = seqParent.ParentNode;
                     
                 }
@@ -171,11 +171,13 @@ namespace Obi.ImportExport
                             }
                         }
                     }
-                    else
+                    else if (seqParent != null && seqParent.Attributes != null && seqParent.Attributes.GetNamedItem("customTest") != null )
                     {
+                        
                         XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementWithName(seqParent, true, "a", seqParent.NamespaceURI);
                         if (anchorNode != null)
                         {
+                            
                             string strReference = anchorNode.Attributes.GetNamedItem("href").Value;
                             audioWrapperNode.SetRole(EmptyNode.Role.Anchor, null);
                             if (!m_AnchorNodeSmilRefMap.ContainsKey(audioWrapperNode))
