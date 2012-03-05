@@ -283,7 +283,7 @@ namespace Obi.ImportExport
                         Seq_SpecialNode.AppendChild(anchorNode);
                         XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "external", "false");
                         XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "");
-                        m_AnchorSmilDoc_SmileFileNameMap.Add(smilDocument, smilFileName);
+                        if (!m_AnchorSmilDoc_SmileFileNameMap.ContainsKey(smilDocument))  m_AnchorSmilDoc_SmileFileNameMap.Add(smilDocument, smilFileName);
                         //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "#" + ID_SmilPrefix + m_TreeNode_XmlNodeMap[n].Attributes.GetNamedItem("idref").Value.Replace("#", ""));
 
                         //isBranchingActive = true;
@@ -865,6 +865,7 @@ namespace Obi.ImportExport
                 && ( node.CustomRole == EmptyNode.Annotation
                 || node.CustomRole == EmptyNode.EndNote
                 || node.CustomRole == EmptyNode.Footnote
+                || node.CustomRole == EmptyNode.Note
                 || node.CustomRole == EmptyNode.Sidebar
                 || node.CustomRole == EmptyNode.ProducerNote))
             {
