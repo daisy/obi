@@ -37,7 +37,7 @@ namespace Obi
         public static readonly string Sidebar = "sidebar";
         public static readonly string ProducerNote = "prodnote";
         public static readonly string Note = "note";
-        public static readonly string EndNote = "end note";
+        public static readonly string EndNote = "endnote";
         public static readonly string Annotation = "annotation";
         private EmptyNode m_AssociatedNode = null;                            //@AssociateNode  
         private static readonly string XUK_ATTR_NAME_AssociateNode = "ANode"; //attribute for associate node location
