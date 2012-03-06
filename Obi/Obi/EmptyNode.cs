@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections.Generic ;
 
 using urakawa.command;
 using urakawa.core;
@@ -91,6 +91,25 @@ namespace Obi
         public virtual string BaseStringShort() { return BaseStringShort(0.0); }
 
         public override double Duration { get { return 0.0; } }
+
+        private List<string> m_SkippableNamesList;
+        public List<string> SkippableNamesList
+        {
+            get
+            {
+                if (m_SkippableNamesList == null)
+                {
+                    m_SkippableNamesList = new List<string>();
+                    m_SkippableNamesList.Add(EmptyNode.Annotation);
+                    m_SkippableNamesList.Add(EmptyNode.EndNote);
+                    m_SkippableNamesList.Add(EmptyNode.Footnote);
+                    m_SkippableNamesList.Add(EmptyNode.Note);
+                    m_SkippableNamesList.Add(EmptyNode.ProducerNote);
+                    m_SkippableNamesList.Add(EmptyNode.Sidebar);
+                }
+                return m_SkippableNamesList;
+            }
+        }
 
         /// <summary>
         /// This event is sent when we change the kind or custom class of a node.
