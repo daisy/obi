@@ -124,6 +124,12 @@ namespace Obi.Dialogs
             mNewCustomRole.Focus();
         }
 
-        
+        private void mCustomRolesList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(EmptyNode.SkippableNamesList.Contains(mCustomRolesList.SelectedItem.ToString()))
+                mRemove.Enabled = false;
+            else
+                mRemove.Enabled = true;           
+        }       
     }
 }
