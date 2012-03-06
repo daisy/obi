@@ -92,8 +92,8 @@ namespace Obi
 
         public override double Duration { get { return 0.0; } }
 
-        private List<string> m_SkippableNamesList;
-        public List<string> SkippableNamesList
+        private static List<string> m_SkippableNamesList;
+        public static List<string> SkippableNamesList
         {
             get
             {

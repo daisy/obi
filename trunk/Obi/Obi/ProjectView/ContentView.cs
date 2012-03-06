@@ -4643,7 +4643,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_AssignRole_PageMenuItem.Enabled = mProjectView.CanAssignARole;
             Context_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             Context_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
-            Context_AssignRole_AnchorMenuItem.Enabled = mProjectView.CanAssignAnchorRole && !mProjectView.TransportBar.IsRecorderActive;  //@AssociateNode
+            Context_AssignRole_AnchorMenuItem.Enabled = mProjectView.CanAssignAnchorRole && !mProjectView.TransportBar.IsRecorderActive;
             Context_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
             Context_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Enabled = mProjectView.CanApplyPhraseDetectionInWholeProject;
@@ -4669,7 +4669,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null; //@AssociateNode           
             Context_Skippable_MoveToEndNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index < mProjectView.Selection.Node.ParentAs<SectionNode>().PhraseChildCount - 1 && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Custom;   //@AssociateNode
             Context_Skippable_MoveToStartNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Custom && mProjectView.Selection.Node.Index > 0;  //@AssociateNode()
-            Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor;
+            Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null;
             //Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView != null && !mProjectView.TransportBar.IsRecorderActive && (mProjectView.Selection == null || (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Custom && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Plain));
             Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView != null && !mProjectView.TransportBar.IsRecorderActive && (mProjectView.Selection == null || (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Custom));
             }
