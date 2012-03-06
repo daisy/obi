@@ -65,7 +65,7 @@
             this.m_cb_SpecialPhrases.Location = new System.Drawing.Point(6, 42);
             this.m_cb_SpecialPhrases.Name = "m_cb_SpecialPhrases";
             this.m_cb_SpecialPhrases.Size = new System.Drawing.Size(264, 24);
-            this.m_cb_SpecialPhrases.TabIndex = 1;
+            this.m_cb_SpecialPhrases.TabIndex = 0;
             this.m_cb_SpecialPhrases.Text = "Click to Select..";
             // 
             // m_btnFind
@@ -77,7 +77,7 @@
             this.m_btnFind.Margin = new System.Windows.Forms.Padding(4);
             this.m_btnFind.Name = "m_btnFind";
             this.m_btnFind.Size = new System.Drawing.Size(100, 28);
-            this.m_btnFind.TabIndex = 0;
+            this.m_btnFind.TabIndex = 1;
             this.m_btnFind.Text = "&Find";
             this.m_btnFind.UseVisualStyleBackColor = true;
             this.m_btnFind.Click += new System.EventHandler(this.m_btnFind_Click);
@@ -120,8 +120,10 @@
             // 
             // SpecialPhraseList
             // 
+            this.AcceptButton = this.m_btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btnCancel;
             this.ClientSize = new System.Drawing.Size(423, 410);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOK);
