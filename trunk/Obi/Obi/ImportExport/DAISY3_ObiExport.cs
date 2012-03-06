@@ -311,7 +311,7 @@ namespace Obi.ImportExport
 
                                 anchorNode.Attributes.GetNamedItem("href").Value =smilFileName + "#" + strSeqID;
                                 foundAnchor = true;
-                                break;
+                                //break;
                             }
                         }
                         if ( !foundAnchor ) m_Skippable_UpstreamIdMap.Add ( n, smilFileName + "#" + strSeqID);
