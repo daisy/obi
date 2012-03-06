@@ -847,7 +847,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                     {
                         EmptyNode eNode = (EmptyNode)treeNode;
                         eNode.TODO = true;
-                        if (eNode.Role_ != EmptyNode.Role.Custom)
+                        if (eNode.Role_ == EmptyNode.Role.Plain)
                         {
                             eNode.Role_ = EmptyNode.Role.Custom;
                             eNode.CustomRole = Localizer.Message("DAISY3_ObiImport_ErrorsList_truncated_audio");
