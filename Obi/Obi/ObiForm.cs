@@ -1751,7 +1751,7 @@ namespace Obi
             navList.Add(EmptyNode.Note);
             navList.Add(EmptyNode.Sidebar);
             navList.Add(EmptyNode.ProducerNote);
-            if (CheckedPageNumbers () && CheckedForEmptySections ())
+            if (CheckedPageNumbers () && CheckedForEmptySectionsAndAnchoredReferences ())
                 {
                 //Dialogs.ExportDirectory dialog =
                 //new ExportDirectory(Path.Combine(Directory.GetParent(mSession.Path).FullName,
@@ -1902,10 +1902,11 @@ namespace Obi
         // Look for sections which will not be exported and warn the user.
         // If there are empty sections, issue a warning and ask whether to continue.
         // Return true if there are no empty sections, or the user chose to continue.
-        private bool CheckedForEmptySections ()
+        private bool CheckedForEmptySectionsAndAnchoredReferences ()
             {
             bool cont = true;
             bool keepWarning = true;
+            string anchorErrors = null;
             try
                 {
                 mSession.Presentation.RootNode.AcceptDepthFirst (
@@ -1919,9 +1920,25 @@ namespace Obi
                             keepWarning = dialog.KeepWarning;
                             return false;
                             }
+                            if ( n is EmptyNode )
+                            {
+                                EmptyNode eNode = (EmptyNode) n ;
+                                if (eNode.Role_ == EmptyNode.Role.Anchor && eNode.AssociatedNode != null && !(eNode.AssociatedNode is PhraseNode ))
+                                {
+                                    anchorErrors += "\n" + string.Format (Localizer.Message ("Export_AnchorErrors"), eNode.ParentAs<SectionNode>().Label, eNode.ToString () );
+                                }
+                            }
                         return true;
                         },
                     delegate ( urakawa.core.TreeNode n ) { } );
+                if (anchorErrors != null)
+                {
+                    if (MessageBox.Show(Localizer.Message("Export_SkippableWithEmptyNode") + "\n" + anchorErrors,
+                        Localizer.Message("Caption_Error"), MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                    {
+                        return false;
+                    }
+                }
                 return cont;
                 }
             catch (System.Exception ex)
@@ -1929,6 +1946,8 @@ namespace Obi
                 MessageBox.Show ( ex.ToString () );
                 return false;
                 }
+                
+
             }
 
         #endregion
