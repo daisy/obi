@@ -2007,4 +2007,10 @@ Error text: {1}</value>
   <data name="Start_node_index_greater_than_end" xml:space="preserve">
     <value>Begin node index is greater than end node index. Please choose again.</value>
   </data>
+  <data name="Export_AnchorErrors" xml:space="preserve">
+    <value>Section name: {0}, Phrase: {1}</value>
+  </data>
+  <data name="Export_SkippableWithEmptyNode" xml:space="preserve">
+    <value>Following anchors refer to skippable elements with empty phrases which willl not be exported. Please click cancel to correct these errors</value>
+  </data>
 </root>
