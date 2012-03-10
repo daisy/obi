@@ -123,7 +123,7 @@ namespace Obi
 //start with adding data providers
             XmlNode oldDataProviders = sourceXmlDoc.GetElementsByTagName("mDataProviders")[0];
             XmlNode newDataProviders = destXmlDoc.GetElementsByTagName("DataProviders")[0];
-            foreach (XmlNode dataProviderItem in XmlDocumentHelper.GetChildrenElementsWithName(oldDataProviders, true, "mDataProviderItem", oldDataProviders.NamespaceURI, false))
+            foreach (XmlNode dataProviderItem in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(oldDataProviders, true, "mDataProviderItem", oldDataProviders.NamespaceURI, false))
             {
                 XmlNode newFileDataProvider = destXmlDoc.CreateElement("FileDataProvider", newDataProviders.NamespaceURI);
                 newDataProviders.AppendChild(newFileDataProvider);
@@ -147,7 +147,7 @@ namespace Obi
 
             float audioMediaLoopPercentage = 0 ;
 
-            foreach (XmlNode oldMediaDataItem in XmlDocumentHelper.GetChildrenElementsWithName(oldAudioMediaDatas, true, "mMediaDataItem", oldAudioMediaDatas.NamespaceURI, false))
+            foreach (XmlNode oldMediaDataItem in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(oldAudioMediaDatas, true, "mMediaDataItem", oldAudioMediaDatas.NamespaceURI, false))
             {
                 audioMediaLoopPercentage += 0.05f;
                 if (audioMediaLoopPercentage >= progressPercentage + 1 && progressPercentage <= 50)
@@ -164,7 +164,7 @@ namespace Obi
                 XmlNode wavClips = destXmlDoc.CreateElement("WavClips", newAudioMediaItem.NamespaceURI);
                 newAudioMediaItem.AppendChild(wavClips);
 
-                foreach (XmlNode wavItem in XmlDocumentHelper.GetChildrenElementsWithName(oldMediaDataItem, true, "WavClip", oldAudioMediaDatas.NamespaceURI, false))
+                foreach (XmlNode wavItem in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(oldMediaDataItem, true, "WavClip", oldAudioMediaDatas.NamespaceURI, false))
                 {
                     if (RequestCancellation)
                     {
@@ -198,8 +198,8 @@ namespace Obi
             }
 
             //change the root uri to null
-            XmlNode newPresentations = XmlDocumentHelper.GetFirstChildElementWithName(destXmlDoc.DocumentElement, true, "Presentations", null);
-            XmlNode newObiPresentation = XmlDocumentHelper.GetFirstChildElementWithName(destXmlDoc.DocumentElement, true, "ObiPresentation", null);
+            XmlNode newPresentations = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(destXmlDoc.DocumentElement, true, "Presentations", null);
+            XmlNode newObiPresentation = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(destXmlDoc.DocumentElement, true, "ObiPresentation", null);
             newObiPresentation.Attributes.GetNamedItem("RootUri").Value = "" ;
 
             UpdateRegisteredTypes(destXmlDoc);
@@ -222,12 +222,12 @@ namespace Obi
                 return;
             }
             //import the section and phrase tree from the rootnode
-            XmlNode oldRootNode  = XmlDocumentHelper.GetFirstChildElementWithName(sourceXmlDoc.DocumentElement, true, "mRootNode", null);
-            XmlNode oldRootChildrenContainer = XmlDocumentHelper.GetFirstChildElementWithName(oldRootNode, true, "mChildren", oldRootNode.NamespaceURI);
+            XmlNode oldRootNode  = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(sourceXmlDoc.DocumentElement, true, "mRootNode", null);
+            XmlNode oldRootChildrenContainer = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(oldRootNode, true, "mChildren", oldRootNode.NamespaceURI);
 
-            XmlNode newRootNode = XmlDocumentHelper.GetFirstChildElementWithName(destXmlDoc.DocumentElement, true, "RootNode", null);
-            XmlNode newRootChildrenContainer = XmlDocumentHelper.GetFirstChildElementWithName(newRootNode, true, "Children", newRootNode.NamespaceURI);
-            XmlNode namespaceNode= XmlDocumentHelper.GetFirstChildElementWithName(newRootNode, true, "root", null);
+            XmlNode newRootNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(destXmlDoc.DocumentElement, true, "RootNode", null);
+            XmlNode newRootChildrenContainer = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(newRootNode, true, "Children", newRootNode.NamespaceURI);
+            XmlNode namespaceNode= XmlDocumentHelper.GetFirstChildElementOrSelfWithName(newRootNode, true, "root", null);
 
             if (RequestCancellation)
             {
@@ -257,15 +257,15 @@ RenameProjectFilesAfterOperation();
 
         private void ImportMetadatas(XmlDocument sourceXmlDoc, XmlDocument destXmlDoc)
         {
-            XmlNode OldMetadataParent = XmlDocumentHelper.GetFirstChildElementWithName(sourceXmlDoc.DocumentElement, true, "mMetadata", null);
-            XmlNode newMetadatas = XmlDocumentHelper.GetFirstChildElementWithName(destXmlDoc.DocumentElement, true, "Metadatas", null);
+            XmlNode OldMetadataParent = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(sourceXmlDoc.DocumentElement, true, "mMetadata", null);
+            XmlNode newMetadatas = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(destXmlDoc.DocumentElement, true, "Metadatas", null);
 
             //foreach (XmlNode childToRemove in newMetadatas.ChildNodes) newMetadatas.RemoveChild(childToRemove);
             Dictionary<string, XmlNode> existingMetadataAttributeNode = new Dictionary<string, XmlNode>();
-            foreach (XmlNode newMetadataAttributeItem in XmlDocumentHelper.GetChildrenElementsWithName(newMetadatas, true, "MetadataAttribute", null, false)) 
+            foreach (XmlNode newMetadataAttributeItem in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(newMetadatas, true, "MetadataAttribute", null, false)) 
                 existingMetadataAttributeNode.Add(newMetadataAttributeItem.Attributes.GetNamedItem("Name").Value, newMetadataAttributeItem);
 
-            foreach (XmlNode metadataItem in XmlDocumentHelper.GetChildrenElementsWithName(OldMetadataParent, true, "Metadata", OldMetadataParent.NamespaceURI, false))
+            foreach (XmlNode metadataItem in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(OldMetadataParent, true, "Metadata", OldMetadataParent.NamespaceURI, false))
             {
                 if (existingMetadataAttributeNode.ContainsKey(metadataItem.Attributes.GetNamedItem("name").Value))
                 {
@@ -289,9 +289,9 @@ RenameProjectFilesAfterOperation();
 
         private void UpdateRegisteredTypes(XmlDocument destXmlDoc)
         {
-            XmlNode treeNodeFactory = XmlDocumentHelper.GetFirstChildElementWithName(destXmlDoc.DocumentElement, true, "TreeNodeFactory", null);
+            XmlNode treeNodeFactory = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(destXmlDoc.DocumentElement, true, "TreeNodeFactory", null);
             XmlNode refRootNode = null;
-            foreach (XmlNode typeNode in XmlDocumentHelper.GetChildrenElementsWithName(treeNodeFactory, true,"Type",null,false ) )
+            foreach (XmlNode typeNode in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(treeNodeFactory, true,"Type",null,false ) )
             {
                 if (typeNode.Attributes.GetNamedItem("XukLocalName").Value == "root")
                 {

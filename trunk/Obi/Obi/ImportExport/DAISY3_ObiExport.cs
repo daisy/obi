@@ -80,8 +80,8 @@ namespace Obi.ImportExport
         {
             XmlDocument ncxDocument = CreateStub_NcxDocument();
 
-            XmlNode ncxRootNode = XmlDocumentHelper.GetFirstChildElementWithName(ncxDocument, true, "ncx", null); //ncxDocument.GetElementsByTagName("ncx")[0];
-            XmlNode navMapNode = XmlDocumentHelper.GetFirstChildElementWithName(ncxDocument, true, "navMap", null); //ncxDocument.GetElementsByTagName("navMap")[0];
+            XmlNode ncxRootNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(ncxDocument, true, "ncx", null); //ncxDocument.GetElementsByTagName("ncx")[0];
+            XmlNode navMapNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(ncxDocument, true, "navMap", null); //ncxDocument.GetElementsByTagName("navMap")[0];
             Dictionary<urakawa.core.TreeNode, XmlNode> treeNode_NavNodeMap = new Dictionary<urakawa.core.TreeNode, XmlNode>();
             m_FilesList_Smil = new List<string>();
             m_FilesList_Audio = new List<string>();
@@ -210,7 +210,7 @@ namespace Obi.ImportExport
                 if (smilDocument == null)
                 {
                     smilDocument = CreateStub_SmilDocument();
-                    mainSeq = XmlDocumentHelper.GetFirstChildElementWithName(smilDocument, true, "body", null).FirstChild;
+                    mainSeq = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilDocument, true, "body", null).FirstChild;
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeq, "id", GetNextID(ID_SmilPrefix));
                     smilFileName = GetNextSmilFileName;
                     //m_ProgressPercentage += Convert.ToInt32((m_SmilFileNameCounter / m_ListOfLevels.Count) * 100 * 0.7);
@@ -305,7 +305,7 @@ namespace Obi.ImportExport
                             if (m_AnchorXmlNodeToReferedNodeMap[xn] == n)
                             {
                                 
-                                XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementWithName(xn, true, "a", xn.NamespaceURI); 
+                                XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xn, true, "a", xn.NamespaceURI); 
                                 //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", smilFileName + "#" + strSeqID);
                                 //anchorNode.Attributes.GetNamedItem("href").Value= smilFileName + "#" + strSeqID;
 
@@ -481,7 +481,7 @@ namespace Obi.ImportExport
                         currentSmilCustomTestList.Add("pagenum");
                     }
 
-                    XmlNode pageListNode = XmlDocumentHelper.GetFirstChildElementWithName(ncxDocument, true, "pageList", null);
+                    XmlNode pageListNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(ncxDocument, true, "pageList", null);
                     if (pageListNode == null)
                     {
                         pageListNode = ncxDocument.CreateElement(null, "pageList", ncxRootNode.NamespaceURI);
@@ -549,7 +549,7 @@ namespace Obi.ImportExport
                 XmlNode navListNode = null;
 
                 //= getFirstChildElementsWithName ( ncxDocument, true, "navList", null );
-                foreach (XmlNode xn in XmlDocumentHelper.GetChildrenElementsWithName(ncxRootNode, true, "navList", ncxRootNode.NamespaceURI, true))
+                foreach (XmlNode xn in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(ncxRootNode, true, "navList", ncxRootNode.NamespaceURI, true))
                 {
                     if (xn.Attributes.GetNamedItem("class").Value == navListNodeName)
                     {
@@ -795,12 +795,12 @@ namespace Obi.ImportExport
                 if (smilDocument != null)
                 {
                     // update duration in seq node
-                    XmlNode mainSeqNode = XmlDocumentHelper.GetFirstChildElementWithName(smilDocument, true, "body", null).FirstChild; //smilDocument.GetElementsByTagName("body")[0].FirstChild;
+                    XmlNode mainSeqNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilDocument, true, "body", null).FirstChild; //smilDocument.GetElementsByTagName("body")[0].FirstChild;
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "dur", FormatTimeString(durationOfCurrentSmil));
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "fill", "remove");
                     AddMetadata_Smil(smilDocument, FormatTimeString(smilElapseTime), currentSmilCustomTestList);
 
-                    SaveXukAction.WriteXmlDocument(smilDocument, Path.Combine(m_OutputDirectory, smilFileName));
+                    XmlReaderWriterHelper.WriteXmlDocument(smilDocument, Path.Combine(m_OutputDirectory, smilFileName));
 
                     smilElapseTime.Add(durationOfCurrentSmil);
                     m_FilesList_Smil.Add(smilFileName);
@@ -824,7 +824,7 @@ namespace Obi.ImportExport
             ////System.Windows.Forms.MessageBox.Show(playOrderList_Sorted.Count.ToString() );
             foreach (XmlNode xn in playOrderList_Sorted)
             {
-                XmlNode referedContentNode = XmlDocumentHelper.GetFirstChildElementWithName(xn, false, "content", xn.NamespaceURI);
+                XmlNode referedContentNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xn, false, "content", xn.NamespaceURI);
 
                 string contentNode_Src = referedContentNode.Attributes.GetNamedItem("src").Value;
                 
@@ -843,7 +843,7 @@ namespace Obi.ImportExport
             // rewrite the smil files that has anchor references
             foreach (XmlDocument sd in m_AnchorSmilDoc_SmileFileNameMap.Keys)
             {
-                SaveXukAction.WriteXmlDocument(sd, Path.Combine(m_OutputDirectory, m_AnchorSmilDoc_SmileFileNameMap[sd] ));
+                XmlReaderWriterHelper.WriteXmlDocument(sd, Path.Combine(m_OutputDirectory, m_AnchorSmilDoc_SmileFileNameMap[sd] ));
             }
             m_AnchorSmilDoc_SmileFileNameMap = null;
             if (RequestCancellation)
@@ -863,7 +863,7 @@ namespace Obi.ImportExport
             // write ncs document to file
             m_TotalTime = new Time(smilElapseTime.AsTimeSpan);
             AddMetadata_Ncx(ncxDocument, totalPageCount.ToString(), maxNormalPageNumber.ToString(), maxDepth.ToString(), ncxCustomTestList);
-            SaveXukAction.WriteXmlDocument(ncxDocument, Path.Combine(m_OutputDirectory, m_Filename_Ncx));
+            XmlReaderWriterHelper.WriteXmlDocument(ncxDocument, Path.Combine(m_OutputDirectory, m_Filename_Ncx));
         }
 
         private bool IsSkippable (EmptyNode node)
