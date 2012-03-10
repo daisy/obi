@@ -15,6 +15,7 @@ namespace Obi
         public Color BlockBackColor_Silence;
         public Color BlockBackColor_TODO;
         public Color BlockBackColor_Unused;
+        public Color BlockBackColor_Anchor;
 
         public Color BlockForeColor_Custom;
         public Color BlockForeColor_Empty;
@@ -24,6 +25,7 @@ namespace Obi
         public Color BlockForeColor_Selected;
         public Color BlockForeColor_Silence;
         public Color BlockForeColor_TODO;
+        public Color BlockForeColor_Anchor;
         public Color BlockForeColor_Unused;
 
         public Color ContentViewBackColor;
@@ -102,6 +104,7 @@ namespace Obi
             settings.BlockBackColor_Silence = Color.Purple;
             settings.BlockBackColor_Selected = SystemColors.Highlight;
             settings.BlockBackColor_TODO = Color.Red;
+            settings.BlockBackColor_Anchor = Color.Blue;
             settings.BlockBackColor_Unused = SystemColors.ControlDark;
 
             settings.BlockForeColor_Custom = SystemColors.HighlightText;
@@ -112,6 +115,7 @@ namespace Obi
             settings.BlockForeColor_Selected = SystemColors.HighlightText;
             settings.BlockForeColor_Silence = SystemColors.HighlightText;
             settings.BlockForeColor_TODO = Color.Yellow;
+            settings.BlockForeColor_Anchor = SystemColors.HighlightText;
             settings.BlockForeColor_Unused = SystemColors.HighlightText;
 
             settings.mBlockLayoutSelectedColor = SystemColors.Highlight;

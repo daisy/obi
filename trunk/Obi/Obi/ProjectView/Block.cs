@@ -132,6 +132,7 @@ namespace Obi.ProjectView
                     !mNode.Used ? settings.BlockBackColor_Unused :
                     mNode.TODO ? settings.BlockBackColor_TODO :
                     mNode.Role_ == EmptyNode.Role.Custom ? settings.BlockBackColor_Custom :
+                    mNode.Role_ == EmptyNode.Role.Anchor? settings.BlockBackColor_Anchor:
                     mNode.Role_ == EmptyNode.Role.Heading ? settings.BlockBackColor_Heading :
                     mNode.Role_ == EmptyNode.Role.Page ? settings.BlockBackColor_Page :
                     !(mNode is PhraseNode) ? settings.BlockBackColor_Empty :
@@ -142,6 +143,7 @@ namespace Obi.ProjectView
                     !mNode.Used ? settings.BlockForeColor_Unused :
                     mNode.TODO ? settings.BlockForeColor_TODO :
                     mNode.Role_ == EmptyNode.Role.Custom ? settings.BlockForeColor_Custom :
+                    mNode.Role_ == EmptyNode.Role.Anchor? settings.BlockForeColor_Anchor:
                     mNode.Role_ == EmptyNode.Role.Heading ? settings.BlockForeColor_Heading :
                     mNode.Role_ == EmptyNode.Role.Page ? settings.BlockForeColor_Page :
                     !(mNode is PhraseNode) ? settings.BlockForeColor_Empty :
