@@ -108,7 +108,7 @@ namespace Obi.ImportExport
             }
             //XmlProperty xmlProp = parentNode.Presentation.PropertyFactory.CreateXmlProperty();
             //treeNode.AddProperty(xmlProp);
-            XmlNode textNode = XmlDocumentHelper.GetFirstChildElementWithName(navPoint, true, "text", navPoint.NamespaceURI);
+            XmlNode textNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(navPoint, true, "text", navPoint.NamespaceURI);
             //xmlProp.LocalName = "level";//+":" + textNode.InnerText;
             // create urakawa tree node
 
@@ -174,7 +174,7 @@ namespace Obi.ImportExport
                 else if (seqParent != null && seqParent.Attributes != null && seqParent.Attributes.GetNamedItem("customTest") != null )
                 {
                         
-                        XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementWithName(seqParent, true, "a", seqParent.NamespaceURI);
+                        XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(seqParent, true, "a", seqParent.NamespaceURI);
                         if (anchorNode != null)
                         {
                             
@@ -212,7 +212,7 @@ namespace Obi.ImportExport
                 seqParent = seqParent.ParentNode;
 
             }
-            if (seqParent == null || XmlDocumentHelper.GetFirstChildElementWithName(smilNode, true, "audio", smilNode.NamespaceURI) == null) return null;
+            if (seqParent == null || XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilNode, true, "audio", smilNode.NamespaceURI) == null) return null;
 
             EmptyNode anchor = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
             ((SectionNode)navPointTreeNode).AppendChild(anchor);
@@ -262,7 +262,7 @@ namespace Obi.ImportExport
                 strKind == "normal" ? PageKind.Normal :
                 PageKind.Special;
 
-            string pageNumberString = XmlDocumentHelper.GetFirstChildElementWithName(pageTargetNode, true, "text", pageTargetNode.NamespaceURI).InnerText;
+            string pageNumberString = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(pageTargetNode, true, "text", pageTargetNode.NamespaceURI).InnerText;
             PageNumber number = null;
             if (kind == PageKind.Special && pageNumberString != null && pageNumberString != "")
             {
@@ -310,7 +310,7 @@ namespace Obi.ImportExport
         protected override TreeNode CheckAndAssignForHeadingAudio(TreeNode navPointTreeNode, TreeNode phraseTreeNode, XmlNode audioXmlNode)
         {
             XmlNode navLabelXmlNode = m_NavPointNode_NavLabelMap[navPointTreeNode];
-            XmlNode headingAudio = XmlDocumentHelper.GetFirstChildElementWithName(navLabelXmlNode, true, "audio", navLabelXmlNode.NamespaceURI);
+            XmlNode headingAudio = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(navLabelXmlNode, true, "audio", navLabelXmlNode.NamespaceURI);
             //XmlNode textNode = XmlDocumentHelper.GetFirstChildElementWithName(navLabelXmlNode, true, "text", navLabelXmlNode.NamespaceURI);
             if (headingAudio == null)
             {
@@ -337,9 +337,9 @@ namespace Obi.ImportExport
         {
             string opfTitle = "";
             string identifier = "";
-            XmlDocument opfFileDoc = urakawa.xuk.OpenXukAction.ParseXmlDocument(opfFilePath, false);
+            XmlDocument opfFileDoc = urakawa.xuk.XmlReaderWriterHelper.ParseXmlDocument(opfFilePath, false);
 
-            XmlNode packageNode = XmlDocumentHelper.GetFirstChildElementWithName(opfFileDoc.DocumentElement, true, "package", null);
+            XmlNode packageNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(opfFileDoc.DocumentElement, true, "package", null);
             string uidAttribute = packageNode.Attributes.GetNamedItem("unique-identifier").Value;
             XmlNodeList listOfChildrenOfDCMetadata = opfFileDoc.GetElementsByTagName("dc-metadata");
             foreach (XmlNode xnode in listOfChildrenOfDCMetadata)
@@ -369,7 +369,7 @@ namespace Obi.ImportExport
         public static string getTitleFromDtBookFile(string dtBookFilePath)
         {
             string dtbBookTitle = "";
-            XmlDocument dtbookFileDoc = urakawa.xuk.OpenXukAction.ParseXmlDocument(dtBookFilePath, false);
+            XmlDocument dtbookFileDoc = urakawa.xuk.XmlReaderWriterHelper.ParseXmlDocument(dtBookFilePath, false);
             
             XmlNodeList listOfChildren = dtbookFileDoc.GetElementsByTagName("meta");
             foreach (XmlNode node in listOfChildren)
@@ -421,11 +421,11 @@ namespace Obi.ImportExport
                             AddStyleSheetsToXuk(styleSheetNodeList);
                         }
                         */
-                        XmlNode bodyElement = XmlDocumentHelper.GetFirstChildElementWithName(xmlNode, true, "body", null);
+                        XmlNode bodyElement = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlNode, true, "body", null);
 
                         if (bodyElement == null)
                         {
-                            bodyElement = XmlDocumentHelper.GetFirstChildElementWithName(xmlNode, true, "book", null);
+                            bodyElement = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlNode, true, "book", null);
                         }
 
                         if (bodyElement != null)
