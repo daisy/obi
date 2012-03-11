@@ -104,7 +104,7 @@ namespace Obi
             settings.BlockBackColor_Silence = Color.Purple;
             settings.BlockBackColor_Selected = SystemColors.Highlight;
             settings.BlockBackColor_TODO = Color.Red;
-            settings.BlockBackColor_Anchor = Color.Blue;
+            settings.BlockBackColor_Anchor = Color.BlueViolet;
             settings.BlockBackColor_Unused = SystemColors.ControlDark;
 
             settings.BlockForeColor_Custom = SystemColors.HighlightText;
@@ -163,6 +163,7 @@ namespace Obi
             settings.BlockBackColor_Heading = SystemColors.Window;
             settings.BlockBackColor_Page = SystemColors.Window;
             settings.BlockBackColor_Silence = SystemColors.Window;
+            settings.BlockBackColor_Anchor = SystemColors.Window;
             settings.BlockBackColor_TODO = SystemColors.Window;
 
             settings.BlockForeColor_Custom = SystemColors.ControlText;
