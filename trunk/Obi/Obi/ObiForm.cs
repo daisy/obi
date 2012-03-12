@@ -1906,7 +1906,7 @@ namespace Obi
             {
             bool cont = true;
             bool keepWarning = true;
-            string anchorErrors = null;
+            List<string> anchorErrors = new List<string>(); ;
             try
                 {
                 mSession.Presentation.RootNode.AcceptDepthFirst (
@@ -1925,7 +1925,7 @@ namespace Obi
                                 EmptyNode eNode = (EmptyNode) n ;
                                 if (eNode.Role_ == EmptyNode.Role.Anchor && eNode.AssociatedNode != null && !(eNode.AssociatedNode is PhraseNode ))
                                 {
-                                    anchorErrors += "\n" + string.Format (Localizer.Message ("Export_AnchorErrors"), eNode.ParentAs<SectionNode>().Label, eNode.ToString () );
+                                    anchorErrors.Add(string.Format (Localizer.Message ("Export_AnchorErrors"), eNode.ParentAs<SectionNode>().Label, eNode.ToString () ));
                                 }
                             }
                         return true;
@@ -1933,11 +1933,9 @@ namespace Obi
                     delegate ( urakawa.core.TreeNode n ) { } );
                 if (anchorErrors != null)
                 {
-                    if (MessageBox.Show(Localizer.Message("Export_SkippableWithEmptyNode") + "\n" + anchorErrors,
-                        Localizer.Message("Caption_Error"), MessageBoxButtons.OKCancel) == DialogResult.Cancel)
-                    {
-                        return false;
-                    }
+                    Dialogs.ReportDialog reportDialog = new ReportDialog("Report for export", "There are anchor nodes which are associated with empty nodes.", anchorErrors);
+                    if (reportDialog.ShowDialog() == DialogResult.OK) { }
+                    else  return false;                                            
                 }
                 return cont;
                 }
