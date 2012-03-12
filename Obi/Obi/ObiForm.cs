@@ -1933,7 +1933,7 @@ namespace Obi
                     delegate ( urakawa.core.TreeNode n ) { } );
                 if (anchorErrors != null)
                 {
-                    Dialogs.ReportDialog reportDialog = new ReportDialog("Report for export", "There are anchor nodes which are associated with empty nodes.", anchorErrors);
+                    Dialogs.ReportDialog reportDialog = new ReportDialog(Localizer.Message("Report_for_export"),Localizer.Message("Anchor_node_error"), anchorErrors);
                     if (reportDialog.ShowDialog() == DialogResult.OK) { }
                     else  return false;                                            
                 }
@@ -3497,7 +3497,7 @@ namespace Obi
         private void mSkippableGotoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (((EmptyNode)mProjectView.Selection.Node).AssociatedNode == null)
-                MessageBox.Show("There is no node associated with this anchor node. Please associate a node with this anchor node.");
+                MessageBox.Show(Localizer.Message("Anchor_node_not_associated"));
             if (mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null)
                 mProjectView.SelectedBlockNode = ((EmptyNode)mProjectView.Selection.Node).AssociatedNode;
         
