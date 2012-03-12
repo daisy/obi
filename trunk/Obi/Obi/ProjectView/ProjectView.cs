@@ -3763,7 +3763,7 @@ for (int j = 0;
                         }
                         if(!pageFound)
                         {
-                            MessageBox.Show("No page was found in the chunk.");
+                            MessageBox.Show(Localizer.Message("Page_not_found"));
                             return;
                         }
                         if (mContentView.EndSpecialNode.Role_ == EmptyNode.Role.Page)

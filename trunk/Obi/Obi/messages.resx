@@ -2013,4 +2013,22 @@ Error text: {1}</value>
   <data name="Export_SkippableWithEmptyNode" xml:space="preserve">
     <value>Following anchors refer to skippable elements with empty phrases which willl not be exported. Please click cancel to correct these errors</value>
   </data>
+  <data name="Anchor_node_error" xml:space="preserve">
+    <value>There are anchor nodes which are associated with empty nodes.</value>
+  </data>
+  <data name="Anchor_node_not_associated" xml:space="preserve">
+    <value>There is no node associated with this anchor node. Please associate a node with this anchor node.</value>
+  </data>
+  <data name="Associate" xml:space="preserve">
+    <value>Associate</value>
+  </data>
+  <data name="Node_already_associated" xml:space="preserve">
+    <value>The node is already associated with some other anchor node. Do you want to continue associating?</value>
+  </data>
+  <data name="Page_not_found" xml:space="preserve">
+    <value>No page was found in the chunk.</value>
+  </data>
+  <data name="Report_for_export" xml:space="preserve">
+    <value>Report for export</value>
+  </data>
 </root>
