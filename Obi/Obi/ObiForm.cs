@@ -1923,7 +1923,7 @@ namespace Obi
                             if ( n is EmptyNode )
                             {
                                 EmptyNode eNode = (EmptyNode) n ;
-                                if (eNode.Role_ == EmptyNode.Role.Anchor && eNode.AssociatedNode != null && !(eNode.AssociatedNode is PhraseNode ))
+                                if ((eNode.Role_ == EmptyNode.Role.Anchor && eNode.AssociatedNode != null && !(eNode.AssociatedNode is PhraseNode )) || (eNode.Role_ == EmptyNode.Role.Anchor && !(eNode is PhraseNode))) 
                                 {
                                     anchorErrors.Add(string.Format (Localizer.Message ("Export_AnchorErrors"), eNode.ParentAs<SectionNode>().Label, eNode.ToString () ));
                                 }
@@ -1931,7 +1931,7 @@ namespace Obi
                         return true;
                         },
                     delegate ( urakawa.core.TreeNode n ) { } );
-                if (anchorErrors != null)
+                if (anchorErrors != null && anchorErrors.Count > 0)
                 {
                     Dialogs.ReportDialog reportDialog = new ReportDialog(Localizer.Message("Report_for_export"),Localizer.Message("Anchor_node_error"), anchorErrors);
                     if (reportDialog.ShowDialog() == DialogResult.OK) { }
