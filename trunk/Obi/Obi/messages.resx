@@ -1304,7 +1304,7 @@ Error text: {1}</value>
     <comment>Progress dialog title</comment>
   </data>
   <data name="delete_silence_phrases" xml:space="preserve">
-    <value>Your project has silence phrases. Press Yes to delete them as well as the other unused phrases and sections? Press No to delete only unused phrases and sections and to keep silence phrases.</value>
+    <value>Your project has silence phrases. Press Yes to delete them as well as the other unused phrases and sections. Press No to delete only unused phrases and sections and to keep silence phrases.</value>
   </data>
   <data name="delete_silence_phrases_caption" xml:space="preserve">
     <value>Delete silence phrases?</value>
@@ -1364,7 +1364,7 @@ Error text: {1}</value>
     <value> (Contents hidden, use F5 to unhide)</value>
   </data>
   <data name="Operation_Cancelled" xml:space="preserve">
-    <value>Not able to Complete operation. </value>
+    <value>Not able to complete operation. </value>
   </data>
   <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
     <value>This command cannot be executed on section with hidden contents. Please make section's contents visible and try again.</value>
@@ -1843,7 +1843,7 @@ Error text: {1}</value>
     <value>http://daisy.trac.cvsdude.com/obi/wiki/documentation/Obi2.0_FeaturesExplanation</value>
   </data>
   <data name="Cleanup_WaveformLoadingWarning" xml:space="preserve">
-    <value>Loading waveform..., some Audio file streams may be open. It is strongly recommended to try after some time. Please press No button to wait.</value>
+    <value>Loading waveform...some Audio file streams may be open. It is strongly recommended to try after some time. Please press No button to wait.</value>
   </data>
   <data name="ImportProject_OverwriteProjectMsg" xml:space="preserve">
     <value>The project file already exists at the specified location. Do you want to overwrite the existing project?</value>
@@ -1987,7 +1987,7 @@ Error text: {1}</value>
     <value>Anchor</value>
   </data>
   <data name="Associate_next_phrase" xml:space="preserve">
-    <value>The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?</value>
+    <value>The referred skippable phrase will be deleted. Next phrase will become referred phrase. Do you want to proceed?</value>
   </data>
   <data name="Associate_node_with_anchor_node" xml:space="preserve">
     <value>There is no special phrase associated with this anchor node. Please associate a node with this anchor node.</value>
@@ -2011,16 +2011,16 @@ Error text: {1}</value>
     <value>Section name: {0}, Phrase: {1}</value>
   </data>
   <data name="Export_SkippableWithEmptyNode" xml:space="preserve">
-    <value>Following anchors refer to skippable elements with empty phrases which willl not be exported. Please click cancel to correct these errors</value>
+    <value>Following anchors refer to skippable elements with empty phrases which willl not be exported. Press Ok to continue anyway and cancel to correct these errors</value>
   </data>
   <data name="Anchor_node_error" xml:space="preserve">
-    <value>There are anchor nodes which are associated with empty nodes.</value>
+    <value>There are anchor nodes which are empty or they refer to empty nodes.</value>
   </data>
   <data name="Anchor_node_not_associated" xml:space="preserve">
     <value>There is no node associated with this anchor node. Please associate a node with this anchor node.</value>
   </data>
   <data name="Associate" xml:space="preserve">
-    <value>Associate</value>
+    <value>Associate node</value>
   </data>
   <data name="Node_already_associated" xml:space="preserve">
     <value>The node is already associated with some other anchor node. Do you want to continue associating?</value>

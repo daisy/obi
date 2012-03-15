@@ -634,7 +634,7 @@ namespace Obi.ProjectView
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show( "Cut Operation failed. " + "\n\n" + ex.ToString());   //@Messagecorrected
             }
             }
 
@@ -695,7 +695,7 @@ namespace Obi.ProjectView
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Delete operation failed. " + "\n\n" +ex.ToString());  //@Messagecorrected
             }
             }
 
@@ -1010,7 +1010,7 @@ namespace Obi.ProjectView
                     }
                 catch (System.Exception ex)
                     {
-                    MessageBox.Show ( ex.ToString () );
+                    MessageBox.Show ("Merging failed." + "\n\n" + ex.ToString () );  //@Messagecorrected
                     }
 
                 // hide newly made phrases visible if the strip has its contents hidden
@@ -1282,7 +1282,7 @@ namespace Obi.ProjectView
                     }
                     catch (System.Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                        MessageBox.Show("Paste operation failed. " + "\n\n" + ex.ToString());  //@Messagecorrected
                     }
                 }
                 else
@@ -1293,7 +1293,7 @@ namespace Obi.ProjectView
                     }
                     catch (System.Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                        MessageBox.Show("Paste operation failed. " + "\n\n" + ex.ToString());   //@Messagecorrected
                     }
                 }
                 mTransportBar.SelectionChangedPlaybackEnabled = PlaySelectionFlagStatus;
@@ -1571,7 +1571,7 @@ namespace Obi.ProjectView
                     }
                 catch (System.Exception ex)
                     {
-                    MessageBox.Show ( ex.ToString () );
+                    MessageBox.Show ("Split operation failed. " + "\n\n" + ex.ToString () );   //@Messagecorrected
                     }
                 
                 if (OriginalSectionNode != null) UpdateBlocksLabelInStrip ( OriginalSectionNode );
@@ -1619,7 +1619,7 @@ namespace Obi.ProjectView
                     }
                 catch (System.Exception ex)
                     {
-                    MessageBox.Show ( ex.ToString () );
+                    MessageBox.Show ("Delete operation failed. " + "\n\n"+ ex.ToString () ); //@Messagecorrected
                     }
                 TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
                 }
@@ -2246,7 +2246,7 @@ for (int j = 0;
                 }
                 catch (System.Exception ex)
                     {
-                    MessageBox.Show ( ex.ToString () );
+                    MessageBox.Show ( "Split operation failed. " + "\n\n" + ex.ToString () );   //@Messagecorrected
                     }
                 if (wasPlaying || ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume ( mSelection.Node );
                 TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangeStatus;
@@ -2286,7 +2286,7 @@ for (int j = 0;
                     }
                 catch (System.Exception ex)
                     {
-                    MessageBox.Show ( ex.ToString () );
+                    MessageBox.Show ("Merge operation failed." + "\n\n" + ex.ToString () ); //@Messagecorrected
                     }
                 }
             }
@@ -2341,7 +2341,7 @@ for (int j = 0;
                     }
                 catch (System.Exception ex)
                     {
-                    MessageBox.Show ( ex.ToString () );
+                    MessageBox.Show ("Merge operation failed." + "\n\n" + ex.ToString () );   //@Messagecorrected
                     }
                 TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
                 }
@@ -2721,7 +2721,7 @@ for (int j = 0;
                         }
                     catch (System.Exception ex)
                         {
-                        MessageBox.Show ( ex.ToString () );
+                        MessageBox.Show ("Phrase detection failed. " + "\n\n" + ex.ToString () ); //@Messagecorrected
                         }
                     //} );
                     //progress2.ShowDialog ();
@@ -3620,7 +3620,7 @@ for (int j = 0;
                             }
                             catch (System.Exception ex)
                             {
-                                MessageBox.Show(ex.ToString());
+                                MessageBox.Show( "Node associated failed. " + "\n\n" + ex.ToString());   //@Messagecorrected
                             }
                             //pair.Key.AssociatedNode = pair.Value;                         
                         }
@@ -3716,7 +3716,7 @@ for (int j = 0;
                     }
                     catch (System.Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                        MessageBox.Show("Assigning node to skippable node failed. " + "\n\n" + ex.ToString());  //@Messagecorrected
                     }
                 }
             }
@@ -3784,7 +3784,7 @@ for (int j = 0;
                 }
                 catch (System.Exception e)
                 {
-                    MessageBox.Show(e.ToString());
+                    MessageBox.Show("Detaching reference to skippable node failed. " + "\n\n" + e.ToString()); //@Messagecorrected
                 }
             }
         }
@@ -3896,7 +3896,7 @@ for (int j = 0;
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Exporting audio failed. " + "\n\n" + ex.ToString());   //@Messagecorrected
             }
         }
 

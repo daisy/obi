@@ -1855,7 +1855,7 @@ return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for resto
                     }
                 catch (System.Exception ex)
                     {
-                    MessageBox.Show ( ex.ToString () );
+                    MessageBox.Show (Localizer.Message("Operation_Cancelled") + "\n\n" + ex.ToString () );
                     }
 
                 UpdateSize ();
