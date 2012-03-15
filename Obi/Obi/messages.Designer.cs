@@ -124,7 +124,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are anchor nodes which are associated with empty nodes..
+        ///   Looks up a localized string similar to There are anchor nodes which are empty or they refer to empty nodes..
         /// </summary>
         internal static string Anchor_node_error {
             get {
@@ -151,7 +151,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Associate.
+        ///   Looks up a localized string similar to Associate node.
         /// </summary>
         internal static string Associate {
             get {
@@ -160,7 +160,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The associated special phrase will be deleted. Next phrase will become associated phrase. Do you want to proceed?.
+        ///   Looks up a localized string similar to The referred skippable phrase will be deleted. Next phrase will become referred phrase. Do you want to proceed?.
         /// </summary>
         internal static string Associate_next_phrase {
             get {
@@ -592,7 +592,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading waveform..., some Audio file streams may be open. It is strongly recommended to try after some time. Please press No button to wait..
+        ///   Looks up a localized string similar to Loading waveform...some Audio file streams may be open. It is strongly recommended to try after some time. Please press No button to wait..
         /// </summary>
         internal static string Cleanup_WaveformLoadingWarning {
             get {
@@ -1162,7 +1162,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your project has silence phrases. Press Yes to delete them as well as the other unused phrases and sections? Press No to delete only unused phrases and sections and to keep silence phrases..
+        ///   Looks up a localized string similar to Your project has silence phrases. Press Yes to delete them as well as the other unused phrases and sections. Press No to delete only unused phrases and sections and to keep silence phrases..
         /// </summary>
         internal static string delete_silence_phrases {
             get {
@@ -1558,7 +1558,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Following anchors refer to skippable elements with empty phrases which willl not be exported. Please click cancel to correct these errors.
+        ///   Looks up a localized string similar to Following anchors refer to skippable elements with empty phrases which willl not be exported. Press Ok to continue anyway and cancel to correct these errors.
         /// </summary>
         internal static string Export_SkippableWithEmptyNode {
             get {
@@ -3454,7 +3454,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not able to Complete operation. .
+        ///   Looks up a localized string similar to Not able to complete operation. .
         /// </summary>
         internal static string Operation_Cancelled {
             get {

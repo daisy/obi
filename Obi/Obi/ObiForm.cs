@@ -929,7 +929,7 @@ namespace Obi
                 }
             catch (System.Exception ex)
                 {
-                System.Windows.Forms.MessageBox.Show ( ex.ToString () );
+                System.Windows.Forms.MessageBox.Show ("Help file could not be loaded. " + "\n\n" + ex.ToString () ); //@Messagecorrected
                 return;
                 }
             }
@@ -1849,7 +1849,7 @@ namespace Obi
             catch (System.Exception ex)
                 {
                 retVal = false;
-                MessageBox.Show ( ex.ToString () );
+                MessageBox.Show (Localizer.Message("Operation_Cancelled")+ "\n\n" + ex.ToString () ); //@Messagecorrected
                 }
 
             return retVal;
@@ -1941,7 +1941,7 @@ namespace Obi
                 }
             catch (System.Exception ex)
                 {
-                MessageBox.Show ( ex.ToString () );
+                    MessageBox.Show(Localizer.Message("Operation_Cancelled") + "\n\n" + ex.ToString());  //@Messagecorrected
                 return false;
                 }
                 
@@ -2188,7 +2188,7 @@ namespace Obi
                     }
                     catch (System.Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                        MessageBox.Show("Pipeline could not be extracted. " + "\n\n" + ex.ToString());  //@Messagecorrected
                     }
                 }
             else
@@ -2341,7 +2341,7 @@ namespace Obi
                 }
             catch (System.Exception ex)
                 {
-                MessageBox.Show ( ex.ToString () );
+                MessageBox.Show ("Redo cannot be done. " + "\n\n" + ex.ToString () );   //@Messagecorrected
                 }
             if (!IsStatusBarEnabled) IsStatusBarEnabled = true;
             CanAutoSave = true;//@singleSection
@@ -2464,7 +2464,7 @@ namespace Obi
                 }
             catch (System.Exception ex)
                 {
-                MessageBox.Show ( ex.ToString () );
+                MessageBox.Show ("Undo cannot be done. " + "\n\n" +  ex.ToString () ); //@Messagecorrected
                 }
             if (!IsStatusBarEnabled) IsStatusBarEnabled = true;//@singleSection
             CanAutoSave = true;//@singleSection
