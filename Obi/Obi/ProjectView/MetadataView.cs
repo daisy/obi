@@ -590,7 +590,7 @@ namespace Obi.ProjectView
                         }
                     catch (System.Exception ex)
                         {
-                        MessageBox.Show ( ex.ToString () );
+                        MessageBox.Show ( Localizer.Message("MetadataView_InvalidMetadata") + "\n\n" + ex.ToString () );  //@Messagecorrected
                         return "";
                         }
                     }

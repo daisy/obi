@@ -169,11 +169,9 @@ namespace Obi.Dialogs
             
             for (int i = 0; i < listOfAnchorNodesCopy.Count; i++)
             {
-                
                 if (listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex] == listOfAnchorNodesCopy[i].AssociatedNode)
                 {
-                    if (MessageBox.Show("The node is already associated with some other anchor node. Do you want to continue associating?",
-                           "Associate", MessageBoxButtons.YesNo,
+                    if (MessageBox.Show(Localizer.Message("Node_already_associated"), Localizer.Message("Associate"), MessageBoxButtons.YesNo,
                            MessageBoxIcon.Question) == DialogResult.No)
                         IsAssociated = true;
                     break;
@@ -184,10 +182,10 @@ namespace Obi.Dialogs
 
             foreach (KeyValuePair<EmptyNode, EmptyNode> pair in nodes_phraseMap)
                 {
+                   
                     if (nodes_phraseMap.ContainsKey(pair.Key) && listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex] == pair.Key.AssociatedNode)
                     {
-                        if (MessageBox.Show("The node is already associated with some other anchor node. Do you want to continue associating?",
-                               "Associate", MessageBoxButtons.YesNo,
+                        if (MessageBox.Show(Localizer.Message("Node_already_associated"),Localizer.Message("Associate"), MessageBoxButtons.YesNo,
                                MessageBoxIcon.Question) == DialogResult.No)
                            IsAssociated = true;
                         break;
