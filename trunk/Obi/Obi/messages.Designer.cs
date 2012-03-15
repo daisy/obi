@@ -2967,6 +2967,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid metadata.
+        /// </summary>
+        internal static string MetadataView_InvalidMetadata {
+            get {
+                return ResourceManager.GetString("MetadataView_InvalidMetadata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to minute.
         /// </summary>
         internal static string minute {
@@ -3369,6 +3378,33 @@ namespace Obi {
         internal static string ObiForm_PipelineNotFound {
             get {
                 return ResourceManager.GetString("ObiForm_PipelineNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pipeline could not be extracted..
+        /// </summary>
+        internal static string ObiFormMsg_PipelineExtractionFail {
+            get {
+                return ResourceManager.GetString("ObiFormMsg_PipelineExtractionFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo cannot be done..
+        /// </summary>
+        internal static string ObiFormMsg_RedoFail {
+            get {
+                return ResourceManager.GetString("ObiFormMsg_RedoFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo cannot be done..
+        /// </summary>
+        internal static string ObiFormMsg_UndoFail {
+            get {
+                return ResourceManager.GetString("ObiFormMsg_UndoFail", resourceCulture);
             }
         }
         
@@ -3963,6 +3999,96 @@ namespace Obi {
         internal static string ProjectTab_SelectBookmark {
             get {
                 return ResourceManager.GetString("ProjectTab_SelectBookmark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding reference failed.
+        /// </summary>
+        internal static string ProjectViewFormMsg_AddingReferenceFail {
+            get {
+                return ResourceManager.GetString("ProjectViewFormMsg_AddingReferenceFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assigning skippable failed..
+        /// </summary>
+        internal static string ProjectViewFormMsg_AssigningSkippableFail {
+            get {
+                return ResourceManager.GetString("ProjectViewFormMsg_AssigningSkippableFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cut operation failed..
+        /// </summary>
+        internal static string ProjectViewFormMsg_CutOperationFail {
+            get {
+                return ResourceManager.GetString("ProjectViewFormMsg_CutOperationFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detaching reference to skippable node failed..
+        /// </summary>
+        internal static string ProjectViewFormMsg_DeassociatingSkippableFail {
+            get {
+                return ResourceManager.GetString("ProjectViewFormMsg_DeassociatingSkippableFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete operation failed..
+        /// </summary>
+        internal static string ProjectViewFormMsg_DeleteOperationFail {
+            get {
+                return ResourceManager.GetString("ProjectViewFormMsg_DeleteOperationFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporting audio failed.
+        /// </summary>
+        internal static string ProjectViewFormMsg_ExportingAudioFail {
+            get {
+                return ResourceManager.GetString("ProjectViewFormMsg_ExportingAudioFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merging failed..
+        /// </summary>
+        internal static string ProjectViewFormMsg_MergeOperationFail {
+            get {
+                return ResourceManager.GetString("ProjectViewFormMsg_MergeOperationFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste operation failed..
+        /// </summary>
+        internal static string ProjectViewFormMsg_PasteOperationFail {
+            get {
+                return ResourceManager.GetString("ProjectViewFormMsg_PasteOperationFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phrase detection failed.
+        /// </summary>
+        internal static string ProjectViewFormMsg_PhraseDetectionFail {
+            get {
+                return ResourceManager.GetString("ProjectViewFormMsg_PhraseDetectionFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split operation failed..
+        /// </summary>
+        internal static string ProjectViewFormMsg_SplitOperationFail {
+            get {
+                return ResourceManager.GetString("ProjectViewFormMsg_SplitOperationFail", resourceCulture);
             }
         }
         

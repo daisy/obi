@@ -1998,7 +1998,7 @@ namespace Obi.ProjectView
                     }
                     catch (System.Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                        MessageBox.Show(Localizer.Message("TransportBar_ErrorInStartingRecording") + "\n\n" + ex.ToString());  //@Messagecorrected
                     }
                 }
                 else if (mState == State.Stopped)

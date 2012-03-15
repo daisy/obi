@@ -230,7 +230,7 @@ namespace Obi.ProjectView
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show ( ex.ToString () );
+                MessageBox.Show(Localizer.Message("Operation_Cancelled") + "\n\n" + ex.ToString());
             }
         }
 

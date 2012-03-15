@@ -929,7 +929,7 @@ namespace Obi
                 }
             catch (System.Exception ex)
                 {
-                System.Windows.Forms.MessageBox.Show ("Help file could not be loaded. " + "\n\n" + ex.ToString () ); //@Messagecorrected
+                    System.Windows.Forms.MessageBox.Show(Localizer.Message("ObiFormMsg_FileLoadingFail") + "\n\n" + ex.ToString()); //@Messagecorrected
                 return;
                 }
             }
@@ -2188,7 +2188,7 @@ namespace Obi
                     }
                     catch (System.Exception ex)
                     {
-                        MessageBox.Show("Pipeline could not be extracted. " + "\n\n" + ex.ToString());  //@Messagecorrected
+                        MessageBox.Show(Localizer.Message("ObiFormMsg_PipelineExtractionFail") + "\n\n" + ex.ToString());  //@Messagecorrected
                     }
                 }
             else
@@ -2341,7 +2341,7 @@ namespace Obi
                 }
             catch (System.Exception ex)
                 {
-                MessageBox.Show ("Redo cannot be done. " + "\n\n" + ex.ToString () );   //@Messagecorrected
+                    MessageBox.Show(Localizer.Message("ObiFormMsg_RedoFail") + "\n\n" + ex.ToString());   //@Messagecorrected
                 }
             if (!IsStatusBarEnabled) IsStatusBarEnabled = true;
             CanAutoSave = true;//@singleSection
@@ -2464,7 +2464,7 @@ namespace Obi
                 }
             catch (System.Exception ex)
                 {
-                MessageBox.Show ("Undo cannot be done. " + "\n\n" +  ex.ToString () ); //@Messagecorrected
+                    MessageBox.Show(Localizer.Message("ObiFormMsg_UndoFail") + "\n\n" + ex.ToString()); //@Messagecorrected
                 }
             if (!IsStatusBarEnabled) IsStatusBarEnabled = true;//@singleSection
             CanAutoSave = true;//@singleSection
