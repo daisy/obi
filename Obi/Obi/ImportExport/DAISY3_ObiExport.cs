@@ -612,7 +612,7 @@ namespace Obi.ImportExport
                         if (urakawaNode == m_ListOfLevels[0] 
                             &&  ((section.Heading == null && n is EmptyNode) || section.Heading == n) )
                         {
-                            string txtMedia = urakawaNode.GetTextFlattened(true);
+                            string txtMedia = urakawaNode.GetTextFlattened();
                              externalAudio = GetExternalAudioMedia(n);
 
                             XmlNode docNode = ncxDocument.CreateElement(null,
@@ -664,7 +664,7 @@ namespace Obi.ImportExport
                         }
                         */
 
-                        string txtMedia = urakawaNode.GetTextFlattened(true);
+                        string txtMedia = urakawaNode.GetTextFlattened();
                         ////System.Windows.Forms.MessageBox.Show("nav point " + txtMedia);
                         externalAudio = GetExternalAudioMedia(n);
 

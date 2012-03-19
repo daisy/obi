@@ -138,11 +138,15 @@
     <Compile Include="Dialogs\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\AssignSpecialNodeMark.cs" />
+    <Compile Include="Dialogs\AssignSpecialNodeMark.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\AssignSpecialNodeMark.Designer.cs">
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\AssociateSpecialNode.cs" />
+    <Compile Include="Dialogs\AssociateSpecialNode.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\AssociateSpecialNode.Designer.cs">
       <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
     </Compile>
@@ -165,7 +169,9 @@
     <Compile Include="Dialogs\EmptySection.Designer.cs">
       <DependentUpon>EmptySection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ExtendedMessageToAssociate.cs" />
+    <Compile Include="Dialogs\ExtendedMessageToAssociate.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\ExtendedMessageToAssociate.Designer.cs">
       <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
     </Compile>
