@@ -94,6 +94,8 @@ namespace Obi.Dialogs
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
+            this.m_txtBox_Color = new System.Windows.Forms.TextBox();
+            this.m_btn_RestoreDefault = new System.Windows.Forms.Button();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -546,6 +548,8 @@ namespace Obi.Dialogs
             // 
             // mColorPreferencesTab
             // 
+            this.mColorPreferencesTab.Controls.Add(this.m_btn_RestoreDefault);
+            this.mColorPreferencesTab.Controls.Add(this.m_txtBox_Color);
             this.mColorPreferencesTab.Controls.Add(this.m_btn_Apply);
             this.mColorPreferencesTab.Controls.Add(this.m_lv_ColorPref);
             this.mColorPreferencesTab.Controls.Add(this.label11);
@@ -626,6 +630,18 @@ namespace Obi.Dialogs
             this.m_ResetButton.Name = "m_ResetButton";
             this.m_ResetButton.UseVisualStyleBackColor = true;
             this.m_ResetButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // m_txtBox_Color
+            // 
+            resources.ApplyResources(this.m_txtBox_Color, "m_txtBox_Color");
+            this.m_txtBox_Color.Name = "m_txtBox_Color";
+            // 
+            // m_btn_RestoreDefault
+            // 
+            resources.ApplyResources(this.m_btn_RestoreDefault, "m_btn_RestoreDefault");
+            this.m_btn_RestoreDefault.Name = "m_btn_RestoreDefault";
+            this.m_btn_RestoreDefault.UseVisualStyleBackColor = true;
+            this.m_btn_RestoreDefault.Click += new System.EventHandler(this.m_btn_RestoreDefault_Click);
             // 
             // Preferences
             // 
@@ -731,5 +747,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Button m_btn_Apply;
+        private System.Windows.Forms.TextBox m_txtBox_Color;
+        private System.Windows.Forms.Button m_btn_RestoreDefault;
     }
 }

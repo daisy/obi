@@ -20,7 +20,6 @@ namespace Obi.Dialogs
         private ObiPresentation mPresentation;              // current presentation (may be null)
         private ProjectView.TransportBar mTransportBar;  // application transport bar
         private KeyboardShortcuts_Settings m_KeyboardShortcuts;
-//        private ColorSettings m_ColorSettings;
         private bool m_IsKeyboardShortcutChanged = false;
         private int m_Nudge = 200;
         private int m_Preview = 1500;
@@ -214,16 +213,16 @@ namespace Obi.Dialogs
                SystemColors.Highlight, SystemColors.HighlightText, SystemColors.ControlDark, SystemColors.ControlText,
                SystemColors.GradientActiveCaption, SystemColors.Window, SystemColors.ControlText, SystemColors.InactiveCaptionText,
                SystemColors.ControlText, SystemColors.Control, Color.Azure, SystemColors.ControlText, SystemColors.Window, SystemColors.ControlText,
-               SystemColors.Highlight, SystemColors.HighlightText, Color.FromArgb(127, Color.Blue),Color.FromArgb(127, Color.Red),Color.FromArgb(127, Color.Blue),
+               SystemColors.Highlight, SystemColors.HighlightText, 
                SystemColors.Highlight, Color.Red
             });
-            mHighContrastCombo.Items.AddRange(new object[] { SystemColors.ScrollBar, SystemColors.MenuText, SystemColors.WindowFrame, SystemColors.Window });
+            mHighContrastCombo.Items.AddRange(new object[] { SystemColors.Window, SystemColors.ControlText, Color.DarkSlateGray, Color.Green, Color.Yellow});
             string[] tempArray = new string[2];
             mSettings.ColorSettings.PopulateColorSettingsDictionary();
             foreach (string desc in mSettings.ColorSettings.ColorSetting.Keys)
             {
                 tempArray[0] = desc;
-                tempArray[1] = mSettings.ColorSettings.ColorSetting[desc].Name.ToString();
+                tempArray[1] = mSettings.ColorSettings.ColorSetting[desc].Name;
                 ListViewItem item = new ListViewItem(tempArray);
                 m_lv_ColorPref.Items.Add(item);                
             }           
@@ -419,11 +418,6 @@ namespace Obi.Dialogs
             mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
             return true;
             }
-
-      //  private bool UpdateColorSettings()
-        //{ 
-        //    mSettings.ColorSettings.
-       // }
 
         private void m_ChkAutoSaveInterval_CheckStateChanged ( object sender, EventArgs e )
             {
@@ -862,7 +856,6 @@ namespace Obi.Dialogs
         {
             if (m_lv_ColorPref.SelectedIndices.Count > 0 && mNormalColorCombo.SelectedItem != null)
             {
-                MessageBox.Show(m_lv_ColorPref.SelectedIndices[0].ToString());
                 switch (m_lv_ColorPref.SelectedIndices[0])
                 {                      
                     case 0: mSettings.ColorSettings.BlockBackColor_Custom = (Color)mNormalColorCombo.SelectedItem;
@@ -947,17 +940,114 @@ namespace Obi.Dialogs
                         break;
                     default: break;
                 }
+
+                ListViewItem selectedItem = m_lv_ColorPref.Items[m_lv_ColorPref.SelectedIndices[0]];
+                string desc = selectedItem.Text;
+                selectedItem.SubItems[1].Text = ((Color)mNormalColorCombo.SelectedItem).Name;
+            }
+
+            if (m_lv_ColorPref.SelectedIndices.Count > 0 && mHighContrastCombo.SelectedItem != null)
+            {
+                switch (m_lv_ColorPref.SelectedIndices[0])
+                {
+                    case 0: mSettings.ColorSettingsHC.BlockBackColor_Custom = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 1: mSettings.ColorSettingsHC.BlockBackColor_Empty = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 2: mSettings.ColorSettingsHC.BlockBackColor_Heading = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 3: mSettings.ColorSettingsHC.BlockBackColor_Page = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 4: mSettings.ColorSettingsHC.BlockBackColor_Selected = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 5: mSettings.ColorSettingsHC.BlockBackColor_Silence = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 6: mSettings.ColorSettingsHC.BlockBackColor_TODO = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 7: mSettings.ColorSettingsHC.BlockBackColor_Unused = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 8: mSettings.ColorSettingsHC.BlockBackColor_Anchor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 9: mSettings.ColorSettingsHC.BlockForeColor_Custom = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 10: mSettings.ColorSettingsHC.BlockForeColor_Empty = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 11: mSettings.ColorSettingsHC.BlockForeColor_Heading = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 12: mSettings.ColorSettingsHC.BlockForeColor_Page = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 13: mSettings.ColorSettingsHC.BlockForeColor_Plain = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 14: mSettings.ColorSettingsHC.BlockForeColor_Custom = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 15: mSettings.ColorSettingsHC.BlockForeColor_Selected = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 16: mSettings.ColorSettingsHC.BlockForeColor_Silence = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 17: mSettings.ColorSettingsHC.BlockForeColor_TODO = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 18: mSettings.ColorSettingsHC.BlockForeColor_Anchor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 19: mSettings.ColorSettingsHC.BlockForeColor_Unused = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 20: mSettings.ColorSettingsHC.ContentViewBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 21: mSettings.ColorSettingsHC.EditableLabelTextBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 22: mSettings.ColorSettingsHC.ProjectViewBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 23: mSettings.ColorSettingsHC.StripBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 24: mSettings.ColorSettingsHC.StripCursorSelectedBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 25: mSettings.ColorSettingsHC.StripForeColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 26: mSettings.ColorSettingsHC.StripSelectedBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 27: mSettings.ColorSettingsHC.StripSelectedForeColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 28: mSettings.ColorSettingsHC.StripUnusedBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 29: mSettings.ColorSettingsHC.StripUnusedForeColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 30: mSettings.ColorSettingsHC.StripWithoutPhrasesBackcolor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 31: mSettings.ColorSettingsHC.TOCViewBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 32: mSettings.ColorSettingsHC.TOCViewForeColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 33: mSettings.ColorSettingsHC.TOCViewUnusedColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 34: mSettings.ColorSettingsHC.ToolTipForeColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 35: mSettings.ColorSettingsHC.TransportBarBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 36: mSettings.ColorSettingsHC.TransportBarLabelBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 37: mSettings.ColorSettingsHC.TransportBarLabelForeColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 38: mSettings.ColorSettingsHC.WaveformBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 39: mSettings.ColorSettingsHC.WaveformHighlightedBackColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    default: break;
+                }
             }
         }
 
         private void mNormalColorCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-                      
+            m_txtBox_Color.BackColor = (Color)mNormalColorCombo.SelectedItem;
         }
 
         private void m_btn_Apply_Click(object sender, EventArgs e)
         {
             UpdateColorSettings();
+        }
+
+        private void m_btn_RestoreDefault_Click(object sender, EventArgs e)
+        {
+           // ColorSettings.DefaultColorSettings();
         }
         }
     }
