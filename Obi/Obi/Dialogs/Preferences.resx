@@ -957,8 +957,53 @@
   <data name="&gt;&gt;mKeyboardShortcutTab.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="m_btn_RestoreDefault.Location" type="System.Drawing.Point, System.Drawing">
+    <value>307, 270</value>
+  </data>
+  <data name="m_btn_RestoreDefault.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 23</value>
+  </data>
+  <data name="m_btn_RestoreDefault.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="m_btn_RestoreDefault.Text" xml:space="preserve">
+    <value>Restore default</value>
+  </data>
+  <data name="&gt;&gt;m_btn_RestoreDefault.Name" xml:space="preserve">
+    <value>m_btn_RestoreDefault</value>
+  </data>
+  <data name="&gt;&gt;m_btn_RestoreDefault.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_RestoreDefault.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;m_btn_RestoreDefault.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_txtBox_Color.Location" type="System.Drawing.Point, System.Drawing">
+    <value>380, 179</value>
+  </data>
+  <data name="m_txtBox_Color.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 22</value>
+  </data>
+  <data name="m_txtBox_Color.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.Name" xml:space="preserve">
+    <value>m_txtBox_Color</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="m_btn_Apply.Location" type="System.Drawing.Point, System.Drawing">
-    <value>396, 233</value>
+    <value>176, 270</value>
   </data>
   <data name="m_btn_Apply.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -979,10 +1024,10 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;m_btn_Apply.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="m_lv_ColorPref.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 6</value>
+    <value>95, 15</value>
   </data>
   <data name="m_lv_ColorPref.Size" type="System.Drawing.Size, System.Drawing">
     <value>405, 149</value>
@@ -1000,13 +1045,13 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;m_lv_ColorPref.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>123, 236</value>
+    <value>123, 226</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 16</value>
@@ -1027,7 +1072,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1054,10 +1099,10 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="mHighContrastCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>236, 234</value>
+    <value>236, 224</value>
   </data>
   <data name="mHighContrastCombo.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
@@ -1075,7 +1120,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;mHighContrastCombo.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="mNormalColorCombo.Location" type="System.Drawing.Point, System.Drawing">
     <value>236, 180</value>
@@ -1096,7 +1141,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;mNormalColorCombo.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="mColorPreferencesTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>
