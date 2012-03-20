@@ -82,6 +82,15 @@ namespace Obi.Dialogs
             this.m_txtShortcutKeys = new System.Windows.Forms.TextBox();
             this.m_lblShortcutKeys = new System.Windows.Forms.Label();
             this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
+            this.mColorPreferencesTab = new System.Windows.Forms.TabPage();
+            this.m_btn_Apply = new System.Windows.Forms.Button();
+            this.m_lv_ColorPref = new System.Windows.Forms.ListView();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.mHighContrastCombo = new System.Windows.Forms.ComboBox();
+            this.mNormalColorCombo = new System.Windows.Forms.ComboBox();
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
@@ -94,6 +103,7 @@ namespace Obi.Dialogs
             this.mUserProfileTab.SuspendLayout();
             this.mKeyboardShortcutTab.SuspendLayout();
             this.m_grpKeyboardShortcutList.SuspendLayout();
+            this.mColorPreferencesTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -161,6 +171,7 @@ namespace Obi.Dialogs
             this.mTab.Controls.Add(this.mAudioTab);
             this.mTab.Controls.Add(this.mUserProfileTab);
             this.mTab.Controls.Add(this.mKeyboardShortcutTab);
+            this.mTab.Controls.Add(this.mColorPreferencesTab);
             this.mTab.Name = "mTab";
             this.mTab.SelectedIndex = 0;
             this.mTab.SelectedIndexChanged += new System.EventHandler(this.mTab_SelectedIndexChanged);
@@ -533,6 +544,67 @@ namespace Obi.Dialogs
             this.m_cbShortcutKeys.Name = "m_cbShortcutKeys";
             this.m_cbShortcutKeys.SelectionChangeCommitted += new System.EventHandler(this.m_cbShortcutKeys_SelectionChangeCommitted);
             // 
+            // mColorPreferencesTab
+            // 
+            this.mColorPreferencesTab.Controls.Add(this.m_btn_Apply);
+            this.mColorPreferencesTab.Controls.Add(this.m_lv_ColorPref);
+            this.mColorPreferencesTab.Controls.Add(this.label11);
+            this.mColorPreferencesTab.Controls.Add(this.label7);
+            this.mColorPreferencesTab.Controls.Add(this.mHighContrastCombo);
+            this.mColorPreferencesTab.Controls.Add(this.mNormalColorCombo);
+            resources.ApplyResources(this.mColorPreferencesTab, "mColorPreferencesTab");
+            this.mColorPreferencesTab.Name = "mColorPreferencesTab";
+            this.mColorPreferencesTab.UseVisualStyleBackColor = true;
+            // 
+            // m_btn_Apply
+            // 
+            resources.ApplyResources(this.m_btn_Apply, "m_btn_Apply");
+            this.m_btn_Apply.Name = "m_btn_Apply";
+            this.m_btn_Apply.UseVisualStyleBackColor = true;
+            this.m_btn_Apply.Click += new System.EventHandler(this.m_btn_Apply_Click);
+            // 
+            // m_lv_ColorPref
+            // 
+            this.m_lv_ColorPref.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader3,
+            this.columnHeader4});
+            resources.ApplyResources(this.m_lv_ColorPref, "m_lv_ColorPref");
+            this.m_lv_ColorPref.Name = "m_lv_ColorPref";
+            this.m_lv_ColorPref.UseCompatibleStateImageBehavior = false;
+            this.m_lv_ColorPref.View = System.Windows.Forms.View.Details;
+            this.m_lv_ColorPref.SelectedIndexChanged += new System.EventHandler(this.m_lv_ColorPref_SelectedIndexChanged);
+            // 
+            // columnHeader3
+            // 
+            resources.ApplyResources(this.columnHeader3, "columnHeader3");
+            // 
+            // columnHeader4
+            // 
+            resources.ApplyResources(this.columnHeader4, "columnHeader4");
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // mHighContrastCombo
+            // 
+            this.mHighContrastCombo.FormattingEnabled = true;
+            resources.ApplyResources(this.mHighContrastCombo, "mHighContrastCombo");
+            this.mHighContrastCombo.Name = "mHighContrastCombo";
+            // 
+            // mNormalColorCombo
+            // 
+            this.mNormalColorCombo.FormattingEnabled = true;
+            resources.ApplyResources(this.mNormalColorCombo, "mNormalColorCombo");
+            this.mNormalColorCombo.Name = "mNormalColorCombo";
+            this.mNormalColorCombo.SelectedIndexChanged += new System.EventHandler(this.mNormalColorCombo_SelectedIndexChanged);
+            // 
             // m_CheckBoxListView
             // 
             resources.ApplyResources(this.m_CheckBoxListView, "m_CheckBoxListView");
@@ -586,6 +658,8 @@ namespace Obi.Dialogs
             this.mKeyboardShortcutTab.ResumeLayout(false);
             this.mKeyboardShortcutTab.PerformLayout();
             this.m_grpKeyboardShortcutList.ResumeLayout(false);
+            this.mColorPreferencesTab.ResumeLayout(false);
+            this.mColorPreferencesTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -648,5 +722,14 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_lblImportTolerance;
         private System.Windows.Forms.NumericUpDown m_NumImportTolerance;
         private System.Windows.Forms.Button m_btn_AdvancedRecording;
+        private System.Windows.Forms.TabPage mColorPreferencesTab;
+        private System.Windows.Forms.ComboBox mNormalColorCombo;
+        private System.Windows.Forms.ComboBox mHighContrastCombo;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ListView m_lv_ColorPref;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Button m_btn_Apply;
     }
 }
