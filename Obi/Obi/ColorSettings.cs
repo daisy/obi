@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace Obi
 {
@@ -70,7 +71,7 @@ namespace Obi
         [NonSerialized()] public SolidBrush WaveformSelectionBrush;
         [NonSerialized()] public Pen WaveformSelectionPen;
         [NonSerialized()] public SolidBrush WaveformTextBrush;
-
+        [NonSerialized()] public Dictionary<string, Color> ColorSetting;
         /// <summary>
         /// Create the brushes and pens that were not serialized.
         /// </summary>
@@ -180,5 +181,60 @@ namespace Obi
             
             return settings;
         }
+
+        public void PopulateColorSettingsDictionary()
+        {
+            ColorSetting = new Dictionary<string, Color>();
+            ColorSetting.Add("BlockBackColor_Custom", BlockBackColor_Custom);
+            ColorSetting.Add("BlockBackColor_Empty", BlockBackColor_Empty);
+            ColorSetting.Add("BlockBackColor_Heading", BlockBackColor_Heading);
+            ColorSetting.Add("BlockBackColor_Page", BlockBackColor_Page);
+            ColorSetting.Add("BlockBackColor_Plain", BlockBackColor_Plain);
+            ColorSetting.Add("BlockBackColor_Selected", BlockBackColor_Selected);
+            ColorSetting.Add("BlockBackColor_Silence", BlockBackColor_Silence);
+            ColorSetting.Add("BlockBackColor_TODO", BlockBackColor_TODO);
+            ColorSetting.Add("BlockBackColor_Unused", BlockBackColor_Unused);
+            ColorSetting.Add("BlockBackColor_Anchor", BlockBackColor_Anchor);
+            ColorSetting.Add("BlockForeColor_Custom", BlockForeColor_Custom);
+            ColorSetting.Add("BlockForeColor_Empty", BlockForeColor_Empty);
+            ColorSetting.Add("BlockForeColor_Heading", BlockForeColor_Heading);
+            ColorSetting.Add("BlockForeColor_Page", BlockForeColor_Page);
+            ColorSetting.Add("BlockForeColor_Plain", BlockForeColor_Plain);
+            ColorSetting.Add("BlockForeColor_Selected", BlockForeColor_Selected);
+            ColorSetting.Add("BlockForeColor_Silence", BlockForeColor_Silence);
+            ColorSetting.Add("BlockForeColor_TODO", BlockForeColor_TODO);
+            ColorSetting.Add("BlockForeColor_Anchor", BlockForeColor_Anchor);
+            ColorSetting.Add("BlockForeColor_Unused", BlockForeColor_Unused);
+            ColorSetting.Add("BlockLayoutSelectedColor", mBlockLayoutSelectedColor);
+            ColorSetting.Add("ContentViewBackColor", ContentViewBackColor);
+            ColorSetting.Add("EditableLabelTextBackColor", EditableLabelTextBackColor);
+            ColorSetting.Add("ProjectViewBackColor", ProjectViewBackColor);
+            ColorSetting.Add("StripBackColor",StripBackColor);
+            ColorSetting.Add("StripCursorSelectedBackColor",StripCursorSelectedBackColor);
+            ColorSetting.Add("StripForeColor", StripForeColor);
+            ColorSetting.Add("StripSelectedBackColor", StripSelectedBackColor);
+            ColorSetting.Add("StripSelectedForeColor", StripSelectedForeColor);
+            ColorSetting.Add("StripUnusedBackColor", StripUnusedBackColor);
+            ColorSetting.Add("StripUnusedForeColor", StripUnusedForeColor);
+            ColorSetting.Add("StripWithouyPhraseBackColor", StripWithoutPhrasesBackcolor);
+            ColorSetting.Add("TOCViewBackColor", TOCViewBackColor);
+            ColorSetting.Add("TOCViewForeColor", TOCViewForeColor);
+            ColorSetting.Add("TOCViewUnusedColor", TOCViewUnusedColor);
+            ColorSetting.Add("ToolTipForeColor", ToolTipForeColor);
+            ColorSetting.Add("TransportBarBackColor", TransportBarBackColor);
+            ColorSetting.Add("TransportBarLabelBackColor", TransportBarLabelBackColor);
+            ColorSetting.Add("TransportBarLabelForeColor", TransportBarLabelForeColor);
+            ColorSetting.Add("WaveformBackColor", WaveformBackColor);
+            ColorSetting.Add("WaveformBaseLineColor", mWaveformBaseLineColor);
+            ColorSetting.Add("WaveformHighlightedBackColor", WaveformHighlightedBackColor);
+            ColorSetting.Add("WaveformHighlightedForeColor", mWaveFormHighlightedForeColor);
+
+            ColorSetting.Add("WaveformChannel1Color", mWaveformChannel1Color);
+            ColorSetting.Add("WaveformChannel2Color", mWaveformChannel2Color);
+            ColorSetting.Add("WaveformMonoColor", mWaveformMonoColor);
+            ColorSetting.Add("WaveformSelectionColor", mWaveformSelectionColor);
+            ColorSetting.Add("WaveformCursorColor", mWaveformCursorColor);
+        }
+          
     }
 }

@@ -20,6 +20,7 @@ namespace Obi.Dialogs
         private ObiPresentation mPresentation;              // current presentation (may be null)
         private ProjectView.TransportBar mTransportBar;  // application transport bar
         private KeyboardShortcuts_Settings m_KeyboardShortcuts;
+//        private ColorSettings m_ColorSettings;
         private bool m_IsKeyboardShortcutChanged = false;
         private int m_Nudge = 200;
         private int m_Preview = 1500;
@@ -47,6 +48,7 @@ namespace Obi.Dialogs
             InitializeAudioTab ();
             InitializeProfileTab ();
             InitializeKeyboardShortcutsTab();
+            InitializeColorPreferenceTab();
             m_IsKeyboardShortcutChanged = false;
             this.m_CheckBoxListView.BringToFront();
             m_DefaultSettings = defaultSettings;            
@@ -201,6 +203,32 @@ namespace Obi.Dialogs
             if (mTab.SelectedTab != mKeyboardShortcutTab) m_lblShortcutKeys.Text = "";
         }
 
+        private void InitializeColorPreferenceTab()
+        {
+            mNormalColorCombo.Items.AddRange(new object[] { Color.Orange, Color.LightSkyBlue, Color.LightGreen, Color.LightSalmon,
+               SystemColors.Window, Color.Purple, SystemColors.Highlight, Color.Red,Color.BlueViolet, SystemColors.ControlDark,
+               SystemColors.HighlightText, SystemColors.ControlText, SystemColors.ControlText, SystemColors.ControlText,
+               SystemColors.ControlText, SystemColors.HighlightText, SystemColors.HighlightText, Color.Yellow,
+               SystemColors.HighlightText, SystemColors.HighlightText, SystemColors.Highlight, SystemColors.AppWorkspace,
+               SystemColors.Window, SystemColors.Control, SystemColors.Control, SystemColors.Highlight, SystemColors.ControlText,
+               SystemColors.Highlight, SystemColors.HighlightText, SystemColors.ControlDark, SystemColors.ControlText,
+               SystemColors.GradientActiveCaption, SystemColors.Window, SystemColors.ControlText, SystemColors.InactiveCaptionText,
+               SystemColors.ControlText, SystemColors.Control, Color.Azure, SystemColors.ControlText, SystemColors.Window, SystemColors.ControlText,
+               SystemColors.Highlight, SystemColors.HighlightText, Color.FromArgb(127, Color.Blue),Color.FromArgb(127, Color.Red),Color.FromArgb(127, Color.Blue),
+               SystemColors.Highlight, Color.Red
+            });
+            mHighContrastCombo.Items.AddRange(new object[] { SystemColors.ScrollBar, SystemColors.MenuText, SystemColors.WindowFrame, SystemColors.Window });
+            string[] tempArray = new string[2];
+            mSettings.ColorSettings.PopulateColorSettingsDictionary();
+            foreach (string desc in mSettings.ColorSettings.ColorSetting.Keys)
+            {
+                tempArray[0] = desc;
+                tempArray[1] = mSettings.ColorSettings.ColorSetting[desc].Name.ToString();
+                ListViewItem item = new ListViewItem(tempArray);
+                m_lv_ColorPref.Items.Add(item);                
+            }           
+        }
+
         /// <summary>
         /// Browse for a project directory.
         /// </summary>
@@ -234,6 +262,7 @@ namespace Obi.Dialogs
                         mForm.KeyboardShortcuts.SaveSettings();
                         mForm.InitializeKeyboardShortcuts(false);
                     }
+                 //   UpdateColorSettings();
                 DialogResult = DialogResult.OK;
                 Close ();
                 }
@@ -390,6 +419,11 @@ namespace Obi.Dialogs
             mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
             return true;
             }
+
+      //  private bool UpdateColorSettings()
+        //{ 
+        //    mSettings.ColorSettings.
+       // }
 
         private void m_ChkAutoSaveInterval_CheckStateChanged ( object sender, EventArgs e )
             {
@@ -713,6 +747,11 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
             }
+            if (mTab.SelectedTab == mColorPreferencesTab)
+            {
+                m_CheckBoxListView.Visible = false;
+                m_grpBoxChkBoxListView.Visible = false;
+            }
             if (!m_txtShortcutKeys.Focused) this.AcceptButton = mOKButton;
         }
 
@@ -812,6 +851,113 @@ namespace Obi.Dialogs
                     m_KeyboardShortcutReadableNamesMap[desc] :
                     desc;
             }
+        }
+
+        private void m_lv_ColorPref_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+         
+        }
+        public void UpdateColorSettings()
+        {
+            if (m_lv_ColorPref.SelectedIndices.Count > 0 && mNormalColorCombo.SelectedItem != null)
+            {
+                MessageBox.Show(m_lv_ColorPref.SelectedIndices[0].ToString());
+                switch (m_lv_ColorPref.SelectedIndices[0])
+                {                      
+                    case 0: mSettings.ColorSettings.BlockBackColor_Custom = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 1: mSettings.ColorSettings.BlockBackColor_Empty = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 2: mSettings.ColorSettings.BlockBackColor_Heading = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 3: mSettings.ColorSettings.BlockBackColor_Page = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 4: mSettings.ColorSettings.BlockBackColor_Selected = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 5: mSettings.ColorSettings.BlockBackColor_Silence = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 6: mSettings.ColorSettings.BlockBackColor_TODO = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 7: mSettings.ColorSettings.BlockBackColor_Unused = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 8: mSettings.ColorSettings.BlockBackColor_Anchor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 9: mSettings.ColorSettings.BlockForeColor_Custom = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 10: mSettings.ColorSettings.BlockForeColor_Empty = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 11: mSettings.ColorSettings.BlockForeColor_Heading = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 12: mSettings.ColorSettings.BlockForeColor_Page = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 13: mSettings.ColorSettings.BlockForeColor_Plain = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 14: mSettings.ColorSettings.BlockForeColor_Custom = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 15: mSettings.ColorSettings.BlockForeColor_Selected = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 16: mSettings.ColorSettings.BlockForeColor_Silence = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 17: mSettings.ColorSettings.BlockForeColor_TODO = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 18: mSettings.ColorSettings.BlockForeColor_Anchor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 19: mSettings.ColorSettings.BlockForeColor_Unused = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 20:  mSettings.ColorSettings.ContentViewBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 21: mSettings.ColorSettings.EditableLabelTextBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 22: mSettings.ColorSettings.ProjectViewBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 23: mSettings.ColorSettings.StripBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 24: mSettings.ColorSettings.StripCursorSelectedBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 25: mSettings.ColorSettings.StripForeColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 26: mSettings.ColorSettings.StripSelectedBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 27: mSettings.ColorSettings.StripSelectedForeColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 28: mSettings.ColorSettings.StripUnusedBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 29: mSettings.ColorSettings.StripUnusedForeColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 30: mSettings.ColorSettings.StripWithoutPhrasesBackcolor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 31: mSettings.ColorSettings.TOCViewBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 32: mSettings.ColorSettings.TOCViewForeColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 33: mSettings.ColorSettings.TOCViewUnusedColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 34: mSettings.ColorSettings.ToolTipForeColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 35: mSettings.ColorSettings.TransportBarBackColor= (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 36: mSettings.ColorSettings.TransportBarLabelBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 37: mSettings.ColorSettings.TransportBarLabelForeColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 38: mSettings.ColorSettings.WaveformBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 39: mSettings.ColorSettings.WaveformHighlightedBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    default: break;
+                }
+            }
+        }
+
+        private void mNormalColorCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+                      
+        }
+
+        private void m_btn_Apply_Click(object sender, EventArgs e)
+        {
+            UpdateColorSettings();
         }
         }
     }
