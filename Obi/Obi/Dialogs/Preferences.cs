@@ -859,11 +859,6 @@ namespace Obi.Dialogs
             }
         }
 
-        private void m_lv_ColorPref_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-         
-        }
         public void UpdateColorSettings()
         {
             if (m_lv_ColorPref.SelectedIndices.Count > 0 && mNormalColorCombo.SelectedItem != null)
