@@ -219,14 +219,8 @@ namespace Obi.Dialogs
             mHighContrastCombo.Items.AddRange(new object[] { SystemColors.Window, SystemColors.ControlText, Color.DarkSlateGray, Color.Green, Color.Yellow});
             string[] tempArray = new string[2];
             mSettings.ColorSettings.PopulateColorSettingsDictionary();
-            foreach (string desc in mSettings.ColorSettings.ColorSetting.Keys)
-            {
-                tempArray[0] = desc;
-                tempArray[1] = mSettings.ColorSettings.ColorSetting[desc].Name;
-                ListViewItem item = new ListViewItem(tempArray);
-                m_lv_ColorPref.Items.Add(item);                
-            }           
-        }
+            LoadListViewWithColors();
+        }        
 
         /// <summary>
         /// Browse for a project directory.
@@ -580,6 +574,20 @@ namespace Obi.Dialogs
         }
         }
 
+        private void LoadListViewWithColors()
+        {
+            string[] tempArray = new string[2];
+            m_lv_ColorPref.Items.Clear();
+            mSettings.ColorSettings.PopulateColorSettingsDictionary();
+            foreach (string desc in mSettings.ColorSettings.ColorSetting.Keys)
+            {
+                tempArray[0] = desc;
+                tempArray[1] = mSettings.ColorSettings.ColorSetting[desc].Name;
+                ListViewItem item = new ListViewItem(tempArray);
+                m_lv_ColorPref.Items.Add(item);
+            }
+        }
+
         private void m_RestoreDefaults_Click(object sender, EventArgs e)
         {   
             mForm.LoadDefaultKeyboardShortcuts();
@@ -799,6 +807,10 @@ namespace Obi.Dialogs
                  LoadListviewAccordingToComboboxSelection();
                  //InitializeKeyboardShortcutsTab();
                 // Not required it already has reset button.
+            }
+            else if (mTab.SelectedTab == mColorPreferencesTab)
+            {
+                ResetColors();
             }
         }
 
@@ -1044,10 +1056,48 @@ namespace Obi.Dialogs
         {
             UpdateColorSettings();
         }
-
-        private void m_btn_RestoreDefault_Click(object sender, EventArgs e)
+        private void ResetColors()
         {
-           // ColorSettings.DefaultColorSettings();
+            ColorSettings settings = ColorSettings.DefaultColorSettings();
+            mSettings.ColorSettings.BlockBackColor_Custom = settings.BlockBackColor_Custom;
+            mSettings.ColorSettings.BlockBackColor_Anchor = settings.BlockBackColor_Anchor;
+            mSettings.ColorSettings.BlockBackColor_Empty = settings.BlockBackColor_Empty;
+            mSettings.ColorSettings.BlockBackColor_Heading = settings.BlockBackColor_Heading;
+            mSettings.ColorSettings.BlockBackColor_Page = settings.BlockBackColor_Page;
+            mSettings.ColorSettings.BlockBackColor_Plain = settings.BlockBackColor_Plain;
+            mSettings.ColorSettings.BlockBackColor_Selected = settings.BlockBackColor_Selected;
+            mSettings.ColorSettings.BlockBackColor_Silence = settings.BlockBackColor_Silence;
+            mSettings.ColorSettings.BlockBackColor_TODO = settings.BlockBackColor_TODO;
+            mSettings.ColorSettings.BlockBackColor_Unused = settings.BlockBackColor_Unused;
+            mSettings.ColorSettings.BlockForeColor_Anchor = settings.BlockForeColor_Anchor;
+            mSettings.ColorSettings.BlockForeColor_Custom = settings.BlockForeColor_Custom;
+            mSettings.ColorSettings.BlockForeColor_Empty = settings.BlockForeColor_Empty;
+            mSettings.ColorSettings.BlockForeColor_Heading = settings.BlockForeColor_Heading;
+            mSettings.ColorSettings.BlockForeColor_Page = settings.BlockForeColor_Page;
+            mSettings.ColorSettings.BlockForeColor_Plain = settings.BlockForeColor_Plain;
+            mSettings.ColorSettings.BlockForeColor_Selected = settings.BlockForeColor_Selected;
+            mSettings.ColorSettings.BlockForeColor_Silence = settings.BlockForeColor_Silence;
+            mSettings.ColorSettings.BlockForeColor_TODO = settings.BlockForeColor_TODO;
+            mSettings.ColorSettings.BlockForeColor_Unused = settings.BlockForeColor_Unused;
+            mSettings.ColorSettings.StripBackColor = settings.StripBackColor;
+            mSettings.ColorSettings.StripCursorSelectedBackColor = settings.StripCursorSelectedBackColor;
+            mSettings.ColorSettings.StripForeColor = settings.StripForeColor;
+            mSettings.ColorSettings.StripSelectedBackColor = settings.StripSelectedBackColor;
+            mSettings.ColorSettings.StripSelectedForeColor = settings.StripSelectedForeColor;
+            mSettings.ColorSettings.StripUnusedBackColor = settings.StripUnusedBackColor;
+            mSettings.ColorSettings.StripUnusedForeColor = settings.StripUnusedForeColor;
+            mSettings.ColorSettings.StripWithoutPhrasesBackcolor = settings.StripWithoutPhrasesBackcolor;
+            mSettings.ColorSettings.TOCViewBackColor = settings.TOCViewBackColor;
+            mSettings.ColorSettings.TOCViewForeColor = settings.TOCViewForeColor;
+            mSettings.ColorSettings.TOCViewUnusedColor = settings.TOCViewUnusedColor;
+            mSettings.ColorSettings.ToolTipForeColor = settings.ToolTipForeColor;
+            mSettings.ColorSettings.TransportBarBackColor = settings.TransportBarBackColor;
+            mSettings.ColorSettings.TransportBarLabelBackColor = settings.TransportBarLabelBackColor;
+            mSettings.ColorSettings.TransportBarLabelForeColor = settings.TransportBarLabelForeColor;
+            mSettings.ColorSettings.WaveformBackColor = settings.WaveformBackColor;
+            mSettings.ColorSettings.WaveformHighlightedBackColor = settings.WaveformHighlightedBackColor;
+            LoadListViewWithColors();
         }
+        
         }
     }
