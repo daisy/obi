@@ -204,18 +204,35 @@ namespace Obi.Dialogs
 
         private void InitializeColorPreferenceTab()
         {
-            mNormalColorCombo.Items.AddRange(new object[] { Color.Orange, Color.LightSkyBlue, Color.LightGreen, Color.LightSalmon,
-               SystemColors.Window, Color.Purple, SystemColors.Highlight, Color.Red,Color.BlueViolet, SystemColors.ControlDark,
-               SystemColors.HighlightText, SystemColors.ControlText, SystemColors.ControlText, SystemColors.ControlText,
-               SystemColors.ControlText, SystemColors.HighlightText, SystemColors.HighlightText, Color.Yellow,
-               SystemColors.HighlightText, SystemColors.HighlightText, SystemColors.Highlight, SystemColors.AppWorkspace,
-               SystemColors.Window, SystemColors.Control, SystemColors.Control, SystemColors.Highlight, SystemColors.ControlText,
-               SystemColors.Highlight, SystemColors.HighlightText, SystemColors.ControlDark, SystemColors.ControlText,
-               SystemColors.GradientActiveCaption, SystemColors.Window, SystemColors.ControlText, SystemColors.InactiveCaptionText,
-               SystemColors.ControlText, SystemColors.Control, Color.Azure, SystemColors.ControlText, SystemColors.Window, SystemColors.ControlText,
-               SystemColors.Highlight, SystemColors.HighlightText, 
-               SystemColors.Highlight, Color.Red
-            });
+            //mNormalColorCombo.Items.AddRange(new object[] (GetType (System.Drawing.Color ) ;
+             System.Reflection.PropertyInfo [] colorProperties = typeof(System.Drawing.Color).GetProperties() ;
+             System.Reflection.PropertyInfo[] systemColorProperties = typeof(System.Drawing.SystemColors).GetProperties();
+
+             foreach (System.Reflection.PropertyInfo p in colorProperties)
+             {
+                 System.Drawing.Color col = System.Drawing.Color.FromName(p.Name);
+                 if (col != System.Drawing.Color.Transparent) mNormalColorCombo.Items.Add(col);
+             }
+
+             //foreach (System.Reflection.PropertyInfo p in systemColorProperties)
+             //{
+                 //System.Drawing.SystemColors col = System.Drawing. (p.Name);
+                 //mNormalColorCombo.Items.Add(col);
+             //}
+             mNormalColorCombo.SelectedIndex = 0;
+             
+            //mNormalColorCombo.Items.AddRange(new object[] { Color.Orange, Color.LightSkyBlue, Color.LightGreen, Color.LightSalmon,
+               //SystemColors.Window, Color.Purple, SystemColors.Highlight, Color.Red,Color.BlueViolet, SystemColors.ControlDark,
+               //SystemColors.HighlightText, SystemColors.ControlText, SystemColors.ControlText, SystemColors.ControlText,
+               //SystemColors.ControlText, SystemColors.HighlightText, SystemColors.HighlightText, Color.Yellow,
+               //SystemColors.HighlightText, SystemColors.HighlightText, SystemColors.Highlight, SystemColors.AppWorkspace,
+               //SystemColors.Window, SystemColors.Control, SystemColors.Control, SystemColors.Highlight, SystemColors.ControlText,
+               //SystemColors.Highlight, SystemColors.HighlightText, SystemColors.ControlDark, SystemColors.ControlText,
+               //SystemColors.GradientActiveCaption, SystemColors.Window, SystemColors.ControlText, SystemColors.InactiveCaptionText,
+               //SystemColors.ControlText, SystemColors.Control, Color.Azure, SystemColors.ControlText, SystemColors.Window, SystemColors.ControlText,
+               //SystemColors.Highlight, SystemColors.HighlightText, 
+               //SystemColors.Highlight, Color.Red
+            //});
             mHighContrastCombo.Items.AddRange(new object[] { SystemColors.Window, SystemColors.ControlText, Color.DarkSlateGray, Color.Green, Color.Yellow});
             string[] tempArray = new string[2];
             mSettings.ColorSettings.PopulateColorSettingsDictionary();
@@ -1044,7 +1061,14 @@ namespace Obi.Dialogs
 
         private void mNormalColorCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_txtBox_Color.BackColor = (Color)mNormalColorCombo.SelectedItem;
+            try
+            {
+                if (mNormalColorCombo.SelectedItem != null) m_txtBox_Color.BackColor = (Color)mNormalColorCombo.SelectedItem;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void m_btn_Apply_Click(object sender, EventArgs e)
