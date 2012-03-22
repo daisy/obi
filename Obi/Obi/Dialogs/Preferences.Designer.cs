@@ -96,6 +96,7 @@ namespace Obi.Dialogs
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
+            this.m_txtBox_HighContrast = new System.Windows.Forms.TextBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -549,6 +550,7 @@ namespace Obi.Dialogs
             // 
             // mColorPreferencesTab
             // 
+            this.mColorPreferencesTab.Controls.Add(this.m_txtBox_HighContrast);
             this.mColorPreferencesTab.Controls.Add(this.groupBox1);
             this.mColorPreferencesTab.Controls.Add(this.m_txtBox_Color);
             this.mColorPreferencesTab.Controls.Add(this.m_btn_Apply);
@@ -613,7 +615,8 @@ namespace Obi.Dialogs
             // 
             this.mHighContrastCombo.FormattingEnabled = true;
             resources.ApplyResources(this.mHighContrastCombo, "mHighContrastCombo");
-            this.mHighContrastCombo.Name = "mHighContrastCombo";
+            this.mHighContrastCombo.Name = "mHighContrastCombo";            
+            this.mHighContrastCombo.SelectedIndexChanged += new System.EventHandler(this.mHighContrastCombo_SelectedIndexChanged);
             // 
             // mNormalColorCombo
             // 
@@ -643,6 +646,11 @@ namespace Obi.Dialogs
             this.m_ResetButton.Name = "m_ResetButton";
             this.m_ResetButton.UseVisualStyleBackColor = true;
             this.m_ResetButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // m_txtBox_HighContrast
+            // 
+            resources.ApplyResources(this.m_txtBox_HighContrast, "m_txtBox_HighContrast");
+            this.m_txtBox_HighContrast.Name = "m_txtBox_HighContrast";
             // 
             // Preferences
             // 
@@ -751,5 +759,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btn_Apply;
         private System.Windows.Forms.TextBox m_txtBox_Color;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox m_txtBox_HighContrast;
     }
 }

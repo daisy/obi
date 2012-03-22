@@ -223,7 +223,6 @@ namespace Obi.Dialogs
                                                    mNormalColorCombo.Items.Add(col);
              }
              mNormalColorCombo.SelectedIndex = 0;
-             
             //mNormalColorCombo.Items.AddRange(new object[] { Color.Orange, Color.LightSkyBlue, Color.LightGreen, Color.LightSalmon,
                //SystemColors.Window, Color.Purple, SystemColors.Highlight, Color.Red,Color.BlueViolet, SystemColors.ControlDark,
                //SystemColors.HighlightText, SystemColors.ControlText, SystemColors.ControlText, SystemColors.ControlText,
@@ -237,9 +236,9 @@ namespace Obi.Dialogs
                //SystemColors.Highlight, Color.Red
             //});
             mHighContrastCombo.Items.AddRange(new object[] { SystemColors.Window, SystemColors.ControlText, Color.DarkSlateGray, Color.Green, Color.Yellow});
-            string[] tempArray = new string[2];
-            mSettings.ColorSettings.PopulateColorSettingsDictionary();
 
+            mHighContrastCombo.SelectedIndex = 0;
+            mSettings.ColorSettings.PopulateColorSettingsDictionary();
             LoadListViewWithColors();
         }        
 
@@ -1060,6 +1059,9 @@ namespace Obi.Dialogs
                         break;
                     default: break;
                 }
+                ListViewItem selectedItem = m_lv_ColorPref.Items[m_lv_ColorPref.SelectedIndices[0]];
+                string desc = selectedItem.Text;
+                selectedItem.SubItems[1].Text = ((Color)mHighContrastCombo.SelectedItem).Name;
             }
         }
 
@@ -1130,12 +1132,33 @@ namespace Obi.Dialogs
 
         private void m_lv_ColorPref_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (m_lv_ColorPref.SelectedIndices.Count > 0 && mNormalColorCombo.SelectedItem != null)
+            if (m_lv_ColorPref.SelectedIndices.Count > 0 && (mNormalColorCombo.SelectedItem != null || mHighContrastCombo.SelectedItem != null))
             {
                 ListViewItem selectedItem = m_lv_ColorPref.Items[m_lv_ColorPref.SelectedIndices[0]];
                 string desc = selectedItem.Text;
                 int index = mNormalColorCombo.FindStringExact(selectedItem.SubItems[1].Text);
                 mNormalColorCombo.SelectedIndex = index;
+                int indexHC = mHighContrastCombo.FindStringExact(selectedItem.SubItems[1].Text);
+                mHighContrastCombo.SelectedIndex = indexHC;
+            }
+        }
+
+        private void mHighContrastCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (mHighContrastCombo.SelectedItem != null)
+                {
+                    System.Drawing.ColorConverter col = new ColorConverter();
+                    if (mHighContrastCombo.SelectedItem is Color)
+                        m_txtBox_HighContrast.BackColor = (Color)mHighContrastCombo.SelectedItem;
+                    else if (mHighContrastCombo.SelectedItem is SystemColors)
+                        m_txtBox_HighContrast.BackColor = (Color)col.ConvertFromString(mHighContrastCombo.SelectedText);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
