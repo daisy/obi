@@ -31,7 +31,7 @@ namespace Obi.Dialogs
         private string m_lblShortcutKeys_text ; //workaround for screen reader response, will be removed in future
         private Settings m_DefaultSettings;
         private Dictionary <string,string> m_KeyboardShortcutReadableNamesMap = new Dictionary<string,string> () ;
-
+        
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
@@ -205,6 +205,7 @@ namespace Obi.Dialogs
         private void InitializeColorPreferenceTab()
         {
             //mNormalColorCombo.Items.AddRange(new object[] (GetType (System.Drawing.Color ) ;
+            
             System.Reflection.PropertyInfo[] colorProperties = typeof(System.Drawing.Color).GetProperties(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Public);
     
              System.Reflection.PropertyInfo[] systemColorProperties = typeof(System.Drawing.SystemColors).GetProperties();
@@ -238,6 +239,7 @@ namespace Obi.Dialogs
             mHighContrastCombo.Items.AddRange(new object[] { SystemColors.Window, SystemColors.ControlText, Color.DarkSlateGray, Color.Green, Color.Yellow});
             string[] tempArray = new string[2];
             mSettings.ColorSettings.PopulateColorSettingsDictionary();
+
             LoadListViewWithColors();
         }        
 
@@ -1062,10 +1064,16 @@ namespace Obi.Dialogs
         }
 
         private void mNormalColorCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
+        {  try
             {
-                if (mNormalColorCombo.SelectedItem != null) m_txtBox_Color.BackColor = (Color)mNormalColorCombo.SelectedItem;
+                if (mNormalColorCombo.SelectedItem != null) 
+                {
+                    System.Drawing.ColorConverter col = new ColorConverter ();                    
+                   if (mNormalColorCombo.SelectedItem is Color)
+                       m_txtBox_Color.BackColor = (Color)mNormalColorCombo.SelectedItem;
+                   else if (mNormalColorCombo.SelectedItem is SystemColors)
+                       m_txtBox_Color.BackColor = (Color)col.ConvertFromString(mNormalColorCombo.SelectedText);
+                }
             }
             catch (System.Exception ex)
             {
@@ -1119,6 +1127,17 @@ namespace Obi.Dialogs
             mSettings.ColorSettings.WaveformHighlightedBackColor = settings.WaveformHighlightedBackColor;
             LoadListViewWithColors();
         }
-        
+
+        private void m_lv_ColorPref_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (m_lv_ColorPref.SelectedIndices.Count > 0 && mNormalColorCombo.SelectedItem != null)
+            {
+                ListViewItem selectedItem = m_lv_ColorPref.Items[m_lv_ColorPref.SelectedIndices[0]];
+                string desc = selectedItem.Text;
+                int index = mNormalColorCombo.FindStringExact(selectedItem.SubItems[1].Text);
+                mNormalColorCombo.SelectedIndex = index;
+            }
         }
+
+    }
     }
