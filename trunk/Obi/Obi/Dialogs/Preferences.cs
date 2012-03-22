@@ -205,7 +205,8 @@ namespace Obi.Dialogs
         private void InitializeColorPreferenceTab()
         {
             //mNormalColorCombo.Items.AddRange(new object[] (GetType (System.Drawing.Color ) ;
-             System.Reflection.PropertyInfo [] colorProperties = typeof(System.Drawing.Color).GetProperties() ;
+            System.Reflection.PropertyInfo[] colorProperties = typeof(System.Drawing.Color).GetProperties(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Public);
+    
              System.Reflection.PropertyInfo[] systemColorProperties = typeof(System.Drawing.SystemColors).GetProperties();
 
              foreach (System.Reflection.PropertyInfo p in colorProperties)
@@ -214,11 +215,12 @@ namespace Obi.Dialogs
                  if (col != System.Drawing.Color.Transparent) mNormalColorCombo.Items.Add(col);
              }
 
-             //foreach (System.Reflection.PropertyInfo p in systemColorProperties)
-             //{
-                 //System.Drawing.SystemColors col = System.Drawing. (p.Name);
-                 //mNormalColorCombo.Items.Add(col);
-             //}
+             foreach (System.Reflection.PropertyInfo p in systemColorProperties)
+             {   
+                 System.Drawing.ColorConverter c = new ColorConverter ();
+                 object col = c.ConvertFromString (p.Name) ;
+                                                   mNormalColorCombo.Items.Add(col);
+             }
              mNormalColorCombo.SelectedIndex = 0;
              
             //mNormalColorCombo.Items.AddRange(new object[] { Color.Orange, Color.LightSkyBlue, Color.LightGreen, Color.LightSalmon,
