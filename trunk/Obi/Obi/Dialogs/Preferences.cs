@@ -596,13 +596,15 @@ namespace Obi.Dialogs
 
         private void LoadListViewWithColors()
         {
-            string[] tempArray = new string[2];
+            string[] tempArray = new string[3];
             m_lv_ColorPref.Items.Clear();
             mSettings.ColorSettings.PopulateColorSettingsDictionary();
+            mSettings.ColorSettingsHC.PopulateColorSettingsDictionary();
             foreach (string desc in mSettings.ColorSettings.ColorSetting.Keys)
             {
                 tempArray[0] = desc;
                 tempArray[1] = mSettings.ColorSettings.ColorSetting[desc].Name;
+                tempArray[2] = mSettings.ColorSettingsHC.ColorSetting[desc].Name;
                 ListViewItem item = new ListViewItem(tempArray);
                 m_lv_ColorPref.Items.Add(item);
             }
@@ -1061,7 +1063,7 @@ namespace Obi.Dialogs
                 }
                 ListViewItem selectedItem = m_lv_ColorPref.Items[m_lv_ColorPref.SelectedIndices[0]];
                 string desc = selectedItem.Text;
-                selectedItem.SubItems[1].Text = ((Color)mHighContrastCombo.SelectedItem).Name;
+                selectedItem.SubItems[2].Text = ((Color)mHighContrastCombo.SelectedItem).Name;
             }
         }
 
@@ -1090,6 +1092,8 @@ namespace Obi.Dialogs
         private void ResetColors()
         {
             ColorSettings settings = ColorSettings.DefaultColorSettings();
+            ColorSettings settingsHC = ColorSettings.DefaultColorSettingsHC();
+
             mSettings.ColorSettings.BlockBackColor_Custom = settings.BlockBackColor_Custom;
             mSettings.ColorSettings.BlockBackColor_Anchor = settings.BlockBackColor_Anchor;
             mSettings.ColorSettings.BlockBackColor_Empty = settings.BlockBackColor_Empty;
@@ -1127,6 +1131,44 @@ namespace Obi.Dialogs
             mSettings.ColorSettings.TransportBarLabelForeColor = settings.TransportBarLabelForeColor;
             mSettings.ColorSettings.WaveformBackColor = settings.WaveformBackColor;
             mSettings.ColorSettings.WaveformHighlightedBackColor = settings.WaveformHighlightedBackColor;
+
+            mSettings.ColorSettingsHC.BlockBackColor_Custom = settingsHC.BlockBackColor_Custom;
+            mSettings.ColorSettingsHC.BlockBackColor_Anchor = settingsHC.BlockBackColor_Anchor;
+            mSettings.ColorSettingsHC.BlockBackColor_Empty = settingsHC.BlockBackColor_Empty;
+            mSettings.ColorSettingsHC.BlockBackColor_Heading = settingsHC.BlockBackColor_Heading;
+            mSettings.ColorSettingsHC.BlockBackColor_Page = settingsHC.BlockBackColor_Page;
+            mSettings.ColorSettingsHC.BlockBackColor_Plain = settingsHC.BlockBackColor_Plain;
+            mSettings.ColorSettingsHC.BlockBackColor_Selected = settingsHC.BlockBackColor_Selected;
+            mSettings.ColorSettingsHC.BlockBackColor_Silence = settingsHC.BlockBackColor_Silence;
+            mSettings.ColorSettingsHC.BlockBackColor_TODO = settingsHC.BlockBackColor_TODO;
+            mSettings.ColorSettingsHC.BlockBackColor_Unused = settingsHC.BlockBackColor_Unused;
+            mSettings.ColorSettingsHC.BlockForeColor_Anchor = settingsHC.BlockForeColor_Anchor;
+            mSettings.ColorSettingsHC.BlockForeColor_Custom = settingsHC.BlockForeColor_Custom;
+            mSettings.ColorSettingsHC.BlockForeColor_Empty = settingsHC.BlockForeColor_Empty;
+            mSettings.ColorSettingsHC.BlockForeColor_Heading = settingsHC.BlockForeColor_Heading;
+            mSettings.ColorSettingsHC.BlockForeColor_Page = settingsHC.BlockForeColor_Page;
+            mSettings.ColorSettingsHC.BlockForeColor_Plain = settingsHC.BlockForeColor_Plain;
+            mSettings.ColorSettingsHC.BlockForeColor_Selected = settingsHC.BlockForeColor_Selected;
+            mSettings.ColorSettingsHC.BlockForeColor_Silence = settingsHC.BlockForeColor_Silence;
+            mSettings.ColorSettingsHC.BlockForeColor_TODO = settingsHC.BlockForeColor_TODO;
+            mSettings.ColorSettingsHC.BlockForeColor_Unused = settingsHC.BlockForeColor_Unused;
+            mSettings.ColorSettingsHC.StripBackColor = settingsHC.StripBackColor;
+            mSettings.ColorSettingsHC.StripCursorSelectedBackColor = settingsHC.StripCursorSelectedBackColor;
+            mSettings.ColorSettingsHC.StripForeColor = settingsHC.StripForeColor;
+            mSettings.ColorSettingsHC.StripSelectedBackColor = settingsHC.StripSelectedBackColor;
+            mSettings.ColorSettingsHC.StripSelectedForeColor = settingsHC.StripSelectedForeColor;
+            mSettings.ColorSettingsHC.StripUnusedBackColor = settingsHC.StripUnusedBackColor;
+            mSettings.ColorSettingsHC.StripUnusedForeColor = settingsHC.StripUnusedForeColor;
+            mSettings.ColorSettingsHC.StripWithoutPhrasesBackcolor = settingsHC.StripWithoutPhrasesBackcolor;
+            mSettings.ColorSettingsHC.TOCViewBackColor = settingsHC.TOCViewBackColor;
+            mSettings.ColorSettingsHC.TOCViewForeColor = settingsHC.TOCViewForeColor;
+            mSettings.ColorSettingsHC.TOCViewUnusedColor = settingsHC.TOCViewUnusedColor;
+            mSettings.ColorSettingsHC.ToolTipForeColor = settingsHC.ToolTipForeColor;
+            mSettings.ColorSettingsHC.TransportBarBackColor = settingsHC.TransportBarBackColor;
+            mSettings.ColorSettingsHC.TransportBarLabelBackColor = settingsHC.TransportBarLabelBackColor;
+            mSettings.ColorSettingsHC.TransportBarLabelForeColor = settingsHC.TransportBarLabelForeColor;
+            mSettings.ColorSettingsHC.WaveformBackColor = settingsHC.WaveformBackColor;
+            mSettings.ColorSettingsHC.WaveformHighlightedBackColor = settingsHC.WaveformHighlightedBackColor;
             LoadListViewWithColors();
         }
 
@@ -1138,7 +1180,7 @@ namespace Obi.Dialogs
                 string desc = selectedItem.Text;
                 int index = mNormalColorCombo.FindStringExact(selectedItem.SubItems[1].Text);
                 mNormalColorCombo.SelectedIndex = index;
-                int indexHC = mHighContrastCombo.FindStringExact(selectedItem.SubItems[1].Text);
+                int indexHC = mHighContrastCombo.FindStringExact(selectedItem.SubItems[2].Text);
                 mHighContrastCombo.SelectedIndex = indexHC;
             }
         }
