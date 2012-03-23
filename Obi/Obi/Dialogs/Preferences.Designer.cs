@@ -88,6 +88,7 @@ namespace Obi.Dialogs
             this.m_lv_ColorPref = new System.Windows.Forms.ListView();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.m_txtBox_Color = new System.Windows.Forms.TextBox();
             this.m_btn_Apply = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -97,7 +98,6 @@ namespace Obi.Dialogs
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -567,6 +567,8 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_txtBox_HighContrast, "m_txtBox_HighContrast");
             this.m_txtBox_HighContrast.Name = "m_txtBox_HighContrast";
+            this.m_txtBox_HighContrast.ReadOnly = true;
+            this.m_txtBox_HighContrast.TabStop = false;
             // 
             // groupBox1
             // 
@@ -596,10 +598,16 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.columnHeader4, "columnHeader4");
             // 
+            // columnHeader5
+            // 
+            resources.ApplyResources(this.columnHeader5, "columnHeader5");
+            // 
             // m_txtBox_Color
             // 
             resources.ApplyResources(this.m_txtBox_Color, "m_txtBox_Color");
             this.m_txtBox_Color.Name = "m_txtBox_Color";
+            this.m_txtBox_Color.ReadOnly = true;
+            this.m_txtBox_Color.TabStop = false;
             // 
             // m_btn_Apply
             // 
@@ -620,6 +628,7 @@ namespace Obi.Dialogs
             // 
             // mHighContrastCombo
             // 
+            this.mHighContrastCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mHighContrastCombo.FormattingEnabled = true;
             resources.ApplyResources(this.mHighContrastCombo, "mHighContrastCombo");
             this.mHighContrastCombo.Name = "mHighContrastCombo";
@@ -627,6 +636,7 @@ namespace Obi.Dialogs
             // 
             // mNormalColorCombo
             // 
+            this.mNormalColorCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mNormalColorCombo.FormattingEnabled = true;
             resources.ApplyResources(this.mNormalColorCombo, "mNormalColorCombo");
             this.mNormalColorCombo.Name = "mNormalColorCombo";
@@ -653,10 +663,6 @@ namespace Obi.Dialogs
             this.m_ResetButton.Name = "m_ResetButton";
             this.m_ResetButton.UseVisualStyleBackColor = true;
             this.m_ResetButton.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // columnHeader5
-            // 
-            resources.ApplyResources(this.columnHeader5, "columnHeader5");
             // 
             // Preferences
             // 
