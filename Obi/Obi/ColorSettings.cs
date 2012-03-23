@@ -216,7 +216,7 @@ namespace Obi
             ColorSetting.Add("StripSelectedForeColor", StripSelectedForeColor);
             ColorSetting.Add("StripUnusedBackColor", StripUnusedBackColor);
             ColorSetting.Add("StripUnusedForeColor", StripUnusedForeColor);
-            ColorSetting.Add("StripWithouyPhraseBackColor", StripWithoutPhrasesBackcolor);
+            ColorSetting.Add("StripWithoutPhraseBackColor", StripWithoutPhrasesBackcolor);
             ColorSetting.Add("TOCViewBackColor", TOCViewBackColor);
             ColorSetting.Add("TOCViewForeColor", TOCViewForeColor);
             ColorSetting.Add("TOCViewUnusedColor", TOCViewUnusedColor);
