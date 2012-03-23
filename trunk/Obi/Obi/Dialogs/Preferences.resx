@@ -1003,7 +1003,7 @@
     <value>6, 21</value>
   </data>
   <data name="m_lv_ColorPref.Size" type="System.Drawing.Size, System.Drawing">
-    <value>447, 137</value>
+    <value>495, 137</value>
   </data>
   <data name="m_lv_ColorPref.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1021,10 +1021,10 @@
     <value>0</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 3</value>
+    <value>55, 3</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>459, 163</value>
+    <value>507, 163</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
