@@ -227,13 +227,6 @@ namespace Obi
             ColorSetting.Add("WaveformBackColor", WaveformBackColor);
             ColorSetting.Add("WaveformBaseLineColor", mWaveformBaseLineColor);
             ColorSetting.Add("WaveformHighlightedBackColor", WaveformHighlightedBackColor);
-            ColorSetting.Add("WaveformHighlightedForeColor", mWaveFormHighlightedForeColor);
-
-            ColorSetting.Add("WaveformChannel1Color", mWaveformChannel1Color);
-            ColorSetting.Add("WaveformChannel2Color", mWaveformChannel2Color);
-            ColorSetting.Add("WaveformMonoColor", mWaveformMonoColor);
-            ColorSetting.Add("WaveformSelectionColor", mWaveformSelectionColor);
-            ColorSetting.Add("WaveformCursorColor", mWaveformCursorColor);
         }
           
     }
