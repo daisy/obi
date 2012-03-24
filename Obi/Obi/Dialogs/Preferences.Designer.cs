@@ -629,16 +629,16 @@ namespace Obi.Dialogs
             // mHighContrastCombo
             // 
             this.mHighContrastCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mHighContrastCombo.FormattingEnabled = true;
             resources.ApplyResources(this.mHighContrastCombo, "mHighContrastCombo");
+            this.mHighContrastCombo.FormattingEnabled = true;
             this.mHighContrastCombo.Name = "mHighContrastCombo";
             this.mHighContrastCombo.SelectedIndexChanged += new System.EventHandler(this.mHighContrastCombo_SelectedIndexChanged);
             // 
             // mNormalColorCombo
             // 
             this.mNormalColorCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mNormalColorCombo.FormattingEnabled = true;
             resources.ApplyResources(this.mNormalColorCombo, "mNormalColorCombo");
+            this.mNormalColorCombo.FormattingEnabled = true;
             this.mNormalColorCombo.Name = "mNormalColorCombo";
             this.mNormalColorCombo.SelectedIndexChanged += new System.EventHandler(this.mNormalColorCombo_SelectedIndexChanged);
             // 
