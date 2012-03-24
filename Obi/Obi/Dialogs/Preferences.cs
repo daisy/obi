@@ -31,7 +31,8 @@ namespace Obi.Dialogs
         private string m_lblShortcutKeys_text ; //workaround for screen reader response, will be removed in future
         private Settings m_DefaultSettings;
         private Dictionary <string,string> m_KeyboardShortcutReadableNamesMap = new Dictionary<string,string> () ;
-        
+        private bool m_IsColorChanged = false;
+
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
@@ -52,6 +53,9 @@ namespace Obi.Dialogs
             this.m_CheckBoxListView.BringToFront();
             m_DefaultSettings = defaultSettings;            
             }
+
+        public bool IsColorChanged
+        { get { return m_IsColorChanged; } }
 
         // Initialize the project tab
         private void InitializeProjectTab ()
@@ -235,7 +239,7 @@ namespace Obi.Dialogs
                //SystemColors.Highlight, SystemColors.HighlightText, 
                //SystemColors.Highlight, Color.Red
             //});
-            mHighContrastCombo.Items.AddRange(new object[] { SystemColors.Window, SystemColors.ControlText, Color.DarkSlateGray, Color.Green, Color.Yellow});
+            mHighContrastCombo.Items.AddRange(new object[] { SystemColors.Window, SystemColors.AppWorkspace, SystemColors.InactiveCaptionText, SystemColors.GradientActiveCaption, SystemColors.Highlight, SystemColors.HighlightText, SystemColors.ControlDark, SystemColors.Control, SystemColors.ControlText, Color.DarkSlateGray, Color.Green, Color.Yellow});
 
             mHighContrastCombo.SelectedIndex = 0;
             mSettings.ColorSettings.PopulateColorSettingsDictionary();
@@ -833,6 +837,7 @@ namespace Obi.Dialogs
             else if (mTab.SelectedTab == mColorPreferencesTab)
             {
                 ResetColors();
+                m_IsColorChanged = true;
             }
         }
 
@@ -1088,6 +1093,7 @@ namespace Obi.Dialogs
         private void m_btn_Apply_Click(object sender, EventArgs e)
         {
             UpdateColorSettings();
+            m_IsColorChanged = true;
         }
         private void ResetColors()
         {

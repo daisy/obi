@@ -1702,6 +1702,7 @@ namespace Obi
             bool isLeftAlignPhrasesInContentView  = mSettings.LeftAlignPhrasesInContentView;
             Dialogs.Preferences prefs = new Dialogs.Preferences ( this, mSettings, mSession.Presentation, mProjectView.TransportBar, m_DefaultSettings );
             prefs.ShowDialog ();
+            if(prefs.IsColorChanged)
             UpdateColors();
             Ready ();
             mProjectView.TransportBar.UpdateButtons();
