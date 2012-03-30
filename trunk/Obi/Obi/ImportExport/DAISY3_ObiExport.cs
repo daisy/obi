@@ -24,7 +24,7 @@ namespace Obi.ImportExport
         private Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
         
         public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3, SampleRate sampleRate, bool skipACM, int audioFileSectionLevel)
-        :base (presentation, exportDirectory, navListElementNamesList, encodeToMp3, sampleRate, skipACM)
+        :base (presentation, exportDirectory, navListElementNamesList, encodeToMp3, sampleRate, skipACM, false)
         {
             m_Filename_Content = null;
             m_AudioFileSectionLevel = audioFileSectionLevel;
