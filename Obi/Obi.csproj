@@ -72,7 +72,7 @@
   <ItemGroup>
     <Reference Include="AudioEngine.PPMeter, Version=1.0.3644.25175, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
+      <HintPath>bin\Debug\AudioEngine.PPMeter.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.dll</HintPath>
@@ -442,6 +442,12 @@
     <Compile Include="ProjectView\Waveform.Designer.cs">
       <DependentUpon>Waveform.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\Waveform_Recording.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\Waveform_Recording.Designer.cs">
+      <DependentUpon>Waveform_Recording.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialogs\NewProject.resx">
       <SubType>Designer</SubType>
@@ -808,6 +814,10 @@
     <EmbeddedResource Include="ProjectView\VerticalScrollToolStripContainer.resx">
       <SubType>Designer</SubType>
       <DependentUpon>VerticalScrollToolStripContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Waveform_Recording.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Waveform_Recording.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\RecordingToolBarForm.resx">
       <SubType>Designer</SubType>
