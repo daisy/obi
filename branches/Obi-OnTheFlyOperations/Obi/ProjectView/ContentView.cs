@@ -25,6 +25,7 @@ namespace Obi.ProjectView
         private Dictionary<SectionNode, Strip> mStrips;              // strips for sections (reuse old strips instead of redrawing)
         private PriorityQueue<Waveform, int> mWaveformRenderQ;       // queue of waveforms to render
         private BackgroundWorker mWaveformRenderWorker;              // current waveform rendering worker
+        private AudioLib.VuMeter mSourceVuMeter;
 
         // cursor stuff
         private AudioBlock mPlaybackBlock;
@@ -69,11 +70,12 @@ namespace Obi.ProjectView
 
             this.contentViewLabel1.contentView = this;
             verticalScrollToolStripContainer1.contentView = this;
-            mStripsPanel.ControlRemoved += new ControlEventHandler ( mStripsPanel_ControlRemoved );
-            this.MouseWheel += new MouseEventHandler ( ContentView_MouseWheel );//@singleSection
-            mStripsPanel.LocationChanged += new EventHandler ( mStripsPanel_LocationChanged );//@singleSection
-            mStripsPanel.Resize += new EventHandler ( mStripsPanel_Resize );
-            m_PreviousSelectionForScroll = null;
+            waveform_recording_control.contentView = this;
+            mStripsPanel.ControlRemoved += new ControlEventHandler(mStripsPanel_ControlRemoved);
+            this.MouseWheel += new MouseEventHandler(ContentView_MouseWheel);//@singleSection
+            mStripsPanel.LocationChanged += new EventHandler(mStripsPanel_LocationChanged);//@singleSection
+            mStripsPanel.Resize += new EventHandler(mStripsPanel_Resize);
+            m_PreviousSelectionForScroll = null;       
             }
 
 
@@ -336,6 +338,9 @@ namespace Obi.ProjectView
             m_PreviousSelectionForScroll = null;
             mStripsPanel.Location = new Point(0,0 );
 
+            if (mProjectView != null)
+               this.waveform_recording_control.VUMeter = mProjectView.TransportBar.VuMeter;
+           
             ClearWaveformRenderQueue ();
             SuspendLayout_All ();
             ObiNode bookMarkedNode = ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
@@ -385,6 +390,8 @@ namespace Obi.ProjectView
                 new EventHandler<urakawa.events.undo.DoneEventArgs> ( ContentView_commandDone );
             mProjectView.Presentation.UndoRedoManager.CommandReDone+= new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ContentView_commandReDone);
             mProjectView.Presentation.UndoRedoManager.CommandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ContentView_commandUndone);
+            mProjectView.TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(Recorder_StateChanged);
+            mProjectView.TransportBar.VuMeter.PeakMeterUpdated += new AudioLib.VuMeter.PeakMeterUpdateHandler(waveform_recording_control.VuMeter_PeakMeterUpdated);
             EventsAreEnabled = true;
             UpdateSize ();
             mVScrollBar.Value = 0;
@@ -1199,12 +1206,16 @@ namespace Obi.ProjectView
                         cordY = Convert.ToInt16((cordY * value) / contentViewLabel1.zoomFactor);
                         mStripsPanel.Location = new Point(mStripsPanel.Location.X, (cordY - 1));
                     }
-                                    }
+                }
                 this.contentViewLabel1.contentView = this;
                 this.contentViewLabel1.zoomFactor = ZoomFactor;
-                mHScrollBar.Location = new Point ( mHScrollBar.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height );
+                this.waveform_recording_control.contentView = this;
+                this.waveform_recording_control.zoomFactor = ZoomFactor;
+                mHScrollBar.Location = new Point(mHScrollBar.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height);
                 mVScrollBar.Height = mVScrollBar.Location.Y + this.Height - contentViewLabel1.Height - mHScrollBar.Height;
-                mCornerPanel.Location = new Point ( mCornerPanel.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height );
+                mCornerPanel.Location = new Point(mCornerPanel.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height);
+                waveform_recording_control.Location = new Point(waveform_recording_control.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height - waveform_recording_control.Height);
+
                 // ensure visibility of selected node
                 if (mProjectView != null &&  mProjectView.Selection != null && (mProjectView.Selection is StripIndexSelection || mProjectView.Selection.Node is EmptyNode))
                     {
@@ -2899,6 +2910,15 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
             }
 
+        private void Recorder_StateChanged(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Recording)
+            {
+                waveform_recording_control.Visible = true;
+            }
+            else
+                waveform_recording_control.Visible = false;
+        }
 
         private int m_StripPanelPreviousWidth = 0;
         private void mStripsPanel_Resize ( object sender, EventArgs e )
@@ -4943,11 +4963,13 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 //CreateLimitedBlocksInStrip ( ActiveStrip, null );
                 }
             //this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
-            this.verticalScrollToolStripContainer1.Location = new Point(this.Width - verticalScrollToolStripContainer1.Width, 0);
-            this.verticalScrollToolStripContainer1.Size = new Size(verticalScrollToolStripContainer1.Width, mHScrollBar.Location.Y);
-            mCornerPanel.Location = new Point(this.verticalScrollToolStripContainer1.Location.X, mHScrollBar.Location.Y);
-            mCornerPanel.BringToFront();
-            this.contentViewLabel1.BringToFront();
+                this.verticalScrollToolStripContainer1.Location = new Point(this.Width - verticalScrollToolStripContainer1.Width, 0);
+                this.verticalScrollToolStripContainer1.Size = new Size(verticalScrollToolStripContainer1.Width, mHScrollBar.Location.Y);
+                this.waveform_recording_control.Size = new Size(this.Size.Width, Convert.ToInt32(104 * ZoomFactor));
+                mCornerPanel.Location = new Point(this.verticalScrollToolStripContainer1.Location.X, mHScrollBar.Location.Y);
+                mCornerPanel.BringToFront();
+                this.contentViewLabel1.BringToFront();
+                this.waveform_recording_control.BringToFront();
            }
 
         public void ResizeContentViewFromStripResize()
