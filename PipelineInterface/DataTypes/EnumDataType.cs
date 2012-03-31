@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Windows.Forms;
 
-namespace Obi.PipelineInterface.DataTypes
+namespace PipelineInterface.DataTypes
 {
     public class EnumDataType
     {

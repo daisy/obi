@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace Obi.PipelineInterface.ParameterControls
+namespace PipelineInterface.ParameterControls
     {
     public partial class StringControl : BaseUserControl
         {

@@ -1,6 +1,6 @@
-namespace Obi.PipelineInterface.ParameterControls
+namespace PipelineInterface.ParameterControls
 {
-    partial class BoolControl
+    partial class BaseUserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,31 +28,28 @@ namespace Obi.PipelineInterface.ParameterControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.mLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // checkBox1
+            // mLabel
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 24);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(93, 20);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.mLabel.AutoSize = true;
+            this.mLabel.Location = new System.Drawing.Point(3, 0);
+            this.mLabel.Name = "mLabel";
+            this.mLabel.Size = new System.Drawing.Size(76, 16);
+            this.mLabel.TabIndex = 0;
+            this.mLabel.Text = "Description";
             // 
-            // BoolControl
+            // BaseUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.checkBox1);
-            this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "BoolControl";
-            this.Size = new System.Drawing.Size(201, 49);
-            this.Controls.SetChildIndex(this.checkBox1, 0);
-            this.Controls.SetChildIndex(this.mLabel, 0);
+            this.Controls.Add(this.mLabel);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "BaseUserControl";
+            this.Size = new System.Drawing.Size(200, 185);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -60,6 +57,8 @@ namespace Obi.PipelineInterface.ParameterControls
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox1;
+        protected System.Windows.Forms.Label mLabel;
+
+
     }
 }

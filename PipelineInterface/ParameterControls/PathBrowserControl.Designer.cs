@@ -1,4 +1,5 @@
-namespace Obi.PipelineInterface.ParameterControls
+using System.Drawing;
+namespace PipelineInterface.ParameterControls
 {
     partial class PathBrowserControl
     {

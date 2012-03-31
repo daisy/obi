@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml ;
 
-namespace Obi.PipelineInterface.DataTypes
+namespace PipelineInterface.DataTypes
     {
     class StringDataType
         {

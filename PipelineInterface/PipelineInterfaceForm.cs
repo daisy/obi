@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-namespace Obi.PipelineInterface
+namespace PipelineInterface
 {
     /// <summary>
     /// Base dialog for the pipeline interface.
@@ -33,6 +33,7 @@ namespace Obi.PipelineInterface
         {
             if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
             mParser = new ScriptParser(scriptPath);
+            
             if (File.Exists(inputPath))
             {
                 mInputPath = inputPath;
