@@ -14,16 +14,20 @@ namespace Obi.ProjectView
         private float m_ZoomFactor;
         private AudioLib.VuMeter m_VUMeter;
         private System.Drawing.Graphics g;
-        private System.Drawing.Pen br1 = new System.Drawing.Pen(Color.White);
+        private Pen br1 = new Pen(SystemColors.Highlight);
+        private Pen br2 = new Pen(SystemColors.Highlight);
         Point point;
-        private int x = 0;
+        private int m_X;
         public Waveform_Recording()
         {
             InitializeComponent();
             m_ZoomFactor = 1.0f;
             this.Height = Convert.ToInt32(104 * m_ZoomFactor);
-            timer1.Start();
+            g = this.CreateGraphics();
+            
+          //  timer1.Start();
             point.X = this.Location.X;
+            m_X = 0;
         }
 
         public ContentView contentView
@@ -70,9 +74,22 @@ namespace Obi.ProjectView
             g = this.CreateGraphics();
             int amp = 0;
             if (m_VUMeter != null)
-                amp = Convert.ToInt32(m_VUMeter.AverageAmplitudeDBValue[0]) * (-1);
-             g.DrawLine(br1, x, 0, x, amp);
-             x++;                                     
+                amp = Convert.ToInt32(m_VUMeter.AverageAmplitudeDBValue[0]);
+             g.DrawLine(br1, m_X, Height / 2, m_X, amp + Height);
+             if(m_ContentView != null)
+             g.DrawLine(br2, 0, Height/2, m_ContentView.Width, Height/2);
+             m_X++;
+         }
+
+        private void Waveform_Recording_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible == true)
+                timer1.Start();
+            else 
+            {
+                m_X = 0;
+                timer1.Stop();
+            }
         }
     }
 }
