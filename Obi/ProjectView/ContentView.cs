@@ -2912,10 +2912,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private void Recorder_StateChanged(object sender, EventArgs e)
         {
-            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Recording)
-            {
+            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Recording || mProjectView.TransportBar.CurrentState == TransportBar.State.Monitoring)
                 waveform_recording_control.Visible = true;
-            }
             else
                 waveform_recording_control.Visible = false;
         }
