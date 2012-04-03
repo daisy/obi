@@ -79,6 +79,12 @@ namespace Obi.ProjectView
              if(m_ContentView != null)
              g.DrawLine(br2, 0, Height/2, m_ContentView.Width, Height/2);
              m_X++;
+             if (m_X == this.Width - 50)
+             {
+                 this.Width = this.Width + 500;
+                 Location = new Point(Location.X - 10, Location.Y);
+             }
+
          }
 
         private void Waveform_Recording_VisibleChanged(object sender, EventArgs e)
