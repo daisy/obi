@@ -58,25 +58,16 @@ namespace Obi.ProjectView
                 this.Size = new Size(m_ContentView.Width, Convert.ToInt32(104 * m_ZoomFactor));
         }
 
-        public void VuMeter_PeakMeterUpdated(object sender, AudioLib.VuMeter.PeakMeterUpdateEventArgs e)
-        {
-            
-          /*  g = this.CreateGraphics();
-
-            Point point = new Point((this.Location.X + this.Size.Height / 2), this.Location.Y + Convert.ToInt32(m_VUMeter.AverageAmplitudeDBValue));
-            //g.DrawLine(br1, (this.Location.X + Convert(this.Size.Height/2)), this.Location.Y + Convert.ToInt32(m_VUMeter.AverageAmplitudeDBValue));
-            g.DrawLine(br1, point.X, this.Location.Y, point.X, point.Y);
-            */
-        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (m_VUMeter == null || m_ContentView == null) return;
             g = this.CreateGraphics();
             int amp = 0;
-            if (m_VUMeter != null)
+            
                 amp = Convert.ToInt32(m_VUMeter.AverageAmplitudeDBValue[0]);
              g.DrawLine(br1, m_X, Height / 2, m_X, amp + Height);
-             if(m_ContentView != null)
+             
              g.DrawLine(br2, 0, Height/2, m_ContentView.Width, Height/2);
              m_X++;
              if ((m_X + Location.X) == m_ContentView.Width - 150)

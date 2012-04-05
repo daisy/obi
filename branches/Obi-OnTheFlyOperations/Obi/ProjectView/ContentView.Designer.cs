@@ -618,8 +618,8 @@ namespace Obi.ProjectView
             this.waveform_recording_control.Location = new System.Drawing.Point(0, 428);
             this.waveform_recording_control.Name = "waveform_recording_control";
             this.waveform_recording_control.Size = new System.Drawing.Size(522, 104);
-            this.waveform_recording_control.TabIndex = 0;
-            this.waveform_recording_control.Visible = false;
+            
+            
             this.waveform_recording_control.VUMeter = null;
             this.waveform_recording_control.zoomFactor = 1F;
             // 
@@ -628,11 +628,12 @@ namespace Obi.ProjectView
             this.ContextMenuStrip = this.mContextMenuStrip;
             this.Controls.Add(this.verticalScrollToolStripContainer1);
             this.Controls.Add(this.mCornerPanel);
+            this.Controls.Add(this.waveform_recording_control);
             this.Controls.Add(this.contentViewLabel1);
             this.Controls.Add(this.mHScrollBar);
             this.Controls.Add(this.mVScrollBar);
             this.Controls.Add(this.mStripsPanel);
-            this.Controls.Add(this.waveform_recording_control);
+            
             this.Name = "ContentView";
             this.Size = new System.Drawing.Size(538, 573);
             this.Click += new System.EventHandler(this.ContentView_Click);
