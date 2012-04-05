@@ -11,6 +11,7 @@ namespace Obi.ProjectView
     public partial class Waveform_Recording : UserControl
     {
         private ContentView m_ContentView = null;
+        private ProjectView m_ProjectView = null;
         private float m_ZoomFactor;
         private AudioLib.VuMeter m_VUMeter;
         private System.Drawing.Graphics g;
@@ -24,8 +25,6 @@ namespace Obi.ProjectView
             m_ZoomFactor = 1.0f;
             this.Height = Convert.ToInt32(104 * m_ZoomFactor);
             g = this.CreateGraphics();
-            
-          //  timer1.Start();
             point.X = this.Location.X;
             m_X = 0;
         }
@@ -34,6 +33,13 @@ namespace Obi.ProjectView
         {
             get { return m_ContentView; }
             set { m_ContentView = value; }
+        }
+
+
+        public ProjectView projectView
+        {
+            get { return m_ProjectView; }
+            set { m_ProjectView = value; }
         }
 
         public AudioLib.VuMeter VUMeter
@@ -89,5 +95,6 @@ namespace Obi.ProjectView
                 timer1.Stop();
             }
         }
+
     }
 }
