@@ -391,7 +391,7 @@ namespace Obi.ProjectView
             mProjectView.Presentation.UndoRedoManager.CommandReDone+= new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ContentView_commandReDone);
             mProjectView.Presentation.UndoRedoManager.CommandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ContentView_commandUndone);
             mProjectView.TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(Recorder_StateChanged);
-            mProjectView.TransportBar.VuMeter.PeakMeterUpdated += new AudioLib.VuMeter.PeakMeterUpdateHandler(waveform_recording_control.VuMeter_PeakMeterUpdated);
+            
             EventsAreEnabled = true;
             UpdateSize ();
             mVScrollBar.Value = 0;
