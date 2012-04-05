@@ -6,6 +6,8 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
+using AudioLib;
+
 namespace Obi.ProjectView
 {
     public partial class Waveform_Recording : UserControl
@@ -39,7 +41,11 @@ namespace Obi.ProjectView
         public ProjectView projectView
         {
             get { return m_ProjectView; }
-            set { m_ProjectView = value; }
+            set 
+            { 
+                m_ProjectView = value;
+                m_ProjectView.TransportBar.Recorder.PcmDataBufferAvailable += new AudioRecorder.PcmDataBufferAvailableHandler(OnPcmDataBufferAvailable_Recorder);
+            }
         }
 
         public AudioLib.VuMeter VUMeter
@@ -93,6 +99,16 @@ namespace Obi.ProjectView
                 m_X = 0;
                 Location = new Point(0, Location.Y);
                 timer1.Stop();
+            }
+        }
+
+        private short[] m_Amp = new short[2];
+        public void OnPcmDataBufferAvailable_Recorder(object sender, AudioRecorder.PcmDataBufferAvailableEventArgs e)
+        {
+            if (e.PcmDataBuffer != null && e.PcmDataBuffer.Length > 1)
+            {
+                m_Amp[0] = e.PcmDataBuffer[0];
+                m_Amp[1] = e.PcmDataBuffer[1];
             }
         }
 
