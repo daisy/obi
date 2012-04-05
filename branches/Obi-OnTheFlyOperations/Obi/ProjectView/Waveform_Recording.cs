@@ -103,12 +103,15 @@ namespace Obi.ProjectView
         }
 
         private short[] m_Amp = new short[2];
+        private int m_AmpValue = 0;
+
         public void OnPcmDataBufferAvailable_Recorder(object sender, AudioRecorder.PcmDataBufferAvailableEventArgs e)
         {
             if (e.PcmDataBuffer != null && e.PcmDataBuffer.Length > 1)
             {
                 m_Amp[0] = e.PcmDataBuffer[0];
                 m_Amp[1] = e.PcmDataBuffer[1];
+                m_AmpValue =  m_Amp[0] + (int) (m_Amp[1] *  Math.Pow(8, m_Amp.Length));
             }
         }
 
