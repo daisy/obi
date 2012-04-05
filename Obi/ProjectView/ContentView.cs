@@ -4963,11 +4963,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             //this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
                 this.verticalScrollToolStripContainer1.Location = new Point(this.Width - verticalScrollToolStripContainer1.Width, 0);
                 this.verticalScrollToolStripContainer1.Size = new Size(verticalScrollToolStripContainer1.Width, mHScrollBar.Location.Y);
-                this.waveform_recording_control.Size = new Size(this.Size.Width, Convert.ToInt32(104 * ZoomFactor));
+                this.waveform_recording_control.Size = new Size(this.Size.Width - verticalScrollToolStripContainer1.Width, Convert.ToInt32(104 * ZoomFactor));
                 mCornerPanel.Location = new Point(this.verticalScrollToolStripContainer1.Location.X, mHScrollBar.Location.Y);
                 mCornerPanel.BringToFront();
                 this.contentViewLabel1.BringToFront();
-                this.waveform_recording_control.BringToFront();
+              //  this.waveform_recording_control.BringToFront();
            }
 
         public void ResizeContentViewFromStripResize()
@@ -5217,6 +5217,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void mSkippableMoveToToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.GotoFootnote(false);   //@AssociateNode
+        }
+
+        private void waveform_recording_control_Load(object sender, EventArgs e)
+        {
+            waveform_recording_control.Width = this.Size.Width - verticalScrollToolStripContainer1.Width;
         }      
     }
 
