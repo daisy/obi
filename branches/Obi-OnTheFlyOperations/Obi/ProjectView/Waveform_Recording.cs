@@ -120,12 +120,11 @@ namespace Obi.ProjectView
                  m_CounterForInterval++;
              }
              
-          //   if (m_CounterForInterval % 10 == 0 && m_LocalCount != m_CounterForInterval)
-                 if (m_CounterForInterval % 10 == 0)
+             if (m_CounterForInterval % 10 == 0 && m_LocalCount != m_CounterForInterval)
              {
                  text = m_CounterForInterval.ToString();
                  g.DrawString(text, myFont, Brushes.Gray, x_Loc, 0);
-               //  m_LocalCount = m_CounterForInterval;
+                 m_LocalCount = m_CounterForInterval;
              }
          }
 
