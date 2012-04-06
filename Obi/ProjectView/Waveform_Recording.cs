@@ -18,6 +18,7 @@ namespace Obi.ProjectView
         private AudioLib.VuMeter m_VUMeter;
         private System.Drawing.Graphics g;
         private Pen br1 = new Pen(SystemColors.Highlight);
+        private Pen br_Channel2 = new Pen(SystemColors.Highlight);
         private Pen br2 = new Pen(SystemColors.ControlText);
         Point point;
         private int m_X;
@@ -92,8 +93,14 @@ namespace Obi.ProjectView
              
              
                 //Console.WriteLine("height waveform " + (Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)) + " : " + (Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                g.DrawLine(br1, new Point(m_X, Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                    new Point(m_X, Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                g.DrawLine(br1, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                    new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+
+                if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
+                {
+                    g.DrawLine(br_Channel2, new Point(m_X, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(m_X, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                }
 
                 g.DrawLine(br2, 0, Height / 2, m_ContentView.Width, Height / 2);
              m_X++;
@@ -147,8 +154,11 @@ namespace Obi.ProjectView
 
         private short[] m_Amp = new short[2];
         private int m_AmpValue = 0;
-        short min;
-        short max;
+        short minChannel1;
+        short maxChannel1;
+        short minChannel2;
+        short maxChannel2;
+
         public void OnPcmDataBufferAvailable_Recorder(object sender, AudioRecorder.PcmDataBufferAvailableEventArgs e)
         {
             if (e.PcmDataBuffer != null && e.PcmDataBuffer.Length > 1)
@@ -156,8 +166,8 @@ namespace Obi.ProjectView
                 m_Amp[0] = e.PcmDataBuffer[0];
                 //m_Amp[1] = e.PcmDataBuffer[1];
 
-                min = short.MaxValue;
-                            max = short.MinValue;
+                minChannel1 = short.MaxValue;
+                            maxChannel1 = short.MinValue;
 int channels = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels ;
 int channel = 0;
                 int frameSize = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.BlockAlign ;
@@ -168,10 +178,22 @@ int channel = 0;
                 for (int i = channel; i < (int)Math.Ceiling(e.PcmDataBufferLength/ (float)frameSize); i += channels)
             {
                 
-                                if (samples [i] < min) min = samples [i];
-                                if (samples[i] > max) max = samples [i];
+                                if (samples [i] < minChannel1) minChannel1 = samples [i];
+                                if (samples[i] > maxChannel1) maxChannel1 = samples [i];
             }
-            
+
+            if (channels > 1)
+            {
+                minChannel1 = short.MaxValue;
+                maxChannel1 = short.MinValue;
+                channel = 1;
+                for (int i = channel; i < (int)Math.Ceiling(e.PcmDataBufferLength / (float)frameSize); i += channels)
+                {
+
+                    if (samples[i] < minChannel2) minChannel2 = samples[i];
+                    if (samples[i] > maxChannel2) maxChannel2 = samples[i];
+                }
+            }
                 m_AmpValue =  m_Amp[0] + (int) (m_Amp[1] *  Math.Pow(8, m_Amp.Length));
             }
         }
