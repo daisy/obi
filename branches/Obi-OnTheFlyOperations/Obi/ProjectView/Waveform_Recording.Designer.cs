@@ -40,7 +40,7 @@ namespace Obi.ProjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.Name = "Waveform_Recording";
             this.Size = new System.Drawing.Size(522, 104);
             this.VisibleChanged += new System.EventHandler(this.Waveform_Recording_VisibleChanged);

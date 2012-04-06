@@ -595,10 +595,11 @@ namespace Obi.ProjectView
             // 
             this.waveform_recording_control.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.waveform_recording_control.BackColor = System.Drawing.SystemColors.Control;
+            this.waveform_recording_control.BackColor = System.Drawing.SystemColors.HighlightText;
             this.waveform_recording_control.contentView = null;
             this.waveform_recording_control.Location = new System.Drawing.Point(0, 428);
             this.waveform_recording_control.Name = "waveform_recording_control";
+            this.waveform_recording_control.projectView = null;
             this.waveform_recording_control.Size = new System.Drawing.Size(505, 104);
             this.waveform_recording_control.TabIndex = 5;
             this.waveform_recording_control.Visible = false;
