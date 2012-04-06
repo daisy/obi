@@ -339,8 +339,10 @@ namespace Obi.ProjectView
             mStripsPanel.Location = new Point(0,0 );
 
             if (mProjectView != null)
-               this.waveform_recording_control.VUMeter = mProjectView.TransportBar.VuMeter;
-           
+            {
+                this.waveform_recording_control.projectView = mProjectView;
+                this.waveform_recording_control.VUMeter = mProjectView.TransportBar.VuMeter;
+            }
             ClearWaveformRenderQueue ();
             SuspendLayout_All ();
             ObiNode bookMarkedNode = ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
