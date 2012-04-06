@@ -22,6 +22,8 @@ namespace Obi.ProjectView
         private Pen br2 = new Pen(SystemColors.ControlText);
         private EmptyNode m_ExistingPhrase = null;
         private int m_Counter = 0;
+        private int m_CounterForInterval = 0;
+        private int m_LocalCount = 0;
 
         public Waveform_Recording()
         {
@@ -115,6 +117,15 @@ namespace Obi.ProjectView
              {
                  g.DrawLine(newPen, x_Loc, 0, x_Loc, Height);
                  m_Counter = 0;
+                 m_CounterForInterval++;
+             }
+             
+          //   if (m_CounterForInterval % 10 == 0 && m_LocalCount != m_CounterForInterval)
+                 if (m_CounterForInterval % 10 == 0)
+             {
+                 text = m_CounterForInterval.ToString();
+                 g.DrawString(text, myFont, Brushes.Gray, x_Loc, 0);
+               //  m_LocalCount = m_CounterForInterval;
              }
          }
 
