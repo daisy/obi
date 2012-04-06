@@ -78,10 +78,17 @@ namespace Obi.ProjectView
             int amp = 0;
             
                 amp = Convert.ToInt32(m_VUMeter.AverageAmplitudeDBValue[0]);
-             g.DrawLine(br1, m_X, Height / 2, m_X, amp + Height);
+             //g.DrawLine(br1, m_X, Height / 2, m_X, amp + Height);
              
-             g.DrawLine(br2, 0, Height/2, m_ContentView.Width, Height/2);
+             
+                //Console.WriteLine("height waveform " + (Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)) + " : " + (Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                g.DrawLine(br1, new Point(m_X, Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                    new Point(m_X, Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
+
+                g.DrawLine(br2, 0, Height / 2, m_ContentView.Width, Height / 2);
              m_X++;
+
+
              if ((m_X + Location.X) == m_ContentView.Width - 150)
              {
                  this.Width = this.Width + 500;
@@ -104,13 +111,31 @@ namespace Obi.ProjectView
 
         private short[] m_Amp = new short[2];
         private int m_AmpValue = 0;
-
+        short min;
+        short max;
         public void OnPcmDataBufferAvailable_Recorder(object sender, AudioRecorder.PcmDataBufferAvailableEventArgs e)
         {
             if (e.PcmDataBuffer != null && e.PcmDataBuffer.Length > 1)
             {
                 m_Amp[0] = e.PcmDataBuffer[0];
-                m_Amp[1] = e.PcmDataBuffer[1];
+                //m_Amp[1] = e.PcmDataBuffer[1];
+
+                min = short.MaxValue;
+                            max = short.MinValue;
+int channels = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels ;
+int channel = 0;
+                int frameSize = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.BlockAlign ;
+                short [] samples = new short[e.PcmDataBufferLength];
+                Buffer.BlockCopy(e.PcmDataBuffer,0,samples,0,e.PcmDataBufferLength ) ;
+
+            //for (int i = 0 ; i < (int)Math.Ceiling(e.PcmDataBufferLength/ (float)frameSize); i += frameSize)
+                for (int i = channel; i < (int)Math.Ceiling(e.PcmDataBufferLength/ (float)frameSize); i += channels)
+            {
+                
+                                if (samples [i] < min) min = samples [i];
+                                if (samples[i] > max) max = samples [i];
+            }
+            
                 m_AmpValue =  m_Amp[0] + (int) (m_Amp[1] *  Math.Pow(8, m_Amp.Length));
             }
         }
