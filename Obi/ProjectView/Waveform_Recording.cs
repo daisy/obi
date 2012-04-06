@@ -18,9 +18,12 @@ namespace Obi.ProjectView
         private AudioLib.VuMeter m_VUMeter;
         private System.Drawing.Graphics g;
         private Pen br1 = new Pen(SystemColors.Highlight);
-        private Pen br2 = new Pen(SystemColors.Highlight);
+        private Pen br2 = new Pen(SystemColors.ControlText);
         Point point;
         private int m_X;
+        private EmptyNode m_ExistingPhrase = null;
+        private int m_Counter = 0;
+
         public Waveform_Recording()
         {
             InitializeComponent();
@@ -29,6 +32,11 @@ namespace Obi.ProjectView
             g = this.CreateGraphics();
             point.X = this.Location.X;
             m_X = 0;
+            if (m_ProjectView != null && m_ProjectView.TransportBar.RecordingPhrase != null)
+            {
+                m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
+                Console.WriteLine("EXISTING PHrase " + m_ExistingPhrase);
+            }
         }
 
         public ContentView contentView
@@ -44,6 +52,7 @@ namespace Obi.ProjectView
             set 
             { 
                 m_ProjectView = value;
+                if(m_ProjectView != null)
                 m_ProjectView.TransportBar.Recorder.PcmDataBufferAvailable += new AudioRecorder.PcmDataBufferAvailableHandler(OnPcmDataBufferAvailable_Recorder);
             }
         }
@@ -73,6 +82,7 @@ namespace Obi.ProjectView
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            Pen pen = new Pen(Color.Black);
             if (m_VUMeter == null || m_ContentView == null) return;
             g = this.CreateGraphics();
             int amp = 0;
@@ -94,6 +104,32 @@ namespace Obi.ProjectView
                  this.Width = this.Width + 500;
                  Location = new Point(Location.X - 10, Location.Y);
                  g.DrawLine(br2, 0, Height / 2, Width, Height / 2);
+             }
+
+            string text = "";
+            Font myFont = new Font("Microsoft Sans Serif", 6);
+            if (m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
+             {
+                 if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
+                 {
+                     text = "Page";
+                     g.DrawLine(pen, m_X, 0, m_X, Height); 
+                     g.DrawString(text, myFont, Brushes.Black, m_X, 0);
+                 }
+                 else if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Plain)
+                 {
+                     text = "Phrase";
+                     g.DrawLine(pen, m_X, 0, m_X, Height);
+                     g.DrawString(text, myFont, Brushes.Black, m_X, 0);
+                 }
+                 m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
+             }
+             m_Counter++;
+             Pen newPen = new Pen(SystemColors.Control);
+             if (m_Counter == 10)
+             {
+                 g.DrawLine(newPen, m_X, 0, m_X, Height);
+                 m_Counter = 0;
              }
          }
 
