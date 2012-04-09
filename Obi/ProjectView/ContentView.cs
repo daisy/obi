@@ -3481,6 +3481,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             foreach (Control c in mStripsPanel.Controls) if (c is Strip) ((Strip)c).ColorSettings = settings;
             UpdateWaveforms ();
             contentViewLabel1.invertColor = SystemInformation.HighContrast;
+            waveform_recording_control.invertColor = SystemInformation.HighContrast;
             }
 
         // Update all waveforms after colors have been set
