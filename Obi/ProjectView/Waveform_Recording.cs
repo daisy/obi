@@ -17,15 +17,16 @@ namespace Obi.ProjectView
         private float m_ZoomFactor;
         private AudioLib.VuMeter m_VUMeter;
         private System.Drawing.Graphics g;
+        private Pen br_ChannelMono;
         private Pen br_Channel1;
         private Pen br_Channel2;
-        private Pen br_Channel3;
         private Pen br2;
         private EmptyNode m_ExistingPhrase = null;
         private int m_Counter = 0;
         private int m_CounterForInterval = 0;
         private int m_LocalCount = 0;
         private ColorSettings m_ColorSettings;
+        private bool m_IsColorHighContrast = false;
 
         public Waveform_Recording()
         {
@@ -55,10 +56,10 @@ namespace Obi.ProjectView
                 {
                     m_ProjectView.TransportBar.Recorder.PcmDataBufferAvailable += new AudioRecorder.PcmDataBufferAvailableHandler(OnPcmDataBufferAvailable_Recorder);
                     m_ColorSettings = m_ProjectView.ObiForm.Settings.ColorSettings;
-                    this.BackColor = m_ColorSettings.WaveformRecordingBackColor;
-                    br_Channel1 = m_ColorSettings.WaveformMonoPen;
-                    br_Channel2 = m_ColorSettings.WaveformChannel1Pen;
-                    br_Channel3 = m_ColorSettings.WaveformChannel2Pen;
+                    this.BackColor = m_ColorSettings.WaveformBackColor;
+                    br_ChannelMono = m_ColorSettings.WaveformMonoPen;
+                    br_Channel1 = m_ColorSettings.WaveformChannel1Pen;
+                    br_Channel2 = m_ColorSettings.WaveformChannel2Pen;
                     br2 = m_ColorSettings.WaveformBaseLinePen;
                 }
             }
@@ -100,14 +101,14 @@ namespace Obi.ProjectView
             g = this.CreateGraphics();
             //Console.WriteLine("height waveform " + (Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)) + " : " + (Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
-            g.DrawLine(br_Channel1, new Point(x_Loc, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+            g.DrawLine(br_ChannelMono, new Point(x_Loc, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
                     new Point(x_Loc, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
             
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
             {
+                g.DrawLine(br_Channel1, new Point(x_Loc, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                    new Point(x_Loc, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
                 g.DrawLine(br_Channel2, new Point(x_Loc, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                       new Point(x_Loc, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                g.DrawLine(br_Channel3, new Point(x_Loc, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
                        new Point(x_Loc, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
             }
             
