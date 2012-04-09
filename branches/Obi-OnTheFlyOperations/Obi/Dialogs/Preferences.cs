@@ -972,8 +972,6 @@ namespace Obi.Dialogs
                         break;
                     case 39: mSettings.ColorSettings.WaveformHighlightedBackColor = (Color)mNormalColorCombo.SelectedItem;
                         break;
-                    case 40: mSettings.ColorSettings.WaveformRecordingBackColor = (Color)mNormalColorCombo.SelectedItem;
-                        break;
                     default: break;
                 }
 
@@ -1139,7 +1137,6 @@ namespace Obi.Dialogs
             mSettings.ColorSettings.TransportBarLabelForeColor = settings.TransportBarLabelForeColor;
             mSettings.ColorSettings.WaveformBackColor = settings.WaveformBackColor;
             mSettings.ColorSettings.WaveformHighlightedBackColor = settings.WaveformHighlightedBackColor;
-            mSettings.ColorSettings.WaveformRecordingBackColor = settings.WaveformRecordingBackColor;
 
             mSettings.ColorSettingsHC.BlockBackColor_Custom = settingsHC.BlockBackColor_Custom;
             mSettings.ColorSettingsHC.BlockBackColor_Anchor = settingsHC.BlockBackColor_Anchor;
