@@ -28,7 +28,7 @@ namespace Obi
         public Color BlockForeColor_TODO;
         public Color BlockForeColor_Anchor;
         public Color BlockForeColor_Unused;
-
+        
         public Color ContentViewBackColor;
         public Color EditableLabelTextBackColor;
         public Color ProjectViewBackColor;
@@ -49,6 +49,7 @@ namespace Obi
         public Color TransportBarLabelForeColor;
         public Color WaveformBackColor;
         public Color WaveformHighlightedBackColor;
+        public Color WaveformRecordingBackColor;
 
         private Color mBlockLayoutSelectedColor;
         private Color mWaveformBaseLineColor;
@@ -139,6 +140,8 @@ namespace Obi
             settings.TransportBarLabelBackColor = Color.Azure;
             settings.TransportBarLabelForeColor = SystemColors.ControlText;
             settings.WaveformBackColor = SystemColors.Window;
+            settings.WaveformRecordingBackColor = SystemColors.HighlightText;
+
             settings.mWaveformBaseLineColor = SystemColors.ControlText;
             settings.WaveformHighlightedBackColor = SystemColors.Highlight;
             settings.mWaveFormHighlightedForeColor = SystemColors.HighlightText;
@@ -227,6 +230,7 @@ namespace Obi
             ColorSetting.Add("WaveformBackColor", WaveformBackColor);
             ColorSetting.Add("WaveformBaseLineColor", mWaveformBaseLineColor);
             ColorSetting.Add("WaveformHighlightedBackColor", WaveformHighlightedBackColor);
+            ColorSetting.Add("WaveformRecordingBackColor", WaveformRecordingBackColor);
         }
           
     }
