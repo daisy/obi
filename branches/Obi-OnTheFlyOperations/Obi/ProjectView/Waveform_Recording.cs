@@ -20,12 +20,16 @@ namespace Obi.ProjectView
         private Pen br_ChannelMono;
         private Pen br_Channel1;
         private Pen br_Channel2;
+        private Pen br_HighContrastMono;
+        private Pen br_HighContrastChannel1;
+        private Pen br_HighContrastChannel2;
         private Pen br2;
         private EmptyNode m_ExistingPhrase = null;
         private int m_Counter = 0;
         private int m_CounterForInterval = 0;
         private int m_LocalCount = 0;
         private ColorSettings m_ColorSettings;
+        private ColorSettings m_ColorSettingsHC;
         private bool m_IsColorHighContrast = false;
 
         public Waveform_Recording()
@@ -35,8 +39,7 @@ namespace Obi.ProjectView
             this.Height = Convert.ToInt32(104 * m_ZoomFactor);
             g = this.CreateGraphics();
             if (m_ProjectView != null && m_ProjectView.TransportBar.RecordingPhrase != null)
-                m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
-            
+                m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;            
         }
 
         public ContentView contentView
@@ -45,6 +48,14 @@ namespace Obi.ProjectView
             set { m_ContentView = value; }
         }
 
+        public bool invertColor
+        {
+            get { return m_IsColorHighContrast; }
+            set
+            {
+                m_IsColorHighContrast = value;
+            }
+        }
 
         public ProjectView projectView
         {
@@ -56,11 +67,18 @@ namespace Obi.ProjectView
                 {
                     m_ProjectView.TransportBar.Recorder.PcmDataBufferAvailable += new AudioRecorder.PcmDataBufferAvailableHandler(OnPcmDataBufferAvailable_Recorder);
                     m_ColorSettings = m_ProjectView.ObiForm.Settings.ColorSettings;
+                    m_ColorSettingsHC = m_ProjectView.ObiForm.Settings.ColorSettingsHC;
                     this.BackColor = m_ColorSettings.WaveformBackColor;
                     br_ChannelMono = m_ColorSettings.WaveformMonoPen;
                     br_Channel1 = m_ColorSettings.WaveformChannel1Pen;
                     br_Channel2 = m_ColorSettings.WaveformChannel2Pen;
                     br2 = m_ColorSettings.WaveformBaseLinePen;
+                    if (m_IsColorHighContrast)
+                    {
+                        br_HighContrastMono = m_ColorSettingsHC.WaveformMonoPen;
+                        br_HighContrastChannel1 = m_ColorSettingsHC.WaveformChannel1Pen;
+                        br_HighContrastChannel2 = m_ColorSettingsHC.WaveformChannel2Pen;
+                    }
                 }
             }
         }
@@ -101,15 +119,30 @@ namespace Obi.ProjectView
             g = this.CreateGraphics();
             //Console.WriteLine("height waveform " + (Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)) + " : " + (Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
-            g.DrawLine(br_ChannelMono, new Point(x_Loc, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                    new Point(x_Loc, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
-            
+            {
+                if(!m_IsColorHighContrast)
+                g.DrawLine(br_ChannelMono, new Point(x_Loc, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(x_Loc, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                else
+                g.DrawLine(br_HighContrastMono, new Point(x_Loc, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                    new Point(x_Loc, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));                
+            }
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
             {
-                g.DrawLine(br_Channel1, new Point(x_Loc, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                    new Point(x_Loc, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                g.DrawLine(br_Channel2, new Point(x_Loc, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                       new Point(x_Loc, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                if (!m_IsColorHighContrast)
+                {
+                    g.DrawLine(br_Channel1, new Point(x_Loc, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(x_Loc, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    g.DrawLine(br_Channel2, new Point(x_Loc, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                           new Point(x_Loc, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                }
+                else
+                {
+                    g.DrawLine(br_HighContrastChannel1, new Point(x_Loc, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(x_Loc, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    g.DrawLine(br_HighContrastChannel2, new Point(x_Loc, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                           new Point(x_Loc, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                }
             }
             
             g.DrawLine(br2, 0, Height / 2, m_ContentView.Width, Height / 2);
