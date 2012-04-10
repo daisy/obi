@@ -109,7 +109,7 @@ namespace Obi.ProjectView
         private void timer1_Tick(object sender, EventArgs e)
         {
             Pen pen = new Pen(Color.Black);
-            int m_X = m_ContentView.Width / 2 - 15;
+            int m_X = m_ContentView.Width / 2 + 250;
             int x_Loc = m_X + (-1 * Location.X);
             string text = "";
             Font myFont = new Font("Microsoft Sans Serif", 7);
@@ -153,7 +153,7 @@ namespace Obi.ProjectView
             if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
              {
                  if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
-                     text = "Page";
+                     text = "Page" + m_ProjectView.TransportBar.RecordingPhrase.PageNumber.ToString();
                  else if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Plain)
                      text = "Phrase";
                  g.DrawLine(pen, x_Loc, 0, x_Loc, Height);
