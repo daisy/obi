@@ -219,8 +219,8 @@ int channel = 0;
 
             if (channels > 1)
             {
-                minChannel1 = short.MaxValue;
-                maxChannel1 = short.MinValue;
+                minChannel2 = short.MaxValue;
+                maxChannel2 = short.MinValue;
                 channel = 1;
                 for (int i = channel; i < (int)Math.Ceiling(e.PcmDataBufferLength / (float)frameSize); i += channels)
                 {
