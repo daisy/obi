@@ -3482,6 +3482,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             UpdateWaveforms ();
             contentViewLabel1.invertColor = SystemInformation.HighContrast;
             waveform_recording_control.invertColor = SystemInformation.HighContrast;
+            waveform_recording_control.projectView = mProjectView;
             }
 
         // Update all waveforms after colors have been set
