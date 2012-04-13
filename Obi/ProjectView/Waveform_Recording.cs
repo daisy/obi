@@ -31,6 +31,13 @@ namespace Obi.ProjectView
         private ColorSettings m_ColorSettings;
         private ColorSettings m_ColorSettingsHC;
         private bool m_IsColorHighContrast = false;
+      //  private Dictionary<int, short> m_PointMMinChannelMap = new Dictionary<int, short>();
+      //  private Dictionary<int, short> m_PointMaxChannelMap = new Dictionary<int, short>();
+        private List<int> listOfXLocation = new List<int>();
+        private List<int> listOfMinChannel1 = new List<int>();
+        private List<int> listOfMaxChannel1 = new List<int>();
+        private bool m_IsResized = false;
+        private int x_Loc = 0;
 
         public Waveform_Recording()
         {
@@ -39,7 +46,7 @@ namespace Obi.ProjectView
             this.Height = Convert.ToInt32(104 * m_ZoomFactor);
             g = this.CreateGraphics();
             if (m_ProjectView != null && m_ProjectView.TransportBar.RecordingPhrase != null)
-                m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;            
+                m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
         }
 
         public ContentView contentView
@@ -109,12 +116,13 @@ namespace Obi.ProjectView
         private void timer1_Tick(object sender, EventArgs e)
         {
             Pen pen = new Pen(Color.Black);
-            int m_X = m_ContentView.Width / 2 + 250;
-            int x_Loc = m_X + (-1 * Location.X);
+          //  int m_X = m_ContentView.Width / 2 + 50;
+            x_Loc = m_ContentView.Width / 2 + 50 + (-1 * Location.X);
             string text = "";
             Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
 
+           
             if (m_VUMeter == null || m_ContentView == null) return;
             g = this.CreateGraphics();
             //Console.WriteLine("height waveform " + (Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)) + " : " + (Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
@@ -145,11 +153,10 @@ namespace Obi.ProjectView
                 }
             }
             
-            g.DrawLine(br2, 0, Height / 2, m_ContentView.Width, Height / 2);
-            Location = new Point(Location.X - 1, Location.Y);
-            this.Width = this.Width + 50;
+            g.DrawLine(br2, 0, Height / 2, m_ContentView.Width, Height / 2);            
+            
             g.DrawLine(br2, 0, Height / 2, Width, Height / 2);
-
+           
             if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
              {
                  if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
@@ -174,6 +181,14 @@ namespace Obi.ProjectView
                  g.DrawString(text, myFont, Brushes.Gray, x_Loc, 0);
                  m_LocalCount = m_CounterForInterval;
              }
+           //  m_IsResized = true;
+             Location = new Point(Location.X - 1, Location.Y);
+             m_IsResized = true;
+             this.Width = this.Width + 50;
+             m_IsResized = true;
+             listOfXLocation.Add(x_Loc); 
+             listOfMinChannel1.Add((int)minChannel1);
+             listOfMaxChannel1.Add((int)maxChannel1);
          }
 
         private void Waveform_Recording_VisibleChanged(object sender, EventArgs e)
@@ -185,6 +200,8 @@ namespace Obi.ProjectView
                 Location = new Point(0, Location.Y);
                 timer1.Stop();
             }
+            listOfMaxChannel1.Clear();
+            listOfMinChannel1.Clear();
         }
 
         private short[] m_Amp = new short[2];
@@ -224,14 +241,67 @@ int channel = 0;
                 channel = 1;
                 for (int i = channel; i < (int)Math.Ceiling(e.PcmDataBufferLength / (float)frameSize); i += channels)
                 {
-
                     if (samples[i] < minChannel2) minChannel2 = samples[i];
                     if (samples[i] > maxChannel2) maxChannel2 = samples[i];
                 }
             }
                 m_AmpValue =  m_Amp[0] + (int) (m_Amp[1] *  Math.Pow(8, m_Amp.Length));
+               // m_PointMinChannelMap.Add(x_Loc, minChannel1);
+               // m_PointMaxChannelMap.Add(x_Loc, maxChannel1);
+               
             }
         }
 
+        protected override void OnPaint(PaintEventArgs pe)
+        {/*
+            int counterMin = listOfMinChannel1.Count;
+            int x_Loc = m_ContentView.Width / 2 + 50 +(-1 * Location.X);
+            if (counterMin == 0)
+                return;
+            if (counterMin < 5)
+            { }
+            else
+            {
+                System.Media.SystemSounds.Asterisk.Play();
+                for (int i = counterMin - 1; i >= 0; i--)
+                {
+                    g.DrawLine(br_Channel1, new Point(x_Loc, Height - (int)Math.Round(((listOfMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(x_Loc, Height - (int)Math.Round(((listOfMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    x_Loc--;
+                }
+            }
+*/
+        }
+
+        private void Waveform_Recording_Resize(object sender, EventArgs e)
+        {
+            if (m_IsResized)
+            {
+                m_IsResized = false;
+                return; 
+            }
+
+            int counterMin = listOfMinChannel1.Count;
+            int x = 0;
+            
+            if(m_ContentView != null)
+             x = m_ContentView.Width / 2 + 50;
+            if (counterMin == 0)
+                return;
+            if (counterMin < 5)
+            { }
+            else
+            {
+               
+                System.Media.SystemSounds.Asterisk.Play();
+                for (int i = counterMin - 1; i >= 0; i--)
+                {
+                    Console.WriteLine(" COUNT " + listOfXLocation[i]);
+                  //  MessageBox.Show(listOfXLocation[i].ToString() + " " + listOfMinChannel1[i].ToString() + " " + x_Loc.ToString());
+                    g.DrawLine(br_Channel1, new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                }
+            }
+        }
     }
 }
