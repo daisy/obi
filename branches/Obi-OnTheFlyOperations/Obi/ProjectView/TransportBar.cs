@@ -601,6 +601,7 @@ namespace Obi.ProjectView
             //mPlayer.AllowBackToBackPlayback = true;
             mRecorder = new AudioLib.AudioRecorder();
             mRecorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(Recorder_StateChanged);
+            mRecorder.PcmDataBufferAvailable += new AudioLib.AudioRecorder.PcmDataBufferAvailableHandler(DetectPhrasesOnTheFly);
             mVuMeter = new AudioLib.VuMeter(mPlayer, mRecorder);
             mVUMeterPanel.VuMeter = mVuMeter;
         }
@@ -785,6 +786,12 @@ namespace Obi.ProjectView
             }
             mState = mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ? State.Monitoring :
                 mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording ? State.Recording : State.Stopped;
+            if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording || mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring)
+            {
+                m_PhDetectionPrevArray = null;
+                m_PhDetectionAmplitudes.Clear();
+                m_PhDetectorPhraseTimingList.Clear();
+            }
             UpdateButtons();
             
             //int selectedIndex = mDisplayBox.SelectedIndex;
@@ -2896,6 +2903,195 @@ UpdateButtons();
         private void mDisplayBox_DropDown(object sender, EventArgs e)
         {
             mDisplayBox.Tag = mDisplayBox.SelectedIndex;
+        }
+
+        private byte[] m_PhDetectionPrevArray;
+        private List<int> m_PhDetectionAmplitudes = new List<int>();
+        private List<double> m_PhDetectorPhraseTimingList = new List<double>();
+        public void DetectPhrasesOnTheFly(object sender, AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
+        {
+            return;
+            byte[] dataArray = e.PcmDataBuffer ;
+
+            System.IO.MemoryStream newMemStream = null;
+            
+            
+            //if (m_PhDetectionPrevArray != null && m_PhDetectionPrevArray.Length > 0)
+            //{
+                //byte[] tempBytes = new byte[m_PhDetectionPrevArray.Length + dataArray.Length];
+                //m_PhDetectionPrevArray.CopyTo(tempBytes, 0);
+                //dataArray.CopyTo(tempBytes, m_PhDetectionPrevArray.Length);
+                //newMemStream = new System.IO.MemoryStream(m_PhDetectionPrevArray.Length + dataArray.Length);
+                //newMemStream.Write(tempBytes, 0, tempBytes.Length);
+                
+            //}
+            //else
+            //{
+                newMemStream = new System.IO.MemoryStream(dataArray.Length);
+                newMemStream.Write(dataArray,0,dataArray.Length);
+                
+            //}
+            //Console.WriteLine("index " + dataArray.Length + " : " + newMemStream.Length);
+            newMemStream.Position = 0;
+                AudioLib.AudioLibPCMFormat audioPCMFormat = mRecorder.RecordingPCMFormat;
+            //long threshold = (long) Audio.PhraseDetection.DEFAULT_THRESHOLD ;
+                long threshold = (long)400;
+            long GapLength = (long)  300 * AudioLib.AudioLibPCMFormat.TIME_UNIT;
+            long before = (long) Audio.PhraseDetection.DEFAULT_LEADING_SILENCE * AudioLib.AudioLibPCMFormat.TIME_UNIT ;
+
+            GapLength = audioPCMFormat.ConvertTimeToBytes((long)GapLength);
+            before = audioPCMFormat.ConvertTimeToBytes((long)before);
+
+            double assetTimeInMS = audioPCMFormat.ConvertBytesToTime(newMemStream.Length) / AudioLib.AudioLibPCMFormat.TIME_UNIT;
+            GapLength = audioPCMFormat.AdjustByteToBlockAlignFrameSize((long)GapLength);
+            before = audioPCMFormat.AdjustByteToBlockAlignFrameSize((long)before);
+
+            int Block = 0;
+
+            // determine the Block  size
+            if (audioPCMFormat.SampleRate > 22500)
+            {
+                Block = 192;
+            }
+            else
+            {
+                Block = 96;
+            }
+
+
+            // count chunck of silence which trigger phrase detection
+            long lCountSilGap = (long)(2 * GapLength) / Block; // multiplied by two because j counter is incremented by 2
+            long lSum = 0;
+            
+            long lCheck = 0;
+
+            // flags to indicate phrases and silence
+            bool boolPhraseDetected = false;
+            bool boolBeginPhraseDetected = false;
+
+
+            double BlockTime = 25; // milliseconds
+            double BeforePhraseInMS = audioPCMFormat.ConvertBytesToTime((long)before) / AudioLib.AudioLibPCMFormat.TIME_UNIT;
+            Console.WriteLine("before , silgap " + BeforePhraseInMS + " , " + GapLength);
+            lCountSilGap = Convert.ToInt64((audioPCMFormat.ConvertBytesToTime((long)GapLength) / AudioLib.AudioLibPCMFormat.TIME_UNIT) / BlockTime);
+            //lCountSilGap = 6;
+            Console.WriteLine("LCount sil gap " + lCountSilGap);
+            long Iterations = Convert.ToInt64(assetTimeInMS / BlockTime);
+            long SampleCount = Convert.ToInt64(audioPCMFormat.SampleRate / (1000 / BlockTime));
+            Console.WriteLine("length " + newMemStream.Length + " 25ms length " + SampleCount);
+            double errorCompensatingCoefficient = AudioLib.PhraseDetection.GetErrorCompensatingConstant(SampleCount, audioPCMFormat);
+            long SpeechBlockCount = 0;
+
+            long lCurrentSum = 0;
+            long lSumPrev = 0;
+
+            
+
+            bool PhraseNominated = false;
+            long SpeechChunkSize = 5;
+            long Counter = 0;
+            Console.WriteLine("iteration " + Iterations);
+            System.IO.BinaryReader br = new System.IO.BinaryReader(newMemStream);
+            for (long c = 0; c < Iterations; c++) m_PhDetectionAmplitudes.Add(AudioLib.PhraseDetection.GetAvragePeakValue(newMemStream, SampleCount, audioPCMFormat));
+            br.Close();
+            int start = m_PhDetectionAmplitudes.Count - 40;
+            if (start < 0) return; 
+                for (int j = start; j < m_PhDetectionAmplitudes.Count - 1; j++) 
+            {
+                //if (CancelOperation) return null;
+                // decodes audio chunck inside block
+                                lCurrentSum = m_PhDetectionAmplitudes[j];
+                                //Console.WriteLine("LCurrent sum " + lCurrentSum);
+                lSum = (lCurrentSum + lSumPrev) / 2;
+                lSumPrev = lCurrentSum;
+
+                // conditional triggering of phrase detection
+                if (lSum < threshold)
+                {
+                    lCheck++;
+                    //Console.WriteLine("l sum is less " + lSum + " : " + j);
+                    SpeechBlockCount = 0;
+                }
+                else
+                {
+                    if (j < lCountSilGap && boolBeginPhraseDetected == false)
+                    {
+                        boolBeginPhraseDetected = true;
+                        if(m_PhDetectorPhraseTimingList.Count == 0)  m_PhDetectorPhraseTimingList.Add(Convert.ToInt64(0));
+                        boolPhraseDetected = true;
+                        lCheck = 0;
+                    }
+
+
+                    //// checks the length of silence
+                    if (lCheck > lCountSilGap)
+                    {
+                        //Console.WriteLine("Nominated " + j);
+                        PhraseNominated = true;
+                        lCheck = 0;
+                    }
+                    if (PhraseNominated)
+                        SpeechBlockCount++;
+
+                    if (SpeechBlockCount >= SpeechChunkSize && Counter >= 4)
+                    {
+                        //sets the detection flag
+                        boolPhraseDetected = true;
+
+                        // changing following time calculations to reduce concatination of rounding off errors 
+                        
+                        long phraseMarkTime = audioPCMFormat.ConvertBytesToTime(Convert.ToInt64(errorCompensatingCoefficient * (j - Counter)) * SampleCount * audioPCMFormat.BlockAlign) / AudioLib.AudioLibPCMFormat.TIME_UNIT;
+                        Console.WriteLine("Detected phrase with mark time :" + phraseMarkTime);
+                        double phraseTime = phraseMarkTime - BeforePhraseInMS;
+                        if (m_PhDetectorPhraseTimingList.Count == 0 || m_PhDetectorPhraseTimingList[m_PhDetectorPhraseTimingList.Count - 1] < phraseTime)
+                        {
+                            m_PhDetectorPhraseTimingList.Add(phraseMarkTime);
+             NextPhrase_OnTheFly () ;               
+                            System.Media.SystemSounds.Asterisk.Play();
+                        }
+                        
+                        SpeechBlockCount = 0;
+                        Counter = 0;
+                        PhraseNominated = false;
+                    }
+                    lCheck = 0;
+                }
+                if (PhraseNominated)
+                    Counter++;
+                 //end outer For
+            }
+            //br.Close();
+            Console.WriteLine("display complete list");
+            if (m_PhDetectorPhraseTimingList == null) return;
+            foreach (double phTime in m_PhDetectorPhraseTimingList) Console.WriteLine(phTime);
+            /*
+            List<long> detectedBytesCount = AudioLib.PhraseDetection.Apply(newMemStream,
+                mRecorder.RecordingPCMFormat,
+                threshold,
+                GapLength ,
+                before );
+
+            m_PhDetectionPrevArray = new byte[ dataArray.Length] ;
+            dataArray.CopyTo (m_PhDetectionPrevArray,0 ) ;
+            if (detectedBytesCount != null &&  detectedBytesCount.Count > 0)
+            {
+                Console.WriteLine("detected");
+                System.Media.SystemSounds.Asterisk.Play();
+                //NextPhrase();
+            }
+             */ 
+        }
+        private delegate void NextPhrase_OnTheFly_Delegate ();
+        private void NextPhrase_OnTheFly()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new NextPhrase_OnTheFly_Delegate(NextPhrase_OnTheFly));
+            }
+            else
+            {
+            mRecordingSession.NextPhrase();
+            }
         }
 
 
