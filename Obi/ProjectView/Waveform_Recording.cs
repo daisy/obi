@@ -5,8 +5,9 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-
+using urakawa.media.timing;
 using AudioLib;
+
 
 namespace Obi.ProjectView
 {
@@ -26,13 +27,13 @@ namespace Obi.ProjectView
         private Pen br2;
         private EmptyNode m_ExistingPhrase = null;
         private int m_Counter = 0;
-        private int m_CounterForInterval = 0;
-        private int m_LocalCount = 0;
+        private int m_LocalTime = 0;
         private ColorSettings m_ColorSettings;
         private ColorSettings m_ColorSettingsHC;
         private bool m_IsColorHighContrast = false;
       //  private Dictionary<int, short> m_PointMMinChannelMap = new Dictionary<int, short>();
       //  private Dictionary<int, short> m_PointMaxChannelMap = new Dictionary<int, short>();
+        private Pen pen = new Pen(Color.Black);
         private List<int> listOfXLocation = new List<int>();
         private List<int> listOfMinChannel1 = new List<int>();
         private List<int> listOfMaxChannel1 = new List<int>();
@@ -40,7 +41,8 @@ namespace Obi.ProjectView
         private int m_X = 0;
         private int m_XCV = 0;
         private int m_OldXLocation = 0;
-        private int xNewLoc = 0;
+        private Dictionary<int, string> m_DictionarySeconds = new Dictionary<int, string>();
+        private Dictionary<int, string> m_DictionaryEmpNode = new Dictionary<int, string>();
         
         public Waveform_Recording()
         {
@@ -119,7 +121,7 @@ namespace Obi.ProjectView
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Pen pen = new Pen(Color.Black);
+           
            
           
        //     int m_X = m_ContentView.Width / 2 + 50;
@@ -142,9 +144,7 @@ namespace Obi.ProjectView
                 this.Location = new Point(newXLocation, this.Location.Y);
             if (newXLocation > 0)
                 Location = new Point(0, Location.Y);
-           string text = "";
-            Font myFont = new Font("Microsoft Sans Serif", 7);
-            Pen newPen = new Pen(SystemColors.Control);
+          
             
             if (m_VUMeter == null || m_ContentView == null) return;
             g = this.CreateGraphics();
@@ -179,32 +179,43 @@ namespace Obi.ProjectView
             g.DrawLine(br2, 0, Height / 2, m_ContentView.Width, Height / 2);            
             
             g.DrawLine(br2, 0, Height / 2, Width, Height / 2);
-           
+            string text = "";
+            Font myFont = new Font("Microsoft Sans Serif", 7);
+            Pen newPen = new Pen(SystemColors.Control);
+            
+            double timeOfAssetMilliseconds =
+                   (double)m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition) /
+                   Time.TIME_UNIT;
+            int time = Convert.ToInt32(timeOfAssetMilliseconds / 1000);
+            m_Counter++;
+            if (m_Counter == 10)
+            {
+                g.DrawLine(newPen, m_X, 0, m_X, Height);
+                m_Counter = 0;
+            }
+
+                if (time % 10 == 0 && m_LocalTime != time )
+                {
+                    text = time.ToString();
+                    g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
+                    m_DictionarySeconds.Add(m_X, text);
+                    m_LocalTime = time;
+                }
+            
+
             if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
-             {
-                 if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
-                     text = "Page" + m_ProjectView.TransportBar.RecordingPhrase.PageNumber.ToString();
-                 else if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Plain)
-                     text = "Phrase";
-                 g.DrawLine(pen, m_X, 0, m_X, Height);
-                 g.DrawString(text, myFont, Brushes.Black, m_X, 0);
-                 m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
-             }
-             m_Counter++;
-             if (m_Counter == 10)
-             {
-                 g.DrawLine(newPen, m_X, 0, m_X, Height);
-                 m_Counter = 0;
-                 m_CounterForInterval++;
-             }
-             
-             if (m_CounterForInterval % 10 == 0 && m_LocalCount != m_CounterForInterval)
-             {
-                 text = m_CounterForInterval.ToString();
-                 g.DrawString(text, myFont, Brushes.Gray, m_X, 0);
-                 m_LocalCount = m_CounterForInterval;
-             }
-           
+            {
+                if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
+                    text = "Page" + m_ProjectView.TransportBar.RecordingPhrase.PageNumber.ToString();
+                else if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Plain)
+                    text = "Phrase";
+                g.DrawLine(pen, m_X, 0, m_X, Height);
+                g.DrawString(text, myFont, Brushes.Black, m_X, 0);
+                m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
+                m_DictionaryEmpNode.Add(m_X, text);
+             //   m_DictionarySeconds.Add(m_X, text);
+            }
+            
         //     Location = new Point(Location.X - 1, Location.Y);
              
              this.Width = this.Width + 150;
@@ -284,6 +295,11 @@ int channel = 0;
 
         private void Waveform_Recording_Resize(object sender, EventArgs e)
         {
+            int count = 0;
+            int secondsMark = 0;
+            int localCount = 0;
+            Font myFont = new Font("Microsoft Sans Serif", 7);
+            Pen newPen = new Pen(SystemColors.Control);
             if (m_IsResized)
             {
                 m_IsResized = false;
@@ -306,6 +322,31 @@ int channel = 0;
                 {
                     g.DrawLine(br_Channel1, new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
                     new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    count++;
+
+                    if (count == 10)
+                    {
+                        g.DrawLine(newPen, listOfXLocation[i], 0, listOfXLocation[i], Height);
+                        count = 0;
+                        secondsMark++;
+                    }
+                    if (secondsMark % 10 == 0 && localCount != secondsMark)
+                    {
+                        foreach (KeyValuePair<int, string> pair in m_DictionarySeconds)
+                        {
+                            if (m_DictionarySeconds.ContainsKey(pair.Key))
+                            {
+                                g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);
+                            }
+                        }
+                        foreach (KeyValuePair<int, string> pair in m_DictionaryEmpNode)
+                        {
+                            if (m_DictionaryEmpNode.ContainsKey(pair.Key))
+                            {
+                                g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
+                            }
+                        }
+                    }
                 }
                 timer1.Start();
             }
