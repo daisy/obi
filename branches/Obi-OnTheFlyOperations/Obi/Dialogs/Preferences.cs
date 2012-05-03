@@ -32,6 +32,9 @@ namespace Obi.Dialogs
         private Settings m_DefaultSettings;
         private Dictionary <string,string> m_KeyboardShortcutReadableNamesMap = new Dictionary<string,string> () ;
         private bool m_IsColorChanged = false;
+        private double m_DefaultGap = 300.0;
+        private double m_DefaultLeadingSilence = 50.0;
+        private double m_DefaultThreshold = 280.0;
 
         /// <summary>
         /// Initialize the preferences with the user settings.
@@ -154,6 +157,12 @@ namespace Obi.Dialogs
                 m_OperationDurationUpDown.Value = (decimal)(mSettings.PreviewDuration);
             if (m_cbOperation.SelectedIndex == 2)
                 m_OperationDurationUpDown.Value = (decimal)(mSettings.ElapseBackTimeInMilliseconds);
+            if (m_cbOperation.SelectedIndex == 3)
+                m_OperationDurationUpDown.Value = (decimal) (mSettings.DefaultLeadingSilence);
+            if (m_cbOperation.SelectedIndex == 4)
+                m_OperationDurationUpDown.Value = (decimal) (mSettings.DefaultThreshold);
+            if (m_cbOperation.SelectedIndex == 5)
+                m_OperationDurationUpDown.Value = (decimal) (mSettings.DefaultGap);
             mNoiseLevelComboBox.SelectedIndex =
                 mSettings.NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Low ? 0 :
                 mSettings.NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
@@ -406,7 +415,10 @@ namespace Obi.Dialogs
                   mSettings.NudgeTimeMs = (int)m_Nudge;
                   mSettings.PreviewDuration = (int)m_Preview;
                   mSettings.ElapseBackTimeInMilliseconds = (int)m_Elapse;
-                 }
+                  mSettings.DefaultLeadingSilence = (decimal) m_DefaultLeadingSilence;
+                  mSettings.DefaultThreshold = (decimal) m_DefaultThreshold;
+                  mSettings.DefaultGap = (decimal) m_DefaultGap;
+                }
             catch (System.Exception ex)
                 {
                 MessageBox.Show ( ex.ToString () );
@@ -640,6 +652,24 @@ namespace Obi.Dialogs
                 m_OperationDurationUpDown.Value = mSettings.ElapseBackTimeInMilliseconds;
                 m_OperationDurationUpDown.Increment = 150;
             }
+            if(m_cbOperation.SelectedIndex == 3)
+            {
+                m_OperationDurationUpDown.Value = mSettings.DefaultLeadingSilence;
+                Console.WriteLine(" mSettings.DefaultLeadingSilence : " + mSettings.DefaultLeadingSilence);
+                m_OperationDurationUpDown.Increment = 200;
+            }
+            if(m_cbOperation.SelectedIndex == 4)
+            {
+                m_OperationDurationUpDown.Value = mSettings.DefaultThreshold;
+                Console.WriteLine("mSettings.DefaultThreshold : " + mSettings.DefaultThreshold);
+                m_OperationDurationUpDown.Increment = 250;
+            }
+            if(m_cbOperation.SelectedIndex == 5)
+            {
+                m_OperationDurationUpDown.Value = mSettings.DefaultGap;
+                Console.WriteLine("mSettings.DefaultGap : " + mSettings.DefaultGap);
+                m_OperationDurationUpDown.Increment = 300;
+            }
         }
 
         private void m_OperationDurationUpDown_ValueChanged(object sender, EventArgs e)
@@ -650,6 +680,12 @@ namespace Obi.Dialogs
                 m_Preview = (int)(m_OperationDurationUpDown.Value);
             if (m_cbOperation.SelectedIndex == 2)
                 m_Elapse = (int) (m_OperationDurationUpDown.Value);
+           if (m_cbOperation.SelectedIndex == 3)
+               m_DefaultLeadingSilence = (double) (m_OperationDurationUpDown.Value);
+           if (m_cbOperation.SelectedIndex == 4)
+               m_DefaultThreshold = (double) (m_OperationDurationUpDown.Value);
+           if (m_cbOperation.SelectedIndex == 5)
+               m_DefaultGap = (double) (m_OperationDurationUpDown.Value);
         }
 
         private void m_CheckBoxListView_ItemChecked(object sender, ItemCheckedEventArgs e)
@@ -814,6 +850,9 @@ namespace Obi.Dialogs
                 mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
                 mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
                 mSettings.ElapseBackTimeInMilliseconds = m_DefaultSettings.ElapseBackTimeInMilliseconds;
+                mSettings.DefaultLeadingSilence = m_DefaultSettings.DefaultLeadingSilence;
+                mSettings.DefaultThreshold = m_DefaultSettings.DefaultThreshold;
+                mSettings.DefaultGap = m_DefaultSettings.DefaultGap;
                 mSettings.ImportToleranceForAudioInMs = m_DefaultSettings.ImportToleranceForAudioInMs;
                 InitializeAudioTab();
                 m_cbOperation.SelectedIndex = 0;
