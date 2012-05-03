@@ -37,6 +37,8 @@ namespace Obi.ProjectView
         private List<int> listOfXLocation = new List<int>();
         private List<int> listOfMinChannel1 = new List<int>();
         private List<int> listOfMaxChannel1 = new List<int>();
+        private List<int> listOfMinChannel2 = new List<int>();
+        private List<int> listOfMaxChannel2 = new List<int>();
         private bool m_IsResized = false;
         private int m_X = 0;
         private int m_XCV = 0;
@@ -121,9 +123,6 @@ namespace Obi.ProjectView
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-           
-           
-          
        //     int m_X = m_ContentView.Width / 2 + 50;
                        
         //    x_Loc = m_ContentView.Width / 2 + 50 + (-1 * Location.X);
@@ -186,7 +185,7 @@ namespace Obi.ProjectView
             double timeOfAssetMilliseconds =
                    (double)m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition) /
                    Time.TIME_UNIT;
-            int time = Convert.ToInt32(timeOfAssetMilliseconds / 1000);
+            int timeInSeconds = Convert.ToInt32(timeOfAssetMilliseconds / 1000);
             m_Counter++;
             if (m_Counter == 10)
             {
@@ -194,12 +193,13 @@ namespace Obi.ProjectView
                 m_Counter = 0;
             }
 
-                if (time % 10 == 0 && m_LocalTime != time )
+                if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds )
                 {
-                    text = time.ToString();
+                    text = timeInSeconds.ToString();
                     g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
+                    if(!m_DictionarySeconds.ContainsKey(m_X))
                     m_DictionarySeconds.Add(m_X, text);
-                    m_LocalTime = time;
+                    m_LocalTime = timeInSeconds;
                 }
             
 
@@ -212,8 +212,9 @@ namespace Obi.ProjectView
                 g.DrawLine(pen, m_X, 0, m_X, Height);
                 g.DrawString(text, myFont, Brushes.Black, m_X, 0);
                 m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
+             //   MessageBox.Show(m_X.ToString());
+                if(!m_DictionaryEmpNode.ContainsKey(m_X))
                 m_DictionaryEmpNode.Add(m_X, text);
-             //   m_DictionarySeconds.Add(m_X, text);
             }
             
         //     Location = new Point(Location.X - 1, Location.Y);
@@ -224,6 +225,8 @@ namespace Obi.ProjectView
              listOfXLocation.Add(m_X); 
              listOfMinChannel1.Add((int)minChannel1);
              listOfMaxChannel1.Add((int)maxChannel1);
+             listOfMinChannel2.Add((int)minChannel2);
+             listOfMaxChannel2.Add((int)maxChannel2);
              m_OldXLocation = m_X;             
          }
 
@@ -243,6 +246,8 @@ namespace Obi.ProjectView
             }
             listOfMaxChannel1.Clear();
             listOfMinChannel1.Clear();
+            listOfMinChannel2.Clear();
+            listOfMaxChannel2.Clear();
         }
 
         private short[] m_Amp = new short[2];
@@ -307,6 +312,7 @@ int channel = 0;
             }
             int counterMin = listOfMinChannel1.Count;
             int x = 0;
+            int counterMax = listOfMaxChannel2.Count;
             
             if(m_ContentView != null)
              x = m_ContentView.Width / 2 + 50;
@@ -320,8 +326,17 @@ int channel = 0;
                 timer1.Stop();
                 for (int i = counterMin - 1; i >= 0; i--)
                 {
-                    g.DrawLine(br_Channel1, new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                    new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
+                    {
+                        g.DrawLine(br_Channel1, new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    }
+
+                    if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
+                    {
+                        g.DrawLine(br_Channel1, new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    }
                     count++;
 
                     if (count == 10)
@@ -344,10 +359,11 @@ int channel = 0;
                             if (m_DictionaryEmpNode.ContainsKey(pair.Key))
                             {
                                 g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
+                                g.DrawLine(pen, pair.Key, 0, pair.Key, Height);
                             }
                         }
                     }
-                }
+                }               
                 timer1.Start();
             }
         }
