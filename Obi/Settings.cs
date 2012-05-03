@@ -66,6 +66,9 @@ namespace Obi
         public bool RecordDirectly;
         public bool LeftAlignPhrasesInContentView;
         public bool OptimizeMemory;
+        public decimal DefaultGap;
+        public decimal DefaultLeadingSilence;
+        public decimal DefaultThreshold;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -119,6 +122,9 @@ namespace Obi
             settings.RecordDirectly = false;
             settings.LeftAlignPhrasesInContentView = true;
             settings.OptimizeMemory = true;
+            settings.DefaultGap = 300;
+            settings.DefaultLeadingSilence = 50;
+            settings.DefaultThreshold = 280;
         }
 
         /// <summary>
