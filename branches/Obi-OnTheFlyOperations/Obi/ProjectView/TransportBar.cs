@@ -106,8 +106,7 @@ namespace Obi.ProjectView
         // Pass the state change and playback rate change events from the playlist
         public event AudioLib.AudioPlayer.StateChangedHandler StateChanged;
         public event EventHandler PlaybackRateChanged;
-
-
+        
         // States of the transport bar:
         // * Monitoring: recording is paused;
         // * Paused: playback is paused;
@@ -395,8 +394,7 @@ namespace Obi.ProjectView
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                     new AudioRange(mCurrentPlaylist.CurrentTimeInAsset));
-
-                                PlayAudioClue (AudioCluesSelection.SelectionBegin ) ;
+                PlayAudioClue (AudioCluesSelection.SelectionBegin ) ;
                 return true;
             }
             return false;
@@ -412,7 +410,7 @@ namespace Obi.ProjectView
             if (mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing
                 || mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused)
             {
-                            AudioSelection selection = mView.Selection as AudioSelection;
+                AudioSelection selection = mView.Selection as AudioSelection;
                 double begin = 0.0;
                 double end = 0.0;
                 if (selection != null && selection.Node == mCurrentPlaylist.CurrentPhrase)
@@ -425,15 +423,14 @@ namespace Obi.ProjectView
                 }
                 if (begin != end)
                 {
-                                                    mView.Selection = new AudioSelection((PhraseNode)selection.Node, selection.Control, new AudioRange(begin, end));
-                    
-                    PlayAudioClue ( AudioCluesSelection.SelectionEnd) ;
-                                        return true;
+                 mView.Selection = new AudioSelection((PhraseNode)selection.Node, selection.Control, new AudioRange(begin, end));
+                 PlayAudioClue ( AudioCluesSelection.SelectionEnd) ;
+                 return true;
                 }
                 else
                 {
-                    // If nothing was set, behave as if we started a selection.
-                    return MarkSelectionBeginTime();
+                 // If nothing was set, behave as if we started a selection.
+                 return MarkSelectionBeginTime();
                 }
             }
             return false;
@@ -2191,49 +2188,7 @@ namespace Obi.ProjectView
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public bool FastPlayRateStepUp()
+       public bool FastPlayRateStepUp()
         {
             if (mFastPlayRateCombobox.SelectedIndex < mFastPlayRateCombobox.Items.Count - 1)
             {
@@ -2908,9 +2863,11 @@ UpdateButtons();
         private byte[] m_PhDetectionPrevArray;
         private List<int> m_PhDetectionAmplitudes = new List<int>();
         private List<double> m_PhDetectorPhraseTimingList = new List<double>();
+        private event EventHandler PhraseCreatedEvent;
+        
         public void DetectPhrasesOnTheFly(object sender, AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
         {
-            return;
+            //return;
             byte[] dataArray = e.PcmDataBuffer ;
 
             System.IO.MemoryStream newMemStream = null;
@@ -2933,7 +2890,7 @@ UpdateButtons();
             //}
             //Console.WriteLine("index " + dataArray.Length + " : " + newMemStream.Length);
             newMemStream.Position = 0;
-                AudioLib.AudioLibPCMFormat audioPCMFormat = mRecorder.RecordingPCMFormat;
+            AudioLib.AudioLibPCMFormat audioPCMFormat = mRecorder.RecordingPCMFormat;
             //long threshold = (long) Audio.PhraseDetection.DEFAULT_THRESHOLD ;
                 long threshold = (long)400;
             long GapLength = (long)  300 * AudioLib.AudioLibPCMFormat.TIME_UNIT;
@@ -2996,7 +2953,7 @@ UpdateButtons();
             br.Close();
             int start = m_PhDetectionAmplitudes.Count - 40;
             if (start < 0) return; 
-                for (int j = start; j < m_PhDetectionAmplitudes.Count - 1; j++) 
+            for (int j = start; j < m_PhDetectionAmplitudes.Count - 1; j++) 
             {
                 //if (CancelOperation) return null;
                 // decodes audio chunck inside block
@@ -3046,7 +3003,8 @@ UpdateButtons();
                         if (m_PhDetectorPhraseTimingList.Count == 0 || m_PhDetectorPhraseTimingList[m_PhDetectorPhraseTimingList.Count - 1] < phraseTime)
                         {
                             m_PhDetectorPhraseTimingList.Add(phraseMarkTime);
-             NextPhrase_OnTheFly () ;               
+                            if (PhraseCreatedEvent != null) PhraseCreatedEvent(this,e);
+                            NextPhrase_OnTheFly () ;               
                             System.Media.SystemSounds.Asterisk.Play();
                         }
                         
