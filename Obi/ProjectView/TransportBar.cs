@@ -2939,9 +2939,9 @@ UpdateButtons();
             newMemStream.Position = 0;
                 AudioLib.AudioLibPCMFormat audioPCMFormat = mRecorder.RecordingPCMFormat;
             //long threshold = (long) Audio.PhraseDetection.DEFAULT_THRESHOLD ;
-                long threshold = (long)400;
-            long GapLength = (long)  300 * AudioLib.AudioLibPCMFormat.TIME_UNIT;
-            long before = (long) Audio.PhraseDetection.DEFAULT_LEADING_SILENCE * AudioLib.AudioLibPCMFormat.TIME_UNIT ;
+                long threshold = (long)mView.ObiForm.Settings.DefaultThreshold ;
+            long GapLength = (long)mView.ObiForm.Settings.DefaultGap  * AudioLib.AudioLibPCMFormat.TIME_UNIT;
+            long before = (long) mView.ObiForm.Settings.DefaultLeadingSilence * AudioLib.AudioLibPCMFormat.TIME_UNIT ;
 
             GapLength = audioPCMFormat.ConvertTimeToBytes((long)GapLength);
             before = audioPCMFormat.ConvertTimeToBytes((long)before);
