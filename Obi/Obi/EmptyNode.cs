@@ -335,7 +335,7 @@ namespace Obi
                 if (xmlProp != null)
                 {
                     
-                    urakawa.property.xml.XmlAttribute attrRole = xmlProp.GetAttribute(XUK_ATTR_NAME_ROLE, xmlProp.NamespaceUri);
+                    urakawa.property.xml.XmlAttribute attrRole = xmlProp.GetAttribute(XUK_ATTR_NAME_ROLE);
 
                     if (attrRole != null)
                     {
@@ -345,7 +345,7 @@ namespace Obi
                                                   role == Role.Page.ToString() ? Role.Page :
                                                   role == Role.Silence.ToString() ? Role.Silence : Role.Plain;
                         if (role != null && role != mRole.ToString()) throw new Exception("Unknown kind: " + role);
-                        if (mRole == Role.Custom) mCustomRole = xmlProp.GetAttribute(XUK_ATTR_NAME_CUSTOM, xmlProp.NamespaceUri).Value;
+                        if (mRole == Role.Custom) mCustomRole = xmlProp.GetAttribute(XUK_ATTR_NAME_CUSTOM).Value;
                         //System.Windows.Forms.MessageBox.Show(mRole.ToString());
                         if (mRole == Role.Heading)
                         {
@@ -353,10 +353,10 @@ namespace Obi
                         }
                         else if (mRole == Role.Page)
                         {
-                            string pageKind = xmlProp.GetAttribute(XUK_ATTR_NAME_PAGE_KIND, xmlProp.NamespaceUri).Value;
+                            string pageKind = xmlProp.GetAttribute(XUK_ATTR_NAME_PAGE_KIND).Value;
                             if (pageKind != null)
                             {
-                                string page = xmlProp.GetAttribute(XUK_ATTR_NAME_PAGE, xmlProp.NamespaceUri).Value;
+                                string page = xmlProp.GetAttribute(XUK_ATTR_NAME_PAGE).Value;
                                 int number = SafeParsePageNumber(page);
                                 if (pageKind == "Front")
                                 {
@@ -390,7 +390,7 @@ namespace Obi
                         // add it to the presentation
                         ((ObiPresentation)Presentation).AddCustomClass(mCustomRole, this);
 
-                        string todo = xmlProp.GetAttribute(XUK_ATTR_NAME_TODO, xmlProp.NamespaceUri).Value;
+                        string todo = xmlProp.GetAttribute(XUK_ATTR_NAME_TODO).Value;
                         if (todo != null) mTODO = todo == "True";
                     }
                 }
