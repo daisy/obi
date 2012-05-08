@@ -12,8 +12,8 @@ using urakawa.property.xml;
 using urakawa.daisy;
 using urakawa.daisy.import;
 using urakawa.media.data.audio;
-using urakawa.media.timing ;
-using AudioLib  ;
+using urakawa.media.timing;
+using AudioLib;
 
 
 namespace Obi.ImportExport
@@ -25,36 +25,36 @@ namespace Obi.ImportExport
         private Settings m_Settings;
         private urakawa.metadata.Metadata m_TitleMetadata;
         private urakawa.metadata.Metadata m_IdentifierMetadata;
-        private List<EmptyNode> m_PhrasesWithTruncatedAudio ;
+        private List<EmptyNode> m_PhrasesWithTruncatedAudio;
         private List<string> m_ErrorsList;
 
-        public DAISY3_ObiImport(Session session,Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate)
+        public DAISY3_ObiImport(Session session, Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate)
             : base(bookfile, outDir, skipACM, audioProjectSampleRate, true)
         {
             m_Session = session;
             m_Settings = settings;
             XukPath = Path.Combine(m_outDirectory, "project.obi");
-            if ( System.IO.Path.GetExtension(bookfile).ToLower() == ".opf")     this.AudioNCXImport = true;
-            
+            if (System.IO.Path.GetExtension(bookfile).ToLower() == ".opf") this.AudioNCXImport = true;
+
             PopulateMetadatasToRemoveList();
             m_PhrasesWithTruncatedAudio = new List<EmptyNode>();
             m_ErrorsList = new List<string>();
         }
 
-        public List<string> ErrorsList { get { return m_ErrorsList; } } 
+        public List<string> ErrorsList { get { return m_ErrorsList; } }
 
         //protected override void CreateProjectFileAndDirectory()
         //{
-            //if (!Directory.Exists(m_outDirectory))
-            //{
-                //Directory.CreateDirectory(m_outDirectory);
-            //}
-            //m_Xuk_FilePath = m_Session.Path;
+        //if (!Directory.Exists(m_outDirectory))
+        //{
+        //Directory.CreateDirectory(m_outDirectory);
+        //}
+        //m_Xuk_FilePath = m_Session.Path;
         //}
 
         protected override void initializeProject()
         {
-            
+
             //m_Project = new Project();
             m_Project = m_Session.Presentation.Project;
 #if (DEBUG)
@@ -86,14 +86,14 @@ namespace Obi.ImportExport
 
         protected override TreeNode CreateTreeNodeForNavPoint(TreeNode parentNode, XmlNode navPoint)
         {
-            SectionNode treeNode = m_Presentation.CreateSectionNode () ;
+            SectionNode treeNode = m_Presentation.CreateSectionNode();
 
-                //= parentNode.Presentation.TreeNodeFactory.Create();
+            //= parentNode.Presentation.TreeNodeFactory.Create();
             //parentNode.AppendChild(treeNode);
             if (navPoint.LocalName == "docTitle")
             {
-                
-                ((ObiNode)m_Presentation.RootNode).Insert(treeNode,0);
+
+                ((ObiNode)m_Presentation.RootNode).Insert(treeNode, 0);
             }
             else
             {
@@ -129,10 +129,10 @@ namespace Obi.ImportExport
             return treeNode;
         }
         private Dictionary<EmptyNode, string> m_AnchorNodeSmilRefMap = new Dictionary<EmptyNode, string>();
-        private Dictionary<EmptyNode, List <string>> m_Skippable_IdMap = new Dictionary<EmptyNode,List <string>>();
+        private Dictionary<EmptyNode, List<string>> m_Skippable_IdMap = new Dictionary<EmptyNode, List<string>>();
         protected override TreeNode CreateTreeNodeForAudioNode(TreeNode navPointTreeNode, bool isHeadingNode, XmlNode smilNode, string fullSmilPath)
         {
-            PhraseNode audioWrapperNode = m_Presentation.CreatePhraseNode ();
+            PhraseNode audioWrapperNode = m_Presentation.CreatePhraseNode();
             if (smilNode == null || !m_SmilXmlNodeToTreeNodeMap.ContainsKey(smilNode))
             {
                 ((SectionNode)navPointTreeNode).AppendChild(audioWrapperNode);
@@ -140,9 +140,9 @@ namespace Obi.ImportExport
                 XmlNode seqParent = smilNode != null ? smilNode.ParentNode : null;
                 while (seqParent != null)
                 {
-                    if ((seqParent.Name == "seq" || seqParent.Name == "par"  ) && (seqParent.Attributes != null && seqParent.Attributes.GetNamedItem("customTest") != null)) break;
+                    if ((seqParent.Name == "seq" || seqParent.Name == "par") && (seqParent.Attributes != null && seqParent.Attributes.GetNamedItem("customTest") != null)) break;
                     seqParent = seqParent.ParentNode;
-                    
+
                 }
 
                 string strClass = null;
@@ -151,45 +151,45 @@ namespace Obi.ImportExport
                 && (strClass = seqParent.Attributes.GetNamedItem("class").Value) != null
                 && (strClass == EmptyNode.Annotation || strClass == EmptyNode.EndNote || strClass == EmptyNode.Footnote
                 || strClass == EmptyNode.ProducerNote || strClass == EmptyNode.Sidebar || strClass == EmptyNode.Note))
-                    {
-                        audioWrapperNode.SetRole(EmptyNode.Role.Custom, strClass);
-                        if (!m_Skippable_IdMap.ContainsKey(audioWrapperNode))
-                        {
-                            ObiNode preceedingNode = audioWrapperNode.PrecedingNode ;
-                            if (preceedingNode == null || preceedingNode is SectionNode || ((EmptyNode)preceedingNode).CustomRole != audioWrapperNode.CustomRole)
-                            {
-                                m_Skippable_IdMap.Add(audioWrapperNode, new List<string>());
-                                XmlNode seqChild = seqParent;
-                                while (seqChild != null && seqChild != smilNode)
-                                {
-                                    if (seqChild.Attributes.GetNamedItem("id") != null) m_Skippable_IdMap[audioWrapperNode].Add(Path.GetFileName(fullSmilPath) + "#" + seqChild.Attributes.GetNamedItem("id").Value);
-                                    seqChild = seqChild.FirstChild;
-                                }
-
-
-                                AssignSkippableToAnchorNode();
-                            }
-                        }
-                }
-                else if (seqParent != null && seqParent.Attributes != null && seqParent.Attributes.GetNamedItem("customTest") != null )
                 {
-                        
-                        XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(seqParent, true, "a", seqParent.NamespaceURI);
-                        if (anchorNode != null)
+                    audioWrapperNode.SetRole(EmptyNode.Role.Custom, strClass);
+                    if (!m_Skippable_IdMap.ContainsKey(audioWrapperNode))
+                    {
+                        ObiNode preceedingNode = audioWrapperNode.PrecedingNode;
+                        if (preceedingNode == null || preceedingNode is SectionNode || ((EmptyNode)preceedingNode).CustomRole != audioWrapperNode.CustomRole)
                         {
-                            
-                            string strReference = anchorNode.Attributes.GetNamedItem("href").Value;
-                            audioWrapperNode.SetRole(EmptyNode.Role.Anchor, null);
-                            if (!m_AnchorNodeSmilRefMap.ContainsKey(audioWrapperNode))
+                            m_Skippable_IdMap.Add(audioWrapperNode, new List<string>());
+                            XmlNode seqChild = seqParent;
+                            while (seqChild != null && seqChild != smilNode)
                             {
-                                string[] refArray = strReference.Split('#');
-                                if (refArray.Length == 1 || string.IsNullOrEmpty(refArray[0])) strReference = Path.GetFileName(fullSmilPath) + "#" + refArray[refArray.Length - 1];
-                                m_AnchorNodeSmilRefMap.Add(audioWrapperNode, strReference);
-                                
+                                if (seqChild.Attributes.GetNamedItem("id") != null) m_Skippable_IdMap[audioWrapperNode].Add(Path.GetFileName(fullSmilPath) + "#" + seqChild.Attributes.GetNamedItem("id").Value);
+                                seqChild = seqChild.FirstChild;
                             }
-                        
 
+
+                            AssignSkippableToAnchorNode();
+                        }
+                    }
                 }
+                else if (seqParent != null && seqParent.Attributes != null && seqParent.Attributes.GetNamedItem("customTest") != null)
+                {
+
+                    XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(seqParent, true, "a", seqParent.NamespaceURI);
+                    if (anchorNode != null)
+                    {
+
+                        string strReference = anchorNode.Attributes.GetNamedItem("href").Value;
+                        audioWrapperNode.SetRole(EmptyNode.Role.Anchor, null);
+                        if (!m_AnchorNodeSmilRefMap.ContainsKey(audioWrapperNode))
+                        {
+                            string[] refArray = strReference.Split('#');
+                            if (refArray.Length == 1 || string.IsNullOrEmpty(refArray[0])) strReference = Path.GetFileName(fullSmilPath) + "#" + refArray[refArray.Length - 1];
+                            m_AnchorNodeSmilRefMap.Add(audioWrapperNode, strReference);
+
+                        }
+
+
+                    }
                 }
             }
             else
@@ -200,7 +200,7 @@ namespace Obi.ImportExport
             }
 
             return audioWrapperNode;
-             
+
         }
 
         protected override TreeNode AddAnchorNode(TreeNode navPointTreeNode, XmlNode smilNode, string fullSmilPath)
@@ -235,7 +235,7 @@ namespace Obi.ImportExport
         private void AssignSkippableToAnchorNode()
         {
             List<EmptyNode> nodeToRemove = new List<EmptyNode>();
-            foreach ( EmptyNode anchor in m_AnchorNodeSmilRefMap.Keys )
+            foreach (EmptyNode anchor in m_AnchorNodeSmilRefMap.Keys)
             {
                 string strRef = m_AnchorNodeSmilRefMap[anchor];
                 foreach (EmptyNode skippable in m_Skippable_IdMap.Keys)
@@ -284,9 +284,9 @@ namespace Obi.ImportExport
             }
             if (number != null)
             {
-                EmptyNode node = (EmptyNode)audioWrapperNode ;
+                EmptyNode node = (EmptyNode)audioWrapperNode;
                 node.PageNumber = number;
-                
+
             }
 
             /*
@@ -323,12 +323,12 @@ namespace Obi.ImportExport
             double audioClipBegin = Math.Abs((new urakawa.media.timing.Time(audioXmlNode.Attributes.GetNamedItem("clipBegin").Value)).AsTimeSpan.TotalMilliseconds);
             double audioClipEnd = Math.Abs((new urakawa.media.timing.Time(audioXmlNode.Attributes.GetNamedItem("clipEnd").Value)).AsTimeSpan.TotalMilliseconds);
 
-            if ( ((SectionNode)navPointTreeNode).PhraseChild(0) != phraseTreeNode 
-                &&   headingAudio.Attributes.GetNamedItem("src").Value == audioXmlNode.Attributes.GetNamedItem("src").Value
-                &&    Math.Abs (headingClipBegin - audioClipBegin) <= 1
-                && Math.Abs (headingClipEnd - audioClipEnd) <=1 )
+            if (((SectionNode)navPointTreeNode).PhraseChild(0) != phraseTreeNode
+                && headingAudio.Attributes.GetNamedItem("src").Value == audioXmlNode.Attributes.GetNamedItem("src").Value
+                && Math.Abs(headingClipBegin - audioClipBegin) <= 1
+                && Math.Abs(headingClipEnd - audioClipEnd) <= 1)
             {
-                ((EmptyNode)phraseTreeNode).Role_ = EmptyNode.Role.Heading; 
+                ((EmptyNode)phraseTreeNode).Role_ = EmptyNode.Role.Heading;
             }
             return phraseTreeNode;
         }
@@ -350,27 +350,27 @@ namespace Obi.ImportExport
                     if (node.Name == "dc:Title" && string.IsNullOrEmpty(opfTitle))
                     {
                         opfTitle = node.InnerText;
-                        
+
                     }
-                    if (node.Name == "dc:Identifier" &&  string.IsNullOrEmpty(identifier) 
+                    if (node.Name == "dc:Identifier" && string.IsNullOrEmpty(identifier)
                         && node.Attributes.GetNamedItem("id") != null && node.Attributes.GetNamedItem("id").Value == uidAttribute)
                     {
                         identifier = node.InnerText;
                     }
 
                     if (!string.IsNullOrEmpty(opfTitle) && !string.IsNullOrEmpty(identifier)) break;
-                    
+
                 }
             }
-            if (!string.IsNullOrEmpty(opfTitle))    dc_Title= opfTitle;
-            if (!string.IsNullOrEmpty(identifier))  dc_Identifier = identifier;
+            if (!string.IsNullOrEmpty(opfTitle)) dc_Title = opfTitle;
+            if (!string.IsNullOrEmpty(identifier)) dc_Identifier = identifier;
         }
 
         public static string getTitleFromDtBookFile(string dtBookFilePath)
         {
             string dtbBookTitle = "";
             XmlDocument dtbookFileDoc = urakawa.xuk.XmlReaderWriterHelper.ParseXmlDocument(dtBookFilePath, false);
-            
+
             XmlNodeList listOfChildren = dtbookFileDoc.GetElementsByTagName("meta");
             foreach (XmlNode node in listOfChildren)
             {
@@ -452,7 +452,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                     {
                         Presentation presentation = m_Project.Presentations.Get(0);
 
-                        TreeNode treeNode = null ;
+                        TreeNode treeNode = null;
 
                         if (parentTreeNode == null)
                         {
@@ -460,30 +460,48 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                             //presentation.RootNode = treeNode;
                             parentTreeNode = presentation.RootNode;
                         }
-                         if ( parentTreeNode != null )
+                        if (parentTreeNode != null)
                         {
                             treeNode = CreateAndAddTreeNodeForContentDocument(parentTreeNode, xmlNode);
                             //parentTreeNode.AppendChild(treeNode);
-                        }
-                        XmlProperty xmlProp = null ;
-                        if (treeNode != null)
-                        {
-                            xmlProp = presentation.PropertyFactory.CreateXmlProperty();
-                            treeNode.AddProperty(xmlProp);
-                            xmlProp.LocalName = xmlNode.LocalName;
                         }
                         if (xmlNode.ParentNode != null && xmlNode.ParentNode.NodeType == XmlNodeType.Document)
                         {
                             presentation.PropertyFactory.DefaultXmlNamespaceUri = xmlNode.NamespaceURI;
                         }
 
-                        if (xmlNode.NamespaceURI != presentation.PropertyFactory.DefaultXmlNamespaceUri && xmlProp != null)
+                        XmlProperty xmlProp = null;
+                        if (treeNode != null)
                         {
-                            xmlProp.NamespaceUri = xmlNode.NamespaceURI;
+                            xmlProp = presentation.PropertyFactory.CreateXmlProperty();
+                            treeNode.AddProperty(xmlProp);
+
+
+                            // we get rid of element name prefixes, we use namespace URIs instead.
+                            // check inherited NS URI
+
+                            string nsUri = treeNode.Parent != null ?
+                                treeNode.Parent.GetXmlNamespaceUri() :
+                                xmlNode.NamespaceURI; //presentation.PropertyFactory.DefaultXmlNamespaceUri
+
+                            if (xmlNode.NamespaceURI != nsUri)
+                            {
+                                nsUri = xmlNode.NamespaceURI;
+                                xmlProp.SetQName(xmlNode.LocalName, nsUri == null ? "" : nsUri);
+                            }
+                            else
+                            {
+                                xmlProp.SetQName(xmlNode.LocalName, "");
+                            }
+
+
+                            //string nsUri = treeNode.GetXmlNamespaceUri();
+                            // if xmlNode.NamespaceURI != nsUri
+                            // => xmlProp.GetNamespaceUri() == xmlNode.NamespaceURI
                         }
 
-                        string updatedSRC = null;
                         /*
+                        string updatedSRC = null;
                         if (xmlNode.LocalName == "img")
                         {
                             XmlNode getSRC = xmlNode.Attributes.GetNamedItem("src");
@@ -588,9 +606,9 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                             }
                         }
                         */
-                        if (parentTreeNode is SectionNode 
-                            &&  (xmlNode.LocalName == "h1" || xmlNode.LocalName == "h2" || xmlNode.LocalName == "h3"
-                            || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" || xmlNode.LocalName == "HD" ))
+                        if (parentTreeNode is SectionNode
+                            && (xmlNode.LocalName == "h1" || xmlNode.LocalName == "h2" || xmlNode.LocalName == "h3"
+                            || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" || xmlNode.LocalName == "HD"))
                         {
                             ((SectionNode)parentTreeNode).Label = xmlNode.InnerText;
                         }
@@ -603,7 +621,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         if (RequestCancellation) return;
                         foreach (XmlNode childXmlNode in xmlNode.ChildNodes)
                         {
-                            parseContentDocument(childXmlNode, treeNode!= null && treeNode is SectionNode? treeNode: parentTreeNode, filePath);
+                            parseContentDocument(childXmlNode, treeNode != null && treeNode is SectionNode ? treeNode : parentTreeNode, filePath);
                         }
                         break;
                     }
@@ -704,7 +722,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         }
                         */
                         break;
-                         
+
                     }
                 default:
                     {
@@ -715,9 +733,9 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
 
         private TreeNode CreateAndAddTreeNodeForContentDocument(TreeNode parentNode, XmlNode node)
         {
-                        TreeNode createdNode = null;
-                        //Console.WriteLine(node.LocalName);
-                        if (node.LocalName.StartsWith("level") || node.LocalName == "doctitle")
+            TreeNode createdNode = null;
+            //Console.WriteLine(node.LocalName);
+            if (node.LocalName.StartsWith("level") || node.LocalName == "doctitle")
             {
                 //Console.WriteLine("creating section ");
                 SectionNode treeNode = m_Presentation.CreateSectionNode();
@@ -737,7 +755,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                 createdNode = treeNode;
                 ((SectionNode)parentNode).AppendChild(treeNode);
 
-                string strKind  = node.Attributes.GetNamedItem("page").Value;
+                string strKind = node.Attributes.GetNamedItem("page").Value;
                 string pageNumberString = node.InnerText;
 
                 PageKind kind = strKind == "front" ? PageKind.Front :
@@ -745,23 +763,23 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                 PageKind.Special;
 
                 PageNumber number = null;
-            if (kind == PageKind.Special && pageNumberString != null && pageNumberString != "")
-            {
-                number = new PageNumber(pageNumberString);
-            }
-            else if (kind == PageKind.Front || kind == PageKind.Normal)
-            {
-                int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
-                if (pageNumber > 0)
+                if (kind == PageKind.Special && pageNumberString != null && pageNumberString != "")
                 {
-                    number = new PageNumber(pageNumber, kind);
+                    number = new PageNumber(pageNumberString);
                 }
-                if (number != null)
-                {   
-                     ((EmptyNode) treeNode).PageNumber = number;
+                else if (kind == PageKind.Front || kind == PageKind.Normal)
+                {
+                    int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
+                    if (pageNumber > 0)
+                    {
+                        number = new PageNumber(pageNumber, kind);
+                    }
+                    if (number != null)
+                    {
+                        ((EmptyNode)treeNode).PageNumber = number;
 
+                    }
                 }
-            }
             }
             return createdNode;
         }
@@ -807,28 +825,28 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
         {
             bool isClipEndError = true;
 
-            uint dataLength = 0 ;
+            uint dataLength = 0;
             Stream wavStream = null;
-            AudioLibPCMFormat PCMFormat = null ;
+            AudioLibPCMFormat PCMFormat = null;
             try
             {
                 wavStream = dataProv.OpenInputStream();
-                 PCMFormat = AudioLibPCMFormat.RiffHeaderParse(wavStream, out dataLength);
+                PCMFormat = AudioLibPCMFormat.RiffHeaderParse(wavStream, out dataLength);
             }
             catch (System.Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                isClipEndError = true ;
+                isClipEndError = true;
             }
             finally
             {
-                if(wavStream != null )  wavStream.Close () ;
+                if (wavStream != null) wavStream.Close();
             }
 
-            Time fileDuration = new Time(PCMFormat.ConvertBytesToTime((long) dataLength));
-            if (clipB.IsLessThan (clipE))
+            Time fileDuration = new Time(PCMFormat.ConvertBytesToTime((long)dataLength));
+            if (clipB.IsLessThan(clipE))
             {//1
-                double diff =  clipE.AsTimeSpan.TotalMilliseconds - fileDuration.AsTimeSpan.TotalMilliseconds;
+                double diff = clipE.AsTimeSpan.TotalMilliseconds - fileDuration.AsTimeSpan.TotalMilliseconds;
                 if (clipB.IsLessThan(fileDuration))
                 {//2
                     try
@@ -856,7 +874,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         m_ErrorsList.Add(Localizer.Message("DAISY3_ObiImport_ErrorsList_expected_clip_end") + clipE.Format_H_MN_S_MS() + Localizer.Message("DAISY3_ObiImport_ErrorsList_imported_clip_end") + fileDuration.Format_H_MN_S_MS());
                     }
                 }//-2
-                
+
             }//-1
             else
             {//1
@@ -867,7 +885,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
 
 
 
-        private void ReplaceExternalAudioMediaPhraseWithEmptyNode (TreeNode node)
+        private void ReplaceExternalAudioMediaPhraseWithEmptyNode(TreeNode node)
         {
             if (node is PhraseNode)
             {
@@ -878,21 +896,21 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                 EmptyNode emptyNode = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
                 emptyNode.CopyAttributes(phrase);
                 phrase.Detach();
-                
+
                 section.Insert(emptyNode, phraseIndex);
                 emptyNode.TODO = true;
 
                 m_ErrorsList.Add(Localizer.Message("DAISY3_ObiImport_ErrorsList_error_no_audio") + phraseIndex.ToString() + Localizer.Message("DAISY3_ObiImport_ErrorsList_in_section") + section.Label);
             }
-             
+
         }
 
         public void CorrectExternalAudioMedia()
         {
             if (TreenodesWithoutManagedAudioMediaData == null || TreenodesWithoutManagedAudioMediaData.Count == 0) return;
             for (int i = 0; i < TreenodesWithoutManagedAudioMediaData.Count; i++)
-            {   
-                if ( TreenodesWithoutManagedAudioMediaData[i] is PhraseNode )
+            {
+                if (TreenodesWithoutManagedAudioMediaData[i] is PhraseNode)
                 {
                     PhraseNode phrase = (PhraseNode)TreenodesWithoutManagedAudioMediaData[i];
                     ReplaceExternalAudioMediaPhraseWithEmptyNode(phrase);

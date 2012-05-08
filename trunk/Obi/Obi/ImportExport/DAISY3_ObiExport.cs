@@ -22,21 +22,21 @@ namespace Obi.ImportExport
         private Dictionary<XmlNode, urakawa.core.TreeNode> m_AnchorXmlNodeToReferedNodeMap = new Dictionary<XmlNode, urakawa.core.TreeNode>();
         private Dictionary<urakawa.core.TreeNode, string> m_Skippable_UpstreamIdMap = new Dictionary<TreeNode, string>();
         private Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
-        
+
         public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3, SampleRate sampleRate, bool skipACM, int audioFileSectionLevel)
-        :base (presentation, exportDirectory, navListElementNamesList, encodeToMp3, sampleRate, skipACM, false)
+            : base(presentation, exportDirectory, navListElementNamesList, encodeToMp3, sampleRate, skipACM, false)
         {
             m_Filename_Content = null;
             m_AudioFileSectionLevel = audioFileSectionLevel;
             GeneratorName = "Obi";
         }
 
-        
+
         protected override bool doesTreeNodeTriggerNewSmil(TreeNode node)
         {
             return node is SectionNode
                 && IsSectionEmpty((SectionNode)node);
-                    }
+        }
 
         private bool IsSectionEmpty(SectionNode section)
         {
@@ -51,7 +51,7 @@ namespace Obi.ImportExport
 
         public override void ConfigureAudioFileDelegates()
         {
-            m_TriggerDelegate = delegate(urakawa.core.TreeNode node) { return node is SectionNode   &&   ((SectionNode)node).Level <= m_AudioFileSectionLevel; };
+            m_TriggerDelegate = delegate(urakawa.core.TreeNode node) { return node is SectionNode && ((SectionNode)node).Level <= m_AudioFileSectionLevel; };
             m_SkipDelegate = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
         }
 
@@ -69,7 +69,7 @@ namespace Obi.ImportExport
             rNode.AcceptDepthFirst(
                                 delegate(TreeNode n)
                                 {
-                                    if (doesTreeNodeTriggerNewSmil(n) ) m_ListOfLevels.Add(n);
+                                    if (doesTreeNodeTriggerNewSmil(n)) m_ListOfLevels.Add(n);
                                     return true;
                                 },
                                 delegate(urakawa.core.TreeNode n) { });
@@ -131,7 +131,7 @@ namespace Obi.ImportExport
 
                 if (RequestCancellation) return false;
                 
-                QualifiedName currentQName = n.GetXmlElementQName();
+                //QualifiedName currentQName = n.GetXmlElementQName();
 
                 //if (IsHeadingNode(n))
                 //if (n is EmptyNode &&  ((EmptyNode)n).Role_ == EmptyNode.Role.Heading )
@@ -174,8 +174,8 @@ namespace Obi.ImportExport
                 
                 
 
-                QualifiedName qName1 = currentHeadingTreeNode != null ? currentHeadingTreeNode.GetXmlElementQName() : null;
-                bool isDoctitle_1 = (qName1 != null && qName1.LocalName == "doctitle");
+                //QualifiedName qName1 = currentHeadingTreeNode != null ? currentHeadingTreeNode.GetXmlElementQName() : null;
+                //bool isDoctitle_1 = (qName1 != null && qName1.LocalName == "doctitle");
 
                 //if (!IsNcxNativeNodeAdded && currentHeadingTreeNode != null && (currentHeadingTreeNode.GetDurationOfManagedAudioMediaFlattened() == null || currentHeadingTreeNode.GetDurationOfManagedAudioMediaFlattened().AsLocalUnits == 0))
                 //{
@@ -203,8 +203,8 @@ namespace Obi.ImportExport
                 }
 
 
-                QualifiedName qName = currentHeadingTreeNode != null ? currentHeadingTreeNode.GetXmlElementQName() : null;
-                bool isDoctitle_ = (qName != null && qName.LocalName == "doctitle");
+                //QualifiedName qName = currentHeadingTreeNode != null ? currentHeadingTreeNode.GetXmlElementQName() : null;
+                //bool isDoctitle_ = (qName != null && qName.LocalName == "doctitle");
 
                 // create smil stub document
                 if (smilDocument == null)
@@ -234,8 +234,13 @@ namespace Obi.ImportExport
                     Seq_SpecialNode = smilDocument.CreateElement(null, "seq", mainSeq.NamespaceURI);
                     string strSeqID = "";
                     // specific handling of IDs for notes for allowing predetermined refered IDs
-                    
-                    if (special_UrakawaNode.GetXmlElementQName()!= null &&  (special_UrakawaNode.GetXmlElementQName().LocalName == "note" || special_UrakawaNode.GetXmlElementQName().LocalName == "annotation"))
+
+                    string specialLocalName = special_UrakawaNode.HasXmlProperty
+                                                  ? special_UrakawaNode.GetXmlElementLocalName()
+                                                  : null;
+
+                    if (specialLocalName == "note"
+                        || specialLocalName == "annotation")
                     {
                         strSeqID = ID_SmilPrefix + m_TreeNode_XmlNodeMap[n].Attributes.GetNamedItem("id").Value;
                     }
@@ -760,8 +765,12 @@ namespace Obi.ImportExport
                     isBranchingActive = false;
 
                 }
-                if (n.GetXmlElementQName() != null && n.GetXmlElementQName().LocalName == "sent"
-                        && special_UrakawaNode != null && (special_UrakawaNode.GetXmlElementQName().LocalName == "note" || special_UrakawaNode.GetXmlElementQName().LocalName == "annotation"))
+                string localName = n.HasXmlProperty ? n.GetXmlElementLocalName() : null;
+                string localNameSpecial = (special_UrakawaNode != null && special_UrakawaNode.HasXmlProperty) ? special_UrakawaNode.GetXmlElementLocalName() : null;
+
+                if (localName == "sent"
+                        && localNameSpecial == "note"
+                        || localNameSpecial == "annotation")
                 {
 
                     return false;
@@ -866,11 +875,11 @@ namespace Obi.ImportExport
             XmlReaderWriterHelper.WriteXmlDocument(ncxDocument, Path.Combine(m_OutputDirectory, m_Filename_Ncx));
         }
 
-        private bool IsSkippable (EmptyNode node)
+        private bool IsSkippable(EmptyNode node)
         {
-            
-            if ( node.Role_ == EmptyNode.Role.Custom && ( node.PrecedingNode == null || node.PrecedingNode is SectionNode ||  node.Role_ != ((EmptyNode) node.PrecedingNode).Role_ || node.CustomRole != ((EmptyNode)node.PrecedingNode).CustomRole )
-                && ( node.CustomRole == EmptyNode.Annotation
+
+            if (node.Role_ == EmptyNode.Role.Custom && (node.PrecedingNode == null || node.PrecedingNode is SectionNode || node.Role_ != ((EmptyNode)node.PrecedingNode).Role_ || node.CustomRole != ((EmptyNode)node.PrecedingNode).CustomRole)
+                && (node.CustomRole == EmptyNode.Annotation
                 || node.CustomRole == EmptyNode.EndNote
                 || node.CustomRole == EmptyNode.Footnote
                 || node.CustomRole == EmptyNode.Note
@@ -891,7 +900,7 @@ namespace Obi.ImportExport
                 return true;
             }
             return false;
-                    }
+        }
 
 
     }

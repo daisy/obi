@@ -224,7 +224,7 @@ namespace Obi
             XmlProperty xmlProp = this.GetProperty<XmlProperty>();
             if (xmlProp != null)
             {
-                XmlAttribute attrUsed = xmlProp.GetAttribute(USED_ATTR_NAME, xmlProp.NamespaceUri);
+                XmlAttribute attrUsed = xmlProp.GetAttribute(USED_ATTR_NAME);
                 string used =attrUsed != null?  attrUsed.Value: null;
                 if (used != null && used == "False") mUsed = false;
             }
@@ -273,10 +273,10 @@ namespace Obi
 
         protected void UpdateAttributesInXmlProperty(XmlProperty xmlProp, string attributeLocalName, string attributeValue)
         {
-            XmlAttribute attr = xmlProp.GetAttribute(attributeLocalName, xmlProp.NamespaceUri);
+            XmlAttribute attr = xmlProp.GetAttribute(attributeLocalName);
             if (attr == null)
             {
-                xmlProp.SetAttribute(attributeLocalName, xmlProp.NamespaceUri, attributeValue);
+                xmlProp.SetAttribute(attributeLocalName, "", attributeValue);
             }
             else
             {
