@@ -18,13 +18,14 @@ namespace Obi.ProjectView
         private float m_ZoomFactor;
         private AudioLib.VuMeter m_VUMeter;
         private System.Drawing.Graphics g;
-        private Pen br_ChannelMono;
-        private Pen br_Channel1;
-        private Pen br_Channel2;
-        private Pen br_HighContrastMono;
-        private Pen br_HighContrastChannel1;
-        private Pen br_HighContrastChannel2;
-        private Pen br2;
+        private Pen pen_ChannelMono;
+        private Pen pen_Channel1;
+        private Pen pen_Channel2;
+        private Pen pen_HighContrastMono;
+        private Pen pen_HighContrastChannel1;
+        private Pen pen_HighContrastChannel2;
+        private Pen pen_WaveformBaseLine;
+        private Font myFont = new Font("Microsoft Sans Serif", 7);
         private EmptyNode m_ExistingPhrase = null;
         private int m_Counter = 0;
         private int m_LocalTime = 0;
@@ -42,7 +43,6 @@ namespace Obi.ProjectView
         private bool m_IsResized = false;
         private int m_X = 0;
         private int m_XCV = 0;
-        private int m_OldXLocation = 0;
         private Dictionary<int, string> m_DictionarySeconds = new Dictionary<int, string>();
         private Dictionary<int, string> m_DictionaryEmpNode = new Dictionary<int, string>();
         
@@ -55,6 +55,7 @@ namespace Obi.ProjectView
             if (m_ProjectView != null && m_ProjectView.TransportBar.RecordingPhrase != null)
                 m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
             Location = new Point(-400, Location.Y);
+            
         }
 
         public ContentView contentView
@@ -84,15 +85,16 @@ namespace Obi.ProjectView
                     m_ColorSettings = m_ProjectView.ObiForm.Settings.ColorSettings;
                     m_ColorSettingsHC = m_ProjectView.ObiForm.Settings.ColorSettingsHC;
                     this.BackColor = m_ColorSettings.WaveformBackColor;
-                    br_ChannelMono = m_ColorSettings.WaveformMonoPen;
-                    br_Channel1 = m_ColorSettings.WaveformChannel1Pen;
-                    br_Channel2 = m_ColorSettings.WaveformChannel2Pen;
-                    br2 = m_ColorSettings.WaveformBaseLinePen;
+                    pen_ChannelMono = m_ColorSettings.WaveformMonoPen;
+                    pen_Channel1 = m_ColorSettings.WaveformChannel1Pen;
+                    pen_Channel2 = m_ColorSettings.WaveformChannel2Pen;
+                    pen_WaveformBaseLine = m_ColorSettings.WaveformBaseLinePen;
+                    m_ProjectView.TransportBar.PhraseCreatedEvent += new EventHandler(Phrase_Created_Event);
                     if (m_IsColorHighContrast)
                     {
-                        br_HighContrastMono = m_ColorSettingsHC.WaveformMonoPen;
-                        br_HighContrastChannel1 = m_ColorSettingsHC.WaveformChannel1Pen;
-                        br_HighContrastChannel2 = m_ColorSettingsHC.WaveformChannel2Pen;
+                        pen_HighContrastMono = m_ColorSettingsHC.WaveformMonoPen;
+                        pen_HighContrastChannel1 = m_ColorSettingsHC.WaveformChannel1Pen;
+                        pen_HighContrastChannel2 = m_ColorSettingsHC.WaveformChannel2Pen;
                     }
                 }
             }
@@ -123,18 +125,6 @@ namespace Obi.ProjectView
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-       //     int m_X = m_ContentView.Width / 2 + 50;
-                       
-        //    x_Loc = m_ContentView.Width / 2 + 50 + (-1 * Location.X);
-          
-           /* xNewLoc =  x_Loc - (m_ContentView.Width / 2 + 50);
-            Console.WriteLine("LOCA  " + m_OldXLocation + "NEW LOCA " + x_Loc);
-            if (m_IsResized && Math.Abs(m_OldXLocation) - Math.Abs(x_Loc) > 100)
-            {
-                this.Location = new Point(xNewLoc, Location.Y);
-              //  x_Loc = m_ContentView.Width / 2 + 50 + (-1 * Location.X);
-            }*/
-
             m_XCV = m_X + Location.X;
             int diff = m_XCV - (m_ContentView.Width / 2 + 50);
             int newXLocation = (m_X - (m_ContentView.Width / 2 + 50)) * -1;
@@ -147,39 +137,38 @@ namespace Obi.ProjectView
             
             if (m_VUMeter == null || m_ContentView == null) return;
             g = this.CreateGraphics();
-            //Console.WriteLine("height waveform " + (Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)) + " : " + (Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
+            
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
             {
                 if(!m_IsColorHighContrast)
-                g.DrawLine(br_ChannelMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                g.DrawLine(pen_ChannelMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
                         new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
                 else
-                g.DrawLine(br_HighContrastMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                g.DrawLine(pen_HighContrastMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
                     new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));                
             }
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
             {
                 if (!m_IsColorHighContrast)
                 {
-                    g.DrawLine(br_Channel1, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                    g.DrawLine(pen_Channel1, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
                         new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                    g.DrawLine(br_Channel2, new Point(m_X, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                    g.DrawLine(pen_Channel2, new Point(m_X, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
                            new Point(m_X, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
                 }
                 else
                 {
-                    g.DrawLine(br_HighContrastChannel1, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                    g.DrawLine(pen_HighContrastChannel1, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
                         new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                    g.DrawLine(br_HighContrastChannel2, new Point(m_X, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                    g.DrawLine(pen_HighContrastChannel2, new Point(m_X, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
                            new Point(m_X, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
                 }
             }
             
-            g.DrawLine(br2, 0, Height / 2, m_ContentView.Width, Height / 2);            
+            g.DrawLine(pen_WaveformBaseLine, 0, Height / 2, m_ContentView.Width, Height / 2);            
             
-            g.DrawLine(br2, 0, Height / 2, Width, Height / 2);
+            g.DrawLine(pen_WaveformBaseLine, 0, Height / 2, Width, Height / 2);
             string text = "";
-            Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
             
             double timeOfAssetMilliseconds =
@@ -201,24 +190,9 @@ namespace Obi.ProjectView
                     m_DictionarySeconds.Add(m_X, text);
                     m_LocalTime = timeInSeconds;
                 }
-            
-
-            if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
-            {
-                if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
-                    text = "Page" + m_ProjectView.TransportBar.RecordingPhrase.PageNumber.ToString();
-                else if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Plain)
-                    text = "Phrase";
-                g.DrawLine(pen, m_X, 0, m_X, Height);
-                g.DrawString(text, myFont, Brushes.Black, m_X, 0);
-                m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
-             //   MessageBox.Show(m_X.ToString());
-                if(!m_DictionaryEmpNode.ContainsKey(m_X))
-                m_DictionaryEmpNode.Add(m_X, text);
-            }
-            
-        //     Location = new Point(Location.X - 1, Location.Y);
-             
+                if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
+                CreatePageorPhrase(m_X);
+         
              this.Width = this.Width + 150;
              m_IsResized = true;
              m_X++;
@@ -227,7 +201,7 @@ namespace Obi.ProjectView
              listOfMaxChannel1.Add((int)maxChannel1);
              listOfMinChannel2.Add((int)minChannel2);
              listOfMaxChannel2.Add((int)maxChannel2);
-             m_OldXLocation = m_X;             
+             
          }
 
         private void Waveform_Recording_VisibleChanged(object sender, EventArgs e)
@@ -328,13 +302,13 @@ int channel = 0;
                 {
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                     {
-                        g.DrawLine(br_Channel1, new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        g.DrawLine(pen_Channel1, new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
                         new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                     }
 
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
                     {
-                        g.DrawLine(br_Channel1, new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        g.DrawLine(pen_Channel1, new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
                         new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                     }
                     count++;
@@ -366,6 +340,30 @@ int channel = 0;
                 }               
                 timer1.Start();
             }
+        }
+
+        public void Phrase_Created_Event(object sender, EventArgs e)
+        {
+            int count = (int)(m_ProjectView.TransportBar.phDetectorPhraseTimingList[m_ProjectView.TransportBar.phDetectorPhraseTimingList.Count - 1] / 100);
+            int c = count + (m_ContentView.Width / 2 + 50);
+
+            if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring)
+            CreatePageorPhrase(c);          
+        }
+
+        private void CreatePageorPhrase(int xLocation)
+        {
+            string text = "";
+            if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
+                text = "Page" + m_ProjectView.TransportBar.RecordingPhrase.PageNumber.ToString();
+            else if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Plain)
+                text = "Phrase";
+            g.DrawLine(pen, xLocation, 0, xLocation, Height);
+            g.DrawString(text, myFont, Brushes.Black, xLocation, 0);
+            m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
+            if (!m_DictionaryEmpNode.ContainsKey(xLocation))
+                m_DictionaryEmpNode.Add(xLocation, text);
+           
         }
     }
 }
