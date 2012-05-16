@@ -3944,6 +3944,21 @@ public bool ShowOnlySelectedSection
                 SelectedBlockNode = dialogs.SpecialPhraseSelected;
             }
         }
+
+        public void WriteToLogFile(string msg)
+        {
+            string logFilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Obi.log");
+            if (!System.IO.File.Exists(logFilePath))
+            {
+                System.IO.File.Create(logFilePath).Close();
+            }
+
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(logFilePath);
+            sw.Write(msg);
+            sw.Close();
+
+        }
+
         }
 
     public class ImportingFileEventArgs
