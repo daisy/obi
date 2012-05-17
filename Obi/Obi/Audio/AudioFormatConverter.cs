@@ -97,8 +97,6 @@ namespace Obi.Audio
             }
             catch (System.Exception ex)
             {
-                ProjectView.ProjectView mProjectView = null;
-                mProjectView.WriteToLogFile(ex.ToString());
                 MessageBox.Show(ex.ToString());
                 return null;
             }
