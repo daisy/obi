@@ -1075,6 +1075,16 @@ namespace Obi.ProjectView
                 SetPlaybackPhraseAndTime ( mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
                 }
             if (mPlaybackBlock != null) EnsureCursorVisible ( mPlaybackBlock.UpdateCursorTime ( time ) );
+
+           /* int audioCursorPosition;
+            int beginPosition = 0;
+            int endPosition = 0;
+            int getCursorPosition = GetSelectionOrAudioCursorLocationX(mPlaybackBlock,out audioCursorPosition, out beginPosition,out endPosition);
+            int horizontalSizeLeftInStripPanel = audioCursorPosition - (mStripsPanel.Location.X - this.Location.X);
+            int cursorPositionInContentView = this.Size.Width - horizontalSizeLeftInStripPanel - mVScrollBar.Size.Width;
+            Console.WriteLine(" M - NEW - SIZE " + cursorPositionInContentView);
+            if (cursorPositionInContentView < this.Size.Width) EnsureControlVisible(mPlaybackBlock);
+            */
             }
 
         private void UpdateBlocksLabelInSelectedNodeStrip ()
@@ -1770,6 +1780,7 @@ return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for resto
                     }
                 catch (System.Exception ex)
                     {
+                    mProjectView.WriteToLogFile(ex.ToString());
                     MessageBox.Show ( ex.ToString () );
                     }
                 if (wasPlaybackOn)
@@ -1855,6 +1866,7 @@ return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for resto
                     }
                 catch (System.Exception ex)
                     {
+                    mProjectView.WriteToLogFile(ex.ToString());
                     MessageBox.Show (Localizer.Message("Operation_Cancelled") + "\n\n" + ex.ToString () );
                     }
 
@@ -3083,6 +3095,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         }
                     catch (System.Exception ex)
                         {
+                        mProjectView.WriteToLogFile(ex.ToString());
                         MessageBox.Show ( ex.ToString () );
                         return 0;
                         }
@@ -5199,8 +5212,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.GotoFootnote(false);   //@AssociateNode
         }      
     }
-
-    /// <summary>
+   /// <summary>
     /// Common interface for selection of strips and blocks.
     /// </summary>
     public interface ISelectableInContentView
