@@ -585,11 +585,13 @@ namespace Obi.ProjectView
                         }
                     catch (System.FormatException ex)
                         {
+                        mView.WriteToLogFile(ex.ToString());
                         MessageBox.Show ( Localizer.Message ( "Metadata_InvalidDateFormat" ) );
                         return "";
                         }
                     catch (System.Exception ex)
                         {
+                        mView.WriteToLogFile(ex.ToString());
                         MessageBox.Show ( Localizer.Message("MetadataView_InvalidMetadata") + "\n\n" + ex.ToString () );  //@Messagecorrected
                         return "";
                         }
