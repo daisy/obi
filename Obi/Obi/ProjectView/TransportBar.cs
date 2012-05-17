@@ -1068,6 +1068,7 @@ namespace Obi.ProjectView
                 }
             catch (System.Exception ex)
                 {
+                mView.WriteToLogFile(ex.ToString());
                     if (mCurrentPlaylist != null) mCurrentPlaylist.ForcedStopForError();
                 MessageBox.Show ( string.Format ( Localizer.Message ( "TransportBar_PlayerExceptionMsg" ), "\n\n", ex.ToString () ) );
                 }
@@ -1156,6 +1157,7 @@ namespace Obi.ProjectView
                 }
             catch ( System.Exception ex )
                 {
+                mView.WriteToLogFile(ex.ToString());
                     if (mCurrentPlaylist != null) mCurrentPlaylist.ForcedStopForError();
                 MessageBox.Show ( string.Format ( Localizer.Message ( "TransportBar_PlayerExceptionMsg" ), "\n\n", ex.ToString () ) );
                 }
@@ -1378,6 +1380,7 @@ namespace Obi.ProjectView
             }
         catch (System.Exception ex)
             {
+            mView.WriteToLogFile(ex.ToString());
             MessageBox.Show ( ex.ToString () );
             }
 
@@ -1521,6 +1524,7 @@ namespace Obi.ProjectView
                 }
             catch (System.Exception ex)
                 {
+                mView.WriteToLogFile(ex.ToString());
                 MessageBox.Show ( Localizer.Message ( "TransportBar_ErrorInStartingRecording" ) + "\n\n" + ex.ToString () , Localizer.Message ( "Caption_Error" ) );
                 if (mState == State.Monitoring || mState == State.Recording ) Stop ();
                 }
@@ -1778,8 +1782,9 @@ namespace Obi.ProjectView
                         }//-4
                     m_TempNodeForPropertiesTransfer = null;
                     }//-3
-                catch (System.Exception)
+                catch (System.Exception ex)
                     {//3
+                    mView.WriteToLogFile(ex.ToString());
                     m_TempNodeForPropertiesTransfer = null;
                     }//-3
                 }//-2
@@ -1860,6 +1865,7 @@ namespace Obi.ProjectView
             }
             catch (System.Exception ex)
             {
+            mView.WriteToLogFile(ex.ToString());
             MessageBox.Show ( Localizer.Message ( "TransportBar_ErrorInStartingRecording" ) + "\n\n" + ex.ToString (), Localizer.Message ( "Caption_Error" ) );
             if (mState == State.Monitoring || mState == State.Recording) Stop ();
             }
@@ -1998,6 +2004,7 @@ namespace Obi.ProjectView
                     }
                     catch (System.Exception ex)
                     {
+                        mView.WriteToLogFile(ex.ToString());
                         MessageBox.Show(Localizer.Message("TransportBar_ErrorInStartingRecording") + "\n\n" + ex.ToString());  //@Messagecorrected
                     }
                 }
@@ -2103,6 +2110,7 @@ namespace Obi.ProjectView
                         }
                     catch (System.Exception ex)
                         {
+                        mView.WriteToLogFile(ex.ToString());
                         MessageBox.Show ( Localizer.Message ( "TransportBar_ErrorInStartingRecording" ) + "\n\n" + ex.ToString (), Localizer.Message ( "Caption_Error" ) );
                         if (mState == State.Monitoring || mState == State.Recording ) Stop ();
                         }
@@ -2117,6 +2125,7 @@ namespace Obi.ProjectView
                         }
                     catch (System.Exception ex)
                         {
+                        mView.WriteToLogFile(ex.ToString());
                         MessageBox.Show ( Localizer.Message ( "TransportBar_ErrorInStartingRecording" ) + "\n\n" + ex.ToString (), Localizer.Message ( "Caption_Error" ) );
                         if (mState == State.Monitoring || mState == State.Recording) Stop ();
                         }
