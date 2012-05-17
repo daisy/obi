@@ -2022,6 +2022,7 @@ namespace Obi
                 }
             catch (Exception e)
                 {
+                mProjectView.WriteToLogFile(e.ToString());
                 MessageBox.Show (
                     String.Format ( Localizer.Message ( "cannot_create_file_text" ), path, e.Message ),
                     Localizer.Message ( "cannot_create_file_caption" ),
@@ -2101,6 +2102,7 @@ namespace Obi
                 }
             catch (Exception e)
                 {
+                mProjectView.WriteToLogFile(e.ToString());
                 string path = Path.Combine ( Application.StartupPath, "obi_startup_error.txt" );
                 System.IO.StreamWriter tmpErrorLogStream = System.IO.File.CreateText ( path );
                 tmpErrorLogStream.WriteLine ( e.ToString () );
@@ -2190,6 +2192,7 @@ namespace Obi
                     }
                     catch (System.Exception ex)
                     {
+                        mProjectView.WriteToLogFile(ex.ToString());
                         MessageBox.Show(Localizer.Message("ObiFormMsg_PipelineExtractionFail") + "\n\n" + ex.ToString());  //@Messagecorrected
                     }
                 }
@@ -2268,6 +2271,7 @@ namespace Obi
                             }
             catch (Exception e)
                 {
+                mProjectView.WriteToLogFile(e.ToString());
                 // if opening failed, no project is open and we don't try to open it again next time.
                 MessageBox.Show ( e.Message, Localizer.Message ( "open_project_error_caption" ),
                     MessageBoxButtons.OK, MessageBoxIcon.Error );
@@ -2343,6 +2347,7 @@ namespace Obi
                 }
             catch (System.Exception ex)
                 {
+                mProjectView.WriteToLogFile(ex.ToString());
                     MessageBox.Show(Localizer.Message("ObiFormMsg_RedoFail") + "\n\n" + ex.ToString());   //@Messagecorrected
                 }
             if (!IsStatusBarEnabled) IsStatusBarEnabled = true;
@@ -2466,6 +2471,7 @@ namespace Obi
                 }
             catch (System.Exception ex)
                 {
+                mProjectView.WriteToLogFile(ex.ToString());
                     MessageBox.Show(Localizer.Message("ObiFormMsg_UndoFail") + "\n\n" + ex.ToString()); //@Messagecorrected
                 }
             if (!IsStatusBarEnabled) IsStatusBarEnabled = true;//@singleSection
@@ -2596,6 +2602,7 @@ namespace Obi
                     }
                 catch (Exception x)
                     {
+                    mProjectView.WriteToLogFile(x.ToString());
                     MessageBox.Show ( String.Format ( Localizer.Message ( "save_settings_error_text" ), x.Message ),
                         Localizer.Message ( "save_settings_error_caption" ), MessageBoxButtons.OK, MessageBoxIcon.Error );
                     }
@@ -2631,8 +2638,9 @@ namespace Obi
                 {
                 mProjectView.TransportBar.AudioPlayer.SetOutputDevice( this, mSettings.LastOutputDevice );
                 }
-            catch (Exception)
+            catch (Exception e)
                 {
+                mProjectView.WriteToLogFile(e.ToString());
                     m_OutputDevicefound = false;
                 MessageBox.Show ( Localizer.Message ( "no_output_device_text" ), Localizer.Message ( "no_output_device_caption" ),
                     MessageBoxButtons.OK, MessageBoxIcon.Error );
@@ -2642,8 +2650,9 @@ namespace Obi
                 {
                 mProjectView.TransportBar.Recorder.SetInputDevice( mSettings.LastInputDevice );
                 }
-            catch (Exception)
+            catch (Exception ex)
                 {
+                mProjectView.WriteToLogFile(ex.ToString());
                     m_InputDeviceFound = false;
                 MessageBox.Show ( Localizer.Message ( "no_input_device_text" ), Localizer.Message ( "no_input_device_caption" ),
                     MessageBoxButtons.OK, MessageBoxIcon.Error );
@@ -2681,6 +2690,7 @@ namespace Obi
             }
             catch (System.Exception ex)
             {
+                mProjectView.WriteToLogFile(ex.ToString());
                 MessageBox.Show(Localizer.Message("KeyboardShortcuts_ErrorInLoadingConfiguredKeys") + "\n" + ex.ToString(), 
                     Localizer.Message("Caption_Error"));
                 m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetDefaultKeyboardShortcuts_Settings();
@@ -3147,6 +3157,7 @@ namespace Obi
                 }
             catch (Exception x)
                 {
+                mProjectView.WriteToLogFile(x.ToString());
                 MessageBox.Show ( string.Format ( Localizer.Message ( "dtb_encode_error" ), x.Message ),
                                    Localizer.Message ( "dtb_encode_error_caption" ),
                                    MessageBoxButtons.OK, MessageBoxIcon.Error );
