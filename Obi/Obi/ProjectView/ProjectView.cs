@@ -634,6 +634,7 @@ namespace Obi.ProjectView
             }
             catch (System.Exception ex)
             {
+                this.WriteToLogFile(ex.ToString());
                 MessageBox.Show(Localizer.Message("ProjectViewFormMsg_CutOperationFail") + "\n\n" + ex.ToString());   //@Messagecorrected
             }
             }
@@ -695,6 +696,7 @@ namespace Obi.ProjectView
             }
             catch (System.Exception ex)
             {
+                this.WriteToLogFile(ex.ToString());
                 MessageBox.Show(Localizer.Message("ProjectViewFormMsg_DeleteOperationFail") + "\n\n" + ex.ToString());  //@Messagecorrected
             }
             }
@@ -1010,6 +1012,7 @@ namespace Obi.ProjectView
                     }
                 catch (System.Exception ex)
                     {
+                    this.WriteToLogFile(ex.ToString());
                         MessageBox.Show(Localizer.Message("ProjectViewFormMsg_MergeOperationFail") + "\n\n" + ex.ToString());  //@Messagecorrected
                     }
 
@@ -1282,6 +1285,7 @@ namespace Obi.ProjectView
                     }
                     catch (System.Exception ex)
                     {
+                        this.WriteToLogFile(ex.ToString());
                         MessageBox.Show(Localizer.Message("ProjectViewFormMsg_PasteOperationFail") + "\n\n" + ex.ToString());  //@Messagecorrected
                     }
                 }
@@ -1293,6 +1297,7 @@ namespace Obi.ProjectView
                     }
                     catch (System.Exception ex)
                     {
+                        this.WriteToLogFile(ex.ToString());
                         MessageBox.Show(Localizer.Message("ProjectViewFormMsg_PasteOperationFail") + "\n\n" + ex.ToString());   //@Messagecorrected
                     }
                 }
@@ -1571,6 +1576,7 @@ namespace Obi.ProjectView
                     }
                 catch (System.Exception ex)
                     {
+                    this.WriteToLogFile(ex.ToString());
                         MessageBox.Show(Localizer.Message("ProjectViewFormMsg_SplitOperationFail") + "\n\n" + ex.ToString());   //@Messagecorrected
                     }
                 
@@ -1619,6 +1625,7 @@ namespace Obi.ProjectView
                     }
                 catch (System.Exception ex)
                     {
+                    this.WriteToLogFile(ex.ToString());
                         MessageBox.Show(Localizer.Message("ProjectViewFormMsg_DeleteOperationFail") + "\n\n" + ex.ToString()); //@Messagecorrected
                     }
                 TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
@@ -1970,6 +1977,7 @@ namespace Obi.ProjectView
                                             }
                                         catch (System.Exception ex)
                                             {
+                                            this.WriteToLogFile(ex.ToString());
                                             MessageBox.Show ( String.Format ( Localizer.Message ( "import_phrase_error_text" ), path ) + "\n\n" + ex.ToString () );
                                             continue;
                                             }
@@ -1985,8 +1993,9 @@ namespace Obi.ProjectView
                                                 phraseNodes.Add ( p );
                                                 
                                                 }
-                                            catch (Exception)
+                                            catch (Exception ex)
                                                 {
+                                                this.WriteToLogFile(ex.ToString());
                                                 MessageBox.Show (
                                                     String.Format ( Localizer.Message ( "import_phrase_error_text" ), path ),
                                                     Localizer.Message ( "import_phrase_error_caption" ),
@@ -2246,6 +2255,7 @@ for (int j = 0;
                 }
                 catch (System.Exception ex)
                     {
+                    this.WriteToLogFile(ex.ToString());
                     MessageBox.Show (Localizer.Message("ProjectViewFormMsg_SplitOperationFail") + "\n\n" + ex.ToString () );   //@Messagecorrected
                     }
                 if (wasPlaying || ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume ( mSelection.Node );
@@ -2286,7 +2296,8 @@ for (int j = 0;
                     }
                 catch (System.Exception ex)
                     {
-                        MessageBox.Show(Localizer.Message("ProjectViewFormMsg_MergeOperationFail") + "\n\n" + ex.ToString()); //@Messagecorrected
+                     this.WriteToLogFile(ex.ToString());   
+                     MessageBox.Show(Localizer.Message("ProjectViewFormMsg_MergeOperationFail") + "\n\n" + ex.ToString()); //@Messagecorrected
                     }
                 }
             }
@@ -2341,6 +2352,7 @@ for (int j = 0;
                     }
                 catch (System.Exception ex)
                     {
+                    this.WriteToLogFile(ex.ToString());
                         MessageBox.Show(Localizer.Message("ProjectViewFormMsg_MergeOperationFail") + "\n\n" + ex.ToString());   //@Messagecorrected
                     }
                 TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
@@ -2721,6 +2733,7 @@ for (int j = 0;
                         }
                     catch (System.Exception ex)
                         {
+                        this.WriteToLogFile(ex.ToString());
                         MessageBox.Show (Localizer.Message("ProjectViewFormMsg_PhraseDetectionFail") + "\n\n" + ex.ToString () ); //@Messagecorrected
                         }
                     //} );
@@ -3620,6 +3633,7 @@ for (int j = 0;
                             }
                             catch (System.Exception ex)
                             {
+                                this.WriteToLogFile(ex.ToString());
                                 MessageBox.Show(Localizer.Message("ProjectViewFormMsg_AddingReferenceFail") + "\n\n" + ex.ToString());   //@Messagecorrected
                             }
                             //pair.Key.AssociatedNode = pair.Value;                         
@@ -3716,6 +3730,7 @@ for (int j = 0;
                     }
                     catch (System.Exception ex)
                     {
+                        this.WriteToLogFile(ex.ToString());
                         MessageBox.Show(Localizer.Message("ProjectViewFormMsg_AssigningSkippableFail") + "\n\n" + ex.ToString());  //@Messagecorrected
                     }
                 }
@@ -3784,6 +3799,7 @@ for (int j = 0;
                 }
                 catch (System.Exception e)
                 {
+                    this.WriteToLogFile(e.ToString());
                     MessageBox.Show("ProjectViewMsg_DeassociatingSkippableFail" + "\n\n" + e.ToString()); //@Messagecorrected
                 }
             }
@@ -3896,6 +3912,7 @@ for (int j = 0;
             }
             catch (System.Exception ex)
             {
+                this.WriteToLogFile(ex.ToString());
                 MessageBox.Show(Localizer.Message("ProjectViewMsg_ExportingAudioFail") + "\n\n" + ex.ToString());   //@Messagecorrected
             }
         }
