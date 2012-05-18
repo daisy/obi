@@ -25,9 +25,11 @@ namespace Obi.ProjectView
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
         private Timer mTabbingTimer;         // ??
         private bool m_DisableSectionSelection;//@singleSection
+        
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
+        public readonly string m_LogFilePath;
                 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
@@ -58,7 +60,8 @@ namespace Obi.ProjectView
             //mShowOnlySelected = false;
             MaxVisibleBlocksCount = 10000; // @phraseLimit
             MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
-            m_DisableSectionSelection = false;            
+            m_DisableSectionSelection = false;
+            m_LogFilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ObiSession.log");
             }
 
 
@@ -3964,18 +3967,41 @@ public bool ShowOnlySelectedSection
 
         public void WriteToLogFile(string msg)
         {
-            string logFilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Obi.log");
-            if (!System.IO.File.Exists(logFilePath))
+            try
             {
-                System.IO.File.Create(logFilePath).Close();
+
+                if (!System.IO.File.Exists(m_LogFilePath))
+                {
+                    System.IO.File.Create(m_LogFilePath).Close();
+                }
+
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(m_LogFilePath);
+                sw.Write(sw.NewLine);
+                sw.Write(msg);
+                sw.Close();
+                sw = null;
             }
-
-            System.IO.StreamWriter sw = new System.IO.StreamWriter(logFilePath);
-            sw.Write(msg);
-            sw.Close();
-
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Failed to write in log file " + "\n" + ex.ToString());
+            }
         }
 
+        private void DeleteLogFile()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(m_LogFilePath)
+                    && System.IO.File.Exists(m_LogFilePath))
+                {
+                    System.IO.File.Delete(m_LogFilePath);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Failed to reset log file " + "\n" + ex.ToString());
+            }
+        }
         }
 
     public class ImportingFileEventArgs
