@@ -2051,6 +2051,7 @@ namespace Obi
                 UpdateCustomClassMenu();
                 mProjectView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 mProjectView.Presentation.BeforeCommandExecuted += new EventHandler<urakawa.events.command.CommandEventArgs>(ObiForm_BeforeCommandExecuted);//@singleSection
+                mProjectView.WriteToLogFile("Opened new project: " + mSession.Presentation.Title);
                 if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
                 m_CanAutoSave = true; //@singleSection
                 Status(String.Format(Localizer.Message("created_new_project"), mSession.Presentation.Title));
