@@ -3975,8 +3975,8 @@ public bool ShowOnlySelectedSection
                 {
                     System.IO.File.Create(m_LogFilePath).Close();
                 }
-
-                System.IO.StreamWriter sw = new System.IO.StreamWriter(m_LogFilePath);
+                System.IO.FileStream fs = new System.IO.FileStream(m_LogFilePath, System.IO.FileMode.Append);
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(fs);
                 sw.Write(sw.NewLine);
                 sw.Write(msg);
                 sw.Close();
