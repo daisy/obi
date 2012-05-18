@@ -62,6 +62,7 @@ namespace Obi.ProjectView
             MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
             m_DisableSectionSelection = false;
             m_LogFilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ObiSession.log");
+            DeleteLogFile();
             }
 
 
