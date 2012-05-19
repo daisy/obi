@@ -2276,8 +2276,16 @@ namespace Obi
                 // if opening failed, no project is open and we don't try to open it again next time.
                 MessageBox.Show ( e.Message, Localizer.Message ( "open_project_error_caption" ),
                     MessageBoxButtons.OK, MessageBoxIcon.Error );
-                RemoveRecentProject ( path );
-                mSettings.LastOpenProject = "";
+
+                if (e.Message.StartsWith(Localizer.Message("project_locked").Substring(0, 120)))
+                {
+                    System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(path));
+                }
+                else
+                {
+                    RemoveRecentProject(path);
+                    mSettings.LastOpenProject = "";
+                }
                 mSession.Close ();
                 }
             }
