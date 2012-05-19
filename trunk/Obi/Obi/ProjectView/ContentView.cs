@@ -3637,6 +3637,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[keyboardShortcuts.ContentView_SelectFollowingStrip.Value] = SelectNextStrip;
             mShortcutKeys[keyboardShortcuts.ContentView_SelectFirstStrip.Value] = SelectFirstStrip;
             mShortcutKeys[keyboardShortcuts.ContentView_SelectLastStrip.Value] = SelectLastStrip;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectFirstSkippableNode.Value] = SelectFirstSkippableNode;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectLastSkippableNode.Value] = SelectLastSkippableNode;
             /*
             mShortcutKeys[Keys.Control | Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Control | Keys.Down] = SelectNextStrip;
@@ -4341,6 +4343,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
             return false;
             }
+
+        private bool SelectFirstSkippableNode () { return mProjectView.GotoSkippableNoteEnds(true ) ; }
+        private bool SelectLastSkippableNode () { return mProjectView.GotoSkippableNoteEnds(false ) ; }
 
 
         // @phraseLimit
@@ -5204,12 +5209,12 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void mSkippableMoveToStartNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.GotoFootnote(true);  //@AssociateNode
+            mProjectView.GotoSkippableNoteEnds(true);  //@AssociateNode
         }
 
         private void mSkippableMoveToToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.GotoFootnote(false);   //@AssociateNode
+            mProjectView.GotoSkippableNoteEnds(false);   //@AssociateNode
         }      
     }
    /// <summary>

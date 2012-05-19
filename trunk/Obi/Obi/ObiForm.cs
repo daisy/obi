@@ -3524,12 +3524,12 @@ namespace Obi
 
         private void mSkippableMoveToStartNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.GotoFootnote(true);
+            mProjectView.GotoSkippableNoteEnds(true);
         }
 
         private void mSkippableMoveToEndNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.GotoFootnote(false);
+            mProjectView.GotoSkippableNoteEnds(false);
         }
 
         private void mPhrases_AssignRole_AnchorMenuItem_Click(object sender, EventArgs e)
