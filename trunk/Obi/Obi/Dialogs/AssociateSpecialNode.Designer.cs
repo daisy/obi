@@ -144,7 +144,7 @@ namespace Obi.Dialogs
             this.groupBox2.Size = new System.Drawing.Size(229, 240);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "List of s&pecial nodes";
+            this.groupBox2.Text = "List of ski&ppable notes";
             // 
             // groupBox3
             // 
