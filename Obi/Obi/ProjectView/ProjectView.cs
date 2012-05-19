@@ -3809,8 +3809,10 @@ for (int j = 0;
             }
         }
 
-        public void GotoFootnote(bool GotoBegin)  //@AssociateNode
+        public bool GotoSkippableNoteEnds(bool GotoBegin)  //@AssociateNode
         {
+            if (Selection == null || !(Selection.Node is EmptyNode)) return false;
+            if (((EmptyNode)Selection.Node).Role_ != EmptyNode.Role.Custom || !EmptyNode.SkippableNamesList.Contains(((EmptyNode)Selection.Node).CustomRole)) return false;
             SectionNode parentSection = this.Selection.Node.ParentAs<SectionNode>();
             if (GotoBegin)
             { 
@@ -3819,7 +3821,7 @@ for (int j = 0;
                     if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i - 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i - 1).CustomRole)
                         {
                             SelectedBlockNode = parentSection.PhraseChild(i);
-                            break;
+                            return true;
                         }                   
                 }
             }
@@ -3834,11 +3836,12 @@ for (int j = 0;
                         if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i + 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i + 1).CustomRole)
                         {
                             SelectedBlockNode = parentSection.PhraseChild(i);
-                            break;
+                            return true;
                         }
                     }
                 }
             }
+            return false;
         }
 
         public void ExportAudioOfSelectedNode()

@@ -57,7 +57,8 @@ namespace Obi
         public KeyboardShortcut ContentView_SelectNextSpecialRolePhrase = new KeyboardShortcut(Keys.F4, "KeyS_SelectNextSpecialRolePhrase");
         public KeyboardShortcut ContentView_SelectPrecedingSpecialRolePhrase = new KeyboardShortcut(Keys.Shift | Keys.F4, "KeyS_SelectPrecedingSpecialRolePhrase");
         public KeyboardShortcut ContentView_SelectNextEmptyPhrase = new KeyboardShortcut(Keys.Control | Keys.Alt | Keys.F4, "KeyS_SelectNextEmptyPhrase");
-
+        public KeyboardShortcut ContentView_SelectFirstSkippableNode = new KeyboardShortcut(Keys.Alt | Keys.Home, "KeySSelectFirstSkippableNode");
+        public KeyboardShortcut ContentView_SelectLastSkippableNode = new KeyboardShortcut(Keys.Alt | Keys.End, "KeySSelectLastSkippableNode");
         //public KeyboardShortcut ContentView_SelectPrecedingStrip = Keys.Control | Keys.Up;
         //public KeyboardShortcut ContentView_SelectFollowingStrip =  Keys.Control | Keys.Down;
         public KeyboardShortcut ContentView_SelectPrecedingStrip = new KeyboardShortcut(Keys.Control | Keys.Shift | Keys.Up, "KeyS_SelectPrecedingStrip");
@@ -275,6 +276,8 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectNextSpecialRolePhrase.Description), ContentView_SelectNextSpecialRolePhrase);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectPrecedingSpecialRolePhrase.Description), ContentView_SelectPrecedingSpecialRolePhrase);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectNextEmptyPhrase.Description), ContentView_SelectNextEmptyPhrase);
+            KeyboardShortcutsDescription.Add("Select first phrase of current skippable note", ContentView_SelectFirstSkippableNode);
+            KeyboardShortcutsDescription.Add("Select last phrase of current skippable note", ContentView_SelectLastSkippableNode);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectPrecedingStrip.Description), ContentView_SelectPrecedingStrip);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectFollowingStrip.Description), ContentView_SelectFollowingStrip);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectFirstStrip.Description), ContentView_SelectFirstStrip);
