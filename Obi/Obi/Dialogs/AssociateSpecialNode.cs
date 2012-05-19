@@ -290,7 +290,7 @@ namespace Obi.Dialogs
 
         private void AssociateSpecialNode_Load(object sender, EventArgs e)
         {
-            if (listOfAnchorNodes.Count == 1 &&
+            if ((listOfAnchorNodes.Count == 1  && listOfAnchorNodes[0] != null)&&
                ((listOfAnchorNodes[0].AssociatedNode != null && !nodes_phraseMap.ContainsKey(listOfAnchorNodes[0])) ||
                (nodes_phraseMap.ContainsKey(listOfAnchorNodes[0]) && nodes_phraseMap[listOfAnchorNodes[0]] != null)))
                 m_btn_Deassociate.Enabled = true;
