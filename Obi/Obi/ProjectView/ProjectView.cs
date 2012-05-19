@@ -62,7 +62,7 @@ namespace Obi.ProjectView
             MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
             m_DisableSectionSelection = false;
             m_LogFilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ObiSession.log");
-            DeleteLogFile();
+            VerifyLogFileExistenceWhileStartup();
             }
 
 
@@ -3991,7 +3991,7 @@ public bool ShowOnlySelectedSection
             }
         }
 
-        private void DeleteLogFile()
+        public void DeleteLogFile()
         {
             try
             {
@@ -4006,6 +4006,33 @@ public bool ShowOnlySelectedSection
                 Console.WriteLine("Failed to reset log file " + "\n" + ex.ToString());
             }
         }
+
+        public void VerifyLogFileExistenceWhileStartup()
+        {
+            if (System.IO.File.Exists(m_LogFilePath))
+            {
+                try
+                {
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    string destinationPath = System.IO.Path.Combine(desktopPath, System.IO.Path.GetFileName(m_LogFilePath));
+                    if (System.IO.File.Exists(destinationPath)) System.IO.File.Delete(destinationPath);
+                    System.IO.File.Move(m_LogFilePath, destinationPath);
+                    MessageBox.Show("The previous session of Obi was terminated abruptly. The log file ObiSession.log is created on the desktop.",
+                        Localizer.Message("Caption_Warning"));
+                    //if (MessageBox.Show("The previous session of Obi was terminated abruptly. The log file ObiSession.log is created on the desktop. To report this error via emnail please pressYes else press No to continue",
+                        //Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    //{
+                        
+                    //}
+                }
+                catch (System.Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+
+        }
+
         }
 
     public class ImportingFileEventArgs
