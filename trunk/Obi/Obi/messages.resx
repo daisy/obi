@@ -2073,4 +2073,10 @@ Error text: {1}</value>
   <data name="ProjectViewFormMsg_SplitOperationFail" xml:space="preserve">
     <value>Split operation failed.</value>
   </data>
+  <data name="KeyS_SelectFirstSkippableNode" xml:space="preserve">
+    <value>Select first phrase of current skippable note</value>
+  </data>
+  <data name="KeyS_SelectLastSkippableNode" xml:space="preserve">
+    <value>Select last phrase of current skippable note</value>
+  </data>
 </root>
