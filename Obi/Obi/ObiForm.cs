@@ -2103,6 +2103,7 @@ namespace Obi
                 }
             catch (Exception e)
                 {
+                if(mProjectView != null)
                 mProjectView.WriteToLogFile(e.ToString());
                 string path = Path.Combine ( Application.StartupPath, "obi_startup_error.txt" );
                 System.IO.StreamWriter tmpErrorLogStream = System.IO.File.CreateText ( path );
