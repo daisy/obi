@@ -26,6 +26,7 @@ namespace Obi
         public event EventHandler ProjectCreated;               // a new project was created
         public event EventHandler ProjectOpened;                // a project was opened
         public event EventHandler ProjectSaved;                 // a project was saved
+        List<string> listOfErrorMessages = new List<string>();
 
         /// <summary>
         /// Create a new session for Obi.
@@ -303,12 +304,18 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             SetupBackupFilesForNewSession(path);
 
             if (ProjectOpened != null) ProjectOpened(this, null);
+            if (listOfErrorMessages.Count > 0)
+            {
+                Dialogs.ReportDialog reportDialog = new Obi.Dialogs.ReportDialog(Localizer.Message("Report_for_import"), "The list of error messages", listOfErrorMessages);
+                reportDialog.ShowDialog();
+            }
         }
 
         void OnDataIsMissing(object sender, urakawa.events.media.data.DataIsMissingEventArgs e)
         {
-            Console.WriteLine(e.Exception.Message);
-            MessageBox.Show(Localizer.Message("OpenError_UseCleanUp") + "\n" + e.Exception.Message, Localizer.Message("open_project_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            listOfErrorMessages.Add(e.Exception.Message);
+            //Console.WriteLine(e.Exception.Message);
+            //MessageBox.Show(Localizer.Message("OpenError_UseCleanUp") + "\n" + e.Exception.Message, Localizer.Message("open_project_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         // Get a lock file, and throw an exception if there is already one.
