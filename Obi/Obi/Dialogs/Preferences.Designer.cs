@@ -98,6 +98,8 @@ namespace Obi.Dialogs
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
+            this.m_lblChooseFont = new System.Windows.Forms.Label();
+            this.mChooseFontCombo = new System.Windows.Forms.ComboBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -551,6 +553,8 @@ namespace Obi.Dialogs
             // 
             // mColorPreferencesTab
             // 
+            this.mColorPreferencesTab.Controls.Add(this.mChooseFontCombo);
+            this.mColorPreferencesTab.Controls.Add(this.m_lblChooseFont);
             this.mColorPreferencesTab.Controls.Add(this.m_txtBox_HighContrast);
             this.mColorPreferencesTab.Controls.Add(this.groupBox1);
             this.mColorPreferencesTab.Controls.Add(this.m_txtBox_Color);
@@ -664,6 +668,17 @@ namespace Obi.Dialogs
             this.m_ResetButton.UseVisualStyleBackColor = true;
             this.m_ResetButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // m_lblChooseFont
+            // 
+            resources.ApplyResources(this.m_lblChooseFont, "m_lblChooseFont");
+            this.m_lblChooseFont.Name = "m_lblChooseFont";
+            // 
+            // mChooseFontCombo
+            // 
+            resources.ApplyResources(this.mChooseFontCombo, "mChooseFontCombo");
+            this.mChooseFontCombo.FormattingEnabled = true;
+            this.mChooseFontCombo.Name = "mChooseFontCombo";
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -699,7 +714,6 @@ namespace Obi.Dialogs
             this.mColorPreferencesTab.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion
@@ -773,5 +787,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox m_txtBox_HighContrast;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ComboBox mChooseFontCombo;
+        private System.Windows.Forms.Label m_lblChooseFont;
     }
 }
