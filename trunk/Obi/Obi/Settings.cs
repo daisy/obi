@@ -66,7 +66,7 @@ namespace Obi
         public bool RecordDirectly;
         public bool LeftAlignPhrasesInContentView;
         public bool OptimizeMemory;
-        public FontFamily Font;
+        public string Font;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -120,7 +120,7 @@ namespace Obi
             settings.RecordDirectly = false;
             settings.LeftAlignPhrasesInContentView = true;
             settings.OptimizeMemory = true;
-            settings.Font = new FontFamily("Times New Roman");
+            settings.Font = "Times New Roman";
         }
 
         /// <summary>
