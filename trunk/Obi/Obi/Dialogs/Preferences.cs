@@ -227,6 +227,13 @@ namespace Obi.Dialogs
                                                    mNormalColorCombo.Items.Add(col);
              }
              mNormalColorCombo.SelectedIndex = 0;
+
+             System.Drawing.Text.InstalledFontCollection fonts = new System.Drawing.Text.InstalledFontCollection();
+             foreach (FontFamily family in fonts.Families)
+             {
+                 mChooseFontCombo.Items.Add(family.Name);
+             }
+             mChooseFontCombo.SelectedIndex = 0;
             //mNormalColorCombo.Items.AddRange(new object[] { Color.Orange, Color.LightSkyBlue, Color.LightGreen, Color.LightSalmon,
                //SystemColors.Window, Color.Purple, SystemColors.Highlight, Color.Red,Color.BlueViolet, SystemColors.ControlDark,
                //SystemColors.HighlightText, SystemColors.ControlText, SystemColors.ControlText, SystemColors.ControlText,
