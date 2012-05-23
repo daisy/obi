@@ -464,14 +464,15 @@ namespace Obi.ImportExport
                     // assign the ID of first created par in smil document as firstPar_id so that its entry can go in content node in ncx.
                     if (firstPar_id == null) firstPar_id = par_id;
 
+                    string audioFileName = AddSectionNameToAudioFile? AddSectionNameToAudioFileName(externalAudio.Src,section.Label): Path.GetFileName(externalAudio.Src);
                     XmlNode audioNode = smilDocument.CreateElement(null, "audio", mainSeq.NamespaceURI);
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, audioNode, "clipBegin", FormatTimeString(externalAudio.ClipBegin));
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, audioNode, "clipEnd", FormatTimeString(externalAudio.ClipEnd));
-                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, audioNode, "src", Path.GetFileName(externalAudio.Src));
+                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, audioNode, "src", audioFileName);
                     parNode.AppendChild(audioNode);
 
                     // add audio file name in audio files list for use in opf creation 
-                    string audioFileName = Path.GetFileName(externalAudio.Src);
+                    
                     if (!m_FilesList_Audio.Contains(audioFileName)) m_FilesList_Audio.Add(audioFileName);
 
                     // add to duration 
@@ -532,7 +533,8 @@ namespace Obi.ImportExport
                         navLabelNode.AppendChild(audioNodeNcx);
                         XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "clipBegin", FormatTimeString(externalAudio.ClipBegin));
                         XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "clipEnd", FormatTimeString(externalAudio.ClipEnd));
-                        XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "src", Path.GetFileName(externalAudio.Src));
+                        XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "src", 
+                            AddSectionNameToAudioFile? AddSectionNameToAudioFileName(externalAudio.Src,section.Label): Path.GetFileName(externalAudio.Src));
                     }
 
                     XmlNode contentNode = ncxDocument.CreateElement(null, "content", pageListNode.NamespaceURI);
@@ -601,7 +603,8 @@ namespace Obi.ImportExport
                     navLabelNode.AppendChild(audioNodeNcx);
                     XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "clipBegin", FormatTimeString(externalAudio.ClipBegin));
                     XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "clipEnd", FormatTimeString(externalAudio.ClipEnd));
-                    XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "src", Path.GetFileName(externalAudio.Src));
+                    XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "src", 
+                        AddSectionNameToAudioFile? AddSectionNameToAudioFileName(externalAudio.Src,section.Label): Path.GetFileName(externalAudio.Src));
                 }
 
                 XmlNode contentNode = ncxDocument.CreateElement(null, "content", navTargetNode.NamespaceURI);
@@ -640,7 +643,8 @@ namespace Obi.ImportExport
                                 docNode.AppendChild(docAudioNode);
                                 XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, docAudioNode, "clipBegin", FormatTimeString(externalAudio.ClipBegin));
                                 XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, docAudioNode, "clipEnd", FormatTimeString(externalAudio.ClipEnd));
-                                XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, docAudioNode, "src", Path.GetFileName(externalAudio.Src));
+                                XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, docAudioNode, "src", 
+                                    AddSectionNameToAudioFile? AddSectionNameToAudioFileName(externalAudio.Src,section.Label): Path.GetFileName(externalAudio.Src));
                             }
 
 
@@ -735,7 +739,8 @@ namespace Obi.ImportExport
                         navLabel.AppendChild(audioNode);
                         XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNode, "clipBegin", FormatTimeString(externalAudio.ClipBegin));
                         XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNode, "clipEnd", FormatTimeString(externalAudio.ClipEnd));
-                        XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNode, "src", Path.GetFileName(externalAudio.Src));
+                        XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNode, "src", 
+                            AddSectionNameToAudioFile?AddSectionNameToAudioFileName(externalAudio.Src,section.Label): Path.GetFileName(externalAudio.Src));
                         
                         //following was old code
                         //navPointNode = CreateNavPointWithoutContentNode(ncxDocument, urakawaNode, currentHeadingTreeNode, n, treeNode_NavNodeMap);

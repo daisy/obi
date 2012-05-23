@@ -377,7 +377,7 @@ namespace Obi.ImportExport
 
                             XmlNode audioNode = smilDocument.CreateElement(null, "audio", smilBodyNode.NamespaceURI);
                             seqNode_AudioParent.AppendChild(audioNode);
-                            string relativeSRC = Path.GetFileName(externalMedia.Src);
+                            string relativeSRC = AddSectionNameToAudioFile? AddSectionNameToAudioFileName(externalMedia.Src, section.Label): Path.GetFileName(externalMedia.Src);
                             CreateAppendXmlAttribute(smilDocument, audioNode, "src", relativeSRC);
                             CreateAppendXmlAttribute(smilDocument, audioNode, "clip-begin",
                                 GetNPTSmiltime(externalMedia.ClipBegin.AsTimeSpan));

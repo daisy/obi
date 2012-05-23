@@ -1792,6 +1792,7 @@ namespace Obi
                                     mSession.Presentation, exportPath, dialog.EncodeToMP3, AudioLib.SampleRate.Hz44100, audioFileSectionLevel);
                             }
                             DAISYExport.BitRate_Mp3 = dialog.BitRate;
+                            DAISYExport.AddSectionNameToAudioFile = dialog.AddSectionNameToAudioFileName; ;
                             //DAISYExport.EnableExplicitGarbageCollection = Settings.OptimizeMemory;
                         Status(String.Format(Localizer.Message("ObiFormStatusMsg_ExportingProject") , exportPath));
                                                 
