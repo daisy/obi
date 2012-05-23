@@ -15,6 +15,8 @@ namespace Obi.Dialogs
         private bool mCanClose;   // can prevent from closing on problem
         private int m_BitRate;
         private bool m_IsMP3Check;
+        private bool m_SectionNameToAudioFileNameCheck;
+
         public ExportDirectory(string path, string xukPath, bool encodeToMP3, int bitRate)
         {
             InitializeComponent();
@@ -76,6 +78,13 @@ namespace Obi.Dialogs
         {
             get { return m_BitRate; }
         }
+
+        public bool AddSectionNameToAudioFileName
+        {
+            get { return m_SectionNameToAudioFileNameCheck; }
+            set { m_SectionNameToAudioFileNameCheck = value; }
+        }
+
         private void mSelectButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();

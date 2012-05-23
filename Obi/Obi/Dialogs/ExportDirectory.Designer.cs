@@ -39,6 +39,7 @@ namespace Obi.Dialogs
             this.m_checkBoxMP3Encoder = new System.Windows.Forms.CheckBox();
             this.m_Bitrate = new System.Windows.Forms.Label();
             this.m_ComboBoxBitrate = new System.Windows.Forms.ComboBox();
+            this.m_checkBoxAddSectionNameToAudioFileName = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // m_lblDirectoryPath
@@ -109,12 +110,19 @@ namespace Obi.Dialogs
             this.m_ComboBoxBitrate.Name = "m_ComboBoxBitrate";
             this.m_ComboBoxBitrate.SelectedIndexChanged += new System.EventHandler(this.m_ComboBoxBitrate_SelectedIndexChanged);
             // 
+            // m_checkBoxAddSectionNameToAudioFileName
+            // 
+            resources.ApplyResources(this.m_checkBoxAddSectionNameToAudioFileName, "m_checkBoxAddSectionNameToAudioFileName");
+            this.m_checkBoxAddSectionNameToAudioFileName.Name = "m_checkBoxAddSectionNameToAudioFileName";
+            this.m_checkBoxAddSectionNameToAudioFileName.UseVisualStyleBackColor = true;
+            // 
             // ExportDirectory
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_checkBoxAddSectionNameToAudioFileName);
             this.Controls.Add(this.m_ComboBoxBitrate);
             this.Controls.Add(this.m_Bitrate);
             this.Controls.Add(this.m_checkBoxMP3Encoder);
@@ -149,5 +157,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_checkBoxMP3Encoder;
         private System.Windows.Forms.Label m_Bitrate;
         private System.Windows.Forms.ComboBox m_ComboBoxBitrate;
+        private System.Windows.Forms.CheckBox m_checkBoxAddSectionNameToAudioFileName;
     }
 }
