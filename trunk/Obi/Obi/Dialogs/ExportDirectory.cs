@@ -81,8 +81,7 @@ namespace Obi.Dialogs
 
         public bool AddSectionNameToAudioFileName
         {
-            get { return m_SectionNameToAudioFileNameCheck; }
-            set { m_SectionNameToAudioFileNameCheck = value; }
+            get { return m_checkBoxAddSectionNameToAudioFileName.Checked; }
         }
 
         private void mSelectButton_Click(object sender, EventArgs e)
