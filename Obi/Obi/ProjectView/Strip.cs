@@ -1399,7 +1399,7 @@ namespace Obi.ProjectView
                 if (ContentView.Settings != null &&  ContentView.Settings.OptimizeMemory)
                 {
                     Console.WriteLine("Background layout memory before collection :" + (System.GC.GetTotalMemory(false) / (1024 * 1024)).ToString());
-                    System.GC.Collect();
+                    //System.GC.Collect();
                     Console.WriteLine("Background layout memory after collection :" + (System.GC.GetTotalMemory(false) / (1024 * 1024)).ToString());
                 }
                 }
