@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblDirectoryPath.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="mPathTextBox.AccessibleName" xml:space="preserve">
     <value>Export directory:</value>
@@ -178,7 +178,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPathTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="mSelectButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -211,7 +211,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mSelectButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="mOKButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -229,7 +229,7 @@
     <value>100, 28</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -244,7 +244,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -262,7 +262,7 @@
     <value>100, 28</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -277,13 +277,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 60</value>
+    <value>12, 54</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 16</value>
@@ -304,13 +304,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.AccessibleName" xml:space="preserve">
     <value>Create one audio file per section till:</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 57</value>
+    <value>239, 52</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
@@ -328,13 +328,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_checkBoxMP3Encoder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_checkBoxMP3Encoder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 104</value>
+    <value>126, 90</value>
   </data>
   <data name="m_checkBoxMP3Encoder.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 20</value>
@@ -355,7 +355,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_checkBoxMP3Encoder.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_Bitrate.AccessibleDescription" xml:space="preserve">
     <value>Bitrate</value>
@@ -364,13 +364,13 @@
     <value>True</value>
   </data>
   <data name="m_Bitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 142</value>
+    <value>70, 147</value>
   </data>
   <data name="m_Bitrate.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 16</value>
   </data>
   <data name="m_Bitrate.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="m_Bitrate.Text" xml:space="preserve">
     <value>Bit&amp;rate:</value>
@@ -385,7 +385,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_Bitrate.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_ComboBoxBitrate.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -403,13 +403,13 @@
     <value>128</value>
   </data>
   <data name="m_ComboBoxBitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 136</value>
+    <value>125, 142</value>
   </data>
   <data name="m_ComboBoxBitrate.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
   </data>
   <data name="m_ComboBoxBitrate.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;m_ComboBoxBitrate.Name" xml:space="preserve">
     <value>m_ComboBoxBitrate</value>
@@ -421,6 +421,33 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_ComboBoxBitrate.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_checkBoxAddSectionNameToAudioFileName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_checkBoxAddSectionNameToAudioFileName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 116</value>
+  </data>
+  <data name="m_checkBoxAddSectionNameToAudioFileName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 20</value>
+  </data>
+  <data name="m_checkBoxAddSectionNameToAudioFileName.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_checkBoxAddSectionNameToAudioFileName.Text" xml:space="preserve">
+    <value>Add section name to audio file name </value>
+  </data>
+  <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.Name" xml:space="preserve">
+    <value>m_checkBoxAddSectionNameToAudioFileName</value>
+  </data>
+  <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
