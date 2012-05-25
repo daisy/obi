@@ -316,6 +316,7 @@ namespace Obi.ProjectView
         {
             get
             {
+                if (IsPlayerActive && mCurrentPlaylist is PreviewPlaylist && !(mView.Selection is AudioSelection)) return ((PreviewPlaylist)mCurrentPlaylist).RevertTime;
                 return IsPlayerActive
                     && !(mView.Selection is AudioSelection && (((AudioSelection)mView.Selection).AudioRange != null   && !((AudioSelection)mView.Selection).AudioRange.HasCursor) ) ?
                     mCurrentPlaylist.CurrentTimeInAsset :
