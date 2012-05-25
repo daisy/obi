@@ -2361,6 +2361,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fine navigation mode on.
+        /// </summary>
+        internal static string KeyS_TransportBarFineNavigationOn {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarFineNavigationOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next page in playlist.
         /// </summary>
         internal static string KeyS_TransportBarNextPage {
