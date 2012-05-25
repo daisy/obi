@@ -3579,6 +3579,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             //mShortcutKeys[Keys.N] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Forward); };
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarNudgeBackward.Value] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Backward); };
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarFineNavigationOn.Value] = delegate() { return FineNavigationModeOn (); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarFineNavigationOff.Value] = delegate() { return FineNavigationModeOff(); };
             //mShortcutKeys[Keys.Shift | Keys.N] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Backward); };
             mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionBeginTime.Value] = delegate() { return mProjectView.TransportBar.MarkSelectionBeginTime(); };
             //mShortcutKeys[Keys.OemOpenBrackets] = delegate() { return mProjectView.TransportBar.MarkSelectionBeginTime(); };
@@ -4165,6 +4166,16 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 && (mProjectView.TransportBar.IsPlayerActive || mProjectView.TransportBar.CurrentState == TransportBar.State.Stopped ) )
             {
                 mProjectView.TransportBar.FineNavigationModeForPhrase = true;
+                return true;
+            }
+            return false;
+        }
+
+        private bool FineNavigationModeOff()
+        {
+            if (mProjectView.TransportBar.FineNavigationModeForPhrase)
+            {
+                mProjectView.TransportBar.FineNavigationModeForPhrase = false;
                 return true;
             }
             return false;

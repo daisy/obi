@@ -2912,11 +2912,17 @@ UpdateButtons();
                     m_FineNavigationModeForPhrase = value;
                     if (m_FineNavigationModeForPhrase)
                     {
-                        System.Media.SystemSounds.Asterisk.Play();
+                        string navigationOnClue = System.IO.Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, "FineNavigationOn.wav") ;
+                        if (System.IO.File.Exists(navigationOnClue))
+                        {
+                            System.Media.SoundPlayer player = new System.Media.SoundPlayer(navigationOnClue);
+                            player.Play();
+                        }
                         // add sound here
                     }
                     else
                     {
+                        System.Media.SystemSounds.Asterisk.Play();
                         // add sound here
                     }
                 }

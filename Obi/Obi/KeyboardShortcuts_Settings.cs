@@ -29,6 +29,7 @@ namespace Obi
         public KeyboardShortcut ContentView_TransportBarNudgeForward = new KeyboardShortcut(Keys.N, "KeyS_TransportBarNudgeForward");
         public KeyboardShortcut ContentView_TransportBarNudgeBackward = new KeyboardShortcut(Keys.Shift | Keys.N, "KeyS_TransportBarNudgeBackward");
         public KeyboardShortcut ContentView_TransportBarFineNavigationOn = new KeyboardShortcut(Keys.F2, "KeyS_TransportBarFineNavigationOn");
+        public KeyboardShortcut ContentView_TransportBarFineNavigationOff = new KeyboardShortcut(Keys.Shift | Keys.F2, "KeyS_TransportBarFineNavigationOff");
         public KeyboardShortcut ContentView_MarkSelectionBeginTime = new KeyboardShortcut(Keys.OemOpenBrackets, "KeyS_MarkSelectionBeginTime");
         public KeyboardShortcut ContentView_MarkSelectionEndTime = new KeyboardShortcut(Keys.OemCloseBrackets, "KeyS_MarkSelectionEndTime");
         public KeyboardShortcut ContentView_TransportBarNextPage = new KeyboardShortcut(Keys.P, "KeyS_TransportBarNextPage");
@@ -255,6 +256,7 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarNudgeForward.Description), ContentView_TransportBarNudgeForward);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarNudgeBackward.Description), ContentView_TransportBarNudgeBackward);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarFineNavigationOn.Description), ContentView_TransportBarFineNavigationOn);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarFineNavigationOff.Description), ContentView_TransportBarFineNavigationOff);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_MarkSelectionBeginTime.Description), ContentView_MarkSelectionBeginTime);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_MarkSelectionEndTime.Description), ContentView_MarkSelectionEndTime);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarNextPage.Description), ContentView_TransportBarNextPage);
