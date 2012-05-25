@@ -2922,7 +2922,7 @@ UpdateButtons();
                     }
                     else
                     {
-                        System.Media.SystemSounds.Asterisk.Play();
+                        if(mView.ObiForm.Settings.AudioClues)  System.Media.SystemSounds.Exclamation.Play();
                         // add sound here
                     }
                 }
