@@ -745,6 +745,7 @@ namespace Obi.ProjectView
             {
                 m_IsProjectEmpty = mView.Presentation.FirstSection == null ;
             }
+            if (FineNavigationModeForPhrase) FineNavigationModeForPhrase = false;
         if (mState != State.Stopped)
             {
             if (IsPlayerActive && mView.ObiForm.IsAutoSaveActive)
@@ -2883,17 +2884,7 @@ UpdateButtons();
             mCurrentPlaylist = playlist;
         }
 
-        /*/// <summary>//@singleSection: commented
-        /// optionally  saves the project when recording ends depending on autoSave recording ends flag
-                /// </summary>
-        private void SaveWhenRecordingEnds ()
-            {
-            if ( mView.ObiForm.Settings.AutoSave_RecordingEnd || m_AutoSaveOnNextRecordingEnd )
-                {
-                mView.ObiForm.SaveToBackup();
-                m_AutoSaveOnNextRecordingEnd = false;
-                }
-            }*/
+        
 
         public bool CanUsePlaybackSelection { get { return Enabled && IsPlayerActive && mView.ObiForm.Settings.PlayOnNavigate; }}
 
@@ -2907,6 +2898,30 @@ UpdateButtons();
             mDisplayBox.Tag = mDisplayBox.SelectedIndex;
         }
 
+        private bool m_FineNavigationModeForPhrase = false ;
+        public bool FineNavigationModeForPhrase
+        {
+            get
+            {
+                return m_FineNavigationModeForPhrase;
+            }
+            set
+            {
+                if (value != m_FineNavigationModeForPhrase)
+                {
+                    m_FineNavigationModeForPhrase = value;
+                    if (m_FineNavigationModeForPhrase)
+                    {
+                        System.Media.SystemSounds.Asterisk.Play();
+                        // add sound here
+                    }
+                    else
+                    {
+                        // add sound here
+                    }
+                }
+            }
+        }
 
     }
 }

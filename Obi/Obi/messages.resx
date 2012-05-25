@@ -2079,4 +2079,7 @@ Error text: {1}</value>
   <data name="KeyS_SelectLastSkippableNode" xml:space="preserve">
     <value>Select last phrase of current skippable note</value>
   </data>
+  <data name="KeyS_TransportBarFineNavigationOn" xml:space="preserve">
+    <value>Fine navigation mode on</value>
+  </data>
 </root>

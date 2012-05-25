@@ -3578,6 +3578,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarNudgeForward.Value] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Forward); };
             //mShortcutKeys[Keys.N] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Forward); };
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarNudgeBackward.Value] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Backward); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarFineNavigationOn.Value] = delegate() { return FineNavigationModeOn (); };
             //mShortcutKeys[Keys.Shift | Keys.N] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Backward); };
             mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionBeginTime.Value] = delegate() { return mProjectView.TransportBar.MarkSelectionBeginTime(); };
             //mShortcutKeys[Keys.OemOpenBrackets] = delegate() { return mProjectView.TransportBar.MarkSelectionBeginTime(); };
@@ -3770,6 +3771,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private bool SelectPrecedingBlock ()
             {
+                if (mProjectView.TransportBar.FineNavigationModeForPhrase)
+                {
+                    return mProjectView.TransportBar.Nudge(TransportBar.Backward); 
+                }
                 if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
 
                                     ISelectableInContentView item = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : mSelectedItem  ;
@@ -3871,6 +3876,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private bool SelectFollowingBlock ()
             {
+                if (mProjectView.TransportBar.FineNavigationModeForPhrase)
+                {
+                    return mProjectView.TransportBar.Nudge(TransportBar.Forward); 
+                }
                 if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
                 if (mProjectView.TransportBar.IsRecorderActive && mSelectedItem == null && mProjectView.Selection != null)
                 {
@@ -4107,7 +4116,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         // E.g. from an audio selection a phrase, from a phrase a strip, from a strip nothing.
         private bool SelectUp ()
             {
-            if (mSelection is AudioSelection)
+                if (mProjectView.TransportBar.FineNavigationModeForPhrase)
+                {
+                    mProjectView.TransportBar.FineNavigationModeForPhrase = false;
+                    return true;
+                }
+            else if (mSelection is AudioSelection)
                 {
                 return SelectBlockFor ( delegate ( Strip s, ISelectableInContentView item )
                     { return FindBlock ( (EmptyNode)mSelection.Node ); } );
@@ -4145,6 +4159,16 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             return null;
             }
 
+        private bool FineNavigationModeOn()
+        {
+            if (mProjectView.Selection != null && mProjectView.Selection.Node is PhraseNode 
+                && (mProjectView.TransportBar.IsPlayerActive || mProjectView.TransportBar.CurrentState == TransportBar.State.Stopped ) )
+            {
+                mProjectView.TransportBar.FineNavigationModeForPhrase = true;
+                return true;
+            }
+            return false;
+        }
 
         /// <summary>
         /// returns active current node from transport bar if player is active else return selected node from project view
