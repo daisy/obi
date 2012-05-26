@@ -346,19 +346,15 @@ int channel = 0;
                     }
                     count++;
 
-                    foreach (KeyValuePair<int, string> pair in m_DictionaryEmpNode)
+                    if(m_DictionaryEmpNode.ContainsKey(listOfXLocation[i]))
                     {
-                        if (m_DictionaryEmpNode.ContainsKey(pair.Key))
-                        {
-                            g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
-                            g.DrawLine(pen, pair.Key, 0, pair.Key, Height);
-                            if(pair.Value == "")
-                            g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
-                            else if(pair.Value.EndsWith("0"))
-                            g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);
-                        }
-                    }
-                    
+                        g.DrawString(m_DictionaryEmpNode[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], 0);
+                        g.DrawLine(pen, listOfXLocation[i], 0, listOfXLocation[i], Height);
+                        if (m_DictionaryEmpNode[listOfXLocation[i]] == "")
+                            g.DrawLine(newPen, listOfXLocation[i], 0, listOfXLocation[i], Height);
+                        else if (m_DictionaryEmpNode[listOfXLocation[i]].EndsWith("0"))
+                            g.DrawString(m_DictionaryEmpNode[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], Height - 15);
+                    }               
                 }
                 m_IsMaximized = false;
                 timer1.Start();
