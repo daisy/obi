@@ -2926,8 +2926,14 @@ UpdateButtons();
                         if(mView.ObiForm.Settings.AudioClues)  System.Media.SystemSounds.Exclamation.Play();
                         // add sound here
                     }
+                    if (StateChanged != null) StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(mPlayer.CurrentState) );
                 }
             }
+        }
+
+        public string FineNavigationStatusMsg
+        {
+            get { return FineNavigationModeForPhrase ? Localizer.Message ("StatusMsg_FineNavigation") : ""; }
         }
 
     }

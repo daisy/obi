@@ -4897,6 +4897,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fine navigation:.
+        /// </summary>
+        internal static string StatusMsg_FineNavigation {
+            get {
+                return ResourceManager.GetString("StatusMsg_FineNavigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stereo.
         /// </summary>
         internal static string stereo {
