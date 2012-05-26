@@ -4163,7 +4163,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         private bool FineNavigationModeOn()
         {
             if (mProjectView.Selection != null && mProjectView.Selection.Node is PhraseNode 
-                && (mProjectView.TransportBar.IsPlayerActive || mProjectView.TransportBar.CurrentState == TransportBar.State.Stopped ) )
+                && (mProjectView.TransportBar.IsPlayerActive || mProjectView.Selection is AudioSelection) )
             {
                 mProjectView.TransportBar.FineNavigationModeForPhrase = true;
                 return true;
