@@ -84,6 +84,7 @@ namespace Obi.Dialogs
             // m_btn_OK
             // 
             this.m_btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.m_btn_OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btn_OK.Location = new System.Drawing.Point(44, 136);
             this.m_btn_OK.Name = "m_btn_OK";
             this.m_btn_OK.Size = new System.Drawing.Size(75, 23);
@@ -95,6 +96,7 @@ namespace Obi.Dialogs
             // m_btn_Cancel
             // 
             this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.m_btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btn_Cancel.Location = new System.Drawing.Point(160, 136);
             this.m_btn_Cancel.Name = "m_btn_Cancel";
             this.m_btn_Cancel.Size = new System.Drawing.Size(75, 23);
@@ -109,7 +111,7 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
-            this.ClientSize = new System.Drawing.Size(303, 185);
+            this.ClientSize = new System.Drawing.Size(303, 183);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_rdb_DiscardBoth);
@@ -117,6 +119,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_rdb_SaveBookmarkAndProject);
             this.Controls.Add(this.m_lbl_ChooseOption);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(309, 211);
             this.MinimumSize = new System.Drawing.Size(309, 211);
             this.Name = "MultipleOptionDialog";

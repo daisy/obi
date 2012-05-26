@@ -64,7 +64,7 @@ namespace Obi.Dialogs
             // 
             // mLocationTextBox
             // 
-            this.mLocationTextBox.AccessibleName = global::Obi.messages.Executing__0_;
+            this.mLocationTextBox.AccessibleName = global::Obi.messages.phrase_extra_Plain;
             this.mLocationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mLocationTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -79,7 +79,7 @@ namespace Obi.Dialogs
             this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mOKButton.Location = new System.Drawing.Point(151, 134);
+            this.mOKButton.Location = new System.Drawing.Point(132, 134);
             this.mOKButton.Margin = new System.Windows.Forms.Padding(4);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(100, 28);
@@ -93,7 +93,7 @@ namespace Obi.Dialogs
             this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCancelButton.Location = new System.Drawing.Point(282, 134);
+            this.mCancelButton.Location = new System.Drawing.Point(312, 134);
             this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(100, 28);
@@ -107,7 +107,7 @@ namespace Obi.Dialogs
             this.mSwitchToNewCheckBox.Checked = true;
             this.mSwitchToNewCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mSwitchToNewCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mSwitchToNewCheckBox.Location = new System.Drawing.Point(157, 97);
+            this.mSwitchToNewCheckBox.Location = new System.Drawing.Point(132, 97);
             this.mSwitchToNewCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.mSwitchToNewCheckBox.Name = "mSwitchToNewCheckBox";
             this.mSwitchToNewCheckBox.Size = new System.Drawing.Size(136, 20);

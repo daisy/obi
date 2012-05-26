@@ -57,6 +57,7 @@ namespace Obi.Dialogs
             // m_btn_OK
             // 
             this.m_btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.m_btn_OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btn_OK.Location = new System.Drawing.Point(478, 219);
             this.m_btn_OK.Name = "m_btn_OK";
             this.m_btn_OK.Size = new System.Drawing.Size(75, 23);
@@ -68,6 +69,7 @@ namespace Obi.Dialogs
             // m_btn_Cancel
             // 
             this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.m_btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btn_Cancel.Location = new System.Drawing.Point(562, 219);
             this.m_btn_Cancel.Name = "m_btn_Cancel";
             this.m_btn_Cancel.Size = new System.Drawing.Size(72, 23);
@@ -86,6 +88,7 @@ namespace Obi.Dialogs
             // m_btn_Associate
             // 
             this.m_btn_Associate.Enabled = false;
+            this.m_btn_Associate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btn_Associate.Location = new System.Drawing.Point(19, 21);
             this.m_btn_Associate.Name = "m_btn_Associate";
             this.m_btn_Associate.Size = new System.Drawing.Size(95, 23);
@@ -97,6 +100,7 @@ namespace Obi.Dialogs
             // m_btn_Deassociate
             // 
             this.m_btn_Deassociate.Enabled = false;
+            this.m_btn_Deassociate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btn_Deassociate.Location = new System.Drawing.Point(19, 54);
             this.m_btn_Deassociate.Name = "m_btn_Deassociate";
             this.m_btn_Deassociate.Size = new System.Drawing.Size(95, 23);
@@ -118,6 +122,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_ShowAll
             // 
+            this.m_btn_ShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btn_ShowAll.Location = new System.Drawing.Point(478, 31);
             this.m_btn_ShowAll.Name = "m_btn_ShowAll";
             this.m_btn_ShowAll.Size = new System.Drawing.Size(131, 23);

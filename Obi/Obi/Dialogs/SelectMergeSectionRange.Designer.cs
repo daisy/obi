@@ -55,9 +55,11 @@ namespace Obi.Dialogs
             // 
             // m_btn_OK
             // 
-            this.m_btn_OK.Location = new System.Drawing.Point(239, 207);
+            this.m_btn_OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_btn_OK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_btn_OK.Location = new System.Drawing.Point(227, 207);
             this.m_btn_OK.Name = "m_btn_OK";
-            this.m_btn_OK.Size = new System.Drawing.Size(92, 23);
+            this.m_btn_OK.Size = new System.Drawing.Size(100, 28);
             this.m_btn_OK.TabIndex = 1;
             this.m_btn_OK.Text = "&OK";
             this.m_btn_OK.UseVisualStyleBackColor = true;
@@ -66,9 +68,11 @@ namespace Obi.Dialogs
             // m_btn_Cancel
             // 
             this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btn_Cancel.Location = new System.Drawing.Point(346, 207);
+            this.m_btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_btn_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_btn_Cancel.Location = new System.Drawing.Point(334, 207);
             this.m_btn_Cancel.Name = "m_btn_Cancel";
-            this.m_btn_Cancel.Size = new System.Drawing.Size(100, 23);
+            this.m_btn_Cancel.Size = new System.Drawing.Size(100, 28);
             this.m_btn_Cancel.TabIndex = 2;
             this.m_btn_Cancel.Text = "Cance&l";
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
@@ -80,7 +84,7 @@ namespace Obi.Dialogs
             this.m_StatusLabelForMergeSection});
             this.m_statusStripForMergeSection.Location = new System.Drawing.Point(0, 252);
             this.m_statusStripForMergeSection.Name = "m_statusStripForMergeSection";
-            this.m_statusStripForMergeSection.Size = new System.Drawing.Size(473, 22);
+            this.m_statusStripForMergeSection.Size = new System.Drawing.Size(442, 22);
             this.m_statusStripForMergeSection.TabIndex = 3;
             this.m_statusStripForMergeSection.Text = "MergeSectionStatusStrip";
             // 
@@ -100,9 +104,11 @@ namespace Obi.Dialogs
             // 
             // m_btn_SelectAll
             // 
-            this.m_btn_SelectAll.Location = new System.Drawing.Point(111, 76);
+            this.m_btn_SelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_btn_SelectAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_btn_SelectAll.Location = new System.Drawing.Point(99, 76);
             this.m_btn_SelectAll.Name = "m_btn_SelectAll";
-            this.m_btn_SelectAll.Size = new System.Drawing.Size(91, 23);
+            this.m_btn_SelectAll.Size = new System.Drawing.Size(100, 28);
             this.m_btn_SelectAll.TabIndex = 5;
             this.m_btn_SelectAll.Text = "Select All";
             this.m_btn_SelectAll.UseVisualStyleBackColor = true;
@@ -123,7 +129,7 @@ namespace Obi.Dialogs
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.m_tb_SelectedSection);
             this.groupBox2.Controls.Add(this.m_btn_SelectAll);
-            this.groupBox2.Location = new System.Drawing.Point(226, 31);
+            this.groupBox2.Location = new System.Drawing.Point(226, 10);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(208, 116);
             this.groupBox2.TabIndex = 7;
@@ -144,7 +150,7 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
-            this.ClientSize = new System.Drawing.Size(473, 274);
+            this.ClientSize = new System.Drawing.Size(442, 274);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.m_statusStripForMergeSection);

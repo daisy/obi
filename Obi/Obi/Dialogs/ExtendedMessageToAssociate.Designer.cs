@@ -37,6 +37,7 @@ namespace Obi.Dialogs
             // m_btn_Yes
             // 
             this.m_btn_Yes.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.m_btn_Yes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btn_Yes.Location = new System.Drawing.Point(12, 77);
             this.m_btn_Yes.Name = "m_btn_Yes";
             this.m_btn_Yes.Size = new System.Drawing.Size(75, 23);
@@ -47,6 +48,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_YesToAll
             // 
+            this.m_btn_YesToAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btn_YesToAll.Location = new System.Drawing.Point(124, 77);
             this.m_btn_YesToAll.Name = "m_btn_YesToAll";
             this.m_btn_YesToAll.Size = new System.Drawing.Size(75, 23);
@@ -57,6 +59,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_No
             // 
+            this.m_btn_No.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btn_No.Location = new System.Drawing.Point(234, 77);
             this.m_btn_No.Name = "m_btn_No";
             this.m_btn_No.Size = new System.Drawing.Size(75, 23);
@@ -85,6 +88,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_btn_No);
             this.Controls.Add(this.m_btn_YesToAll);
             this.Controls.Add(this.m_btn_Yes);
+            this.MaximizeBox = false;
             this.Name = "ExtendedMessageToAssociate";
             this.Text = "Extended message box";
             this.ResumeLayout(false);

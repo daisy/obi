@@ -144,6 +144,9 @@
   <data name="&gt;&gt;mWebBrowser.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="mbtnClose.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="mbtnClose.Location" type="System.Drawing.Point, System.Drawing">
     <value>258, 406</value>
   </data>

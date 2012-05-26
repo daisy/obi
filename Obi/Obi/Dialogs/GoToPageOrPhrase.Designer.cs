@@ -51,13 +51,11 @@ namespace Obi.Dialogs
                 // 
                 // mOKButton
                 // 
-                this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
                 this.mOKButton.Location = new System.Drawing.Point(90, 181);
                 this.mOKButton.TabIndex = 8;
                 // 
                 // mCancelButton
                 // 
-                this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
                 this.mCancelButton.Location = new System.Drawing.Point(198, 181);
                 this.mCancelButton.TabIndex = 9;
                 // 
@@ -84,6 +82,7 @@ namespace Obi.Dialogs
                 // 
                 // m_btnOk
                 // 
+                this.m_btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_btnOk.Location = new System.Drawing.Point(90, 167);
                 this.m_btnOk.Name = "m_btnOk";
                 this.m_btnOk.Size = new System.Drawing.Size(100, 28);
