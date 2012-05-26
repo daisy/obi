@@ -40,11 +40,14 @@ namespace Obi.ProjectView
         private List<int> listOfMaxChannel1 = new List<int>();
         private List<int> listOfMinChannel2 = new List<int>();
         private List<int> listOfMaxChannel2 = new List<int>();
-        private bool m_IsResized = false;
+       // private bool m_IsResized = false;
         private int m_X = 0;
         private int m_XCV = 0;
         private Dictionary<int, string> m_DictionarySeconds = new Dictionary<int, string>();
         private Dictionary<int, string> m_DictionaryEmpNode = new Dictionary<int, string>();
+        private double timeOfAssetMilliseconds = 0;
+        private bool m_IsMaximized = false;
+        private bool m_IsResize = false;
         
         public Waveform_Recording()
         {
@@ -171,7 +174,7 @@ namespace Obi.ProjectView
             string text = "";
             Pen newPen = new Pen(SystemColors.Control);
             
-            double timeOfAssetMilliseconds =
+            timeOfAssetMilliseconds =
                    (double)m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition) /
                    Time.TIME_UNIT;
             int timeInSeconds = Convert.ToInt32(timeOfAssetMilliseconds / 1000);
@@ -179,6 +182,7 @@ namespace Obi.ProjectView
             if (m_Counter == 10)
             {
                 g.DrawLine(newPen, m_X, 0, m_X, Height);
+                m_DictionaryEmpNode.Add(m_X, "");
                 m_Counter = 0;
             }
 
@@ -192,16 +196,20 @@ namespace Obi.ProjectView
                 }
                 if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
                 CreatePageorPhrase(m_X);
-         
-             this.Width = this.Width + 150;
-             m_IsResized = true;
+            if ((m_ContentView.Width - m_XCV) > 300)
+            {
+                m_IsResize = true;
+                this.Width = this.Width + 150;
+               // m_IsMaximized = false;
+            }
+           
+           //  m_IsResized = true;
              m_X++;
              listOfXLocation.Add(m_X); 
              listOfMinChannel1.Add((int)minChannel1);
              listOfMaxChannel1.Add((int)maxChannel1);
              listOfMinChannel2.Add((int)minChannel2);
              listOfMaxChannel2.Add((int)maxChannel2);
-             
          }
 
         private void Waveform_Recording_VisibleChanged(object sender, EventArgs e)
@@ -263,7 +271,7 @@ int channel = 0;
                 {
                     if (samples[i] < minChannel2) minChannel2 = samples[i];
                     if (samples[i] > maxChannel2) maxChannel2 = samples[i];
-                }
+                } 
             }
                 m_AmpValue =  m_Amp[0] + (int) (m_Amp[1] *  Math.Pow(8, m_Amp.Length));
                // m_PointMinChannelMap.Add(x_Loc, minChannel1);
@@ -274,29 +282,44 @@ int channel = 0;
 
         private void Waveform_Recording_Resize(object sender, EventArgs e)
         {
+            if (!m_IsResize)
+               return;
+            m_IsResize = false;
+            RepaintWaveform();           
+        }
+
+        private void RepaintWaveform()
+        {
+           
             int count = 0;
             int secondsMark = 0;
             int localCount = 0;
             Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
-            if (m_IsResized)
+            /*  if (m_IsResized)
             {
                 m_IsResized = false;
-                return; 
+                return;
+            }*/
+
+            if (m_IsMaximized)
+            {
+                m_IsMaximized = false;
+                return;
             }
+            m_IsMaximized = true;
             int counterMin = listOfMinChannel1.Count;
             int x = 0;
             int counterMax = listOfMaxChannel2.Count;
-            
-            if(m_ContentView != null)
-             x = m_ContentView.Width / 2 + 50;
+
+            if (m_ContentView != null)
+                x = m_ContentView.Width / 2 + 50;
             if (counterMin == 0)
                 return;
             if (counterMin < 5)
             { }
             else
-            {    
-                System.Media.SystemSounds.Asterisk.Play();
+            {
                 timer1.Stop();
                 for (int i = counterMin - 1; i >= 0; i--)
                 {
@@ -313,20 +336,12 @@ int channel = 0;
                     }
                     count++;
 
-                    if (count == 10)
-                    {
-                        g.DrawLine(newPen, listOfXLocation[i], 0, listOfXLocation[i], Height);
-                        count = 0;
-                        secondsMark++;
-                    }
                     if (secondsMark % 10 == 0 && localCount != secondsMark)
                     {
                         foreach (KeyValuePair<int, string> pair in m_DictionarySeconds)
                         {
                             if (m_DictionarySeconds.ContainsKey(pair.Key))
-                            {
-                                g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);
-                            }
+                                g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);                            
                         }
                         foreach (KeyValuePair<int, string> pair in m_DictionaryEmpNode)
                         {
@@ -334,21 +349,24 @@ int channel = 0;
                             {
                                 g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
                                 g.DrawLine(pen, pair.Key, 0, pair.Key, Height);
+                                if(pair.Value == "")
+                                    g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
                             }
                         }
                     }
-                }               
+                }
+                m_IsMaximized = false;
                 timer1.Start();
             }
         }
 
         public void Phrase_Created_Event(object sender, EventArgs e)
         {
-            int count = (int)(m_ProjectView.TransportBar.phDetectorPhraseTimingList[m_ProjectView.TransportBar.phDetectorPhraseTimingList.Count - 1] / 100);
-            int c = count + (m_ContentView.Width / 2 + 50);
+            int lastItemInList = (int)(m_ProjectView.TransportBar.phDetectorPhraseTimingList[m_ProjectView.TransportBar.phDetectorPhraseTimingList.Count - 1] / 100);
+            int location = lastItemInList + (m_ContentView.Width / 2 + 50);
 
             if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring)
-            CreatePageorPhrase(c);          
+            CreatePageorPhrase(location);
         }
 
         private void CreatePageorPhrase(int xLocation)
@@ -365,5 +383,14 @@ int channel = 0;
                 m_DictionaryEmpNode.Add(xLocation, text);
            
         }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            RepaintWaveform();
+            m_IsMaximized = false;
+        }               
     }
 }
+
+
+
