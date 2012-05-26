@@ -2170,6 +2170,7 @@ namespace Obi
 
         private bool ExtractPipelineLite()
         {
+            
             string directoryPath = System.AppDomain.CurrentDomain.BaseDirectory;
             string pipelineCabFile = "Pipeline-lite.cab";
             
@@ -2183,6 +2184,11 @@ namespace Obi
                         if (Directory.Exists(pipelineLitePath)) Directory.Delete(pipelineLitePath, true);
 
                         Process extractProcess = new Process();
+                        if (System.Environment.OSVersion.Version.Major >= 6)
+                        {
+                            extractProcess.StartInfo.Verb = "runas";
+                        } 
+
                         extractProcess.StartInfo.WorkingDirectory = directoryPath;
                         extractProcess.StartInfo.FileName = Path.Combine(directoryPath, "CABARC.EXE");
                         extractProcess.StartInfo.Arguments = "-p x " + pipelineCabFile;
