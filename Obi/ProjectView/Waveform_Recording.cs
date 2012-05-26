@@ -43,7 +43,6 @@ namespace Obi.ProjectView
        // private bool m_IsResized = false;
         private int m_X = 0;
         private int m_XCV = 0;
-        private Dictionary<int, string> m_DictionarySeconds = new Dictionary<int, string>();
         private Dictionary<int, string> m_DictionaryEmpNode = new Dictionary<int, string>();
         private double timeOfAssetMilliseconds = 0;
         private bool m_IsMaximized = false;
@@ -182,18 +181,29 @@ namespace Obi.ProjectView
             if (m_Counter == 10)
             {
                 g.DrawLine(newPen, m_X, 0, m_X, Height);
+                if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds)
+                {
+                    text = timeInSeconds.ToString();
+                    g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
+                    if (!m_DictionaryEmpNode.ContainsKey(m_X))
+                        m_DictionaryEmpNode.Add(m_X, text);
+                        //m_DictionarySeconds.Add(m_X, text);
+                    m_LocalTime = timeInSeconds;
+                }
+                else
                 m_DictionaryEmpNode.Add(m_X, "");
                 m_Counter = 0;
             }
 
-                if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds )
+                /*if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds )
                 {
                     text = timeInSeconds.ToString();
                     g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
                     if(!m_DictionarySeconds.ContainsKey(m_X))
                     m_DictionarySeconds.Add(m_X, text);
                     m_LocalTime = timeInSeconds;
-                }
+                }*/
+
                 if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
                 CreatePageorPhrase(m_X);
             if ((m_ContentView.Width - m_XCV) > 300)
@@ -336,24 +346,19 @@ int channel = 0;
                     }
                     count++;
 
-                    if (secondsMark % 10 == 0 && localCount != secondsMark)
+                    foreach (KeyValuePair<int, string> pair in m_DictionaryEmpNode)
                     {
-                        foreach (KeyValuePair<int, string> pair in m_DictionarySeconds)
+                        if (m_DictionaryEmpNode.ContainsKey(pair.Key))
                         {
-                            if (m_DictionarySeconds.ContainsKey(pair.Key))
-                                g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);                            
-                        }
-                        foreach (KeyValuePair<int, string> pair in m_DictionaryEmpNode)
-                        {
-                            if (m_DictionaryEmpNode.ContainsKey(pair.Key))
-                            {
-                                g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
-                                g.DrawLine(pen, pair.Key, 0, pair.Key, Height);
-                                if(pair.Value == "")
-                                    g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
-                            }
+                            g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
+                            g.DrawLine(pen, pair.Key, 0, pair.Key, Height);
+                            if(pair.Value == "")
+                            g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
+                            else if(pair.Value.EndsWith("0"))
+                            g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);
                         }
                     }
+                    
                 }
                 m_IsMaximized = false;
                 timer1.Start();
