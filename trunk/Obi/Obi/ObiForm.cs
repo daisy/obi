@@ -2508,7 +2508,8 @@ namespace Obi
                 "";
             //if (IsStatusBarEnabled) Status ( mProjectView.Selection != null ? mProjectView.Selection.ToString () : Localizer.Message ( "StatusBar_NothingSelected" ) + mProjectView.TransportBar.RecordingPhraseToString );
             string limitedBlocksShownMsg = IsStatusBarEnabled && mProjectView.Selection != null  && mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand () ? string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), " ") : "";
-            if (IsStatusBarEnabled) Status(strRecordingInfo + (mProjectView.Selection != null ? mProjectView.Selection.ToString() : Localizer.Message("StatusBar_NothingSelected")) + limitedBlocksShownMsg);
+            string strFineNavigation = mProjectView.TransportBar.FineNavigationStatusMsg;
+            if (IsStatusBarEnabled) Status(strFineNavigation +  strRecordingInfo + (mProjectView.Selection != null ? mProjectView.Selection.ToString() : Localizer.Message("StatusBar_NothingSelected")) + limitedBlocksShownMsg);
             }
 
         // Update all of Obi.
@@ -2570,7 +2571,7 @@ namespace Obi
         CanAutoSave = !mProjectView.TransportBar.IsRecorderActive;
         string additionalTransportbarOperationInfo = mProjectView.TransportBar.IsPlayerActive && mProjectView.TransportBar.PlaybackPhrase != null && mProjectView.TransportBar.PlaybackPhrase.IsRooted ? (mProjectView.Selection != null && mProjectView.Selection is AudioSelection && ((AudioSelection)mProjectView.Selection).AudioRange != null && !((AudioSelection)mProjectView.Selection).AudioRange.HasCursor ? mProjectView.Selection.ToString() : mProjectView.TransportBar.PlaybackPhrase.ToString()) + "--" + mProjectView.TransportBar.PlaybackPhrase.ParentAs<SectionNode>().Label : 
                 (mProjectView.TransportBar.IsRecorderActive && mProjectView.TransportBar.RecordingPhrase != null? mProjectView.TransportBar.RecordingPhrase.ToString() : "" ) ;
-            Status ( Localizer.Message ( mProjectView.TransportBar.CurrentState.ToString () ) + " " + additionalTransportbarOperationInfo  );
+            Status (mProjectView.TransportBar.FineNavigationStatusMsg +  Localizer.Message ( mProjectView.TransportBar.CurrentState.ToString () ) + " " + additionalTransportbarOperationInfo  );
             UpdatePhrasesMenu ();
             UpdateTransportMenu ();
             UpdateEditMenu ();

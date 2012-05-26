@@ -2085,4 +2085,7 @@ Error text: {1}</value>
   <data name="KeyS_TransportBarFineNavigationOff" xml:space="preserve">
     <value>Fine navigation off</value>
   </data>
+  <data name="StatusMsg_FineNavigation" xml:space="preserve">
+    <value>Fine navigation:</value>
+  </data>
 </root>
