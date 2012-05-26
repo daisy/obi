@@ -44,6 +44,7 @@ namespace Obi.Dialogs
             // 
             // m_BtnCancel
             // 
+            this.m_BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_BtnCancel.Location = new System.Drawing.Point(302, 63);
             this.m_BtnCancel.Name = "m_BtnCancel";
             this.m_BtnCancel.Size = new System.Drawing.Size(75, 23);
@@ -61,8 +62,9 @@ namespace Obi.Dialogs
             this.m_lbWaitForCancellation.Size = new System.Drawing.Size(277, 16);
             this.m_lbWaitForCancellation.TabIndex = 3;
             this.m_lbWaitForCancellation.Text = "Operation cancelled.. Completing current task";
+            this.m_lbWaitForCancellation.UseWaitCursor = true;
             this.m_lbWaitForCancellation.Visible = false;
-             // 
+            // 
             // ProgressDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);

@@ -49,9 +49,11 @@ namespace Obi.Dialogs
             // m_btnOk
             // 
             this.m_btnOk.AccessibleName = "OK";
+            this.m_btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_btnOk.Location = new System.Drawing.Point(98, 71);
             this.m_btnOk.Name = "m_btnOk";
-            this.m_btnOk.Size = new System.Drawing.Size(75, 23);
+            this.m_btnOk.Size = new System.Drawing.Size(100, 28);
             this.m_btnOk.TabIndex = 1;
             this.m_btnOk.Text = "&OK";
             this.m_btnOk.UseVisualStyleBackColor = true;
@@ -61,9 +63,11 @@ namespace Obi.Dialogs
             // 
             this.m_btnDetails.AccessibleName = "Show details";
             this.m_btnDetails.Enabled = false;
+            this.m_btnDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_btnDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_btnDetails.Location = new System.Drawing.Point(264, 71);
             this.m_btnDetails.Name = "m_btnDetails";
-            this.m_btnDetails.Size = new System.Drawing.Size(75, 23);
+            this.m_btnDetails.Size = new System.Drawing.Size(100, 28);
             this.m_btnDetails.TabIndex = 2;
             this.m_btnDetails.Text = "Show &details";
             this.m_btnDetails.UseVisualStyleBackColor = true;
@@ -103,7 +107,7 @@ namespace Obi.Dialogs
             this.AcceptButton = this.m_btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 114);
+            this.ClientSize = new System.Drawing.Size(437, 112);
             this.Controls.Add(this.m_txtBoxPath);
             this.Controls.Add(this.m_grpBox_lb_ErrorsList);
             this.Controls.Add(this.m_lblReportDialog);

@@ -98,9 +98,11 @@ namespace Obi.Dialogs
             // 
             // m_btn_Display
             // 
-            this.m_btn_Display.Location = new System.Drawing.Point(206, 102);
+            this.m_btn_Display.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_btn_Display.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_btn_Display.Location = new System.Drawing.Point(179, 102);
             this.m_btn_Display.Name = "m_btn_Display";
-            this.m_btn_Display.Size = new System.Drawing.Size(75, 23);
+            this.m_btn_Display.Size = new System.Drawing.Size(100, 28);
             this.m_btn_Display.TabIndex = 4;
             this.m_btn_Display.Text = "D&isplay Range";
             this.m_btn_Display.UseVisualStyleBackColor = true;
@@ -109,9 +111,11 @@ namespace Obi.Dialogs
             // m_btn_RemoveFromList
             // 
             this.m_btn_RemoveFromList.Enabled = false;
-            this.m_btn_RemoveFromList.Location = new System.Drawing.Point(206, 25);
+            this.m_btn_RemoveFromList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_btn_RemoveFromList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_btn_RemoveFromList.Location = new System.Drawing.Point(179, 25);
             this.m_btn_RemoveFromList.Name = "m_btn_RemoveFromList";
-            this.m_btn_RemoveFromList.Size = new System.Drawing.Size(75, 23);
+            this.m_btn_RemoveFromList.Size = new System.Drawing.Size(100, 28);
             this.m_btn_RemoveFromList.TabIndex = 8;
             this.m_btn_RemoveFromList.Text = "Re&move";
             this.m_btn_RemoveFromList.UseVisualStyleBackColor = true;
@@ -119,9 +123,11 @@ namespace Obi.Dialogs
             // 
             // m_btn_OK
             // 
+            this.m_btn_OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_btn_OK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_btn_OK.Location = new System.Drawing.Point(209, 333);
             this.m_btn_OK.Name = "m_btn_OK";
-            this.m_btn_OK.Size = new System.Drawing.Size(75, 23);
+            this.m_btn_OK.Size = new System.Drawing.Size(100, 28);
             this.m_btn_OK.TabIndex = 12;
             this.m_btn_OK.Text = "&OK";
             this.m_btn_OK.UseVisualStyleBackColor = true;
@@ -179,9 +185,11 @@ namespace Obi.Dialogs
             // 
             // m_btn_Cancel
             // 
-            this.m_btn_Cancel.Location = new System.Drawing.Point(367, 333);
+            this.m_btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_btn_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_btn_Cancel.Location = new System.Drawing.Point(340, 333);
             this.m_btn_Cancel.Name = "m_btn_Cancel";
-            this.m_btn_Cancel.Size = new System.Drawing.Size(75, 23);
+            this.m_btn_Cancel.Size = new System.Drawing.Size(100, 28);
             this.m_btn_Cancel.TabIndex = 13;
             this.m_btn_Cancel.Text = "Cance&l";
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
