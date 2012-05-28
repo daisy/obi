@@ -291,6 +291,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_99FE42E87309466B945414F2169DE110"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -317,6 +323,24 @@
         {
         "MsmKey" = "8:_BD186E9E0B444AE8A01E6763C42B2219"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BEE8E90BAB29D65BD0B4627F41312610"
+        "OwnerKey" = "8:_EA205BAD7FA21F1146C2896179CF4257"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BEE8E90BAB29D65BD0B4627F41312610"
+        "OwnerKey" = "8:_D8D84DB8CB9E4AF390D6AF810CE6D609"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BEE8E90BAB29D65BD0B4627F41312610"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -371,6 +395,12 @@
         {
         "MsmKey" = "8:_E8C2F668D86D973013E980E999941028"
         "OwnerKey" = "8:_D8D84DB8CB9E4AF390D6AF810CE6D609"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E8C2F668D86D973013E980E999941028"
+        "OwnerKey" = "8:_BEE8E90BAB29D65BD0B4627F41312610"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -436,12 +466,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_285734508C96427FB6D7FDE891564579"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_AC765BB998E34797BC4B930FC4135042"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -467,6 +491,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5CC15B3F32BE40348070919255E4CBD1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_285734508C96427FB6D7FDE891564579"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -521,6 +551,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_69B42FA276EC8EC3A2E3BB8E252CF5AC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BEE8E90BAB29D65BD0B4627F41312610"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1410,7 +1446,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=2.0.0.21823, Culture=hi, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=2.0.0.22001, Culture=hi, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_9756CC4034584C5C8FF7E061127F117C"
@@ -1423,6 +1459,26 @@
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C8760030D802432CB54734FC2FD0E73A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_99FE42E87309466B945414F2169DE110"
+            {
+            "SourcePath" = "8:..\\Obi\\FineNavigationOn.wav"
+            "TargetName" = "8:FineNavigationOn.wav"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1537,6 +1593,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BEE8E90BAB29D65BD0B4627F41312610"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SoundTouch.Net, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_BEE8E90BAB29D65BD0B4627F41312610"
+                    {
+                    "Name" = "8:SoundTouch.Net.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SoundTouch.Net.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C7C4629C648A485F8228D32702542B1D"
@@ -2542,7 +2629,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5D74C0D378D74D17BD753426073D0BF5"
             {
-            "SourcePath" = "8:..\\Obi\\obj\\x86\\Release\\Obi.exe"
+            "SourcePath" = "8:..\\Obi\\obj\\Release\\Obi.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
@@ -2570,7 +2657,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D8D84DB8CB9E4AF390D6AF810CE6D609"
             {
-            "SourcePath" = "8:..\\Obi\\obj\\x86\\Release\\Obi.exe"
+            "SourcePath" = "8:..\\Obi\\obj\\Release\\Obi.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
@@ -2596,6 +2683,9 @@
                 {
                 }
             }
+        }
+        "VJSharpPlugin"
+        {
         }
     }
 }
