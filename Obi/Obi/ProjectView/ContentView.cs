@@ -5215,12 +5215,12 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            m_BeginNote = mProjectView.Selection.EmptyNodeForSelection; //@AssociateNode
+            mProjectView.MarkBeginNote();
         }
 
         private void Context_Skippable_EndSpecialNodeMarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            m_EndNote = mProjectView.Selection.EmptyNodeForSelection; //@AssociateNode
+            mProjectView.MarkEndNote();
             mProjectView.AssignRoleToMarkedContinuousNodes(); //@AssociateNode
         }
 

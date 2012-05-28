@@ -3648,6 +3648,16 @@ for (int j = 0;
             }
         }
 
+        public void MarkBeginNote()
+        {
+            mContentView.BeginSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
+        }
+
+        public void MarkEndNote()
+        {
+            mContentView.EndSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
+        }
+
         public void AssignRoleToMarkedContinuousNodes()  //@AssociateNode
         {
            // m_BeginNote = mContentView.BeginSpecialNode;
