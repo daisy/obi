@@ -3512,11 +3512,12 @@ namespace Obi
 
         private void mSkippableBeginNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.BeginNote = mProjectView.Selection.EmptyNodeForSelection; 
+            mProjectView.MarkBeginNote();
         }
 
         private void mSkippableEndNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            mProjectView.MarkEndNote();
             mProjectView.AssignRoleToMarkedContinuousNodes(); 
         }
 
