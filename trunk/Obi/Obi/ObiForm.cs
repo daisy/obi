@@ -1559,6 +1559,8 @@ namespace Obi
             mPreviewFromToolStripMenuItem.Enabled = mProjectView.CanPreview;
             mPreviewUpToToolStripMenuItem.Enabled = mProjectView.CanPreview;
             mPreviewSelectedToolStripMenuItem.Enabled = mProjectView.CanPreviewAudioSelection;
+            mFineNavigationToolStripMenuItem.Enabled = mProjectView.TransportBar.FineNavigationModeForPhrase || mProjectView.TransportBar.CanEnterFineNavigationMode;
+            mFineNavigationToolStripMenuItem.Checked = mProjectView.TransportBar.FineNavigationModeForPhrase;
             mPreviousSectionToolStripMenuItem.Enabled = mProjectView.CanNavigatePrevSection;
             mPreviousPageToolStripMenuItem.Enabled = mProjectView.CanNavigatePrevPage;
             mPreviousPhraseToolStripMenuItem.Enabled = mProjectView.CanNavigatePrevPhrase;
