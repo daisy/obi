@@ -5249,6 +5249,12 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void mSkippableMoveToToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.GotoSkippableNoteEnds(false);   //@AssociateNode
+        }
+
+        private void Context_FineNavigationMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FineNavigationModeForPhrase =
+                !mProjectView.TransportBar.FineNavigationModeForPhrase;
         }      
     }
    /// <summary>
