@@ -2351,6 +2351,7 @@ namespace Obi.ProjectView
                     if (time >= 0.0 && time < ((PhraseNode)s.Node).Duration)
                     {
                         mView.Selection = new AudioSelection((PhraseNode)s.Node, mView.Selection.Control, new AudioRange(time));
+                        if (mView.ObiForm.Settings.PlayOnNavigate) Preview(true, false);
                         SelectionChangedPlaybackEnabled = PlaybackOnSelectionEnabledStatus;
                         return true;
                     }
