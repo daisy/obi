@@ -198,6 +198,8 @@ namespace Obi.ProjectView
             }
         }
 
+        public bool CanEnterFineNavigationMode { get { return mView.Selection != null && mView.Selection.Node is PhraseNode && (IsPlayerActive || mView.Selection is AudioSelection); } }
+
         public bool CanNavigateNextSection
         {
             get
