@@ -2780,23 +2780,31 @@ namespace Obi
                     if (m.ShortcutKeys != Keys.None)
                     {
                         string shortcutString = m.ShortcutKeys.ToString();
-                        string[] arrayStrings = shortcutString.Split(',');
-
-                        if (arrayStrings != null && arrayStrings.Length > 0)
-                        {
-                            shortcutString = "";
-                            for (int i = arrayStrings.Length - 1; i >= 0; --i)
-                            {
-                                shortcutString = shortcutString + arrayStrings[i] + (i > 0 ? "+" : "");
-                            }
-                        }
-
-                        accessibleString = accessibleString + " " + shortcutString;
+                        
+                        accessibleString = accessibleString + " " +ObiForm.RefineKeyboardShortcutStringForAccessibleName (shortcutString);
                     }
                     m.AccessibleName = accessibleString;
                 }
             }
         }
+
+        public static string RefineKeyboardShortcutStringForAccessibleName(string shortcutString)
+        {
+            string[] arrayStrings = shortcutString.Split(',');
+
+            if (arrayStrings != null && arrayStrings.Length > 0)
+            {
+                shortcutString = "";
+                for (int i = arrayStrings.Length - 1; i >= 0; --i)
+                {
+                    shortcutString = shortcutString + arrayStrings[i] + (i > 0 ? "+" : "");
+                }
+            }
+
+                        return shortcutString;
+            
+                    }
+                  
 
         // Various utility functions
 
