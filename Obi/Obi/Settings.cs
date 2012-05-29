@@ -59,6 +59,7 @@ namespace Obi
         public int AutoSaveTimeInterval; // time interval after which project will be auto saved 
         public bool Export_EncodeToMP3;
         public int Export_BitRateMP3;
+        public bool Export_AppendSectionNameToAudioFile;
         public bool OpenBookmarkNodeOnReopeningProject;
         public int[] BookMarkNodeHierarchy;
         public bool RetainInitialSilenceInPhraseDetection;
@@ -114,6 +115,7 @@ namespace Obi
             settings.AutoSaveTimeInterval = 300000; // saving time interval in ms ( 5min)
             settings.Export_EncodeToMP3 = false;
             settings.Export_BitRateMP3 = 64;
+            settings.Export_AppendSectionNameToAudioFile = false;
             settings.OpenBookmarkNodeOnReopeningProject = false;
             settings.RetainInitialSilenceInPhraseDetection = true;
             settings.ImportToleranceForAudioInMs = 100;
