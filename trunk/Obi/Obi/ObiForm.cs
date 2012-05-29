@@ -2696,6 +2696,7 @@ namespace Obi
             // Transport bar settings
             AllowOverwrite = mSettings.AllowOverwrite;
             mPlayOnNavigateToolStripMenuItem.Checked = mSettings.PlayOnNavigate;
+            mFineNavigationToolStripMenuItem.Checked = mProjectView.TransportBar.FineNavigationModeForPhrase ;
             // Colors
             mSettings.ColorSettings.CreateBrushesAndPens ();
             mProjectView.TransportBar.UpdateButtons();
@@ -3562,6 +3563,11 @@ namespace Obi
         private void mPhrases_AssignRole_AnchorMenuItem_Click(object sender, EventArgs e)
         {
             ((EmptyNode)mProjectView.Selection.Node).Role_ = EmptyNode.Role.Anchor;
+        }
+
+        private void mFineNavigationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FineNavigationModeForPhrase =! mProjectView.TransportBar.FineNavigationModeForPhrase ;
         }
        
     }
