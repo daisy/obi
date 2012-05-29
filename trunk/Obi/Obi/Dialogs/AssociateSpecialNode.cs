@@ -222,15 +222,17 @@ namespace Obi.Dialogs
         private void m_btn_Deassociate_Click(object sender, EventArgs e)
         {
             EmptyNode anchorNode = null;
-            if (listOfAnchorNodes.Count > 0 && (m_SelectedNode == null || m_IsShowAll))
+            if (listOfAnchorNodes.Count > 0 
+                && (m_SelectedNode == null || m_IsShowAll))
             {
-                anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];                
+                if(m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && m_lb_listOfAllAnchorNodes.SelectedIndex < m_lb_listOfAllAnchorNodes.Items.Count  ) anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];                
             }
             else
             {
                 anchorNode = m_SelectedNode;
                  
             }
+            if (anchorNode == null) return;
             if (nodes_phraseMap.ContainsKey(anchorNode))
             {
                 nodes_phraseMap[anchorNode] = null;
