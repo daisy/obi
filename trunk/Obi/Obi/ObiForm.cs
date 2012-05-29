@@ -1762,7 +1762,7 @@ namespace Obi
                    
                 Dialogs.ExportDirectory dialog =
                     new ExportDirectory ( exportDirectory,
-                             mSession.Path, mSettings.Export_EncodeToMP3, mSettings.Export_BitRateMP3); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                             mSession.Path, mSettings.Export_EncodeToMP3, mSettings.Export_BitRateMP3, mSettings.Export_AppendSectionNameToAudioFile); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     try
@@ -1774,7 +1774,8 @@ namespace Obi
                         
                         mSettings.Export_EncodeToMP3 = dialog.EncodeToMP3;
                         mSettings.Export_BitRateMP3 = dialog.BitRate;
-                        
+                        mSettings.Export_AppendSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName;
+
                         if (!exportPath.EndsWith ( Path.DirectorySeparatorChar.ToString () ))
                             {
                             exportPath += Path.DirectorySeparatorChar;
@@ -1792,7 +1793,7 @@ namespace Obi
                                     mSession.Presentation, exportPath, dialog.EncodeToMP3, AudioLib.SampleRate.Hz44100, audioFileSectionLevel);
                             }
                             DAISYExport.BitRate_Mp3 = dialog.BitRate;
-                            DAISYExport.AddSectionNameToAudioFile = dialog.AddSectionNameToAudioFileName; ;
+                            DAISYExport.AddSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName; ;
                             //DAISYExport.EnableExplicitGarbageCollection = Settings.OptimizeMemory;
                         Status(String.Format(Localizer.Message("ObiFormStatusMsg_ExportingProject") , exportPath));
                                                 

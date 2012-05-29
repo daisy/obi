@@ -17,7 +17,7 @@ namespace Obi.Dialogs
         private bool m_IsMP3Check;
         private bool m_SectionNameToAudioFileNameCheck;
 
-        public ExportDirectory(string path, string xukPath, bool encodeToMP3, int bitRate)
+        public ExportDirectory(string path, string xukPath, bool encodeToMP3, int bitRate, bool appendSectionNameToAudioFile)
         {
             InitializeComponent();
             mPathTextBox.Text = path;
@@ -35,6 +35,7 @@ namespace Obi.Dialogs
             if(bitRate != 0)
                 m_ComboBoxBitrate.SelectedIndex = bitRate == 32 ? 0 : bitRate == 48 ? 1 : bitRate == 64 ? 2 : 3;
             m_checkBoxMP3Encoder.Checked = encodeToMP3;
+            m_checkBoxAddSectionNameToAudioFileName.Checked = appendSectionNameToAudioFile;
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace Obi.Dialogs
             get { return m_BitRate; }
         }
 
-        public bool AddSectionNameToAudioFileName
+        public bool AppendSectionNameToAudioFileName
         {
             get { return m_checkBoxAddSectionNameToAudioFileName.Checked; }
         }
