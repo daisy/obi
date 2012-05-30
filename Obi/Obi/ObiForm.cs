@@ -3390,8 +3390,11 @@ namespace Obi
              
                 if (mSession.CanSave == false)
                 {
-                    mSession.PresentationHasChanged(1);
-                    mSession.ForceSave();
+                    if (!mSession.ErrorsInOpeningProject)
+                    {
+                        mSession.PresentationHasChanged(1);
+                        mSession.ForceSave();
+                    }
                 }
                 else
                     mSession.PresentationHasChanged(1);
