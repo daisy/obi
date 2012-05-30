@@ -67,6 +67,7 @@
             this.m_cb_SpecialPhrases.Size = new System.Drawing.Size(264, 24);
             this.m_cb_SpecialPhrases.TabIndex = 0;
             this.m_cb_SpecialPhrases.Text = "Click to Select..";
+            this.m_cb_SpecialPhrases.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.m_cb_SpecialPhrases_PreviewKeyDown);
             // 
             // m_btnFind
             // 

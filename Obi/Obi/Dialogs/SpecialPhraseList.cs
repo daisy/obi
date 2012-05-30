@@ -40,6 +40,11 @@ namespace Obi.Dialogs
        
         private void m_btnFind_Click(object sender, EventArgs e)
         {
+            CollectPhrases();
+        }
+
+        private void CollectPhrases ()
+        {
            m_btnOK.Enabled = false;
            this.m_lbSpecialPhrasesList.Items.Clear();
            string sectionName = null;
@@ -183,6 +188,14 @@ namespace Obi.Dialogs
            selectedItem = backendList[selectedeNode];
 
            m_btnOK.Enabled = m_lbSpecialPhrasesList.SelectedIndex >= 0;
+        }
+
+        private void m_cb_SpecialPhrases_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CollectPhrases();
+            }
         }
 
       }
