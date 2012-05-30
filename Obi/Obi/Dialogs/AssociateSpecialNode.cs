@@ -22,10 +22,10 @@ namespace Obi.Dialogs
         {
             m_ObiNode = obiNode;
             m_SelectedNode = selectedNode;
-            
+
             InitializeComponent();
             if (selectedNode != null && selectedNode is EmptyNode)
-            {                
+            {
                 m_txtBox_SectionName.Visible = true;
                 m_lb_listOfAllAnchorNodes.Visible = false;
                 if (selectedNode.AssociatedNode != null)
@@ -33,17 +33,18 @@ namespace Obi.Dialogs
                 else
                     m_txtBox_SectionName.Text = selectedNode.ToString();
                 groupBox1.Text = "Selected node";
-                
+
                 AddToListBox();
             }
             else
             {
+                m_IsShowAll = true;
                 AddToListBox();
                 m_btn_ShowAll.Enabled = false;
                 m_txtBox_SectionName.Visible = false;
                 groupBox1.Text = "List of anchor nodes";
                 m_lb_listOfAllAnchorNodes.Visible = true;
-            }                       
+            }                               
         }
 
         public Dictionary<EmptyNode,EmptyNode> DictionaryToMapValues
@@ -70,7 +71,8 @@ namespace Obi.Dialogs
                 }
                 groupBox1.Text = "List of anchor nodes";
                 m_txtBox_SectionName.Visible = false;
-                m_btn_ShowAll.Text = Localizer.Message("Associate_show_selected");               
+                m_btn_ShowAll.Text = Localizer.Message("Associate_show_selected");
+                m_IsShowAll = false;
             }
             else if (m_btn_ShowAll.Text == Localizer.Message("Associate_show_selected"))
             {
@@ -79,6 +81,7 @@ namespace Obi.Dialogs
                 m_lb_listOfAllAnchorNodes.Visible = false;
                 groupBox1.Text = "Selected node";
                 m_btn_ShowAll.Text = Localizer.Message("Associate_show_all");
+                m_IsShowAll = true;
                 AddToListBox();
             }
         }
@@ -125,8 +128,8 @@ namespace Obi.Dialogs
                                     m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1));
                                 else
                                 {
-                                    if (!m_IsShowAll)
-                                        m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
+                                     // if (!m_IsShowAll)
+                                     m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
                                 }
                                 firstIndex = -1;
                             }
@@ -152,7 +155,7 @@ namespace Obi.Dialogs
                         }
                         listOfAnchorNodesCopy.Add(node.PhraseChild(i));
                     }
-                    if (m_txtBox_SectionName.Visible == false)
+                    if (m_IsShowAll == false)
                     {
                         listOfAnchorNodes.Clear();
                         //m_lb_listOfAllAnchorNodes.Items.Add("Section " + m_SelectedNode.ParentAs<SectionNode>() + " " + m_SelectedNode);
@@ -166,14 +169,17 @@ namespace Obi.Dialogs
         {
             EmptyNode anchorNode = null; 
             bool IsAssociated = false;
-            
+            m_btn_Deassociate.Enabled = true;
             for (int i = 0; i < listOfAnchorNodesCopy.Count; i++)
             {
                 if (listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex] == listOfAnchorNodesCopy[i].AssociatedNode)
                 {
                     if (MessageBox.Show(Localizer.Message("Node_already_associated"), Localizer.Message("Associate"), MessageBoxButtons.YesNo,
                            MessageBoxIcon.Question) == DialogResult.No)
+                    {
                         IsAssociated = true;
+                        m_btn_Deassociate.Enabled = false;
+                    }
                     break;
                 }
                 else
@@ -187,7 +193,10 @@ namespace Obi.Dialogs
                     {
                         if (MessageBox.Show(Localizer.Message("Node_already_associated"),Localizer.Message("Associate"), MessageBoxButtons.YesNo,
                                MessageBoxIcon.Question) == DialogResult.No)
-                           IsAssociated = true;
+                        {
+                            IsAssociated = true;
+                            m_btn_Deassociate.Enabled = false;
+                        }
                         break;
                     }
                     else
@@ -215,14 +224,14 @@ namespace Obi.Dialogs
                     {
                         nodes_phraseMap.Add(anchorNode, listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
                     }                  
-        }
-            m_btn_Deassociate.Enabled = true;
+             }
+
         }
 
         private void m_btn_Deassociate_Click(object sender, EventArgs e)
         {
             EmptyNode anchorNode = null;
-            if (listOfAnchorNodes.Count > 0 
+            if (listOfAnchorNodes.Count > 0
                 && (m_SelectedNode == null || m_IsShowAll))
             {
                 if(m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && m_lb_listOfAllAnchorNodes.SelectedIndex < m_lb_listOfAllAnchorNodes.Items.Count  ) anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];                

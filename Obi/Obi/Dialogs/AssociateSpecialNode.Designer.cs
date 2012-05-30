@@ -105,7 +105,7 @@ namespace Obi.Dialogs
             this.m_btn_Deassociate.Name = "m_btn_Deassociate";
             this.m_btn_Deassociate.Size = new System.Drawing.Size(95, 23);
             this.m_btn_Deassociate.TabIndex = 8;
-            this.m_btn_Deassociate.Text = "Deass&ociate";
+            this.m_btn_Deassociate.Text = "Diss&ociate";
             this.m_btn_Deassociate.UseVisualStyleBackColor = true;
             this.m_btn_Deassociate.Click += new System.EventHandler(this.m_btn_Deassociate_Click);
             // 
@@ -178,7 +178,7 @@ namespace Obi.Dialogs
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "AssociateSpecialNode";
-            this.Text = "Add/Remove reference (Associate/Deassociate)";
+            this.Text = "Add/Remove reference (Associate/Dissociate)";
             this.Load += new System.EventHandler(this.AssociateSpecialNode_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
