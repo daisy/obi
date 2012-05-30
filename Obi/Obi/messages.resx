@@ -2088,4 +2088,10 @@ Error text: {1}</value>
   <data name="StatusMsg_FineNavigation" xml:space="preserve">
     <value>Fine navigation:</value>
   </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>Audio files corresponding to following ids are missing:</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning!</value>
+  </data>
 </root>

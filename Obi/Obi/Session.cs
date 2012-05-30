@@ -306,7 +306,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             if (ProjectOpened != null) ProjectOpened(this, null);
             if (listOfErrorMessages.Count > 0)
             {
-                Dialogs.ReportDialog reportDialog = new Obi.Dialogs.ReportDialog(Localizer.Message("Report_for_import"), "The list of error messages", listOfErrorMessages);
+                Dialogs.ReportDialog reportDialog = new Obi.Dialogs.ReportDialog(Localizer.Message("Warning"), Localizer.Message("Error_Message"), listOfErrorMessages);
                 reportDialog.ShowDialog();
             }
         }
