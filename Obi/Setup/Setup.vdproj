@@ -683,7 +683,7 @@
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_1C13CD2328BF4BE49BD04298B599902B"
             {
             "Name" = "8:CheckDX.dll"
-            "Condition" = "8:"
+            "Condition" = "8:Not Installed"
             "Object" = "8:_AC765BB998E34797BC4B930FC4135042"
             "FileType" = "3:1"
             "InstallAction" = "3:2"
@@ -692,7 +692,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_0094761A_2D30_43B5_9657_FCB3E0B4A1E8"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
+            "CustomActionData" = "8:/sourcePath=\"[SOURCEDIR]\\\""
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_3856285D52554FCAA7171F4AC1B2CDBA"
             {
@@ -2006,7 +2006,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi 2.5 Pre-Alpha"
         "ProductCode" = "8:{93AB5F24-7B09-41BC-8D45-7D0BFA7D63F2}"
-        "PackageCode" = "8:{71323C19-A607-48D8-8BEF-312E95C70C35}"
+        "PackageCode" = "8:{D5648D89-481C-47D1-89DA-C4E372070A44}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
