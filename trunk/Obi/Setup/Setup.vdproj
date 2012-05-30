@@ -680,6 +680,20 @@
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:/sourPath=\"[SOURCEDIR] \""
             }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_1C13CD2328BF4BE49BD04298B599902B"
+            {
+            "Name" = "8:CheckDX.dll"
+            "Condition" = "8:"
+            "Object" = "8:_AC765BB998E34797BC4B930FC4135042"
+            "FileType" = "3:1"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_0094761A_2D30_43B5_9657_FCB3E0B4A1E8"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_3856285D52554FCAA7171F4AC1B2CDBA"
             {
             "Name" = "8:InstallerFileOperations4.dll"
@@ -707,20 +721,6 @@
             "Identifier" = "8:_D98D26C3_9CCE_453D_9CB2_55148AF8049E"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:/sourPath=\"[SOURCEDIR] \""
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_C0A91C7AED174FFA8B78F79DD1D608BD"
-            {
-            "Name" = "8:CheckDX.dll"
-            "Condition" = "8:Not Installed"
-            "Object" = "8:_AC765BB998E34797BC4B930FC4135042"
-            "FileType" = "3:1"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_126AFF50_0722_4081_BBED_4AA9BA77AF71"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/sourcePath=\"[SOURCEDIR]\\\""
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_F23F9640BF93408EA0E2FF0CEEA5D1B6"
             {
@@ -2004,19 +2004,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 2.0"
-        "ProductCode" = "8:{46DBBC3E-53C4-4585-8B76-C5D98518D4BA}"
-        "PackageCode" = "8:{AFE341A2-3983-4A06-8E59-9BC77D6FD67D}"
+        "ProductName" = "8:Obi 2.5 Pre-Alpha"
+        "ProductCode" = "8:{93AB5F24-7B09-41BC-8D45-7D0BFA7D63F2}"
+        "PackageCode" = "8:{71323C19-A607-48D8-8BEF-312E95C70C35}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.0.0"
+        "ProductVersion" = "8:2.2.0"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.daisy.org/forums/obi"
-        "Title" = "8:Obi 2.0"
+        "Title" = "8:Obi 2.5 Pre-Alpha"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Obi development Team"
         "Keywords" = "8:"
@@ -2028,7 +2028,7 @@
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:0"
         "PreBuildEvent" = "8:"
-        "PostBuildEvent" = "8:"
+        "PostBuildEvent" = "8:cscript.exe \"$(ProjectDir)CustomAction_NoImpersonate.js\" \"$(BuiltOuputPath)\"\r\ncscript.exe \"$(ProjectDir)WiRunSQL.vbs\" \"$(BuiltOuputPath)\" \"INSERT INTO `Error` (`Error`, `Message`) VALUES (1001, 'Error [1]: [2]')\" "
         "RunPostBuildEvent" = "3:0"
         }
         "Registry"
@@ -2127,7 +2127,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 2.0"
+            "Name" = "8:Obi 2.5 Pre-Alpha"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -2155,7 +2155,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 2.0"
+            "Name" = "8:Obi 2.5 Pre-Alpha"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
