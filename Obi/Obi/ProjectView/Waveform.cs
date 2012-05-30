@@ -114,22 +114,25 @@ namespace Obi.ProjectView
                         {
                             m_IsRenderingWaveform = true;
                             ColorSettings settings = mBlock.ColorSettings;
+
+                            if (mBlock.Strip.ContentView.Settings != null
+                                    && mBlock.Strip.ContentView.Settings.OptimizeMemory)
+                            {
                             System.Diagnostics.PerformanceCounter ramPerformanceCounter = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
                             if (ramPerformanceCounter.NextValue() < 100)
                             {
                                 //Console.WriteLine("RAM near overload " + ramPerformanceCounter.NextValue().ToString());
 
-                                if (mBlock.Strip.ContentView.Settings != null
-                                    && mBlock.Strip.ContentView.Settings.OptimizeMemory)
-                                {
+                                
                                     System.GC.GetTotalMemory(true);
 
                                     System.GC.WaitForFullGCComplete(500);
+
+                                    float availableRAM = ramPerformanceCounter.NextValue();
+                                    Console.WriteLine("RAM after collection " + availableRAM.ToString());
                                 }
-                                float availableRAM = ramPerformanceCounter.NextValue();
-                                Console.WriteLine("RAM after collection " + availableRAM.ToString());
+                                ramPerformanceCounter.Close();
                             }
-                            ramPerformanceCounter.Close();
                             m_CancelRendering = false;
                             mBitmap = CreateBitmap(mBlock.ColorSettings, false);
                             if (mBitmap == null)

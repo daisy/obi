@@ -1036,6 +1036,7 @@ namespace Obi
         private void ObiForm_Load ( object sender, EventArgs e )
             {
                 if (!m_InputDeviceFound && !m_OutputDevicefound) this.Close();
+                CheckSystemSupportForMemoryOptimization();
                 if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject, null);
             if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog ();
         
@@ -1043,6 +1044,25 @@ namespace Obi
             if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
             
             }
+
+        
+        private void CheckSystemSupportForMemoryOptimization()
+        {
+            try
+            {
+            System.Diagnostics.PerformanceCounter ramPerformanceCounter = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
+            ramPerformanceCounter.NextValue();
+            ramPerformanceCounter.Close();
+            System.GC.GetTotalMemory(true);
+            }
+            catch (System.Exception)
+            {
+                Settings.OptimizeMemory = false ;
+                
+            }
+            }
+
+
 
 
         // workaround to move keyboard focus to selection 
@@ -2245,7 +2265,6 @@ namespace Obi
                 }
             }
 
-
         // Open the project at the given path; warn the user on error.
         private void OpenProject_Safe ( string path, string progressTitle )
         {
@@ -3076,6 +3095,7 @@ namespace Obi
         /// <returns></returns>
         private bool CheckAndAlertForMemoryUsage()
         {
+            if (Settings != null &&   !Settings.OptimizeMemory ) return true;
             System.Diagnostics.PerformanceCounter ramPerformanceCounter = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
             if (ramPerformanceCounter.NextValue() < 100)
             {
