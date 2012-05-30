@@ -3501,7 +3501,9 @@ for (int j = 0;
                                 nodeSel = this.Selection.Node;
                             else if (this.Selection.Node is EmptyNode || this.Selection.Node is PhraseNode)
                                 nodeSel = this.Selection.Node.ParentAs<SectionNode>();
-                            if (nodeSel.Duration < GoToDialog.TimeInSeconds)
+
+                            double selectedNodeDuration =nodeSel != null? nodeSel.Duration:0.0;
+                            if (selectedNodeDuration == 0 ||  selectedNodeDuration  < GoToDialog.TimeInSeconds)
                             {
                                 MessageBox.Show(Localizer.Message("time_exceeds_duration_section"));
                                 return;
