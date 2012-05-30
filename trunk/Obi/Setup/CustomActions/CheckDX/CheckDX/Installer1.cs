@@ -5,7 +5,7 @@ using System.Configuration.Install;
 using System.Reflection;
 using System.Windows.Forms;
 using System.IO;
-
+using Microsoft.Win32;
 
 namespace CheckDX
 {
@@ -29,47 +29,55 @@ namespace CheckDX
         /// <returns></returns>
         private List <string>  ListDirectXAssemblies()
         {
-            // initialise list for holding all DX assemblies on machine
-            List<string> AssemblyPaths = new List<string>();
-
-            // Get all assemblies refered by this application
-            Assembly[] ReferedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
-
-            DirectoryInfo DirInfo;
-            
-            foreach (Assembly assembly in  ReferedAssemblies)
+            try
             {
-                if (assembly.GlobalAssemblyCache)
-                { //1
-                    DirInfo = new DirectoryInfo(Directory.GetParent(assembly.Location).FullName);
+                // initialise list for holding all DX assemblies on machine
+                List<string> AssemblyPaths = new List<string>();
 
-                    // get the adequate parent directory of assembly
-                    for (int i = 0; i < 3; i++)
-                    {//2
-                        if (DirInfo.Root.Name == DirInfo.Parent.Name
-                            ||  DirInfo.Parent.FullName == Directory.GetParent ( Environment.SystemDirectory).FullName )
-                                                                                                            break;
-                        
-                        DirInfo = DirInfo.Parent;
-                    }//-2
+                // Get all assemblies refered by this application
+                Assembly[] ReferedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-                    // add assembly directories to list only if it is not duplicate and its parent directory is not in list
-                                        if ( ( !AssemblyPaths.Contains (DirInfo.FullName) 
-                                            &&    !ParentExists ( AssemblyPaths , DirInfo.FullName)  )
-                                            || 
-                                            AssemblyPaths.Count == 0 )
-                                        AssemblyPaths.Add(DirInfo.FullName);
-                                    }//-1
-                                                }
-            
-            //if (AssemblyPaths != null)
-            //{
+                DirectoryInfo DirInfo;
+
+                foreach (Assembly assembly in ReferedAssemblies)
+                {
+                    if (assembly.GlobalAssemblyCache)
+                    { //1
+                        DirInfo = new DirectoryInfo(Directory.GetParent(assembly.Location).FullName);
+
+                        // get the adequate parent directory of assembly
+                        for (int i = 0; i < 3; i++)
+                        {//2
+                            if (DirInfo.Root.Name == DirInfo.Parent.Name
+                                || DirInfo.Parent.FullName == Directory.GetParent(Environment.SystemDirectory).FullName)
+                                break;
+
+                            DirInfo = DirInfo.Parent;
+                        }//-2
+
+                        // add assembly directories to list only if it is not duplicate and its parent directory is not in list
+                        if ((!AssemblyPaths.Contains(DirInfo.FullName)
+                            && !ParentExists(AssemblyPaths, DirInfo.FullName))
+                            ||
+                            AssemblyPaths.Count == 0)
+                            AssemblyPaths.Add(DirInfo.FullName);
+                    }//-1
+                }
+
+                //if (AssemblyPaths != null)
+                //{
                 //for (int i = 0; i < AssemblyPaths.Count; i++)
-                    //MessageBox.Show(AssemblyPaths[i]);
-                            //}
+                //MessageBox.Show(AssemblyPaths[i]);
+                //}
 
-            return  FindDirectXPaths(AssemblyPaths); 
+                return FindDirectXPaths(AssemblyPaths);
+            }
+            catch (System.Exception ex)
+            {
+                return null;
+            }
         }
+
 /// <summary>
 ///  check if the parrent directory is already in list
 /// </summary>
@@ -110,6 +118,18 @@ private List <string>  FindDirectXPaths(List<string> DirPaths)
                 /// </summary>
         public void Check()
         {
+            /*
+            RegistryKey directXKey = Registry.LocalMachine.OpenSubKey ("SOFTWARE\\Microsoft\\DirectX,Version=4.09.00.0904") ;
+            if (directXKey == null)
+            {
+                MessageBox.Show("Direct x 9c not found");
+            }
+            else
+            {
+                MessageBox.Show("DirectX found");
+            }
+            return ;
+             */ 
             CheckForDirectXManaged ( ListDirectXAssemblies() );
         }
 
@@ -121,15 +141,15 @@ private List <string>  FindDirectXPaths(List<string> DirPaths)
         {
             bool IsRightVersion = false;
             if (DXList != null)
-            {
+            {//1
                 for (int i = 0; i < DXList.Count; i++)
-                {
+                {//2
                     string Version = "   ";
                     try
                     {
                         Version = (Assembly.ReflectionOnlyLoad(DXList[i]).ImageRuntimeVersion);
                     }
-                     catch (System.Exception )
+                    catch (System.Exception)
                     {
                         //OpenDirectXLink();
                     }
@@ -142,6 +162,22 @@ private List <string>  FindDirectXPaths(List<string> DirPaths)
                     }
                 }// end for
             } //end if
+            else
+            {
+                RegistryKey directXKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\DirectX");
+                string version = null;
+                foreach (string name in directXKey.GetValueNames())
+                {
+                    if (name == "Version")
+                    {
+                        version = directXKey.GetValue(name).ToString();
+                    }
+                }
+                if (version == "4.09.00.0904")
+                {
+                    IsRightVersion = true;
+                }
+            }
 
             if (!IsRightVersion)
                 OpenDirectXLink();
