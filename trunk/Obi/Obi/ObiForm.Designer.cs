@@ -181,6 +181,7 @@ namespace Obi
             this.mNextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.mPlayOnNavigateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFineNavigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRewindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -197,7 +198,6 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.mFineNavigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -1286,6 +1286,13 @@ namespace Obi
             resources.ApplyResources(this.mPlayOnNavigateToolStripMenuItem, "mPlayOnNavigateToolStripMenuItem");
             this.mPlayOnNavigateToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mPlayOnNavigateToolStripMenuItem_CheckedChanged);
             // 
+            // mFineNavigationToolStripMenuItem
+            // 
+            this.mFineNavigationToolStripMenuItem.CheckOnClick = true;
+            this.mFineNavigationToolStripMenuItem.Name = "mFineNavigationToolStripMenuItem";
+            resources.ApplyResources(this.mFineNavigationToolStripMenuItem, "mFineNavigationToolStripMenuItem");
+            this.mFineNavigationToolStripMenuItem.Click += new System.EventHandler(this.mFineNavigationToolStripMenuItem_Click);
+            // 
             // mRewindToolStripMenuItem
             // 
             resources.ApplyResources(this.mRewindToolStripMenuItem, "mRewindToolStripMenuItem");
@@ -1391,13 +1398,6 @@ namespace Obi
             this.mStatusProgressBar.Name = "mStatusProgressBar";
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            // 
-            // mFineNavigationToolStripMenuItem
-            // 
-            this.mFineNavigationToolStripMenuItem.CheckOnClick = true;
-            this.mFineNavigationToolStripMenuItem.Name = "mFineNavigationToolStripMenuItem";
-            resources.ApplyResources(this.mFineNavigationToolStripMenuItem, "mFineNavigationToolStripMenuItem");
-            this.mFineNavigationToolStripMenuItem.Click += new System.EventHandler(this.mFineNavigationToolStripMenuItem_Click);
             // 
             // mProjectView
             // 
