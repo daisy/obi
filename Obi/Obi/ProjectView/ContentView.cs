@@ -4250,7 +4250,15 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     if (n is EmptyNode && ((EmptyNode)n).Role_ != EmptyNode.Role.Plain)
                         {
                         //mProjectView.Selection = new NodeSelection(n, this);
-                        SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
+                            if (((EmptyNode)n).Role_ == EmptyNode.Role.Custom && EmptyNode.SkippableNamesList.Contains(((EmptyNode)n).CustomRole))
+                            {
+                                SelectPhraseBlockOrStrip((EmptyNode)n); // @phraseLimit
+                                SelectFirstSkippableNode();
+                            }
+                            else
+                            {
+                                SelectPhraseBlockOrStrip((EmptyNode)n); // @phraseLimit
+                            }
                         return true;
                         }
                     }
@@ -4272,6 +4280,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     if (n is EmptyNode && ((EmptyNode)n).Role_ != EmptyNode.Role.Plain)
                         {
                         //mProjectView.Selection = new NodeSelection(n, this);
+                        EmptyNode preceedingNode = (n.PrecedingNode!= null && n.PrecedingNode is EmptyNode)? (EmptyNode)n.PrecedingNode: null ;
+                        if ( preceedingNode != null && preceedingNode.Role_ == EmptyNode.Role.Custom && EmptyNode.SkippableNamesList.Contains( preceedingNode.CustomRole) 
+                            &&  ((EmptyNode)n).CustomRole == preceedingNode.CustomRole ) 
+                        {
+                            continue ;
+                        }
                         SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
                         return true;
                         }
