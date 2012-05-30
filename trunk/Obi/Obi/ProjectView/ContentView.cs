@@ -3675,7 +3675,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         
         protected override bool ProcessCmdKey ( ref Message msg, Keys key )
             {
-                if (ShouldSkipKeyDueToMemoryOverload(key)) return true;
+                if (mProjectView.ObiForm.Settings.OptimizeMemory &&  ShouldSkipKeyDueToMemoryOverload(key)) return true;
             if (CanUseKeys &&
                 ((msg.Msg == ProjectView.WM_KEYDOWN) || (msg.Msg == ProjectView.WM_SYSKEYDOWN)) &&
                 mShortcutKeys.ContainsKey ( key ) && mShortcutKeys[key] ()) return true;
@@ -3688,6 +3688,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             int m_KeyRepeatCount = 0;
         private bool ShouldSkipKeyDueToMemoryOverload(Keys key)
         {
+            if (Settings != null && Settings.OptimizeMemory) return false;
+
             if (m_PrevKey.ToString() == key.ToString())
             {
                 m_KeyRepeatCount++;
@@ -3703,15 +3705,15 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         m_KeysMillisecond = DateTime.Now.Second;
                         m_PrevKey = key;
                         //Console.WriteLine("count " + m_KeyRepeatCount + " : " + m_KeysMillisecond);
-                        if (Settings != null  &&  Settings.OptimizeMemory)
-                        {
                             System.GC.GetTotalMemory(true);
                             System.GC.WaitForFullGCComplete(500);
                         }
                         System.Media.SystemSounds.Beep.Play();
+                        ramPerformanceCounter.Close();
                         return true;
-                    }
-                    ramPerformanceCounter.Close();
+                    
+                        ramPerformanceCounter.Close();
+                    
                     m_KeyRepeatCount = 0;
                 }
 
