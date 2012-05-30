@@ -270,11 +270,15 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             //ForceSave ();
         }
 
+        private bool m_ErrorsInOpeningProject;
+        public bool ErrorsInOpeningProject { get { return m_ErrorsInOpeningProject; } }
+
         /// <summary>
         /// Open a project from a XUK file.
         /// </summary>
         public void Open(string path)
         {
+            m_ErrorsInOpeningProject = false;
             mProject = new urakawa.Project();
             //sdk2
             //mProject.setDataModelFactory ( mDataModelFactory );
@@ -306,6 +310,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             if (ProjectOpened != null) ProjectOpened(this, null);
             if (listOfErrorMessages.Count > 0)
             {
+                m_ErrorsInOpeningProject = true;
                 Dialogs.ReportDialog reportDialog = new Obi.Dialogs.ReportDialog(Localizer.Message("Warning"), Localizer.Message("Error_Message"), listOfErrorMessages);
                 reportDialog.ShowDialog();
             }
@@ -354,6 +359,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         {
             if (Save(mPath))
             {
+                m_ErrorsInOpeningProject = false;
                 mChangesCount = 0;
                 if (ProjectSaved != null) ProjectSaved(this, null);
             }
