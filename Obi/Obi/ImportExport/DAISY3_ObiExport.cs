@@ -491,7 +491,8 @@ namespace Obi.ImportExport
                     if (pageListNode == null)
                     {
                         pageListNode = ncxDocument.CreateElement(null, "pageList", ncxRootNode.NamespaceURI);
-                        ncxRootNode.AppendChild(pageListNode);
+                        
+                        ncxRootNode.InsertAfter(pageListNode, navMapNode);
                     }
 
                     XmlNode pageTargetNode = ncxDocument.CreateElement(null, "pageTarget", pageListNode.NamespaceURI);
