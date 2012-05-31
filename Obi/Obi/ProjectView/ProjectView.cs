@@ -3653,11 +3653,13 @@ for (int j = 0;
         public void MarkBeginNote()
         {
             mContentView.BeginSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
+            TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionBegin);
         }
 
         public void MarkEndNote()
         {
             mContentView.EndSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
+            TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionEnd);
         }
 
         public void AssignRoleToMarkedContinuousNodes()  //@AssociateNode
