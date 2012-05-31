@@ -2818,9 +2818,9 @@ UpdateButtons();
         }
 
 
-        private enum AudioCluesSelection { SelectionBegin, SelectionEnd } ;
+        public enum AudioCluesSelection { SelectionBegin, SelectionEnd } ;
 
-        private void PlayAudioClue(AudioCluesSelection Clue)
+        public void PlayAudioClue(AudioCluesSelection Clue)
         {
             if ( mView.ObiForm.Settings.AudioClues )
             {
