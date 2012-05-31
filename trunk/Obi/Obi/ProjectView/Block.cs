@@ -263,6 +263,7 @@ namespace Obi.ProjectView
                                                 durationMS == 0.0 ? Localizer.Message ( "empty" ) : Program.FormatDuration_Long ( durationMS),
                 mNode.Role_ == EmptyNode.Role.Custom ? String.Format ( Localizer.Message ( "phrase_extra_custom" ), mNode.CustomRole) :
                 mNode.Role_== EmptyNode.Role.Page ? String.Format ( Localizer.Message ( "phrase_extra_page" ), mNode.PageNumber!= null ? mNode.PageNumber.ToString () : "" ) :
+                mNode.Role_ == EmptyNode.Role.Anchor && mNode.AssociatedNode == null ? Localizer.Message ( "phrase_extra_" + mNode.Role_.ToString ()  ) + "= ?":
                     Localizer.Message ( "phrase_extra_" + mNode.Role_.ToString () ) );
         
 
