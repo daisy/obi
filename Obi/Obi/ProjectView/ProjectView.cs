@@ -4031,7 +4031,7 @@ public bool ShowOnlySelectedSection
                     string destinationPath = System.IO.Path.Combine(desktopPath, System.IO.Path.GetFileName(m_LogFilePath));
                     if (System.IO.File.Exists(destinationPath)) System.IO.File.Delete(destinationPath);
                     System.IO.File.Move(m_LogFilePath, destinationPath);
-                    MessageBox.Show("The previous session of Obi was terminated abruptly. The log file ObiSession.log is created on the desktop.",
+                    MessageBox.Show(Localizer.Message( "ProjectViewMsg_LogFileCreatedOnDesktop"),
                         Localizer.Message("Caption_Warning"));
                     //if (MessageBox.Show("The previous session of Obi was terminated abruptly. The log file ObiSession.log is created on the desktop. To report this error via emnail please pressYes else press No to continue",
                         //Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo) == DialogResult.Yes)
