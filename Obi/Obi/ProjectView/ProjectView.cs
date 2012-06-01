@@ -3605,6 +3605,8 @@ for (int j = 0;
 
         public void AssociateNodeToSpecialNode()  //@AssociateNode
         {
+            if (TransportBar.IsRecorderActive) return;
+            if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause();
             Dialogs.AssociateSpecialNode AssociateSpecialNode;
            // if (mSelection.Node is EmptyNode)
             {
