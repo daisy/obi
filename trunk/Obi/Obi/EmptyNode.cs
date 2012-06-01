@@ -210,7 +210,9 @@ namespace Obi
             }
             set 
             { if(this.Role_ == Role.Anchor)
-                m_AssociatedNode =  value; 
+                m_AssociatedNode =  value;
+                ChangedRoleEventArgs args = new ChangedRoleEventArgs(this, mRole, mCustomRole);
+                if (ChangedRole != null) ChangedRole(this, args);
             }
         }
 
