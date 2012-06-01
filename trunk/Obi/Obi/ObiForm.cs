@@ -1623,7 +1623,7 @@ namespace Obi
         private void mPlayAllToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.TransportBar.PlayAll (); }
         private void mPlaySelectionToolStripMenuItem_Click ( object sender, EventArgs e )
             {
-            if (mProjectView.CanPlaySelection) mProjectView.TransportBar.PlayOrResume ( mProjectView.Selection.Node );
+            mProjectView.TransportBar.PlayOrResume ();
             }
         private void mPauseToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.TransportBar.Pause (); }
         private void mResumeToolStripMenuItem_Click ( object sender, EventArgs e )
