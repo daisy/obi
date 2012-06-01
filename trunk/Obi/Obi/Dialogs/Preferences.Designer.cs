@@ -83,6 +83,8 @@ namespace Obi.Dialogs
             this.m_lblShortcutKeys = new System.Windows.Forms.Label();
             this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
             this.mColorPreferencesTab = new System.Windows.Forms.TabPage();
+            this.mChooseFontCombo = new System.Windows.Forms.ComboBox();
+            this.m_lblChooseFont = new System.Windows.Forms.Label();
             this.m_txtBox_HighContrast = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_lv_ColorPref = new System.Windows.Forms.ListView();
@@ -98,8 +100,6 @@ namespace Obi.Dialogs
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
-            this.m_lblChooseFont = new System.Windows.Forms.Label();
-            this.mChooseFontCombo = new System.Windows.Forms.ComboBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -567,6 +567,17 @@ namespace Obi.Dialogs
             this.mColorPreferencesTab.Name = "mColorPreferencesTab";
             this.mColorPreferencesTab.UseVisualStyleBackColor = true;
             // 
+            // mChooseFontCombo
+            // 
+            resources.ApplyResources(this.mChooseFontCombo, "mChooseFontCombo");
+            this.mChooseFontCombo.FormattingEnabled = true;
+            this.mChooseFontCombo.Name = "mChooseFontCombo";
+            // 
+            // m_lblChooseFont
+            // 
+            resources.ApplyResources(this.m_lblChooseFont, "m_lblChooseFont");
+            this.m_lblChooseFont.Name = "m_lblChooseFont";
+            // 
             // m_txtBox_HighContrast
             // 
             resources.ApplyResources(this.m_txtBox_HighContrast, "m_txtBox_HighContrast");
@@ -668,17 +679,6 @@ namespace Obi.Dialogs
             this.m_ResetButton.UseVisualStyleBackColor = true;
             this.m_ResetButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // m_lblChooseFont
-            // 
-            resources.ApplyResources(this.m_lblChooseFont, "m_lblChooseFont");
-            this.m_lblChooseFont.Name = "m_lblChooseFont";
-            // 
-            // mChooseFontCombo
-            // 
-            resources.ApplyResources(this.mChooseFontCombo, "mChooseFontCombo");
-            this.mChooseFontCombo.FormattingEnabled = true;
-            this.mChooseFontCombo.Name = "mChooseFontCombo";
-            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -714,6 +714,7 @@ namespace Obi.Dialogs
             this.mColorPreferencesTab.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         #endregion
