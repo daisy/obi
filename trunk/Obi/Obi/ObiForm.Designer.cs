@@ -199,6 +199,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mHelp_WhatsNewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1354,6 +1355,7 @@ namespace Obi
             // mHelpToolStripMenuItem
             // 
             this.mHelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mHelp_WhatsNewMenuItem,
             this.mHelp_ContentsMenuItem,
             this.mHelp_ReportBugMenuItem,
             this.aboutObiToolStripMenuItem});
@@ -1413,6 +1415,12 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            // 
+            // mHelp_WhatsNewMenuItem
+            // 
+            this.mHelp_WhatsNewMenuItem.Name = "mHelp_WhatsNewMenuItem";
+            resources.ApplyResources(this.mHelp_WhatsNewMenuItem, "mHelp_WhatsNewMenuItem");
+            this.mHelp_WhatsNewMenuItem.Click += new System.EventHandler(this.mHelp_WhatsNewMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1610,6 +1618,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mSkippableMoveToEndNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_AssignRole_AnchorMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFineNavigationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mHelp_WhatsNewMenuItem;
     }
 }
 
