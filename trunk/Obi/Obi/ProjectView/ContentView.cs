@@ -1126,7 +1126,7 @@ namespace Obi.ProjectView
                 SectionNode selectedSection = mProjectView.GetSelectedPhraseSection;
                 if (mProjectView.Presentation != null && selectedSection == null)
                     {
-                    MessageBox.Show ( "A section or phrase should be select to wrap" );
+                    MessageBox.Show (Localizer.Message("ContentView_wrap"));
                     return;
                     }
 

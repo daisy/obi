@@ -862,7 +862,7 @@ namespace Obi.Dialogs
         {
             if (m_btn_AdvancedRecording.Text == "Enable advanced recording")
             {
-                if (MessageBox.Show("Allow overwrite, Start recording from cursor erasing the following audio and Record directly from transport bar checkboxes will be checked. Do you want to proceed?", "Advance recording mode", MessageBoxButtons.YesNo,
+                if (MessageBox.Show(Localizer.Message("Preferences_Allow_overwrite"),Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     m_CheckBoxListView.Items[3].Checked = true;

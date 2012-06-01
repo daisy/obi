@@ -56,10 +56,10 @@ namespace Obi.Dialogs
             {
                 if (m_SelectedSectionList.Count <= 1)
                 {
-                    MessageBox.Show("There are not enough section to merge. Select at least two continuous sections");
+                    MessageBox.Show(Localizer.Message("not_enough_sections_to_merge"));
                     return;
                 }
-                MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", m_SelectedSectionList[0].Label, m_SelectedSectionList[m_SelectedSectionList.Count - 1].Label));
+                MessageBox.Show(String.Format(Localizer.Message("merged_sections"), m_SelectedSectionList[0].Label, m_SelectedSectionList[m_SelectedSectionList.Count - 1].Label));
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -221,16 +221,16 @@ namespace Obi.Dialogs
                if (totalPhraseCount < 7000)
                {
                    if (m_lb_listofSectionsToMerge.SelectedItems.Count == 1)
-                    m_StatusLabelForMergeSection.Text = String.Format("Selected {0}. Select at least one more section to merge", m_lb_listofSectionsToMerge.SelectedItem);
-                   else 
-                     m_StatusLabelForMergeSection.Text = String.Format("Merging sections from {0} to {1} ", listOfLargestNumberOfSections[0].Label, listOfLargestNumberOfSections[listOfLargestNumberOfSections.Count - 1].Label);
+                       m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("select_one_more_section"), m_lb_listofSectionsToMerge.SelectedItem);
+                   else
+                       m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("merged_sections"), listOfLargestNumberOfSections[0].Label, listOfLargestNumberOfSections[listOfLargestNumberOfSections.Count - 1].Label);
 
                //    MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", newList[0], newList[newList.Count - 1]));
                }
                else
                {
-                   MessageBox.Show("Total phrase count is more than 7000");
-                   m_StatusLabelForMergeSection.Text = String.Format("Total phrase count is more than 7000. Select lesser number of sections.");
+                   MessageBox.Show(Localizer.Message("phrase_count_more_than_7000"));
+                   m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("phrase_count_more_than_7000"));
                    listOfLargestNumberOfSections = null;
                }
            }          
@@ -256,8 +256,8 @@ namespace Obi.Dialogs
                 }
             }
             if (totalPhraseCount > 7000)
-            MessageBox.Show(String.Format("Total phrase count for all the sections is more than 7000. Only sections till section {0} will be merged.", m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count -1].Label));
-        m_StatusLabelForMergeSection.Text = String.Format("Merging sections from {0} to {1} ", m_SectionList[0].Label, m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count - 1].Label);
+                MessageBox.Show(String.Format(Localizer.Message("limited_sections_merge"), m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count - 1].Label));
+            m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("merged_sections"), m_SectionList[0].Label, m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count - 1].Label);
         
         }
     }

@@ -702,6 +702,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A section or phrase should be select to wrap.
+        /// </summary>
+        internal static string ContentView_wrap {
+            get {
+                return ResourceManager.GetString("ContentView_wrap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No section displayed.
         /// </summary>
         internal static string ContentViewLabel_NoSection {
@@ -2559,6 +2568,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total phrase count for all the sections is more than 7000. Only sections till section {0} will be merged..
+        /// </summary>
+        internal static string limited_sections_merge {
+            get {
+                return ResourceManager.GetString("limited_sections_merge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading original project.
         /// </summary>
         internal static string Load_Original_Project {
@@ -2663,6 +2681,15 @@ namespace Obi {
         internal static string merge_sections {
             get {
                 return ResourceManager.GetString("merge_sections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merged sections will be from {0} to {1}.
+        /// </summary>
+        internal static string merged_sections {
+            get {
+                return ResourceManager.GetString("merged_sections", resourceCulture);
             }
         }
         
@@ -3310,6 +3337,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are not enough section to merge. Select at least two continuous sections.
+        /// </summary>
+        internal static string not_enough_sections_to_merge {
+            get {
+                return ResourceManager.GetString("not_enough_sections_to_merge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No matches were found..
         /// </summary>
         internal static string not_found_in_text {
@@ -3670,6 +3706,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total phrase count is more than 7000. Select lesser number of sections..
+        /// </summary>
+        internal static string phrase_count_more_than_7000 {
+            get {
+                return ResourceManager.GetString("phrase_count_more_than_7000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to phrase detection.
         /// </summary>
         internal static string phrase_detection {
@@ -3954,6 +3999,24 @@ namespace Obi {
         internal static string Preference_InvalidKeyExceptionMsg {
             get {
                 return ResourceManager.GetString("Preference_InvalidKeyExceptionMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advance recording mode.
+        /// </summary>
+        internal static string Preferences_advanced_recording_mode {
+            get {
+                return ResourceManager.GetString("Preferences_advanced_recording_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow overwrite, Start recording from cursor erasing the following audio and Record directly from transport bar checkboxes will be checked. Do you want to proceed?.
+        /// </summary>
+        internal static string Preferences_Allow_overwrite {
+            get {
+                return ResourceManager.GetString("Preferences_Allow_overwrite", resourceCulture);
             }
         }
         
@@ -4740,6 +4803,15 @@ namespace Obi {
         internal static string section_unexported_caption {
             get {
                 return ResourceManager.GetString("section_unexported_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected {0}. Select at least one more section to merge.
+        /// </summary>
+        internal static string select_one_more_section {
+            get {
+                return ResourceManager.GetString("select_one_more_section", resourceCulture);
             }
         }
         
