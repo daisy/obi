@@ -244,7 +244,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -277,7 +277,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="labelInputDeviceName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -957,6 +957,9 @@
   <data name="&gt;&gt;mKeyboardShortcutTab.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="mChooseFontCombo.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="mChooseFontCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -981,56 +984,11 @@
   <data name="&gt;&gt;mChooseFontCombo.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="m_CheckBoxListView.AccessibleName" xml:space="preserve">
-    <value>List box, Use up &amp; Down arrow to move in checkboxes</value>
-  </data>
-  <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 256</value>
-  </data>
-  <data name="m_CheckBoxListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>267, 81</value>
-  </data>
-  <data name="m_CheckBoxListView.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;m_CheckBoxListView.Name" xml:space="preserve">
-    <value>m_CheckBoxListView</value>
-  </data>
-  <data name="&gt;&gt;m_CheckBoxListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_CheckBoxListView.Parent" xml:space="preserve">
-    <value>m_grpBoxChkBoxListView</value>
-  </data>
-  <data name="&gt;&gt;m_CheckBoxListView.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="m_grpBoxChkBoxListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 245</value>
-  </data>
-  <data name="m_grpBoxChkBoxListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>405, 100</value>
-  </data>
-  <data name="m_grpBoxChkBoxListView.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="m_grpBoxChkBoxListView.Text" xml:space="preserve">
-    <value>Check Box List </value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxChkBoxListView.Name" xml:space="preserve">
-    <value>m_grpBoxChkBoxListView</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxChkBoxListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxChkBoxListView.Parent" xml:space="preserve">
-    <value>mColorPreferencesTab</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxChkBoxListView.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="m_lblChooseFont.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="m_lblChooseFont.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="m_lblChooseFont.Location" type="System.Drawing.Point, System.Drawing">
     <value>168, 245</value>
@@ -1054,7 +1012,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;m_lblChooseFont.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="m_txtBox_HighContrast.Location" type="System.Drawing.Point, System.Drawing">
     <value>474, 210</value>
@@ -1075,19 +1033,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;m_txtBox_HighContrast.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="m_lv_ColorPref.AccessibleName" xml:space="preserve">
-    <value>Colors List</value>
-  </data>
-  <data name="m_lv_ColorPref.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
-  </data>
-  <data name="m_lv_ColorPref.Size" type="System.Drawing.Size, System.Drawing">
-    <value>495, 137</value>
-  </data>
-  <data name="m_lv_ColorPref.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;m_lv_ColorPref.Name" xml:space="preserve">
     <value>m_lv_ColorPref</value>
@@ -1123,7 +1069,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="m_txtBox_Color.Location" type="System.Drawing.Point, System.Drawing">
     <value>474, 177</value>
@@ -1144,7 +1090,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;m_txtBox_Color.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="m_btn_Apply.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1171,7 +1117,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;m_btn_Apply.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1198,7 +1144,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1225,7 +1171,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="mHighContrastCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1249,7 +1195,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;mHighContrastCombo.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="mNormalColorCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1273,7 +1219,7 @@
     <value>mColorPreferencesTab</value>
   </data>
   <data name="&gt;&gt;mNormalColorCombo.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="mColorPreferencesTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>
@@ -1324,7 +1270,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mTab.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2411,6 +2357,30 @@
   <data name="&gt;&gt;m_cbShortcutKeys.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="m_lv_ColorPref.AccessibleName" xml:space="preserve">
+    <value>Colors List</value>
+  </data>
+  <data name="m_lv_ColorPref.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="m_lv_ColorPref.Size" type="System.Drawing.Size, System.Drawing">
+    <value>495, 137</value>
+  </data>
+  <data name="m_lv_ColorPref.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.Name" xml:space="preserve">
+    <value>m_lv_ColorPref</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="columnHeader3.Text" xml:space="preserve">
     <value>Control name</value>
   </data>
@@ -2428,6 +2398,54 @@
   </data>
   <data name="columnHeader5.Width" type="System.Int32, mscorlib">
     <value>153</value>
+  </data>
+  <data name="m_CheckBoxListView.AccessibleName" xml:space="preserve">
+    <value>List box, Use up &amp; Down arrow to move in checkboxes</value>
+  </data>
+  <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 256</value>
+  </data>
+  <data name="m_CheckBoxListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 81</value>
+  </data>
+  <data name="m_CheckBoxListView.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;m_CheckBoxListView.Name" xml:space="preserve">
+    <value>m_CheckBoxListView</value>
+  </data>
+  <data name="&gt;&gt;m_CheckBoxListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_CheckBoxListView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_CheckBoxListView.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_grpBoxChkBoxListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>171, 245</value>
+  </data>
+  <data name="m_grpBoxChkBoxListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>405, 100</value>
+  </data>
+  <data name="m_grpBoxChkBoxListView.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_grpBoxChkBoxListView.Text" xml:space="preserve">
+    <value>Check Box List </value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxChkBoxListView.Name" xml:space="preserve">
+    <value>m_grpBoxChkBoxListView</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxChkBoxListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxChkBoxListView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxChkBoxListView.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="m_ResetButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
