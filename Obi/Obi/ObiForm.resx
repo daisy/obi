@@ -1698,6 +1698,12 @@
   <data name="mToolsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Tools</value>
   </data>
+  <data name="mHelp_WhatsNewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 22</value>
+  </data>
+  <data name="mHelp_WhatsNewMenuItem.Text" xml:space="preserve">
+    <value>What's &amp;new ?</value>
+  </data>
   <data name="mHelp_ContentsMenuItem.AccessibleName" xml:space="preserve">
     <value>Contents F1</value>
   </data>
@@ -1816,7 +1822,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=2.0.0.24889, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=2.0.0.29919, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3093,6 +3099,12 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mHelp_WhatsNewMenuItem.Name" xml:space="preserve">
+    <value>mHelp_WhatsNewMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mHelp_WhatsNewMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>

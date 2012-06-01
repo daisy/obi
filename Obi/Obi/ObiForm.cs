@@ -3595,6 +3595,11 @@ namespace Obi
         {
             mProjectView.TransportBar.FineNavigationModeForPhrase =! mProjectView.TransportBar.FineNavigationModeForPhrase ;
         }
+
+        private void mHelp_WhatsNewMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
        
     }
     }
