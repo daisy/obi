@@ -111,7 +111,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_cmbBoxSpecialNode);
             this.Name = "AssignSpecialNodeMark";
-            this.Text = "Assign note";
+            this.Text = "Assign note/ Renumber pages";
             this.ResumeLayout(false);
             this.PerformLayout();
 
