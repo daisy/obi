@@ -404,7 +404,7 @@ namespace Obi.ProjectView
             get
             {
                 EmptyNode node = SelectedNodeAs<EmptyNode>();
-                return Selection != null && node != null && node.IsRooted && node is EmptyNode &&node.Index < node.ParentAs<SectionNode>().PhraseChildCount - 1 && node.Role_ == EmptyNode.Role.Custom;
+                return Selection != null && node != null && node.IsRooted && node is EmptyNode &&node.Index < node.ParentAs<SectionNode>().PhraseChildCount - 1 && node.Role_ == EmptyNode.Role.Custom;                 
             }
         }
 
@@ -414,6 +414,33 @@ namespace Obi.ProjectView
             {
                 EmptyNode node = SelectedNodeAs<EmptyNode>();
                 return Selection != null && node != null && !TransportBar.IsRecorderActive && node is EmptyNode && node.Role_ == EmptyNode.Role.Anchor && node.AssociatedNode != null;
+            }
+        }
+
+        public bool CanGotoSkippableNote
+        {
+            get
+            {
+                EmptyNode node = SelectedNodeAs<EmptyNode>();
+                return Selection != null && node != null && node.IsRooted && node is EmptyNode && node.Role_ == EmptyNode.Role.Anchor && node.AssociatedNode != null; //@AssociateNode           
+            }
+        }
+
+        public bool CanBeginSpecialNote
+        {
+            get
+            {
+                EmptyNode node = SelectedNodeAs<EmptyNode>();
+                return Selection != null && node != null && !TransportBar.IsRecorderActive && node is EmptyNode && node.Role_ != EmptyNode.Role.Anchor;
+            }
+        }
+
+        public bool CanEndSpecialNote
+        {
+            get
+            {
+                EmptyNode node = SelectedNodeAs<EmptyNode>();
+                return mPresentation != null && node != null && !TransportBar.IsRecorderActive && Selection != null && BeginNote != null && node is EmptyNode && (BeginNote != mContentView.EndSpecialNode || BeginNote != node) && node.ParentAs<SectionNode>() == BeginNote.ParentAs<SectionNode>();
             }
         }
 

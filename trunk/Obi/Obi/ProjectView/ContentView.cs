@@ -4733,10 +4733,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Merge_MergeWithPrecedingPhrasesMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
             Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;            
-            Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Anchor; //@AssociateNode
+            Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote; //@AssociateNode
          //   Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && m_BeginNote != mProjectView.Selection.Node && mProjectView.Selection.Node.ParentAs<SectionNode>() == m_BeginNote.ParentAs<SectionNode>(); //@AssociateNode
-            Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && (m_BeginNote != m_EndNote || m_BeginNote != mProjectView.Selection.Node)&& mProjectView.Selection.Node.ParentAs<SectionNode>() == m_BeginNote.ParentAs<SectionNode>();
-            Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node.IsRooted && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null; //@AssociateNode           
+            Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
+            Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Enabled = mProjectView.CanGotoSkippableNote; //@AssociateNode
             Context_Skippable_MoveToEndNoteToolStripMenuItem.Enabled = mProjectView.CanMoveToEndNote;   //@AssociateNode
             Context_Skippable_MoveToStartNoteToolStripMenuItem.Enabled = mProjectView.CanMoveToStartNote;  //@AssociateNode
             Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Enabled = mProjectView.CanRemoveSkippableNode; //@AssociateNode
