@@ -368,6 +368,18 @@ namespace Obi.ProjectView
             }
         }
 
+        public bool CanAssociateNode    //@AssociateNode
+        {
+            get
+            {
+                EmptyNode node = SelectedNodeAs<EmptyNode>();
+                return mPresentation != null && node != null 
+                    && TransportBar.IsRecorderActive && 
+                    (Selection == null || (Selection != null && node is EmptyNode && node.Role_ != EmptyNode.Role.Custom) 
+                    && CanAssignAnchorRole);
+            }
+        }
+
         /// <summary>
         /// Can assign this custom role if there is an empty node to assign to,
         /// and the role is different from the one of this node.
@@ -377,6 +389,33 @@ namespace Obi.ProjectView
             EmptyNode node = SelectedNodeAs<EmptyNode> ();
             return node != null && (node.Role_ != EmptyNode.Role.Custom || node.CustomRole != customRole);
             }
+
+        public bool CanMoveToStartNote
+        {
+            get
+            {
+                EmptyNode node = SelectedNodeAs<EmptyNode>();
+                return Selection != null && node != null && node.IsRooted && node is EmptyNode && node.Role_ == EmptyNode.Role.Custom && node.Index > 0;  //@AssociateNode()
+            }
+        }
+
+        public bool CanMoveToEndNote
+        {
+            get
+            {
+                EmptyNode node = SelectedNodeAs<EmptyNode>();
+                return Selection != null && node != null && node.IsRooted && node is EmptyNode &&node.Index < node.ParentAs<SectionNode>().PhraseChildCount - 1 && node.Role_ == EmptyNode.Role.Custom;
+            }
+        }
+
+        public bool CanRemoveSkippableNode
+        {
+            get
+            {
+                EmptyNode node = SelectedNodeAs<EmptyNode>();
+                return Selection != null && node != null && !TransportBar.IsRecorderActive && node is EmptyNode && node.Role_ == EmptyNode.Role.Anchor && node.AssociatedNode != null;
+            }
+        }
 
         /// <summary>
         /// Can assign the heading role if there is a phrase node (must have audio)

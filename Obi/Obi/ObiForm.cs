@@ -1443,11 +1443,11 @@ namespace Obi
             mSkippableEndNoteToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && mProjectView.BeginNote != null && mProjectView.Selection.Node is EmptyNode && mProjectView.BeginNote != mProjectView.Selection.Node; //@AssociateNode
             mSkippableGotoToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node.IsRooted && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)mProjectView.Selection.Node).AssociatedNode != null; //@AssociateNode           
             mSkippableMoveToStartNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node.IsRooted  && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index > 0;
-            mSkippableMoveToEndNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node.IsRooted&& mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.Index < mProjectView.Selection.Node.ParentAs<SectionNode>().PhraseChildCount - 1;
-            mSkippableRemoveReferenceToolStripMenuItem.Enabled = mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Anchor;
-            mSkippableMoveToStartNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Custom;
+            mSkippableMoveToEndNoteToolStripMenuItem.Enabled = mProjectView.CanMoveToEndNote;
+            mSkippableRemoveReferenceToolStripMenuItem.Enabled = mProjectView.CanRemoveSkippableNode;
+            mSkippableMoveToStartNoteToolStripMenuItem.Enabled = mProjectView.CanMoveToStartNote;
             mSkippableMoveToEndNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Custom;
-            mSkippableAddReferenceToolStripMenuItem.Enabled = mProjectView != null && !mProjectView.TransportBar.IsRecorderActive && (mProjectView.Selection == null || (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Custom));
+            mSkippableAddReferenceToolStripMenuItem.Enabled = mProjectView.CanAssociateNode;
             UpdateAudioSelectionBlockMenuItems ();
             }
 
