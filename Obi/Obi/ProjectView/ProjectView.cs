@@ -374,7 +374,7 @@ namespace Obi.ProjectView
             {
                 EmptyNode node = SelectedNodeAs<EmptyNode>();
                 return mPresentation != null && node != null 
-                    && TransportBar.IsRecorderActive && 
+                    && !TransportBar.IsRecorderActive && 
                     (Selection == null || (Selection != null && node is EmptyNode && node.Role_ != EmptyNode.Role.Custom) 
                     && (node.Role_ == EmptyNode.Role.Anchor || CanAssignAnchorRole));
             }
