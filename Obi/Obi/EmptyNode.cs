@@ -194,15 +194,18 @@ namespace Obi
                 if (m_AssociatedNode == null && !string.IsNullOrEmpty(m_AssociatedNodeLocation))
                 {
                     string [] locationArray = m_AssociatedNodeLocation.Split('_') ;
-                    TreeNode iterationNode =this.Root ;
-                    for ( int i = locationArray.Length-1 ; i >= 0 ; i-- )
+                    if (locationArray.Length > 0)
                     {
-                        int childIndex = -1;
-                        int.TryParse( locationArray[i], out childIndex );
-                        
-                        iterationNode = iterationNode.Children.Get(childIndex) ;
+                        TreeNode iterationNode = this.Root;
+                        for (int i = locationArray.Length - 1; i >= 0; i--)
+                        {
+                            int childIndex = -1;
+                            int.TryParse(locationArray[i], out childIndex);
+
+                            iterationNode = iterationNode.Children.Get(childIndex);
+                        }
+                        m_AssociatedNode = (EmptyNode)iterationNode;
                     }
-                    m_AssociatedNode = (EmptyNode) iterationNode ;
                     m_AssociatedNodeLocation = null;
                 }
                 if (Role_ != Role.Anchor) m_AssociatedNode = null;
