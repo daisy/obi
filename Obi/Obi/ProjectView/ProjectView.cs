@@ -376,7 +376,7 @@ namespace Obi.ProjectView
                 return mPresentation != null && node != null 
                     && TransportBar.IsRecorderActive && 
                     (Selection == null || (Selection != null && node is EmptyNode && node.Role_ != EmptyNode.Role.Custom) 
-                    && CanAssignAnchorRole);
+                    && (node.Role_ == EmptyNode.Role.Anchor || CanAssignAnchorRole));
             }
         }
 
