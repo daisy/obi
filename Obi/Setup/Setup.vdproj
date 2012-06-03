@@ -117,6 +117,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_39EA67E78A5747F1B9C01EFDBFB0DF17"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_478DFB874BE84E468E4FAFF8EE180B53"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1034,6 +1040,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_39EA67E78A5747F1B9C01EFDBFB0DF17"
+            {
+            "SourcePath" = "8:..\\Obi\\New-Features-Obi-2.0-alpha.htm"
+            "TargetName" = "8:New-Features-Obi-2.0-alpha.htm"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_478DFB874BE84E468E4FAFF8EE180B53"
             {
             "SourcePath" = "8:..\\..\\dist\\Audio clues\\FindBarCollapse.wav"
@@ -1446,7 +1472,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=2.0.0.22001, Culture=hi, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=2.0.0.41005, Culture=hi, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_9756CC4034584C5C8FF7E061127F117C"
@@ -2005,14 +2031,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi 2.5 Pre-Alpha"
-        "ProductCode" = "8:{93AB5F24-7B09-41BC-8D45-7D0BFA7D63F2}"
-        "PackageCode" = "8:{D5648D89-481C-47D1-89DA-C4E372070A44}"
+        "ProductCode" = "8:{D2BCDE40-7C28-4684-AFEE-8A3C0F9E5C9A}"
+        "PackageCode" = "8:{EADF99FB-A7E6-4F37-9EB7-F12F31E2EF3D}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.2.0"
+        "ProductVersion" = "8:2.2.1"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.daisy.org/forums/obi"
@@ -2629,7 +2655,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5D74C0D378D74D17BD753426073D0BF5"
             {
-            "SourcePath" = "8:..\\Obi\\obj\\Release\\Obi.exe"
+            "SourcePath" = "8:..\\Obi\\obj\\x86\\Release\\Obi.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
@@ -2657,7 +2683,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D8D84DB8CB9E4AF390D6AF810CE6D609"
             {
-            "SourcePath" = "8:..\\Obi\\obj\\Release\\Obi.exe"
+            "SourcePath" = "8:..\\Obi\\obj\\x86\\Release\\Obi.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
