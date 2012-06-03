@@ -390,6 +390,15 @@ namespace Obi.ProjectView
             return node != null && (node.Role_ != EmptyNode.Role.Custom || node.CustomRole != customRole);
             }
 
+        public bool CanClearSkippableRole 
+        { 
+            get 
+            {
+                EmptyNode node = SelectedNodeAs<EmptyNode>();
+                return CanAssignPlainRole && node.Role_ == EmptyNode.Role.Custom && !string.IsNullOrEmpty(node.CustomRole) && EmptyNode.SkippableNamesList.Contains(node.CustomRole);
+            }
+        }
+
         public bool CanMoveToStartNote
         {
             get
@@ -3873,6 +3882,50 @@ for (int j = 0;
                         cmd = k;
                     }
                     mPresentation.Do(cmd);        
+            }
+        }
+
+        public void ClearSkippableChunk()
+        {
+
+            if (CanClearSkippableRole)
+            {
+                if (TransportBar.IsPlayerActive) TransportBar.Pause();
+                try
+                {
+                    EmptyNode firstNode = null;
+                    SectionNode parentSection = this.Selection.Node.ParentAs<SectionNode>();
+
+                    for (int i = this.Selection.Node.Index; i > 0; i--)
+                    {
+                        if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i - 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i - 1).CustomRole)
+                        {
+                            firstNode = parentSection.PhraseChild(i);
+
+                        }
+                    }
+
+                    if (firstNode != null)
+                    {
+                        CompositeCommand command = Presentation.CommandFactory.CreateCompositeCommand();
+                        command.ShortDescription = "Remove skippable role from the chunk";
+                        for (int i = firstNode.Index; i < parentSection.PhraseChildCount; i++)
+                        {
+                            EmptyNode node = parentSection.PhraseChild(i);
+                            if (firstNode.CustomRole != node.CustomRole) break;
+
+                            Commands.Node.AssignRole ClearRoleCmd = new Commands.Node.AssignRole(this, node, EmptyNode.Role.Plain);
+                            command.ChildCommands.Insert(command.ChildCommands.Count, ClearRoleCmd);
+
+                            if (!node.Used) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed(this, node));
+                        }
+                        if (command.ChildCommands.Count > 0 )  Presentation.Do(command);
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
 
