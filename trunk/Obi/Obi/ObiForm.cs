@@ -3599,7 +3599,15 @@ namespace Obi
 
         private void mHelp_WhatsNewMenuItem_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                System.Diagnostics.Process.Start(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
+                    "New-Features-Obi-2.0-alpha.htm"));
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(Localizer.Message("ObiFormMsg_FileLoadingFail") + "\n\n" + ex.ToString()); //@Messagecorrected
+            }
         }
 
         private void mSkippableClearRoleFromNoteToolStripMenuItem_Click(object sender, EventArgs e)
