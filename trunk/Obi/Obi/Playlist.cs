@@ -1255,6 +1255,7 @@ namespace Obi
             base.Audioplayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(base.Playlist_MoveToNextPhrase);
             base.Audioplayer.AudioPlaybackFinished += new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             mRevertTime = revertTime;
+            m_IsPreviewComplete = false;
         }
 
         public PreviewPlaylist(AudioPlayer player, ObiNode node, double revertTime)
@@ -1263,6 +1264,7 @@ namespace Obi
             base.Audioplayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(base.Playlist_MoveToNextPhrase);
             base.Audioplayer.AudioPlaybackFinished += new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             mRevertTime = revertTime;
+            m_IsPreviewComplete = false;
         }
 
         public double RevertTime 
@@ -1339,6 +1341,12 @@ namespace Obi
         {
             base.Audioplayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             PauseFromStopped(mRevertTime);
+            m_IsPreviewComplete = true;
         }
+
+        // work around to make sure that preview playlist has finished. this is used only in preview before recording.
+        private bool m_IsPreviewComplete;
+        public bool IsPreviewComplete { get { return m_IsPreviewComplete; } }
+
     }
 }
