@@ -3893,17 +3893,8 @@ for (int j = 0;
                 if (TransportBar.IsPlayerActive) TransportBar.Pause();
                 try
                 {
-                    EmptyNode firstNode = null;
+                    EmptyNode firstNode = GetSkippableNoteEndNode(true);
                     SectionNode parentSection = this.Selection.Node.ParentAs<SectionNode>();
-
-                    for (int i = this.Selection.Node.Index; i > 0; i--)
-                    {
-                        if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i - 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i - 1).CustomRole)
-                        {
-                            firstNode = parentSection.PhraseChild(i);
-
-                        }
-                    }
 
                     if (firstNode != null)
                     {
@@ -3947,18 +3938,36 @@ for (int j = 0;
 
         public bool GotoSkippableNoteEnds(bool GotoBegin)  //@AssociateNode
         {
-            if (Selection == null || !(Selection.Node is EmptyNode)) return false;
-            if (((EmptyNode)Selection.Node).Role_ != EmptyNode.Role.Custom || !EmptyNode.SkippableNamesList.Contains(((EmptyNode)Selection.Node).CustomRole)) return false;
+            EmptyNode endNode = GetSkippableNoteEndNode(GotoBegin) ;
+            if ( endNode != null)
+    {
+        SelectedBlockNode = endNode  ;
+        return true;
+    }
+    return false;
+        }
+
+        public EmptyNode GetSkippableNoteEndNode(bool GotoBegin)  //@AssociateNode
+        {
+            if (Selection == null || !(Selection.Node is EmptyNode)) return null;
+            if (((EmptyNode)Selection.Node).Role_ != EmptyNode.Role.Custom || !EmptyNode.SkippableNamesList.Contains(((EmptyNode)Selection.Node).CustomRole)) return null;
             SectionNode parentSection = this.Selection.Node.ParentAs<SectionNode>();
             if (GotoBegin)
             { 
-                for(int i = this.Selection.Node.Index; i>0; i--)
-                {                    
-                    if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i - 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i - 1).CustomRole)
+                for(int i = this.Selection.Node.Index; i>= 0; i--)
+                {
+                    if (i == 0)
+                    {
+                        return parentSection.PhraseChild(i);
+                    }
+                    else
+                    {
+                        if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i - 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i - 1).CustomRole)
                         {
-                            SelectedBlockNode = parentSection.PhraseChild(i);
-                            return true;
-                        }                   
+                            return parentSection.PhraseChild(i);
+
+                        }
+                    }
                 }
             }
             else
@@ -3966,18 +3975,20 @@ for (int j = 0;
                 for(int i = Selection.Node.Index; i< parentSection.PhraseChildCount ;i++)
                 {
                     if (i == parentSection.PhraseChildCount - 1)
-                    { SelectedBlockNode = parentSection.PhraseChild(i); }
+                     { 
+                        return parentSection.PhraseChild(i); 
+                    }
                     else
                     {
                         if (parentSection.PhraseChild(i).Role_ != parentSection.PhraseChild(i + 1).Role_ || parentSection.PhraseChild(i).CustomRole != parentSection.PhraseChild(i + 1).CustomRole)
                         {
-                            SelectedBlockNode = parentSection.PhraseChild(i);
-                            return true;
+                            return parentSection.PhraseChild(i);
+                            
                         }
                     }
                 }
             }
-            return false;
+            return null;
         }
 
         public void ExportAudioOfSelectedNode()
