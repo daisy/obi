@@ -1086,6 +1086,12 @@
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>Mo&amp;ve to end note</value>
   </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Clear role from note</value>
+  </data>
   <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
@@ -1822,7 +1828,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=2.0.0.29919, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=2.0.0.33235, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2674,6 +2680,12 @@
   <data name="&gt;&gt;mSkippableMoveToEndNoteToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mSkippableClearRoleFromNoteToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSkippableClearRoleFromNoteToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSkippableClearRoleFromNoteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator6.Name" xml:space="preserve">
     <value>toolStripSeparator6</value>
   </data>
@@ -3070,6 +3082,12 @@
   <data name="&gt;&gt;mHelpToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mHelp_WhatsNewMenuItem.Name" xml:space="preserve">
+    <value>mHelp_WhatsNewMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mHelp_WhatsNewMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mHelp_ContentsMenuItem.Name" xml:space="preserve">
     <value>mHelp_ContentsMenuItem</value>
   </data>
@@ -3099,12 +3117,6 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mHelp_WhatsNewMenuItem.Name" xml:space="preserve">
-    <value>mHelp_WhatsNewMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mHelp_WhatsNewMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>

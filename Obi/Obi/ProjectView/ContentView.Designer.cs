@@ -70,6 +70,7 @@ namespace Obi.ProjectView
             this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_Skippable_MoveToEndNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioSelection_BeginMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioSelection_EndMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -381,7 +382,8 @@ namespace Obi.ProjectView
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem,
             this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem,
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem,
-            this.Context_Skippable_MoveToEndNoteToolStripMenuItem});
+            this.Context_Skippable_MoveToEndNoteToolStripMenuItem,
+            this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem});
             this.Context_SkippablesMenuItem.Name = "Context_SkippablesMenuItem";
             this.Context_SkippablesMenuItem.Size = new System.Drawing.Size(203, 22);
             this.Context_SkippablesMenuItem.Text = "Skippa&ble notes";
@@ -390,7 +392,7 @@ namespace Obi.ProjectView
             // 
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName = "Begin note";
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Name = "Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem";
-            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text = "Be&gin note";
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem_Click);
             // 
@@ -398,7 +400,7 @@ namespace Obi.ProjectView
             // 
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.AccessibleName = "End note";
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Name = "Context_Skippable_EndSpecialNodeMarkToolStripMenuItem";
-            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Text = "En&d note";
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem_Click);
             // 
@@ -406,7 +408,7 @@ namespace Obi.ProjectView
             // 
             this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.AccessibleName = "Add reference";
             this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Name = "Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem";
-            this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Text = "Add re&ference";
             this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem_Click);
             // 
@@ -414,7 +416,7 @@ namespace Obi.ProjectView
             // 
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.AccessibleName = "Goto referred note";
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Name = "Context_Skippable_GotoAssociatedNodeToolStripMenuItem";
-            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Text = "Goto &referred note";
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem_Click);
             // 
@@ -422,7 +424,7 @@ namespace Obi.ProjectView
             // 
             this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.AccessibleName = "Remove reference";
             this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Name = "Context_Skippable_RemoveAssociatedNodeToolStripMenuItem";
-            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Text = "Remove refere&nce";
             this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem_Click);
             // 
@@ -430,7 +432,7 @@ namespace Obi.ProjectView
             // 
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem.AccessibleName = "Move to start note";
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem.Name = "Context_Skippable_MoveToStartNoteToolStripMenuItem";
-            this.Context_Skippable_MoveToStartNoteToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.Context_Skippable_MoveToStartNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem.Text = "Move to s&tart note";
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableMoveToStartNoteToolStripMenuItem_Click);
             // 
@@ -438,9 +440,16 @@ namespace Obi.ProjectView
             // 
             this.Context_Skippable_MoveToEndNoteToolStripMenuItem.AccessibleName = "Move to end note";
             this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Name = "Context_Skippable_MoveToEndNoteToolStripMenuItem";
-            this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Text = "Mo&ve to end note";
             this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableMoveToToolStripMenuItem_Click);
+            // 
+            // Context_Skippable_ClearRoleFromNoteToolStripMenuItem
+            // 
+            this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Name = "Context_Skippable_ClearRoleFromNoteToolStripMenuItem";
+            this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Text = "&Clear role from note";
+            this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem_Click);
             // 
             // Context_AudioSelectionMenuItem
             // 
@@ -702,5 +711,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_MoveToStartNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_MoveToEndNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_FineNavigationMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_Skippable_ClearRoleFromNoteToolStripMenuItem;
     }
 }
