@@ -304,7 +304,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             Presentation.Initialize(this);
             // Hack to ignore the empty commands saved by the default undo/redo manager
             Presentation.UndoRedoManager.FlushCommands();
-            ((ObiRootNode)mProject.Presentations.Get(0).RootNode).LocateBookMarkNode();
+            ((ObiRootNode)mProject.Presentations.Get(0).RootNode).LocateBookMarkAndAssociatedNode();
             SetupBackupFilesForNewSession(path);
 
             if (ProjectOpened != null) ProjectOpened(this, null);

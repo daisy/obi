@@ -354,16 +354,20 @@ namespace Obi
                 }
             }
         }
-        public void LocateBookMarkNode()
+        public void LocateBookMarkAndAssociatedNode()
         {
             AcceptDepthFirst(delegate(urakawa.core.TreeNode n)
                 {   
                     if (n.IsMarked)
                     {
                         m_Bookmarked = (ObiNode)n;
-                        return false;
+                        
                     }
-                    if (m_Bookmarked != null) return false;
+                    // work around to load associate node because the sdk do not have event to indicate suk-in complete
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Anchor)
+                    {
+                        EmptyNode e = ((EmptyNode)n).AssociatedNode;
+                    }
                     return true;
                 }, delegate(urakawa.core.TreeNode n) { });
         }
