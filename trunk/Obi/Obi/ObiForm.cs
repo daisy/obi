@@ -1448,6 +1448,7 @@ namespace Obi
             mSkippableMoveToStartNoteToolStripMenuItem.Enabled = mProjectView.CanMoveToStartNote;
          //   mSkippableMoveToEndNoteToolStripMenuItem.Enabled = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ == EmptyNode.Role.Custom;
             mSkippableAddReferenceToolStripMenuItem.Enabled = mProjectView.CanAssociateNode;
+            mSkippableClearRoleFromNoteToolStripMenuItem.Enabled = mProjectView.CanClearSkippableRole;
             UpdateAudioSelectionBlockMenuItems ();
             }
 
@@ -3599,6 +3600,11 @@ namespace Obi
         private void mHelp_WhatsNewMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void mSkippableClearRoleFromNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ClearSkippableChunk();
         }
        
     }

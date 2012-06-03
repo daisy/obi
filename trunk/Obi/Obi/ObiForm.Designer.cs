@@ -126,6 +126,7 @@ namespace Obi
             this.mSkippableRemoveReferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableMoveToStartNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableMoveToEndNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSkippableClearRoleFromNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mPhrases_AssignRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_AssignRole_PlainMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -192,6 +193,7 @@ namespace Obi
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mHelp_WhatsNewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ContentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ReportBugMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -199,7 +201,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mHelp_WhatsNewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -863,7 +864,8 @@ namespace Obi
             this.mSkippableGotoToolStripMenuItem,
             this.mSkippableRemoveReferenceToolStripMenuItem,
             this.mSkippableMoveToStartNoteToolStripMenuItem,
-            this.mSkippableMoveToEndNoteToolStripMenuItem});
+            this.mSkippableMoveToEndNoteToolStripMenuItem,
+            this.mSkippableClearRoleFromNoteToolStripMenuItem});
             this.mSkippableNoteToolStripMenuItem.Name = "mSkippableNoteToolStripMenuItem";
             // 
             // mSkippableBeginNoteToolStripMenuItem
@@ -907,6 +909,12 @@ namespace Obi
             resources.ApplyResources(this.mSkippableMoveToEndNoteToolStripMenuItem, "mSkippableMoveToEndNoteToolStripMenuItem");
             this.mSkippableMoveToEndNoteToolStripMenuItem.Name = "mSkippableMoveToEndNoteToolStripMenuItem";
             this.mSkippableMoveToEndNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableMoveToEndNoteToolStripMenuItem_Click);
+            // 
+            // mSkippableClearRoleFromNoteToolStripMenuItem
+            // 
+            this.mSkippableClearRoleFromNoteToolStripMenuItem.Name = "mSkippableClearRoleFromNoteToolStripMenuItem";
+            resources.ApplyResources(this.mSkippableClearRoleFromNoteToolStripMenuItem, "mSkippableClearRoleFromNoteToolStripMenuItem");
+            this.mSkippableClearRoleFromNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableClearRoleFromNoteToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
@@ -1362,6 +1370,12 @@ namespace Obi
             this.mHelpToolStripMenuItem.Name = "mHelpToolStripMenuItem";
             resources.ApplyResources(this.mHelpToolStripMenuItem, "mHelpToolStripMenuItem");
             // 
+            // mHelp_WhatsNewMenuItem
+            // 
+            this.mHelp_WhatsNewMenuItem.Name = "mHelp_WhatsNewMenuItem";
+            resources.ApplyResources(this.mHelp_WhatsNewMenuItem, "mHelp_WhatsNewMenuItem");
+            this.mHelp_WhatsNewMenuItem.Click += new System.EventHandler(this.mHelp_WhatsNewMenuItem_Click);
+            // 
             // mHelp_ContentsMenuItem
             // 
             resources.ApplyResources(this.mHelp_ContentsMenuItem, "mHelp_ContentsMenuItem");
@@ -1415,12 +1429,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // mHelp_WhatsNewMenuItem
-            // 
-            this.mHelp_WhatsNewMenuItem.Name = "mHelp_WhatsNewMenuItem";
-            resources.ApplyResources(this.mHelp_WhatsNewMenuItem, "mHelp_WhatsNewMenuItem");
-            this.mHelp_WhatsNewMenuItem.Click += new System.EventHandler(this.mHelp_WhatsNewMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1619,6 +1627,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPhrases_AssignRole_AnchorMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFineNavigationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelp_WhatsNewMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSkippableClearRoleFromNoteToolStripMenuItem;
     }
 }
 

@@ -4734,7 +4734,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
             Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;            
             Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote; //@AssociateNode
-         //   Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && m_BeginNote != mProjectView.Selection.Node && mProjectView.Selection.Node.ParentAs<SectionNode>() == m_BeginNote.ParentAs<SectionNode>(); //@AssociateNode
+         // Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && m_BeginNote != mProjectView.Selection.Node && mProjectView.Selection.Node.ParentAs<SectionNode>() == m_BeginNote.ParentAs<SectionNode>(); //@AssociateNode
             Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
             Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Enabled = mProjectView.CanGotoSkippableNote; //@AssociateNode
             Context_Skippable_MoveToEndNoteToolStripMenuItem.Enabled = mProjectView.CanMoveToEndNote;   //@AssociateNode
@@ -4742,6 +4742,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Enabled = mProjectView.CanRemoveSkippableNode; //@AssociateNode
             //Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView != null && !mProjectView.TransportBar.IsRecorderActive && (mProjectView.Selection == null || (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Custom && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Plain));
             Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanAssociateNode;   //@AssociateNode
+            Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Enabled = mProjectView.CanClearSkippableRole;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5273,6 +5274,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             mProjectView.TransportBar.FineNavigationModeForPhrase =
                 !mProjectView.TransportBar.FineNavigationModeForPhrase;
+        }
+
+        private void Context_Skippable_ClearRoleFromNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ClearSkippableChunk();
         }      
     }
    /// <summary>
