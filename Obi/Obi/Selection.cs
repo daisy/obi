@@ -168,7 +168,7 @@ namespace Obi
                     }
                     else if (Node is EmptyNode)
                     {
-                        p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.UpdateSelection(view, new NodeSelection(Node, Control)));
+                        p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.UpdateSelection(view, new NodeSelection(phrase, Control)));
                     }
                 }
             }
