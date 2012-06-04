@@ -1,5 +1,8 @@
 :script HotKeyHelp
 
+:function IsJAWSversion9to12
+:Returns int 1 if version is between 9 and 12
+
 :function SayStripString
 
 :script ToggleContentView
