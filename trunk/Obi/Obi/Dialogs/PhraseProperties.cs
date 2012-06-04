@@ -112,12 +112,19 @@ namespace Obi.Dialogs
             m_chkToDo.Checked = mNode.TODO;
 
             if (mNode.Role_ == EmptyNode.Role.Page)
-                {
+            {
                 m_lblPageNumberDetails.Visible = true;
                 m_txtPageNumberDetails.Visible = true;
-                m_txtPageNumberDetails.Text =                     mNode.PageNumber.Kind.ToString () + ", #" + mNode.PageNumber.ToString ();
+                m_txtPageNumberDetails.Text = mNode.PageNumber.Kind.ToString () + ", #" + mNode.PageNumber.ToString ();
                 m_chkChangePageNumber.Visible = true;
-                    }
+            }
+
+            if (mNode.Role_ == EmptyNode.Role.Anchor)
+            {
+                m_lbl_ReferredNote.Visible = true;
+                m_txtPageNumberDetails.Visible = true;
+                m_txtPageNumberDetails.Text = mNode.AssociatedNode.ParentAs<SectionNode>().Label + ", " + mNode.AssociatedNode.ToString();
+            }
 
             EnableCustomClassField ();
             if (m_IsSetCustomClass) SetCustomClassOnLoad ();

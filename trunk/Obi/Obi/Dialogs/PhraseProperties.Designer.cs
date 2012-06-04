@@ -49,6 +49,7 @@ namespace Obi.Dialogs
             this.m_lblPageNumberDetails = new System.Windows.Forms.Label();
             this.m_txtPageNumberDetails = new System.Windows.Forms.TextBox();
             this.m_chkChangePageNumber = new System.Windows.Forms.CheckBox();
+            this.m_lbl_ReferredNote = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,12 +174,18 @@ namespace Obi.Dialogs
             this.m_chkChangePageNumber.Name = "m_chkChangePageNumber";
             this.m_chkChangePageNumber.UseVisualStyleBackColor = true;
             // 
+            // m_lbl_ReferredNote
+            // 
+            resources.ApplyResources(this.m_lbl_ReferredNote, "m_lbl_ReferredNote");
+            this.m_lbl_ReferredNote.Name = "m_lbl_ReferredNote";
+            // 
             // PhraseProperties
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
+            this.Controls.Add(this.m_lbl_ReferredNote);
             this.Controls.Add(this.m_chkChangePageNumber);
             this.Controls.Add(this.m_txtPageNumberDetails);
             this.Controls.Add(this.m_lblPageNumberDetails);
@@ -231,5 +238,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_lblPageNumberDetails;
         private System.Windows.Forms.TextBox m_txtPageNumberDetails;
         private System.Windows.Forms.CheckBox m_chkChangePageNumber;
+        private System.Windows.Forms.Label m_lbl_ReferredNote;
     }
 }
