@@ -58,9 +58,9 @@ namespace Obi.Dialogs
             // 
             this.m_btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_btn_OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_OK.Location = new System.Drawing.Point(478, 219);
+            this.m_btn_OK.Location = new System.Drawing.Point(602, 215);
             this.m_btn_OK.Name = "m_btn_OK";
-            this.m_btn_OK.Size = new System.Drawing.Size(75, 23);
+            this.m_btn_OK.Size = new System.Drawing.Size(65, 23);
             this.m_btn_OK.TabIndex = 9;
             this.m_btn_OK.Text = "O&K";
             this.m_btn_OK.UseVisualStyleBackColor = true;
@@ -70,9 +70,9 @@ namespace Obi.Dialogs
             // 
             this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_Cancel.Location = new System.Drawing.Point(562, 219);
+            this.m_btn_Cancel.Location = new System.Drawing.Point(672, 215);
             this.m_btn_Cancel.Name = "m_btn_Cancel";
-            this.m_btn_Cancel.Size = new System.Drawing.Size(72, 23);
+            this.m_btn_Cancel.Size = new System.Drawing.Size(61, 23);
             this.m_btn_Cancel.TabIndex = 10;
             this.m_btn_Cancel.Text = "Canc&el";
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
@@ -115,7 +115,7 @@ namespace Obi.Dialogs
             this.m_lb_listOfAllAnchorNodes.HorizontalScrollbar = true;
             this.m_lb_listOfAllAnchorNodes.Location = new System.Drawing.Point(6, 20);
             this.m_lb_listOfAllAnchorNodes.Name = "m_lb_listOfAllAnchorNodes";
-            this.m_lb_listOfAllAnchorNodes.Size = new System.Drawing.Size(222, 212);
+            this.m_lb_listOfAllAnchorNodes.Size = new System.Drawing.Size(337, 212);
             this.m_lb_listOfAllAnchorNodes.TabIndex = 2;
             this.m_lb_listOfAllAnchorNodes.Visible = false;
             this.m_lb_listOfAllAnchorNodes.SelectedIndexChanged += new System.EventHandler(this.m_lb_listOfAllAnchorNodes_SelectedIndexChanged);
@@ -123,7 +123,7 @@ namespace Obi.Dialogs
             // m_btn_ShowAll
             // 
             this.m_btn_ShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_ShowAll.Location = new System.Drawing.Point(478, 31);
+            this.m_btn_ShowAll.Location = new System.Drawing.Point(602, 28);
             this.m_btn_ShowAll.Name = "m_btn_ShowAll";
             this.m_btn_ShowAll.Size = new System.Drawing.Size(131, 23);
             this.m_btn_ShowAll.TabIndex = 5;
@@ -135,16 +135,16 @@ namespace Obi.Dialogs
             // 
             this.groupBox1.Controls.Add(this.m_lb_listOfAllAnchorNodes);
             this.groupBox1.Controls.Add(this.m_txtBox_SectionName);
-            this.groupBox1.Location = new System.Drawing.Point(4, 6);
+            this.groupBox1.Location = new System.Drawing.Point(12, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(236, 239);
+            this.groupBox1.Size = new System.Drawing.Size(349, 239);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.m_lb_ListOfSpecialNodes);
-            this.groupBox2.Location = new System.Drawing.Point(243, 6);
+            this.groupBox2.Location = new System.Drawing.Point(367, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(229, 240);
             this.groupBox2.TabIndex = 3;
@@ -155,7 +155,7 @@ namespace Obi.Dialogs
             // 
             this.groupBox3.Controls.Add(this.m_btn_Associate);
             this.groupBox3.Controls.Add(this.m_btn_Deassociate);
-            this.groupBox3.Location = new System.Drawing.Point(478, 89);
+            this.groupBox3.Location = new System.Drawing.Point(602, 80);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(131, 89);
             this.groupBox3.TabIndex = 6;
@@ -168,7 +168,7 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
-            this.ClientSize = new System.Drawing.Size(642, 252);
+            this.ClientSize = new System.Drawing.Size(745, 252);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

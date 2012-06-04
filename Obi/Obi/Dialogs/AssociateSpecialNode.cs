@@ -143,12 +143,12 @@ namespace Obi.Dialogs
                             if (m_SelectedNode == node.PhraseChild(i))
                             {
                                 if(m_SelectedNode.AssociatedNode != null)
-                                m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
+                                    m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs < SectionNode >().Label + ", " + node.PhraseChild(i).AssociatedNode);
                                 else
                                 m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i));
                             }
                             else if (node.PhraseChild(i).AssociatedNode != null)
-                                m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = " + node.PhraseChild(i).AssociatedNode);
+                                m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + node.PhraseChild(i).AssociatedNode);
                             else
                                 m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i));
                             listOfAnchorNodes.Add(node.PhraseChild(i));                           
