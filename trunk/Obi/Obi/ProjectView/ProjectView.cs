@@ -3866,9 +3866,10 @@ for (int j = 0;
                                     if (n == mContentView.EndSpecialNode)
                                     {
                                         cmd = new Commands.Node.SetPageNumber(this, SelectedNodeAs<EmptyNode>(), number);
-                                        pageFound = true;
+                                       
                                     }
                                     k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber(this, (EmptyNode)n, number));
+                                    pageFound = true;
                                     number = number.NextPageNumber();
                                 }                                
                         }
