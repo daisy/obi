@@ -517,7 +517,7 @@ namespace Obi
                     while (iterationNode != this.Root)
                     {
                         if (AssociatedNode  != iterationNode) m_AssociatedNodeLocation += "_";
-                        m_AssociatedNodeLocation += iterationNode.Index.ToString();
+                        m_AssociatedNodeLocation += iterationNode.Parent.Children.IndexOf(iterationNode).ToString();
                         iterationNode = iterationNode.ParentAs<ObiNode> () ;
                     }
                     
