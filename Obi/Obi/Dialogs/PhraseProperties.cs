@@ -114,16 +114,18 @@ namespace Obi.Dialogs
             if (mNode.Role_ == EmptyNode.Role.Page)
             {
                 m_lblPageNumberDetails.Visible = true;
+                m_txtPageNumberDetails.AccessibleName = m_lblPageNumberDetails.Text.Replace("&","");
                 m_txtPageNumberDetails.Visible = true;
                 m_txtPageNumberDetails.Text = mNode.PageNumber.Kind.ToString () + ", #" + mNode.PageNumber.ToString ();
                 m_chkChangePageNumber.Visible = true;
             }
 
-            if (mNode.Role_ == EmptyNode.Role.Anchor)
+            else if (mNode.Role_ == EmptyNode.Role.Anchor)
             {
                 m_lbl_ReferredNote.Visible = true;
+                m_txtPageNumberDetails.AccessibleName = m_lbl_ReferredNote.Text.Replace("&", "");
                 m_txtPageNumberDetails.Visible = true;
-                m_txtPageNumberDetails.Text = mNode.AssociatedNode.ParentAs<SectionNode>().Label + ", " + mNode.AssociatedNode.ToString();
+                m_txtPageNumberDetails.Text = mNode.AssociatedNode!= null? mNode.AssociatedNode.ParentAs<SectionNode>().Label + ", " + mNode.AssociatedNode.ToString(): "?";
             }
 
             EnableCustomClassField ();
