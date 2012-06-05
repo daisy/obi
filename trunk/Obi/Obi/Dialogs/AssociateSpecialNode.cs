@@ -142,15 +142,27 @@ namespace Obi.Dialogs
                         {
                             if (m_SelectedNode == node.PhraseChild(i))
                             {
-                                if(m_SelectedNode.AssociatedNode != null)
-                                    m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs < SectionNode >().Label + ", " + node.PhraseChild(i).AssociatedNode);
+                                if (m_SelectedNode.AssociatedNode != null)
+                                {
+                                    //m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + node.PhraseChild(i).AssociatedNode);
+                                    m_lb_listOfAllAnchorNodes.Items.Add(">> Section " + node.Label + " " + GetEmptyNodeString( node.PhraseChild(i)) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + GetEmptyNodeString( node.PhraseChild(i).AssociatedNode));
+                                }
                                 else
-                                m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i));
+                                {
+                                    //m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i));
+                                    m_lb_listOfAllAnchorNodes.Items.Add(">> Section " + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)));
+                                }
                             }
                             else if (node.PhraseChild(i).AssociatedNode != null)
-                                m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + node.PhraseChild(i).AssociatedNode);
+                            {
+                                //m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + node.PhraseChild(i).AssociatedNode);
+                                m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + GetEmptyNodeString( node.PhraseChild(i)) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " +GetEmptyNodeString (node.PhraseChild(i).AssociatedNode));
+                            }
                             else
-                                m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i));
+                            {
+                                //m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i));
+                                m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + GetEmptyNodeString( node.PhraseChild(i)));
+                            }
                             listOfAnchorNodes.Add(node.PhraseChild(i));                           
                         }
                         listOfAnchorNodesCopy.Add(node.PhraseChild(i));
@@ -308,7 +320,32 @@ namespace Obi.Dialogs
             else
                 m_btn_Deassociate.Enabled = false;
            
-        }    
+        }
+
+
+        private string GetEmptyNodeString(EmptyNode node)
+        {
+            if (node == null) return "";
+            string info = null;
+            double durationMs = node.Duration;
+            double seconds = Math.Round((durationMs / 1000), 1, MidpointRounding.ToEven);
+            string dur = "("+ Convert.ToString(seconds) + "s)";
+            info = String.Format(Localizer.Message("phrase_to_string"),
+                "",
+                "",
+                node.IsRooted ? node.Index + 1 : 0,
+                node.IsRooted ? node.ParentAs<ObiNode>().PhraseChildCount : 0,
+                "",
+                node.Role_ == EmptyNode.Role.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), node.CustomRole) :
+
+                node.Role_ == EmptyNode.Role.Anchor && node.AssociatedNode == null ? Localizer.Message("phrase_extra_" + node.Role_.ToString()) + "= ?" :
+                    Localizer.Message("phrase_extra_" + node.Role_.ToString()));
+
+            return info;
+        }
+
+
+
     }
 }
 
