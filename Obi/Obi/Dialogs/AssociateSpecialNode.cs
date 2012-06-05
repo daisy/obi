@@ -179,6 +179,8 @@ namespace Obi.Dialogs
 
         private void m_btn_Associate_Click(object sender, EventArgs e)
         {
+                if (m_IsShowAll && (m_lb_listOfAllAnchorNodes.SelectedIndex < 0 || m_lb_ListOfSpecialNodes.SelectedIndex < 0)) return;
+
             EmptyNode anchorNode = null; 
             bool IsAssociated = false;
             m_btn_Deassociate.Enabled = true;
