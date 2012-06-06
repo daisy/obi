@@ -84,9 +84,9 @@ namespace Obi.Dialogs
                 m_IsShowAll = false;
                 AddToListBox();
             }
-
-            if (m_lb_listOfAllAnchorNodes.SelectedIndex < 0)
-                m_btn_Deassociate.Enabled = false;
+            UpdateButtons();
+          //  if (m_lb_listOfAllAnchorNodes.SelectedIndex < 0)
+            //    m_btn_Deassociate.Enabled = false;
         }
 
         public void AddToListBox()
@@ -186,7 +186,7 @@ namespace Obi.Dialogs
 
             EmptyNode anchorNode = null; 
             bool IsAssociated = false;
-            m_btn_Deassociate.Enabled = true;
+           // m_btn_Deassociate.Enabled = true;
             for (int i = 0; i < listOfAnchorNodesCopy.Count; i++)
             {
                 if (listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex] == listOfAnchorNodesCopy[i].AssociatedNode)
@@ -195,7 +195,7 @@ namespace Obi.Dialogs
                            MessageBoxIcon.Question) == DialogResult.No)
                     {
                         IsAssociated = true;
-                        m_btn_Deassociate.Enabled = false;
+                       // m_btn_Deassociate.Enabled = false;
                     }
                     break;
                 }
@@ -212,7 +212,7 @@ namespace Obi.Dialogs
                                MessageBoxIcon.Question) == DialogResult.No)
                         {
                             IsAssociated = true;
-                            m_btn_Deassociate.Enabled = false;
+                         //   m_btn_Deassociate.Enabled = false;
                         }
                         break;
                     }
@@ -273,43 +273,19 @@ namespace Obi.Dialogs
             m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex,"Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " "+ listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]);
             m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
             }
+            UpdateButtons();
     //        if(listOfAnchorNodes.Count == 1)
-            m_btn_Deassociate.Enabled = false;
+           // m_btn_Deassociate.Enabled = false;
         }
 
         private void m_lb_ListOfSpecialNodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count >0;
-            if (m_lb_listOfAllAnchorNodes.Visible)
-                m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
-            else
-                m_btn_Associate.Enabled = m_lb_ListOfSpecialNodes.SelectedItem != null;
+            UpdateButtons();
         }
 
         private void m_lb_listOfAllAnchorNodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 &&
-                ((listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null && !m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex])) ||
-                (m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) && m_Nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]] != null)))
-                m_btn_Deassociate.Enabled = true;
-            else
-                m_btn_Deassociate.Enabled = false;
-            if (m_lb_listOfAllAnchorNodes.Visible)
-                m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
-            else
-                m_btn_Associate.Enabled = m_lb_ListOfSpecialNodes.SelectedItem != null;
-            /*
-            //m_btn_Associate.Enabled = (m_lb_listOfAllAnchorNodes.Items.Count > 0 && m_lb_ListOfSpecialNodes.Items.Count > 0);
-            m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
-          //  if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null || nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex] != null )
-            //    MessageBox.Show(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode.ToString());
-            if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
-            {
-                if (listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null || (nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) && nodes_phraseMap.ContainsValue(nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]]) && nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]] != null))
-                    m_btn_Deassociate.Enabled = true;
-                else
-                    m_btn_Deassociate.Enabled = false;
-            }*/
+            UpdateButtons();         
         }
 
         private void m_btn_OK_Click(object sender, EventArgs e)
@@ -318,13 +294,7 @@ namespace Obi.Dialogs
 
         private void AssociateSpecialNode_Load(object sender, EventArgs e)
         {
-            if ((listOfAnchorNodes.Count == 1  && listOfAnchorNodes[0] != null)&&
-               ((listOfAnchorNodes[0].AssociatedNode != null && !m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[0])) ||
-               (m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[0]) && m_Nodes_phraseMap[listOfAnchorNodes[0]] != null)))
-                m_btn_Deassociate.Enabled = true;
-            else
-                m_btn_Deassociate.Enabled = false;
-           
+            UpdateButtons();
         }
 
         private bool IsAnchor(EmptyNode node)
@@ -368,7 +338,18 @@ namespace Obi.Dialogs
             return info;
         }
 
-
+        private void UpdateButtons()
+        {
+            if (m_lb_listOfAllAnchorNodes.Visible)
+                m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
+            else
+                m_btn_Associate.Enabled = m_lb_ListOfSpecialNodes.SelectedItem != null;
+            
+            m_btn_Deassociate.Enabled = m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && GetReferedNode(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) != null;
+         //   m_btn_Deassociate.Enabled = m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && ((listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null && !m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]))
+           //     || (m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) && m_Nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]] != null)) && m_lb_listOfAllAnchorNodes.SelectedIndex > 0 && GetReferedNode();
+                
+        }
 
     }
 }
