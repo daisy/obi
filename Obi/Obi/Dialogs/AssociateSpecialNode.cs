@@ -15,7 +15,7 @@ namespace Obi.Dialogs
         List<EmptyNode> listOfFirstNodeOfSpecialNodes = new List<EmptyNode>();
         List<EmptyNode> listOfAnchorNodes = new List<EmptyNode>();
         private EmptyNode m_SelectedNode = null;
-        Dictionary<EmptyNode, EmptyNode> nodes_phraseMap = new Dictionary<EmptyNode, EmptyNode>(); // used for importing sections
+        Dictionary<EmptyNode, EmptyNode> m_Nodes_phraseMap = new Dictionary<EmptyNode, EmptyNode>(); // used for importing sections
         private List<EmptyNode> listOfAnchorNodesCopy = new List<EmptyNode>();
        
         public AssociateSpecialNode(ObiRootNode obiNode, EmptyNode selectedNode)
@@ -48,7 +48,7 @@ namespace Obi.Dialogs
         }
 
         public Dictionary<EmptyNode,EmptyNode> DictionaryToMapValues
-        { get { return nodes_phraseMap; } }
+        { get { return m_Nodes_phraseMap; } }
 
         private void m_btn_ShowAll_Click(object sender, EventArgs e)
         {
@@ -200,10 +200,10 @@ namespace Obi.Dialogs
                     IsAssociated = false;
             }
 
-            foreach (KeyValuePair<EmptyNode, EmptyNode> pair in nodes_phraseMap)
+            foreach (KeyValuePair<EmptyNode, EmptyNode> pair in m_Nodes_phraseMap)
                 {
                    
-                    if (nodes_phraseMap.ContainsKey(pair.Key) && listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex] == pair.Key.AssociatedNode)
+                    if (m_Nodes_phraseMap.ContainsKey(pair.Key) && listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex] == pair.Key.AssociatedNode)
                     {
                         if (MessageBox.Show(Localizer.Message("Node_already_associated"),Localizer.Message("Associate"), MessageBoxButtons.YesNo,
                                MessageBoxIcon.Question) == DialogResult.No)
@@ -230,13 +230,13 @@ namespace Obi.Dialogs
                     {
                         anchorNode = m_SelectedNode;
                     }
-                    if (nodes_phraseMap.ContainsKey(anchorNode))
+                    if (m_Nodes_phraseMap.ContainsKey(anchorNode))
                     {
-                        nodes_phraseMap[anchorNode] = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
+                        m_Nodes_phraseMap[anchorNode] = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
                     }
                     else
                     {
-                        nodes_phraseMap.Add(anchorNode, listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
+                        m_Nodes_phraseMap.Add(anchorNode, listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
                     }                  
              }
 
@@ -256,13 +256,13 @@ namespace Obi.Dialogs
                  
             }
             if (anchorNode == null) return;
-            if (nodes_phraseMap.ContainsKey(anchorNode))
+            if (m_Nodes_phraseMap.ContainsKey(anchorNode))
             {
-                nodes_phraseMap[anchorNode] = null;
+                m_Nodes_phraseMap[anchorNode] = null;
             }
             else
             {
-                nodes_phraseMap.Add(anchorNode, null);
+                m_Nodes_phraseMap.Add(anchorNode, null);
             }
 
             if (m_lb_listOfAllAnchorNodes.SelectedIndex >=0)
@@ -286,8 +286,8 @@ namespace Obi.Dialogs
         private void m_lb_listOfAllAnchorNodes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 &&
-                ((listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null && !nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex])) ||
-                (nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) && nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]] != null)))
+                ((listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null && !m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex])) ||
+                (m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) && m_Nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]] != null)))
                 m_btn_Deassociate.Enabled = true;
             else
                 m_btn_Deassociate.Enabled = false;
@@ -316,12 +316,27 @@ namespace Obi.Dialogs
         private void AssociateSpecialNode_Load(object sender, EventArgs e)
         {
             if ((listOfAnchorNodes.Count == 1  && listOfAnchorNodes[0] != null)&&
-               ((listOfAnchorNodes[0].AssociatedNode != null && !nodes_phraseMap.ContainsKey(listOfAnchorNodes[0])) ||
-               (nodes_phraseMap.ContainsKey(listOfAnchorNodes[0]) && nodes_phraseMap[listOfAnchorNodes[0]] != null)))
+               ((listOfAnchorNodes[0].AssociatedNode != null && !m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[0])) ||
+               (m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[0]) && m_Nodes_phraseMap[listOfAnchorNodes[0]] != null)))
                 m_btn_Deassociate.Enabled = true;
             else
                 m_btn_Deassociate.Enabled = false;
            
+        }
+
+        private bool IsAnchor(EmptyNode node)
+        {
+            return (m_SelectedNode != null && node == m_SelectedNode)
+            || node.Role_ == EmptyNode.Role.Anchor;
+        }
+
+        private EmptyNode GetReferedNode(EmptyNode node)
+        {
+            if (node.AssociatedNode != null) return node.AssociatedNode;
+
+            if ( m_Nodes_phraseMap.ContainsKey(node) && m_Nodes_phraseMap[node] != null) return m_Nodes_phraseMap[node] ;
+
+            return null;
         }
 
 
