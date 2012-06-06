@@ -84,6 +84,9 @@ namespace Obi.Dialogs
                 m_IsShowAll = false;
                 AddToListBox();
             }
+
+            if (m_lb_listOfAllAnchorNodes.SelectedIndex < 0)
+                m_btn_Deassociate.Enabled = false;
         }
 
         public void AddToListBox()
@@ -135,7 +138,7 @@ namespace Obi.Dialogs
                             }
                         }
                     }
-                    if (node.PhraseChild(i).Role_ == EmptyNode.Role.Anchor || (m_SelectedNode != null &&  node == m_SelectedNode.ParentAs<SectionNode>() && node.PhraseChild(i) == m_SelectedNode))
+                    if (IsAnchor(node.PhraseChild(i)) || (m_SelectedNode != null && node == m_SelectedNode.ParentAs<SectionNode>() && node.PhraseChild(i) == m_SelectedNode))
                     {
         //                m_lb_listOfAllAnchorNodes.Items.Add(node.PhraseChild(i));
                         if (m_IsShowAll || m_SelectedNode == null)
