@@ -335,10 +335,14 @@ namespace Obi.Dialogs
 
         private EmptyNode GetReferedNode(EmptyNode node)
         {
+
+            if (m_Nodes_phraseMap.ContainsKey(node))
+            {
+                return m_Nodes_phraseMap[node];
+            }
             if (node.AssociatedNode != null) return node.AssociatedNode;
 
-            if ( m_Nodes_phraseMap.ContainsKey(node) && m_Nodes_phraseMap[node] != null) return m_Nodes_phraseMap[node] ;
-
+            
             return null;
         }
 
