@@ -218,15 +218,22 @@ namespace Obi.Dialogs
             {
                 m_Nodes_phraseMap.Add(anchorNode, referedNode);
             }
-            UpdateAnchorListBoxForAssociation(anchorNode);
+            UpdateAnchorUserInterfaceForAssociation(anchorNode);
         }
 
-        private void UpdateAnchorListBoxForAssociation(EmptyNode anchorNode)
+        private void UpdateAnchorUserInterfaceForAssociation(EmptyNode anchorNode)
         {
-            int listBoxIndex = listOfAnchorNodes.IndexOf(anchorNode);
-            string selectedSymbol = m_SelectedNode != null &&  m_SelectedNode == anchorNode? ">>" : "" ;
+            if (m_IsShowAll)
+            {
+                int listBoxIndex = listOfAnchorNodes.IndexOf(anchorNode);
+                string selectedSymbol = m_SelectedNode != null && m_SelectedNode == anchorNode ? ">>" : "";
 
-            m_lb_listOfAllAnchorNodes.Items[listBoxIndex] = selectedSymbol + GetEmptyNodeString(anchorNode) + " = " + GetEmptyNodeString(GetReferedNode(anchorNode));
+                m_lb_listOfAllAnchorNodes.Items[listBoxIndex] = selectedSymbol + GetEmptyNodeString(anchorNode) + " = " + GetEmptyNodeString(GetReferedNode(anchorNode));
+            }
+            else
+            {
+                m_txtBox_SectionName.Text = GetEmptyNodeString(anchorNode) + " = " + GetEmptyNodeString(GetReferedNode(anchorNode));
+            }
         }
 
         private void m_btn_Deassociate_Click(object sender, EventArgs e)
@@ -305,20 +312,41 @@ namespace Obi.Dialogs
         {
             if (node == null) return "";
             string info = null;
-            double durationMs = node.Duration;
-            double seconds = Math.Round((durationMs / 1000), 1, MidpointRounding.ToEven);
-            string dur = "("+ Convert.ToString(seconds) + "s)";
-            info = String.Format(Localizer.Message("phrase_to_string"),
-                "",
-                "",
-                node.IsRooted ? node.Index + 1 : 0,
-                node.IsRooted ? node.ParentAs<ObiNode>().PhraseChildCount : 0,
-                "",
-                node.Role_ == EmptyNode.Role.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), node.CustomRole) :
+            if (node.Role_ == EmptyNode.Role.Custom && EmptyNode.SkippableNamesList.Contains(node.CustomRole))
+            {
+                SectionNode parentSection = node.ParentAs<SectionNode>();
+                EmptyNode lastNode = parentSection.PhraseChild(parentSection.PhraseChildCount - 1);
+                for (int i = node.Index; i < parentSection.PhraseChildCount; i++)
+                {
+                    if (parentSection.PhraseChild(i).Role_ != node.Role_
+                        || parentSection.PhraseChild(i).CustomRole != node.CustomRole)
+                    {
+                        break;
+                    }
+                    lastNode = parentSection.PhraseChild(i);
+                }
+                string range = (node.Index + 1).ToString() + " to " + (lastNode.Index + 1).ToString();
+                info = "Section " + parentSection.Label + " " + node.CustomRole + " " + range;
+                return info;
+            }
+            else
+            {
 
-                    Localizer.Message("phrase_extra_" + node.Role_.ToString()));
+                double durationMs = node.Duration;
+                double seconds = Math.Round((durationMs / 1000), 1, MidpointRounding.ToEven);
+                string dur = "(" + Convert.ToString(seconds) + "s)";
+                info = String.Format(Localizer.Message("phrase_to_string"),
+                    "",
+                    "",
+                    node.IsRooted ? node.Index + 1 : 0,
+                    node.IsRooted ? node.ParentAs<ObiNode>().PhraseChildCount : 0,
+                    "",
+                    node.Role_ == EmptyNode.Role.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), node.CustomRole) :
 
-            return info;
+                        Localizer.Message("phrase_extra_" + node.Role_.ToString()));
+
+                return info;
+            }
         }
 
         private void UpdateButtons()
