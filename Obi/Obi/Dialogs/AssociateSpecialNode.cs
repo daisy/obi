@@ -185,64 +185,48 @@ namespace Obi.Dialogs
                 if (m_IsShowAll && (m_lb_listOfAllAnchorNodes.SelectedIndex < 0 || m_lb_ListOfSpecialNodes.SelectedIndex < 0)) return;
 
             EmptyNode anchorNode = null; 
-            bool IsAssociated = false;
-           // m_btn_Deassociate.Enabled = true;
-            for (int i = 0; i < listOfAnchorNodesCopy.Count; i++)
+                       
+            if (m_IsShowAll)
             {
-                if (listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex] == listOfAnchorNodesCopy[i].AssociatedNode)
-                {
-                    if (MessageBox.Show(Localizer.Message("Node_already_associated"), Localizer.Message("Associate"), MessageBoxButtons.YesNo,
-                           MessageBoxIcon.Question) == DialogResult.No)
-                    {
-                        IsAssociated = true;
-                       // m_btn_Deassociate.Enabled = false;
-                    }
-                    break;
-                }
-                else
-                    IsAssociated = false;
+                anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];
             }
+            else
+            {
+                anchorNode = m_SelectedNode;
+            }
+            if (anchorNode != null)
+            {
+                if ( GetReferedNode (anchorNode ) != null 
+                    && MessageBox.Show(Localizer.Message("Node_already_associated"),Localizer.Message("Associate"), MessageBoxButtons.YesNo,
+                                           MessageBoxIcon.Question) == DialogResult.No)
+                    {
+                        return ;
+                    }
 
-            foreach (KeyValuePair<EmptyNode, EmptyNode> pair in m_Nodes_phraseMap)
-                {
-                   
-                    if (m_Nodes_phraseMap.ContainsKey(pair.Key) && listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex] == pair.Key.AssociatedNode)
-                    {
-                        if (MessageBox.Show(Localizer.Message("Node_already_associated"),Localizer.Message("Associate"), MessageBoxButtons.YesNo,
-                               MessageBoxIcon.Question) == DialogResult.No)
-                        {
-                            IsAssociated = true;
-                         //   m_btn_Deassociate.Enabled = false;
-                        }
-                        break;
-                    }
-                    else
-                        IsAssociated = false;
-                }
-            
-            if (!IsAssociated)
-            { 
-                if (listOfAnchorNodes.Count > 0 && (m_SelectedNode == null || m_IsShowAll))
-                    {
-                        if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
-                            anchorNode = listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex];
-                        else
-                            anchorNode = listOfAnchorNodes[0];
-                    }
-                    else
-                    {
-                        anchorNode = m_SelectedNode;
-                    }
-                    if (m_Nodes_phraseMap.ContainsKey(anchorNode))
-                    {
-                        m_Nodes_phraseMap[anchorNode] = listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex];
-                    }
-                    else
-                    {
-                        m_Nodes_phraseMap.Add(anchorNode, listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
-                    }                  
-             }
+                AssociateNodes (anchorNode, listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex]);
+            }
+            UpdateButtons();
+        }
 
+        private void AssociateNodes(EmptyNode anchorNode, EmptyNode referedNode)
+        {
+            if (m_Nodes_phraseMap.ContainsKey(anchorNode))
+            {
+                m_Nodes_phraseMap[anchorNode] = referedNode;
+            }
+            else
+            {
+                m_Nodes_phraseMap.Add(anchorNode, referedNode);
+            }
+            UpdateAnchorListBoxForAssociation(anchorNode);
+        }
+
+        private void UpdateAnchorListBoxForAssociation(EmptyNode anchorNode)
+        {
+            int listBoxIndex = listOfAnchorNodes.IndexOf(anchorNode);
+            string selectedSymbol = m_SelectedNode != null &&  m_SelectedNode == anchorNode? ">>" : "" ;
+
+            m_lb_listOfAllAnchorNodes.Items[listBoxIndex] = selectedSymbol + GetEmptyNodeString(anchorNode) + " = " + GetEmptyNodeString(GetReferedNode(anchorNode));
         }
 
         private void m_btn_Deassociate_Click(object sender, EventArgs e)
@@ -332,7 +316,6 @@ namespace Obi.Dialogs
                 "",
                 node.Role_ == EmptyNode.Role.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), node.CustomRole) :
 
-                node.Role_ == EmptyNode.Role.Anchor && node.AssociatedNode == null ? Localizer.Message("phrase_extra_" + node.Role_.ToString()) + "= ?" :
                     Localizer.Message("phrase_extra_" + node.Role_.ToString()));
 
             return info;
