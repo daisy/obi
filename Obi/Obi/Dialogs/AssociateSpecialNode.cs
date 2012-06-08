@@ -236,6 +236,26 @@ namespace Obi.Dialogs
             }
         }
 
+        private void UpdateAnchorUIForDeassociation()
+        {
+            if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
+            {
+                m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex, "Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]);
+                m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
+            }            
+        }
+        private void DeassociateNodes(EmptyNode anchorNode)
+        {
+            if (m_Nodes_phraseMap.ContainsKey(anchorNode))
+            {
+                m_Nodes_phraseMap[anchorNode] = null;
+            }
+            else
+            {
+                m_Nodes_phraseMap.Add(anchorNode, null);
+            }
+        }
+
         private void m_btn_Deassociate_Click(object sender, EventArgs e)
         {
             EmptyNode anchorNode = null;
@@ -250,20 +270,8 @@ namespace Obi.Dialogs
                  
             }
             if (anchorNode == null) return;
-            if (m_Nodes_phraseMap.ContainsKey(anchorNode))
-            {
-                m_Nodes_phraseMap[anchorNode] = null;
-            }
-            else
-            {
-                m_Nodes_phraseMap.Add(anchorNode, null);
-            }
-
-            if (m_lb_listOfAllAnchorNodes.SelectedIndex >=0)
-            {
-            m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex,"Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " "+ listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]);
-            m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
-            }
+            DeassociateNodes(anchorNode);
+            UpdateAnchorUIForDeassociation();
             UpdateButtons();
     //        if(listOfAnchorNodes.Count == 1)
            // m_btn_Deassociate.Enabled = false;
