@@ -143,6 +143,7 @@ namespace Obi.Dialogs
 
         private void AddToAnchorNodeListbox(SectionNode node, int i)
         {
+            string selectedSymbol = m_SelectedNode != null && m_SelectedNode == node.PhraseChild(i) ? ">> Section " : "Section ";
             if (IsAnchor(node.PhraseChild(i)) || (m_SelectedNode != null && node == m_SelectedNode.ParentAs<SectionNode>() && node.PhraseChild(i) == m_SelectedNode))
             {
                 if (m_IsShowAll || m_SelectedNode == null)
@@ -150,14 +151,14 @@ namespace Obi.Dialogs
                     if (m_SelectedNode == node.PhraseChild(i))
                     {
                         if (m_SelectedNode.AssociatedNode != null)
-                            m_lb_listOfAllAnchorNodes.Items.Add(">> Section " + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + GetEmptyNodeString(node.PhraseChild(i).AssociatedNode));
+                            m_lb_listOfAllAnchorNodes.Items.Add(selectedSymbol + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + GetEmptyNodeString(node.PhraseChild(i).AssociatedNode));
                         else
-                            m_lb_listOfAllAnchorNodes.Items.Add(">> Section " + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)));                        
+                            m_lb_listOfAllAnchorNodes.Items.Add(selectedSymbol + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)));                        
                     }
                     else if (node.PhraseChild(i).AssociatedNode != null)
-                       m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + GetEmptyNodeString(node.PhraseChild(i).AssociatedNode));
+                       m_lb_listOfAllAnchorNodes.Items.Add(selectedSymbol + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + GetEmptyNodeString(node.PhraseChild(i).AssociatedNode));
                     else
-                        m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)));
+                        m_lb_listOfAllAnchorNodes.Items.Add(selectedSymbol + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)));
 
                     listOfAnchorNodes.Add(node.PhraseChild(i));
                 }
@@ -232,13 +233,14 @@ namespace Obi.Dialogs
             {
                 if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
                 {
-                    m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex, "Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]);
+                    m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex, "Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " + GetEmptyNodeString(anchorNode));
                     m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
                 }
             }
             else
                 m_txtBox_SectionName.Text = GetEmptyNodeString(anchorNode);
         }
+
         private void DeassociateNodes(EmptyNode anchorNode)
         {
             if (m_Nodes_phraseMap.ContainsKey(anchorNode))
@@ -261,8 +263,7 @@ namespace Obi.Dialogs
             }
             else
             {
-                anchorNode = m_SelectedNode;
-                 
+                anchorNode = m_SelectedNode;                 
             }
             if (anchorNode == null) return;
             DeassociateNodes(anchorNode);
