@@ -218,8 +218,7 @@ namespace Obi.Dialogs
             {
                 int listBoxIndex = listOfAnchorNodes.IndexOf(anchorNode);
                 string selectedSymbol = m_SelectedNode != null && m_SelectedNode == anchorNode ? ">>" : "";
-
-                m_lb_listOfAllAnchorNodes.Items[listBoxIndex] = selectedSymbol + GetEmptyNodeString(anchorNode) + " = " + GetEmptyNodeString(GetReferedNode(anchorNode));
+                m_lb_listOfAllAnchorNodes.Items[listBoxIndex] = selectedSymbol + "Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " +GetEmptyNodeString(anchorNode) + " = " + GetEmptyNodeString(GetReferedNode(anchorNode));
             }
             else
             {
@@ -267,7 +266,6 @@ namespace Obi.Dialogs
             }
             if (anchorNode == null) return;
             DeassociateNodes(anchorNode);
-            MessageBox.Show(anchorNode.AssociatedNode.ToString());
             UpdateAnchorUIForDeassociation(anchorNode);
             UpdateButtons();
     //        if(listOfAnchorNodes.Count == 1)
