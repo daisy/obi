@@ -93,93 +93,83 @@ namespace Obi.Dialogs
         {
             List<SectionNode> listOfAllSections = new List<SectionNode>();
             listOfAllSections = m_ObiNode.GetListOfAllSections();
-            string tempString = "";
-            int firstIndex = -1;
 
             foreach (SectionNode node in listOfAllSections)
             {                
                 for (int i = 0; i < node.PhraseChildCount; i++)
                 {
-                    if (node.PhraseChild(i).Role_ == EmptyNode.Role.Custom && (node.PhraseChild(i).CustomRole == EmptyNode.Footnote || node.PhraseChild(i).CustomRole == EmptyNode.EndNote || node.PhraseChild(i).CustomRole == EmptyNode.Annotation || node.PhraseChild(i).CustomRole == EmptyNode.ProducerNote || node.PhraseChild(i).CustomRole == EmptyNode.Note))
-                    {
-                        tempString = node.PhraseChild(i).CustomRole;
-                        if ( i < node.PhraseChildCount - 1 && tempString != node.PhraseChild(i + 1).CustomRole )
+                    AddToSpecialNodeListbox(node, i);
+                    AddToAnchorNodeListbox(node, i);                   
+                }
+            }
+        }
+
+        private void AddToSpecialNodeListbox(SectionNode node, int i)
+        {
+            string tempString = "";
+            int firstIndex = -1;
+            if (node.PhraseChild(i).Role_ == EmptyNode.Role.Custom && (node.PhraseChild(i).CustomRole == EmptyNode.Footnote || node.PhraseChild(i).CustomRole == EmptyNode.EndNote || node.PhraseChild(i).CustomRole == EmptyNode.Annotation || node.PhraseChild(i).CustomRole == EmptyNode.ProducerNote || node.PhraseChild(i).CustomRole == EmptyNode.Note))
+            {
+                tempString = node.PhraseChild(i).CustomRole;
+                if (i < node.PhraseChildCount - 1 && tempString != node.PhraseChild(i + 1).CustomRole)
+                {
+                        if (firstIndex == -1)
                         {
-                          //  if (!m_IsShowAll)
-                            {
-                                if (firstIndex == -1)
-                                {
-                                    m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (i + 1));
-                                    listOfFirstNodeOfSpecialNodes.Add(node.PhraseChild(i));
-                                }
-                                else
-                                    m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));                               
-                            }
-                           
-                            firstIndex = -1;
+                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (i + 1));
+                            listOfFirstNodeOfSpecialNodes.Add(node.PhraseChild(i));
                         }
                         else
-                        {
-                            if (firstIndex == -1)
-                            {
-                                firstIndex = i;
-                                listOfFirstNodeOfSpecialNodes.Add(node.PhraseChild(i));
-                            }
-                            if (i == node.PhraseChildCount - 1)
-                            {
-                                if (firstIndex == i)
-                                    m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1));
-                                else
-                                {
-                                     // if (!m_IsShowAll)
-                                     m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
-                                }
-                                firstIndex = -1;
-                            }
-                        }
-                    }
-                    if (IsAnchor(node.PhraseChild(i)) || (m_SelectedNode != null && node == m_SelectedNode.ParentAs<SectionNode>() && node.PhraseChild(i) == m_SelectedNode))
+                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
+                    firstIndex = -1;
+                }
+                else
+                {
+                    if (firstIndex == -1)
                     {
-        //                m_lb_listOfAllAnchorNodes.Items.Add(node.PhraseChild(i));
-                        if (m_IsShowAll || m_SelectedNode == null)
-                        {
-                            if (m_SelectedNode == node.PhraseChild(i))
-                            {
-                                if (m_SelectedNode.AssociatedNode != null)
-                                {
-                                    //m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + node.PhraseChild(i).AssociatedNode);
-                                    m_lb_listOfAllAnchorNodes.Items.Add(">> Section " + node.Label + " " + GetEmptyNodeString( node.PhraseChild(i)) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + GetEmptyNodeString( node.PhraseChild(i).AssociatedNode));
-                                }
-                                else
-                                {
-                                    //m_lb_listOfAllAnchorNodes.Items.Add("=> Section " + node.Label + " " + node.PhraseChild(i));
-                                    m_lb_listOfAllAnchorNodes.Items.Add(">> Section " + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)));
-                                }
-                            }
-                            else if (node.PhraseChild(i).AssociatedNode != null)
-                            {
-                                //m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + node.PhraseChild(i).AssociatedNode);
-                                m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + GetEmptyNodeString( node.PhraseChild(i)) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " +GetEmptyNodeString (node.PhraseChild(i).AssociatedNode));
-                            }
-                            else
-                            {
-                                //m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i));
-                                m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + GetEmptyNodeString( node.PhraseChild(i)));
-                            }
-                            listOfAnchorNodes.Add(node.PhraseChild(i));                           
-                        }
-                        listOfAnchorNodesCopy.Add(node.PhraseChild(i));
+                        firstIndex = i;
+                        listOfFirstNodeOfSpecialNodes.Add(node.PhraseChild(i));
                     }
-                    if (m_IsShowAll == false)
+                    if (i == node.PhraseChildCount - 1)
                     {
-                        listOfAnchorNodes.Clear();
-                        //m_lb_listOfAllAnchorNodes.Items.Add("Section " + m_SelectedNode.ParentAs<SectionNode>() + " " + m_SelectedNode);
-                        listOfAnchorNodes.Add(m_SelectedNode);
+                        if (firstIndex == i)
+                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1));
+                        else
+                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
+                        firstIndex = -1;
                     }
                 }
             }
         }
 
+        private void AddToAnchorNodeListbox(SectionNode node, int i)
+        {
+            if (IsAnchor(node.PhraseChild(i)) || (m_SelectedNode != null && node == m_SelectedNode.ParentAs<SectionNode>() && node.PhraseChild(i) == m_SelectedNode))
+            {
+                if (m_IsShowAll || m_SelectedNode == null)
+                {
+                    if (m_SelectedNode == node.PhraseChild(i))
+                    {
+                        if (m_SelectedNode.AssociatedNode != null)
+                            m_lb_listOfAllAnchorNodes.Items.Add(">> Section " + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + GetEmptyNodeString(node.PhraseChild(i).AssociatedNode));
+                        else
+                            m_lb_listOfAllAnchorNodes.Items.Add(">> Section " + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)));                        
+                    }
+                    else if (node.PhraseChild(i).AssociatedNode != null)
+                       m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)) + " = Section " + node.PhraseChild(i).AssociatedNode.ParentAs<SectionNode>().Label + ", " + GetEmptyNodeString(node.PhraseChild(i).AssociatedNode));
+                    else
+                        m_lb_listOfAllAnchorNodes.Items.Add("Section " + node.Label + " " + GetEmptyNodeString(node.PhraseChild(i)));
+
+                    listOfAnchorNodes.Add(node.PhraseChild(i));
+                }
+                listOfAnchorNodesCopy.Add(node.PhraseChild(i));
+            }
+            if (m_IsShowAll == false)
+            {
+                listOfAnchorNodes.Clear();
+                listOfAnchorNodes.Add(m_SelectedNode);
+            }
+        }
+       
         private void m_btn_Associate_Click(object sender, EventArgs e)
         {
                 if (m_IsShowAll && (m_lb_listOfAllAnchorNodes.SelectedIndex < 0 || m_lb_ListOfSpecialNodes.SelectedIndex < 0)) return;
@@ -236,13 +226,18 @@ namespace Obi.Dialogs
             }
         }
 
-        private void UpdateAnchorUIForDeassociation()
+        private void UpdateAnchorUIForDeassociation(EmptyNode anchorNode)
         {
-            if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
+            if (m_IsShowAll)
             {
-                m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex, "Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]);
-                m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
-            }            
+                if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
+                {
+                    m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex, "Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]);
+                    m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
+                }
+            }
+            else
+                m_txtBox_SectionName.Text = GetEmptyNodeString(anchorNode);
         }
         private void DeassociateNodes(EmptyNode anchorNode)
         {
@@ -271,7 +266,8 @@ namespace Obi.Dialogs
             }
             if (anchorNode == null) return;
             DeassociateNodes(anchorNode);
-            UpdateAnchorUIForDeassociation();
+            MessageBox.Show(anchorNode.AssociatedNode.ToString());
+            UpdateAnchorUIForDeassociation(anchorNode);
             UpdateButtons();
     //        if(listOfAnchorNodes.Count == 1)
            // m_btn_Deassociate.Enabled = false;
@@ -363,8 +359,8 @@ namespace Obi.Dialogs
                 m_btn_Associate.Enabled = m_lb_listOfAllAnchorNodes.SelectedItem != null && m_lb_ListOfSpecialNodes.SelectedItem != null;
             else
                 m_btn_Associate.Enabled = m_lb_ListOfSpecialNodes.SelectedItem != null;
-            
-            m_btn_Deassociate.Enabled = m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && GetReferedNode(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) != null;
+
+            m_btn_Deassociate.Enabled = (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && GetReferedNode(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) != null) || (m_SelectedNode != null && m_SelectedNode.AssociatedNode != null);
          //   m_btn_Deassociate.Enabled = m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && ((listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].AssociatedNode != null && !m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]))
            //     || (m_Nodes_phraseMap.ContainsKey(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) && m_Nodes_phraseMap[listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]] != null)) && m_lb_listOfAllAnchorNodes.SelectedIndex > 0 && GetReferedNode();
                 
