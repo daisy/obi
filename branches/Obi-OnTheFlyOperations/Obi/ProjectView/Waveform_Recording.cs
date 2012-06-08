@@ -354,7 +354,14 @@ int channel = 0;
                             g.DrawLine(newPen, listOfXLocation[i], 0, listOfXLocation[i], Height);
                         else if (m_DictionaryEmpNode[listOfXLocation[i]].EndsWith("0"))
                             g.DrawString(m_DictionaryEmpNode[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], Height - 15);
-                    }               
+                    }
+
+                    if (this.Location.X < 0 && 
+                        (this.Location.X * -1) < listOfXLocation[i])
+                    {
+                        Console.WriteLine("Breaking refresh loop at:" + i) ;
+                        break;
+                    }
                 }
                 m_IsMaximized = false;
                 timer1.Start();
