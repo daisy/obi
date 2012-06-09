@@ -211,12 +211,17 @@ namespace Obi.Dialogs
         {
            int selectedeNode = m_lbSpecialPhrasesList.SelectedIndex;
            selectedItem = backendList[selectedeNode];
-          mBar.Stop();
-          if (m_lbSpecialPhrasesList.SelectedIndex >= 0)
+          
+          if (mBar.IsPlayerActive) mBar.Stop();
+
+           if (m_lbSpecialPhrasesList.SelectedIndex >= 0)
            {
-             // UpdateButtons();
-              m_btnOK.Enabled = true;
+             m_btnOK.Enabled = true;
              m_BtnPlay.Enabled = true;
+            }
+           else
+           {
+               m_BtnPlay.Enabled = false; 
            }
         }
 
@@ -266,11 +271,6 @@ namespace Obi.Dialogs
                 m_BtnPlay.Enabled = true;
                 m_BtnPlay.Visible = true;
                 m_BtnPause.Visible = false;
-            }
-            if (m_lbSpecialPhrasesList.SelectedIndex >= 0)
-            {
-                m_btnOK.Enabled = true;
-                m_BtnPlay.Enabled = true;
             }
            /* m_BtnPause.Visible = mBar.CanPause;
             m_BtnPlay.Visible = !m_BtnPause.Visible;
