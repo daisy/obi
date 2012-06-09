@@ -41,6 +41,12 @@ namespace Obi.Dialogs
             //m_StopImg = Image.FromStream(stopStr);
             m_BtnPause.Image = m_PauseImg;
             m_BtnPlay.Image = m_PlayImg;
+            mBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
+        }
+
+        public void State_Changed_Player(object sender, AudioLib.AudioPlayer.StateChangedEventArgs e)
+        {
+           UpdateButtons();
         }
 
         private void AddCustomRoles()
