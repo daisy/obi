@@ -248,11 +248,8 @@ namespace Obi.Dialogs
 
         private void m_BtnPlay_Click(object sender, EventArgs e)
         {
-            if (mView.Selection == null || !(mView.Selection.Node is EmptyNode ))
-            {
-                mView.SelectFromTransportBar(backendList[m_lbSpecialPhrasesList.SelectedIndex],null);
-            }
-          mBar.PlayOrResume(backendList[m_lbSpecialPhrasesList.SelectedIndex]);
+           mView.SelectFromTransportBar(backendList[m_lbSpecialPhrasesList.SelectedIndex],null);
+           mBar.PlayOrResume(backendList[m_lbSpecialPhrasesList.SelectedIndex]);
           //UpdateButtons();    
         }
 
@@ -270,6 +267,12 @@ namespace Obi.Dialogs
             {
                 m_BtnPlay.Enabled = true;
                 m_BtnPlay.Visible = true;
+                m_BtnPause.Visible = false;
+            }
+            else if(mBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped)
+            {
+                m_BtnPlay.Visible = true;
+                m_BtnPlay.Enabled = true;
                 m_BtnPause.Visible = false;
             }
            /* m_BtnPause.Visible = mBar.CanPause;
