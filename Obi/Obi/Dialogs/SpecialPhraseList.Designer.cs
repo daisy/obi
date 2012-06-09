@@ -139,9 +139,9 @@
             // 
             // m_BtnPause
             // 
+            this.m_BtnPause.AccessibleName = "Pause";
             this.m_BtnPause.Enabled = false;
             this.m_BtnPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_BtnPause.Image = global::Obi.Properties.Resources.media_playback_pause;
             this.m_BtnPause.Location = new System.Drawing.Point(68, 29);
             this.m_BtnPause.Name = "m_BtnPause";
             this.m_BtnPause.Size = new System.Drawing.Size(100, 28);
@@ -152,9 +152,9 @@
             // 
             // m_BtnStop
             // 
+            this.m_BtnStop.AccessibleName = "Stop";
             this.m_BtnStop.Enabled = false;
             this.m_BtnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_BtnStop.Image = global::Obi.Properties.Resources.media_playback_stop;
             this.m_BtnStop.Location = new System.Drawing.Point(196, 28);
             this.m_BtnStop.Name = "m_BtnStop";
             this.m_BtnStop.Size = new System.Drawing.Size(100, 28);
@@ -164,9 +164,9 @@
             // 
             // m_BtnPlay
             // 
+            this.m_BtnPlay.AccessibleName = "Play";
             this.m_BtnPlay.Enabled = false;
             this.m_BtnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_BtnPlay.Image = global::Obi.Properties.Resources.media_playback_start;
             this.m_BtnPlay.Location = new System.Drawing.Point(68, 29);
             this.m_BtnPlay.Name = "m_BtnPlay";
             this.m_BtnPlay.Size = new System.Drawing.Size(100, 28);
