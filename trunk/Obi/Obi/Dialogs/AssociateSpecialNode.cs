@@ -347,7 +347,8 @@ namespace Obi.Dialogs
                     node.Role_ == EmptyNode.Role.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), node.CustomRole) :
 
                         Localizer.Message("phrase_extra_" + node.Role_.ToString()));
-
+                info = info.Replace("(", "");
+                info = info.Replace(")", "");
                 return info;
             }
         }
