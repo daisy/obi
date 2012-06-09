@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using TreeNode = urakawa.core.TreeNode;
@@ -16,7 +18,10 @@ namespace Obi.Dialogs
         private EmptyNode selectedItem = null;
         private readonly List<EmptyNode> backendList = new List<EmptyNode>();
         private ProjectView.TransportBar mBar;
-       
+        private Image m_PauseImg;
+        private Image m_PlayImg;
+        private Image m_StopImg;
+
         public SpecialPhraseList(Obi.ProjectView.ProjectView projectView)
         {
             mView = projectView;
@@ -24,6 +29,18 @@ namespace Obi.Dialogs
             InitializeComponent();
             m_btnOK.Enabled = false;
             AddCustomRoles();
+            Assembly myAssembly = Assembly.GetExecutingAssembly();
+            Stream pauseStr = null;
+            Stream playStr = null;
+           // Stream stopStr = null;
+            pauseStr = myAssembly.GetManifestResourceStream("Obi.UserControls.media-playback-pause.png");
+            playStr = myAssembly.GetManifestResourceStream("Obi.UserControls.media-playback-start.png");
+            //stopStr = myAssembly.GetManifestResourceStream("Obi.Dialogs.media-playback-stop.png");
+            m_PauseImg = Image.FromStream(pauseStr);
+            m_PlayImg = Image.FromStream(playStr);
+            //m_StopImg = Image.FromStream(stopStr);
+            m_BtnPause.Image = m_PauseImg;
+            m_BtnPlay.Image = m_PlayImg;
         }
 
         private void AddCustomRoles()
@@ -188,10 +205,10 @@ namespace Obi.Dialogs
         {
            int selectedeNode = m_lbSpecialPhrasesList.SelectedIndex;
            selectedItem = backendList[selectedeNode];
-
+          mBar.Stop();
           if (m_lbSpecialPhrasesList.SelectedIndex >= 0)
            {
-             UpdateButtons();
+             // UpdateButtons();
               m_btnOK.Enabled = true;
              m_BtnPlay.Enabled = true;
            }
@@ -234,22 +251,26 @@ namespace Obi.Dialogs
             if (mBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
             {
                 m_BtnPause.Enabled = true;
+                m_BtnPause.Visible = true;
                 m_BtnStop.Enabled = true;
+                m_BtnPlay.Visible = false;
             }
-            else
+            else if (mBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused)
             {
                 m_BtnPlay.Enabled = true;
+                m_BtnPlay.Visible = true;
+                m_BtnPause.Visible = false;
             }
             if (m_lbSpecialPhrasesList.SelectedIndex >= 0)
             {
                 m_btnOK.Enabled = true;
                 m_BtnPlay.Enabled = true;
             }
-            m_BtnPause.Visible = mBar.CanPause;
+           /* m_BtnPause.Visible = mBar.CanPause;
             m_BtnPlay.Visible = !m_BtnPause.Visible;
             m_BtnPlay.Enabled = mBar.CanPlay || mBar.CanResumePlayback;
             m_BtnStop.Enabled = mBar.CanStop;
-            
+            */
         }
 
       }
