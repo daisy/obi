@@ -15,10 +15,12 @@ namespace Obi.Dialogs
         private readonly ProjectView.ProjectView mView;
         private EmptyNode selectedItem = null;
         private readonly List<EmptyNode> backendList = new List<EmptyNode>();
+        private ProjectView.TransportBar mBar;
        
         public SpecialPhraseList(Obi.ProjectView.ProjectView projectView)
         {
             mView = projectView;
+            mBar =  projectView.TransportBar;
             InitializeComponent();
             m_btnOK.Enabled = false;
             AddCustomRoles();
@@ -187,7 +189,12 @@ namespace Obi.Dialogs
            int selectedeNode = m_lbSpecialPhrasesList.SelectedIndex;
            selectedItem = backendList[selectedeNode];
 
-           m_btnOK.Enabled = m_lbSpecialPhrasesList.SelectedIndex >= 0;
+          if (m_lbSpecialPhrasesList.SelectedIndex >= 0)
+           {
+             UpdateButtons();
+              m_btnOK.Enabled = true;
+             m_BtnPlay.Enabled = true;
+           }
         }
 
         private void m_cb_SpecialPhrases_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -196,6 +203,53 @@ namespace Obi.Dialogs
             {
                 CollectPhrases();
             }
+        }
+
+        private void m_BtnPause_Click(object sender, EventArgs e)
+        {
+            mBar.PlayOrResume();
+            UpdateButtons();
+        }
+
+        private void m_BtnStop_Click(object sender, EventArgs e)
+        {
+           if (mBar.CanStop)
+                mBar.Stop();
+            UpdateButtons();
+        }
+
+        private void m_BtnPlay_Click(object sender, EventArgs e)
+        {
+            if (mView.Selection == null || !(mView.Selection.Node is EmptyNode ))
+            {
+                mView.SelectFromTransportBar(backendList[m_lbSpecialPhrasesList.SelectedIndex],null);
+            }
+          mBar.PlayOrResume(backendList[m_lbSpecialPhrasesList.SelectedIndex]);
+          UpdateButtons();    
+        }
+
+        private void UpdateButtons()
+        {
+
+            if (mBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
+            {
+                m_BtnPause.Enabled = true;
+                m_BtnStop.Enabled = true;
+            }
+            else
+            {
+                m_BtnPlay.Enabled = true;
+            }
+            if (m_lbSpecialPhrasesList.SelectedIndex >= 0)
+            {
+                m_btnOK.Enabled = true;
+                m_BtnPlay.Enabled = true;
+            }
+            m_BtnPause.Visible = mBar.CanPause;
+            m_BtnPlay.Visible = !m_BtnPause.Visible;
+            m_BtnPlay.Enabled = mBar.CanPlay || mBar.CanResumePlayback;
+            m_BtnStop.Enabled = mBar.CanStop;
+            
         }
 
       }
