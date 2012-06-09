@@ -34,7 +34,12 @@
             this.m_lbSpecialPhrasesList = new System.Windows.Forms.ListBox();
             this.m_btnOK = new System.Windows.Forms.Button();
             this.m_btnCancel = new System.Windows.Forms.Button();
+            this.mgrp_PlayPhraseInListBox = new System.Windows.Forms.GroupBox();
+            this.m_BtnPause = new System.Windows.Forms.Button();
+            this.m_BtnStop = new System.Windows.Forms.Button();
+            this.m_BtnPlay = new System.Windows.Forms.Button();
             this.m_grpSelectSpecialPhrases.SuspendLayout();
+            this.mgrp_PlayPhraseInListBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_grpSelectSpecialPhrases
@@ -99,7 +104,7 @@
             this.m_btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_btnOK.Location = new System.Drawing.Point(80, 372);
+            this.m_btnOK.Location = new System.Drawing.Point(80, 453);
             this.m_btnOK.Name = "m_btnOK";
             this.m_btnOK.Size = new System.Drawing.Size(100, 28);
             this.m_btnOK.TabIndex = 2;
@@ -112,12 +117,62 @@
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_btnCancel.Location = new System.Drawing.Point(205, 372);
+            this.m_btnCancel.Location = new System.Drawing.Point(205, 453);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(100, 28);
             this.m_btnCancel.TabIndex = 3;
             this.m_btnCancel.Text = "&Cancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // mgrp_PlayPhraseInListBox
+            // 
+            this.mgrp_PlayPhraseInListBox.Controls.Add(this.m_BtnPause);
+            this.mgrp_PlayPhraseInListBox.Controls.Add(this.m_BtnStop);
+            this.mgrp_PlayPhraseInListBox.Controls.Add(this.m_BtnPlay);
+            this.mgrp_PlayPhraseInListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mgrp_PlayPhraseInListBox.Location = new System.Drawing.Point(12, 376);
+            this.mgrp_PlayPhraseInListBox.Name = "mgrp_PlayPhraseInListBox";
+            this.mgrp_PlayPhraseInListBox.Size = new System.Drawing.Size(394, 71);
+            this.mgrp_PlayPhraseInListBox.TabIndex = 4;
+            this.mgrp_PlayPhraseInListBox.TabStop = false;
+            this.mgrp_PlayPhraseInListBox.Text = "Play Phrase Selected in ListBox";
+            // 
+            // m_BtnPause
+            // 
+            this.m_BtnPause.Enabled = false;
+            this.m_BtnPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_BtnPause.Image = global::Obi.Properties.Resources.media_playback_pause;
+            this.m_BtnPause.Location = new System.Drawing.Point(68, 29);
+            this.m_BtnPause.Name = "m_BtnPause";
+            this.m_BtnPause.Size = new System.Drawing.Size(100, 28);
+            this.m_BtnPause.TabIndex = 2;
+            this.m_BtnPause.UseVisualStyleBackColor = true;
+            this.m_BtnPause.Visible = false;
+            this.m_BtnPause.Click += new System.EventHandler(this.m_BtnPause_Click);
+            // 
+            // m_BtnStop
+            // 
+            this.m_BtnStop.Enabled = false;
+            this.m_BtnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_BtnStop.Image = global::Obi.Properties.Resources.media_playback_stop;
+            this.m_BtnStop.Location = new System.Drawing.Point(196, 28);
+            this.m_BtnStop.Name = "m_BtnStop";
+            this.m_BtnStop.Size = new System.Drawing.Size(100, 28);
+            this.m_BtnStop.TabIndex = 1;
+            this.m_BtnStop.UseVisualStyleBackColor = true;
+            this.m_BtnStop.Click += new System.EventHandler(this.m_BtnStop_Click);
+            // 
+            // m_BtnPlay
+            // 
+            this.m_BtnPlay.Enabled = false;
+            this.m_BtnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.m_BtnPlay.Image = global::Obi.Properties.Resources.media_playback_start;
+            this.m_BtnPlay.Location = new System.Drawing.Point(68, 29);
+            this.m_BtnPlay.Name = "m_BtnPlay";
+            this.m_BtnPlay.Size = new System.Drawing.Size(100, 28);
+            this.m_BtnPlay.TabIndex = 0;
+            this.m_BtnPlay.UseVisualStyleBackColor = true;
+            this.m_BtnPlay.Click += new System.EventHandler(this.m_BtnPlay_Click);
             // 
             // SpecialPhraseList
             // 
@@ -125,7 +180,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
-            this.ClientSize = new System.Drawing.Size(423, 410);
+            this.ClientSize = new System.Drawing.Size(423, 493);
+            this.Controls.Add(this.mgrp_PlayPhraseInListBox);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOK);
             this.Controls.Add(this.m_lbSpecialPhrasesList);
@@ -134,6 +190,7 @@
             this.Name = "SpecialPhraseList";
             this.Text = "SpecialPhraseList";
             this.m_grpSelectSpecialPhrases.ResumeLayout(false);
+            this.mgrp_PlayPhraseInListBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -146,5 +203,9 @@
         private System.Windows.Forms.ListBox m_lbSpecialPhrasesList;
         private System.Windows.Forms.Button m_btnOK;
         private System.Windows.Forms.Button m_btnCancel;
+        private System.Windows.Forms.GroupBox mgrp_PlayPhraseInListBox;
+        private System.Windows.Forms.Button m_BtnStop;
+        private System.Windows.Forms.Button m_BtnPlay;
+        private System.Windows.Forms.Button m_BtnPause;
     }
 }
