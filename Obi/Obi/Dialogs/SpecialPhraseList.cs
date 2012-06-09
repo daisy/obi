@@ -230,15 +230,15 @@ namespace Obi.Dialogs
 
         private void m_BtnPause_Click(object sender, EventArgs e)
         {
-            mBar.PlayOrResume();
-            UpdateButtons();
+            mBar.Pause();
+            //UpdateButtons();
         }
 
         private void m_BtnStop_Click(object sender, EventArgs e)
         {
            if (mBar.CanStop)
                 mBar.Stop();
-            UpdateButtons();
+            //UpdateButtons();
         }
 
         private void m_BtnPlay_Click(object sender, EventArgs e)
@@ -248,7 +248,7 @@ namespace Obi.Dialogs
                 mView.SelectFromTransportBar(backendList[m_lbSpecialPhrasesList.SelectedIndex],null);
             }
           mBar.PlayOrResume(backendList[m_lbSpecialPhrasesList.SelectedIndex]);
-          UpdateButtons();    
+          //UpdateButtons();    
         }
 
         private void UpdateButtons()
