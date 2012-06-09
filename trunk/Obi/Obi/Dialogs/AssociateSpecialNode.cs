@@ -102,6 +102,11 @@ namespace Obi.Dialogs
                     AddToAnchorNodeListbox(node, i);                   
                 }
             }
+
+            foreach (EmptyNode eNode in listOfFirstNodeOfSpecialNodes)
+            {
+                m_lb_ListOfSpecialNodes.Items.Add("Section " + eNode.ParentAs<SectionNode>().Label + " " + GetEmptyNodeString(eNode));
+            }
         }
 
         private void AddToSpecialNodeListbox(SectionNode node, int i)
@@ -115,11 +120,11 @@ namespace Obi.Dialogs
                 {
                         if (firstIndex == -1)
                         {
-                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (i + 1));
+                            //m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (i + 1));
                             listOfFirstNodeOfSpecialNodes.Add(node.PhraseChild(i));
                         }
                         else
-                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
+                            //m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
                     firstIndex = -1;
                 }
                 else
@@ -132,10 +137,14 @@ namespace Obi.Dialogs
                     if (i == node.PhraseChildCount - 1)
                     {
                         if (firstIndex == i)
-                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1));
+                        {
+                            //m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1));
+                        }
                         else
-                            m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
-                        firstIndex = -1;
+                        {
+                            //m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
+                        }
+                            firstIndex = -1;
                     }
                 }
             }
@@ -328,7 +337,8 @@ namespace Obi.Dialogs
                     }
                     lastNode = parentSection.PhraseChild(i);
                 }
-                string range = (node.Index + 1).ToString() + " to " + (lastNode.Index + 1).ToString();
+                string range = node != lastNode? (node.Index + 1).ToString() + " to " + (lastNode.Index + 1).ToString():
+                    (node.Index + 1).ToString();
                 info = "Section " + parentSection.Label + " " + node.CustomRole + " " + range;
                 return info;
             }
