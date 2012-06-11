@@ -211,8 +211,10 @@ namespace Obi.Dialogs
         {
            int selectedeNode = m_lbSpecialPhrasesList.SelectedIndex;
            selectedItem = backendList[selectedeNode];
-          
-          if (mBar.IsPlayerActive) mBar.Stop();
+          if (mBar.IsPlayerActive)
+          {
+             mBar.Stop();
+          }
 
            if (m_lbSpecialPhrasesList.SelectedIndex >= 0)
            {
@@ -241,16 +243,22 @@ namespace Obi.Dialogs
 
         private void m_BtnStop_Click(object sender, EventArgs e)
         {
-           if (mBar.CanStop)
-                mBar.Stop();
+         if (mBar.CanStop) mBar.Stop();
             //UpdateButtons();
         }
 
         private void m_BtnPlay_Click(object sender, EventArgs e)
         {
-           mView.SelectFromTransportBar(backendList[m_lbSpecialPhrasesList.SelectedIndex],null);
-           mBar.PlayOrResume(backendList[m_lbSpecialPhrasesList.SelectedIndex]);
-          //UpdateButtons();    
+            if (mBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused)
+            {
+                mBar.PlayOrResume();
+            }
+            else
+            {
+                mView.SelectFromTransportBar(backendList[m_lbSpecialPhrasesList.SelectedIndex], null);
+                mBar.PlayOrResume(backendList[m_lbSpecialPhrasesList.SelectedIndex]);
+            }
+            //UpdateButtons();    
         }
 
         private void UpdateButtons()
