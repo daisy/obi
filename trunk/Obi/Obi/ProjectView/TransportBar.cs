@@ -1204,10 +1204,28 @@ namespace Obi.ProjectView
             else if (node != null)
             {
                 if (!node.IsRooted) return;
-                mLocalPlaylist = new Playlist(mPlayer, mView.Selection , mPlayQAPlaylist);
+
+                bool neglectSelection = mView.Selection == null
+                    || (node is EmptyNode && mView.Selection.Node != node);
+                
+                if (neglectSelection)
+                {
+                    mLocalPlaylist = new Playlist(mPlayer,  node, mPlayQAPlaylist);
+                }
+                else
+                {
+                    mLocalPlaylist = new Playlist(mPlayer, mView.Selection, mPlayQAPlaylist);
+                }
                 SetPlaylistEvents(mLocalPlaylist);
                 mCurrentPlaylist = mLocalPlaylist;
+                if ( neglectSelection )
+                {
+                    mCurrentPlaylist.Play () ;
+                }
+                else
+                {
                 PlayCurrentPlaylistFromSelection();
+                }
             }
         }
 
@@ -1370,6 +1388,7 @@ namespace Obi.ProjectView
                 }
                 UpdateButtons();
             }
+            
         }
 
         // Pause recording
