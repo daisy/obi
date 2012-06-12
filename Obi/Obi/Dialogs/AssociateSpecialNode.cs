@@ -112,41 +112,17 @@ namespace Obi.Dialogs
         private void AddToSpecialNodeListbox(SectionNode node, int i)
         {
             string tempString = "";
-            int firstIndex = -1;
             if (node.PhraseChild(i).Role_ == EmptyNode.Role.Custom && (node.PhraseChild(i).CustomRole == EmptyNode.Footnote || node.PhraseChild(i).CustomRole == EmptyNode.EndNote || node.PhraseChild(i).CustomRole == EmptyNode.Annotation || node.PhraseChild(i).CustomRole == EmptyNode.ProducerNote || node.PhraseChild(i).CustomRole == EmptyNode.Note))
             {
                 tempString = node.PhraseChild(i).CustomRole;
-                if (i < node.PhraseChildCount - 1 && tempString != node.PhraseChild(i + 1).CustomRole)
+                if(i <= node.PhraseChildCount -1)
                 {
-                        if (firstIndex == -1)
-                        {
-                            //m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (i + 1));
-                            listOfFirstNodeOfSpecialNodes.Add(node.PhraseChild(i));
-                        }
-                        else
-                            //m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
-                    firstIndex = -1;
-                }
-                else
-                {
-                    if (firstIndex == -1)
-                    {
-                        firstIndex = i;
-                        listOfFirstNodeOfSpecialNodes.Add(node.PhraseChild(i));
-                    }
-                    if (i == node.PhraseChildCount - 1)
-                    {
-                        if (firstIndex == i)
-                        {
-                            //m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1));
-                        }
-                        else
-                        {
-                            //m_lb_ListOfSpecialNodes.Items.Add("Section " + node.Label + " " + node.PhraseChild(i).CustomRole + " " + (firstIndex + 1) + " to " + (i + 1));
-                        }
-                            firstIndex = -1;
-                    }
-                }
+                    if(((node.PhraseChild(i).PrecedingNode is SectionNode || (node.PhraseChild(i).PrecedingNode is EmptyNode &&  tempString != ((EmptyNode)node.PhraseChild(i).PrecedingNode).CustomRole )) && node.PhraseChild(i).FollowingNode is EmptyNode && tempString  == ((EmptyNode)node.PhraseChild(i).FollowingNode).CustomRole )
+                        || (node.PhraseChild(i).PrecedingNode is EmptyNode && node.PhraseChild(i).FollowingNode is EmptyNode && tempString != ((EmptyNode)node.PhraseChild(i).PrecedingNode).CustomRole && tempString != ((EmptyNode)node.PhraseChild(i).FollowingNode).CustomRole)
+                        || (i == node.PhraseChildCount - 1 && ((node.PhraseChild(i).PrecedingNode is SectionNode || (node.PhraseChild(i).PrecedingNode is EmptyNode && ((EmptyNode)node.PhraseChild(i).PrecedingNode).CustomRole != tempString))))
+                        )
+                        listOfFirstNodeOfSpecialNodes.Add(node.PhraseChild(i));            
+                }                     
             }
         }
 
