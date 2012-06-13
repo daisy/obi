@@ -208,7 +208,7 @@ namespace Obi.Dialogs
             if (m_IsShowAll)
             {
                 int listBoxIndex = listOfAnchorNodes.IndexOf(anchorNode);
-                string selectedSymbol = m_SelectedNode != null && m_SelectedNode == anchorNode ? ">>" : "";
+                string selectedSymbol = m_SelectedNode != null && m_SelectedNode == anchorNode ? ">>" : Localizer.Message("Empty_Strings");
                 m_lb_listOfAllAnchorNodes.Items[listBoxIndex] = selectedSymbol + "Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " +GetEmptyNodeString(anchorNode) + " = " + GetEmptyNodeString(GetReferedNode(anchorNode));
             }
             else
@@ -304,7 +304,7 @@ namespace Obi.Dialogs
 
         private string GetEmptyNodeString(EmptyNode node)
         {
-            if (node == null) return "";
+            if (node == null) return Localizer.Message("Empty_Strings");
             string info = null;
             if (node.Role_ == EmptyNode.Role.Custom && EmptyNode.SkippableNamesList.Contains(node.CustomRole))
             {
@@ -331,16 +331,16 @@ namespace Obi.Dialogs
                 double seconds = Math.Round((durationMs / 1000), 1, MidpointRounding.ToEven);
                 string dur = "(" + Convert.ToString(seconds) + "s)";
                 info = String.Format(Localizer.Message("phrase_to_string"),
-                    "",
-                    "",
+                    Localizer.Message("Empty_Strings"),
+                    Localizer.Message("Empty_Strings"),
                     node.IsRooted ? node.Index + 1 : 0,
                     node.IsRooted ? node.ParentAs<ObiNode>().PhraseChildCount : 0,
-                    "",
+                    Localizer.Message("Empty_Strings"),
                     node.Role_ == EmptyNode.Role.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), node.CustomRole) :
 
                         Localizer.Message("phrase_extra_" + node.Role_.ToString()));
-                info = info.Replace("(", "");
-                info = info.Replace(")", "");
+                info = info.Replace("(", Localizer.Message("Empty_Strings"));
+                info = info.Replace(")", Localizer.Message("Empty_Strings"));
                 return info;
             }
         }
