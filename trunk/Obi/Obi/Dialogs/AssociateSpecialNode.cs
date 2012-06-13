@@ -17,8 +17,6 @@ namespace Obi.Dialogs
         private EmptyNode m_SelectedNode = null;
         Dictionary<EmptyNode, EmptyNode> m_Nodes_phraseMap = new Dictionary<EmptyNode, EmptyNode>(); // used for importing sections
         private List<EmptyNode> listOfAnchorNodesCopy = new List<EmptyNode>();
-        private bool m_IsAnchorIndexChanged = false;
-        private bool m_IsSpecialIndexChanged = false;
        
         public AssociateSpecialNode(ObiRootNode obiNode, EmptyNode selectedNode)
         {
@@ -180,7 +178,7 @@ namespace Obi.Dialogs
             if (anchorNode != null)
             {
                 if ( GetReferedNode (anchorNode ) != null 
-                    && (!m_IsAnchorIndexChanged || !m_IsSpecialIndexChanged) && MessageBox.Show(Localizer.Message("Node_already_associated"),Localizer.Message("Associate"), MessageBoxButtons.YesNo,
+                    && GetReferedNode(anchorNode) != listOfFirstNodeOfSpecialNodes[m_lb_ListOfSpecialNodes.SelectedIndex] &&  MessageBox.Show(Localizer.Message("Node_already_associated"),Localizer.Message("Associate"), MessageBoxButtons.YesNo,
                                            MessageBoxIcon.Question) == DialogResult.No)
                     {
                          return ;
@@ -267,13 +265,11 @@ namespace Obi.Dialogs
 
         private void m_lb_ListOfSpecialNodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_IsSpecialIndexChanged = true;
             UpdateButtons();
         }
 
         private void m_lb_listOfAllAnchorNodes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_IsAnchorIndexChanged = true;
             UpdateButtons();         
         }
 
