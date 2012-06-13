@@ -2094,7 +2094,6 @@ Error text: {1}</value>
   <data name="Warning" xml:space="preserve">
     <value>Warning!</value>
   </data>
-
   <data name="ContentView_wrap" xml:space="preserve">
     <value>A section or phrase should be select to wrap</value>
   </data>
@@ -2121,5 +2120,8 @@ Error text: {1}</value>
   </data>
   <data name="ProjectViewMsg_LogFileCreatedOnDesktop" xml:space="preserve">
     <value>The previous session of Obi was terminated abruptly. The log file ObiSession.log is created on the desktop</value>
+  </data>
+  <data name="Empty_Strings" xml:space="preserve">
+    <value>""</value>
   </data>
 </root>
