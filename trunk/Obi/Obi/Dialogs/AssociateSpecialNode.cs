@@ -228,7 +228,10 @@ namespace Obi.Dialogs
             {
                 if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
                 {
-                    m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex, Localizer.Message("AssociateNode_Section") + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " + GetEmptyNodeString(anchorNode));
+                    if (anchorNode == m_SelectedNode)
+                        m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex, Localizer.Message("AssociateNode_SelectedSection") + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " + GetEmptyNodeString(anchorNode));
+                    else
+                        m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex, Localizer.Message("AssociateNode_Section") + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " + GetEmptyNodeString(anchorNode));
                     m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
                 }
             }
