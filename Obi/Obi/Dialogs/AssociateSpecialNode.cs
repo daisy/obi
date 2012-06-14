@@ -28,8 +28,8 @@ namespace Obi.Dialogs
             {
                 m_txtBox_SectionName.Visible = true;
                 m_lb_listOfAllAnchorNodes.Visible = false;
-                if (selectedNode.AssociatedNode != null)
-                    m_txtBox_SectionName.Text = selectedNode.ToString() + " = ";
+                if (GetReferedNode(selectedNode) != null)
+                    m_txtBox_SectionName.Text = selectedNode.ToString() + " = " + GetReferedNode(selectedNode);
                 else
                     m_txtBox_SectionName.Text = selectedNode.ToString();
                 groupBox1.Text = "Selected node";
@@ -66,7 +66,7 @@ namespace Obi.Dialogs
                 AddToListBox();
                 if (m_SelectedNode != null)
                 {
-                    int index = m_lb_listOfAllAnchorNodes.FindString("=> Section " + m_SelectedNode.ParentAs<SectionNode>().Label + " " + m_txtBox_SectionName.Text);
+                    int index = m_lb_listOfAllAnchorNodes.FindString(Localizer.Message("AssociateNode_SelectedSection") + m_SelectedNode.ParentAs<SectionNode>().Label + " " + m_txtBox_SectionName.Text);
                     if (index != -1)
                         m_lb_listOfAllAnchorNodes.SetSelected(index, true);
                 }
@@ -130,7 +130,7 @@ namespace Obi.Dialogs
 
         private void AddToAnchorNodeListbox(SectionNode node, int i)
         {
-            string selectedSymbol = m_SelectedNode != null && m_SelectedNode == node.PhraseChild(i) ? ">> Section " : "Section ";
+            string selectedSymbol = m_SelectedNode != null && m_SelectedNode == node.PhraseChild(i) ? Localizer.Message("AssociateNode_SelectedSection") : Localizer.Message("AssociateNode_Section");
             if (IsAnchor(node.PhraseChild(i)) || (m_SelectedNode != null && node == m_SelectedNode.ParentAs<SectionNode>() && node.PhraseChild(i) == m_SelectedNode))
             {
                 if (m_IsShowAll || m_SelectedNode == null)
@@ -157,7 +157,7 @@ namespace Obi.Dialogs
             if (m_IsShowAll == false)
             {
                 listOfAnchorNodes.Clear();
-                listOfAnchorNodes.Add(m_SelectedNode);
+                listOfAnchorNodes.Add(m_SelectedNode);                
             }
         }
 
@@ -208,8 +208,8 @@ namespace Obi.Dialogs
             if (m_IsShowAll)
             {
                 int listBoxIndex = listOfAnchorNodes.IndexOf(anchorNode);
-                string selectedSymbol = m_SelectedNode != null && m_SelectedNode == anchorNode ? ">>" : Localizer.Message("Empty_Strings");
-                m_lb_listOfAllAnchorNodes.Items[listBoxIndex] = selectedSymbol + "Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " +GetEmptyNodeString(anchorNode) + " = " + GetEmptyNodeString(GetReferedNode(anchorNode));
+                string selectedSymbol = m_SelectedNode != null && m_SelectedNode == anchorNode ? "=>>" : Localizer.Message("Empty_Strings");
+                m_lb_listOfAllAnchorNodes.Items[listBoxIndex] = selectedSymbol + Localizer.Message("AssociateNode_Section") + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " + GetEmptyNodeString(anchorNode) + " = " + GetEmptyNodeString(GetReferedNode(anchorNode));
             }
             else
             {
@@ -223,7 +223,7 @@ namespace Obi.Dialogs
             {
                 if (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0)
                 {
-                    m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex, "Section " + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " + GetEmptyNodeString(anchorNode));
+                    m_lb_listOfAllAnchorNodes.Items.Insert(m_lb_listOfAllAnchorNodes.SelectedIndex, Localizer.Message("AssociateNode_Section") + listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex].ParentAs<SectionNode>().Label + " " + GetEmptyNodeString(anchorNode));
                     m_lb_listOfAllAnchorNodes.Items.Remove(m_lb_listOfAllAnchorNodes.SelectedItem);
                 }
             }
@@ -321,7 +321,7 @@ namespace Obi.Dialogs
                 }
                 string range = node != lastNode? (node.Index + 1).ToString() + " to " + (lastNode.Index + 1).ToString():
                     (node.Index + 1).ToString();
-                info = "Section " + parentSection.Label + " " + node.CustomRole + " " + range;
+                info = Localizer.Message("AssociateNode_Section") + parentSection.Label + " " + node.CustomRole + " " + range;
                 return info;
             }
             else
@@ -352,7 +352,7 @@ namespace Obi.Dialogs
             else
                 m_btn_Associate.Enabled = m_lb_ListOfSpecialNodes.SelectedItem != null;
 
-            m_btn_Deassociate.Enabled = (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && GetReferedNode(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) != null) || (!m_IsShowAll && m_SelectedNode != null && m_SelectedNode.AssociatedNode != null);
+            m_btn_Deassociate.Enabled = (m_lb_listOfAllAnchorNodes.SelectedIndex >= 0 && GetReferedNode(listOfAnchorNodes[m_lb_listOfAllAnchorNodes.SelectedIndex]) != null) || (!m_IsShowAll && m_SelectedNode != null && GetReferedNode(m_SelectedNode) != null);
         }
 
     }

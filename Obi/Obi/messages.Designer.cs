@@ -196,6 +196,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Section .
+        /// </summary>
+        internal static string AssociateNode_Section {
+            get {
+                return ResourceManager.GetString("AssociateNode_Section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to =&gt;&gt; Section.
+        /// </summary>
+        internal static string AssociateNode_SelectedSection {
+            get {
+                return ResourceManager.GetString("AssociateNode_SelectedSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} {1} of {2}{3}.
         /// </summary>
         internal static string audio_block_label {
@@ -1477,7 +1495,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;&quot;.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string Empty_Strings {
             get {
