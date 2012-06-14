@@ -1495,15 +1495,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string Empty_Strings {
-            get {
-                return ResourceManager.GetString("Empty_Strings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error adding page number: no parent section found..
         /// </summary>
         internal static string error_adding_page_number {
@@ -3310,7 +3301,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The node is already associated with some other anchor node. Do you want to continue associating?.
+        ///   Looks up a localized string similar to The node is already associated with some other node. Do you want to continue associating?.
         /// </summary>
         internal static string Node_already_associated {
             get {

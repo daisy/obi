@@ -2023,7 +2023,7 @@ Error text: {1}</value>
     <value>Associate node</value>
   </data>
   <data name="Node_already_associated" xml:space="preserve">
-    <value>The node is already associated with some other anchor node. Do you want to continue associating?</value>
+    <value>The node is already associated with some other node. Do you want to continue associating?</value>
   </data>
   <data name="Page_not_found" xml:space="preserve">
     <value>No page was found in the chunk.</value>
@@ -2126,8 +2126,5 @@ Error text: {1}</value>
   </data>
   <data name="AssociateNode_SelectedSection" xml:space="preserve">
     <value>=&gt;&gt; Section</value>
-  </data>
-  <data name="Empty_Strings" xml:space="preserve">
-    <value />
   </data>
 </root>
