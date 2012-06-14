@@ -2121,7 +2121,13 @@ Error text: {1}</value>
   <data name="ProjectViewMsg_LogFileCreatedOnDesktop" xml:space="preserve">
     <value>The previous session of Obi was terminated abruptly. The log file ObiSession.log is created on the desktop</value>
   </data>
+  <data name="AssociateNode_Section" xml:space="preserve">
+    <value>Section </value>
+  </data>
+  <data name="AssociateNode_SelectedSection" xml:space="preserve">
+    <value>=&gt;&gt; Section</value>
+  </data>
   <data name="Empty_Strings" xml:space="preserve">
-    <value>""</value>
+    <value />
   </data>
 </root>
