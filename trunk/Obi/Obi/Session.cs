@@ -358,24 +358,22 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         /// </summary>
         public void ForceSave()
         {
+            if (checkDiskSpace() <= 10)
+            {
+                DialogResult result = MessageBox.Show("Your system has less then 10 Mb disk space left. Do you want to save your project ?",
+                                   "Disk Space Information", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
             if (Save(mPath))
             {
                 m_ErrorsInOpeningProject = false;
                 mChangesCount = 0;
                 if (ProjectSaved != null) ProjectSaved(this, null);
             }
-            checkDiskSpace();
-            if(checkDiskSpace() <= 10)
-            {
-             DialogResult result = MessageBox.Show("Your system has less then 10 Mb disk space left. Do you want to save your project ?",
-                                "Disk Space Information", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                
-                if(result == DialogResult.No)
-                {
-                    return;
-                }
-            }
-
        }
 
         /// <summary>
