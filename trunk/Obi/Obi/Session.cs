@@ -364,9 +364,18 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
                 mChangesCount = 0;
                 if (ProjectSaved != null) ProjectSaved(this, null);
             }
-           // countMemoryUsage();
-            //getSpaceInAllDrives();
             checkDiskSpace();
+            if(checkDiskSpace() <= 10)
+            {
+             DialogResult result = MessageBox.Show("Your system has less then 10 Mb disk space left. Do you want to save your project ?",
+                                "Disk Space Information", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                
+                if(result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
        }
 
         /// <summary>
@@ -567,40 +576,18 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             if (ProjectCreated != null) ProjectCreated(this, null);
         }
 
-        private void countMemoryUsage()
-        {
-            Process currentProcess = System.Diagnostics.Process.GetCurrentProcess();
-            long currentProcessMemoryConsumption = (currentProcess.PeakWorkingSet64 / 1024) / 1024;
-
-            PerformanceCounter pCounter = new PerformanceCounter("Memory", "Available MBytes");
-            long freeMemory = Convert.ToInt64(pCounter.NextValue());
-            MessageBox.Show(" Maximum memory Used By Current Project : " + currentProcessMemoryConsumption.ToString() + " Mb" + "\n" +
-               " Free physical memory available in your system : " + freeMemory.ToString() + " Mb", " Memory Information ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void getSpaceInAllDrives()
-        {
-            DriveInfo[] oDrvs = DriveInfo.GetDrives();
-            foreach (var driveInfo in oDrvs)
-            {
-                if (driveInfo.IsReady)
-                {
-                    MessageBox.Show(" Total available space in drive " + driveInfo.Name + ": " + (driveInfo.AvailableFreeSpace/1048576).ToString() +" Mb");
-                }
-            }
-        }
-
-        private void checkDiskSpace()
-        {
-            string rootDir = System.IO.Path.GetPathRoot(mPath);
+       private long checkDiskSpace()
+       {
+           string rootDir = System.IO.Path.GetPathRoot(mPath);
+           long freeSpace = 0;
             
             DriveInfo driveSpace = new DriveInfo(rootDir);
             if (driveSpace.IsReady)
             {
                 const int num = 1048576;// 1024*1024
-                long freeSpace = driveSpace.AvailableFreeSpace/num;
-                MessageBox.Show("Free space available on drive " + rootDir +" is " + freeSpace.ToString() + " Mb", " Free Disk Available Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                freeSpace = driveSpace.AvailableFreeSpace/num;
             }
+            return freeSpace;
         }
     }
 
