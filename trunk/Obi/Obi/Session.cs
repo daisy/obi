@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.IO;
 using urakawa;
@@ -363,6 +364,18 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
                 mChangesCount = 0;
                 if (ProjectSaved != null) ProjectSaved(this, null);
             }
+            countMemoryUsage();
+       }
+
+        private void countMemoryUsage()
+        {
+            Process currentProcess = System.Diagnostics.Process.GetCurrentProcess();
+            long currentProcessMemoryConsumption = (currentProcess.PeakWorkingSet64 / 1024) / 1024;
+
+            PerformanceCounter pCounter = new PerformanceCounter("Memory", "Available MBytes");
+            long freeMemory = Convert.ToInt64(pCounter.NextValue());
+            MessageBox.Show(" Maximum memory Used By Current Project : " + currentProcessMemoryConsumption.ToString() + " Mb" + "\n" +
+               " Free physical memory available in your system : " + freeMemory.ToString() + " Mb", " Memory Information ", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /// <summary>
