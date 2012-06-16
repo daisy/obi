@@ -46,7 +46,8 @@ namespace Obi.ProjectView
         private Dictionary<int, string> m_DictionaryEmpNode = new Dictionary<int, string>();
         private double timeOfAssetMilliseconds = 0;
         private bool m_IsMaximized = false;
-        private bool m_IsResize = false;
+        private bool m_IsToBeRepainted = false;
+     //   private bool m_IsResize = false;
         
         public Waveform_Recording()
         {
@@ -56,7 +57,8 @@ namespace Obi.ProjectView
             g = this.CreateGraphics();
             if (m_ProjectView != null && m_ProjectView.TransportBar.RecordingPhrase != null)
                 m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
-            Location = new Point(-400, Location.Y);
+            Location = new Point(0, Location.Y);
+            Size = new Size(10000, Height);
             
         }
 
@@ -127,14 +129,20 @@ namespace Obi.ProjectView
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            
             m_XCV = m_X + Location.X;
             int diff = m_XCV - (m_ContentView.Width / 2 + 50);
             int newXLocation = (m_X - (m_ContentView.Width / 2 + 50)) * -1;
-            
             if (Math.Abs(diff) > 2)
+            {
                 this.Location = new Point(newXLocation, this.Location.Y);
+                m_IsToBeRepainted = false;
+            }
             if (newXLocation > 0)
+            {
+                m_IsToBeRepainted = false;
                 Location = new Point(0, Location.Y);
+            }
           
             
             if (m_VUMeter == null || m_ContentView == null) return;
@@ -187,33 +195,24 @@ namespace Obi.ProjectView
                     g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
                     if (!m_DictionaryEmpNode.ContainsKey(m_X))
                         m_DictionaryEmpNode.Add(m_X, text);
-                        //m_DictionarySeconds.Add(m_X, text);
                     m_LocalTime = timeInSeconds;
                 }
                 else
-                m_DictionaryEmpNode.Add(m_X, "");
+                {
+                    if (!m_DictionaryEmpNode.ContainsKey(m_X))
+                        m_DictionaryEmpNode.Add(m_X, "");
+                }
+           
                 m_Counter = 0;
             }
 
-                /*if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds )
-                {
-                    text = timeInSeconds.ToString();
-                    g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
-                    if(!m_DictionarySeconds.ContainsKey(m_X))
-                    m_DictionarySeconds.Add(m_X, text);
-                    m_LocalTime = timeInSeconds;
-                }*/
-
-                if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
+            if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
                 CreatePageorPhrase(m_X);
-            if ((m_ContentView.Width - m_XCV) > 300)
-            {
-                m_IsResize = true;
-                this.Width = this.Width + 150;
-               // m_IsMaximized = false;
-            }
-           
-           //  m_IsResized = true;
+            if ((m_ContentView.Width - m_XCV) > 600)
+            {              
+            //    this.Location = new Point(m_ContentView.Location.X, Location.Y);
+                  // m_IsMaximized = false;
+            }            
              m_X++;
              listOfXLocation.Add(m_X); 
              listOfMinChannel1.Add((int)minChannel1);
@@ -292,26 +291,18 @@ int channel = 0;
 
         private void Waveform_Recording_Resize(object sender, EventArgs e)
         {
-            if (!m_IsResize)
-               return;
-            m_IsResize = false;
             RepaintWaveform();           
         }
 
         private void RepaintWaveform()
         {
-           
+            Console.WriteLine("CLLIG TOO MANT TIMEW");
             int count = 0;
             int secondsMark = 0;
             int localCount = 0;
             Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
-            /*  if (m_IsResized)
-            {
-                m_IsResized = false;
-                return;
-            }*/
-
+            
             if (m_IsMaximized)
             {
                 m_IsMaximized = false;
@@ -356,12 +347,12 @@ int channel = 0;
                             g.DrawString(m_DictionaryEmpNode[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], Height - 15);
                     }
 
-                    if (this.Location.X < 0 && 
+                  /*  if (this.Location.X < 0 && 
                         (this.Location.X * -1) < listOfXLocation[i])
                     {
                         Console.WriteLine("Breaking refresh loop at:" + i) ;
                         break;
-                    }
+                    }*/
                 }
                 m_IsMaximized = false;
                 timer1.Start();
@@ -394,7 +385,9 @@ int channel = 0;
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            if(m_IsToBeRepainted)
             RepaintWaveform();
+            m_IsToBeRepainted = true;
             m_IsMaximized = false;
         }               
     }
