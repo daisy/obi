@@ -857,6 +857,7 @@
     <Content Include="ShowBlocksCompleted.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="UserControls\media-playback-stop.png" />
     <EmbeddedResource Include="UserControls\media-playback-start.png" />
     <EmbeddedResource Include="UserControls\media-playback-pause.png" />
   </ItemGroup>
