@@ -2127,8 +2127,8 @@ Error text: {1}</value>
   <data name="AssociateNode_SelectedSection" xml:space="preserve">
     <value>=&gt;&gt; Section</value>
   </data>
-  <data name="LimitedMemoryWarning" xml:space="preserve">
-    <value>Your system has less then 10 Mb disk space left. Do you want to save your project ? </value>
+  <data name="LimitedDiskSpaceWarning" xml:space="preserve">
+    <value>Your system has less than {0} Mb disk space left. Do you want to continue?</value>
   </data>
   <data name="Memory_Warning" xml:space="preserve">
     <value>Disk Space Information</value>
