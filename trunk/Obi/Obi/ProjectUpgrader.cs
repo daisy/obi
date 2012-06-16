@@ -141,6 +141,15 @@ namespace Obi
                 return;
             }
 
+            // update audio format 
+            XmlNode oldMediaDataManager = sourceXmlDoc.GetElementsByTagName("mMediaDataManager")[0];
+            XmlNode oldPCMInfo = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(oldMediaDataManager, true, "PCMFormatInfo", oldMediaDataManager.NamespaceURI);
+
+            XmlNode newMediaDataManager = destXmlDoc.GetElementsByTagName("MediaDataManager")[0];
+            XmlNode newPCMInfo = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(newMediaDataManager, true, "PCMFormatInfo", newMediaDataManager.NamespaceURI);
+            newPCMInfo.Attributes.GetNamedItem("NumberOfChannels").Value = oldPCMInfo.Attributes.GetNamedItem("numberOfChannels").Value;
+            newPCMInfo.Attributes.GetNamedItem("SampleRate").Value = oldPCMInfo.Attributes.GetNamedItem("sampleRate").Value;
+            
             // add AudioMediaDatas Next
             XmlNode oldAudioMediaDatas = sourceXmlDoc.GetElementsByTagName("mMediaData")[0];
             XmlNode newAudioMediaDatas = destXmlDoc.GetElementsByTagName("MediaDatas")[0];
