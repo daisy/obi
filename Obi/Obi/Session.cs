@@ -360,7 +360,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         {
             if (checkDiskSpace() <= 10)
             {
-             DialogResult result =   MessageBox.Show(Localizer.Message("LimitedMemoryWarning"),Localizer.Message("Memory_Warning"),MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+             DialogResult result =   MessageBox.Show(string.Format( Localizer.Message("LimitedDiskSpaceWarning"), 10),Localizer.Message("Memory_Warning"),MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 
              if (result == DialogResult.No)
               {

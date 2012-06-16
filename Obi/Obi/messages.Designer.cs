@@ -2595,11 +2595,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your system has less then 10 Mb disk space left. Do you want to save your project ? .
+        ///   Looks up a localized string similar to Your system has less than {0} Mb disk space left. Do you want to continue?.
         /// </summary>
-        internal static string LimitedMemoryWarning {
+        internal static string LimitedDiskSpaceWarning {
             get {
-                return ResourceManager.GetString("LimitedMemoryWarning", resourceCulture);
+                return ResourceManager.GetString("LimitedDiskSpaceWarning", resourceCulture);
             }
         }
         
