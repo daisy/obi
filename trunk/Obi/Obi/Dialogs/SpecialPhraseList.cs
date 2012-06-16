@@ -32,15 +32,16 @@ namespace Obi.Dialogs
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             Stream pauseStr = null;
             Stream playStr = null;
-           // Stream stopStr = null;
+            Stream stopStr = null;
             pauseStr = myAssembly.GetManifestResourceStream("Obi.UserControls.media-playback-pause.png");
             playStr = myAssembly.GetManifestResourceStream("Obi.UserControls.media-playback-start.png");
-            //stopStr = myAssembly.GetManifestResourceStream("Obi.Dialogs.media-playback-stop.png");
+            stopStr = myAssembly.GetManifestResourceStream("Obi.UserControls.media-playback-stop.png");
             m_PauseImg = Image.FromStream(pauseStr);
             m_PlayImg = Image.FromStream(playStr);
-            //m_StopImg = Image.FromStream(stopStr);
+            m_StopImg = Image.FromStream(stopStr);
             m_BtnPause.Image = m_PauseImg;
             m_BtnPlay.Image = m_PlayImg;
+            m_BtnStop.Image = m_StopImg;
             mBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
         }
 
