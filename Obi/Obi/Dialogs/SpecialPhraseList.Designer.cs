@@ -107,7 +107,7 @@
             this.m_btnOK.Location = new System.Drawing.Point(80, 453);
             this.m_btnOK.Name = "m_btnOK";
             this.m_btnOK.Size = new System.Drawing.Size(100, 28);
-            this.m_btnOK.TabIndex = 2;
+            this.m_btnOK.TabIndex = 5;
             this.m_btnOK.Text = "&OK";
             this.m_btnOK.UseVisualStyleBackColor = true;
             // 
@@ -120,7 +120,7 @@
             this.m_btnCancel.Location = new System.Drawing.Point(205, 453);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(100, 28);
-            this.m_btnCancel.TabIndex = 3;
+            this.m_btnCancel.TabIndex = 6;
             this.m_btnCancel.Text = "&Cancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -133,7 +133,7 @@
             this.mgrp_PlayPhraseInListBox.Location = new System.Drawing.Point(12, 376);
             this.mgrp_PlayPhraseInListBox.Name = "mgrp_PlayPhraseInListBox";
             this.mgrp_PlayPhraseInListBox.Size = new System.Drawing.Size(394, 71);
-            this.mgrp_PlayPhraseInListBox.TabIndex = 4;
+            this.mgrp_PlayPhraseInListBox.TabIndex = 2;
             this.mgrp_PlayPhraseInListBox.TabStop = false;
             this.mgrp_PlayPhraseInListBox.Text = "Play Phrase Selected in ListBox";
             // 
@@ -145,7 +145,7 @@
             this.m_BtnPause.Location = new System.Drawing.Point(68, 29);
             this.m_BtnPause.Name = "m_BtnPause";
             this.m_BtnPause.Size = new System.Drawing.Size(100, 28);
-            this.m_BtnPause.TabIndex = 2;
+            this.m_BtnPause.TabIndex = 3;
             this.m_BtnPause.UseVisualStyleBackColor = true;
             this.m_BtnPause.Visible = false;
             this.m_BtnPause.Click += new System.EventHandler(this.m_BtnPause_Click);
@@ -158,7 +158,7 @@
             this.m_BtnStop.Location = new System.Drawing.Point(196, 28);
             this.m_BtnStop.Name = "m_BtnStop";
             this.m_BtnStop.Size = new System.Drawing.Size(100, 28);
-            this.m_BtnStop.TabIndex = 1;
+            this.m_BtnStop.TabIndex = 4;
             this.m_BtnStop.UseVisualStyleBackColor = true;
             this.m_BtnStop.Click += new System.EventHandler(this.m_BtnStop_Click);
             // 
@@ -170,7 +170,7 @@
             this.m_BtnPlay.Location = new System.Drawing.Point(68, 29);
             this.m_BtnPlay.Name = "m_BtnPlay";
             this.m_BtnPlay.Size = new System.Drawing.Size(100, 28);
-            this.m_BtnPlay.TabIndex = 0;
+            this.m_BtnPlay.TabIndex = 3;
             this.m_BtnPlay.UseVisualStyleBackColor = true;
             this.m_BtnPlay.Click += new System.EventHandler(this.m_BtnPlay_Click);
             // 
