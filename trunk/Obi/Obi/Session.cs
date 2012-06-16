@@ -360,13 +360,12 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         {
             if (checkDiskSpace() <= 10)
             {
-                DialogResult result = MessageBox.Show("Your system has less then 10 Mb disk space left. Do you want to save your project ?",
-                                   "Disk Space Information", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (result == DialogResult.No)
-                {
-                    return;
-                }
+             DialogResult result =   MessageBox.Show(Localizer.Message("LimitedMemoryWarning"),Localizer.Message("Memory_Warning"),MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                
+             if (result == DialogResult.No)
+              {
+                 return;
+              }
             }
             if (Save(mPath))
             {
