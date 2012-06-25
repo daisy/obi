@@ -65,7 +65,11 @@ namespace Obi.ProjectView
         public ContentView contentView
         {
             get { return m_ContentView; }
-            set { m_ContentView = value; }
+            set 
+            { 
+                m_ContentView = value;
+                if (m_ContentView != null) m_ContentView.SizeChanged += new EventHandler(Waveform_Recording_Resize);
+            }
         }
 
         public bool invertColor
@@ -291,6 +295,7 @@ int channel = 0;
 
         private void Waveform_Recording_Resize(object sender, EventArgs e)
         {
+            System.Media.SystemSounds.Asterisk.Play () ;
             RepaintWaveform();           
         }
 
