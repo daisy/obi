@@ -4367,7 +4367,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         {
                         for (ObiNode n = SelectedNodeInTransportbarOrProjectview.FollowingNode; n != null; n = n.FollowingNode)
                             {
-                            if (n is EmptyNode && !(n is PhraseNode))
+                            if ((n is EmptyNode && !(n is PhraseNode))
+                                || (n is PhraseNode && ((PhraseNode)n).Duration == 0))
                                 {
                                 //mProjectView.Selection = new NodeSelection ( n, this );
                                 SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
@@ -4377,7 +4378,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         }
                     for (ObiNode n = ((ObiRootNode)mProjectView.Presentation.RootNode).FirstLeaf; n != null; n = n.FollowingNode)
                         {
-                        if (n is EmptyNode && !(n is PhraseNode))
+                        if (n is EmptyNode && !(n is PhraseNode)
+                            || (n is PhraseNode && ((PhraseNode)n).Duration == 0))
                             {
                             //mProjectView.Selection = new NodeSelection ( n, this );
                             SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
