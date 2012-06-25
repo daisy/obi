@@ -185,6 +185,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_Cancel
             // 
+            this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btn_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_btn_Cancel.Location = new System.Drawing.Point(340, 333);
@@ -207,8 +208,10 @@ namespace Obi.Dialogs
             // 
             // SelectPhraseDetectionSections
             // 
+            this.AcceptButton = this.m_btn_OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btn_Cancel;
             this.ClientSize = new System.Drawing.Size(475, 380);
             this.Controls.Add(this.m_grpSilencePhrase);
             this.Controls.Add(this.m_btn_Cancel);
