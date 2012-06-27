@@ -68,7 +68,7 @@ namespace Obi.ProjectView
             set 
             { 
                 m_ContentView = value;
-                if (m_ContentView != null) m_ContentView.SizeChanged += new EventHandler(Waveform_Recording_Resize);
+           //     if (m_ContentView != null) m_ContentView.SizeChanged += new EventHandler(Waveform_Recording_Resize);
             }
         }
 
@@ -90,6 +90,7 @@ namespace Obi.ProjectView
                 if (m_ProjectView != null)
                 {
                     m_ProjectView.TransportBar.Recorder.PcmDataBufferAvailable += new AudioRecorder.PcmDataBufferAvailableHandler(OnPcmDataBufferAvailable_Recorder);
+                    m_ProjectView.ObiForm.Resize += new EventHandler(ObiForm_Resize);
                     m_ColorSettings = m_ProjectView.ObiForm.Settings.ColorSettings;
                     m_ColorSettingsHC = m_ProjectView.ObiForm.Settings.ColorSettingsHC;
                     this.BackColor = m_ColorSettings.WaveformBackColor;
@@ -293,15 +294,21 @@ int channel = 0;
             }
         }
 
-        private void Waveform_Recording_Resize(object sender, EventArgs e)
+     /*   private void Waveform_Recording_Resize(object sender, EventArgs e)
         {
             System.Media.SystemSounds.Asterisk.Play () ;
+
             RepaintWaveform();           
+        }*/
+
+        private void ObiForm_Resize(object sender, EventArgs e)
+        {
+         //   if (m_ProjectView.ObiForm.WindowState == FormWindowState.Maximized)
+                RepaintWaveform();
         }
 
         private void RepaintWaveform()
         {
-            Console.WriteLine("CLLIG TOO MANT TIMEW");
             int count = 0;
             int secondsMark = 0;
             int localCount = 0;
