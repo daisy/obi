@@ -234,6 +234,7 @@ namespace Obi.ProjectView
                 if(m_ContentView != null)
                 m_X = m_ContentView.Width / 2 + 50;
                 Location = new Point(-400, Location.Y);
+                m_DictionaryEmpNode.Clear();
             }
             else
             {
@@ -352,11 +353,15 @@ int channel = 0;
                     if(m_DictionaryEmpNode.ContainsKey(listOfXLocation[i]))
                     {
                         g.DrawString(m_DictionaryEmpNode[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], 0);
+                        
                         g.DrawLine(pen, listOfXLocation[i], 0, listOfXLocation[i], Height);
                         if (m_DictionaryEmpNode[listOfXLocation[i]] == "")
                             g.DrawLine(newPen, listOfXLocation[i], 0, listOfXLocation[i], Height);
                         else if (m_DictionaryEmpNode[listOfXLocation[i]].EndsWith("0"))
+                        {
+                            g.DrawLine(newPen, listOfXLocation[i], 0, listOfXLocation[i], Height);
                             g.DrawString(m_DictionaryEmpNode[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], Height - 15);
+                        }
                     }
 
                   /*  if (this.Location.X < 0 && 
