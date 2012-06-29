@@ -90,6 +90,14 @@ namespace Obi.Dialogs
                                 }
                                 break;
                             case 1:
+                                if ((n is EmptyNode && !(n is PhraseNode)) || ( n is PhraseNode && ((PhraseNode)n).Duration == 0 ))
+                                {
+                                    sectionName = ((EmptyNode)n).ParentAs<SectionNode>().Label + " : " + ((EmptyNode)n);
+                                    m_lbSpecialPhrasesList.Items.Add(sectionName);
+                                    backendList.Add(((EmptyNode)n));   
+                                }
+                                break;
+                            case 2:
                                 if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Heading)
                                 {
                                     sectionName = ((EmptyNode) n).ParentAs<SectionNode>().Label + " : " +
@@ -98,7 +106,7 @@ namespace Obi.Dialogs
                                     backendList.Add(((EmptyNode) n));
                                 }
                                 break;
-                            case 2:
+                            case 3:
                                 if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Silence)
                                 {
                                     sectionName = ((EmptyNode) n).ParentAs<SectionNode>().Label + " : " +
@@ -107,18 +115,8 @@ namespace Obi.Dialogs
                                     backendList.Add(((EmptyNode) n));
                                 }
                                 break;
-                            case 3:
-                                if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Page)
-                                {
-                                    sectionName = ((EmptyNode) n).ParentAs<SectionNode>().Label + " : " +
-                                                  ((EmptyNode) n);
-                                    m_lbSpecialPhrasesList.Items.Add(sectionName);
-                                    backendList.Add(((EmptyNode) n));
-                                }
-                                break;
                             case 4:
-                                if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Page &&
-                                    ((EmptyNode) n).PageNumber.Kind == PageKind.Front)
+                                if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Page)
                                 {
                                     sectionName = ((EmptyNode) n).ParentAs<SectionNode>().Label + " : " +
                                                   ((EmptyNode) n);
@@ -128,7 +126,7 @@ namespace Obi.Dialogs
                                 break;
                             case 5:
                                 if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Page &&
-                                    ((EmptyNode) n).PageNumber.Kind == PageKind.Normal)
+                                    ((EmptyNode) n).PageNumber.Kind == PageKind.Front)
                                 {
                                     sectionName = ((EmptyNode) n).ParentAs<SectionNode>().Label + " : " +
                                                   ((EmptyNode) n);
@@ -138,7 +136,7 @@ namespace Obi.Dialogs
                                 break;
                             case 6:
                                 if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Page &&
-                                    ((EmptyNode) n).PageNumber.Kind == PageKind.Special)
+                                    ((EmptyNode) n).PageNumber.Kind == PageKind.Normal)
                                 {
                                     sectionName = ((EmptyNode) n).ParentAs<SectionNode>().Label + " : " +
                                                   ((EmptyNode) n);
@@ -147,6 +145,16 @@ namespace Obi.Dialogs
                                 }
                                 break;
                             case 7:
+                                if (n is EmptyNode && ((EmptyNode) n).Role_ == EmptyNode.Role.Page &&
+                                    ((EmptyNode) n).PageNumber.Kind == PageKind.Special)
+                                {
+                                    sectionName = ((EmptyNode) n).ParentAs<SectionNode>().Label + " : " +
+                                                  ((EmptyNode) n);
+                                    m_lbSpecialPhrasesList.Items.Add(sectionName);
+                                    backendList.Add(((EmptyNode) n));
+                                }
+                                break;
+                            case 8:
                                 if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Anchor)
                                 {
                                     sectionName = ((EmptyNode)n).ParentAs<SectionNode>().Label + " : " +
