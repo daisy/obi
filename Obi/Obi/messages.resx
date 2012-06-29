@@ -2133,4 +2133,10 @@ Error text: {1}</value>
   <data name="Memory_Warning" xml:space="preserve">
     <value>Disk Space Information</value>
   </data>
+  <data name="KeyS_ContractAudioSelectionAtLeft" xml:space="preserve">
+    <value>Contract the audio selection on the left side</value>
+  </data>
+  <data name="KeyS_ExpandAudioSelectionAtLeft" xml:space="preserve">
+    <value>Expand the audio selection on the left side</value>
+  </data>
 </root>

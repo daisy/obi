@@ -2046,6 +2046,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contract the audio selection on the left side.
+        /// </summary>
+        internal static string KeyS_ContractAudioSelectionAtLeft {
+            get {
+                return ResourceManager.GetString("KeyS_ContractAudioSelectionAtLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand the audio selection on the left side.
+        /// </summary>
+        internal static string KeyS_ExpandAudioSelectionAtLeft {
+            get {
+                return ResourceManager.GetString("KeyS_ExpandAudioSelectionAtLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fast play normalize with elapse back.
         /// </summary>
         internal static string KeyS_FastPlayNormalizeWithElapseBack {
