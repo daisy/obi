@@ -60,6 +60,7 @@
             this.m_cb_SpecialPhrases.FormattingEnabled = true;
             this.m_cb_SpecialPhrases.Items.AddRange(new object[] {
             "Todo Marked Phrases",
+            "Empty Phrases",
             "Heading",
             "Silence",
             "All Pages",
