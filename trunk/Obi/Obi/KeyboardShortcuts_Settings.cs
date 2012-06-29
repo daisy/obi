@@ -19,7 +19,10 @@ namespace Obi
     [Serializable()]
     public class KeyboardShortcuts_Settings
     {
-
+        // follow follow steps to add new content view / project view keyboard shortcut
+        // 1. Create a member variable of the shortcut as done below
+        // 2. Add it to the descriptions dictionnary
+        // 3. Add the localizer message with the description of keyboard shortcut object as the key
         public KeyboardShortcut ContentView_SelectCompleteWaveform = new KeyboardShortcut(Keys.A, "KeyS_SelectCompleteWaveform");
         public KeyboardShortcut ContentView_PlaySelectedWaveform = new KeyboardShortcut(Keys.C, "KeyS_PlaySelectedWaveform");
         public KeyboardShortcut ContentView_TransportBarNextSection = new KeyboardShortcut(Keys.H, "KeyS_TransportBarNextSection");
@@ -32,6 +35,8 @@ namespace Obi
         public KeyboardShortcut ContentView_TransportBarFineNavigationOff = new KeyboardShortcut(Keys.Shift | Keys.F2, "KeyS_TransportBarFineNavigationOff");
         public KeyboardShortcut ContentView_MarkSelectionBeginTime = new KeyboardShortcut(Keys.OemOpenBrackets, "KeyS_MarkSelectionBeginTime");
         public KeyboardShortcut ContentView_MarkSelectionEndTime = new KeyboardShortcut(Keys.OemCloseBrackets, "KeyS_MarkSelectionEndTime");
+        public KeyboardShortcut ContentView_ExpandAudioSelectionAtLeft = new KeyboardShortcut(Keys.Shift | Keys.Left, "KeyS_ExpandAudioSelectionAtLeft");
+        public KeyboardShortcut ContentView_ContractAudioSelectionAtLeft = new KeyboardShortcut(Keys.Shift | Keys.Right, "KeyS_ContractAudioSelectionAtLeft");
         public KeyboardShortcut ContentView_TransportBarNextPage = new KeyboardShortcut(Keys.P, "KeyS_TransportBarNextPage");
         public KeyboardShortcut ContentView_TransportBarPreviousPage = new KeyboardShortcut(Keys.Shift | Keys.P, "KeyS_TransportBarPreviousPage");
         public KeyboardShortcut ContentView_TransportBarPreviewFromAudioCursor = new KeyboardShortcut(Keys.V, "KeyS_TransportBarPreviewFromAudioCursor");
@@ -259,6 +264,8 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarFineNavigationOff.Description), ContentView_TransportBarFineNavigationOff);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_MarkSelectionBeginTime.Description), ContentView_MarkSelectionBeginTime);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_MarkSelectionEndTime.Description), ContentView_MarkSelectionEndTime);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ExpandAudioSelectionAtLeft.Description), ContentView_ExpandAudioSelectionAtLeft);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ContractAudioSelectionAtLeft.Description), ContentView_ContractAudioSelectionAtLeft);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarNextPage.Description), ContentView_TransportBarNextPage);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarPreviousPage.Description), ContentView_TransportBarPreviousPage);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarPreviewFromAudioCursor.Description), ContentView_TransportBarPreviewFromAudioCursor);

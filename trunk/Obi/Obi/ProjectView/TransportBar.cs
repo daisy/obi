@@ -2380,6 +2380,46 @@ namespace Obi.ProjectView
             return false;
         }
 
+        public enum NudgeSelection { ExpandAtLeft, ContractAtLeft, ExpandAtRight, ContractAtRight } ;
+
+        public bool NudgeSelectedAudio(NudgeSelection nudgeDirection)
+        {
+            if (mView.Selection == null || !(mView.Selection is AudioSelection)) return false;
+
+            double beginTime = ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime;
+            double endTime = ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime;
+            PhraseNode phrase = (PhraseNode)mView.Selection.Node ;
+            if (beginTime == 0 || endTime == phrase.Duration) return false;
+
+            double nudgeDuration = mView.ObiForm.Settings.NudgeTimeMs ;
+
+            if (nudgeDirection == NudgeSelection.ExpandAtLeft)
+            {
+                beginTime = beginTime - nudgeDuration;
+                if (beginTime < 0) beginTime = 0;
+            }
+            else if (nudgeDirection == NudgeSelection.ContractAtLeft)
+            {
+                beginTime = beginTime + nudgeDuration;
+            }
+            else if (nudgeDirection == NudgeSelection.ExpandAtRight)
+            {
+                endTime = endTime + nudgeDuration;
+                if (endTime > phrase.Duration) endTime = phrase.Duration;
+            }
+            else if (nudgeDirection == NudgeSelection.ContractAtRight)
+            {
+                endTime = endTime - nudgeDuration;
+            }
+            if (endTime < beginTime) return false;
+
+            this.SelectionChangedPlaybackEnabled = false;
+            mView.Selection = new AudioSelection (phrase,mView.Selection.Control, new AudioRange(beginTime,endTime)) ;
+            SelectionChangedPlaybackEnabled = true;
+            if (mView.ObiForm.Settings.PlayOnNavigate ) PreviewAudioSelection(); 
+            return true ;
+        }
+
         // preview playback functions
         public static readonly bool From = true;
         public static readonly bool Upto = false;

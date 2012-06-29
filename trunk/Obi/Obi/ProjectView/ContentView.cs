@@ -3584,6 +3584,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionBeginTime.Value] = delegate() { return mProjectView.TransportBar.MarkSelectionBeginTime(); };
             //mShortcutKeys[Keys.OemOpenBrackets] = delegate() { return mProjectView.TransportBar.MarkSelectionBeginTime(); };
             mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionEndTime.Value] = delegate() { return mProjectView.TransportBar.MarkSelectionEndTime(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_ExpandAudioSelectionAtLeft.Value] = delegate() { return ExpandAudioSelectionAtLeft (); };
+            mShortcutKeys[keyboardShortcuts.ContentView_ContractAudioSelectionAtLeft.Value] = delegate() { return ContractAudioSelectionAtLeft(); };
             //mShortcutKeys[Keys.OemCloseBrackets] = delegate() { return mProjectView.TransportBar.MarkSelectionEndTime(); };
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarNextPage.Value] = delegate() { return mProjectView.TransportBar.NextPage(); };
            // mShortcutKeys[Keys.P] = delegate() { return mProjectView.TransportBar.NextPage(); };
@@ -3776,7 +3778,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
                 if (mProjectView.TransportBar.FineNavigationModeForPhrase)
                 {
-                    return mProjectView.TransportBar.Nudge(TransportBar.Backward); 
+                    if (mProjectView.Selection is AudioSelection)
+                        return mProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ContractAtRight);
+                    else
+                        return mProjectView.TransportBar.Nudge(TransportBar.Backward); 
                 }
                 if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
 
@@ -3881,7 +3886,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
                 if (mProjectView.TransportBar.FineNavigationModeForPhrase)
                 {
-                    return mProjectView.TransportBar.Nudge(TransportBar.Forward); 
+                    if (mProjectView.Selection is AudioSelection)
+                        return mProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ExpandAtRight);
+                    else
+                        return mProjectView.TransportBar.Nudge(TransportBar.Forward); 
                 }
                 if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
                 if (mProjectView.TransportBar.IsRecorderActive && mSelectedItem == null && mProjectView.Selection != null)
@@ -4178,6 +4186,24 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
                 mProjectView.TransportBar.FineNavigationModeForPhrase = false;
                 return true;
+            }
+            return false;
+        }
+
+        private bool ExpandAudioSelectionAtLeft()
+        {
+            if (mProjectView.TransportBar.FineNavigationModeForPhrase)
+            {
+                return mProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ExpandAtLeft);
+            }
+            return false;
+        }
+
+        private bool ContractAudioSelectionAtLeft()
+        {
+            if (mProjectView.TransportBar.FineNavigationModeForPhrase)
+            {
+                return mProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ContractAtLeft);
             }
             return false;
         }
