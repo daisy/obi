@@ -199,7 +199,7 @@ namespace Obi.ProjectView
                     text = timeInSeconds.ToString();
                     g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
                     if (!m_DictionaryEmpNode.ContainsKey(m_X))
-                        m_DictionaryEmpNode.Add(m_X, text);
+                        m_DictionaryEmpNode.Add(m_X, text); 
                     m_LocalTime = timeInSeconds;
                 }
                 else
@@ -217,9 +217,10 @@ namespace Obi.ProjectView
             {              
             //    this.Location = new Point(m_ContentView.Location.X, Location.Y);
                   // m_IsMaximized = false;
-            }            
+            }
+
+            listOfXLocation.Add(m_X); 
              m_X++;
-             listOfXLocation.Add(m_X); 
              listOfMinChannel1.Add((int)minChannel1);
              listOfMaxChannel1.Add((int)maxChannel1);
              listOfMinChannel2.Add((int)minChannel2);
@@ -311,8 +312,6 @@ int channel = 0;
         private void RepaintWaveform()
         {
             int count = 0;
-            int secondsMark = 0;
-            int localCount = 0;
             Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
             
@@ -349,14 +348,16 @@ int channel = 0;
                         new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                     }
                     count++;
-
                     if(m_DictionaryEmpNode.ContainsKey(listOfXLocation[i]))
                     {
-                        g.DrawString(m_DictionaryEmpNode[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], 0);
-                        
+                        if (!m_DictionaryEmpNode[listOfXLocation[i]].EndsWith("0"))
+                            g.DrawString(m_DictionaryEmpNode[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], 0);
+                                            
                         g.DrawLine(pen, listOfXLocation[i], 0, listOfXLocation[i], Height);
+
                         if (m_DictionaryEmpNode[listOfXLocation[i]] == "")
                             g.DrawLine(newPen, listOfXLocation[i], 0, listOfXLocation[i], Height);
+                       
                         else if (m_DictionaryEmpNode[listOfXLocation[i]].EndsWith("0"))
                         {
                             g.DrawLine(newPen, listOfXLocation[i], 0, listOfXLocation[i], Height);
@@ -395,9 +396,9 @@ int channel = 0;
             g.DrawLine(pen, xLocation, 0, xLocation, Height);
             g.DrawString(text, myFont, Brushes.Black, xLocation, 0);
             m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
+
             if (!m_DictionaryEmpNode.ContainsKey(xLocation))
-                m_DictionaryEmpNode.Add(xLocation, text);
-           
+                m_DictionaryEmpNode.Add(xLocation, text);                   
         }
 
         protected override void OnPaint(PaintEventArgs e)
