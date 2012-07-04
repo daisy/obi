@@ -3778,7 +3778,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
                 if (mProjectView.TransportBar.FineNavigationModeForPhrase)
                 {
-                    if (mProjectView.Selection is AudioSelection)
+                    if (mProjectView.Selection is AudioSelection && !((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)
                         return mProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ContractAtRight);
                     else
                         return mProjectView.TransportBar.Nudge(TransportBar.Backward); 
@@ -3886,7 +3886,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
                 if (mProjectView.TransportBar.FineNavigationModeForPhrase)
                 {
-                    if (mProjectView.Selection is AudioSelection)
+                    if (mProjectView.Selection is AudioSelection && !((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)
                         return mProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ExpandAtRight);
                     else
                         return mProjectView.TransportBar.Nudge(TransportBar.Forward); 
