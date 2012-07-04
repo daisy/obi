@@ -47,6 +47,7 @@ namespace Obi.ProjectView
         private double timeOfAssetMilliseconds = 0;
         private bool m_IsMaximized = false;
         private bool m_IsToBeRepainted = false;
+        private int m_CounterWaveform = 0;
      //   private bool m_IsResize = false;
         
         public Waveform_Recording()
@@ -306,7 +307,8 @@ int channel = 0;
         private void ObiForm_Resize(object sender, EventArgs e)
         {
          //   if (m_ProjectView.ObiForm.WindowState == FormWindowState.Maximized)
-                RepaintWaveform();
+            m_CounterWaveform = listOfMinChannel1.Count;
+            RepaintWaveform();
         }
 
         private void RepaintWaveform()
@@ -314,6 +316,7 @@ int channel = 0;
             int count = 0;
             Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
+            int xSize = SystemInformation.PrimaryMonitorSize.Width;
             
             if (m_IsMaximized)
             {
@@ -324,6 +327,7 @@ int channel = 0;
             int counterMin = listOfMinChannel1.Count;
             int x = 0;
             int counterMax = listOfMaxChannel2.Count;
+            int countToRepaint = 0;
 
             if (m_ContentView != null)
                 x = m_ContentView.Width / 2 + 50;
@@ -334,7 +338,13 @@ int channel = 0;
             else
             {
                 timer1.Stop();
-                for (int i = counterMin - 1; i >= 0; i--)
+                if (m_CounterWaveform < xSize)
+                    countToRepaint = m_CounterWaveform;
+                else
+                    countToRepaint = xSize;
+
+              //  for (int i = counterMin - 1; i >= 0; i--)
+                for (int i = countToRepaint - 1; i >= 0; i--)
                 {
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                     {
