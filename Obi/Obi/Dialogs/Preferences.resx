@@ -307,7 +307,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelInputDeviceName.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>19</value>
   </data>
   <data name="mInputDeviceCombo.AccessibleName" xml:space="preserve">
     <value>Input device name:</value>
@@ -340,13 +340,13 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mInputDeviceCombo.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>17</value>
   </data>
   <data name="labelOutputDeviceName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="labelOutputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 45</value>
+    <value>17, 35</value>
   </data>
   <data name="labelOutputDeviceName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -370,7 +370,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelOutputDeviceName.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>18</value>
   </data>
   <data name="mOutputDeviceCombo.AccessibleName" xml:space="preserve">
     <value>Output device name:</value>
@@ -382,7 +382,7 @@
     <value>Flat</value>
   </data>
   <data name="mOutputDeviceCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 41</value>
+    <value>161, 36</value>
   </data>
   <data name="mOutputDeviceCombo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -403,7 +403,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mOutputDeviceCombo.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="mTab.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -534,6 +534,108 @@
   <data name="&gt;&gt;mProjectTab.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="m_btn_speak.AccessibleName" xml:space="preserve">
+    <value> Speak button to check TTS voice</value>
+  </data>
+  <data name="m_btn_speak.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_speak.Location" type="System.Drawing.Point, System.Drawing">
+    <value>496, 123</value>
+  </data>
+  <data name="m_btn_speak.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 26</value>
+  </data>
+  <data name="m_btn_speak.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="m_btn_speak.Text" xml:space="preserve">
+    <value>Speak</value>
+  </data>
+  <data name="&gt;&gt;m_btn_speak.Name" xml:space="preserve">
+    <value>m_btn_speak</value>
+  </data>
+  <data name="&gt;&gt;m_btn_speak.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_speak.Parent" xml:space="preserve">
+    <value>mAudioTab</value>
+  </data>
+  <data name="&gt;&gt;m_btn_speak.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labelTTSvoice.AccessibleName" xml:space="preserve">
+    <value>Set TTS Synthetic Voice</value>
+  </data>
+  <data name="labelTTSvoice.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelTTSvoice.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 128</value>
+  </data>
+  <data name="labelTTSvoice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 16</value>
+  </data>
+  <data name="labelTTSvoice.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="labelTTSvoice.Text" xml:space="preserve">
+    <value>Set TTS Synthetic voice :</value>
+  </data>
+  <data name="&gt;&gt;labelTTSvoice.Name" xml:space="preserve">
+    <value>labelTTSvoice</value>
+  </data>
+  <data name="&gt;&gt;labelTTSvoice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelTTSvoice.Parent" xml:space="preserve">
+    <value>mAudioTab</value>
+  </data>
+  <data name="&gt;&gt;labelTTSvoice.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mTTSvoiceCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mTTSvoiceCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 123</value>
+  </data>
+  <data name="mTTSvoiceCombo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 24</value>
+  </data>
+  <data name="mTTSvoiceCombo.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;mTTSvoiceCombo.Name" xml:space="preserve">
+    <value>mTTSvoiceCombo</value>
+  </data>
+  <data name="&gt;&gt;mTTSvoiceCombo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTTSvoiceCombo.Parent" xml:space="preserve">
+    <value>mAudioTab</value>
+  </data>
+  <data name="&gt;&gt;mTTSvoiceCombo.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_btn_AdvancedRecording.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_AdvancedRecording.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btn_AdvancedRecording.Location" type="System.Drawing.Point, System.Drawing">
+    <value>422, 248</value>
+  </data>
+  <data name="m_btn_AdvancedRecording.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 26</value>
+  </data>
+  <data name="m_btn_AdvancedRecording.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="m_btn_AdvancedRecording.Text" xml:space="preserve">
+    <value>Enable advanced recording</value>
+  </data>
   <data name="&gt;&gt;m_btn_AdvancedRecording.Name" xml:space="preserve">
     <value>m_btn_AdvancedRecording</value>
   </data>
@@ -544,7 +646,19 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;m_btn_AdvancedRecording.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
+  </data>
+  <data name="m_OperationDurationUpDown.AccessibleName" xml:space="preserve">
+    <value>Duration in milliseconds</value>
+  </data>
+  <data name="m_OperationDurationUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>335, 153</value>
+  </data>
+  <data name="m_OperationDurationUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
+  </data>
+  <data name="m_OperationDurationUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
   </data>
   <data name="&gt;&gt;m_OperationDurationUpDown.Name" xml:space="preserve">
     <value>m_OperationDurationUpDown</value>
@@ -556,7 +670,25 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;m_OperationDurationUpDown.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
+  </data>
+  <data name="m_cbOperation.Items" xml:space="preserve">
+    <value>Nudge duration</value>
+  </data>
+  <data name="m_cbOperation.Items1" xml:space="preserve">
+    <value>Preview duration</value>
+  </data>
+  <data name="m_cbOperation.Items2" xml:space="preserve">
+    <value>Elapse back duration</value>
+  </data>
+  <data name="m_cbOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 153</value>
+  </data>
+  <data name="m_cbOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 24</value>
+  </data>
+  <data name="m_cbOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
   </data>
   <data name="&gt;&gt;m_cbOperation.Name" xml:space="preserve">
     <value>m_cbOperation</value>
@@ -568,7 +700,22 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;m_cbOperation.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
+  </data>
+  <data name="mlbOperation.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mlbOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>76, 156</value>
+  </data>
+  <data name="mlbOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 16</value>
+  </data>
+  <data name="mlbOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="mlbOperation.Text" xml:space="preserve">
+    <value>Operation:</value>
   </data>
   <data name="&gt;&gt;mlbOperation.Name" xml:space="preserve">
     <value>mlbOperation</value>
@@ -580,7 +727,34 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mlbOperation.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
+  </data>
+  <data name="mNoiseLevelComboBox.AccessibleName" xml:space="preserve">
+    <value>noise level</value>
+  </data>
+  <data name="mNoiseLevelComboBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mNoiseLevelComboBox.Items" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="mNoiseLevelComboBox.Items1" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="mNoiseLevelComboBox.Items2" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 185</value>
+  </data>
+  <data name="mNoiseLevelComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mNoiseLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 24</value>
+  </data>
+  <data name="mNoiseLevelComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
   </data>
   <data name="&gt;&gt;mNoiseLevelComboBox.Name" xml:space="preserve">
     <value>mNoiseLevelComboBox</value>
@@ -592,7 +766,25 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mNoiseLevelComboBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 186</value>
+  </data>
+  <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 16</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>&amp;Noise level:</value>
   </data>
   <data name="&gt;&gt;label8.Name" xml:space="preserve">
     <value>label8</value>
@@ -604,7 +796,22 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>461, 156</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 16</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>milliseconds(ms)</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -616,7 +823,28 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
+  </data>
+  <data name="mChannelsTextbox.AccessibleName" xml:space="preserve">
+    <value>Project channels:</value>
+  </data>
+  <data name="mChannelsTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="mChannelsTextbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 92</value>
+  </data>
+  <data name="mChannelsTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mChannelsTextbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>443, 22</value>
+  </data>
+  <data name="mChannelsTextbox.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="mChannelsTextbox.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;mChannelsTextbox.Name" xml:space="preserve">
     <value>mChannelsTextbox</value>
@@ -628,7 +856,28 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mChannelsTextbox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
+  </data>
+  <data name="mSampleRateTextbox.AccessibleName" xml:space="preserve">
+    <value>Project sample rate:</value>
+  </data>
+  <data name="mSampleRateTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="mSampleRateTextbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 63</value>
+  </data>
+  <data name="mSampleRateTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mSampleRateTextbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>443, 22</value>
+  </data>
+  <data name="mSampleRateTextbox.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="mSampleRateTextbox.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;mSampleRateTextbox.Name" xml:space="preserve">
     <value>mSampleRateTextbox</value>
@@ -640,7 +889,28 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mSampleRateTextbox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
+  </data>
+  <data name="mChannelsCombo.AccessibleName" xml:space="preserve">
+    <value>Default channels:</value>
+  </data>
+  <data name="mChannelsCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="mChannelsCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mChannelsCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 112</value>
+  </data>
+  <data name="mChannelsCombo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mChannelsCombo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>443, 24</value>
+  </data>
+  <data name="mChannelsCombo.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
   </data>
   <data name="&gt;&gt;mChannelsCombo.Name" xml:space="preserve">
     <value>mChannelsCombo</value>
@@ -652,7 +922,25 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mChannelsCombo.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
+  </data>
+  <data name="labelChannels.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelChannels.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 95</value>
+  </data>
+  <data name="labelChannels.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="labelChannels.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 16</value>
+  </data>
+  <data name="labelChannels.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="labelChannels.Text" xml:space="preserve">
+    <value>Audio &amp;channels:</value>
   </data>
   <data name="&gt;&gt;labelChannels.Name" xml:space="preserve">
     <value>labelChannels</value>
@@ -664,7 +952,28 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelChannels.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
+  </data>
+  <data name="mSampleRateCombo.AccessibleName" xml:space="preserve">
+    <value>Default sample rate:</value>
+  </data>
+  <data name="mSampleRateCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="mSampleRateCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mSampleRateCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 78</value>
+  </data>
+  <data name="mSampleRateCombo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mSampleRateCombo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>443, 24</value>
+  </data>
+  <data name="mSampleRateCombo.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
   </data>
   <data name="&gt;&gt;mSampleRateCombo.Name" xml:space="preserve">
     <value>mSampleRateCombo</value>
@@ -676,7 +985,25 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mSampleRateCombo.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
+  </data>
+  <data name="labelSampleRate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelSampleRate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>63, 66</value>
+  </data>
+  <data name="labelSampleRate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="labelSampleRate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 16</value>
+  </data>
+  <data name="labelSampleRate.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="labelSampleRate.Text" xml:space="preserve">
+    <value>&amp;Sample rate:</value>
   </data>
   <data name="&gt;&gt;labelSampleRate.Name" xml:space="preserve">
     <value>labelSampleRate</value>
@@ -688,7 +1015,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelSampleRate.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="mAudioTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>
@@ -957,21 +1284,6 @@
   <data name="&gt;&gt;mKeyboardShortcutTab.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="mChooseFontCombo.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="mChooseFontCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mChooseFontCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 242</value>
-  </data>
-  <data name="mChooseFontCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 24</value>
-  </data>
-  <data name="mChooseFontCombo.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
   <data name="&gt;&gt;mChooseFontCombo.Name" xml:space="preserve">
     <value>mChooseFontCombo</value>
   </data>
@@ -983,24 +1295,6 @@
   </data>
   <data name="&gt;&gt;mChooseFontCombo.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="m_lblChooseFont.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lblChooseFont.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_lblChooseFont.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 245</value>
-  </data>
-  <data name="m_lblChooseFont.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 16</value>
-  </data>
-  <data name="m_lblChooseFont.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="m_lblChooseFont.Text" xml:space="preserve">
-    <value>Choose Font :</value>
   </data>
   <data name="&gt;&gt;m_lblChooseFont.Name" xml:space="preserve">
     <value>m_lblChooseFont</value>
@@ -1014,15 +1308,6 @@
   <data name="&gt;&gt;m_lblChooseFont.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_txtBox_HighContrast.Location" type="System.Drawing.Point, System.Drawing">
-    <value>474, 210</value>
-  </data>
-  <data name="m_txtBox_HighContrast.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 22</value>
-  </data>
-  <data name="m_txtBox_HighContrast.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
   <data name="&gt;&gt;m_txtBox_HighContrast.Name" xml:space="preserve">
     <value>m_txtBox_HighContrast</value>
   </data>
@@ -1034,30 +1319,6 @@
   </data>
   <data name="&gt;&gt;m_txtBox_HighContrast.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="&gt;&gt;m_lv_ColorPref.Name" xml:space="preserve">
-    <value>m_lv_ColorPref</value>
-  </data>
-  <data name="&gt;&gt;m_lv_ColorPref.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lv_ColorPref.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;m_lv_ColorPref.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>55, 3</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>507, 163</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Colors list</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -1071,15 +1332,6 @@
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="m_txtBox_Color.Location" type="System.Drawing.Point, System.Drawing">
-    <value>474, 177</value>
-  </data>
-  <data name="m_txtBox_Color.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 22</value>
-  </data>
-  <data name="m_txtBox_Color.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
   <data name="&gt;&gt;m_txtBox_Color.Name" xml:space="preserve">
     <value>m_txtBox_Color</value>
   </data>
@@ -1091,21 +1343,6 @@
   </data>
   <data name="&gt;&gt;m_txtBox_Color.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="m_btn_Apply.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_btn_Apply.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 270</value>
-  </data>
-  <data name="m_btn_Apply.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 27</value>
-  </data>
-  <data name="m_btn_Apply.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="m_btn_Apply.Text" xml:space="preserve">
-    <value>App&amp;ly</value>
   </data>
   <data name="&gt;&gt;m_btn_Apply.Name" xml:space="preserve">
     <value>m_btn_Apply</value>
@@ -1119,21 +1356,6 @@
   <data name="&gt;&gt;m_btn_Apply.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 216</value>
-  </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 16</value>
-  </data>
-  <data name="label11.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Assign H&amp;igh contrast color:</value>
-  </data>
   <data name="&gt;&gt;label11.Name" xml:space="preserve">
     <value>label11</value>
   </data>
@@ -1145,21 +1367,6 @@
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 183</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 16</value>
-  </data>
-  <data name="label7.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Assi&amp;gn Color:</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
@@ -1173,18 +1380,6 @@
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="mHighContrastCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mHighContrastCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 211</value>
-  </data>
-  <data name="mHighContrastCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 24</value>
-  </data>
-  <data name="mHighContrastCombo.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
   <data name="&gt;&gt;mHighContrastCombo.Name" xml:space="preserve">
     <value>mHighContrastCombo</value>
   </data>
@@ -1196,18 +1391,6 @@
   </data>
   <data name="&gt;&gt;mHighContrastCombo.ZOrder" xml:space="preserve">
     <value>8</value>
-  </data>
-  <data name="mNormalColorCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mNormalColorCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 177</value>
-  </data>
-  <data name="mNormalColorCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 24</value>
-  </data>
-  <data name="mNormalColorCombo.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
   </data>
   <data name="&gt;&gt;mNormalColorCombo.Name" xml:space="preserve">
     <value>mNormalColorCombo</value>
@@ -1493,405 +1676,6 @@
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
     <value>7</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 248</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 26</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.Text" xml:space="preserve">
-    <value>Enable advanced recording</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.Name" xml:space="preserve">
-    <value>m_btn_AdvancedRecording</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="m_OperationDurationUpDown.AccessibleName" xml:space="preserve">
-    <value>Duration in milliseconds</value>
-  </data>
-  <data name="m_OperationDurationUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>335, 153</value>
-  </data>
-  <data name="m_OperationDurationUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
-  </data>
-  <data name="m_OperationDurationUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="&gt;&gt;m_OperationDurationUpDown.Name" xml:space="preserve">
-    <value>m_OperationDurationUpDown</value>
-  </data>
-  <data name="&gt;&gt;m_OperationDurationUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_OperationDurationUpDown.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;m_OperationDurationUpDown.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_cbOperation.Items" xml:space="preserve">
-    <value>Nudge duration</value>
-  </data>
-  <data name="m_cbOperation.Items1" xml:space="preserve">
-    <value>Preview duration</value>
-  </data>
-  <data name="m_cbOperation.Items2" xml:space="preserve">
-    <value>Elapse back duration</value>
-  </data>
-  <data name="m_cbOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 153</value>
-  </data>
-  <data name="m_cbOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 24</value>
-  </data>
-  <data name="m_cbOperation.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;m_cbOperation.Name" xml:space="preserve">
-    <value>m_cbOperation</value>
-  </data>
-  <data name="&gt;&gt;m_cbOperation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_cbOperation.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;m_cbOperation.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="mlbOperation.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mlbOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 156</value>
-  </data>
-  <data name="mlbOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 16</value>
-  </data>
-  <data name="mlbOperation.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="mlbOperation.Text" xml:space="preserve">
-    <value>Operation:</value>
-  </data>
-  <data name="&gt;&gt;mlbOperation.Name" xml:space="preserve">
-    <value>mlbOperation</value>
-  </data>
-  <data name="&gt;&gt;mlbOperation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mlbOperation.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;mlbOperation.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="mNoiseLevelComboBox.AccessibleName" xml:space="preserve">
-    <value>noise level</value>
-  </data>
-  <data name="mNoiseLevelComboBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mNoiseLevelComboBox.Items" xml:space="preserve">
-    <value>Low</value>
-  </data>
-  <data name="mNoiseLevelComboBox.Items1" xml:space="preserve">
-    <value>Medium</value>
-  </data>
-  <data name="mNoiseLevelComboBox.Items2" xml:space="preserve">
-    <value>High</value>
-  </data>
-  <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 185</value>
-  </data>
-  <data name="mNoiseLevelComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mNoiseLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 24</value>
-  </data>
-  <data name="mNoiseLevelComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="&gt;&gt;mNoiseLevelComboBox.Name" xml:space="preserve">
-    <value>mNoiseLevelComboBox</value>
-  </data>
-  <data name="&gt;&gt;mNoiseLevelComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mNoiseLevelComboBox.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;mNoiseLevelComboBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 186</value>
-  </data>
-  <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 16</value>
-  </data>
-  <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>&amp;Noise level:</value>
-  </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
-  </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>461, 156</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 16</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>milliseconds(ms)</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="mChannelsTextbox.AccessibleName" xml:space="preserve">
-    <value>Project channels:</value>
-  </data>
-  <data name="mChannelsTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="mChannelsTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 113</value>
-  </data>
-  <data name="mChannelsTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mChannelsTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>443, 22</value>
-  </data>
-  <data name="mChannelsTextbox.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="mChannelsTextbox.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;mChannelsTextbox.Name" xml:space="preserve">
-    <value>mChannelsTextbox</value>
-  </data>
-  <data name="&gt;&gt;mChannelsTextbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mChannelsTextbox.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;mChannelsTextbox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="mSampleRateTextbox.AccessibleName" xml:space="preserve">
-    <value>Project sample rate:</value>
-  </data>
-  <data name="mSampleRateTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="mSampleRateTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 77</value>
-  </data>
-  <data name="mSampleRateTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mSampleRateTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>443, 22</value>
-  </data>
-  <data name="mSampleRateTextbox.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="mSampleRateTextbox.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;mSampleRateTextbox.Name" xml:space="preserve">
-    <value>mSampleRateTextbox</value>
-  </data>
-  <data name="&gt;&gt;mSampleRateTextbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mSampleRateTextbox.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;mSampleRateTextbox.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="mChannelsCombo.AccessibleName" xml:space="preserve">
-    <value>Default channels:</value>
-  </data>
-  <data name="mChannelsCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="mChannelsCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mChannelsCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 112</value>
-  </data>
-  <data name="mChannelsCombo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mChannelsCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>443, 24</value>
-  </data>
-  <data name="mChannelsCombo.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;mChannelsCombo.Name" xml:space="preserve">
-    <value>mChannelsCombo</value>
-  </data>
-  <data name="&gt;&gt;mChannelsCombo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mChannelsCombo.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;mChannelsCombo.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="labelChannels.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelChannels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 115</value>
-  </data>
-  <data name="labelChannels.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="labelChannels.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 16</value>
-  </data>
-  <data name="labelChannels.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="labelChannels.Text" xml:space="preserve">
-    <value>Audio &amp;channels:</value>
-  </data>
-  <data name="&gt;&gt;labelChannels.Name" xml:space="preserve">
-    <value>labelChannels</value>
-  </data>
-  <data name="&gt;&gt;labelChannels.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelChannels.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;labelChannels.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="mSampleRateCombo.AccessibleName" xml:space="preserve">
-    <value>Default sample rate:</value>
-  </data>
-  <data name="mSampleRateCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="mSampleRateCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mSampleRateCombo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 78</value>
-  </data>
-  <data name="mSampleRateCombo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mSampleRateCombo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>443, 24</value>
-  </data>
-  <data name="mSampleRateCombo.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;mSampleRateCombo.Name" xml:space="preserve">
-    <value>mSampleRateCombo</value>
-  </data>
-  <data name="&gt;&gt;mSampleRateCombo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mSampleRateCombo.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;mSampleRateCombo.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="labelSampleRate.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelSampleRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>63, 79</value>
-  </data>
-  <data name="labelSampleRate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="labelSampleRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
-  </data>
-  <data name="labelSampleRate.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="labelSampleRate.Text" xml:space="preserve">
-    <value>&amp;Sample rate:</value>
-  </data>
-  <data name="&gt;&gt;labelSampleRate.Name" xml:space="preserve">
-    <value>labelSampleRate</value>
-  </data>
-  <data name="&gt;&gt;labelSampleRate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelSampleRate.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;labelSampleRate.ZOrder" xml:space="preserve">
-    <value>12</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2357,6 +2141,120 @@
   <data name="&gt;&gt;m_cbShortcutKeys.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="mChooseFontCombo.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="mChooseFontCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mChooseFontCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 242</value>
+  </data>
+  <data name="mChooseFontCombo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 24</value>
+  </data>
+  <data name="mChooseFontCombo.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;mChooseFontCombo.Name" xml:space="preserve">
+    <value>mChooseFontCombo</value>
+  </data>
+  <data name="&gt;&gt;mChooseFontCombo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mChooseFontCombo.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;mChooseFontCombo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_lblChooseFont.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblChooseFont.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_lblChooseFont.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 245</value>
+  </data>
+  <data name="m_lblChooseFont.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 16</value>
+  </data>
+  <data name="m_lblChooseFont.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_lblChooseFont.Text" xml:space="preserve">
+    <value>Choose Font :</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.Name" xml:space="preserve">
+    <value>m_lblChooseFont</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_txtBox_HighContrast.Location" type="System.Drawing.Point, System.Drawing">
+    <value>474, 210</value>
+  </data>
+  <data name="m_txtBox_HighContrast.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 22</value>
+  </data>
+  <data name="m_txtBox_HighContrast.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_HighContrast.Name" xml:space="preserve">
+    <value>m_txtBox_HighContrast</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_HighContrast.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_HighContrast.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_HighContrast.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.Name" xml:space="preserve">
+    <value>m_lv_ColorPref</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>55, 3</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>507, 163</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Colors list</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="m_lv_ColorPref.AccessibleName" xml:space="preserve">
     <value>Colors List</value>
   </data>
@@ -2398,6 +2296,156 @@
   </data>
   <data name="columnHeader5.Width" type="System.Int32, mscorlib">
     <value>153</value>
+  </data>
+  <data name="m_txtBox_Color.Location" type="System.Drawing.Point, System.Drawing">
+    <value>474, 177</value>
+  </data>
+  <data name="m_txtBox_Color.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 22</value>
+  </data>
+  <data name="m_txtBox_Color.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.Name" xml:space="preserve">
+    <value>m_txtBox_Color</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_btn_Apply.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_Apply.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 270</value>
+  </data>
+  <data name="m_btn_Apply.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 27</value>
+  </data>
+  <data name="m_btn_Apply.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_btn_Apply.Text" xml:space="preserve">
+    <value>App&amp;ly</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.Name" xml:space="preserve">
+    <value>m_btn_Apply</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>92, 216</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 16</value>
+  </data>
+  <data name="label11.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Assign H&amp;igh contrast color:</value>
+  </data>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
+  </data>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 183</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 16</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Assi&amp;gn Color:</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="mHighContrastCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mHighContrastCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 211</value>
+  </data>
+  <data name="mHighContrastCombo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 24</value>
+  </data>
+  <data name="mHighContrastCombo.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;mHighContrastCombo.Name" xml:space="preserve">
+    <value>mHighContrastCombo</value>
+  </data>
+  <data name="&gt;&gt;mHighContrastCombo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mHighContrastCombo.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;mHighContrastCombo.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="mNormalColorCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mNormalColorCombo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 177</value>
+  </data>
+  <data name="mNormalColorCombo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 24</value>
+  </data>
+  <data name="mNormalColorCombo.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;mNormalColorCombo.Name" xml:space="preserve">
+    <value>mNormalColorCombo</value>
+  </data>
+  <data name="&gt;&gt;mNormalColorCombo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNormalColorCombo.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;mNormalColorCombo.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="m_CheckBoxListView.AccessibleName" xml:space="preserve">
     <value>List box, Use up &amp; Down arrow to move in checkboxes</value>
