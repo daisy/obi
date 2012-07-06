@@ -49,6 +49,9 @@ namespace Obi.Dialogs
             this.mPipelineBrowseButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.mAudioTab = new System.Windows.Forms.TabPage();
+            this.m_btn_speak = new System.Windows.Forms.Button();
+            this.labelTTSvoice = new System.Windows.Forms.Label();
+            this.mTTSvoiceCombo = new System.Windows.Forms.ComboBox();
             this.m_btn_AdvancedRecording = new System.Windows.Forms.Button();
             this.m_OperationDurationUpDown = new System.Windows.Forms.NumericUpDown();
             this.m_cbOperation = new System.Windows.Forms.ComboBox();
@@ -100,9 +103,6 @@ namespace Obi.Dialogs
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
-            this.mTTSvoiceCombo = new System.Windows.Forms.ComboBox();
-            this.labelTTSvoice = new System.Windows.Forms.Label();
-            this.m_btn_speak = new System.Windows.Forms.Button();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -298,6 +298,25 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.mAudioTab, "mAudioTab");
             this.mAudioTab.Name = "mAudioTab";
             this.mAudioTab.UseVisualStyleBackColor = true;
+            // 
+            // m_btn_speak
+            // 
+            resources.ApplyResources(this.m_btn_speak, "m_btn_speak");
+            this.m_btn_speak.Name = "m_btn_speak";
+            this.m_btn_speak.UseVisualStyleBackColor = true;
+            this.m_btn_speak.Click += new System.EventHandler(this.m_btn_speak_Click);
+            // 
+            // labelTTSvoice
+            // 
+            resources.ApplyResources(this.labelTTSvoice, "labelTTSvoice");
+            this.labelTTSvoice.Name = "labelTTSvoice";
+            // 
+            // mTTSvoiceCombo
+            // 
+            this.mTTSvoiceCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.mTTSvoiceCombo, "mTTSvoiceCombo");
+            this.mTTSvoiceCombo.FormattingEnabled = true;
+            this.mTTSvoiceCombo.Name = "mTTSvoiceCombo";
             // 
             // m_btn_AdvancedRecording
             // 
@@ -684,24 +703,6 @@ namespace Obi.Dialogs
             this.m_ResetButton.Name = "m_ResetButton";
             this.m_ResetButton.UseVisualStyleBackColor = true;
             this.m_ResetButton.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // mTTSvoiceCombo
-            // 
-            this.mTTSvoiceCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.mTTSvoiceCombo, "mTTSvoiceCombo");
-            this.mTTSvoiceCombo.FormattingEnabled = true;
-            this.mTTSvoiceCombo.Name = "mTTSvoiceCombo";
-            // 
-            // labelTTSvoice
-            // 
-            resources.ApplyResources(this.labelTTSvoice, "labelTTSvoice");
-            this.labelTTSvoice.Name = "labelTTSvoice";
-            // 
-            // m_btn_speak
-            // 
-            resources.ApplyResources(this.m_btn_speak, "m_btn_speak");
-            this.m_btn_speak.Name = "m_btn_speak";
-            this.m_btn_speak.UseVisualStyleBackColor = true;
             // 
             // Preferences
             // 

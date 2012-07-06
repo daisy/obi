@@ -25,6 +25,7 @@ namespace Obi
         public bool AudioClues;                // use audio clues (or not.)
         public float AudioScale;               // scale of audio in waveform views
         public int BitDepth;                   // sample bit depth
+        public string Audio_TTSVoice;
         public ColorSettings ColorSettings;    // current color settings
         public ColorSettings ColorSettingsHC;  // current color settings for high contrast
         public bool CreateTitleSection;        // defaulf for "create title section" in new project
@@ -75,6 +76,7 @@ namespace Obi
         {
             settings.AudioChannels = 1;
             settings.AudioClues = false;
+            settings.Audio_TTSVoice = "";
             settings.AudioScale = 0.01f;
             settings.AllowOverwrite = false;
             settings.Recording_PreviewBeforeStarting = false;
