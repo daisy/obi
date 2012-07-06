@@ -107,28 +107,57 @@ namespace Obi.Audio
         private static Settings m_Settings;
         private static AudioLib.TextToSpeech m_Tts;
 
-        public static void  Speak( string    text, string filePath, Settings settings)
-        {
-            if (m_Tts != null && m_Tts.Synthesizer.State == System.Speech.Synthesis.SynthesizerState.Speaking )
-            {
-                if (!string.IsNullOrEmpty(filePath))
-                    return;
-                else
-                m_Tts.Synthesizer.Pause();
-            }
-            m_Settings = settings;
-            if (m_SpeechWorker != null) m_SpeechWorker.DoWork -= new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork); 
-            m_SpeechWorker = new System.ComponentModel.BackgroundWorker();
 
+        public static List<string> InstalledTTSVoices
+        {
+            get
+            {
+                if (m_Tts != null)
+                {
+                    return m_Tts.InstalledVoices;
+                }
+                else
+                {
+                    return new List<string>() ;
+                }
+            }
+        }
+
+        public static void InitializeTTS(Settings settings)
+        {
+            m_Settings = settings;
             AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)m_Settings.AudioChannels, (uint)m_Settings.SampleRate, (ushort)m_Settings.BitDepth);
             m_Tts = new TextToSpeech(audioFormat, null);
-            m_SpeechWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork);
+        }
 
-            List<string> inputStrings = new List<string>();
-            inputStrings.Add(text);
-            inputStrings.Add(filePath);
-            m_SpeechWorker.RunWorkerAsync(inputStrings);
+        public static void  Speak( string    text, string filePath, Settings settings)
+        {
+            try
+            {
+                if (m_Tts != null && m_Tts.Synthesizer.State == System.Speech.Synthesis.SynthesizerState.Speaking)
+                {
+                    if (!string.IsNullOrEmpty(filePath))
+                        return;
+                    else
+                        m_Tts.Synthesizer.Pause();
+                }
+                m_Settings = settings;
+                if (m_SpeechWorker != null) m_SpeechWorker.DoWork -= new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork);
+                m_SpeechWorker = new System.ComponentModel.BackgroundWorker();
 
+                AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)m_Settings.AudioChannels, (uint)m_Settings.SampleRate, (ushort)m_Settings.BitDepth);
+                m_Tts = new TextToSpeech(audioFormat, null);
+                m_SpeechWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork);
+
+                List<string> inputStrings = new List<string>();
+                inputStrings.Add(text);
+                inputStrings.Add(filePath);
+                m_SpeechWorker.RunWorkerAsync(inputStrings);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         static void m_SpeechWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -137,10 +166,17 @@ namespace Obi.Audio
             foreach (string s in m_Tts.InstalledVoices) Console.WriteLine(s);
             if (m_Tts.InstalledVoices.Count == 0) return;
             List<string> inputStrings = (List<string>)e.Argument;
-            m_Tts.SpeakString(m_Tts.InstalledVoices[0], inputStrings[0], inputStrings[1]);
+            string selectedVoice = string.IsNullOrEmpty(m_Settings.Audio_TTSVoice) ? m_Tts.InstalledVoices[0] : m_Settings.Audio_TTSVoice;
+            m_Tts.SpeakString(selectedVoice, inputStrings[0], inputStrings[1]);
             
         }
 
+        public static void TestVoice(string text, string voice, Settings settings)
+        {
+            AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)settings.AudioChannels, (uint)settings.SampleRate, (ushort)settings.BitDepth);
+            m_Tts = new TextToSpeech(audioFormat, null);
+            m_Tts.SpeakString(voice, text,null);
+        }
 
     }
 }

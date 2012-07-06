@@ -147,6 +147,17 @@ namespace Obi.Dialogs
             mChannelsCombo.Visible = mCanChangeAudioSettings;
             mChannelsTextbox.Text = Localizer.Message ( audioChannels == 1 ? "mono" : "stereo" );
             mChannelsTextbox.Visible = !mCanChangeAudioSettings;
+            if (AudioFormatConverter.InstalledTTSVoices.Count == 0) AudioFormatConverter.InitializeTTS(mSettings);
+            mTTSvoiceCombo.Items.AddRange (Audio.AudioFormatConverter.InstalledTTSVoices.ToArray()) ;
+            if (string.IsNullOrEmpty(mSettings.Audio_TTSVoice))
+            {
+                if (mTTSvoiceCombo.Items.Count > 0) mTTSvoiceCombo.SelectedIndex = 0;
+            }
+            else
+            {
+                int ttsIndex = AudioFormatConverter.InstalledTTSVoices.IndexOf(mSettings.Audio_TTSVoice) ;
+                if(ttsIndex >= 0 )  mTTSvoiceCombo.SelectedIndex =ttsIndex ;
+            }
             
             if(m_cbOperation.SelectedIndex == 0)
                 m_OperationDurationUpDown.Value = (decimal)(mSettings.NudgeTimeMs);
@@ -404,6 +415,9 @@ namespace Obi.Dialogs
                         }
                     }
                 }
+
+                string selectedTTSVoice = GetTTSVoiceNameFromTTSCombo();
+            if (!string.IsNullOrEmpty(selectedTTSVoice)) mSettings.Audio_TTSVoice = selectedTTSVoice ;
             
             mSettings.NoiseLevel = mNoiseLevelComboBox.SelectedIndex == 0 ? AudioLib.VuMeter.NoiseLevelSelection.Low :
                 mNoiseLevelComboBox.SelectedIndex == 1 ? AudioLib.VuMeter.NoiseLevelSelection.Medium : AudioLib.VuMeter.NoiseLevelSelection.High;
@@ -421,6 +435,16 @@ namespace Obi.Dialogs
                 }                
             return true;
             }
+
+        private string GetTTSVoiceNameFromTTSCombo()
+        {
+            int ttsIndex = mTTSvoiceCombo.SelectedIndex;
+            if (ttsIndex >= 0 && AudioFormatConverter.InstalledTTSVoices.Count > 0)
+            {
+                return AudioFormatConverter.InstalledTTSVoices[ttsIndex];
+            }
+            return "";
+        }
 
         // Update user profile
         private bool UpdateUserProfile ()
@@ -1218,6 +1242,17 @@ namespace Obi.Dialogs
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void m_btn_speak_Click(object sender, EventArgs e)
+        {
+            string selectedTTSVoice = GetTTSVoiceNameFromTTSCombo();
+            
+            if (!string.IsNullOrEmpty(selectedTTSVoice))
+            {
+                
+                AudioFormatConverter.TestVoice(selectedTTSVoice, selectedTTSVoice, mSettings);
             }
         }
 
