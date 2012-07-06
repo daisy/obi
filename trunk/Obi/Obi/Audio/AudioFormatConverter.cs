@@ -103,5 +103,30 @@ namespace Obi.Audio
             return convertedFile;
         }
 
+        private static System.ComponentModel.BackgroundWorker m_SpeechWorker = null;
+        private static Settings m_Settings;
+        
+        public static void  Speak( string    text, Settings settings)
+        {
+            if (m_SpeechWorker != null && m_SpeechWorker.IsBusy)
+            {
+                return;
+            }
+            m_Settings = settings;
+            if (m_SpeechWorker != null) m_SpeechWorker.DoWork -= new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork); 
+            m_SpeechWorker = new System.ComponentModel.BackgroundWorker();
+            m_SpeechWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork);
+            m_SpeechWorker.RunWorkerAsync(text);
+            
+
+        }
+
+        static void m_SpeechWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)m_Settings.AudioChannels, (uint) m_Settings.SampleRate,(ushort)m_Settings.BitDepth);
+            AudioLib.TextToSpeech tts = new TextToSpeech(audioFormat, null);
+            tts.SpeakString((string)e.Argument, null);
+        }
+
     }
 }
