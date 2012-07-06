@@ -25,7 +25,7 @@ namespace Obi.Dialogs
         }
 
         public SelectPhraseDetectionSections ( List<SectionNode> sectionsList, List<PhraseNode> silencePhraseList ):this     ()
-            {
+        {
             m_OriginalSectionList = sectionsList;
             m_SilencePhrases = silencePhraseList;
             m_SectionRangeCount = m_OriginalSectionList.Count / 100;
@@ -58,6 +58,7 @@ namespace Obi.Dialogs
                 m_cb_SilencePhrase.Items.Add ( (i + 1) + ". Section: " + m_SilencePhrases[i].ParentAs<SectionNode> ().Label + ": " + m_SilencePhrases[i].BaseStringShort());
                 }
             m_cb_SilencePhrase.SelectedIndex = 0;
+            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add("Select/Deselect all sections");
             }
 
         public List<SectionNode> SelectedSections 
@@ -70,6 +71,7 @@ namespace Obi.Dialogs
             if ((m_cb_EndRangeForNumberOfSections.Items.Count >= 1) && (m_cb_StartRangeForNumberOfSections.Items.Count >= 1)) 
             {
                 m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Clear();
+                m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add("Selecet/Deselect all sections");
                 if ((m_cb_EndRangeForNumberOfSections.SelectedIndex != -1) && (m_cb_StartRangeForNumberOfSections.SelectedIndex != -1))
                 {
                     m_StartRange = int.Parse(m_cb_StartRangeForNumberOfSections.Items[m_cb_StartRangeForNumberOfSections.SelectedIndex].ToString());
@@ -82,7 +84,7 @@ namespace Obi.Dialogs
                       for (int i = m_StartRange; i <= m_EndRange; i++)
                         {
                             ListViewItem item = new ListViewItem(m_OriginalSectionList[i-1].Label);
-                            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(item);
+                            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(item); 
                             item.Tag = m_OriginalSectionList[i-1];
                         }
                     }
@@ -181,6 +183,21 @@ namespace Obi.Dialogs
             updateCombobox();
         }
         public PhraseNode SelectedSilencePhrase { get { return m_SelectedSilencePhrase; } }
-        
-    }
+
+        private void m_lv_ListOfSelectedSectionsForPhraseDetection_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if(m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Count == 1)
+                return;
+
+            if(e.Index == 0)
+            {
+                for (int i = 1; i < m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Count; i++)
+                {
+                    m_lv_ListOfSelectedSectionsForPhraseDetection.Items[i].Checked =
+                        e.NewValue == CheckState.Checked ? true : false;
+                }
+            }
+        }
+              
+      }
 }

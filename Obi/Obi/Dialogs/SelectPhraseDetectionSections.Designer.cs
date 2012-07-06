@@ -120,7 +120,8 @@ namespace Obi.Dialogs
             // m_lv_ListOfSelectedSectionsForPhraseDetection
             // 
             this.m_lv_ListOfSelectedSectionsForPhraseDetection.AccessibleDescription = "ListView containing list of sections selected for phrase detection";
-            this.m_lv_ListOfSelectedSectionsForPhraseDetection.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.m_lv_ListOfSelectedSectionsForPhraseDetection.Alignment = System.Windows.Forms.ListViewAlignment.Default;
+            this.m_lv_ListOfSelectedSectionsForPhraseDetection.AutoArrange = false;
             this.m_lv_ListOfSelectedSectionsForPhraseDetection.CheckBoxes = true;
             this.m_lv_ListOfSelectedSectionsForPhraseDetection.Location = new System.Drawing.Point(6, 19);
             this.m_lv_ListOfSelectedSectionsForPhraseDetection.Name = "m_lv_ListOfSelectedSectionsForPhraseDetection";
@@ -129,6 +130,7 @@ namespace Obi.Dialogs
             this.m_lv_ListOfSelectedSectionsForPhraseDetection.TabIndex = 5;
             this.m_lv_ListOfSelectedSectionsForPhraseDetection.UseCompatibleStateImageBehavior = false;
             this.m_lv_ListOfSelectedSectionsForPhraseDetection.View = System.Windows.Forms.View.List;
+            this.m_lv_ListOfSelectedSectionsForPhraseDetection.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.m_lv_ListOfSelectedSectionsForPhraseDetection_ItemCheck);
             // 
             // m_grpSelectRange
             // 
