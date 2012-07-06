@@ -2258,6 +2258,54 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             return true;
             }
 
+        private bool NudgeIntervalIncrement(bool increment)
+        {
+            double interval = mProjectView.ObiForm.Settings.NudgeTimeMs;
+            if (increment && interval < 1000)
+            {
+                interval += 50;
+            }
+            else if ( interval > 100 )
+            {
+                interval -= 50;
+            }
+
+            if (interval != mProjectView.ObiForm.Settings.NudgeTimeMs)
+            {
+                mProjectView.ObiForm.Settings.NudgeTimeMs = interval;
+                if (mProjectView.ObiForm.Settings.AudioClues) Audio.AudioFormatConverter.Speak(interval.ToString () , null, mProjectView.ObiForm.Settings);
+                return true;
+            }
+            return false;
+        }
+
+        private bool ArrowKey_Up()
+        {
+            if (mProjectView.TransportBar.FineNavigationModeForPhrase)
+            {
+                NudgeIntervalIncrement(true);
+                return true;
+            }
+            else
+            {
+                return ScrollUp_SmallIncrementWithSelection();
+            }
+        }
+
+        private bool ArrowKey_Down()
+        {
+            if (mProjectView.TransportBar.FineNavigationModeForPhrase)
+            {
+                NudgeIntervalIncrement(false);
+                return true;
+            }
+            else
+            {
+                return ScrollDown_SmallIncrementWithSelection();
+            }
+        }
+
+
         //@singleSection
         public bool ScrollUp_LargeIncrementWithSelection () { return ScrollUp_LargeIncrement ( true ); }
 
@@ -3662,8 +3710,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[Keys.Control | Keys.Right] = SelectFollowingStripCursor;
              */
             mShortcutKeys[keyboardShortcuts.ContentView_ScrollDown_LargeIncrementWithSelection.Value] = ScrollDown_LargeIncrementWithSelection;
-            mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value] = ScrollUp_LargeIncrementWithSelection;
-            mShortcutKeys[keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value] = ScrollDown_SmallIncrementWithSelection;
+            mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value] = ArrowKey_Up;
+            mShortcutKeys[keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value] = ArrowKey_Down;
             mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value] = ScrollUp_SmallIncrementWithSelection;
             /*
             mShortcutKeys[Keys.PageDown] = ScrollDown_LargeIncrementWithSelection;
