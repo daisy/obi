@@ -105,28 +105,42 @@ namespace Obi.Audio
 
         private static System.ComponentModel.BackgroundWorker m_SpeechWorker = null;
         private static Settings m_Settings;
-        
-        public static void  Speak( string    text, Settings settings)
+        private static AudioLib.TextToSpeech m_Tts;
+
+        public static void  Speak( string    text, string filePath, Settings settings)
         {
-            if (m_SpeechWorker != null && m_SpeechWorker.IsBusy)
+            if (m_Tts != null && m_Tts.Synthesizer.State == System.Speech.Synthesis.SynthesizerState.Speaking )
             {
-                return;
+                if (!string.IsNullOrEmpty(filePath))
+                    return;
+                else
+                m_Tts.Synthesizer.Pause();
             }
             m_Settings = settings;
             if (m_SpeechWorker != null) m_SpeechWorker.DoWork -= new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork); 
             m_SpeechWorker = new System.ComponentModel.BackgroundWorker();
+
+            AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)m_Settings.AudioChannels, (uint)m_Settings.SampleRate, (ushort)m_Settings.BitDepth);
+            m_Tts = new TextToSpeech(audioFormat, null);
             m_SpeechWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork);
-            m_SpeechWorker.RunWorkerAsync(text);
-            
+
+            List<string> inputStrings = new List<string>();
+            inputStrings.Add(text);
+            inputStrings.Add(filePath);
+            m_SpeechWorker.RunWorkerAsync(inputStrings);
 
         }
 
         static void m_SpeechWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)m_Settings.AudioChannels, (uint) m_Settings.SampleRate,(ushort)m_Settings.BitDepth);
-            AudioLib.TextToSpeech tts = new TextToSpeech(audioFormat, null);
-            tts.SpeakString((string)e.Argument, null);
+            
+            foreach (string s in m_Tts.InstalledVoices) Console.WriteLine(s);
+            if (m_Tts.InstalledVoices.Count == 0) return;
+            List<string> inputStrings = (List<string>)e.Argument;
+            m_Tts.SpeakString(m_Tts.InstalledVoices[0], inputStrings[0], inputStrings[1]);
+            
         }
+
 
     }
 }
