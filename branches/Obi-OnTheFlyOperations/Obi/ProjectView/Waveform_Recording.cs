@@ -349,9 +349,8 @@ int channel = 0;
                     countToRepaint = m_CounterWaveform;
                 else
                     countToRepaint = xSize;
-
-              //  for (int i = counterMin - 1; i >= 0; i--)
-                for (int i = countToRepaint - 1; i >= 0; i--)
+                for (int i = counterMin - 1; i >= counterMin - countToRepaint; i--)
+            //    for (int i = countToRepaint - 1; i >= 0; i--)
                 {
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                     {
