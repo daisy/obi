@@ -46,8 +46,6 @@ namespace Obi.ProjectView
             this.Name = "Waveform_Recording";
             this.Size = new System.Drawing.Size(10000, 104);
             this.VisibleChanged += new System.EventHandler(this.Waveform_Recording_VisibleChanged);
-            //this.Resize += new System.EventHandler(this.Waveform_Recording_Resize);
-            //this.SizeChanged += new System.EventHandler(this.Waveform_Recording_SizeChanged);
             this.ResumeLayout(false);
 
         }

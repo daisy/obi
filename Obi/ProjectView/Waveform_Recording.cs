@@ -135,7 +135,6 @@ namespace Obi.ProjectView
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
             m_XCV = m_X + Location.X;
             int diff = m_XCV - (m_ContentView.Width / 2 + 50);
             int newXLocation = (m_X - (m_ContentView.Width / 2 + 50)) * -1;
@@ -146,10 +145,18 @@ namespace Obi.ProjectView
             }
             if (newXLocation > 0)
             {
+                
                 m_IsToBeRepainted = false;
-                Location = new Point(0, Location.Y);
+                Location = new Point(-400, Location.Y);
+                
             }
-          
+            int difference = 0;
+            difference = this.Width - m_X - m_ContentView.Width;
+            if (difference == 20 )
+            {
+                this.Location = new Point(-400, Location.Y);
+                m_X = m_ContentView.Width / 2 + 50;
+            }
             
             if (m_VUMeter == null || m_ContentView == null) return;
             g = this.CreateGraphics();
