@@ -140,13 +140,15 @@ namespace Obi.Audio
                         return;
                     else
                         m_Tts.Synthesizer.Pause();
+                    m_Tts.Synthesizer.Dispose();
+                    m_Tts = null;
                 }
                 m_Settings = settings;
                 if (m_SpeechWorker != null) m_SpeechWorker.DoWork -= new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork);
                 m_SpeechWorker = new System.ComponentModel.BackgroundWorker();
-
-                AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)m_Settings.AudioChannels, (uint)m_Settings.SampleRate, (ushort)m_Settings.BitDepth);
-                m_Tts = new TextToSpeech(audioFormat, null);
+                
+                if(m_Tts == null )  InitializeTTS(settings);
+                
                 m_SpeechWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork);
 
                 List<string> inputStrings = new List<string>();
@@ -163,7 +165,7 @@ namespace Obi.Audio
         static void m_SpeechWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             
-            foreach (string s in m_Tts.InstalledVoices) Console.WriteLine(s);
+            
             if (m_Tts.InstalledVoices.Count == 0) return;
             List<string> inputStrings = (List<string>)e.Argument;
             string selectedVoice = string.IsNullOrEmpty(m_Settings.Audio_TTSVoice) ? m_Tts.InstalledVoices[0] : m_Settings.Audio_TTSVoice;
