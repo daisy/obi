@@ -127,20 +127,20 @@ namespace Obi.Audio
         {
             m_Settings = settings;
             AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)m_Settings.AudioChannels, (uint)m_Settings.SampleRate, (ushort)m_Settings.BitDepth);
-            m_Tts = new TextToSpeech(audioFormat, null);
+            m_Tts = new TextToSpeech(audioFormat);
         }
 
         public static void  Speak( string    text, string filePath, Settings settings)
         {
             try
             {
-                if (m_Tts != null && m_Tts.Synthesizer.State == System.Speech.Synthesis.SynthesizerState.Speaking)
+                if (m_Tts != null && m_Tts.IsSynthesizerSpeaking)
                 {
                     if (!string.IsNullOrEmpty(filePath))
                         return;
                     else
-                        m_Tts.Synthesizer.Pause();
-                    m_Tts.Synthesizer.Dispose();
+                        m_Tts.PauseAndDispose();
+                    
                     m_Tts = null;
                 }
                 m_Settings = settings;
@@ -176,7 +176,7 @@ namespace Obi.Audio
         public static void TestVoice(string text, string voice, Settings settings)
         {
             AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)settings.AudioChannels, (uint)settings.SampleRate, (ushort)settings.BitDepth);
-            m_Tts = new TextToSpeech(audioFormat, null);
+            m_Tts = new TextToSpeech(audioFormat);
             m_Tts.SpeakString(voice, text,null);
         }
 
