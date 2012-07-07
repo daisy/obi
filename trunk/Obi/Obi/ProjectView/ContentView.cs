@@ -2265,7 +2265,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
                 interval += 50;
             }
-            else if ( interval > 100 )
+            else if (!increment &&  interval > 100 )
             {
                 interval -= 50;
             }
@@ -3710,15 +3710,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[Keys.Control | Keys.Right] = SelectFollowingStripCursor;
              */
             mShortcutKeys[keyboardShortcuts.ContentView_ScrollDown_LargeIncrementWithSelection.Value] = ScrollDown_LargeIncrementWithSelection;
-            mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value] = ArrowKey_Up;
+            mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value] = ScrollUp_LargeIncrementWithSelection;
             mShortcutKeys[keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value] = ArrowKey_Down;
-            mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value] = ScrollUp_SmallIncrementWithSelection;
-            /*
-            mShortcutKeys[Keys.PageDown] = ScrollDown_LargeIncrementWithSelection;
-            mShortcutKeys[Keys.PageUp] = ScrollUp_LargeIncrementWithSelection;
-            mShortcutKeys[Keys.Down] = ScrollDown_SmallIncrementWithSelection;
-            mShortcutKeys[Keys.Up] = ScrollUp_SmallIncrementWithSelection;
-             */
+            mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value] = ArrowKey_Up;
+            
         }
 
         private bool CanUseKeys { get { return (mSelection == null || !(mSelection is TextSelection)) && !m_IsBlocksVisibilityProcessActive; } }
