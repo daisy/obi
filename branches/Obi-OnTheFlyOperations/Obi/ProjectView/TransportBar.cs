@@ -3072,6 +3072,100 @@ UpdateButtons();
             
              */ 
         }
+
+        private byte[] m_MemStreamArray;
+        private int m_PhDetectionMemStreamPosition;
+        private long m_PhDetectorBytesRecorded;
+
+        private void ApplyPhraseDetectionOnTheFly(AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
+        {
+            int overlapLength = 0;
+            int msLentth = 0;
+            if (mRecorder.RecordingPCMFormat != null)
+            {
+                overlapLength = Convert.ToInt32(0.250 * (mRecorder.RecordingPCMFormat.BlockAlign * mRecorder.RecordingPCMFormat.SampleRate));
+                overlapLength = (Math.Abs(overlapLength / e.PcmDataBufferLength) * e.PcmDataBufferLength);
+                msLentth = Convert.ToInt32(e.PcmDataBufferLength * 16);
+            }
+
+            if ((m_MemStreamArray == null || m_PhDetectionMemStreamPosition > (msLentth - e.PcmDataBufferLength)) && mRecorder.RecordingPCMFormat != null)
+            {
+
+                if (m_MemStreamArray != null)
+                {
+                    //m_PhDetectionMemoryStream.ReadByte();
+                    long threshold = (long)mView.ObiForm.Settings.DefaultThreshold;
+                    long GapLength = (long)mView.ObiForm.Settings.DefaultGap;
+                    long before = (long)mView.ObiForm.Settings.DefaultLeadingSilence;
+                    Console.WriteLine("on the fly ph detection parameters " + threshold + " : " + GapLength);
+                    AudioLib.AudioLibPCMFormat audioPCMFormat = new AudioLib.AudioLibPCMFormat(mRecorder.RecordingPCMFormat.NumberOfChannels, mRecorder.RecordingPCMFormat.SampleRate, mRecorder.RecordingPCMFormat.BitDepth);
+                    List<long> timingList = AudioLib.PhraseDetection.Apply(new System.IO.MemoryStream(m_MemStreamArray),
+                        audioPCMFormat,
+                        threshold,
+                        (long)GapLength * AudioLib.AudioLibPCMFormat.TIME_UNIT,
+                        (long)before * AudioLib.AudioLibPCMFormat.TIME_UNIT);
+                    if (timingList != null)
+                    {
+                        Console.WriteLine("timingList " + timingList.Count);
+                        foreach (double d in timingList)
+                        {
+                            if (d >= overlapLength)
+                            {
+                                double phraseTime = d - mRecorder.RecordingPCMFormat.ConvertBytesToTime(overlapLength);
+                                double timeInSession = (mRecorder.RecordingPCMFormat.ConvertBytesToTime(m_PhDetectorBytesRecorded - msLentth) + d) / AudioLib.AudioLibPCMFormat.TIME_UNIT;
+                                Console.WriteLine("phrase time: " + phraseTime + " : " + timeInSession);
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("timing list is null ");
+                    }
+                }
+
+                byte[] overlapData = null;
+                if (m_MemStreamArray != null)
+                {
+                    overlapData = new byte[overlapLength];
+                    Array.Copy(m_MemStreamArray, m_MemStreamArray.Length - overlapLength - 1, overlapData, 0, overlapData.Length);
+                    m_MemStreamArray = new byte[msLentth + overlapLength];
+                    overlapData.CopyTo(m_MemStreamArray, 0);
+                }
+                else
+                {
+                    overlapLength = 0;
+                    m_MemStreamArray = new byte[msLentth];
+                }
+                Console.WriteLine("newMemStream length  " + m_MemStreamArray.Length);
+                m_PhDetectionMemStreamPosition = overlapLength;
+                m_PhDetectorBytesRecorded += msLentth;
+
+
+                e.PcmDataBuffer.CopyTo(m_MemStreamArray, m_PhDetectionMemStreamPosition);
+                m_PhDetectionMemStreamPosition += e.PcmDataBufferLength;
+                //m_PhDetectionMemoryStream.Write(e.PcmDataBuffer, (int)m_PhDetectionMemStreamPosition, e.PcmDataBuffer.Length);
+                //m_PhDetectionMemStreamPosition = m_PhDetectionMemoryStream.Position;
+                Console.WriteLine("first writing of recorder buffer " + m_PhDetectionMemStreamPosition);
+            }
+            else if (m_MemStreamArray != null && e.PcmDataBuffer != null)
+            {
+                int leftOverLength = Convert.ToInt32(msLentth - m_PhDetectionMemStreamPosition);
+                if (leftOverLength > e.PcmDataBuffer.Length) leftOverLength = e.PcmDataBuffer.Length;
+                Console.WriteLine("length:position:leftOver " + m_MemStreamArray.Length + " : " + m_PhDetectionMemStreamPosition + " : " + leftOverLength + " : " + e.PcmDataBuffer.Length);
+                //m_PhDetectionMemoryStream.Write(e.PcmDataBuffer,0, leftOverLength);
+                //m_PhDetectionMemStreamPosition = m_PhDetectionMemoryStream.Position;
+                //m_MemStreamArray = new byte[msLentth];
+                //m_PhDetectionMemoryStream.ToArray().CopyTo(m_MemStreamArray, 0); ;
+                e.PcmDataBuffer.CopyTo(m_MemStreamArray, m_PhDetectionMemStreamPosition);
+                m_PhDetectionMemStreamPosition += e.PcmDataBufferLength;
+
+                Console.WriteLine("writing recorder buffer " + m_PhDetectionMemStreamPosition);
+
+            }
+        }
+
+
         private delegate void NextPhrase_OnTheFly_Delegate ();
         private void NextPhrase_OnTheFly()
         {
