@@ -413,4 +413,16 @@ int SampleValue2 = 0 ;
 */
 
     }
+
+    public class PhraseDetectedEventArgs : EventArgs
+    {
+        public PhraseDetectedEventArgs(double timeInMs)
+        {
+            m_TimeInMs = timeInMs;
+        }
+
+        private double m_TimeInMs;
+        public double TimeInMs { get { return m_TimeInMs; } }
+
+    }
 }

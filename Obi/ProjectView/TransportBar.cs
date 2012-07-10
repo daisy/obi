@@ -3114,7 +3114,7 @@ UpdateButtons();
                                 double phraseTime = d - mRecorder.RecordingPCMFormat.ConvertBytesToTime(overlapLength);
                                 double timeInSession = (mRecorder.RecordingPCMFormat.ConvertBytesToTime(m_PhDetectorBytesRecorded - msLentth) + d) / AudioLib.AudioLibPCMFormat.TIME_UNIT;
                                 Console.WriteLine("phrase time: " + phraseTime + " : " + timeInSession);
-
+                                if (PhraseCreatedEvent != null) PhraseCreatedEvent(this, new Audio.PhraseDetectedEventArgs(timeInSession));
                             }
                         }
                     }
