@@ -100,6 +100,18 @@ namespace Obi.ProjectView
             get { return mParentContainer is Strip ? (Strip)mParentContainer : ((Block)mParentContainer).Strip; }
         }
 
+        private bool m_IsFineNavigationMode ;
+        public bool IsFineNavigationMode
+        {
+            get
+            {
+                return m_IsFineNavigationMode;
+            }
+            set
+            {
+                m_IsFineNavigationMode = value;
+            }
+        }
 
         /// <summary>
         /// Set the zoom factor and the height.
@@ -127,6 +139,7 @@ namespace Obi.ProjectView
             if (mNode != null && settings != null)
             {
                 BackColor =
+                    m_IsFineNavigationMode? Color.Aqua:
                     mHighlighted ? settings.BlockBackColor_Selected :
                     mNode.Role_ == EmptyNode.Role.Silence ? settings.BlockBackColor_Silence :
                     !mNode.Used ? settings.BlockBackColor_Unused :
