@@ -2988,7 +2988,7 @@ UpdateButtons();
                         if(mView.ObiForm.Settings.AudioClues)  System.Media.SystemSounds.Exclamation.Play();
                         // add sound here
                     }
-                    mView.UpdateBlockForFindNavigation(m_FineNavigationModeForPhrase);
+                    if (mView.Selection.EmptyNodeForSelection != null) mView.UpdateBlockForFindNavigation(mView.Selection.EmptyNodeForSelection, m_FineNavigationModeForPhrase);
                     if (StateChanged != null) StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(mPlayer.CurrentState) );
                 }
             }

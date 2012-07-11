@@ -3311,16 +3311,16 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             return null;
             }
 
-        public void UpdateBlockForFindNavigation(bool IsFineNavigation)
+        public void UpdateBlockForFindNavigation(EmptyNode node, bool IsFineNavigation)
         {
-            EmptyNode node = mProjectView.Selection.EmptyNodeForSelection;
             Block block = FindBlock(node);
-            block.IsFineNavigationMode = IsFineNavigation;
-            if(block.IsFineNavigationMode)
+            if (block != null)
             {
-              block.UpdateColors();
+                block.IsFineNavigationMode = IsFineNavigation;
+                block.UpdateColors();
             }
         }
+
         // Find the selectable item for this selection object (block, strip or strip cursor.)
         private ISelectableInContentView FindSelectable ( NodeSelection selection )
             {
