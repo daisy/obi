@@ -1488,10 +1488,10 @@ namespace Obi.ProjectView
                 }
             }
 
-        // Quick way to set the selection
-        public void UpdateBlockForFindNavigation(bool IsFineNavigation)
+        
+        public void UpdateBlockForFindNavigation(EmptyNode node, bool IsFineNavigation)
         {
-           mContentView.UpdateBlockForFindNavigation(IsFineNavigation);
+           mContentView.UpdateBlockForFindNavigation(node, IsFineNavigation);
         }
 
         public EmptyNode SelectedBlockNode { set { Selection = new NodeSelection ( value, mContentView ); } }

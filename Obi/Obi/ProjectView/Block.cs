@@ -67,6 +67,7 @@ namespace Obi.ProjectView
                 if (value != mHighlighted)
                 {
                     mHighlighted = value;
+                    if (!mHighlighted) IsFineNavigationMode = false;
                     UpdateColors();
                 }
             }
@@ -101,6 +102,9 @@ namespace Obi.ProjectView
         }
 
         private bool m_IsFineNavigationMode ;
+        /// <summary>
+        /// Used to update background color for fine navigation. It is switched false when highlight is set false.
+        /// </summary>
         public bool IsFineNavigationMode
         {
             get
