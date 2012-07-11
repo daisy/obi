@@ -3311,6 +3311,16 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             return null;
             }
 
+        public void UpdateBlockForFindNavigation(bool IsFineNavigation)
+        {
+            EmptyNode node = mProjectView.Selection.EmptyNodeForSelection;
+            Block block = FindBlock(node);
+            block.IsFineNavigationMode = IsFineNavigation;
+            if(block.IsFineNavigationMode)
+            {
+              block.UpdateColors();
+            }
+        }
         // Find the selectable item for this selection object (block, strip or strip cursor.)
         private ISelectableInContentView FindSelectable ( NodeSelection selection )
             {
@@ -5350,8 +5360,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void Context_Skippable_ClearRoleFromNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.ClearSkippableChunk();
-        }      
-    }
+        }
+        }
    /// <summary>
     /// Common interface for selection of strips and blocks.
     /// </summary>
