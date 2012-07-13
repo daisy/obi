@@ -58,6 +58,7 @@ namespace Obi
         private Color mWaveFormHighlightedForeColor;
         private Color mWaveformMonoColor;
         private Color mWaveformSelectionColor;
+        public Color FineNavigationColor;
 
         [NonSerialized()] public SolidBrush BlockLayoutSelectedBrush;
         [NonSerialized()] public Pen WaveformBaseLinePen;
@@ -148,6 +149,7 @@ namespace Obi
             settings.mWaveformMonoColor = Color.FromArgb(127, Color.Blue);
             settings.mWaveformSelectionColor = SystemColors.Highlight;
             settings.mWaveformCursorColor = Color.Red;
+            settings.FineNavigationColor = Color.Aqua;
             return settings;
         }
 
@@ -178,7 +180,6 @@ namespace Obi
             settings.mWaveformChannel2Color = Color.Green;
             settings.mWaveformMonoColor = Color.Green;
             settings.mWaveformCursorColor = Color.Yellow;
-            
             return settings;
         }
 
@@ -227,6 +228,7 @@ namespace Obi
             ColorSetting.Add("WaveformBackColor", WaveformBackColor);
             ColorSetting.Add("WaveformBaseLineColor", mWaveformBaseLineColor);
             ColorSetting.Add("WaveformHighlightedBackColor", WaveformHighlightedBackColor);
+            ColorSetting.Add("FineNavigationColor", FineNavigationColor);
         }
           
     }

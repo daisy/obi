@@ -143,7 +143,7 @@ namespace Obi.ProjectView
             if (mNode != null && settings != null)
             {
                 BackColor =
-                    m_IsFineNavigationMode? Color.Aqua:
+                    m_IsFineNavigationMode? settings.FineNavigationColor:
                     mHighlighted ? settings.BlockBackColor_Selected :
                     mNode.Role_ == EmptyNode.Role.Silence ? settings.BlockBackColor_Silence :
                     !mNode.Used ? settings.BlockBackColor_Unused :
