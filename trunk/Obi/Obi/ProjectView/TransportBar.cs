@@ -2976,7 +2976,7 @@ UpdateButtons();
                     if (m_FineNavigationModeForPhrase)
                     {
                         string navigationOnClue = System.IO.Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, "FineNavigationOn.wav") ;
-                        if (System.IO.File.Exists(navigationOnClue))
+                        if (mView.ObiForm.Settings.AudioClues &&  System.IO.File.Exists(navigationOnClue))
                         {
                             System.Media.SoundPlayer player = new System.Media.SoundPlayer(navigationOnClue);
                             player.Play();
