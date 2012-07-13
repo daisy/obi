@@ -577,8 +577,8 @@ namespace Obi.ProjectView
                 mView = value;
                 UpdateButtons();
                 mView.BlocksVisibilityChanged += new EventHandler(mView_BlocksVisibilityChanged);
-                mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) { 
-                    
+                mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) {
+                    if(mView.Selection == null || mView.Selection.Node != m_FineNavigationPhrase ) FineNavigationModeForPhrase = false;
                     UpdateButtons();
                     //if (Enabled && mSelectionChangedPlayEnable &&  mView.ObiForm.Settings.PlayOnNavigate)   PlaybackOnSelectionChange();
                     if (Enabled && mSelectionChangedPlayEnable ) PlaybackOnSelectionChange_Safe ();
