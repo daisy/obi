@@ -302,7 +302,14 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             //Console.WriteLine("opening project memory differenc is " + (memoryDiff / 1024));
             mPath = path;
             GetLock(mPath);
-            Presentation.Initialize(this);
+            try
+            {
+                Presentation.Initialize(this);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
             // Hack to ignore the empty commands saved by the default undo/redo manager
             Presentation.UndoRedoManager.FlushCommands();
             ((ObiRootNode)mProject.Presentations.Get(0).RootNode).LocateBookMarkAndAssociatedNode();
@@ -560,7 +567,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         {
             importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
             CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, settings, true);
-            import = new Obi.ImportExport.DAISY3_ObiImport(this, settings, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
+            import = new Obi.ImportExport.DAISY3_ObiImport(this, settings, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100, settings.AudioChannels == 2);
             import.DoWork();
             if (import.RequestCancellation)
             {

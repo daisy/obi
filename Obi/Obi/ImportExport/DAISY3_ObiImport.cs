@@ -27,9 +27,11 @@ namespace Obi.ImportExport
         private urakawa.metadata.Metadata m_IdentifierMetadata;
         private List<EmptyNode> m_PhrasesWithTruncatedAudio;
         private List<string> m_ErrorsList;
+        private urakawa.property.channel.TextChannel m_textChannel;
+        private urakawa.property.channel.AudioChannel m_audioChannel;
 
-        public DAISY3_ObiImport(Session session, Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate)
-            : base(bookfile, outDir, skipACM, audioProjectSampleRate, true)
+        public DAISY3_ObiImport(Session session, Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate, bool stereo)
+            : base(bookfile, outDir, skipACM, audioProjectSampleRate, stereo, true)
         {
             m_Session = session;
             m_Settings = settings;
@@ -398,7 +400,7 @@ namespace Obi.ImportExport
         }
 
 
-        protected override void parseContentDocument(XmlNode xmlNode, TreeNode parentTreeNode, string filePath)
+        protected override void parseContentDocument(string book_FilePath, Project project, XmlNode xmlNode, TreeNode parentTreeNode, string filePath)
         {
             if (RequestCancellation) return;
 
@@ -443,7 +445,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                                 dtdEfd.InitializeWithData(ms, "DTBookLocalDTD.dtd", false);
                             }
                             */
-                            parseContentDocument(bodyElement, parentTreeNode, filePath);
+                            parseContentDocument(book_FilePath, project, bodyElement, parentTreeNode, filePath);
                         }
                         //parseContentDocument(((XmlDocument)xmlNode).DocumentElement, parentTreeNode);
                         break;
@@ -621,7 +623,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         if (RequestCancellation) return;
                         foreach (XmlNode childXmlNode in xmlNode.ChildNodes)
                         {
-                            parseContentDocument(childXmlNode, treeNode != null && treeNode is SectionNode ? treeNode : parentTreeNode, filePath);
+                            parseContentDocument(book_FilePath, project, childXmlNode, treeNode != null && treeNode is SectionNode ? treeNode : parentTreeNode, filePath);
                         }
                         break;
                     }
@@ -798,12 +800,12 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
             m_MetadataItemsToExclude.Add(Metadata.GENERATOR);
         }
 
-        protected override void RemoveMetadataItemsToBeExcluded()
+        protected override void RemoveMetadataItemsToBeExcluded(Project project)
         {
-            base.RemoveMetadataItemsToBeExcluded();
+            base.RemoveMetadataItemsToBeExcluded(project);
 
             // now make sure that there is single identifier and no duplicate title with the same value
-            foreach (urakawa.metadata.Metadata m in m_Presentation.Metadatas.ContentsAs_ListCopy)
+            foreach (urakawa.metadata.Metadata m in project.Presentations.Get(0).Metadatas.ContentsAs_ListCopy)
             {
                 if (m_IdentifierMetadata != null && m_IdentifierMetadata.NameContentAttribute.Name == m.NameContentAttribute.Name
                     && m_IdentifierMetadata.NameContentAttribute.Value != m.NameContentAttribute.Value)
@@ -814,13 +816,13 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                 if (m_TitleMetadata != null && m_TitleMetadata != m
                     && m_TitleMetadata.NameContentAttribute.Name == m.NameContentAttribute.Name && m_TitleMetadata.NameContentAttribute.Value == m.NameContentAttribute.Value)
                 {
-                    m_Presentation.Metadatas.Remove(m);
+                    project.Presentations.Get(0).Metadatas.Remove(m);
                 }
 
             }
         }
 
-
+        /*
         protected override bool addAudioWavWithEndOfFileTolerance(urakawa.media.data.audio.codec.WavAudioMediaData mediaData, urakawa.data.FileDataProvider dataProv, Time clipB, Time clipE, TreeNode treeNode)
         {
             bool isClipEndError = true;
@@ -882,7 +884,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
             }//-1
             return isClipEndError;
         }
-
+        */
 
 
         private void ReplaceExternalAudioMediaPhraseWithEmptyNode(TreeNode node)
