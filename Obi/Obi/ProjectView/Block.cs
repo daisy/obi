@@ -67,7 +67,7 @@ namespace Obi.ProjectView
                 if (value != mHighlighted)
                 {
                     mHighlighted = value;
-                    if (!mHighlighted) IsFineNavigationMode = false;
+                    
                     UpdateColors();
                 }
             }
