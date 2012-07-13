@@ -31,7 +31,7 @@ namespace Obi.ImportExport
         private urakawa.property.channel.AudioChannel m_audioChannel;
 
         public DAISY3_ObiImport(Session session, Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate, bool stereo)
-            : base(bookfile, outDir, skipACM, audioProjectSampleRate, stereo, true)
+            : base(bookfile, outDir, skipACM, audioProjectSampleRate, stereo, false, true)
         {
             m_Session = session;
             m_Settings = settings;
@@ -819,6 +819,23 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                     project.Presentations.Get(0).Metadatas.Remove(m);
                 }
 
+            }
+        }
+
+        protected override void clipEndAdjustedToNull(Time clipB, Time clipE, Time duration, TreeNode treeNode)
+        {
+            double diff = clipE.AsTimeSpan.TotalMilliseconds - duration.AsTimeSpan.TotalMilliseconds;
+            if (diff > m_Settings.ImportToleranceForAudioInMs && treeNode != null)
+            {
+                EmptyNode eNode = (EmptyNode)treeNode;
+                eNode.TODO = true;
+                if (eNode.Role_ == EmptyNode.Role.Plain)
+                {
+                    eNode.Role_ = EmptyNode.Role.Custom;
+                    eNode.CustomRole = Localizer.Message("DAISY3_ObiImport_ErrorsList_truncated_audio");
+                }
+                m_ErrorsList.Add(Localizer.Message("DAISY3_ObiImport_ErrorsList_truncated_audio_in_phrase") + eNode.Index.ToString() + Localizer.Message("DAISY3_ObiImport_ErrorsList_in_section") + eNode.ParentAs<SectionNode>().Label);
+                m_ErrorsList.Add(Localizer.Message("DAISY3_ObiImport_ErrorsList_expected_clip_end") + clipE.Format_H_MN_S_MS() + Localizer.Message("DAISY3_ObiImport_ErrorsList_imported_clip_end") + duration.Format_H_MN_S_MS());
             }
         }
 
