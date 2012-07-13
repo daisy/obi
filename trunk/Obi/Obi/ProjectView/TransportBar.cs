@@ -2962,6 +2962,7 @@ UpdateButtons();
         }
 
         private bool m_FineNavigationModeForPhrase = false ;
+        private EmptyNode m_FineNavigationPhrase = null;
         public bool FineNavigationModeForPhrase
         {
             get
@@ -2975,6 +2976,8 @@ UpdateButtons();
                     m_FineNavigationModeForPhrase = value;
                     if (m_FineNavigationModeForPhrase)
                     {
+                        m_FineNavigationPhrase = mView.Selection.EmptyNodeForSelection;
+                        mView.UpdateBlockForFindNavigation(m_FineNavigationPhrase, m_FineNavigationModeForPhrase);    
                         string navigationOnClue = System.IO.Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, "FineNavigationOn.wav") ;
                         if (mView.ObiForm.Settings.AudioClues &&  System.IO.File.Exists(navigationOnClue))
                         {
@@ -2985,10 +2988,13 @@ UpdateButtons();
                     }
                     else
                     {
+                        if (m_FineNavigationPhrase != null) mView.UpdateBlockForFindNavigation(m_FineNavigationPhrase, m_FineNavigationModeForPhrase);
+                        m_FineNavigationPhrase = null;
                         if(mView.ObiForm.Settings.AudioClues)  System.Media.SystemSounds.Exclamation.Play();
                         // add sound here
                     }
-                    if (mView.Selection.EmptyNodeForSelection != null) mView.UpdateBlockForFindNavigation(mView.Selection.EmptyNodeForSelection, m_FineNavigationModeForPhrase);
+                    
+
                     if (StateChanged != null) StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(mPlayer.CurrentState) );
                 }
             }
