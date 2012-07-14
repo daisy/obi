@@ -49,9 +49,9 @@ namespace Obi
         public Color TransportBarLabelForeColor;
         public Color WaveformBackColor;
         public Color WaveformHighlightedBackColor;
+        public Color BlockLayoutSelectedColor;
+        public Color WaveformBaseLineColor;
 
-        private Color mBlockLayoutSelectedColor;
-        private Color mWaveformBaseLineColor;
         private Color mWaveformChannel1Color;
         private Color mWaveformChannel2Color;
         private Color mWaveformCursorColor;
@@ -78,8 +78,8 @@ namespace Obi
         /// </summary>
         public void CreateBrushesAndPens()
         {
-            this.BlockLayoutSelectedBrush = new SolidBrush(this.mBlockLayoutSelectedColor);
-            this.WaveformBaseLinePen = new Pen(this.mWaveformBaseLineColor);
+            this.BlockLayoutSelectedBrush = new SolidBrush(this.BlockLayoutSelectedColor);
+            this.WaveformBaseLinePen = new Pen(this.WaveformBaseLineColor);
             this.WaveformChannel1Pen = new Pen(this.mWaveformChannel1Color);
             this.WaveformChannel2Pen = new Pen(this.mWaveformChannel2Color);
             this.WaveformCursorPen = new Pen(this.mWaveformCursorColor);
@@ -89,7 +89,7 @@ namespace Obi
             this.WaveformMonoPen = new Pen(this.mWaveformMonoColor);
             this.WaveformSelectionBrush = new SolidBrush(this.mWaveformSelectionColor);
             this.WaveformSelectionPen = new Pen(this.mWaveformSelectionColor);
-            this.WaveformTextBrush = new SolidBrush(this.mWaveformBaseLineColor);
+            this.WaveformTextBrush = new SolidBrush(this.WaveformBaseLineColor);
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Obi
             settings.BlockForeColor_Anchor = SystemColors.HighlightText;
             settings.BlockForeColor_Unused = SystemColors.HighlightText;
 
-            settings.mBlockLayoutSelectedColor = SystemColors.Highlight;
+            settings.BlockLayoutSelectedColor = SystemColors.Highlight;
             settings.ContentViewBackColor = SystemColors.AppWorkspace;
             settings.EditableLabelTextBackColor = SystemColors.Window;
             settings.ProjectViewBackColor = SystemColors.Control;
@@ -140,7 +140,7 @@ namespace Obi
             settings.TransportBarLabelBackColor = Color.Azure;
             settings.TransportBarLabelForeColor = SystemColors.ControlText;
             settings.WaveformBackColor = SystemColors.Window;
-            settings.mWaveformBaseLineColor = SystemColors.ControlText;
+            settings.WaveformBaseLineColor = SystemColors.ControlText;
             settings.WaveformHighlightedBackColor = SystemColors.Highlight;
             settings.mWaveFormHighlightedForeColor = SystemColors.HighlightText;
 
@@ -206,7 +206,7 @@ namespace Obi
             ColorSetting.Add("BlockForeColor_TODO", BlockForeColor_TODO);
             ColorSetting.Add("BlockForeColor_Anchor", BlockForeColor_Anchor);
             ColorSetting.Add("BlockForeColor_Unused", BlockForeColor_Unused);
-            ColorSetting.Add("BlockLayoutSelectedColor", mBlockLayoutSelectedColor);
+            ColorSetting.Add("BlockLayoutSelectedColor", BlockLayoutSelectedColor);
             ColorSetting.Add("ContentViewBackColor", ContentViewBackColor);
             ColorSetting.Add("EditableLabelTextBackColor", EditableLabelTextBackColor);
             ColorSetting.Add("ProjectViewBackColor", ProjectViewBackColor);
@@ -226,7 +226,7 @@ namespace Obi
             ColorSetting.Add("TransportBarLabelBackColor", TransportBarLabelBackColor);
             ColorSetting.Add("TransportBarLabelForeColor", TransportBarLabelForeColor);
             ColorSetting.Add("WaveformBackColor", WaveformBackColor);
-            ColorSetting.Add("WaveformBaseLineColor", mWaveformBaseLineColor);
+            ColorSetting.Add("WaveformBaseLineColor", WaveformBaseLineColor);
             ColorSetting.Add("WaveformHighlightedBackColor", WaveformHighlightedBackColor);
             ColorSetting.Add("FineNavigationColor", FineNavigationColor);
         }

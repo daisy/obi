@@ -921,6 +921,7 @@ namespace Obi.Dialogs
         {
             if (m_lv_ColorPref.SelectedIndices.Count > 0 && mNormalColorCombo.SelectedItem != null)
             {
+                Console.WriteLine("show selected index ---" + m_lv_ColorPref.SelectedIndices[0]);
                 switch (m_lv_ColorPref.SelectedIndices[0])
                 {                      
                     case 0: mSettings.ColorSettings.BlockBackColor_Custom = (Color)mNormalColorCombo.SelectedItem;
@@ -953,17 +954,17 @@ namespace Obi.Dialogs
                         break;
                     case 14: mSettings.ColorSettings.BlockForeColor_Plain = (Color)mNormalColorCombo.SelectedItem;
                         break;
-                    case 15: mSettings.ColorSettings.BlockForeColor_Custom = (Color)mNormalColorCombo.SelectedItem;
+                    case 15: mSettings.ColorSettings.BlockForeColor_Selected = (Color)mNormalColorCombo.SelectedItem;
                         break;
-                    case 16: mSettings.ColorSettings.BlockForeColor_Selected = (Color)mNormalColorCombo.SelectedItem;
+                    case 16: mSettings.ColorSettings.BlockForeColor_Silence = (Color)mNormalColorCombo.SelectedItem;
                         break;
-                    case 17: mSettings.ColorSettings.BlockForeColor_Silence = (Color)mNormalColorCombo.SelectedItem;
+                    case 17: mSettings.ColorSettings.BlockForeColor_TODO = (Color)mNormalColorCombo.SelectedItem;
                         break;
-                    case 18: mSettings.ColorSettings.BlockForeColor_TODO = (Color)mNormalColorCombo.SelectedItem;
+                    case 18: mSettings.ColorSettings.BlockForeColor_Anchor = (Color)mNormalColorCombo.SelectedItem;
                         break;
-                    case 19: mSettings.ColorSettings.BlockForeColor_Anchor = (Color)mNormalColorCombo.SelectedItem;
+                    case 19: mSettings.ColorSettings.BlockForeColor_Unused = (Color)mNormalColorCombo.SelectedItem;
                         break;
-                    case 20: mSettings.ColorSettings.BlockForeColor_Unused = (Color)mNormalColorCombo.SelectedItem;
+                    case 20:mSettings.ColorSettings.BlockLayoutSelectedColor = (Color)mNormalColorCombo.SelectedItem;
                         break;
                     case 21:  mSettings.ColorSettings.ContentViewBackColor = (Color)mNormalColorCombo.SelectedItem;
                         break;
@@ -1003,7 +1004,11 @@ namespace Obi.Dialogs
                         break;
                     case 39: mSettings.ColorSettings.WaveformBackColor = (Color)mNormalColorCombo.SelectedItem;
                         break;
-                    case 40: mSettings.ColorSettings.WaveformHighlightedBackColor = (Color)mNormalColorCombo.SelectedItem;
+                    case 40:mSettings.ColorSettings.WaveformBaseLineColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 41: mSettings.ColorSettings.WaveformHighlightedBackColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
+                    case 42: mSettings.ColorSettings.FineNavigationColor = (Color) mNormalColorCombo.SelectedItem;
                         break;
                     default: break;
                 }
@@ -1015,6 +1020,7 @@ namespace Obi.Dialogs
 
             if (m_lv_ColorPref.SelectedIndices.Count > 0 && mHighContrastCombo.SelectedItem != null)
             {
+                Console.WriteLine("show selected index" + m_lv_ColorPref.SelectedIndices[0]);
                 switch (m_lv_ColorPref.SelectedIndices[0])
                 {
                     case 0: mSettings.ColorSettingsHC.BlockBackColor_Custom = (Color)mHighContrastCombo.SelectedItem;
@@ -1099,6 +1105,8 @@ namespace Obi.Dialogs
                         break;
                     case 40: mSettings.ColorSettingsHC.WaveformHighlightedBackColor = (Color)mHighContrastCombo.SelectedItem;
                         break;
+                    case 41: mSettings.ColorSettingsHC.FineNavigationColor = (Color) mHighContrastCombo.SelectedItem;
+                        break;
                     default: break;
                 }
                 ListViewItem selectedItem = m_lv_ColorPref.Items[m_lv_ColorPref.SelectedIndices[0]];
@@ -1172,6 +1180,7 @@ namespace Obi.Dialogs
             mSettings.ColorSettings.TransportBarLabelForeColor = settings.TransportBarLabelForeColor;
             mSettings.ColorSettings.WaveformBackColor = settings.WaveformBackColor;
             mSettings.ColorSettings.WaveformHighlightedBackColor = settings.WaveformHighlightedBackColor;
+            mSettings.ColorSettings.FineNavigationColor = settings.FineNavigationColor;
 
             mSettings.ColorSettingsHC.BlockBackColor_Custom = settingsHC.BlockBackColor_Custom;
             mSettings.ColorSettingsHC.BlockBackColor_Anchor = settingsHC.BlockBackColor_Anchor;
@@ -1210,6 +1219,7 @@ namespace Obi.Dialogs
             mSettings.ColorSettingsHC.TransportBarLabelForeColor = settingsHC.TransportBarLabelForeColor;
             mSettings.ColorSettingsHC.WaveformBackColor = settingsHC.WaveformBackColor;
             mSettings.ColorSettingsHC.WaveformHighlightedBackColor = settingsHC.WaveformHighlightedBackColor;
+            mSettings.ColorSettings.FineNavigationColor = settingsHC.FineNavigationColor;
             LoadListViewWithColors();
         }
 
@@ -1251,10 +1261,9 @@ namespace Obi.Dialogs
             
             if (!string.IsNullOrEmpty(selectedTTSVoice))
             {
-                
-                AudioFormatConverter.TestVoice(selectedTTSVoice, selectedTTSVoice, mSettings);
+              AudioFormatConverter.TestVoice(selectedTTSVoice, selectedTTSVoice, mSettings);
             }
         }
 
     }
-    }
+    }   
