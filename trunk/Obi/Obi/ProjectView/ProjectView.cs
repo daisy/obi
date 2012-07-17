@@ -2731,7 +2731,7 @@ for (int j = 0;
                         },
                     delegate ( urakawa.core.TreeNode n ) { } );
 
-                Dialogs.SelectPhraseDetectionSections sectionsSelectionDialog = new Obi.Dialogs.SelectPhraseDetectionSections ( listOfAllSections, listOfAllSilencePhrases );
+                Dialogs.SelectPhraseDetectionSections sectionsSelectionDialog = new Obi.Dialogs.SelectPhraseDetectionSections ( listOfAllSections, listOfAllSilencePhrases,this.GetSelectedPhraseSection);
                 sectionsSelectionDialog.ShowDialog () ;
                 if (sectionsSelectionDialog.DialogResult == DialogResult.Cancel) return;
 
