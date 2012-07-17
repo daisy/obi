@@ -15,6 +15,7 @@ namespace Obi.Dialogs
         List<SectionNode> m_SelectedSectionList = new List<SectionNode> ();
         List<PhraseNode> m_SilencePhrases = null;
         private PhraseNode m_SelectedSilencePhrase;
+        private SectionNode mSelectedSectionNode;
         private int m_StartRange;
         private int m_EndRange;
        
@@ -24,10 +25,11 @@ namespace Obi.Dialogs
             
         }
 
-        public SelectPhraseDetectionSections ( List<SectionNode> sectionsList, List<PhraseNode> silencePhraseList ):this     ()
+        public SelectPhraseDetectionSections ( List<SectionNode> sectionsList, List<PhraseNode> silencePhraseList,SectionNode selectedSection):this     ()
         {
             m_OriginalSectionList = sectionsList;
             m_SilencePhrases = silencePhraseList;
+            mSelectedSectionNode = selectedSection;
             m_SectionRangeCount = m_OriginalSectionList.Count / 100;
            
             if (m_OriginalSectionList.Count == 1)
@@ -65,59 +67,109 @@ namespace Obi.Dialogs
         {
             get { return m_SelectedSectionList; }
         }
-
+        private void updateControls()
+        {
+            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Clear();
+            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add("Select/Deselect all sections");
+            m_cb_StartRangeForNumberOfSections.Enabled = m_rb_loadFromRange.Checked ? true : false;
+            m_cb_EndRangeForNumberOfSections.Enabled = m_rb_loadFromRange.Checked ? true : false;
+        }
+        private void checkboxSelected()
+        {
+            updateControls();
+            if (m_rb_loadAllSections.Checked)
+            {
+                foreach (var VARIABLE in m_OriginalSectionList)
+                {
+                    m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(VARIABLE.Label);
+                }
+            }
+            if (m_rb_loadSelectedOnwards.Checked)
+            {
+                if (mSelectedSectionNode != null)
+                {
+                    int lastSectionIndex = m_OriginalSectionList.LastIndexOf(mSelectedSectionNode);
+                    for (int i = lastSectionIndex + 1; i <= m_OriginalSectionList.Count; i++)
+                    {
+                        m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[i - 1].Label);
+                    }
+                }
+            }
+        }
         private void m_btn_Display_Click(object sender, EventArgs e)
         {
-            if ((m_cb_EndRangeForNumberOfSections.Items.Count >= 1) && (m_cb_StartRangeForNumberOfSections.Items.Count >= 1)) 
-            {
-                m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Clear();
-                m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add("Selecet/Deselect all sections");
-                if ((m_cb_EndRangeForNumberOfSections.SelectedIndex != -1) && (m_cb_StartRangeForNumberOfSections.SelectedIndex != -1))
-                {
-                    m_StartRange = int.Parse(m_cb_StartRangeForNumberOfSections.Items[m_cb_StartRangeForNumberOfSections.SelectedIndex].ToString());
-                    m_EndRange = int.Parse(m_cb_EndRangeForNumberOfSections.Items[m_cb_EndRangeForNumberOfSections.SelectedIndex].ToString());
+           // m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Clear();
+            //m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add("Select/Deselect all sections");
 
-                    if (m_StartRange > m_EndRange) { MessageBox.Show(Localizer.Message("SelectPhraseDetection_EndValIsSmallerThanStart")); }
+            checkboxSelected();
+
+            if ((m_cb_EndRangeForNumberOfSections.Items.Count >= 1) &&
+                (m_cb_StartRangeForNumberOfSections.Items.Count >= 1))
+            {
+                if ((m_cb_EndRangeForNumberOfSections.SelectedIndex != -1) &&
+                    (m_cb_StartRangeForNumberOfSections.SelectedIndex != -1))
+                {
+                    m_StartRange =
+                        int.Parse(
+                            m_cb_StartRangeForNumberOfSections.Items[m_cb_StartRangeForNumberOfSections.SelectedIndex].
+                                ToString());
+                    m_EndRange =
+                        int.Parse(
+                            m_cb_EndRangeForNumberOfSections.Items[m_cb_EndRangeForNumberOfSections.SelectedIndex].
+                                ToString());
+
+                    if (m_StartRange > m_EndRange)
+                    {
+                        MessageBox.Show(Localizer.Message("SelectPhraseDetection_EndValIsSmallerThanStart"));
+                    }
 
                     else if (m_StartRange < m_EndRange)
                     {
-                      for (int i = m_StartRange; i <= m_EndRange; i++)
+                        for (int i = m_StartRange; i <= m_EndRange; i++)
                         {
-                            ListViewItem item = new ListViewItem(m_OriginalSectionList[i-1].Label);
-                            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(item); 
-                            item.Tag = m_OriginalSectionList[i-1];
+                            ListViewItem item = new ListViewItem(m_OriginalSectionList[i - 1].Label);
+                            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(item);
+                            item.Tag = m_OriginalSectionList[i - 1];
                         }
                     }
                     else if (m_StartRange == m_EndRange)
                     {
-                        m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[m_StartRange - 1].Label);
+                        m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(
+                            m_OriginalSectionList[m_StartRange - 1].Label);
                     }
                 }
                 else
                 {
                     m_cb_EndRangeForNumberOfSections.SelectAll();
                     m_cb_StartRangeForNumberOfSections.SelectAll();
-                    if (m_cb_StartRangeForNumberOfSections.SelectedText == "" || m_cb_EndRangeForNumberOfSections.SelectedText == "")
+                    if (m_cb_StartRangeForNumberOfSections.SelectedText == "" ||
+                        m_cb_EndRangeForNumberOfSections.SelectedText == "")
                     {
-                       return;
+                        return;
                     }
                     else
                     {
                         int.TryParse(m_cb_StartRangeForNumberOfSections.SelectedText, out m_StartRange);
                         int.TryParse(m_cb_EndRangeForNumberOfSections.SelectedText, out m_EndRange);
                     }
-                    if ((m_StartRange >= 1 && m_StartRange <= m_OriginalSectionList.Count) && (m_EndRange >= 1 && m_EndRange <= m_OriginalSectionList.Count))
+                    if ((m_StartRange >= 1 && m_StartRange <= m_OriginalSectionList.Count) &&
+                        (m_EndRange >= 1 && m_EndRange <= m_OriginalSectionList.Count))
                     {
-                        if (m_StartRange > m_EndRange) { MessageBox.Show(Localizer.Message("SelectPhraseDetection_EndValIsSmallerThanStart")); }
+                        if (m_StartRange > m_EndRange)
+                        {
+                            MessageBox.Show(Localizer.Message("SelectPhraseDetection_EndValIsSmallerThanStart"));
+                        }
 
                         else if (m_StartRange < m_EndRange)
                         {
                             for (int i = m_StartRange; i <= m_EndRange; i++)
-                                m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[i - 1].Label);
+                                m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(
+                                    m_OriginalSectionList[i - 1].Label);
                         }
                         else if (m_StartRange == m_EndRange)
                         {
-                            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[m_StartRange - 1].Label);
+                            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(
+                                m_OriginalSectionList[m_StartRange - 1].Label);
                         }
                     }
                     else
@@ -127,13 +179,13 @@ namespace Obi.Dialogs
                         else
                             MessageBox.Show(Localizer.Message("InvalidInput"));
                     }
-                }               
+                }
             }
             m_cb_StartRangeForNumberOfSections.SelectedIndex = -1;
             m_cb_EndRangeForNumberOfSections.SelectedIndex = -1;
-         }
+        }
 
-      private void m_btn_OK_Click(object sender, EventArgs e)
+        private void m_btn_OK_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < m_lv_ListOfSelectedSectionsForPhraseDetection.CheckedItems.Count; i++)
             {
@@ -197,6 +249,21 @@ namespace Obi.Dialogs
                         e.NewValue == CheckState.Checked ? true : false;
                 }
             }
+        }
+
+        private void m_rb_loadAllSections_CheckedChanged(object sender, EventArgs e)
+        {
+            updateControls();
+        }
+
+        private void m_rb_loadFromRange_CheckedChanged(object sender, EventArgs e)
+        {
+            updateControls();
+        }
+
+        private void m_rb_loadSelectedOnwards_CheckedChanged(object sender, EventArgs e)
+        {
+            updateControls();
         }
               
       }
