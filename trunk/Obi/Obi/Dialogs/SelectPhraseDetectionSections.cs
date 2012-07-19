@@ -79,7 +79,7 @@ namespace Obi.Dialogs
             updateControls();
             if (m_rb_loadAllSections.Checked)
             {
-                foreach (var VARIABLE in m_OriginalSectionList)
+                foreach (SectionNode VARIABLE in m_OriginalSectionList)
                 {
                     m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(VARIABLE.Label);
                 }

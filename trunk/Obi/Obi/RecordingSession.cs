@@ -96,7 +96,7 @@ namespace Obi
             {
                 //recorder.TimeOfAsset
                 double timeOfAssetMilliseconds =
-                    (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition)/
+                    (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (mRecorder.CurrentDurationBytePosition))/
                     Time.TIME_UNIT;
 
             // check for illegal time input
@@ -119,7 +119,7 @@ namespace Obi
             {
                 //mRecorder.TimeOfAsset
                 double timeOfAssetMilliseconds =
-                    (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                    (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (mRecorder.CurrentDurationBytePosition)) /
                     Time.TIME_UNIT;
 
                 // check for illegal time input
@@ -217,7 +217,7 @@ namespace Obi
         {
             //mRecorder.TimeOfAsset
             double timeOfAssetMilliseconds =
-                (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64( mRecorder.CurrentDurationBytePosition)) /
                 Time.TIME_UNIT;
 
             mPhraseMarks.Add(timeOfAssetMilliseconds);
@@ -234,7 +234,7 @@ namespace Obi
         {
             //mRecorder.TimeOfAsset
             double timeOfAssetMilliseconds =
-                (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (mRecorder.CurrentDurationBytePosition)) /
                 Time.TIME_UNIT;
 
             double time = timeOfAssetMilliseconds - (mPhraseMarks.Count > 0 ? mPhraseMarks[mPhraseMarks.Count - 1] : 0.0);

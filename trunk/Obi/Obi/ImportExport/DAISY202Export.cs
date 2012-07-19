@@ -37,9 +37,13 @@ namespace Obi.ImportExport
         //private bool m_EncodeToMP3;
         //private int m_BitRate_Mp3;
 
-        public DAISY202Export(ObiPresentation presentation, string exportDirectory, bool encodeToMp3, AudioLib.SampleRate sampleRate, int audioFileSectionLevel)
+        public DAISY202Export(ObiPresentation presentation, string exportDirectory, bool encodeToMp3, ushort mp3BitRate, 
+            AudioLib.SampleRate sampleRate, bool stereo,
+            int audioFileSectionLevel)
             :
-            base(presentation, exportDirectory, null, encodeToMp3, sampleRate, true,false)
+            base(presentation, exportDirectory, null, encodeToMp3, mp3BitRate,
+            sampleRate, stereo,
+            true,false)
             {
             m_Presentation = presentation;
             m_ExportDirectory = exportDirectory;
