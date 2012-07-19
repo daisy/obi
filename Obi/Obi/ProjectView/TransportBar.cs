@@ -921,7 +921,7 @@ namespace Obi.ProjectView
                  {
                      //mRecordingSession.AudioRecorder.TimeOfAsset
                      double timeOfAssetMilliseconds =
-                        (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecordingSession.AudioRecorder.CurrentDurationBytePosition) /
+                        (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
                         Time.TIME_UNIT;
 
                      //mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(timeOfAssetMilliseconds);
@@ -966,7 +966,7 @@ namespace Obi.ProjectView
             {
                 if (m_ElapsedTime_Book < 0) CalculateTimeElapsed_Book();
 
-                return m_ElapsedTime_Book +  (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                return m_ElapsedTime_Book +  (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64( mRecorder.CurrentDurationBytePosition)) /
                           Time.TIME_UNIT;
             }
         }
@@ -1015,7 +1015,7 @@ namespace Obi.ProjectView
             {
                 if (m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase < 0) CalculateTimeElapsedInSection();
 
-                return m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase + (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                return m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase + (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64( mRecorder.CurrentDurationBytePosition)) /
                           Time.TIME_UNIT;
             }
         }
@@ -2004,7 +2004,7 @@ namespace Obi.ProjectView
                 {
                     //mRecordingSession.AudioRecorder.TimeOfAsset
                     double timeOfAssetMilliseconds =
-                   (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecordingSession.AudioRecorder.CurrentDurationBytePosition) /
+                   (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
                    Time.TIME_UNIT;
 
                     if (mRecordingPhrase != null && mRecordingSession != null
@@ -2064,7 +2064,7 @@ namespace Obi.ProjectView
                 {
                     //mRecordingSession.AudioRecorder.TimeOfAsset
                     double timeOfAssetMilliseconds =
-                   (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecordingSession.AudioRecorder.CurrentDurationBytePosition) /
+                   (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64( mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
                    Time.TIME_UNIT;
 
                     if (mRecordingPhrase != null && mRecordingSession != null
@@ -2111,7 +2111,7 @@ namespace Obi.ProjectView
                 {
                     //mRecordingSession.AudioRecorder.TimeOfAsset
                     double timeOfAssetMilliseconds =
-                   (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecordingSession.AudioRecorder.CurrentDurationBytePosition) /
+                   (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64( mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
                    Time.TIME_UNIT;
 
                     if (mRecordingPhrase != null && mRecordingSession != null

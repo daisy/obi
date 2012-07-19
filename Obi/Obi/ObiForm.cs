@@ -1809,14 +1809,18 @@ namespace Obi
                             if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0)
                             {
                                 DAISYExport = new Obi.ImportExport.DAISY3_ObiExport(
-                                    mSession.Presentation, exportPath, null,dialog.EncodeToMP3 , AudioLib.SampleRate.Hz44100, false, audioFileSectionLevel);
+                                    mSession.Presentation, exportPath, null,dialog.EncodeToMP3 ,(ushort) dialog.BitRate,
+                                    AudioLib.SampleRate.Hz44100, mSettings.AudioChannels == 2,
+                                    false, audioFileSectionLevel);
                             }
                             else
                             {
                                 DAISYExport = new Obi.ImportExport.DAISY202Export(
-                                    mSession.Presentation, exportPath, dialog.EncodeToMP3, AudioLib.SampleRate.Hz44100, audioFileSectionLevel);
+                                    mSession.Presentation, exportPath, dialog.EncodeToMP3,(ushort) dialog.BitRate,
+                                    AudioLib.SampleRate.Hz44100, mSettings.AudioChannels == 2,
+                                    audioFileSectionLevel);
                             }
-                            DAISYExport.BitRate_Mp3 = dialog.BitRate;
+                            //DAISYExport.BitRate_Mp3 = dialog.BitRate;
                             DAISYExport.AddSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName; ;
                             //DAISYExport.EnableExplicitGarbageCollection = Settings.OptimizeMemory;
                         Status(String.Format(Localizer.Message("ObiFormStatusMsg_ExportingProject") , exportPath));
