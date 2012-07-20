@@ -22,7 +22,6 @@ namespace Obi.Dialogs
         public SelectPhraseDetectionSections()
         {
             InitializeComponent();
-            
         }
 
         public SelectPhraseDetectionSections ( List<SectionNode> sectionsList, List<PhraseNode> silencePhraseList,SectionNode selectedSection):this     ()
@@ -74,43 +73,16 @@ namespace Obi.Dialogs
             m_cb_StartRangeForNumberOfSections.Enabled = m_rb_loadFromRange.Checked ? true : false;
             m_cb_EndRangeForNumberOfSections.Enabled = m_rb_loadFromRange.Checked ? true : false;
         }
-        private void checkboxSelected()
-        {
-            updateControls();
-            if (m_rb_loadAllSections.Checked)
-            {
-                foreach (SectionNode VARIABLE in m_OriginalSectionList)
-                {
-                    m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(VARIABLE.Label);
-                }
-            }
-            if (m_rb_loadSelectedOnwards.Checked)
-            {
-                if (mSelectedSectionNode != null)
-                {
-                    int lastSectionIndex = m_OriginalSectionList.LastIndexOf(mSelectedSectionNode);
-                    for (int i = lastSectionIndex + 1; i <= m_OriginalSectionList.Count; i++)
-                    {
-                        m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[i - 1].Label);
-                    }
-                }
-            }
-        }
         private void m_btn_Display_Click(object sender, EventArgs e)
         {
-           // m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Clear();
-            //m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add("Select/Deselect all sections");
-
-            //checkboxSelected();
             updateControls();
             if (m_rb_loadAllSections.Checked)
             {
-                foreach (SectionNode VARIABLE in m_OriginalSectionList)
+                foreach (SectionNode sNode in m_OriginalSectionList)
                 {
-                    ListViewItem item = new ListViewItem(VARIABLE.Label);
-                    item.Tag = VARIABLE;
+                    ListViewItem item = new ListViewItem(sNode.Label);
+                    item.Tag = sNode;
                     m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(item);
-                    
                 }
             }
             else if (m_rb_loadSelectedOnwards.Checked)
@@ -123,7 +95,6 @@ namespace Obi.Dialogs
                         ListViewItem item = new ListViewItem(m_OriginalSectionList[i - 1].Label);
                         item.Tag = m_OriginalSectionList[i - 1];
                         m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(item);
-                        
                     }
                 }
             }
@@ -221,7 +192,6 @@ namespace Obi.Dialogs
             m_SelectedSectionList.Add ((SectionNode)m_lv_ListOfSelectedSectionsForPhraseDetection.CheckedItems[i].Tag );
             
             }
-
             m_SelectedSilencePhrase = m_cb_SilencePhrase.SelectedIndex > 0 ? m_SilencePhrases[m_cb_SilencePhrase.SelectedIndex - 1] : null;
             DialogResult = DialogResult.OK;
             Close();
@@ -235,21 +205,6 @@ namespace Obi.Dialogs
 
         public void updateCombobox()
         {
-            
-          /*  int startSelectedIndex;
-            
-            m_cb_StartRangeForNumberOfSections.SelectAll();
-           
-            if (m_cb_StartRangeForNumberOfSections.SelectedText == "" && m_cb_StartRangeForNumberOfSections.SelectedIndex != -1)
-                startSelectedIndex = int.Parse(m_cb_StartRangeForNumberOfSections.Items[m_cb_StartRangeForNumberOfSections.SelectedIndex].ToString());
-                                
-            else if (m_cb_StartRangeForNumberOfSections.SelectedText != "")
-                {
-                    startSelectedIndex = int.Parse(m_cb_StartRangeForNumberOfSections.SelectedText);
-                    m_cb_StartRangeForNumberOfSections.ResetText();
-                }
-            else
-                return;*/
             m_cb_EndRangeForNumberOfSections.Items.Clear();
 
             for (int i = m_cb_StartRangeForNumberOfSections.SelectedIndex; i < (m_OriginalSectionList.Count / 100); i++)
