@@ -3567,7 +3567,8 @@ for (int j = 0;
                             else
                             {
                                 if (this.Selection.Node.Duration > GoToDialog.TimeInSeconds)
-                                    sel = new AudioSelection((PhraseNode)this.Selection.Node, mContentView, new AudioRange(GoToDialog.TimeInSeconds));
+                                    sel = new AudioSelection((PhraseNode) this.Selection.Node, mContentView,
+                                                             new AudioRange(GoToDialog.TimeInSeconds));
                                 else
                                 {
                                     MessageBox.Show(Localizer.Message("time_exceeds_duration_phrase"));
@@ -3575,15 +3576,16 @@ for (int j = 0;
                                 }
                             }
                         }
-                        else
+                        else if (GoToDialog.SelectedIndex == 1)
                         {
-                            if ((this.Selection.Node is SectionNode || this.Selection is StripIndexSelection) &&  Selection.Node.PhraseChildCount >= 1)
+                            if ((this.Selection.Node is SectionNode || this.Selection is StripIndexSelection) &&
+                                Selection.Node.PhraseChildCount >= 1)
                                 nodeSel = this.Selection.Node;
                             else if (this.Selection.Node is EmptyNode || this.Selection.Node is PhraseNode)
                                 nodeSel = this.Selection.Node.ParentAs<SectionNode>();
 
-                            double selectedNodeDuration =nodeSel != null? nodeSel.Duration:0.0;
-                            if (selectedNodeDuration == 0 ||  selectedNodeDuration  < GoToDialog.TimeInSeconds)
+                            double selectedNodeDuration = nodeSel != null ? nodeSel.Duration : 0.0;
+                            if (selectedNodeDuration == 0 || selectedNodeDuration < GoToDialog.TimeInSeconds)
                             {
                                 MessageBox.Show(Localizer.Message("time_exceeds_duration_section"));
                                 return;
@@ -3594,23 +3596,51 @@ for (int j = 0;
                                 if (time < GoToDialog.TimeInSeconds && nodeSel.PhraseChild(i) is PhraseNode)
                                 {
                                     time = nodeSel.PhraseChild(i).Duration + time;
-                                    phrNode = (PhraseNode)nodeSel.PhraseChild(i);
+                                    phrNode = (PhraseNode) nodeSel.PhraseChild(i);
                                 }
                                 else
                                     break;
                             }
                             mContentView.SelectPhraseBlockOrStrip(phrNode);
-                            sel = new AudioSelection((PhraseNode)phrNode, mContentView, new AudioRange(GoToDialog.TimeInSeconds - (time - phrNode.Duration)));
+                            sel = new AudioSelection((PhraseNode) phrNode, mContentView,
+                                                     new AudioRange(GoToDialog.TimeInSeconds - (time - phrNode.Duration)));
                         }
-                        this.Selection = sel;
+                        else if (GoToDialog.SelectedIndex == 2)
+                        {
+                            MessageBox.Show(GoToDialog.SelectedIndex.ToString());
+                            double dTime = 0.0;
+
+                            this.Presentation.RootNode.AcceptDepthFirst(
+                                delegate(urakawa.core.TreeNode n)
+                                    {
+                                        PhraseNode phraseNode = n as PhraseNode;
+                                        if (phraseNode != null)
+                                        {
+                                            if (time < GoToDialog.TimeInSeconds)
+                                            {
+                                                dTime = (phraseNode).Duration + dTime;
+                                            }
+                                            else
+                                            {
+                                                this.Selection = new NodeSelection(phraseNode, mContentView);
+                                                mContentView.SelectPhraseBlockOrStrip((PhraseNode)n);
+                                                return  false;
+                                            }
+                                        }
+                                        return true;
+                                    },
+                                delegate(urakawa.core.TreeNode n) { });
+
+                            this.Selection = sel;
+                        }
                     }
                     else
                     {
                         if (Selection == null)
                             MessageBox.Show(Localizer.Message("select_phrase_or_section"));
-                        else if (Selection.Node is SectionNode &&  Selection.Node.PhraseChildCount < 1)
+                        else if (Selection.Node is SectionNode && Selection.Node.PhraseChildCount < 1)
                             MessageBox.Show(Localizer.Message("no_phrases_in_section"));
-                       
+
                     }
                 } // dialog OK check ends
             }
