@@ -115,8 +115,12 @@ namespace Obi.Dialogs
                 int i;
                 if (m_cb_TimeInPhraseOrSection.SelectedIndex == 0)
                     i = 0;
-                else
+                else if (m_cb_TimeInPhraseOrSection.SelectedIndex == 1)
                     i = 1;
+                else
+                {
+                    i = 2;
+                }
                 return i;
             }
         }

@@ -153,7 +153,8 @@ namespace Obi.Dialogs
                 this.m_cb_TimeInPhraseOrSection.FormattingEnabled = true;
                 this.m_cb_TimeInPhraseOrSection.Items.AddRange(new object[] {
             "Phrase",
-            "Section"});
+            "Section",
+            "Project"});
                 this.m_cb_TimeInPhraseOrSection.Location = new System.Drawing.Point(188, 99);
                 this.m_cb_TimeInPhraseOrSection.Name = "m_cb_TimeInPhraseOrSection";
                 this.m_cb_TimeInPhraseOrSection.Size = new System.Drawing.Size(121, 24);
