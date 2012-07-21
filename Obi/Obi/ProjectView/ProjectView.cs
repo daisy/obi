@@ -3607,8 +3607,9 @@ for (int j = 0;
                         }
                         else if (GoToDialog.SelectedIndex == 2)
                         {
-                            MessageBox.Show(GoToDialog.SelectedIndex.ToString());
+                            
                             double dTime = 0.0;
+                            PhraseNode nodeToBeSelected = null;
 
                             this.Presentation.RootNode.AcceptDepthFirst(
                                 delegate(urakawa.core.TreeNode n)
@@ -3616,22 +3617,26 @@ for (int j = 0;
                                         PhraseNode phraseNode = n as PhraseNode;
                                         if (phraseNode != null)
                                         {
-                                            if (time < GoToDialog.TimeInSeconds)
+                                            if (nodeToBeSelected != null) return false;
+                                            if (dTime  < GoToDialog.TimeInSeconds)
                                             {
                                                 dTime = (phraseNode).Duration + dTime;
                                             }
                                             else
                                             {
-                                                this.Selection = new NodeSelection(phraseNode, mContentView);
-                                                mContentView.SelectPhraseBlockOrStrip((PhraseNode)n);
+                                                nodeToBeSelected = phraseNode;
+                                                
                                                 return  false;
                                             }
                                         }
                                         return true;
                                     },
                                 delegate(urakawa.core.TreeNode n) { });
+                            if (nodeToBeSelected == null) MessageBox.Show("Time value exceeds the project");
 
-                            this.Selection = sel;
+                            mContentView.SelectPhraseBlockOrStrip(nodeToBeSelected);
+                            Selection = new AudioSelection((PhraseNode)nodeToBeSelected, mContentView,
+                                                     new AudioRange(GoToDialog.TimeInSeconds - (dTime - nodeToBeSelected.Duration)));
                         }
                     }
                     else
