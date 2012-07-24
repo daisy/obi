@@ -3614,11 +3614,12 @@ for (int j = 0;
                             this.Presentation.RootNode.AcceptDepthFirst(
                                 delegate(urakawa.core.TreeNode n)
                                     {
+                                        if (nodeToBeSelected != null) return false;
                                         PhraseNode phraseNode = n as PhraseNode;
                                         if (phraseNode != null)
                                         {
-                                            if (nodeToBeSelected != null) return false;
-                                            if (dTime  < GoToDialog.TimeInSeconds)
+                                            
+                                            if (dTime+ phraseNode.Duration  < GoToDialog.TimeInSeconds)
                                             {
                                                 dTime = (phraseNode).Duration + dTime;
                                             }
