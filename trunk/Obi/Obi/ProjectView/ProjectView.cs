@@ -3637,7 +3637,7 @@ for (int j = 0;
 
                             mContentView.SelectPhraseBlockOrStrip(nodeToBeSelected);
                             Selection = new AudioSelection((PhraseNode)nodeToBeSelected, mContentView,
-                                                     new AudioRange(GoToDialog.TimeInSeconds - (dTime - nodeToBeSelected.Duration)));
+                                                     new AudioRange(GoToDialog.TimeInSeconds - dTime ));
                         }
                     }
                     else
