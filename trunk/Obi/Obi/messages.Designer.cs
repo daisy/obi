@@ -601,7 +601,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;The unused files are moved to the delete folder. Will you like to delete these unused files? : {0}.
+        ///   Looks up a localized string similar to The unused files are moved to the delete folder. Will you like to delete these unused files?.
         /// </summary>
         internal static string clean_up_ask_for_delete_project {
             get {

@@ -833,7 +833,7 @@ namespace Obi
 
                 if (Directory.GetFiles(deletedDataFolderPath).Length != 0)
                 {
-                    if (mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup || MessageBox.Show(Localizer.Message("clean_up_ask_for_delete_project"),Localizer.Message("Delete_unused_data_caption"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup || MessageBox.Show(Localizer.Message("clean_up_ask_for_delete_project"),Localizer.Message("Delete_unused_data_caption"), MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         
                         if (true) //delete definitively
