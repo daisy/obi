@@ -1232,15 +1232,19 @@ namespace Obi
         private void UpdateEditMenu ()
             {
             mUndoToolStripMenuItem.Enabled = mSession.CanUndo && !mProjectView.TransportBar.IsRecorderActive;
-            mUndoToolStripMenuItem.Text = mSession.CanUndo ?
+            mUndoToolStripMenuItem.Text = mSession.CanUndo && !mProjectView.TransportBar.IsRecorderActive ?
                 String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"), mSession.UndoLabel) :
                 String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"), ""); //avn: the "cannot" text create confusion in keyboardshortcut preferences
                 //Localizer.Message ( "cannot_undo" );
-            mRedoToolStripMenuItem.Enabled = mSession.CanRedo;
-            mRedoToolStripMenuItem.Text = mSession.CanRedo ?
+            mUndoToolStripMenuItem.AccessibleName = mUndoToolStripMenuItem.Text.Replace("&", ""); ;
+
+            mRedoToolStripMenuItem.Enabled = mSession.CanRedo && !mProjectView.TransportBar.IsRecorderActive;
+            mRedoToolStripMenuItem.Text = mSession.CanRedo && !mProjectView.TransportBar.IsRecorderActive ?
                 String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"), mSession.RedoLabel) :
                 String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"), "" ); //avn: the "cannot" text create confusion in keyboardshortcut preferences
                 //Localizer.Message ( "cannot_redo" );
+            mRedoToolStripMenuItem.AccessibleName = mRedoToolStripMenuItem.Text.Replace("&", "");
+
             mCutToolStripMenuItem.Enabled = mProjectView.CanCut;
             mCopyToolStripMenuItem.Enabled = mProjectView.CanCopy;
             mPasteToolStripMenuItem.Enabled = mProjectView.CanPaste;
