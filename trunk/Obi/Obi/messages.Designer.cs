@@ -601,6 +601,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;The unused files are moved to the delete folder. Will you like to delete these unused files? : {0}.
+        /// </summary>
+        internal static string clean_up_ask_for_delete_project {
+            get {
+                return ResourceManager.GetString("clean_up_ask_for_delete_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cleaning up....
         /// </summary>
         internal static string cleaning_up {
@@ -1212,6 +1221,15 @@ namespace Obi {
         internal static string delete_unused {
             get {
                 return ResourceManager.GetString("delete_unused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete unused data ?.
+        /// </summary>
+        internal static string delete_unused_data_caption {
+            get {
+                return ResourceManager.GetString("delete_unused_data_caption", resourceCulture);
             }
         }
         
@@ -4125,6 +4143,15 @@ namespace Obi {
         internal static string ProjectTab_AutoSaveWhenRecordingEnds {
             get {
                 return ResourceManager.GetString("ProjectTab_AutoSaveWhenRecordingEnds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete unused files after clean up.
+        /// </summary>
+        internal static string ProjectTab_DeleteUnusedFilesAfterCleanUp {
+            get {
+                return ResourceManager.GetString("ProjectTab_DeleteUnusedFilesAfterCleanUp", resourceCulture);
             }
         }
         

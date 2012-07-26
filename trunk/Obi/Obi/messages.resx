@@ -617,8 +617,16 @@ Error text: {1}</value>
     <value>Obi failed to clean the current project, apparently for the following reason: {0}</value>
     <comment>Error dialog</comment>
   </data>
+  <data name="clean_up_ask_for_delete_project" xml:space="preserve">
+    <value>"The unused files are moved to the delete folder. Will you like to delete these unused files? : {0}</value>
+    <comment>Error dialog</comment>
+  </data>
   <data name="clean_save_caption" xml:space="preserve">
     <value>Save after cleaning</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="delete_unused_data_caption" xml:space="preserve">
+    <value>Delete unused data ?</value>
     <comment>Confirmation dialog</comment>
   </data>
   <data name="clean_save_text" xml:space="preserve">
@@ -1967,6 +1975,9 @@ Error text: {1}</value>
   </data>
   <data name="ProjectTab_OptimizeMemory" xml:space="preserve">
     <value>Optimize memory utilization</value>
+  </data>
+  <data name="ProjectTab_DeleteUnusedFilesAfterCleanUp" xml:space="preserve">
+    <value>Delete unused files after clean up</value>
   </data>
   <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
     <value>Unable to update audio format of the current project</value>
