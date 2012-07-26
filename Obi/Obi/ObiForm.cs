@@ -833,23 +833,29 @@ namespace Obi
 
                 if (Directory.GetFiles(deletedDataFolderPath).Length != 0)
                 {
-                    //if (!folderIsShowing) m_ShellView.ExecuteShellProcess(deletedDataFolderPath);
+                    if (mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup || MessageBox.Show("The unused files are moved to the delete folder. Will you like to delete these unused files?", "?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        
+                        if (true) //delete definitively
+                        {
+                            foreach (string filePath in Directory.GetFiles(deletedDataFolderPath))
+                            {
+                                File.Delete(filePath);
+                            }
+                        }
 
-                    if (true) //delete definitively
-                    {
-                        foreach (string filePath in Directory.GetFiles(deletedDataFolderPath))
-                    {
-                        File.Delete(filePath);
+                        if (Directory.Exists(deletedDataFolderPath))
+                        {
+                            Directory.Delete(deletedDataFolderPath);
+                        }
                     }
+                    else // show the delete folder
+                    {
+                        System.Diagnostics.Process.Start(deletedDataFolderPath);
                     }
-                    
-                                if (Directory.Exists(deletedDataFolderPath))
-                                {
-                                    Directory.Delete(deletedDataFolderPath);
-                                }
                 }
                 
-                                //DeleteExtraFiles ();
+                                
                             } );
                      if(cleaner != null )  cleaner.ProgressChangedEvent += new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                     progress.ShowDialog ();
