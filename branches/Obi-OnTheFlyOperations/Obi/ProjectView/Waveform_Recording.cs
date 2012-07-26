@@ -43,11 +43,14 @@ namespace Obi.ProjectView
        // private bool m_IsResized = false;
         private int m_X = 0;
         private int m_XCV = 0;
-        private Dictionary<int, string> m_DictionaryEmpNode = new Dictionary<int, string>();
+        private Dictionary<int, string> m_MainDictionary = new Dictionary<int, string>();
         private double timeOfAssetMilliseconds = 0;
         private bool m_IsMaximized = false;
         private bool m_IsToBeRepainted = false;
         private int m_CounterWaveform = 0;
+        List<int> listOfOffset = new List<int>();
+        private int counter = 0;
+        private Dictionary<int, string> m_CurrentDictionary = new Dictionary<int, string>();
      //   private bool m_IsResize = false;
         
         public Waveform_Recording()
@@ -76,10 +79,7 @@ namespace Obi.ProjectView
         public bool invertColor
         {
             get { return m_IsColorHighContrast; }
-            set
-            {
-                m_IsColorHighContrast = value;
-            }
+            set { m_IsColorHighContrast = value; }
         }
 
         public ProjectView projectView
@@ -150,12 +150,16 @@ namespace Obi.ProjectView
                 Location = new Point(-400, Location.Y);
                 
             }
+
+
             int difference = 0;
             difference = this.Width - m_X - m_ContentView.Width;
-            if (difference == 20 )
+            if (difference == 20)
             {
                 this.Location = new Point(-400, Location.Y);
-                m_X = m_ContentView.Width / 2 + 50;
+                //  listOfXLocation.Clear();
+                m_X = m_ContentView.Width / 2 + 450;
+                RepaintWaveformNew();
             }
             
             if (m_VUMeter == null || m_ContentView == null) return;
@@ -206,14 +210,14 @@ namespace Obi.ProjectView
                 {
                     text = timeInSeconds.ToString();
                     g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
-                    if (!m_DictionaryEmpNode.ContainsKey(m_X))
-                        m_DictionaryEmpNode.Add(m_X, text); 
+                    if (!m_MainDictionary.ContainsKey(m_X))
+                        m_MainDictionary.Add(m_X, text); 
                     m_LocalTime = timeInSeconds;
                 }
                 else
                 {
-                    if (!m_DictionaryEmpNode.ContainsKey(m_X))
-                        m_DictionaryEmpNode.Add(m_X, "");
+                    if (!m_MainDictionary.ContainsKey(m_X))
+                        m_MainDictionary.Add(m_X, "");
                 }
            
                 m_Counter = 0;
@@ -227,12 +231,38 @@ namespace Obi.ProjectView
                   // m_IsMaximized = false;
             }
 
+            
+            counter++;
             listOfXLocation.Add(m_X); 
              m_X++;
              listOfMinChannel1.Add((int)minChannel1);
              listOfMaxChannel1.Add((int)maxChannel1);
              listOfMinChannel2.Add((int)minChannel2);
              listOfMaxChannel2.Add((int)maxChannel2);
+
+             if (counter > 750)
+             {
+                 listOfOffset.Add(m_X); if (m_Counter == 10)
+                 {
+                     g.DrawLine(newPen, m_X, 0, m_X, Height);
+                     if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds)
+                     {
+                         text = timeInSeconds.ToString();
+                         g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
+                         if (!m_CurrentDictionary.ContainsKey(m_X))
+                             m_CurrentDictionary.Add(m_X, text);
+                         m_LocalTime = timeInSeconds;
+                     }
+                     else
+                     {
+                         if (!m_CurrentDictionary.ContainsKey(m_X))
+                             m_CurrentDictionary.Add(m_X, "");
+                     }
+
+                     m_Counter = 0;
+                 }
+                 m_MainDictionary = m_CurrentDictionary;
+             }
          }
 
         private void Waveform_Recording_VisibleChanged(object sender, EventArgs e)
@@ -243,7 +273,7 @@ namespace Obi.ProjectView
                 if(m_ContentView != null)
                 m_X = m_ContentView.Width / 2 + 50;
                 Location = new Point(-400, Location.Y);
-                m_DictionaryEmpNode.Clear();
+                m_MainDictionary.Clear();
             }
             else
             {
@@ -320,11 +350,13 @@ int channel = 0;
 
         private void RepaintWaveform()
         {
+            Console.WriteLine("MAIN DIC COUNT  " + m_MainDictionary.Count);
             int count = 0;
             Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
-            
+            Console.WriteLine("HERE HERE");
+
             if (m_IsMaximized)
             {
                 m_IsMaximized = false;
@@ -364,20 +396,20 @@ int channel = 0;
                         new Point(listOfXLocation[i], Height - (int)Math.Round(((listOfMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                     }
                     count++;
-                    if(m_DictionaryEmpNode.ContainsKey(listOfXLocation[i]))
+                    if(m_MainDictionary.ContainsKey(listOfXLocation[i]))
                     {
-                        if (!m_DictionaryEmpNode[listOfXLocation[i]].EndsWith("0"))
-                            g.DrawString(m_DictionaryEmpNode[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], 0);
+                        if (!m_MainDictionary[listOfXLocation[i]].EndsWith("0"))
+                            g.DrawString(m_MainDictionary[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], 0);
                                             
                         g.DrawLine(pen, listOfXLocation[i], 0, listOfXLocation[i], Height);
 
-                        if (m_DictionaryEmpNode[listOfXLocation[i]] == "")
+                        if (m_MainDictionary[listOfXLocation[i]] == "")
                             g.DrawLine(newPen, listOfXLocation[i], 0, listOfXLocation[i], Height);
                        
-                        else if (m_DictionaryEmpNode[listOfXLocation[i]].EndsWith("0"))
+                        else if (m_MainDictionary[listOfXLocation[i]].EndsWith("0"))
                         {
                             g.DrawLine(newPen, listOfXLocation[i], 0, listOfXLocation[i], Height);
-                            g.DrawString(m_DictionaryEmpNode[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], Height - 15);
+                            g.DrawString(m_MainDictionary[listOfXLocation[i]], myFont, Brushes.Gray, listOfXLocation[i], Height - 15);
                         }
                     }
 
@@ -391,6 +423,90 @@ int channel = 0;
                 m_IsMaximized = false;
                 timer1.Start();
             }
+        }
+
+        public void RepaintWaveformNew()
+        {
+                int count = 0;
+                Font myFont = new Font("Microsoft Sans Serif", 7);
+                Pen newPen = new Pen(SystemColors.Control);
+                int xSize = SystemInformation.PrimaryMonitorSize.Width;
+                int j = m_X;
+                if (m_IsMaximized)
+                {
+                    m_IsMaximized = false;
+                    return;
+                }
+                m_IsMaximized = true;
+                int counterMin = listOfMinChannel1.Count;
+                int x = 0;
+                int counterMax = listOfMaxChannel2.Count;
+                int countToRepaint = 0;
+
+                if (m_ContentView != null)
+                    x = m_ContentView.Width / 2 + 50;
+                if (counterMin == 0)
+                    return;
+                if (counterMin < 5)
+                { }
+                else
+                {
+                    timer1.Stop();
+                    if (m_CounterWaveform < xSize)
+                        countToRepaint = m_CounterWaveform;
+                    else
+                        countToRepaint = xSize;
+                   // for (int i = counterMin - 1; i >= counterMin - countToRepaint; i--)
+                 //   MessageBox.Show(listOfOffset.Count.ToString());
+                    for (int i = listOfOffset.Count - 1; i >= 0; i--)
+                    {
+                        if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
+                        {
+                            g.DrawLine(pen_Channel1, new Point(j, Height - (int)Math.Round(((listOfMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(j, Height - (int)Math.Round(((listOfMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
+
+                        if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
+                        {
+                            g.DrawLine(pen_Channel1, new Point(j, Height - (int)Math.Round(((listOfMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(j, Height - (int)Math.Round(((listOfMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
+                        count++;
+                        Console.WriteLine("KYA AI ISKE " + listOfOffset[i]);
+                        if (m_MainDictionary.ContainsKey(listOfOffset[i]))
+                        {
+                            if (!m_MainDictionary[listOfOffset[i]].EndsWith("0"))
+                                g.DrawString(m_MainDictionary[listOfOffset[i]], myFont, Brushes.Gray, listOfOffset[i], 0);
+
+                            g.DrawLine(pen, j, 0, j, Height);
+
+                            if (m_MainDictionary[listOfOffset[i]] == "")
+                                g.DrawLine(newPen, j, 0, j, Height);
+
+                            else if (m_MainDictionary[listOfOffset[i]].EndsWith("0"))
+                            {
+                                g.DrawLine(newPen, j, 0, j, Height);
+                                g.DrawString(m_MainDictionary[listOfOffset[i]], myFont, Brushes.Gray, j, Height - 15);
+                            }
+                        }
+                        j--;
+                        /*  if (this.Location.X < 0 && 
+                              (this.Location.X * -1) < listOfXLocation[i])
+                          {
+                              Console.WriteLine("Breaking refresh loop at:" + i) ;
+                              break;
+                          }*/
+                    }
+                    m_IsMaximized = false;
+                    timer1.Start();
+                }
+                //listOfMinChannel1.Clear();
+                //listOfMinChannel2.Clear();
+                //listOfMaxChannel1.Clear();
+                //listOfMaxChannel2.Clear();
+                m_CurrentDictionary.Clear();
+              //  m_MainDictionary.Clear();
+                listOfOffset.Clear();
         }
 
         public void Phrase_Created_Event(object sender, EventArgs e)
@@ -413,8 +529,8 @@ int channel = 0;
             g.DrawString(text, myFont, Brushes.Black, xLocation, 0);
             m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
 
-            if (!m_DictionaryEmpNode.ContainsKey(xLocation))
-                m_DictionaryEmpNode.Add(xLocation, text);                   
+            if (!m_MainDictionary.ContainsKey(xLocation))
+                m_MainDictionary.Add(xLocation, text);                   
         }
 
         protected override void OnPaint(PaintEventArgs e)
