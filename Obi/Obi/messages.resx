@@ -615,7 +615,7 @@ Error text: {1}</value>
   </data>
   <data name="clean_failed_text" xml:space="preserve">
     <value>Obi failed to clean the current project, apparently for the following reason: {0}</value>
-    <comment>Question dialog</comment>
+    <comment>Error dialog</comment>
   </data>
   <data name="clean_up_ask_for_delete_project" xml:space="preserve">
     <value>"The unused files are moved to the delete folder. Will you like to delete these unused files? : {0}</value>
