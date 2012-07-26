@@ -30,6 +30,7 @@ namespace Obi
         public ColorSettings ColorSettingsHC;  // current color settings for high contrast
         public bool CreateTitleSection;        // defaulf for "create title section" in new project
         public string DefaultPath;             // default location
+        public bool Project_AutomaticallyDeleteUnusedFilesAfterCleanup; // deletes the unused files without user permission after cleanup
         public bool EnableTooltips;            // enable or disable tooltips
         public float FontSize;                 // global font size (all font sizes must be relative to this one)
         public string LastInputDevice;         // the name of the last input device selected by the user
@@ -86,6 +87,7 @@ namespace Obi
             settings.ColorSettings = ColorSettings.DefaultColorSettings();
             settings.ColorSettingsHC = ColorSettings.DefaultColorSettingsHC();
             settings.DefaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            settings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = true;
             settings.EnableTooltips = true;
             settings.FontSize = 10.0f;
             settings.LastInputDevice = "";
