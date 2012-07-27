@@ -380,7 +380,6 @@ int channel = 0;
         {
          //   if (m_ProjectView.ObiForm.WindowState == FormWindowState.Maximized)
             m_CounterWaveform = listOfCurrentMinChannel1.Count;
-            ResetLists();
             RepaintWaveform();
         }
 
