@@ -274,19 +274,29 @@ namespace Obi.ProjectView
             List<int> listOfMinChannel2Temp = new List<int>();
             List<int> listOfMaxChannel1Temp = new List<int>();
             List<int> listOfMaxChannel2Temp = new List<int>();
-            listOfXLocationTemp = listOfCurrentXLocation;
+            //listOfXLocationTemp = listOfCurrentXLocation;
             listOfMinChannel1Temp = listOfCurrentMinChannel1;
             listOfMinChannel2Temp = listOfCurrentMinChannel2;
             listOfMaxChannel1Temp = listOfCurrentMaxChannel1;
             listOfMaxChannel2Temp = listOfCurrentMaxChannel2;
 
+            
+            //listOfCurrentXLocation = new List<int>();
+            listOfCurrentMinChannel1 = new List<int>();
+            listOfCurrentMinChannel2 = new List<int>();
+            listOfCurrentMaxChannel1 = new List<int>();
+            listOfCurrentMaxChannel2 = new List<int>();
+
             for (int i = listOfMinChannel1Temp.Count - 1; i >= listOfMinChannel1Temp.Count - 350; i--)
             { 
-                listOfCurrentXLocation.Add(listOfXLocationTemp[i]);
+                if(i >= 0)
+                {
+              //  listOfCurrentXLocation.Add(listOfXLocationTemp[i]);
                 listOfCurrentMinChannel1.Add(listOfMinChannel1Temp[i]);
                 listOfCurrentMinChannel2.Add(listOfMinChannel2Temp[i]);
                 listOfCurrentMaxChannel1.Add(listOfMaxChannel1Temp[i]);
                 listOfCurrentMaxChannel2.Add(listOfMaxChannel2Temp[i]);
+                }
             }
         }
 
@@ -380,7 +390,7 @@ int channel = 0;
             Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
-
+            int tempm_X = m_X;
             if (m_IsMaximized)
             {
                 m_IsMaximized = false;
@@ -405,19 +415,20 @@ int channel = 0;
                     countToRepaint = m_CounterWaveform;
                 else
                     countToRepaint = xSize;
-                for (int i = counterMin - 1; i >= counterMin - countToRepaint; i--)
+                Console.WriteLine("LOCATION  REPAINT   " + listOfCurrentXLocation[listOfCurrentMinChannel1.Count - 1] + " " + m_X);
+                for (int i = listOfCurrentMinChannel1.Count - 1; i >= 0; i--)
             //    for (int i = countToRepaint - 1; i >= 0; i--)
                 {
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                     {
-                        g.DrawLine(pen_Channel1, new Point(listOfCurrentXLocation[i], Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                        new Point(listOfCurrentXLocation[i], Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                     }
 
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
                     {
-                        g.DrawLine(pen_Channel1, new Point(listOfCurrentXLocation[i], Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                        new Point(listOfCurrentXLocation[i], Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                     }
                     count++;
                     if(m_MainDictionary.ContainsKey(listOfCurrentXLocation[i]))
@@ -425,18 +436,18 @@ int channel = 0;
                         if (!m_MainDictionary[listOfCurrentXLocation[i]].EndsWith("0"))
                             g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, listOfCurrentXLocation[i], 0);
                                             
-                        g.DrawLine(pen, listOfCurrentXLocation[i], 0, listOfCurrentXLocation[i], Height);
+                        g.DrawLine(pen,tempm_X, 0, tempm_X, Height);
 
                         if (m_MainDictionary[listOfCurrentXLocation[i]] == "")
-                            g.DrawLine(newPen, listOfCurrentXLocation[i], 0, listOfCurrentXLocation[i], Height);
+                            g.DrawLine(newPen, tempm_X, 0, tempm_X, Height);
                        
                         else if (m_MainDictionary[listOfCurrentXLocation[i]].EndsWith("0"))
                         {
-                            g.DrawLine(newPen, listOfCurrentXLocation[i], 0, listOfCurrentXLocation[i], Height);
-                            g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, listOfCurrentXLocation[i], Height - 15);
+                            g.DrawLine(newPen, tempm_X, 0,tempm_X, Height);
+                            g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray,tempm_X, Height - 15);
                         }
                     }
-
+                    tempm_X--;
                   /*  if (this.Location.X < 0 && 
                         (this.Location.X * -1) < listOfXLocation[i])
                     {
@@ -455,7 +466,7 @@ int channel = 0;
                 Font myFont = new Font("Microsoft Sans Serif", 7);
                 Pen newPen = new Pen(SystemColors.Control);
                 int xSize = SystemInformation.PrimaryMonitorSize.Width;
-                int j = m_X;
+                int temp = m_X;
                 if (m_IsMaximized)
                 {
                     m_IsMaximized = false;
@@ -466,7 +477,7 @@ int channel = 0;
                 int x = 0;
                 int counterMax = listOfCurrentMaxChannel2.Count;
                 int countToRepaint = 0;
-
+             
                 if (m_ContentView != null)
                     x = m_ContentView.Width / 2 + 50;
                 if (counterMin == 0)
@@ -481,19 +492,19 @@ int channel = 0;
                     else
                         countToRepaint = xSize;
                    // for (int i = counterMin - 1; i >= counterMin - countToRepaint; i--)
-                 //   MessageBox.Show(listOfOffset.Count.ToString());
+             
                     for (int i = counterMin - 1; i >= 0; i--)
                     {
                         if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                         {
-                            g.DrawLine(pen_Channel1, new Point(j, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(j, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            g.DrawLine(pen_Channel1, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                         }
 
                         if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
                         {
-                            g.DrawLine(pen_Channel1, new Point(j, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(j, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            g.DrawLine(pen_Channel1, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                         }
                         count++;
                         
@@ -502,18 +513,18 @@ int channel = 0;
                             if (!m_MainDictionary[listOfCurrentXLocation[i]].EndsWith("0"))
                                 g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, listOfCurrentXLocation[i], 0);
 
-                            g.DrawLine(pen, j, 0, j, Height);
+                            g.DrawLine(pen, temp, 0, temp, Height);
 
                             if (m_MainDictionary[listOfCurrentXLocation[i]] == "")
-                                g.DrawLine(newPen, j, 0, j, Height);
+                                g.DrawLine(newPen, temp, 0, temp, Height);
 
                             else if (m_MainDictionary[listOfCurrentXLocation[i]].EndsWith("0"))
                             {
-                                g.DrawLine(newPen, j, 0, j, Height);
-                                g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, j, Height - 15);
+                                g.DrawLine(newPen, temp, 0, temp, Height);
+                                g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, temp, Height - 15);
                             }
                         }
-                        j--;
+                        temp--;
                         /*  if (this.Location.X < 0 && 
                               (this.Location.X * -1) < listOfXLocation[i])
                           {
@@ -561,7 +572,7 @@ int channel = 0;
         {
             if (m_IsToBeRepainted)
             {
-                ResetLists();
+               // ResetLists();
                 RepaintWaveform();                
             }
             m_IsToBeRepainted = true;
