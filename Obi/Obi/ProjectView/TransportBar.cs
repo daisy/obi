@@ -1785,7 +1785,7 @@ namespace Obi.ProjectView
 
                 if (followingEmptyPage != null)
                 {
-                    urakawa.command.CompositeCommand recordInNextPageCommand = mView.Presentation.CreateCompositeCommand("Record in next existing page");
+                    urakawa.command.CompositeCommand recordInNextPageCommand = mView.Presentation.CreateCompositeCommand(Localizer.Message("Recording_RecordInNextExistingEmptyPage"));
                     phrase.CopyAttributes(followingEmptyPage);
                     recordInNextPageCommand.ChildCommands.Insert(recordInNextPageCommand.ChildCommands.Count, new Commands.Node.Delete(mView, followingEmptyPage));
                     recordInNextPageCommand.ChildCommands.Insert(recordInNextPageCommand.ChildCommands.Count, add);

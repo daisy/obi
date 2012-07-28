@@ -2150,4 +2150,7 @@ Error text: {1}</value>
   <data name="KeyS_ExpandAudioSelectionAtLeft" xml:space="preserve">
     <value>Expand the audio selection on the left side</value>
   </data>
+  <data name="Recording_RecordInNextExistingEmptyPage" xml:space="preserve">
+    <value>Record in next existing empty page</value>
+  </data>
 </root>
