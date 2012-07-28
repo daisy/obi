@@ -63,13 +63,14 @@ namespace Obi.Audio
                     else
                     {
                         AudioLibPCMFormat pcmFormat = new AudioLibPCMFormat((ushort)channels, (uint)samplingRate, (ushort)bitDepth);
-                        convertedFile = audioConverter.ConvertSampleRate(filePath, directoryPath, pcmFormat);
+                        convertedFile = audioConverter.ConvertSampleRate(filePath, directoryPath, pcmFormat,out newFilePCMInfo);
                     }
                 }
                 else if (Path.GetExtension(filePath).ToLower() == ".mp3")
                 {
                     AudioLibPCMFormat pcmFormat = new AudioLibPCMFormat((ushort)channels, (uint)samplingRate, (ushort)bitDepth);
-                    convertedFile = audioConverter.UnCompressMp3File(filePath, directoryPath, pcmFormat);
+                    AudioLibPCMFormat originalPCMFormat;
+                    convertedFile = audioConverter.UnCompressMp3File(filePath, directoryPath, pcmFormat, out originalPCMFormat);
                 }
                 else
                 {

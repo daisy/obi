@@ -222,7 +222,7 @@ namespace Obi.UserControls
                     recordingPhrase = m_TransportBar.RecordingPhrase.ToString();
 
                     double timeOfAssetMilliseconds =
-                   (double)m_TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(m_TransportBar.Recorder.CurrentDurationBytePosition) /
+                   (double)m_TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64( m_TransportBar.Recorder.CurrentDurationBytePosition)) /
                    Time.TIME_UNIT;
 
                     if (m_strStatus == "")
