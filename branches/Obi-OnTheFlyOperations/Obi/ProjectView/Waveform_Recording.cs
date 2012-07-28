@@ -200,7 +200,7 @@ namespace Obi.ProjectView
             Pen newPen = new Pen(SystemColors.Control);
             
             timeOfAssetMilliseconds =
-                   (double)m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition) /
+                   (double)m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
                    Time.TIME_UNIT;
             int timeInSeconds = Convert.ToInt32(timeOfAssetMilliseconds / 1000);
             m_Counter++;
