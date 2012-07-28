@@ -4372,6 +4372,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Record in next existing empty page.
+        /// </summary>
+        internal static string Recording_RecordInNextExistingEmptyPage {
+            get {
+                return ResourceManager.GetString("Recording_RecordInNextExistingEmptyPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recording is being resumed from paused state. Choose Yes to resume from the pause position, or choose No to resume it from the current selection..
         /// </summary>
         internal static string recording_resume_check {
