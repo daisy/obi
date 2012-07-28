@@ -1728,6 +1728,7 @@ namespace Obi.ProjectView
         private void RecordingPhraseStarted(Obi.Events.Audio.Recorder.PhraseEventArgs e,
             urakawa.command.CompositeCommand command, EmptyNode emptyNode)
         {
+            
             // Suspend presentation change handler so that we don't stop when new nodes are added.
             mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
             mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
@@ -1744,6 +1745,7 @@ namespace Obi.ProjectView
                  CopyPropertiesToRecordingNode ( (EmptyNode) phrase );
                                 }
 
+                                
             //add.UpdateSelection = false;
             if (e.PhraseIndex == 0)
             {
@@ -1751,20 +1753,49 @@ namespace Obi.ProjectView
                 {
                     phrase.CopyAttributes(emptyNode);
                     phrase.Used = emptyNode.Used;
-                    Commands.UpdateSelection updateSelection = new Commands.UpdateSelection(mView,new NodeSelection (emptyNode, mView.Selection.Control));
+                    Commands.UpdateSelection updateSelection = new Commands.UpdateSelection(mView, new NodeSelection(emptyNode, mView.Selection.Control));
                     updateSelection.RefreshSelectionForUnexecute = true;
                     command.ChildCommands.Insert(command.ChildCommands.Count, updateSelection);
                     command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(mView, emptyNode));
                     command.ChildCommands.Insert(command.ChildCommands.Count, add);
                 }
                 else
+                {
                     command.ChildCommands.Insert(command.ChildCommands.Count, add);
+                }
+
 
                 mView.Presentation.UndoRedoManager.Execute(command);
             }
             else
             {
-                mView.Presentation.UndoRedoManager.Execute(add);
+                // Check if the next phrase is empty page. if it is then record into it instead of creating new phrase
+                EmptyNode followingEmptyPage = null;
+                if (e.PhraseIndex > 0 && mRecordingSection.PhraseChildCount > mRecordingInitPhraseIndex + e.PhraseIndex)
+                {
+                    
+                    ObiNode followingObiNode = mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex);
+                    if (followingObiNode != null && !(followingObiNode is PhraseNode)
+                        && ((EmptyNode)followingObiNode).Role_ == EmptyNode.Role.Page)
+                    {
+                        
+                        followingEmptyPage = (EmptyNode)followingObiNode;
+                    }
+                }
+
+                if (followingEmptyPage != null)
+                {
+                    urakawa.command.CompositeCommand recordInNextPageCommand = mView.Presentation.CreateCompositeCommand("Record in next existing page");
+                    phrase.CopyAttributes(followingEmptyPage);
+                    recordInNextPageCommand.ChildCommands.Insert(recordInNextPageCommand.ChildCommands.Count, new Commands.Node.Delete(mView, followingEmptyPage));
+                    recordInNextPageCommand.ChildCommands.Insert(recordInNextPageCommand.ChildCommands.Count, add);
+                    mView.Presentation.UndoRedoManager.Execute(recordInNextPageCommand); 
+                    
+                }
+                else
+                {
+                    mView.Presentation.UndoRedoManager.Execute(add);
+                }
             }
                 mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
                 mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
