@@ -34,6 +34,10 @@ namespace Obi
         private double mPlaybackStartTime;        // start time in first asset
         private double mPlaybackEndTime;          // end time in last asset; negative value if until the end.
         private bool mIsQAPlaylist; // flag to indicate that master playlist is QA playlist i.e. do not contain unused phrases
+        private PhraseNode m_FirstPage;
+        private PhraseNode m_LastPage;
+        private PhraseNode m_FirstSectionPhrase;
+        private PhraseNode m_LastSectionPhrase;
 
         private enum PlayBackState { Normal, Forward, Rewind };
         private static readonly int[] PlaybackRates = { 1, 2, 4, 8 };
@@ -137,9 +141,11 @@ namespace Obi
         public AudioPlayer Audioplayer { get { return mPlayer; } }
 
         public bool CanNavigatePrevPhrase { get { return true; } }
+        public bool CanNavigatePrevSection { get { return m_FirstSectionPhrase != null && mCurrentPhraseIndex> mPhrases.IndexOf(m_FirstSectionPhrase) ; } }
+        public bool CanNavigatePrevPage { get { return m_FirstPage!= null && mCurrentPhraseIndex > mPhrases.IndexOf(m_FirstPage) ; } }
         public bool CanNavigateNextPhrase { get { return mCurrentPhraseIndex < mPhrases.Count - 1; } }
         public bool CanNavigateNextSection { get { return NextSectionIndex < mPhrases.Count - 1; } }
-        public bool CanNavigateNextPage { get { return true; } }
+        public bool CanNavigateNextPage { get { return m_LastPage != null && mCurrentPhraseIndex < mPhrases.IndexOf(m_LastPage) ; } }
 
         public PhraseNode NextPage(PhraseNode node)
         {
@@ -380,6 +386,7 @@ namespace Obi
                             mPhrases.Add((PhraseNode)n);
                             mStartTimes.Add(mTotalTime);
                             mTotalTime += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                            UpdateFirstandLastSectionsAndPages((PhraseNode)n);
                         }
                         return true;
                     },
@@ -395,11 +402,39 @@ namespace Obi
                             mPhrases.Add((PhraseNode)n);
                             mStartTimes.Add(mTotalTime);
                             mTotalTime += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                            UpdateFirstandLastSectionsAndPages((PhraseNode)n);
                         }
                         return true;
                     },
                     delegate(urakawa.core.TreeNode n) { });
             }
+        }
+
+        private void UpdateFirstandLastSectionsAndPages(PhraseNode node)
+        {
+            if (node.Role_ == EmptyNode.Role.Page)
+            {
+                if (m_FirstPage == null || mPhrases.IndexOf (m_FirstPage) > mPhrases.IndexOf (node))
+                {
+                    m_FirstPage = node ;
+                }
+                else if ( m_LastPage == null || mPhrases.IndexOf(node) > mPhrases.IndexOf(m_LastPage ))
+                {
+                    m_LastPage = node;
+                }
+            }
+            else if (node.Index == 0)
+            {
+                if (m_FirstSectionPhrase == null || mPhrases.IndexOf(m_FirstSectionPhrase) > mPhrases.IndexOf(node))
+                {
+                    m_FirstSectionPhrase = node;
+                }
+                else if (m_LastSectionPhrase== null || mPhrases.IndexOf(node) > mPhrases.IndexOf(m_LastSectionPhrase))
+                {
+                    m_LastSectionPhrase = node;
+                }
+            }
+
         }
 
         // Add phrase nodes from a strip, or a single phrase.
@@ -413,6 +448,7 @@ namespace Obi
                     mPhrases.Add((PhraseNode)node);
                     mStartTimes.Add(mTotalTime);
                     mTotalTime += ((PhraseNode)node).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                    UpdateFirstandLastSectionsAndPages((PhraseNode)node);
                 }
             }
             else if (node is SectionNode)
@@ -444,6 +480,7 @@ namespace Obi
                         mStartTimes[index] = index == 0 ? 0.0 :
                             (mStartTimes[index - 1] + mPhrases[index - 1].Audio.Duration.AsTimeSpan.TotalMilliseconds);
                         mTotalTime += time;
+                        UpdateFirstandLastSectionsAndPages((PhraseNode)n);
                         ++index;
                     }
                     return true;
@@ -613,31 +650,6 @@ namespace Obi
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
 
 
         /// <summary>
@@ -1131,6 +1143,7 @@ namespace Obi
             mPhrases.Insert(index, node);
             mStartTimes.Add(0.0);
             if (index > 1) UpdateTimeFromIndex(index - 1);
+            UpdateFirstandLastSectionsAndPages(node);
         }
 
         /// <summary>
@@ -1143,7 +1156,57 @@ namespace Obi
             mPhrases.RemoveAt(index);
             mStartTimes.RemoveAt(index);
             if (mPhrases.Count > 0) UpdateTimeFromIndex(index);
+            if (node == m_FirstPage)
+            {
+                m_FirstPage = null;
+                for (int i = index; i < mPhrases.Count; i++)
+                {
+                    if (mPhrases[i].Role_ == EmptyNode.Role.Page)
+                    {
+                        m_FirstPage = mPhrases[i];
+                        break;
+                    }
+                }
+            }
+            if (node == m_FirstSectionPhrase)
+            {
+                m_FirstSectionPhrase = null;
+                for (int i = index; i < mPhrases.Count; i++)
+                {
+                    if (mPhrases[i].Index == 0)
+                    {
+                        m_FirstSectionPhrase = mPhrases[i];
+                        break;
+                    }
+                }
+            }
+            if (node == m_LastPage)
+            {
+                m_LastPage = null;
+                for (int i = index; i >= 0; i--)
+                {
+                    if (node.Role_ == EmptyNode.Role.Page)
+                    {
+                        m_LastPage = mPhrases[i];
+                        break;
+                    }
+                }
+            }
+            if (node == m_LastSectionPhrase)
+            {
+                m_LastSectionPhrase = null;
+                for (int i = index; i >= 0; i--)
+                {
+                    if (node.Index == 0)
+                    {
+                        m_LastSectionPhrase = mPhrases[i];
+                        break;
+                    }
+                }
+            }
+
         }
+
 
         /// <summary>
         /// A node's media has changed so change the timing info.
