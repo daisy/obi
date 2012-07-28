@@ -1562,7 +1562,7 @@ namespace Obi.ProjectView
                 {
                 if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause ();
 
-                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber ( CurrentOrNextPageNumber, false, false );
+                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber ( CurrentOrNextPageNumber, true, false );
                 if (dialog.ShowDialog () == DialogResult.OK) SetPageNumberOnSelectedBock ( dialog.Number, dialog.Renumber );
                 }
             }
