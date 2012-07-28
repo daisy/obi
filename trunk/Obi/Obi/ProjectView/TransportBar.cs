@@ -136,7 +136,7 @@ namespace Obi.ProjectView
           //  m_PlayingElapsedRemainingList.Add("remaining in section");
             m_PlayingElapsedRemainingList.Add("remaining in selection");
             mDisplayBox.Items.AddRange(m_PlayingElapsedRemainingList.ToArray ());
-            mDisplayBox.SelectedIndex = 0;
+            mDisplayBox.SelectedIndex = 0 ;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mFastPlayRateCombobox.SelectedIndex = 0;
             mState = State.Stopped;
@@ -533,6 +533,13 @@ namespace Obi.ProjectView
 
             //m_AutoSaveOnNextRecordingEnd = false;
             UpdateButtons();
+            if (mView.ObiForm.Settings != null)
+            {
+                m_PlayerTimeComboIndex = mView.ObiForm.Settings.Audio_TransportBarCounterIndex;
+                m_RecorderTimeComboIndex = mView.ObiForm.Settings.Audio_TransportBarCounterIndex;
+                mDisplayBox.SelectedIndex = mView.ObiForm.Settings.Audio_TransportBarCounterIndex < mDisplayBox.Items.Count ? mView.ObiForm.Settings.Audio_TransportBarCounterIndex : 0;
+                
+            }
         }
 
         /// <summary>
@@ -576,6 +583,7 @@ namespace Obi.ProjectView
                 if (mView != null) throw new Exception("Cannot set the project view again!");
                 mView = value;
                 UpdateButtons();
+                
                 mView.BlocksVisibilityChanged += new EventHandler(mView_BlocksVisibilityChanged);
                 mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) {
                     if(mView.Selection == null || mView.Selection.Node != m_FineNavigationPhrase ) FineNavigationModeForPhrase = false;
@@ -630,6 +638,8 @@ namespace Obi.ProjectView
         private void mDisplayBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
+            // selected index should go in settings only when presentation is not null because it is assigned only when new presentation is set
+            if (mView != null && mView.ObiForm.Settings != null && mView.Presentation != null) mView.ObiForm.Settings.Audio_TransportBarCounterIndex = mDisplayBox.SelectedIndex;
         }
 
         // Update the time display immediatly when the display mode changes.
