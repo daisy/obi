@@ -48,7 +48,6 @@ namespace Obi.ProjectView
         private bool m_IsMaximized = false;
         private bool m_IsToBeRepainted = false;
         private int m_CounterWaveform = 0;
-        List<int> listOfOffset = new List<int>();
         private int counter = 0;
         private Dictionary<int, string> m_CurrentDictionary = new Dictionary<int, string>();
      //   private bool m_IsResize = false;
@@ -269,7 +268,7 @@ namespace Obi.ProjectView
 
         private void ResetLists()
         {
-            List<int> listOfXLocationTemp = new List<int>();
+            //List<int> listOfXLocationTemp = new List<int>();
             List<int> listOfMinChannel1Temp = new List<int>();
             List<int> listOfMinChannel2Temp = new List<int>();
             List<int> listOfMaxChannel1Temp = new List<int>();
@@ -280,22 +279,23 @@ namespace Obi.ProjectView
             listOfMaxChannel1Temp = listOfCurrentMaxChannel1;
             listOfMaxChannel2Temp = listOfCurrentMaxChannel2;
 
-            
+
             //listOfCurrentXLocation = new List<int>();
             listOfCurrentMinChannel1 = new List<int>();
             listOfCurrentMinChannel2 = new List<int>();
             listOfCurrentMaxChannel1 = new List<int>();
             listOfCurrentMaxChannel2 = new List<int>();
 
-            for (int i = listOfMinChannel1Temp.Count - 1; i >= listOfMinChannel1Temp.Count - 350; i--)
-            { 
-                if(i >= 0)
+      //      for (int i =  listOfMinChannel1Temp.Count - 1; i >= listOfMinChannel1Temp.Count - 350; i--)
+            for (int i = listOfMinChannel1Temp.Count - 350; i <= listOfMinChannel1Temp.Count - 1; i ++)
+            {
+                if (i >= 0)
                 {
-              //  listOfCurrentXLocation.Add(listOfXLocationTemp[i]);
-                listOfCurrentMinChannel1.Add(listOfMinChannel1Temp[i]);
-                listOfCurrentMinChannel2.Add(listOfMinChannel2Temp[i]);
-                listOfCurrentMaxChannel1.Add(listOfMaxChannel1Temp[i]);
-                listOfCurrentMaxChannel2.Add(listOfMaxChannel2Temp[i]);
+                    //  listOfCurrentXLocation.Add(listOfXLocationTemp[i]);
+                    listOfCurrentMinChannel1.Add(listOfMinChannel1Temp[i]);
+                    listOfCurrentMinChannel2.Add(listOfMinChannel2Temp[i]);
+                    listOfCurrentMaxChannel1.Add(listOfMaxChannel1Temp[i]);
+                    listOfCurrentMaxChannel2.Add(listOfMaxChannel2Temp[i]);
                 }
             }
         }
@@ -533,14 +533,7 @@ int channel = 0;
                     }
                     m_IsMaximized = false;
                     timer1.Start();
-                }
-                //listOfMinChannel1.Clear();
-                //listOfMinChannel2.Clear();
-                //listOfMaxChannel1.Clear();
-                //listOfMaxChannel2.Clear();
-                m_CurrentDictionary.Clear();
-              //  m_MainDictionary.Clear();
-                listOfOffset.Clear();
+                }       
         }
 
         public void Phrase_Created_Event(object sender, EventArgs e)
