@@ -211,8 +211,7 @@ namespace Obi.ProjectView
             get
             {
                 return IsRecorderActive ||
-                    (IsPlayerActive && mCurrentPlaylist.CanNavigateNextSection) ||
-                    CanPlay;
+                    mCurrentPlaylist.CanNavigateNextSection ;
             }
         }
 
