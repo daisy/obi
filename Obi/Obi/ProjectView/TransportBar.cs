@@ -183,13 +183,12 @@ namespace Obi.ProjectView
             get
             {
                 return IsRecorderActive ||
-                    (IsPlayerActive && mCurrentPlaylist.CanNavigateNextPhrase) ||
-                    CanPlay;
+                    (mCurrentPlaylist != null && mCurrentPlaylist.CanNavigateNextPhrase) ;
             }
         }
 
         
-        public bool CanNavigatePrevSection { get { return Enabled && !m_IsProjectEmpty && (mCurrentPlaylist != null && mCurrentPlaylist.CanNavigatePrevSection); } }
+        
         public bool CanNavigatePrevPage 
         { 
             get 
@@ -204,16 +203,18 @@ namespace Obi.ProjectView
             }
         }
 
-        public bool CanEnterFineNavigationMode { get { return mView.Selection != null && mView.Selection.Node is PhraseNode && (IsPlayerActive || mView.Selection is AudioSelection); } }
+        public bool CanNavigatePrevSection { get { return Enabled && !m_IsProjectEmpty && (mCurrentPlaylist != null && mCurrentPlaylist.CanNavigatePrevSection); } }
 
         public bool CanNavigateNextSection
         {
             get
             {
                 return IsRecorderActive ||
-                    mCurrentPlaylist.CanNavigateNextSection ;
+                    (mCurrentPlaylist != null &&  mCurrentPlaylist.CanNavigateNextSection) ;
             }
         }
+
+        public bool CanEnterFineNavigationMode { get { return mView.Selection != null && mView.Selection.Node is PhraseNode && (IsPlayerActive || mView.Selection is AudioSelection); } }
 
         public bool CanPreview
         {
