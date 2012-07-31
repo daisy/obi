@@ -659,7 +659,7 @@ namespace Obi.Dialogs
             if(m_cbOperation.SelectedIndex == 0)
             {       
                 m_OperationDurationUpDown.Value = (int)mSettings.NudgeTimeMs;
-                m_OperationDurationUpDown.Increment = 50;
+                m_OperationDurationUpDown.Increment = 20;
             }
             if(m_cbOperation.SelectedIndex == 1)
             {
