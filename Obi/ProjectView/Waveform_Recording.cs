@@ -268,30 +268,27 @@ namespace Obi.ProjectView
 
         private void ResetLists()
         {
-            //List<int> listOfXLocationTemp = new List<int>();
             List<int> listOfMinChannel1Temp = new List<int>();
             List<int> listOfMinChannel2Temp = new List<int>();
             List<int> listOfMaxChannel1Temp = new List<int>();
             List<int> listOfMaxChannel2Temp = new List<int>();
-            //listOfXLocationTemp = listOfCurrentXLocation;
+
             listOfMinChannel1Temp = listOfCurrentMinChannel1;
             listOfMinChannel2Temp = listOfCurrentMinChannel2;
             listOfMaxChannel1Temp = listOfCurrentMaxChannel1;
             listOfMaxChannel2Temp = listOfCurrentMaxChannel2;
+            
 
-
-            //listOfCurrentXLocation = new List<int>();
             listOfCurrentMinChannel1 = new List<int>();
             listOfCurrentMinChannel2 = new List<int>();
             listOfCurrentMaxChannel1 = new List<int>();
             listOfCurrentMaxChannel2 = new List<int>();
+            m_MainDictionary.Clear();
 
-      //      for (int i =  listOfMinChannel1Temp.Count - 1; i >= listOfMinChannel1Temp.Count - 350; i--)
             for (int i = listOfMinChannel1Temp.Count - 350; i <= listOfMinChannel1Temp.Count - 1; i ++)
             {
                 if (i >= 0)
                 {
-                    //  listOfCurrentXLocation.Add(listOfXLocationTemp[i]);
                     listOfCurrentMinChannel1.Add(listOfMinChannel1Temp[i]);
                     listOfCurrentMinChannel2.Add(listOfMinChannel2Temp[i]);
                     listOfCurrentMaxChannel1.Add(listOfMaxChannel1Temp[i]);
