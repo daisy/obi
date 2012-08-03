@@ -308,7 +308,7 @@ namespace Obi.ProjectView
             {
                 if (pair.Key > tempXLocation - 350 && pair.Key < tempXLocation - 1)
                 {
-                    calculatedKey = pair.Key - (listOfMinChannel1Temp.Count - 350);
+                    calculatedKey = pair.Key - (tempXLocation - 350);
                     m_MainDictionary.Add(calculatedKey, pair.Value);
                 }
             }
@@ -446,7 +446,7 @@ int channel = 0;
                     }
                     count++;
                     
-                    if (m_MainDictionary.ContainsKey(listOfCurrentXLocation[i]))
+                 /*   if (m_MainDictionary.ContainsKey(listOfCurrentXLocation[i]))
                     {
                         if (!m_MainDictionary[listOfCurrentXLocation[i]].EndsWith("0"))
                             g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, listOfCurrentXLocation[i], 0);
@@ -461,7 +461,7 @@ int channel = 0;
                             g.DrawLine(newPen, tempm_X, 0, tempm_X, Height);
                             g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, tempm_X, Height - 15);
                         }
-                    }
+                    }*/
                     tempm_X--;
                   /*  if (this.Location.X < 0 && 
                         (this.Location.X * -1) < listOfXLocation[i])
@@ -469,6 +469,23 @@ int channel = 0;
                         Console.WriteLine("Breaking refresh loop at:" + i) ;
                         break;
                     }*/
+                }
+
+                foreach (KeyValuePair<int, string> pair in m_MainDictionary)
+                {
+                    if (!pair.Value.EndsWith("0"))
+                        g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
+
+                    g.DrawLine(pen, pair.Key, 0, pair.Key, Height);
+
+                    if (pair.Value == "")
+                        g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
+
+                    else if (pair.Value.EndsWith("0"))
+                    {
+                        g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
+                        g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);
+                    }
                 }
                 m_IsMaximized = false;
                 timer1.Start();
@@ -523,7 +540,7 @@ int channel = 0;
                         }
                         count++;
                         
-                        if (m_MainDictionary.ContainsKey(listOfCurrentXLocation[i]))
+                       /* if (m_MainDictionary.ContainsKey(listOfCurrentXLocation[i]))
                         {
                             if (!m_MainDictionary[listOfCurrentXLocation[i]].EndsWith("0"))
                                 g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, listOfCurrentXLocation[i], 0);
@@ -538,7 +555,7 @@ int channel = 0;
                                 g.DrawLine(newPen, temp, 0, temp, Height);
                                 g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, temp, Height - 15);
                             }
-                        }
+                        }*/
                         temp--;
                         /*  if (this.Location.X < 0 && 
                               (this.Location.X * -1) < listOfXLocation[i])
@@ -547,8 +564,27 @@ int channel = 0;
                               break;
                           }*/
                     }
+
+                    foreach (KeyValuePair<int, string> pair in m_MainDictionary)
+                    {
+                        Console.WriteLine("PAIRING VAL " + pair.Key + " " + pair.Value); 
+                        if (!pair.Value.EndsWith("0"))
+                            g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
+
+                        g.DrawLine(pen, pair.Key, 0, pair.Key, Height);
+
+                        if (pair.Value == "")
+                            g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
+
+                        else if (pair.Value.EndsWith("0"))
+                        {
+                            g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
+                            g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);
+                        }
+                    }
+
                     m_IsMaximized = false;
-                    timer1.Start();
+                  //  timer1.Start();
                 }       
         }
 
