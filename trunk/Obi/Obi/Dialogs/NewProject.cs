@@ -115,6 +115,8 @@ namespace Obi.Dialogs
                 ObiForm.CheckProjectPath(mFileBox.Text, true);
                 
                 mCanClose = true;
+                AudioSettings dSettings = new AudioSettings();
+                dSettings.ShowDialog();
             }
             catch (Exception x)
             {
