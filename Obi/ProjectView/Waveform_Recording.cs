@@ -40,7 +40,6 @@ namespace Obi.ProjectView
         private List<int> listOfCurrentMaxChannel1 = new List<int>();
         private List<int> listOfCurrentMinChannel2 = new List<int>();
         private List<int> listOfCurrentMaxChannel2 = new List<int>();
-       // private bool m_IsResized = false;
         private int m_X = 0;
         private int m_XCV = 0;
         private Dictionary<int, string> m_MainDictionary = new Dictionary<int, string>();
@@ -48,9 +47,8 @@ namespace Obi.ProjectView
         private bool m_IsMaximized = false;
         private bool m_IsToBeRepainted = false;
         private int m_CounterWaveform = 0;
-        private int counter = 0;
         private Dictionary<int, string> m_CurrentDictionary = new Dictionary<int, string>();
-     //   private bool m_IsResize = false;
+        private int m_OffsetLocation = 400;
         
         public Waveform_Recording()
         {
@@ -134,6 +132,7 @@ namespace Obi.ProjectView
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            int time = 0;
             m_XCV = m_X + Location.X;
             int diff = m_XCV - (m_ContentView.Width / 2 + 50);
             int newXLocation = (m_X - (m_ContentView.Width / 2 + 50)) * -1;
@@ -146,10 +145,10 @@ namespace Obi.ProjectView
             {
                 
                 m_IsToBeRepainted = false;
-                Location = new Point(-400, Location.Y);
+                Location = new Point(-m_OffsetLocation, Location.Y);
                 
             }
-
+           time =  ConverPixelsToTime(m_X);
 
             int difference = 0;
             difference = this.Width - m_X - m_ContentView.Width;
@@ -157,7 +156,7 @@ namespace Obi.ProjectView
             {
 
                 Console.WriteLine("VALUE OF M_X  " + m_X);
-                this.Location = new Point(-400, Location.Y);
+                this.Location = new Point(-m_OffsetLocation, Location.Y);
                 //  listOfXLocation.Clear();
                 m_X = m_ContentView.Width / 2 + 450;
                 ResetLists();
@@ -235,38 +234,13 @@ namespace Obi.ProjectView
             }
 
             
-            counter++;
+            //counter++;
             listOfCurrentXLocation.Add(m_X); 
              m_X++;
              listOfCurrentMinChannel1.Add((int)minChannel1);
              listOfCurrentMaxChannel1.Add((int)maxChannel1);
              listOfCurrentMinChannel2.Add((int)minChannel2);
-             listOfCurrentMaxChannel2.Add((int)maxChannel2);
-
-
-            /* if (counter > 750)
-             {
-                 listOfOffset.Add(m_X); if (m_Counter == 10)
-                 {
-                     g.DrawLine(newPen, m_X, 0, m_X, Height);
-                     if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds)
-                     {
-                         text = timeInSeconds.ToString();
-                         g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
-                         if (!m_CurrentDictionary.ContainsKey(m_X))
-                             m_CurrentDictionary.Add(m_X, text);
-                         m_LocalTime = timeInSeconds;
-                     }
-                     else
-                     {
-                         if (!m_CurrentDictionary.ContainsKey(m_X))
-                             m_CurrentDictionary.Add(m_X, "");
-                     }
-
-                     m_Counter = 0;
-                 }
-                 m_MainDictionary = m_CurrentDictionary;
-             }*/
+             listOfCurrentMaxChannel2.Add((int)maxChannel2);   
          }
 
         private void ResetLists()
@@ -309,9 +283,17 @@ namespace Obi.ProjectView
                 if (pair.Key > tempXLocation - 350 && pair.Key < tempXLocation - 1)
                 {
                     calculatedKey = pair.Key - (tempXLocation - 350);
-                    m_MainDictionary.Add(calculatedKey, pair.Value);
+                    m_MainDictionary.Add(calculatedKey + m_OffsetLocation, pair.Value);
                 }
             }
+         
+        }
+
+        private int ConverPixelsToTime(int pixels)
+        {
+            int timeInMilliseconds = 0;
+            timeInMilliseconds = pixels * 100;
+            return timeInMilliseconds;
         }
 
         private void Waveform_Recording_VisibleChanged(object sender, EventArgs e)
@@ -321,12 +303,12 @@ namespace Obi.ProjectView
                 timer1.Start();
                 if(m_ContentView != null)
                 m_X = m_ContentView.Width / 2 + 50;
-                Location = new Point(-400, Location.Y);
+                Location = new Point(-m_OffsetLocation, Location.Y);
                 m_MainDictionary.Clear();
             }
             else
             {
-                Location = new Point(-400, Location.Y);
+                Location = new Point(-m_OffsetLocation, Location.Y);
                 timer1.Stop();
             }
             listOfCurrentMaxChannel1.Clear();
@@ -399,7 +381,6 @@ int channel = 0;
 
         private void RepaintWaveform()
         {
-            int count = 0;
             Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
@@ -431,7 +412,6 @@ int channel = 0;
                     countToRepaint = xSize;
                
                 for (int i = listOfCurrentMinChannel1.Count - 1; i >= 0; i--)
-            //    for (int i = countToRepaint - 1; i >= 0; i--)
                 {
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                     {
@@ -443,25 +423,7 @@ int channel = 0;
                     {
                         g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
                         new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                    }
-                    count++;
-                    
-                 /*   if (m_MainDictionary.ContainsKey(listOfCurrentXLocation[i]))
-                    {
-                        if (!m_MainDictionary[listOfCurrentXLocation[i]].EndsWith("0"))
-                            g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, listOfCurrentXLocation[i], 0);
-
-                        g.DrawLine(pen, tempm_X, 0, tempm_X, Height);
-
-                        if (m_MainDictionary[listOfCurrentXLocation[i]] == "")
-                            g.DrawLine(newPen, tempm_X, 0, tempm_X, Height);
-
-                        else if (m_MainDictionary[listOfCurrentXLocation[i]].EndsWith("0"))
-                        {
-                            g.DrawLine(newPen, tempm_X, 0, tempm_X, Height);
-                            g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, tempm_X, Height - 15);
-                        }
-                    }*/
+                    }                        
                     tempm_X--;
                   /*  if (this.Location.X < 0 && 
                         (this.Location.X * -1) < listOfXLocation[i])
@@ -470,22 +432,17 @@ int channel = 0;
                         break;
                     }*/
                 }
-
+                
                 foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                 {
                     if (!pair.Value.EndsWith("0"))
                         g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
-
-                    g.DrawLine(pen, pair.Key, 0, pair.Key, Height);
-
-                    if (pair.Value == "")
-                        g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
-
-                    else if (pair.Value.EndsWith("0"))
+                    else
                     {
                         g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
                         g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);
                     }
+                    g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);                   
                 }
                 m_IsMaximized = false;
                 timer1.Start();
@@ -494,7 +451,6 @@ int channel = 0;
 
         public void ResetWaveform()
         {
-                int count = 0;
                 Font myFont = new Font("Microsoft Sans Serif", 7);
                 Pen newPen = new Pen(SystemColors.Control);
                 int xSize = SystemInformation.PrimaryMonitorSize.Width;
@@ -523,8 +479,7 @@ int channel = 0;
                         countToRepaint = m_CounterWaveform;
                     else
                         countToRepaint = xSize;
-                   // for (int i = counterMin - 1; i >= counterMin - countToRepaint; i--)
-             
+            
                     for (int i = counterMin - 1; i >= 0; i--)
                     {
                         if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
@@ -538,24 +493,7 @@ int channel = 0;
                             g.DrawLine(pen_Channel1, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
                             new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                         }
-                        count++;
                         
-                       /* if (m_MainDictionary.ContainsKey(listOfCurrentXLocation[i]))
-                        {
-                            if (!m_MainDictionary[listOfCurrentXLocation[i]].EndsWith("0"))
-                                g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, listOfCurrentXLocation[i], 0);
-
-                            g.DrawLine(pen, temp, 0, temp, Height);
-
-                            if (m_MainDictionary[listOfCurrentXLocation[i]] == "")
-                                g.DrawLine(newPen, temp, 0, temp, Height);
-
-                            else if (m_MainDictionary[listOfCurrentXLocation[i]].EndsWith("0"))
-                            {
-                                g.DrawLine(newPen, temp, 0, temp, Height);
-                                g.DrawString(m_MainDictionary[listOfCurrentXLocation[i]], myFont, Brushes.Gray, temp, Height - 15);
-                            }
-                        }*/
                         temp--;
                         /*  if (this.Location.X < 0 && 
                               (this.Location.X * -1) < listOfXLocation[i])
@@ -567,24 +505,18 @@ int channel = 0;
 
                     foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                     {
-                        Console.WriteLine("PAIRING VAL " + pair.Key + " " + pair.Value); 
                         if (!pair.Value.EndsWith("0"))
                             g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
-
-                        g.DrawLine(pen, pair.Key, 0, pair.Key, Height);
-
-                        if (pair.Value == "")
-                            g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
-
-                        else if (pair.Value.EndsWith("0"))
+                        else
                         {
                             g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
                             g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);
                         }
+                        g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);                     
                     }
 
                     m_IsMaximized = false;
-                  //  timer1.Start();
+                    timer1.Start();
                 }       
         }
 
