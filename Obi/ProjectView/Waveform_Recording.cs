@@ -49,6 +49,9 @@ namespace Obi.ProjectView
         private int m_CounterWaveform = 0;
         private Dictionary<int, string> m_CurrentDictionary = new Dictionary<int, string>();
         private int m_OffsetLocation = 400;
+        private int m_TotalPixelCount = 0;
+        private int m_Pass = 0;
+        private int m_Offset = 0;
         
         public Waveform_Recording()
         {
@@ -123,19 +126,22 @@ namespace Obi.ProjectView
             }
         }
 
+        public int recordingTimeCursor
+        {
+            get { return m_ContentView.Width / 2 + 50; }
+        }
+
         public void ZoomWaveform()
         {
             if (m_ContentView != null)
                 this.Size = new Size(m_ContentView.Width, Convert.ToInt32(104 * m_ZoomFactor));
-        }
-
+        }        
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            int time = 0;
             m_XCV = m_X + Location.X;
-            int diff = m_XCV - (m_ContentView.Width / 2 + 50);
-            int newXLocation = (m_X - (m_ContentView.Width / 2 + 50)) * -1;
+            int diff = m_XCV - recordingTimeCursor;
+            int newXLocation = (m_X - recordingTimeCursor) * -1;
             if (Math.Abs(diff) > 2)
             {
                 this.Location = new Point(newXLocation, this.Location.Y);
@@ -148,8 +154,7 @@ namespace Obi.ProjectView
                 Location = new Point(-m_OffsetLocation, Location.Y);
                 
             }
-           time =  ConverPixelsToTime(m_X);
-
+           
             int difference = 0;
             difference = this.Width - m_X - m_ContentView.Width;
             if (difference == 20)
@@ -158,9 +163,10 @@ namespace Obi.ProjectView
                 Console.WriteLine("VALUE OF M_X  " + m_X);
                 this.Location = new Point(-m_OffsetLocation, Location.Y);
                 //  listOfXLocation.Clear();
-                m_X = m_ContentView.Width / 2 + 450;
+                m_X = recordingTimeCursor + m_OffsetLocation;
                 ResetLists();
                 ResetWaveform();
+                m_Pass++;
             }
             
             if (m_VUMeter == null || m_ContentView == null) return;
@@ -233,14 +239,13 @@ namespace Obi.ProjectView
                   // m_IsMaximized = false;
             }
 
-            
-            //counter++;
             listOfCurrentXLocation.Add(m_X); 
              m_X++;
              listOfCurrentMinChannel1.Add((int)minChannel1);
              listOfCurrentMaxChannel1.Add((int)maxChannel1);
              listOfCurrentMinChannel2.Add((int)minChannel2);
-             listOfCurrentMaxChannel2.Add((int)maxChannel2);   
+             listOfCurrentMaxChannel2.Add((int)maxChannel2);
+             m_TotalPixelCount++;
          }
 
         private void ResetLists()
@@ -259,15 +264,15 @@ namespace Obi.ProjectView
             listOfMaxChannel2Temp = listOfCurrentMaxChannel2;
             m_TempDictionary = m_MainDictionary;
             tempXLocation = listOfCurrentXLocation[listOfCurrentXLocation.Count - 1];
+            m_Offset = tempXLocation - recordingTimeCursor;
             
-
             listOfCurrentMinChannel1 = new List<int>();
             listOfCurrentMinChannel2 = new List<int>();
             listOfCurrentMaxChannel1 = new List<int>();
             listOfCurrentMaxChannel2 = new List<int>();
             m_MainDictionary = new Dictionary<int, string>();
 
-            for (int i = listOfMinChannel1Temp.Count - 350; i <= listOfMinChannel1Temp.Count - 1; i ++)
+            for (int i = listOfMinChannel1Temp.Count - recordingTimeCursor; i <= listOfMinChannel1Temp.Count - 1; i ++)
             {
                 if (i >= 0)
                 {
@@ -280,20 +285,27 @@ namespace Obi.ProjectView
 
             foreach (KeyValuePair<int, string> pair in m_TempDictionary)
             {
-                if (pair.Key > tempXLocation - 350 && pair.Key < tempXLocation - 1)
+                if (pair.Key > tempXLocation - recordingTimeCursor && pair.Key < tempXLocation - 1)
                 {
-                    calculatedKey = pair.Key - (tempXLocation - 350);
+                    calculatedKey = pair.Key - (tempXLocation - recordingTimeCursor);
                     m_MainDictionary.Add(calculatedKey + m_OffsetLocation, pair.Value);
                 }
             }
          
         }
 
-        private int ConverPixelsToTime(int pixels)
+        private int ConvertPixelsToTime(int pixels)
         {
             int timeInMilliseconds = 0;
             timeInMilliseconds = pixels * 100;
-            return timeInMilliseconds;
+            return timeInMilliseconds / 1000;
+        }
+
+        private int ConvertTimeToPixels(int time)
+        {
+            int pixels = 0;
+            pixels = Convert.ToInt32(time * .01);
+            return pixels;
         }
 
         private void Waveform_Recording_VisibleChanged(object sender, EventArgs e)
@@ -302,7 +314,7 @@ namespace Obi.ProjectView
             {
                 timer1.Start();
                 if(m_ContentView != null)
-                m_X = m_ContentView.Width / 2 + 50;
+                m_X = recordingTimeCursor;
                 Location = new Point(-m_OffsetLocation, Location.Y);
                 m_MainDictionary.Clear();
             }
@@ -398,7 +410,7 @@ int channel = 0;
             int countToRepaint = 0;
 
             if (m_ContentView != null)
-                x = m_ContentView.Width / 2 + 50;
+                x = recordingTimeCursor;
             if (counterMin == 0)
                 return;
             if (counterMin < 5)
@@ -467,7 +479,7 @@ int channel = 0;
                 int countToRepaint = 0;
              
                 if (m_ContentView != null)
-                    x = m_ContentView.Width / 2 + 50;
+                    x = recordingTimeCursor;
                 if (counterMin == 0)
                     return;
                 if (counterMin < 5)
@@ -523,7 +535,7 @@ int channel = 0;
         public void Phrase_Created_Event(object sender, EventArgs e)
         {
             int lastItemInList = (int)(m_ProjectView.TransportBar.phDetectorPhraseTimingList[m_ProjectView.TransportBar.phDetectorPhraseTimingList.Count - 1] / 100);
-            int location = lastItemInList + (m_ContentView.Width / 2 + 50);
+            int location = lastItemInList + recordingTimeCursor;
 
             if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring)
             CreatePageorPhrase(location);
@@ -553,6 +565,17 @@ int channel = 0;
             }
             m_IsToBeRepainted = true;
             m_IsMaximized = false;
+        }
+
+        private void Waveform_Recording_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+            int pixel = 0;
+           // pixel = m_Pass * 2000 + (e.X - recordingTimeCursor); @firstpass
+            pixel = m_Pass * m_Offset + (e.X - recordingTimeCursor); 
+            int time = 0;
+            time = ConvertPixelsToTime(pixel);
+            Console.WriteLine("TIME DEKHO   " + time + "  " + m_Pass);
         }               
     }
 }
