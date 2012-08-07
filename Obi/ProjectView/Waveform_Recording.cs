@@ -66,6 +66,9 @@ namespace Obi.ProjectView
             
         }
 
+        private RecordingSession m_RecordingSession;
+        public RecordingSession RecordingSession { set { m_RecordingSession = value; } }
+
         public ContentView contentView
         {
             get { return m_ContentView; }

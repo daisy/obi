@@ -589,6 +589,11 @@ namespace Obi.ProjectView
         public AudioLib.AudioRecorder Recorder { get { return mRecorder; } }
 
         /// <summary>
+        /// Recording session for current recording
+        /// </summary>
+        public RecordingSession RecordingSession { get { return mRecordingSession; } }
+
+        /// <summary>
         /// Get the VU meter associated with the transport bar.
         /// </summary>
         public AudioLib.VuMeter VuMeter { get { return mVuMeter; } }
@@ -1797,6 +1802,7 @@ namespace Obi.ProjectView
         // Stop recording a phrase
         private void RecordingPhraseEnded(Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
+            if (mView.ObiForm.Settings.Audio_ShowLiveWaveform) return;//@LiveWaveform
             PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex);
             phrase.SignalAudioChanged(this, e.Audio);
             mRecordingPhrase = null;

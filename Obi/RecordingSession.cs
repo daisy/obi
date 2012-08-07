@@ -297,8 +297,8 @@ namespace Obi
                                 PhraseEventArgs eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length);
 
                                 if (FinishingPhrase != null) FinishingPhrase(this, eArg);
-                                if (StartingPhrase != null)
-                                    StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
+                                //if (StartingPhrase != null)
+                                    //StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
 
                             }
                         }
