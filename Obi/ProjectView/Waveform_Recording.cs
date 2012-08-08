@@ -51,7 +51,7 @@ namespace Obi.ProjectView
         private int m_OffsetLocation = 400;
         private int m_TotalPixelCount = 0;
         private int m_Pass = 0;
-        private int m_Offset = 0;
+        private double m_Time = 0;
         
         public Waveform_Recording()
         {
@@ -162,8 +162,6 @@ namespace Obi.ProjectView
             difference = this.Width - m_X - m_ContentView.Width;
             if (difference == 20)
             {
-
-                Console.WriteLine("VALUE OF M_X  " + m_X);
                 this.Location = new Point(-m_OffsetLocation, Location.Y);
                 //  listOfXLocation.Clear();
                 m_X = recordingTimeCursor + m_OffsetLocation;
@@ -267,14 +265,15 @@ namespace Obi.ProjectView
             listOfMaxChannel2Temp = listOfCurrentMaxChannel2;
             m_TempDictionary = m_MainDictionary;
             tempXLocation = listOfCurrentXLocation[listOfCurrentXLocation.Count - 1];
-            m_Offset = tempXLocation - recordingTimeCursor;
+            //m_Offset = tempXLocation - recordingTimeCursor;
             
             listOfCurrentMinChannel1 = new List<int>();
             listOfCurrentMinChannel2 = new List<int>();
             listOfCurrentMaxChannel1 = new List<int>();
             listOfCurrentMaxChannel2 = new List<int>();
             m_MainDictionary = new Dictionary<int, string>();
-
+            m_Time = (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+                        Time.TIME_UNIT);
             for (int i = listOfMinChannel1Temp.Count - recordingTimeCursor; i <= listOfMinChannel1Temp.Count - 1; i ++)
             {
                 if (i >= 0)
@@ -297,11 +296,11 @@ namespace Obi.ProjectView
          
         }
 
-        private int ConvertPixelsToTime(int pixels)
+        private double ConvertPixelsToTime(int pixels)
         {
-            int timeInMilliseconds = 0;
+            double timeInMilliseconds = 0;
             timeInMilliseconds = pixels * 100;
-            return timeInMilliseconds / 1000;
+            return timeInMilliseconds;
         }
 
         private int ConvertTimeToPixels(int time)
@@ -574,11 +573,14 @@ int channel = 0;
         {
             
             int pixel = 0;
-           // pixel = m_Pass * 2000 + (e.X - recordingTimeCursor); @firstpass
-            pixel = m_Pass * m_Offset + (e.X - recordingTimeCursor); 
-            int time = 0;
-            time = ConvertPixelsToTime(pixel);
-            Console.WriteLine("TIME DEKHO   " + time + "  " + m_Pass);
+            int initialPos = recordingTimeCursor + m_OffsetLocation;
+            double time = 0;
+            if (m_Pass > 0)
+                time = m_Time + ConvertPixelsToTime(e.X - initialPos);
+            else
+                time = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+                        Time.TIME_UNIT;
+            Console.WriteLine("TIME on CLICK   " + time);
         }               
     }
 }
