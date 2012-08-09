@@ -49,6 +49,7 @@ namespace Obi.ProjectView
         private int m_CounterWaveform = 0;
         private Dictionary<int, string> m_CurrentDictionary = new Dictionary<int, string>();
         private int m_OffsetLocation = 400;
+        private int m_StaticRecordingLocation = 0;
         private int m_TotalPixelCount = 0;
         private int m_Pass = 0;
         private double m_Time = 0;
@@ -63,7 +64,6 @@ namespace Obi.ProjectView
                 m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
             Location = new Point(0, Location.Y);
             Size = new Size(10000, Height);
-            
         }
 
         private RecordingSession m_RecordingSession;
@@ -165,6 +165,7 @@ namespace Obi.ProjectView
                 this.Location = new Point(-m_OffsetLocation, Location.Y);
                 //  listOfXLocation.Clear();
                 m_X = recordingTimeCursor + m_OffsetLocation;
+                m_StaticRecordingLocation = m_X;
                 ResetLists();
                 ResetWaveform();
                 m_Pass++;
@@ -390,6 +391,7 @@ int channel = 0;
         {
          //   if (m_ProjectView.ObiForm.WindowState == FormWindowState.Maximized)
             m_CounterWaveform = listOfCurrentMinChannel1.Count;
+           // m_OffsetLocation = 
             RepaintWaveform();
         }
 
@@ -571,9 +573,7 @@ int channel = 0;
 
         private void Waveform_Recording_MouseClick(object sender, MouseEventArgs e)
         {
-            
-            int pixel = 0;
-            int initialPos = recordingTimeCursor + m_OffsetLocation;
+            int initialPos = m_StaticRecordingLocation;
             double time = 0;
             if (m_Pass > 0)
                 time = m_Time + ConvertPixelsToTime(e.X - initialPos);
