@@ -453,7 +453,8 @@ namespace Obi.Dialogs
             mSettings.UserProfile.Organization = mOrganizationTextbox.Text;
 
             if (mCultureBox.SelectedItem.ToString () == "en-US"
-                || mCultureBox.SelectedItem.ToString () == "hi-IN")
+                || mCultureBox.SelectedItem.ToString () == "hi-IN"
+                || mCultureBox.SelectedItem.ToString () == "fr-FR")
                 {
                 if (mSettings.UserProfile.Culture.ToString () != mCultureBox.SelectedItem.ToString ())
                     MessageBox.Show ( Localizer.Message ( "Preferences_RestartForCultureChange" ) );

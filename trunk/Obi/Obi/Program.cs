@@ -19,7 +19,7 @@ namespace Obi
             string strCulture = Settings.GetSettings ().UserProfile.Culture.Name;
 
             if ( !string.IsNullOrEmpty (strCulture )
-                && ( strCulture == "en-US" || strCulture == "hi-IN") )
+                && (strCulture == "en-US" || strCulture == "hi-IN" || strCulture == "fr-FR"))
                                 {
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo ( strCulture );
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo ( strCulture );
