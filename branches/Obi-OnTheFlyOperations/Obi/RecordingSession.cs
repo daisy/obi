@@ -81,6 +81,7 @@ namespace Obi
             mRecordingUpdateTimer.Tick += new System.EventHandler(mRecordingUpdateTimer_tick);
             mRecordingUpdateTimer.Interval = 1000;
             m_Settings = settings;
+            mRecorder.PcmDataBufferAvailable += new AudioLib.AudioRecorder.PcmDataBufferAvailableHandler(DetectPhrasesOnTheFly);
         }
 
 
@@ -250,6 +251,11 @@ namespace Obi
         private int m_PhDetectionMemStreamPosition;
         private long m_PhDetectorBytesRecorded;
 
+        private void DetectPhrasesOnTheFly(object sender, AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
+        {
+            ApplyPhraseDetectionOnTheFly(e);
+        }
+
         private void ApplyPhraseDetectionOnTheFly(AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
         {
             // todo : associate this function to recorder VuMeter events
@@ -307,6 +313,7 @@ namespace Obi
                     {
                         Console.WriteLine("timing list is null ");
                     }
+                    
                 }
 
                 byte[] overlapData = null;
@@ -348,7 +355,12 @@ namespace Obi
                 Console.WriteLine("writing recorder buffer " + m_PhDetectionMemStreamPosition);
 
             }
+
         }
 
+        private void MarkDetectedPhrases(object sender, PhraseEventArgs e)
+        {
+            double phraseMarkedTime = e.Time;
+        }
     }
 }
