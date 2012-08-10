@@ -52,7 +52,7 @@ namespace Obi.ProjectView
         private int m_StaticRecordingLocation = 0;
         private int m_TotalPixelCount = 0;
         private int m_Pass = 0;
-        private double m_Time = 0;
+        private double m_InitialStaticTime = 0;
         
         public Waveform_Recording()
         {
@@ -62,8 +62,9 @@ namespace Obi.ProjectView
             g = this.CreateGraphics();
             if (m_ProjectView != null && m_ProjectView.TransportBar.RecordingPhrase != null)
                 m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
-            Location = new Point(0, Location.Y);
+            Location = new Point(-400, Location.Y);
             Size = new Size(10000, Height);
+            m_StaticRecordingLocation = -1;
         }
 
         private RecordingSession m_RecordingSession;
@@ -142,6 +143,12 @@ namespace Obi.ProjectView
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (m_StaticRecordingLocation == -1)
+            {
+                Location = new Point(-m_OffsetLocation, Location.Y);
+                m_StaticRecordingLocation = recordingTimeCursor + Math.Abs( this.Location.X);
+            }
+               
             m_XCV = m_X + Location.X;
             int diff = m_XCV - recordingTimeCursor;
             int newXLocation = (m_X - recordingTimeCursor) * -1;
@@ -151,11 +158,9 @@ namespace Obi.ProjectView
                 m_IsToBeRepainted = false;
             }
             if (newXLocation > 0)
-            {
-                
+            {                
                 m_IsToBeRepainted = false;
-                Location = new Point(-m_OffsetLocation, Location.Y);
-                
+                Location = new Point(-m_OffsetLocation, Location.Y);                
             }
            
             int difference = 0;
@@ -170,7 +175,7 @@ namespace Obi.ProjectView
                 ResetWaveform();
                 m_Pass++;
             }
-            
+                    
             if (m_VUMeter == null || m_ContentView == null) return;
             g = this.CreateGraphics();
             
@@ -266,14 +271,13 @@ namespace Obi.ProjectView
             listOfMaxChannel2Temp = listOfCurrentMaxChannel2;
             m_TempDictionary = m_MainDictionary;
             tempXLocation = listOfCurrentXLocation[listOfCurrentXLocation.Count - 1];
-            //m_Offset = tempXLocation - recordingTimeCursor;
-            
+                        
             listOfCurrentMinChannel1 = new List<int>();
             listOfCurrentMinChannel2 = new List<int>();
             listOfCurrentMaxChannel1 = new List<int>();
             listOfCurrentMaxChannel2 = new List<int>();
             m_MainDictionary = new Dictionary<int, string>();
-            m_Time = (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+            m_InitialStaticTime = (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
                         Time.TIME_UNIT);
             for (int i = listOfMinChannel1Temp.Count - recordingTimeCursor; i <= listOfMinChannel1Temp.Count - 1; i ++)
             {
@@ -304,7 +308,7 @@ namespace Obi.ProjectView
             return timeInMilliseconds;
         }
 
-        private int ConvertTimeToPixels(int time)
+        private int ConvertTimeToPixels(double time)
         {
             int pixels = 0;
             pixels = Convert.ToInt32(time * .01);
@@ -330,6 +334,7 @@ namespace Obi.ProjectView
             listOfCurrentMinChannel1.Clear();
             listOfCurrentMinChannel2.Clear();
             listOfCurrentMaxChannel2.Clear();
+            m_StaticRecordingLocation = -1;
         }
 
         private short[] m_Amp = new short[2];
@@ -571,16 +576,27 @@ int channel = 0;
             m_IsMaximized = false;
         }
 
-        private void Waveform_Recording_MouseClick(object sender, MouseEventArgs e)
+        private void Waveform_Recording_MouseClick(object sender, MouseEventArgs e)          
         {
             int initialPos = m_StaticRecordingLocation;
             double time = 0;
+            int pixel = 0;
+            double timeTemp = 0;
+            Pen pen = new Pen(SystemColors.ControlDarkDark);
+
             if (m_Pass > 0)
-                time = m_Time + ConvertPixelsToTime(e.X - initialPos);
+                time = m_InitialStaticTime + ConvertPixelsToTime(e.X - initialPos);
             else
-                time = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
-                        Time.TIME_UNIT;
-            Console.WriteLine("TIME on CLICK   " + time);
+                time = ConvertPixelsToTime(e.X - initialPos);
+
+            timeTemp = time - m_InitialStaticTime;
+            if (m_Pass > 0)
+                pixel = ConvertTimeToPixels(timeTemp) + initialPos;
+            else
+                pixel = ConvertTimeToPixels(time) + initialPos;
+           
+            g.DrawLine(pen, pixel, 0, pixel, Height);
+            g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height - 15);
         }               
     }
 }
