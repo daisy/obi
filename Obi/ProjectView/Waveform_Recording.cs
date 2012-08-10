@@ -68,7 +68,18 @@ namespace Obi.ProjectView
         }
 
         private RecordingSession m_RecordingSession;
-        public RecordingSession RecordingSession { set { m_RecordingSession = value; } }
+        public RecordingSession RecordingSession 
+        { 
+            set 
+            {
+                if ( value != null
+                    && ( m_RecordingSession == null || m_RecordingSession != value))
+                {
+                    m_RecordingSession = value;
+                    m_RecordingSession.FinishingPhrase +=new Obi.Events.Audio.Recorder.FinishingPhraseHandler(m_RecordingSession_FinishingPhrase);
+                }
+            } 
+        }
 
         public ContentView contentView
         {
@@ -597,7 +608,12 @@ int channel = 0;
            
             g.DrawLine(pen, pixel, 0, pixel, Height);
             g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height - 15);
-        }               
+        }
+
+        private void m_RecordingSession_FinishingPhrase(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
+        {
+            double phraseMarkTime = e.Time;
+        }
     }
 }
 
