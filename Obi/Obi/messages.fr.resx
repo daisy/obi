@@ -642,7 +642,7 @@ Texte de l'erreur: {1}</value>
     <comment>Metadata</comment>
   </data>
   <data name="about_file_name" xml:space="preserve">
-    <value>about_en.html</value>
+    <value>about_fr.html</value>
     <comment>Location of the HTML document for the "About" dialog</comment>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
@@ -1759,7 +1759,7 @@ Texte de l'erreur: {1}</value>
     <value>Page suivante dans la liste de lecture</value>
   </data>
   <data name="KeyS_TransportBarNextPhrase" xml:space="preserve">
-    <value>>Phrase suivante dans la liste de lecture</value>
+    <value>&gt;Phrase suivante dans la liste de lecture</value>
   </data>
   <data name="KeyS_TransportBarNextSection" xml:space="preserve">
     <value>Section suivante dans la liste de lecture</value>
