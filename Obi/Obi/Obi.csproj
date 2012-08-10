@@ -1,8 +1,8 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1553F3D3-A820-400E-9B98-BCCA970E1D58}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -30,11 +30,6 @@
     <ApplicationVersion>0.7.2.%2a</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <StartupObject>Obi.Program</StartupObject>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -143,12 +138,6 @@
     </Compile>
     <Compile Include="Dialogs\AssignSpecialNodeMark.Designer.cs">
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\AudioSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\AudioSettings.Designer.cs">
-      <DependentUpon>AudioSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ExtendedMessageToAssociate.cs">
       <SubType>Form</SubType>
@@ -482,7 +471,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="EmptyProject.obi">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -748,8 +736,6 @@
     <Content Include="about_hi.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Dialogs\media-playback-pause.png" />
-    <Content Include="Dialogs\media-playback-start.png" />
     <Content Include="FineNavigationOn.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -781,10 +767,6 @@
     <EmbeddedResource Include="Dialogs\AssignSpecialNodeMark.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\AudioSettings.resx">
-      <DependentUpon>AudioSettings.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExtendedMessageToAssociate.resx">
       <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
@@ -832,6 +814,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ContentViewLabel.resx">
       <DependentUpon>ContentViewLabel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\EditableLabel.fr.resx">
+      <DependentUpon>EditableLabel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\VerticalScrollToolStripContainer.resx">
