@@ -228,7 +228,7 @@ namespace Obi
             int last = mPhraseMarks.Count - 1;
             double length = mPhraseMarks[last] - (last == 0 ? 0.0 : mPhraseMarks[last - 1]);
             length = length - (length % 100);
-            PhraseEventArgs e = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length);
+            PhraseEventArgs e = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length, timeOfAssetMilliseconds);
             if (FinishingPhrase != null) FinishingPhrase(this, e);
             return e;
         }
@@ -244,7 +244,7 @@ namespace Obi
             double time = timeOfAssetMilliseconds - (mPhraseMarks.Count > 0 ? mPhraseMarks[mPhraseMarks.Count - 1] : 0.0);
             time = time - (time % 100);
             if (ContinuingPhrase != null)
-                ContinuingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, time));
+                ContinuingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, time, timeOfAssetMilliseconds));
         }
 
         private byte[] m_MemStreamArray;
@@ -300,7 +300,7 @@ namespace Obi
                                 int last = mPhraseMarks.Count - 1;
                                 double length = mPhraseMarks[last] - (last == 0 ? 0.0 : mPhraseMarks[last - 1]);
                                 length = length - (length % 100);
-                                PhraseEventArgs eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length);
+                                PhraseEventArgs eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length, timeInSession);
 
                                 if (FinishingPhrase != null) FinishingPhrase(this, eArg);
                                 //if (StartingPhrase != null)
