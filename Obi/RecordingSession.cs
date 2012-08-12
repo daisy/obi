@@ -287,11 +287,12 @@ namespace Obi
                     if (timingList != null)
                     {
                         Console.WriteLine("timingList " + timingList.Count);
+                        double overlapTime = mRecorder.RecordingPCMFormat.ConvertBytesToTime(overlapLength);
                         foreach (double d in timingList)
                         {
-                            if (d >= overlapLength)
+                            if (d >= overlapTime)
                             {
-                                double phraseTime = d - mRecorder.RecordingPCMFormat.ConvertBytesToTime(overlapLength);
+                                double phraseTime = d - overlapTime;
                                 double timeInSession = (mRecorder.RecordingPCMFormat.ConvertBytesToTime(m_PhDetectorBytesRecorded - msLentth) + d) / AudioLib.AudioLibPCMFormat.TIME_UNIT;
                                 Console.WriteLine("phrase time: " + phraseTime + " : " + timeInSession);
                                 //if (PhraseCreatedEvent != null) PhraseCreatedEvent(this, new Audio.PhraseDetectedEventArgs(timeInSession));
@@ -303,8 +304,8 @@ namespace Obi
                                 PhraseEventArgs eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length, timeInSession);
 
                                 if (FinishingPhrase != null) FinishingPhrase(this, eArg);
-                                //if (StartingPhrase != null)
-                                    //StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
+                                if (StartingPhrase != null)
+                                    StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
 
                             }
                         }

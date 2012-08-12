@@ -1709,52 +1709,62 @@ namespace Obi.ProjectView
 
         }
 
+        private delegate void RecordingPhraseStarted_Delegate(Obi.Events.Audio.Recorder.PhraseEventArgs e,
+            urakawa.command.CompositeCommand command, EmptyNode emptyNode);
+
         // Start recording a phrase, possibly replacing an empty node (only for the first one.)
         private void RecordingPhraseStarted(Obi.Events.Audio.Recorder.PhraseEventArgs e,
             urakawa.command.CompositeCommand command, EmptyNode emptyNode)
         {
-            // Suspend presentation change handler so that we don't stop when new nodes are added.
-            mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-            mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
-            PhraseNode phrase = mView.Presentation.CreatePhraseNode(e.Audio);
-            mRecordingPhrase = phrase;
-            Commands.Node.AddNode add = new Commands.Node.AddNode(mView, phrase, mRecordingSection,
-                mRecordingInitPhraseIndex + e.PhraseIndex);
-            add.SetDescriptions(command.ShortDescription);
-
-            // transfer properties if 2 point split is being performed
-            if (m_IsAfterRecordingSplitTransferEnabled && m_TempNodeForPropertiesTransfer != null )
-                {
-                m_IsAfterRecordingSplitTransferEnabled = false;
-                 CopyPropertiesToRecordingNode ( (EmptyNode) phrase );
-                                }
-
-            //add.UpdateSelection = false;
-            if (e.PhraseIndex == 0)
+            if (InvokeRequired)
             {
-                if (emptyNode != null && e.PhraseIndex == 0)
-                {
-                    phrase.CopyAttributes(emptyNode);
-                    phrase.Used = emptyNode.Used;
-                    Commands.UpdateSelection updateSelection = new Commands.UpdateSelection(mView,new NodeSelection (emptyNode, mView.Selection.Control));
-                    updateSelection.RefreshSelectionForUnexecute = true;
-                    command.ChildCommands.Insert(command.ChildCommands.Count, updateSelection);
-                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(mView, emptyNode));
-                    command.ChildCommands.Insert(command.ChildCommands.Count, add);
-                }
-                else
-                    command.ChildCommands.Insert(command.ChildCommands.Count, add);
-
-                mView.Presentation.UndoRedoManager.Execute(command);
+                Invoke(new RecordingPhraseStarted_Delegate(RecordingPhraseStarted), e, command, emptyNode);
             }
             else
             {
-                mView.Presentation.UndoRedoManager.Execute(add);
-            }
-                mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
+                // Suspend presentation change handler so that we don't stop when new nodes are added.
+                mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+                PhraseNode phrase = mView.Presentation.CreatePhraseNode(e.Audio);
+                mRecordingPhrase = phrase;
+                Commands.Node.AddNode add = new Commands.Node.AddNode(mView, phrase, mRecordingSection,
+                    mRecordingInitPhraseIndex + e.PhraseIndex);
+                add.SetDescriptions(command.ShortDescription);
+
+                // transfer properties if 2 point split is being performed
+                if (m_IsAfterRecordingSplitTransferEnabled && m_TempNodeForPropertiesTransfer != null)
+                {
+                    m_IsAfterRecordingSplitTransferEnabled = false;
+                    CopyPropertiesToRecordingNode((EmptyNode)phrase);
+                }
+
+                //add.UpdateSelection = false;
+                if (e.PhraseIndex == 0)
+                {
+                    if (emptyNode != null && e.PhraseIndex == 0)
+                    {
+                        phrase.CopyAttributes(emptyNode);
+                        phrase.Used = emptyNode.Used;
+                        Commands.UpdateSelection updateSelection = new Commands.UpdateSelection(mView, new NodeSelection(emptyNode, mView.Selection.Control));
+                        updateSelection.RefreshSelectionForUnexecute = true;
+                        command.ChildCommands.Insert(command.ChildCommands.Count, updateSelection);
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(mView, emptyNode));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, add);
+                    }
+                    else
+                        command.ChildCommands.Insert(command.ChildCommands.Count, add);
+
+                    mView.Presentation.UndoRedoManager.Execute(command);
+                }
+                else
+                {
+                    mView.Presentation.UndoRedoManager.Execute(add);
+                }
+                mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
                 mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-            if (mRecordingPhrase != null &&  mView.Selection != null && mView.Selection.Control.GetType() == typeof(ContentView) && !this.ContainsFocus)
-                mView.Selection = new NodeSelection(mRecordingPhrase, mView.Selection.Control);
+                if (mRecordingPhrase != null && mView.Selection != null && mView.Selection.Control.GetType() == typeof(ContentView) && !this.ContainsFocus)
+                    mView.Selection = new NodeSelection(mRecordingPhrase, mView.Selection.Control);
+            }
         }
 
 
