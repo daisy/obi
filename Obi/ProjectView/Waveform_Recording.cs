@@ -53,7 +53,6 @@ namespace Obi.ProjectView
         private int m_TotalPixelCount = 0;
         private int m_Pass = 0;
         private double m_InitialStaticTime = 0;
-        List<double> listOfTime = new List<double>();
         
         public Waveform_Recording()
         {
@@ -247,7 +246,6 @@ namespace Obi.ProjectView
                 }
            
                 m_Counter = 0;
-                Console.WriteLine("LAT VAL IN DICT " + m_X);
             }
 
             if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
@@ -265,11 +263,6 @@ namespace Obi.ProjectView
              listOfCurrentMinChannel2.Add((int)minChannel2);
              listOfCurrentMaxChannel2.Add((int)maxChannel2);
              m_TotalPixelCount++;
-             for (int i = 0; i < listOfTime.Count; i++)
-             {
-                 g.DrawLine(pen, ConvertTimeToPixels(listOfTime[i]) + recordingTimeCursor, 0, ConvertTimeToPixels(listOfTime[i]) + recordingTimeCursor, Height);
-                 g.DrawString("Phrase", myFont, Brushes.Black, ConvertTimeToPixels(listOfTime[i]) + recordingTimeCursor, 0);
-              }
          }
 
         private void ResetLists()
@@ -338,7 +331,7 @@ namespace Obi.ProjectView
             {
                 timer1.Start();
                 if(m_ContentView != null)
-                m_X = recordingTimeCursor;
+                m_X = recordingTimeCursor + m_OffsetLocation;
                 Location = new Point(-m_OffsetLocation, Location.Y);
                 m_MainDictionary.Clear();
             }
@@ -563,14 +556,14 @@ int channel = 0;
             int lastItemInList = (int)(m_ProjectView.TransportBar.phDetectorPhraseTimingList[m_ProjectView.TransportBar.phDetectorPhraseTimingList.Count - 1] / 100);
             int location = lastItemInList + recordingTimeCursor;
 
-            if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring)
-            CreatePageorPhrase(location);
+         //   if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring)
+           // CreatePageorPhrase(location);
         }
 
         private void CreatePageorPhrase(int xLocation)
         {
             string text = "";
-            if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
+            if (m_ProjectView.TransportBar.RecordingPhrase != null && m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
                 text = "Page" + m_ProjectView.TransportBar.RecordingPhrase.PageNumber.ToString();
            // else if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Plain)
              //   text = "Phrase";
@@ -618,8 +611,7 @@ int channel = 0;
 
         private void m_RecordingSession_FinishingPhrase(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
-            double phraseMarkTime = e.Time;
-
+            double phraseMarkTime = e.TimeFromBeginning;
             int initialPos = m_StaticRecordingLocation;
             int pixel = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
@@ -635,10 +627,9 @@ int channel = 0;
                 pixel = ConvertTimeToPixels(phraseMarkTime) + initialPos;
             else
                 pixel = ConvertTimeToPixels(phraseMarkTime) + initialPos;
-         
-            listOfTime.Add(phraseMarkTime);
+
             g.DrawLine(pen, pixel, 0, pixel, Height);
-            g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height - 15);
+            g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height - 15);            
         }
     }
 }
