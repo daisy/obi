@@ -34,16 +34,24 @@ namespace Obi.Events.Audio.Recorder
         private ManagedAudioMedia mAudio;
         private int mPhraseIndex;
         private double mTime;
+        private double m_TimeFromBeginning  = -1;
 
         public PhraseEventArgs(ManagedAudioMedia audio, int index, double time)
         {
             mAudio = audio;
             mPhraseIndex = index;
             mTime = time;
+            
         }
 
+        public PhraseEventArgs(ManagedAudioMedia audio, int index, double time, double timeFromBeginning)
+            : this(audio, index, time)
+        {
+            m_TimeFromBeginning = timeFromBeginning;
+        }
         public ManagedAudioMedia Audio { get { return mAudio; } }
         public int PhraseIndex { get { return mPhraseIndex; } }
         public double Time { get { return mTime; } }
+        public double TimeFromBeginning { get { return m_TimeFromBeginning; } }
     }
 }
