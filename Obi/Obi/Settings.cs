@@ -71,6 +71,9 @@ namespace Obi
         public bool LeftAlignPhrasesInContentView;
         public bool OptimizeMemory;
         public string Font;
+        public decimal DefaultGap;
+        public decimal DefaultLeadingSilence;
+        public decimal DefaultThreshold;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -129,6 +132,9 @@ namespace Obi
             settings.LeftAlignPhrasesInContentView = true;
             settings.OptimizeMemory = true;
             settings.Font = "Times New Roman";
+            settings.DefaultGap = 300;
+            settings.DefaultLeadingSilence = 50;
+            settings.DefaultThreshold = 280;
         }
 
         /// <summary>

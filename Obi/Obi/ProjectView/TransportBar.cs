@@ -1655,7 +1655,7 @@ namespace Obi.ProjectView
             InitRecordingSectionAndPhraseIndex ( node, mView.ObiForm.Settings.AllowOverwrite, command );
             if (mView.Selection == null && node is SectionNode) mView.SelectFromTransportBar(node, null);// if nothing is selected, new section is created, select it in content view
             // Set events
-            mRecordingSession = new RecordingSession ( mView.Presentation, mRecorder );
+            mRecordingSession = new RecordingSession ( mView.Presentation, mRecorder, mView.ObiForm.Settings );
             mRecordingSession.StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler (
                 delegate ( object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e )
                     {
@@ -1741,83 +1741,93 @@ namespace Obi.ProjectView
 
         }
 
+        private delegate void RecordingPhraseStarted_Delegate(Obi.Events.Audio.Recorder.PhraseEventArgs e,
+            urakawa.command.CompositeCommand command, EmptyNode emptyNode);
+
         // Start recording a phrase, possibly replacing an empty node (only for the first one.)
         private void RecordingPhraseStarted(Obi.Events.Audio.Recorder.PhraseEventArgs e,
             urakawa.command.CompositeCommand command, EmptyNode emptyNode)
         {
-            
-            // Suspend presentation change handler so that we don't stop when new nodes are added.
-            mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-            mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
-            PhraseNode phrase = mView.Presentation.CreatePhraseNode(e.Audio);
-            mRecordingPhrase = phrase;
-            Commands.Node.AddNode add = new Commands.Node.AddNode(mView, phrase, mRecordingSection,
-                mRecordingInitPhraseIndex + e.PhraseIndex);
-            add.SetDescriptions(command.ShortDescription);
-
-            // transfer properties if 2 point split is being performed
-            if (m_IsAfterRecordingSplitTransferEnabled && m_TempNodeForPropertiesTransfer != null )
-                {
-                m_IsAfterRecordingSplitTransferEnabled = false;
-                 CopyPropertiesToRecordingNode ( (EmptyNode) phrase );
-                                }
-
-                                
-            //add.UpdateSelection = false;
-            if (e.PhraseIndex == 0)
+            if (InvokeRequired)
             {
-                if (emptyNode != null && e.PhraseIndex == 0)
-                {
-                    phrase.CopyAttributes(emptyNode);
-                    phrase.Used = emptyNode.Used;
-                    Commands.UpdateSelection updateSelection = new Commands.UpdateSelection(mView, new NodeSelection(emptyNode, mView.Selection.Control));
-                    updateSelection.RefreshSelectionForUnexecute = true;
-                    command.ChildCommands.Insert(command.ChildCommands.Count, updateSelection);
-                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(mView, emptyNode));
-                    command.ChildCommands.Insert(command.ChildCommands.Count, add);
-                }
-                else
-                {
-                    command.ChildCommands.Insert(command.ChildCommands.Count, add);
-                }
-
-
-                mView.Presentation.UndoRedoManager.Execute(command);
+                Invoke(new RecordingPhraseStarted_Delegate(RecordingPhraseStarted), e, command, emptyNode);
             }
             else
             {
-                // Check if the next phrase is empty page. if it is then record into it instead of creating new phrase
-                EmptyNode followingEmptyPage = null;
-                if (e.PhraseIndex > 0 && mRecordingSection.PhraseChildCount > mRecordingInitPhraseIndex + e.PhraseIndex)
+
+                // Suspend presentation change handler so that we don't stop when new nodes are added.
+                mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+                PhraseNode phrase = mView.Presentation.CreatePhraseNode(e.Audio);
+                mRecordingPhrase = phrase;
+                Commands.Node.AddNode add = new Commands.Node.AddNode(mView, phrase, mRecordingSection,
+                    mRecordingInitPhraseIndex + e.PhraseIndex);
+                add.SetDescriptions(command.ShortDescription);
+
+                // transfer properties if 2 point split is being performed
+                if (m_IsAfterRecordingSplitTransferEnabled && m_TempNodeForPropertiesTransfer != null)
                 {
-                    
-                    ObiNode followingObiNode = mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex);
-                    if (followingObiNode != null && !(followingObiNode is PhraseNode)
-                        && ((EmptyNode)followingObiNode).Role_ == EmptyNode.Role.Page)
-                    {
-                        
-                        followingEmptyPage = (EmptyNode)followingObiNode;
-                    }
+                    m_IsAfterRecordingSplitTransferEnabled = false;
+                    CopyPropertiesToRecordingNode((EmptyNode)phrase);
                 }
 
-                if (followingEmptyPage != null)
+
+                //add.UpdateSelection = false;
+                if (e.PhraseIndex == 0)
                 {
-                    urakawa.command.CompositeCommand recordInNextPageCommand = mView.Presentation.CreateCompositeCommand(Localizer.Message("Recording_RecordInNextExistingEmptyPage"));
-                    phrase.CopyAttributes(followingEmptyPage);
-                    recordInNextPageCommand.ChildCommands.Insert(recordInNextPageCommand.ChildCommands.Count, new Commands.Node.Delete(mView, followingEmptyPage));
-                    recordInNextPageCommand.ChildCommands.Insert(recordInNextPageCommand.ChildCommands.Count, add);
-                    mView.Presentation.UndoRedoManager.Execute(recordInNextPageCommand); 
-                    
+                    if (emptyNode != null && e.PhraseIndex == 0)
+                    {
+                        phrase.CopyAttributes(emptyNode);
+                        phrase.Used = emptyNode.Used;
+                        Commands.UpdateSelection updateSelection = new Commands.UpdateSelection(mView, new NodeSelection(emptyNode, mView.Selection.Control));
+                        updateSelection.RefreshSelectionForUnexecute = true;
+                        command.ChildCommands.Insert(command.ChildCommands.Count, updateSelection);
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(mView, emptyNode));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, add);
+                    }
+                    else
+                    {
+                        command.ChildCommands.Insert(command.ChildCommands.Count, add);
+                    }
+
+
+                    mView.Presentation.UndoRedoManager.Execute(command);
                 }
                 else
                 {
-                    mView.Presentation.UndoRedoManager.Execute(add);
+                    // Check if the next phrase is empty page. if it is then record into it instead of creating new phrase
+                    EmptyNode followingEmptyPage = null;
+                    if (e.PhraseIndex > 0 && mRecordingSection.PhraseChildCount > mRecordingInitPhraseIndex + e.PhraseIndex)
+                    {
+
+                        ObiNode followingObiNode = mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex);
+                        if (followingObiNode != null && !(followingObiNode is PhraseNode)
+                            && ((EmptyNode)followingObiNode).Role_ == EmptyNode.Role.Page)
+                        {
+
+                            followingEmptyPage = (EmptyNode)followingObiNode;
+                        }
+                    }
+
+                    if (followingEmptyPage != null)
+                    {
+                        urakawa.command.CompositeCommand recordInNextPageCommand = mView.Presentation.CreateCompositeCommand(Localizer.Message("Recording_RecordInNextExistingEmptyPage"));
+                        phrase.CopyAttributes(followingEmptyPage);
+                        recordInNextPageCommand.ChildCommands.Insert(recordInNextPageCommand.ChildCommands.Count, new Commands.Node.Delete(mView, followingEmptyPage));
+                        recordInNextPageCommand.ChildCommands.Insert(recordInNextPageCommand.ChildCommands.Count, add);
+                        mView.Presentation.UndoRedoManager.Execute(recordInNextPageCommand);
+
+                    }
+                    else
+                    {
+                        mView.Presentation.UndoRedoManager.Execute(add);
+                    }
                 }
-            }
-                mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
+                mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
                 mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-            if (mRecordingPhrase != null &&  mView.Selection != null && mView.Selection.Control.GetType() == typeof(ContentView) && !this.ContainsFocus)
-                mView.Selection = new NodeSelection(mRecordingPhrase, mView.Selection.Control);
+                if (mRecordingPhrase != null && mView.Selection != null && mView.Selection.Control.GetType() == typeof(ContentView) && !this.ContainsFocus)
+                    mView.Selection = new NodeSelection(mRecordingPhrase, mView.Selection.Control);
+            }
         }
 
 
