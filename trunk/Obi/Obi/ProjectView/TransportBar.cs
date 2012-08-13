@@ -610,6 +610,7 @@ namespace Obi.ProjectView
         /// </summary>
         public AudioLib.VuMeter VuMeter { get { return mVuMeter; } }
 
+        public RecordingSession RecordingSession { get { return mRecordingSession; } }
 
         // Initialize audio (player, recorder, VU meter.)
         private void InitAudio()
