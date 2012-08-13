@@ -69,6 +69,7 @@ namespace Obi.ProjectView
 
             this.contentViewLabel1.contentView = this;
             verticalScrollToolStripContainer1.contentView = this;
+            waveform_recording_control.contentView = this;    //@Onthefly
             mStripsPanel.ControlRemoved += new ControlEventHandler ( mStripsPanel_ControlRemoved );
             this.MouseWheel += new MouseEventHandler ( ContentView_MouseWheel );//@singleSection
             mStripsPanel.LocationChanged += new EventHandler ( mStripsPanel_LocationChanged );//@singleSection
@@ -336,6 +337,12 @@ namespace Obi.ProjectView
             m_PreviousSelectionForScroll = null;
             mStripsPanel.Location = new Point(0,0 );
 
+            if (mProjectView != null)
+            {
+                this.waveform_recording_control.projectView = mProjectView;  //@Onthefly
+                this.waveform_recording_control.VUMeter = mProjectView.TransportBar.VuMeter;  //@Onthefly
+            }
+
             ClearWaveformRenderQueue ();
             SuspendLayout_All ();
             ObiNode bookMarkedNode = ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
@@ -385,6 +392,7 @@ namespace Obi.ProjectView
                 new EventHandler<urakawa.events.undo.DoneEventArgs> ( ContentView_commandDone );
             mProjectView.Presentation.UndoRedoManager.CommandReDone+= new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ContentView_commandReDone);
             mProjectView.Presentation.UndoRedoManager.CommandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ContentView_commandUndone);
+            mProjectView.TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(Recorder_StateChanged);
             EventsAreEnabled = true;
             UpdateSize ();
             mVScrollBar.Value = 0;
@@ -1212,9 +1220,12 @@ namespace Obi.ProjectView
                                     }
                 this.contentViewLabel1.contentView = this;
                 this.contentViewLabel1.zoomFactor = ZoomFactor;
+                this.waveform_recording_control.contentView = this;   //@Onthefly
+                this.waveform_recording_control.zoomFactor = ZoomFactor;   //@Onthefly
                 mHScrollBar.Location = new Point ( mHScrollBar.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height );
                 mVScrollBar.Height = mVScrollBar.Location.Y + this.Height - contentViewLabel1.Height - mHScrollBar.Height;
                 mCornerPanel.Location = new Point ( mCornerPanel.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height );
+                waveform_recording_control.Location = new Point(waveform_recording_control.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height - waveform_recording_control.Height);  //@Onthefly
                 // ensure visibility of selected node
                 if (mProjectView != null &&  mProjectView.Selection != null && (mProjectView.Selection is StripIndexSelection || mProjectView.Selection.Node is EmptyNode))
                     {
@@ -2690,6 +2701,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             return false;
         }
 
+
+
         //@singleSection : Scroll to top
         public bool ScrollStripsPanel_Top ()
         {
@@ -2959,6 +2972,19 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
             }
 
+        private void Recorder_StateChanged(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Recording || mProjectView.TransportBar.CurrentState == TransportBar.State.Monitoring)
+            {
+                waveform_recording_control.Visible = true;    //@Onthefly
+                waveform_recording_control.BringToFront();
+                waveform_recording_control.RecordingSession = mProjectView.TransportBar.RecordingSession;   //@Onthefly
+            }
+            else
+            {
+                waveform_recording_control.Visible = false;   //@Onthefly
+            }
+        }
 
         private int m_StripPanelPreviousWidth = 0;
         private void mStripsPanel_Resize ( object sender, EventArgs e )
@@ -3532,6 +3558,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             foreach (Control c in mStripsPanel.Controls) if (c is Strip) ((Strip)c).ColorSettings = settings;
             UpdateWaveforms ();
             contentViewLabel1.invertColor = SystemInformation.HighContrast;
+            waveform_recording_control.invertColor = SystemInformation.HighContrast;   //@Onthefly
+            waveform_recording_control.projectView = mProjectView;    //@Onthefly
             }
 
         // Update all waveforms after colors have been set
@@ -5098,6 +5126,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             this.verticalScrollToolStripContainer1.Location = new Point(this.Width - verticalScrollToolStripContainer1.Width, 0);
             this.verticalScrollToolStripContainer1.Size = new Size(verticalScrollToolStripContainer1.Width, mHScrollBar.Location.Y);
             mCornerPanel.Location = new Point(this.verticalScrollToolStripContainer1.Location.X, mHScrollBar.Location.Y);
+            this.waveform_recording_control.Size = new Size(this.Size.Width - verticalScrollToolStripContainer1.Width, Convert.ToInt32(104 * ZoomFactor));   //@Onthefly
             mCornerPanel.BringToFront();
             this.contentViewLabel1.BringToFront();
            }
@@ -5350,6 +5379,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             mProjectView.GotoSkippableNoteEnds(false);   //@AssociateNode
         }
+
+        private void waveform_recording_control_Load(object sender, EventArgs e)
+        {
+            waveform_recording_control.Width = this.Size.Width - verticalScrollToolStripContainer1.Width;   //@Onthefly
+        }  
 
         private void Context_FineNavigationMenuItem_Click(object sender, EventArgs e)
         {
