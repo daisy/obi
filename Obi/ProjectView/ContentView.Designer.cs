@@ -89,7 +89,7 @@ namespace Obi.ProjectView
             this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
-            this.waveform_recording_control = new Obi.ProjectView.Waveform_Recording();
+            this.waveform_recording_control = new Obi.ProjectView.Waveform_Recording();   //@Onthefly
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -593,6 +593,7 @@ namespace Obi.ProjectView
             // 
             // waveform_recording_control
             // 
+            //@Onthefly
             this.waveform_recording_control.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.waveform_recording_control.BackColor = System.Drawing.SystemColors.HighlightText;
@@ -630,7 +631,7 @@ namespace Obi.ProjectView
             this.ContextMenuStrip = this.mContextMenuStrip;
             this.Controls.Add(this.verticalScrollToolStripContainer1);
             this.Controls.Add(this.mCornerPanel);
-            this.Controls.Add(this.waveform_recording_control);
+            this.Controls.Add(this.waveform_recording_control);   //@Onthefly
             this.Controls.Add(this.contentViewLabel1);
             this.Controls.Add(this.mHScrollBar);
             this.Controls.Add(this.mVScrollBar);
@@ -709,6 +710,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_RemoveAssociatedNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_MoveToStartNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_MoveToEndNoteToolStripMenuItem;
-        private Waveform_Recording waveform_recording_control;
+        private Waveform_Recording waveform_recording_control;  //@Onthefly
     }
 }
