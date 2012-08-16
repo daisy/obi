@@ -615,7 +615,19 @@ int channel = 0;
             int initialPos = m_StaticRecordingLocation;
             int pixel = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
+            double currentMarkTime = 0;
+            int currentm_X;
+            int pixelGap = 0;
 
+            currentMarkTime = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+                        Time.TIME_UNIT;
+            currentm_X = m_X;
+            pixelGap = ConvertTimeToPixels(phraseMarkTime - currentMarkTime);
+
+            if (phraseMarkTime < currentMarkTime)
+                pixel = currentm_X - pixelGap;
+            else
+                pixel = currentm_X + pixelGap;
             /*if (m_Pass > 0)
                 time = m_InitialStaticTime + ConvertPixelsToTime(e.X - initialPos);
             else
@@ -623,11 +635,11 @@ int channel = 0;
             */
           //  timeTemp = time - m_InitialStaticTime;
 
-            if (m_Pass > 0)
+         /*   if (m_Pass > 0)
                 pixel = ConvertTimeToPixels(phraseMarkTime - m_InitialStaticTime) + initialPos;
             else
                 pixel = ConvertTimeToPixels(phraseMarkTime) + initialPos;
-
+            */
             Console.WriteLine("Pixel  " + pixel + "   " + m_X);
             g.DrawLine(pen, pixel, 0, pixel, Height);
             g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height - 15);            
