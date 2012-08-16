@@ -624,10 +624,11 @@ int channel = 0;
           //  timeTemp = time - m_InitialStaticTime;
 
             if (m_Pass > 0)
-                pixel = ConvertTimeToPixels(phraseMarkTime) + initialPos;
+                pixel = ConvertTimeToPixels(phraseMarkTime - m_InitialStaticTime) + initialPos;
             else
                 pixel = ConvertTimeToPixels(phraseMarkTime) + initialPos;
 
+            Console.WriteLine("Pixel  " + pixel + "   " + m_X);
             g.DrawLine(pen, pixel, 0, pixel, Height);
             g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height - 15);            
         }
