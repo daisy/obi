@@ -772,9 +772,21 @@
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\About.fr.resx">
+      <DependentUpon>About.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AssignSpecialNodeMark.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditRoles.fr.resx">
+      <DependentUpon>EditRoles.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportDirectory.fr.resx">
+      <DependentUpon>ExportDirectory.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExtendedMessageToAssociate.resx">
       <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
@@ -793,13 +805,41 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="good.wav" />
+    <EmbeddedResource Include="Dialogs\Help.fr.resx">
+      <DependentUpon>Help.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ImportFileSplitSize.fr.resx">
+      <DependentUpon>ImportFileSplitSize.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MultipleOptionDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewProject.fr.resx">
+      <DependentUpon>NewProject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PhraseProperties.fr.resx">
+      <DependentUpon>PhraseProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Preferences.fr.resx">
+      <DependentUpon>Preferences.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProjectProperties.fr.resx">
+      <DependentUpon>ProjectProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ReportDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ReportDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SectionProperties.fr.resx">
+      <DependentUpon>SectionProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectMergeSectionRange.resx">
       <SubType>Designer</SubType>
@@ -808,6 +848,18 @@
     <EmbeddedResource Include="Dialogs\SelectPhraseDetectionSections.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SentenceDetection.fr.resx">
+      <DependentUpon>SentenceDetection.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SetPageNumber.fr.resx">
+      <DependentUpon>SetPageNumber.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ShowSource.fr.resx">
+      <DependentUpon>ShowSource.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SpecialPhraseList.resx">
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
