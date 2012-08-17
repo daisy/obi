@@ -136,7 +136,7 @@
     <value>4</value>
   </data>
   <data name="m_lblDuration.Text" xml:space="preserve">
-    <value>Total &amp;durée:</value>
+    <value>Total &amp;dur&amp;e:</value>
   </data>
   <data name="&gt;&gt;m_lblDuration.Name" xml:space="preserve">
     <value>m_lblDuration</value>
@@ -151,7 +151,7 @@
     <value>11</value>
   </data>
   <data name="m_txtDuration.AccessibleName" xml:space="preserve">
-    <value>Total Durée:</value>
+    <value>Total Durï¿½e:</value>
   </data>
   <data name="m_txtDuration.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -505,7 +505,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Propriétés du projet</value>
+    <value>Propriï¿½tï¿½s du projet</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ProjectProperties</value>
