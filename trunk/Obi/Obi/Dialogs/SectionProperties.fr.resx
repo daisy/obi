@@ -262,7 +262,7 @@
     <value>6</value>
   </data>
   <data name="m_lblTimeLength.Text" xml:space="preserve">
-    <value>&amp;Durée:</value>
+    <value>&amp;Dur&amp;e:</value>
   </data>
   <data name="&gt;&gt;m_lblTimeLength.Name" xml:space="preserve">
     <value>m_lblTimeLength</value>
@@ -277,7 +277,7 @@
     <value>7</value>
   </data>
   <data name="m_txtTimeLength.AccessibleName" xml:space="preserve">
-    <value>Durée:</value>
+    <value>Durï¿½e:</value>
   </data>
   <data name="m_txtTimeLength.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -463,7 +463,7 @@
     <value>10</value>
   </data>
   <data name="m_chkUsed.Text" xml:space="preserve">
-    <value>&amp;Utilisé</value>
+    <value>&amp;Utilisï¿½</value>
   </data>
   <data name="&gt;&gt;m_chkUsed.Name" xml:space="preserve">
     <value>m_chkUsed</value>
@@ -550,7 +550,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Propriétés de la section</value>
+    <value>Propriï¿½tï¿½s de la section</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SectionProperties</value>

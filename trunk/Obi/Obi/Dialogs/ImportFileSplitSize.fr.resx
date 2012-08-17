@@ -253,7 +253,7 @@
     <value>1</value>
   </data>
   <data name="mSplitCheckBox.Text" xml:space="preserve">
-    <value>&amp;Fractionner les phrases à l'importation</value>
+    <value>&amp;Fractionner les phrases &amp; l'importation</value>
   </data>
   <data name="&gt;&gt;mSplitCheckBox.Name" xml:space="preserve">
     <value>mSplitCheckBox</value>
@@ -280,7 +280,7 @@
     <value>0</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
-    <value>Créer une section pour chaque fichier</value>
+    <value>Crï¿½er une section pour chaque fichier</value>
   </data>
   <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Name" xml:space="preserve">
     <value>mCreateAudioFilePerSectionCheckBox</value>
@@ -337,7 +337,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Paramètres d'importation audio</value>
+    <value>Paramï¿½tres d'importation audio</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ImportFileSplitSize</value>

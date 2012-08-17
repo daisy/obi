@@ -358,7 +358,7 @@
     <value>2</value>
   </data>
   <data name="mAutoTitleCheckBox.Text" xml:space="preserve">
-    <value>Créer automatiquement un titre de &amp;section avec ce titre</value>
+    <value>Cr&amp;er automatiquement un titre de &amp;section avec ce titre</value>
   </data>
   <data name="&gt;&gt;mAutoTitleCheckBox.Name" xml:space="preserve">
     <value>mAutoTitleCheckBox</value>
@@ -451,7 +451,7 @@
     <value>5</value>
   </data>
   <data name="mGenerateIDButton.Text" xml:space="preserve">
-    <value>&amp;Générer</value>
+    <value>&amp;Gï¿½nï¿½rer</value>
   </data>
   <data name="&gt;&gt;mGenerateIDButton.Name" xml:space="preserve">
     <value>mGenerateIDButton</value>
@@ -740,7 +740,7 @@
     <value>445, 236</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Créer un nouveau projet</value>
+    <value>Crï¿½er un nouveau projet</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>NewProject</value>

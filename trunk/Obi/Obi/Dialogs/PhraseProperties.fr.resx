@@ -259,7 +259,7 @@
     <value>8</value>
   </data>
   <data name="m_lblPhraseRole.Text" xml:space="preserve">
-    <value>&amp;Rôle de la phrase:</value>
+    <value>&amp;R&amp;le de la phrase:</value>
   </data>
   <data name="&gt;&gt;m_lblPhraseRole.Name" xml:space="preserve">
     <value>m_lblPhraseRole</value>
@@ -274,7 +274,7 @@
     <value>14</value>
   </data>
   <data name="m_comboPhraseRole.AccessibleName" xml:space="preserve">
-    <value>Rôle de la phrase:</value>
+    <value>Rï¿½le de la phrase:</value>
   </data>
   <data name="m_comboPhraseRole.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -331,7 +331,7 @@
     <value>10</value>
   </data>
   <data name="m_lblCustomClassName.Text" xml:space="preserve">
-    <value>nom de &amp;catégorie personnalisée:</value>
+    <value>nom de &amp;catï¿½gorie personnalisï¿½e:</value>
   </data>
   <data name="&gt;&gt;m_lblCustomClassName.Name" xml:space="preserve">
     <value>m_lblCustomClassName</value>
@@ -367,7 +367,7 @@
     <value>13</value>
   </data>
   <data name="m_chkUsed.Text" xml:space="preserve">
-    <value>&amp;Utilisé</value>
+    <value>&amp;Utilisï¿½</value>
   </data>
   <data name="&gt;&gt;m_chkUsed.Name" xml:space="preserve">
     <value>m_chkUsed</value>
@@ -403,7 +403,7 @@
     <value>14</value>
   </data>
   <data name="m_chkToDo.Text" xml:space="preserve">
-    <value>À &amp;faire</value>
+    <value>ï¿½ &amp;faire</value>
   </data>
   <data name="&gt;&gt;m_chkToDo.Name" xml:space="preserve">
     <value>m_chkToDo</value>
@@ -502,7 +502,7 @@
     <value>6</value>
   </data>
   <data name="m_lblTimeLength.Text" xml:space="preserve">
-    <value>&amp;Durée:</value>
+    <value>&amp;Durï¿½e:</value>
   </data>
   <data name="&gt;&gt;m_lblTimeLength.Name" xml:space="preserve">
     <value>m_lblTimeLength</value>
@@ -517,7 +517,7 @@
     <value>7</value>
   </data>
   <data name="m_txtTimeLength.AccessibleName" xml:space="preserve">
-    <value>Durée:</value>
+    <value>Durï¿½e:</value>
   </data>
   <data name="m_txtTimeLength.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -547,7 +547,7 @@
     <value>6</value>
   </data>
   <data name="m_comboCustomClassName.AccessibleName" xml:space="preserve">
-    <value>Nom de classe personnalisée:</value>
+    <value>Nom de classe personnalisï¿½e:</value>
   </data>
   <data name="m_comboCustomClassName.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -617,7 +617,7 @@
     <value>sections parentes:</value>
   </data>
   <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Haut, Bas, Gauche, Droit</value>
+    <value>Top , Bottom , Left , Right </value>
   </data>
   <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
     <value>16</value>
@@ -659,7 +659,7 @@
     <value>10</value>
   </data>
   <data name="m_lblPageNumberDetails.Text" xml:space="preserve">
-    <value>Précisions sur le no de page:</value>
+    <value>Prï¿½cisions sur le no de page:</value>
   </data>
   <data name="m_lblPageNumberDetails.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -677,7 +677,7 @@
     <value>3</value>
   </data>
   <data name="m_txtPageNumberDetails.AccessibleName" xml:space="preserve">
-    <value>Détails sur le numéro de page:</value>
+    <value>Dï¿½tails sur le numï¿½ro de page:</value>
   </data>
   <data name="m_txtPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
     <value>149, 299</value>
@@ -704,7 +704,7 @@
     <value>2</value>
   </data>
   <data name="m_chkChangePageNumber.AccessibleName" xml:space="preserve">
-    <value>Changer le numéro de page</value>
+    <value>Changer le numï¿½ro de page</value>
   </data>
   <data name="m_chkChangePageNumber.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -749,7 +749,7 @@
     <value>17</value>
   </data>
   <data name="m_lbl_ReferredNote.Text" xml:space="preserve">
-    <value>Note visée:</value>
+    <value>Note visï¿½e:</value>
   </data>
   <data name="m_lbl_ReferredNote.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -782,7 +782,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Propriétés de la phrase</value>
+    <value>Propriï¿½tï¿½s de la phrase</value>
   </data>
   <data name="&gt;&gt;backgroundWorker1.Name" xml:space="preserve">
     <value>backgroundWorker1</value>

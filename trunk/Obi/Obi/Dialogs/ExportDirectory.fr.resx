@@ -292,7 +292,7 @@
     <value>3</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Text" xml:space="preserve">
-    <value>Créer &amp;un fichier audio par section jusqu'à:</value>
+    <value>Cr&amp;er &amp;un fichier audio par section jusqu'ï¿½:</value>
   </data>
   <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.Name" xml:space="preserve">
     <value>m_lblSelectLevelForAudioFiles</value>
@@ -307,7 +307,7 @@
     <value>5</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.AccessibleName" xml:space="preserve">
-    <value>Créer un fichier audio par section jusqu'à:</value>
+    <value>Crï¿½er un fichier audio par section jusqu'ï¿½:</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
     <value>239, 52</value>
