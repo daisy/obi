@@ -91,7 +91,6 @@ namespace Obi.ProjectView
             this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
-            this.waveform_recording_control = new Obi.ProjectView.Waveform_Recording();   //@Onthefly
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -610,21 +609,6 @@ namespace Obi.ProjectView
             this.verticalScrollToolStripContainer1.TabIndex = 0;
             this.verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
             // 
-            //@Onthefly
-            this.waveform_recording_control.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.waveform_recording_control.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.waveform_recording_control.contentView = null;
-            this.waveform_recording_control.Location = new System.Drawing.Point(0, 428);
-            this.waveform_recording_control.Name = "waveform_recording_control";
-            this.waveform_recording_control.projectView = null;
-            this.waveform_recording_control.Size = new System.Drawing.Size(505, 104);
-            this.waveform_recording_control.TabIndex = 5;
-            this.waveform_recording_control.Visible = false;
-            this.waveform_recording_control.VUMeter = null;
-            this.waveform_recording_control.zoomFactor = 1F;
-            this.waveform_recording_control.Load += new System.EventHandler(this.waveform_recording_control_Load);
-            // 
             // contentViewLabel1
             // 
             this.contentViewLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
@@ -652,7 +636,6 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mHScrollBar);
             this.Controls.Add(this.mVScrollBar);
             this.Controls.Add(this.mStripsPanel);
-            this.Controls.Add(this.waveform_recording_control);   //@Onthefly
             this.Name = "ContentView";
             this.Size = new System.Drawing.Size(538, 573);
             this.Click += new System.EventHandler(this.ContentView_Click);
@@ -729,6 +712,5 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_MoveToEndNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_FineNavigationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_ClearRoleFromNoteToolStripMenuItem;
-        private Waveform_Recording waveform_recording_control;  //@Onthefly
     }
 }

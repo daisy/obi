@@ -44,6 +44,7 @@ namespace Obi.ProjectView
         private Waveform m_RenderingWaveform = null;
         private EmptyNode m_BeginNote = null; //@AssociateNode
         private EmptyNode m_EndNote = null;  //@AssociateNode
+        private Waveform_Recording waveform_recording_control;
 
         /// <summary>
         /// A new strips view.
@@ -69,6 +70,12 @@ namespace Obi.ProjectView
 
             this.contentViewLabel1.contentView = this;
             verticalScrollToolStripContainer1.contentView = this;
+            waveform_recording_control = new Waveform_Recording();
+            this.Controls.Add(waveform_recording_control);
+            this.waveform_recording_control.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.waveform_recording_control.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.waveform_recording_control.projectView = mProjectView;
             waveform_recording_control.contentView = this;    //@Onthefly
             mStripsPanel.ControlRemoved += new ControlEventHandler ( mStripsPanel_ControlRemoved );
             this.MouseWheel += new MouseEventHandler ( ContentView_MouseWheel );//@singleSection
