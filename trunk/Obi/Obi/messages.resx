@@ -1985,6 +1985,9 @@ Error text: {1}</value>
   <data name="AudioTab_Limit max phrase duration to 50 minutes" xml:space="preserve">
     <value>Limit max phrase duration to 50 minutes</value>
   </data>
+  <data name="Audio_ShowLiveWaveformWhileRecording" xml:space="preserve">
+    <value>Show live waveform while recording </value>
+  </data>
   <data name="KeyboardShortcuts_TextboxAccessibleName" xml:space="preserve">
     <value>{0} Shortcut  Keys: (Press Key Combination)</value>
   </data>
