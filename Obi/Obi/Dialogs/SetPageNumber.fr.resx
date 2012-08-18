@@ -136,7 +136,7 @@
     <value>0</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Numéro de &amp;page:</value>
+    <value>Num&amp;ro de &amp;page:</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -151,7 +151,7 @@
     <value>8</value>
   </data>
   <data name="mNumberBox.AccessibleName" xml:space="preserve">
-    <value>Numéro de page</value>
+    <value>Numï¿½ro de page</value>
   </data>
   <data name="mNumberBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -265,7 +265,7 @@
     <value>6</value>
   </data>
   <data name="mRenumber.Text" xml:space="preserve">
-    <value>&amp;Renuméroter les pages suivantes</value>
+    <value>&amp;Renumï¿½roter les pages suivantes</value>
   </data>
   <data name="&gt;&gt;mRenumber.Name" xml:space="preserve">
     <value>mRenumber</value>
@@ -424,7 +424,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Définir le numéro de page</value>
+    <value>Dï¿½finir le numï¿½ro de page</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SetPageNumber</value>
