@@ -250,6 +250,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show live waveform while recording .
+        /// </summary>
+        internal static string Audio_ShowLiveWaveformWhileRecording {
+            get {
+                return ResourceManager.GetString("Audio_ShowLiveWaveformWhileRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exporting audio File....
         /// </summary>
         internal static string AudioFileExport_progress_dialog_title {
