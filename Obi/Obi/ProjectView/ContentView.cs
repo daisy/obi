@@ -75,7 +75,7 @@ namespace Obi.ProjectView
             this.waveform_recording_control.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.waveform_recording_control.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.waveform_recording_control.projectView = mProjectView;
+            
             waveform_recording_control.contentView = this;    //@Onthefly
             mStripsPanel.ControlRemoved += new ControlEventHandler ( mStripsPanel_ControlRemoved );
             this.MouseWheel += new MouseEventHandler ( ContentView_MouseWheel );//@singleSection
@@ -2981,7 +2981,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private void Recorder_StateChanged(object sender, EventArgs e)
         {
-            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Recording || mProjectView.TransportBar.CurrentState == TransportBar.State.Monitoring)
+            if (mProjectView.ObiForm.Settings.Audio_ShowLiveWaveformWhileRecording && mProjectView.TransportBar.IsRecorderActive)
             {
                 waveform_recording_control.Visible = true;    //@Onthefly
                 waveform_recording_control.BringToFront();
