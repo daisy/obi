@@ -53,6 +53,7 @@ namespace Obi.ProjectView
         private int m_TotalPixelCount = 0;
         private int m_Pass = 0;
         private double m_InitialStaticTime = 0;
+        private bool m_IsResizing = false;
         
         public Waveform_Recording()
         {
@@ -107,6 +108,8 @@ namespace Obi.ProjectView
                 {
                     m_ProjectView.TransportBar.Recorder.PcmDataBufferAvailable += new AudioRecorder.PcmDataBufferAvailableHandler(OnPcmDataBufferAvailable_Recorder);
                     m_ProjectView.ObiForm.Resize += new EventHandler(ObiForm_Resize);
+                    m_ProjectView.ObiForm.ResizeEnd += new EventHandler(ObiForm_ResizeEnd);
+                    m_ProjectView.ObiForm.ResizeBegin += new EventHandler(ObiForm_ResizeBegin);
                     m_ColorSettings = m_ProjectView.ObiForm.Settings.ColorSettings;
                     m_ColorSettingsHC = m_ProjectView.ObiForm.Settings.ColorSettingsHC;
                     this.BackColor = m_ColorSettings.WaveformBackColor;
@@ -178,6 +181,7 @@ namespace Obi.ProjectView
             difference = this.Width - m_X - m_ContentView.Width;
             if (difference == 20)
             {
+                Console.WriteLine("COME HERE ");
                 this.Location = new Point(-m_OffsetLocation, Location.Y);
                 //  listOfXLocation.Clear();
                 m_X = recordingTimeCursor + m_OffsetLocation;
@@ -404,9 +408,23 @@ int channel = 0;
 
         private void ObiForm_Resize(object sender, EventArgs e)
         {
-         //   if (m_ProjectView.ObiForm.WindowState == FormWindowState.Maximized)
+            if (m_IsResizing)
+                return;
+           
+            m_CounterWaveform = listOfCurrentMinChannel1.Count;            
+            RepaintWaveform();
+            m_IsResizing = false;
+            
+        }
+
+        private void ObiForm_ResizeBegin(object sender, EventArgs e)
+        {
+            m_IsResizing = true;
+        }
+
+        private void ObiForm_ResizeEnd(object sender, EventArgs e)
+        {
             m_CounterWaveform = listOfCurrentMinChannel1.Count;
-           // m_OffsetLocation = 
             RepaintWaveform();
         }
 
@@ -642,7 +660,8 @@ int channel = 0;
             */
             Console.WriteLine("Pixel  " + pixel + "   " + m_X);
             g.DrawLine(pen, pixel, 0, pixel, Height);
-            g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height - 15);            
+            g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height - 15);
+            Console.WriteLine("Time from beginning " + phraseMarkTime);
         }
     }
 }
