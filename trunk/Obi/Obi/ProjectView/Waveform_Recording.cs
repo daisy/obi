@@ -157,6 +157,8 @@ namespace Obi.ProjectView
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (m_ProjectView == null || m_ProjectView.TransportBar == null ||  m_ContentView == null || !m_ProjectView.TransportBar.IsRecorderActive ) return;
+
             if (m_StaticRecordingLocation == -1)
             {
                 Location = new Point(-m_OffsetLocation, Location.Y);
@@ -630,6 +632,7 @@ int channel = 0;
         private void m_RecordingSession_FinishingPhrase(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
             double phraseMarkTime = e.TimeFromBeginning;
+            Console.WriteLine("Time from beginning " + (phraseMarkTime / AudioLibPCMFormat.TIME_UNIT));
             int initialPos = m_StaticRecordingLocation;
             int pixel = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
