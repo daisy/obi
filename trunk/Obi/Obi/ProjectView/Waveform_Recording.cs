@@ -181,15 +181,15 @@ namespace Obi.ProjectView
            
             int difference = 0;
             difference = this.Width - m_X - m_ContentView.Width;
-            if (difference == 20)
+            if (this.Location.X + Width < m_ContentView.Width + 50 )
             {
-                Console.WriteLine("COME HERE ");
                 this.Location = new Point(-m_OffsetLocation, Location.Y);
                 //  listOfXLocation.Clear();
                 m_X = recordingTimeCursor + m_OffsetLocation;
                 m_StaticRecordingLocation = m_X;
                 ResetLists();
-                ResetWaveform();
+                g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), 0, 0, Width, Height);
+                ResetWaveform();               
                 m_Pass++;
             }
                     
@@ -198,12 +198,14 @@ namespace Obi.ProjectView
             
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
             {
-                if(!m_IsColorHighContrast)
-                g.DrawLine(pen_ChannelMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                        new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                if (!m_IsColorHighContrast)
+                    g.DrawLine(pen_ChannelMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
                 else
-                g.DrawLine(pen_HighContrastMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                    new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));                
+                {
+                    g.DrawLine(pen_HighContrastMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                } 
             }
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
             {
@@ -212,14 +214,15 @@ namespace Obi.ProjectView
                     g.DrawLine(pen_Channel1, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
                         new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
                     g.DrawLine(pen_Channel2, new Point(m_X, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                           new Point(m_X, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        new Point(m_X, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
                 }
                 else
                 {
                     g.DrawLine(pen_HighContrastChannel1, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                        new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                       new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
                     g.DrawLine(pen_HighContrastChannel2, new Point(m_X, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                           new Point(m_X, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                       new Point(m_X, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                   
                 }
             }
             
@@ -313,8 +316,7 @@ namespace Obi.ProjectView
                     calculatedKey = pair.Key - (tempXLocation - recordingTimeCursor);
                     m_MainDictionary.Add(calculatedKey + m_OffsetLocation, pair.Value);
                 }
-            }
-         
+            }         
         }
 
         private double ConvertPixelsToTime(int pixels)
@@ -568,7 +570,7 @@ int channel = 0;
 
                     m_IsMaximized = false;
                     timer1.Start();
-                }       
+                }      
         }
         /*
         public void Phrase_Created_Event(object sender, EventArgs e)
@@ -604,6 +606,7 @@ int channel = 0;
             }
             m_IsToBeRepainted = true;
             m_IsMaximized = false;
+            base.OnPaint(e);
         }
 
         private void Waveform_Recording_MouseClick(object sender, MouseEventArgs e)          
@@ -664,7 +667,6 @@ int channel = 0;
             Console.WriteLine("Pixel  " + pixel + "   " + m_X);
             g.DrawLine(pen, pixel, 0, pixel, Height);
             g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height - 15);
-            Console.WriteLine("Time from beginning " + phraseMarkTime);
         }
     }
 }
