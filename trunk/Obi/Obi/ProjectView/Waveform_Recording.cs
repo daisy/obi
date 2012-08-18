@@ -440,6 +440,7 @@ int channel = 0;
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
             int tempm_X = m_X;
 
+            g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), 0, 0, Width, Height);
             if (m_IsMaximized)
             {
                 m_IsMaximized = false;
