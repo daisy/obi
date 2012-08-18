@@ -430,6 +430,7 @@ int channel = 0;
         {
             m_CounterWaveform = listOfCurrentMinChannel1.Count;
             RepaintWaveform();
+            m_IsResizing = false;
         }
 
         private void RepaintWaveform()
@@ -599,6 +600,7 @@ int channel = 0;
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            base.OnPaint(e);
             if (m_IsToBeRepainted)
             {
                // ResetLists();
@@ -606,7 +608,7 @@ int channel = 0;
             }
             m_IsToBeRepainted = true;
             m_IsMaximized = false;
-            base.OnPaint(e);
+            
         }
 
         private void Waveform_Recording_MouseClick(object sender, MouseEventArgs e)          
