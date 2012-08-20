@@ -365,7 +365,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         /// </summary>
         public void ForceSave()
         {
-            if (checkDiskSpace() <= 10)
+            if (CheckDiskSpace() <= 10)
             {
              DialogResult result =   MessageBox.Show(string.Format( Localizer.Message("LimitedDiskSpaceWarning"), 10),Localizer.Message("Memory_Warning"),MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 
@@ -580,7 +580,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             if (ProjectCreated != null) ProjectCreated(this, null);
         }
 
-       private long checkDiskSpace()
+       public long CheckDiskSpace()
        {
            string rootDir = System.IO.Path.GetPathRoot(mPath);
            long freeSpace = 0;

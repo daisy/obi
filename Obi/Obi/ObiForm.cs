@@ -3635,6 +3635,12 @@ namespace Obi
         {
             mProjectView.ClearSkippableChunk();
         }
-       
+
+        public long CheckDiskSpace()
+        {
+            if (mSession != null) return mSession.CheckDiskSpace();
+
+            return long.MaxValue;
+        }
     }
     }
