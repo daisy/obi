@@ -1286,7 +1286,7 @@ namespace Obi.ProjectView
             // start from this node (or the first leaf for a section)
             // and go through every node to find the first one in the playlist.
             for (n = node is SectionNode ? node.FirstLeaf : node;
-                n != null && !mCurrentPlaylist.ContainsPhrase(n as PhraseNode);
+                n != null && n.IsRooted && !mCurrentPlaylist.ContainsPhrase(n as PhraseNode);
                 n = n.FollowingNode) { }
             return n as PhraseNode;
         }
