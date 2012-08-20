@@ -454,8 +454,9 @@ namespace Obi.Dialogs
             mSettings.UserProfile.Organization = mOrganizationTextbox.Text;
 
             if (mCultureBox.SelectedItem.ToString () == "en-US"
-                || mCultureBox.SelectedItem.ToString () == "hi-IN"
-                || mCultureBox.SelectedItem.ToString () == "fr-FR")
+                || IsResourceForLanguageExist(mCultureBox.SelectedItem.ToString () ) )
+                //|| mCultureBox.SelectedItem.ToString () == "hi-IN"
+                //|| mCultureBox.SelectedItem.ToString () == "fr-FR")
                 {
                 if (mSettings.UserProfile.Culture.ToString () != mCultureBox.SelectedItem.ToString ())
                     MessageBox.Show ( Localizer.Message ( "Preferences_RestartForCultureChange" ) );
@@ -469,6 +470,15 @@ namespace Obi.Dialogs
             mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
             return true;
             }
+
+        private bool IsResourceForLanguageExist(string cultureName)
+        {
+            string cultureDirName = cultureName.Split('-')[0];
+            
+            string[] dirList = System.IO.Directory.GetDirectories(System.AppDomain.CurrentDomain.BaseDirectory, cultureDirName, System.IO.SearchOption.TopDirectoryOnly);
+            return dirList != null && dirList.Length > 0;
+            
+        }
 
         private void m_ChkAutoSaveInterval_CheckStateChanged ( object sender, EventArgs e )
             {
