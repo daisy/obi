@@ -18,12 +18,12 @@ namespace Obi
             // strCulture is "hi-IN" for hindi, "en-US" for english
             string strCulture = Settings.GetSettings ().UserProfile.Culture.Name;
 
-            if ( !string.IsNullOrEmpty (strCulture )
-                && (strCulture == "en-US" || strCulture == "hi-IN" || strCulture == "fr-FR"))
-                                {
+            //if ( !string.IsNullOrEmpty (strCulture )
+                //&& (strCulture == "en-US" || strCulture == "hi-IN" || strCulture == "fr-FR"))
+                                //{
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo ( strCulture );
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo ( strCulture );
-                }
+                //}
             Application.EnableVisualStyles ();
             Application.SetCompatibleTextRenderingDefault ( false );
             Application.Run ( args.Length == 0 ? new ObiForm () : new ObiForm ( args[0] ) );
