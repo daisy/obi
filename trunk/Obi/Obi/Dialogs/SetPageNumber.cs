@@ -94,7 +94,7 @@ namespace Obi.Dialogs
 
         protected void mOKButton_Click ( object sender, EventArgs e )
             {
-            
+                if (string.IsNullOrEmpty(mNumberBox.Text.Trim())) return;
                 int num = EmptyNode.SafeParsePageNumber ( mNumberBox.Text );
                 int numberOfPages = EmptyNode.SafeParsePageNumber(mNumberOfPagesBox.Text);
             // apply a check if dialog is being used for go to page
