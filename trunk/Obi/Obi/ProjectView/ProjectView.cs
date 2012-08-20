@@ -2023,6 +2023,17 @@ namespace Obi.ProjectView
                 {
                 if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Stop ();
 
+                if (this.ObiForm.CheckDiskSpace() <= 100)
+                {
+                    DialogResult result = MessageBox.Show(string.Format(Localizer.Message("LimitedDiskSpaceWarning"), 100), Localizer.Message("Memory_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+
+
                 List<string> paths = SelectFilesToImport ();
                 
                 if (paths != null)
