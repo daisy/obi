@@ -470,14 +470,30 @@ int channel = 0;
                 {
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                     {
-                        g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                        new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        if (!m_IsColorHighContrast)
+                        {
+                            g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
+                        else
+                        {
+                            g.DrawLine(pen_HighContrastChannel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
                     }
 
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
                     {
-                        g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                        new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        if (!m_IsColorHighContrast)
+                        {
+                            g.DrawLine(pen_Channel2, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
+                        else
+                        {
+                            g.DrawLine(pen_HighContrastChannel2, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                           new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
                     }                        
                     tempm_X--;
                   /*  if (this.Location.X < 0 && 
@@ -539,14 +555,31 @@ int channel = 0;
                     {
                         if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                         {
-                            g.DrawLine(pen_Channel1, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            if (!m_IsColorHighContrast)
+                            {
+                                g.DrawLine(pen_Channel1, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                                new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            }
+                            else
+                            {
+                                g.DrawLine(pen_HighContrastChannel1, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                                new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            }
+
                         }
 
                         if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
                         {
-                            g.DrawLine(pen_Channel1, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            if (!m_IsColorHighContrast)
+                            {
+                                g.DrawLine(pen_Channel2, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                                new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            }
+                            else
+                            {
+                                g.DrawLine(pen_HighContrastChannel2, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                                new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            }
                         }
                         
                         temp--;
@@ -619,20 +652,18 @@ int channel = 0;
             int pixel = 0;
             double timeTemp = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
-
+            
             if (m_Pass > 0)
                 time = m_InitialStaticTime + ConvertPixelsToTime(e.X - initialPos);
             else
                 time = ConvertPixelsToTime(e.X - initialPos);
-
-            timeTemp = time - m_InitialStaticTime;
-            if (m_Pass > 0)
+            */
+            //timeTemp = time - m_InitialStaticTime;
+          /*  if (m_Pass > 0)
                 pixel = ConvertTimeToPixels(timeTemp) + initialPos;
             else
                 pixel = ConvertTimeToPixels(time) + initialPos;
-           
-            g.DrawLine(pen, pixel, 0, pixel, Height);
-            g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height - 15);*/
+           */
         }
 
         private void m_RecordingSession_FinishingPhrase(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
@@ -655,11 +686,11 @@ int channel = 0;
                 pixel = currentm_X - pixelGap;
             else
                 pixel = currentm_X + pixelGap;
-            /*if (m_Pass > 0)
+        /*    if (m_Pass > 0)
                 time = m_InitialStaticTime + ConvertPixelsToTime(e.X - initialPos);
             else
                 time = ConvertPixelsToTime(e.X - initialPos);
-            */
+          */  
           //  timeTemp = time - m_InitialStaticTime;
 
          /*   if (m_Pass > 0)
@@ -667,9 +698,10 @@ int channel = 0;
             else
                 pixel = ConvertTimeToPixels(phraseMarkTime) + initialPos;
             */
+            m_MainDictionary.Add(m_X, "Phrase");
             Console.WriteLine("Pixel  " + pixel + "   " + m_X);
             g.DrawLine(pen, pixel, 0, pixel, Height);
-            g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height - 15);
+            g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height);
         }
     }
 }
