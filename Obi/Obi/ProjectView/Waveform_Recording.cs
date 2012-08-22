@@ -517,7 +517,6 @@ int channel = 0;
                         g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, Height - 15);
                     }
-                    Console.WriteLine("REPAINT  " + pair.Value);
                     g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);                   
                 }
                 m_IsMaximized = false;
@@ -710,10 +709,19 @@ int channel = 0;
             else
                 pixel = ConvertTimeToPixels(phraseMarkTime) + initialPos;
             */
-            m_MainDictionary.Add(m_X, "Phrase");
+            
             Console.WriteLine("Pixel  " + pixel + "   " + m_X);
             g.DrawLine(pen, pixel, 0, pixel, Height);
-            g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height);
+            if (m_ProjectView.TransportBar.RecordingPhrase != null && m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
+            {
+                g.DrawString("Page", myFont, Brushes.Gray, pixel, Height);
+                m_MainDictionary.Add(m_X, "Page");
+            }
+            else if (m_ProjectView.TransportBar.RecordingPhrase != null && m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Plain)
+            {
+                g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height);
+                m_MainDictionary.Add(m_X, "Phrase");
+            }
         }
     }
 }
