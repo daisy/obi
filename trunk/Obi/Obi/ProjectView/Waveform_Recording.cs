@@ -511,12 +511,13 @@ int channel = 0;
                 foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                 {
                     if (!pair.Value.EndsWith("0"))
-                        g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
+                        g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
                     else
                     {
                         g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
-                        g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);
+                        g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, Height - 15);
                     }
+                    Console.WriteLine("REPAINT  " + pair.Value);
                     g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);                   
                 }
                 m_IsMaximized = false;
@@ -602,11 +603,11 @@ int channel = 0;
                     foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                     {
                         if (!pair.Value.EndsWith("0"))
-                            g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 0);
+                            g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
                         else
                         {
                             g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
-                            g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, Height - 15);
+                            g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, Height - 15);
                         }
                         g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);                     
                     }
@@ -637,7 +638,10 @@ int channel = 0;
             m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
 
             if (!m_MainDictionary.ContainsKey(xLocation))
-                m_MainDictionary.Add(xLocation, text);                   
+            {
+                m_MainDictionary.Add(xLocation, text);
+                Console.WriteLine("CREATE PAGE " + xLocation + "  " + text);
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
