@@ -5402,6 +5402,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             mProjectView.ClearSkippableChunk();
         }
+
+        private void Context_GenerateSpeechForPageMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
         }
    /// <summary>
     /// Common interface for selection of strips and blocks.
