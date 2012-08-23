@@ -339,7 +339,7 @@ namespace Obi.ImportExport
         {
             string opfTitle = "";
             string identifier = "";
-            XmlDocument opfFileDoc = urakawa.xuk.XmlReaderWriterHelper.ParseXmlDocument(opfFilePath, false);
+            XmlDocument opfFileDoc = urakawa.xuk.XmlReaderWriterHelper.ParseXmlDocument(opfFilePath, false, false);
 
             XmlNode packageNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(opfFileDoc.DocumentElement, true, "package", null);
             string uidAttribute = packageNode.Attributes.GetNamedItem("unique-identifier").Value;
@@ -371,8 +371,8 @@ namespace Obi.ImportExport
         public static string getTitleFromDtBookFile(string dtBookFilePath)
         {
             string dtbBookTitle = "";
-            XmlDocument dtbookFileDoc = urakawa.xuk.XmlReaderWriterHelper.ParseXmlDocument(dtBookFilePath, false);
-
+            XmlDocument dtbookFileDoc = urakawa.xuk.XmlReaderWriterHelper.ParseXmlDocument(dtBookFilePath, false, false);
+            
             XmlNodeList listOfChildren = dtbookFileDoc.GetElementsByTagName("meta");
             foreach (XmlNode node in listOfChildren)
             {
@@ -400,7 +400,7 @@ namespace Obi.ImportExport
         }
 
 
-        protected override void parseContentDocument(string book_FilePath, Project project, XmlNode xmlNode, TreeNode parentTreeNode, string filePath, string dtdUniqueResourceId)
+        protected override void parseContentDocument(string book_FilePath, Project project, XmlNode xmlNode, TreeNode parentTreeNode, string filePath, string dtdUniqueResourceId, DocumentMarkupType docMarkupType)
         {
             if (RequestCancellation) return;
 
@@ -445,7 +445,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                                 dtdEfd.InitializeWithData(ms, "DTBookLocalDTD.dtd", false);
                             }
                             */
-                            parseContentDocument(book_FilePath, project, bodyElement, parentTreeNode, filePath, null);
+                            parseContentDocument(book_FilePath, project, bodyElement, parentTreeNode, filePath, null, docMarkupType);
                         }
                         //parseContentDocument(((XmlDocument)xmlNode).DocumentElement, parentTreeNode);
                         break;
@@ -623,7 +623,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         if (RequestCancellation) return;
                         foreach (XmlNode childXmlNode in xmlNode.ChildNodes)
                         {
-                            parseContentDocument(book_FilePath, project, childXmlNode, treeNode != null && treeNode is SectionNode ? treeNode : parentTreeNode, filePath, null);
+                            parseContentDocument(book_FilePath, project, childXmlNode, treeNode != null && treeNode is SectionNode ? treeNode : parentTreeNode, filePath, null, docMarkupType);
                         }
                         break;
                     }
