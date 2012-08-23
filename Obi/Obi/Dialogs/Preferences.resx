@@ -631,7 +631,7 @@
     <value>187, 26</value>
   </data>
   <data name="m_btn_AdvancedRecording.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+    <value>28</value>
   </data>
   <data name="m_btn_AdvancedRecording.Text" xml:space="preserve">
     <value>Enable advanced recording</value>
