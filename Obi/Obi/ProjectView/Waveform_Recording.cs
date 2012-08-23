@@ -78,10 +78,12 @@ namespace Obi.ProjectView
                 {
                     m_RecordingSession = value;
                     m_RecordingSession.FinishingPhrase +=new Obi.Events.Audio.Recorder.FinishingPhraseHandler(m_RecordingSession_FinishingPhrase);
+                    m_RecordingSession.FinishingPage += new Obi.Events.Audio.Recorder.FinishingPageHandler(m_RecordingSession_FinishingPage);
                 }
             } 
         }
 
+        
         public ContentView contentView
         {
             get { return m_ContentView; }
@@ -257,14 +259,14 @@ namespace Obi.ProjectView
                 m_Counter = 0;
             }
 
-            if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
+           /* if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
                 CreatePageorPhrase(m_X);
             if ((m_ContentView.Width - m_XCV) > 600)
             {              
             //    this.Location = new Point(m_ContentView.Location.X, Location.Y);
                   // m_IsMaximized = false;
             }
-
+            */
             listOfCurrentXLocation.Add(m_X); 
              m_X++;
              listOfCurrentMinChannel1.Add((int)minChannel1);
@@ -528,6 +530,7 @@ int channel = 0;
         {
                 Font myFont = new Font("Microsoft Sans Serif", 7);
                 Pen newPen = new Pen(SystemColors.Control);
+            
                 int xSize = SystemInformation.PrimaryMonitorSize.Width;
                 int temp = m_X;
                 if (m_IsMaximized)
@@ -679,25 +682,11 @@ int channel = 0;
 
         private void m_RecordingSession_FinishingPhrase(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
-            double phraseMarkTime = e.TimeFromBeginning;
-            Console.WriteLine("Time from beginning " + (phraseMarkTime / AudioLibPCMFormat.TIME_UNIT));
-            int initialPos = m_StaticRecordingLocation;
             int pixel = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
-            double currentMarkTime = 0;
-            int currentm_X;
-            int pixelGap = 0;
 
-            currentMarkTime = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
-                        Time.TIME_UNIT;
-            currentm_X = m_X;
-            pixelGap = ConvertTimeToPixels(phraseMarkTime - currentMarkTime);
-
-            if (phraseMarkTime < currentMarkTime)
-                pixel = currentm_X - pixelGap;
-            else
-                pixel = currentm_X + pixelGap;
-        /*    if (m_Pass > 0)
+            pixel = CalculatePixels(e.TimeFromBeginning);
+           /*    if (m_Pass > 0)
                 time = m_InitialStaticTime + ConvertPixelsToTime(e.X - initialPos);
             else
                 time = ConvertPixelsToTime(e.X - initialPos);
@@ -709,20 +698,46 @@ int channel = 0;
             else
                 pixel = ConvertTimeToPixels(phraseMarkTime) + initialPos;
             */
-            
-            Console.WriteLine("Pixel  " + pixel + "   " + m_X);
+         
             g.DrawLine(pen, pixel, 0, pixel, Height);
-            if (m_ProjectView.TransportBar.RecordingPhrase != null && m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
-            {
-                g.DrawString("Page", myFont, Brushes.Gray, pixel, Height);
-                m_MainDictionary.Add(m_X, "Page");
-            }
-            else if (m_ProjectView.TransportBar.RecordingPhrase != null && m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Plain)
-            {
-                g.DrawString("Phrase", myFont, Brushes.Gray, pixel, Height);
-                m_MainDictionary.Add(m_X, "Phrase");
-            }
+            g.DrawString("Phrase", myFont, Brushes.Black, pixel, 0);
+            m_MainDictionary.Add(m_X, "Phrase");                        
         }
+
+        private void m_RecordingSession_FinishingPage(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
+        {
+            int pixel = 0;
+            Pen pen = new Pen(SystemColors.ControlDarkDark);
+
+            pixel = CalculatePixels(e.TimeFromBeginning);
+            g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), pixel + 1, 0, 35, 10);
+            g.DrawString("Page", myFont, Brushes.Black, pixel, 0);
+            g.DrawLine(pen, pixel, 0, pixel, Height); 
+            if (m_MainDictionary.ContainsKey(m_X))
+                m_MainDictionary[m_X] = "Page";
+        }
+
+        private int CalculatePixels(double time)
+        {
+            double phraseMarkTime = time;
+            Console.WriteLine("Time from beginning " + (phraseMarkTime / AudioLibPCMFormat.TIME_UNIT));
+            int calculatedPixel = 0;
+            double currentMarkTime = 0;
+            int currentm_X;
+            int pixelGap = 0;
+
+            currentMarkTime = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+                        Time.TIME_UNIT;
+            currentm_X = m_X;
+            pixelGap = ConvertTimeToPixels(phraseMarkTime - currentMarkTime);
+            
+            if (phraseMarkTime < currentMarkTime)
+                calculatedPixel = currentm_X - pixelGap;
+            else
+                calculatedPixel = currentm_X + pixelGap;
+            return calculatedPixel;
+        }
+
     }
 }
 
