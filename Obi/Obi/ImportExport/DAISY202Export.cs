@@ -785,7 +785,7 @@ namespace Obi.ImportExport
             MetadataMap.Add ( "dtb:revision", "ncc:revision" );
             MetadataMap.Add ( "dtb:revisionDate", "ncc:revisionDate" );
             //MetadataMap.Add ("dtb:revisionDescription";
-            MetadataMap.Add ( "dtb:totalTime", "ncc:totalTime" );
+            //MetadataMap.Add ( "dtb:totalTime", "ncc:totalTime" ); // its commented because total time should be generated while export
             //MetadataMap.Add ("dtb:audioFormat";
 
             MetadataMap.Add ( "generator", "ncc:generator" );
