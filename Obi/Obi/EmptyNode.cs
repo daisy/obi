@@ -158,7 +158,7 @@ namespace Obi
 
         
         /// <summary>
-        /// Copy all attributes of this node to another.
+        /// Copy all attributes of node in parameter to another.
         /// </summary>
         public void CopyAttributes(EmptyNode node)
         {

@@ -527,6 +527,8 @@ namespace Obi.ProjectView
                 }
             }
 
+        public bool CanGenerateSpeechForPage { get { return Selection != null && Selection.Node is EmptyNode && ((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Page && ((EmptyNode)Selection.Node).Duration == 0; } }
+
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
         public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
@@ -2257,6 +2259,39 @@ for (int j = 0;
                return null;
     }
             }
+
+        public void GenerateSpeechForPage()
+        {
+            if (CanGenerateSpeechForPage)
+            {
+
+                string text = "Page " + ((EmptyNode)Selection.Node).PageNumber.Number.ToString();
+                string filePath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath, mPresentation.DataProviderManager.GetNewDataFileRelPath(".wav"));
+                Audio.AudioFormatConverter.InitializeTTS(ObiForm.Settings);
+                Audio.AudioFormatConverter.Speak(text, filePath, ObiForm.Settings);
+
+                if (System.IO.File.Exists(filePath))
+                {
+                    try
+                    {
+                        PhraseNode pagePhrase = mPresentation.CreatePhraseNode(filePath);
+                        pagePhrase.CopyAttributes((EmptyNode)Selection.Node);
+                        CompositeCommand cmd = mPresentation.CreateCompositeCommand("Generate speech from page text");
+                        cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.Delete(this, Selection.Node));
+                        Commands.Node.AddNode add = new Obi.Commands.Node.AddNode(this, pagePhrase, Selection.Node.ParentAs<SectionNode>(), Selection.Node.Index);
+                        add.UpdateSelection = true;
+                        cmd.ChildCommands.Insert(cmd.ChildCommands.Count, add);
+
+
+                        mPresentation.Do(cmd);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
+        }
 
         public void SelectNothing () 
         {
