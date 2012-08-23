@@ -706,15 +706,19 @@ int channel = 0;
 
         private void m_RecordingSession_FinishingPage(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
+            string text = "Page";
+            if (m_ProjectView.TransportBar.RecordingPhrase != null) text = text + " " +  m_ProjectView.TransportBar.RecordingPhrase.PageNumber.ToString();
+
             int pixel = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
 
             pixel = CalculatePixels(e.TimeFromBeginning);
             g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), pixel + 1, 0, 35, 10);
-            g.DrawString("Page", myFont, Brushes.Black, pixel, 0);
+            g.DrawString(text, myFont, Brushes.Black, pixel, 0);
             g.DrawLine(pen, pixel, 0, pixel, Height); 
             if (m_MainDictionary.ContainsKey(m_X))
-                m_MainDictionary[m_X] = "Page";
+                m_MainDictionary[m_X] = text;
+            
         }
 
         private int CalculatePixels(double time)
