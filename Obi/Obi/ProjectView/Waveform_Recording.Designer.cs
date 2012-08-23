@@ -41,10 +41,10 @@ namespace Obi.ProjectView
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.MaximumSize = new System.Drawing.Size(2000, 104);
-            this.MinimumSize = new System.Drawing.Size(2000, 104);
+            this.MaximumSize = new System.Drawing.Size(10000, 104);
+            this.MinimumSize = new System.Drawing.Size(10000, 104);
             this.Name = "Waveform_Recording";
-            this.Size = new System.Drawing.Size(2000, 104);
+            this.Size = new System.Drawing.Size(10000, 104);
             this.VisibleChanged += new System.EventHandler(this.Waveform_Recording_VisibleChanged);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Waveform_Recording_MouseClick);
             this.ResumeLayout(false);
