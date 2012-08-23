@@ -1814,13 +1814,14 @@ namespace Obi
                             {
                             exportPath += Path.DirectorySeparatorChar;
                             }
+                        
 
                             urakawa.daisy.export.Daisy3_Export DAISYExport = null;
                             if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0)
                             {
                                 DAISYExport = new Obi.ImportExport.DAISY3_ObiExport(
                                     mSession.Presentation, exportPath, null,dialog.EncodeToMP3 ,(ushort) dialog.BitRate,
-                                    AudioLib.SampleRate.Hz44100, mSettings.AudioChannels == 2,
+                                    AudioLib.SampleRate.Hz44100 , mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
                                     false, audioFileSectionLevel);
                             }
                             else
