@@ -718,6 +718,8 @@ int channel = 0;
             g.DrawLine(pen, pixel, 0, pixel, Height); 
             if (m_MainDictionary.ContainsKey(m_X))
                 m_MainDictionary[m_X] = text;
+            else
+                m_MainDictionary.Add(m_X, text);                        
             
         }
 
