@@ -4859,6 +4859,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             //Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView != null && !mProjectView.TransportBar.IsRecorderActive && (mProjectView.Selection == null || (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Custom && ((EmptyNode)mProjectView.Selection.Node).Role_ != EmptyNode.Role.Plain));
             Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanAssociateNode;   //@AssociateNode
             Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Enabled = mProjectView.CanClearSkippableRole;
+            Context_GenerateSpeechForPageMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5405,7 +5406,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_GenerateSpeechForPageMenuItem_Click(object sender, EventArgs e)
         {
-
+            mProjectView.GenerateSpeechForPage();
         }
         }
    /// <summary>

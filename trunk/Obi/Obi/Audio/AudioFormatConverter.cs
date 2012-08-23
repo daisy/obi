@@ -150,13 +150,19 @@ namespace Obi.Audio
                 m_SpeechWorker = new System.ComponentModel.BackgroundWorker();
                 
                 if(m_Tts == null )  InitializeTTS(settings);
-                
-                m_SpeechWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork);
-
                 List<string> inputStrings = new List<string>();
                 inputStrings.Add(text);
                 inputStrings.Add(filePath);
-                m_SpeechWorker.RunWorkerAsync(inputStrings);
+
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    m_SpeechWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork);
+                    m_SpeechWorker.RunWorkerAsync(inputStrings);
+                }
+                else
+                {
+                    GenerateSpeech(inputStrings);
+                }
             }
             catch (System.Exception ex)
             {
@@ -166,10 +172,14 @@ namespace Obi.Audio
 
         static void m_SpeechWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            
-            
+            GenerateSpeech((List<string>)e.Argument);
+        }
+
+
+        private static void GenerateSpeech (List<string> inputStrings )
+        {
             if (m_Tts.InstalledVoices.Count == 0) return;
-            List<string> inputStrings = (List<string>)e.Argument;
+            //List<string> inputStrings = (List<string>)e.Argument;
             string selectedVoice = string.IsNullOrEmpty(m_Settings.Audio_TTSVoice) ? m_Tts.InstalledVoices[0] : m_Settings.Audio_TTSVoice;
             m_Tts.SpeakString(selectedVoice, inputStrings[0], inputStrings[1]);
             
