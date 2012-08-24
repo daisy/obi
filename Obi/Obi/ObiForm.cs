@@ -1821,7 +1821,7 @@ namespace Obi
                             {
                                 DAISYExport = new Obi.ImportExport.DAISY3_ObiExport(
                                     mSession.Presentation, exportPath, null,dialog.EncodeToMP3 ,(ushort) dialog.BitRate,
-                                    AudioLib.SampleRate.Hz44100 , mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
+                                    AudioLib.SampleRate.Hz44100 , mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 1,
                                     false, audioFileSectionLevel);
                             }
                             else
@@ -1904,13 +1904,13 @@ namespace Obi
         /// </summary>
         private bool CheckPageNumbers ( PageKind kind )
             {
-            Dictionary<int, PhraseNode> pages = new Dictionary<int, PhraseNode> ();
-            PhraseNode renumberFrom = null;
+            Dictionary<int, EmptyNode> pages = new Dictionary<int, EmptyNode> ();
+            EmptyNode renumberFrom = null;
             PageNumber renumberNumber = null;
             mSession.Presentation.RootNode.AcceptDepthFirst (
                 delegate ( urakawa.core.TreeNode n )
                     {
-                    PhraseNode phrase = n as PhraseNode;
+                    EmptyNode phrase = n as EmptyNode;
                     if (phrase != null && phrase.Role_ == EmptyNode.Role.Page && phrase.PageNumber.Kind == kind)
                         {
                         if (pages.ContainsKey ( phrase.PageNumber.Number ))
