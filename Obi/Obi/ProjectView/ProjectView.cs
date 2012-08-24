@@ -2267,8 +2267,8 @@ for (int j = 0;
 
                 string text = "Page " + ((EmptyNode)Selection.Node).PageNumber.Number.ToString();
                 string filePath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath, mPresentation.DataProviderManager.GetNewDataFileRelPath(".wav"));
-                Audio.AudioFormatConverter.InitializeTTS(ObiForm.Settings);
-                Audio.AudioFormatConverter.Speak(text, filePath, ObiForm.Settings);
+                Audio.AudioFormatConverter.InitializeTTS(ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
+                Audio.AudioFormatConverter.Speak(text, filePath, ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
 
                 if (System.IO.File.Exists(filePath))
                 {

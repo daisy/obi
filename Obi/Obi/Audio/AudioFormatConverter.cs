@@ -125,14 +125,14 @@ namespace Obi.Audio
             }
         }
 
-        public static void InitializeTTS(Settings settings)
+        public static void InitializeTTS(Settings settings, AudioLibPCMFormat PCMFormat)
         {
             m_Settings = settings;
-            AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)m_Settings.AudioChannels, (uint)m_Settings.SampleRate, (ushort)m_Settings.BitDepth);
-            m_Tts = new TextToSpeech(audioFormat);
+            
+            m_Tts = new TextToSpeech(PCMFormat);
         }
 
-        public static void  Speak( string    text, string filePath, Settings settings)
+        public static void  Speak( string    text, string filePath, Settings settings, AudioLibPCMFormat PCMFormat)
         {
             try
             {
@@ -149,7 +149,7 @@ namespace Obi.Audio
                 if (m_SpeechWorker != null) m_SpeechWorker.DoWork -= new System.ComponentModel.DoWorkEventHandler(m_SpeechWorker_DoWork);
                 m_SpeechWorker = new System.ComponentModel.BackgroundWorker();
                 
-                if(m_Tts == null )  InitializeTTS(settings);
+                if(m_Tts == null )  InitializeTTS(settings,PCMFormat );
                 List<string> inputStrings = new List<string>();
                 inputStrings.Add(text);
                 inputStrings.Add(filePath);
