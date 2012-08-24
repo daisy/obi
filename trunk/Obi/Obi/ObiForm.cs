@@ -1821,7 +1821,7 @@ namespace Obi
                             {
                                 DAISYExport = new Obi.ImportExport.DAISY3_ObiExport(
                                     mSession.Presentation, exportPath, null,dialog.EncodeToMP3 ,(ushort) dialog.BitRate,
-                                    AudioLib.SampleRate.Hz44100 , mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 1,
+                                    AudioLib.SampleRate.Hz44100 , mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
                                     false, audioFileSectionLevel);
                             }
                             else
