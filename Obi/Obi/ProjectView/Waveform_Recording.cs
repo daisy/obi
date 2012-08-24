@@ -439,6 +439,7 @@ int channel = 0;
         {
             Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
+            Pen blackPen = new Pen(Color.Black);
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
             int tempm_X = m_X;
 
@@ -512,14 +513,18 @@ int channel = 0;
                 
                 foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                 {
+                    g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);     
                     if (!pair.Value.EndsWith("0"))
+                    {
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
+                        if(pair.Value != "")
+                            g.DrawLine(blackPen, pair.Key, 0, pair.Key, Height);
+                    }
                     else
                     {
                         g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, Height - 15);
-                    }
-                    g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);                   
+                    }                                  
                 }
                 m_IsMaximized = false;
                 timer1.Start();
@@ -530,6 +535,7 @@ int channel = 0;
         {
                 Font myFont = new Font("Microsoft Sans Serif", 7);
                 Pen newPen = new Pen(SystemColors.Control);
+                Pen blackPen = new Pen(Color.Black);
             
                 int xSize = SystemInformation.PrimaryMonitorSize.Width;
                 int temp = m_X;
@@ -604,14 +610,18 @@ int channel = 0;
 
                     foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                     {
+                        g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);    
                         if (!pair.Value.EndsWith("0"))
+                        {
                             g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
+                            if (pair.Value != "")
+                                g.DrawLine(blackPen, pair.Key, 0, pair.Key, Height);
+                        }
                         else
                         {
                             g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
                             g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, Height - 15);
-                        }
-                        g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);                     
+                        }                 
                     }
 
                     m_IsMaximized = false;
