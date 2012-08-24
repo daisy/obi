@@ -2291,7 +2291,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             if (interval != mProjectView.ObiForm.Settings.NudgeTimeMs)
             {
                 mProjectView.ObiForm.Settings.NudgeTimeMs = interval;
-                if (mProjectView.ObiForm.Settings.AudioClues) Audio.AudioFormatConverter.Speak(interval.ToString () , null, mProjectView.ObiForm.Settings);
+                if (mProjectView.ObiForm.Settings.AudioClues) Audio.AudioFormatConverter.Speak(interval.ToString () , null, mProjectView.ObiForm.Settings, mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data);
                 return true;
             }
             return false;
