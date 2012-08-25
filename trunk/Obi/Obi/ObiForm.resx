@@ -1716,6 +1716,9 @@
   <data name="mHelp_WhatsNewMenuItem.Text" xml:space="preserve">
     <value>What's &amp;new?</value>
   </data>
+  <data name="mHelp_WhatsNewMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="mHelp_ContentsMenuItem.AccessibleName" xml:space="preserve">
     <value>Contents F1</value>
   </data>
@@ -1834,7 +1837,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=2.3.1.31964, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=2.3.1.21604, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
