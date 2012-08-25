@@ -150,7 +150,7 @@ namespace Obi.Dialogs
             mChannelsCombo.Visible = mCanChangeAudioSettings;
             mChannelsTextbox.Text = Localizer.Message ( audioChannels == 1 ? "mono" : "stereo" );
             mChannelsTextbox.Visible = !mCanChangeAudioSettings;
-            if (AudioFormatConverter.InstalledTTSVoices.Count == 0) AudioFormatConverter.InitializeTTS(mSettings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
+            if (AudioFormatConverter.InstalledTTSVoices.Count == 0) AudioFormatConverter.InitializeTTS(mSettings,mPresentation !=null? mPresentation.MediaDataManager.DefaultPCMFormat.Data: new AudioLibPCMFormat((ushort)mSettings.AudioChannels,(uint) mSettings.SampleRate,(ushort) mSettings.BitDepth));
             mTTSvoiceCombo.Items.AddRange (Audio.AudioFormatConverter.InstalledTTSVoices.ToArray()) ;
             if (string.IsNullOrEmpty(mSettings.Audio_TTSVoice))
             {
