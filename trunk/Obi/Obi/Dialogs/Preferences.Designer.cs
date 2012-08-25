@@ -339,7 +339,7 @@ namespace Obi.Dialogs
             0,
             0});
             this.m_OperationDurationUpDown.Minimum = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -357,7 +357,10 @@ namespace Obi.Dialogs
             this.m_cbOperation.Items.AddRange(new object[] {
             resources.GetString("m_cbOperation.Items"),
             resources.GetString("m_cbOperation.Items1"),
-            resources.GetString("m_cbOperation.Items2")});
+            resources.GetString("m_cbOperation.Items2"),
+            resources.GetString("m_cbOperation.Items3"),
+            resources.GetString("m_cbOperation.Items4"),
+            resources.GetString("m_cbOperation.Items5")});
             resources.ApplyResources(this.m_cbOperation, "m_cbOperation");
             this.m_cbOperation.Name = "m_cbOperation";
             this.m_cbOperation.SelectedIndexChanged += new System.EventHandler(this.m_cbOperation_SelectedIndexChanged);
