@@ -699,17 +699,17 @@ namespace Obi.Dialogs
             if (m_cbOperation.SelectedIndex == 3)
             {
                 m_OperationDurationUpDown.Value = mSettings.DefaultLeadingSilence;
-                m_OperationDurationUpDown.Increment = 200;
+                m_OperationDurationUpDown.Increment = 10;
             }
             if (m_cbOperation.SelectedIndex == 4)
             {
                 m_OperationDurationUpDown.Value = mSettings.DefaultThreshold;
-                m_OperationDurationUpDown.Increment = 250;
+                m_OperationDurationUpDown.Increment = 25;
             }
             if (m_cbOperation.SelectedIndex == 5)
             {
                 m_OperationDurationUpDown.Value = mSettings.DefaultGap;
-                m_OperationDurationUpDown.Increment = 300;
+                m_OperationDurationUpDown.Increment = 25;
             }
         }
 
