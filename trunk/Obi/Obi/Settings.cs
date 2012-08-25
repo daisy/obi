@@ -40,6 +40,7 @@ namespace Obi
         public uint MaxPhraseDurationMinutes;  // maximum phrase duration in minutes for autosplitting during import
         public uint MaxAllowedPhraseDurationInMinutes ; //Max size of phrase allowed in content view
         public bool Audio_ShowLiveWaveformWhileRecording;// Show Live Waveform While Recording
+        public bool Audio_EnableLivePhraseDetection; // enables phrase detection while recording
         public Size NewProjectDialogSize;      // size of the new project dialog
         public AudioLib.VuMeter.NoiseLevelSelection NoiseLevel;  // noise level for low amplitude detection
         public double NudgeTimeMs;             // nudge time in milliseconds
@@ -102,6 +103,7 @@ namespace Obi
             settings.MaxPhraseDurationMinutes = 10;
             settings.MaxAllowedPhraseDurationInMinutes = 50;
             settings.Audio_ShowLiveWaveformWhileRecording = true;
+            settings.Audio_EnableLivePhraseDetection = false;
             settings.NewProjectDialogSize = new Size(0, 0);
             settings.NoiseLevel = AudioLib.VuMeter.NoiseLevelSelection.Medium;
             settings.NudgeTimeMs = 200.0;
