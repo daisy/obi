@@ -101,7 +101,7 @@ namespace Obi
             settings.LastOutputDevice = "";
             settings.MaxPhraseDurationMinutes = 10;
             settings.MaxAllowedPhraseDurationInMinutes = 50;
-            settings.Audio_ShowLiveWaveformWhileRecording = false;
+            settings.Audio_ShowLiveWaveformWhileRecording = true;
             settings.NewProjectDialogSize = new Size(0, 0);
             settings.NoiseLevel = AudioLib.VuMeter.NoiseLevelSelection.Medium;
             settings.NudgeTimeMs = 200.0;
