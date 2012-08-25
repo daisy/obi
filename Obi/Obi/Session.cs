@@ -302,14 +302,10 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             //Console.WriteLine("opening project memory differenc is " + (memoryDiff / 1024));
             mPath = path;
             GetLock(mPath);
-            try
-            {
+            
                 Presentation.Initialize(this);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.ToString());
-            }
+            
+                
             // Hack to ignore the empty commands saved by the default undo/redo manager
             Presentation.UndoRedoManager.FlushCommands();
             ((ObiRootNode)mProject.Presentations.Get(0).RootNode).LocateBookMarkAndAssociatedNode();
