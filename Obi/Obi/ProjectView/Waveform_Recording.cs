@@ -723,6 +723,7 @@ int channel = 0;
          
             g.DrawLine(pen, pixel, 0, pixel, Height);
             g.DrawString("Phrase", myFont, Brushes.Black, pixel, 0);
+            if (!m_MainDictionary.ContainsKey(m_X)) 
             m_MainDictionary.Add(m_X, "Phrase");                        
         }
 
