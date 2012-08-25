@@ -1886,9 +1886,12 @@ namespace Obi.ProjectView
         // Stop recording a phrase
         private void RecordingPhraseEnded(Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
-            PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex);
-            phrase.SignalAudioChanged(this, e.Audio);
-            mRecordingPhrase = null;
+            if (!mView.ObiForm.Settings.Audio_EnableLivePhraseDetection) //@onTheFly: following code should be executed if live phrase detection is disabled
+            {
+                PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex);
+                phrase.SignalAudioChanged(this, e.Audio);
+                mRecordingPhrase = null;
+            }
         }
 
         // Start recording a new page, set the right page number
