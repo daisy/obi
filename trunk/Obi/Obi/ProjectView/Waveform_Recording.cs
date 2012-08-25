@@ -59,6 +59,7 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
             m_ZoomFactor = 1.0f;
+            this.Visible = false;
             this.Height = Convert.ToInt32(104 * m_ZoomFactor);
             g = this.CreateGraphics();
             if (m_ProjectView != null && m_ProjectView.TransportBar.RecordingPhrase != null)
@@ -112,6 +113,7 @@ namespace Obi.ProjectView
                     m_ProjectView.ObiForm.Resize += new EventHandler(ObiForm_Resize);
                     m_ProjectView.ObiForm.ResizeEnd += new EventHandler(ObiForm_ResizeEnd);
                     m_ProjectView.ObiForm.ResizeBegin += new EventHandler(ObiForm_ResizeBegin);
+                    m_ContentView.Resize += new EventHandler(m_ContentView_Resize);
                     m_ColorSettings = m_ProjectView.ObiForm.Settings.ColorSettings;
                     m_ColorSettingsHC = m_ProjectView.ObiForm.Settings.ColorSettingsHC;
                     this.BackColor = m_ColorSettings.WaveformBackColor;
@@ -166,7 +168,7 @@ namespace Obi.ProjectView
                 Location = new Point(-m_OffsetLocation, Location.Y);
                 m_StaticRecordingLocation = recordingTimeCursor + Math.Abs( this.Location.X);
             }
-               
+                
             m_XCV = m_X + Location.X;
             int diff = m_XCV - recordingTimeCursor;
             int newXLocation = (m_X - recordingTimeCursor) * -1;
@@ -417,10 +419,9 @@ int channel = 0;
             if (m_IsResizing)
                 return;
            
-            m_CounterWaveform = listOfCurrentMinChannel1.Count;            
+            m_CounterWaveform = listOfCurrentMinChannel1.Count;
             RepaintWaveform();
             m_IsResizing = false;
-            
         }
 
         private void ObiForm_ResizeBegin(object sender, EventArgs e)
@@ -435,8 +436,19 @@ int channel = 0;
             m_IsResizing = false;
         }
 
+        private void m_ContentView_Resize(object sender, EventArgs e)
+        {
+            if (m_IsResizing)
+                return;
+
+            m_CounterWaveform = listOfCurrentMinChannel1.Count;
+            RepaintWaveform();
+            m_IsResizing = false;
+        }
+
         private void RepaintWaveform()
         {
+            Console.WriteLine("RAPEINEET");
             Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
             Pen blackPen = new Pen(Color.Black);
@@ -469,7 +481,7 @@ int channel = 0;
                 else
                     countToRepaint = xSize;
                
-                for (int i = listOfCurrentMinChannel1.Count - 1; i >= 0; i--)
+                for (int i = countToRepaint - 1; i >= 0; i--)
                 {
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                     {
