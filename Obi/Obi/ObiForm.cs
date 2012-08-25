@@ -2348,14 +2348,9 @@ namespace Obi
             Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(progressTitle,
                                    delegate()
                                    {
-                                       try
-                                       {
+                                       
                                            mSession.Open(path);
-                                       }
-                                       catch (System.Exception ex)
-                                       {
-                                           MessageBox.Show(ex.ToString());
-                                       }
+                                       
                                    });
             progress.ShowDialog();
             if (progress.Exception != null)
