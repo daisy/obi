@@ -48,7 +48,7 @@ namespace Obi.Dialogs
                 }
                 if (m_OriginalSectionList.Count > 2)
                 {
-                    m_cb_StartRangeForNumberOfSections.Items.Add( m_OriginalSectionList.Count - 1);
+                    if((m_OriginalSectionList.Count - 1) % 10 != 0 )  m_cb_StartRangeForNumberOfSections.Items.Add( m_OriginalSectionList.Count - 1);
                     m_cb_EndRangeForNumberOfSections.Items.Add( m_OriginalSectionList.Count );
                 }
                 else                  
