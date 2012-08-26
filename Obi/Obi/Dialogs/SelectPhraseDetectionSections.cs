@@ -234,6 +234,15 @@ namespace Obi.Dialogs
                         e.NewValue == CheckState.Checked ? true : false;
                 }
             }
+
+            if (m_lv_ListOfSelectedSectionsForPhraseDetection.Items[0].Checked && 
+                (m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Count != m_lv_ListOfSelectedSectionsForPhraseDetection.CheckedItems.Count || (e.Index > 0 && e.NewValue == CheckState.Unchecked)))
+            {
+                
+                this.m_lv_ListOfSelectedSectionsForPhraseDetection.ItemCheck -= new System.Windows.Forms.ItemCheckEventHandler(this.m_lv_ListOfSelectedSectionsForPhraseDetection_ItemCheck);
+                m_lv_ListOfSelectedSectionsForPhraseDetection.Items[0].Checked = false;
+                this.m_lv_ListOfSelectedSectionsForPhraseDetection.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.m_lv_ListOfSelectedSectionsForPhraseDetection_ItemCheck);
+            }
         }
 
         private void m_rb_loadAllSections_CheckedChanged(object sender, EventArgs e)
