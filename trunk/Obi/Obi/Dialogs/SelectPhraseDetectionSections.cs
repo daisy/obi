@@ -29,7 +29,7 @@ namespace Obi.Dialogs
             m_OriginalSectionList = sectionsList;
             m_SilencePhrases = silencePhraseList;
             mSelectedSectionNode = selectedSection;
-            m_SectionRangeCount = m_OriginalSectionList.Count / 100;
+            m_SectionRangeCount = m_OriginalSectionList.Count / 10;
            
             if (m_OriginalSectionList.Count == 1)
             {
@@ -41,8 +41,10 @@ namespace Obi.Dialogs
                 m_cb_StartRangeForNumberOfSections.Items.Add(1);
                 for (int i = 1; i <= m_SectionRangeCount; i++)
                 {
-                    m_cb_StartRangeForNumberOfSections.Items.Add(i * 100);
-                    m_cb_EndRangeForNumberOfSections.Items.Add(i * 100 );
+                    int val = i * 10;
+                    if (val < m_OriginalSectionList.Count )  m_cb_StartRangeForNumberOfSections.Items.Add(val);
+                    if(val <= m_OriginalSectionList.Count) m_cb_EndRangeForNumberOfSections.Items.Add(val);
+                    
                 }
                 if (m_OriginalSectionList.Count > 2)
                 {
@@ -207,10 +209,10 @@ namespace Obi.Dialogs
         {
             m_cb_EndRangeForNumberOfSections.Items.Clear();
 
-            for (int i = m_cb_StartRangeForNumberOfSections.SelectedIndex; i < (m_OriginalSectionList.Count / 100); i++)
-                    m_cb_EndRangeForNumberOfSections.Items.Add(((i + 1) * 100));            
-                
-            m_cb_EndRangeForNumberOfSections.Items.Add( m_OriginalSectionList.Count );
+            for (int i = m_cb_StartRangeForNumberOfSections.SelectedIndex; i < (m_OriginalSectionList.Count / 10); i++)
+                    m_cb_EndRangeForNumberOfSections.Items.Add(((i + 1) * 10));
+
+                if ( m_OriginalSectionList.Count % 10 != 0) m_cb_EndRangeForNumberOfSections.Items.Add(m_OriginalSectionList.Count);
             if (m_cb_EndRangeForNumberOfSections.Items.Count == 1)
                 m_cb_EndRangeForNumberOfSections.SelectedIndex = 0;                
         }
