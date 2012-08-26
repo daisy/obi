@@ -2139,7 +2139,7 @@ Error text: {1}</value>
     <value>Section </value>
   </data>
   <data name="AssociateNode_SelectedSection" xml:space="preserve">
-    <value>=&gt;&gt; Section</value>
+    <value>=&gt;&gt; Section </value>
   </data>
   <data name="LimitedDiskSpaceWarning" xml:space="preserve">
     <value>Your system has less than {0} Mb disk space left. Do you want to continue?</value>
