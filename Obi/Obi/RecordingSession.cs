@@ -258,7 +258,7 @@ namespace Obi
 
         private void ApplyPhraseDetectionOnTheFly(AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
         {
-            
+            m_Settings.Audio_EnableLivePhraseDetection = false;
             if (!m_Settings.Audio_EnableLivePhraseDetection ) return;//letsverify with on the fly phrase detection first
             // todo : associate this function to recorder VuMeter events
             int overlapLength = 0;
