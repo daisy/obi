@@ -77,6 +77,8 @@ namespace Obi.Dialogs
         }
         private void m_btn_Display_Click(object sender, EventArgs e)
         {
+            if (m_rb_loadFromRange.Checked && m_cb_StartRangeForNumberOfSections.SelectedIndex == -1 && m_cb_EndRangeForNumberOfSections.SelectedIndex == -1) return;
+
             updateControls();
             if (m_rb_loadAllSections.Checked)
             {
