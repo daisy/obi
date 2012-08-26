@@ -163,7 +163,7 @@ namespace Obi.ProjectView
             this.Context_MergeSectionMenuItem.Name = "Context_MergeSectionMenuItem";
             this.Context_MergeSectionMenuItem.Size = new System.Drawing.Size(208, 22);
             this.Context_MergeSectionMenuItem.Text = "Mer&ge section";
-            this.Context_MergeSectionMenuItem.Click += new System.EventHandler(this.Context_MergeSectionWithNextMenuItem_Click);
+            //this.Context_MergeSectionMenuItem.Click += new System.EventHandler(this.Context_MergeSectionWithNextMenuItem_Click);
             // 
             // Context_MergeSectionWithNextToolStripMenuItem
             // 
