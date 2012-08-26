@@ -205,7 +205,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to =&gt;&gt; Section.
+        ///   Looks up a localized string similar to =&gt;&gt; Section .
         /// </summary>
         internal static string AssociateNode_SelectedSection {
             get {
