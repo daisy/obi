@@ -674,6 +674,7 @@ int channel = 0;
             if (m_IsToBeRepainted)
             {
                // ResetLists();
+                 if(m_CounterWaveform <= 0 )  m_CounterWaveform = listOfCurrentMinChannel1.Count;
                 RepaintWaveform();                
             }
             m_IsToBeRepainted = true;
