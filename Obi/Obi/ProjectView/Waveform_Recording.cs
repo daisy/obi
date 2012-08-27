@@ -485,6 +485,8 @@ int channel = 0;
                 {
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                     {
+                        if ((i > listOfCurrentMinChannel1.Count - 1) || (i > listOfCurrentMaxChannel1.Count - 1)) continue;
+
                         if (!m_IsColorHighContrast)
                         {
                             g.DrawLine(pen_ChannelMono, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
@@ -499,6 +501,10 @@ int channel = 0;
 
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
                     {
+                        if ((i > listOfCurrentMinChannel1.Count - 1) || (i > listOfCurrentMaxChannel1.Count - 1)
+                            || (i > listOfCurrentMinChannel2.Count - 1) || (i > listOfCurrentMaxChannel2.Count - 1)) 
+                            continue;
+
                         if (!m_IsColorHighContrast)
                         {
                             g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
