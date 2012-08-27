@@ -191,9 +191,12 @@ namespace Obi.Dialogs
         {
             if (m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Count <= 1) return;
 
-            for (int i = 1; i < m_lv_ListOfSelectedSectionsForPhraseDetection.CheckedItems.Count; i++)
+            for (int i = 0; i < m_lv_ListOfSelectedSectionsForPhraseDetection.CheckedItems.Count; i++)
             {
-            m_SelectedSectionList.Add ((SectionNode)m_lv_ListOfSelectedSectionsForPhraseDetection.CheckedItems[i].Tag );
+                if (m_lv_ListOfSelectedSectionsForPhraseDetection.CheckedItems[i] != m_lv_ListOfSelectedSectionsForPhraseDetection.Items[0])
+                {
+                    m_SelectedSectionList.Add((SectionNode)m_lv_ListOfSelectedSectionsForPhraseDetection.CheckedItems[i].Tag);
+                }
             
             }
             m_SelectedSilencePhrase = m_cb_SilencePhrase.SelectedIndex > 0 ? m_SilencePhrases[m_cb_SilencePhrase.SelectedIndex - 1] : null;
