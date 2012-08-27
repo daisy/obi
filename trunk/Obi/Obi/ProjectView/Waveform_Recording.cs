@@ -471,7 +471,7 @@ int channel = 0;
                 x = recordingTimeCursor;
             if (counterMin == 0)
                 return;
-            if (counterMin < 5)
+            if (counterMin < 5 || m_CounterWaveform <= 0)
             { }
             else
             {
