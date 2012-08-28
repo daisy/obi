@@ -46,7 +46,6 @@ namespace Obi.ProjectView
         private double timeOfAssetMilliseconds = 0;
         private bool m_IsMaximized = false;
         private bool m_IsToBeRepainted = false;
-        private int m_CounterWaveform = 0;
         private Dictionary<int, string> m_CurrentDictionary = new Dictionary<int, string>();
         private int m_OffsetLocation = 400;
         private int m_StaticRecordingLocation = 0;
@@ -431,7 +430,7 @@ int channel = 0;
 
         private void ObiForm_ResizeEnd(object sender, EventArgs e)
         {
-            m_CounterWaveform = listOfCurrentMinChannel1.Count;
+  //          m_CounterWaveform = listOfCurrentMinChannel1.Count;
             RepaintWaveform();
             m_IsResizing = false;
         }
@@ -441,7 +440,7 @@ int channel = 0;
             if (m_IsResizing)
                 return;
 
-            m_CounterWaveform = listOfCurrentMinChannel1.Count;
+//            m_CounterWaveform = listOfCurrentMinChannel1.Count;
             RepaintWaveform();
             m_IsResizing = false;
         }
@@ -454,7 +453,7 @@ int channel = 0;
             Pen blackPen = new Pen(Color.Black);
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
             int tempm_X = m_X;
-
+            int counterWaveform = 0;
             g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), 0, 0, Width, Height);
             if (m_IsMaximized)
             {
@@ -466,18 +465,19 @@ int channel = 0;
             int x = 0;
             int counterMax = listOfCurrentMaxChannel2.Count;
             int countToRepaint = 0;
+            counterWaveform = listOfCurrentMinChannel1.Count;
 
             if (m_ContentView != null)
                 x = recordingTimeCursor;
             if (counterMin == 0)
                 return;
-            if (counterMin < 5 || m_CounterWaveform <= 0)
+            if (counterMin < 5)
             { }
             else
             {
                 timer1.Stop();
-                if (m_CounterWaveform < xSize)
-                    countToRepaint = m_CounterWaveform;
+                if (counterWaveform < xSize)
+                    countToRepaint = counterWaveform;
                 else
                     countToRepaint = xSize;
                
@@ -485,8 +485,6 @@ int channel = 0;
                 {
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                     {
-                        if ((i > listOfCurrentMinChannel1.Count - 1) || (i > listOfCurrentMaxChannel1.Count - 1)) continue;
-
                         if (!m_IsColorHighContrast)
                         {
                             g.DrawLine(pen_ChannelMono, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
@@ -501,10 +499,6 @@ int channel = 0;
 
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
                     {
-                        if ((i > listOfCurrentMinChannel1.Count - 1) || (i > listOfCurrentMaxChannel1.Count - 1)
-                            || (i > listOfCurrentMinChannel2.Count - 1) || (i > listOfCurrentMaxChannel2.Count - 1)) 
-                            continue;
-
                         if (!m_IsColorHighContrast)
                         {
                             g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
@@ -680,7 +674,6 @@ int channel = 0;
             if (m_IsToBeRepainted)
             {
                // ResetLists();
-                 if(m_CounterWaveform <= 0 )  m_CounterWaveform = listOfCurrentMinChannel1.Count;
                 RepaintWaveform();                
             }
             m_IsToBeRepainted = true;
