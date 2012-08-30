@@ -418,7 +418,7 @@ int channel = 0;
             if (m_IsResizing)
                 return;
            
-            m_CounterWaveform = listOfCurrentMinChannel1.Count;
+            //m_CounterWaveform = listOfCurrentMinChannel1.Count;
             RepaintWaveform();
             m_IsResizing = false;
         }
@@ -571,10 +571,10 @@ int channel = 0;
                 else
                 {
                     timer1.Stop();
-                    if (m_CounterWaveform < xSize)
+                    /*if (m_CounterWaveform < xSize)
                         countToRepaint = m_CounterWaveform;
-                    else
-                        countToRepaint = xSize;
+                      else
+                        countToRepaint = xSize;*/
             
                     for (int i = counterMin - 1; i >= 0; i--)
                     {
