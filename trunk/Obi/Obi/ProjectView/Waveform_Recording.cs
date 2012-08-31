@@ -480,7 +480,7 @@ int channel = 0;
                     countToRepaint = counterWaveform;
                 else
                     countToRepaint = xSize;
-               
+                this.Location = new Point((m_X - recordingTimeCursor) * -1, Location.Y);
                 for (int i = countToRepaint - 1; i >= 0; i--)
                 {
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
