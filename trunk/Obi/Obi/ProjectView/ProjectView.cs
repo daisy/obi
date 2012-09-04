@@ -3974,7 +3974,7 @@ for (int j = 0;
 
         public void ClearSkippableChunk()
         {
-
+            
             if (CanClearSkippableRole)
             {
                 if (TransportBar.IsPlayerActive) TransportBar.Pause();
@@ -3982,10 +3982,19 @@ for (int j = 0;
                 {
                     EmptyNode firstNode = GetSkippableNoteEndNode(true);
                     SectionNode parentSection = this.Selection.Node.ParentAs<SectionNode>();
+                    CompositeCommand command = Presentation.CommandFactory.CreateCompositeCommand();
+                    EmptyNode anchor = mPresentation.GetAnchorForReferencedNode(firstNode);
 
-                    if (firstNode != null)
+                    if (anchor.AssociatedNode != null && (MessageBox.Show(Localizer.Message("ProjectView_ClearAnchor"), 
+                        Localizer.Message(""), MessageBoxButtons.YesNo, 
+                        MessageBoxIcon.Information) == DialogResult.Yes))
                     {
-                        CompositeCommand command = Presentation.CommandFactory.CreateCompositeCommand();
+                        Commands.Node.AssignRole ClearRoleCmd = new Commands.Node.AssignRole(this, anchor, EmptyNode.Role.Plain);
+                        command.ChildCommands.Insert(command.ChildCommands.Count, ClearRoleCmd);
+                    }
+                    anchor.AssociatedNode = null;
+                    if (firstNode != null)
+                    {                        
                         command.ShortDescription = "Remove skippable role from the chunk";
                         for (int i = firstNode.Index; i < parentSection.PhraseChildCount; i++)
                         {
