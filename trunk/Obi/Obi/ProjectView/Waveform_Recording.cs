@@ -240,11 +240,18 @@ namespace Obi.ProjectView
                    Time.TIME_UNIT;
             int timeInSeconds = Convert.ToInt32(timeOfAssetMilliseconds / 1000);
             m_Counter++;
+
+            if (ConvertPixelsToTime(m_X) < (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+                   Time.TIME_UNIT))
+               timer1.Interval = 90;
+            else
+                timer1.Interval = 100;
+
             if (m_Counter == 10)
             {
                 g.DrawLine(newPen, m_X, 0, m_X, Height);
                 if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds)
-                {
+                {          
                     text = timeInSeconds.ToString();
                     g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
                     if (!m_MainDictionary.ContainsKey(m_X))
@@ -324,9 +331,12 @@ namespace Obi.ProjectView
 
         private double ConvertPixelsToTime(int pixels)
         {
-            double timeInMilliseconds = 0;
-            timeInMilliseconds = pixels * 100;
-            return timeInMilliseconds;
+            double time = 0;
+            if (m_Pass > 0)
+                time = m_InitialStaticTime + (pixels - m_StaticRecordingLocation) * 100;
+            else
+                time = (pixels - m_StaticRecordingLocation) * 100;
+            return time;
         }
 
         private int ConvertTimeToPixels(double time)
@@ -338,6 +348,7 @@ namespace Obi.ProjectView
 
         private void Waveform_Recording_VisibleChanged(object sender, EventArgs e)
         {
+            m_InitialStaticTime = 0;
             if (this.Visible == true)
             {
                 timer1.Start();
@@ -447,7 +458,6 @@ int channel = 0;
 
         private void RepaintWaveform()
         {
-            Console.WriteLine("RAPEINEET");
             Font myFont = new Font("Microsoft Sans Serif", 7);
             Pen newPen = new Pen(SystemColors.Control);
             Pen blackPen = new Pen(Color.Black);
@@ -683,23 +693,19 @@ int channel = 0;
 
         private void Waveform_Recording_MouseClick(object sender, MouseEventArgs e)          
         {
-          /*  int initialPos = m_StaticRecordingLocation;
             double time = 0;
-            int pixel = 0;
-            double timeTemp = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
-            
-            if (m_Pass > 0)
-                time = m_InitialStaticTime + ConvertPixelsToTime(e.X - initialPos);
-            else
-                time = ConvertPixelsToTime(e.X - initialPos);
-            */
-            //timeTemp = time - m_InitialStaticTime;
-          /*  if (m_Pass > 0)
+            time = ConvertPixelsToTime(e.X);
+        
+            time = time - m_InitialStaticTime;
+
+            g.DrawLine(pen, e.X, 0, e.X, Height);
+            g.DrawString("Phrase", myFont, Brushes.Black, e.X, 0);
+         /*   if (m_Pass > 0)
                 pixel = ConvertTimeToPixels(timeTemp) + initialPos;
             else
-                pixel = ConvertTimeToPixels(time) + initialPos;
-           */
+                pixel = ConvertTimeToPixels(time) + initialPos;*/
+           
         }
 
         private void m_RecordingSession_FinishingPhrase(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
