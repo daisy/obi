@@ -3985,9 +3985,8 @@ for (int j = 0;
                     CompositeCommand command = Presentation.CommandFactory.CreateCompositeCommand();
                     EmptyNode anchor = mPresentation.GetAnchorForReferencedNode(firstNode);
 
-                    if (anchor.AssociatedNode != null && (MessageBox.Show(Localizer.Message("ProjectView_ClearAnchor"), 
-                        Localizer.Message(""), MessageBoxButtons.YesNo, 
-                        MessageBoxIcon.Information) == DialogResult.Yes))
+                    if (anchor != null && anchor.AssociatedNode != null && (MessageBox.Show(Localizer.Message("ProjectView_ClearAnchor"), Localizer.Message("Caption_Information"),
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes))
                     {
                         Commands.Node.AssignRole ClearRoleCmd = new Commands.Node.AssignRole(this, anchor, EmptyNode.Role.Plain);
                         command.ChildCommands.Insert(command.ChildCommands.Count, ClearRoleCmd);
