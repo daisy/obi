@@ -53,6 +53,8 @@ namespace Obi.ProjectView
         private int m_Pass = 0;
         private double m_InitialStaticTime = 0;
         private bool m_IsResizing = false;
+        private int m_InitialOffsetTime = 0;
+        private int m_InitialOffsetLocation = 0;
         
         public Waveform_Recording()
         {
@@ -66,6 +68,7 @@ namespace Obi.ProjectView
             Location = new Point(-400, Location.Y);
             Size = new Size(10000, Height);
             m_StaticRecordingLocation = -1;
+            m_InitialOffsetTime = -1;
         }
 
         private RecordingSession m_RecordingSession;
@@ -165,7 +168,7 @@ namespace Obi.ProjectView
             if (m_StaticRecordingLocation == -1)
             {
                 Location = new Point(-m_OffsetLocation, Location.Y);
-                m_StaticRecordingLocation = recordingTimeCursor + Math.Abs( this.Location.X);
+                //m_StaticRecordingLocation = recordingTimeCursor + Math.Abs( this.Location.X);
             }
                 
             m_XCV = m_X + Location.X;
@@ -249,6 +252,15 @@ namespace Obi.ProjectView
 
             if (m_Counter == 10)
             {
+                if(m_InitialOffsetTime < 0)
+                {
+                    m_InitialStaticTime = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+                       Time.TIME_UNIT;
+                    m_StaticRecordingLocation = m_X;
+                }
+                double recTime = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+                        Time.TIME_UNIT;
+                Console.WriteLine("Synchronize " + ConvertPixelsToTime(m_X) + " : " + recTime);
                 g.DrawLine(newPen, m_X, 0, m_X, Height);
                 if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds)
                 {          
@@ -300,14 +312,16 @@ namespace Obi.ProjectView
             listOfMaxChannel2Temp = listOfCurrentMaxChannel2;
             m_TempDictionary = m_MainDictionary;
             tempXLocation = listOfCurrentXLocation[listOfCurrentXLocation.Count - 1];
-                        
+            m_InitialStaticTime = -1;
+            m_InitialOffsetLocation = -1;
+
             listOfCurrentMinChannel1 = new List<int>();
             listOfCurrentMinChannel2 = new List<int>();
             listOfCurrentMaxChannel1 = new List<int>();
             listOfCurrentMaxChannel2 = new List<int>();
             m_MainDictionary = new Dictionary<int, string>();
             m_InitialStaticTime = (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
-                        Time.TIME_UNIT);
+                        Time.TIME_UNIT)+ m_InitialOffsetTime;
             for (int i = listOfMinChannel1Temp.Count - recordingTimeCursor; i <= listOfMinChannel1Temp.Count - 1; i ++)
             {
                 if (i >= 0)
@@ -332,10 +346,8 @@ namespace Obi.ProjectView
         private double ConvertPixelsToTime(int pixels)
         {
             double time = 0;
-            if (m_Pass > 0)
-                time = m_InitialStaticTime + (pixels - m_StaticRecordingLocation) * 100;
-            else
-                time = (pixels - m_StaticRecordingLocation) * 100;
+            time = m_InitialStaticTime + (pixels - m_StaticRecordingLocation) * 100;
+           
             return time;
         }
 
@@ -696,9 +708,7 @@ int channel = 0;
             double time = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
             time = ConvertPixelsToTime(e.X);
-        
             time = time - m_InitialStaticTime;
-
             g.DrawLine(pen, e.X, 0, e.X, Height);
             g.DrawString("Phrase", myFont, Brushes.Black, e.X, 0);
          /*   if (m_Pass > 0)
