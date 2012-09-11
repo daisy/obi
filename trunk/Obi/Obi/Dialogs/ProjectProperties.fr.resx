@@ -400,7 +400,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="m_lblTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 11</value>
+    <value>12, 11</value>
   </data>
   <data name="m_lblTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
