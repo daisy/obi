@@ -394,13 +394,25 @@
     <value>32</value>
   </data>
   <data name="m_ComboBoxBitrate.Items1" xml:space="preserve">
-    <value>48</value>
+    <value>40</value>
   </data>
   <data name="m_ComboBoxBitrate.Items2" xml:space="preserve">
-    <value>64</value>
+    <value>48</value>
   </data>
   <data name="m_ComboBoxBitrate.Items3" xml:space="preserve">
+    <value>56</value>
+  </data>
+  <data name="m_ComboBoxBitrate.Items4" xml:space="preserve">
+    <value>64</value>
+  </data>
+  <data name="m_ComboBoxBitrate.Items5" xml:space="preserve">
     <value>128</value>
+  </data>
+  <data name="m_ComboBoxBitrate.Items6" xml:space="preserve">
+    <value>196</value>
+  </data>
+  <data name="m_ComboBoxBitrate.Items7" xml:space="preserve">
+    <value>256</value>
   </data>
   <data name="m_ComboBoxBitrate.Location" type="System.Drawing.Point, System.Drawing">
     <value>125, 142</value>
