@@ -106,7 +106,11 @@ namespace Obi.Dialogs
             resources.GetString("m_ComboBoxBitrate.Items"),
             resources.GetString("m_ComboBoxBitrate.Items1"),
             resources.GetString("m_ComboBoxBitrate.Items2"),
-            resources.GetString("m_ComboBoxBitrate.Items3")});
+            resources.GetString("m_ComboBoxBitrate.Items3"),
+            resources.GetString("m_ComboBoxBitrate.Items4"),
+            resources.GetString("m_ComboBoxBitrate.Items5"),
+            resources.GetString("m_ComboBoxBitrate.Items6"),
+            resources.GetString("m_ComboBoxBitrate.Items7")});
             this.m_ComboBoxBitrate.Name = "m_ComboBoxBitrate";
             this.m_ComboBoxBitrate.SelectedIndexChanged += new System.EventHandler(this.m_ComboBoxBitrate_SelectedIndexChanged);
             // 
