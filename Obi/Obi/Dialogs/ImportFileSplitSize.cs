@@ -38,6 +38,11 @@ namespace Obi.Dialogs
         /// </summary>
         public uint MaxPhraseDurationMinutes { get { return mMaxPhraseDurationMinutes; } }
 
+        public string PageIdentificationString { get { return "page"; } }
+
+        public string CharactersToBeReplacedWithSpaces { get { return "_"; } }
+
+        public int CharacterCountToTruncateFromStart { get { return 4; } }
 
         // Check that the duration is a number.
         private void mOKButton_Click(object sender, EventArgs e)
