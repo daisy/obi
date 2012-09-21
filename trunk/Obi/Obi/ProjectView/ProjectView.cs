@@ -2109,7 +2109,9 @@ namespace Obi.ProjectView
                                 this.ObiForm.Cursor = Cursors.WaitCursor;
                                 if (createSectionForEachPhrase)
                                     {
-                                    mPresentation.Do ( GetImportSectionsFromAudioCommands( phraseNodes, phrase_SectionNameMap ) );
+                                        CompositeCommand createSectionsCommand = GetImportSectionsFromAudioCommands(phraseNodes, phrase_SectionNameMap, dialog.CharacterCountToTruncateFromStart, dialog.CharactersToBeReplacedWithSpaces, dialog.PageIdentificationString);
+                                        
+                                        mPresentation.Do(createSectionsCommand);
                                     }
                                 else
                                     {
@@ -2131,7 +2133,7 @@ namespace Obi.ProjectView
             }
 
         // Create a command to import phrases
-        private CompositeCommand GetImportPhraseCommands ( List<PhraseNode> phraseNodes )
+        private CompositeCommand GetImportPhraseCommands(List<PhraseNode> phraseNodes)
             {
             CompositeCommand command = Presentation.CreateCompositeCommand ( Localizer.Message ( "import_phrases" ) );
             ObiNode parent;
@@ -2167,7 +2169,7 @@ namespace Obi.ProjectView
             return command;
             }
 
-        private CompositeCommand GetImportSectionsFromAudioCommands ( List<PhraseNode> phraseNodes,Dictionary<PhraseNode, string> phrase_SectionNameMap )
+        private CompositeCommand GetImportSectionsFromAudioCommands(List<PhraseNode> phraseNodes, Dictionary<PhraseNode, string> phrase_SectionNameMap, int CharacterCountToTruncateFromStart ,string  CharactersToBeReplacedWithSpaces, string PageIdentificationString)
             {
             CompositeCommand command = Presentation.CreateCompositeCommand ( Localizer.Message ( "import_phrases" ) );
             if (Selection != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
@@ -2182,10 +2184,18 @@ namespace Obi.ProjectView
             {
                 newSectionNode = (SectionNode)Selection.Node;
                 phraseInsertIndex = 0;
-                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.RenameSection(this, newSectionNode, phrase_SectionNameMap[phraseNodes[0]]));
+                string sectionName = phrase_SectionNameMap[phraseNodes[0]];
+                if ( CharacterCountToTruncateFromStart > 0 ) sectionName = sectionName.Substring (CharacterCountToTruncateFromStart - 1, sectionName.Length - CharacterCountToTruncateFromStart + 1) ;
+                if (!string.IsNullOrEmpty(CharactersToBeReplacedWithSpaces))
+                {
+                    sectionName = sectionName.Replace(CharactersToBeReplacedWithSpaces, " ");
+                    sectionName = sectionName.TrimStart();
+                }
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.RenameSection(this, newSectionNode, sectionName));
                 command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNodes[0], newSectionNode, phraseInsertIndex));
                 phraseNodes.RemoveAt(0);
 
+                
 for (int j = 0;
                         j < phraseNodes.Count && !phrase_SectionNameMap.ContainsKey(phraseNodes[j]);
                         j++)
@@ -2194,33 +2204,95 @@ for (int j = 0;
                     command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNodes[j], newSectionNode, phraseInsertIndex));
                 }
             }
-
+            List<EmptyNode> pagePhrases = new List<EmptyNode>();
             for (int i = phraseNodes.Count-1; i >= 0; i--)
                 {
                 if (phrase_SectionNameMap.ContainsKey ( phraseNodes[i] ))
-                    {
-                        
-                            // create a new section and add phrase to it
-                            Commands.Command addSectionCmd = new Commands.Node.AddSectionNode(this, mTOCView, null);
-                            addSectionCmd.UpdateSelection = true;
-                            command.ChildCommands.Insert(command.ChildCommands.Count, addSectionCmd);
-                            newSectionNode = ((Commands.Node.AddSectionNode)addSectionCmd).NewSection;
-                        
-                    
-                    command.ChildCommands.Insert(command.ChildCommands.Count,new Commands.Node.RenameSection ( this, newSectionNode, phrase_SectionNameMap[phraseNodes[i]]  ));
+                {
 
+
+                    string newSectionName = phrase_SectionNameMap[phraseNodes[i]];
+                    //MessageBox.Show(newSectionName);
+                    if (CharacterCountToTruncateFromStart > 0) newSectionName = newSectionName.Substring(CharacterCountToTruncateFromStart - 1, newSectionName.Length - CharacterCountToTruncateFromStart + 1);
+                    if (!string.IsNullOrEmpty(CharactersToBeReplacedWithSpaces))
+                    {
+                        newSectionName = newSectionName.Replace(CharactersToBeReplacedWithSpaces, " ");
+                        newSectionName = newSectionName.TrimStart();
+                    }
+
+                    if (!newSectionName.StartsWith(PageIdentificationString))
+                    {
+                        // create a new section and add phrase to it
+                        Commands.Command addSectionCmd = new Commands.Node.AddSectionNode(this, mTOCView, null);
+                        addSectionCmd.UpdateSelection = true;
+                        command.ChildCommands.Insert(command.ChildCommands.Count, addSectionCmd);
+                        newSectionNode = ((Commands.Node.AddSectionNode)addSectionCmd).NewSection;
+
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.RenameSection(this, newSectionNode, newSectionName));
+                    }
+                    else
+                    {
+                        string pageNumberString = newSectionName.Substring(PageIdentificationString.Length, newSectionName.Length - PageIdentificationString.Length);
+
+                        int pageNum = 0;
+                        int.TryParse(pageNumberString, out pageNum);
+                        if (pageNum > 0)
+                        {
+                            EmptyNode node = Presentation.TreeNodeFactory.Create<EmptyNode>();
+                            node.Role_ = EmptyNode.Role.Page;
+                            node.PageNumber = new PageNumber(pageNum, PageKind.Normal);
+                            pagePhrases.Insert(0, node);
+                        }
+                        pagePhrases.Insert(0, phraseNodes[i]) ;
+                        for (int j = i + 1;
+                        j < phraseNodes.Count && !phrase_SectionNameMap.ContainsKey(phraseNodes[j]);
+                        j++)
+                        {
+                            pagePhrases.Insert(0,phraseNodes[j]);
+                        }
+                        
+                        continue;
+                    }
                     phraseInsertIndex = 0;
                     command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNodes[i], newSectionNode, phraseInsertIndex));
 
-                    for (int j = i +1 ; 
-                        j < phraseNodes.Count && !phrase_SectionNameMap.ContainsKey ( phraseNodes[j]); 
-                        j++ )
+                    for (int j = i + 1;
+                        j < phraseNodes.Count && !phrase_SectionNameMap.ContainsKey(phraseNodes[j]);
+                        j++)
                     {
-                        phraseInsertIndex++ ;
+                        phraseInsertIndex++;
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNodes[j], newSectionNode, phraseInsertIndex));
                     }
-                    //MessageBox.Show(phrase_SectionNameMap[phraseNodes[i]]);
+                    if (newSectionName.Contains(PageIdentificationString) && !newSectionName.StartsWith(PageIdentificationString))
+                    {
+                        int pageNumIndex = newSectionName.IndexOf(PageIdentificationString);
+                        string pageNumberString = newSectionName.Substring(pageNumIndex + PageIdentificationString.Length, newSectionName.Length - pageNumIndex - PageIdentificationString.Length);
+                        //MessageBox.Show(pageNumberString);
+                        int pageNum = 0;
+                        int.TryParse(pageNumberString, out pageNum);
+                        if (pageNum > 0)
+                        {
+                            EmptyNode node = Presentation.TreeNodeFactory.Create<EmptyNode>();
+                            node.Role_ = EmptyNode.Role.Page;
+                            node.PageNumber = new PageNumber(pageNum, PageKind.Normal);
+                            phraseInsertIndex++;
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, node, newSectionNode, phraseInsertIndex));
+                        }
                     }
+
+                    if (pagePhrases.Count > 0)
+                    {//1
+                        for (int pageCount = 0; pageCount < pagePhrases.Count; pageCount++)
+                        {//2
+                            phraseInsertIndex++;
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, pagePhrases[pageCount], newSectionNode, phraseInsertIndex));
+                        }//-2
+                        pagePhrases.Clear();
+                    }//-1
+                    
+                    
+                    //MessageBox.Show(phrase_SectionNameMap[phraseNodes[i]]);
+                }
 }
                 if (newSectionNode != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));
             return command;
