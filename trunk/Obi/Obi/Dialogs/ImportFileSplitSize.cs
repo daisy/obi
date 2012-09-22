@@ -15,14 +15,15 @@ namespace Obi.Dialogs
         private bool mCanClose;
         private ObiPresentation mPresentation;  // presentation
         private List<string> m_filePaths;
-       
+        private Settings m_Settings;
 
-        public ImportFileSplitSize(bool split, uint duration,string []filesPathArray)
+        public ImportFileSplitSize( Settings settings,string []filesPathArray)
         {
             InitializeComponent();
-            mSplitCheckBox.Checked = split;
+            m_Settings = settings;
+            mSplitCheckBox.Checked = settings.SplitPhrasesOnImport;
             m_radiobtnYes.Checked = true;
-            mMaxPhraseDurationMinutes = duration;
+            mMaxPhraseDurationMinutes = settings.MaxPhraseDurationMinutes;
             m_filePaths = new List<string>(filesPathArray);
             mPhraseSizeTextBox.Text = mMaxPhraseDurationMinutes.ToString();
             foreach (string str in filesPathArray)
@@ -32,7 +33,10 @@ namespace Obi.Dialogs
                     lstManualArrange.Items.Add(System.IO.Path.GetFileName(str));
                 }
             }
-            mPhraseSizeTextBox.ReadOnly = !split;
+            mPhraseSizeTextBox.ReadOnly = !settings.SplitPhrasesOnImport;
+            m_txtCharToReplaceWithSpace.Text = settings.Audio_ImportCharsToReplaceWithSpaces;
+            m_txtPageIdentificationString.Text = settings.Audio_ImportPageIdentificationString;
+            m_numCharCountToTruncateFromStart.Value = settings.Audio_ImportCharCountToTruncateFromStart;
             mCanClose = true;
         }
 
@@ -75,6 +79,9 @@ namespace Obi.Dialogs
                     uint duration = Convert.ToUInt32 ( mPhraseSizeTextBox.Text );
                     mMaxPhraseDurationMinutes = duration;
                     if (duration <= 0) throw new Exception ();
+                    m_Settings.Audio_ImportCharCountToTruncateFromStart = (uint)m_numCharCountToTruncateFromStart.Value;
+                    m_Settings.Audio_ImportCharsToReplaceWithSpaces = m_txtCharToReplaceWithSpace.Text;
+                    m_Settings.Audio_ImportPageIdentificationString = m_txtPageIdentificationString.Text;
                     }
                 catch (System.Exception)
                     {

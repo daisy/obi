@@ -38,6 +38,9 @@ namespace Obi
         public string LastOpenProject;         // path to the last open project
         public string LastOutputDevice;        // the name of the last output device selected by the user
         public uint MaxPhraseDurationMinutes;  // maximum phrase duration in minutes for autosplitting during import
+        public uint Audio_ImportCharCountToTruncateFromStart; // number of chars to truncate in section name while creating sections with imported file names
+        public string Audio_ImportCharsToReplaceWithSpaces; // chars that should be replaced by white spaces in section names while creating sections from imported audio file names
+        public string Audio_ImportPageIdentificationString; // string that indicates that the audio file is a page instead of being a section and it should be appended to previous section
         public uint MaxAllowedPhraseDurationInMinutes ; //Max size of phrase allowed in content view
         public bool Audio_ShowLiveWaveformWhileRecording;// Show Live Waveform While Recording
         public bool Audio_EnableLivePhraseDetection; // enables phrase detection while recording
@@ -101,6 +104,9 @@ namespace Obi
             settings.LastOpenProject = "";
             settings.LastOutputDevice = "";
             settings.MaxPhraseDurationMinutes = 10;
+            settings.Audio_ImportCharCountToTruncateFromStart = 4;
+            settings.Audio_ImportCharsToReplaceWithSpaces = "_";
+            settings.Audio_ImportPageIdentificationString = "page";
             settings.MaxAllowedPhraseDurationInMinutes = 50;
             settings.Audio_ShowLiveWaveformWhileRecording = false;
             settings.Audio_EnableLivePhraseDetection = false;
