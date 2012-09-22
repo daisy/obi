@@ -34,6 +34,8 @@ namespace Obi.ImportExport
         private Dictionary<SectionNode, EmptyNode> m_NextSectionPageAdjustmentDictionary;
         private int m_AudioFileSectionLevel;
         private EmptyNode m_FirstPageNumberedPhraseOfFirstSection;
+        private int m_MaxDepth = 0 ;
+        private List<string> m_FilesList = null;
         //private bool m_EncodeToMP3;
         //private int m_BitRate_Mp3;
 
@@ -51,6 +53,7 @@ namespace Obi.ImportExport
             m_SmilFile_TitleMap = new Dictionary<string, string> ();
             m_NextSectionPageAdjustmentDictionary = new Dictionary<SectionNode, EmptyNode>();
             m_AudioFileSectionLevel = audioFileSectionLevel;
+            m_FilesList = new List<string>();
             //m_EncodeToMP3 = encodeToMP3;
             }
 
@@ -129,6 +132,7 @@ namespace Obi.ImportExport
 
         public override void DoWork()
             {
+                m_FilesList.Clear();
                 Channel publishChannel = PublishAudioFiles ();
 
                 if (RequestCancellation_RemovePublishChannel(publishChannel)) return;
@@ -164,6 +168,7 @@ namespace Obi.ImportExport
                 {
                 try
                     {
+                        if (m_MaxDepth < sectionsList[i].Level) m_MaxDepth = sectionsList[i].Level;
                     CreateElementsForSection ( nccDocument, sectionsList[i], i );
                     }
                 catch (System.Exception ex)
@@ -391,7 +396,8 @@ namespace Obi.ImportExport
                                 GetNPTSmiltime(externalMedia.ClipEnd.AsTimeSpan));
                             CreateAppendXmlAttribute(smilDocument, audioNode, "id", "aud" + IncrementID);
                             sectionDuration.Add(externalMedia.Duration);
-                        
+                            if (!m_FilesList.Contains(relativeSRC)) m_FilesList.Add(relativeSRC);
+
                     // copy audio element if phrase has  heading role and is not first phrase
                     if (phrase.Role_ == EmptyNode.Role.Heading && !isFirstPhrase)
                         {
@@ -438,6 +444,7 @@ namespace Obi.ImportExport
 
                 WriteXmlDocumentToFile ( smilDocument,
                     Path.Combine ( m_ExportDirectory, smilFileName ) );
+                if (!m_FilesList.Contains(smilFileName)) m_FilesList.Add(smilFileName);
                 }
             }
 
@@ -701,6 +708,18 @@ namespace Obi.ImportExport
             CreateAppendXmlAttribute(nccDocument, multimediaType, "name", "ncc:multimediaType");
             CreateAppendXmlAttribute(nccDocument, multimediaType, "content", "audioNcc");
 
+            // ncc:depth
+            XmlNode depthNode = nccDocument.CreateElement(null, "meta", headNode.NamespaceURI);
+            headNode.AppendChild(depthNode);
+            CreateAppendXmlAttribute(nccDocument, depthNode, "name", "ncc:depth");
+            CreateAppendXmlAttribute(nccDocument, depthNode, "content", m_MaxDepth.ToString());
+
+            // ncc:files
+            int filesCount = m_FilesList.Count + 2;
+            XmlNode filesCountNode = nccDocument.CreateElement(null, "meta", headNode.NamespaceURI);
+            headNode.AppendChild(filesCountNode);
+            CreateAppendXmlAttribute(nccDocument, filesCountNode, "name", "ncc:files");
+            CreateAppendXmlAttribute(nccDocument, filesCountNode, "content", filesCount.ToString());
         
         }
 
