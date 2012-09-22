@@ -2238,9 +2238,8 @@ for (int j = 0;
                         int.TryParse(pageNumberString, out pageNum);
                         if (pageNum > 0)
                         {
-                            EmptyNode node = Presentation.TreeNodeFactory.Create<EmptyNode>();
-                            node.Role_ = EmptyNode.Role.Page;
-                            node.PageNumber = new PageNumber(pageNum, PageKind.Normal);
+                            
+                            PhraseNode node = CreatePagePhraseWithNegligibleAudio( new PageNumber(pageNum, PageKind.Normal));
                             pagePhrases.Insert(0, node);
                         }
                         pagePhrases.Insert(0, phraseNodes[i]) ;
@@ -2272,9 +2271,8 @@ for (int j = 0;
                         int.TryParse(pageNumberString, out pageNum);
                         if (pageNum > 0)
                         {
-                            EmptyNode node = Presentation.TreeNodeFactory.Create<EmptyNode>();
-                            node.Role_ = EmptyNode.Role.Page;
-                            node.PageNumber = new PageNumber(pageNum, PageKind.Normal);
+                            PhraseNode node = CreatePagePhraseWithNegligibleAudio(new PageNumber(pageNum, PageKind.Normal));
+                            
                             phraseInsertIndex++;
                             command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, node, newSectionNode, phraseInsertIndex));
                         }
@@ -2297,6 +2295,18 @@ for (int j = 0;
                 if (newSectionNode != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));
             return command;
             }
+
+        private PhraseNode CreatePagePhraseWithNegligibleAudio(PageNumber pgNumber)
+        {
+            PhraseNode node = mPresentation.CreatePhraseNode();
+            node.Audio = mPresentation.MediaFactory.CreateManagedAudioMedia();
+            node.Audio.AudioMediaData = mPresentation.MediaDataFactory.Create<urakawa.media.data.audio.codec.WavAudioMediaData>();
+            byte [] zeroAudio = new byte[4096] ;
+            node.Audio.AudioMediaData.AppendPcmData(new System.IO.MemoryStream(zeroAudio), new urakawa.media.timing.Time(mPresentation.MediaDataManager.DefaultPCMFormat.Data.ConvertBytesToTime(zeroAudio.Length)));
+            node.Role_ = EmptyNode.Role.Page;
+            node.PageNumber = pgNumber;
+            return node;
+        }
 
         public bool CanImportPhrases { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
         public bool CanExportSelectedNodeAudio { get { return Selection != null && (Selection.Node is PhraseNode || (Selection.Node is SectionNode && !(Selection is StripIndexSelection))) && !TransportBar.IsRecorderActive; } }
