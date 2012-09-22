@@ -2035,18 +2035,35 @@ namespace Obi.ProjectView
                     }
                 }
 
-
-                List<string> paths = SelectFilesToImport ();
+                string [] filesPathArray = SelectFilesToImport ();
                 
-                if (paths != null)
+                
+
+                if (filesPathArray != null)
                     {
                     
+
                     Dialogs.ImportFileSplitSize dialog =
                         new Dialogs.ImportFileSplitSize ( ObiForm.Settings.SplitPhrasesOnImport,
                             ObiForm.Settings.MaxPhraseDurationMinutes );
                     
                     if (dialog.ShowDialog () == DialogResult.OK)
                         {
+                            Dialogs.ProgressDialog progress_AudioConverter = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileImport_ProcessingFiles"),
+                        delegate(Dialogs.ProgressDialog progress1)
+                        {
+                            filesPathArray = Audio.AudioFormatConverter.ConvertFiles(filesPathArray, mPresentation);
+                        });
+                            progress_AudioConverter.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.AudioFormatConverter.IsRequestCancellation = true; });
+                            progress_AudioConverter.ShowDialog();
+                            if (progress_AudioConverter.Exception != null) throw progress_AudioConverter.Exception;
+
+                            List<string> paths = new List<string>();
+                            for (int i = 0; i < filesPathArray.Length; i++)
+                            {
+                                if (!string.IsNullOrEmpty(filesPathArray[i])) paths.Add(filesPathArray[i]);
+                            }
+
                         ObiForm.Settings.MaxPhraseDurationMinutes = dialog.MaxPhraseDurationMinutes;
                         ObiForm.Settings.SplitPhrasesOnImport = dialog.SplitPhrases;
                         bool createSectionForEachPhrase = dialog.createSectionForEachPhrase;
@@ -2315,26 +2332,14 @@ for (int j = 0;
         /// Bring up the file chooser to select audio files to import and return new phrase nodes for the selected files,
         /// or null if nothing was selected.
         /// </summary>
-        private List<string> SelectFilesToImport ()
+        private string [] SelectFilesToImport ()
             {
             OpenFileDialog dialog = new OpenFileDialog ();
             dialog.Multiselect = true;
             dialog.Filter = Localizer.Message ( "audio_file_filter" );
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                string[] audioFilesList = null;
-                Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message ("AudioFileImport_ProcessingFiles"),
-                    delegate(Dialogs.ProgressDialog progress1)
-                    {
-                        audioFilesList = Audio.AudioFormatConverter.ConvertFiles(dialog.FileNames, mPresentation);
-                    });
-                progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.AudioFormatConverter.IsRequestCancellation = true; });
-                progress.ShowDialog();
-                if (progress.Exception != null) throw progress.Exception;
-
-                List<string> filesList = new List<string>();
-                foreach (string s in audioFilesList) filesList.Add(s);
-                return filesList;
+                return dialog.FileNames;
             }
             else
             {
