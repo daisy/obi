@@ -2044,8 +2044,7 @@ namespace Obi.ProjectView
                     
 
                     Dialogs.ImportFileSplitSize dialog =
-                        new Dialogs.ImportFileSplitSize ( ObiForm.Settings.SplitPhrasesOnImport,
-                            ObiForm.Settings.MaxPhraseDurationMinutes , filesPathArray);
+                        new Dialogs.ImportFileSplitSize ( ObiForm.Settings , filesPathArray);
                     
                     if (dialog.ShowDialog () == DialogResult.OK)
                         {
