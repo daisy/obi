@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 76</value>
+    <value>25, 334</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -133,7 +133,7 @@
     <value>143, 16</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>16</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Phrase si&amp;ze in minutes:</value>
@@ -148,13 +148,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>12</value>
   </data>
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
     <value>Phrase size in minutes</value>
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 76</value>
+    <value>174, 334</value>
   </data>
   <data name="mPhraseSizeTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -163,7 +163,7 @@
     <value>132, 22</value>
   </data>
   <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>17</value>
   </data>
   <data name="&gt;&gt;mPhraseSizeTextBox.Name" xml:space="preserve">
     <value>mPhraseSizeTextBox</value>
@@ -175,22 +175,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPhraseSizeTextBox.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>11</value>
   </data>
   <data name="mOKButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 123</value>
+    <value>50, 385</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mOKButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+    <value>100, 31</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>18</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -205,22 +205,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>10</value>
   </data>
   <data name="mCancelButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 123</value>
+    <value>168, 385</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mCancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+    <value>100, 31</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>19</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -235,7 +235,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>9</value>
   </data>
   <data name="mSplitCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -244,13 +244,13 @@
     <value>Flat</value>
   </data>
   <data name="mSplitCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 51</value>
+    <value>28, 314</value>
   </data>
   <data name="mSplitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 20</value>
   </data>
   <data name="mSplitCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>15</value>
   </data>
   <data name="mSplitCheckBox.Text" xml:space="preserve">
     <value>&amp;Split phrases on import</value>
@@ -265,19 +265,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mSplitCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>8</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+    <value>28, 288</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>221, 20</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>14</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
     <value>Create section for each audio file</value>
@@ -292,33 +292,384 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="lstManualArrange.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="lstManualArrange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 11</value>
+  </data>
+  <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 84</value>
+  </data>
+  <data name="lstManualArrange.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lstManualArrange.Name" xml:space="preserve">
+    <value>lstManualArrange</value>
+  </data>
+  <data name="&gt;&gt;lstManualArrange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstManualArrange.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;lstManualArrange.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 40</value>
+  </data>
+  <data name="m_btnMoveUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 23</value>
+  </data>
+  <data name="m_btnMoveUp.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_btnMoveUp.Text" xml:space="preserve">
+    <value>Move UP</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
+    <value>m_btnMoveUp</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveUp.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveUp.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 77</value>
+  </data>
+  <data name="m_btnMoveDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 23</value>
+  </data>
+  <data name="m_btnMoveDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_btnMoveDown.Text" xml:space="preserve">
+    <value>Move Down</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveDown.Name" xml:space="preserve">
+    <value>m_btnMoveDown</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveDown.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveDown.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 11</value>
+  </data>
+  <data name="m_btnAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 23</value>
+  </data>
+  <data name="m_btnAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="m_btnAdd.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
+    <value>m_btnAdd</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;m_radioBtnNo.Name" xml:space="preserve">
+    <value>m_radioBtnNo</value>
+  </data>
+  <data name="&gt;&gt;m_radioBtnNo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_radioBtnNo.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_radioBtnNo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_radiobtnYes.Name" xml:space="preserve">
+    <value>m_radiobtnYes</value>
+  </data>
+  <data name="&gt;&gt;m_radiobtnYes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_radiobtnYes.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_radiobtnYes.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_chkSortAscending.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;m_lblAscendingOrder.Name" xml:space="preserve">
+    <value>m_lblAscendingOrder</value>
   </data>
-  <data name="m_chkSortAscending.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 32</value>
+  <data name="&gt;&gt;m_lblAscendingOrder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="m_chkSortAscending.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 20</value>
+  <data name="&gt;&gt;m_lblAscendingOrder.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="m_chkSortAscending.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;m_lblAscendingOrder.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 7</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>318, 167</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="m_chkSortAscending.Text" xml:space="preserve">
-    <value>Sort files (ascending)</value>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;m_chkSortAscending.Name" xml:space="preserve">
-    <value>m_chkSortAscending</value>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_chkSortAscending.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_chkSortAscending.Parent" xml:space="preserve">
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_chkSortAscending.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="m_radioBtnNo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_radioBtnNo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 134</value>
+  </data>
+  <data name="m_radioBtnNo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="m_radioBtnNo.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="m_radioBtnNo.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="&gt;&gt;m_radioBtnNo.Name" xml:space="preserve">
+    <value>m_radioBtnNo</value>
+  </data>
+  <data name="&gt;&gt;m_radioBtnNo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_radioBtnNo.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_radioBtnNo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_radiobtnYes.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_radiobtnYes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 134</value>
+  </data>
+  <data name="m_radiobtnYes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="m_radiobtnYes.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_radiobtnYes.Text" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="&gt;&gt;m_radiobtnYes.Name" xml:space="preserve">
+    <value>m_radiobtnYes</value>
+  </data>
+  <data name="&gt;&gt;m_radiobtnYes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_radiobtnYes.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_radiobtnYes.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_lblAscendingOrder.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 102</value>
+  </data>
+  <data name="m_lblAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>314, 16</value>
+  </data>
+  <data name="m_lblAscendingOrder.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_lblAscendingOrder.Text" xml:space="preserve">
+    <value>Do You Want To Arrange Files in Ascending Order?</value>
+  </data>
+  <data name="&gt;&gt;m_lblAscendingOrder.Name" xml:space="preserve">
+    <value>m_lblAscendingOrder</value>
+  </data>
+  <data name="&gt;&gt;m_lblAscendingOrder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblAscendingOrder.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_lblAscendingOrder.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 180</value>
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.Name" xml:space="preserve">
+    <value>m_txtCharToReplaceWithSpace</value>
+  </data>
+  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 236</value>
+  </data>
+  <data name="m_txtPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="m_txtPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;m_txtPageIdentificationString.Name" xml:space="preserve">
+    <value>m_txtPageIdentificationString</value>
+  </data>
+  <data name="&gt;&gt;m_txtPageIdentificationString.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtPageIdentificationString.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_txtPageIdentificationString.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lblToReplaceWithSpace.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 186</value>
+  </data>
+  <data name="lblToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 16</value>
+  </data>
+  <data name="lblToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="lblToReplaceWithSpace.Text" xml:space="preserve">
+    <value>To Replace With Space</value>
+  </data>
+  <data name="&gt;&gt;lblToReplaceWithSpace.Name" xml:space="preserve">
+    <value>lblToReplaceWithSpace</value>
+  </data>
+  <data name="&gt;&gt;lblToReplaceWithSpace.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblToReplaceWithSpace.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblToReplaceWithSpace.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblCountToTruncateFromStart.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 214</value>
+  </data>
+  <data name="lblCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 16</value>
+  </data>
+  <data name="lblCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="lblCountToTruncateFromStart.Text" xml:space="preserve">
+    <value>Characters To Trancate From Start</value>
+  </data>
+  <data name="&gt;&gt;lblCountToTruncateFromStart.Name" xml:space="preserve">
+    <value>lblCountToTruncateFromStart</value>
+  </data>
+  <data name="&gt;&gt;lblCountToTruncateFromStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCountToTruncateFromStart.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblCountToTruncateFromStart.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lbltPageIdentificationString.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lbltPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 242</value>
+  </data>
+  <data name="lbltPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 16</value>
+  </data>
+  <data name="lbltPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="lbltPageIdentificationString.Text" xml:space="preserve">
+    <value>Page Identification</value>
+  </data>
+  <data name="&gt;&gt;lbltPageIdentificationString.Name" xml:space="preserve">
+    <value>lbltPageIdentificationString</value>
+  </data>
+  <data name="&gt;&gt;lbltPageIdentificationString.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbltPageIdentificationString.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lbltPageIdentificationString.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 208</value>
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.Name" xml:space="preserve">
+    <value>m_numCharCountToTruncateFromStart</value>
+  </data>
+  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -328,7 +679,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>309, 173</value>
+    <value>356, 429</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
