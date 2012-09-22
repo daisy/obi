@@ -13,13 +13,25 @@ namespace Obi.Dialogs
     {
         private uint mMaxPhraseDurationMinutes;
         private bool mCanClose;
+        private ObiPresentation mPresentation;  // presentation
+        private List<string> m_filePaths;
+       
 
-        public ImportFileSplitSize(bool split, uint duration)
+        public ImportFileSplitSize(bool split, uint duration,string []filesPathArray)
         {
             InitializeComponent();
             mSplitCheckBox.Checked = split;
+            m_radiobtnYes.Checked = true;
             mMaxPhraseDurationMinutes = duration;
+            m_filePaths = new List<string>(filesPathArray);
             mPhraseSizeTextBox.Text = mMaxPhraseDurationMinutes.ToString();
+            foreach (string str in filesPathArray)
+            {
+                if (str != null)
+                {
+                    lstManualArrange.Items.Add(System.IO.Path.GetFileName(str));
+                }
+            }
             mPhraseSizeTextBox.ReadOnly = !split;
             mCanClose = true;
         }
@@ -30,7 +42,15 @@ namespace Obi.Dialogs
         public bool SplitPhrases { get { return mSplitCheckBox.Checked; } }
 
         public bool createSectionForEachPhrase { get { return mCreateAudioFilePerSectionCheckBox.Checked; } }
-        public bool SortFileNamesAscending { get { return m_chkSortAscending.Checked; } }
+        public bool SortFileNamesAscending { get { return m_radiobtnYes.Checked; } }
+        public string[] FilesPaths 
+        { 
+            get 
+            {
+                return m_filePaths.ToArray();
+            
+        }
+       }
 
         //  create a porpety for section import
         /// <summary>
@@ -38,11 +58,11 @@ namespace Obi.Dialogs
         /// </summary>
         public uint MaxPhraseDurationMinutes { get { return mMaxPhraseDurationMinutes; } }
 
-        public string PageIdentificationString { get { return "page"; } }
+        public string PageIdentificationString { get { return mCreateAudioFilePerSectionCheckBox.Checked && !string.IsNullOrEmpty(m_txtPageIdentificationString.Text)? m_txtPageIdentificationString.Text: null; } }
 
-        public string CharactersToBeReplacedWithSpaces { get { return "_"; } }
+        public string CharactersToBeReplacedWithSpaces { get { return mCreateAudioFilePerSectionCheckBox.Checked && !string.IsNullOrEmpty(m_txtCharToReplaceWithSpace.Text)? m_txtCharToReplaceWithSpace.Text: null; } }
 
-        public int CharacterCountToTruncateFromStart { get { return 4; } }
+        public int CharacterCountToTruncateFromStart { get { return mCreateAudioFilePerSectionCheckBox.Checked? Convert.ToInt32(m_numCharCountToTruncateFromStart.Value) : 0 ; } }
 
         // Check that the duration is a number.
         private void mOKButton_Click(object sender, EventArgs e)
@@ -65,6 +85,7 @@ namespace Obi.Dialogs
                 }
         }
 
+      
         // Check that we have a valid value before we close, otherwise cancel.
         private void ImportFileSplitSize_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -80,5 +101,91 @@ namespace Obi.Dialogs
         {
             mPhraseSizeTextBox.ReadOnly = !mSplitCheckBox.Checked;
         }
+
+
+
+        private void m_btnMoveUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lstManualArrange.Items.Count != 0)
+                {
+                    if (lstManualArrange.SelectedIndex != 0 && lstManualArrange.SelectedIndex != -1)
+                    {
+                        
+                        object item = lstManualArrange.SelectedItem;
+                        
+                        int index = lstManualArrange.SelectedIndex;
+                       // List<string> filePaths = new List<string>(mfilePaths);
+                        //object itemInList = filesPath[index];
+
+                        object itemInList = m_filePaths[index];
+                        
+                        lstManualArrange.Items.RemoveAt(index);
+                        m_filePaths.RemoveAt(index);
+                        
+
+                        lstManualArrange.Items.Insert(index - 1, item);
+                        m_filePaths.Insert(index - 1, itemInList.ToString());
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+        }
+
+        private void m_btnMoveDown_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int index = lstManualArrange.SelectedIndex;
+
+                if (lstManualArrange.Items.Count != 0)
+                {
+                    if (lstManualArrange.SelectedIndex != lstManualArrange.Items.Count - 1 && lstManualArrange.SelectedIndex != -1)
+                    {
+                        object item = lstManualArrange.SelectedItem;
+                      
+                        object itemInList = m_filePaths[index];
+                        lstManualArrange.Items.RemoveAt(index);
+
+                        m_filePaths.RemoveAt(index);
+
+                        lstManualArrange.Items.Insert(index + 1, item);
+
+                        m_filePaths.Insert(index + 1, itemInList.ToString());
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+        }
+
+        private void m_btnAdd_Click(object sender, EventArgs e)
+        {
+
+            
+            OpenFileDialog select_File = new OpenFileDialog();
+            select_File.Filter = "Audio Files (*.wav)|*.wav";
+            int index = m_filePaths.Count;
+            select_File.RestoreDirectory = true; 
+            if (select_File.ShowDialog(this) == DialogResult.OK)
+            {
+                string filename = System.IO.Path.GetFileName(select_File.ToString());
+                lstManualArrange.Items.Add(filename);
+                m_filePaths.Add(select_File.FileName.ToString());
+              //  ProjectView.ProjectView.publicPaths.Insert(index + 1, select_File.FileName.ToString());
+
+            }
+            
+        }
+
+
+
+
     }
 }

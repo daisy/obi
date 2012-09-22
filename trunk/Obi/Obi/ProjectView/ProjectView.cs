@@ -2045,10 +2045,11 @@ namespace Obi.ProjectView
 
                     Dialogs.ImportFileSplitSize dialog =
                         new Dialogs.ImportFileSplitSize ( ObiForm.Settings.SplitPhrasesOnImport,
-                            ObiForm.Settings.MaxPhraseDurationMinutes );
+                            ObiForm.Settings.MaxPhraseDurationMinutes , filesPathArray);
                     
                     if (dialog.ShowDialog () == DialogResult.OK)
                         {
+                            filesPathArray = dialog.FilesPaths;
                             Dialogs.ProgressDialog progress_AudioConverter = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileImport_ProcessingFiles"),
                         delegate(Dialogs.ProgressDialog progress1)
                         {
@@ -2202,7 +2203,7 @@ namespace Obi.ProjectView
                 newSectionNode = (SectionNode)Selection.Node;
                 phraseInsertIndex = 0;
                 string sectionName = phrase_SectionNameMap[phraseNodes[0]];
-                if ( CharacterCountToTruncateFromStart > 0 ) sectionName = sectionName.Substring (CharacterCountToTruncateFromStart - 1, sectionName.Length - CharacterCountToTruncateFromStart + 1) ;
+                if ( CharacterCountToTruncateFromStart > 0  && CharacterCountToTruncateFromStart  < sectionName.Length) sectionName = sectionName.Substring (CharacterCountToTruncateFromStart - 1, sectionName.Length - CharacterCountToTruncateFromStart + 1) ;
                 if (!string.IsNullOrEmpty(CharactersToBeReplacedWithSpaces))
                 {
                     sectionName = sectionName.Replace(CharactersToBeReplacedWithSpaces, " ");
@@ -2224,20 +2225,21 @@ for (int j = 0;
             List<EmptyNode> pagePhrases = new List<EmptyNode>();
             for (int i = phraseNodes.Count-1; i >= 0; i--)
                 {
+                    
                 if (phrase_SectionNameMap.ContainsKey ( phraseNodes[i] ))
                 {
 
 
                     string newSectionName = phrase_SectionNameMap[phraseNodes[i]];
                     //MessageBox.Show(newSectionName);
-                    if (CharacterCountToTruncateFromStart > 0) newSectionName = newSectionName.Substring(CharacterCountToTruncateFromStart - 1, newSectionName.Length - CharacterCountToTruncateFromStart + 1);
+                    if (CharacterCountToTruncateFromStart > 0 && CharacterCountToTruncateFromStart < newSectionName.Length) newSectionName = newSectionName.Substring(CharacterCountToTruncateFromStart - 1, newSectionName.Length - CharacterCountToTruncateFromStart + 1);
                     if (!string.IsNullOrEmpty(CharactersToBeReplacedWithSpaces))
                     {
                         newSectionName = newSectionName.Replace(CharactersToBeReplacedWithSpaces, " ");
                         newSectionName = newSectionName.TrimStart();
                     }
-
-                    if (!newSectionName.StartsWith(PageIdentificationString))
+                    
+                    if (PageIdentificationString == null ||  !newSectionName.StartsWith(PageIdentificationString))
                     {
                         // create a new section and add phrase to it
                         Commands.Command addSectionCmd = new Commands.Node.AddSectionNode(this, mTOCView, null);
@@ -2279,7 +2281,7 @@ for (int j = 0;
                         phraseInsertIndex++;
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNodes[j], newSectionNode, phraseInsertIndex));
                     }
-                    if (newSectionName.Contains(PageIdentificationString) && !newSectionName.StartsWith(PageIdentificationString))
+                    if (PageIdentificationString != null &&  newSectionName.Contains(PageIdentificationString) && !newSectionName.StartsWith(PageIdentificationString))
                     {
                         int pageNumIndex = newSectionName.IndexOf(PageIdentificationString);
                         string pageNumberString = newSectionName.Substring(pageNumIndex + PageIdentificationString.Length, newSectionName.Length - pageNumIndex - PageIdentificationString.Length);
