@@ -49,6 +49,7 @@ namespace Obi.Dialogs
             this.lblCountToTruncateFromStart = new System.Windows.Forms.Label();
             this.lbltPageIdentificationString = new System.Windows.Forms.Label();
             this.m_numCharCountToTruncateFromStart = new System.Windows.Forms.NumericUpDown();
+            this.m_chkApplyPhraseDetection = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).BeginInit();
             this.SuspendLayout();
@@ -186,12 +187,19 @@ namespace Obi.Dialogs
             0});
             this.m_numCharCountToTruncateFromStart.Name = "m_numCharCountToTruncateFromStart";
             // 
+            // m_chkApplyPhraseDetection
+            // 
+            resources.ApplyResources(this.m_chkApplyPhraseDetection, "m_chkApplyPhraseDetection");
+            this.m_chkApplyPhraseDetection.Name = "m_chkApplyPhraseDetection";
+            this.m_chkApplyPhraseDetection.UseVisualStyleBackColor = true;
+            // 
             // ImportFileSplitSize
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_chkApplyPhraseDetection);
             this.Controls.Add(this.m_numCharCountToTruncateFromStart);
             this.Controls.Add(this.lbltPageIdentificationString);
             this.Controls.Add(this.lblCountToTruncateFromStart);
@@ -242,5 +250,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label lblCountToTruncateFromStart;
         private System.Windows.Forms.Label lbltPageIdentificationString;
         private System.Windows.Forms.NumericUpDown m_numCharCountToTruncateFromStart;
+        private System.Windows.Forms.CheckBox m_chkApplyPhraseDetection;
     }
 }

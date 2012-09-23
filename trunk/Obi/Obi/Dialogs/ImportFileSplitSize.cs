@@ -68,6 +68,8 @@ namespace Obi.Dialogs
 
         public int CharacterCountToTruncateFromStart { get { return mCreateAudioFilePerSectionCheckBox.Checked? Convert.ToInt32(m_numCharCountToTruncateFromStart.Value) : 0 ; } }
 
+        public bool ApplyPhraseDetection { get { return m_chkApplyPhraseDetection.Checked; } }
+
         // Check that the duration is a number.
         private void mOKButton_Click(object sender, EventArgs e)
         {
