@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
     <value>Phrase size in minutes</value>
@@ -175,7 +175,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPhraseSizeTextBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="mOKButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -205,7 +205,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="mCancelButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -235,7 +235,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="mSplitCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -250,7 +250,7 @@
     <value>160, 20</value>
   </data>
   <data name="mSplitCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>18</value>
   </data>
   <data name="mSplitCheckBox.Text" xml:space="preserve">
     <value>&amp;Split phrases on import</value>
@@ -265,7 +265,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mSplitCheckBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -292,7 +292,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="lstManualArrange.ItemHeight" type="System.Int32, mscorlib">
     <value>16</value>
@@ -445,7 +445,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="m_radioBtnNo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -547,7 +547,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtCharToReplaceWithSpace.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
     <value>233, 236</value>
@@ -568,7 +568,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtPageIdentificationString.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="lblToReplaceWithSpace.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -595,7 +595,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblToReplaceWithSpace.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="lblCountToTruncateFromStart.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -622,7 +622,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblCountToTruncateFromStart.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="lbltPageIdentificationString.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -649,7 +649,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbltPageIdentificationString.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>233, 208</value>
@@ -670,6 +670,33 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_numCharCountToTruncateFromStart.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_chkApplyPhraseDetection.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_chkApplyPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="m_chkApplyPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>294, 20</value>
+  </data>
+  <data name="m_chkApplyPhraseDetection.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="m_chkApplyPhraseDetection.Text" xml:space="preserve">
+    <value>checkBox1&amp;phrase detection on imported files</value>
+  </data>
+  <data name="&gt;&gt;m_chkApplyPhraseDetection.Name" xml:space="preserve">
+    <value>m_chkApplyPhraseDetection</value>
+  </data>
+  <data name="&gt;&gt;m_chkApplyPhraseDetection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_chkApplyPhraseDetection.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_chkApplyPhraseDetection.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

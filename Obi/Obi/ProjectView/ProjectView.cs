@@ -2041,13 +2041,26 @@ namespace Obi.ProjectView
 
                 if (filesPathArray != null)
                     {
-                    
+                        long threshold = (long) Audio.PhraseDetection.DEFAULT_THRESHOLD;
+                      double gap = Audio.PhraseDetection.DEFAULT_GAP;
+                        double leadingSilence = Audio.PhraseDetection.DEFAULT_LEADING_SILENCE;
 
                     Dialogs.ImportFileSplitSize dialog =
                         new Dialogs.ImportFileSplitSize ( ObiForm.Settings , filesPathArray);
                     
                     if (dialog.ShowDialog () == DialogResult.OK)
                         {
+
+                            if (dialog.ApplyPhraseDetection)
+                            {
+                                Dialogs.SentenceDetection sentenceDetection = new Obi.Dialogs.SentenceDetection(null);
+                                if (sentenceDetection.ShowDialog() == DialogResult.OK)
+                                {
+                                    threshold = sentenceDetection.Threshold;
+                                    gap = sentenceDetection.Gap;
+                                    leadingSilence = sentenceDetection.LeadingSilence;
+                                }
+                            }
                             filesPathArray = dialog.FilesPaths;
                             Dialogs.ProgressDialog progress_AudioConverter = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileImport_ProcessingFiles"),
                         delegate(Dialogs.ProgressDialog progress1)
@@ -2134,6 +2147,12 @@ namespace Obi.ProjectView
                                     {
                                     mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
                                     }
+//phrase detection
+                                    
+                                    if (dialog.ApplyPhraseDetection )
+                                    {
+                                        ApplyPhraseDetectionOnPhraseList(phraseNodes, threshold, gap, leadingSilence);
+                                    }
                                 // hide new phrases if section's contents are hidden
                                 //HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );//@singleSection: original
                                 mContentView.CreateBlocksInStrip (); //@singleSection: new
@@ -2148,6 +2167,30 @@ namespace Obi.ProjectView
                 
                 }
             }
+
+        private void ApplyPhraseDetectionOnPhraseList(List<PhraseNode> phraseNodes, long threshold, double gap, double before)
+        {
+            urakawa.command.CompositeCommand phraseDetectionCommand = null;
+            Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
+                        delegate(Dialogs.ProgressDialog progress1)
+                            {
+                                phraseDetectionCommand = Commands.Node.SplitAudio.GetPhraseDetectionCommand(this, phraseNodes, threshold, gap, before);
+        });
+            progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
+            this.ProgressChanged += new ProgressChangedEventHandler(progress.UpdateProgressBar);
+
+            progress.ShowDialog();
+            if (progress.Exception != null) throw (progress.Exception);
+            
+            try
+            {
+                mPresentation.Do(phraseDetectionCommand);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         // Create a command to import phrases
         private CompositeCommand GetImportPhraseCommands(List<PhraseNode> phraseNodes)

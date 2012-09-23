@@ -211,6 +211,78 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
             return command;
         }
 
+
+        /// <summary>
+        /// Create the phrase detection command for list of phrases.
+        /// </summary>
+        public static CompositeCommand GetPhraseDetectionCommand(ProjectView.ProjectView view, List<PhraseNode> phraseNodesList,
+            long threshold, double gap, double before)
+        {
+            CompositeCommand command = view.Presentation.CreateCompositeCommand(Localizer.Message("phrase_detection"));
+            
+            int index = 0;
+            if (phraseNodesList.Count > 0) view.TriggerProgressChangedEvent(Localizer.Message("phrase_detection"), 0);
+            
+            for (int j = 0; j < phraseNodesList.Count; j++)
+            {
+                PhraseNode phrase = phraseNodesList[j];
+
+                if (j == 0
+                    || phraseNodesList[j].ParentAs<SectionNode>() != phraseNodesList[j - 1].ParentAs<SectionNode>())
+                {
+                    index = phrase.Index + 1;
+                    Console.WriteLine("PH Section name " + phrase.ParentAs<SectionNode>().Label);
+                }
+                else
+                {
+                    int diff = phraseNodesList[j].Index - phraseNodesList[j - 1].Index - 1; // used -1 because the original phrase is deleted
+                    index = index + diff;
+                }
+                System.Collections.Generic.List<PhraseNode> phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList(
+                    Obi.Audio.PhraseDetection.Apply(phrase.Audio.Copy(), threshold, gap, before));
+                for (int i = 0; i < phrases.Count; ++i)
+                {
+                    // Copy page/heading role for the first phrase only
+                    if (i == 0 || (phrase.Role_ != EmptyNode.Role.Page && phrase.Role_ != EmptyNode.Role.Heading))
+                    {
+                        phrases[i].CopyAttributes(phrase);
+                    }
+                    phrases[i].Used = phrase.Used;
+                    phrases[i].TODO = phrase.TODO;
+                    if (phrases[i].Role_ == EmptyNode.Role.Heading && i > 0) phrases[i].Role_ = EmptyNode.Role.Plain;
+                    Console.WriteLine("PH index: " + index);
+                    // in following add node constructor, update selection is made false, to improve performance (19 may, 2010)
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(view, phrases[i], phrase.ParentAs<SectionNode>(), index, false));
+                    index++;
+                }
+                
+                Commands.Node.Delete deleteCmd = new Commands.Node.Delete(view, phrase, false);
+                command.ChildCommands.Insert(command.ChildCommands.Count, deleteCmd);//@singleSection: moved delete command last for improve undo selection
+
+                if (Obi.Audio.PhraseDetection.CancelOperation) break;
+                /*
+                // skip to next indexes if the two consequtive phrases in phrase list are not consequitive according to phrase index in the parent section
+                if (j < phraseNodesList.Count - 1
+                    && phrase.Index + 1 < phraseNodesList[j + 1].Index)
+                {
+                    EmptyNode empty = null;
+                    for (int i = phrase.Index + 1; i < phraseNodesList[j + 1].Index; ++i)
+                    {
+                        empty = phrase.ParentAs<SectionNode>().PhraseChild(i);
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(view, empty, false));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(view, empty, parent, index, false));
+                        index++;
+                    }
+                    //index = index + (phraseNodesList[j + 1].Index - (phrase.Index + 1));
+                }
+                 */ 
+                view.TriggerProgressChangedEvent(Localizer.Message("phrase_detection"), (100 * j) / phraseNodesList.Count);
+
+            }
+            return command;
+        }
+
+
         // Create a split command preserving used/TODO status, and optionally transferring the role to the next node
         private static SplitAudio AppendSplitCommandWithProperties(ProjectView.ProjectView view, CompositeCommand command,
             PhraseNode phrase, double time, bool transferRole)
