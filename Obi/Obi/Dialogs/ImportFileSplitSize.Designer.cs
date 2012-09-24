@@ -33,13 +33,12 @@ namespace Obi.Dialogs
             this.mPhraseSizeTextBox = new System.Windows.Forms.TextBox();
             this.mOKButton = new System.Windows.Forms.Button();
             this.mCancelButton = new System.Windows.Forms.Button();
-            this.mSplitCheckBox = new System.Windows.Forms.CheckBox();
             this.mCreateAudioFilePerSectionCheckBox = new System.Windows.Forms.CheckBox();
             this.lstManualArrange = new System.Windows.Forms.ListBox();
             this.m_btnMoveUp = new System.Windows.Forms.Button();
             this.m_btnMoveDown = new System.Windows.Forms.Button();
             this.m_btnAdd = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.m_grpAddFiles = new System.Windows.Forms.GroupBox();
             this.m_radioBtnNo = new System.Windows.Forms.RadioButton();
             this.m_radiobtnYes = new System.Windows.Forms.RadioButton();
             this.m_lblAscendingOrder = new System.Windows.Forms.Label();
@@ -49,9 +48,14 @@ namespace Obi.Dialogs
             this.lblCountToTruncateFromStart = new System.Windows.Forms.Label();
             this.lbltPageIdentificationString = new System.Windows.Forms.Label();
             this.m_numCharCountToTruncateFromStart = new System.Windows.Forms.NumericUpDown();
-            this.m_chkApplyPhraseDetection = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
+            this.m_grpCreateSectionForEachAudioFile = new System.Windows.Forms.GroupBox();
+            this.m_grpSplitPhraseOrPhraseDetection = new System.Windows.Forms.GroupBox();
+            this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
+            this.m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
+            this.m_grpAddFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).BeginInit();
+            this.m_grpCreateSectionForEachAudioFile.SuspendLayout();
+            this.m_grpSplitPhraseOrPhraseDetection.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -80,13 +84,6 @@ namespace Obi.Dialogs
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
-            // mSplitCheckBox
-            // 
-            resources.ApplyResources(this.mSplitCheckBox, "mSplitCheckBox");
-            this.mSplitCheckBox.Name = "mSplitCheckBox";
-            this.mSplitCheckBox.UseVisualStyleBackColor = true;
-            this.mSplitCheckBox.CheckedChanged += new System.EventHandler(this.mSplitCheckBox_CheckedChanged);
-            // 
             // mCreateAudioFilePerSectionCheckBox
             // 
             resources.ApplyResources(this.mCreateAudioFilePerSectionCheckBox, "mCreateAudioFilePerSectionCheckBox");
@@ -95,8 +92,8 @@ namespace Obi.Dialogs
             // 
             // lstManualArrange
             // 
-            this.lstManualArrange.FormattingEnabled = true;
             resources.ApplyResources(this.lstManualArrange, "lstManualArrange");
+            this.lstManualArrange.FormattingEnabled = true;
             this.lstManualArrange.Name = "lstManualArrange";
             // 
             // m_btnMoveUp
@@ -120,18 +117,18 @@ namespace Obi.Dialogs
             this.m_btnAdd.UseVisualStyleBackColor = true;
             this.m_btnAdd.Click += new System.EventHandler(this.m_btnAdd_Click);
             // 
-            // groupBox1
+            // m_grpAddFiles
             // 
-            this.groupBox1.Controls.Add(this.m_radioBtnNo);
-            this.groupBox1.Controls.Add(this.m_radiobtnYes);
-            this.groupBox1.Controls.Add(this.m_lblAscendingOrder);
-            this.groupBox1.Controls.Add(this.lstManualArrange);
-            this.groupBox1.Controls.Add(this.m_btnAdd);
-            this.groupBox1.Controls.Add(this.m_btnMoveUp);
-            this.groupBox1.Controls.Add(this.m_btnMoveDown);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            resources.ApplyResources(this.m_grpAddFiles, "m_grpAddFiles");
+            this.m_grpAddFiles.Controls.Add(this.m_radioBtnNo);
+            this.m_grpAddFiles.Controls.Add(this.m_radiobtnYes);
+            this.m_grpAddFiles.Controls.Add(this.m_lblAscendingOrder);
+            this.m_grpAddFiles.Controls.Add(this.lstManualArrange);
+            this.m_grpAddFiles.Controls.Add(this.m_btnAdd);
+            this.m_grpAddFiles.Controls.Add(this.m_btnMoveUp);
+            this.m_grpAddFiles.Controls.Add(this.m_btnMoveDown);
+            this.m_grpAddFiles.Name = "m_grpAddFiles";
+            this.m_grpAddFiles.TabStop = false;
             // 
             // m_radioBtnNo
             // 
@@ -187,11 +184,42 @@ namespace Obi.Dialogs
             0});
             this.m_numCharCountToTruncateFromStart.Name = "m_numCharCountToTruncateFromStart";
             // 
-            // m_chkApplyPhraseDetection
+            // m_grpCreateSectionForEachAudioFile
             // 
-            resources.ApplyResources(this.m_chkApplyPhraseDetection, "m_chkApplyPhraseDetection");
-            this.m_chkApplyPhraseDetection.Name = "m_chkApplyPhraseDetection";
-            this.m_chkApplyPhraseDetection.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.m_grpCreateSectionForEachAudioFile, "m_grpCreateSectionForEachAudioFile");
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.lblToReplaceWithSpace);
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.mCreateAudioFilePerSectionCheckBox);
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_txtCharToReplaceWithSpace);
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_numCharCountToTruncateFromStart);
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_txtPageIdentificationString);
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.lbltPageIdentificationString);
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.lblCountToTruncateFromStart);
+            this.m_grpCreateSectionForEachAudioFile.Name = "m_grpCreateSectionForEachAudioFile";
+            this.m_grpCreateSectionForEachAudioFile.TabStop = false;
+            // 
+            // m_grpSplitPhraseOrPhraseDetection
+            // 
+            this.m_grpSplitPhraseOrPhraseDetection.Controls.Add(this.m_rdbPhraseDetectionOnImportedFiles);
+            this.m_grpSplitPhraseOrPhraseDetection.Controls.Add(this.m_rdbSplitPhrasesOnImport);
+            this.m_grpSplitPhraseOrPhraseDetection.Controls.Add(this.label1);
+            this.m_grpSplitPhraseOrPhraseDetection.Controls.Add(this.mPhraseSizeTextBox);
+            resources.ApplyResources(this.m_grpSplitPhraseOrPhraseDetection, "m_grpSplitPhraseOrPhraseDetection");
+            this.m_grpSplitPhraseOrPhraseDetection.Name = "m_grpSplitPhraseOrPhraseDetection";
+            this.m_grpSplitPhraseOrPhraseDetection.TabStop = false;
+            // 
+            // m_rdbSplitPhrasesOnImport
+            // 
+            resources.ApplyResources(this.m_rdbSplitPhrasesOnImport, "m_rdbSplitPhrasesOnImport");
+            this.m_rdbSplitPhrasesOnImport.Name = "m_rdbSplitPhrasesOnImport";
+            this.m_rdbSplitPhrasesOnImport.TabStop = true;
+            this.m_rdbSplitPhrasesOnImport.UseVisualStyleBackColor = true;
+            // 
+            // m_rdbPhraseDetectionOnImportedFiles
+            // 
+            resources.ApplyResources(this.m_rdbPhraseDetectionOnImportedFiles, "m_rdbPhraseDetectionOnImportedFiles");
+            this.m_rdbPhraseDetectionOnImportedFiles.Name = "m_rdbPhraseDetectionOnImportedFiles";
+            this.m_rdbPhraseDetectionOnImportedFiles.TabStop = true;
+            this.m_rdbPhraseDetectionOnImportedFiles.UseVisualStyleBackColor = true;
             // 
             // ImportFileSplitSize
             // 
@@ -199,20 +227,11 @@ namespace Obi.Dialogs
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.Controls.Add(this.m_chkApplyPhraseDetection);
-            this.Controls.Add(this.m_numCharCountToTruncateFromStart);
-            this.Controls.Add(this.lbltPageIdentificationString);
-            this.Controls.Add(this.lblCountToTruncateFromStart);
-            this.Controls.Add(this.lblToReplaceWithSpace);
-            this.Controls.Add(this.m_txtPageIdentificationString);
-            this.Controls.Add(this.m_txtCharToReplaceWithSpace);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.mCreateAudioFilePerSectionCheckBox);
-            this.Controls.Add(this.mSplitCheckBox);
+            this.Controls.Add(this.m_grpSplitPhraseOrPhraseDetection);
+            this.Controls.Add(this.m_grpCreateSectionForEachAudioFile);
+            this.Controls.Add(this.m_grpAddFiles);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
-            this.Controls.Add(this.mPhraseSizeTextBox);
-            this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ImportFileSplitSize";
@@ -220,11 +239,14 @@ namespace Obi.Dialogs
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImportFileSplitSize_FormClosing);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.m_grpAddFiles.ResumeLayout(false);
+            this.m_grpAddFiles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).EndInit();
+            this.m_grpCreateSectionForEachAudioFile.ResumeLayout(false);
+            this.m_grpCreateSectionForEachAudioFile.PerformLayout();
+            this.m_grpSplitPhraseOrPhraseDetection.ResumeLayout(false);
+            this.m_grpSplitPhraseOrPhraseDetection.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -234,13 +256,12 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox mPhraseSizeTextBox;
         private System.Windows.Forms.Button mOKButton;
         private System.Windows.Forms.Button mCancelButton;
-        private System.Windows.Forms.CheckBox mSplitCheckBox;
         private System.Windows.Forms.CheckBox mCreateAudioFilePerSectionCheckBox;
         private System.Windows.Forms.ListBox lstManualArrange;
         private System.Windows.Forms.Button m_btnMoveUp;
         private System.Windows.Forms.Button m_btnMoveDown;
         private System.Windows.Forms.Button m_btnAdd;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox m_grpAddFiles;
         private System.Windows.Forms.RadioButton m_radioBtnNo;
         private System.Windows.Forms.RadioButton m_radiobtnYes;
         private System.Windows.Forms.Label m_lblAscendingOrder;
@@ -250,6 +271,9 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label lblCountToTruncateFromStart;
         private System.Windows.Forms.Label lbltPageIdentificationString;
         private System.Windows.Forms.NumericUpDown m_numCharCountToTruncateFromStart;
-        private System.Windows.Forms.CheckBox m_chkApplyPhraseDetection;
+        private System.Windows.Forms.GroupBox m_grpCreateSectionForEachAudioFile;
+        private System.Windows.Forms.GroupBox m_grpSplitPhraseOrPhraseDetection;
+        private System.Windows.Forms.RadioButton m_rdbSplitPhrasesOnImport;
+        private System.Windows.Forms.RadioButton m_rdbPhraseDetectionOnImportedFiles;
     }
 }
