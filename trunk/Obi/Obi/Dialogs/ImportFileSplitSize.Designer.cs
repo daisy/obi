@@ -39,9 +39,7 @@ namespace Obi.Dialogs
             this.m_btnMoveDown = new System.Windows.Forms.Button();
             this.m_btnAdd = new System.Windows.Forms.Button();
             this.m_grpAddFiles = new System.Windows.Forms.GroupBox();
-            this.m_radioBtnNo = new System.Windows.Forms.RadioButton();
-            this.m_radiobtnYes = new System.Windows.Forms.RadioButton();
-            this.m_lblAscendingOrder = new System.Windows.Forms.Label();
+            this.m_grpArrangeAudioFiles = new System.Windows.Forms.GroupBox();
             this.m_txtCharToReplaceWithSpace = new System.Windows.Forms.TextBox();
             this.m_txtPageIdentificationString = new System.Windows.Forms.TextBox();
             this.lblToReplaceWithSpace = new System.Windows.Forms.Label();
@@ -50,9 +48,12 @@ namespace Obi.Dialogs
             this.m_numCharCountToTruncateFromStart = new System.Windows.Forms.NumericUpDown();
             this.m_grpCreateSectionForEachAudioFile = new System.Windows.Forms.GroupBox();
             this.m_grpSplitPhraseOrPhraseDetection = new System.Windows.Forms.GroupBox();
-            this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
             this.m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
+            this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
+            this.mbtnAscendingOrder = new System.Windows.Forms.Button();
+            this.mbtnDesendingOrder = new System.Windows.Forms.Button();
             this.m_grpAddFiles.SuspendLayout();
+            this.m_grpArrangeAudioFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).BeginInit();
             this.m_grpCreateSectionForEachAudioFile.SuspendLayout();
             this.m_grpSplitPhraseOrPhraseDetection.SuspendLayout();
@@ -89,6 +90,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.mCreateAudioFilePerSectionCheckBox, "mCreateAudioFilePerSectionCheckBox");
             this.mCreateAudioFilePerSectionCheckBox.Name = "mCreateAudioFilePerSectionCheckBox";
             this.mCreateAudioFilePerSectionCheckBox.UseVisualStyleBackColor = true;
+            this.mCreateAudioFilePerSectionCheckBox.CheckedChanged += new System.EventHandler(this.mCreateAudioFilePerSectionCheckBox_CheckedChanged);
             // 
             // lstManualArrange
             // 
@@ -120,9 +122,7 @@ namespace Obi.Dialogs
             // m_grpAddFiles
             // 
             resources.ApplyResources(this.m_grpAddFiles, "m_grpAddFiles");
-            this.m_grpAddFiles.Controls.Add(this.m_radioBtnNo);
-            this.m_grpAddFiles.Controls.Add(this.m_radiobtnYes);
-            this.m_grpAddFiles.Controls.Add(this.m_lblAscendingOrder);
+            this.m_grpAddFiles.Controls.Add(this.m_grpArrangeAudioFiles);
             this.m_grpAddFiles.Controls.Add(this.lstManualArrange);
             this.m_grpAddFiles.Controls.Add(this.m_btnAdd);
             this.m_grpAddFiles.Controls.Add(this.m_btnMoveUp);
@@ -130,24 +130,13 @@ namespace Obi.Dialogs
             this.m_grpAddFiles.Name = "m_grpAddFiles";
             this.m_grpAddFiles.TabStop = false;
             // 
-            // m_radioBtnNo
+            // m_grpArrangeAudioFiles
             // 
-            resources.ApplyResources(this.m_radioBtnNo, "m_radioBtnNo");
-            this.m_radioBtnNo.Name = "m_radioBtnNo";
-            this.m_radioBtnNo.TabStop = true;
-            this.m_radioBtnNo.UseVisualStyleBackColor = true;
-            // 
-            // m_radiobtnYes
-            // 
-            resources.ApplyResources(this.m_radiobtnYes, "m_radiobtnYes");
-            this.m_radiobtnYes.Name = "m_radiobtnYes";
-            this.m_radiobtnYes.TabStop = true;
-            this.m_radiobtnYes.UseVisualStyleBackColor = true;
-            // 
-            // m_lblAscendingOrder
-            // 
-            resources.ApplyResources(this.m_lblAscendingOrder, "m_lblAscendingOrder");
-            this.m_lblAscendingOrder.Name = "m_lblAscendingOrder";
+            resources.ApplyResources(this.m_grpArrangeAudioFiles, "m_grpArrangeAudioFiles");
+            this.m_grpArrangeAudioFiles.Controls.Add(this.mbtnDesendingOrder);
+            this.m_grpArrangeAudioFiles.Controls.Add(this.mbtnAscendingOrder);
+            this.m_grpArrangeAudioFiles.Name = "m_grpArrangeAudioFiles";
+            this.m_grpArrangeAudioFiles.TabStop = false;
             // 
             // m_txtCharToReplaceWithSpace
             // 
@@ -207,19 +196,35 @@ namespace Obi.Dialogs
             this.m_grpSplitPhraseOrPhraseDetection.Name = "m_grpSplitPhraseOrPhraseDetection";
             this.m_grpSplitPhraseOrPhraseDetection.TabStop = false;
             // 
-            // m_rdbSplitPhrasesOnImport
-            // 
-            resources.ApplyResources(this.m_rdbSplitPhrasesOnImport, "m_rdbSplitPhrasesOnImport");
-            this.m_rdbSplitPhrasesOnImport.Name = "m_rdbSplitPhrasesOnImport";
-            this.m_rdbSplitPhrasesOnImport.TabStop = true;
-            this.m_rdbSplitPhrasesOnImport.UseVisualStyleBackColor = true;
-            // 
             // m_rdbPhraseDetectionOnImportedFiles
             // 
             resources.ApplyResources(this.m_rdbPhraseDetectionOnImportedFiles, "m_rdbPhraseDetectionOnImportedFiles");
             this.m_rdbPhraseDetectionOnImportedFiles.Name = "m_rdbPhraseDetectionOnImportedFiles";
             this.m_rdbPhraseDetectionOnImportedFiles.TabStop = true;
             this.m_rdbPhraseDetectionOnImportedFiles.UseVisualStyleBackColor = true;
+            // 
+            // m_rdbSplitPhrasesOnImport
+            // 
+            resources.ApplyResources(this.m_rdbSplitPhrasesOnImport, "m_rdbSplitPhrasesOnImport");
+            this.m_rdbSplitPhrasesOnImport.Checked = true;
+            this.m_rdbSplitPhrasesOnImport.Name = "m_rdbSplitPhrasesOnImport";
+            this.m_rdbSplitPhrasesOnImport.TabStop = true;
+            this.m_rdbSplitPhrasesOnImport.UseVisualStyleBackColor = true;
+            this.m_rdbSplitPhrasesOnImport.CheckedChanged += new System.EventHandler(this.m_rdbSplitPhrasesOnImport_CheckedChanged);
+            // 
+            // mbtnAscendingOrder
+            // 
+            resources.ApplyResources(this.mbtnAscendingOrder, "mbtnAscendingOrder");
+            this.mbtnAscendingOrder.Name = "mbtnAscendingOrder";
+            this.mbtnAscendingOrder.UseVisualStyleBackColor = true;
+            this.mbtnAscendingOrder.Click += new System.EventHandler(this.mbtnAscendingOrder_Click);
+            // 
+            // mbtnDesendingOrder
+            // 
+            resources.ApplyResources(this.mbtnDesendingOrder, "mbtnDesendingOrder");
+            this.mbtnDesendingOrder.Name = "mbtnDesendingOrder";
+            this.mbtnDesendingOrder.UseVisualStyleBackColor = true;
+            this.mbtnDesendingOrder.Click += new System.EventHandler(this.mbtnDesendingOrder_Click);
             // 
             // ImportFileSplitSize
             // 
@@ -240,7 +245,7 @@ namespace Obi.Dialogs
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImportFileSplitSize_FormClosing);
             this.m_grpAddFiles.ResumeLayout(false);
-            this.m_grpAddFiles.PerformLayout();
+            this.m_grpArrangeAudioFiles.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).EndInit();
             this.m_grpCreateSectionForEachAudioFile.ResumeLayout(false);
             this.m_grpCreateSectionForEachAudioFile.PerformLayout();
@@ -262,9 +267,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnMoveDown;
         private System.Windows.Forms.Button m_btnAdd;
         private System.Windows.Forms.GroupBox m_grpAddFiles;
-        private System.Windows.Forms.RadioButton m_radioBtnNo;
-        private System.Windows.Forms.RadioButton m_radiobtnYes;
-        private System.Windows.Forms.Label m_lblAscendingOrder;
         private System.Windows.Forms.TextBox m_txtCharToReplaceWithSpace;
         private System.Windows.Forms.TextBox m_txtPageIdentificationString;
         private System.Windows.Forms.Label lblToReplaceWithSpace;
@@ -275,5 +277,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.GroupBox m_grpSplitPhraseOrPhraseDetection;
         private System.Windows.Forms.RadioButton m_rdbSplitPhrasesOnImport;
         private System.Windows.Forms.RadioButton m_rdbPhraseDetectionOnImportedFiles;
+        private System.Windows.Forms.GroupBox m_grpArrangeAudioFiles;
+        private System.Windows.Forms.Button mbtnDesendingOrder;
+        private System.Windows.Forms.Button mbtnAscendingOrder;
     }
 }

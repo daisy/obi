@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using urakawa.media.timing;
 
+
+
 namespace Obi.Dialogs
 {
     public partial class ImportFileSplitSize : Form
@@ -22,9 +24,10 @@ namespace Obi.Dialogs
             InitializeComponent();
             m_Settings = settings;
             m_rdbSplitPhrasesOnImport.Checked = settings.SplitPhrasesOnImport;
-            m_radiobtnYes.Checked = true;
+            //m_radiobtnYes.Checked = true;
             mMaxPhraseDurationMinutes = settings.MaxPhraseDurationMinutes;
             m_filePaths = new List<string>(filesPathArray);
+            m_filePaths.Sort();
             mPhraseSizeTextBox.Text = mMaxPhraseDurationMinutes.ToString();
             foreach (string str in filesPathArray)
             {
@@ -46,7 +49,7 @@ namespace Obi.Dialogs
         public bool SplitPhrases { get { return m_rdbSplitPhrasesOnImport.Checked; } }
 
         public bool createSectionForEachPhrase { get { return mCreateAudioFilePerSectionCheckBox.Checked; } }
-        public bool SortFileNamesAscending { get { return m_radiobtnYes.Checked; } }
+       // public bool SortFileNamesAscending { get { return m_radiobtnYes.Checked; } }
         public string[] FilesPaths 
         { 
             get 
@@ -175,26 +178,90 @@ namespace Obi.Dialogs
         }
 
         private void m_btnAdd_Click(object sender, EventArgs e)
-        {
-
-            
+        {            
             OpenFileDialog select_File = new OpenFileDialog();
-            select_File.Filter = "Audio Files (*.wav)|*.wav";
+            select_File.Filter = "Audio Files (*.wav;*.mp3)|*.wav;*.mp3";
             int index = m_filePaths.Count;
-            select_File.RestoreDirectory = true; 
+            select_File.RestoreDirectory = true;
+            select_File.Multiselect = true;
             if (select_File.ShowDialog(this) == DialogResult.OK)
             {
                 string filename = System.IO.Path.GetFileName(select_File.ToString());
                 lstManualArrange.Items.Add(filename);
-                m_filePaths.Add(select_File.FileName.ToString());
-              //  ProjectView.ProjectView.publicPaths.Insert(index + 1, select_File.FileName.ToString());
+                m_filePaths.Add(select_File.FileName.ToString());           
 
             }
             
         }
 
+        private void mCreateAudioFilePerSectionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if(mCreateAudioFilePerSectionCheckBox.Checked)
+            {
+                m_txtCharToReplaceWithSpace.Enabled = true;
+                m_numCharCountToTruncateFromStart.Enabled = true;
+                m_txtPageIdentificationString.Enabled = true;
+            }
+            else
+            {
+                m_txtCharToReplaceWithSpace.Enabled = false;
+                m_numCharCountToTruncateFromStart.Enabled = false;
+                m_txtPageIdentificationString.Enabled = false;
+            }
+        }
 
+        private void m_rdbSplitPhrasesOnImport_CheckedChanged(object sender, EventArgs e)
+        {
+            if(m_rdbSplitPhrasesOnImport.Checked)
+            {
+                mPhraseSizeTextBox.Enabled = true;
+            }
+            else
+            {
+                mPhraseSizeTextBox.Enabled = false;
+            }
+        }
 
+        private void mbtnAscendingOrder_Click(object sender, EventArgs e)
+        {
+            m_filePaths.Sort();
+            lstManualArrange.Items.Clear();
+            foreach (string str in m_filePaths)
+            {
+                if (str != null)
+                {
+                    lstManualArrange.Items.Add(System.IO.Path.GetFileName(str));
+                }
+            }
+        }
 
+        private void mbtnDesendingOrder_Click(object sender, EventArgs e)
+        {  
+            m_filePaths.Sort();
+            int totLength = m_filePaths.Count;
+            List<string> tempDescending=new List<string>();
+
+            //for (int i = 0, j = totLength - 1; (i < totLength && j >= 0); i++, j--)
+            //{
+            //    tempDescending[i] = m_filePaths[j];
+            //}
+
+            for (int i = totLength-1; i >= 0;i--)
+            {
+                tempDescending.Add(m_filePaths[i]);
+            }
+
+                m_filePaths = tempDescending;
+
+            lstManualArrange.Items.Clear();
+            foreach (string str in m_filePaths)
+            {
+                if (str != null)
+                {
+                    lstManualArrange.Items.Add(System.IO.Path.GetFileName(str));
+                }
+            }
+
+        }
     }
 }
