@@ -21,7 +21,7 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             m_Settings = settings;
-            mSplitCheckBox.Checked = settings.SplitPhrasesOnImport;
+            m_rdbSplitPhrasesOnImport.Checked = settings.SplitPhrasesOnImport;
             m_radiobtnYes.Checked = true;
             mMaxPhraseDurationMinutes = settings.MaxPhraseDurationMinutes;
             m_filePaths = new List<string>(filesPathArray);
@@ -43,7 +43,7 @@ namespace Obi.Dialogs
         /// <summary>
         /// When set, the user wants the phrases to be split.
         /// </summary>
-        public bool SplitPhrases { get { return mSplitCheckBox.Checked; } }
+        public bool SplitPhrases { get { return m_rdbSplitPhrasesOnImport.Checked; } }
 
         public bool createSectionForEachPhrase { get { return mCreateAudioFilePerSectionCheckBox.Checked; } }
         public bool SortFileNamesAscending { get { return m_radiobtnYes.Checked; } }
@@ -68,13 +68,13 @@ namespace Obi.Dialogs
 
         public int CharacterCountToTruncateFromStart { get { return mCreateAudioFilePerSectionCheckBox.Checked? Convert.ToInt32(m_numCharCountToTruncateFromStart.Value) : 0 ; } }
 
-        public bool ApplyPhraseDetection { get { return m_chkApplyPhraseDetection.Checked; } }
+        public bool ApplyPhraseDetection { get { return m_rdbPhraseDetectionOnImportedFiles.Checked; } }
 
         // Check that the duration is a number.
         private void mOKButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            if (mSplitCheckBox.Checked)
+            if (m_rdbSplitPhrasesOnImport.Checked)
                 {
                 try
                     {
@@ -108,7 +108,7 @@ namespace Obi.Dialogs
         // When not splitting, don't edit the text box.
         private void mSplitCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            mPhraseSizeTextBox.ReadOnly = !mSplitCheckBox.Checked;
+            mPhraseSizeTextBox.ReadOnly = !m_rdbSplitPhrasesOnImport.Checked;
         }
 
 
