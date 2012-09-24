@@ -2085,7 +2085,7 @@ namespace Obi.ProjectView
                        // double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : 0.0;
 
                         // to do: add chedk box in dialog and use a flag for using the following sort
-                        if ( dialog.SortFileNamesAscending )  paths.Sort();
+                        //if ( dialog.SortFileNamesAscending )  paths.Sort();
                         List<PhraseNode> phraseNodes = new List<PhraseNode> ( paths.Count );
                         Dictionary<PhraseNode, string> phrase_SectionNameMap = new Dictionary<PhraseNode, string> (); // used for importing sections
                         Dialogs.ProgressDialog progress =
