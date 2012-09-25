@@ -40,6 +40,8 @@ namespace Obi.Dialogs
             this.m_btnAdd = new System.Windows.Forms.Button();
             this.m_grpAddFiles = new System.Windows.Forms.GroupBox();
             this.m_grpArrangeAudioFiles = new System.Windows.Forms.GroupBox();
+            this.mbtnDesendingOrder = new System.Windows.Forms.Button();
+            this.mbtnAscendingOrder = new System.Windows.Forms.Button();
             this.m_txtCharToReplaceWithSpace = new System.Windows.Forms.TextBox();
             this.m_txtPageIdentificationString = new System.Windows.Forms.TextBox();
             this.lblToReplaceWithSpace = new System.Windows.Forms.Label();
@@ -50,8 +52,6 @@ namespace Obi.Dialogs
             this.m_grpSplitPhraseOrPhraseDetection = new System.Windows.Forms.GroupBox();
             this.m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
             this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
-            this.mbtnAscendingOrder = new System.Windows.Forms.Button();
-            this.mbtnDesendingOrder = new System.Windows.Forms.Button();
             this.m_grpAddFiles.SuspendLayout();
             this.m_grpArrangeAudioFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).BeginInit();
@@ -72,16 +72,16 @@ namespace Obi.Dialogs
             // 
             // mOKButton
             // 
-            this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.mOKButton, "mOKButton");
+            this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.UseVisualStyleBackColor = true;
             this.mOKButton.Click += new System.EventHandler(this.mOKButton_Click);
             // 
             // mCancelButton
             // 
-            this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.mCancelButton, "mCancelButton");
+            this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
@@ -137,6 +137,20 @@ namespace Obi.Dialogs
             this.m_grpArrangeAudioFiles.Controls.Add(this.mbtnAscendingOrder);
             this.m_grpArrangeAudioFiles.Name = "m_grpArrangeAudioFiles";
             this.m_grpArrangeAudioFiles.TabStop = false;
+            // 
+            // mbtnDesendingOrder
+            // 
+            resources.ApplyResources(this.mbtnDesendingOrder, "mbtnDesendingOrder");
+            this.mbtnDesendingOrder.Name = "mbtnDesendingOrder";
+            this.mbtnDesendingOrder.UseVisualStyleBackColor = true;
+            this.mbtnDesendingOrder.Click += new System.EventHandler(this.mbtnDesendingOrder_Click);
+            // 
+            // mbtnAscendingOrder
+            // 
+            resources.ApplyResources(this.mbtnAscendingOrder, "mbtnAscendingOrder");
+            this.mbtnAscendingOrder.Name = "mbtnAscendingOrder";
+            this.mbtnAscendingOrder.UseVisualStyleBackColor = true;
+            this.mbtnAscendingOrder.Click += new System.EventHandler(this.mbtnAscendingOrder_Click);
             // 
             // m_txtCharToReplaceWithSpace
             // 
@@ -212,20 +226,6 @@ namespace Obi.Dialogs
             this.m_rdbSplitPhrasesOnImport.UseVisualStyleBackColor = true;
             this.m_rdbSplitPhrasesOnImport.CheckedChanged += new System.EventHandler(this.m_rdbSplitPhrasesOnImport_CheckedChanged);
             // 
-            // mbtnAscendingOrder
-            // 
-            resources.ApplyResources(this.mbtnAscendingOrder, "mbtnAscendingOrder");
-            this.mbtnAscendingOrder.Name = "mbtnAscendingOrder";
-            this.mbtnAscendingOrder.UseVisualStyleBackColor = true;
-            this.mbtnAscendingOrder.Click += new System.EventHandler(this.mbtnAscendingOrder_Click);
-            // 
-            // mbtnDesendingOrder
-            // 
-            resources.ApplyResources(this.mbtnDesendingOrder, "mbtnDesendingOrder");
-            this.mbtnDesendingOrder.Name = "mbtnDesendingOrder";
-            this.mbtnDesendingOrder.UseVisualStyleBackColor = true;
-            this.mbtnDesendingOrder.Click += new System.EventHandler(this.mbtnDesendingOrder_Click);
-            // 
             // ImportFileSplitSize
             // 
             this.AcceptButton = this.mOKButton;
@@ -237,6 +237,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_grpAddFiles);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ImportFileSplitSize";

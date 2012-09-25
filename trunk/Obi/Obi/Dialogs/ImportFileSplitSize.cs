@@ -184,11 +184,18 @@ namespace Obi.Dialogs
             int index = m_filePaths.Count;
             select_File.RestoreDirectory = true;
             select_File.Multiselect = true;
-            if (select_File.ShowDialog(this) == DialogResult.OK)
+            if (select_File.ShowDialog() == DialogResult.OK)
             {
-                string filename = System.IO.Path.GetFileName(select_File.ToString());
-                lstManualArrange.Items.Add(filename);
-                m_filePaths.Add(select_File.FileName.ToString());           
+                string[] fileNames = select_File.FileNames;
+                foreach (string fileName in fileNames)
+                {
+                    string nameOfFile = System.IO.Path.GetFileName(fileName);
+                    if (nameOfFile != null) lstManualArrange.Items.Add(nameOfFile);
+                    m_filePaths.Add(fileName);     
+                }
+                //string filename = System.IO.Path.GetFileName(select_File.ToString());
+               
+                     
 
             }
             
