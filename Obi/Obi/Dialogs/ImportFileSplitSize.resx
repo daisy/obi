@@ -177,6 +177,9 @@
   <data name="&gt;&gt;mPhraseSizeTextBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="mOKButton.AccessibleName" xml:space="preserve">
+    <value>Ok Button to get your nod to start  importing audio files.</value>
+  </data>
   <data name="mOKButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -206,6 +209,9 @@
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="mCancelButton.AccessibleName" xml:space="preserve">
+    <value>Cancel Button to exit from import files form</value>
   </data>
   <data name="mCancelButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -378,20 +384,41 @@
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
     <value>GroupBox to Add and arrange files.</value>
   </data>
+  <data name="&gt;&gt;m_grpArrangeAudioFiles.Name" xml:space="preserve">
+    <value>m_grpArrangeAudioFiles</value>
+  </data>
+  <data name="&gt;&gt;m_grpArrangeAudioFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpArrangeAudioFiles.Parent" xml:space="preserve">
+    <value>m_grpAddFiles</value>
+  </data>
+  <data name="&gt;&gt;m_grpArrangeAudioFiles.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_grpAddFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 167</value>
+  </data>
+  <data name="m_grpAddFiles.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;m_grpAddFiles.Name" xml:space="preserve">
+    <value>m_grpAddFiles</value>
+  </data>
+  <data name="&gt;&gt;m_grpAddFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpAddFiles.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpAddFiles.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
     <value>Arrange audio files group box</value>
-  </data>
-  <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 34</value>
-  </data>
-  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 26</value>
-  </data>
-  <data name="mbtnDesendingOrder.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>Decending Order</value>
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
     <value>mbtnDesendingOrder</value>
@@ -404,18 +431,6 @@
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 34</value>
-  </data>
-  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 26</value>
-  </data>
-  <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>Ascending Order</value>
   </data>
   <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
     <value>mbtnAscendingOrder</value>
@@ -453,26 +468,59 @@
   <data name="&gt;&gt;m_grpArrangeAudioFiles.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="m_grpAddFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+  <data name="mbtnDesendingOrder.AccessibleName" xml:space="preserve">
+    <value>Descending order arrangement  of audio files in List Box</value>
   </data>
-  <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 167</value>
+  <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 34</value>
   </data>
-  <data name="m_grpAddFiles.TabIndex" type="System.Int32, mscorlib">
+  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 26</value>
+  </data>
+  <data name="mbtnDesendingOrder.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="mbtnDesendingOrder.Text" xml:space="preserve">
+    <value>D&amp;escending Order</value>
+  </data>
+  <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
+    <value>mbtnDesendingOrder</value>
+  </data>
+  <data name="&gt;&gt;mbtnDesendingOrder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mbtnDesendingOrder.Parent" xml:space="preserve">
+    <value>m_grpArrangeAudioFiles</value>
+  </data>
+  <data name="&gt;&gt;mbtnDesendingOrder.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mbtnAscendingOrder.AccessibleName" xml:space="preserve">
+    <value>Ascending order arrangement of audio files in List Box</value>
+  </data>
+  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 34</value>
+  </data>
+  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 26</value>
+  </data>
+  <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="mbtnAscendingOrder.Text" xml:space="preserve">
+    <value>&amp;A&amp;scending Order</value>
+  </data>
+  <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
+    <value>mbtnAscendingOrder</value>
+  </data>
+  <data name="&gt;&gt;mbtnAscendingOrder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mbtnAscendingOrder.Parent" xml:space="preserve">
+    <value>m_grpArrangeAudioFiles</value>
+  </data>
+  <data name="&gt;&gt;mbtnAscendingOrder.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="&gt;&gt;m_grpAddFiles.Name" xml:space="preserve">
-    <value>m_grpAddFiles</value>
-  </data>
-  <data name="&gt;&gt;m_grpAddFiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grpAddFiles.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grpAddFiles.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>To replace with space textbox.</value>
