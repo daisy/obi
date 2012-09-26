@@ -451,7 +451,7 @@
     <value>5</value>
   </data>
   <data name="mGenerateIDButton.Text" xml:space="preserve">
-    <value>&amp;G�n�rer</value>
+    <value>&amp;Générer</value>
   </data>
   <data name="&gt;&gt;mGenerateIDButton.Name" xml:space="preserve">
     <value>mGenerateIDButton</value>
@@ -740,7 +740,7 @@
     <value>445, 236</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Cr�er un nouveau projet</value>
+    <value>Créer un nouveau projet</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>NewProject</value>

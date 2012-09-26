@@ -174,16 +174,16 @@
     <value>281, 22</value>
   </data>
   <data name="m_RestoreFromBackupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Restaurer � partir d'un &amp;backup</value>
+    <value>Restaurer à partir d'un &amp;backup</value>
   </data>
   <data name="m_RestoreFromOriginalProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Restaurer � partir du projet initial</value>
+    <value>Restaurer à partir du projet initial</value>
   </data>
   <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
   </data>
   <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Text" xml:space="preserve">
-    <value>Restaurer � partir du projet ini&amp;tial</value>
+    <value>Restaurer à partir du projet ini&amp;tial</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.AccessibleName" xml:space="preserve">
     <value>Fermer le projet Ctrl+W</value>
@@ -243,7 +243,7 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_RecentProjectMenuItem.Text" xml:space="preserve">
-    <value>&amp;Projets r�cents</value>
+    <value>&amp;Projets récents</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
@@ -279,7 +279,7 @@
     <value>&amp;Annuler</value>
   </data>
   <data name="mRedoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>R�tablir Ctrl+Y</value>
+    <value>Rétablir Ctrl+Y</value>
   </data>
   <data name="mRedoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Y</value>
@@ -288,7 +288,7 @@
     <value>247, 22</value>
   </data>
   <data name="mRedoToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;R�tablir</value>
+    <value>&amp;Rétablir</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 6</value>
@@ -369,7 +369,7 @@
     <value>247, 22</value>
   </data>
   <data name="mSelectNothingToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;D�s�lectionner</value>
+    <value>&amp;Désélectionner</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 6</value>
@@ -381,7 +381,7 @@
     <value>247, 22</value>
   </data>
   <data name="mEdit_DeleteUnusedDataMenuItem.Text" xml:space="preserve">
-    <value>&amp;Effacer les donn�es inutilis�es</value>
+    <value>&amp;Effacer les données inutilisées</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 6</value>
@@ -411,7 +411,7 @@
     <value>Recherche sui&amp;vante</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Recherche pr�c�dente Shift+F3</value>
+    <value>Recherche précédente Shift+F3</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Shift+F3</value>
@@ -420,19 +420,19 @@
     <value>247, 22</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.Text" xml:space="preserve">
-    <value>Recherche &amp;pr�c�dente</value>
+    <value>Recherche &amp;précédente</value>
   </data>
   <data name="mEdit_BookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Signet</value>
   </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>D�finir comme signet</value>
+    <value>Définir comme signet</value>
   </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;D�finir comme signet</value>
+    <value>&amp;Définir comme signet</value>
   </data>
   <data name="mEdit_GotoBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Aller au signet</value>
@@ -468,7 +468,7 @@
     <value>Afficher la vue &amp;TDM</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Afficher la vue des m�tadonn�es Ctrl+Alt+M</value>
+    <value>Afficher la vue des métadonnées Ctrl+Alt+M</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+M</value>
@@ -477,7 +477,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Afficher la vue des &amp;m�tadonn�es</value>
+    <value>Afficher la vue des &amp;métadonnées</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Afficher la barre de transport Ctrl+Alt+B</value>
@@ -501,7 +501,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Afficher la barre d'�&amp;tat</value>
+    <value>Afficher la barre d'é&amp;tat</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 6</value>
@@ -565,7 +565,7 @@
     <value>271, 6</value>
   </data>
   <data name="mShowPeakMeterMenuItem.AccessibleName" xml:space="preserve">
-    <value>Afficher le vu-m�tres Ctrl+Alt+P</value>
+    <value>Afficher le vu-mètres Ctrl+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+P</value>
@@ -574,7 +574,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
-    <value>Afficher le &amp;vu-m�tres</value>
+    <value>Afficher le &amp;vu-mètres</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Afficher le code source Ctrl+Alt+O</value>
@@ -619,7 +619,7 @@
     <value>&amp;Zoom avant</value>
   </data>
   <data name="mView_ZoomOutMenuItem.AccessibleName" xml:space="preserve">
-    <value>Zoom arri�re ctrl+Alt+ -</value>
+    <value>Zoom arrière ctrl+Alt+ -</value>
   </data>
   <data name="mView_ZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+-</value>
@@ -631,7 +631,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Text" xml:space="preserve">
-    <value>Z&amp;oom arri�re</value>
+    <value>Z&amp;oom arrière</value>
   </data>
   <data name="mView_NormalSizeMenuItem.AccessibleName" xml:space="preserve">
     <value>Taille normale ctrl+Alt+0</value>
@@ -661,7 +661,7 @@
     <value>Zoom audio a&amp;vant</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.AccessibleName" xml:space="preserve">
-    <value>Zoom audio arri�re Ctrl+Alt+Shift+ -</value>
+    <value>Zoom audio arrière Ctrl+Alt+Shift+ -</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+Shift+-</value>
@@ -673,7 +673,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
-    <value>Zoom audio &amp;arri�re</value>
+    <value>Zoom audio &amp;arrière</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.AccessibleName" xml:space="preserve">
     <value>Taille audio normale Ctrl+Alt+Shift+0</value>
@@ -688,7 +688,7 @@
     <value>Taille audio &amp;normale</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.AccessibleName" xml:space="preserve">
-    <value>R�actualiser l'affichage du contenu(Debug)</value>
+    <value>Réactualiser l'affichage du contenu(Debug)</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F5</value>
@@ -697,7 +697,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.Text" xml:space="preserve">
-    <value>R�actualiser l'affichage du contenu(Debug)</value>
+    <value>Réactualiser l'affichage du contenu(Debug)</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -706,7 +706,7 @@
     <value>271, 6</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Propri�t�s de la phrase Alt+Enter</value>
+    <value>Propriétés de la phrase Alt+Enter</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Enter</value>
@@ -715,10 +715,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.Text" xml:space="preserve">
-    <value>Propri�t�s de la &amp;phrase</value>
+    <value>Propriétés de la &amp;phrase</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Propri�t�s de la section Alt+Enter</value>
+    <value>Propriétés de la section Alt+Enter</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Enter</value>
@@ -727,16 +727,16 @@
     <value>274, 22</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.Text" xml:space="preserve">
-    <value>Propri�t�s de la &amp;section</value>
+    <value>Propriétés de la &amp;section</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Propri�t�s du projet </value>
+    <value>Propriétés du projet </value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>274, 22</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Text" xml:space="preserve">
-    <value>Propri�t�s du &amp;projet</value>
+    <value>Propriétés du &amp;projet</value>
   </data>
   <data name="mViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -769,7 +769,7 @@
     <value>Ajouter une &amp;sous-section</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Ins�rer une section Ctrl+Alt+H</value>
+    <value>Insérer une section Ctrl+Alt+H</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+H</value>
@@ -778,7 +778,7 @@
     <value>279, 22</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ins�rer une section</value>
+    <value>&amp;Insérer une section</value>
   </data>
   <data name="mRenameSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Renommer une section F2</value>
@@ -865,7 +865,7 @@
     <value>276, 6</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Section utilis�e Ctrl+K</value>
+    <value>Section utilisée Ctrl+K</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+K</value>
@@ -874,7 +874,7 @@
     <value>279, 22</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.Text" xml:space="preserve">
-    <value>Section &amp;utilis�e</value>
+    <value>Section &amp;utilisée</value>
   </data>
   <data name="mSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 20</value>
@@ -952,13 +952,13 @@
     <value>fusionner avec les &amp;phrases suivantes</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Fusionner avec les phrases pr�c�dentes</value>
+    <value>Fusionner avec les phrases précédentes</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Fusionner avec les phrases pr�&amp;c�dentes</value>
+    <value>Fusionner avec les phrases pré&amp;cédentes</value>
   </data>
   <data name="mMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -967,7 +967,7 @@
     <value>&amp;Fusionner</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Pr�lever l'audio Ctrl+Alt+Q</value>
+    <value>Prélever l'audio Ctrl+Alt+Q</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Q</value>
@@ -976,7 +976,7 @@
     <value>240, 22</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
-    <value>Pr�&amp;lever l'audio</value>
+    <value>Pré&amp;lever l'audio</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F9</value>
@@ -988,7 +988,7 @@
     <value>Phrase dans &amp;AFAIRE</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Phrase utilis�e Ctrl+K</value>
+    <value>Phrase utilisée Ctrl+K</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+K</value>
@@ -997,13 +997,13 @@
     <value>240, 22</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.Text" xml:space="preserve">
-    <value>Phrase &amp;utilis�e</value>
+    <value>Phrase &amp;utilisée</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Note facultative</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>D�but note</value>
+    <value>Début note</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+[</value>
@@ -1015,7 +1015,7 @@
     <value>234, 22</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;D�but note</value>
+    <value>&amp;Début note</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Fin note</value>
@@ -1033,7 +1033,7 @@
     <value>&amp;Fin note</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Ajouter une r�f�rence</value>
+    <value>Ajouter une référence</value>
 </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+A</value>
@@ -1046,19 +1046,19 @@
     <value>234, 22</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ajouter une r�f�rence</value>
+    <value>&amp;Ajouter une référence</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Aller � une note de r�f�rence</value>
+    <value>Aller à une note de référence</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Aller � une note de &amp;r�f�rence</value>
+    <value>Aller à une note de &amp;référence</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Supprimer la r�f�rence</value>
+    <value>Supprimer la référence</value>
  </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+D</value>
@@ -1070,16 +1070,16 @@
     <value>234, 22</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.Text" xml:space="preserve">
-    <value>Supprimer la r�&amp;f�rence</value>
+    <value>Supprimer la ré&amp;férence</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Aller en d�but de note</value>
+    <value>Aller en début de note</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Aller en &amp;d�but de note</value>
+    <value>Aller en &amp;début de note</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Aller en fin de note</value>
@@ -1160,16 +1160,16 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
-    <value>(&amp;Nouveau r�le personnalis�...)</value>
+    <value>(&amp;Nouveau rôle personnalisé...)</value>
   </data>
   <data name="mPhrases_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
-    <value>Assigner un &amp;r�le</value>
+    <value>Assigner un &amp;rôle</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.AccessibleName" xml:space="preserve">
-    <value>Effacer le r�le Ctrl+Shift+C</value>
+    <value>Effacer le rôle Ctrl+Shift+C</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+C</value>
@@ -1178,19 +1178,19 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.Text" xml:space="preserve">
-    <value>Effa&amp;cer le r�le</value>
+    <value>Effa&amp;cer le rôle</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
-    <value>&amp;Modifier les r�les personnalis�s...</value>
+    <value>&amp;Modifier les rôles personnalisés...</value>
   </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>�l�ment s�lectionn� Ctrl+Shift+P</value>
+    <value>Élément sélectionné Ctrl+Shift+P</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+P</value>
@@ -1199,7 +1199,7 @@
     <value>218, 22</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;�l�ment s�lectionn�</value>
+    <value>&amp;Élément sélectionné</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Plusieurs sections</value>
@@ -1214,10 +1214,10 @@
     <value>240, 22</value>
   </data>
   <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Appliquer la d�&amp;tection de phrase...</value>
+    <value>Appliquer la dé&amp;tection de phrase...</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>D�buter la s�lection audioCtrl+[</value>
+    <value>Débuter la sélection audioCtrl+[</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+[</value>
@@ -1229,10 +1229,10 @@
     <value>225, 22</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;D�buter la s�lection audio</value>
+    <value>&amp;Débuter la sélection audio</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>Terminer la s�lection audioCtrl+]</value>
+    <value>Terminer la sélection audioCtrl+]</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+]</value>
@@ -1244,13 +1244,13 @@
     <value>225, 22</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;Terminer la s�lection audio</value>
+    <value>&amp;Terminer la sélection audio</value>
   </data>
   <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>S�lection Audi&amp;o</value>
+    <value>Sélection Audi&amp;o</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Phrase AFAIRE suivante Ctrl+F9</value>
@@ -1265,7 +1265,7 @@
     <value>Phrase AFAIRE &amp;suivante</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Phrase AFAIRE pr�c�dente Ctrl+Shift+F9</value>
+    <value>Phrase AFAIRE précédente Ctrl+Shift+F9</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+F9</value>
@@ -1274,7 +1274,7 @@
     <value>271, 22</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Phrase AFAIRE &amp;pr�c�dente</value>
+    <value>Phrase AFAIRE &amp;précédente</value>
 
 	
   </data>
@@ -1303,13 +1303,13 @@
     <value>271, 22</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Collecter les phrases &amp;sp�ciales</value>
+    <value>Collecter les phrases &amp;spéciales</value>
   </data>
   <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
-    <value>Al&amp;ler �...</value>
+    <value>Al&amp;ler à...</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Supprimer les phrases qui suivent</value>
@@ -1339,7 +1339,7 @@
     <value>Lire &amp;tout</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Lire la s�lection Space</value>
+    <value>Lire la sélection Space</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Space</value>
@@ -1348,7 +1348,7 @@
     <value>208, 22</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lire la &amp;s�lection</value>
+    <value>Lire la &amp;sélection</value>
   </data>
   <data name="mPlayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1381,7 +1381,7 @@
     <value>Re&amp;prendre</value>
   </data>
   <data name="mStopToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Arr�t Ctrl+Space</value>
+    <value>Arrét Ctrl+Space</value>
   </data>
   <data name="mStopToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Space</value>
@@ -1390,7 +1390,7 @@
     <value>176, 22</value>
   </data>
   <data name="mStopToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Arr�t</value>
+    <value>&amp;Arrét</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Vitesse normale Ctrl+0</value>
@@ -1411,7 +1411,7 @@
     <value>&amp;Relecture en vitesse normale</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Acc�l�rer Ctrl++</value>
+    <value>Accélérer Ctrl++</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl++</value>
@@ -1423,7 +1423,7 @@
     <value>238, 22</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Acc�l�rer</value>
+    <value>&amp;Accélérer</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Ralentir Ctrl+-</value>
@@ -1447,7 +1447,7 @@
     <value>Lecture &amp;rapide</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Aper�u de... Ctrl+P</value>
+    <value>Aperçu de... Ctrl+P</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+P</value>
@@ -1456,28 +1456,28 @@
     <value>194, 22</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.Text" xml:space="preserve">
-    <value>Aper�u &amp;de...</value>
+    <value>Aperçu &amp;de...</value>
   </data>
   <data name="mPreviewUpToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 22</value>
   </data>
   <data name="mPreviewUpToToolStripMenuItem.Text" xml:space="preserve">
-    <value>Aper�u &amp;jusqu'�...</value>
+    <value>Aperçu &amp;jusqu'à...</value>
   </data>
   <data name="mPreviewSelectedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 22</value>
   </data>
   <data name="mPreviewSelectedToolStripMenuItem.Text" xml:space="preserve">
-    <value>Aper�u de la &amp;s�lection</value>
+    <value>Aperçu &amp;sélection</value>
   </data>
   <data name="mPreviewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
   <data name="mPreviewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Aper�&amp;u</value>
+    <value>Aperç&amp;u</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>D�marrer le Monitoring Ctrl+R</value>
+    <value>Démarrer le Monitoring Ctrl+R</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
@@ -1486,10 +1486,10 @@
     <value>267, 22</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.Text" xml:space="preserve">
-    <value>D�marrer le &amp;monitoring</value>
+    <value>Démarrer le &amp;monitoring</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>D�marrer l'enregistrement Ctrl+R</value>
+    <value>Démarrer l'enregistrement Ctrl+R</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
@@ -1498,10 +1498,10 @@
     <value>267, 22</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.Text" xml:space="preserve">
-    <value>D�marrer l'&amp;enregistrement</value>
+    <value>Démarrer l'&amp;enregistrement</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>D�marrer l'enregistrement direct ctrl+shift+r</value>
+    <value>Démarrer l'enregistrement direct ctrl+shift+r</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+R</value>
@@ -1510,13 +1510,13 @@
     <value>267, 22</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.Text" xml:space="preserve">
-    <value>D�marrer l'enregistrement &amp;direct</value>
+    <value>Démarrer l'enregistrement &amp;direct</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Autoriser l'&amp;�crasement</value>
+    <value>Autoriser l'&amp;écrasement</value>
   </data>
   <data name="mRecordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1528,7 +1528,7 @@
     <value>173, 6</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Section pr�c�dente Alt+Up</value>
+    <value>Section précédente Alt+Up</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Up</value>
@@ -1537,10 +1537,10 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Section pr�c�dente</value>
+    <value>&amp;Section précédente</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Page pr�c�dente Alt+PageUp</value>
+    <value>Page précédente Alt+PageUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+PgUp</value>
@@ -1549,10 +1549,10 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Page pr�c�dente</value>
+    <value>&amp;Page précédente</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Phrase pr�c�dente Alt+Left</value>
+    <value>Phrase précédente Alt+Left</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Left</value>
@@ -1561,7 +1561,7 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>P&amp;hrase pr�c�dente</value>
+    <value>P&amp;hrase précédente</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Phrase suivante Alt+Right</value>
@@ -1657,7 +1657,7 @@
     <value>&amp;Transport</value>
   </data>
   <data name="mTools_PreferencesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Pr�f�rences Ctrl+Alt+F</value>
+    <value>Préférences Ctrl+Alt+F</value>
   </data>
   <data name="mTools_PreferencesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+F</value>
@@ -1666,7 +1666,7 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_PreferencesMenuItem.Text" xml:space="preserve">
-    <value>&amp;Pr�f�rences</value>
+    <value>&amp;Préférences</value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 6</value>
@@ -1696,7 +1696,7 @@
     <value>&amp;Exporter vers DAISY</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>Effacer l'audio non r�f�renc� ctrl+l</value>
+    <value>Effacer l'audio non référencé ctrl+l</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+L</value>
@@ -1705,7 +1705,7 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
-    <value>E&amp;ffacer l'audio non r�f�renc�</value>
+    <value>E&amp;ffacer l'audio non référencé</value>
   </data>
   <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 6</value>
@@ -1749,7 +1749,7 @@
     <value>238, 22</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;� propos de Obi</value>
+    <value>&amp;À propos de Obi</value>
   </data>
   <data name="mHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>

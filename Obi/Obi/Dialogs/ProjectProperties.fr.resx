@@ -151,7 +151,7 @@
     <value>11</value>
   </data>
   <data name="m_txtDuration.AccessibleName" xml:space="preserve">
-    <value>Total Dur�e:</value>
+    <value>Total Durée:</value>
   </data>
   <data name="m_txtDuration.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -505,7 +505,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Propri�t�s du projet</value>
+    <value>Propriétés du projet</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ProjectProperties</value>
