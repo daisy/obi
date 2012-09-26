@@ -157,7 +157,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 17</value>
+    <value>135, 17</value>
   </data>
   <data name="mPathTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -187,7 +187,7 @@
     <value>Flat</value>
   </data>
   <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>461, 13</value>
+    <value>471, 13</value>
   </data>
   <data name="mSelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -286,13 +286,13 @@
     <value>12, 54</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 16</value>
+    <value>230, 16</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Text" xml:space="preserve">
-    <value>Cr&amp;er &amp;un fichier audio par section jusqu'�:</value>
+    <value>Créer &amp;un fichier audio par section jusqu'à:</value>
   </data>
   <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.Name" xml:space="preserve">
     <value>m_lblSelectLevelForAudioFiles</value>
@@ -307,10 +307,10 @@
     <value>5</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.AccessibleName" xml:space="preserve">
-    <value>Cr�er un fichier audio par section jusqu'�:</value>
+    <value>Créer un fichier audio par section jusqu'à:</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 52</value>
+    <value>260, 52</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>

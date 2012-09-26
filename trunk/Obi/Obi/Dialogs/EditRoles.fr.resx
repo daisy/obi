@@ -151,7 +151,7 @@
     <value>6</value>
   </data>
   <data name="mNewCustomRole.AccessibleName" xml:space="preserve">
-    <value>Ajouter un nouveau r&amp;le ou choisissez dans la liste suivante</value>
+    <value>Ajouter un nouveau rôle ou choisissez dans la liste suivante</value>
   </data>
   <data name="mNewCustomRole.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -196,7 +196,7 @@
     <value>3</value>
   </data>
   <data name="mInstructions.Text" xml:space="preserve">
-    <value>Ajouter un nouveau r�le ou en choisir un dans la liste.</value>
+    <value>Ajouter un nouveau rôle ou en choisir un dans la liste.</value>
   </data>
   <data name="&gt;&gt;mInstructions.Name" xml:space="preserve">
     <value>mInstructions</value>
@@ -614,7 +614,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Modifier les r�les</value>
+    <value>Modifier les rôles</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>EditRoles</value>
