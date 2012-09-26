@@ -270,5 +270,25 @@ namespace Obi.Dialogs
             }
 
         }
+
+        private void m_btnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lstManualArrange.Items.Count != 0)
+                {
+                    if (lstManualArrange.SelectedIndex != 0 && lstManualArrange.SelectedIndex != -1)
+                    {
+                        object item = lstManualArrange.SelectedItem;
+                        lstManualArrange.Items.Remove(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }

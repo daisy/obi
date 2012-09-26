@@ -52,6 +52,7 @@ namespace Obi.Dialogs
             this.m_grpSplitPhraseOrPhraseDetection = new System.Windows.Forms.GroupBox();
             this.m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
             this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
+            this.m_btnRemove = new System.Windows.Forms.Button();
             this.m_grpAddFiles.SuspendLayout();
             this.m_grpArrangeAudioFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).BeginInit();
@@ -122,6 +123,7 @@ namespace Obi.Dialogs
             // m_grpAddFiles
             // 
             resources.ApplyResources(this.m_grpAddFiles, "m_grpAddFiles");
+            this.m_grpAddFiles.Controls.Add(this.m_btnRemove);
             this.m_grpAddFiles.Controls.Add(this.m_grpArrangeAudioFiles);
             this.m_grpAddFiles.Controls.Add(this.lstManualArrange);
             this.m_grpAddFiles.Controls.Add(this.m_btnAdd);
@@ -225,6 +227,13 @@ namespace Obi.Dialogs
             this.m_rdbSplitPhrasesOnImport.UseVisualStyleBackColor = true;
             this.m_rdbSplitPhrasesOnImport.CheckedChanged += new System.EventHandler(this.m_rdbSplitPhrasesOnImport_CheckedChanged);
             // 
+            // m_btnRemove
+            // 
+            resources.ApplyResources(this.m_btnRemove, "m_btnRemove");
+            this.m_btnRemove.Name = "m_btnRemove";
+            this.m_btnRemove.UseVisualStyleBackColor = true;
+            this.m_btnRemove.Click += new System.EventHandler(this.m_btnRemove_Click);
+            // 
             // ImportFileSplitSize
             // 
             this.AcceptButton = this.mOKButton;
@@ -280,5 +289,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.GroupBox m_grpArrangeAudioFiles;
         private System.Windows.Forms.Button mbtnDesendingOrder;
         private System.Windows.Forms.Button mbtnAscendingOrder;
+        private System.Windows.Forms.Button m_btnRemove;
     }
 }
