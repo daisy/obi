@@ -213,6 +213,7 @@ namespace Obi.Dialogs
             // m_rdbPhraseDetectionOnImportedFiles
             // 
             resources.ApplyResources(this.m_rdbPhraseDetectionOnImportedFiles, "m_rdbPhraseDetectionOnImportedFiles");
+            this.m_rdbPhraseDetectionOnImportedFiles.Checked = true;
             this.m_rdbPhraseDetectionOnImportedFiles.Name = "m_rdbPhraseDetectionOnImportedFiles";
             this.m_rdbPhraseDetectionOnImportedFiles.TabStop = true;
             this.m_rdbPhraseDetectionOnImportedFiles.UseVisualStyleBackColor = true;
@@ -220,9 +221,7 @@ namespace Obi.Dialogs
             // m_rdbSplitPhrasesOnImport
             // 
             resources.ApplyResources(this.m_rdbSplitPhrasesOnImport, "m_rdbSplitPhrasesOnImport");
-            this.m_rdbSplitPhrasesOnImport.Checked = true;
             this.m_rdbSplitPhrasesOnImport.Name = "m_rdbSplitPhrasesOnImport";
-            this.m_rdbSplitPhrasesOnImport.TabStop = true;
             this.m_rdbSplitPhrasesOnImport.UseVisualStyleBackColor = true;
             this.m_rdbSplitPhrasesOnImport.CheckedChanged += new System.EventHandler(this.m_rdbSplitPhrasesOnImport_CheckedChanged);
             // 
