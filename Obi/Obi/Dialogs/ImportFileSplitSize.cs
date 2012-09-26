@@ -277,10 +277,18 @@ namespace Obi.Dialogs
             {
                 if (lstManualArrange.Items.Count != 0)
                 {
-                    if (lstManualArrange.SelectedIndex != 0 && lstManualArrange.SelectedIndex != -1)
+                    if (lstManualArrange.SelectedIndex >= 0 )
                     {
                         object item = lstManualArrange.SelectedItem;
                         lstManualArrange.Items.Remove(item);
+                        for (int i = 0; i < m_filePaths.Count; i++)
+                        {
+                            if (System.IO.Path.GetFileName(m_filePaths[i]) == (string)item)
+                            {
+                                m_filePaths.RemoveAt(i);
+                                break;
+                            }
+                        }
                     }
                 }
             }

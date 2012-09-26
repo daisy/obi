@@ -2232,6 +2232,7 @@ namespace Obi.ProjectView
         private CompositeCommand GetImportSectionsFromAudioCommands(List<PhraseNode> phraseNodes, Dictionary<PhraseNode, string> phrase_SectionNameMap, int CharacterCountToTruncateFromStart ,string  CharactersToBeReplacedWithSpaces, string PageIdentificationString)
             {
             CompositeCommand command = Presentation.CreateCompositeCommand ( Localizer.Message ( "import_phrases" ) );
+            CharacterCountToTruncateFromStart++; //fix for loss of one character count
             if (Selection != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
             SectionNode newSectionNode = null;
             int phraseInsertIndex = 0;
