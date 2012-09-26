@@ -24,6 +24,8 @@ namespace Obi.Dialogs
             InitializeComponent();
             m_Settings = settings;
             m_rdbSplitPhrasesOnImport.Checked = settings.SplitPhrasesOnImport;
+            mPhraseSizeTextBox.Enabled= m_rdbSplitPhrasesOnImport.Checked;
+            
             //m_radiobtnYes.Checked = true;
             mMaxPhraseDurationMinutes = settings.MaxPhraseDurationMinutes;
             m_filePaths = new List<string>(filesPathArray);
@@ -111,7 +113,7 @@ namespace Obi.Dialogs
         // When not splitting, don't edit the text box.
         private void mSplitCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            mPhraseSizeTextBox.ReadOnly = !m_rdbSplitPhrasesOnImport.Checked;
+            mPhraseSizeTextBox.Enabled= m_rdbSplitPhrasesOnImport.Checked;
         }
 
 
