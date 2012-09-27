@@ -32,8 +32,19 @@ namespace Obi.Dialogs
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message ("Level5" ) );
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message ("Level6" ) );
             m_ComboSelectLevelForAudioFiles.SelectedIndex = 0 ;
-            if(bitRate != 0)
-                m_ComboBoxBitrate.SelectedIndex = bitRate == 32 ? 0 : bitRate == 48 ? 1 : bitRate == 64 ? 2 : 3;
+            if (bitRate != 0)
+            {
+                m_ComboBoxBitrate.SelectedIndex = 0;
+                //m_ComboBoxBitrate.SelectedIndex = bitRate == 32 ? 0 : bitRate == 48 ? 1 : bitRate == 64 ? 2 : 3;
+                for (int i=0; i < m_ComboBoxBitrate.Items.Count;i++)  
+                {
+                    if( int.Parse( m_ComboBoxBitrate.Items[i].ToString ()) == bitRate )
+                    {
+                        m_ComboBoxBitrate.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
             m_checkBoxMP3Encoder.Checked = encodeToMP3;
             m_checkBoxAddSectionNameToAudioFileName.Checked = appendSectionNameToAudioFile;
         }
