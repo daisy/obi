@@ -2074,7 +2074,7 @@ namespace Obi.ProjectView
                             List<string> paths = new List<string>();
                             for (int i = 0; i < filesPathArray.Length; i++)
                             {
-                                if (!string.IsNullOrEmpty(filesPathArray[i])) paths.Add(filesPathArray[i]);
+                                if (!string.IsNullOrEmpty(filesPathArray[i]) && System.IO.File.Exists(filesPathArray[i])) paths.Add(filesPathArray[i]);
                             }
 
                         ObiForm.Settings.MaxPhraseDurationMinutes = dialog.MaxPhraseDurationMinutes;
