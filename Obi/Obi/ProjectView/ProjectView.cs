@@ -2229,8 +2229,10 @@ namespace Obi.ProjectView
             return command;
             }
 
-        private CompositeCommand GetImportSectionsFromAudioCommands(List<PhraseNode> phraseNodes, Dictionary<PhraseNode, string> phrase_SectionNameMap, int CharacterCountToTruncateFromStart ,string  CharactersToBeReplacedWithSpaces, string PageIdentificationString)
+        private CompositeCommand GetImportSectionsFromAudioCommands(List<PhraseNode> phraseNodesList, Dictionary<PhraseNode, string> phrase_SectionNameMap, int CharacterCountToTruncateFromStart ,string  CharactersToBeReplacedWithSpaces, string PageIdentificationString)
             {
+                List<PhraseNode> phraseNodes = new List<PhraseNode>();
+                phraseNodes.AddRange(phraseNodesList);
             CompositeCommand command = Presentation.CreateCompositeCommand ( Localizer.Message ( "import_phrases" ) );
             CharacterCountToTruncateFromStart++; //fix for loss of one character count
             if (Selection != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
@@ -2305,13 +2307,22 @@ for (int j = 0;
                             pagePhrases.Insert(0, node);
                         }
                         pagePhrases.Insert(0, phraseNodes[i]) ;
-                        for (int j = i + 1;
+                        int j = 0;
+                        for (j = i + 1;
                         j < phraseNodes.Count && !phrase_SectionNameMap.ContainsKey(phraseNodes[j]);
                         j++)
                         {
                             pagePhrases.Insert(0,phraseNodes[j]);
                         }
-                        
+                        if (pagePhrases.Count > 0
+                            && (i == phraseNodes.Count - 1 || j == phraseNodes.Count - 1))
+                        {
+                            for (int pageCount = 0; pageCount < pagePhrases.Count; pageCount++)
+                            {//2
+                                phraseInsertIndex++;
+                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, pagePhrases[pageCount], newSectionNode, phraseInsertIndex));
+                            }//-2
+                        }
                         continue;
                     }
                     phraseInsertIndex = 0;
