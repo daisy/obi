@@ -2137,16 +2137,23 @@ namespace Obi.ProjectView
                             if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count <= MaxVisibleBlocksCount)) // @phraseLimit
                                 {
                                 this.ObiForm.Cursor = Cursors.WaitCursor;
-                                if (createSectionForEachPhrase)
+                                try
+                                {
+                                    if (createSectionForEachPhrase)
                                     {
                                         CompositeCommand createSectionsCommand = GetImportSectionsFromAudioCommands(phraseNodes, phrase_SectionNameMap, dialog.CharacterCountToTruncateFromStart, dialog.CharactersToBeReplacedWithSpaces, dialog.PageIdentificationString);
-                                        
+
                                         mPresentation.Do(createSectionsCommand);
                                     }
-                                else
+                                    else
                                     {
-                                    mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
+                                        mPresentation.Do(GetImportPhraseCommands(phraseNodes));
                                     }
+                                }
+                                catch (System.Exception ex)
+                                {
+                                    MessageBox.Show(ex.ToString());
+                                }
 //phrase detection
                                     
                                     if (dialog.ApplyPhraseDetection )
@@ -2171,6 +2178,8 @@ namespace Obi.ProjectView
         private void ApplyPhraseDetectionOnPhraseList(List<PhraseNode> phraseNodes, long threshold, double gap, double before)
         {
             urakawa.command.CompositeCommand phraseDetectionCommand = null;
+            try
+            {
             Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate(Dialogs.ProgressDialog progress1)
                             {
@@ -2182,9 +2191,8 @@ namespace Obi.ProjectView
             progress.ShowDialog();
             if (progress.Exception != null) throw (progress.Exception);
             
-            try
-            {
-                mPresentation.Do(phraseDetectionCommand);
+            
+                if (phraseDetectionCommand != null )  mPresentation.Do(phraseDetectionCommand);
             }
             catch (System.Exception ex)
             {
@@ -2322,6 +2330,8 @@ for (int j = 0;
                                 phraseInsertIndex++;
                                 command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, pagePhrases[pageCount], newSectionNode, phraseInsertIndex));
                             }//-2
+                            pagePhrases.Clear();
+                            
                         }
                         continue;
                     }
