@@ -224,10 +224,12 @@ namespace Obi.Dialogs
             if(m_rdbSplitPhrasesOnImport.Checked)
             {
                 mPhraseSizeTextBox.Enabled = true;
+                mPhraseSizeTextBox.ReadOnly = false;
             }
             else
             {
                 mPhraseSizeTextBox.Enabled = false;
+                mPhraseSizeTextBox.ReadOnly = true;
             }
         }
 
