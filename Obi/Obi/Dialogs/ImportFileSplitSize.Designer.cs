@@ -39,6 +39,7 @@ namespace Obi.Dialogs
             this.m_btnMoveDown = new System.Windows.Forms.Button();
             this.m_btnAdd = new System.Windows.Forms.Button();
             this.m_grpAddFiles = new System.Windows.Forms.GroupBox();
+            this.m_btnRemove = new System.Windows.Forms.Button();
             this.m_grpArrangeAudioFiles = new System.Windows.Forms.GroupBox();
             this.mbtnDesendingOrder = new System.Windows.Forms.Button();
             this.mbtnAscendingOrder = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@ namespace Obi.Dialogs
             this.m_grpSplitPhraseOrPhraseDetection = new System.Windows.Forms.GroupBox();
             this.m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
             this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
-            this.m_btnRemove = new System.Windows.Forms.Button();
             this.m_grpAddFiles.SuspendLayout();
             this.m_grpArrangeAudioFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).BeginInit();
@@ -131,6 +131,13 @@ namespace Obi.Dialogs
             this.m_grpAddFiles.Controls.Add(this.m_btnMoveDown);
             this.m_grpAddFiles.Name = "m_grpAddFiles";
             this.m_grpAddFiles.TabStop = false;
+            // 
+            // m_btnRemove
+            // 
+            resources.ApplyResources(this.m_btnRemove, "m_btnRemove");
+            this.m_btnRemove.Name = "m_btnRemove";
+            this.m_btnRemove.UseVisualStyleBackColor = true;
+            this.m_btnRemove.Click += new System.EventHandler(this.m_btnRemove_Click);
             // 
             // m_grpArrangeAudioFiles
             // 
@@ -226,13 +233,6 @@ namespace Obi.Dialogs
             this.m_rdbSplitPhrasesOnImport.Name = "m_rdbSplitPhrasesOnImport";
             this.m_rdbSplitPhrasesOnImport.UseVisualStyleBackColor = true;
             this.m_rdbSplitPhrasesOnImport.CheckedChanged += new System.EventHandler(this.m_rdbSplitPhrasesOnImport_CheckedChanged);
-            // 
-            // m_btnRemove
-            // 
-            resources.ApplyResources(this.m_btnRemove, "m_btnRemove");
-            this.m_btnRemove.Name = "m_btnRemove";
-            this.m_btnRemove.UseVisualStyleBackColor = true;
-            this.m_btnRemove.Click += new System.EventHandler(this.m_btnRemove_Click);
             // 
             // ImportFileSplitSize
             // 
