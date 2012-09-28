@@ -2246,7 +2246,8 @@ namespace Obi.ProjectView
             if (Selection != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
             SectionNode newSectionNode = null;
             int phraseInsertIndex = 0;
-            
+            SectionNode firstSection = null;
+
             m_DisableSectionSelection = false;
             if (GetSelectedPhraseSection != null && (Selection.Node is EmptyNode || Selection is StripIndexSelection)) Selection = new NodeSelection(GetSelectedPhraseSection, mContentView);
 
@@ -2254,6 +2255,7 @@ namespace Obi.ProjectView
                 && ((SectionNode)Selection.Node).PhraseChildCount == 0 && phraseNodes.Count > 0)
             {
                 newSectionNode = (SectionNode)Selection.Node;
+                firstSection = newSectionNode;
                 phraseInsertIndex = 0;
                 string sectionName = phrase_SectionNameMap[phraseNodes[0]];
                 if ( CharacterCountToTruncateFromStart > 0  && CharacterCountToTruncateFromStart  < sectionName.Length) sectionName = sectionName.Substring (CharacterCountToTruncateFromStart - 1, sectionName.Length - CharacterCountToTruncateFromStart + 1) ;
@@ -2323,12 +2325,13 @@ for (int j = 0;
                             pagePhrases.Insert(0,phraseNodes[j]);
                         }
                         if (pagePhrases.Count > 0
-                            && (i == phraseNodes.Count - 1 || j == phraseNodes.Count - 1))
+                            && i == 0)
                         {
+                            phraseInsertIndex = firstSection.PhraseChildCount;
                             for (int pageCount = 0; pageCount < pagePhrases.Count; pageCount++)
                             {//2
                                 phraseInsertIndex++;
-                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, pagePhrases[pageCount], newSectionNode, phraseInsertIndex));
+                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, pagePhrases[pageCount], firstSection, phraseInsertIndex));
                             }//-2
                             pagePhrases.Clear();
                             
