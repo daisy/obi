@@ -124,7 +124,7 @@ namespace Obi
             settings.PlayOnNavigate = false;
             settings.RecentProjects = new ArrayList();
             settings.SampleRate = 44100;
-            settings.SplitPhrasesOnImport = true;
+            settings.SplitPhrasesOnImport = false;
             settings.SynchronizeViews = true;
             settings.UserProfile = new UserProfile();
             settings.WrapStripContents = true;
