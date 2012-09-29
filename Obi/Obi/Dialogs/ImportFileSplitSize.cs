@@ -24,6 +24,7 @@ namespace Obi.Dialogs
             InitializeComponent();
             m_Settings = settings;
             m_rdbSplitPhrasesOnImport.Checked = settings.SplitPhrasesOnImport;
+            m_rdbPhraseDetectionOnImportedFiles.Checked = !settings.SplitPhrasesOnImport;
             mPhraseSizeTextBox.Enabled= m_rdbSplitPhrasesOnImport.Checked;
             
             //m_radiobtnYes.Checked = true;
