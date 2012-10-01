@@ -157,13 +157,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtParentSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 15</value>
+    <value>159, 15</value>
   </data>
   <data name="m_txtParentSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtParentSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>366, 22</value>
+    <value>356, 22</value>
   </data>
   <data name="m_txtParentSection.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -553,10 +553,10 @@
     <value>Flat</value>
   </data>
   <data name="m_comboCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 269</value>
+    <value>205, 269</value>
   </data>
   <data name="m_comboCustomClassName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 24</value>
+    <value>310, 24</value>
   </data>
   <data name="m_comboCustomClassName.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
