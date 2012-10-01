@@ -151,7 +151,7 @@
     <value>8</value>
   </data>
   <data name="mDirectoryTextbox.AccessibleName" xml:space="preserve">
-    <value>Dossier du projet par d�faut:</value>
+    <value>Dossier du projet par défaut:</value>
   </data>
   <data name="mDirectoryTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -295,7 +295,7 @@
     <value>13</value>
   </data>
   <data name="labelInputDeviceName.Text" xml:space="preserve">
-    <value>Dispositif d'&amp;entr�e:</value>
+    <value>Dispositif d'&amp;entrée:</value>
   </data>
   <data name="&gt;&gt;labelInputDeviceName.Name" xml:space="preserve">
     <value>labelInputDeviceName</value>
@@ -310,7 +310,7 @@
     <value>19</value>
   </data>
   <data name="mInputDeviceCombo.AccessibleName" xml:space="preserve">
-    <value>Dispositif d'entr�e:</value>
+    <value>Dispositif d'entrée:</value>
   </data>
   <data name="mInputDeviceCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -439,7 +439,7 @@
     <value>Import tolerance</value>
   </data>
   <data name="m_lblImportTolerance.AccessibleName" xml:space="preserve">
-    <value>Tol�rance � l'import</value>
+    <value>Tolérance à l'import</value>
   </data>
   <data name="m_lblImportTolerance.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -454,7 +454,7 @@
     <value>10</value>
   </data>
   <data name="m_lblImportTolerance.Text" xml:space="preserve">
-    <value>Tol�rance � &amp;l'import:</value>
+    <value>Tolérance à &amp;l'import:</value>
   </data>
   <data name="&gt;&gt;m_lblImportTolerance.Name" xml:space="preserve">
     <value>m_lblImportTolerance</value>
@@ -541,7 +541,7 @@
     <value>4</value>
   </data>
   <data name="mPipelineTextbox.AccessibleName" xml:space="preserve">
-    <value>R�pertoire scripts du Pipeline</value>
+    <value>Répertoire scripts du Pipeline</value>
   </data>
   <data name="mPipelineTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -616,7 +616,7 @@
     <value>4</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>R�pertoire scripts du &amp;Pipeline:</value>
+    <value>Répertoire scripts du &amp;Pipeline:</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -661,7 +661,7 @@
     <value>0</value>
   </data>
   <data name="m_btn_speak.AccessibleName" xml:space="preserve">
-    <value> Bouton lire pour v�rifier la voix TTS</value>
+    <value> Bouton lire pour vérifier la voix TTS</value>
   </data>
   <data name="m_btn_speak.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -760,7 +760,7 @@
     <value>25</value>
   </data>
   <data name="m_btn_AdvancedRecording.Text" xml:space="preserve">
-    <value>enregistrement avanc� activ�</value>
+    <value>enregistrement avancé activé</value>
   </data>
   <data name="&gt;&gt;m_btn_AdvancedRecording.Name" xml:space="preserve">
     <value>m_btn_AdvancedRecording</value>
@@ -775,7 +775,7 @@
     <value>3</value>
   </data>
   <data name="m_OperationDurationUpDown.AccessibleName" xml:space="preserve">
-    <value>Dur�e en millisecondes</value>
+    <value>Durée en millisecondes</value>
   </data>
   <data name="m_OperationDurationUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>315, 153</value>
@@ -799,10 +799,10 @@
     <value>4</value>
   </data>
   <data name="m_cbOperation.Items" xml:space="preserve">
-    <value>D�placer la dur�e</value>
+    <value>Déplacer la durée</value>
   </data>
   <data name="m_cbOperation.Items1" xml:space="preserve">
-    <value>Aper�u de la dur�e</value>
+    <value>Aperçu de la durée</value>
   </data>
   <data name="m_cbOperation.Items2" xml:space="preserve">
     <value>Elapse back duration</value>
@@ -841,7 +841,7 @@
     <value>24</value>
   </data>
   <data name="mlbOperation.Text" xml:space="preserve">
-    <value>Op�ration:</value>
+    <value>Opération:</value>
   </data>
   <data name="&gt;&gt;mlbOperation.Name" xml:space="preserve">
     <value>mlbOperation</value>
@@ -985,7 +985,7 @@
     <value>10</value>
   </data>
   <data name="mSampleRateTextbox.AccessibleName" xml:space="preserve">
-    <value>Fr�quence d'�chantillonnage du projet:</value>
+    <value>Fréquence d'échantillonnage du projet:</value>
   </data>
   <data name="mSampleRateTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1018,7 +1018,7 @@
     <value>11</value>
   </data>
   <data name="mChannelsCombo.AccessibleName" xml:space="preserve">
-    <value>Canaux par d�faut:</value>
+    <value>Canaux par défaut:</value>
   </data>
   <data name="mChannelsCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1081,7 +1081,7 @@
     <value>13</value>
   </data>
   <data name="mSampleRateCombo.AccessibleName" xml:space="preserve">
-    <value>�chantillonnage par d�faut:</value>
+    <value>Échantillonnage par défaut:</value>
   </data>
   <data name="mSampleRateCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1129,7 +1129,7 @@
     <value>17</value>
   </data>
   <data name="labelSampleRate.Text" xml:space="preserve">
-    <value>&amp;�chantillonnage:</value>
+    <value>&amp;Échantillonnage:</value>
   </data>
   <data name="&gt;&gt;labelSampleRate.Name" xml:space="preserve">
     <value>labelSampleRate</value>
@@ -1420,7 +1420,7 @@
     <value>34</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>Liste de s�lection:</value>
+    <value>Liste de sélection:</value>
   </data>
   <data name="&gt;&gt;label12.Name" xml:space="preserve">
     <value>label12</value>
@@ -1435,7 +1435,7 @@
     <value>0</value>
   </data>
   <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Op�ration</value>
+    <value>Opération</value>
   </data>
   <data name="columnHeader1.Width" type="System.Int32, mscorlib">
     <value>190</value>
@@ -1504,7 +1504,7 @@
     <value>42</value>
   </data>
   <data name="m_RestoreDefaults.Text" xml:space="preserve">
-    <value>Restaurer par &amp;D�fault</value>
+    <value>Restaurer par &amp;Défault</value>
   </data>
   <data name="m_RestoreDefaults.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1626,7 +1626,7 @@
     <value>6</value>
   </data>
   <data name="m_cbShortcutKeys.AccessibleName" xml:space="preserve">
-    <value> S�lectionner les raccourcis � afficher.</value>
+    <value> Sélectionner les raccourcis à afficher.</value>
   </data>
   <data name="m_cbShortcutKeys.Items" xml:space="preserve">
     <value>Content / TOC view shortcut keys</value>
@@ -1764,7 +1764,7 @@
     <value>Liste des couleurs</value>
   </data>
   <data name="columnHeader3.Text" xml:space="preserve">
-    <value>Nom du contr�le</value>
+    <value>Nom du contrôle</value>
   </data>
   <data name="columnHeader3.Width" type="System.Int32, mscorlib">
     <value>190</value>
@@ -1776,7 +1776,7 @@
     <value>136</value>
   </data>
   <data name="columnHeader5.Text" xml:space="preserve">
-    <value>Contraste �lev� actuel</value>
+    <value>Contraste élevé actuel</value>
   </data>
   <data name="columnHeader5.Width" type="System.Int32, mscorlib">
     <value>153</value>
@@ -1887,7 +1887,7 @@
     <value>3</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>Attribuer un &amp;contraste �lev�:</value>
+    <value>Attribuer un &amp;contraste élevé:</value>
   </data>
   <data name="&gt;&gt;label11.Name" xml:space="preserve">
     <value>label11</value>
@@ -1989,7 +1989,7 @@
     <value>4</value>
   </data>
   <data name="mColorPreferencesTab.Text" xml:space="preserve">
-    <value>Pr�f�rences de couleur</value>
+    <value>Préférences de couleur</value>
   </data>
   <data name="&gt;&gt;mColorPreferencesTab.Name" xml:space="preserve">
     <value>mColorPreferencesTab</value>
@@ -2028,7 +2028,7 @@
     <value>3</value>
   </data>
   <data name="m_CheckBoxListView.AccessibleName" xml:space="preserve">
-    <value>Bo�te de liste, utilisez les fl�ches haut et &amp;bas pour se d�placer dans les cases � cocher</value>
+    <value>Boîte de liste, utilisez les flèches haut et &amp;bas pour se déplacer dans les cases à cocher</value>
   </data>
   <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>195, 256</value>
@@ -2061,7 +2061,7 @@
     <value>3</value>
   </data>
   <data name="m_grpBoxChkBoxListView.Text" xml:space="preserve">
-    <value>Liste de case � cocher </value>
+    <value>Liste de case à cocher </value>
   </data>
   <data name="&gt;&gt;m_grpBoxChkBoxListView.Name" xml:space="preserve">
     <value>m_grpBoxChkBoxListView</value>

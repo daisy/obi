@@ -280,7 +280,7 @@
     <value>0</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
-    <value>Cr�er une section pour chaque fichier</value>
+    <value>Créer une section pour chaque fichier</value>
   </data>
   <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Name" xml:space="preserve">
     <value>mCreateAudioFilePerSectionCheckBox</value>
@@ -337,7 +337,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Param�tres d'importation audio</value>
+    <value>Paramètres d'importation audio</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ImportFileSplitSize</value>
