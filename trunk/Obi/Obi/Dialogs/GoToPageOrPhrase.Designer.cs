@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent ()
             {
+                System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoToPageOrPhrase));
                 this.m_btnOk = new System.Windows.Forms.Button();
                 this.m_radPage = new System.Windows.Forms.RadioButton();
                 this.m_radPhrase = new System.Windows.Forms.RadioButton();
@@ -43,75 +44,60 @@ namespace Obi.Dialogs
                 // 
                 // label1
                 // 
-                this.label1.TabIndex = 3;
+                resources.ApplyResources(this.label1, "label1");
                 // 
                 // mNumberBox
                 // 
-                this.mNumberBox.TabIndex = 4;
+                resources.ApplyResources(this.mNumberBox, "mNumberBox");
                 // 
                 // mOKButton
                 // 
-                this.mOKButton.Location = new System.Drawing.Point(90, 181);
-                this.mOKButton.TabIndex = 8;
+                resources.ApplyResources(this.mOKButton, "mOKButton");
                 // 
                 // mCancelButton
                 // 
-                this.mCancelButton.Location = new System.Drawing.Point(198, 181);
-                this.mCancelButton.TabIndex = 9;
+                resources.ApplyResources(this.mCancelButton, "mCancelButton");
                 // 
                 // mRenumber
                 // 
-                this.mRenumber.TabIndex = 7;
+                resources.ApplyResources(this.mRenumber, "mRenumber");
                 // 
                 // mNumberOfPagesBox
                 // 
-                this.mNumberOfPagesBox.TabIndex = 6;
+                resources.ApplyResources(this.mNumberOfPagesBox, "mNumberOfPagesBox");
                 // 
                 // label2
                 // 
-                this.label2.TabIndex = 5;
+                resources.ApplyResources(this.label2, "label2");
                 // 
                 // mPageKindComboBox
                 // 
-                this.mPageKindComboBox.Size = new System.Drawing.Size(184, 24);
-                this.mPageKindComboBox.TabIndex = 6;
+                resources.ApplyResources(this.mPageKindComboBox, "mPageKindComboBox");
                 // 
                 // label3
                 // 
-                this.label3.TabIndex = 5;
+                resources.ApplyResources(this.label3, "label3");
                 // 
                 // m_btnOk
                 // 
-                this.m_btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                this.m_btnOk.Location = new System.Drawing.Point(90, 167);
+                resources.ApplyResources(this.m_btnOk, "m_btnOk");
                 this.m_btnOk.Name = "m_btnOk";
-                this.m_btnOk.Size = new System.Drawing.Size(100, 28);
-                this.m_btnOk.TabIndex = 7;
-                this.m_btnOk.Text = "&OK";
                 this.m_btnOk.UseVisualStyleBackColor = true;
                 this.m_btnOk.Click += new System.EventHandler(this.m_btnOk_Click);
                 // 
                 // m_radPage
                 // 
-                this.m_radPage.AutoSize = true;
-                this.m_radPage.Location = new System.Drawing.Point(165, 13);
+                resources.ApplyResources(this.m_radPage, "m_radPage");
                 this.m_radPage.Name = "m_radPage";
-                this.m_radPage.Size = new System.Drawing.Size(107, 20);
-                this.m_radPage.TabIndex = 1;
                 this.m_radPage.TabStop = true;
-                this.m_radPage.Text = "Page number";
                 this.m_radPage.UseVisualStyleBackColor = true;
                 this.m_radPage.CheckedChanged += new System.EventHandler(this.m_radPage_CheckedChanged);
                 // 
                 // m_radPhrase
                 // 
-                this.m_radPhrase.AutoSize = true;
-                this.m_radPhrase.Location = new System.Drawing.Point(36, 11);
+                resources.ApplyResources(this.m_radPhrase, "m_radPhrase");
                 this.m_radPhrase.Name = "m_radPhrase";
-                this.m_radPhrase.Size = new System.Drawing.Size(104, 20);
-                this.m_radPhrase.TabIndex = 1;
                 this.m_radPhrase.TabStop = true;
-                this.m_radPhrase.Text = "Phrase index";
                 this.m_radPhrase.UseVisualStyleBackColor = true;
                 this.m_radPhrase.CheckedChanged += new System.EventHandler(this.m_radPhrase_CheckedChanged);
                 // 
@@ -120,78 +106,54 @@ namespace Obi.Dialogs
                 this.m_grpSearchPagePhrase.Controls.Add(this.m_radTime);
                 this.m_grpSearchPagePhrase.Controls.Add(this.m_radPhrase);
                 this.m_grpSearchPagePhrase.Controls.Add(this.m_radPage);
-                this.m_grpSearchPagePhrase.Location = new System.Drawing.Point(49, 6);
+                resources.ApplyResources(this.m_grpSearchPagePhrase, "m_grpSearchPagePhrase");
                 this.m_grpSearchPagePhrase.Name = "m_grpSearchPagePhrase";
-                this.m_grpSearchPagePhrase.Size = new System.Drawing.Size(286, 81);
-                this.m_grpSearchPagePhrase.TabIndex = 0;
                 this.m_grpSearchPagePhrase.TabStop = false;
-                this.m_grpSearchPagePhrase.Text = "Go to ";
                 // 
                 // m_radTime
                 // 
-                this.m_radTime.AutoSize = true;
-                this.m_radTime.Location = new System.Drawing.Point(42, 40);
+                resources.ApplyResources(this.m_radTime, "m_radTime");
                 this.m_radTime.Name = "m_radTime";
-                this.m_radTime.Size = new System.Drawing.Size(57, 20);
-                this.m_radTime.TabIndex = 1;
                 this.m_radTime.TabStop = true;
-                this.m_radTime.Text = "Time";
                 this.m_radTime.UseVisualStyleBackColor = true;
                 this.m_radTime.CheckedChanged += new System.EventHandler(this.m_radTime_CheckedChanged);
                 // 
                 // mPhraseIndexComboBox
                 // 
                 this.mPhraseIndexComboBox.FormattingEnabled = true;
-                this.mPhraseIndexComboBox.Location = new System.Drawing.Point(189, 130);
+                resources.ApplyResources(this.mPhraseIndexComboBox, "mPhraseIndexComboBox");
                 this.mPhraseIndexComboBox.Name = "mPhraseIndexComboBox";
-                this.mPhraseIndexComboBox.Size = new System.Drawing.Size(100, 24);
-                this.mPhraseIndexComboBox.TabIndex = 4;
-                this.mPhraseIndexComboBox.Visible = false;
                 // 
                 // m_cb_TimeInPhraseOrSection
                 // 
                 this.m_cb_TimeInPhraseOrSection.FormattingEnabled = true;
                 this.m_cb_TimeInPhraseOrSection.Items.AddRange(new object[] {
-            "Phrase",
-            "Section",
-            "Project"});
-                this.m_cb_TimeInPhraseOrSection.Location = new System.Drawing.Point(188, 99);
+            resources.GetString("m_cb_TimeInPhraseOrSection.Items"),
+            resources.GetString("m_cb_TimeInPhraseOrSection.Items1"),
+            resources.GetString("m_cb_TimeInPhraseOrSection.Items2")});
+                resources.ApplyResources(this.m_cb_TimeInPhraseOrSection, "m_cb_TimeInPhraseOrSection");
                 this.m_cb_TimeInPhraseOrSection.Name = "m_cb_TimeInPhraseOrSection";
-                this.m_cb_TimeInPhraseOrSection.Size = new System.Drawing.Size(121, 24);
-                this.m_cb_TimeInPhraseOrSection.TabIndex = 3;
                 // 
                 // m_txtBox_TimeInSeconds
                 // 
-                this.m_txtBox_TimeInSeconds.AccessibleName = "Time in seconds";
-                this.m_txtBox_TimeInSeconds.Location = new System.Drawing.Point(188, 131);
+                resources.ApplyResources(this.m_txtBox_TimeInSeconds, "m_txtBox_TimeInSeconds");
                 this.m_txtBox_TimeInSeconds.Name = "m_txtBox_TimeInSeconds";
-                this.m_txtBox_TimeInSeconds.Size = new System.Drawing.Size(100, 22);
-                this.m_txtBox_TimeInSeconds.TabIndex = 5;
                 // 
                 // m_lbl_Seconds
                 // 
-                this.m_lbl_Seconds.AutoSize = true;
-                this.m_lbl_Seconds.Location = new System.Drawing.Point(317, 139);
+                resources.ApplyResources(this.m_lbl_Seconds, "m_lbl_Seconds");
                 this.m_lbl_Seconds.Name = "m_lbl_Seconds";
-                this.m_lbl_Seconds.Size = new System.Drawing.Size(60, 16);
-                this.m_lbl_Seconds.TabIndex = 6;
-                this.m_lbl_Seconds.Text = "seconds";
                 // 
                 // m_lbl_Time
                 // 
-                this.m_lbl_Time.AutoSize = true;
-                this.m_lbl_Time.Location = new System.Drawing.Point(109, 124);
+                resources.ApplyResources(this.m_lbl_Time, "m_lbl_Time");
                 this.m_lbl_Time.Name = "m_lbl_Time";
-                this.m_lbl_Time.Size = new System.Drawing.Size(42, 16);
-                this.m_lbl_Time.TabIndex = 4;
-                this.m_lbl_Time.Text = "Time:";
                 // 
                 // GoToPageOrPhrase
                 // 
                 this.AcceptButton = this.m_btnOk;
-                this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+                resources.ApplyResources(this, "$this");
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                this.ClientSize = new System.Drawing.Size(389, 222);
                 this.Controls.Add(this.m_lbl_Seconds);
                 this.Controls.Add(this.m_txtBox_TimeInSeconds);
                 this.Controls.Add(this.m_btnOk);
@@ -200,7 +162,6 @@ namespace Obi.Dialogs
                 this.Controls.Add(this.m_lbl_Time);
                 this.Controls.Add(this.m_grpSearchPagePhrase);
                 this.Name = "GoToPageOrPhrase";
-                this.Text = "Go to...";
                 this.Controls.SetChildIndex(this.m_grpSearchPagePhrase, 0);
                 this.Controls.SetChildIndex(this.m_lbl_Time, 0);
                 this.Controls.SetChildIndex(this.m_cb_TimeInPhraseOrSection, 0);

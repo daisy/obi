@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressDialog));
             this.mProgressBar = new System.Windows.Forms.ProgressBar();
             this.m_BtnCancel = new System.Windows.Forms.Button();
             this.m_lbWaitForCancellation = new System.Windows.Forms.Label();
@@ -35,55 +36,37 @@ namespace Obi.Dialogs
             // 
             // mProgressBar
             // 
-            this.mProgressBar.Location = new System.Drawing.Point(4, 24);
+            resources.ApplyResources(this.mProgressBar, "mProgressBar");
             this.mProgressBar.Name = "mProgressBar";
-            this.mProgressBar.Size = new System.Drawing.Size(373, 23);
             this.mProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.mProgressBar.TabIndex = 1;
             this.mProgressBar.UseWaitCursor = true;
             // 
             // m_BtnCancel
             // 
-            this.m_BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_BtnCancel.Location = new System.Drawing.Point(302, 63);
+            resources.ApplyResources(this.m_BtnCancel, "m_BtnCancel");
             this.m_BtnCancel.Name = "m_BtnCancel";
-            this.m_BtnCancel.Size = new System.Drawing.Size(75, 23);
-            this.m_BtnCancel.TabIndex = 2;
-            this.m_BtnCancel.Text = "&Cancel";
             this.m_BtnCancel.UseVisualStyleBackColor = true;
             this.m_BtnCancel.UseWaitCursor = true;
             this.m_BtnCancel.Click += new System.EventHandler(this.m_BtnCancel_Click);
             // 
             // m_lbWaitForCancellation
             // 
-            this.m_lbWaitForCancellation.AutoSize = true;
-            this.m_lbWaitForCancellation.Location = new System.Drawing.Point(1, 9);
+            resources.ApplyResources(this.m_lbWaitForCancellation, "m_lbWaitForCancellation");
             this.m_lbWaitForCancellation.Name = "m_lbWaitForCancellation";
-            this.m_lbWaitForCancellation.Size = new System.Drawing.Size(277, 16);
-            this.m_lbWaitForCancellation.TabIndex = 3;
-            this.m_lbWaitForCancellation.Text = "Operation cancelled.. Completing current task";
             this.m_lbWaitForCancellation.UseWaitCursor = true;
-            this.m_lbWaitForCancellation.Visible = false;
             // 
             // ProgressDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 87);
             this.ControlBox = false;
             this.Controls.Add(this.m_lbWaitForCancellation);
             this.Controls.Add(this.m_BtnCancel);
             this.Controls.Add(this.mProgressBar);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximumSize = new System.Drawing.Size(400, 125);
-            this.MinimumSize = new System.Drawing.Size(400, 74);
             this.Name = "ProgressDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Operation in progress";
             this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.ProgressDialog_Load);
             this.ResumeLayout(false);

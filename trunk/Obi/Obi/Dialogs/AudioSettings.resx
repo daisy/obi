@@ -117,4 +117,229 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mlbSampleRate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mlbSampleRate.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mlbSampleRate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 20</value>
+  </data>
+  <data name="mlbSampleRate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 16</value>
+  </data>
+  <data name="mlbSampleRate.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="mlbSampleRate.Text" xml:space="preserve">
+    <value>&amp;Sample Rate :</value>
+  </data>
+  <data name="&gt;&gt;mlbSampleRate.Name" xml:space="preserve">
+    <value>mlbSampleRate</value>
+  </data>
+  <data name="&gt;&gt;mlbSampleRate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mlbSampleRate.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mlbSampleRate.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="mlbAudioChannels.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mlbAudioChannels.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mlbAudioChannels.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 46</value>
+  </data>
+  <data name="mlbAudioChannels.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 16</value>
+  </data>
+  <data name="mlbAudioChannels.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="mlbAudioChannels.Text" xml:space="preserve">
+    <value>Audio &amp;Channels :</value>
+  </data>
+  <data name="&gt;&gt;mlbAudioChannels.Name" xml:space="preserve">
+    <value>mlbAudioChannels</value>
+  </data>
+  <data name="&gt;&gt;mlbAudioChannels.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mlbAudioChannels.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mlbAudioChannels.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="mbtnOK.AccessibleDescription" xml:space="preserve">
+    <value>ok button</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mbtnOK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mbtnOK.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mbtnOK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 77</value>
+  </data>
+  <data name="mbtnOK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 30</value>
+  </data>
+  <data name="mbtnOK.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="mbtnOK.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="&gt;&gt;mbtnOK.Name" xml:space="preserve">
+    <value>mbtnOK</value>
+  </data>
+  <data name="&gt;&gt;mbtnOK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mbtnOK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mbtnOK.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="mbtnCancel.AccessibleDescription" xml:space="preserve">
+    <value>Cancel button</value>
+  </data>
+  <data name="mbtnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mbtnCancel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mbtnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 77</value>
+  </data>
+  <data name="mbtnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 30</value>
+  </data>
+  <data name="mbtnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="mbtnCancel.Text" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="&gt;&gt;mbtnCancel.Name" xml:space="preserve">
+    <value>mbtnCancel</value>
+  </data>
+  <data name="&gt;&gt;mbtnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mbtnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mbtnCancel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mcbSampleRate.AccessibleName" xml:space="preserve">
+    <value>Sample rate combo box</value>
+  </data>
+  <data name="mcbSampleRate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="mcbSampleRate.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mcbSampleRate.Items" xml:space="preserve">
+    <value>11025</value>
+  </data>
+  <data name="mcbSampleRate.Items1" xml:space="preserve">
+    <value>22050</value>
+  </data>
+  <data name="mcbSampleRate.Items2" xml:space="preserve">
+    <value>44100</value>
+  </data>
+  <data name="mcbSampleRate.Items3" xml:space="preserve">
+    <value>48000</value>
+  </data>
+  <data name="mcbSampleRate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 19</value>
+  </data>
+  <data name="mcbSampleRate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 21</value>
+  </data>
+  <data name="mcbSampleRate.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;mcbSampleRate.Name" xml:space="preserve">
+    <value>mcbSampleRate</value>
+  </data>
+  <data name="&gt;&gt;mcbSampleRate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mcbSampleRate.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mcbSampleRate.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mcbAudioChannel.AccessibleName" xml:space="preserve">
+    <value>Audio channel combo box</value>
+  </data>
+  <data name="mcbAudioChannel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="mcbAudioChannel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mcbAudioChannel.Items" xml:space="preserve">
+    <value>mono</value>
+  </data>
+  <data name="mcbAudioChannel.Items1" xml:space="preserve">
+    <value>stereo</value>
+  </data>
+  <data name="mcbAudioChannel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 46</value>
+  </data>
+  <data name="mcbAudioChannel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 21</value>
+  </data>
+  <data name="mcbAudioChannel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;mcbAudioChannel.Name" xml:space="preserve">
+    <value>mcbAudioChannel</value>
+  </data>
+  <data name="&gt;&gt;mcbAudioChannel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mcbAudioChannel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mcbAudioChannel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>289, 119</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>AudioSettings</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AudioSettings</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

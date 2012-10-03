@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmptySection));
             this.mContinueButton = new System.Windows.Forms.Button();
             this.mMessageLabel = new System.Windows.Forms.Label();
             this.mCancelButton = new System.Windows.Forms.Button();
@@ -37,71 +38,47 @@ namespace Obi.Dialogs
             // mContinueButton
             // 
             this.mContinueButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mContinueButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mContinueButton.Location = new System.Drawing.Point(91, 157);
-            this.mContinueButton.Margin = new System.Windows.Forms.Padding(4);
+            resources.ApplyResources(this.mContinueButton, "mContinueButton");
             this.mContinueButton.Name = "mContinueButton";
-            this.mContinueButton.Size = new System.Drawing.Size(100, 28);
-            this.mContinueButton.TabIndex = 2;
-            this.mContinueButton.Text = "C&ontinue";
             this.mContinueButton.UseVisualStyleBackColor = true;
             // 
             // mMessageLabel
             // 
-            this.mMessageLabel.Location = new System.Drawing.Point(12, 11);
-            this.mMessageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            resources.ApplyResources(this.mMessageLabel, "mMessageLabel");
             this.mMessageLabel.Name = "mMessageLabel";
-            this.mMessageLabel.Size = new System.Drawing.Size(364, 80);
-            this.mMessageLabel.TabIndex = 0;
-            this.mMessageLabel.Text = "Section \"{0}\" has no audio content and will not be exported, nor will any of its " +
-                "subsections. Do you want to continue?";
             // 
             // mCancelButton
             // 
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCancelButton.Location = new System.Drawing.Point(199, 157);
-            this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
+            resources.ApplyResources(this.mCancelButton, "mCancelButton");
             this.mCancelButton.Name = "mCancelButton";
-            this.mCancelButton.Size = new System.Drawing.Size(100, 28);
-            this.mCancelButton.TabIndex = 3;
-            this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
             // mKeepWarningCheckbox
             // 
-            this.mKeepWarningCheckbox.AutoSize = true;
+            resources.ApplyResources(this.mKeepWarningCheckbox, "mKeepWarningCheckbox");
             this.mKeepWarningCheckbox.Checked = true;
             this.mKeepWarningCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mKeepWarningCheckbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mKeepWarningCheckbox.Location = new System.Drawing.Point(12, 94);
             this.mKeepWarningCheckbox.Name = "mKeepWarningCheckbox";
-            this.mKeepWarningCheckbox.Size = new System.Drawing.Size(337, 20);
-            this.mKeepWarningCheckbox.TabIndex = 1;
-            this.mKeepWarningCheckbox.Text = "Keep warning me about empty sections in this project";
             this.mKeepWarningCheckbox.UseVisualStyleBackColor = true;
             // 
             // EmptySection
             // 
             this.AcceptButton = this.mContinueButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.ClientSize = new System.Drawing.Size(389, 198);
             this.ControlBox = false;
             this.Controls.Add(this.mKeepWarningCheckbox);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mMessageLabel);
             this.Controls.Add(this.mContinueButton);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EmptySection";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "Section will not be exported";
             this.ResumeLayout(false);
             this.PerformLayout();
 
