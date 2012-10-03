@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultipleOptionDialog));
             this.m_lbl_ChooseOption = new System.Windows.Forms.Label();
             this.m_rdb_SaveBookmarkAndProject = new System.Windows.Forms.RadioButton();
             this.m_rdb_SaveProjectOnly = new System.Windows.Forms.RadioButton();
@@ -38,80 +39,55 @@ namespace Obi.Dialogs
             // 
             // m_lbl_ChooseOption
             // 
-            this.m_lbl_ChooseOption.AutoSize = true;
-            this.m_lbl_ChooseOption.Location = new System.Drawing.Point(42, 22);
+            resources.ApplyResources(this.m_lbl_ChooseOption, "m_lbl_ChooseOption");
             this.m_lbl_ChooseOption.Name = "m_lbl_ChooseOption";
-            this.m_lbl_ChooseOption.Size = new System.Drawing.Size(77, 13);
-            this.m_lbl_ChooseOption.TabIndex = 0;
-            this.m_lbl_ChooseOption.Text = "Choose Option";
             // 
             // m_rdb_SaveBookmarkAndProject
             // 
-            this.m_rdb_SaveBookmarkAndProject.AutoSize = true;
-            this.m_rdb_SaveBookmarkAndProject.Location = new System.Drawing.Point(45, 51);
+            resources.ApplyResources(this.m_rdb_SaveBookmarkAndProject, "m_rdb_SaveBookmarkAndProject");
             this.m_rdb_SaveBookmarkAndProject.Name = "m_rdb_SaveBookmarkAndProject";
-            this.m_rdb_SaveBookmarkAndProject.Size = new System.Drawing.Size(238, 17);
-            this.m_rdb_SaveBookmarkAndProject.TabIndex = 1;
             this.m_rdb_SaveBookmarkAndProject.TabStop = true;
-            this.m_rdb_SaveBookmarkAndProject.Text = "Save project and selected item as &bookmark ";
             this.m_rdb_SaveBookmarkAndProject.UseVisualStyleBackColor = true;
             this.m_rdb_SaveBookmarkAndProject.CheckedChanged += new System.EventHandler(this.m_rdb_SaveBookmarkAndProject_CheckedChanged);
             // 
             // m_rdb_SaveProjectOnly
             // 
-            this.m_rdb_SaveProjectOnly.AutoSize = true;
-            this.m_rdb_SaveProjectOnly.Location = new System.Drawing.Point(45, 74);
+            resources.ApplyResources(this.m_rdb_SaveProjectOnly, "m_rdb_SaveProjectOnly");
             this.m_rdb_SaveProjectOnly.Name = "m_rdb_SaveProjectOnly";
-            this.m_rdb_SaveProjectOnly.Size = new System.Drawing.Size(107, 17);
-            this.m_rdb_SaveProjectOnly.TabIndex = 3;
             this.m_rdb_SaveProjectOnly.TabStop = true;
-            this.m_rdb_SaveProjectOnly.Text = "Save p&roject only";
             this.m_rdb_SaveProjectOnly.UseVisualStyleBackColor = true;
             this.m_rdb_SaveProjectOnly.CheckedChanged += new System.EventHandler(this.m_rdb_SaveProjectOnly_CheckedChanged);
             // 
             // m_rdb_DiscardBoth
             // 
-            this.m_rdb_DiscardBoth.AutoSize = true;
-            this.m_rdb_DiscardBoth.Location = new System.Drawing.Point(45, 97);
+            resources.ApplyResources(this.m_rdb_DiscardBoth, "m_rdb_DiscardBoth");
             this.m_rdb_DiscardBoth.Name = "m_rdb_DiscardBoth";
-            this.m_rdb_DiscardBoth.Size = new System.Drawing.Size(85, 17);
-            this.m_rdb_DiscardBoth.TabIndex = 4;
             this.m_rdb_DiscardBoth.TabStop = true;
-            this.m_rdb_DiscardBoth.Text = "&Discard both";
             this.m_rdb_DiscardBoth.UseVisualStyleBackColor = true;
             this.m_rdb_DiscardBoth.CheckedChanged += new System.EventHandler(this.m_rdb_DiscardBoth_CheckedChanged);
             // 
             // m_btn_OK
             // 
             this.m_btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.m_btn_OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_OK.Location = new System.Drawing.Point(44, 136);
+            resources.ApplyResources(this.m_btn_OK, "m_btn_OK");
             this.m_btn_OK.Name = "m_btn_OK";
-            this.m_btn_OK.Size = new System.Drawing.Size(75, 23);
-            this.m_btn_OK.TabIndex = 5;
-            this.m_btn_OK.Text = "OK";
             this.m_btn_OK.UseVisualStyleBackColor = true;
             this.m_btn_OK.Click += new System.EventHandler(this.m_btn_OK_Click);
             // 
             // m_btn_Cancel
             // 
             this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_Cancel.Location = new System.Drawing.Point(160, 136);
+            resources.ApplyResources(this.m_btn_Cancel, "m_btn_Cancel");
             this.m_btn_Cancel.Name = "m_btn_Cancel";
-            this.m_btn_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.m_btn_Cancel.TabIndex = 6;
-            this.m_btn_Cancel.Text = "Cancel";
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             this.m_btn_Cancel.Click += new System.EventHandler(this.m_btn_Cancel_Click);
             // 
             // MultipleOptionDialog
             // 
             this.AcceptButton = this.m_btn_OK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
-            this.ClientSize = new System.Drawing.Size(303, 183);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_rdb_DiscardBoth);
@@ -120,10 +96,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_lbl_ChooseOption);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(309, 211);
-            this.MinimumSize = new System.Drawing.Size(309, 211);
             this.Name = "MultipleOptionDialog";
-            this.Text = "Multiple Option Dialog";
             this.ResumeLayout(false);
             this.PerformLayout();
 

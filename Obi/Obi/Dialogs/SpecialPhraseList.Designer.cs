@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SpecialPhraseList));
             this.m_grpSelectSpecialPhrases = new System.Windows.Forms.GroupBox();
             this.m_cb_SpecialPhrases = new System.Windows.Forms.ComboBox();
             this.m_btnFind = new System.Windows.Forms.Button();
@@ -44,85 +45,55 @@
             // 
             // m_grpSelectSpecialPhrases
             // 
-            this.m_grpSelectSpecialPhrases.AccessibleName = "Select special phrases to show in list box";
+            resources.ApplyResources(this.m_grpSelectSpecialPhrases, "m_grpSelectSpecialPhrases");
             this.m_grpSelectSpecialPhrases.Controls.Add(this.m_cb_SpecialPhrases);
             this.m_grpSelectSpecialPhrases.Controls.Add(this.m_btnFind);
-            this.m_grpSelectSpecialPhrases.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_grpSelectSpecialPhrases.Location = new System.Drawing.Point(12, 12);
             this.m_grpSelectSpecialPhrases.Name = "m_grpSelectSpecialPhrases";
-            this.m_grpSelectSpecialPhrases.Size = new System.Drawing.Size(400, 89);
-            this.m_grpSelectSpecialPhrases.TabIndex = 0;
             this.m_grpSelectSpecialPhrases.TabStop = false;
-            this.m_grpSelectSpecialPhrases.Text = "Select Special Phrases to show in List Box";
             // 
             // m_cb_SpecialPhrases
             // 
             this.m_cb_SpecialPhrases.FormattingEnabled = true;
             this.m_cb_SpecialPhrases.Items.AddRange(new object[] {
-            "Todo Marked Phrases",
-            "Empty Phrases",
-            "Heading",
-            "Silence",
-            "All Pages",
-            "Front Pages",
-            "Normal Pages",
-            "Special Pages",
-            "Anchor"});
-            this.m_cb_SpecialPhrases.Location = new System.Drawing.Point(6, 42);
+            resources.GetString("m_cb_SpecialPhrases.Items"),
+            resources.GetString("m_cb_SpecialPhrases.Items1"),
+            resources.GetString("m_cb_SpecialPhrases.Items2"),
+            resources.GetString("m_cb_SpecialPhrases.Items3"),
+            resources.GetString("m_cb_SpecialPhrases.Items4"),
+            resources.GetString("m_cb_SpecialPhrases.Items5"),
+            resources.GetString("m_cb_SpecialPhrases.Items6"),
+            resources.GetString("m_cb_SpecialPhrases.Items7"),
+            resources.GetString("m_cb_SpecialPhrases.Items8")});
+            resources.ApplyResources(this.m_cb_SpecialPhrases, "m_cb_SpecialPhrases");
             this.m_cb_SpecialPhrases.Name = "m_cb_SpecialPhrases";
-            this.m_cb_SpecialPhrases.Size = new System.Drawing.Size(264, 24);
-            this.m_cb_SpecialPhrases.TabIndex = 0;
-            this.m_cb_SpecialPhrases.Text = "Click to Select..";
             this.m_cb_SpecialPhrases.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.m_cb_SpecialPhrases_PreviewKeyDown);
             // 
             // m_btnFind
             // 
-            this.m_btnFind.AccessibleName = "Find";
-            this.m_btnFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btnFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_btnFind.Location = new System.Drawing.Point(288, 39);
-            this.m_btnFind.Margin = new System.Windows.Forms.Padding(4);
+            resources.ApplyResources(this.m_btnFind, "m_btnFind");
             this.m_btnFind.Name = "m_btnFind";
-            this.m_btnFind.Size = new System.Drawing.Size(100, 28);
-            this.m_btnFind.TabIndex = 1;
-            this.m_btnFind.Text = "&Find";
             this.m_btnFind.UseVisualStyleBackColor = true;
             this.m_btnFind.Click += new System.EventHandler(this.m_btnFind_Click);
             // 
             // m_lbSpecialPhrasesList
             // 
             this.m_lbSpecialPhrasesList.FormattingEnabled = true;
-            this.m_lbSpecialPhrasesList.HorizontalScrollbar = true;
-            this.m_lbSpecialPhrasesList.Location = new System.Drawing.Point(12, 122);
+            resources.ApplyResources(this.m_lbSpecialPhrasesList, "m_lbSpecialPhrasesList");
             this.m_lbSpecialPhrasesList.Name = "m_lbSpecialPhrasesList";
-            this.m_lbSpecialPhrasesList.Size = new System.Drawing.Size(400, 238);
-            this.m_lbSpecialPhrasesList.TabIndex = 1;
             this.m_lbSpecialPhrasesList.SelectedIndexChanged += new System.EventHandler(this.m_lbSpecialPhrasesList_SelectedIndexChanged);
             // 
             // m_btnOK
             // 
-            this.m_btnOK.AccessibleName = "OK";
+            resources.ApplyResources(this.m_btnOK, "m_btnOK");
             this.m_btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.m_btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_btnOK.Location = new System.Drawing.Point(80, 453);
             this.m_btnOK.Name = "m_btnOK";
-            this.m_btnOK.Size = new System.Drawing.Size(100, 28);
-            this.m_btnOK.TabIndex = 5;
-            this.m_btnOK.Text = "&OK";
             this.m_btnOK.UseVisualStyleBackColor = true;
             // 
             // m_btnCancel
             // 
-            this.m_btnCancel.AccessibleName = "Cancel";
+            resources.ApplyResources(this.m_btnCancel, "m_btnCancel");
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_btnCancel.Location = new System.Drawing.Point(205, 453);
             this.m_btnCancel.Name = "m_btnCancel";
-            this.m_btnCancel.Size = new System.Drawing.Size(100, 28);
-            this.m_btnCancel.TabIndex = 6;
-            this.m_btnCancel.Text = "&Cancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
             // 
             // mgrp_PlayPhraseInListBox
@@ -130,58 +101,37 @@
             this.mgrp_PlayPhraseInListBox.Controls.Add(this.m_BtnPause);
             this.mgrp_PlayPhraseInListBox.Controls.Add(this.m_BtnStop);
             this.mgrp_PlayPhraseInListBox.Controls.Add(this.m_BtnPlay);
-            this.mgrp_PlayPhraseInListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mgrp_PlayPhraseInListBox.Location = new System.Drawing.Point(12, 376);
+            resources.ApplyResources(this.mgrp_PlayPhraseInListBox, "mgrp_PlayPhraseInListBox");
             this.mgrp_PlayPhraseInListBox.Name = "mgrp_PlayPhraseInListBox";
-            this.mgrp_PlayPhraseInListBox.Size = new System.Drawing.Size(394, 71);
-            this.mgrp_PlayPhraseInListBox.TabIndex = 2;
             this.mgrp_PlayPhraseInListBox.TabStop = false;
-            this.mgrp_PlayPhraseInListBox.Text = "Play Phrase Selected in ListBox";
             // 
             // m_BtnPause
             // 
-            this.m_BtnPause.AccessibleName = "Pause";
-            this.m_BtnPause.Enabled = false;
-            this.m_BtnPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_BtnPause.Location = new System.Drawing.Point(68, 29);
+            resources.ApplyResources(this.m_BtnPause, "m_BtnPause");
             this.m_BtnPause.Name = "m_BtnPause";
-            this.m_BtnPause.Size = new System.Drawing.Size(100, 28);
-            this.m_BtnPause.TabIndex = 3;
             this.m_BtnPause.UseVisualStyleBackColor = true;
-            this.m_BtnPause.Visible = false;
             this.m_BtnPause.Click += new System.EventHandler(this.m_BtnPause_Click);
             // 
             // m_BtnStop
             // 
-            this.m_BtnStop.AccessibleName = "Stop";
-            this.m_BtnStop.Enabled = false;
-            this.m_BtnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_BtnStop.Location = new System.Drawing.Point(196, 28);
+            resources.ApplyResources(this.m_BtnStop, "m_BtnStop");
             this.m_BtnStop.Name = "m_BtnStop";
-            this.m_BtnStop.Size = new System.Drawing.Size(100, 28);
-            this.m_BtnStop.TabIndex = 4;
             this.m_BtnStop.UseVisualStyleBackColor = true;
             this.m_BtnStop.Click += new System.EventHandler(this.m_BtnStop_Click);
             // 
             // m_BtnPlay
             // 
-            this.m_BtnPlay.AccessibleName = "Play";
-            this.m_BtnPlay.Enabled = false;
-            this.m_BtnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_BtnPlay.Location = new System.Drawing.Point(68, 29);
+            resources.ApplyResources(this.m_BtnPlay, "m_BtnPlay");
             this.m_BtnPlay.Name = "m_BtnPlay";
-            this.m_BtnPlay.Size = new System.Drawing.Size(100, 28);
-            this.m_BtnPlay.TabIndex = 3;
             this.m_BtnPlay.UseVisualStyleBackColor = true;
             this.m_BtnPlay.Click += new System.EventHandler(this.m_BtnPlay_Click);
             // 
             // SpecialPhraseList
             // 
             this.AcceptButton = this.m_btnOK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
-            this.ClientSize = new System.Drawing.Size(423, 493);
             this.Controls.Add(this.mgrp_PlayPhraseInListBox);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOK);
@@ -189,7 +139,6 @@
             this.Controls.Add(this.m_grpSelectSpecialPhrases);
             this.MaximizeBox = false;
             this.Name = "SpecialPhraseList";
-            this.Text = "SpecialPhraseList";
             this.m_grpSelectSpecialPhrases.ResumeLayout(false);
             this.mgrp_PlayPhraseInListBox.ResumeLayout(false);
             this.ResumeLayout(false);

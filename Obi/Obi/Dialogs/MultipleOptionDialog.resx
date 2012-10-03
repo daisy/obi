@@ -117,4 +117,193 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lbl_ChooseOption.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_lbl_ChooseOption.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 22</value>
+  </data>
+  <data name="m_lbl_ChooseOption.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 13</value>
+  </data>
+  <data name="m_lbl_ChooseOption.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_lbl_ChooseOption.Text" xml:space="preserve">
+    <value>Choose Option</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_ChooseOption.Name" xml:space="preserve">
+    <value>m_lbl_ChooseOption</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_ChooseOption.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_ChooseOption.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_ChooseOption.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_rdb_SaveBookmarkAndProject.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdb_SaveBookmarkAndProject.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 51</value>
+  </data>
+  <data name="m_rdb_SaveBookmarkAndProject.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 17</value>
+  </data>
+  <data name="m_rdb_SaveBookmarkAndProject.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="m_rdb_SaveBookmarkAndProject.Text" xml:space="preserve">
+    <value>Save project and selected item as &amp;bookmark </value>
+  </data>
+  <data name="&gt;&gt;m_rdb_SaveBookmarkAndProject.Name" xml:space="preserve">
+    <value>m_rdb_SaveBookmarkAndProject</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_SaveBookmarkAndProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_SaveBookmarkAndProject.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_SaveBookmarkAndProject.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_rdb_SaveProjectOnly.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdb_SaveProjectOnly.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 74</value>
+  </data>
+  <data name="m_rdb_SaveProjectOnly.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 17</value>
+  </data>
+  <data name="m_rdb_SaveProjectOnly.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_rdb_SaveProjectOnly.Text" xml:space="preserve">
+    <value>Save p&amp;roject only</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_SaveProjectOnly.Name" xml:space="preserve">
+    <value>m_rdb_SaveProjectOnly</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_SaveProjectOnly.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_SaveProjectOnly.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_SaveProjectOnly.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_rdb_DiscardBoth.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdb_DiscardBoth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 97</value>
+  </data>
+  <data name="m_rdb_DiscardBoth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 17</value>
+  </data>
+  <data name="m_rdb_DiscardBoth.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_rdb_DiscardBoth.Text" xml:space="preserve">
+    <value>&amp;Discard both</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_DiscardBoth.Name" xml:space="preserve">
+    <value>m_rdb_DiscardBoth</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_DiscardBoth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_DiscardBoth.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_rdb_DiscardBoth.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_btn_OK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 136</value>
+  </data>
+  <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_btn_OK.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
+    <value>m_btn_OK</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_btn_Cancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 136</value>
+  </data>
+  <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_btn_Cancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.Name" xml:space="preserve">
+    <value>m_btn_Cancel</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>303, 183</value>
+  </data>
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>309, 211</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>309, 211</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Multiple Option Dialog</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MultipleOptionDialog</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AssociateSpecialNode));
             this.m_lb_ListOfSpecialNodes = new System.Windows.Forms.ListBox();
             this.m_btn_OK = new System.Windows.Forms.Button();
             this.m_btn_Cancel = new System.Windows.Forms.Button();
@@ -47,87 +48,56 @@ namespace Obi.Dialogs
             // m_lb_ListOfSpecialNodes
             // 
             this.m_lb_ListOfSpecialNodes.FormattingEnabled = true;
-            this.m_lb_ListOfSpecialNodes.HorizontalScrollbar = true;
-            this.m_lb_ListOfSpecialNodes.Location = new System.Drawing.Point(7, 20);
+            resources.ApplyResources(this.m_lb_ListOfSpecialNodes, "m_lb_ListOfSpecialNodes");
             this.m_lb_ListOfSpecialNodes.Name = "m_lb_ListOfSpecialNodes";
-            this.m_lb_ListOfSpecialNodes.Size = new System.Drawing.Size(216, 212);
-            this.m_lb_ListOfSpecialNodes.TabIndex = 4;
             this.m_lb_ListOfSpecialNodes.SelectedIndexChanged += new System.EventHandler(this.m_lb_ListOfSpecialNodes_SelectedIndexChanged);
             // 
             // m_btn_OK
             // 
             this.m_btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.m_btn_OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_OK.Location = new System.Drawing.Point(602, 215);
+            resources.ApplyResources(this.m_btn_OK, "m_btn_OK");
             this.m_btn_OK.Name = "m_btn_OK";
-            this.m_btn_OK.Size = new System.Drawing.Size(65, 23);
-            this.m_btn_OK.TabIndex = 9;
-            this.m_btn_OK.Text = "O&K";
             this.m_btn_OK.UseVisualStyleBackColor = true;
             this.m_btn_OK.Click += new System.EventHandler(this.m_btn_OK_Click);
             // 
             // m_btn_Cancel
             // 
             this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_Cancel.Location = new System.Drawing.Point(672, 215);
+            resources.ApplyResources(this.m_btn_Cancel, "m_btn_Cancel");
             this.m_btn_Cancel.Name = "m_btn_Cancel";
-            this.m_btn_Cancel.Size = new System.Drawing.Size(61, 23);
-            this.m_btn_Cancel.TabIndex = 10;
-            this.m_btn_Cancel.Text = "Canc&el";
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             // 
             // m_txtBox_SectionName
             // 
-            this.m_txtBox_SectionName.Location = new System.Drawing.Point(8, 22);
+            resources.ApplyResources(this.m_txtBox_SectionName, "m_txtBox_SectionName");
             this.m_txtBox_SectionName.Name = "m_txtBox_SectionName";
             this.m_txtBox_SectionName.ReadOnly = true;
-            this.m_txtBox_SectionName.Size = new System.Drawing.Size(330, 20);
-            this.m_txtBox_SectionName.TabIndex = 1;
             // 
             // m_btn_Associate
             // 
-            this.m_btn_Associate.Enabled = false;
-            this.m_btn_Associate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_Associate.Location = new System.Drawing.Point(19, 21);
+            resources.ApplyResources(this.m_btn_Associate, "m_btn_Associate");
             this.m_btn_Associate.Name = "m_btn_Associate";
-            this.m_btn_Associate.Size = new System.Drawing.Size(95, 23);
-            this.m_btn_Associate.TabIndex = 7;
-            this.m_btn_Associate.Text = "Associa&te";
             this.m_btn_Associate.UseVisualStyleBackColor = true;
             this.m_btn_Associate.Click += new System.EventHandler(this.m_btn_Associate_Click);
             // 
             // m_btn_Deassociate
             // 
-            this.m_btn_Deassociate.Enabled = false;
-            this.m_btn_Deassociate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_Deassociate.Location = new System.Drawing.Point(19, 54);
+            resources.ApplyResources(this.m_btn_Deassociate, "m_btn_Deassociate");
             this.m_btn_Deassociate.Name = "m_btn_Deassociate";
-            this.m_btn_Deassociate.Size = new System.Drawing.Size(95, 23);
-            this.m_btn_Deassociate.TabIndex = 8;
-            this.m_btn_Deassociate.Text = "Diss&ociate";
             this.m_btn_Deassociate.UseVisualStyleBackColor = true;
             this.m_btn_Deassociate.Click += new System.EventHandler(this.m_btn_Deassociate_Click);
             // 
             // m_lb_listOfAllAnchorNodes
             // 
             this.m_lb_listOfAllAnchorNodes.FormattingEnabled = true;
-            this.m_lb_listOfAllAnchorNodes.HorizontalScrollbar = true;
-            this.m_lb_listOfAllAnchorNodes.Location = new System.Drawing.Point(6, 20);
+            resources.ApplyResources(this.m_lb_listOfAllAnchorNodes, "m_lb_listOfAllAnchorNodes");
             this.m_lb_listOfAllAnchorNodes.Name = "m_lb_listOfAllAnchorNodes";
-            this.m_lb_listOfAllAnchorNodes.Size = new System.Drawing.Size(337, 212);
-            this.m_lb_listOfAllAnchorNodes.TabIndex = 2;
-            this.m_lb_listOfAllAnchorNodes.Visible = false;
             this.m_lb_listOfAllAnchorNodes.SelectedIndexChanged += new System.EventHandler(this.m_lb_listOfAllAnchorNodes_SelectedIndexChanged);
             // 
             // m_btn_ShowAll
             // 
-            this.m_btn_ShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btn_ShowAll.Location = new System.Drawing.Point(602, 28);
+            resources.ApplyResources(this.m_btn_ShowAll, "m_btn_ShowAll");
             this.m_btn_ShowAll.Name = "m_btn_ShowAll";
-            this.m_btn_ShowAll.Size = new System.Drawing.Size(131, 23);
-            this.m_btn_ShowAll.TabIndex = 5;
-            this.m_btn_ShowAll.Text = "Sho&w all";
             this.m_btn_ShowAll.UseVisualStyleBackColor = true;
             this.m_btn_ShowAll.Click += new System.EventHandler(this.m_btn_ShowAll_Click);
             // 
@@ -135,40 +105,31 @@ namespace Obi.Dialogs
             // 
             this.groupBox1.Controls.Add(this.m_lb_listOfAllAnchorNodes);
             this.groupBox1.Controls.Add(this.m_txtBox_SectionName);
-            this.groupBox1.Location = new System.Drawing.Point(12, 6);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(349, 239);
-            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.m_lb_ListOfSpecialNodes);
-            this.groupBox2.Location = new System.Drawing.Point(367, 5);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(229, 240);
-            this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "List of ski&ppable notes";
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.m_btn_Associate);
             this.groupBox3.Controls.Add(this.m_btn_Deassociate);
-            this.groupBox3.Location = new System.Drawing.Point(602, 80);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(131, 89);
-            this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             // 
             // AssociateSpecialNode
             // 
             this.AcceptButton = this.m_btn_OK;
-            this.AccessibleName = "Associate Special Node";
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
-            this.ClientSize = new System.Drawing.Size(745, 252);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -178,7 +139,6 @@ namespace Obi.Dialogs
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "AssociateSpecialNode";
-            this.Text = "Add/Remove reference (Associate/Dissociate)";
             this.Load += new System.EventHandler(this.AssociateSpecialNode_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
