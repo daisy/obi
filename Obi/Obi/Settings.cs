@@ -68,6 +68,8 @@ namespace Obi
         public bool Export_EncodeToMP3;
         public int Export_BitRateMP3;
         public bool Export_AppendSectionNameToAudioFile;
+        public bool Export_LimitAudioFilesLength; // decides if the length of audio file names has to be limited
+        public int Export_AudioFilesNamesLengthLimit; // truncates exported audio file name from right side to limit the maximum no. of characters.
         public bool OpenBookmarkNodeOnReopeningProject;
         public int[] BookMarkNodeHierarchy;
         public bool RetainInitialSilenceInPhraseDetection;
@@ -135,6 +137,8 @@ namespace Obi
             settings.Export_EncodeToMP3 = false;
             settings.Export_BitRateMP3 = 64;
             settings.Export_AppendSectionNameToAudioFile = false;
+            settings.Export_LimitAudioFilesLength = false;
+            settings.Export_AudioFilesNamesLengthLimit = 8;
             settings.OpenBookmarkNodeOnReopeningProject = false;
             settings.RetainInitialSilenceInPhraseDetection = true;
             settings.ImportToleranceForAudioInMs = 100;

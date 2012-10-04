@@ -97,9 +97,10 @@ namespace Obi.Dialogs
             get { return m_checkBoxAddSectionNameToAudioFileName.Checked; }
         }
 
-        public bool FileNameLengthLimit
+        public bool LimitLengthOfAudioFileNames
         {
             get { return m_chkBoxFilenameLengthLimit.Checked; }
+            set { m_chkBoxFilenameLengthLimit.Checked = value; }
         }
         private void mSelectButton_Click(object sender, EventArgs e)
         {
@@ -111,9 +112,10 @@ namespace Obi.Dialogs
                 mPathTextBox.Text = dialog.SelectedPath;
             }
         }
-        public int mAudioFileNameCharsLimit
+        public int AudioFileNameCharsLimit
         {
             get { return m_chkBoxFilenameLengthLimit.Checked ? Convert.ToInt32(m_numericUpDownFilenameLengthLimit.Value) : -1; }
+            set { m_numericUpDownFilenameLengthLimit.Value = value;  }
         }
 
         private void mOKButton_Click(object sender, EventArgs e)

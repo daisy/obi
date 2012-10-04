@@ -1797,6 +1797,8 @@ namespace Obi
                 Dialogs.ExportDirectory dialog =
                     new ExportDirectory ( exportDirectory,
                              mSession.Path, mSettings.Export_EncodeToMP3, mSettings.Export_BitRateMP3, mSettings.Export_AppendSectionNameToAudioFile); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                dialog.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength && mSettings.Export_AppendSectionNameToAudioFile;
+                dialog.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit;
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     try
@@ -1809,6 +1811,8 @@ namespace Obi
                         mSettings.Export_EncodeToMP3 = dialog.EncodeToMP3;
                         mSettings.Export_BitRateMP3 = dialog.BitRate;
                         mSettings.Export_AppendSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName;
+                        mSettings.Export_LimitAudioFilesLength = dialog.AppendSectionNameToAudioFileName && dialog.LimitLengthOfAudioFileNames;
+                        mSettings.Export_AudioFilesNamesLengthLimit= dialog.AudioFileNameCharsLimit;
 
                         if (!exportPath.EndsWith ( Path.DirectorySeparatorChar.ToString () ))
                             {
@@ -1832,7 +1836,8 @@ namespace Obi
                                     audioFileSectionLevel);
                             }
                             //DAISYExport.BitRate_Mp3 = dialog.BitRate;
-                            DAISYExport.AddSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName; ;
+                            DAISYExport.AddSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName;
+                            DAISYExport.AudioFileNameCharsLimit = dialog.AudioFileNameCharsLimit;
                             //DAISYExport.EnableExplicitGarbageCollection = Settings.OptimizeMemory;
                         Status(String.Format(Localizer.Message("ObiFormStatusMsg_ExportingProject") , exportPath));
                                                 
