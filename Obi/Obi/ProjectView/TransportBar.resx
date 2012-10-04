@@ -117,6 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="mPlayButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mPlayButton.AccessibleName" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mPlayButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPlayButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mPlayButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -139,6 +152,49 @@
         e/x/5cAPgJLE0sO0OSQAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="mPlayButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 0</value>
+  </data>
+  <data name="mPlayButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPlayButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mPlayButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <metadata name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>149, 17</value>
+  </metadata>
+  <data name="mPlayButton.ToolTip" xml:space="preserve">
+    <value>Start or resume audio playback (Space)</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.Name" xml:space="preserve">
+    <value>mPlayButton</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="mPauseButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mPauseButton.AccessibleName" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="mPauseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPauseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="mPauseButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -153,6 +209,45 @@
         31xRv4KGYIlHGaDRaMSazeZYv4KGYIlHGQAHiWi0X/0OlXj+BBEdjjbwbzfwDV5j4T2/GV9dAAAAAElF
         TkSuQmCC
 </value>
+  </data>
+  <data name="mPauseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 0</value>
+  </data>
+  <data name="mPauseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPauseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPauseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="mPauseButton.ToolTip" xml:space="preserve">
+    <value>Pause audio playback or recording (Space)</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.Name" xml:space="preserve">
+    <value>mPauseButton</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="mStopButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mStopButton.AccessibleName" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="mStopButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mStopButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="mStopButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -169,6 +264,45 @@
         h8CBlxKo1Wrn3394xw3MxL8A0415wJB5CJ/URXhDxHEn5DgTmjg2gQMvJaCq6rlPnz/Svwa8lAARneHs
         bhvbtnc3Y1nWWSmBGI4biBv43w38BE9OWA8H8M1VAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="mStopButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>178, 0</value>
+  </data>
+  <data name="mStopButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mStopButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mStopButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="mStopButton.ToolTip" xml:space="preserve">
+    <value>Stop audio playback or recording. (Ctrl+Space)</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.Name" xml:space="preserve">
+    <value>mStopButton</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="mNextPhrase.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mNextPhrase.AccessibleName" xml:space="preserve">
+    <value>Next phrase</value>
+  </data>
+  <data name="mNextPhrase.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mNextPhrase.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="mNextPhrase.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -199,6 +333,45 @@
         AABJRU5ErkJggg==
 </value>
   </data>
+  <data name="mNextPhrase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>283, 0</value>
+  </data>
+  <data name="mNextPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mNextPhrase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mNextPhrase.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="mNextPhrase.ToolTip" xml:space="preserve">
+    <value>Go to the following phrase. (K)</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.Name" xml:space="preserve">
+    <value>mNextPhrase</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="mPrevPhraseButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mPrevPhraseButton.AccessibleName" xml:space="preserve">
+    <value>Previous phrase</value>
+  </data>
+  <data name="mPrevPhraseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPrevPhraseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="mPrevPhraseButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -228,6 +401,45 @@
         1K0bP/i/78DfuFbaKWzgiKEAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="mPrevPhraseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 0</value>
+  </data>
+  <data name="mPrevPhraseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPrevPhraseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPrevPhraseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="mPrevPhraseButton.ToolTip" xml:space="preserve">
+    <value>Go to the preceding phrase. (J)</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.Name" xml:space="preserve">
+    <value>mPrevPhraseButton</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="mNextSectionButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mNextSectionButton.AccessibleName" xml:space="preserve">
+    <value>Next section</value>
+  </data>
+  <data name="mNextSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mNextSectionButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="mNextSectionButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -254,6 +466,45 @@
         KzdtKf/cYxhT6b5vnuIonvIon+pQPQFj2NfDj4H+ZlM3Y3ydkQAt9yA0po5pnuIonvYD7R0S9tu5P2dU
         gExRMSGDVomWdBAa032af6yN58/Ak/kRWYG/AKJVyFspBdikAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="mNextSectionButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>353, 0</value>
+  </data>
+  <data name="mNextSectionButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mNextSectionButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mNextSectionButton.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="mNextSectionButton.ToolTip" xml:space="preserve">
+    <value>Go to the following section. (H)</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.Name" xml:space="preserve">
+    <value>mNextSectionButton</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="mPrevSectionButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
+    <value>Previous section</value>
+  </data>
+  <data name="mPrevSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPrevSectionButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="mPrevSectionButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -282,6 +533,45 @@
         0UqoS9RSAslElvQ0dOS75oKWdOupr9Ud+AstZbtQo2wKdgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="mPrevSectionButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="mPrevSectionButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPrevSectionButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPrevSectionButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="mPrevSectionButton.ToolTip" xml:space="preserve">
+    <value>Go to the preceding section. (Shift+H)</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.Name" xml:space="preserve">
+    <value>mPrevSectionButton</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="mRecordButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mRecordButton.AccessibleName" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="mRecordButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mRecordButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="mRecordButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -309,6 +599,75 @@
         AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="mRecordButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>213, 0</value>
+  </data>
+  <data name="mRecordButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mRecordButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mRecordButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="mRecordButton.ToolTip" xml:space="preserve">
+    <value>Start monitoring or recording. (Ctrl+R)</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.Name" xml:space="preserve">
+    <value>mRecordButton</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="mTimeDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 21.75pt</value>
+  </data>
+  <data name="mTimeDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>429, 0</value>
+  </data>
+  <data name="mTimeDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 33</value>
+  </data>
+  <data name="mTimeDisplayBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="mTimeDisplayBox.Text" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="mTimeDisplayBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.Name" xml:space="preserve">
+    <value>mTimeDisplayBox</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="mRewindButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mRewindButton.AccessibleName" xml:space="preserve">
+    <value>Rewind</value>
+  </data>
+  <data name="mRewindButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mRewindButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="mRewindButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -329,6 +688,45 @@
         wlUqFUur1XInnupHnj2fANXV1Qm+/g0R39TUxJ18MjoyNT3pjw9Mx8zMTGRDQ0OcWq1OgJ/H/J1CjyUY
         3l+9UD7kQMiB/+rAH5Q36FKOwIWXAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="mRewindButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>108, 0</value>
+  </data>
+  <data name="mRewindButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mRewindButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mRewindButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="mRewindButton.ToolTip" xml:space="preserve">
+    <value>Play backward at faster speed.</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.Name" xml:space="preserve">
+    <value>mRewindButton</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="mFastForwardButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mFastForwardButton.AccessibleName" xml:space="preserve">
+    <value>Fast forward</value>
+  </data>
+  <data name="mFastForwardButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mFastForwardButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="mFastForwardButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -352,6 +750,42 @@
         s7PTbben5L6+vlBVk9zN6/V6nzylABzHaQaDYY3ZbEbT6v3G+lMJMjS73T5nnlKAH/A74HfgfznwC9nJ
         NV6OGyhzAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="mFastForwardButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 0</value>
+  </data>
+  <data name="mFastForwardButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mFastForwardButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mFastForwardButton.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="mFastForwardButton.ToolTip" xml:space="preserve">
+    <value>Play forward at faster speed.</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.Name" xml:space="preserve">
+    <value>mFastForwardButton</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="mNextPageButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mNextPageButton.AccessibleName" xml:space="preserve">
+    <value>Next page</value>
+  </data>
+  <data name="mNextPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="mNextPageButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -381,6 +815,42 @@
         ATc3t9XTT0bW7I3nF+Joxg4mf9vY2LxFPBYr4XBKZ7V1oeGijkd5MKVrh4aJ+q2trd8mnrkAdWQJC7Vm
         LYsdyxvznNfZ9WxZXmRZzvIYQf8BsyDLDSBPVvQAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="mNextPageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>318, 0</value>
+  </data>
+  <data name="mNextPageButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mNextPageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mNextPageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="mNextPageButton.ToolTip" xml:space="preserve">
+    <value>Go to the following page. (P)</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.Name" xml:space="preserve">
+    <value>mNextPageButton</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mPreviousPageButton.AccessibleName" xml:space="preserve">
+    <value>Previous page</value>
+  </data>
+  <data name="mPreviousPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="mPreviousPageButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -413,6 +883,42 @@
         QmCC
 </value>
   </data>
+  <data name="mPreviousPageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 0</value>
+  </data>
+  <data name="mPreviousPageButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPreviousPageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPreviousPageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="mPreviousPageButton.ToolTip" xml:space="preserve">
+    <value>Go to the preceding page. (Shift+P)</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.Name" xml:space="preserve">
+    <value>mPreviousPageButton</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.AccessibleName" xml:space="preserve">
+    <value>Mark phrase</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="mToDo_CustomClassMarkButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -444,22 +950,178 @@
         VNRBi+4fxgL4vqh24BUAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="media-monitor.png" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAK5SURBVFhH7VU5
-        S2NRFLZRwUpRQdx3RbAQFCsLUVxxQ9x3VMRdC3EDLSwEGwu1tLIQOwv9GRMTBjdwmnFi8u57iRInkUzz
-        zTnXvJDIVHlJMZDAIffec8/9vvOde+6LiYn+ogpEFfjfFLg9PYWlvR2m1FSY4uPxLS5OjnmNfRHN56as
-        DI/V1XDu7uLj/Bx/rq/hvbqC5+wMjq0tPFZVgfdEhIQ5JUUCey8v4To5gXNvD9rGBrT1dTh2duA6PIT3
-        4gLOzU3w3rCSMJPEdGCQqaurUFdWoC4vQywuQszNQSwswH10hPeDA/hijPP4XlPjB5Yg8/NBc3V2FurM
-        DMT0NMTkJJTxcUnAQft8sYZJSEAxNSUBpNE4aG1iAmJsDMrICMTgIJSBAXiOj3FbWmqsFHwgA71ub0MZ
-        GvoEGB2VJgnQvzo8LH0MLPr7Ye/ogJVU0/r6YKfOuCe/EQngJjlZVqWnB6K3V4Kw6XdC7e6GUl8PW2Ul
-        rIWFeM7IwM/0dFipG1xUBktWljECnv192BoaYG9uhtLSAtHYCKW2Fgq1I5N4yc3FS04OrNnZ0n5lZkoS
-        z7Tmpi65SUgwRuDr7Q9xHloVLJQRy8i1Z7OSnJytPS8PSn6+VEApKPg0mvO6VIP22crLZayPcGgEnuh2
-        67KztCwxS85gDKqrIYqK/CTYz/u0pqbAdyM0Ahx1Rwf+Xlry11rPXqULpxUXSxD+57mugs2njqHsdcoP
-        dXUQra14ozbzy0/Zc9Y6AdmSPhWYoK4Mx4aeekCkJTkZb1QOF78DDEQZSgW+kAi8oBwTFnD9EHNiIkRn
-        Jzxra3hta4NGfa+WlEBjo/EbPTrsU7u6YE5KCi+4TuKuogL3lL0gAu/04fHQl4+Nx7z2QD7eE9bM/3XY
-        D3p6LWlpMMXGSuPxE92RiANHAaIKRBWIhAJ/AaE4KsZnOH4bAAAAAElFTkSuQmCC
-</value>
+  <data name="mToDo_CustomClassMarkButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>391, 0</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
+    <value>Add a TODO mark while recording. (F9)</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
+    <value>mToDo_CustomClassMarkButton</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="mDisplayBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mDisplayBox.Items" xml:space="preserve">
+    <value>elapsed</value>
+  </data>
+  <data name="mDisplayBox.Items1" xml:space="preserve">
+    <value>elapsed (total)</value>
+  </data>
+  <data name="mDisplayBox.Items2" xml:space="preserve">
+    <value>remaining</value>
+  </data>
+  <data name="mDisplayBox.Items3" xml:space="preserve">
+    <value>remaining (total)</value>
+  </data>
+  <data name="mDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>548, 5</value>
+  </data>
+  <data name="mDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 24</value>
+  </data>
+  <data name="mDisplayBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Name" xml:space="preserve">
+    <value>mDisplayBox</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="mFastPlayRateCombobox.AccessibleName" xml:space="preserve">
+    <value>Fast Play Rate</value>
+  </data>
+  <data name="mFastPlayRateCombobox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mFastPlayRateCombobox.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items1" xml:space="preserve">
+    <value>1.125</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items2" xml:space="preserve">
+    <value>1.25</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items3" xml:space="preserve">
+    <value>1.5</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items4" xml:space="preserve">
+    <value>1.75</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items5" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>709, 5</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 24</value>
+  </data>
+  <data name="mFastPlayRateCombobox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Name" xml:space="preserve">
+    <value>mFastPlayRateCombobox</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="mVUMeterPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mVUMeterPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>781, 2</value>
+  </data>
+  <data name="mVUMeterPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 0, 0</value>
+  </data>
+  <data name="mVUMeterPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 28</value>
+  </data>
+  <data name="mVUMeterPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.Name" xml:space="preserve">
+    <value>mVUMeterPanel</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.4.0.17996, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>993, 32</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarTooltip.Name" xml:space="preserve">
+    <value>mTransportBarTooltip</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarTooltip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mDisplayTimer.Name" xml:space="preserve">
+    <value>mDisplayTimer</value>
+  </data>
+  <data name="&gt;&gt;mDisplayTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>TransportBar</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

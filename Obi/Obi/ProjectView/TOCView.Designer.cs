@@ -29,6 +29,7 @@ namespace Obi.ProjectView
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TOCView));
             this.mContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Context_ShowContentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AddSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,84 +77,68 @@ namespace Obi.ProjectView
             this.toolStripSeparator2,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenu";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(190, 368);
+            resources.ApplyResources(this.mContextMenuStrip, "mContextMenuStrip");
             // 
             // Context_ShowContentsMenuItem
             // 
-            this.Context_ShowContentsMenuItem.AccessibleDescription = "Show Contents of Section";
-            this.Context_ShowContentsMenuItem.AccessibleName = "Show Contents";
+            resources.ApplyResources(this.Context_ShowContentsMenuItem, "Context_ShowContentsMenuItem");
             this.Context_ShowContentsMenuItem.Name = "Context_ShowContentsMenuItem";
-            this.Context_ShowContentsMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_ShowContentsMenuItem.Text = " Sho&w Contents";
             this.Context_ShowContentsMenuItem.Click += new System.EventHandler(this.Context_ShowContentsMenuItem_Click);
             // 
             // Context_AddSectionMenuItem
             // 
             this.Context_AddSectionMenuItem.Name = "Context_AddSectionMenuItem";
-            this.Context_AddSectionMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_AddSectionMenuItem.Text = "&Add section";
+            resources.ApplyResources(this.Context_AddSectionMenuItem, "Context_AddSectionMenuItem");
             this.Context_AddSectionMenuItem.Click += new System.EventHandler(this.Context_AddSectionMenuItem_Click);
             // 
             // Context_AddSubsectionMenuItem
             // 
             this.Context_AddSubsectionMenuItem.Name = "Context_AddSubsectionMenuItem";
-            this.Context_AddSubsectionMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_AddSubsectionMenuItem.Text = "Add s&ubsection";
+            resources.ApplyResources(this.Context_AddSubsectionMenuItem, "Context_AddSubsectionMenuItem");
             this.Context_AddSubsectionMenuItem.Click += new System.EventHandler(this.Context_AddSubsectionMenuItem_Click);
             // 
             // Context_InsertSectionMenuItem
             // 
             this.Context_InsertSectionMenuItem.Name = "Context_InsertSectionMenuItem";
-            this.Context_InsertSectionMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_InsertSectionMenuItem.Text = "&Insert section";
+            resources.ApplyResources(this.Context_InsertSectionMenuItem, "Context_InsertSectionMenuItem");
             this.Context_InsertSectionMenuItem.Click += new System.EventHandler(this.Context_InsertSectionMenuItem_Click);
             // 
             // Context_MergeSectionMenuItem
             // 
-            this.Context_MergeSectionMenuItem.AccessibleName = "Merge Section";
+            resources.ApplyResources(this.Context_MergeSectionMenuItem, "Context_MergeSectionMenuItem");
             this.Context_MergeSectionMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Context_MergeSectionWithNextMenuItem,
             this.Context_MergeMultipleSectionsMenuItem});
             this.Context_MergeSectionMenuItem.Name = "Context_MergeSectionMenuItem";
-            this.Context_MergeSectionMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_MergeSectionMenuItem.Text = "Mer&ge section";
-            //this.Context_MergeSectionMenuItem.Click += new System.EventHandler(this.Context_MergeSectionWithNextMenuItem_Click);
             // 
             // Context_MergeSectionWithNextMenuItem
             // 
-            this.Context_MergeSectionWithNextMenuItem.AccessibleName = "Merge Section with next";
+            resources.ApplyResources(this.Context_MergeSectionWithNextMenuItem, "Context_MergeSectionWithNextMenuItem");
             this.Context_MergeSectionWithNextMenuItem.Name = "Context_MergeSectionWithNextMenuItem";
-            this.Context_MergeSectionWithNextMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.Context_MergeSectionWithNextMenuItem.Text = "Me&rge Section with next";
             this.Context_MergeSectionWithNextMenuItem.Click += new System.EventHandler(this.Context_MergeSectionWithNextMenuItem_Click);
             // 
             // Context_MergeMultipleSectionsMenuItem
             // 
-            this.Context_MergeMultipleSectionsMenuItem.AccessibleName = "Merge multiple section";
+            resources.ApplyResources(this.Context_MergeMultipleSectionsMenuItem, "Context_MergeMultipleSectionsMenuItem");
             this.Context_MergeMultipleSectionsMenuItem.Name = "Context_MergeMultipleSectionsMenuItem";
-            this.Context_MergeMultipleSectionsMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.Context_MergeMultipleSectionsMenuItem.Text = "Merge m&ultiple section";
             this.Context_MergeMultipleSectionsMenuItem.Click += new System.EventHandler(this.Context_MergeMultipleSectionsMenuItem_Click);
             // 
             // Context_RenameSectionMenuItem
             // 
             this.Context_RenameSectionMenuItem.Name = "Context_RenameSectionMenuItem";
-            this.Context_RenameSectionMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_RenameSectionMenuItem.Text = "&Rename section";
+            resources.ApplyResources(this.Context_RenameSectionMenuItem, "Context_RenameSectionMenuItem");
             this.Context_RenameSectionMenuItem.Click += new System.EventHandler(this.Context_RenameSectionMenuItem_Click);
             // 
             // Context_DecreaseSectionLevelMenuItem
             // 
             this.Context_DecreaseSectionLevelMenuItem.Name = "Context_DecreaseSectionLevelMenuItem";
-            this.Context_DecreaseSectionLevelMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_DecreaseSectionLevelMenuItem.Text = "D&ecrease section level";
+            resources.ApplyResources(this.Context_DecreaseSectionLevelMenuItem, "Context_DecreaseSectionLevelMenuItem");
             this.Context_DecreaseSectionLevelMenuItem.Click += new System.EventHandler(this.Context_DecreaseSectionLevelMenuItem_Click);
             // 
             // Context_IncreaseSectionLevelMenuItem
             // 
             this.Context_IncreaseSectionLevelMenuItem.Name = "Context_IncreaseSectionLevelMenuItem";
-            this.Context_IncreaseSectionLevelMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_IncreaseSectionLevelMenuItem.Text = "I&ncrease section level";
+            resources.ApplyResources(this.Context_IncreaseSectionLevelMenuItem, "Context_IncreaseSectionLevelMenuItem");
             this.Context_IncreaseSectionLevelMenuItem.Click += new System.EventHandler(this.Context_IncreaseSectionLevelMenuItem_Click);
             // 
             // Context_SectionIsUsedMenuItem
@@ -162,74 +147,66 @@ namespace Obi.ProjectView
             this.Context_SectionIsUsedMenuItem.CheckOnClick = true;
             this.Context_SectionIsUsedMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Context_SectionIsUsedMenuItem.Name = "Context_SectionIsUsedMenuItem";
-            this.Context_SectionIsUsedMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_SectionIsUsedMenuItem.Text = "Sec&tion is used";
+            resources.ApplyResources(this.Context_SectionIsUsedMenuItem, "Context_SectionIsUsedMenuItem");
             this.Context_SectionIsUsedMenuItem.CheckedChanged += new System.EventHandler(this.Context_SectionIsUsedMenuItem_CheckedChanged);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // Context_CutMenuItem
             // 
             this.Context_CutMenuItem.Name = "Context_CutMenuItem";
-            this.Context_CutMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_CutMenuItem.Text = "&Cut";
+            resources.ApplyResources(this.Context_CutMenuItem, "Context_CutMenuItem");
             this.Context_CutMenuItem.Click += new System.EventHandler(this.Context_CutMenuItem_Click);
             // 
             // Context_CopyMenuItem
             // 
             this.Context_CopyMenuItem.Name = "Context_CopyMenuItem";
-            this.Context_CopyMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_CopyMenuItem.Text = "Cop&y";
+            resources.ApplyResources(this.Context_CopyMenuItem, "Context_CopyMenuItem");
             this.Context_CopyMenuItem.Click += new System.EventHandler(this.Context_CopyMenuItem_Click);
             // 
             // Context_PasteMenuItem
             // 
             this.Context_PasteMenuItem.Name = "Context_PasteMenuItem";
-            this.Context_PasteMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_PasteMenuItem.Text = "&Paste";
+            resources.ApplyResources(this.Context_PasteMenuItem, "Context_PasteMenuItem");
             this.Context_PasteMenuItem.Click += new System.EventHandler(this.Context_PasteMenuItem_Click);
             // 
             // Context_PasteBeforeMenuItem
             // 
             this.Context_PasteBeforeMenuItem.Name = "Context_PasteBeforeMenuItem";
-            this.Context_PasteBeforeMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_PasteBeforeMenuItem.Text = "Paste &before";
+            resources.ApplyResources(this.Context_PasteBeforeMenuItem, "Context_PasteBeforeMenuItem");
             this.Context_PasteBeforeMenuItem.Click += new System.EventHandler(this.Context_PasteBeforeMenuItem_Click);
             // 
             // Context_PasteInsideMenuItem
             // 
             this.Context_PasteInsideMenuItem.Name = "Context_PasteInsideMenuItem";
-            this.Context_PasteInsideMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_PasteInsideMenuItem.Text = "Paste &inside";
+            resources.ApplyResources(this.Context_PasteInsideMenuItem, "Context_PasteInsideMenuItem");
             this.Context_PasteInsideMenuItem.Click += new System.EventHandler(this.Context_PasteInsideMenuItem_Click);
             // 
             // Context_DeleteMenuItem
             // 
             this.Context_DeleteMenuItem.Name = "Context_DeleteMenuItem";
-            this.Context_DeleteMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_DeleteMenuItem.Text = "&Delete";
+            resources.ApplyResources(this.Context_DeleteMenuItem, "Context_DeleteMenuItem");
             this.Context_DeleteMenuItem.Click += new System.EventHandler(this.Context_DeleteMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(186, 6);
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // Context_PropertiesMenuItem
             // 
             this.Context_PropertiesMenuItem.Name = "Context_PropertiesMenuItem";
-            this.Context_PropertiesMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_PropertiesMenuItem.Text = "Pr&operties";
+            resources.ApplyResources(this.Context_PropertiesMenuItem, "Context_PropertiesMenuItem");
             this.Context_PropertiesMenuItem.Click += new System.EventHandler(this.Context_PropertiesMenuItem_Click);
             // 
             // TOCView
             // 
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ContextMenuStrip = this.mContextMenuStrip;
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this, "$this");
             this.FullRowSelect = true;
             this.LabelEdit = true;
             this.LineColor = System.Drawing.Color.Black;
