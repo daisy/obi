@@ -16,6 +16,7 @@ namespace Obi.Dialogs
         private int m_BitRate;
         private bool m_IsMP3Check;
         private bool m_SectionNameToAudioFileNameCheck;
+        private bool m_FilenameLengthLimit;
 
         public ExportDirectory(string path, string xukPath, bool encodeToMP3, int bitRate, bool appendSectionNameToAudioFile)
         {
@@ -46,7 +47,7 @@ namespace Obi.Dialogs
                 }
             }
             m_checkBoxMP3Encoder.Checked = encodeToMP3;
-            m_checkBoxAddSectionNameToAudioFileName.Checked = appendSectionNameToAudioFile;
+            m_checkBoxAddSectionNameToAudioFileName.Checked = appendSectionNameToAudioFile;            
         }
 
         /// <summary>
@@ -96,6 +97,10 @@ namespace Obi.Dialogs
             get { return m_checkBoxAddSectionNameToAudioFileName.Checked; }
         }
 
+        public bool FileNameLengthLimit
+        {
+            get { return m_chkBoxFilenameLengthLimit.Checked; }
+        }
         private void mSelectButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
@@ -105,6 +110,10 @@ namespace Obi.Dialogs
             {
                 mPathTextBox.Text = dialog.SelectedPath;
             }
+        }
+        public int mAudioFileNameCharsLimit
+        {
+            get { return m_chkBoxFilenameLengthLimit.Checked ? Convert.ToInt32(m_numericUpDownFilenameLengthLimit.Value) : -1; }
         }
 
         private void mOKButton_Click(object sender, EventArgs e)
@@ -131,6 +140,19 @@ namespace Obi.Dialogs
         private void m_ComboBoxBitrate_SelectedIndexChanged(object sender, EventArgs e)
         {
             m_BitRate = int.Parse(m_ComboBoxBitrate.Items[m_ComboBoxBitrate.SelectedIndex].ToString());                   
+        }
+
+        private void m_chkBoxFilenameLengthLimit_CheckedChanged(object sender, EventArgs e)
+        {
+            m_FilenameLengthLimit = m_chkBoxFilenameLengthLimit.Checked;
+            m_numericUpDownFilenameLengthLimit.Enabled = m_chkBoxFilenameLengthLimit.Checked;
+        }
+
+        private void m_checkBoxAddSectionNameToAudioFileName_CheckedChanged(object sender, EventArgs e)
+        {
+            m_SectionNameToAudioFileNameCheck = m_checkBoxAddSectionNameToAudioFileName.Checked;
+            m_chkBoxFilenameLengthLimit.Enabled = m_checkBoxAddSectionNameToAudioFileName.Checked;
+
         }              
     }
 }
