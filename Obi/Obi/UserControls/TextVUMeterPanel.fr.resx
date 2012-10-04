@@ -256,7 +256,7 @@
     <value>4</value>
   </data>
   <data name="mResetButton.Text" xml:space="preserve">
-    <value>R&amp;éinitialiser</value>
+    <value>R&amp;initialiser</value>
   </data>
   <data name="&gt;&gt;mResetButton.Name" xml:space="preserve">
     <value>mResetButton</value>
