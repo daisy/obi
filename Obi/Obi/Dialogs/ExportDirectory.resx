@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblDirectoryPath.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>8</value>
   </data>
   <data name="mPathTextBox.AccessibleName" xml:space="preserve">
     <value>Export directory:</value>
@@ -178,7 +178,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPathTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>7</value>
   </data>
   <data name="mSelectButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -211,7 +211,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mSelectButton.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
   <data name="mOKButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -220,7 +220,7 @@
     <value>Flat</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 176</value>
+    <value>125, 232</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -229,7 +229,7 @@
     <value>100, 28</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -244,7 +244,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -253,7 +253,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 176</value>
+    <value>276, 232</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -262,7 +262,7 @@
     <value>100, 28</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -277,7 +277,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -304,7 +304,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.AccessibleName" xml:space="preserve">
     <value>Create one audio file per section till:</value>
@@ -328,22 +328,25 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
+  </data>
+  <data name="m_checkBoxMP3Encoder.AccessibleDescription" xml:space="preserve">
+    <value>Encode to MP3 Checkbox</value>
   </data>
   <data name="m_checkBoxMP3Encoder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_checkBoxMP3Encoder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 90</value>
+    <value>9, 23</value>
   </data>
   <data name="m_checkBoxMP3Encoder.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 20</value>
   </data>
   <data name="m_checkBoxMP3Encoder.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_checkBoxMP3Encoder.Text" xml:space="preserve">
-    <value>Encode to MP3</value>
+    <value>Encode to &amp;MP3</value>
   </data>
   <data name="&gt;&gt;m_checkBoxMP3Encoder.Name" xml:space="preserve">
     <value>m_checkBoxMP3Encoder</value>
@@ -352,10 +355,10 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_checkBoxMP3Encoder.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>m_grpBoxMP3Encoding</value>
   </data>
   <data name="&gt;&gt;m_checkBoxMP3Encoder.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="m_Bitrate.AccessibleDescription" xml:space="preserve">
     <value>Bitrate</value>
@@ -364,7 +367,7 @@
     <value>True</value>
   </data>
   <data name="m_Bitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 147</value>
+    <value>165, 25</value>
   </data>
   <data name="m_Bitrate.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 16</value>
@@ -382,10 +385,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_Bitrate.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>m_grpBoxMP3Encoding</value>
   </data>
   <data name="&gt;&gt;m_Bitrate.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>0</value>
   </data>
   <data name="m_ComboBoxBitrate.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -415,13 +418,13 @@
     <value>256</value>
   </data>
   <data name="m_ComboBoxBitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 142</value>
+    <value>223, 19</value>
   </data>
   <data name="m_ComboBoxBitrate.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
   </data>
   <data name="m_ComboBoxBitrate.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;m_ComboBoxBitrate.Name" xml:space="preserve">
     <value>m_ComboBoxBitrate</value>
@@ -430,25 +433,31 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_ComboBoxBitrate.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>m_grpBoxMP3Encoding</value>
   </data>
   <data name="&gt;&gt;m_ComboBoxBitrate.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="m_checkBoxAddSectionNameToAudioFileName.AccessibleDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="m_checkBoxAddSectionNameToAudioFileName.AccessibleName" xml:space="preserve">
+    <value>Append SectionName to audio file name checkbox</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 116</value>
+    <value>6, 21</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Size" type="System.Drawing.Size, System.Drawing">
     <value>269, 20</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Text" xml:space="preserve">
-    <value>Append section name to audio file name </value>
+    <value>&amp;Append section name to audio file name </value>
   </data>
   <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.Name" xml:space="preserve">
     <value>m_checkBoxAddSectionNameToAudioFileName</value>
@@ -457,9 +466,120 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>m_grpBoxSectionNameOperation</value>
   </data>
   <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_grpBoxMP3Encoding.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 82</value>
+  </data>
+  <data name="m_grpBoxMP3Encoding.Size" type="System.Drawing.Size, System.Drawing">
+    <value>438, 60</value>
+  </data>
+  <data name="m_grpBoxMP3Encoding.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxMP3Encoding.Name" xml:space="preserve">
+    <value>m_grpBoxMP3Encoding</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxMP3Encoding.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxMP3Encoding.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxMP3Encoding.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.AccessibleDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
+    <value>Filename Length Limit CheckBox</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 48</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 20</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.Text" xml:space="preserve">
+    <value>&amp;Filename Length Limit  :</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Name" xml:space="preserve">
+    <value>m_chkBoxFilenameLengthLimit</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Parent" xml:space="preserve">
+    <value>m_grpBoxSectionNameOperation</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.AccessibleDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.AccessibleName" xml:space="preserve">
+    <value>Numeric Up Down File name Length Limit</value>
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>227, 47</value>
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Name" xml:space="preserve">
+    <value>m_numericUpDownFilenameLengthLimit</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Parent" xml:space="preserve">
+    <value>m_grpBoxSectionNameOperation</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 148</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>441, 74</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
+    <value>Section Name Operation :</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Name" xml:space="preserve">
+    <value>m_grpBoxSectionNameOperation</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -469,7 +589,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>574, 229</value>
+    <value>574, 285</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>

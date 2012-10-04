@@ -40,6 +40,13 @@ namespace Obi.Dialogs
             this.m_Bitrate = new System.Windows.Forms.Label();
             this.m_ComboBoxBitrate = new System.Windows.Forms.ComboBox();
             this.m_checkBoxAddSectionNameToAudioFileName = new System.Windows.Forms.CheckBox();
+            this.m_grpBoxMP3Encoding = new System.Windows.Forms.GroupBox();
+            this.m_grpBoxSectionNameOperation = new System.Windows.Forms.GroupBox();
+            this.m_numericUpDownFilenameLengthLimit = new System.Windows.Forms.NumericUpDown();
+            this.m_chkBoxFilenameLengthLimit = new System.Windows.Forms.CheckBox();
+            this.m_grpBoxMP3Encoding.SuspendLayout();
+            this.m_grpBoxSectionNameOperation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownFilenameLengthLimit)).BeginInit();
             this.SuspendLayout();
             // 
             // m_lblDirectoryPath
@@ -119,6 +126,37 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_checkBoxAddSectionNameToAudioFileName, "m_checkBoxAddSectionNameToAudioFileName");
             this.m_checkBoxAddSectionNameToAudioFileName.Name = "m_checkBoxAddSectionNameToAudioFileName";
             this.m_checkBoxAddSectionNameToAudioFileName.UseVisualStyleBackColor = true;
+            this.m_checkBoxAddSectionNameToAudioFileName.CheckedChanged += new System.EventHandler(this.m_checkBoxAddSectionNameToAudioFileName_CheckedChanged);
+            // 
+            // m_grpBoxMP3Encoding
+            // 
+            this.m_grpBoxMP3Encoding.Controls.Add(this.m_Bitrate);
+            this.m_grpBoxMP3Encoding.Controls.Add(this.m_ComboBoxBitrate);
+            this.m_grpBoxMP3Encoding.Controls.Add(this.m_checkBoxMP3Encoder);
+            resources.ApplyResources(this.m_grpBoxMP3Encoding, "m_grpBoxMP3Encoding");
+            this.m_grpBoxMP3Encoding.Name = "m_grpBoxMP3Encoding";
+            this.m_grpBoxMP3Encoding.TabStop = false;
+            // 
+            // m_grpBoxSectionNameOperation
+            // 
+            this.m_grpBoxSectionNameOperation.Controls.Add(this.m_chkBoxFilenameLengthLimit);
+            this.m_grpBoxSectionNameOperation.Controls.Add(this.m_numericUpDownFilenameLengthLimit);
+            this.m_grpBoxSectionNameOperation.Controls.Add(this.m_checkBoxAddSectionNameToAudioFileName);
+            resources.ApplyResources(this.m_grpBoxSectionNameOperation, "m_grpBoxSectionNameOperation");
+            this.m_grpBoxSectionNameOperation.Name = "m_grpBoxSectionNameOperation";
+            this.m_grpBoxSectionNameOperation.TabStop = false;
+            // 
+            // m_numericUpDownFilenameLengthLimit
+            // 
+            resources.ApplyResources(this.m_numericUpDownFilenameLengthLimit, "m_numericUpDownFilenameLengthLimit");
+            this.m_numericUpDownFilenameLengthLimit.Name = "m_numericUpDownFilenameLengthLimit";
+            // 
+            // m_chkBoxFilenameLengthLimit
+            // 
+            resources.ApplyResources(this.m_chkBoxFilenameLengthLimit, "m_chkBoxFilenameLengthLimit");
+            this.m_chkBoxFilenameLengthLimit.Name = "m_chkBoxFilenameLengthLimit";
+            this.m_chkBoxFilenameLengthLimit.UseVisualStyleBackColor = true;
+            this.m_chkBoxFilenameLengthLimit.CheckedChanged += new System.EventHandler(this.m_chkBoxFilenameLengthLimit_CheckedChanged);
             // 
             // ExportDirectory
             // 
@@ -126,10 +164,8 @@ namespace Obi.Dialogs
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.Controls.Add(this.m_checkBoxAddSectionNameToAudioFileName);
-            this.Controls.Add(this.m_ComboBoxBitrate);
-            this.Controls.Add(this.m_Bitrate);
-            this.Controls.Add(this.m_checkBoxMP3Encoder);
+            this.Controls.Add(this.m_grpBoxSectionNameOperation);
+            this.Controls.Add(this.m_grpBoxMP3Encoding);
             this.Controls.Add(this.m_ComboSelectLevelForAudioFiles);
             this.Controls.Add(this.m_lblSelectLevelForAudioFiles);
             this.Controls.Add(this.mCancelButton);
@@ -144,6 +180,11 @@ namespace Obi.Dialogs
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectDirectoryPath_FormClosing);
+            this.m_grpBoxMP3Encoding.ResumeLayout(false);
+            this.m_grpBoxMP3Encoding.PerformLayout();
+            this.m_grpBoxSectionNameOperation.ResumeLayout(false);
+            this.m_grpBoxSectionNameOperation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownFilenameLengthLimit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,5 +203,9 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_Bitrate;
         private System.Windows.Forms.ComboBox m_ComboBoxBitrate;
         private System.Windows.Forms.CheckBox m_checkBoxAddSectionNameToAudioFileName;
+        private System.Windows.Forms.GroupBox m_grpBoxMP3Encoding;
+        private System.Windows.Forms.GroupBox m_grpBoxSectionNameOperation;
+        private System.Windows.Forms.CheckBox m_chkBoxFilenameLengthLimit;
+        private System.Windows.Forms.NumericUpDown m_numericUpDownFilenameLengthLimit;
     }
 }
