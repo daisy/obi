@@ -28,46 +28,31 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContentViewLabel));
             this.m_lblStaticLabel = new System.Windows.Forms.Label();
             this.m_lblSectionName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // m_lblStaticLabel
             // 
-            this.m_lblStaticLabel.AutoSize = true;
-            this.m_lblStaticLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.m_lblStaticLabel, "m_lblStaticLabel");
             this.m_lblStaticLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.m_lblStaticLabel.Location = new System.Drawing.Point(7, 6);
-            this.m_lblStaticLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.m_lblStaticLabel.Name = "m_lblStaticLabel";
-            this.m_lblStaticLabel.Size = new System.Drawing.Size(175, 16);
-            this.m_lblStaticLabel.TabIndex = 0;
-            this.m_lblStaticLabel.Text = "Showing contents of section:";
             // 
             // m_lblSectionName
             // 
-            this.m_lblSectionName.AutoSize = true;
-            this.m_lblSectionName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.m_lblSectionName, "m_lblSectionName");
             this.m_lblSectionName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.m_lblSectionName.Location = new System.Drawing.Point(181, 6);
-            this.m_lblSectionName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.m_lblSectionName.Name = "m_lblSectionName";
-            this.m_lblSectionName.Size = new System.Drawing.Size(130, 16);
-            this.m_lblSectionName.TabIndex = 1;
-            this.m_lblSectionName.Text = "No section selected.";
             // 
             // ContentViewLabel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.Controls.Add(this.m_lblSectionName);
             this.Controls.Add(this.m_lblStaticLabel);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ContentViewLabel";
-            this.Size = new System.Drawing.Size(399, 28);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ContentViewLabel_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();

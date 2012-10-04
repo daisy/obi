@@ -49,7 +49,7 @@ namespace Obi.UserControls
             // 
             // recordingToolBarToolStrip
             // 
-            this.recordingToolBarToolStrip.AutoSize = false;
+            resources.ApplyResources(this.recordingToolBarToolStrip, "recordingToolBarToolStrip");
             this.recordingToolBarToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_recordingToolBarPlayBtn,
             this.m_recordingToolBarStopBtn,
@@ -59,129 +59,68 @@ namespace Obi.UserControls
             this.m_recordingToolBarNextPageBtn,
             this.m_recordingToolBarNextSectionBtn,
             this.m_TODOBtn});
-            this.recordingToolBarToolStrip.Location = new System.Drawing.Point(0, 0);
             this.recordingToolBarToolStrip.Name = "recordingToolBarToolStrip";
-            this.recordingToolBarToolStrip.Size = new System.Drawing.Size(369, 50);
-            this.recordingToolBarToolStrip.TabIndex = 0;
             this.recordingToolBarToolStrip.TabStop = true;
-            this.recordingToolBarToolStrip.Text = "toolStrip1";
             // 
             // m_recordingToolBarPlayBtn
             // 
-            this.m_recordingToolBarPlayBtn.AccessibleDescription = "button";
-            this.m_recordingToolBarPlayBtn.AccessibleName = "Play";
-            this.m_recordingToolBarPlayBtn.AutoSize = false;
+            resources.ApplyResources(this.m_recordingToolBarPlayBtn, "m_recordingToolBarPlayBtn");
             this.m_recordingToolBarPlayBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_recordingToolBarPlayBtn.Image = ((System.Drawing.Image)(resources.GetObject("m_recordingToolBarPlayBtn.Image")));
-            this.m_recordingToolBarPlayBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.m_recordingToolBarPlayBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_recordingToolBarPlayBtn.Name = "m_recordingToolBarPlayBtn";
-            this.m_recordingToolBarPlayBtn.Size = new System.Drawing.Size(32, 32);
-            this.m_recordingToolBarPlayBtn.Text = "&Play/Pause";
             this.m_recordingToolBarPlayBtn.Click += new System.EventHandler(this.m_recordingToolBarPlayBtn_Click);
             // 
             // m_recordingToolBarStopBtn
             // 
-            this.m_recordingToolBarStopBtn.AccessibleDescription = "button";
-            this.m_recordingToolBarStopBtn.AccessibleName = "Stop";
-            this.m_recordingToolBarStopBtn.AutoSize = false;
+            resources.ApplyResources(this.m_recordingToolBarStopBtn, "m_recordingToolBarStopBtn");
             this.m_recordingToolBarStopBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_recordingToolBarStopBtn.Image = ((System.Drawing.Image)(resources.GetObject("m_recordingToolBarStopBtn.Image")));
-            this.m_recordingToolBarStopBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.m_recordingToolBarStopBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_recordingToolBarStopBtn.Name = "m_recordingToolBarStopBtn";
-            this.m_recordingToolBarStopBtn.Size = new System.Drawing.Size(32, 32);
-            this.m_recordingToolBarStopBtn.Text = "S&top";
             this.m_recordingToolBarStopBtn.Click += new System.EventHandler(this.m_recordingToolBarStopBtn_Click);
             // 
             // m_recordingToolBarRecordingBtn
             // 
-            this.m_recordingToolBarRecordingBtn.AccessibleDescription = "button";
-            this.m_recordingToolBarRecordingBtn.AccessibleName = "Monitoring/ Recording";
-            this.m_recordingToolBarRecordingBtn.AutoSize = false;
+            resources.ApplyResources(this.m_recordingToolBarRecordingBtn, "m_recordingToolBarRecordingBtn");
             this.m_recordingToolBarRecordingBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_recordingToolBarRecordingBtn.Image = ((System.Drawing.Image)(resources.GetObject("m_recordingToolBarRecordingBtn.Image")));
-            this.m_recordingToolBarRecordingBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.m_recordingToolBarRecordingBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_recordingToolBarRecordingBtn.Name = "m_recordingToolBarRecordingBtn";
-            this.m_recordingToolBarRecordingBtn.Size = new System.Drawing.Size(32, 32);
-            this.m_recordingToolBarRecordingBtn.Text = "Recor&d";
             this.m_recordingToolBarRecordingBtn.Click += new System.EventHandler(this.m_recordingToolBarRecordingBtn_Click);
             // 
             // m_recordingToolBarPrePhraseBtn
             // 
-            this.m_recordingToolBarPrePhraseBtn.AccessibleDescription = "button";
-            this.m_recordingToolBarPrePhraseBtn.AccessibleName = "Previous phrase";
-            this.m_recordingToolBarPrePhraseBtn.AutoSize = false;
+            resources.ApplyResources(this.m_recordingToolBarPrePhraseBtn, "m_recordingToolBarPrePhraseBtn");
             this.m_recordingToolBarPrePhraseBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_recordingToolBarPrePhraseBtn.Image = ((System.Drawing.Image)(resources.GetObject("m_recordingToolBarPrePhraseBtn.Image")));
-            this.m_recordingToolBarPrePhraseBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.m_recordingToolBarPrePhraseBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_recordingToolBarPrePhraseBtn.Margin = new System.Windows.Forms.Padding(4, 1, -8, 2);
             this.m_recordingToolBarPrePhraseBtn.Name = "m_recordingToolBarPrePhraseBtn";
-            this.m_recordingToolBarPrePhraseBtn.Size = new System.Drawing.Size(34, 32);
-            this.m_recordingToolBarPrePhraseBtn.Text = "&Goto Previous Phrase";
             this.m_recordingToolBarPrePhraseBtn.Click += new System.EventHandler(this.m_recordingToolBarPrePhraseBtn_Click);
             // 
             // m_recordingGoToNextPhraseBtn
             // 
-            this.m_recordingGoToNextPhraseBtn.AccessibleDescription = "button";
-            this.m_recordingGoToNextPhraseBtn.AccessibleName = "Next phrase";
-            this.m_recordingGoToNextPhraseBtn.AutoSize = false;
+            resources.ApplyResources(this.m_recordingGoToNextPhraseBtn, "m_recordingGoToNextPhraseBtn");
             this.m_recordingGoToNextPhraseBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_recordingGoToNextPhraseBtn.Image = ((System.Drawing.Image)(resources.GetObject("m_recordingGoToNextPhraseBtn.Image")));
-            this.m_recordingGoToNextPhraseBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.m_recordingGoToNextPhraseBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_recordingGoToNextPhraseBtn.Margin = new System.Windows.Forms.Padding(16, 1, -10, 2);
             this.m_recordingGoToNextPhraseBtn.Name = "m_recordingGoToNextPhraseBtn";
-            this.m_recordingGoToNextPhraseBtn.Size = new System.Drawing.Size(34, 32);
-            this.m_recordingGoToNextPhraseBtn.Text = "G&oto Next Phrase";
             this.m_recordingGoToNextPhraseBtn.Click += new System.EventHandler(this.m_recordingGoToNextPhraseBtn_Click);
             // 
             // m_recordingToolBarNextPageBtn
             // 
-            this.m_recordingToolBarNextPageBtn.AccessibleDescription = "button";
-            this.m_recordingToolBarNextPageBtn.AccessibleName = "Next page";
-            this.m_recordingToolBarNextPageBtn.AutoSize = false;
+            resources.ApplyResources(this.m_recordingToolBarNextPageBtn, "m_recordingToolBarNextPageBtn");
             this.m_recordingToolBarNextPageBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_recordingToolBarNextPageBtn.Image = ((System.Drawing.Image)(resources.GetObject("m_recordingToolBarNextPageBtn.Image")));
-            this.m_recordingToolBarNextPageBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.m_recordingToolBarNextPageBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_recordingToolBarNextPageBtn.Margin = new System.Windows.Forms.Padding(18, 1, -14, 2);
             this.m_recordingToolBarNextPageBtn.Name = "m_recordingToolBarNextPageBtn";
-            this.m_recordingToolBarNextPageBtn.Size = new System.Drawing.Size(34, 36);
-            this.m_recordingToolBarNextPageBtn.Text = "Goto &Next Page";
             this.m_recordingToolBarNextPageBtn.Click += new System.EventHandler(this.m_recordingToolBarNextPageBtn_Click);
             // 
             // m_recordingToolBarNextSectionBtn
             // 
-            this.m_recordingToolBarNextSectionBtn.AccessibleDescription = "button";
-            this.m_recordingToolBarNextSectionBtn.AccessibleName = "Next section";
-            this.m_recordingToolBarNextSectionBtn.AutoSize = false;
+            resources.ApplyResources(this.m_recordingToolBarNextSectionBtn, "m_recordingToolBarNextSectionBtn");
             this.m_recordingToolBarNextSectionBtn.AutoToolTip = false;
             this.m_recordingToolBarNextSectionBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_recordingToolBarNextSectionBtn.Image = ((System.Drawing.Image)(resources.GetObject("m_recordingToolBarNextSectionBtn.Image")));
-            this.m_recordingToolBarNextSectionBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.m_recordingToolBarNextSectionBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_recordingToolBarNextSectionBtn.Margin = new System.Windows.Forms.Padding(20, 1, 6, 0);
             this.m_recordingToolBarNextSectionBtn.Name = "m_recordingToolBarNextSectionBtn";
-            this.m_recordingToolBarNextSectionBtn.Size = new System.Drawing.Size(32, 32);
-            this.m_recordingToolBarNextSectionBtn.Text = "Goto Next S&ection";
-            this.m_recordingToolBarNextSectionBtn.ToolTipText = "Goto Next Section";
             this.m_recordingToolBarNextSectionBtn.Click += new System.EventHandler(this.m_recordingToolBarNextSectionBtn_Click);
             // 
             // m_TODOBtn
             // 
-            this.m_TODOBtn.AccessibleDescription = "button";
-            this.m_TODOBtn.AccessibleName = "Mark phrase";
-            this.m_TODOBtn.AutoSize = false;
+            resources.ApplyResources(this.m_TODOBtn, "m_TODOBtn");
             this.m_TODOBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.m_TODOBtn.Image = ((System.Drawing.Image)(resources.GetObject("m_TODOBtn.Image")));
-            this.m_TODOBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.m_TODOBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_TODOBtn.Name = "m_TODOBtn";
-            this.m_TODOBtn.Size = new System.Drawing.Size(40, 40);
-            this.m_TODOBtn.Text = "TODO";
             this.m_TODOBtn.Click += new System.EventHandler(this.m_TODOBtn_Click);
             // 
             // m_statusStrip
@@ -189,21 +128,18 @@ namespace Obi.UserControls
             this.m_statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.recordingToolStripStatusBar,
             this.m_StatusLabel});
-            this.m_statusStrip.Location = new System.Drawing.Point(0, 62);
+            resources.ApplyResources(this.m_statusStrip, "m_statusStrip");
             this.m_statusStrip.Name = "m_statusStrip";
-            this.m_statusStrip.Size = new System.Drawing.Size(369, 22);
-            this.m_statusStrip.TabIndex = 1;
-            this.m_statusStrip.Text = "statusStrip1";
             // 
             // recordingToolStripStatusBar
             // 
             this.recordingToolStripStatusBar.Name = "recordingToolStripStatusBar";
-            this.recordingToolStripStatusBar.Size = new System.Drawing.Size(0, 17);
+            resources.ApplyResources(this.recordingToolStripStatusBar, "recordingToolStripStatusBar");
             // 
             // m_StatusLabel
             // 
             this.m_StatusLabel.Name = "m_StatusLabel";
-            this.m_StatusLabel.Size = new System.Drawing.Size(0, 17);
+            resources.ApplyResources(this.m_StatusLabel, "m_StatusLabel");
             // 
             // timer1
             // 
@@ -212,13 +148,12 @@ namespace Obi.UserControls
             // 
             // RecordingToolBarForm
             // 
-            this.ClientSize = new System.Drawing.Size(369, 84);
+            resources.ApplyResources(this, "$this");
             this.Controls.Add(this.m_statusStrip);
             this.Controls.Add(this.recordingToolBarToolStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "RecordingToolBarForm";
-            this.Text = "Obi recorder bar";
             this.recordingToolBarToolStrip.ResumeLayout(false);
             this.recordingToolBarToolStrip.PerformLayout();
             this.m_statusStrip.ResumeLayout(false);

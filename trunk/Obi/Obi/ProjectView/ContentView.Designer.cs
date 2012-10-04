@@ -29,6 +29,7 @@ namespace Obi.ProjectView
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContentView));
             this.mContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Context_AddSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_InsertSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -132,27 +133,24 @@ namespace Obi.ProjectView
             this.Context_ExportAudioToolStripMenuItem,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(209, 666);
+            resources.ApplyResources(this.mContextMenuStrip, "mContextMenuStrip");
             // 
             // Context_AddSectionMenuItem
             // 
             this.Context_AddSectionMenuItem.Name = "Context_AddSectionMenuItem";
-            this.Context_AddSectionMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_AddSectionMenuItem.Text = "Add &section";
+            resources.ApplyResources(this.Context_AddSectionMenuItem, "Context_AddSectionMenuItem");
             this.Context_AddSectionMenuItem.Click += new System.EventHandler(this.Context_AddSectionMenuItem_Click);
             // 
             // Context_InsertSectionMenuItem
             // 
             this.Context_InsertSectionMenuItem.Name = "Context_InsertSectionMenuItem";
-            this.Context_InsertSectionMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_InsertSectionMenuItem.Text = "&Insert section";
+            resources.ApplyResources(this.Context_InsertSectionMenuItem, "Context_InsertSectionMenuItem");
             this.Context_InsertSectionMenuItem.Click += new System.EventHandler(this.Context_InsertSectionMenuItem_Click);
             // 
             // Context_SplitSectionMenuItem
             // 
             this.Context_SplitSectionMenuItem.Name = "Context_SplitSectionMenuItem";
-            this.Context_SplitSectionMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_SplitSectionMenuItem.Text = "Sp&lit section";
+            resources.ApplyResources(this.Context_SplitSectionMenuItem, "Context_SplitSectionMenuItem");
             this.Context_SplitSectionMenuItem.Click += new System.EventHandler(this.Context_SplitSectionMenuItem_Click);
             // 
             // Context_MergeSectionMenuItem
@@ -161,72 +159,60 @@ namespace Obi.ProjectView
             this.Context_MergeSectionWithNextToolStripMenuItem,
             this.Context_MergeMultipleSectionsToolStripMenuItem});
             this.Context_MergeSectionMenuItem.Name = "Context_MergeSectionMenuItem";
-            this.Context_MergeSectionMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_MergeSectionMenuItem.Text = "Mer&ge section";
-            //this.Context_MergeSectionMenuItem.Click += new System.EventHandler(this.Context_MergeSectionWithNextMenuItem_Click);
+            resources.ApplyResources(this.Context_MergeSectionMenuItem, "Context_MergeSectionMenuItem");
             // 
             // Context_MergeSectionWithNextToolStripMenuItem
             // 
-            this.Context_MergeSectionWithNextToolStripMenuItem.AccessibleName = "Merge section with next";
+            resources.ApplyResources(this.Context_MergeSectionWithNextToolStripMenuItem, "Context_MergeSectionWithNextToolStripMenuItem");
             this.Context_MergeSectionWithNextToolStripMenuItem.Name = "Context_MergeSectionWithNextToolStripMenuItem";
-            this.Context_MergeSectionWithNextToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.Context_MergeSectionWithNextToolStripMenuItem.Text = "Merge section with ne&xt";
             this.Context_MergeSectionWithNextToolStripMenuItem.Click += new System.EventHandler(this.Context_MergeSectionWithNextToolStripMenuItem_Click);
             // 
             // Context_MergeMultipleSectionsToolStripMenuItem
             // 
-            this.Context_MergeMultipleSectionsToolStripMenuItem.AccessibleName = "Merge multiple sections";
+            resources.ApplyResources(this.Context_MergeMultipleSectionsToolStripMenuItem, "Context_MergeMultipleSectionsToolStripMenuItem");
             this.Context_MergeMultipleSectionsToolStripMenuItem.Name = "Context_MergeMultipleSectionsToolStripMenuItem";
-            this.Context_MergeMultipleSectionsToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.Context_MergeMultipleSectionsToolStripMenuItem.Text = "Merge multiple se&ctions";
             this.Context_MergeMultipleSectionsToolStripMenuItem.Click += new System.EventHandler(this.Context_MergeMultipleSectionsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(205, 6);
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // Context_AddBlankPhraseMenuItem
             // 
             this.Context_AddBlankPhraseMenuItem.Name = "Context_AddBlankPhraseMenuItem";
-            this.Context_AddBlankPhraseMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_AddBlankPhraseMenuItem.Text = "&Add blank phrase";
+            resources.ApplyResources(this.Context_AddBlankPhraseMenuItem, "Context_AddBlankPhraseMenuItem");
             this.Context_AddBlankPhraseMenuItem.Click += new System.EventHandler(this.Context_AddBlankPhraseMenuItem_Click);
             // 
             // Context_AddEmptyPagesMenuItem
             // 
             this.Context_AddEmptyPagesMenuItem.Name = "Context_AddEmptyPagesMenuItem";
-            this.Context_AddEmptyPagesMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_AddEmptyPagesMenuItem.Text = "Add &empty pages";
+            resources.ApplyResources(this.Context_AddEmptyPagesMenuItem, "Context_AddEmptyPagesMenuItem");
             this.Context_AddEmptyPagesMenuItem.Click += new System.EventHandler(this.Context_AddEmptyPagesMenuItem_Click);
             // 
             // Context_GenerateSpeechForPageMenuItem
             // 
             this.Context_GenerateSpeechForPageMenuItem.Name = "Context_GenerateSpeechForPageMenuItem";
-            this.Context_GenerateSpeechForPageMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_GenerateSpeechForPageMenuItem.Text = "Genera&te speech for page";
+            resources.ApplyResources(this.Context_GenerateSpeechForPageMenuItem, "Context_GenerateSpeechForPageMenuItem");
             this.Context_GenerateSpeechForPageMenuItem.Click += new System.EventHandler(this.Context_GenerateSpeechForPageMenuItem_Click);
             // 
             // Context_ImportAudioFilesMenuItem
             // 
             this.Context_ImportAudioFilesMenuItem.Name = "Context_ImportAudioFilesMenuItem";
-            this.Context_ImportAudioFilesMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_ImportAudioFilesMenuItem.Text = "I&mport audio files";
+            resources.ApplyResources(this.Context_ImportAudioFilesMenuItem, "Context_ImportAudioFilesMenuItem");
             this.Context_ImportAudioFilesMenuItem.Click += new System.EventHandler(this.Context_ImportAudioFilesMenuItem_Click);
             // 
             // Context_FineNavigationMenuItem
             // 
             this.Context_FineNavigationMenuItem.CheckOnClick = true;
             this.Context_FineNavigationMenuItem.Name = "Context_FineNavigationMenuItem";
-            this.Context_FineNavigationMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_FineNavigationMenuItem.Text = "Fine Na&vigation";
+            resources.ApplyResources(this.Context_FineNavigationMenuItem, "Context_FineNavigationMenuItem");
             this.Context_FineNavigationMenuItem.Click += new System.EventHandler(this.Context_FineNavigationMenuItem_Click);
             // 
             // Context_SplitPhraseMenuItem
             // 
             this.Context_SplitPhraseMenuItem.Name = "Context_SplitPhraseMenuItem";
-            this.Context_SplitPhraseMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_SplitPhraseMenuItem.Text = "Split p&hrase";
+            resources.ApplyResources(this.Context_SplitPhraseMenuItem, "Context_SplitPhraseMenuItem");
             this.Context_SplitPhraseMenuItem.Click += new System.EventHandler(this.Context_SplitPhraseMenuItem_Click);
             // 
             // Context_MergeMenuItem
@@ -236,35 +222,30 @@ namespace Obi.ProjectView
             this.Context_Merge_MergeWithFollowingPhrasesMenuItem,
             this.Context_Merge_MergeWithPrecedingPhrasesMenuItem});
             this.Context_MergeMenuItem.Name = "Context_MergeMenuItem";
-            this.Context_MergeMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_MergeMenuItem.Text = "Mer&ge phrases";
+            resources.ApplyResources(this.Context_MergeMenuItem, "Context_MergeMenuItem");
             // 
             // Context_MergePhraseWithNextMenuItem
             // 
             this.Context_MergePhraseWithNextMenuItem.Name = "Context_MergePhraseWithNextMenuItem";
-            this.Context_MergePhraseWithNextMenuItem.Size = new System.Drawing.Size(233, 22);
-            this.Context_MergePhraseWithNextMenuItem.Text = "Merge with ne&xt phrase";
+            resources.ApplyResources(this.Context_MergePhraseWithNextMenuItem, "Context_MergePhraseWithNextMenuItem");
             this.Context_MergePhraseWithNextMenuItem.Click += new System.EventHandler(this.Context_MergePhraseWithNextMenuItem_Click);
             // 
             // Context_Merge_MergeWithFollowingPhrasesMenuItem
             // 
             this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Name = "Context_Merge_MergeWithFollowingPhrasesMenuItem";
-            this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Size = new System.Drawing.Size(233, 22);
-            this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Text = "Merge with fo&llowing phrases ";
+            resources.ApplyResources(this.Context_Merge_MergeWithFollowingPhrasesMenuItem, "Context_Merge_MergeWithFollowingPhrasesMenuItem");
             this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Click += new System.EventHandler(this.Context_Merge_MergeWithFollowingPhrasesMenuItem_Click);
             // 
             // Context_Merge_MergeWithPrecedingPhrasesMenuItem
             // 
             this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Name = "Context_Merge_MergeWithPrecedingPhrasesMenuItem";
-            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Size = new System.Drawing.Size(233, 22);
-            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text = "Merge with preceding phra&ses";
+            resources.ApplyResources(this.Context_Merge_MergeWithPrecedingPhrasesMenuItem, "Context_Merge_MergeWithPrecedingPhrasesMenuItem");
             this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Click += new System.EventHandler(this.Context_Merge_MergeWithPrecedingPhrasesMenuItem_Click);
             // 
             // Context_CropAudioMenuItem
             // 
             this.Context_CropAudioMenuItem.Name = "Context_CropAudioMenuItem";
-            this.Context_CropAudioMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_CropAudioMenuItem.Text = "Crop au&dio";
+            resources.ApplyResources(this.Context_CropAudioMenuItem, "Context_CropAudioMenuItem");
             this.Context_CropAudioMenuItem.Click += new System.EventHandler(this.Context_CropAudioMenuItem_Click);
             // 
             // Context_PhraseIsTODOMenuItem
@@ -272,8 +253,7 @@ namespace Obi.ProjectView
             this.Context_PhraseIsTODOMenuItem.Checked = true;
             this.Context_PhraseIsTODOMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Context_PhraseIsTODOMenuItem.Name = "Context_PhraseIsTODOMenuItem";
-            this.Context_PhraseIsTODOMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_PhraseIsTODOMenuItem.Text = "Phrase is T&ODO";
+            resources.ApplyResources(this.Context_PhraseIsTODOMenuItem, "Context_PhraseIsTODOMenuItem");
             this.Context_PhraseIsTODOMenuItem.Click += new System.EventHandler(this.Context_PhraseIsTODOMenuItem_Click);
             // 
             // Context_PhraseIsUsedMenuItem
@@ -281,14 +261,13 @@ namespace Obi.ProjectView
             this.Context_PhraseIsUsedMenuItem.Checked = true;
             this.Context_PhraseIsUsedMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Context_PhraseIsUsedMenuItem.Name = "Context_PhraseIsUsedMenuItem";
-            this.Context_PhraseIsUsedMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_PhraseIsUsedMenuItem.Text = "Phras&e is used";
+            resources.ApplyResources(this.Context_PhraseIsUsedMenuItem, "Context_PhraseIsUsedMenuItem");
             this.Context_PhraseIsUsedMenuItem.Click += new System.EventHandler(this.Context_PhraseIsUsedMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(205, 6);
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // Context_AssignRoleMenuItem
             // 
@@ -301,61 +280,53 @@ namespace Obi.ProjectView
             this.toolStripSeparator3,
             this.Context_AssignRole_NewCustomRoleMenuItem});
             this.Context_AssignRoleMenuItem.Name = "Context_AssignRoleMenuItem";
-            this.Context_AssignRoleMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_AssignRoleMenuItem.Text = "Assign ro&le";
+            resources.ApplyResources(this.Context_AssignRoleMenuItem, "Context_AssignRoleMenuItem");
             // 
             // Context_AssignRole_PlainMenuItem
             // 
             this.Context_AssignRole_PlainMenuItem.Name = "Context_AssignRole_PlainMenuItem";
-            this.Context_AssignRole_PlainMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.Context_AssignRole_PlainMenuItem.Text = "P&lain";
+            resources.ApplyResources(this.Context_AssignRole_PlainMenuItem, "Context_AssignRole_PlainMenuItem");
             this.Context_AssignRole_PlainMenuItem.Click += new System.EventHandler(this.Context_AssignRole_PlainMenuItem_Click);
             // 
             // Context_AssignRole_HeadingMenuItem
             // 
             this.Context_AssignRole_HeadingMenuItem.Name = "Context_AssignRole_HeadingMenuItem";
-            this.Context_AssignRole_HeadingMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.Context_AssignRole_HeadingMenuItem.Text = "&Heading";
+            resources.ApplyResources(this.Context_AssignRole_HeadingMenuItem, "Context_AssignRole_HeadingMenuItem");
             this.Context_AssignRole_HeadingMenuItem.Click += new System.EventHandler(this.Context_AssignRole_HeadingMenuItem_Click);
             // 
             // Context_AssignRole_PageMenuItem
             // 
             this.Context_AssignRole_PageMenuItem.Name = "Context_AssignRole_PageMenuItem";
-            this.Context_AssignRole_PageMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.Context_AssignRole_PageMenuItem.Text = "&Page";
+            resources.ApplyResources(this.Context_AssignRole_PageMenuItem, "Context_AssignRole_PageMenuItem");
             this.Context_AssignRole_PageMenuItem.Click += new System.EventHandler(this.Context_AssignRole_PageMenuItem_Click);
             // 
             // Context_AssignRole_SilenceMenuItem
             // 
             this.Context_AssignRole_SilenceMenuItem.Name = "Context_AssignRole_SilenceMenuItem";
-            this.Context_AssignRole_SilenceMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.Context_AssignRole_SilenceMenuItem.Text = "&Silence";
+            resources.ApplyResources(this.Context_AssignRole_SilenceMenuItem, "Context_AssignRole_SilenceMenuItem");
             this.Context_AssignRole_SilenceMenuItem.Click += new System.EventHandler(this.Context_AssignRole_SilenceMenuItem_Click);
             // 
             // Context_AssignRole_AnchorMenuItem
             // 
             this.Context_AssignRole_AnchorMenuItem.Name = "Context_AssignRole_AnchorMenuItem";
-            this.Context_AssignRole_AnchorMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.Context_AssignRole_AnchorMenuItem.Text = "Anch&or";
+            resources.ApplyResources(this.Context_AssignRole_AnchorMenuItem, "Context_AssignRole_AnchorMenuItem");
             this.Context_AssignRole_AnchorMenuItem.Click += new System.EventHandler(this.Context_AssignRole_AnchorMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(178, 6);
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             // 
             // Context_AssignRole_NewCustomRoleMenuItem
             // 
             this.Context_AssignRole_NewCustomRoleMenuItem.Name = "Context_AssignRole_NewCustomRoleMenuItem";
-            this.Context_AssignRole_NewCustomRoleMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.Context_AssignRole_NewCustomRoleMenuItem.Text = "(New custom role...)";
+            resources.ApplyResources(this.Context_AssignRole_NewCustomRoleMenuItem, "Context_AssignRole_NewCustomRoleMenuItem");
             this.Context_AssignRole_NewCustomRoleMenuItem.Click += new System.EventHandler(this.Context_AssignRole_NewCustomRoleMenuItem_Click);
             // 
             // Context_ClearRoleMenuItem
             // 
             this.Context_ClearRoleMenuItem.Name = "Context_ClearRoleMenuItem";
-            this.Context_ClearRoleMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_ClearRoleMenuItem.Text = "Clear role";
+            resources.ApplyResources(this.Context_ClearRoleMenuItem, "Context_ClearRoleMenuItem");
             this.Context_ClearRoleMenuItem.Click += new System.EventHandler(this.Context_ClearRoleMenuItem_Click);
             // 
             // Context_PhraseDetectionMenuItem
@@ -364,26 +335,23 @@ namespace Obi.ProjectView
             this.Context_ApplyPhraseDetectionMenuItem,
             this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem});
             this.Context_PhraseDetectionMenuItem.Name = "Context_PhraseDetectionMenuItem";
-            this.Context_PhraseDetectionMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_PhraseDetectionMenuItem.Text = "Apply p&hrase Detection";
+            resources.ApplyResources(this.Context_PhraseDetectionMenuItem, "Context_PhraseDetectionMenuItem");
             // 
             // Context_ApplyPhraseDetectionMenuItem
             // 
             this.Context_ApplyPhraseDetectionMenuItem.Name = "Context_ApplyPhraseDetectionMenuItem";
-            this.Context_ApplyPhraseDetectionMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.Context_ApplyPhraseDetectionMenuItem.Text = "Selected i&tem";
+            resources.ApplyResources(this.Context_ApplyPhraseDetectionMenuItem, "Context_ApplyPhraseDetectionMenuItem");
             this.Context_ApplyPhraseDetectionMenuItem.Click += new System.EventHandler(this.Context_ApplyPhraseDetectionMenuItem_Click);
             // 
             // Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem
             // 
             this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Name = "Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem";
-            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text = "Multip&le sections";
+            resources.ApplyResources(this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem, "Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem");
             this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Click += new System.EventHandler(this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem_Click);
             // 
             // Context_SkippablesMenuItem
             // 
-            this.Context_SkippablesMenuItem.AccessibleName = "Skippable notes";
+            resources.ApplyResources(this.Context_SkippablesMenuItem, "Context_SkippablesMenuItem");
             this.Context_SkippablesMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem,
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem,
@@ -394,70 +362,53 @@ namespace Obi.ProjectView
             this.Context_Skippable_MoveToEndNoteToolStripMenuItem,
             this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem});
             this.Context_SkippablesMenuItem.Name = "Context_SkippablesMenuItem";
-            this.Context_SkippablesMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_SkippablesMenuItem.Text = "Skippa&ble notes";
             // 
             // Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem
             // 
-            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName = "Begin note";
+            resources.ApplyResources(this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem, "Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem");
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Name = "Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem";
-            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text = "Be&gin note";
             this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem_Click);
             // 
             // Context_Skippable_EndSpecialNodeMarkToolStripMenuItem
             // 
-            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.AccessibleName = "End note";
+            resources.ApplyResources(this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem, "Context_Skippable_EndSpecialNodeMarkToolStripMenuItem");
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Name = "Context_Skippable_EndSpecialNodeMarkToolStripMenuItem";
-            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Text = "En&d note";
             this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem_Click);
             // 
             // Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem
             // 
-            this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.AccessibleName = "Add reference";
+            resources.ApplyResources(this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem, "Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem");
             this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Name = "Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem";
-            this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Text = "Add re&ference";
             this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem_Click);
             // 
             // Context_Skippable_GotoAssociatedNodeToolStripMenuItem
             // 
-            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.AccessibleName = "Goto referred note";
+            resources.ApplyResources(this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem, "Context_Skippable_GotoAssociatedNodeToolStripMenuItem");
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Name = "Context_Skippable_GotoAssociatedNodeToolStripMenuItem";
-            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Text = "Goto &referred note";
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem_Click);
             // 
             // Context_Skippable_RemoveAssociatedNodeToolStripMenuItem
             // 
-            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.AccessibleName = "Remove reference";
+            resources.ApplyResources(this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem, "Context_Skippable_RemoveAssociatedNodeToolStripMenuItem");
             this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Name = "Context_Skippable_RemoveAssociatedNodeToolStripMenuItem";
-            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Text = "Remove refere&nce";
             this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem_Click);
             // 
             // Context_Skippable_MoveToStartNoteToolStripMenuItem
             // 
-            this.Context_Skippable_MoveToStartNoteToolStripMenuItem.AccessibleName = "Move to start note";
+            resources.ApplyResources(this.Context_Skippable_MoveToStartNoteToolStripMenuItem, "Context_Skippable_MoveToStartNoteToolStripMenuItem");
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem.Name = "Context_Skippable_MoveToStartNoteToolStripMenuItem";
-            this.Context_Skippable_MoveToStartNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.Context_Skippable_MoveToStartNoteToolStripMenuItem.Text = "Move to s&tart note";
             this.Context_Skippable_MoveToStartNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableMoveToStartNoteToolStripMenuItem_Click);
             // 
             // Context_Skippable_MoveToEndNoteToolStripMenuItem
             // 
-            this.Context_Skippable_MoveToEndNoteToolStripMenuItem.AccessibleName = "Move to end note";
+            resources.ApplyResources(this.Context_Skippable_MoveToEndNoteToolStripMenuItem, "Context_Skippable_MoveToEndNoteToolStripMenuItem");
             this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Name = "Context_Skippable_MoveToEndNoteToolStripMenuItem";
-            this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Text = "Mo&ve to end note";
             this.Context_Skippable_MoveToEndNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableMoveToToolStripMenuItem_Click);
             // 
             // Context_Skippable_ClearRoleFromNoteToolStripMenuItem
             // 
             this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Name = "Context_Skippable_ClearRoleFromNoteToolStripMenuItem";
-            this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Text = "&Clear role from note";
+            resources.ApplyResources(this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem, "Context_Skippable_ClearRoleFromNoteToolStripMenuItem");
             this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Click += new System.EventHandler(this.Context_Skippable_ClearRoleFromNoteToolStripMenuItem_Click);
             // 
             // Context_AudioSelectionMenuItem
@@ -466,140 +417,108 @@ namespace Obi.ProjectView
             this.Context_AudioSelection_BeginMenuItem,
             this.Context_AudioSelection_EndMenuItem});
             this.Context_AudioSelectionMenuItem.Name = "Context_AudioSelectionMenuItem";
-            this.Context_AudioSelectionMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_AudioSelectionMenuItem.Text = "Audi&o selection";
+            resources.ApplyResources(this.Context_AudioSelectionMenuItem, "Context_AudioSelectionMenuItem");
             // 
             // Context_AudioSelection_BeginMenuItem
             // 
             this.Context_AudioSelection_BeginMenuItem.Name = "Context_AudioSelection_BeginMenuItem";
-            this.Context_AudioSelection_BeginMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.Context_AudioSelection_BeginMenuItem.Text = "&Begin audio selection";
+            resources.ApplyResources(this.Context_AudioSelection_BeginMenuItem, "Context_AudioSelection_BeginMenuItem");
             this.Context_AudioSelection_BeginMenuItem.Click += new System.EventHandler(this.Context_AudioSelection_BeginMenuItem_Click);
             // 
             // Context_AudioSelection_EndMenuItem
             // 
             this.Context_AudioSelection_EndMenuItem.Name = "Context_AudioSelection_EndMenuItem";
-            this.Context_AudioSelection_EndMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.Context_AudioSelection_EndMenuItem.Text = "&End audio selection";
+            resources.ApplyResources(this.Context_AudioSelection_EndMenuItem, "Context_AudioSelection_EndMenuItem");
             this.Context_AudioSelection_EndMenuItem.Click += new System.EventHandler(this.Context_AudioSelection_EndMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(205, 6);
+            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
             // 
             // Context_CutMenuItem
             // 
             this.Context_CutMenuItem.Name = "Context_CutMenuItem";
-            this.Context_CutMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_CutMenuItem.Text = "&Cut";
+            resources.ApplyResources(this.Context_CutMenuItem, "Context_CutMenuItem");
             this.Context_CutMenuItem.Click += new System.EventHandler(this.Context_CutMenuItem_Click);
             // 
             // Context_CopyMenuItem
             // 
             this.Context_CopyMenuItem.Name = "Context_CopyMenuItem";
-            this.Context_CopyMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_CopyMenuItem.Text = "Cop&y";
+            resources.ApplyResources(this.Context_CopyMenuItem, "Context_CopyMenuItem");
             this.Context_CopyMenuItem.Click += new System.EventHandler(this.Context_CopyMenuItem_Click);
             // 
             // Context_PasteMenuItem
             // 
             this.Context_PasteMenuItem.Name = "Context_PasteMenuItem";
-            this.Context_PasteMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_PasteMenuItem.Text = "&Paste";
+            resources.ApplyResources(this.Context_PasteMenuItem, "Context_PasteMenuItem");
             this.Context_PasteMenuItem.Click += new System.EventHandler(this.Context_PasteMenuItem_Click);
             // 
             // Context_PasteBeforeMenuItem
             // 
             this.Context_PasteBeforeMenuItem.Name = "Context_PasteBeforeMenuItem";
-            this.Context_PasteBeforeMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_PasteBeforeMenuItem.Text = "Paste &before";
+            resources.ApplyResources(this.Context_PasteBeforeMenuItem, "Context_PasteBeforeMenuItem");
             this.Context_PasteBeforeMenuItem.Click += new System.EventHandler(this.Context_PasteBeforeMenuItem_Click);
             // 
             // Context_PasteInsideMenuItem
             // 
             this.Context_PasteInsideMenuItem.Name = "Context_PasteInsideMenuItem";
-            this.Context_PasteInsideMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_PasteInsideMenuItem.Text = "Paste &inside";
+            resources.ApplyResources(this.Context_PasteInsideMenuItem, "Context_PasteInsideMenuItem");
             this.Context_PasteInsideMenuItem.Click += new System.EventHandler(this.Context_PasteInsideMenuItem_Click);
             // 
             // Context_DeleteMenuItem
             // 
             this.Context_DeleteMenuItem.Name = "Context_DeleteMenuItem";
-            this.Context_DeleteMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_DeleteMenuItem.Text = "&Delete";
+            resources.ApplyResources(this.Context_DeleteMenuItem, "Context_DeleteMenuItem");
             this.Context_DeleteMenuItem.Click += new System.EventHandler(this.Context_DeleteMenuItem_Click);
             // 
             // Context_DeleteFollowingPhrasesMenuItem
             // 
-            this.Context_DeleteFollowingPhrasesMenuItem.AccessibleName = "Delete following phrases";
+            resources.ApplyResources(this.Context_DeleteFollowingPhrasesMenuItem, "Context_DeleteFollowingPhrasesMenuItem");
             this.Context_DeleteFollowingPhrasesMenuItem.Name = "Context_DeleteFollowingPhrasesMenuItem";
-            this.Context_DeleteFollowingPhrasesMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_DeleteFollowingPhrasesMenuItem.Text = "Dele&te following phrases";
             this.Context_DeleteFollowingPhrasesMenuItem.Click += new System.EventHandler(this.Context_DeleteFollowingPhrasesMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(205, 6);
+            resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             // 
             // Context_ExportAudioToolStripMenuItem
             // 
-            this.Context_ExportAudioToolStripMenuItem.AccessibleName = "Export Audio  Ctrl+Alt+E";
+            resources.ApplyResources(this.Context_ExportAudioToolStripMenuItem, "Context_ExportAudioToolStripMenuItem");
             this.Context_ExportAudioToolStripMenuItem.Name = "Context_ExportAudioToolStripMenuItem";
-            this.Context_ExportAudioToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_ExportAudioToolStripMenuItem.Text = "Export A&udio";
             this.Context_ExportAudioToolStripMenuItem.Click += new System.EventHandler(this.exportAudioToolStripMenuItem_Click);
             // 
             // Context_PropertiesMenuItem
             // 
             this.Context_PropertiesMenuItem.Name = "Context_PropertiesMenuItem";
-            this.Context_PropertiesMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.Context_PropertiesMenuItem.Text = "Pr&operties";
+            resources.ApplyResources(this.Context_PropertiesMenuItem, "Context_PropertiesMenuItem");
             this.Context_PropertiesMenuItem.Click += new System.EventHandler(this.Context_PropertiesMenuItem_Click);
             // 
             // mStripsPanel
             // 
-            this.mStripsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.mStripsPanel.Location = new System.Drawing.Point(0, 0);
-            this.mStripsPanel.Margin = new System.Windows.Forms.Padding(0);
+            resources.ApplyResources(this.mStripsPanel, "mStripsPanel");
             this.mStripsPanel.Name = "mStripsPanel";
-            this.mStripsPanel.Size = new System.Drawing.Size(522, 557);
-            this.mStripsPanel.TabIndex = 1;
             // 
             // mHScrollBar
             // 
-            this.mHScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.mHScrollBar, "mHScrollBar");
             this.mHScrollBar.LargeChange = 64;
-            this.mHScrollBar.Location = new System.Drawing.Point(0, 533);
             this.mHScrollBar.Name = "mHScrollBar";
-            this.mHScrollBar.Size = new System.Drawing.Size(509, 18);
-            this.mHScrollBar.TabIndex = 2;
             this.mHScrollBar.ValueChanged += new System.EventHandler(this.mHScrollBar_ValueChanged);
             // 
             // mVScrollBar
             // 
-            this.mVScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.mVScrollBar, "mVScrollBar");
             this.mVScrollBar.LargeChange = 64;
-            this.mVScrollBar.Location = new System.Drawing.Point(0, 0);
             this.mVScrollBar.Name = "mVScrollBar";
-            this.mVScrollBar.Size = new System.Drawing.Size(16, 533);
-            this.mVScrollBar.TabIndex = 3;
-            this.mVScrollBar.Visible = false;
             this.mVScrollBar.ValueChanged += new System.EventHandler(this.mVScrollBar_ValueChanged);
             this.mVScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.mVScrollBar_Scroll);
             // 
             // mCornerPanel
             // 
-            this.mCornerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.mCornerPanel.Location = new System.Drawing.Point(505, 532);
+            resources.ApplyResources(this.mCornerPanel, "mCornerPanel");
             this.mCornerPanel.Name = "mCornerPanel";
-            this.mCornerPanel.Size = new System.Drawing.Size(36, 20);
-            this.mCornerPanel.TabIndex = 4;
             // 
             // timer1
             // 
@@ -607,33 +526,22 @@ namespace Obi.ProjectView
             // 
             // verticalScrollToolStripContainer1
             // 
-            this.verticalScrollToolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.verticalScrollToolStripContainer1, "verticalScrollToolStripContainer1");
             this.verticalScrollToolStripContainer1.CanScrollDown = true;
             this.verticalScrollToolStripContainer1.CanScrollUp = true;
             this.verticalScrollToolStripContainer1.contentView = null;
-            this.verticalScrollToolStripContainer1.Location = new System.Drawing.Point(512, 0);
             this.verticalScrollToolStripContainer1.Name = "verticalScrollToolStripContainer1";
-            this.verticalScrollToolStripContainer1.Size = new System.Drawing.Size(33, 533);
-            this.verticalScrollToolStripContainer1.TabIndex = 0;
             this.verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
             // 
             // contentViewLabel1
             // 
-            this.contentViewLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.contentViewLabel1.AutoSize = true;
+            resources.ApplyResources(this.contentViewLabel1, "contentViewLabel1");
             this.contentViewLabel1.BackColor = System.Drawing.SystemColors.Control;
             this.contentViewLabel1.contentView = null;
-            this.contentViewLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contentViewLabel1.invertColor = false;
-            this.contentViewLabel1.Location = new System.Drawing.Point(-10, 549);
-            this.contentViewLabel1.Margin = new System.Windows.Forms.Padding(4);
             this.contentViewLabel1.Name = "contentViewLabel1";
             this.contentViewLabel1.Name_SectionDisplayed = "No section selected.";
             this.contentViewLabel1.sectionSelected = false;
-            this.contentViewLabel1.Size = new System.Drawing.Size(548, 22);
-            this.contentViewLabel1.TabIndex = 5;
             this.contentViewLabel1.zoomFactor = 1F;
             // 
             // ContentView
@@ -646,7 +554,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mVScrollBar);
             this.Controls.Add(this.mStripsPanel);
             this.Name = "ContentView";
-            this.Size = new System.Drawing.Size(538, 573);
+            resources.ApplyResources(this, "$this");
             this.Click += new System.EventHandler(this.ContentView_Click);
             this.Resize += new System.EventHandler(this.ContentView_Resize);
             this.Enter += new System.EventHandler(this.StripsView_Enter);
