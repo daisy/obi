@@ -47,6 +47,7 @@ namespace Obi.ProjectView
             this.Size = new System.Drawing.Size(10000, 104);
             this.VisibleChanged += new System.EventHandler(this.Waveform_Recording_VisibleChanged);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Waveform_Recording_MouseClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Waveform_Recording_MouseDown);
             this.ResumeLayout(false);
 
         }
