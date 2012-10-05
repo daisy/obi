@@ -98,6 +98,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.lstManualArrange, "lstManualArrange");
             this.lstManualArrange.FormattingEnabled = true;
             this.lstManualArrange.Name = "lstManualArrange";
+            this.lstManualArrange.SelectedIndexChanged += new System.EventHandler(this.lstManualArrange_SelectedIndexChanged);
             // 
             // m_btnMoveUp
             // 

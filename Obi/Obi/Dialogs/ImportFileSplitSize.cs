@@ -31,6 +31,9 @@ namespace Obi.Dialogs
             mMaxPhraseDurationMinutes = settings.MaxPhraseDurationMinutes;
             m_filePaths = new List<string>(filesPathArray);
             m_filePaths.Sort();
+            m_btnMoveUp.Enabled = false;
+            m_btnMoveDown.Enabled = false;
+            m_btnRemove.Enabled = false;
             mPhraseSizeTextBox.Text = mMaxPhraseDurationMinutes.ToString();
             foreach (string str in filesPathArray)
             {
@@ -39,6 +42,7 @@ namespace Obi.Dialogs
                     lstManualArrange.Items.Add(System.IO.Path.GetFileName(str));
                 }
             }
+
             mPhraseSizeTextBox.ReadOnly = !settings.SplitPhrasesOnImport;
             m_txtCharToReplaceWithSpace.Text = settings.Audio_ImportCharsToReplaceWithSpaces;
             m_txtPageIdentificationString.Text = settings.Audio_ImportPageIdentificationString;
@@ -98,6 +102,7 @@ namespace Obi.Dialogs
                     mCanClose = false;
                     }
                 }
+
         }
 
       
@@ -125,9 +130,10 @@ namespace Obi.Dialogs
             {
                 if (lstManualArrange.Items.Count != 0)
                 {
+                    
                     if (lstManualArrange.SelectedIndex != 0 && lstManualArrange.SelectedIndex != -1)
                     {
-                        
+                        int tempIndexStore = lstManualArrange.SelectedIndex;  
                         object item = lstManualArrange.SelectedItem;
                         
                         int index = lstManualArrange.SelectedIndex;
@@ -142,8 +148,13 @@ namespace Obi.Dialogs
 
                         lstManualArrange.Items.Insert(index - 1, item);
                         m_filePaths.Insert(index - 1, itemInList.ToString());
+                        if((tempIndexStore-1)!=-1)
+                        lstManualArrange.SelectedIndex = tempIndexStore-1;
+
                     }
+                 
                 }
+
             }
             catch (Exception exp)
             {
@@ -161,6 +172,7 @@ namespace Obi.Dialogs
                 {
                     if (lstManualArrange.SelectedIndex != lstManualArrange.Items.Count - 1 && lstManualArrange.SelectedIndex != -1)
                     {
+                        int tempIndexStore = lstManualArrange.SelectedIndex;  
                         object item = lstManualArrange.SelectedItem;
                       
                         object itemInList = m_filePaths[index];
@@ -171,6 +183,8 @@ namespace Obi.Dialogs
                         lstManualArrange.Items.Insert(index + 1, item);
 
                         m_filePaths.Insert(index + 1, itemInList.ToString());
+                     //   if ((tempIndexStore+1) != lstManualArrange.Items.Count - 1)
+                        lstManualArrange.SelectedIndex = tempIndexStore + 1;
                     }
                 }
             }
@@ -189,6 +203,7 @@ namespace Obi.Dialogs
             select_File.Multiselect = true;
             if (select_File.ShowDialog() == DialogResult.OK)
             {
+                mOKButton.Enabled = true;
                 string[] fileNames = select_File.FileNames;
                 foreach (string fileName in fileNames)
                 {
@@ -196,10 +211,9 @@ namespace Obi.Dialogs
                     if (nameOfFile != null) lstManualArrange.Items.Add(nameOfFile);
                     m_filePaths.Add(fileName);     
                 }
-                //string filename = System.IO.Path.GetFileName(select_File.ToString());
                
-                     
-
+                lstManualArrange.SelectedIndex = -1;
+                               
             }
             
         }
@@ -245,6 +259,9 @@ namespace Obi.Dialogs
                     lstManualArrange.Items.Add(System.IO.Path.GetFileName(str));
                 }
             }
+            m_btnMoveUp.Enabled = false;
+            m_btnMoveDown.Enabled = false;
+            m_btnRemove.Enabled = false;
         }
 
         private void mbtnDesendingOrder_Click(object sender, EventArgs e)
@@ -253,10 +270,7 @@ namespace Obi.Dialogs
             int totLength = m_filePaths.Count;
             List<string> tempDescending=new List<string>();
 
-            //for (int i = 0, j = totLength - 1; (i < totLength && j >= 0); i++, j--)
-            //{
-            //    tempDescending[i] = m_filePaths[j];
-            //}
+
 
             for (int i = totLength-1; i >= 0;i--)
             {
@@ -273,6 +287,9 @@ namespace Obi.Dialogs
                     lstManualArrange.Items.Add(System.IO.Path.GetFileName(str));
                 }
             }
+            m_btnMoveUp.Enabled = false;
+            m_btnMoveDown.Enabled = false;
+            m_btnRemove.Enabled = false;
 
         }
 
@@ -285,6 +302,7 @@ namespace Obi.Dialogs
                     if (lstManualArrange.SelectedIndex >= 0 )
                     {
                         object item = lstManualArrange.SelectedItem;
+                        int tempIndex = lstManualArrange.SelectedIndex;
                         lstManualArrange.Items.Remove(item);
                         for (int i = 0; i < m_filePaths.Count; i++)
                         {
@@ -294,14 +312,90 @@ namespace Obi.Dialogs
                                 break;
                             }
                         }
+                        if(lstManualArrange.Items.Count!=0)
+                        {
+                            if(tempIndex>lstManualArrange.Items.Count-1)
+                            {
+                                lstManualArrange.SelectedIndex = lstManualArrange.Items.Count - 1;
+                            }
+                            else
+                            {
+                                lstManualArrange.SelectedIndex = tempIndex;
+                            }
+                        }
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            if (lstManualArrange.Items.Count < 1)
+            {
+                mOKButton.Enabled = false;
+                m_btnRemove.Enabled = false;
+                m_btnMoveUp.Enabled = false;
+                m_btnMoveDown.Enabled = false;
+            }
+        }
 
+        private void lstManualArrange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstManualArrange.SelectedIndex==0)
+            {
+                m_btnRemove.Enabled = true;
+                if (lstManualArrange.Items.Count != 1)
+                {
+                    m_btnMoveUp.Enabled = false;
+                    m_btnMoveDown.Enabled = true;
+
+                }
+                else
+                {
+                    m_btnMoveUp.Enabled = false;
+                    m_btnMoveDown.Enabled = false;
+
+                }
+            }
+            else if(lstManualArrange.SelectedIndex==lstManualArrange.Items.Count-1)
+            {
+                m_btnRemove.Enabled = true;
+                if (lstManualArrange.Items.Count != 1)
+                {
+                    m_btnMoveUp.Enabled = true;
+                    m_btnMoveDown.Enabled = false;
+
+                }
+                else
+                {
+                    m_btnMoveUp.Enabled = false;
+                    m_btnMoveDown.Enabled = false;
+
+                }
+            }
+            else if(lstManualArrange.SelectedIndex>0)
+            {
+                m_btnRemove.Enabled = true;
+                if (lstManualArrange.Items.Count != 1)
+                {
+                    m_btnMoveUp.Enabled = true;
+                    m_btnMoveDown.Enabled = true;
+                   
+                }
+                else
+                {
+                    m_btnMoveUp.Enabled = false;
+                    m_btnMoveDown.Enabled = false;
+                   
+                }
+            }
+            else if(lstManualArrange.SelectedIndex<0)
+            {
+                m_btnMoveUp.Enabled = false;
+                m_btnMoveDown.Enabled = false;
+                m_btnRemove.Enabled = false;
+            }
         }
     }
 }
