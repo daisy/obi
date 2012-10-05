@@ -151,7 +151,7 @@
     <value>2</value>
   </data>
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
-    <value>Phrase size in minutes</value>
+    <value>Phrase size in minutes textbox</value>
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>162, 51</value>
@@ -387,6 +387,9 @@
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
     <value>GroupBox to Add and arrange files.</value>
   </data>
+  <data name="m_btnRemove.AccessibleName" xml:space="preserve">
+    <value>Remove Button to remove audio files</value>
+  </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 101</value>
   </data>
@@ -415,7 +418,7 @@
     <value>Arrange audio files group box</value>
   </data>
   <data name="mbtnDesendingOrder.AccessibleName" xml:space="preserve">
-    <value>Descending order arrangement  of audio files in List Box</value>
+    <value>Descending Order Button</value>
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
     <value>168, 34</value>
@@ -442,7 +445,7 @@
     <value>0</value>
   </data>
   <data name="mbtnAscendingOrder.AccessibleName" xml:space="preserve">
-    <value>Ascending order arrangement of audio files in List Box</value>
+    <value>Ascending Order Button</value>
   </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 34</value>
