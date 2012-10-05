@@ -55,6 +55,7 @@ namespace Obi.ProjectView
         private bool m_IsResizing = false;
         private int m_InitialOffsetTime = 0;
         private int m_InitialOffsetLocation = 0;
+        private List<double> listOfPhrases = new List<double>();
         
         public Waveform_Recording()
         {
@@ -115,6 +116,8 @@ namespace Obi.ProjectView
                     m_ProjectView.ObiForm.Resize += new EventHandler(ObiForm_Resize);
                     m_ProjectView.ObiForm.ResizeEnd += new EventHandler(ObiForm_ResizeEnd);
                     m_ProjectView.ObiForm.ResizeBegin += new EventHandler(ObiForm_ResizeBegin);
+                    m_ProjectView.ObiForm.Activated += new EventHandler(ObiForm_Activated);
+                    m_ProjectView.ObiForm.Deactivate += new EventHandler(ObiForm_Deactivate);
                     m_ContentView.Resize += new EventHandler(m_ContentView_Resize);
                     m_ColorSettings = m_ProjectView.ObiForm.Settings.ColorSettings;
                     m_ColorSettingsHC = m_ProjectView.ObiForm.Settings.ColorSettingsHC;
@@ -249,7 +252,7 @@ namespace Obi.ProjectView
                timer1.Interval = 90;
             else
                 timer1.Interval = 100;
-
+            
             if (m_Counter == 10)
             {
                 if(m_InitialOffsetTime < 0)
@@ -258,9 +261,7 @@ namespace Obi.ProjectView
                        Time.TIME_UNIT;
                     m_StaticRecordingLocation = m_X;
                 }
-                double recTime = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
-                        Time.TIME_UNIT;
-                Console.WriteLine("Synchronize " + ConvertPixelsToTime(m_X) + " : " + recTime);
+               
                 g.DrawLine(newPen, m_X, 0, m_X, Height);
                 if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds)
                 {          
@@ -440,7 +441,6 @@ int channel = 0;
         {
             if (m_IsResizing)
                 return;
-           
             //m_CounterWaveform = listOfCurrentMinChannel1.Count;
             RepaintWaveform();
             m_IsResizing = false;
@@ -458,11 +458,33 @@ int channel = 0;
             m_IsResizing = false;
         }
 
+
+        private void ObiForm_Deactivate(object sender, EventArgs e)
+        {
+            Bitmap bmp = new Bitmap(this.Width, this.Height);
+            for (int i = recordingTimeCursor; i > 0; i--)
+            {
+               /* if(bmp.GetPixel(i, this.Height) == this.BackColor)
+                {
+                    
+                    for (int j = listOfCurrentMinChannel1.Count; j >= 0 ; j++)
+                    {
+                        g.DrawLine(pen_ChannelMono, new Point(i, Height - (int)Math.Round(((listOfCurrentMinChannel1[j] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(i, Height - (int)Math.Round(((listOfCurrentMaxChannel1[j] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        
+                    }
+                }*/
+            }
+        }
+
+        private void ObiForm_Activated(object sender, EventArgs e)
+        {
+        }
+
         private void m_ContentView_Resize(object sender, EventArgs e)
         {
             if (m_IsResizing)
                 return;
-
 //            m_CounterWaveform = listOfCurrentMinChannel1.Count;
             RepaintWaveform();
             m_IsResizing = false;
@@ -540,7 +562,8 @@ int channel = 0;
                   /*  if (this.Location.X < 0 && 
                         (this.Location.X * -1) < listOfXLocation[i])
                     {
-                        Console.WriteLine("Breaking refresh loop at:" + i) ;
+                        
+                   * .WriteLine("Breaking refresh loop at:" + i) ;
                         break;
                     }*/
                 }
@@ -684,20 +707,15 @@ int channel = 0;
             m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
 
             if (!m_MainDictionary.ContainsKey(xLocation))
-            {
-                m_MainDictionary.Add(xLocation, text);
-                Console.WriteLine("CREATE PAGE " + xLocation + "  " + text);
-            }
+                m_MainDictionary.Add(xLocation, text);            
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            if (m_IsToBeRepainted)
-            {
-               // ResetLists();
-                RepaintWaveform();                
-            }
+            if (m_IsToBeRepainted)            
+               RepaintWaveform(); 
+                           
             m_IsToBeRepainted = true;
             m_IsMaximized = false;
             
@@ -705,17 +723,19 @@ int channel = 0;
 
         private void Waveform_Recording_MouseClick(object sender, MouseEventArgs e)          
         {
-            double time = 0;
+          /*  double time = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
             time = ConvertPixelsToTime(e.X);
-            time = time - m_InitialStaticTime;
-            g.DrawLine(pen, e.X, 0, e.X, Height);
-            g.DrawString("Phrase", myFont, Brushes.Black, e.X, 0);
+          //  time = time - m_InitialStaticTime;
+            Console.WriteLine("TIME LINE " + e.X + " " + m_StaticRecordingLocation + " " + m_X);
+        if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
+            {}
+            else
+               m_RecordingSession.UpdatePhraseTimeList(time);*/
          /*   if (m_Pass > 0)
                 pixel = ConvertTimeToPixels(timeTemp) + initialPos;
             else
-                pixel = ConvertTimeToPixels(time) + initialPos;*/
-           
+                pixel = ConvertTimeToPixels(time) + initialPos;*/           
         }
 
         private void m_RecordingSession_FinishingPhrase(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
@@ -724,19 +744,7 @@ int channel = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
 
             pixel = CalculatePixels(e.TimeFromBeginning);
-           /*    if (m_Pass > 0)
-                time = m_InitialStaticTime + ConvertPixelsToTime(e.X - initialPos);
-            else
-                time = ConvertPixelsToTime(e.X - initialPos);
-          */  
-          //  timeTemp = time - m_InitialStaticTime;
-
-         /*   if (m_Pass > 0)
-                pixel = ConvertTimeToPixels(phraseMarkTime - m_InitialStaticTime) + initialPos;
-            else
-                pixel = ConvertTimeToPixels(phraseMarkTime) + initialPos;
-            */
-         
+           
             g.DrawLine(pen, pixel, 0, pixel, Height);
             g.DrawString("Phrase", myFont, Brushes.Black, pixel, 0);
             if (!m_MainDictionary.ContainsKey(m_X)) 
@@ -765,7 +773,6 @@ int channel = 0;
         private int CalculatePixels(double time)
         {
             double phraseMarkTime = time;
-            Console.WriteLine("Time from beginning " + (phraseMarkTime / AudioLibPCMFormat.TIME_UNIT));
             int calculatedPixel = 0;
             double currentMarkTime = 0;
             int currentm_X;
@@ -775,7 +782,8 @@ int channel = 0;
                         Time.TIME_UNIT;
             currentm_X = m_X;
             pixelGap = ConvertTimeToPixels(phraseMarkTime - currentMarkTime);
-            
+            if (pixelGap < 0)
+                pixelGap = pixelGap * -1;
             if (phraseMarkTime < currentMarkTime)
                 calculatedPixel = currentm_X - pixelGap;
             else
@@ -783,6 +791,20 @@ int channel = 0;
             return calculatedPixel;
         }
 
+        private void Waveform_Recording_MouseDown(object sender, MouseEventArgs e)
+        {
+            double time = 0;
+            Pen pen = new Pen(SystemColors.ControlDarkDark);
+            time = ConvertPixelsToTime(e.X);
+
+            if (e.Button == MouseButtons.Left)
+            { 
+                if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
+                { }
+                else
+                    m_RecordingSession.UpdatePhraseTimeList(time);
+            }
+        }
     }
 }
 
