@@ -2156,4 +2156,7 @@ Error text: {1}</value>
   <data name="Recording_RecordInNextExistingEmptyPage" xml:space="preserve">
     <value>Record in next existing empty page</value>
   </data>
+  <data name="ProjectView_ClearAnchor" xml:space="preserve">
+    <value>Do you want to clear the anchor node referring to the skippable notes?</value>
+  </data>
 </root>

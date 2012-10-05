@@ -187,6 +187,10 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
+            for (int i = 0; i < mPhraseMarks.Count; i++)
+            {
+                Console.WriteLine("PHRASE MARK  " + mPhraseMarks[i]);
+            }
             bool wasRecording = mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording;
             ApplyPhraseDetectionOnTheFly(null); //@onTheFly: before stopping last chunk of memory stream is passed into phrase detection
             if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring
@@ -254,6 +258,44 @@ namespace Obi
         private void DetectPhrasesOnTheFly(object sender, AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
         {
             ApplyPhraseDetectionOnTheFly(e);
+        }
+
+        public void UpdatePhraseTimeList(double time)
+        {  
+            if (mPhraseMarks.Count == 0)
+                mPhraseMarks.Add(time);
+            else if (mPhraseMarks.Count == 1)
+            {
+                if (time < mPhraseMarks[0])
+                    mPhraseMarks.Insert(0, time);
+                else
+                    mPhraseMarks.Add(time);
+            }
+            else if (time < mPhraseMarks[0])
+                mPhraseMarks.Insert(0, time);
+            else if (time > mPhraseMarks[mPhraseMarks.Count - 1])
+                mPhraseMarks.Add(time);
+            else
+            {                
+                for (int i = 0; i < mPhraseMarks.Count - 1; i++)
+                {
+                    if (time > mPhraseMarks[i] && time < mPhraseMarks[i + 1])
+                    {
+                        mPhraseMarks.Insert(i + 1, time);
+                        break;
+                    }                    
+                }
+            }
+
+            int last = mPhraseMarks.Count - 1;
+            double length = 0;
+            if(last > 0)
+               length = mPhraseMarks[last] - (last == 0 ? 0.0 : mPhraseMarks[last - 1]);
+            length = length - (length % 100);
+            PhraseEventArgs eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length, time);
+            if (StartingPhrase != null)
+                StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
+            if (FinishingPhrase != null) FinishingPhrase(this, eArg);
         }
 
         private void ApplyPhraseDetectionOnTheFly(AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
