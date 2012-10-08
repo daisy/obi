@@ -70,7 +70,7 @@ namespace Obi.Dialogs
                     if (index != -1)
                         m_lb_listOfAllAnchorNodes.SetSelected(index, true);
                 }
-                groupBox1.Text = "List of anchor nodes";
+                groupBox1.Text = Localizer.Message("List_of_anchor_nodes");
                 m_txtBox_SectionName.Visible = false;
                 m_btn_ShowAll.Text = Localizer.Message("Associate_show_selected");
                 m_IsShowAll = true;
@@ -85,7 +85,7 @@ namespace Obi.Dialogs
                 else
                     m_txtBox_SectionName.Text = GetEmptyNodeString(m_SelectedNode);
                 m_lb_listOfAllAnchorNodes.Visible = false;
-                groupBox1.Text = "Selected node";
+                groupBox1.Text = Localizer.Message("Selected_node");
                 m_btn_ShowAll.Text = Localizer.Message("Associate_show_all");
                 m_IsShowAll = false;
                 AddToListBox();

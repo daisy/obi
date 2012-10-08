@@ -1828,6 +1828,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide details.
+        /// </summary>
+        internal static string Hide_details {
+            get {
+                return ResourceManager.GetString("Hide_details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to hour.
         /// </summary>
         internal static string hour {
@@ -2645,6 +2654,15 @@ namespace Obi {
         internal static string LimitedDiskSpaceWarning {
             get {
                 return ResourceManager.GetString("LimitedDiskSpaceWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of anchor nodes.
+        /// </summary>
+        internal static string List_of_anchor_nodes {
+            get {
+                return ResourceManager.GetString("List_of_anchor_nodes", resourceCulture);
             }
         }
         
@@ -4942,6 +4960,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected node.
+        /// </summary>
+        internal static string Selected_node {
+            get {
+                return ResourceManager.GetString("Selected_node", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to :Recording Phrase.
         /// </summary>
         internal static string Selected_RecordingPhrase {
@@ -4992,6 +5019,15 @@ namespace Obi {
         internal static string set_page_number_ {
             get {
                 return ResourceManager.GetString("set_page_number_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show details.
+        /// </summary>
+        internal static string Show_details {
+            get {
+                return ResourceManager.GetString("Show_details", resourceCulture);
             }
         }
         

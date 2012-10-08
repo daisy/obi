@@ -34,11 +34,11 @@ namespace Obi.Dialogs
 
         private void m_btnDetails_Click(object sender, EventArgs e)
         {
-            if (m_btnDetails.Text == "Show details")
+            if (m_btnDetails.Text ==Localizer.Message("Show_details"))
             {
                 this.MaximumSize = new Size(453, 304);
                 this.Height = 304;
-                m_btnDetails.Text = "Hide details";
+                m_btnDetails.Text = Localizer.Message("Hide_details");
                 m_lbDetailsOfErrors.Visible = true;
                 m_grpBox_lb_ErrorsList.Visible = true;
             }
@@ -46,7 +46,7 @@ namespace Obi.Dialogs
             {
                 this.MaximumSize = new Size(453, 150);
                 this.Height = 150;
-                m_btnDetails.Text = "Show details";
+                m_btnDetails.Text = Localizer.Message("Show_details");
                 m_lbDetailsOfErrors.Visible = false;
                 m_grpBox_lb_ErrorsList.Visible = false;
             }
