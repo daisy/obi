@@ -2012,6 +2012,12 @@ Error text: {1}</value>
   <data name="Associate_show_selected" xml:space="preserve">
     <value>Show se&amp;lected</value>
   </data>
+  <data name="List_of_anchor_nodes" xml:space="preserve">
+    <value>List of anchor nodes</value>
+  </data>
+  <data name="Selected_node" xml:space="preserve">
+    <value>Selected node</value>
+  </data>
   <data name="Node_between_chunk" xml:space="preserve">
     <value>Selected special phrase is between the chunk. Do you want to want to delete it?</value>
   </data>
@@ -2044,6 +2050,12 @@ Error text: {1}</value>
   </data>
   <data name="Report_for_export" xml:space="preserve">
     <value>Report for export</value>
+  </data>
+  <data name="Show_details" xml:space="preserve">
+    <value>Show details</value>
+  </data>
+  <data name="Hide_details" xml:space="preserve">
+    <value>Hide details</value>
   </data>
   <data name="MetadataView_InvalidMetadata" xml:space="preserve">
     <value>Invalid metadata</value>
