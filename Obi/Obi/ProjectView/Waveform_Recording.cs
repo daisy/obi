@@ -462,9 +462,11 @@ int channel = 0;
         private void ObiForm_Deactivate(object sender, EventArgs e)
         {
             Bitmap bmp = new Bitmap(this.Width, this.Height);
+            this.DrawToBitmap(bmp, this.Bounds);
             for (int i = recordingTimeCursor; i > 0; i--)
             {
-               /* if(bmp.GetPixel(i, this.Height) == this.BackColor)
+                Console.WriteLine("BITMAP " + bmp.GetPixel(i, this.Height) + "  " + this.BackColor);
+                if(bmp.GetPixel(i, this.Height) == this.BackColor)
                 {
                     
                     for (int j = listOfCurrentMinChannel1.Count; j >= 0 ; j++)
@@ -473,7 +475,7 @@ int channel = 0;
                             new Point(i, Height - (int)Math.Round(((listOfCurrentMaxChannel1[j] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                         
                     }
-                }*/
+                }
             }
         }
 
@@ -754,7 +756,8 @@ int channel = 0;
         private void m_RecordingSession_FinishingPage(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
             string text = "Page";
-            if (m_ProjectView.TransportBar.RecordingPhrase != null) text = text + " " +  m_ProjectView.TransportBar.RecordingPhrase.PageNumber.ToString();
+            PhraseNode phrase = (PhraseNode)m_ProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode>().PhraseChild(e.PhraseIndex + m_ProjectView.TransportBar.RecordingInitPhraseIndex + 1);
+            if (m_ProjectView.TransportBar.RecordingPhrase != null) text = text + " " +  phrase.PageNumber.ToString();
 
             int pixel = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
@@ -795,14 +798,23 @@ int channel = 0;
         {
             double time = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
+            bool IsPage = false;
             time = ConvertPixelsToTime(e.X);
 
             if (e.Button == MouseButtons.Left)
-            { 
+            {
                 if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
                 { }
                 else
-                    m_RecordingSession.UpdatePhraseTimeList(time);
+                    m_RecordingSession.UpdatePhraseTimeList(time, IsPage);
+            }
+            else
+            {
+                IsPage = true;
+                if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
+                { }
+                else
+                    m_RecordingSession.UpdatePhraseTimeList(time, IsPage);
             }
         }
     }
