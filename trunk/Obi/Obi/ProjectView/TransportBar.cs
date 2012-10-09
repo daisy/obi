@@ -570,6 +570,8 @@ namespace Obi.ProjectView
                 /// </summary>
         public EmptyNode RecordingPhrase { get { return mRecordingPhrase; } }
 
+        public int RecordingInitPhraseIndex { get { return mRecordingInitPhraseIndex; } }
+
         /// <summary>
         /// Section in which recording is going on
         /// </summary>
@@ -1898,7 +1900,7 @@ namespace Obi.ProjectView
         private void RecordingPage(Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
             PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex + 1);
-            if (phrase.Role_ != EmptyNode.Role.Page )  phrase.PageNumber = mView.Presentation.PageNumberFollowing(phrase);
+            if (phrase.Role_ != EmptyNode.Role.Page )  phrase.PageNumber = mView.Presentation.PageNumberFollowing(phrase);           
         }
 
         // Get a node to record in. If we are resuming, this is the node to resume from;

@@ -30,6 +30,7 @@ namespace Obi
         private List<ManagedAudioMedia> mAudioList;             // list of assets created
         private Timer mRecordingUpdateTimer;                    // timer to send regular "recording" messages
         private Settings m_Settings;
+        private int m_Index = 0;
 
         public event StartingPhraseHandler StartingPhrase;      // start recording a new phrase
         public event ContinuingPhraseHandler ContinuingPhrase;  // a new phrase is being recorded (time update)
@@ -84,6 +85,7 @@ namespace Obi
             mRecorder.PcmDataBufferAvailable += new AudioLib.AudioRecorder.PcmDataBufferAvailableHandler(DetectPhrasesOnTheFly);
         }
 
+        public int Index { get { return m_Index; } }
 
         /// <summary>
         /// The audio recorder used by the recording session.
@@ -260,30 +262,49 @@ namespace Obi
             ApplyPhraseDetectionOnTheFly(e);
         }
 
-        public void UpdatePhraseTimeList(double time)
-        {  
+        public void UpdatePhraseTimeList(double time, bool isPage)
+        {
+            
+            if (mPhraseMarks == null)
+                return;
             if (mPhraseMarks.Count == 0)
+            {
                 mPhraseMarks.Add(time);
+                m_Index = 0;
+            }
             else if (mPhraseMarks.Count == 1)
             {
                 if (time < mPhraseMarks[0])
+                {
                     mPhraseMarks.Insert(0, time);
+                    m_Index = 0;
+                }
                 else
+                {
                     mPhraseMarks.Add(time);
+                    m_Index = 1;
+                }
             }
             else if (time < mPhraseMarks[0])
+            {
                 mPhraseMarks.Insert(0, time);
+                m_Index = 0;
+            }
             else if (time > mPhraseMarks[mPhraseMarks.Count - 1])
+            {
                 mPhraseMarks.Add(time);
+                m_Index = mPhraseMarks.Count - 1;
+            }
             else
-            {                
+            {
                 for (int i = 0; i < mPhraseMarks.Count - 1; i++)
                 {
                     if (time > mPhraseMarks[i] && time < mPhraseMarks[i + 1])
                     {
                         mPhraseMarks.Insert(i + 1, time);
+                        m_Index = i + 1;
                         break;
-                    }                    
+                    }
                 }
             }
 
@@ -293,9 +314,20 @@ namespace Obi
                length = mPhraseMarks[last] - (last == 0 ? 0.0 : mPhraseMarks[last - 1]);
             length = length - (length % 100);
             PhraseEventArgs eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length, time);
+
+            
+            if (FinishingPhrase != null) FinishingPhrase(this, eArg);
             if (StartingPhrase != null)
                 StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
-            if (FinishingPhrase != null) FinishingPhrase(this, eArg);
+
+            if (!isPage)
+            {
+            }
+            else
+            {
+                eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + m_Index, length, time);
+               if (FinishingPage != null) FinishingPage(this, eArg);
+            }           
         }
 
         private void ApplyPhraseDetectionOnTheFly(AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
