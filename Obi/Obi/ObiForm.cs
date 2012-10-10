@@ -2489,15 +2489,26 @@ namespace Obi
                         System.Drawing.Size newSize = this.Size;
                         newSize.Width -= 2 * SystemInformation.HorizontalResizeBorderThickness;
                         newSize.Height -= 2 * SystemInformation.VerticalResizeBorderThickness;
-                        this.WindowState = FormWindowState.Normal;
-                        this.Location = newLoc;
+                       // this.WindowState = FormWindowState.Normal;
+                       // this.Location = newLoc; //Commented by rohit to stop resizing
                         m_ShowingPeakMeter = true;
-                        this.Size = newSize;
+                            // this.Size = newSize; //Commented by rohit to stop resizing
                         //m_ShowingPeakMeter = false; this is made false in resize event
                         }
-                    this.Width -= mPeakMeter.Width;
+                    //  this.Width -= mPeakMeter.Width; //Commented by rohit to stop resizing
+
+                    if (this.WindowState == FormWindowState.Normal)
+                    {
+                        //this.Width -= mPeakMeter.Width; //Commented by rohit
+                        mPeakMeter.Left = this.Right;
+                    }
+                    else
+                    {
+                        mPeakMeter.Left = this.Right - mPeakMeter.Width;
+                    }
+
                     mPeakMeter.Top = this.Top;
-                    mPeakMeter.Left = this.Right;
+                    // mPeakMeter.Left = this.Right;  //Commented by rohit to stop resizing
                     mPeakMeter.Height = this.Height;
                     mPeakMeter.StartPosition = FormStartPosition.Manual;
                     }
@@ -2506,7 +2517,7 @@ namespace Obi
                 }
             else
                 {
-                this.Width = this.Width + mPeakMeter.Width;
+               // this.Width = this.Width + mPeakMeter.Width; //Commented by rohit to stop resizing
                 mPeakMeter.Close ();
                 mPeakMeter = null;
                 mShowPeakMeterMenuItem.Checked = false;
@@ -3642,6 +3653,30 @@ namespace Obi
             if (mSession != null) return mSession.CheckDiskSpace();
 
             return long.MaxValue;
+        }
+
+        private void ObiForm_Resize(object sender, EventArgs e)
+        {
+            if (mPeakMeter != null && mRecordingToolBarForm == null)
+            {
+                if (this.WindowState == FormWindowState.Normal)
+                {
+                    //  this.Width -= mPeakMeter.Width; //Commented by rohit
+                    mPeakMeter.Left = this.Right;
+                }
+                else
+                {
+                    mPeakMeter.Left = this.Right - mPeakMeter.Width;
+                }
+
+
+
+               // mPeakMeter.Top = this.Top;
+               
+                mPeakMeter.StartPosition = FormStartPosition.Manual;
+               
+
+            }
         }
     }
     }
