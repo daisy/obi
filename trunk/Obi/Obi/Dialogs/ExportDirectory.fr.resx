@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblDirectoryPath.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>8</value>
   </data>
   <data name="mPathTextBox.AccessibleName" xml:space="preserve">
     <value>Dossier d'exportation:</value>
@@ -157,7 +157,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 17</value>
+    <value>125, 17</value>
   </data>
   <data name="mPathTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -178,7 +178,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPathTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>7</value>
   </data>
   <data name="mSelectButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -187,7 +187,7 @@
     <value>Flat</value>
   </data>
   <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>471, 13</value>
+    <value>461, 13</value>
   </data>
   <data name="mSelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -211,7 +211,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mSelectButton.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
   <data name="mOKButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -220,7 +220,7 @@
     <value>Flat</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 176</value>
+    <value>125, 232</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -229,7 +229,7 @@
     <value>100, 28</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -244,7 +244,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -253,7 +253,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 176</value>
+    <value>276, 232</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -262,7 +262,7 @@
     <value>100, 28</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Annuler</value>
@@ -277,7 +277,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -286,7 +286,7 @@
     <value>12, 54</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 16</value>
+    <value>218, 16</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -304,13 +304,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.AccessibleName" xml:space="preserve">
     <value>Créer un fichier audio par section jusqu'à:</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 52</value>
+    <value>270, 52</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
@@ -328,19 +328,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="m_checkBoxMP3Encoder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_checkBoxMP3Encoder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 90</value>
+    <value>9,23</value>
   </data>
   <data name="m_checkBoxMP3Encoder.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 20</value>
   </data>
   <data name="m_checkBoxMP3Encoder.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_checkBoxMP3Encoder.Text" xml:space="preserve">
     <value>Encoder en MP3</value>
@@ -355,7 +355,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_checkBoxMP3Encoder.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="m_Bitrate.AccessibleDescription" xml:space="preserve">
     <value>Bitrate</value>
@@ -364,7 +364,7 @@
     <value>True</value>
   </data>
   <data name="m_Bitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 147</value>
+    <value>165,25</value>
   </data>
   <data name="m_Bitrate.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 16</value>
@@ -385,7 +385,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_Bitrate.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>0</value>
   </data>
   <data name="m_ComboBoxBitrate.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -394,22 +394,34 @@
     <value>32</value>
   </data>
   <data name="m_ComboBoxBitrate.Items1" xml:space="preserve">
-    <value>48</value>
+    <value>40</value>
   </data>
   <data name="m_ComboBoxBitrate.Items2" xml:space="preserve">
-    <value>64</value>
+    <value>48</value>
   </data>
   <data name="m_ComboBoxBitrate.Items3" xml:space="preserve">
+    <value>56</value>
+  </data>
+  <data name="m_ComboBoxBitrate.Items4" xml:space="preserve">
+    <value>64</value>
+  </data>
+  <data name="m_ComboBoxBitrate.Items5" xml:space="preserve">
     <value>128</value>
   </data>
-  <data name="m_ComboBoxBitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 142</value>
+  <data name="m_ComboBoxBitrate.Items6" xml:space="preserve">
+    <value>196</value>
+  </data>
+  <data name="m_ComboBoxBitrate.Items7" xml:space="preserve">
+    <value>256</value>
+  </data>
+    <data name="m_ComboBoxBitrate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>223, 19</value>
   </data>
   <data name="m_ComboBoxBitrate.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
   </data>
   <data name="m_ComboBoxBitrate.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;m_ComboBoxBitrate.Name" xml:space="preserve">
     <value>m_ComboBoxBitrate</value>
@@ -427,13 +439,13 @@
     <value>True</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 116</value>
+    <value>6, 21</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Size" type="System.Drawing.Size, System.Drawing">
     <value>269, 20</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Text" xml:space="preserve">
     <value>Ajouter le nom de la section au nom de fichier audio </value>
@@ -457,7 +469,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>574, 229</value>
+    <value>574, 284</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
