@@ -217,7 +217,7 @@
     <value>5</value>
   </data>
   <data name="mUpdateButton.Text" xml:space="preserve">
-    <value>&amp;Mise � jour</value>
+    <value>&amp;Mise &#224; jour</value>
   </data>
   <data name="&gt;&gt;mUpdateButton.Name" xml:space="preserve">
     <value>mUpdateButton</value>
