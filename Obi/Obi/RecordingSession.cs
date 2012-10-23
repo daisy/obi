@@ -189,10 +189,6 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
-            for (int i = 0; i < mPhraseMarks.Count; i++)
-            {
-                Console.WriteLine("PHRASE MARK  " + mPhraseMarks[i]);
-            }
             bool wasRecording = mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording;
             ApplyPhraseDetectionOnTheFly(null); //@onTheFly: before stopping last chunk of memory stream is passed into phrase detection
             if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring

@@ -25,6 +25,7 @@ namespace Obi.ProjectView
         private Pen pen_HighContrastChannel1;
         private Pen pen_HighContrastChannel2;
         private Pen pen_WaveformBaseLine;
+        private Pen pen_HighlightedHighContrastMono;
         private Font myFont = new Font("Microsoft Sans Serif", 7);
         private EmptyNode m_ExistingPhrase = null;
         private int m_Counter = 0;
@@ -56,7 +57,17 @@ namespace Obi.ProjectView
         private int m_InitialOffsetTime = 0;
         private int m_InitialOffsetLocation = 0;
         private List<double> listOfPhrases = new List<double>();
-        
+        private double m_Time = 0;
+        private int m_MouseLocX = 0;
+        private int m_MouseButtonDownLoc = 0;
+        private int m_MouseButtonUpLoc = 0;
+        private bool m_IsPage = false;
+   //     private int m_TempMouseBtnDownLoc = 0;
+        private bool m_IsMouseBtnUp = false;
+        private int m_TempMouseMoveLoc = 0;
+        private int m_StartSelection = 0;
+        private bool IsSelectionActive = false;
+               
         public Waveform_Recording()
         {
             InitializeComponent();
@@ -70,6 +81,8 @@ namespace Obi.ProjectView
             Size = new Size(10000, Height);
             m_StaticRecordingLocation = -1;
             m_InitialOffsetTime = -1;
+            m_MouseButtonUpLoc = 0;
+            m_MouseButtonDownLoc = 0;
         }
 
         private RecordingSession m_RecordingSession;
@@ -98,12 +111,6 @@ namespace Obi.ProjectView
             }
         }
 
-        public bool invertColor
-        {
-            get { return m_IsColorHighContrast; }
-            set { m_IsColorHighContrast = value; }
-        }
-
         public ProjectView projectView
         {
             get { return m_ProjectView; }
@@ -122,18 +129,11 @@ namespace Obi.ProjectView
                     m_ColorSettings = m_ProjectView.ObiForm.Settings.ColorSettings;
                     m_ColorSettingsHC = m_ProjectView.ObiForm.Settings.ColorSettingsHC;
                     this.BackColor = m_ColorSettings.WaveformBackColor;
-                    pen_ChannelMono = m_ColorSettings.WaveformMonoPen;
-                    pen_Channel1 = m_ColorSettings.WaveformChannel1Pen;
-                    pen_Channel2 = m_ColorSettings.WaveformChannel2Pen;
-                    pen_WaveformBaseLine = m_ColorSettings.WaveformBaseLinePen;
-                    //m_ProjectView.TransportBar.PhraseCreatedEvent += new EventHandler(Phrase_Created_Event);
                     if (m_IsColorHighContrast)
-                    {
-                        pen_HighContrastMono = m_ColorSettingsHC.WaveformMonoPen;
-                        pen_HighContrastChannel1 = m_ColorSettingsHC.WaveformChannel1Pen;
-                        pen_HighContrastChannel2 = m_ColorSettingsHC.WaveformChannel2Pen;
-                    }
-                }
+                        UpdateColors(m_ColorSettingsHC);
+                    else
+                        UpdateColors(m_ColorSettings);
+                } 
             }
         }
 
@@ -162,7 +162,37 @@ namespace Obi.ProjectView
         {
             if (m_ContentView != null)
                 this.Size = new Size(m_ContentView.Width, Convert.ToInt32(104 * m_ZoomFactor));
-        }        
+        }
+
+        public bool invertColor
+        {
+            get { return m_IsColorHighContrast; }
+            set 
+            {
+                m_IsColorHighContrast = value;
+                if(m_ProjectView == null)
+                    return;
+                if( m_ProjectView.ObiForm == null)
+                return;
+            if (m_ProjectView.ObiForm.Settings == null)
+                return;
+                if (m_IsColorHighContrast)
+                    UpdateColors(m_ColorSettingsHC);
+                else
+                    UpdateColors(m_ColorSettings);
+            }
+        }
+
+
+        public void UpdateColors(ColorSettings colorSettings)
+        {
+            m_ProjectView.ObiForm.ColorSettings.CreateBrushesAndPens();
+             pen_ChannelMono = colorSettings.WaveformMonoPen;
+             pen_Channel1 = colorSettings.WaveformChannel1Pen;
+             pen_Channel2 = colorSettings.WaveformChannel2Pen;
+             pen_WaveformBaseLine = colorSettings.WaveformBaseLinePen;
+             pen_HighlightedHighContrastMono = m_ColorSettingsHC.WaveformHighlightedPen;              
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -204,8 +234,24 @@ namespace Obi.ProjectView
                     
             if (m_VUMeter == null || m_ContentView == null) return;
             g = this.CreateGraphics();
-            
+
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
+            {
+                   g.DrawLine(pen_ChannelMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+               
+            }
+            if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
+            {
+               
+                    g.DrawLine(pen_Channel1, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                       new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    g.DrawLine(pen_Channel2, new Point(m_X, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                       new Point(m_X, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                
+            }
+
+           /* if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
             {
                 if (!m_IsColorHighContrast)
                     g.DrawLine(pen_ChannelMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
@@ -234,7 +280,7 @@ namespace Obi.ProjectView
                    
                 }
             }
-            
+            */
             g.DrawLine(pen_WaveformBaseLine, 0, Height / 2, m_ContentView.Width, Height / 2);            
             
             g.DrawLine(pen_WaveformBaseLine, 0, Height / 2, Width, Height / 2);
@@ -454,6 +500,7 @@ int channel = 0;
         private void ObiForm_ResizeEnd(object sender, EventArgs e)
         {
   //          m_CounterWaveform = listOfCurrentMinChannel1.Count;
+            
             RepaintWaveform();
             m_IsResizing = false;
         }
@@ -462,11 +509,13 @@ int channel = 0;
         private void ObiForm_Deactivate(object sender, EventArgs e)
         {
             Bitmap bmp = new Bitmap(this.Width, this.Height);
-            this.DrawToBitmap(bmp, this.Bounds);
+            Rectangle newRect = new Rectangle(0, 0, this.Width, this.Height);
+
+            this.DrawToBitmap(bmp, newRect);
+
             for (int i = recordingTimeCursor; i > 0; i--)
             {
-                Console.WriteLine("BITMAP " + bmp.GetPixel(i, this.Height) + "  " + this.BackColor);
-                if(bmp.GetPixel(i, this.Height) == this.BackColor)
+                if(bmp.GetPixel(i, this.Height / 2) == this.BackColor)
                 {
                     
                     for (int j = listOfCurrentMinChannel1.Count; j >= 0 ; j++)
@@ -488,6 +537,7 @@ int channel = 0;
             if (m_IsResizing)
                 return;
 //            m_CounterWaveform = listOfCurrentMinChannel1.Count;
+            
             RepaintWaveform();
             m_IsResizing = false;
         }
@@ -512,7 +562,7 @@ int channel = 0;
             int counterMax = listOfCurrentMaxChannel2.Count;
             int countToRepaint = 0;
             counterWaveform = listOfCurrentMinChannel1.Count;
-
+            
             if (m_ContentView != null)
                 x = recordingTimeCursor;
             if (counterMin == 0)
@@ -527,38 +577,32 @@ int channel = 0;
                 else
                     countToRepaint = xSize;
                 this.Location = new Point((m_X - recordingTimeCursor) * -1, Location.Y);
+                
                 for (int i = countToRepaint - 1; i >= 0; i--)
                 {
-                    if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
+                    if (tempm_X == m_MouseButtonUpLoc)
                     {
-                        if (!m_IsColorHighContrast)
-                        {
-                            g.DrawLine(pen_ChannelMono, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                        }
+                        if (m_MouseButtonUpLoc < m_X)
+                            g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
                         else
-                        {
-                            g.DrawLine(pen_HighContrastMono, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                        }
+                            g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
+                        pen_ChannelMono = new Pen(SystemColors.HighlightText);                      
+                    }
+                    if(tempm_X == m_MouseButtonDownLoc)
+                        pen_ChannelMono = m_ColorSettings.WaveformMonoPen;
+                    
+                    if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
+                    {                      
+                            g.DrawLine(pen_ChannelMono, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));                       
                     }
 
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
                     {
-                        if (!m_IsColorHighContrast)
-                        {
                             g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
                             new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                             g.DrawLine(pen_Channel2, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                        }
-                        else
-                        {
-                            g.DrawLine(pen_HighContrastChannel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                            g.DrawLine(pen_HighContrastChannel2, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                           new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                        }
+                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));                        
                     }                        
                     tempm_X--;
                   /*  if (this.Location.X < 0 && 
@@ -715,8 +759,8 @@ int channel = 0;
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            if (m_IsToBeRepainted)            
-               RepaintWaveform(); 
+            if (m_IsToBeRepainted)
+                RepaintWaveform();
                            
             m_IsToBeRepainted = true;
             m_IsMaximized = false;
@@ -796,26 +840,324 @@ int channel = 0;
 
         private void Waveform_Recording_MouseDown(object sender, MouseEventArgs e)
         {
-            double time = 0;
-            Pen pen = new Pen(SystemColors.ControlDarkDark);
-            bool IsPage = false;
-            time = ConvertPixelsToTime(e.X);
-
-            if (e.Button == MouseButtons.Left)
+            bool IsDeselected = false;
+            if (m_MouseButtonDownLoc != m_MouseButtonUpLoc)
             {
-                if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
-                { }
+                IsDeselected = true;
+                SelectPortionOfWaveform(IsDeselected);
+                m_MouseButtonDownLoc = 0;
+                m_MouseButtonUpLoc = 0;
+            }
+            IsSelectionActive = true;
+            m_MouseButtonDownLoc = e.X;
+            m_StartSelection = m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation);
+            
+            m_TempMouseMoveLoc = m_MouseButtonDownLoc;
+            m_IsPage = false;
+            m_Time = ConvertPixelsToTime(e.X);
+            IsDeselected = false;
+            m_IsMouseBtnUp = false;
+         
+        }
+
+        private void Waveform_Recording_MouseUp(object sender, MouseEventArgs e)
+        {
+            m_MouseButtonUpLoc = e.X;
+            int swap = 0;
+            IsSelectionActive = false;
+            if (m_MouseButtonDownLoc == e.X)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
+                    { }
+                    else
+                        m_RecordingSession.UpdatePhraseTimeList(m_Time, m_IsPage);
+                }
+            }
+
+            else if ((m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc > m_X) || (m_MouseButtonUpLoc < (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation)))
+            {
+                m_MouseButtonDownLoc = 0;
+                m_MouseButtonUpLoc = 0;
+            }
+            else if (m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc < m_X && m_MouseButtonDownLoc > (recordingTimeCursor + m_OffsetLocation))
+            {
+                m_MouseButtonUpLoc = m_X;
+            }
+            else if (m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonUpLoc > (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonUpLoc < m_X)
+                m_MouseButtonDownLoc = recordingTimeCursor + m_OffsetLocation;
+            else if (m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation))
+            {
+                m_MouseButtonDownLoc = recordingTimeCursor + m_OffsetLocation;
+                m_MouseButtonUpLoc = m_X;
+            }
+           /*     if (e.X < m_X)
+                    g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, e.X - m_MouseButtonDownLoc, this.Height);
                 else
-                    m_RecordingSession.UpdatePhraseTimeList(time, IsPage);
+                    g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_X - m_MouseButtonDownLoc, this.Height);
+                SelectPortionOfWaveform();*/
+            
+             m_IsMouseBtnUp = true;
+
+             if (m_MouseButtonDownLoc > m_MouseButtonUpLoc)
+             {
+                 swap = m_MouseButtonUpLoc;
+                 m_MouseButtonUpLoc = m_MouseButtonDownLoc;
+                 m_MouseButtonDownLoc = swap;
+             }
+        }
+
+        public void SelectPortionOfWaveform(bool IsDeselected)
+        {
+            Pen pen_Waveform = null;
+            Pen newPen = null;
+            Pen blackPen = new Pen(SystemColors.ControlDarkDark);
+
+            if (!IsValid(m_MouseButtonDownLoc) || !IsValid(m_MouseButtonUpLoc))
+                return;
+            if (IsDeselected)
+            {
+                if(m_MouseButtonUpLoc < m_MouseButtonDownLoc)
+                    g.FillRectangle(SystemBrushes.HighlightText, m_MouseButtonUpLoc, 0, m_MouseButtonDownLoc - m_MouseButtonUpLoc, this.Height);
+                else
+                    g.FillRectangle(SystemBrushes.HighlightText, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
+                pen_Waveform = pen_ChannelMono;
+                newPen = new Pen(SystemColors.Control);
             }
             else
             {
-                IsPage = true;
-                if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
-                { }
-                else
-                    m_RecordingSession.UpdatePhraseTimeList(time, IsPage);
+                pen_Waveform = new Pen(SystemColors.HighlightText);
+                newPen = new Pen(SystemColors.ControlLight);
             }
+            PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);
+            
+        }
+
+        
+        private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void addSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_ProjectView.AddStrip();
+        }
+
+        private void phraseIsTODOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            phraseIsTODOToolStripMenuItem.Checked = !phraseIsTODOToolStripMenuItem.Checked;
+            m_ProjectView.ToggleTODOForPhrase();
+        }
+
+        private void markPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_IsPage = true;
+            if (m_MouseLocX < (m_OffsetLocation + recordingTimeCursor) || m_MouseLocX > m_X)
+            { }
+            else
+                m_RecordingSession.UpdatePhraseTimeList(m_Time, m_IsPage);
+        }
+
+        private void Waveform_Recording_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
+                return;
+            if (!IsSelectionActive)
+                return;
+            if (m_MouseButtonUpLoc == 0)
+                m_MouseButtonUpLoc = e.X;
+           
+            if (!m_IsMouseBtnUp && m_MouseButtonDownLoc > 0)
+            {
+                if (!IsValid(e.X))
+                    return;
+                else if (IsValid(e.X)  && !IsValid(m_TempMouseMoveLoc) && m_MouseButtonDownLoc > 0)
+                {
+                    m_TempMouseMoveLoc = e.X;
+                    m_MouseButtonDownLoc = e.X;
+                }
+
+                Pen backPen = new Pen(SystemColors.Highlight);
+                Pen gridLinePen = new Pen(Color.LightGray);
+                Pen pen_Waveform = pen_Waveform = new Pen(SystemColors.HighlightText);
+                Pen blackPen = new Pen(SystemColors.ControlDarkDark);
+                //m_TempMouseBtnDownLoc > (recordingTimeCursor + m_OffsetLocation) &&
+                //  if ((e.X - m_TempMouseMoveLoc) > 1)
+             //   Console.WriteLine("Locations in Mouse move " + m_TempMouseMoveLoc + " " + e.X);
+
+                if (m_MouseButtonDownLoc < e.X)
+                {
+                    if (m_TempMouseMoveLoc > m_MouseButtonDownLoc && m_TempMouseMoveLoc < e.X)
+                    PaintWaveform(m_TempMouseMoveLoc, e.X, true);
+                    else 
+                    PaintWaveform(e.X, m_TempMouseMoveLoc, false);
+                }
+                else if (m_MouseButtonDownLoc > e.X)
+                {
+                    if (m_TempMouseMoveLoc < m_MouseButtonDownLoc && m_TempMouseMoveLoc > e.X)
+                        PaintWaveform(e.X, m_TempMouseMoveLoc, true);
+                    else
+                        PaintWaveform(m_TempMouseMoveLoc, e.X, false);
+                }
+                /*if (m_TempMouseMoveLoc > m_MouseButtonDownLoc && m_TempMouseMoveLoc < e.X) 
+                    PaintWaveform(m_TempMouseMoveLoc, e.X, true);
+                else if(m_TempMouseMoveLoc < m_MouseButtonDownLoc && m_TempMouseMoveLoc > e.X)
+                    PaintWaveform(m_TempMouseMoveLoc, e.X, true);
+                else if ( e.X > m_MouseButtonDownLoc && e.X < m_TempMouseMoveLoc)
+                    PaintWaveform(e.X, m_TempMouseMoveLoc, false);
+                else if(e.X > m_TempMouseMoveLoc && e.X < m_MouseButtonDownLoc)
+                    PaintWaveform(e.X, m_TempMouseMoveLoc, false);*/
+            }            
+            m_TempMouseMoveLoc = e.X;            
+        }
+
+        public void PaintWaveform(int startSelection, int endSelection, bool IsSelect)
+        {
+            Pen pen_Waveform = null;
+            Pen newPen = null;
+            Pen blackPen = new Pen(SystemColors.ControlDarkDark);
+
+            if (IsSelect)
+            {
+                if (startSelection < endSelection)
+                    g.FillRectangle(SystemBrushes.Highlight, startSelection, 0, endSelection - startSelection, this.Height);
+                else
+                    g.FillRectangle(SystemBrushes.Highlight, startSelection, 0, startSelection - endSelection, this.Height);
+           //     pen_Waveform = new Pen(Color.White);
+                newPen = new Pen(Color.Gray);
+            }
+            else
+            {
+                if (startSelection < endSelection)
+                    g.FillRectangle(Brushes.White, startSelection, 0, endSelection - startSelection, this.Height);
+                else
+                    g.FillRectangle(Brushes.White, startSelection, 0, startSelection - endSelection, this.Height);
+            //    pen_Waveform = pen_ChannelMono;
+                newPen = new Pen(SystemColors.Control);
+
+            }
+
+            for (int i = startSelection; i <= endSelection; i++)
+            {
+                if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
+                {
+                      if (IsSelect)
+                            g.DrawLine(m_ColorSettings.WaveformHighlightedPen, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                      new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        else
+                            g.DrawLine(pen_ChannelMono, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                      new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+
+                   /* if (!m_IsColorHighContrast)
+                    {
+                        if (IsSelect)
+                            g.DrawLine(m_ColorSettings.WaveformHighlightedPen, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                      new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        else
+                            g.DrawLine(pen_ChannelMono, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                      new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+
+                    }
+                    else
+                    { 
+                        if(IsSelect)
+                            g.DrawLine(m_ColorSettingsHC.WaveformHighlightedPen, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                      new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        else
+                            g.DrawLine(pen_HighContrastMono, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                      new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    }*/
+                }
+                if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
+                {
+                    if (IsSelect)
+                    {
+                        g.DrawLine(m_ColorSettings.WaveformHighlightedPen, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                 new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        g.DrawLine(m_ColorSettings.WaveformHighlightedPen, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel2) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                  new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel2) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+
+                    }
+                    else
+                    {
+                        g.DrawLine(pen_Channel1, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                 new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        g.DrawLine(pen_Channel2, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                                             new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    }
+                }
+                    /*if (!m_IsColorHighContrast)
+                    {
+                        if (IsSelect)
+                        {
+                            g.DrawLine(m_ColorSettings.WaveformHighlightedPen, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                     new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            g.DrawLine(m_ColorSettings.WaveformHighlightedPen, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel2) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                      new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel2) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+
+                        }
+                        else
+                        {
+                            g.DrawLine(pen_Channel1, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                     new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            g.DrawLine(pen_Channel2, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                                                 new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
+
+                    }
+                    else 
+                    {
+                        if (IsSelect)
+                        {
+                            g.DrawLine(m_ColorSettingsHC.WaveformHighlightedPen, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                     new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            g.DrawLine(m_ColorSettings.WaveformHighlightedPen, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel2) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                      new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel2) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+
+                        }
+                        else
+                        {
+                            g.DrawLine(pen_Channel1, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                    new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            g.DrawLine(pen_Channel2, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel2) - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                                                 new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel2) - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                   
+                        }
+                    }
+                }     */       
+                
+                if (m_MainDictionary.ContainsKey(i))
+                {
+                    g.DrawLine(newPen, i, 0, i, Height);
+                    if (m_MainDictionary[i].EndsWith("0"))
+                    {
+                        g.DrawString(m_MainDictionary[i], myFont, Brushes.Black, i, 0);
+                        if (m_MainDictionary[i] != "")
+                            g.DrawLine(blackPen, i, 0, i, Height);
+                    }
+                    else
+                    {
+                        g.DrawLine(newPen, i, 0, i, Height);
+                        g.DrawString(m_MainDictionary[i], myFont, Brushes.Black, i, Height - 15);
+                    }
+                }
+            }
+        }
+
+
+        public int GetAmplitude(int absLoc, List<int> listOfChannel)
+        {
+            int actualLoc = absLoc - (recordingTimeCursor + m_OffsetLocation);
+            return listOfChannel[actualLoc];
+        }
+
+        public bool IsValid(int location)
+        {
+            if (location > (recordingTimeCursor + m_OffsetLocation) && location < m_X)
+                return true;
+            else
+                return false;
         }
     }
 }
