@@ -50,7 +50,8 @@ namespace Obi.ProjectView
             this.addSectionToolStripMenuItem,
             this.phraseIsTODOToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 114);
+            this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
             // 
             // markPageToolStripMenuItem
             // 
@@ -91,7 +92,7 @@ namespace Obi.ProjectView
             this.Size = new System.Drawing.Size(10000, 104);
             this.VisibleChanged += new System.EventHandler(this.Waveform_Recording_VisibleChanged);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Waveform_Recording_MouseMove);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Waveform_Recording_MouseClick);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Waveform_Recording_MouseDoubleClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Waveform_Recording_MouseDown);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Waveform_Recording_MouseUp);
             this.contextMenuStrip1.ResumeLayout(false);
