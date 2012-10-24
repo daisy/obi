@@ -2336,7 +2336,14 @@ namespace Obi.ProjectView
             if (mFastPlayRateCombobox.SelectedIndex < mFastPlayRateCombobox.Items.Count - 1)
             {
                 mFastPlayRateCombobox.SelectedIndex = mFastPlayRateCombobox.SelectedIndex + 1;
-                mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
+                float fastPlayFactor = 0;
+                float.TryParse(mFastPlayRateCombobox.SelectedItem.ToString(), out fastPlayFactor);
+                if (fastPlayFactor == 0)
+                {
+                    fastPlayFactor = float.Parse(mFastPlayRateCombobox.SelectedItem.ToString(), System.Globalization.CultureInfo.CreateSpecificCulture("en-EN"));
+                }
+                mCurrentPlaylist.Audioplayer.FastPlayFactor = fastPlayFactor;
+                //mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
                 return true;
             }
             return false;
@@ -2347,7 +2354,15 @@ namespace Obi.ProjectView
             if (mFastPlayRateCombobox.SelectedIndex > 0)
             {
                 mFastPlayRateCombobox.SelectedIndex = mFastPlayRateCombobox.SelectedIndex - 1;
-                mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
+
+                float fastPlayFactor = 0;
+                float.TryParse(mFastPlayRateCombobox.SelectedItem.ToString(), out fastPlayFactor);
+                if (fastPlayFactor == 0)
+                {
+                    fastPlayFactor = float.Parse(mFastPlayRateCombobox.SelectedItem.ToString(), System.Globalization.CultureInfo.CreateSpecificCulture("en-EN"));
+                }
+                mCurrentPlaylist.Audioplayer.FastPlayFactor = fastPlayFactor;
+                //mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
                 return true;
             }
             return false;
@@ -2362,7 +2377,14 @@ namespace Obi.ProjectView
 
         private void mFastPlayRateComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
+            float fastPlayFactor = 0;
+            float.TryParse(mFastPlayRateCombobox.SelectedItem.ToString(), out fastPlayFactor);
+            if (fastPlayFactor == 0)
+            {
+                fastPlayFactor = float.Parse(mFastPlayRateCombobox.SelectedItem.ToString(), System.Globalization.CultureInfo.CreateSpecificCulture("en-EN"));
+            }
+            mCurrentPlaylist.Audioplayer.FastPlayFactor = fastPlayFactor;
+            //mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
         }
 
         public bool FastPlayNormaliseWithLapseBack()
