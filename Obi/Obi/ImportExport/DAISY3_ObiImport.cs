@@ -400,7 +400,7 @@ namespace Obi.ImportExport
         }
 
 
-        protected override void parseContentDocument(Project project, XmlNode xmlNode, TreeNode parentTreeNode, string filePath, string dtdUniqueResourceId, DocumentMarkupType docMarkupType)
+        protected override void parseContentDocument(string filePath, Project project, XmlNode xmlNode, TreeNode parentTreeNode, string dtdUniqueResourceId, DocumentMarkupType docMarkupType)
         {
             if (RequestCancellation) return;
 
@@ -445,7 +445,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                                 dtdEfd.InitializeWithData(ms, "DTBookLocalDTD.dtd", false);
                             }
                             */
-                            parseContentDocument(project, bodyElement, parentTreeNode, filePath, null, docMarkupType);
+                            parseContentDocument(filePath, project, bodyElement, parentTreeNode, null, docMarkupType);
                         }
                         //parseContentDocument(((XmlDocument)xmlNode).DocumentElement, parentTreeNode);
                         break;
@@ -623,7 +623,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         if (RequestCancellation) return;
                         foreach (XmlNode childXmlNode in xmlNode.ChildNodes)
                         {
-                            parseContentDocument(project, childXmlNode, treeNode != null && treeNode is SectionNode ? treeNode : parentTreeNode, filePath, null, docMarkupType);
+                            parseContentDocument(filePath, project, childXmlNode, treeNode != null && treeNode is SectionNode ? treeNode : parentTreeNode, null, docMarkupType);
                         }
                         break;
                     }
