@@ -1110,10 +1110,7 @@ int channel = 0;
 
         private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            arrOfLocations[0] = ConvertPixelsToTime(m_MouseButtonDownLoc);
-            arrOfLocations[1] = ConvertPixelsToTime(m_MouseButtonUpLoc);
-
-            listOfLocationArray.Add(arrOfLocations);
+            m_RecordingSession.UpdateDeletedTimeList(ConvertPixelsToTime(m_MouseButtonDownLoc), ConvertPixelsToTime(m_MouseButtonUpLoc));
             listOfCurrentMinChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
             listOfCurrentMaxChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
@@ -1126,8 +1123,7 @@ int channel = 0;
             m_MouseButtonDownLoc = 0;
             m_MouseButtonUpLoc = 0;
             m_TempMouseMoveLoc = 0;
-            RepaintWaveform();
-            
+            RepaintWaveform();            
         }
     }
 }
