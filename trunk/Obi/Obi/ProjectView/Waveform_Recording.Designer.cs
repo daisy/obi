@@ -65,6 +65,7 @@ namespace Obi.ProjectView
             this.deleteSelectedToolStripMenuItem.Name = "deleteSelectedToolStripMenuItem";
             this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.deleteSelectedToolStripMenuItem.Text = "Delete selected";
+            this.deleteSelectedToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem_Click);
             // 
             // addSectionToolStripMenuItem
             // 
