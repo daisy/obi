@@ -31,6 +31,8 @@ namespace Obi
         private Timer mRecordingUpdateTimer;                    // timer to send regular "recording" messages
         private Settings m_Settings;
         private int m_Index = 0;
+        public List<double[]> mDeletedTime = new List<double[]>();
+        
 
         public event StartingPhraseHandler StartingPhrase;      // start recording a new phrase
         public event ContinuingPhraseHandler ContinuingPhrase;  // a new phrase is being recorded (time update)
@@ -324,6 +326,14 @@ namespace Obi
                 eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + m_Index, length, time);
                if (FinishingPage != null) FinishingPage(this, eArg);
             }           
+        }
+
+        public void UpdateDeletedTimeList(double startTime, double endTime)
+        {
+            double[] arrOfLocations = new double[2];
+            arrOfLocations[0] = startTime;
+            arrOfLocations[1] = endTime;
+            mDeletedTime.Add(arrOfLocations);                    
         }
 
         private void ApplyPhraseDetectionOnTheFly(AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
