@@ -755,7 +755,7 @@ int channel = 0;
             g.DrawLine(pen, pixel, 0, pixel, Height);
             g.DrawString("Phrase", myFont, Brushes.Black, pixel, 0);
             if (!m_MainDictionary.ContainsKey(pixel)) 
-            m_MainDictionary.Add(pixel, "Phrase");                        
+            m_MainDictionary.Add(pixel, "Phrase");          
         }
 
         private void m_RecordingSession_FinishingPage(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
@@ -775,12 +775,15 @@ int channel = 0;
                 g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), pixel + 1, 0, 35, 10);
                            
             g.DrawString(text, myFont, Brushes.Black, pixel, 0);
-            g.DrawLine(pen, pixel, 0, pixel, Height); 
+            g.DrawLine(pen, pixel, 0, pixel, Height);
             if (m_MainDictionary.ContainsKey(pixel))
                 m_MainDictionary[pixel] = text;
+            else if (m_MainDictionary.ContainsKey(pixel + 1))
+                m_MainDictionary[pixel + 1] = text;
+            else if (m_MainDictionary.ContainsKey(pixel - 1))
+                m_MainDictionary[pixel - 1] = text;
             else
-                m_MainDictionary.Add(pixel, text);                        
-            
+                m_MainDictionary.Add(pixel, text);
         }
 
         private int CalculatePixels(double time)
@@ -966,13 +969,17 @@ int channel = 0;
                 {
                     if (m_TempMouseMoveLoc > m_MouseButtonDownLoc && m_TempMouseMoveLoc < e.X)
                     {
+                        Console.WriteLine("IF BLOCK 1 " + m_TempMouseMoveLoc + " " + e.X);
                         m_IsSelected = true;
                         PaintWaveform(m_TempMouseMoveLoc, e.X, true);
                     }
                     else
                     {
                         m_IsSelected = false;
+                        if(e.X < m_TempMouseMoveLoc)
                         PaintWaveform(e.X, m_TempMouseMoveLoc, false);
+                        else
+                        PaintWaveform(m_TempMouseMoveLoc, e.X, false);
                     }
                 }
                 else if (m_MouseButtonDownLoc > e.X)
@@ -985,7 +992,10 @@ int channel = 0;
                     else
                     {
                         m_IsSelected = false;
+                        if(m_TempMouseMoveLoc < e.X)
                         PaintWaveform(m_TempMouseMoveLoc, e.X, false);
+                        else
+                        PaintWaveform(e.X, m_TempMouseMoveLoc, true);
                     }
                 }           
             }
@@ -1006,7 +1016,7 @@ int channel = 0;
                 else
                     g.FillRectangle(SystemBrushes.Highlight, startSelection, 0, startSelection - endSelection, this.Height);
                 newPen = new Pen(Color.Gray);
-                brushSel = new SolidBrush(Color.White);
+                
             }
             else
             {
@@ -1015,9 +1025,8 @@ int channel = 0;
                 else
                     g.FillRectangle(Brushes.White, startSelection, 0, startSelection - endSelection, this.Height);
                 newPen = new Pen(Color.LightGray);
-                brushSel = new SolidBrush(Color.Black);
             }
-
+            Console.WriteLine("STRAT END  " + startSelection + " " + endSelection);
             for (int i = startSelection; i <= endSelection; i++)
             {
                 if (IsValid(i))
@@ -1053,15 +1062,19 @@ int channel = 0;
                 }
                 if (m_MainDictionary.ContainsKey(i))
                 {
+                    if (IsSelected)
+                        brushSel = new SolidBrush(Color.White);
                     g.DrawLine(newPen, i, 0, i, Height);
                     if (m_MainDictionary[i].EndsWith("0"))
                     {
+                        brushSel = new SolidBrush(Color.Gray);
                         g.DrawString(m_MainDictionary[i], myFont, brushSel, i, Height - 15);
                         if (m_MainDictionary[i] != "")
                             g.DrawLine(blackPen, i, 0, i, Height);
                     }
                     else
                     {
+                        brushSel = new SolidBrush(Color.Black);
                         g.DrawLine(newPen, i, 0, i, Height);
                         g.DrawString(m_MainDictionary[i], myFont, brushSel, i, 0);
                     }
