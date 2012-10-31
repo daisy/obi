@@ -264,11 +264,11 @@ namespace Obi
             ApplyPhraseDetectionOnTheFly(e);
         }
 
-        public void UpdatePhraseTimeList(double time, bool isPage)
+        public int UpdatePhraseTimeList(double time, bool isPage)
         {
             
             if (mPhraseMarks == null)
-                return;
+                return -1;
             if (mPhraseMarks.Count == 0)
             {
                 mPhraseMarks.Add(time);
@@ -329,7 +329,8 @@ namespace Obi
             {
                 eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + m_Index, length, time);
                if (FinishingPage != null) FinishingPage(this, eArg);
-            }           
+            }
+            return m_Index;
         }
         
         public void UpdateDeletedTimeList(double startTime, double endTime)
@@ -338,9 +339,10 @@ namespace Obi
             arrOfLocations[0] = startTime;
             arrOfLocations[1] = endTime;
             mDeletedTime.Add(arrOfLocations);
-            UpdatePhraseTimeList(startTime, false);
+            int phraseIndex =  UpdatePhraseTimeList(startTime, false);
             UpdatePhraseTimeList(endTime, false);
-            if(!m_PhraseIndexesToDelete.Contains(mPhraseMarks.Count - 1 )) m_PhraseIndexesToDelete.Add(mPhraseMarks.Count - 1);
+            if (phraseIndex >= 0 && !m_PhraseIndexesToDelete.Contains(phraseIndex)) 
+                m_PhraseIndexesToDelete.Add(phraseIndex);
         }
 
         private void ApplyPhraseDetectionOnTheFly(AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
