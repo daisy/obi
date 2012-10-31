@@ -71,7 +71,8 @@ namespace Obi.ProjectView
         private bool m_IsSelected = false;
         private double[] arrOfLocations = new double[2];
         List<double[]> listOfLocationArray = new List<double[]>();
-        private int m_DeletedOffset = 0;
+     //   private int m_DeletedOffset = 0;
+        private bool m_IsDeleted = false;
 
                        
         public Waveform_Recording()
@@ -88,8 +89,7 @@ namespace Obi.ProjectView
             m_StaticRecordingLocation = -1;
             m_InitialOffsetTime = -1;
             m_MouseButtonUpLoc = 0;
-            m_MouseButtonDownLoc = 0;
-            m_DeletedOffset = 0;
+            m_MouseButtonDownLoc = 0;            
         }
 
         private RecordingSession m_RecordingSession;
@@ -231,7 +231,7 @@ namespace Obi.ProjectView
             {
                 this.Location = new Point(-m_OffsetLocation, Location.Y);
                 //  listOfXLocation.Clear();
-                m_X = recordingTimeCursor + m_OffsetLocation + m_DeletedOffset;
+                m_X = recordingTimeCursor + m_OffsetLocation;
                 m_StaticRecordingLocation = m_X;
                 ResetLists();
                 g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), 0, 0, Width, Height);
@@ -387,7 +387,7 @@ namespace Obi.ProjectView
             {
                 timer1.Start();
                 if(m_ContentView != null)
-                m_X = recordingTimeCursor + m_OffsetLocation + m_DeletedOffset;
+                m_X = recordingTimeCursor + m_OffsetLocation;
                 Location = new Point(-m_OffsetLocation, Location.Y);
                 m_MainDictionary.Clear();
             }
@@ -555,42 +555,44 @@ int channel = 0;
                 else
                     countToRepaint = xSize;
                 this.Location = new Point((m_X - recordingTimeCursor) * -1, Location.Y);
-               
-                for (int i = countToRepaint - 1; i >= 0; i--)
-                {
-                    if (tempm_X == m_MouseButtonUpLoc)
+                foreach(double[] arr in m_RecordingSession.DeletedItemList)
+                   g.FillRectangle(SystemBrushes.ControlDark, CalculatePixels(arr[0]), 0, CalculatePixels(arr[1]) - CalculatePixels(arr[0]), this.Height);
+                
+                    for (int i = countToRepaint - 1; i >= 0; i--)
                     {
-                        if (m_MouseButtonUpLoc < m_X)
-                            g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
-                        else
-                            g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
-                        pen_ChannelMono = new Pen(SystemColors.HighlightText);                      
-                    }
-                    if(tempm_X == m_MouseButtonDownLoc)
-                       pen_ChannelMono = m_ColorSettings.WaveformMonoPen;
-                   
-                    if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
-                    {                      
-                            g.DrawLine(pen_ChannelMono, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));                       
-                    }
+                        if (tempm_X == m_MouseButtonUpLoc)
+                        {
+                            if (m_MouseButtonUpLoc < m_X)
+                                g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
+                            else
+                                g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
+                            pen_ChannelMono = new Pen(SystemColors.HighlightText);
+                        }
+                        if (tempm_X == m_MouseButtonDownLoc)
+                            pen_ChannelMono = m_ColorSettings.WaveformMonoPen;
 
-                    if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
-                    {
+                        if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
+                        {
+                            g.DrawLine(pen_ChannelMono, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
+
+                        if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
+                        {
                             g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
                             new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                             g.DrawLine(pen_Channel2, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));                        
-                    }                        
-                    tempm_X--;
-                  /*  if (this.Location.X < 0 && 
-                        (this.Location.X * -1) < listOfXLocation[i])
-                    {
+                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
+                        tempm_X--;
+                        /*  if (this.Location.X < 0 && 
+                              (this.Location.X * -1) < listOfXLocation[i])
+                          {
                         
-                   * .WriteLine("Breaking refresh loop at:" + i) ;
-                        break;
-                    }*/
-                }
+                         * .WriteLine("Breaking refresh loop at:" + i) ;
+                              break;
+                          }*/
+                    }
                 
                 foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                 {
@@ -755,7 +757,7 @@ int channel = 0;
             g.DrawLine(pen, pixel, 0, pixel, Height);
             g.DrawString("Phrase", myFont, Brushes.Black, pixel, 0);
             if (!m_MainDictionary.ContainsKey(pixel)) 
-            m_MainDictionary.Add(pixel, "Phrase");          
+            m_MainDictionary.Add(pixel, "Phrase");
         }
 
         private void m_RecordingSession_FinishingPage(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
@@ -784,6 +786,7 @@ int channel = 0;
                 m_MainDictionary[pixel - 1] = text;
             else
                 m_MainDictionary.Add(pixel, text);
+         
         }
 
         private int CalculatePixels(double time)
@@ -809,12 +812,17 @@ int channel = 0;
 
         private void Waveform_Recording_MouseDown(object sender, MouseEventArgs e)
         {
+            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
+                return;
+            
             if (IsValid(e.X))
                 markPageToolStripMenuItem.Enabled = true;
             else
                 markPageToolStripMenuItem.Enabled = false;
            // bool IsDeselected = false;
+
             
+
             if (e.Button == MouseButtons.Left)
             {
                 if (m_MouseButtonDownLoc != m_MouseButtonUpLoc)
@@ -836,14 +844,13 @@ int channel = 0;
             }
             IsSelectionActive = true;
            
-            m_StartSelection = m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset);
+            m_StartSelection = m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation);
             m_Time = ConvertPixelsToTime(e.X);
             m_NewPhraseTime = m_Time;
            
             m_IsPage = false;
          //   IsDeselected = false;
             m_IsMouseBtnUp = false;
-            
         }
 
         private void Waveform_Recording_MouseUp(object sender, MouseEventArgs e)
@@ -852,49 +859,55 @@ int channel = 0;
             m_MouseButtonUpLoc = e.X;
             int swap = 0;
             IsSelectionActive = false;
-            if (m_MouseButtonDownLoc == e.X)
+            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
+                return;
+            else
             {
-                if (e.Button == MouseButtons.Left)
+                if (m_MouseButtonDownLoc == e.X)
                 {
-                    if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
-                    { }
-                    else
-                        m_RecordingSession.UpdatePhraseTimeList(m_Time, m_IsPage);
-                }                
-            }
-               
-            else if ((m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc > m_X) || (m_MouseButtonUpLoc < (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset) && m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset)))
-            {
-                m_MouseButtonDownLoc = 0;
-                m_MouseButtonUpLoc = 0;
-            }
-            else if (m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc < m_X && m_MouseButtonDownLoc > (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset))
-            {
-                m_MouseButtonUpLoc = m_X;
-            }
-            else if (m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset) && m_MouseButtonUpLoc > (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset) && m_MouseButtonUpLoc < m_X)
-                m_MouseButtonDownLoc = recordingTimeCursor + m_OffsetLocation + m_DeletedOffset;
-            else if (m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset))
-            {
-                m_MouseButtonDownLoc = recordingTimeCursor + m_OffsetLocation + m_DeletedOffset;
-                m_MouseButtonUpLoc = m_X;
-            }
-           /*     if (e.X < m_X)
-                    g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, e.X - m_MouseButtonDownLoc, this.Height);
-                else
-                    g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_X - m_MouseButtonDownLoc, this.Height);
-                SelectPortionOfWaveform();*/
-            
-             m_IsMouseBtnUp = true;
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
+                        { }
+                        else
+                            m_RecordingSession.UpdatePhraseTimeList(m_Time, m_IsPage);
+                    }
+                }
 
-             
-            // m_NewPhraseTime = ConvertPixelsToTime(e.X);
-             if (m_MouseButtonDownLoc > m_MouseButtonUpLoc)
-             {
-                 swap = m_MouseButtonUpLoc;
-                 m_MouseButtonUpLoc = m_MouseButtonDownLoc;
-                 m_MouseButtonDownLoc = swap;
-             }
+                else if ((m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc > m_X) || (m_MouseButtonUpLoc < (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation)))
+                {
+                    m_MouseButtonDownLoc = 0;
+                    m_MouseButtonUpLoc = 0;
+                }
+                else if (m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc < m_X && m_MouseButtonDownLoc > (recordingTimeCursor + m_OffsetLocation))
+                {
+                    m_MouseButtonUpLoc = m_X;
+                }
+                else if (m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonUpLoc > (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonUpLoc < m_X)
+                    m_MouseButtonDownLoc = recordingTimeCursor + m_OffsetLocation;
+                else if (m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation))
+                {
+                    m_MouseButtonDownLoc = recordingTimeCursor + m_OffsetLocation;
+                    m_MouseButtonUpLoc = m_X;
+                }
+                /*     if (e.X < m_X)
+                         g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, e.X - m_MouseButtonDownLoc, this.Height);
+                     else
+                         g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_X - m_MouseButtonDownLoc, this.Height);
+                     SelectPortionOfWaveform();*/
+
+                m_IsMouseBtnUp = true;
+
+
+                // m_NewPhraseTime = ConvertPixelsToTime(e.X);
+                if (m_MouseButtonDownLoc > m_MouseButtonUpLoc)
+                {
+                    swap = m_MouseButtonUpLoc;
+                    m_MouseButtonUpLoc = m_MouseButtonDownLoc;
+                    m_MouseButtonDownLoc = swap;
+                }
+            }
+            
         }
 
   /*      public void SelectPortionOfWaveform(bool IsDeselected)
@@ -935,10 +948,29 @@ int channel = 0;
         }
 
         private void markPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {           
+        {
             m_IsPage = true;
-            m_RecordingSession.UpdatePhraseTimeList(m_Time, m_IsPage);
-            m_NewPhraseTime = -1;
+            if (!IsPhraseMarkAllowed(m_Time))
+                return;
+            else
+            {               
+                m_RecordingSession.UpdatePhraseTimeList(m_Time, m_IsPage);
+                m_NewPhraseTime = -1;
+            }
+            
+        }
+
+        public bool IsPhraseMarkAllowed(double time)
+        {
+            bool IsAllowed = true;
+            foreach (double[] arr in m_RecordingSession.DeletedItemList)
+            {
+                if (time > arr[0] && time < arr[1])
+                    IsAllowed = false;
+                else
+                    IsAllowed = true;
+            }
+            return IsAllowed;
         }
 
         private void Waveform_Recording_MouseMove(object sender, MouseEventArgs e)
@@ -969,7 +1001,6 @@ int channel = 0;
                 {
                     if (m_TempMouseMoveLoc > m_MouseButtonDownLoc && m_TempMouseMoveLoc < e.X)
                     {
-                        Console.WriteLine("IF BLOCK 1 " + m_TempMouseMoveLoc + " " + e.X);
                         m_IsSelected = true;
                         PaintWaveform(m_TempMouseMoveLoc, e.X, true);
                     }
@@ -1026,7 +1057,7 @@ int channel = 0;
                     g.FillRectangle(Brushes.White, startSelection, 0, startSelection - endSelection, this.Height);
                 newPen = new Pen(Color.LightGray);
             }
-            Console.WriteLine("STRAT END  " + startSelection + " " + endSelection);
+
             for (int i = startSelection; i <= endSelection; i++)
             {
                 if (IsValid(i))
@@ -1085,13 +1116,13 @@ int channel = 0;
 
         public int GetAmplitude(int absLoc, List<int> listOfChannel)
         {
-            int actualLoc = absLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset);
+            int actualLoc = absLoc - (recordingTimeCursor + m_OffsetLocation);
             return listOfChannel[actualLoc];
         }
 
         public bool IsValid(int location)
         {
-            if (location > (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset) && location < m_X)
+            if (location > (recordingTimeCursor + m_OffsetLocation) && location < m_X)
                 return true;
             else
                 return false;
@@ -1111,12 +1142,13 @@ int channel = 0;
 
         private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
         {
-            if (m_NewPhraseTime > 0)
+            if (m_NewPhraseTime > 0 && !m_IsPage)
             {
-                if (IsInSelection(ConvertTimeToPixels(m_NewPhraseTime) + (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset)))
-                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 5 + (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), ConvertTimeToPixels(m_NewPhraseTime) + 5 + (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), true);
+                
+                if (IsInSelection(ConvertTimeToPixels(m_NewPhraseTime) + (recordingTimeCursor + m_OffsetLocation)))
+                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 5 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 5 + (recordingTimeCursor + m_OffsetLocation), true);
                 else
-                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 5 + (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), ConvertTimeToPixels(m_NewPhraseTime) + 5 + (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), false);
+                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 5 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 5 + (recordingTimeCursor + m_OffsetLocation), false);
                 m_NewPhraseTime = -1;
             }
         }
@@ -1124,19 +1156,41 @@ int channel = 0;
         private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m_RecordingSession.UpdateDeletedTimeList(ConvertPixelsToTime(m_MouseButtonDownLoc), ConvertPixelsToTime(m_MouseButtonUpLoc));
-            listOfCurrentMinChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
+         /*   listOfCurrentMinChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
             listOfCurrentMaxChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
             {
                 listOfCurrentMinChannel2.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
                 listOfCurrentMaxChannel2.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));            
-            }
-            m_DeletedOffset += m_MouseButtonUpLoc - m_MouseButtonDownLoc;
-          
+            }*/
+
+            /*   foreach (KeyValuePair<int, string> pair in m_MainDictionary)
+               {
+                   if (pair.Key < m_MouseButtonDownLoc)
+                       m_TempDictionary.Add(pair.Key + offset, pair.Value);
+                   else if (pair.Key > m_MouseButtonUpLoc)
+                   {
+                       if (pair.Value != "")
+                       {
+                           val = int.Parse(pair.Value);
+                           tempVal = val - (Convert.ToInt32(ConvertPixelsToTime(m_MouseButtonUpLoc) - ConvertPixelsToTime(m_MouseButtonDownLoc)) / 1000);
+                           temp = tempVal % 10;
+                           temp = tempVal - temp;
+                           pairVal = temp.ToString();
+                           Console.WriteLine("ALUE OF PAIR " + pairVal);
+                           m_TempDictionary.Add(pair.Key - (temp * 10), pairVal);
+                       }
+                       else
+                           m_TempDictionary.Add(pair.Key, pair.Value);
+                   }           
+                }
+            m_DeletedOffset += m_MouseButtonUpLoc - m_MouseButtonDownLoc;*/
+
             m_MouseButtonDownLoc = 0;
             m_MouseButtonUpLoc = 0;
             m_TempMouseMoveLoc = 0;
-            RepaintWaveform();            
+            m_IsDeleted = true;
+            RepaintWaveform();
         }
     }
 }

@@ -33,6 +33,8 @@ namespace Obi
         private int m_Index = 0;
         private List<int> m_PhraseIndexesToDelete = new List<int>();
         private List<double[]> mDeletedTime = new List<double[]>();
+
+        private double[] arrOfLocations = new double[2];
         
 
         public event StartingPhraseHandler StartingPhrase;      // start recording a new phrase
@@ -91,6 +93,9 @@ namespace Obi
 
         public int Index { get { return m_Index; } }
 
+        public double[] ArrayOfLoc {  get { return arrOfLocations; } }
+
+        public List<double[]> DeletedItemList { get { return mDeletedTime; } }
         /// <summary>
         /// The audio recorder used by the recording session.
         /// </summary>
@@ -335,7 +340,6 @@ namespace Obi
         
         public void UpdateDeletedTimeList(double startTime, double endTime)
         {
-            double[] arrOfLocations = new double[2];
             arrOfLocations[0] = startTime;
             arrOfLocations[1] = endTime;
             mDeletedTime.Add(arrOfLocations);
