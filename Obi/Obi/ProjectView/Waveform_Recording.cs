@@ -555,8 +555,11 @@ int channel = 0;
                 else
                     countToRepaint = xSize;
                 this.Location = new Point((m_X - recordingTimeCursor) * -1, Location.Y);
-                foreach(double[] arr in m_RecordingSession.DeletedItemList)
-                   g.FillRectangle(SystemBrushes.ControlDark, CalculatePixels(arr[0]), 0, CalculatePixels(arr[1]) - CalculatePixels(arr[0]), this.Height);
+                foreach (double[] arr in m_RecordingSession.DeletedItemList)
+                {
+                    Console.WriteLine("ARR  " + m_RecordingSession.DeletedItemList.Count);
+                    g.FillRectangle(SystemBrushes.ControlDark, CalculatePixels(arr[0]), 0, CalculatePixels(arr[1]) - CalculatePixels(arr[0]), this.Height);
+                }
                 
                     for (int i = countToRepaint - 1; i >= 0; i--)
                     {

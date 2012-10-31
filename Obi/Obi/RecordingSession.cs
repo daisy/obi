@@ -34,7 +34,7 @@ namespace Obi
         private List<int> m_PhraseIndexesToDelete = new List<int>();
         private List<double[]> mDeletedTime = new List<double[]>();
 
-        private double[] arrOfLocations = new double[2];
+        private double[] arrOfLocations;
         
 
         public event StartingPhraseHandler StartingPhrase;      // start recording a new phrase
@@ -340,6 +340,7 @@ namespace Obi
         
         public void UpdateDeletedTimeList(double startTime, double endTime)
         {
+            arrOfLocations = new double[2];
             arrOfLocations[0] = startTime;
             arrOfLocations[1] = endTime;
             mDeletedTime.Add(arrOfLocations);
