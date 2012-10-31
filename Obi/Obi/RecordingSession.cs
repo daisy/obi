@@ -31,7 +31,8 @@ namespace Obi
         private Timer mRecordingUpdateTimer;                    // timer to send regular "recording" messages
         private Settings m_Settings;
         private int m_Index = 0;
-        public List<double[]> mDeletedTime = new List<double[]>();
+        private List<int> m_PhraseIndexesToDelete = new List<int>();
+        private List<double[]> mDeletedTime = new List<double[]>();
         
 
         public event StartingPhraseHandler StartingPhrase;      // start recording a new phrase
@@ -84,6 +85,7 @@ namespace Obi
             mRecordingUpdateTimer.Tick += new System.EventHandler(mRecordingUpdateTimer_tick);
             mRecordingUpdateTimer.Interval = 1000;
             m_Settings = settings;
+            m_PhraseIndexesToDelete = new List<int>();
             mRecorder.PcmDataBufferAvailable += new AudioLib.AudioRecorder.PcmDataBufferAvailableHandler(DetectPhrasesOnTheFly);
         }
 
@@ -93,6 +95,8 @@ namespace Obi
         /// The audio recorder used by the recording session.
         /// </summary>
         public AudioRecorder AudioRecorder { get { return mRecorder; } }
+
+        public List<int> PhraseIndexesToDelete { get { return m_PhraseIndexesToDelete; } }
 
         /// <summary>
         /// Finish the currently recording phrase and continue recording into a new phrase.
@@ -327,13 +331,16 @@ namespace Obi
                if (FinishingPage != null) FinishingPage(this, eArg);
             }           
         }
-
+        
         public void UpdateDeletedTimeList(double startTime, double endTime)
         {
             double[] arrOfLocations = new double[2];
             arrOfLocations[0] = startTime;
             arrOfLocations[1] = endTime;
-            mDeletedTime.Add(arrOfLocations);                    
+            mDeletedTime.Add(arrOfLocations);
+            UpdatePhraseTimeList(startTime, false);
+            UpdatePhraseTimeList(endTime, false);
+            if(!m_PhraseIndexesToDelete.Contains(mPhraseMarks.Count)) m_PhraseIndexesToDelete.Add(mPhraseMarks.Count);
         }
 
         private void ApplyPhraseDetectionOnTheFly(AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
