@@ -2741,6 +2741,10 @@ namespace Obi.ProjectView
                             mView.Presentation.UpdateAudioForPhrase ( mRecordingSection.PhraseChild ( mRecordingInitPhraseIndex + i ),
                                 mRecordingSession.RecordedAudio[i] );
                             if (!mRecordingSection.Used) mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Used = false;
+                            if (mRecordingSession.PhraseIndexesToDelete.Contains(i))
+                            {
+                                mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Used = false;
+                            }
                             }
                             //Workaround to force phrases to show if they become invisible on stopping recording
                             mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
