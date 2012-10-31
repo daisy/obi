@@ -340,7 +340,7 @@ namespace Obi
             mDeletedTime.Add(arrOfLocations);
             UpdatePhraseTimeList(startTime, false);
             UpdatePhraseTimeList(endTime, false);
-            if(!m_PhraseIndexesToDelete.Contains(mPhraseMarks.Count)) m_PhraseIndexesToDelete.Add(mPhraseMarks.Count);
+            if(!m_PhraseIndexesToDelete.Contains(mPhraseMarks.Count - 1 )) m_PhraseIndexesToDelete.Add(mPhraseMarks.Count - 1);
         }
 
         private void ApplyPhraseDetectionOnTheFly(AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
