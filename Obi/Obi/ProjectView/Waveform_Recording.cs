@@ -203,7 +203,8 @@ namespace Obi.ProjectView
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (m_ProjectView == null || m_ProjectView.TransportBar == null ||  m_ContentView == null || !m_ProjectView.TransportBar.IsRecorderActive ) return;
+            if (!this.Visible || this.Handle.ToInt32() == 0
+                || m_ProjectView == null || m_ProjectView.TransportBar == null ||  m_ContentView == null || !m_ProjectView.TransportBar.IsRecorderActive ) return;
 
             if (m_StaticRecordingLocation == -1)
             {
