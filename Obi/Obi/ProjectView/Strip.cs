@@ -603,6 +603,7 @@ namespace Obi.ProjectView
                 // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
                 if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
                     {
+                        if(mBlockLayout.Controls.Contains(block))  mBlockLayout.Controls.Remove(block);
                     block.Dispose ();
                     block = null;
                     }
@@ -700,7 +701,10 @@ namespace Obi.ProjectView
                                 {
                                 Control  stripCursorControl = mBlockLayout.Controls[index + 1];
                                 mBlockLayout.Controls.RemoveAt ( index + 1 );
-                                if (stripCursorControl != null && stripCursorControl is StripCursor) stripCursorControl.Dispose ();
+                                if (stripCursorControl != null && stripCursorControl is StripCursor)
+                                {
+                                    stripCursorControl.Dispose();
+                                }
                                                                                                                                             }
                             mBlockLayout.Controls.RemoveAt ( index );
                             if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt ( 0 );
@@ -1384,6 +1388,7 @@ namespace Obi.ProjectView
             {
             if (m_BackgroundBlockLayout.Controls.Count == 0) return;
             Point layoutPoint = mBlockLayout.Location;
+            if (this.Controls.Contains (mBlockLayout )) this.Controls.Remove (mBlockLayout) ;
             mBlockLayout.Dispose ();
             m_BackgroundBlockLayout.Location = layoutPoint;
             mBlockLayout = m_BackgroundBlockLayout;
