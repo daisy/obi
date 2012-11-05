@@ -54,7 +54,7 @@ namespace Obi.ImportExport
         //m_Xuk_FilePath = m_Session.Path;
         //}
 
-        protected override void initializeProject()
+        protected override void initializeProject(string path)
         {
 
             //m_Project = new Project();
