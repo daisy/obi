@@ -484,7 +484,7 @@ int channel = 0;
 
         private void ObiForm_Deactivate(object sender, EventArgs e)
         {
-            if (this.Visible == false || !m_ProjectView.TransportBar.IsRecorderActive)
+       /*     if (this.Visible == false || !m_ProjectView.TransportBar.IsRecorderActive)
                 return;
             
             Bitmap bmp = new Bitmap(this.Width, this.Height);
@@ -504,7 +504,7 @@ int channel = 0;
                         
                     }
                 }
-            }
+            }*/
         }
 
         private void ObiForm_Activated(object sender, EventArgs e)
@@ -544,25 +544,25 @@ int channel = 0;
             
             if (m_ContentView != null)
                 x = recordingTimeCursor;
-            if (counterMin == 0)
+            if (counterMin == 0) 
                 return;
             if (counterMin < 5)
             { }
             else
             {
                 timer1.Stop();
-                if (counterWaveform < xSize)
+                if (xSize > listOfCurrentMinChannel1.Count)
+                    xSize = listOfCurrentMinChannel1.Count;
+                
+                /*if (counterWaveform < xSize)
                     countToRepaint = counterWaveform;
                 else
-                    countToRepaint = xSize;
+                    countToRepaint = xSize;*/
                 this.Location = new Point((m_X - recordingTimeCursor) * -1, Location.Y);
                 foreach (double[] arr in m_RecordingSession.DeletedItemList)
-                {
-                    Console.WriteLine("ARR  " + m_RecordingSession.DeletedItemList.Count);
-                    g.FillRectangle(SystemBrushes.ControlDark, CalculatePixels(arr[0]), 0, CalculatePixels(arr[1]) - CalculatePixels(arr[0]), this.Height);
-                }
-                
-                    for (int i = countToRepaint - 1; i >= 0; i--)
+                     g.FillRectangle(SystemBrushes.ControlDark, CalculatePixels(arr[0]), 0, CalculatePixels(arr[1]) - CalculatePixels(arr[0]), this.Height);
+                          
+                    for (int i = listOfCurrentMinChannel1.Count - 1; i >= listOfCurrentMinChannel1.Count - xSize; i--)
                     {
                         if (tempm_X == m_MouseButtonUpLoc)
                         {
@@ -869,6 +869,7 @@ int channel = 0;
             {
                 if (m_MouseButtonDownLoc == e.X)
                 {
+                    Console.WriteLine("VALUES IN UPDATE PHRASE TIME MOUSE UP " + m_Time);
                     if (e.Button == MouseButtons.Left)
                     {
                         if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
@@ -902,6 +903,11 @@ int channel = 0;
 
                 m_IsMouseBtnUp = true;
 
+                for (int i = m_MouseButtonDownLoc; i < m_MouseButtonUpLoc; i++)
+                {
+                    if(m_MainDictionary.ContainsKey(i))
+                        DrawDictionary(i, true);
+                }
 
                 // m_NewPhraseTime = ConvertPixelsToTime(e.X);
                 if (m_MouseButtonDownLoc > m_MouseButtonUpLoc)
@@ -957,7 +963,8 @@ int channel = 0;
             if (!IsPhraseMarkAllowed(m_Time))
                 return;
             else
-            {               
+            {
+                Console.WriteLine("VALUE FOR UPDATE PHRASE TIME IN MARK " + m_Time);
                 m_RecordingSession.UpdatePhraseTimeList(m_Time, m_IsPage);
                 m_NewPhraseTime = -1;
             }
@@ -1040,9 +1047,7 @@ int channel = 0;
         public void PaintWaveform(int startSelection, int endSelection, bool IsSelected)
         {
             Pen pen_Waveform = null;
-            Pen newPen = null;
-            Pen blackPen = new Pen(SystemColors.ControlDarkDark);
-            SolidBrush brushSel = null;
+            
 
             if (IsSelected)
             {
@@ -1050,7 +1055,7 @@ int channel = 0;
                     g.FillRectangle(SystemBrushes.Highlight, startSelection, 0, endSelection - startSelection, this.Height);
                 else
                     g.FillRectangle(SystemBrushes.Highlight, startSelection, 0, startSelection - endSelection, this.Height);
-                newPen = new Pen(Color.Gray);
+               
                 
             }
             else
@@ -1059,7 +1064,7 @@ int channel = 0;
                     g.FillRectangle(Brushes.White, startSelection, 0, endSelection - startSelection, this.Height);
                 else
                     g.FillRectangle(Brushes.White, startSelection, 0, startSelection - endSelection, this.Height);
-                newPen = new Pen(Color.LightGray);
+              
             }
 
             for (int i = startSelection; i <= endSelection; i++)
@@ -1095,28 +1100,40 @@ int channel = 0;
                         }
                     }
                 }
-                if (m_MainDictionary.ContainsKey(i))
-                {
-                    if (IsSelected)
-                        brushSel = new SolidBrush(Color.White);
-                    g.DrawLine(newPen, i, 0, i, Height);
-                    if (m_MainDictionary[i].EndsWith("0"))
-                    {
-                        brushSel = new SolidBrush(Color.Gray);
-                        g.DrawString(m_MainDictionary[i], myFont, brushSel, i, Height - 15);
-                        if (m_MainDictionary[i] != "")
-                            g.DrawLine(blackPen, i, 0, i, Height);
-                    }
-                    else
-                    {
-                        brushSel = new SolidBrush(Color.Black);
-                        g.DrawLine(newPen, i, 0, i, Height);
-                        g.DrawString(m_MainDictionary[i], myFont, brushSel, i, 0);
-                    }
-                }
+                DrawDictionary(i, IsSelected);
             }
         }
 
+        public void DrawDictionary(int index, bool isSelected)
+        {
+            SolidBrush brushSel = null;
+            Pen newPen = null;
+            Pen blackPen = new Pen(SystemColors.ControlDarkDark);
+            
+            if(isSelected)
+                newPen = new Pen(Color.Gray);
+            else
+                newPen = new Pen(Color.LightGray);
+            if (m_MainDictionary.ContainsKey(index))
+            {
+                if (isSelected)
+                    brushSel = new SolidBrush(Color.White);
+                g.DrawLine(newPen, index, 0, index, Height);
+                if (m_MainDictionary[index].EndsWith("0"))
+                {
+                    brushSel = new SolidBrush(Color.Gray);
+                    g.DrawString(m_MainDictionary[index], myFont, brushSel, index, Height - 15);
+                    if (m_MainDictionary[index] != "")
+                        g.DrawLine(blackPen, index, 0, index, Height);
+                }
+                else
+                {
+                    brushSel = new SolidBrush(Color.Black);
+                    g.DrawLine(newPen, index, 0, index, Height);
+                    g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
+                }
+            }
+        }
 
         public int GetAmplitude(int absLoc, List<int> listOfChannel)
         {
