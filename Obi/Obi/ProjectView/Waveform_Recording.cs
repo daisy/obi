@@ -832,7 +832,8 @@ int channel = 0;
                 if (m_MouseButtonDownLoc != m_MouseButtonUpLoc)
                 {
                     if (!IsValid(m_MouseButtonDownLoc) || !IsValid(m_MouseButtonUpLoc))
-                        return;                   
+                        return;
+                  
                     PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);
                     //    IsDeselected = true;
                     // SelectPortionOfWaveform(IsDeselected);
@@ -847,7 +848,6 @@ int channel = 0;
                 g.DrawLine(new Pen(Color.Red), new Point(e.X, 0), new Point(e.X, Height));
             }
             IsSelectionActive = true;
-           
             m_StartSelection = m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation);
             m_Time = ConvertPixelsToTime(e.X);
             m_NewPhraseTime = m_Time;
@@ -869,11 +869,13 @@ int channel = 0;
             {
                 if (m_MouseButtonDownLoc == e.X)
                 {
-                    Console.WriteLine("VALUES IN UPDATE PHRASE TIME MOUSE UP " + m_Time);
                     if (e.Button == MouseButtons.Left)
                     {
                         if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
-                        { }
+                        {
+                            m_MouseButtonDownLoc = 0;
+                            m_MouseButtonUpLoc = 0;
+                        }
                         else
                             m_RecordingSession.UpdatePhraseTimeList(m_Time, m_IsPage);
                     }
@@ -885,9 +887,7 @@ int channel = 0;
                     m_MouseButtonUpLoc = 0;
                 }
                 else if (m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc < m_X && m_MouseButtonDownLoc > (recordingTimeCursor + m_OffsetLocation))
-                {
                     m_MouseButtonUpLoc = m_X;
-                }
                 else if (m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonUpLoc > (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonUpLoc < m_X)
                     m_MouseButtonDownLoc = recordingTimeCursor + m_OffsetLocation;
                 else if (m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation))
@@ -964,7 +964,6 @@ int channel = 0;
                 return;
             else
             {
-                Console.WriteLine("VALUE FOR UPDATE PHRASE TIME IN MARK " + m_Time);
                 m_RecordingSession.UpdatePhraseTimeList(m_Time, m_IsPage);
                 m_NewPhraseTime = -1;
             }
@@ -992,7 +991,6 @@ int channel = 0;
                 return;
             if (m_MouseButtonUpLoc == 0)
                 m_MouseButtonUpLoc = e.X;
-           
             if (!m_IsMouseBtnUp && m_MouseButtonDownLoc > 0)
             {
                 if (!IsValid(e.X))
