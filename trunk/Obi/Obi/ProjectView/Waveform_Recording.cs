@@ -1157,19 +1157,24 @@ int channel = 0;
 
         private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
         {
+            
             if (m_NewPhraseTime > 0 && !m_IsPage)
             {
-                
                 if (IsInSelection(ConvertTimeToPixels(m_NewPhraseTime) + (recordingTimeCursor + m_OffsetLocation)))
-                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 5 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 5 + (recordingTimeCursor + m_OffsetLocation), true);
+                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 10 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 10 + (recordingTimeCursor + m_OffsetLocation), true);
                 else
-                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 5 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 5 + (recordingTimeCursor + m_OffsetLocation), false);
+                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 10 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 10 + (recordingTimeCursor + m_OffsetLocation), false);
                 m_NewPhraseTime = -1;
             }
         }
 
         private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (m_MouseButtonDownLoc == m_MouseButtonUpLoc)
+            {
+                PaintWaveform(m_MouseButtonUpLoc - 5, m_MouseButtonUpLoc + 5, false);
+                return;
+            }
             m_RecordingSession.UpdateDeletedTimeList(ConvertPixelsToTime(m_MouseButtonDownLoc), ConvertPixelsToTime(m_MouseButtonUpLoc));
          /*   listOfCurrentMinChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
             listOfCurrentMaxChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
