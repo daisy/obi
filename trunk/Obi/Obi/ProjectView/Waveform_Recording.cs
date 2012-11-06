@@ -605,7 +605,7 @@ int channel = 0;
                     {
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
                         if(pair.Value != "")
-                            g.DrawLine(blackPen, pair.Key, 0, pair.Key, Height);
+                            g.DrawLine(blackPen, pair.Key, 0, pair.Key, 0);
                     }
                     else
                     {
@@ -702,7 +702,7 @@ int channel = 0;
                         {
                             g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
                             if (pair.Value != "")
-                                g.DrawLine(blackPen, pair.Key, 0, pair.Key, Height);
+                                g.DrawLine(blackPen, pair.Key, 0, pair.Key, 0);
                         }
                         else
                         {
@@ -1105,31 +1105,29 @@ int channel = 0;
         public void DrawDictionary(int index, bool isSelected)
         {
             SolidBrush brushSel = null;
-            Pen newPen = null;
-            Pen blackPen = new Pen(SystemColors.ControlDarkDark);
-            
-            if(isSelected)
-                newPen = new Pen(Color.Gray);
+            Pen newPen = new Pen(Color.LightGray);
+            Pen linePen = new Pen(Color.Black);
+
+            if (isSelected)
+                brushSel = new SolidBrush(Color.Black);
             else
-                newPen = new Pen(Color.LightGray);
+                brushSel = new SolidBrush(Color.Black);
+            
             if (m_MainDictionary.ContainsKey(index))
             {
-                if (isSelected)
-                    brushSel = new SolidBrush(Color.White);
                 g.DrawLine(newPen, index, 0, index, Height);
                 if (m_MainDictionary[index].EndsWith("0"))
-                {
-                    brushSel = new SolidBrush(Color.Gray);
+                {                   
                     g.DrawString(m_MainDictionary[index], myFont, brushSel, index, Height - 15);
                     if (m_MainDictionary[index] != "")
-                        g.DrawLine(blackPen, index, 0, index, Height);
+                        g.DrawLine(newPen, index, 0, index, Height);
                 }
                 else
                 {
-                    brushSel = new SolidBrush(Color.Black);
-                    g.DrawLine(newPen, index, 0, index, Height);
+                    if (m_MainDictionary[index] != "")
+                        g.DrawLine(linePen, index, 0, index, Height);
                     g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
-                }
+                }                
             }
         }
 
