@@ -1044,17 +1044,12 @@ int channel = 0;
 
         public void PaintWaveform(int startSelection, int endSelection, bool IsSelected)
         {
-            Pen pen_Waveform = null;
-            
-
             if (IsSelected)
             {
                 if (startSelection < endSelection)
                     g.FillRectangle(SystemBrushes.Highlight, startSelection, 0, endSelection - startSelection, this.Height);
                 else
                     g.FillRectangle(SystemBrushes.Highlight, startSelection, 0, startSelection - endSelection, this.Height);
-               
-                
             }
             else
             {
@@ -1062,9 +1057,8 @@ int channel = 0;
                     g.FillRectangle(Brushes.White, startSelection, 0, endSelection - startSelection, this.Height);
                 else
                     g.FillRectangle(Brushes.White, startSelection, 0, startSelection - endSelection, this.Height);
-              
             }
-
+            
             for (int i = startSelection; i <= endSelection; i++)
             {
                 if (IsValid(i))
@@ -1087,7 +1081,6 @@ int channel = 0;
                      new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel1) - short.MinValue) * Height) / (float)ushort.MaxValue)));
                             g.DrawLine(m_ColorSettings.WaveformHighlightedPen, new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMinChannel2) - short.MinValue) * Height) / (float)ushort.MaxValue)),
                       new Point(i, Height - (int)Math.Round(((GetAmplitude(i, listOfCurrentMaxChannel2) - short.MinValue) * Height) / (float)ushort.MaxValue)));
-
                         }
                         else
                         {
@@ -1099,6 +1092,11 @@ int channel = 0;
                     }
                 }
                 DrawDictionary(i, IsSelected);
+            }
+            for (int i = startSelection; i > startSelection - 50; i--)
+            {
+                if (m_MainDictionary.ContainsKey(i))
+                    DrawDictionary(i, false);                
             }
         }
 
