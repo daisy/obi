@@ -136,7 +136,7 @@
     <value>0</value>
   </data>
   <data name="m_lblDirectoryPath.Text" xml:space="preserve">
-    <value>E&amp;xporter le dossier:</value>
+    <value>E&amp;xporter dossier:</value>
   </data>
   <data name="&gt;&gt;m_lblDirectoryPath.Name" xml:space="preserve">
     <value>m_lblDirectoryPath</value>
@@ -462,6 +462,12 @@
   <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
+    <value>Nom de la section :</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.Text" xml:space="preserve">
+    <value>&amp;limite longueur du nom de fichier:</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -478,7 +484,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Choisir le dossier d'exportation</value>
+    <value>Choisir un dossier d'exportation</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ExportDirectory</value>
