@@ -81,7 +81,8 @@ namespace Obi
         public decimal DefaultGap;
         public decimal DefaultLeadingSilence;
         public decimal DefaultThreshold;
-
+        public double RecordingToolBarIncrementVal;
+       
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
         private static void InitializeDefaultSettings(Settings settings)
@@ -149,6 +150,7 @@ namespace Obi
             settings.DefaultGap = 300;
             settings.DefaultLeadingSilence = 50;
             settings.DefaultThreshold = 280;
+            settings.RecordingToolBarIncrementVal = 0;
         }
 
         /// <summary>
