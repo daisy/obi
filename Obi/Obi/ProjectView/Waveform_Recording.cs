@@ -25,6 +25,10 @@ namespace Obi.ProjectView
         private Pen pen_HighContrastChannel1;
         private Pen pen_HighContrastChannel2;
         private Pen pen_WaveformBaseLine;
+
+        private Pen newPen;
+        private Pen blackPen;
+
         private Pen pen_HighlightedHighContrastMono;
         private Font myFont = new Font("Microsoft Sans Serif", 7);
         private EmptyNode m_ExistingPhrase = null;
@@ -73,6 +77,8 @@ namespace Obi.ProjectView
         List<double[]> listOfLocationArray = new List<double[]>();
      //   private int m_DeletedOffset = 0;
         private bool m_IsDeleted = false;
+        private bool m_PageLabelRep = false;
+        private int m_key=-1;
 
                        
         public Waveform_Recording()
@@ -89,7 +95,9 @@ namespace Obi.ProjectView
             m_StaticRecordingLocation = -1;
             m_InitialOffsetTime = -1;
             m_MouseButtonUpLoc = 0;
-            m_MouseButtonDownLoc = 0;            
+            m_MouseButtonDownLoc = 0;
+            newPen = new Pen(Color.LightGray);
+            blackPen = new Pen(Color.Black);
         }
 
         private RecordingSession m_RecordingSession;
@@ -261,7 +269,7 @@ namespace Obi.ProjectView
             
             g.DrawLine(pen_WaveformBaseLine, 0, Height / 2, Width, Height / 2);
             string text = "";
-            Pen newPen = new Pen(Color.LightGray);
+             //newPen = new Pen(Color.LightGray);
             
             timeOfAssetMilliseconds =
                    (double)m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
@@ -524,8 +532,8 @@ int channel = 0;
         private void RepaintWaveform()
         {
             Font myFont = new Font("Microsoft Sans Serif", 7);
-            Pen newPen = new Pen(Color.LightGray);
-            Pen blackPen = new Pen(Color.Black);
+            //newPen = new Pen(Color.LightGray);
+            //blackPen = new Pen(Color.Black);
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
             int tempm_X = m_X;
             int counterWaveform = 0;
@@ -605,11 +613,11 @@ int channel = 0;
                     {
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
                         if(pair.Value != "")
-                            g.DrawLine(blackPen, pair.Key, 0, pair.Key, 0);
+                            g.DrawLine(blackPen, pair.Key, 0, pair.Key, Height);
                     }
                     else
                     {
-                        g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
+                        // g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, Height - 15);
                     }                                  
                 }
@@ -621,8 +629,8 @@ int channel = 0;
         public void ResetWaveform()
         {
                 Font myFont = new Font("Microsoft Sans Serif", 7);
-                Pen newPen = new Pen(Color.LightGray);
-                Pen blackPen = new Pen(Color.Black);
+               // newPen = new Pen(Color.LightGray);
+               // blackPen = new Pen(Color.Black);
             
                 int xSize = SystemInformation.PrimaryMonitorSize.Width;
                 int temp = m_X;
@@ -747,6 +755,7 @@ int channel = 0;
                 RepaintWaveform();
                            
             m_IsToBeRepainted = true;
+            m_PageLabelRep = false;
             m_IsMaximized = false;
 
         }
@@ -771,7 +780,9 @@ int channel = 0;
             if (m_ProjectView.TransportBar.RecordingPhrase != null) text = text + " " +  phrase.PageNumber.ToString();
 
             int pixel = 0;
-            Pen pen = new Pen(SystemColors.ControlDarkDark);
+            int tempkey = 0;
+            m_key = tempkey;
+         //   Pen pen = new Pen(SystemColors.ControlDarkDark);
 
             pixel = CalculatePixels(e.TimeFromBeginning);
 
@@ -781,7 +792,29 @@ int channel = 0;
                 g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), pixel + 1, 0, 35, 10);
                            
             g.DrawString(text, myFont, Brushes.Black, pixel, 0);
-            g.DrawLine(pen, pixel, 0, pixel, Height);
+            g.DrawLine(blackPen, pixel, 0, pixel, Height);
+            
+            //if(m_MainDictionary.ContainsValue(text))
+            //{
+                
+            //    try
+            //    {
+
+            //        foreach (int key in m_MainDictionary.Keys)
+
+            //            if (m_MainDictionary[key] == text)
+            //            {
+            //                //m_MainDictionary[key] = "Phrase";
+            //                tempkey = key;
+            //            }
+            //    }
+            //    catch(Exception)
+            //    {
+                    
+            //    }
+
+
+            //}
             if (m_MainDictionary.ContainsKey(pixel))
                 m_MainDictionary[pixel] = text;
             else if (m_MainDictionary.ContainsKey(pixel + 1))
@@ -790,6 +823,13 @@ int channel = 0;
                 m_MainDictionary[pixel - 1] = text;
             else
                 m_MainDictionary.Add(pixel, text);
+            //if(tempkey!=0)
+            //{
+            //   m_MainDictionary[tempkey] = "";
+            //   DrawDictionary(tempkey,false);
+            //    m_PageLabelRep = true;
+              
+            //}
          
         }
 
@@ -1103,7 +1143,7 @@ int channel = 0;
         public void DrawDictionary(int index, bool isSelected)
         {
             SolidBrush brushSel = null;
-            Pen newPen = new Pen(Color.LightGray);
+            //newPen = new Pen(Color.LightGray);
             Pen linePen = new Pen(Color.Black);
 
             if (isSelected)
@@ -1124,7 +1164,16 @@ int channel = 0;
                 {
                     if (m_MainDictionary[index] != "")
                         g.DrawLine(linePen, index, 0, index, Height);
-                    g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
+                    if(m_key!=-1)
+                    {
+                        m_MainDictionary.Remove(m_key);
+                        m_key = -1;
+                    }
+                    else
+                    {
+                        g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
+                    }
+                   
                 }                
             }
         }
