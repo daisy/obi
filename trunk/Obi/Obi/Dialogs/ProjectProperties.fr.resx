@@ -136,7 +136,7 @@
     <value>4</value>
   </data>
   <data name="m_lblDuration.Text" xml:space="preserve">
-    <value>Total &amp;dur&amp;e:</value>
+    <value>Total &amp;durée:</value>
   </data>
   <data name="&gt;&gt;m_lblDuration.Name" xml:space="preserve">
     <value>m_lblDuration</value>

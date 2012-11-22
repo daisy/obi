@@ -136,7 +136,7 @@
     <value>1</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>&amp;Dossier du projet par d&amp;faut:</value>
+    <value>&amp;Dossier du projet par dé&amp;faut:</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -541,7 +541,7 @@
     <value>4</value>
   </data>
   <data name="mPipelineTextbox.AccessibleName" xml:space="preserve">
-    <value>Répertoire scripts du Pipeline</value>
+    <value>Répertoire des scripts</value>
   </data>
   <data name="mPipelineTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -616,7 +616,7 @@
     <value>4</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Répertoire scripts du &amp;Pipeline:</value>
+    <value>Répertoire des scripts:</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -676,7 +676,7 @@
     <value>23</value>
   </data>
   <data name="m_btn_speak.Text" xml:space="preserve">
-    <value>Speak</value>
+    <value>Lire</value>
   </data>
   <data name="&gt;&gt;m_btn_speak.Name" xml:space="preserve">
     <value>m_btn_speak</value>
@@ -691,7 +691,7 @@
     <value>0</value>
   </data>
   <data name="labelTTSvoice.AccessibleName" xml:space="preserve">
-    <value>Set TTS Synthetic Voice</value>
+    <value>Choix du TTS</value>
   </data>
   <data name="labelTTSvoice.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -706,7 +706,7 @@
     <value>21</value>
   </data>
   <data name="labelTTSvoice.Text" xml:space="preserve">
-    <value>Set TTS Synthetic voice :</value>
+    <value>Choix du TTS:</value>
   </data>
   <data name="&gt;&gt;labelTTSvoice.Name" xml:space="preserve">
     <value>labelTTSvoice</value>
@@ -760,7 +760,7 @@
     <value>25</value>
   </data>
   <data name="m_btn_AdvancedRecording.Text" xml:space="preserve">
-    <value>enregistrement avancé activé</value>
+    <value>Enreg. Avancé actif</value>
   </data>
   <data name="&gt;&gt;m_btn_AdvancedRecording.Name" xml:space="preserve">
     <value>m_btn_AdvancedRecording</value>
@@ -805,7 +805,16 @@
     <value>Aperçu de la durée</value>
   </data>
   <data name="m_cbOperation.Items2" xml:space="preserve">
-    <value>Elapse back duration</value>
+    <value>Durée retour</value>
+  </data>
+  <data name="m_cbOperation.Items3" xml:space="preserve">
+    <value>Silence par défaut</value>
+  </data>
+  <data name="m_cbOperation.Items4" xml:space="preserve">
+    <value>seuil par défaut</value>
+  </data>
+  <data name="m_cbOperation.Items5" xml:space="preserve">
+    <value>Interval par défaut</value>
   </data>
   <data name="m_cbOperation.Location" type="System.Drawing.Point, System.Drawing">
     <value>165,153</value>
@@ -862,13 +871,13 @@
     <value>Flat</value>
   </data>
   <data name="mNoiseLevelComboBox.Items" xml:space="preserve">
-    <value>Low</value>
+    <value>Faible</value>
   </data>
   <data name="mNoiseLevelComboBox.Items1" xml:space="preserve">
-    <value>Medium</value>
+    <value>Moyen</value>
   </data>
   <data name="mNoiseLevelComboBox.Items2" xml:space="preserve">
-    <value>High</value>
+    <value>Élevé</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 185</value>
@@ -1629,10 +1638,10 @@
     <value> Sélectionner les raccourcis à afficher.</value>
   </data>
   <data name="m_cbShortcutKeys.Items" xml:space="preserve">
-    <value>Content / TOC view shortcut keys</value>
+    <value>Raccourcis Contenu/vue TDM</value>
   </data>
   <data name="m_cbShortcutKeys.Items1" xml:space="preserve">
-    <value>Menu item shortcut  keys</value>
+    <value>Raccourcis éléments de menu</value>
   </data>
   <data name="m_cbShortcutKeys.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 17</value>
@@ -1854,7 +1863,7 @@
     <value>269, 270</value>
   </data>
   <data name="m_btn_Apply.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 27</value>
+    <value>78, 27</value>
   </data>
   <data name="m_btn_Apply.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -2377,7 +2386,7 @@
     <value>464, 364</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Edit preferences</value>
+    <value>Edition des preferences</value>
   </data>
   <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
     <value>columnHeader1</value>

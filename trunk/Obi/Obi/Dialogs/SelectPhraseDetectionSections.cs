@@ -55,13 +55,13 @@ namespace Obi.Dialogs
                     m_cb_EndRangeForNumberOfSections.Items.Add( m_OriginalSectionList.Count );
             }
         
-            m_cb_SilencePhrase.Items.Add ( "Use default values" );
+            m_cb_SilencePhrase.Items.Add (Localizer.Message("UseDefaultValues"));
             for (int i = 0; i < m_SilencePhrases.Count; i++)
                 {
                 m_cb_SilencePhrase.Items.Add ( (i + 1) + ". Section: " + m_SilencePhrases[i].ParentAs<SectionNode> ().Label + ": " + m_SilencePhrases[i].BaseStringShort());
                 }
             m_cb_SilencePhrase.SelectedIndex = 0;
-            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add("Select/Deselect all sections");
+            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(Localizer.Message("SelectDeselectAllSections"));
             }
 
         public List<SectionNode> SelectedSections 
@@ -71,7 +71,7 @@ namespace Obi.Dialogs
         private void updateControls()
         {
             m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Clear();
-            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add("Select/Deselect all sections");
+            m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(Localizer.Message("SelectDeselectAllSections"));
             m_cb_StartRangeForNumberOfSections.Enabled = m_rb_loadFromRange.Checked ? true : false;
             m_cb_EndRangeForNumberOfSections.Enabled = m_rb_loadFromRange.Checked ? true : false;
         }

@@ -303,6 +303,9 @@
   <data name="mGapNumericBox.AccessibleName" xml:space="preserve">
     <value>Écart entre les phrases:</value>
   </data>
+  <data name="mGapNumericBox.Text" xml:space="preserve">
+    <value>Écart entre les phrases:</value>
+  </data>
   <data name="mGapNumericBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>177, 40</value>
   </data>
@@ -620,7 +623,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Paramétres de dètection de phrase</value>
+    <value>Paramétres de détection de phrase</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SentenceDetection</value>
