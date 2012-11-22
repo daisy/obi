@@ -37,8 +37,8 @@ namespace Obi.ProjectView
         private ColorSettings m_ColorSettings;
         private ColorSettings m_ColorSettingsHC;
         private bool m_IsColorHighContrast = false;
-      //  private Dictionary<int, short> m_PointMMinChannelMap = new Dictionary<int, short>();
-      //  private Dictionary<int, short> m_PointMaxChannelMap = new Dictionary<int, short>();
+        //  private Dictionary<int, short> m_PointMMinChannelMap = new Dictionary<int, short>();
+        //  private Dictionary<int, short> m_PointMaxChannelMap = new Dictionary<int, short>();
         private Pen pen = new Pen(Color.Black);
         private List<int> listOfCurrentXLocation = new List<int>();
         private List<int> listOfCurrentMinChannel1 = new List<int>();
@@ -66,7 +66,7 @@ namespace Obi.ProjectView
         private int m_MouseButtonDownLoc = 0;
         private int m_MouseButtonUpLoc = 0;
         private bool m_IsPage = false;
-   //     private int m_TempMouseBtnDownLoc = 0;
+        //     private int m_TempMouseBtnDownLoc = 0;
         private bool m_IsMouseBtnUp = false;
         private int m_TempMouseMoveLoc = 0;
         private int m_StartSelection = 0;
@@ -75,12 +75,10 @@ namespace Obi.ProjectView
         private bool m_IsSelected = false;
         private double[] arrOfLocations = new double[2];
         List<double[]> listOfLocationArray = new List<double[]>();
-     //   private int m_DeletedOffset = 0;
+        //   private int m_DeletedOffset = 0;
         private bool m_IsDeleted = false;
-        private bool m_PageLabelRep = false;
-        private int m_key=-1;
 
-                       
+
         public Waveform_Recording()
         {
             InitializeComponent();
@@ -101,36 +99,36 @@ namespace Obi.ProjectView
         }
 
         private RecordingSession m_RecordingSession;
-        public RecordingSession RecordingSession 
-        { 
-            set 
+        public RecordingSession RecordingSession
+        {
+            set
             {
-                if ( value != null
-                    && ( m_RecordingSession == null || m_RecordingSession != value))
+                if (value != null
+                    && (m_RecordingSession == null || m_RecordingSession != value))
                 {
                     m_RecordingSession = value;
-                    m_RecordingSession.FinishingPhrase +=new Obi.Events.Audio.Recorder.FinishingPhraseHandler(m_RecordingSession_FinishingPhrase);
+                    m_RecordingSession.FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler(m_RecordingSession_FinishingPhrase);
                     m_RecordingSession.FinishingPage += new Obi.Events.Audio.Recorder.FinishingPageHandler(m_RecordingSession_FinishingPage);
                 }
-            } 
+            }
         }
 
-        
+
         public ContentView contentView
         {
             get { return m_ContentView; }
-            set 
-            { 
+            set
+            {
                 m_ContentView = value;
-           //     if (m_ContentView != null) m_ContentView.SizeChanged += new EventHandler(Waveform_Recording_Resize);
+                //     if (m_ContentView != null) m_ContentView.SizeChanged += new EventHandler(Waveform_Recording_Resize);
             }
         }
 
         public ProjectView projectView
         {
             get { return m_ProjectView; }
-            set 
-            { 
+            set
+            {
                 m_ProjectView = value;
                 if (m_ProjectView != null)
                 {
@@ -148,7 +146,7 @@ namespace Obi.ProjectView
                         UpdateColors(m_ColorSettingsHC);
                     else
                         UpdateColors(m_ColorSettings);
-                } 
+                }
             }
         }
 
@@ -182,15 +180,15 @@ namespace Obi.ProjectView
         public bool invertColor
         {
             get { return m_IsColorHighContrast; }
-            set 
+            set
             {
                 m_IsColorHighContrast = value;
-                if(m_ProjectView == null)
+                if (m_ProjectView == null)
                     return;
-                if( m_ProjectView.ObiForm == null)
-                return;
-            if (m_ProjectView.ObiForm.Settings == null)
-                return;
+                if (m_ProjectView.ObiForm == null)
+                    return;
+                if (m_ProjectView.ObiForm.Settings == null)
+                    return;
                 if (m_IsColorHighContrast)
                     UpdateColors(m_ColorSettingsHC);
                 else
@@ -202,24 +200,24 @@ namespace Obi.ProjectView
         public void UpdateColors(ColorSettings colorSettings)
         {
             m_ProjectView.ObiForm.ColorSettings.CreateBrushesAndPens();
-             pen_ChannelMono = colorSettings.WaveformMonoPen;
-             pen_Channel1 = colorSettings.WaveformChannel1Pen;
-             pen_Channel2 = colorSettings.WaveformChannel2Pen;
-             pen_WaveformBaseLine = colorSettings.WaveformBaseLinePen;
-             pen_HighlightedHighContrastMono = m_ColorSettingsHC.WaveformHighlightedPen;              
+            pen_ChannelMono = colorSettings.WaveformMonoPen;
+            pen_Channel1 = colorSettings.WaveformChannel1Pen;
+            pen_Channel2 = colorSettings.WaveformChannel2Pen;
+            pen_WaveformBaseLine = colorSettings.WaveformBaseLinePen;
+            pen_HighlightedHighContrastMono = m_ColorSettingsHC.WaveformHighlightedPen;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (!this.Visible || this.Handle.ToInt32() == 0
-                || m_ProjectView == null || m_ProjectView.TransportBar == null ||  m_ContentView == null || !m_ProjectView.TransportBar.IsRecorderActive ) return;
+                || m_ProjectView == null || m_ProjectView.TransportBar == null || m_ContentView == null || !m_ProjectView.TransportBar.IsRecorderActive) return;
 
             if (m_StaticRecordingLocation == -1)
             {
                 Location = new Point(-m_OffsetLocation, Location.Y);
                 //m_StaticRecordingLocation = recordingTimeCursor + Math.Abs( this.Location.X);
             }
-                
+
             m_XCV = m_X + Location.X;
             int diff = m_XCV - recordingTimeCursor;
             int newXLocation = (m_X - recordingTimeCursor) * -1;
@@ -229,14 +227,14 @@ namespace Obi.ProjectView
                 m_IsToBeRepainted = false;
             }
             if (newXLocation > 0)
-            {                
+            {
                 m_IsToBeRepainted = false;
-                Location = new Point(-m_OffsetLocation, Location.Y);                
+                Location = new Point(-m_OffsetLocation, Location.Y);
             }
-           
+
             int difference = 0;
             difference = this.Width - m_X - m_ContentView.Width;
-            if (this.Location.X + Width < m_ContentView.Width + 50 )
+            if (this.Location.X + Width < m_ContentView.Width + 50)
             {
                 this.Location = new Point(-m_OffsetLocation, Location.Y);
                 //  listOfXLocation.Clear();
@@ -244,61 +242,61 @@ namespace Obi.ProjectView
                 m_StaticRecordingLocation = m_X;
                 ResetLists();
                 g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), 0, 0, Width, Height);
-                ResetWaveform();               
+                ResetWaveform();
                 m_Pass++;
             }
-                    
+
             if (m_VUMeter == null || m_ContentView == null) return;
             g = this.CreateGraphics();
 
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
             {
-                   g.DrawLine(pen_ChannelMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                        new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
-               
+                g.DrawLine(pen_ChannelMono, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                     new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
+
             }
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
             {
                 g.DrawLine(pen_Channel1, new Point(m_X, Height - (int)Math.Round(((minChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)),
                    new Point(m_X, Height - (int)Math.Round(((maxChannel1 - short.MinValue) * Height) / (float)ushort.MaxValue)));
                 g.DrawLine(pen_Channel2, new Point(m_X, Height - (int)Math.Round(((minChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                   new Point(m_X, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));                
+                   new Point(m_X, Height - (int)Math.Round(((maxChannel2 - short.MinValue) * Height) / (float)ushort.MaxValue)));
             }
-                       
-            g.DrawLine(pen_WaveformBaseLine, 0, Height / 2, m_ContentView.Width, Height / 2);            
-            
+
+            g.DrawLine(pen_WaveformBaseLine, 0, Height / 2, m_ContentView.Width, Height / 2);
+
             g.DrawLine(pen_WaveformBaseLine, 0, Height / 2, Width, Height / 2);
             string text = "";
-             //newPen = new Pen(Color.LightGray);
-            
+
+
             timeOfAssetMilliseconds =
-                   (double)m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+                   (double)m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
                    Time.TIME_UNIT;
             int timeInSeconds = Convert.ToInt32(timeOfAssetMilliseconds / 1000);
             m_Counter++;
 
             if (ConvertPixelsToTime(m_X) < (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
                    Time.TIME_UNIT))
-               timer1.Interval = 90;
+                timer1.Interval = 90;
             else
                 timer1.Interval = 100;
-            
+
             if (m_Counter == 10)
             {
-                if(m_InitialOffsetTime < 0)
+                if (m_InitialOffsetTime < 0)
                 {
                     m_InitialStaticTime = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
                        Time.TIME_UNIT;
                     m_StaticRecordingLocation = m_X;
                 }
-               
+
                 g.DrawLine(newPen, m_X, 0, m_X, Height);
                 if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds)
-                {          
+                {
                     text = timeInSeconds.ToString();
                     g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
                     if (!m_MainDictionary.ContainsKey(m_X))
-                        m_MainDictionary.Add(m_X, text); 
+                        m_MainDictionary.Add(m_X, text);
                     m_LocalTime = timeInSeconds;
                 }
                 else
@@ -306,26 +304,26 @@ namespace Obi.ProjectView
                     if (!m_MainDictionary.ContainsKey(m_X))
                         m_MainDictionary.Add(m_X, "");
                 }
-           
+
                 m_Counter = 0;
             }
 
-           /* if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
-                CreatePageorPhrase(m_X);
-            if ((m_ContentView.Width - m_XCV) > 600)
-            {              
-            //    this.Location = new Point(m_ContentView.Location.X, Location.Y);
-                  // m_IsMaximized = false;
-            }
-            */
-            listOfCurrentXLocation.Add(m_X); 
-             m_X++;
-             listOfCurrentMinChannel1.Add((int)minChannel1);
-             listOfCurrentMaxChannel1.Add((int)maxChannel1);
-             listOfCurrentMinChannel2.Add((int)minChannel2);
-             listOfCurrentMaxChannel2.Add((int)maxChannel2);
-             m_TotalPixelCount++;            
-         }
+            /* if (m_ProjectView.TransportBar.CurrentState != TransportBar.State.Monitoring && m_ExistingPhrase != m_ProjectView.TransportBar.RecordingPhrase)
+                 CreatePageorPhrase(m_X);
+             if ((m_ContentView.Width - m_XCV) > 600)
+             {              
+             //    this.Location = new Point(m_ContentView.Location.X, Location.Y);
+                   // m_IsMaximized = false;
+             }
+             */
+            listOfCurrentXLocation.Add(m_X);
+            m_X++;
+            listOfCurrentMinChannel1.Add((int)minChannel1);
+            listOfCurrentMaxChannel1.Add((int)maxChannel1);
+            listOfCurrentMinChannel2.Add((int)minChannel2);
+            listOfCurrentMaxChannel2.Add((int)maxChannel2);
+            m_TotalPixelCount++;
+        }
 
         private void ResetLists()
         {
@@ -352,8 +350,8 @@ namespace Obi.ProjectView
             listOfCurrentMaxChannel2 = new List<int>();
             m_MainDictionary = new Dictionary<int, string>();
             m_InitialStaticTime = (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
-                        Time.TIME_UNIT)+ m_InitialOffsetTime;
-            for (int i = listOfMinChannel1Temp.Count - recordingTimeCursor; i <= listOfMinChannel1Temp.Count - 1; i ++)
+                        Time.TIME_UNIT) + m_InitialOffsetTime;
+            for (int i = listOfMinChannel1Temp.Count - recordingTimeCursor; i <= listOfMinChannel1Temp.Count - 1; i++)
             {
                 if (i >= 0)
                 {
@@ -371,14 +369,14 @@ namespace Obi.ProjectView
                     calculatedKey = pair.Key - (tempXLocation - recordingTimeCursor);
                     m_MainDictionary.Add(calculatedKey + m_OffsetLocation, pair.Value);
                 }
-            }         
+            }
         }
 
         private double ConvertPixelsToTime(int pixels)
         {
             double time = 0;
             time = m_InitialStaticTime + (pixels - m_StaticRecordingLocation) * 100;
-           
+
             return time;
         }
 
@@ -395,8 +393,8 @@ namespace Obi.ProjectView
             if (this.Visible == true)
             {
                 timer1.Start();
-                if(m_ContentView != null)
-                m_X = recordingTimeCursor + m_OffsetLocation;
+                if (m_ContentView != null)
+                    m_X = recordingTimeCursor + m_OffsetLocation;
                 Location = new Point(-m_OffsetLocation, Location.Y);
                 m_MainDictionary.Clear();
             }
@@ -427,45 +425,45 @@ namespace Obi.ProjectView
                 //m_Amp[1] = e.PcmDataBuffer[1];
 
                 minChannel1 = short.MaxValue;
-                            maxChannel1 = short.MinValue;
-int channels = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels ;
-int channel = 0;
-                int frameSize = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.BlockAlign ;
-                short [] samples = new short[e.PcmDataBufferLength];
-                Buffer.BlockCopy(e.PcmDataBuffer,0,samples,0,e.PcmDataBufferLength ) ;
+                maxChannel1 = short.MinValue;
+                int channels = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels;
+                int channel = 0;
+                int frameSize = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.BlockAlign;
+                short[] samples = new short[e.PcmDataBufferLength];
+                Buffer.BlockCopy(e.PcmDataBuffer, 0, samples, 0, e.PcmDataBufferLength);
 
-            //for (int i = 0 ; i < (int)Math.Ceiling(e.PcmDataBufferLength/ (float)frameSize); i += frameSize)
-                for (int i = channel; i < (int)Math.Ceiling(e.PcmDataBufferLength/ (float)frameSize); i += channels)
-            {
-                
-                                if (samples [i] < minChannel1) minChannel1 = samples [i];
-                                if (samples[i] > maxChannel1) maxChannel1 = samples [i];
-            }
-
-            if (channels > 1)
-            {
-                minChannel2 = short.MaxValue;
-                maxChannel2 = short.MinValue;
-                channel = 1;
+                //for (int i = 0 ; i < (int)Math.Ceiling(e.PcmDataBufferLength/ (float)frameSize); i += frameSize)
                 for (int i = channel; i < (int)Math.Ceiling(e.PcmDataBufferLength / (float)frameSize); i += channels)
                 {
-                    if (samples[i] < minChannel2) minChannel2 = samples[i];
-                    if (samples[i] > maxChannel2) maxChannel2 = samples[i];
-                } 
-            }
-                m_AmpValue =  m_Amp[0] + (int) (m_Amp[1] *  Math.Pow(8, m_Amp.Length));
-               // m_PointMinChannelMap.Add(x_Loc, minChannel1);
-               // m_PointMaxChannelMap.Add(x_Loc, maxChannel1);
-               
+
+                    if (samples[i] < minChannel1) minChannel1 = samples[i];
+                    if (samples[i] > maxChannel1) maxChannel1 = samples[i];
+                }
+
+                if (channels > 1)
+                {
+                    minChannel2 = short.MaxValue;
+                    maxChannel2 = short.MinValue;
+                    channel = 1;
+                    for (int i = channel; i < (int)Math.Ceiling(e.PcmDataBufferLength / (float)frameSize); i += channels)
+                    {
+                        if (samples[i] < minChannel2) minChannel2 = samples[i];
+                        if (samples[i] > maxChannel2) maxChannel2 = samples[i];
+                    }
+                }
+                m_AmpValue = m_Amp[0] + (int)(m_Amp[1] * Math.Pow(8, m_Amp.Length));
+                // m_PointMinChannelMap.Add(x_Loc, minChannel1);
+                // m_PointMaxChannelMap.Add(x_Loc, maxChannel1);
+
             }
         }
 
-     /*   private void Waveform_Recording_Resize(object sender, EventArgs e)
-        {
-            System.Media.SystemSounds.Asterisk.Play () ;
+        /*   private void Waveform_Recording_Resize(object sender, EventArgs e)
+           {
+               System.Media.SystemSounds.Asterisk.Play () ;
 
-            RepaintWaveform();           
-        }*/
+               RepaintWaveform();           
+           }*/
 
         private void ObiForm_Resize(object sender, EventArgs e)
         {
@@ -483,8 +481,8 @@ int channel = 0;
 
         private void ObiForm_ResizeEnd(object sender, EventArgs e)
         {
-  //          m_CounterWaveform = listOfCurrentMinChannel1.Count;
-            
+            //          m_CounterWaveform = listOfCurrentMinChannel1.Count;
+
             RepaintWaveform();
             m_IsResizing = false;
         }
@@ -492,27 +490,27 @@ int channel = 0;
 
         private void ObiForm_Deactivate(object sender, EventArgs e)
         {
-       /*     if (this.Visible == false || !m_ProjectView.TransportBar.IsRecorderActive)
-                return;
+            /*     if (this.Visible == false || !m_ProjectView.TransportBar.IsRecorderActive)
+                     return;
             
-            Bitmap bmp = new Bitmap(this.Width, this.Height);
-            Rectangle newRect = new Rectangle(0, 0, this.Width, this.Height);
+                 Bitmap bmp = new Bitmap(this.Width, this.Height);
+                 Rectangle newRect = new Rectangle(0, 0, this.Width, this.Height);
 
-            this.DrawToBitmap(bmp, newRect);
+                 this.DrawToBitmap(bmp, newRect);
 
-            for (int i = recordingTimeCursor; i > 0; i--)
-            {
-                if(bmp.GetPixel(i, this.Height / 2) == this.BackColor)
-                {
+                 for (int i = recordingTimeCursor; i > 0; i--)
+                 {
+                     if(bmp.GetPixel(i, this.Height / 2) == this.BackColor)
+                     {
                     
-                    for (int j = listOfCurrentMinChannel1.Count; j >= 0 ; j++)
-                    {
-                        g.DrawLine(pen_ChannelMono, new Point(i, Height - (int)Math.Round(((listOfCurrentMinChannel1[j] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(i, Height - (int)Math.Round(((listOfCurrentMaxChannel1[j] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                         for (int j = listOfCurrentMinChannel1.Count; j >= 0 ; j++)
+                         {
+                             g.DrawLine(pen_ChannelMono, new Point(i, Height - (int)Math.Round(((listOfCurrentMinChannel1[j] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                                 new Point(i, Height - (int)Math.Round(((listOfCurrentMaxChannel1[j] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                         
-                    }
-                }
-            }*/
+                         }
+                     }
+                 }*/
         }
 
         private void ObiForm_Activated(object sender, EventArgs e)
@@ -523,8 +521,8 @@ int channel = 0;
         {
             if (m_IsResizing)
                 return;
-//            m_CounterWaveform = listOfCurrentMinChannel1.Count;
-            
+            //            m_CounterWaveform = listOfCurrentMinChannel1.Count;
+
             RepaintWaveform();
             m_IsResizing = false;
         }
@@ -532,8 +530,7 @@ int channel = 0;
         private void RepaintWaveform()
         {
             Font myFont = new Font("Microsoft Sans Serif", 7);
-            //newPen = new Pen(Color.LightGray);
-            //blackPen = new Pen(Color.Black);
+
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
             int tempm_X = m_X;
             int counterWaveform = 0;
@@ -549,10 +546,10 @@ int channel = 0;
             int counterMax = listOfCurrentMaxChannel2.Count;
             int countToRepaint = 0;
             counterWaveform = listOfCurrentMinChannel1.Count;
-            
+
             if (m_ContentView != null)
                 x = recordingTimeCursor;
-            if (counterMin == 0) 
+            if (counterMin == 0)
                 return;
             if (counterMin < 5)
             { }
@@ -561,65 +558,65 @@ int channel = 0;
                 timer1.Stop();
                 if (xSize > listOfCurrentMinChannel1.Count)
                     xSize = listOfCurrentMinChannel1.Count;
-                
+
                 /*if (counterWaveform < xSize)
                     countToRepaint = counterWaveform;
                 else
                     countToRepaint = xSize;*/
                 this.Location = new Point((m_X - recordingTimeCursor) * -1, Location.Y);
                 foreach (double[] arr in m_RecordingSession.DeletedItemList)
-                     g.FillRectangle(SystemBrushes.ControlDark, CalculatePixels(arr[0]), 0, CalculatePixels(arr[1]) - CalculatePixels(arr[0]), this.Height);
-                          
-                    for (int i = listOfCurrentMinChannel1.Count - 1; i >= listOfCurrentMinChannel1.Count - xSize; i--)
+                    g.FillRectangle(SystemBrushes.ControlDark, CalculatePixels(arr[0]), 0, CalculatePixels(arr[1]) - CalculatePixels(arr[0]), this.Height);
+
+                for (int i = listOfCurrentMinChannel1.Count - 1; i >= listOfCurrentMinChannel1.Count - xSize; i--)
+                {
+                    if (tempm_X == m_MouseButtonUpLoc)
                     {
-                        if (tempm_X == m_MouseButtonUpLoc)
-                        {
-                            if (m_MouseButtonUpLoc < m_X)
-                                g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
-                            else
-                                g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
-                            pen_ChannelMono = new Pen(SystemColors.HighlightText);
-                        }
-                        if (tempm_X == m_MouseButtonDownLoc)
-                            pen_ChannelMono = m_ColorSettings.WaveformMonoPen;
-
-                        if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
-                        {
-                            g.DrawLine(pen_ChannelMono, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                        }
-
-                        if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
-                        {
-                            g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                            g.DrawLine(pen_Channel2, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                            new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                        }
-                        tempm_X--;
-                        /*  if (this.Location.X < 0 && 
-                              (this.Location.X * -1) < listOfXLocation[i])
-                          {
-                        
-                         * .WriteLine("Breaking refresh loop at:" + i) ;
-                              break;
-                          }*/
+                        if (m_MouseButtonUpLoc < m_X)
+                            g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
+                        else
+                            g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
+                        pen_ChannelMono = new Pen(SystemColors.HighlightText);
                     }
-                
+                    if (tempm_X == m_MouseButtonDownLoc)
+                        pen_ChannelMono = m_ColorSettings.WaveformMonoPen;
+
+                    if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
+                    {
+                        g.DrawLine(pen_ChannelMono, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    }
+
+                    if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
+                    {
+                        g.DrawLine(pen_Channel1, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        g.DrawLine(pen_Channel2, new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                        new Point(tempm_X, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                    }
+                    tempm_X--;
+                    /*  if (this.Location.X < 0 && 
+                          (this.Location.X * -1) < listOfXLocation[i])
+                      {
+                        
+                     * .WriteLine("Breaking refresh loop at:" + i) ;
+                          break;
+                      }*/
+                }
+
                 foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                 {
-                    g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);     
+                    g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
                     if (!pair.Value.EndsWith("0"))
                     {
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
-                        if(pair.Value != "")
+                        if (pair.Value != "")
                             g.DrawLine(blackPen, pair.Key, 0, pair.Key, Height);
                     }
                     else
                     {
-                        // g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
+                        g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, Height - 15);
-                    }                                  
+                    }
                 }
                 m_IsMaximized = false;
                 timer1.Start();
@@ -628,100 +625,98 @@ int channel = 0;
 
         public void ResetWaveform()
         {
-                Font myFont = new Font("Microsoft Sans Serif", 7);
-               // newPen = new Pen(Color.LightGray);
-               // blackPen = new Pen(Color.Black);
-            
-                int xSize = SystemInformation.PrimaryMonitorSize.Width;
-                int temp = m_X;
-                if (m_IsMaximized)
+            Font myFont = new Font("Microsoft Sans Serif", 7);
+
+            int xSize = SystemInformation.PrimaryMonitorSize.Width;
+            int temp = m_X;
+            if (m_IsMaximized)
+            {
+                m_IsMaximized = false;
+                return;
+            }
+            m_IsMaximized = true;
+            int counterMin = listOfCurrentMinChannel1.Count;
+            int x = 0;
+            int counterMax = listOfCurrentMaxChannel2.Count;
+            int countToRepaint = 0;
+
+            if (m_ContentView != null)
+                x = recordingTimeCursor;
+            if (counterMin == 0)
+                return;
+            if (counterMin < 5)
+            { }
+            else
+            {
+                timer1.Stop();
+                /*if (m_CounterWaveform < xSize)
+                    countToRepaint = m_CounterWaveform;
+                  else
+                    countToRepaint = xSize;*/
+
+                for (int i = counterMin - 1; i >= 0; i--)
                 {
-                    m_IsMaximized = false;
-                    return;
-                }
-                m_IsMaximized = true;
-                int counterMin = listOfCurrentMinChannel1.Count;
-                int x = 0;
-                int counterMax = listOfCurrentMaxChannel2.Count;
-                int countToRepaint = 0;
-             
-                if (m_ContentView != null)
-                    x = recordingTimeCursor;
-                if (counterMin == 0)
-                    return;
-                if (counterMin < 5)
-                { }
-                else
-                {
-                    timer1.Stop();
-                    /*if (m_CounterWaveform < xSize)
-                        countToRepaint = m_CounterWaveform;
-                      else
-                        countToRepaint = xSize;*/
-            
-                    for (int i = counterMin - 1; i >= 0; i--)
+                    if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                     {
-                        if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
+                        if (!m_IsColorHighContrast)
                         {
-                            if (!m_IsColorHighContrast)
-                            {
-                                g.DrawLine(pen_ChannelMono, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                                new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                            }
-                            else
-                            {
-                                g.DrawLine(pen_HighContrastMono, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                                new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                            }
-
-                        }
-
-                        if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
-                        {
-                            if (!m_IsColorHighContrast)
-                            {
-                                g.DrawLine(pen_Channel1, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                                new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                                g.DrawLine(pen_Channel2, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                                new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                            }
-                            else
-                            {
-                                g.DrawLine(pen_HighContrastChannel1, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                                new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                                g.DrawLine(pen_HighContrastChannel2, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                                new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
-                            }
-                        }
-                        
-                        temp--;
-                        /*  if (this.Location.X < 0 && 
-                              (this.Location.X * -1) < listOfXLocation[i])
-                          {
-                              Console.WriteLine("Breaking refresh loop at:" + i) ;
-                              break;
-                          }*/
-                    }
-
-                    foreach (KeyValuePair<int, string> pair in m_MainDictionary)
-                    {
-                        g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);    
-                        if (!pair.Value.EndsWith("0"))
-                        {
-                            g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
-                            if (pair.Value != "")
-                                g.DrawLine(blackPen, pair.Key, 0, pair.Key, 0);
+                            g.DrawLine(pen_ChannelMono, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
                         }
                         else
                         {
-                            g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
-                            g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, Height - 15);
-                        }                 
+                            g.DrawLine(pen_HighContrastMono, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
+
                     }
 
-                    m_IsMaximized = false;
-                    timer1.Start();
-                }      
+                    if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
+                    {
+                        if (!m_IsColorHighContrast)
+                        {
+                            g.DrawLine(pen_Channel1, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            g.DrawLine(pen_Channel2, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
+                        else
+                        {
+                            g.DrawLine(pen_HighContrastChannel1, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel1[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                            g.DrawLine(pen_HighContrastChannel2, new Point(temp, Height - (int)Math.Round(((listOfCurrentMinChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                            new Point(temp, Height - (int)Math.Round(((listOfCurrentMaxChannel2[i] - short.MinValue) * Height) / (float)ushort.MaxValue)));
+                        }
+                    }
+
+                    temp--;
+                    /*  if (this.Location.X < 0 && 
+                          (this.Location.X * -1) < listOfXLocation[i])
+                      {
+                          Console.WriteLine("Breaking refresh loop at:" + i) ;
+                          break;
+                      }*/
+                }
+
+                foreach (KeyValuePair<int, string> pair in m_MainDictionary)
+                {
+                    g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
+                    if (!pair.Value.EndsWith("0"))
+                    {
+                        g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
+                        if (pair.Value != "")
+                            g.DrawLine(blackPen, pair.Key, 0, pair.Key, 0);
+                    }
+                    else
+                    {
+                        g.DrawLine(newPen, pair.Key, 0, pair.Key, Height);
+                        g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, Height - 15);
+                    }
+                }
+
+                m_IsMaximized = false;
+                timer1.Start();
+            }
         }
         /*
         public void Phrase_Created_Event(object sender, EventArgs e)
@@ -738,14 +733,14 @@ int channel = 0;
             string text = "";
             if (m_ProjectView.TransportBar.RecordingPhrase != null && m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Page)
                 text = "Page" + m_ProjectView.TransportBar.RecordingPhrase.PageNumber.ToString();
-           // else if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Plain)
-             //   text = "Phrase";
+            // else if (m_ProjectView.TransportBar.RecordingPhrase.Role_ == EmptyNode.Role.Plain)
+            //   text = "Phrase";
             //g.DrawLine(pen, xLocation, 0, xLocation, Height);
             g.DrawString(text, myFont, Brushes.Black, xLocation, 0);
             m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
 
             if (!m_MainDictionary.ContainsKey(xLocation))
-                m_MainDictionary.Add(xLocation, text);            
+                m_MainDictionary.Add(xLocation, text);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -753,9 +748,8 @@ int channel = 0;
             base.OnPaint(e);
             if (m_IsToBeRepainted)
                 RepaintWaveform();
-                           
+
             m_IsToBeRepainted = true;
-            m_PageLabelRep = false;
             m_IsMaximized = false;
 
         }
@@ -766,23 +760,21 @@ int channel = 0;
             Pen pen = new Pen(SystemColors.ControlDarkDark);
 
             pixel = CalculatePixels(e.TimeFromBeginning);
-           
+
             g.DrawLine(pen, pixel, 0, pixel, Height);
             g.DrawString("Phrase", myFont, Brushes.Black, pixel, 0);
-            if (!m_MainDictionary.ContainsKey(pixel)) 
-            m_MainDictionary.Add(pixel, "Phrase");
+            if (!m_MainDictionary.ContainsKey(pixel))
+                m_MainDictionary.Add(pixel, "Phrase");
         }
 
         private void m_RecordingSession_FinishingPage(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
             string text = "Page";
             PhraseNode phrase = (PhraseNode)m_ProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode>().PhraseChild(e.PhraseIndex + m_ProjectView.TransportBar.RecordingInitPhraseIndex + 1);
-            if (m_ProjectView.TransportBar.RecordingPhrase != null) text = text + " " +  phrase.PageNumber.ToString();
+            if (m_ProjectView.TransportBar.RecordingPhrase != null) text = text + " " + phrase.PageNumber.ToString();
 
             int pixel = 0;
-            int tempkey = 0;
-            m_key = tempkey;
-         //   Pen pen = new Pen(SystemColors.ControlDarkDark);
+            //   Pen pen = new Pen(SystemColors.ControlDarkDark);
 
             pixel = CalculatePixels(e.TimeFromBeginning);
 
@@ -790,31 +782,9 @@ int channel = 0;
                 g.FillRectangle(new System.Drawing.SolidBrush(SystemColors.Highlight), pixel + 1, 0, 35, 10);
             else
                 g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), pixel + 1, 0, 35, 10);
-                           
+
             g.DrawString(text, myFont, Brushes.Black, pixel, 0);
             g.DrawLine(blackPen, pixel, 0, pixel, Height);
-            
-            //if(m_MainDictionary.ContainsValue(text))
-            //{
-                
-            //    try
-            //    {
-
-            //        foreach (int key in m_MainDictionary.Keys)
-
-            //            if (m_MainDictionary[key] == text)
-            //            {
-            //                //m_MainDictionary[key] = "Phrase";
-            //                tempkey = key;
-            //            }
-            //    }
-            //    catch(Exception)
-            //    {
-                    
-            //    }
-
-
-            //}
             if (m_MainDictionary.ContainsKey(pixel))
                 m_MainDictionary[pixel] = text;
             else if (m_MainDictionary.ContainsKey(pixel + 1))
@@ -823,14 +793,7 @@ int channel = 0;
                 m_MainDictionary[pixel - 1] = text;
             else
                 m_MainDictionary.Add(pixel, text);
-            //if(tempkey!=0)
-            //{
-            //   m_MainDictionary[tempkey] = "";
-            //   DrawDictionary(tempkey,false);
-            //    m_PageLabelRep = true;
-              
-            //}
-         
+
         }
 
         private int CalculatePixels(double time)
@@ -858,14 +821,14 @@ int channel = 0;
         {
             if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
                 return;
-            
+
             if (IsValid(e.X))
                 markPageToolStripMenuItem.Enabled = true;
             else
                 markPageToolStripMenuItem.Enabled = false;
-           // bool IsDeselected = false;
+            // bool IsDeselected = false;
 
-            
+
 
             if (e.Button == MouseButtons.Left)
             {
@@ -873,7 +836,7 @@ int channel = 0;
                 {
                     if (!IsValid(m_MouseButtonDownLoc) || !IsValid(m_MouseButtonUpLoc))
                         return;
-                  
+
                     PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);
                     //    IsDeselected = true;
                     // SelectPortionOfWaveform(IsDeselected);
@@ -882,7 +845,7 @@ int channel = 0;
                 m_MouseButtonUpLoc = 0;
                 m_TempMouseMoveLoc = m_MouseButtonDownLoc;
             }
-                    
+
             if (e.Button == MouseButtons.Right)
             {
                 g.DrawLine(new Pen(Color.Red), new Point(e.X, 0), new Point(e.X, Height));
@@ -891,16 +854,16 @@ int channel = 0;
             m_StartSelection = m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation);
             m_Time = ConvertPixelsToTime(e.X);
             m_NewPhraseTime = m_Time;
-           
+
             m_IsPage = false;
-         //   IsDeselected = false;
+            //   IsDeselected = false;
             m_IsMouseBtnUp = false;
         }
 
         private void Waveform_Recording_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) 
-            m_MouseButtonUpLoc = e.X;
+            if (e.Button == MouseButtons.Left)
+                m_MouseButtonUpLoc = e.X;
             int swap = 0;
             IsSelectionActive = false;
             if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
@@ -945,7 +908,7 @@ int channel = 0;
 
                 for (int i = m_MouseButtonDownLoc; i < m_MouseButtonUpLoc; i++)
                 {
-                    if(m_MainDictionary.ContainsKey(i))
+                    if (m_MainDictionary.ContainsKey(i))
                         DrawDictionary(i, true);
                 }
 
@@ -957,35 +920,35 @@ int channel = 0;
                     m_MouseButtonDownLoc = swap;
                 }
             }
-            
+
         }
 
-  /*      public void SelectPortionOfWaveform(bool IsDeselected)
-        {
-            Pen pen_Waveform = null;
-            Pen newPen = null;
-            Pen blackPen = new Pen(SystemColors.ControlDarkDark);
+        /*      public void SelectPortionOfWaveform(bool IsDeselected)
+              {
+                  Pen pen_Waveform = null;
+                  Pen newPen = null;
+                  Pen blackPen = new Pen(SystemColors.ControlDarkDark);
 
-            if (!IsValid(m_MouseButtonDownLoc) || !IsValid(m_MouseButtonUpLoc))
-                return;
-            if (IsDeselected)
-            {
-                if(m_MouseButtonUpLoc < m_MouseButtonDownLoc)
-                    g.FillRectangle(SystemBrushes.HighlightText, m_MouseButtonUpLoc, 0, m_MouseButtonDownLoc - m_MouseButtonUpLoc, this.Height);
-                else
-                    g.FillRectangle(SystemBrushes.HighlightText, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
-                pen_Waveform = pen_ChannelMono;
-                newPen = new Pen(Color.LightGray);
-            }
-            else
-            {
-                pen_Waveform = new Pen(SystemColors.HighlightText);
-                newPen = new Pen(SystemColors.ControlLight);
-            }
-            PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);            
-        }
-    */    
-       
+                  if (!IsValid(m_MouseButtonDownLoc) || !IsValid(m_MouseButtonUpLoc))
+                      return;
+                  if (IsDeselected)
+                  {
+                      if(m_MouseButtonUpLoc < m_MouseButtonDownLoc)
+                          g.FillRectangle(SystemBrushes.HighlightText, m_MouseButtonUpLoc, 0, m_MouseButtonDownLoc - m_MouseButtonUpLoc, this.Height);
+                      else
+                          g.FillRectangle(SystemBrushes.HighlightText, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.Height);
+                      pen_Waveform = pen_ChannelMono;
+                      newPen = new Pen(Color.LightGray);
+                  }
+                  else
+                  {
+                      pen_Waveform = new Pen(SystemColors.HighlightText);
+                      newPen = new Pen(SystemColors.ControlLight);
+                  }
+                  PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);            
+              }
+          */
+
         private void addSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m_ProjectView.AddStrip();
@@ -1007,7 +970,7 @@ int channel = 0;
                 m_RecordingSession.UpdatePhraseTimeList(m_Time, m_IsPage);
                 m_NewPhraseTime = -1;
             }
-            
+
         }
 
         public bool IsPhraseMarkAllowed(double time)
@@ -1035,7 +998,7 @@ int channel = 0;
             {
                 if (!IsValid(e.X))
                     return;
-                else if (IsValid(e.X)  && !IsValid(m_TempMouseMoveLoc) && m_MouseButtonDownLoc > 0)
+                else if (IsValid(e.X) && !IsValid(m_TempMouseMoveLoc) && m_MouseButtonDownLoc > 0)
                 {
                     m_TempMouseMoveLoc = e.X;
                     m_MouseButtonDownLoc = e.X;
@@ -1045,7 +1008,7 @@ int channel = 0;
                 Pen gridLinePen = new Pen(Color.LightGray);
                 Pen pen_Waveform = pen_Waveform = new Pen(SystemColors.HighlightText);
                 Pen blackPen = new Pen(SystemColors.ControlDarkDark);
-                
+
                 if (m_MouseButtonDownLoc < e.X)
                 {
                     if (m_TempMouseMoveLoc > m_MouseButtonDownLoc && m_TempMouseMoveLoc < e.X)
@@ -1056,10 +1019,10 @@ int channel = 0;
                     else
                     {
                         m_IsSelected = false;
-                        if(e.X < m_TempMouseMoveLoc)
-                        PaintWaveform(e.X, m_TempMouseMoveLoc, false);
+                        if (e.X < m_TempMouseMoveLoc)
+                            PaintWaveform(e.X, m_TempMouseMoveLoc, false);
                         else
-                        PaintWaveform(m_TempMouseMoveLoc, e.X, false);
+                            PaintWaveform(m_TempMouseMoveLoc, e.X, false);
                     }
                 }
                 else if (m_MouseButtonDownLoc > e.X)
@@ -1072,14 +1035,14 @@ int channel = 0;
                     else
                     {
                         m_IsSelected = false;
-                        if(m_TempMouseMoveLoc < e.X)
-                        PaintWaveform(m_TempMouseMoveLoc, e.X, false);
+                        if (m_TempMouseMoveLoc < e.X)
+                            PaintWaveform(m_TempMouseMoveLoc, e.X, false);
                         else
-                        PaintWaveform(e.X, m_TempMouseMoveLoc, true);
+                            PaintWaveform(e.X, m_TempMouseMoveLoc, true);
                     }
-                }           
+                }
             }
-            m_TempMouseMoveLoc = e.X;            
+            m_TempMouseMoveLoc = e.X;
         }
 
         public void PaintWaveform(int startSelection, int endSelection, bool IsSelected)
@@ -1098,7 +1061,7 @@ int channel = 0;
                 else
                     g.FillRectangle(Brushes.White, startSelection, 0, startSelection - endSelection, this.Height);
             }
-            
+
             for (int i = startSelection; i <= endSelection; i++)
             {
                 if (IsValid(i))
@@ -1136,26 +1099,25 @@ int channel = 0;
             for (int i = startSelection; i > startSelection - 50; i--)
             {
                 if (m_MainDictionary.ContainsKey(i))
-                    DrawDictionary(i, false);                
+                    DrawDictionary(i, false);
             }
         }
 
         public void DrawDictionary(int index, bool isSelected)
         {
             SolidBrush brushSel = null;
-            //newPen = new Pen(Color.LightGray);
             Pen linePen = new Pen(Color.Black);
 
             if (isSelected)
                 brushSel = new SolidBrush(Color.Black);
             else
                 brushSel = new SolidBrush(Color.Black);
-            
+
             if (m_MainDictionary.ContainsKey(index))
             {
                 g.DrawLine(newPen, index, 0, index, Height);
                 if (m_MainDictionary[index].EndsWith("0"))
-                {                   
+                {
                     g.DrawString(m_MainDictionary[index], myFont, brushSel, index, Height - 15);
                     if (m_MainDictionary[index] != "")
                         g.DrawLine(newPen, index, 0, index, Height);
@@ -1164,17 +1126,8 @@ int channel = 0;
                 {
                     if (m_MainDictionary[index] != "")
                         g.DrawLine(linePen, index, 0, index, Height);
-                    if(m_key!=-1)
-                    {
-                        m_MainDictionary.Remove(m_key);
-                        m_key = -1;
-                    }
-                    else
-                    {
-                        g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
-                    }
-                   
-                }                
+                    g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
+                }
             }
         }
 
@@ -1206,7 +1159,7 @@ int channel = 0;
 
         private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
         {
-            
+
             if (m_NewPhraseTime > 0 && !m_IsPage)
             {
                 if (IsInSelection(ConvertTimeToPixels(m_NewPhraseTime) + (recordingTimeCursor + m_OffsetLocation)))
@@ -1225,13 +1178,13 @@ int channel = 0;
                 return;
             }
             m_RecordingSession.UpdateDeletedTimeList(ConvertPixelsToTime(m_MouseButtonDownLoc), ConvertPixelsToTime(m_MouseButtonUpLoc));
-         /*   listOfCurrentMinChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
-            listOfCurrentMaxChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
-            if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
-            {
-                listOfCurrentMinChannel2.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
-                listOfCurrentMaxChannel2.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));            
-            }*/
+            /*   listOfCurrentMinChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
+               listOfCurrentMaxChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
+               if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
+               {
+                   listOfCurrentMinChannel2.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
+                   listOfCurrentMaxChannel2.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));            
+               }*/
 
             /*   foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                {
