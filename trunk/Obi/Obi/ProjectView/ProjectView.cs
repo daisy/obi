@@ -945,7 +945,7 @@ namespace Obi.ProjectView
                             Selection = new NodeSelection(section, mContentView);
                         }
                     }
-                    MessageBox.Show(Localizer.Message("UnusedPhrasesDeletedFromProject"), "Unused phrases deleted", MessageBoxButtons.OK);
+                    MessageBox.Show(Localizer.Message("UnusedPhrasesDeletedFromProject"), Localizer.Message("UnusedPhrasesDeletedCaption"), MessageBoxButtons.OK);
                 }
             }
 
