@@ -21,7 +21,26 @@ namespace Obi.UserControls
         private int m_TimeCounter;
         private int m_Count = 0;
         private string m_strStatus = "";
+        private int flagBtnPressed=0;
+        private Size m_minimumWidth;
+        private Size m_minPlayBtn;
+        private Size m_minStopBtn;
+        private Size m_minRecordingBtn;
+        private Size m_minPrePhraseBtn;
+        private Size m_minNextPhraseBtn;
+        private Size m_minNextPageBtn;
+        private Size m_minNextSectionBtn;
+        private Size m_minTodoBtn;
+
+        public static double NetSizeIncrementOfButtons=0;
+        public static bool flagIncrementDecrement=true;
+        public static double NetSizeIncBtn=0;
         
+        
+
+        //public delegate void RecorderSettingsSet();
+
+        //public event RecorderSettingsSet SaveTheSize;
         public RecordingToolBarForm()
         {
             InitializeComponent();
@@ -44,6 +63,40 @@ namespace Obi.UserControls
             m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);
            // if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
                 UpdateButtons();
+        }
+
+        public Size RecordingToolBarPlayBtn
+        {
+            get { return m_recordingToolBarPlayBtn.Size; }
+        }
+        public Size RecordingToolBarStopBtn
+        {
+            get { return m_recordingToolBarStopBtn.Size; }
+        }
+
+        public Size RecordingToolBarRecordingBtn
+        {
+            get { return m_recordingToolBarRecordingBtn.Size; } 
+        }
+
+        public Size RecordingToolBarPrePhraseBtn
+        {
+            get { return m_recordingToolBarPrePhraseBtn.Size; }
+        }
+
+        public Size RecordingGoToNextPhraseBtn
+        {
+            get { return m_recordingGoToNextPhraseBtn.Size; }
+        }
+
+        public Size RecordingToolBarNextSectionBtn
+        {
+            get { return m_recordingToolBarNextSectionBtn.Size; }
+        }
+
+        public Size TODOBtn
+        {
+            get { return m_TODOBtn.Size; }
         }
 
         public void State_Changed_Player(object sender, AudioPlayer.StateChangedEventArgs e)
@@ -271,6 +324,204 @@ namespace Obi.UserControls
             m_strStatus = Localizer.Message("RecToolbar_MarkedTODO");
             m_Count = 0;
             m_TransportBar.MarkTodo();           
-        }        
+        }
+
+        private void RecordingToolBarForm_Load(object sender, EventArgs e)
+        {
+            m_minimumWidth = this.Size;
+            m_minPlayBtn = m_recordingToolBarPlayBtn.Size;
+            m_minStopBtn = m_recordingToolBarStopBtn.Size;
+            m_minRecordingBtn = m_recordingToolBarRecordingBtn.Size;
+            m_minPrePhraseBtn = m_recordingToolBarPrePhraseBtn.Size;
+            m_minNextPhraseBtn = m_recordingGoToNextPhraseBtn.Size;
+            m_minNextPageBtn = m_recordingToolBarNextPageBtn.Size;
+            m_minNextSectionBtn = m_recordingToolBarNextSectionBtn.Size;
+            m_minTodoBtn = m_TODOBtn.Size;
+
+        }
+
+        private void m_Enlarge_Click(object sender, EventArgs e)
+        {
+            //int temp;
+            //temp = (int) (this.Width*0.5);
+            //this.Width += temp;
+            //NetSizeIncrementOfButtons = (int)((temp) / 8);
+            flagBtnPressed = 1;
+            EnlargeButtonSize();
+            flagBtnPressed = 0;
+        }
+
+        private void m_Reduce_Click(object sender, EventArgs e)
+        {
+            int temp;
+            //temp = (int)(this.Width * 0.5);
+            //this.Width -= temp;
+            //if(this.Width<m_minimumWidth)
+            //{
+            //    this.Width = m_minimumWidth;
+            //    NetSizeIncrementOfButtons = this.Width/8;
+            //}
+            //else
+            //{
+            //    NetSizeIncrementOfButtons = (int)((temp) / 8);
+                
+            //}
+           
+            flagBtnPressed = 1;
+            ReduceButtonSize();
+            flagBtnPressed = 0;
+        }
+        public void EnlargeButtonSize()
+        {
+            if (flagBtnPressed == 1)
+            {
+                NetSizeIncBtn = 0.5;
+            }
+            else
+            {
+                NetSizeIncBtn = NetSizeIncrementOfButtons;
+            }
+            flagIncrementDecrement = true;
+            if (NetSizeIncrementOfButtons >1.5 && flagBtnPressed==1)
+            {
+                NetSizeIncBtn = 0;
+            }
+
+            this.Width = (int)(this.Width + m_minimumWidth.Width * NetSizeIncBtn);
+          //  this.Height = (int)(this.Height + this.Height * NetSizeIncBtn);
+
+            m_recordingToolBarPlayBtn.Width = (int)(m_recordingToolBarPlayBtn.Width + m_minPlayBtn.Width * NetSizeIncBtn);
+            m_recordingToolBarPlayBtn.Height = (int)(m_recordingToolBarPlayBtn.Height + m_minPlayBtn.Height * NetSizeIncBtn);
+
+            m_recordingToolBarStopBtn.Width = (int)(m_recordingToolBarStopBtn.Width + m_minStopBtn.Width * NetSizeIncBtn);
+            m_recordingToolBarStopBtn.Height = (int)(m_recordingToolBarStopBtn.Height + m_minStopBtn.Height * NetSizeIncBtn);
+
+            m_recordingToolBarRecordingBtn.Width = (int)(m_recordingToolBarRecordingBtn.Width + m_minRecordingBtn.Width * NetSizeIncBtn);
+            m_recordingToolBarRecordingBtn.Height = (int)(m_recordingToolBarRecordingBtn.Height + m_minRecordingBtn.Height * NetSizeIncBtn);
+
+            m_recordingToolBarPrePhraseBtn.Width = (int)(m_recordingToolBarPrePhraseBtn.Width + m_minPrePhraseBtn.Width * NetSizeIncBtn);
+            m_recordingToolBarPrePhraseBtn.Height = (int)(m_recordingToolBarPrePhraseBtn.Height + m_minPrePhraseBtn.Height * NetSizeIncBtn);
+
+            m_recordingGoToNextPhraseBtn.Width = (int)(m_recordingGoToNextPhraseBtn.Width + m_minNextPhraseBtn.Width * NetSizeIncBtn);
+            m_recordingGoToNextPhraseBtn.Height = (int)(m_recordingGoToNextPhraseBtn.Height + m_minNextPhraseBtn.Height * NetSizeIncBtn);
+
+            m_recordingToolBarNextPageBtn.Width = (int)(m_recordingToolBarNextPageBtn.Width + m_minNextPageBtn.Width * NetSizeIncBtn);
+            m_recordingToolBarNextPageBtn.Height = (int)(m_recordingToolBarNextPageBtn.Height + m_minNextPageBtn.Height * NetSizeIncBtn);
+
+            m_recordingToolBarNextSectionBtn.Width = (int)(m_recordingToolBarNextSectionBtn.Width + m_minNextSectionBtn.Width * NetSizeIncBtn);
+            m_recordingToolBarNextSectionBtn.Height = (int)(m_recordingToolBarNextSectionBtn.Height + m_minNextSectionBtn.Height * NetSizeIncBtn);
+
+            m_TODOBtn.Width = (int)(m_TODOBtn.Width + m_minTodoBtn.Width * NetSizeIncBtn);
+            m_TODOBtn.Height = (int)(m_TODOBtn.Height + m_minTodoBtn.Height * NetSizeIncBtn);
+            if (flagBtnPressed == 1)
+            {
+                
+                if(NetSizeIncrementOfButtons<=1.5)
+                {
+                    NetSizeIncrementOfButtons += 0.5;
+                    
+                }
+            }
+
+        }
+        public void ReduceButtonSize()
+        {
+            if (NetSizeIncrementOfButtons < 0.5)
+            {
+                NetSizeIncrementOfButtons = 0;
+            }
+            if(flagBtnPressed==1)
+            {
+                NetSizeIncBtn = 0.5;
+            }
+            else
+            {
+                NetSizeIncBtn = NetSizeIncrementOfButtons;
+            }
+            flagIncrementDecrement = false;
+            if (m_minimumWidth.Width < (int)(this.Width - m_minimumWidth.Width * NetSizeIncBtn))
+            {
+                this.Width = (int)(this.Width - m_minimumWidth.Width * NetSizeIncBtn);
+              //  this.Height = (int)(this.Height - this.Height * NetSizeIncBtn);
+                m_recordingToolBarPlayBtn.Width = (int)(m_recordingToolBarPlayBtn.Width - m_minPlayBtn.Width * NetSizeIncBtn);
+                m_recordingToolBarPlayBtn.Height = (int)(m_recordingToolBarPlayBtn.Height - m_minPlayBtn.Height * NetSizeIncBtn);
+
+                m_recordingToolBarStopBtn.Width = (int)(m_recordingToolBarStopBtn.Width - m_minStopBtn.Width * NetSizeIncBtn);
+                m_recordingToolBarStopBtn.Height = (int)(m_recordingToolBarStopBtn.Height - m_minStopBtn.Height * NetSizeIncBtn);
+
+                m_recordingToolBarRecordingBtn.Width = (int)(m_recordingToolBarRecordingBtn.Width - m_minRecordingBtn.Width * NetSizeIncBtn);
+                m_recordingToolBarRecordingBtn.Height = (int)(m_recordingToolBarRecordingBtn.Height - m_minRecordingBtn.Height * NetSizeIncBtn);
+
+                m_recordingToolBarPrePhraseBtn.Width = (int)(m_recordingToolBarPrePhraseBtn.Width - m_minPrePhraseBtn.Width * NetSizeIncBtn);
+                m_recordingToolBarPrePhraseBtn.Height = (int)(m_recordingToolBarPrePhraseBtn.Height - m_minPrePhraseBtn.Height * NetSizeIncBtn);
+
+                m_recordingGoToNextPhraseBtn.Width = (int)(m_recordingGoToNextPhraseBtn.Width - m_minNextPhraseBtn.Width * NetSizeIncBtn);
+                m_recordingGoToNextPhraseBtn.Height = (int)(m_recordingGoToNextPhraseBtn.Height - m_minNextPhraseBtn.Height * NetSizeIncBtn);
+
+                m_recordingToolBarNextPageBtn.Width = (int)(m_recordingToolBarNextPageBtn.Width - m_minNextPageBtn.Width * NetSizeIncBtn);
+                m_recordingToolBarNextPageBtn.Height = (int)(m_recordingToolBarNextPageBtn.Height - m_minNextPageBtn.Height * NetSizeIncBtn);
+
+                m_recordingToolBarNextSectionBtn.Width = (int)(m_recordingToolBarNextSectionBtn.Width - m_minNextSectionBtn.Width * NetSizeIncBtn);
+                m_recordingToolBarNextSectionBtn.Height = (int)(m_recordingToolBarNextSectionBtn.Height - m_minNextSectionBtn.Height * NetSizeIncBtn);
+
+                m_TODOBtn.Width = (int)(m_TODOBtn.Width - m_minTodoBtn.Width * NetSizeIncBtn);
+                m_TODOBtn.Height = (int)(m_TODOBtn.Height - m_minTodoBtn.Height * NetSizeIncBtn);
+            }
+            else
+            {
+                this.Width = m_minimumWidth.Width;
+                m_recordingToolBarPlayBtn.Size = m_minPlayBtn;
+
+              
+                m_recordingToolBarStopBtn.Size = m_minStopBtn;
+
+               m_recordingToolBarRecordingBtn.Size = m_minRecordingBtn;
+
+               m_recordingToolBarPrePhraseBtn.Size = m_minPrePhraseBtn;
+
+                m_recordingGoToNextPhraseBtn.Size = m_minNextPhraseBtn;
+
+              
+                m_recordingToolBarNextPageBtn.Size = m_minNextPageBtn;
+
+                m_recordingToolBarNextSectionBtn.Size = m_minNextSectionBtn;
+                m_TODOBtn.Size = m_minTodoBtn;
+
+              }
+
+           if (flagBtnPressed == 1)
+           {
+               NetSizeIncrementOfButtons -= 0.5;
+               if(NetSizeIncrementOfButtons<0.5)
+               {
+                   NetSizeIncrementOfButtons = 0;
+               }
+           }
+
+        }
+
+        private void RecordingToolBarForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Width = m_minimumWidth.Width;
+            m_recordingToolBarPlayBtn.Size = m_minPlayBtn;
+
+
+            m_recordingToolBarStopBtn.Size = m_minStopBtn;
+
+            m_recordingToolBarRecordingBtn.Size = m_minRecordingBtn;
+
+            m_recordingToolBarPrePhraseBtn.Size = m_minPrePhraseBtn;
+
+            m_recordingGoToNextPhraseBtn.Size = m_minNextPhraseBtn;
+
+
+            m_recordingToolBarNextPageBtn.Size = m_minNextPageBtn;
+
+            m_recordingToolBarNextSectionBtn.Size = m_minNextSectionBtn;
+            m_TODOBtn.Size = m_minTodoBtn;
+
+        }
+
+      
     }
 }

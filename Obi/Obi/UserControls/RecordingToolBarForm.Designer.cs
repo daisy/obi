@@ -43,6 +43,8 @@ namespace Obi.UserControls
             this.recordingToolStripStatusBar = new System.Windows.Forms.ToolStripStatusLabel();
             this.m_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.m_Enlarge = new System.Windows.Forms.Button();
+            this.m_Reduce = new System.Windows.Forms.Button();
             this.recordingToolBarToolStrip.SuspendLayout();
             this.m_statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -146,14 +148,33 @@ namespace Obi.UserControls
             this.timer1.Interval = 300;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // m_Enlarge
+            // 
+            resources.ApplyResources(this.m_Enlarge, "m_Enlarge");
+            this.m_Enlarge.Name = "m_Enlarge";
+            this.m_Enlarge.UseVisualStyleBackColor = true;
+            this.m_Enlarge.Click += new System.EventHandler(this.m_Enlarge_Click);
+            // 
+            // m_Reduce
+            // 
+            this.m_Reduce.AccessibleName = global::Obi.messages.phrase_extra_Plain;
+            resources.ApplyResources(this.m_Reduce, "m_Reduce");
+            this.m_Reduce.Name = "m_Reduce";
+            this.m_Reduce.UseVisualStyleBackColor = true;
+            this.m_Reduce.Click += new System.EventHandler(this.m_Reduce_Click);
+            // 
             // RecordingToolBarForm
             // 
             resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.m_Reduce);
+            this.Controls.Add(this.m_Enlarge);
             this.Controls.Add(this.m_statusStrip);
             this.Controls.Add(this.recordingToolBarToolStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "RecordingToolBarForm";
+            this.Load += new System.EventHandler(this.RecordingToolBarForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RecordingToolBarForm_FormClosing);
             this.recordingToolBarToolStrip.ResumeLayout(false);
             this.recordingToolBarToolStrip.PerformLayout();
             this.m_statusStrip.ResumeLayout(false);
@@ -178,5 +199,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripStatusLabel m_StatusLabel;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripButton m_TODOBtn;
+        private System.Windows.Forms.Button m_Enlarge;
+        private System.Windows.Forms.Button m_Reduce;
     }
 }
