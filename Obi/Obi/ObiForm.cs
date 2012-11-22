@@ -47,11 +47,11 @@ namespace Obi
 
             private string m_RestoreProjectFilePath = null;
             private string m_OriginalPath = null;
-            private int flagMaxWindow = 0;
-            private int m_flag = 0;// used for controling  the execution of certain statements during resize of obi window
-            private static int m_flagForPeakMeterHeight = 0;
-            private int m_tempHeightMin; // Stores minimum height of peak meter
-            private int m_FlagWindowState = 0; //indicates whether window is in max or min state
+            private bool flagMaxWindow = false;
+            private bool m_flag = false;// used for controling  the execution of certain statements during resize of obi window
+            private static bool m_flagForPeakMeterHeight = false;
+            private int m_tempHeightMin=0; // Stores minimum height of peak meter
+            private bool m_FlagWindowState = false; //indicates whether window is in max or min state
             private int m_DiffPeakMeterGraphicalPeakMeter=0; // stores the difference between the hight of the peak meter and graphical peak  
             private bool m_NormalAfterMax = false;    //Used to revert back to the window of the original size from max obi window
 
@@ -2944,23 +2944,41 @@ namespace Obi
 
             private void ShowRecordingToolBar()
             {
+
                 if (mRecordingToolBarForm == null)
                 {
                     //    mRecordingToolBarForm = new Obi.UserControls.RecordingToolBarForm(mProjectView.TransportBar);
                     mRecordingToolBarForm = new Obi.UserControls.RecordingToolBarForm(mProjectView);
                     mRecordingToolBarForm.FormClosed +=
                         new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e)
-                                                       {
-                                                           mRecordingToolBarForm = null;
-                                                           mView_RecordingToolBarMenuItem.Checked = false;
-                                                       });
+                        {
+                            mSettings.RecordingToolBarIncrementVal =
+                              Obi.UserControls.RecordingToolBarForm.
+                                   NetSizeIncrementOfButtons;
+
+                            mRecordingToolBarForm = null;
+                            mView_RecordingToolBarMenuItem.Checked = false;
+
+                        });
 
                     // if selection is in TocView, move it to content view.
                     if (mProjectView.Selection != null && mProjectView.Selection.Control is ProjectView.TOCView)
                         mProjectView.FocusOnContentView();
-
+                    mRecordingToolBarForm.TopMost = true;
                     if (mPeakMeter == null) ShowPeakMeter();
                     mRecordingToolBarForm.Show();
+                    Obi.UserControls.RecordingToolBarForm.NetSizeIncrementOfButtons =
+                            mSettings.RecordingToolBarIncrementVal;
+                    mRecordingToolBarForm.EnlargeButtonSize();
+
+
+
+
+
+
+
+
+
                     mRecordingToolBarForm.Location = new System.Drawing.Point(this.Location.X,
                                                                               (this.Location.Y + this.Size.Height) -
                                                                               mRecordingToolBarForm.Size.Height);
@@ -3049,7 +3067,7 @@ namespace Obi
                                                                                 {
                                                                                     this.Size = mSettings.ObiFormSize;
                                                                                 }
-                                                                                if(flagMaxWindow==1)
+                                                                                if(flagMaxWindow==true)
                                                                                     {
                                                                                        this.WindowState=FormWindowState.Maximized;
                                                                                     }
@@ -3057,8 +3075,8 @@ namespace Obi
                                                                             });
                     if (this.WindowState != FormWindowState.Minimized)
                     {
-                        flagMaxWindow = 0;
-                       m_flag = 0;
+                        flagMaxWindow = false;
+                       m_flag = false;
                        
                         //Make sure the Peak meter is displayed on the right of the Obi form.
                         if (this.WindowState == FormWindowState.Maximized)
@@ -3069,16 +3087,16 @@ namespace Obi
                             System.Drawing.Size newSize = this.Size;
                             newSize.Width -= 2*SystemInformation.HorizontalResizeBorderThickness;
                             newSize.Height -= 2*SystemInformation.VerticalResizeBorderThickness;
-                            m_flag = 1;
+                            m_flag = true;
                             this.WindowState = FormWindowState.Normal;
                             m_NormalAfterMax = true;
                             this.Location = newLoc;
                             m_ShowingPeakMeter = true;
                             this.Size = newSize;
-                            flagMaxWindow = 1;
+                            flagMaxWindow = true;
                             //m_ShowingPeakMeter = false; this is made false in resize event
                         }
-                        if (flagMaxWindow == 1)
+                        if (flagMaxWindow == true)
                         {
                             this.Width -= mPeakMeter.Width;
                             mPeakMeter.Left = this.Right;
@@ -3095,14 +3113,14 @@ namespace Obi
                         mPeakMeter.Top = this.Top;
                         //  mPeakMeter.Left = this.Right;
                         mPeakMeter.Height = this.Height;
-                        //  m_DiffPeakMeterGraphicalPeakMeter = mPeakMeter.Height - mPeakMeter.PeakMeterHeight;//peakmeter ref
+                       // m_DiffPeakMeterGraphicalPeakMeter = mPeakMeter.Height - mPeakMeter.PeakMeterHeight;//peakmeter ref
                         mPeakMeter.StartPosition = FormStartPosition.Manual;
                     }
                     mPeakMeter.Show();
                     mShowPeakMeterMenuItem.Checked = true;
                     
                         m_tempHeightMin = mPeakMeter.Height;
-                        m_flagForPeakMeterHeight = 1;
+                        m_flagForPeakMeterHeight = true;
                     
                 }
                 else
@@ -4367,10 +4385,10 @@ namespace Obi
 
             private void PeakMeterResize()
             {
-                if (this.WindowState == FormWindowState.Maximized && m_flag != 1)
+                if (this.WindowState == FormWindowState.Maximized && m_flag != true)
                 {
                     m_tempHeightMin = mPeakMeter.Height;
-                    m_flagForPeakMeterHeight = 1;
+                    m_flagForPeakMeterHeight = true;
 
                     
                     System.Drawing.Point newLoc = this.Location;
@@ -4386,47 +4404,58 @@ namespace Obi
                     this.Location = newLoc;
                     m_ShowingPeakMeter = true;
                     this.Size = newSize;
-                    flagMaxWindow = 1;
+                    flagMaxWindow = true;
 
                     this.Width -= mPeakMeter.Width;
 
                     //   int temphgt = mPeakMeter.Height - mPeakMeter.PeakMeterHeight;//peakmeter ref
 
 
-                 //   mPeakMeter.AnchorStyle = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right);//peakmeter ref
+                    //   mPeakMeter.AnchorStyle = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right);//peakmeter ref
 
                     mPeakMeter.Height = this.Height;
-
-                    //   mPeakMeter.PeakMeterTop = mPeakMeter.Top;  //peakmeter ref
-                    // mPeakMeter.PeakMeterHeight = mPeakMeter.PeakMeterHeight + temphgt - m_DiffPeakMeterGraphicalPeakMeter;//peakmeter ref
-
-
+                    mPeakMeter.Top = this.Top;
+                      //  mPeakMeter.PeakMeterTop = mPeakMeter.Top;  //peakmeter ref
+                       // mPeakMeter.PeakMeterHeight = mPeakMeter.PeakMeterHeight + temphgt - m_DiffPeakMeterGraphicalPeakMeter;//peakmeter ref
 
 
-                    m_FlagWindowState = 1;
-                    m_flag = 1;
+
+
+                    m_FlagWindowState = true;
+                    m_flag = true;
                     m_NormalAfterMax = true;
+                   
                 }
 
 
-                else if (this.WindowState == FormWindowState.Normal && m_flag != 1)
+                else if (this.WindowState == FormWindowState.Normal && m_flag != true)
                 {
 
 
                     if (this.Height >= m_tempHeightMin)
                     {
-                                       
 
+                        if (m_FlagWindowState == true)
+                        {
+                           // mPeakMeter.AnchorStyle = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right);//peakmeter ref
+                           // mPeakMeter.Height = this.Height;//peakmeter ref
+                            m_FlagWindowState = false;
+                        }
+                        else
+                        {
+                          //  mPeakMeter.AnchorStyle = AnchorStyles.None; //peakmeter ref
+                           // mPeakMeter.Height = this.Height; //peakmeter ref
+                        }
                         m_NormalAfterMax = false;
 
                     }
-                    m_flag = 0;
+                    m_flag = false;
 
                 }
 
                 mPeakMeter.Left = this.Right;
 
-            //    mPeakMeter.Top = this.Top;
+              // mPeakMeter.Top = this.Top;
 
 
                    
