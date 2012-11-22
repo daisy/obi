@@ -629,6 +629,10 @@ Error text: {1}</value>
     <value>Delete unused data ?</value>
     <comment>Confirmation dialog</comment>
   </data>
+  <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
+    <value>Unused Phrases Deleted</value>
+    <comment>Command</comment>
+  </data>
   <data name="clean_save_text" xml:space="preserve">
     <value>Your project will be saved after cleaning. Do you want to continue?</value>
     <comment>Confirmation dialog</comment>
@@ -1019,7 +1023,7 @@ Error text: {1}</value>
     <comment>Used for time formating (singular)</comment>
   </data>
   <data name="seconds" xml:space="preserve">
-    <value>seconds</value>
+    <value>secondes</value>
     <comment>Used for time formating (plural)</comment>
   </data>
   <data name="section_level" xml:space="preserve">
@@ -1461,6 +1465,12 @@ Error text: {1}</value>
   <data name="TextVuMeter_OverloadIndicator" xml:space="preserve">
     <value>OL </value>
   </data>
+  <data name="DisableAdvancedRecording" xml:space="preserve">
+    <value>Disable Advanced Recording </value>
+  </data>
+  <data name="EnableAdvancedRecording" xml:space="preserve">
+    <value>Enable Advanced Recording </value>
+  </data>
   <data name="ContentViewLabel_NoSection" xml:space="preserve">
     <value>No section displayed</value>
   </data>
@@ -1840,6 +1850,12 @@ Error text: {1}</value>
   </data>
   <data name="SaveSelectedNodeAsBookmark" xml:space="preserve">
     <value>The currently selected node is not same as saved bookmarked node. Do you want to save this node as bookmark? The project will also be saved.</value>
+  </data>
+  <data name="UseDefaultValues" xml:space="preserve">
+    <value>Use Default Values</value>
+  </data>
+  <data name="SelectDeselectAllSections" xml:space="preserve">
+    <value>Select / Deselect All Sections</value>
   </data>
   <data name="upgrade_obi_to_new_version" xml:space="preserve">
     <value>The project was created on previous version of Obi. It will be upgraded to the latest version. Please press OK to continue</value>

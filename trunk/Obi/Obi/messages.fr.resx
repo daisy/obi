@@ -548,6 +548,12 @@ Texte de l'erreur: {1}</value>
   <data name="add_section" xml:space="preserve">
     <value>ajouter une section</value>
     <comment>Command</comment>
+    </data>
+  <data name="UseDefaultValues" xml:space="preserve">
+    <value>Utiliser valeurs par défaut</value>
+  </data>
+    <data name="SelectDeselectAllSections" xml:space="preserve">
+    <value>Sélectionner/Désélectionner sections</value>
   </data>
   <data name="add_subsection" xml:space="preserve">
     <value>ajouter une sous-section</value>
@@ -683,6 +689,9 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="content_view" xml:space="preserve">
     <value>Vue du contenu</value>
+  </data>
+  <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
+    <value>Phrases inutilisés sont supprimés du projet.</value>
   </data>
   <data name="audio_block_label" xml:space="preserve">
     <value>{0} {1} de {2}{3}</value>
@@ -860,7 +869,7 @@ Texte de l'erreur: {1}</value>
     <comment>ToString()</comment>
   </data>
   <data name="phrase_extra_page" xml:space="preserve">
-    <value>, numéro de page {0}</value>
+    <value>, numéro page {0}</value>
     <comment>ToString() for page numbers</comment>
   </data>
   <data name="phrase_extra_Plain" xml:space="preserve">
@@ -1006,6 +1015,15 @@ Texte de l'erreur: {1}</value>
   <data name="node_position" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
+  <data name="Audio_ShowLiveWaveformWhileRecording" xml:space="preserve">
+    <value>Visualiser le signal pendant l’enregistrement</value>
+  </data>
+  <data name="DisableAdvancedRecording" xml:space="preserve">
+    <value>Enreg. Avancé inactif</value>
+  </data>
+  <data name="EnableAdvancedRecording" xml:space="preserve">
+    <value>Enreg. Avancé actif</value>
+  </data>
   <data name="second" xml:space="preserve">
     <value>seconde</value>
     <comment>Used for time formating (singular)</comment>
@@ -1013,6 +1031,9 @@ Texte de l'erreur: {1}</value>
   <data name="seconds" xml:space="preserve">
     <value>secondes</value>
     <comment>Used for time formating (plural)</comment>
+  </data>
+  <data name="ProjectTab_DeleteUnusedFilesAfterCleanUp" xml:space="preserve">
+    <value>Supprimez les fichiers inutilisés après le nettoyage</value>
   </data>
   <data name="section_level" xml:space="preserve">
     <value>"{0}" (level {1})</value>
@@ -1135,7 +1156,7 @@ Texte de l'erreur: {1}</value>
     <value>Voulez-vous enregistrer les modifications avant de sauvegarder le projet vers un nouvel emplacement? </value>
   </data>
   <data name="no_primary_export_directory" xml:space="preserve">
-    <value>Le répertoire d'exportation DAISY n'a pas été trouvé. Sélectionner un chemin d'exportation ou exporter le projet en DAISY.</value>
+    <value>Le répertoire d’exportation Daisy n'a pas été trouvé. Veuillez sélectionner un chemin d'exportation ou exporter le projet vers Daisy.</value>
     <comment>Pipeline interface error message</comment>
   </data>
   <data name="section_unexported" xml:space="preserve">
@@ -1143,7 +1164,7 @@ Texte de l'erreur: {1}</value>
     <comment>Warning at export time</comment>
   </data>
   <data name="section_unexported_caption" xml:space="preserve">
-    <value>La section ne sera pas exportée</value>
+    <value>la section ne sera pas exportée</value>
     <comment>Warning at export time (caption)</comment>
   </data>
   <data name="default_export_dirname" xml:space="preserve">
@@ -1376,7 +1397,7 @@ Texte de l'erreur: {1}</value>
     <value>Exportation impossible. Le projet est vide!</value>
   </data>
   <data name="ExportAudioOfSelectedNode_Completed" xml:space="preserve">
-    <value>Le fichier est exporter à : </value>
+    <value>Le fichier est exporter vers : </value>
   </data>
   <data name="ObiFormStatusMsg_ExportingProject" xml:space="preserve">
     <value>Exportation du projet vers {0}</value>
@@ -1427,10 +1448,10 @@ Texte de l'erreur: {1}</value>
     <value>Entrée invalide. Veuillez entrer une valeur valide.</value>
   </data>
   <data name="GoToPageOrPhrase_PageNumberLabel" xml:space="preserve">
-    <value>Numéro de &amp;page:</value>
+    <value>Numéro &amp;page:</value>
   </data>
   <data name="GoToPageOrPhrase_PhraseIndexLabel" xml:space="preserve">
-    <value>Index de &amp;phrase:</value>
+    <value>Index &amp;phrase:</value>
   </data>
   <data name="obi_DAISY2ExportPath_Description" xml:space="preserve">
     <value>Chemin d'exportation DAISY 2.02</value>
@@ -1634,6 +1655,10 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
     <value>Les phrases inutilisées sont supprimées du projet.</value>
+  </data>
+  <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
+    <value>Phrases inutilisées supprimées</value>
+    <comment>Command</comment>
   </data>
   <data name="GoToPageorPhrase_PageDonotExist" xml:space="preserve">
     <value>La page n'existe pas </value>
@@ -1918,7 +1943,7 @@ Texte de l'erreur: {1}</value>
     <value>Le spectre audio est tronqué à {0}s</value>
   </data>
   <data name="GoToPageOrPhrase_Time" xml:space="preserve">
-    <value>emps en:</value>
+    <value>Temps:</value>
   </data>
   <data name="no_phrases_in_section" xml:space="preserve">
     <value>Il n'y a pas de phrases dans cette section</value>
