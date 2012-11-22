@@ -190,7 +190,7 @@
     <value>4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Ajouter/Enlever rférence (Associer/Dissocier)</value>
+    <value>Ajouter/Enlever référence (Associer/Dissocier)</value>
   </data>
   <data name="m_lb_listOfAllAnchorNodes.Size" type="System.Drawing.Size, System.Drawing">
     <value>337, 212</value>

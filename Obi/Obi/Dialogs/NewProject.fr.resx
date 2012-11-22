@@ -358,7 +358,7 @@
     <value>2</value>
   </data>
   <data name="mAutoTitleCheckBox.Text" xml:space="preserve">
-    <value>Cr&amp;er automatiquement un titre de &amp;section avec ce titre</value>
+    <value>Cré&amp;er automatiquement un titre de &amp;section avec ce titre</value>
   </data>
   <data name="&gt;&gt;mAutoTitleCheckBox.Name" xml:space="preserve">
     <value>mAutoTitleCheckBox</value>

@@ -136,7 +136,7 @@
     <value>0</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Num&amp;ro de &amp;page:</value>
+    <value>Numé&amp;ro &amp;page:</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -265,7 +265,7 @@
     <value>6</value>
   </data>
   <data name="mRenumber.Text" xml:space="preserve">
-    <value>&amp;Renuméroter les pages suivantes</value>
+    <value>&amp;Renuméroter pages suivantes</value>
   </data>
   <data name="&gt;&gt;mRenumber.Name" xml:space="preserve">
     <value>mRenumber</value>

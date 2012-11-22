@@ -136,7 +136,7 @@
     <value>0</value>
   </data>
   <data name="m_lblParentSection.Text" xml:space="preserve">
-    <value>&amp;Titre de la section parent:</value>
+    <value>&amp;Titre de la section parente:</value>
   </data>
   <data name="&gt;&gt;m_lblParentSection.Name" xml:space="preserve">
     <value>m_lblParentSection</value>
@@ -259,7 +259,7 @@
     <value>8</value>
   </data>
   <data name="m_lblPhraseRole.Text" xml:space="preserve">
-    <value>&amp;R&amp;le de la phrase:</value>
+    <value>&amp;R&amp;ôle de la phrase:</value>
   </data>
   <data name="&gt;&gt;m_lblPhraseRole.Name" xml:space="preserve">
     <value>m_lblPhraseRole</value>
@@ -659,7 +659,7 @@
     <value>10</value>
   </data>
   <data name="m_lblPageNumberDetails.Text" xml:space="preserve">
-    <value>Précisions sur le no de page:</value>
+    <value>Détails n° page:</value>
   </data>
   <data name="m_lblPageNumberDetails.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -719,7 +719,7 @@
     <value>12</value>
   </data>
   <data name="m_chkChangePageNumber.Text" xml:space="preserve">
-    <value>Changer le no de pa&amp;ge.</value>
+    <value>Changer n° page.</value>
   </data>
   <data name="m_chkChangePageNumber.Visible" type="System.Boolean, mscorlib">
     <value>False</value>

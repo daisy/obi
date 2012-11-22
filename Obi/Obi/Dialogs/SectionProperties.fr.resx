@@ -262,7 +262,7 @@
     <value>6</value>
   </data>
   <data name="m_lblTimeLength.Text" xml:space="preserve">
-    <value>&amp;Dur&amp;e:</value>
+    <value>Durée:</value>
   </data>
   <data name="&gt;&gt;m_lblTimeLength.Name" xml:space="preserve">
     <value>m_lblTimeLength</value>

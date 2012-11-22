@@ -316,7 +316,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>Move &amp;UP</value>
+    <value>Vers le Haut</value>
   </data>
   <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
     <value>m_btnMoveUp</value>
@@ -343,7 +343,7 @@
     <value>4</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
-    <value>Move &amp;Down</value>
+    <value>Vers le Bas</value>
   </data>
   <data name="&gt;&gt;m_btnMoveDown.Name" xml:space="preserve">
     <value>m_btnMoveDown</value>
@@ -370,7 +370,7 @@
     <value>5</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
-    <value>&amp;Add</value>
+    <value>&amp;Ajouter</value>
   </data>
   <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
     <value>m_btnAdd</value>
@@ -400,7 +400,7 @@
     <value>6</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
-    <value>&amp;Remove</value>
+    <value>&amp;Enlever</value>
   </data>
   <data name="&gt;&gt;m_btnRemove.Name" xml:space="preserve">
     <value>m_btnRemove</value>
@@ -415,7 +415,7 @@
     <value>0</value>
   </data>
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
-    <value>Arrange audio files group box</value>
+    <value>Organiser les fichiers audio</value>
   </data>
   <data name="mbtnDesendingOrder.AccessibleName" xml:space="preserve">
     <value>Descending Order Button</value>
@@ -430,7 +430,7 @@
     <value>8</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>D&amp;escending Order</value>
+    <value>Ordre décroissant</value>
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
     <value>mbtnDesendingOrder</value>
@@ -457,7 +457,7 @@
     <value>7</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>&amp;A&amp;scending Order</value>
+    <value>&amp;Ordre croissant</value>
   </data>
   <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
     <value>mbtnAscendingOrder</value>
@@ -481,7 +481,7 @@
     <value>7</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
-    <value>Arrange audio files:</value>
+    <value>Organiser les fichiers audio:</value>
   </data>
   <data name="&gt;&gt;m_grpArrangeAudioFiles.Name" xml:space="preserve">
     <value>m_grpArrangeAudioFiles</value>
@@ -583,7 +583,7 @@
     <value>11</value>
   </data>
   <data name="lblToReplaceWithSpace.Text" xml:space="preserve">
-    <value>&amp;To Replace With Space</value>
+    <value>&amp;A remplacer par Espace</value>
   </data>
   <data name="&gt;&gt;lblToReplaceWithSpace.Name" xml:space="preserve">
     <value>lblToReplaceWithSpace</value>
@@ -610,7 +610,7 @@
     <value>13</value>
   </data>
   <data name="lblCountToTruncateFromStart.Text" xml:space="preserve">
-    <value>Characters To Trancate &amp;From Start</value>
+    <value>Raccourcir à partir du début</value>
   </data>
   <data name="&gt;&gt;lblCountToTruncateFromStart.Name" xml:space="preserve">
     <value>lblCountToTruncateFromStart</value>
@@ -637,7 +637,7 @@
     <value>15</value>
   </data>
   <data name="lbltPageIdentificationString.Text" xml:space="preserve">
-    <value>Page &amp;Identification</value>
+    <value>Identifiant de page</value>
   </data>
   <data name="&gt;&gt;lbltPageIdentificationString.Name" xml:space="preserve">
     <value>lbltPageIdentificationString</value>
@@ -718,7 +718,7 @@
     <value>18</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
-    <value>&amp;Phrase detection on imported files</value>
+    <value>&amp;Détection de phrase sur les fichiers importés</value>
   </data>
   <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.Name" xml:space="preserve">
     <value>m_rdbPhraseDetectionOnImportedFiles</value>

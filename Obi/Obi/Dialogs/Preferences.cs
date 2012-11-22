@@ -741,9 +741,9 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[4].Checked = true;
                 
                 if (m_CheckBoxListView.Items[3].Checked == false || m_CheckBoxListView.Items[5].Checked == false)
-                    m_btn_AdvancedRecording.Text = "Enable advanced recording";
+                    m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
                 else
-                    m_btn_AdvancedRecording.Text = "Disable advanced recording";
+                    m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
                /* if (m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
                     m_btn_AdvancedRecording.Enabled = false;
                 else
@@ -809,9 +809,9 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[7].Checked = mSettings.Audio_ShowLiveWaveformWhileRecording;
 
                 if (m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
-                    m_btn_AdvancedRecording.Text = "Disable advanced recording";
+                    m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
                 else
-                    m_btn_AdvancedRecording.Text = "Enable advanced recording";
+                    m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
@@ -943,7 +943,7 @@ namespace Obi.Dialogs
 
         private void m_btn_AdvancedRecording_Click(object sender, EventArgs e)
         {
-            if (m_btn_AdvancedRecording.Text == "Enable advanced recording")
+            if (m_btn_AdvancedRecording.Text == Localizer.Message("EnableAdvancedRecording"))
             {
                 if (MessageBox.Show(Localizer.Message("Preferences_Allow_overwrite"),Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
@@ -951,17 +951,17 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[3].Checked = true;
                     m_CheckBoxListView.Items[4].Checked = true;
                     m_CheckBoxListView.Items[5].Checked = true;
-                    m_btn_AdvancedRecording.Text = "Disable advanced recording";
+                    m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
                 }
                 else
                     return;
             }
-            else if (m_btn_AdvancedRecording.Text == "Disable advanced recording")
+            else if (m_btn_AdvancedRecording.Text ==  Localizer.Message("DisableAdvancedRecording"))
             {
                 m_CheckBoxListView.Items[3].Checked = false;
                 m_CheckBoxListView.Items[4].Checked = false;
                 m_CheckBoxListView.Items[5].Checked = false;
-                m_btn_AdvancedRecording.Text = "Enable advanced recording";
+                m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
             }
         }
 
