@@ -548,11 +548,11 @@ Texte de l'erreur: {1}</value>
   <data name="add_section" xml:space="preserve">
     <value>ajouter une section</value>
     <comment>Command</comment>
-    </data>
+  </data>
   <data name="UseDefaultValues" xml:space="preserve">
     <value>Utiliser valeurs par défaut</value>
   </data>
-    <data name="SelectDeselectAllSections" xml:space="preserve">
+  <data name="SelectDeselectAllSections" xml:space="preserve">
     <value>Sélectionner/Désélectionner sections</value>
   </data>
   <data name="add_subsection" xml:space="preserve">
@@ -691,7 +691,7 @@ Texte de l'erreur: {1}</value>
     <value>Vue du contenu</value>
   </data>
   <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
-    <value>Phrases inutilisés sont supprimés du projet.</value>
+    <value>Les phrases inutilisées sont supprimées du projet.</value>
   </data>
   <data name="audio_block_label" xml:space="preserve">
     <value>{0} {1} de {2}{3}</value>
@@ -1318,7 +1318,7 @@ Texte de l'erreur: {1}</value>
     <comment>Path error</comment>
   </data>
   <data name="CHMhelp_file_name" xml:space="preserve">
-    <value>Obi Help.chm</value>
+    <value>Obi Help.fr.chm</value>
   </data>
   <data name="phrase_detection_progress" xml:space="preserve">
     <value>Détection de phrase en cours...</value>
@@ -1652,9 +1652,6 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
     <value>{0} (Limitation du nombre de phrases affichées pour améliorer la performance. Cliquez sur les dernières phrases pour en afficher d'avantage)</value>
-  </data>
-  <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
-    <value>Les phrases inutilisées sont supprimées du projet.</value>
   </data>
   <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
     <value>Phrases inutilisées supprimées</value>

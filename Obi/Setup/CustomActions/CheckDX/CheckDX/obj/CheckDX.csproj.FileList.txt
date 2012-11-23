@@ -3,3 +3,8 @@ bin\Debug\CheckDX.pdb
 obj\Debug\ResolveAssemblyReference.cache
 obj\Debug\CheckDX.dll
 obj\Debug\CheckDX.pdb
+bin\Release\CheckDX.dll
+bin\Release\CheckDX.pdb
+obj\Release\ResolveAssemblyReference.cache
+obj\Release\CheckDX.dll
+obj\Release\CheckDX.pdb
