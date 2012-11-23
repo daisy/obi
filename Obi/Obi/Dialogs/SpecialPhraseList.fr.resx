@@ -121,31 +121,31 @@
     <value>Select special phrases to show in list box</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items" xml:space="preserve">
-    <value>Todo Marked Phrases</value>
+    <value>Phrases marquees AFAIRE</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items1" xml:space="preserve">
-    <value>Empty Phrases</value>
+    <value>Phrases vides</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items2" xml:space="preserve">
-    <value>Heading</value>
+    <value>Titre</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items3" xml:space="preserve">
     <value>Silence</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items4" xml:space="preserve">
-    <value>All Pages</value>
+    <value>Toutes les pages</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items5" xml:space="preserve">
-    <value>Front Pages</value>
+    <value>Premières pages</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items6" xml:space="preserve">
-    <value>Normal Pages</value>
+    <value>Pages normales</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items7" xml:space="preserve">
-    <value>Special Pages</value>
+    <value>Pages spéciales</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items8" xml:space="preserve">
-    <value>Anchor</value>
+    <value>Ancre</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cb_SpecialPhrases.Location" type="System.Drawing.Point, System.Drawing">
