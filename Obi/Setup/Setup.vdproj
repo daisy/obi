@@ -1279,7 +1279,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=2.4.0.32469, Culture=fr, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=2.4.0.23757, Culture=fr, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_70370FB39F0442789BD93F85452E2341"
@@ -1565,7 +1565,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=2.4.0.32469, Culture=hi, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=2.4.0.23757, Culture=hi, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_9756CC4034584C5C8FF7E061127F117C"
@@ -2165,19 +2165,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 2.5 beta1"
-        "ProductCode" = "8:{035BA89B-2C3C-42DC-837B-86419B21D65E}"
-        "PackageCode" = "8:{173C050F-6F46-4340-A2E9-F30B13838CA5}"
+        "ProductName" = "8:Obi 2.5 beta"
+        "ProductCode" = "8:{E5148536-EFD6-4611-8CDC-CC925B1B9A0F}"
+        "PackageCode" = "8:{65AE5A71-E3CF-4CF6-B013-6FF1ABAF98C6}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.4.1"
+        "ProductVersion" = "8:2.4.0"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.daisy.org/forums/obi"
-        "Title" = "8:Obi 2.5 beta1"
+        "Title" = "8:Obi 2.5 beta"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Obi development Team"
         "Keywords" = "8:"
@@ -2288,7 +2288,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 2.5 beta1"
+            "Name" = "8:Obi 2.5 beta"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -2316,7 +2316,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 2.5 beta1"
+            "Name" = "8:Obi 2.5 beta"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
