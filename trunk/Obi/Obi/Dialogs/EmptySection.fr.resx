@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="mContinueButton.Text" xml:space="preserve">
-    <value>C&amp;ontinue</value>
+    <value>C&amp;ontinuer</value>
   </data>
   <data name="&gt;&gt;mMessageLabel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -244,7 +244,7 @@
     <value>91, 157</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;Cancel</value>
+    <value>&amp;Annuler</value>
   </data>
   <data name="mCancelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 28</value>

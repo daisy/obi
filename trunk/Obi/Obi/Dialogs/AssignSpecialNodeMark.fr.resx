@@ -229,7 +229,7 @@
     <value>1</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Assigner une note/Renuméroter pages</value>
+    <value>Assigner note/Renuméroter pages</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Text" xml:space="preserve">
     <value>Renuméroter pages</value>
