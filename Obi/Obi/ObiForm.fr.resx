@@ -1094,7 +1094,7 @@
     <value>234, 22</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Clear role from note</value>
+    <value>&amp;Effacer le role de la note</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -1327,10 +1327,13 @@
     <value>&amp;Phrases</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Lire tout Ctrl+Shift+Space</value>
+    <value>Lire tout Ctrl+Shift+Espace</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Space</value>
+  </data>
+  <data name="mPlayAllToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Shift+Espace</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -1339,10 +1342,10 @@
     <value>Lire &amp;tout</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Lire la sélection Space</value>
+    <value>Lire la sélection Espace</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Space</value>
+    <value>Espace</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -1357,10 +1360,10 @@
     <value>&amp;Lecture</value>
   </data>
   <data name="mPauseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Pause Space</value>
+    <value>Pause Espace</value>
   </data>
   <data name="mPauseToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Space</value>
+    <value>Espace</value>
   </data>
   <data name="mPauseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1369,22 +1372,25 @@
     <value>&amp;Pause</value>
   </data>
   <data name="mResumeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Reprendre Space</value>
+    <value>Reprendre Espace</value>
   </data>
   <data name="mResumeToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Space</value>
+    <value>Espace</value>
   </data>
   <data name="mResumeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
   <data name="mResumeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Re&amp;prendre</value>
+    <value>Re&amp;prise</value>
   </data>
   <data name="mStopToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Arrét Ctrl+Space</value>
+    <value>Arrét Ctrl+Espace</value>
   </data>
   <data name="mStopToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Space</value>
+  </data>
+  <data name="mStopToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Espace</value>
   </data>
   <data name="mStopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1528,7 +1534,10 @@
     <value>173, 6</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Section précédente Alt+Up</value>
+    <value>Section précédente Alt+Haut</value>
+  </data>
+  <data name="mPreviousSectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Alt+Haut</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Up</value>
@@ -1552,7 +1561,10 @@
     <value>&amp;Page précédente</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Phrase précédente Alt+Left</value>
+    <value>Phrase précédente Alt+Gauche</value>
+  </data>
+  <data name="mPreviousPhraseToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Alt+Gauche</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Left</value>
@@ -1564,10 +1576,13 @@
     <value>P&amp;hrase précédente</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Phrase suivante Alt+Right</value>
+    <value>Phrase suivante Alt+Droit</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Right</value>
+  </data>
+  <data name="mNextPhraseToolStripMenuItem.ShortcutKeyDisplayString"  xml:space="preserve">
+    <value>Alt+Droit</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -1588,7 +1603,10 @@
     <value>Pa&amp;ge suivante</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Section suivante Alt+Down</value>
+    <value>Section suivante Alt+Bas</value>
+  </data>
+  <data name="mNextSectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value> Alt+Bas</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Down</value>
