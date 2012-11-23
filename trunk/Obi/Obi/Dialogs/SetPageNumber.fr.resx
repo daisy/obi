@@ -346,13 +346,13 @@
     <value>Flat</value>
   </data>
   <data name="mPageKindComboBox.Items" xml:space="preserve">
-    <value>Front page</value>
+    <value>Première page</value>
   </data>
   <data name="mPageKindComboBox.Items1" xml:space="preserve">
-    <value>Normal page</value>
+    <value>Page normale</value>
   </data>
   <data name="mPageKindComboBox.Items2" xml:space="preserve">
-    <value>Special page</value>
+    <value>Page special</value>
   </data>
   <data name="mPageKindComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>189, 72</value>
