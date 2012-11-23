@@ -2164,4 +2164,22 @@ Texte de l'erreur: {1}</value>
   <data name="KeyS_ExpandAudioSelectionAtLeft" xml:space="preserve">
     <value>Développer la sélection audio sur le côté gauche</value>
   </data>
+  <data name="Elapsed" xml:space="preserve">
+    <value>écoulé</value>
+  </data>
+  <data name="ElapsedInSection" xml:space="preserve">
+    <value>écoulé dans la selection</value>
+  </data>
+  <data name="ElapsedInProject" xml:space="preserve">
+    <value>écoulé dans le projet</value>
+  </data>
+  <data name="ElapsedInPhrase" xml:space="preserve">
+    <value>écoulé dans la phrase</value>
+  </data>
+  <data name="RemainingInPhrase" xml:space="preserve">
+    <value>restand dans la phrase</value>
+  </data>
+  <data name="RemainingInSelection" xml:space="preserve">
+    <value>restand dans la sélection</value>
+  </data>
 </root>

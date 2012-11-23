@@ -1504,6 +1504,42 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Elapsed.
+        /// </summary>
+        internal static string Elapsed {
+            get {
+                return ResourceManager.GetString("Elapsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elapsed In Phrase.
+        /// </summary>
+        internal static string ElapsedInPhrase {
+            get {
+                return ResourceManager.GetString("ElapsedInPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elapsed In Project.
+        /// </summary>
+        internal static string ElapsedInProject {
+            get {
+                return ResourceManager.GetString("ElapsedInProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elapsed In Section.
+        /// </summary>
+        internal static string ElapsedInSection {
+            get {
+                return ResourceManager.GetString("ElapsedInSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to empty.
         /// </summary>
         internal static string empty {
@@ -4557,6 +4593,24 @@ namespace Obi {
         internal static string redo_label {
             get {
                 return ResourceManager.GetString("redo_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remaining In Phrase.
+        /// </summary>
+        internal static string RemainingInPhrase {
+            get {
+                return ResourceManager.GetString("RemainingInPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remaining In Selection.
+        /// </summary>
+        internal static string RemainingInSelection {
+            get {
+                return ResourceManager.GetString("RemainingInSelection", resourceCulture);
             }
         }
         
