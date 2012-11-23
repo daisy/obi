@@ -251,6 +251,7 @@ namespace AudioLib
                                 writer.Flush();
                                 while ((byteRead = mp3Stream.Read(buffer, 0, buffer.Length)) > 0)
                                 {
+                                    Console.WriteLine("memory is " + (System.GC.GetTotalMemory(false) / 1024).ToString());
                                     writer.WriteData(buffer, 0, byteRead);
                                     totalBytesWritten += byteRead;
                                 }
@@ -258,6 +259,7 @@ namespace AudioLib
                             catch (Exception ex)
                             {
                                 writer.Close();
+                                System.Windows.Forms.MessageBox.Show(ex.ToString());
                                 return null;
                             }
                         }
