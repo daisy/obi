@@ -113,6 +113,27 @@ namespace Obi
             }
         }
 
+private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
+        /// <summary>
+        /// <maps the localized names of skippable elements to actual DAISY elements name
+        /// </summary>
+        public static Dictionary<string, string> SkippableLocalizedNameMap
+        {
+            get
+            {
+                if (m_SkippableLocalizedNameMap == null
+                    || !m_SkippableLocalizedNameMap.ContainsValue(Localizer.Message(Footnote)))
+                {   
+                    m_SkippableLocalizedNameMap = new Dictionary<string, string>();
+                    foreach (string s in SkippableNamesList)
+                    {
+                        m_SkippableLocalizedNameMap.Add(Localizer.Message(s), s);
+                    }
+                }
+                return m_SkippableLocalizedNameMap;
+            }
+        }
+
         /// <summary>
         /// This event is sent when we change the kind or custom class of a node.
         /// </summary>
