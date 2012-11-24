@@ -2232,7 +2232,7 @@ namespace Obi
                         // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     dialog.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
                                                          mSettings.Export_AppendSectionNameToAudioFile;
-                    dialog.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit;
+                    dialog.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit >= 0? Settings.Export_AudioFilesNamesLengthLimit: 8;
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         try
