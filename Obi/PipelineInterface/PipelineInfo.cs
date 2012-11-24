@@ -13,6 +13,7 @@ namespace PipelineInterface
         public PipelineInfo ( string ScriptsDirectory )
             {
             PopulateScriptsDictionary ( ScriptsDirectory );
+            
             }
 
         private void PopulateScriptsDictionary ( string DirPath )
@@ -26,7 +27,9 @@ namespace PipelineInterface
                 if (!m_ScriptsInfo.ContainsKey ( parser.Name ))
                     {
                     m_ScriptsInfo.Add ( parser.Name, ScriptFileInfo );
-                    m_TaskScriptNameToNiceNameMap.Add ( parser.Name, parser.NiceName);
+                    m_TaskScriptNameToNiceNameMap.Add ( parser.Name, 
+                        !string    .IsNullOrEmpty(Localizer.Message(parser.Name))? Localizer.Message(parser.Name):parser.NiceName);
+                    
                     }
                 else
                     {
