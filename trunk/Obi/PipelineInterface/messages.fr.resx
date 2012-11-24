@@ -176,4 +176,19 @@
   <data name="really_use_directory_text" xml:space="preserve">
     <value>Le r&#233;pertoire "{0}"n'est pas vide. Si vous d&#233;sirez vider ce r&#233;pertoire avant de l'utiliser, choisissez "Oui." Si vous voulez utiliser ce r&#233;pertoire tel quel, choisissez, choisissez "Non."</value>
   </data>
+  <data name="Z3986DTBValidator" xml:space="preserve">
+    <value>DAISY 3 Validator</value>
+  </data>
+  <data name="Daisy202DTBValidator" xml:space="preserve">
+    <value>DAISY 2.02 Lumière Validator</value>
+  </data>
+  <data name="DTBAudioEncoder" xml:space="preserve">
+    <value>Convertir audio en MP3</value>
+  </data>
+  <data name="FilesetRenamer" xml:space="preserve">
+    <value>ensemble de fichiers renamer</value>
+  </data>
+  <data name="PrettyPrinter" xml:space="preserve">
+    <value>Pretty Printer</value>
+  </data>
 </root>
