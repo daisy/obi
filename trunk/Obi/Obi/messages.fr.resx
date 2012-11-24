@@ -2179,4 +2179,23 @@ Texte de l'erreur: {1}</value>
   <data name="RemainingInSelection" xml:space="preserve">
     <value>restand dans la sélection</value>
   </data>
+  <data name="footnote" xml:space="preserve">
+    <value>notedebasdepage</value>
+  </data>
+  <data name="sidebar" xml:space="preserve">
+    <value>Encadré</value>
+  </data>
+  <data name="prodnote" xml:space="preserve">
+    <value>notedeprod</value>
+  </data>
+  <data name="note" xml:space="preserve">
+    <value>note</value>
+  </data>
+  <data name="endnote" xml:space="preserve">
+    <value>Findenote</value>
+  </data>
+  <data name="annotation" xml:space="preserve">
+    <value>annotation</value>
+  </data>
+
 </root>
