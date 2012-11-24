@@ -33,12 +33,12 @@ namespace Obi
         private static readonly string XUK_ATTR_NAME_PAGE_KIND = "pageKind";  // name of the pageKind attribute
         private static readonly string XUK_ATTR_NAME_PAGE_TEXT = "pageText";  // name of the pageText attribute
         private static readonly string XUK_ATTR_NAME_TODO = "TODO";           // name of the TODO attribute
-        public static readonly string Footnote = "footnote";
-        public static readonly string Sidebar = "sidebar";
-        public static readonly string ProducerNote = "prodnote";
-        public static readonly string Note = "note";
-        public static readonly string EndNote = "endnote";
-        public static readonly string Annotation = "annotation";
+        public static readonly string Footnote = Localizer.Message("footnote");
+        public static readonly string Sidebar = Localizer.Message("sidebar");
+        public static readonly string ProducerNote = Localizer.Message("prodnote");
+        public static readonly string Note = Localizer.Message("note");
+        public static readonly string EndNote = Localizer.Message("endnote");
+        public static readonly string Annotation =Localizer.Message("annotation");
         private EmptyNode m_AssociatedNode = null;                            //@AssociateNode  
         private static readonly string XUK_ATTR_NAME_AssociateNode = "ANode"; //attribute for associate node location
         private string m_AssociatedNodeLocation;                              //@AssociateNode

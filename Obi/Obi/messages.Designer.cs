@@ -142,6 +142,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  annotation.
+        /// </summary>
+        internal static string annotation {
+            get {
+                return ResourceManager.GetString("annotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to assign role.
         /// </summary>
         internal static string assign_role {
@@ -1576,6 +1585,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  endnote.
+        /// </summary>
+        internal static string endnote {
+            get {
+                return ResourceManager.GetString("endnote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error adding page number: no parent section found..
         /// </summary>
         internal static string error_adding_page_number {
@@ -1770,6 +1788,15 @@ namespace Obi {
         internal static string finished_searching_all {
             get {
                 return ResourceManager.GetString("finished_searching_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to footnote .
+        /// </summary>
+        internal static string footnote {
+            get {
+                return ResourceManager.GetString("footnote", resourceCulture);
             }
         }
         
@@ -3526,6 +3553,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to note.
+        /// </summary>
+        internal static string note {
+            get {
+                return ResourceManager.GetString("note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nothing to search!.
         /// </summary>
         internal static string nothing_to_search {
@@ -4197,6 +4233,15 @@ namespace Obi {
         internal static string Preferences_UnableToUpdateProjectAudioFormat {
             get {
                 return ResourceManager.GetString("Preferences_UnableToUpdateProjectAudioFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  prodnote.
+        /// </summary>
+        internal static string prodnote {
+            get {
+                return ResourceManager.GetString("prodnote", resourceCulture);
             }
         }
         
@@ -5109,6 +5154,15 @@ namespace Obi {
         internal static string Show_details {
             get {
                 return ResourceManager.GetString("Show_details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sidebar .
+        /// </summary>
+        internal static string sidebar {
+            get {
+                return ResourceManager.GetString("sidebar", resourceCulture);
             }
         }
         

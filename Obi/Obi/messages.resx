@@ -1378,6 +1378,24 @@ Error text: {1}</value>
   <data name="Operation_Cancelled" xml:space="preserve">
     <value>Not able to complete operation. </value>
   </data>
+  <data name="footnote" xml:space="preserve">
+    <value>footnote </value>
+  </data>
+  <data name="sidebar" xml:space="preserve">
+    <value>sidebar </value>
+  </data>
+  <data name="prodnote" xml:space="preserve">
+    <value> prodnote</value>
+  </data>
+  <data name="note" xml:space="preserve">
+    <value>note</value>
+  </data>
+  <data name="endnote" xml:space="preserve">
+    <value> endnote</value>
+  </data>
+  <data name="annotation" xml:space="preserve">
+    <value> annotation</value>
+  </data>
   <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
     <value>This command cannot be executed on section with hidden contents. Please make section's contents visible and try again.</value>
   </data>
