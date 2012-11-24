@@ -176,4 +176,19 @@
   <data name="really_use_directory_text" xml:space="preserve">
     <value>Directory "{0}"is not empty. If you want to empty this directory before using it, choose "Yes." If you want to use this directory as is, choose "No."</value>
   </data>
+<data name="Z3986DTBValidator" xml:space="preserve">
+    <value>DAISY 3 Validator</value>
+  </data>
+  <data name="Daisy202DTBValidator" xml:space="preserve">
+    <value>Daisy 2.02 Light Validator</value>
+  </data>
+  <data name="DTBAudioEncoder" xml:space="preserve">
+    <value>Convert audio to MP3</value>
+  </data>
+  <data name="FilesetRenamer" xml:space="preserve">
+    <value>Fileset Renamer</value>
+  </data>
+  <data name="PrettyPrinter" xml:space="preserve">
+    <value>Pretty Printer</value>
+  </data>
 </root>
