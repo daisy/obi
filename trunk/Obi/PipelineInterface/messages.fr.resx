@@ -183,10 +183,10 @@
     <value>DAISY 2.02 Lumière Validator</value>
   </data>
   <data name="DTBAudioEncoder" xml:space="preserve">
-    <value>Convertir audio en MP3</value>
+    <value>Convertir l’audio en MP3</value>
   </data>
   <data name="FilesetRenamer" xml:space="preserve">
-    <value>ensemble de fichiers renamer</value>
+    <value>Renommer fichiers</value>
   </data>
   <data name="PrettyPrinter" xml:space="preserve">
     <value>Pretty Printer</value>
