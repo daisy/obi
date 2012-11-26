@@ -269,8 +269,8 @@ namespace Obi.ProjectView
             {
                 g.DrawLine(pen_Channel1, new Point(m_X, (WaveformHeight - (int)Math.Round(((minChannel1 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue))+m_TopMargin),
                    new Point(m_X, (WaveformHeight - (int)Math.Round(((maxChannel1 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue))+m_TopMargin));
-                g.DrawLine(pen_Channel2, new Point(m_X, WaveformHeight - (int)Math.Round(((minChannel2 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue)),
-                   new Point(m_X, WaveformHeight - (int)Math.Round(((maxChannel2 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue)));
+                g.DrawLine(pen_Channel2, new Point(m_X, (WaveformHeight - (int)Math.Round(((minChannel2 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue))+ m_TopMargin) ,
+                   new Point(m_X, (WaveformHeight - (int)Math.Round(((maxChannel2 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue)) + m_TopMargin));
             }
 
             g.DrawLine(pen_WaveformBaseLine, 0, (WaveformHeight / 2)+m_TopMargin, m_ContentView.Width, (WaveformHeight / 2)+m_TopMargin);
@@ -544,7 +544,7 @@ namespace Obi.ProjectView
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
             int tempm_X = m_X;
             int counterWaveform = 0;
-            g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), 0, 0, Width, WaveformHeight);
+            g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), 0, 0, Width, Height);
             if (m_IsMaximized)
             {
                 m_IsMaximized = false;
@@ -575,16 +575,16 @@ namespace Obi.ProjectView
                     countToRepaint = xSize;*/
                 this.Location = new Point((m_X - recordingTimeCursor) * -1, Location.Y);
                 foreach (double[] arr in m_RecordingSession.DeletedItemList)
-                    g.FillRectangle(SystemBrushes.ControlDark, CalculatePixels(arr[0]), 0, CalculatePixels(arr[1]) - CalculatePixels(arr[0]), this.WaveformHeight);
+                    g.FillRectangle(SystemBrushes.ControlDark, CalculatePixels(arr[0]), m_TopMargin, CalculatePixels(arr[1]) - CalculatePixels(arr[0]), this.WaveformHeight);
 
                 for (int i = listOfCurrentMinChannel1.Count - 1; i >= listOfCurrentMinChannel1.Count - xSize; i--)
                 {
                     if (tempm_X == m_MouseButtonUpLoc)
                     {
                         if (m_MouseButtonUpLoc < m_X)
-                            g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.WaveformHeight);
+                            g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, m_TopMargin, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.WaveformHeight);
                         else
-                            g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.WaveformHeight);
+                            g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, m_TopMargin, m_MouseButtonUpLoc - m_MouseButtonDownLoc, this.WaveformHeight);
                         pen_ChannelMono = new Pen(SystemColors.HighlightText);
                     }
                     if (tempm_X == m_MouseButtonDownLoc)
@@ -908,11 +908,13 @@ namespace Obi.ProjectView
                     m_MouseButtonDownLoc = recordingTimeCursor + m_OffsetLocation;
                     m_MouseButtonUpLoc = m_X;
                 }
-                /*     if (e.X < m_X)
+                /*     
+                  if (e.X < m_X)
                          g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, e.X - m_MouseButtonDownLoc, this.WaveformHeight);
                      else
                          g.FillRectangle(SystemBrushes.Highlight, m_MouseButtonDownLoc, 0, m_X - m_MouseButtonDownLoc, this.WaveformHeight);
-                     SelectPortionOfWaveform();*/
+                     SelectPortionOfWaveform();
+                 */
 
                 m_IsMouseBtnUp = true;
 
@@ -933,7 +935,8 @@ namespace Obi.ProjectView
 
         }
 
-        /*      public void SelectPortionOfWaveform(bool IsDeselected)
+        /*      
+          public void SelectPortionOfWaveform(bool IsDeselected)
               {
                   Pen pen_Waveform = null;
                   Pen newPen = null;
@@ -957,7 +960,8 @@ namespace Obi.ProjectView
                   }
                   PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);            
               }
-          */
+          
+         */
 
         private void addSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
