@@ -25,11 +25,11 @@ namespace PipelineInterface.ParameterControls
             m_Parameter = p;
             m_StringData = (DataTypes.StringDataType)p.ParameterDataType;
 
-            label1.Text = p.NiceName;
-            textBox1.AccessibleName = p.Description ;
+            label1.Text = GetLocalizedString( p.NiceName);
+            textBox1.AccessibleName =GetLocalizedString( p.Description );
             if (p.ParameterValue != null) textBox1.Text = p.ParameterValue;
 
-            base.DescriptionLabel = p.Description;
+            base.DescriptionLabel =GetLocalizedString( p.Description);
 
 
 

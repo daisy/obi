@@ -24,16 +24,16 @@ namespace PipelineInterface.ParameterControls
             m_Parameter = p;
             m_EnumData = (DataTypes.EnumDataType)p.ParameterDataType;
 
-            mNiceNameLabel.Text = p.NiceName;
-            mComboBox.AccessibleName = p.NiceName;
-            base.DescriptionLabel = p.Description;
+            mNiceNameLabel.Text = GetLocalizedString (p.NiceName);
+            mComboBox.AccessibleName =GetLocalizedString( p.NiceName);
+            base.DescriptionLabel =GetLocalizedString(  p.Description);
 
             DataTypes.EnumDataType EnumData = (DataTypes.EnumDataType)p.ParameterDataType;
             foreach (string s in EnumData.GetNiceNames)
                 {
                 mComboBox.Items.Add ( s );
                 }
-
+            
             base.Size = this.Size;
             if (m_EnumData.SelectedIndex >= 0 && m_EnumData.SelectedIndex < m_EnumData.GetValues.Count)
                 mComboBox.SelectedIndex = m_EnumData.SelectedIndex;

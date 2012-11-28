@@ -24,11 +24,11 @@ namespace PipelineInterface.ParameterControls
             m_Parameter = p;
             m_IntData = (DataTypes.IntDataType)p.ParameterDataType;
 
-            mNiceNameLabel.Text = p.NiceName;
+            mNiceNameLabel.Text = GetLocalizedString( p.NiceName);
 
-            mIntBox.AccessibleName = p.Description;
+            mIntBox.AccessibleName =GetLocalizedString( p.Description);
             if (p.ParameterValue != null) mIntBox.Text = p.ParameterValue;
-            base.DescriptionLabel = p.Description;
+            base.DescriptionLabel =GetLocalizedString ( p.Description);
 
             int x_IntBox = mNiceNameLabel.Location.X + mNiceNameLabel.Width + mNiceNameLabel.Margin.Right + mIntBox.Margin.Left;
             mIntBox.Location = new Point(x_IntBox, mIntBox.Location.Y);

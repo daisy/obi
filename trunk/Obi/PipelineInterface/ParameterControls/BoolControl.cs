@@ -21,8 +21,8 @@ namespace PipelineInterface.ParameterControls
         public BoolControl(ScriptParameter p)
             : this()
         {
-            base.DescriptionLabel = p.Description;
-            checkBox1.Text = p.NiceName;
+            base.DescriptionLabel = GetLocalizedString( p.Description);
+            checkBox1.Text =GetLocalizedString( p.NiceName);
             m_Parameter = p;
             m_boolDataType = (DataTypes.BoolDataType)p.ParameterDataType;
             checkBox1.Checked = m_boolDataType.Value;
