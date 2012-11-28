@@ -27,7 +27,7 @@ namespace PipelineInterface.ParameterControls
             mPathData = (DataTypes.PathDataType)p.ParameterDataType;
 
             int wdiff = mNiceNameLabel.Width;
-            mNiceNameLabel.Text = p.NiceName;
+            mNiceNameLabel.Text = GetLocalizedString( p.NiceName);
             wdiff -= mNiceNameLabel.Width;
             if (wdiff < 0)
             {
@@ -39,8 +39,8 @@ namespace PipelineInterface.ParameterControls
             {
                 mNiceNameLabel.Location = new Point(mNiceNameLabel.Location.X - wdiff, mNiceNameLabel.Location.Y);
             }
-            mTextBox.AccessibleName = p.Description;
-            base.DescriptionLabel = p.Description;
+            mTextBox.AccessibleName =GetLocalizedString ( p.Description);
+            base.DescriptionLabel =GetLocalizedString( p.Description);
             if (mLabel.Width + mLabel.Margin.Horizontal > Width) Width = mLabel.Width + mLabel.Margin.Horizontal;
             if (mPathData.isInputOrOutput == PipelineInterface.DataTypes.PathDataType.InputOrOutput.input)
             {

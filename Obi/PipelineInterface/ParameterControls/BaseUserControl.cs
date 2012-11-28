@@ -19,5 +19,18 @@ namespace PipelineInterface.ParameterControls
         }
 
         public virtual void UpdateScriptParameterValue() { }
+
+        /// <summary>
+        ///Accepts nice name or description and returns localized string if available else returns parameter value
+        /// </summary>
+        /// <param name="niceName"></param>
+        /// <returns></returns>
+        protected string GetLocalizedString(string niceName)
+        {
+            string key = niceName.Replace(" ", "_");
+            string val = Localizer.Message(key);
+            return string.IsNullOrEmpty(val) ? niceName : val;
+        }
+
     }
 }
