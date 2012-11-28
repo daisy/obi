@@ -77,7 +77,7 @@ namespace Obi.ProjectView
         List<double[]> listOfLocationArray = new List<double[]>();
         //   private int m_DeletedOffset = 0;
         private bool m_IsDeleted = false;
-        private  const int m_TopMargin=20;
+        private  const int m_TopMargin=30;
 
 
         public Waveform_Recording()
@@ -304,7 +304,7 @@ namespace Obi.ProjectView
                 if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds)
                 {
                     text = timeInSeconds.ToString();
-                    g.DrawString(text, myFont, Brushes.Gray, m_X, Height - 12);
+                    g.DrawString(text, myFont, Brushes.Gray, m_X, 20);
                     if (!m_MainDictionary.ContainsKey(m_X))
                         m_MainDictionary.Add(m_X, text);
                     m_LocalTime = timeInSeconds;
@@ -625,7 +625,7 @@ namespace Obi.ProjectView
                     else
                     {
                         g.DrawLine(newPen, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
-                        g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, Height - 15);
+                        g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 20);
                     }
                 }
                 m_IsMaximized = false;
@@ -720,7 +720,7 @@ namespace Obi.ProjectView
                     else
                     {
                         g.DrawLine(newPen, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
-                        g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, Height - 15);
+                        g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 20);
                     }
                 }
 
@@ -788,9 +788,9 @@ namespace Obi.ProjectView
 
             pixel = CalculatePixels(e.TimeFromBeginning);
 
-            if (IsInSelection(pixel))
-                g.FillRectangle(new System.Drawing.SolidBrush(SystemColors.Highlight), pixel + 1, 0, 35, 10);
-            else
+            //if (IsInSelection(pixel))
+            //    g.FillRectangle(new System.Drawing.SolidBrush(SystemColors.Highlight), pixel + 1, 0, 35, 10);
+            //else
                 g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), pixel + 1, 0, 35, 10);
 
             g.DrawString(text, myFont, Brushes.Black, pixel, 0);
@@ -1132,7 +1132,7 @@ namespace Obi.ProjectView
                 g.DrawLine(newPen, index, 0+m_TopMargin, index, WaveformHeight+m_TopMargin);
                 if (m_MainDictionary[index].EndsWith("0"))
                 {
-                    g.DrawString(m_MainDictionary[index], myFont, brushSel, index, Height - 15);
+                    g.DrawString(m_MainDictionary[index], myFont, Brushes.Gray, index,20);
                     if (m_MainDictionary[index] != "")
                         g.DrawLine(newPen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
                 }
