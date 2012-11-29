@@ -29,6 +29,7 @@ namespace PipelineInterface.ParameterControls
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PathBrowserControl));
             this.mNiceNameLabel = new System.Windows.Forms.Label();
             this.mTextBox = new System.Windows.Forms.TextBox();
             this.mBrowseButton = new System.Windows.Forms.Button();
@@ -36,49 +37,31 @@ namespace PipelineInterface.ParameterControls
             // 
             // mNiceNameLabel
             // 
-            this.mNiceNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mNiceNameLabel.AutoSize = true;
-            this.mNiceNameLabel.Location = new System.Drawing.Point(4, 26);
-            this.mNiceNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            resources.ApplyResources(this.mNiceNameLabel, "mNiceNameLabel");
             this.mNiceNameLabel.Name = "mNiceNameLabel";
-            this.mNiceNameLabel.Size = new System.Drawing.Size(39, 16);
-            this.mNiceNameLabel.TabIndex = 1;
-            this.mNiceNameLabel.Text = "Nice:";
             // 
             // mTextBox
             // 
-            this.mTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.mTextBox, "mTextBox");
             this.mTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mTextBox.Location = new System.Drawing.Point(51, 24);
-            this.mTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.mTextBox.Name = "mTextBox";
-            this.mTextBox.Size = new System.Drawing.Size(262, 22);
-            this.mTextBox.TabIndex = 2;
             // 
             // mBrowseButton
             // 
-            this.mBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mBrowseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mBrowseButton.Location = new System.Drawing.Point(321, 20);
-            this.mBrowseButton.Margin = new System.Windows.Forms.Padding(4);
+            resources.ApplyResources(this.mBrowseButton, "mBrowseButton");
             this.mBrowseButton.Name = "mBrowseButton";
-            this.mBrowseButton.Size = new System.Drawing.Size(100, 28);
-            this.mBrowseButton.TabIndex = 3;
-            this.mBrowseButton.Text = "Browse";
             this.mBrowseButton.UseVisualStyleBackColor = true;
             this.mBrowseButton.Click += new System.EventHandler(this.mBrowseButton_Click);
             // 
             // PathBrowserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.mBrowseButton);
             this.Controls.Add(this.mTextBox);
             this.Controls.Add(this.mNiceNameLabel);
-            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "PathBrowserControl";
-            this.Size = new System.Drawing.Size(425, 52);
             this.Controls.SetChildIndex(this.mLabel, 0);
             this.Controls.SetChildIndex(this.mNiceNameLabel, 0);
             this.Controls.SetChildIndex(this.mTextBox, 0);

@@ -28,37 +28,30 @@ namespace PipelineInterface.ParameterControls
         /// </summary>
         private void InitializeComponent ()
             {
+                System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IntControl));
                 this.mNiceNameLabel = new System.Windows.Forms.Label();
                 this.mIntBox = new System.Windows.Forms.TextBox();
                 this.SuspendLayout();
                 // 
                 // mNiceNameLabel
                 // 
-                this.mNiceNameLabel.AutoSize = true;
-                this.mNiceNameLabel.Location = new System.Drawing.Point(3, 25);
+                resources.ApplyResources(this.mNiceNameLabel, "mNiceNameLabel");
                 this.mNiceNameLabel.Name = "mNiceNameLabel";
-                this.mNiceNameLabel.Size = new System.Drawing.Size(39, 16);
-                this.mNiceNameLabel.TabIndex = 1;
-                this.mNiceNameLabel.Text = "Nice:";
                 // 
                 // mIntBox
                 // 
                 this.mIntBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                this.mIntBox.Location = new System.Drawing.Point(48, 23);
+                resources.ApplyResources(this.mIntBox, "mIntBox");
                 this.mIntBox.Name = "mIntBox";
-                this.mIntBox.Size = new System.Drawing.Size(74, 22);
-                this.mIntBox.TabIndex = 2;
                 this.mIntBox.TextChanged += new System.EventHandler(this.mIntBox_TextChanged);
                 // 
                 // IntControl
                 // 
-                this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+                resources.ApplyResources(this, "$this");
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                 this.Controls.Add(this.mNiceNameLabel);
                 this.Controls.Add(this.mIntBox);
-                this.Margin = new System.Windows.Forms.Padding(5);
                 this.Name = "IntControl";
-                this.Size = new System.Drawing.Size(287, 55);
                 this.Controls.SetChildIndex(this.mIntBox, 0);
                 this.Controls.SetChildIndex(this.mNiceNameLabel, 0);
                 this.Controls.SetChildIndex(this.mLabel, 0);
