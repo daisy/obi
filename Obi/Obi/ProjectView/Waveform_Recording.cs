@@ -1127,15 +1127,21 @@ namespace Obi.ProjectView
             else
                 brushSel = new SolidBrush(Color.Black);
 
+            
+
             if (m_MainDictionary.ContainsKey(index))
             {
+
                 g.DrawLine(newPen, index, 0+m_TopMargin, index, WaveformHeight+m_TopMargin);
                 //if ((!m_MainDictionary[index].StartsWith("P")) || m_MainDictionary[index].EndsWith("0"))
 
                 if (!m_MainDictionary[index].EndsWith("0") || (m_MainDictionary[index].StartsWith("P")))
                 {
                     if (m_MainDictionary[index] != "")
+                    {
                         g.DrawLine(linePen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
+                        g.FillRectangle(Brushes.White, index, 0, 40, 10);
+                    }
                     g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
                 }
                 else
