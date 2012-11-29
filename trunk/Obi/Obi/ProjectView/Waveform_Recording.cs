@@ -1146,6 +1146,7 @@ namespace Obi.ProjectView
                 }
                 else
                 {
+                    g.FillRectangle(Brushes.White, index, 20, 30, 10);
                     g.DrawString(m_MainDictionary[index], myFont, Brushes.Gray, index, 20);
                     if (m_MainDictionary[index] != "")
                         g.DrawLine(newPen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
