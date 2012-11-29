@@ -616,7 +616,7 @@ namespace Obi.ProjectView
                 foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                 {
                     g.DrawLine(newPen, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
-                    if (!pair.Value.EndsWith("0"))
+                    if (!pair.Value.EndsWith("0") || (pair.Value.StartsWith("P")))
                     {
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
                         if (pair.Value != "")
@@ -711,7 +711,7 @@ namespace Obi.ProjectView
                 foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                 {
                     g.DrawLine(newPen, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
-                    if (!pair.Value.EndsWith("0"))
+                    if (!pair.Value.EndsWith("0") || (pair.Value.StartsWith("P")))
                     {
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
                         if (pair.Value != "")
@@ -1130,17 +1130,19 @@ namespace Obi.ProjectView
             if (m_MainDictionary.ContainsKey(index))
             {
                 g.DrawLine(newPen, index, 0+m_TopMargin, index, WaveformHeight+m_TopMargin);
-                if (m_MainDictionary[index].EndsWith("0"))
-                {
-                    g.DrawString(m_MainDictionary[index], myFont, Brushes.Gray, index,20);
-                    if (m_MainDictionary[index] != "")
-                        g.DrawLine(newPen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
-                }
-                else
+                //if ((!m_MainDictionary[index].StartsWith("P")) || m_MainDictionary[index].EndsWith("0"))
+
+                if (!m_MainDictionary[index].EndsWith("0") || (m_MainDictionary[index].StartsWith("P")))
                 {
                     if (m_MainDictionary[index] != "")
                         g.DrawLine(linePen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
                     g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
+                }
+                else
+                {
+                    g.DrawString(m_MainDictionary[index], myFont, Brushes.Gray, index, 20);
+                    if (m_MainDictionary[index] != "")
+                        g.DrawLine(newPen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
                 }
             }
         }
