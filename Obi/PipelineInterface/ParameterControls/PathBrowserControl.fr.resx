@@ -211,7 +211,7 @@
     <value>3</value>
   </data>
   <data name="mBrowseButton.Text" xml:space="preserve">
-    <value>Browse</value>
+    <value>Parcourir</value>
   </data>
   <data name="&gt;&gt;mBrowseButton.Name" xml:space="preserve">
     <value>mBrowseButton</value>
