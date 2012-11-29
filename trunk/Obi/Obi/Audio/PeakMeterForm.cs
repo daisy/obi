@@ -14,6 +14,7 @@ namespace Obi.Audio
 		public PeakMeterForm()
 		{
 			InitializeComponent();
+            this.TopMost = true;
 		}
 
         /// <summary>
