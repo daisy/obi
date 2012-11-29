@@ -28,7 +28,9 @@ namespace PipelineInterface.ParameterControls
         protected string GetLocalizedString(string niceName)
         {
             string key = niceName.Replace(" ", "_");
+            if (key.EndsWith(".")) key = key.Substring(0, key.Length - 1);
             string val = Localizer.Message(key);
+            Console.WriteLine("Key=" + key + "        Value=" + niceName);
             return string.IsNullOrEmpty(val) ? niceName : val;
         }
 
