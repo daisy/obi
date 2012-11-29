@@ -28,28 +28,22 @@ namespace PipelineInterface.ParameterControls
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseUserControl));
             this.mLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // mLabel
             // 
-            this.mLabel.AutoSize = true;
-            this.mLabel.Location = new System.Drawing.Point(3, 0);
+            resources.ApplyResources(this.mLabel, "mLabel");
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(76, 16);
-            this.mLabel.TabIndex = 0;
-            this.mLabel.Text = "Description";
             // 
             // BaseUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.mLabel);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BaseUserControl";
-            this.Size = new System.Drawing.Size(200, 185);
             this.ResumeLayout(false);
             this.PerformLayout();
 
