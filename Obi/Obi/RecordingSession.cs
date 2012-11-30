@@ -30,7 +30,7 @@ namespace Obi
         private List<ManagedAudioMedia> mAudioList;             // list of assets created
         private Timer mRecordingUpdateTimer;                    // timer to send regular "recording" messages
         private Settings m_Settings;
-        private int m_Index = 0;
+        
         private List<int> m_PhraseIndexesToDelete = new List<int>();
         private List<double[]> mDeletedTime = new List<double[]>();
 
@@ -91,7 +91,6 @@ namespace Obi
             mRecorder.PcmDataBufferAvailable += new AudioLib.AudioRecorder.PcmDataBufferAvailableHandler(DetectPhrasesOnTheFly);
         }
 
-        public int Index { get { return m_Index; } }
 
         public double[] ArrayOfLoc {  get { return arrOfLocations; } }
 
@@ -274,33 +273,35 @@ namespace Obi
             
             if (mPhraseMarks == null)
                 return -1;
+
+            int phraseIndex = 0;
             if (mPhraseMarks.Count == 0)
             {
                 mPhraseMarks.Add(time);
-                m_Index = 0;
+                phraseIndex = 0;
             }
             else if (mPhraseMarks.Count == 1)
             {
                 if (time < mPhraseMarks[0])
                 {
                     mPhraseMarks.Insert(0, time);
-                    m_Index = 0;
+                    phraseIndex = 0;
                 }
                 else
                 {
                     mPhraseMarks.Add(time);
-                    m_Index = 1;
+                    phraseIndex = 1;
                 }
             }
             else if (time < mPhraseMarks[0])
             {
                 mPhraseMarks.Insert(0, time);
-                m_Index = 0;
+                phraseIndex = 0;
             }
             else if (time > mPhraseMarks[mPhraseMarks.Count - 1])
             {
                 mPhraseMarks.Add(time);
-                m_Index = mPhraseMarks.Count - 1;
+                phraseIndex = mPhraseMarks.Count - 1;
             }
             else
             {
@@ -309,7 +310,7 @@ namespace Obi
                     if (time > mPhraseMarks[i] && time < mPhraseMarks[i + 1])
                     {
                         mPhraseMarks.Insert(i + 1, time);
-                        m_Index = i + 1;
+                        phraseIndex = i + 1;
                         break;
                     }
                 }
@@ -332,10 +333,11 @@ namespace Obi
             }
             else
             {
-                eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + m_Index, length, time);
+                eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + phraseIndex, length, time);
                if (FinishingPage != null) FinishingPage(this, eArg);
             }
-            return m_Index;
+            Console.WriteLine("Last index:" + last + "    phrase index:" + phraseIndex);
+            return phraseIndex;
         }
         
         public void UpdateDeletedTimeList(double startTime, double endTime)
