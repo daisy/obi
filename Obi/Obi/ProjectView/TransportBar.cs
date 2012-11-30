@@ -2731,7 +2731,7 @@ namespace Obi.ProjectView
                 try
                     {
                     mRecordingSession.Stop ();
-
+                    EmptyNode firstRecordedPhrase = null;
 
                     // update phrases with audio assets
                     if (mRecordingSession.RecordedAudio != null && mRecordingSession.RecordedAudio.Count > 0)
@@ -2745,12 +2745,21 @@ namespace Obi.ProjectView
                             {
                                 mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Used = false;
                             }
+                            //check if a page was marked
+                            if (firstRecordedPhrase == null && mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Role_ == EmptyNode.Role.Page) firstRecordedPhrase = mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i);
+
                             }
                             //Workaround to force phrases to show if they become invisible on stopping recording
                             mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
                         }
                     EmptyNode lastRecordedPhrase = mRecordingSection.PhraseChildCount >0? mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1):null;
                     if (!wasMonitoring && lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar ( lastRecordedPhrase, null );
+                    if (firstRecordedPhrase != null
+                        && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        mView.Presentation.Do (mView.GetPageRenumberCommand (firstRecordedPhrase, firstRecordedPhrase.PageNumber, Localizer.Message ("RenumberPagesCaption").Replace ("?","")) );
+                    }
+
                     }
                 catch (System.Exception ex)
                     {
