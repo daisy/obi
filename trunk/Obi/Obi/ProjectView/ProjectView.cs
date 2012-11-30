@@ -2795,22 +2795,47 @@ for (int j = 0;
                 urakawa.command.Command cmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), number );
                 if (renumber)
                     {
-                    CompositeCommand k = Presentation.CreateCompositeCommand ( cmd.ShortDescription );
-                    for (ObiNode n = SelectedNodeAs<EmptyNode> ().FollowingNode; n != null; n = n.FollowingNode)
-                        {
-                        if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
-                            ((EmptyNode)n).PageNumber.Kind == number.Kind)
-                            {
-                            number = number.NextPageNumber ();
-                            k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number ) );
-                            }
-                        }
+                        CompositeCommand k = GetPageRenumberCommand (SelectedNodeAs<EmptyNode> (), number, cmd.ShortDescription ) ;
+                    //CompositeCommand k = Presentation.CreateCompositeCommand ( cmd.ShortDescription );
+                    //for (ObiNode n = SelectedNodeAs<EmptyNode> ().FollowingNode; n != null; n = n.FollowingNode)
+                        //{
+                        //if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
+                            //((EmptyNode)n).PageNumber.Kind == number.Kind)
+                            //{
+                            //number = number.NextPageNumber ();
+                            //k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number ) );
+                            //}
+                        //}
                     k.ChildCommands.Insert(k.ChildCommands.Count, cmd );
                     cmd = k;
                     }
                 mPresentation.Do ( cmd );
                 }
             }
+
+        /// <summary>
+        /// Creates composite command for renumbering pages 
+        /// </summary>
+        /// <param name="pageNode"></param>
+        /// <param name="number"></param>
+        /// <param name="shortDescription"></param>
+        /// <returns></returns>
+        public CompositeCommand GetPageRenumberCommand(EmptyNode pageNode, PageNumber number, string shortDescription)
+        {
+            CompositeCommand k = Presentation.CreateCompositeCommand(shortDescription);
+            for (ObiNode n = pageNode.FollowingNode; n != null; n = n.FollowingNode)
+            {
+                if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
+                    ((EmptyNode)n).PageNumber.Kind == number.Kind)
+                {
+                    number = number.NextPageNumber();
+                    Commands.Node.SetPageNumber c =   new Commands.Node.SetPageNumber(this, (EmptyNode)n, number) ;
+                    c.UpdateSelection = false;
+                    k.ChildCommands.Insert(k.ChildCommands.Count,c );
+                }
+            }
+            return k;
+        }
 
         /// <summary>
         /// Add a range of pages at the selection position. The page number is increased by one for every subsequent page.
