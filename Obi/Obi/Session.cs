@@ -394,7 +394,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
                 System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent(false);
                 System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
                 stopWatch.Start();
-                urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, mProject, new Uri(path));
+                urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, mProject, new Uri(path), true);
                 save.Finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
     (delegate(object sender, urakawa.events.progress.FinishedEventArgs e) { wh.Set(); });
                 save.DoWork();
