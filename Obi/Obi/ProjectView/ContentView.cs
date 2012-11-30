@@ -5406,7 +5406,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_GenerateSpeechForPageMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.GenerateSpeechForPage();
+            mProjectView.GenerateSpeechForPage( false);
         }
         }
    /// <summary>

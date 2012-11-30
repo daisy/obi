@@ -2416,37 +2416,70 @@ for (int j = 0;
     }
             }
 
-        public void GenerateSpeechForPage()
+        public void GenerateSpeechForPage(bool forAllEmptyPages)
         {
             if (CanGenerateSpeechForPage)
             {
+                //forAllEmptyPages = true;
 
-                string text = "Page " + ((EmptyNode)Selection.Node).PageNumber.Number.ToString();
-                string filePath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath, mPresentation.DataProviderManager.GetNewDataFileRelPath(".wav"));
-                Audio.AudioFormatConverter.InitializeTTS(ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
-                Audio.AudioFormatConverter.Speak(text, filePath, ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
-
+                List<EmptyNode> listOfEmptyPages = null ;
+                if (forAllEmptyPages)
+                {
+                    listOfEmptyPages = GetListOfEmptyPagesInProject();
+                }
+                else
+                {
+                    listOfEmptyPages = new List<EmptyNode> () ;
+                    listOfEmptyPages.Add((EmptyNode) Selection.Node);
+                }
+                try
+                    {
+                for (int i = 0; i < listOfEmptyPages.Count; i++)
+                {
+                    string text = "Page " + listOfEmptyPages[i].PageNumber.Number.ToString();
+                    string filePath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath, mPresentation.DataProviderManager.GetNewDataFileRelPath(".wav"));
+                    Audio.AudioFormatConverter.InitializeTTS(ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
+                    Audio.AudioFormatConverter.Speak(text, filePath, ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
+                
                 if (System.IO.File.Exists(filePath))
                 {
-                    try
-                    {
+                    
                         PhraseNode pagePhrase = mPresentation.CreatePhraseNode(filePath);
-                        pagePhrase.CopyAttributes((EmptyNode)Selection.Node);
+                        pagePhrase.CopyAttributes(listOfEmptyPages[i]);
                         CompositeCommand cmd = mPresentation.CreateCompositeCommand("Generate speech from page text");
-                        cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.Delete(this, Selection.Node));
-                        Commands.Node.AddNode add = new Obi.Commands.Node.AddNode(this, pagePhrase, Selection.Node.ParentAs<SectionNode>(), Selection.Node.Index);
-                        add.UpdateSelection = true;
+                        cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.Delete(this, listOfEmptyPages[i]));
+                        Commands.Node.AddNode add = new Obi.Commands.Node.AddNode(this, pagePhrase, listOfEmptyPages[i].ParentAs<SectionNode>(), listOfEmptyPages[i].Index);
+                        add.UpdateSelection = listOfEmptyPages.Count==1;
                         cmd.ChildCommands.Insert(cmd.ChildCommands.Count, add);
 
 
                         mPresentation.Do(cmd);
-                    }
+                }
+                }
+                }
                     catch (System.Exception ex)
                     {
                         MessageBox.Show(ex.ToString());
                     }
-                }
+                
             }
+        }
+
+        private List<EmptyNode> GetListOfEmptyPagesInProject()
+        {
+            List <EmptyNode> listOfEmptyPages = new List<EmptyNode> ();
+            mPresentation.RootNode.AcceptDepthFirst(
+                    delegate(urakawa.core.TreeNode n)
+                    {
+                        if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                        {
+                            if (!(n is PhraseNode)) listOfEmptyPages.Add((EmptyNode)n) ;
+                        }
+                        return true;
+                    },
+                    delegate(urakawa.core.TreeNode n) { });
+
+            return listOfEmptyPages;
         }
 
         public void SelectNothing () 
