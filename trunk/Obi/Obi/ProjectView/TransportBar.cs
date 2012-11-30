@@ -1809,7 +1809,7 @@ namespace Obi.ProjectView
                 {
                     // Check if the next phrase is empty page. if it is then record into it instead of creating new phrase
                     EmptyNode followingEmptyPage = null;
-                    if (e.PhraseIndex > 0 && mRecordingSection.PhraseChildCount > mRecordingInitPhraseIndex + e.PhraseIndex)
+                    if (e.PhraseIndex > 0 && mRecordingSection.PhraseChildCount > mRecordingInitPhraseIndex + e.PhraseIndex && e.IsPage)
                     {
 
                         ObiNode followingObiNode = mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex);
