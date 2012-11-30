@@ -114,6 +114,7 @@ namespace Obi
             settings.Audio_ShowLiveWaveformWhileRecording = false;
             settings.Audio_EnableLivePhraseDetection = false;
             settings.NewProjectDialogSize = new Size(0, 0);
+            settings.CreateTitleSection = true;
             settings.NoiseLevel = AudioLib.VuMeter.NoiseLevelSelection.Medium;
             settings.NudgeTimeMs = 200.0;
             settings.ObiFormSize = new Size(0, 0);
