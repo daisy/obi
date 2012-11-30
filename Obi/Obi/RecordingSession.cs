@@ -122,7 +122,7 @@ namespace Obi
 
                 PhraseEventArgs e = FinishedPhrase();
                 if (StartingPhrase != null)
-                    StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mPhraseMarks.Count, 0.0));
+                    StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mPhraseMarks.Count, 0.0, e.TimeFromBeginning, true));
                 if (FinishingPage != null) FinishingPage(this, e);
             }
         }

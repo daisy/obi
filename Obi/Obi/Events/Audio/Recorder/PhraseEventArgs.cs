@@ -35,6 +35,7 @@ namespace Obi.Events.Audio.Recorder
         private int mPhraseIndex;
         private double mTime;
         private double m_TimeFromBeginning  = -1;
+        private bool m_IsPage = false;
 
         public PhraseEventArgs(ManagedAudioMedia audio, int index, double time)
         {
@@ -49,9 +50,17 @@ namespace Obi.Events.Audio.Recorder
         {
             m_TimeFromBeginning = timeFromBeginning;
         }
+
+        public PhraseEventArgs(ManagedAudioMedia audio, int index, double time, double timeFromBeginning, bool isPage)
+            : this(audio, index, time, timeFromBeginning)
+        {
+            m_IsPage = isPage;
+        }
         public ManagedAudioMedia Audio { get { return mAudio; } }
         public int PhraseIndex { get { return mPhraseIndex; } }
         public double Time { get { return mTime; } }
         public double TimeFromBeginning { get { return m_TimeFromBeginning; } }
+        public bool IsPage { get { return m_IsPage; } }
+
     }
 }
