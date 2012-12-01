@@ -60,9 +60,9 @@ namespace Obi.ImportExport
             //m_Project = new Project();
             m_Project = m_Session.Presentation.Project;
 #if (DEBUG)
-            m_Project.SetPrettyFormat(true);
+            m_Project.PrettyFormat = true;
 #else
-            m_Project.SetPrettyFormat(false);
+            m_Project.PrettyFormat = false;
 #endif
 
             //Presentation presentation = m_Project.AddNewPresentation(new Uri(m_outDirectory), Path.GetFileName(m_Book_FilePath));
@@ -372,7 +372,7 @@ namespace Obi.ImportExport
         {
             string dtbBookTitle = "";
             XmlDocument dtbookFileDoc = urakawa.xuk.XmlReaderWriterHelper.ParseXmlDocument(dtBookFilePath, false, false);
-            
+
             XmlNodeList listOfChildren = dtbookFileDoc.GetElementsByTagName("meta");
             foreach (XmlNode node in listOfChildren)
             {

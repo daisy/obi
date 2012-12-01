@@ -11,12 +11,12 @@ namespace Obi.Commands
 {
     public abstract class Command: urakawa.command.Command
     {
-        public static readonly string XUK_NS = DataModelFactory.NS;
-        public static readonly string XukString = typeof(Command).Name;
-        public override string GetTypeNameFormatted()
-        {
-            return XukString;
-        }
+        //public static readonly string XUK_NS = DataModelFactory.NS;
+        //public static readonly string XukString = typeof(Command).Name;
+        //public override string GetTypeNameFormatted()
+        //{
+        //    return XukString;
+        //}
 
 
         private ProjectView.ProjectView mView;   // the view that the command is executed in

@@ -16,17 +16,19 @@ using urakawa.property.channel;
 using urakawa.media.data;
 using urakawa.daisy.export;
 using urakawa.daisy.export.visitor;
+using urakawa.xuk;
 
 namespace Obi
 {
+    [XukNameUglyPrettyAttribute("ObiPresentation", "ObiPresentation")]
     public class ObiPresentation : Presentation
     {
-        public static readonly string XUK_NS = DataModelFactory.NS;
-        public static readonly string XukString = typeof(ObiPresentation).Name;
-        public override string GetTypeNameFormatted()
-        {
-            return XukString;
-        }
+        //public static readonly string XUK_NS = DataModelFactory.NS;
+        //public static readonly string XukString = typeof(ObiPresentation).Name;
+        //public override string GetTypeNameFormatted()
+        //{
+        //    return XukString;
+        //}
 
         private bool mInitialized;                                   // initialization flag
         private Dictionary<string, List<EmptyNode>> mCustomClasses;  // custom classes and which nodes have them
@@ -277,7 +279,7 @@ namespace Obi
         /// </summary>
         public PhraseNode CreatePhraseNode()
         {
-            PhraseNode node = (PhraseNode)m_ObiNodeFactory.createNode(PhraseNode.XukString, DataModelFactory.NS); //sdk2 :local ObiNode factory used
+            PhraseNode node = (PhraseNode)m_ObiNodeFactory.createNode(XukAble.GetXukName(typeof(PhraseNode)).z(PrettyFormat), DataModelFactory.NS); //sdk2 :local ObiNode factory used
             node.AddProperty(PropertyFactory.CreateChannelsProperty());
             return node;
         }
@@ -316,7 +318,7 @@ namespace Obi
         /// </summary>
         public SectionNode CreateSectionNode()
         {
-            SectionNode node = (SectionNode)m_ObiNodeFactory.createNode(SectionNode.XukString, DataModelFactory.NS); //sdk2 :local ObiNode factory used
+            SectionNode node = (SectionNode)m_ObiNodeFactory.createNode(XukAble.GetXukName(typeof(SectionNode)).z(PrettyFormat), DataModelFactory.NS); //sdk2 :local ObiNode factory used
             urakawa.property.channel.ChannelsProperty channelsProperty = PropertyFactory.CreateChannelsProperty();
             node.AddProperty(channelsProperty);
             // Create the text media object for the label with a default label
