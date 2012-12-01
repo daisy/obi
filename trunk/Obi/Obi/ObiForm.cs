@@ -1958,6 +1958,7 @@ namespace Obi
                 mFastForwardToolStripMenuItem.Enabled = mProjectView.CanFastForward;
                 mRewindToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.CanRewind;
                 navigationToolStripMenuItem.Enabled = mSession.HasProject;
+                allEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForAllEmptyPages;
 
 
                 mFastPlaytoolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
