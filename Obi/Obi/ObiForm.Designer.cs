@@ -200,6 +200,9 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.mGenerateSpeechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectedPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allEmptyPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -1082,6 +1085,7 @@ namespace Obi
             this.mFastPlaytoolStripMenuItem,
             this.mPreviewToolStripMenuItem,
             this.mRecordToolStripMenuItem,
+            this.mGenerateSpeechToolStripMenuItem,
             this.toolStripSeparator5,
             this.navigationToolStripMenuItem,
             this.mRewindToolStripMenuItem,
@@ -1415,6 +1419,26 @@ namespace Obi
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
+            // mGenerateSpeechToolStripMenuItem
+            // 
+            this.mGenerateSpeechToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectedPageToolStripMenuItem,
+            this.allEmptyPagesToolStripMenuItem});
+            this.mGenerateSpeechToolStripMenuItem.Name = "mGenerateSpeechToolStripMenuItem";
+            resources.ApplyResources(this.mGenerateSpeechToolStripMenuItem, "mGenerateSpeechToolStripMenuItem");
+            // 
+            // selectedPageToolStripMenuItem
+            // 
+            this.selectedPageToolStripMenuItem.Name = "selectedPageToolStripMenuItem";
+            resources.ApplyResources(this.selectedPageToolStripMenuItem, "selectedPageToolStripMenuItem");
+            this.selectedPageToolStripMenuItem.Click += new System.EventHandler(this.selectedPageToolStripMenuItem_Click);
+            // 
+            // allEmptyPagesToolStripMenuItem
+            // 
+            this.allEmptyPagesToolStripMenuItem.Name = "allEmptyPagesToolStripMenuItem";
+            resources.ApplyResources(this.allEmptyPagesToolStripMenuItem, "allEmptyPagesToolStripMenuItem");
+            this.allEmptyPagesToolStripMenuItem.Click += new System.EventHandler(this.allEmptyPagesToolStripMenuItem_Click);
+            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
@@ -1444,6 +1468,7 @@ namespace Obi
             this.Name = "ObiForm";
             this.Load += new System.EventHandler(this.ObiForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ObiForm_FormClosing);
+            this.Resize += new System.EventHandler(this.ObiForm_Resize);
             this.ResizeEnd += new System.EventHandler(this.ObiForm_ResizeEnd);
             this.mMenuStrip.ResumeLayout(false);
             this.mMenuStrip.PerformLayout();
@@ -1628,6 +1653,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mFineNavigationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelp_WhatsNewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSkippableClearRoleFromNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mGenerateSpeechToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectedPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allEmptyPagesToolStripMenuItem;
     }
 }
 

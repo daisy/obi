@@ -4461,5 +4461,15 @@ namespace Obi
                    
                 
             }
+
+            private void selectedPageToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.GenerateSpeechForPage(false);
+            }
+
+            private void allEmptyPagesToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.GenerateSpeechForPage(true);
+            }
         }
     }
