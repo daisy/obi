@@ -202,9 +202,9 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         {
             mProject = new Project();
 #if (DEBUG)
-            mProject.SetPrettyFormat(true);
+            mProject.PrettyFormat = true;
 #else
-            mProject.SetPrettyFormat(false);
+            mProject.PrettyFormat = false;
 #endif
             string parentDirectory = System.IO.Path.GetDirectoryName(path);
             Uri obiProjectDirectory = new Uri(parentDirectory);
@@ -220,7 +220,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             //TODO: otherwise collision of Data folder may happen if several project files are in same directory.
             //newPres.DataProviderManager.SetDataFileDirectoryWithPrefix(System.IO.Path.GetFileName(path));
 
-            if (newPres.IsPrettyFormat())
+            if (newPres.PrettyFormat)
             {
                 newPres.WarmUpAllFactories();
             }
@@ -302,10 +302,10 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             //Console.WriteLine("opening project memory differenc is " + (memoryDiff / 1024));
             mPath = path;
             GetLock(mPath);
-            
-                Presentation.Initialize(this);
-            
-                
+
+            Presentation.Initialize(this);
+
+
             // Hack to ignore the empty commands saved by the default undo/redo manager
             Presentation.UndoRedoManager.FlushCommands();
             ((ObiRootNode)mProject.Presentations.Get(0).RootNode).LocateBookMarkAndAssociatedNode();
@@ -363,12 +363,12 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         {
             if (CheckDiskSpace() <= 10)
             {
-             DialogResult result =   MessageBox.Show(string.Format( Localizer.Message("LimitedDiskSpaceWarning"), 10),Localizer.Message("Memory_Warning"),MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                
-             if (result == DialogResult.No)
-              {
-                 return;
-              }
+                DialogResult result = MessageBox.Show(string.Format(Localizer.Message("LimitedDiskSpaceWarning"), 10), Localizer.Message("Memory_Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
             }
             if (Save(mPath))
             {
@@ -376,7 +376,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
                 mChangesCount = 0;
                 if (ProjectSaved != null) ProjectSaved(this, null);
             }
-       }
+        }
 
         /// <summary>
         /// Save the project under a given location (used by save for the regular location,
@@ -576,16 +576,16 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             if (ProjectCreated != null) ProjectCreated(this, null);
         }
 
-       public long CheckDiskSpace()
-       {
-           string rootDir = System.IO.Path.GetPathRoot(mPath);
-           long freeSpace = 0;
-            
+        public long CheckDiskSpace()
+        {
+            string rootDir = System.IO.Path.GetPathRoot(mPath);
+            long freeSpace = 0;
+
             DriveInfo driveSpace = new DriveInfo(rootDir);
             if (driveSpace.IsReady)
             {
                 const int num = 1048576;// 1024*1024
-                freeSpace = driveSpace.AvailableFreeSpace/num;
+                freeSpace = driveSpace.AvailableFreeSpace / num;
             }
             return freeSpace;
         }

@@ -1,12 +1,13 @@
 using System;
 using urakawa.core;
+using urakawa.xuk;
 
 namespace Obi
 {
     /// <summary>
     /// Node factory that can create plain core nodes, or Obi nodes.
     /// </summary>
-    public class ObiNodeFactory 
+    public class ObiNodeFactory
     {
         private ObiPresentation m_Presentation;
 
@@ -25,19 +26,30 @@ namespace Obi
         {
             if (namespaceUri == DataModelFactory.NS)
             {
-                if (localName == ObiRootNode.XukString)
-                    {
-                        return m_Presentation.TreeNodeFactory.Create<ObiRootNode>();
-                    }
-                    else if (localName == PhraseNode.XukString)
-                    {
-                        return m_Presentation.TreeNodeFactory.Create<PhraseNode>();
+                if (
+                    XukAble.GetXukName(typeof(ObiRootNode)).Match(localName)
+                    //localName == XukAble.GetXukName(typeof(ObiRootNode)).z(m_Presentation.PrettyFormat)
+                    )
+                {
+                    return m_Presentation.TreeNodeFactory.Create<ObiRootNode>();
                 }
-                else if (localName == SectionNode.XukString)
+                else if (
+                    XukAble.GetXukName(typeof(PhraseNode)).Match(localName)
+                    //localName == XukAble.GetXukName(typeof(PhraseNode)).z(m_Presentation.PrettyFormat)
+                    )
+                {
+                    return m_Presentation.TreeNodeFactory.Create<PhraseNode>();
+                }
+                else if (
+                    XukAble.GetXukName(typeof(SectionNode)).Match(localName)
+                    //localName == XukAble.GetXukName(typeof(SectionNode)).z(m_Presentation.PrettyFormat)
+                    )
                 {
                     return m_Presentation.TreeNodeFactory.Create<SectionNode>();
                 }
-                else if (localName == EmptyNode.XukString)
+                else if (XukAble.GetXukName(typeof(EmptyNode)).Match(localName)
+                    //localName == XukAble.GetXukName(typeof(EmptyNode)).z(m_Presentation.PrettyFormat)
+                    )
                 {
                     return m_Presentation.TreeNodeFactory.Create<EmptyNode>();
                 }

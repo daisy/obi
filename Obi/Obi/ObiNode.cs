@@ -14,14 +14,16 @@ namespace Obi
     /// Base class for nodes in the Obi tree; doesn't do much.
     /// All nodes in the tree will be of a derived class.
     /// </summary>
+    [XukNameUglyPrettyAttribute("ObiNode", "ObiNode")]
     public abstract class ObiNode : TreeNode
     {
-        public new static readonly string XUK_NS = DataModelFactory.NS;//sdk2
-        public static readonly string XukString = typeof(ObiNode).Name;
-        public override string GetTypeNameFormatted()
-        {
-            return XukString;
-        }
+        //public new static readonly string XUK_NS = DataModelFactory.NS;//sdk2
+        //public static readonly string XukString = typeof(ObiNode).Name;
+        //public override string GetTypeNameFormatted()
+        //{
+        //    return XukString;
+        //}
+
         public abstract string XmlPropertyString { get; } 
 
         private bool mUsed;  // mark node as being in use or not
@@ -266,7 +268,7 @@ namespace Obi
             {
                 xmlProp = Presentation.PropertyFactory.CreateXmlProperty();
                 this.AddProperty(xmlProp);
-                xmlProp.SetQName(XmlPropertyString, XukNamespaceUri);
+                xmlProp.SetQName(XmlPropertyString, GetXukNamespace());
             }
             return xmlProp;
         }
@@ -328,14 +330,16 @@ namespace Obi
     /// The level of the root node is 0. A root node has only section children.
     /// </summary>
     // sdk2
+    [XukNameUglyPrettyAttribute("root", "root")]
     public class ObiRootNode : ObiNode
     {
-        public new static string XukString = "root";
+        //public new static string XukString = "root";
+        //public override string GetTypeNameFormatted()
+        //{
+        //    return XukString;
+        //}
+        
         private ObiNode m_Bookmarked;
-        public override string GetTypeNameFormatted()
-        {
-            return XukString;
-        }
 
         public override string XmlPropertyString { get { return "dtbook"; } }
 

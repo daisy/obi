@@ -8,13 +8,14 @@ using urakawa.property.channel;
 
 namespace Obi
 {
+    [XukNameUglyPrettyAttribute("phrase", "phrase")]
     public class PhraseNode: EmptyNode
     {
-        public new static string XukString = "phrase";
-        public override string GetTypeNameFormatted()
-        {
-            return XukString;
-        }
+        //public new static string XukString = "phrase";
+        //public override string GetTypeNameFormatted()
+        //{
+        //    return XukString;
+        //}
 
         /// <summary>
         /// This event is sent when the audio

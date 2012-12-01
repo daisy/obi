@@ -10,13 +10,14 @@ namespace Obi
     /// Section nodes are Obi nodes with either section nodes or phrase nodes as their children.
     /// All phrase children come first, then the section children.
     /// </summary>
+    [XukNameUglyPrettyAttribute("section", "section")]
     public class SectionNode : ObiNode
     {
-        public new static string XukString = "section";
-        public override string GetTypeNameFormatted()
-        {
-            return XukString;
-        }
+        //public new static string XukString = "section";
+        //public override string GetTypeNameFormatted()
+        //{
+        //    return XukString;
+        //}
 
         public override string XmlPropertyString { get { return "level"; } } 
         private EmptyNode mHeading = null;  // section heading

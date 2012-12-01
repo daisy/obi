@@ -13,13 +13,14 @@ namespace Obi
     /// It doesn't have any actual content yet and will either become a PhraseNode or a ContainerNode.
     /// It can have a role and be marked as TODO (attributes of the node.)
     /// </summary>
+    [XukNameUglyPrettyAttribute("empty", "empty")]
     public class EmptyNode: ObiNode
     {
-        public new static string XukString = "empty";
-        public override string GetTypeNameFormatted()
-        {
-            return XukString;
-        }
+        //public new static string XukString = "empty";
+        //public override string GetTypeNameFormatted()
+        //{
+        //    return XukString;
+        //}
 
         public override string XmlPropertyString { get { return "p";} } 
         private Role mRole;              // this node's kind
