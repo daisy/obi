@@ -172,6 +172,9 @@ namespace Obi
             this.mStartRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStartRecordingDirectlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAllowOverwriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mGenerateSpeechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectedPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allEmptyPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.navigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -200,9 +203,6 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.mGenerateSpeechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectedPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allEmptyPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -1229,6 +1229,26 @@ namespace Obi
             resources.ApplyResources(this.mAllowOverwriteToolStripMenuItem, "mAllowOverwriteToolStripMenuItem");
             this.mAllowOverwriteToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mAllowOverwriteToolStripMenuItem_CheckedChanged);
             // 
+            // mGenerateSpeechToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mGenerateSpeechToolStripMenuItem, "mGenerateSpeechToolStripMenuItem");
+            this.mGenerateSpeechToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectedPageToolStripMenuItem,
+            this.allEmptyPagesToolStripMenuItem});
+            this.mGenerateSpeechToolStripMenuItem.Name = "mGenerateSpeechToolStripMenuItem";
+            // 
+            // selectedPageToolStripMenuItem
+            // 
+            resources.ApplyResources(this.selectedPageToolStripMenuItem, "selectedPageToolStripMenuItem");
+            this.selectedPageToolStripMenuItem.Name = "selectedPageToolStripMenuItem";
+            this.selectedPageToolStripMenuItem.Click += new System.EventHandler(this.selectedPageToolStripMenuItem_Click);
+            // 
+            // allEmptyPagesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.allEmptyPagesToolStripMenuItem, "allEmptyPagesToolStripMenuItem");
+            this.allEmptyPagesToolStripMenuItem.Name = "allEmptyPagesToolStripMenuItem";
+            this.allEmptyPagesToolStripMenuItem.Click += new System.EventHandler(this.allEmptyPagesToolStripMenuItem_Click);
+            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
@@ -1418,26 +1438,6 @@ namespace Obi
             this.mStatusProgressBar.Name = "mStatusProgressBar";
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            // 
-            // mGenerateSpeechToolStripMenuItem
-            // 
-            this.mGenerateSpeechToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectedPageToolStripMenuItem,
-            this.allEmptyPagesToolStripMenuItem});
-            this.mGenerateSpeechToolStripMenuItem.Name = "mGenerateSpeechToolStripMenuItem";
-            resources.ApplyResources(this.mGenerateSpeechToolStripMenuItem, "mGenerateSpeechToolStripMenuItem");
-            // 
-            // selectedPageToolStripMenuItem
-            // 
-            this.selectedPageToolStripMenuItem.Name = "selectedPageToolStripMenuItem";
-            resources.ApplyResources(this.selectedPageToolStripMenuItem, "selectedPageToolStripMenuItem");
-            this.selectedPageToolStripMenuItem.Click += new System.EventHandler(this.selectedPageToolStripMenuItem_Click);
-            // 
-            // allEmptyPagesToolStripMenuItem
-            // 
-            this.allEmptyPagesToolStripMenuItem.Name = "allEmptyPagesToolStripMenuItem";
-            resources.ApplyResources(this.allEmptyPagesToolStripMenuItem, "allEmptyPagesToolStripMenuItem");
-            this.allEmptyPagesToolStripMenuItem.Click += new System.EventHandler(this.allEmptyPagesToolStripMenuItem_Click);
             // 
             // mProjectView
             // 
