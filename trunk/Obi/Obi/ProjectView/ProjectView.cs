@@ -528,6 +528,7 @@ namespace Obi.ProjectView
             }
 
         public bool CanGenerateSpeechForPage { get { return Selection != null && Selection.Node is EmptyNode && ((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Page && ((EmptyNode)Selection.Node).Duration == 0; } }
+        public bool CanGenerateSpeechForAllEmptyPages { get { return mPresentation != null; } }
 
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
@@ -2418,10 +2419,9 @@ for (int j = 0;
 
         public void GenerateSpeechForPage(bool forAllEmptyPages)
         {
-            if (CanGenerateSpeechForPage)
+            if (CanGenerateSpeechForPage || CanGenerateSpeechForAllEmptyPages)
             {
-                //forAllEmptyPages = true;
-
+             
                 List<EmptyNode> listOfEmptyPages = null ;
                 if (forAllEmptyPages)
                 {
@@ -2432,30 +2432,50 @@ for (int j = 0;
                     listOfEmptyPages = new List<EmptyNode> () ;
                     listOfEmptyPages.Add((EmptyNode) Selection.Node);
                 }
+                if (listOfEmptyPages == null || listOfEmptyPages.Count == 0)
+                {
+                    MessageBox.Show(Localizer.Message("ProjectView_NoEmptyPageFoundForSpeechGeneration"));
+                    return;
+                }
+
                 try
                     {
+                        CompositeCommand cmd = mPresentation.CreateCompositeCommand("Generate speech from page text");
+                    Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "SpeechGenerationProgress" ),
+                        delegate(Dialogs.ProgressDialog progress1)
+                            {
                 for (int i = 0; i < listOfEmptyPages.Count; i++)
                 {
                     string text = "Page " + listOfEmptyPages[i].PageNumber.Number.ToString();
                     string filePath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath, mPresentation.DataProviderManager.GetNewDataFileRelPath(".wav"));
                     Audio.AudioFormatConverter.InitializeTTS(ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
                     Audio.AudioFormatConverter.Speak(text, filePath, ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
-                
+                    //if (ProgressChanged != null)
+                        //ProgressChanged(this, new ProgressChangedEventArgs( Convert.ToInt32((i*100)/100) , "" ));
+
                 if (System.IO.File.Exists(filePath))
                 {
                     
                         PhraseNode pagePhrase = mPresentation.CreatePhraseNode(filePath);
                         pagePhrase.CopyAttributes(listOfEmptyPages[i]);
-                        CompositeCommand cmd = mPresentation.CreateCompositeCommand("Generate speech from page text");
+                        
                         cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.Delete(this, listOfEmptyPages[i]));
                         Commands.Node.AddNode add = new Obi.Commands.Node.AddNode(this, pagePhrase, listOfEmptyPages[i].ParentAs<SectionNode>(), listOfEmptyPages[i].Index);
                         add.UpdateSelection = listOfEmptyPages.Count==1;
                         cmd.ChildCommands.Insert(cmd.ChildCommands.Count, add);
 
 
-                        mPresentation.Do(cmd);
+                        
                 }
                 }
+            });
+                    progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
+                    //this.ProgressChanged += new ProgressChangedEventHandler(progress.UpdateProgressBar);
+                    progress.ShowDialog();
+                    if (progress.Exception != null) throw (progress.Exception);
+
+
+                    mPresentation.Do(cmd);
                 }
                     catch (System.Exception ex)
                     {
