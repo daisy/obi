@@ -78,7 +78,7 @@ namespace Obi.ProjectView
         //   private int m_DeletedOffset = 0;
         private bool m_IsDeleted = false;
         private  const int m_TopMargin=30;
-
+        
 
         public Waveform_Recording()
         {
@@ -767,19 +767,34 @@ namespace Obi.ProjectView
         private void m_RecordingSession_FinishingPhrase(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
             int pixel = 0;
+            string text = "Ph";
             Pen pen = new Pen(SystemColors.ControlDarkDark);
 
             pixel = CalculatePixels(e.TimeFromBeginning);
 
             g.DrawLine(blackPen, pixel, 0+m_TopMargin, pixel, WaveformHeight+m_TopMargin);
-            g.DrawString("Phrase", myFont, Brushes.Black, pixel, 0);
-            if (!m_MainDictionary.ContainsKey(pixel))
-                m_MainDictionary.Add(pixel, "Phrase");
+            g.DrawString("Ph", myFont, Brushes.Black, pixel, 0);
+
+            if (m_MainDictionary.ContainsKey(pixel))
+            {
+                m_MainDictionary[pixel] = text;
+            }
+            else
+            {
+                m_MainDictionary.Add(pixel, text);
+            }
+            //if (!m_MainDictionary.ContainsKey(pixel))
+            //{
+            //    m_MainDictionary.Add(pixel, "Ph");
+            //    Console.WriteLine("Phrase Added Called: {0}", IndexOfPhrase);
+            //    IndexOfPhrase++;
+            //}
+            
         }
 
         private void m_RecordingSession_FinishingPage(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
-            string text = "Page";
+            string text = "Pg";
             PhraseNode phrase = (PhraseNode)m_ProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode>().PhraseChild(e.PhraseIndex + m_ProjectView.TransportBar.RecordingInitPhraseIndex + 1);
             if (m_ProjectView.TransportBar.RecordingPhrase != null) text = text + " " + phrase.PageNumber.ToString();
 
@@ -1140,16 +1155,20 @@ namespace Obi.ProjectView
                     if (m_MainDictionary[index] != "")
                     {
                         g.DrawLine(linePen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
-                        g.FillRectangle(Brushes.White, index, 0, 40, 10);
+                        g.FillRectangle(Brushes.White, index, 0, 20, 10);
+                        g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
                     }
-                    g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
+                    
                 }
                 else
                 {
+                    
                     g.FillRectangle(Brushes.White, index, 20, 30, 10);
-                    g.DrawString(m_MainDictionary[index], myFont, Brushes.Gray, index, 20);
+                   g.DrawString(m_MainDictionary[index], myFont, Brushes.Gray, index, 20);
                     if (m_MainDictionary[index] != "")
-                        g.DrawLine(newPen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
+                    {
+                      g.DrawLine(newPen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
+                    }
                 }
             }
         }
