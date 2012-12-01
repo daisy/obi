@@ -1518,6 +1518,33 @@
   <data name="mRecordToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Record</value>
   </data>
+  <data name="mGenerateSpeechToolStripMenuItem.AccessibleDescription" xml:space="preserve">
+    <value>Generate speech</value>
+  </data>
+  <data name="selectedPageToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Generate speech for selected page.</value>
+  </data>
+  <data name="selectedPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="selectedPageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Selec&amp;ted page</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Generate speech for all empty pages.</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;All empty pages</value>
+  </data>
+  <data name="mGenerateSpeechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="mGenerateSpeechToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Generate speech</value>
+  </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 6</value>
   </data>
@@ -1837,7 +1864,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=2.4.0.23449, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=2.4.0.20734, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2109,6 +2136,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//43uAHwAAgA/WAIAPIjGAByIggANjb4ABbmeAA1VUgA84IoAP
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
@@ -2963,6 +2993,24 @@
     <value>mAllowOverwriteToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mAllowOverwriteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mGenerateSpeechToolStripMenuItem.Name" xml:space="preserve">
+    <value>mGenerateSpeechToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mGenerateSpeechToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectedPageToolStripMenuItem.Name" xml:space="preserve">
+    <value>selectedPageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;selectedPageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allEmptyPagesToolStripMenuItem.Name" xml:space="preserve">
+    <value>allEmptyPagesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;allEmptyPagesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
