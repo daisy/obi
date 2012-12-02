@@ -2223,4 +2223,16 @@ Error text: {1}</value>
   <data name="RemainingInSelection" xml:space="preserve">
     <value>Remaining In Selection</value>
   </data>
+  <data name="RenumberPagesCaption" xml:space="preserve">
+    <value>Renumber the following pages?</value>
+  </data>
+  <data name="TransportBar_RenumberPagesAfterRecording" xml:space="preserve">
+    <value>Page that follow the recorded pages may need renumbering. Will you like to renumber?</value>
+  </data>
+  <data name="ProjectView_NoEmptyPageFoundForSpeechGeneration" xml:space="preserve">
+    <value>Unable to find empty page(s) for speech generation</value>
+  </data>
+  <data name="SpeechGenerationProgress" xml:space="preserve">
+    <value>Gemerating speech...</value>
+  </data>
 </root>

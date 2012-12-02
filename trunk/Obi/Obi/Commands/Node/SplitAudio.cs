@@ -128,6 +128,14 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
             return null;
         }
 
+        public static CompositeCommand GetSplitCommand(ProjectView.ProjectView view, PhraseNode phrase, double time)
+        {
+            CompositeCommand command =
+                        view.Presentation.CreateCompositeCommand(Localizer.Message("split_phrase"));
+            AppendSplitCommandWithProperties(view, command, phrase, time, false);
+            return command;
+        }
+
         /// <summary>
         /// Create the phrase detection command.
         /// </summary>
