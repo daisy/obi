@@ -936,7 +936,7 @@ namespace Obi.ProjectView
                      mTimeDisplayBox.Text = "--:--:--";
                      mDisplayBox.SelectedIndex = ELAPSED_INDEX;
                  }
-                 else if (mState == State.Recording)
+                 else if (mState == State.Recording && mRecordingSession.AudioRecorder.RecordingPCMFormat != null)
                  {
                      //mRecordingSession.AudioRecorder.TimeOfAsset
                      double timeOfAssetMilliseconds =
@@ -2727,11 +2727,13 @@ namespace Obi.ProjectView
             {
                 bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
                 mVUMeterPanel.BeepEnable = false;
-
+                List<PhraseNode> listOfRecordedPhrases = new List<PhraseNode>();
+                EmptyNode firstRecordedPhrase = null;
                 try
                     {
                     mRecordingSession.Stop ();
-                    EmptyNode firstRecordedPhrase = null;
+                    
+                    
 
                     // update phrases with audio assets
                     if (mRecordingSession.RecordedAudio != null && mRecordingSession.RecordedAudio.Count > 0)
@@ -2748,17 +2750,15 @@ namespace Obi.ProjectView
                             //check if a page was marked
                             if (firstRecordedPhrase == null && mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Role_ == EmptyNode.Role.Page) firstRecordedPhrase = mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i);
 
+                            listOfRecordedPhrases.Add((PhraseNode) mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i));
                             }
                             //Workaround to force phrases to show if they become invisible on stopping recording
                             mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
                         }
                     EmptyNode lastRecordedPhrase = mRecordingSection.PhraseChildCount >0? mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1):null;
                     if (!wasMonitoring && lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar ( lastRecordedPhrase, null );
-                    if (firstRecordedPhrase != null
-                        && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        mView.Presentation.Do (mView.GetPageRenumberCommand (firstRecordedPhrase, firstRecordedPhrase.PageNumber, Localizer.Message ("RenumberPagesCaption").Replace ("?","")) );
-                    }
+
+                    
 
                     }
                 catch (System.Exception ex)
@@ -2767,10 +2767,26 @@ namespace Obi.ProjectView
                     }
                 
 UpdateButtons();
+                
+                try
+                {
+                    if (mRecordingSession.PhraseMarksOnTheFly.Count > 0)
+                    {
+                        mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly));
+                    }
+                    if (firstRecordedPhrase != null
+                        && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPhrase, firstRecordedPhrase.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", "")));
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
                 mRecordingSession = null;
                 mResumeRecordingPhrase = null;
 
-                
             }
         else if (mResumeRecordingPhrase != null)
             {
@@ -2780,6 +2796,41 @@ UpdateButtons();
             }
         }
 
+        private CompositeCommand GetSplitCommandForOnTheFlyDetectedPhrases(List<PhraseNode> phrasesList, List<double> timingList)
+        {
+            CompositeCommand multipleSplitCommand = mView.Presentation.CreateCompositeCommand("Multiple split command");
+            timingList.Sort();
+            List<double> newTimingList = new List<double>();
+            newTimingList.InsertRange(0, timingList);
+            Console.WriteLine("On the fly: " + phrasesList.Count);
+            for (int i = phrasesList.Count - 1; i >= 0; i--)
+            {
+                PhraseNode phrase = phrasesList[i];
+                double referenceTimeForPhrase = 0;
+
+                if (phrase.Role_ == EmptyNode.Role.Page || phrase.TODO || !phrase.Used) continue;
+
+                //first calculate the reference time
+                foreach (PhraseNode p in phrasesList)
+                {
+                    if (p == phrase) break;
+                    referenceTimeForPhrase += p.Duration;
+                }
+
+                for (int j = newTimingList.Count-1; j >= 0; j--)
+                {
+                    if (newTimingList[j] < referenceTimeForPhrase) break;
+                    //Commands.Node.SplitAudio split = new Commands.Node.SplitAudio(mView, phrase, newTimingList[j]);
+                    double splitTimeInPhrase = newTimingList[j] - referenceTimeForPhrase;
+                    if ( splitTimeInPhrase <= 0 || splitTimeInPhrase>= phrase.Duration ) continue ;
+                    CompositeCommand split = Commands.Node.SplitAudio.GetSplitCommand(mView, phrase,splitTimeInPhrase );
+                    multipleSplitCommand.ChildCommands.Insert(multipleSplitCommand.ChildCommands.Count, split);
+                    newTimingList.RemoveAt(j);
+                }
+
+            }
+            return multipleSplitCommand;
+        }
 
 
         private bool IsRecording
