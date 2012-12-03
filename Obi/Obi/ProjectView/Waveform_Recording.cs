@@ -857,10 +857,14 @@ namespace Obi.ProjectView
 
             if (e.Button == MouseButtons.Left)
             {
+
                 if (m_MouseButtonDownLoc != m_MouseButtonUpLoc)
                 {
                     if (!IsValid(m_MouseButtonDownLoc) || !IsValid(m_MouseButtonUpLoc))
+                    {
+                        m_MouseButtonDownLoc = e.X;
                         return;
+                    }
 
                     PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);
                     //    IsDeselected = true;
@@ -895,7 +899,7 @@ namespace Obi.ProjectView
                 return;
             else
             {
-                if (m_MouseButtonDownLoc == e.X)
+                if (m_MouseButtonDownLoc == e.X || m_MouseButtonDownLoc == e.X + 1 || m_MouseButtonDownLoc == e.X - 1)
                 {
                     if (e.Button == MouseButtons.Left)
                     {
@@ -1155,7 +1159,7 @@ namespace Obi.ProjectView
                     if (m_MainDictionary[index] != "")
                     {
                         g.DrawLine(linePen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
-                        g.FillRectangle(Brushes.White, index, 0, 20, 10);
+                        g.FillRectangle(Brushes.White, index, 0, 6, 10);
                         g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
                     }
                     
@@ -1181,7 +1185,7 @@ namespace Obi.ProjectView
 
         public bool IsValid(int location)
         {
-            if (location > (recordingTimeCursor + m_OffsetLocation) && location < m_X)
+            if (location >= (recordingTimeCursor + m_OffsetLocation) && location < m_X)
                 return true;
             else
                 return false;
