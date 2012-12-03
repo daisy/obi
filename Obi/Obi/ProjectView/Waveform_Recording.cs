@@ -860,7 +860,8 @@ namespace Obi.ProjectView
 
                 if (m_MouseButtonDownLoc != m_MouseButtonUpLoc)
                 {
-                    if (!IsValid(m_MouseButtonDownLoc) || !IsValid(m_MouseButtonUpLoc))
+                    if ((!IsValid(m_MouseButtonDownLoc) && m_MouseButtonDownLoc!= 0) 
+                        || !IsValid(m_MouseButtonUpLoc))
                     return;
                     
                     PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);
@@ -1180,9 +1181,9 @@ namespace Obi.ProjectView
             return listOfChannel[actualLoc];
         }
 
-        public bool IsValid(int location)
+        public bool IsValid(int location_X)
         {
-            if (location >= (recordingTimeCursor + m_OffsetLocation) && location < m_X)
+            if (location_X >= (recordingTimeCursor + m_OffsetLocation) && location_X < m_X)
                 return true;
             else
                 return false;
