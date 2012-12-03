@@ -861,7 +861,7 @@ namespace Obi.ProjectView
                 if (m_MouseButtonDownLoc != m_MouseButtonUpLoc)
                 {
                     if ((!IsValid(m_MouseButtonDownLoc) && m_MouseButtonDownLoc!= 0) 
-                        || !IsValid(m_MouseButtonUpLoc))
+                        || (!IsValid(m_MouseButtonUpLoc) && m_MouseButtonUpLoc != 0))
                     return;
                     
                     PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);
