@@ -59,7 +59,7 @@ namespace Obi.ImportExport
 
             //m_Project = new Project();
             m_Project = m_Session.Presentation.Project;
-#if (DEBUG)
+#if false //(DEBUG)
             m_Project.PrettyFormat = true;
 #else
             m_Project.PrettyFormat = false;
