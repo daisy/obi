@@ -264,9 +264,6 @@
   <data name="mcbSampleRate.Items2" xml:space="preserve">
     <value>44100</value>
   </data>
-  <data name="mcbSampleRate.Items3" xml:space="preserve">
-    <value>48000</value>
-  </data>
   <data name="mcbSampleRate.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 19</value>
   </data>
