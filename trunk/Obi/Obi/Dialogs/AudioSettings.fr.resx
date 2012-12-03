@@ -135,7 +135,7 @@
     <value>0</value>
   </data>
   <data name="mlbSampleRate.Text" xml:space="preserve">
-    <value>&amp;Sample Rate :</value>
+    <value>&amp;Échantillonnage:</value>
   </data>
   <data name="&gt;&gt;mlbSampleRate.Name" xml:space="preserve">
     <value>mlbSampleRate</value>
@@ -165,7 +165,7 @@
     <value>2</value>
   </data>
   <data name="mlbAudioChannels.Text" xml:space="preserve">
-    <value>Audio &amp;Channels :</value>
+    <value>&amp;Canaux audio:</value>
   </data>
   <data name="&gt;&gt;mlbAudioChannels.Name" xml:space="preserve">
     <value>mlbAudioChannels</value>
