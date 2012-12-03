@@ -190,6 +190,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
                 m_CheckBoxListView.Items[6].Checked = mSettings.MaxAllowedPhraseDurationInMinutes == 50 ;
                 m_CheckBoxListView.Items[7].Checked = mSettings.Audio_ShowLiveWaveformWhileRecording;
+                m_CheckBoxListView.Items[8].Checked = mSettings.Audio_EnableLivePhraseDetection;
                 m_IsComplete = true;
 
             }
@@ -773,6 +774,7 @@ namespace Obi.Dialogs
                 
                 mSettings.MaxAllowedPhraseDurationInMinutes = (uint)(m_CheckBoxListView.Items[6].Checked ? 50 : 180);
                 mSettings.Audio_ShowLiveWaveformWhileRecording = m_CheckBoxListView.Items[7].Checked;
+                mSettings.Audio_EnableLivePhraseDetection= m_CheckBoxListView.Items[8].Checked;
             }
         }
 
@@ -797,6 +799,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_RecordDirectlyFromTransportBar"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_ShowLiveWaveformWhileRecording"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_DetectPhrasesWhileRecording"));
                 m_grpBoxChkBoxListView.Size = new Size(352, 97);
                 m_grpBoxChkBoxListView.Location = new Point(85, 255);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
@@ -807,7 +810,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
                 m_CheckBoxListView.Items[6].Checked = mSettings.MaxAllowedPhraseDurationInMinutes == 50 ;
                 m_CheckBoxListView.Items[7].Checked = mSettings.Audio_ShowLiveWaveformWhileRecording;
-
+                m_CheckBoxListView.Items[8].Checked = mSettings.Audio_EnableLivePhraseDetection;
                 if (m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
                     m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
                 else
@@ -896,6 +899,7 @@ namespace Obi.Dialogs
                 mSettings.RecordDirectlyWithRecordButton = m_DefaultSettings.RecordDirectlyWithRecordButton;
                 mSettings.MaxAllowedPhraseDurationInMinutes = m_DefaultSettings.MaxAllowedPhraseDurationInMinutes;
                 mSettings.Audio_ShowLiveWaveformWhileRecording = m_DefaultSettings.Audio_ShowLiveWaveformWhileRecording;
+                mSettings.Audio_EnableLivePhraseDetection = m_DefaultSettings.Audio_EnableLivePhraseDetection;
                 //If operation is empty then nothing will b selected.
                 mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
                 mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;

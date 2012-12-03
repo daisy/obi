@@ -2235,4 +2235,7 @@ Error text: {1}</value>
   <data name="SpeechGenerationProgress" xml:space="preserve">
     <value>Gemerating speech...</value>
   </data>
+  <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
+    <value>Detect phrases while recording</value>
+  </data>
 </root>
