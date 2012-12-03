@@ -1192,7 +1192,7 @@
     <value>Ctrl+Shift+P</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 22</value>
+    <value>222, 22</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
     <value>Selected i&amp;tem</value>
@@ -1201,10 +1201,16 @@
     <value>Multiple sections</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 22</value>
+    <value>222, 22</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Text" xml:space="preserve">
     <value>Multip&amp;le sections</value>
+  </data>
+  <data name="settingsFromSilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 22</value>
+  </data>
+  <data name="settingsFromSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Settings from &amp;silence phrase</value>
   </data>
   <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -1864,7 +1870,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=2.4.0.20734, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=2.4.0.25817, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2136,9 +2142,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//43uAHwAAgA/WAIAPIjGAByIggANjb4ABbmeAA1VUgA84IoAP
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
@@ -2813,6 +2816,12 @@
     <value>mApplyPhraseDetectionInProjectToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mApplyPhraseDetectionInProjectToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;settingsFromSilencePhraseToolStripMenuItem.Name" xml:space="preserve">
+    <value>settingsFromSilencePhraseToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;settingsFromSilencePhraseToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mPhrases_AudioSelectionMenuItem.Name" xml:space="preserve">

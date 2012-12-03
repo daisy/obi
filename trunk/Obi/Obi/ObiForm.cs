@@ -1788,6 +1788,7 @@ namespace Obi
                 mSkippableAddReferenceToolStripMenuItem.Enabled = mProjectView.CanAssociateNode;
                 mSkippableClearRoleFromNoteToolStripMenuItem.Enabled = mProjectView.CanClearSkippableRole;
                 UpdateAudioSelectionBlockMenuItems();
+                settingsFromSilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
             }
 
             private void UpdateAudioSelectionBlockMenuItems()
@@ -4471,6 +4472,11 @@ namespace Obi
             private void allEmptyPagesToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 mProjectView.GenerateSpeechForPage(true);
+            }
+
+            private void settingsFromSilencePhraseToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.UpdatePhraseDetectionSettingsFromSilencePhrase();
             }
         }
     }
