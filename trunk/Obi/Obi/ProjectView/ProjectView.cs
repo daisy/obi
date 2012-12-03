@@ -324,6 +324,7 @@ namespace Obi.ProjectView
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip) && !(Selection is TextSelection) ; } }
         public bool CanAddSubsection { get { return mTOCView.CanAddSubsection; } }
 
+        public bool CanUpdatePhraseDetectionSettingsFromSilencePhrase { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode && Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Silence; } }
         public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.RootNode.Children.Count > 0 && !TransportBar.IsRecorderActive; } }
         public bool CanApplyPhraseDetection
             {
@@ -2936,6 +2937,24 @@ for (int j = 0;
                 mPresentation.Do ( cmd );
                 }
             }
+
+        public void UpdatePhraseDetectionSettingsFromSilencePhrase()
+        {
+            if (CanUpdatePhraseDetectionSettingsFromSilencePhrase)
+            {
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
+
+                PhraseNode node = SelectedNodeAs<PhraseNode>();
+                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( node as PhraseNode );
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    ObiForm.Settings.DefaultGap=(decimal) dialog.Gap;
+                    ObiForm.Settings.DefaultLeadingSilence = (decimal)dialog.LeadingSilence;
+                    ObiForm.Settings.DefaultThreshold = dialog.Threshold;
+                    
+                }
+            }
+        }
 
         /// <summary>
         /// Apply phrase detection on selected audio block by computing silence threshold from a silence block
