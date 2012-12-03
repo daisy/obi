@@ -21,6 +21,7 @@ namespace Obi.Dialogs
         private string mExtension;      // file extension for the file chooser
         private string mFilename;       // the actual filename
         private bool mUserSetLocation;  // the location was changed manually by the user
+        private AudioSettings m_AudioSettingsDialog = null;
 
         /// <summary>
         /// Create a new dialog with default information (dummy name and default path.)
@@ -29,7 +30,7 @@ namespace Obi.Dialogs
         /// <param name="filename">The actual file name for the project.</param>
         /// <param name="extension">The file extension (for a file dialog.)</param>
         /// <param name="title">The project title.</param>
-        public NewProject(string basepath, string filename, string extension, string title, Size size)
+        public NewProject(string basepath, string filename, string extension, string title, Size size, int defaultAudioChannels, int defaultAudioSampleRate)
         {
             InitializeComponent();
             mTitleBox.Text = title;
@@ -43,6 +44,7 @@ namespace Obi.Dialogs
             mUserSetLocation = false;
             if (size.Width >= MinimumSize.Width && size.Height >= MinimumSize.Height) Size = size;
             GenerateFileName();
+            m_AudioSettingsDialog = new AudioSettings(defaultAudioChannels, defaultAudioSampleRate);
         }
 
 
@@ -81,6 +83,8 @@ namespace Obi.Dialogs
         /// </summary>
         public string Title { get { return mTitleBox.Text; } }
 
+        public int AudioChannels { get { return m_AudioSettingsDialog != null ? m_AudioSettingsDialog.AudioChannels : 1; } }
+        public int AudioSampleRate { get { return m_AudioSettingsDialog != null ? m_AudioSettingsDialog.AudioSampleRate : 44100; } }
 
         // Update the file box to generate a filename for the project
         private void GenerateFileName()
@@ -113,7 +117,9 @@ namespace Obi.Dialogs
                     return;
                 }
                 ObiForm.CheckProjectPath(mFileBox.Text, true);
-                
+
+                m_AudioSettingsDialog.ShowDialog();
+
                 mCanClose = true;
             }
             catch (Exception x)

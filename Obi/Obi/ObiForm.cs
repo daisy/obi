@@ -286,11 +286,13 @@ namespace Obi
                         Localizer.Message("default_project_filename"),
                         Localizer.Message("obi_filter"),
                         Localizer.Message("default_project_title"),
-                        mSettings.NewProjectDialogSize);
+                        mSettings.NewProjectDialogSize,
+                        mSettings.AudioChannels,
+                        mSettings.SampleRate);
                     dialog.CreateTitleSection = mSettings.CreateTitleSection;
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection, dialog.ID);
+                        CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection, dialog.ID, dialog.AudioChannels, dialog.AudioSampleRate);
                         AddRecentProject(mSession.Path);
                     }
                     mSettings.CreateTitleSection = dialog.CreateTitleSection;
@@ -356,7 +358,9 @@ namespace Obi
                         Localizer.Message("default_project_filename"),
                         Localizer.Message("obi_filter"),
                         title,
-                        mSettings.NewProjectDialogSize);
+                        mSettings.NewProjectDialogSize,
+                        mSettings.AudioChannels,
+                        mSettings.SampleRate);
                     dialog.DisableAutoTitleCheckbox();
                     dialog.Text = Localizer.Message("create_new_project_from_import");
                     if (!string.IsNullOrEmpty(dtbUid)) dialog.ID = dtbUid;
@@ -379,13 +383,13 @@ namespace Obi
 
                         if (strExtension == ".opf" || strExtension == ".xml")
                         {
-                            isProjectCreated = ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path);
+                            isProjectCreated = ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path, dialog.AudioChannels, dialog.AudioSampleRate);
                         }
                         else
                         {
                             //CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
                             //(new Obi.ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
-                            isProjectCreated = ImportStructureFromXHtml(dialog.Path, dialog.Title, dialog.ID, path);
+                            isProjectCreated = ImportStructureFromXHtml(dialog.Path, dialog.Title, dialog.ID, path, dialog.AudioChannels, dialog.AudioSampleRate);
                         }
                         if (!isProjectCreated) return false;
 
@@ -404,20 +408,20 @@ namespace Obi
             }
 
             private bool ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id,
-                                              string importDTBPath)
+                                              string importDTBPath, int audioChannels, int audioSampleRate)
             {
 
                 importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
 
                 importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
-                mSession.CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, mSettings, true);
+                mSession.CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, mSettings, true, audioChannels,audioSampleRate);
                 ImportExport.DAISY3_ObiImport import = new Obi.ImportExport.DAISY3_ObiImport(mSession, mSettings,
                                                                                              importDTBPath,
                                                                                              System.IO.Path.
                                                                                                  GetDirectoryName(
                                                                                                      outputPath), false,
-                                                                                             AudioLib.SampleRate.Hz44100,
-                                                                                             mSettings.AudioChannels ==
+                                                                                                     audioSampleRate == 44100? AudioLib.SampleRate.Hz44100: audioSampleRate == 22050?AudioLib.SampleRate.Hz22050: AudioLib.SampleRate.Hz11025 ,
+                                                                                             audioChannels==
                                                                                              2);
                 ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
                                                              delegate(ProgressDialog progress1)
@@ -458,13 +462,13 @@ namespace Obi
                 return !import.RequestCancellation;
             }
 
-            private bool ImportStructureFromXHtml(string path, string title, string id, string xhtmlPath)
+            private bool ImportStructureFromXHtml(string path, string title, string id, string xhtmlPath, int audioChannels, int audioSampleRate)
             {
                 ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
                                                              delegate(ProgressDialog progress1)
                                                                  {
                                                                      ImportStructureFromXHtml_ThreadSafe(path, title, id,
-                                                                                                         xhtmlPath);
+                                                                                                         xhtmlPath, audioChannels,audioSampleRate);
                                                                  });
                 progress.ShowDialog();
                 if (progress.Exception != null) throw progress.Exception;
@@ -472,18 +476,18 @@ namespace Obi
             }
 
             private delegate void ImportStructureFromXHtml_Delegate(
-                string path, string title, string id, string xhtmlPath);
+                string path, string title, string id, string xhtmlPath, int audioChannels, int audioSampleRate);
 
-            private void ImportStructureFromXHtml_ThreadSafe(string path, string title, string id, string xhtmlPath)
+            private void ImportStructureFromXHtml_ThreadSafe(string path, string title, string id, string xhtmlPath, int audioChannels, int audioSampleRate)
             {
                 if (InvokeRequired)
                 {
                     Invoke(new ImportStructureFromXHtml_Delegate(ImportStructureFromXHtml_ThreadSafe), path, title, id,
-                           xhtmlPath);
+                           xhtmlPath, audioChannels, audioSampleRate);
                 }
                 else
                 {
-                    CreateNewProject(path, title, false, id);
+                    CreateNewProject(path, title, false, id, audioChannels,audioSampleRate);
                     (new Obi.ImportExport.ImportStructure()).ImportFromXHTML(xhtmlPath, mSession.Presentation);
                 }
             }
@@ -2522,7 +2526,7 @@ namespace Obi
             }
 
             // Try to create a new project with the given title at the given path.
-            private void CreateNewProject(string path, string title, bool createTitleSection, string id)
+            private void CreateNewProject(string path, string title, bool createTitleSection, string id, int audioChannels, int audioSampleRate)
             {
                 try
                 {
@@ -2530,7 +2534,7 @@ namespace Obi
                     // let's see if we can actually write the file that the user chose (bug #1679175)
                     FileStream file = File.Create(path);
                     file.Close();
-                    mSession.NewPresentation(path, title, createTitleSection, id, mSettings);
+                    mSession.NewPresentation(path, title, createTitleSection, id, mSettings, audioChannels, audioSampleRate);
                     UpdateMenus();
                 }
                 catch (Exception e)

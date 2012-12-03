@@ -189,16 +189,16 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         /// <summary>
         /// Create a new presentation in the session, with a path to save its XUK file.
         /// </summary>
-        public void NewPresentation(string path, string title, bool createTitleSection, string id, Settings settings)
+        public void NewPresentation(string path, string title, bool createTitleSection, string id, Settings settings, int audioChannels, int audioSampleRate)
         {
-            CreateNewPresentationInBackend(path, title, createTitleSection, id, settings, false);
+            CreateNewPresentationInBackend(path, title, createTitleSection, id, settings, false, audioChannels,audioSampleRate);
             if (ProjectCreated != null) ProjectCreated(this, null);
         }
 
         public void NotifyProjectCreated() { if (ProjectCreated != null) ProjectCreated(this, null); }
 
 
-        internal void CreateNewPresentationInBackend(string path, string title, bool createTitleSection, string id, Settings settings, bool isStubProjectForImport)
+        internal void CreateNewPresentationInBackend(string path, string title, bool createTitleSection, string id, Settings settings, bool isStubProjectForImport, int audioChannels, int audioSampleRate)
         {
             mProject = new Project();
 #if (DEBUG)
@@ -229,7 +229,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             mProject.Presentations.Insert(mProject.Presentations.Count, newPres);
 
 
-            PCMFormatInfo pcmFormat = new PCMFormatInfo((ushort)settings.AudioChannels, (uint)settings.SampleRate, (ushort)settings.BitDepth);
+            PCMFormatInfo pcmFormat = new PCMFormatInfo((ushort)audioChannels , (uint)audioSampleRate, (ushort)settings.BitDepth);
             newPres.MediaDataManager.DefaultPCMFormat = pcmFormat;
             newPres.MediaDataManager.EnforceSinglePCMFormat = true;
 
@@ -559,11 +559,13 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         /// <param name="id"></param>
         /// <param name="settings"></param>
         /// <param name="importDTBPath"></param>
-        public void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, Settings settings, string importDTBPath, ref ImportExport.DAISY3_ObiImport import)
+        public void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, Settings settings, string importDTBPath, ref ImportExport.DAISY3_ObiImport import, int audioChannels, int audioSampleRate)
         {
             importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
-            CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, settings, true);
-            import = new Obi.ImportExport.DAISY3_ObiImport(this, settings, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100, settings.AudioChannels == 2);
+            CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, settings, true, audioChannels,audioSampleRate);
+            import = new Obi.ImportExport.DAISY3_ObiImport(this, settings, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, 
+                audioSampleRate ==44100? AudioLib.SampleRate.Hz44100: audioSampleRate == 22050?  AudioLib.SampleRate.Hz22050: AudioLib.SampleRate.Hz11025, 
+                audioChannels  == 2);
             import.DoWork();
             if (import.RequestCancellation)
             {

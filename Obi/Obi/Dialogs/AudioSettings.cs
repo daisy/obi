@@ -16,15 +16,16 @@ namespace Obi.Dialogs
             
         }
 
-        public AudioSettings(Settings settings)
+        public AudioSettings(int audioChannels, int audioSampleRate)
             : this()
         {
             for (int i = 0; i < mcbSampleRate.Items.Count; i++ )
             {
                 
-                if ((Convert.ToInt32 (mcbSampleRate.Items[i])) == settings.SampleRate) mcbSampleRate.SelectedIndex = i;
+                if ((Convert.ToInt32 (mcbSampleRate.Items[i])) == audioSampleRate) mcbSampleRate.SelectedIndex = i;
             }
-            mcbAudioChannel.SelectedIndex = settings.AudioChannels == 1? 0: 1;
+            mcbAudioChannel.SelectedIndex = AudioChannels== 1? 0:
+                AudioChannels == 2? 1: 0;
 
         }
 
