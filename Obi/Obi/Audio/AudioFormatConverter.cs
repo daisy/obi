@@ -187,7 +187,7 @@ namespace Obi.Audio
 
         public static void TestVoice(string text, string voice, Settings settings)
         {
-            AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)settings.AudioChannels, (uint)settings.SampleRate, (ushort)settings.BitDepth);
+            AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)settings.AudioChannels, (uint)settings.AudioSampleRate, (ushort)settings.AudioBitDepth);
             m_Tts = new TextToSpeech(audioFormat);
             m_Tts.SpeakString(voice, text,null);
         }

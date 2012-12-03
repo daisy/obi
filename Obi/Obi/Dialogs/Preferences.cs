@@ -127,7 +127,7 @@ namespace Obi.Dialogs
                 }
             else
                 {
-                sampleRate = mSettings.SampleRate;
+                sampleRate = mSettings.AudioSampleRate;
                 audioChannels = mSettings.AudioChannels;
                 mCanChangeAudioSettings = true;
                 }
@@ -150,7 +150,7 @@ namespace Obi.Dialogs
             mChannelsCombo.Visible = mCanChangeAudioSettings;
             mChannelsTextbox.Text = Localizer.Message ( audioChannels == 1 ? "mono" : "stereo" );
             mChannelsTextbox.Visible = !mCanChangeAudioSettings;
-            if (AudioFormatConverter.InstalledTTSVoices.Count == 0) AudioFormatConverter.InitializeTTS(mSettings,mPresentation !=null? mPresentation.MediaDataManager.DefaultPCMFormat.Data: new AudioLibPCMFormat((ushort)mSettings.AudioChannels,(uint) mSettings.SampleRate,(ushort) mSettings.BitDepth));
+            if (AudioFormatConverter.InstalledTTSVoices.Count == 0) AudioFormatConverter.InitializeTTS(mSettings,mPresentation !=null? mPresentation.MediaDataManager.DefaultPCMFormat.Data: new AudioLibPCMFormat((ushort)mSettings.AudioChannels,(uint) mSettings.AudioSampleRate,(ushort) mSettings.AudioBitDepth));
             mTTSvoiceCombo.Items.AddRange (Audio.AudioFormatConverter.InstalledTTSVoices.ToArray()) ;
             if (string.IsNullOrEmpty(mSettings.Audio_TTSVoice))
             {
@@ -416,10 +416,10 @@ namespace Obi.Dialogs
             if (mCanChangeAudioSettings)
                 {
                 mSettings.AudioChannels = mChannelsCombo.SelectedItem.ToString () == Localizer.Message ( "mono" ) ? 1 : 2;
-                mSettings.SampleRate = Convert.ToInt32 ( mSampleRateCombo.SelectedItem );
+                mSettings.AudioSampleRate = Convert.ToInt32 ( mSampleRateCombo.SelectedItem );
                 if (mPresentation != null)
                     {
-                        if (!mPresentation.UpdatePresentationAudioProperties(mSettings.AudioChannels, mSettings.BitDepth, mSettings.SampleRate))
+                        if (!mPresentation.UpdatePresentationAudioProperties(mSettings.AudioChannels, mSettings.AudioBitDepth, mSettings.AudioSampleRate))
                         {
                             MessageBox.Show (Localizer.Message("Preferences_UnableToUpdateProjectAudioFormat"), Localizer.Message("Caption_Error") ,MessageBoxButtons.OK , MessageBoxIcon.Error );
                         }
@@ -885,7 +885,7 @@ namespace Obi.Dialogs
             {
                 mSettings.LastInputDevice = m_DefaultSettings.LastInputDevice;
                 mSettings.LastOutputDevice = m_DefaultSettings.LastOutputDevice;
-                mSettings.SampleRate = m_DefaultSettings.SampleRate;
+                mSettings.AudioSampleRate = m_DefaultSettings.AudioSampleRate;
                 mSettings.AudioChannels = m_DefaultSettings.AudioChannels;
                 mSettings.NoiseLevel = m_DefaultSettings.NoiseLevel;
                 mSettings.AudioClues = m_DefaultSettings.AudioClues;                
