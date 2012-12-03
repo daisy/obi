@@ -241,6 +241,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detect phrases while recording.
+        /// </summary>
+        internal static string Audio_DetectPhrasesWhileRecording {
+            get {
+                return ResourceManager.GetString("Audio_DetectPhrasesWhileRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to WAVE file (*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*.
         /// </summary>
         internal static string audio_file_filter {
