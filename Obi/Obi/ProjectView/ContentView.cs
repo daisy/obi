@@ -4860,6 +4860,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanAssociateNode;   //@AssociateNode
             Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Enabled = mProjectView.CanClearSkippableRole;
             Context_GenerateSpeechForPageMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
+            Context_SettingsFromsilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5407,6 +5408,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void Context_GenerateSpeechForPageMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.GenerateSpeechForPage( false);
+        }
+
+        private void settingsFromsilencePhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.UpdatePhraseDetectionSettingsFromSilencePhrase();
         }
         }
    /// <summary>

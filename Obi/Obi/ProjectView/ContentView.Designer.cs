@@ -92,6 +92,7 @@ namespace Obi.ProjectView
             this.mVScrollBar = new System.Windows.Forms.VScrollBar();
             this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Context_SettingsFromsilencePhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
             this.mContextMenuStrip.SuspendLayout();
@@ -333,7 +334,8 @@ namespace Obi.ProjectView
             // 
             this.Context_PhraseDetectionMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Context_ApplyPhraseDetectionMenuItem,
-            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem});
+            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem,
+            this.Context_SettingsFromsilencePhraseToolStripMenuItem});
             this.Context_PhraseDetectionMenuItem.Name = "Context_PhraseDetectionMenuItem";
             resources.ApplyResources(this.Context_PhraseDetectionMenuItem, "Context_PhraseDetectionMenuItem");
             // 
@@ -524,6 +526,12 @@ namespace Obi.ProjectView
             // 
             this.timer1.Interval = 1000;
             // 
+            // Context_SettingsFromsilencePhraseToolStripMenuItem
+            // 
+            resources.ApplyResources(this.Context_SettingsFromsilencePhraseToolStripMenuItem, "Context_SettingsFromsilencePhraseToolStripMenuItem");
+            this.Context_SettingsFromsilencePhraseToolStripMenuItem.Name = "Context_SettingsFromsilencePhraseToolStripMenuItem";
+            this.Context_SettingsFromsilencePhraseToolStripMenuItem.Click += new System.EventHandler(this.settingsFromsilencePhraseToolStripMenuItem_Click);
+            // 
             // verticalScrollToolStripContainer1
             // 
             resources.ApplyResources(this.verticalScrollToolStripContainer1, "verticalScrollToolStripContainer1");
@@ -630,5 +638,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_FineNavigationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_ClearRoleFromNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_GenerateSpeechForPageMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_SettingsFromsilencePhraseToolStripMenuItem;
     }
 }
