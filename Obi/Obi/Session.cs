@@ -201,7 +201,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         internal void CreateNewPresentationInBackend(string path, string title, bool createTitleSection, string id, Settings settings, bool isStubProjectForImport, int audioChannels, int audioSampleRate)
         {
             mProject = new Project();
-#if (DEBUG)
+#if false //(DEBUG)
             mProject.PrettyFormat = true;
 #else
             mProject.PrettyFormat = false;

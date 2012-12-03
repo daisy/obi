@@ -9,6 +9,7 @@ using urakawa.progress;
 
 namespace Obi.Commands
 {
+    [XukNamespaceAttribute(DataModelFactory.NS)]
     public abstract class Command: urakawa.command.Command
     {
         //public static readonly string XUK_NS = DataModelFactory.NS;

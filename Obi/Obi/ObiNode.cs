@@ -15,6 +15,7 @@ namespace Obi
     /// All nodes in the tree will be of a derived class.
     /// </summary>
     [XukNameUglyPrettyAttribute("ObiNode", "ObiNode")]
+    [XukNamespaceAttribute(DataModelFactory.NS)]
     public abstract class ObiNode : TreeNode
     {
         //public new static readonly string XUK_NS = DataModelFactory.NS;//sdk2

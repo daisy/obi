@@ -21,6 +21,7 @@ using urakawa.xuk;
 namespace Obi
 {
     [XukNameUglyPrettyAttribute("ObiPresentation", "ObiPresentation")]
+    [XukNamespaceAttribute(DataModelFactory.NS)]
     public class ObiPresentation : Presentation
     {
         //public static readonly string XUK_NS = DataModelFactory.NS;
