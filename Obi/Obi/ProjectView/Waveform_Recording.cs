@@ -861,11 +861,8 @@ namespace Obi.ProjectView
                 if (m_MouseButtonDownLoc != m_MouseButtonUpLoc)
                 {
                     if (!IsValid(m_MouseButtonDownLoc) || !IsValid(m_MouseButtonUpLoc))
-                    {
-                        m_MouseButtonDownLoc = e.X;
-                        return;
-                    }
-
+                    return;
+                    
                     PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);
                     //    IsDeselected = true;
                     // SelectPortionOfWaveform(IsDeselected);
