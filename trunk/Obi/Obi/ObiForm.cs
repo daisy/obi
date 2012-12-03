@@ -288,7 +288,7 @@ namespace Obi
                         Localizer.Message("default_project_title"),
                         mSettings.NewProjectDialogSize,
                         mSettings.AudioChannels,
-                        mSettings.SampleRate);
+                        mSettings.AudioSampleRate);
                     dialog.CreateTitleSection = mSettings.CreateTitleSection;
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
@@ -360,7 +360,7 @@ namespace Obi
                         title,
                         mSettings.NewProjectDialogSize,
                         mSettings.AudioChannels,
-                        mSettings.SampleRate);
+                        mSettings.AudioSampleRate);
                     dialog.DisableAutoTitleCheckbox();
                     dialog.Text = Localizer.Message("create_new_project_from_import");
                     if (!string.IsNullOrEmpty(dtbUid)) dialog.ID = dtbUid;

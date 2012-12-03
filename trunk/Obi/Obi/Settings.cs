@@ -24,7 +24,7 @@ namespace Obi
         public int AudioChannels;              // number of channels for recording
         public bool AudioClues;                // use audio clues (or not.)
         public float AudioScale;               // scale of audio in waveform views
-        public int BitDepth;                   // sample bit depth
+        public int AudioBitDepth;                   // sample bit depth
         public string Audio_TTSVoice;
         public int Audio_TransportBarCounterIndex;
         public ColorSettings ColorSettings;    // current color settings
@@ -56,7 +56,7 @@ namespace Obi
         public int PreviewDuration;            // playback preview duration in milliseconds
         public int ElapseBackTimeInMilliseconds; // elapse back time  interval in milliseconds
         public ArrayList RecentProjects;       // paths to projects recently opened
-        public int SampleRate;                 // sample rate in Hertz
+        public int AudioSampleRate;                 // sample rate in Hertz
         public bool SplitPhrasesOnImport;      // split phrases on import
         public bool SynchronizeViews;          // keep views synchronized
         public UserProfile UserProfile;        // the user profile
@@ -96,7 +96,7 @@ namespace Obi
             settings.Recording_PreviewBeforeStarting = false;
             settings.Recording_ReplaceAfterCursor = false;
             settings.RecordDirectlyWithRecordButton = false;
-            settings.BitDepth = 16;
+            settings.AudioBitDepth = 16;
             settings.ColorSettings = ColorSettings.DefaultColorSettings();
             settings.ColorSettingsHC = ColorSettings.DefaultColorSettingsHC();
             settings.DefaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -127,7 +127,7 @@ namespace Obi
             settings.PlayIfNoSelection = true;
             settings.PlayOnNavigate = false;
             settings.RecentProjects = new ArrayList();
-            settings.SampleRate = 44100;
+            settings.AudioSampleRate = 44100;
             settings.SplitPhrasesOnImport = false;
             settings.SynchronizeViews = true;
             settings.UserProfile = new UserProfile();

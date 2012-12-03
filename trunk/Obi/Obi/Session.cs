@@ -229,7 +229,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             mProject.Presentations.Insert(mProject.Presentations.Count, newPres);
 
 
-            PCMFormatInfo pcmFormat = new PCMFormatInfo((ushort)audioChannels , (uint)audioSampleRate, (ushort)settings.BitDepth);
+            PCMFormatInfo pcmFormat = new PCMFormatInfo((ushort)audioChannels , (uint)audioSampleRate, (ushort)settings.AudioBitDepth);
             newPres.MediaDataManager.DefaultPCMFormat = pcmFormat;
             newPres.MediaDataManager.EnforceSinglePCMFormat = true;
 
