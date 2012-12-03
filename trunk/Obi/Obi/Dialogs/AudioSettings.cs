@@ -10,16 +10,47 @@ namespace Obi.Dialogs
 {
     public partial class AudioSettings : Form
     {
-        public AudioSettings()
+        private AudioSettings()
         {
             InitializeComponent();
-            mcbAudioChannel.SelectedIndex = 0;
-            mcbSampleRate.SelectedIndex = 0;
+            
+        }
+
+        public AudioSettings(Settings settings)
+            : this()
+        {
+            for (int i = 0; i < mcbSampleRate.Items.Count; i++ )
+            {
+                
+                if ((Convert.ToInt32 (mcbSampleRate.Items[i])) == settings.SampleRate) mcbSampleRate.SelectedIndex = i;
+            }
+            mcbAudioChannel.SelectedIndex = settings.AudioChannels == 1? 0: 1;
+
+        }
+
+        
+        public int AudioChannels 
+        { 
+            get 
+            {
+                return mcbAudioChannel.SelectedIndex + 1;
+                }
+        }
+
+        public int AudioSampleRate
+        {
+            get
+            {
+                return mcbSampleRate.SelectedIndex == 0 ? 11025 :
+                    mcbSampleRate.SelectedIndex == 1 ? 22050 :
+                    mcbSampleRate.SelectedIndex == 2 ? 44100 :
+                    48000;
+            }
         }
 
         private void mbtnOK_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
         private void mbtnCancel_Click(object sender, EventArgs e)
