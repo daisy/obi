@@ -140,6 +140,12 @@
     <Compile Include="Dialogs\AssignSpecialNodeMark.Designer.cs">
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AudioSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AudioSettings.Designer.cs">
+      <DependentUpon>AudioSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ExtendedMessageToAssociate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,6 +456,12 @@
       <DependentUpon>Waveform_Recording.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialogs\AudioSettings.fr.resx">
+      <DependentUpon>AudioSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioSettings.resx">
+      <DependentUpon>AudioSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewProject.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NewProject.cs</DependentUpon>
