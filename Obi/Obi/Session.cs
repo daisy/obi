@@ -220,10 +220,9 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             //TODO: otherwise collision of Data folder may happen if several project files are in same directory.
             //newPres.DataProviderManager.SetDataFileDirectoryWithPrefix(System.IO.Path.GetFileName(path));
 
-            if (newPres.PrettyFormat)
-            {
-                newPres.WarmUpAllFactories();
-            }
+#if DEBUG
+            newPres.WarmUpAllFactories();
+#endif
 
 
             mProject.Presentations.Insert(mProject.Presentations.Count, newPres);
