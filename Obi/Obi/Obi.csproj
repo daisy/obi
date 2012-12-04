@@ -786,10 +786,6 @@
     <Content Include="images\DAISY_Consortium_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\icons\media-record48.png" />
-    <Content Include="images\icons\media-record64.png" />
-    <Content Include="images\icons\media-record80.png" />
-    <Content Include="images\icons\media-record96.png" />
     <Content Include="ImportExport\filter.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1081,48 +1077,35 @@
     <EmbeddedResource Include="UserControls\media-playback-start48.png" />
     <EmbeddedResource Include="UserControls\media-playback-start64.png" />
     <EmbeddedResource Include="UserControls\media-playback-start80.png" />
-    <EmbeddedResource Include="UserControls\media-playback-start96.png" />
     <EmbeddedResource Include="UserControls\media-playback-pause48.png" />
     <EmbeddedResource Include="UserControls\media-playback-pause64.png" />
     <EmbeddedResource Include="UserControls\media-playback-pause80.png" />
-    <EmbeddedResource Include="UserControls\media-playback-pause96.png" />
     <EmbeddedResource Include="UserControls\nextpage.png" />
     <EmbeddedResource Include="UserControls\nextpage64.png" />
     <EmbeddedResource Include="UserControls\nextpage80.png" />
-    <EmbeddedResource Include="UserControls\nextpage96.png" />
     <EmbeddedResource Include="UserControls\media-playback-stop48.png" />
     <EmbeddedResource Include="UserControls\media-playback-stop64.png" />
     <EmbeddedResource Include="UserControls\media-playback-stop80.png" />
-    <EmbeddedResource Include="UserControls\media-playback-stop96.png" />
     <EmbeddedResource Include="UserControls\go-down.png" />
     <EmbeddedResource Include="UserControls\go-down48.png" />
     <EmbeddedResource Include="UserControls\go-down64.png" />
     <EmbeddedResource Include="UserControls\go-down80.png" />
-    <EmbeddedResource Include="UserControls\go-down96.png" />
     <EmbeddedResource Include="UserControls\go-next.png" />
     <EmbeddedResource Include="UserControls\go-next48.png" />
     <EmbeddedResource Include="UserControls\go-next64.png" />
     <EmbeddedResource Include="UserControls\go-next80.png" />
-    <EmbeddedResource Include="UserControls\go-next96.png" />
     <EmbeddedResource Include="UserControls\go-previous.png" />
     <EmbeddedResource Include="UserControls\go-previous48.png" />
     <EmbeddedResource Include="UserControls\go-previous64.png" />
     <EmbeddedResource Include="UserControls\go-previous80.png" />
-    <EmbeddedResource Include="UserControls\go-previous96.png" />
     <EmbeddedResource Include="UserControls\emblem-important-md48.png" />
     <EmbeddedResource Include="UserControls\emblem-important-md64.png" />
     <EmbeddedResource Include="UserControls\emblem-important-md80.png" />
-    <EmbeddedResource Include="UserControls\emblem-important-md96.png" />
     <EmbeddedResource Include="UserControls\emblem-important.png" />
     <EmbeddedResource Include="UserControls\media-record.png" />
     <EmbeddedResource Include="UserControls\media-record48.png" />
     <EmbeddedResource Include="UserControls\media-record64.png" />
     <EmbeddedResource Include="UserControls\media-record80.png" />
-    <EmbeddedResource Include="UserControls\media-record96.png" />
-    <EmbeddedResource Include="UserControls\m_recordingToolBarPlayBtn48.png" />
-    <EmbeddedResource Include="UserControls\m_recordingToolBarPlayBtn64.png" />
-    <EmbeddedResource Include="UserControls\m_recordingToolBarPlayBtn96.png" />
-    <EmbeddedResource Include="UserControls\m_recordingGoToNextPhraseBtn48.png" />
     <EmbeddedResource Include="UserControls\media-playback-stop.png" />
     <EmbeddedResource Include="UserControls\media-playback-start.png" />
     <EmbeddedResource Include="UserControls\media-playback-pause.png" />
