@@ -3125,7 +3125,7 @@ namespace Obi
                     }
                     mPeakMeter.Show();
                     mShowPeakMeterMenuItem.Checked = true;
-                    
+                    this.Activate();
                         m_tempHeightMin = mPeakMeter.Height;
                         m_flagForPeakMeterHeight = true;
                     
