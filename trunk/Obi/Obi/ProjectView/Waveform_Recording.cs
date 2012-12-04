@@ -78,7 +78,9 @@ namespace Obi.ProjectView
         //   private int m_DeletedOffset = 0;
         private bool m_IsDeleted = false;
         private  const int m_TopMargin=30;
-        
+        private Dictionary<double, int> m_TimeToPixelMap = new Dictionary<double, int>(); // workaround to avoid minor mismatch in timing calculations
+
+
 
         public Waveform_Recording()
         {
@@ -575,8 +577,13 @@ namespace Obi.ProjectView
                     countToRepaint = xSize;*/
                 this.Location = new Point((m_X - recordingTimeCursor) * -1, Location.Y);
                 foreach (double[] arr in m_RecordingSession.DeletedItemList)
-                    g.FillRectangle(SystemBrushes.ControlDark, CalculatePixels(arr[0]), m_TopMargin, CalculatePixels(arr[1]) - CalculatePixels(arr[0]), this.WaveformHeight);
-
+                {
+                    int beginPixel = m_TimeToPixelMap.ContainsKey (arr[0])? m_TimeToPixelMap[arr[0]] : CalculatePixels(arr[0]) ;
+                    int endPixel = m_TimeToPixelMap.ContainsKey(arr[1])? m_TimeToPixelMap[arr[1]]: CalculatePixels(arr[1]);
+                    g.FillRectangle(SystemBrushes.ControlDark, beginPixel, m_TopMargin,endPixel -beginPixel , this.WaveformHeight);
+                    UpdateTimeToPixelDictionary(arr[0], beginPixel);
+                    UpdateTimeToPixelDictionary (arr[1],endPixel) ;
+                }
                 for (int i = listOfCurrentMinChannel1.Count - 1; i >= listOfCurrentMinChannel1.Count - xSize; i--)
                 {
                     if (tempm_X == m_MouseButtonUpLoc)
@@ -770,8 +777,15 @@ namespace Obi.ProjectView
             string text = "Ph";
             Pen pen = new Pen(SystemColors.ControlDarkDark);
 
-            pixel = CalculatePixels(e.TimeFromBeginning);
-
+            if (m_TimeToPixelMap.ContainsKey(e.TimeFromBeginning))
+            {
+                pixel = m_TimeToPixelMap[e.TimeFromBeginning];
+            }
+            else
+            {
+                pixel = CalculatePixels(e.TimeFromBeginning);
+                UpdateTimeToPixelDictionary(e.TimeFromBeginning, pixel);
+            }
             g.DrawLine(blackPen, pixel, 0+m_TopMargin, pixel, WaveformHeight+m_TopMargin);
             g.DrawString("Ph", myFont, Brushes.Black, pixel, 0);
 
@@ -801,8 +815,15 @@ namespace Obi.ProjectView
             int pixel = 0;
             //   Pen pen = new Pen(SystemColors.ControlDarkDark);
 
-            pixel = CalculatePixels(e.TimeFromBeginning);
-
+            if (m_TimeToPixelMap.ContainsKey(e.TimeFromBeginning))
+            {
+                pixel = m_TimeToPixelMap[e.TimeFromBeginning];
+            }
+            else
+            {
+                pixel = CalculatePixels(e.TimeFromBeginning);
+                UpdateTimeToPixelDictionary(e.TimeFromBeginning, pixel);
+            }
             //if (IsInSelection(pixel))
             //    g.FillRectangle(new System.Drawing.SolidBrush(SystemColors.Highlight), pixel + 1, 0, 35, 10);
             //else
@@ -1221,7 +1242,9 @@ namespace Obi.ProjectView
                 PaintWaveform(m_MouseButtonUpLoc - 5, m_MouseButtonUpLoc + 5, false);
                 return;
             }
-            m_RecordingSession.UpdateDeletedTimeList(ConvertPixelsToTime(m_MouseButtonDownLoc), ConvertPixelsToTime(m_MouseButtonUpLoc));
+            double beginTime = ConvertPixelsToTime(m_MouseButtonDownLoc) ;
+            double endTime = ConvertPixelsToTime(m_MouseButtonUpLoc) ;
+            m_RecordingSession.UpdateDeletedTimeList( beginTime,endTime );
             /*   listOfCurrentMinChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
                listOfCurrentMaxChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
                if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
@@ -1258,5 +1281,19 @@ namespace Obi.ProjectView
             m_IsDeleted = true;
             RepaintWaveform();
         }
+
+        private void UpdateTimeToPixelDictionary(double time, int pixel)
+        {
+            if (!m_TimeToPixelMap.ContainsKey(time))
+            {
+                m_TimeToPixelMap.Add(time, pixel);
+            }
+            else if (m_TimeToPixelMap[time] <= 0)
+            {
+                m_TimeToPixelMap[time] = pixel;
+            }
+            
+        }
+
     }
 }
