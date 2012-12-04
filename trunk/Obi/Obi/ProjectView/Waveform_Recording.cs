@@ -382,6 +382,14 @@ namespace Obi.ProjectView
                     m_MainDictionary.Add(calculatedKey + m_OffsetLocation, pair.Value);
                 }
             }
+
+            Dictionary<double, int> tempTimeToPixelMap = new Dictionary<double, int>();
+            foreach (double t in m_TimeToPixelMap.Keys)
+            {
+                int pixel =   CalculatePixels(t);
+                if (pixel >= m_OffsetLocation) tempTimeToPixelMap.Add(t, pixel);
+            }
+            m_TimeToPixelMap = tempTimeToPixelMap ;
         }
 
         private double ConvertPixelsToTime(int pixels)
