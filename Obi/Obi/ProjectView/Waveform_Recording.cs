@@ -889,6 +889,7 @@ namespace Obi.ProjectView
 
         private void Waveform_Recording_MouseUp(object sender, MouseEventArgs e)
         {
+            System.Media.SystemSounds.Asterisk.Play();
             if (e.Button == MouseButtons.Left)
                 m_MouseButtonUpLoc = e.X;
             int swap = 0;
@@ -897,7 +898,7 @@ namespace Obi.ProjectView
                 return;
             else
             {
-                if (m_MouseButtonDownLoc == e.X || m_MouseButtonDownLoc == e.X + 1 || m_MouseButtonDownLoc == e.X - 1)
+                if (m_MouseButtonDownLoc == e.X || m_MouseButtonDownLoc == e.X + 1 || m_MouseButtonDownLoc == e.X - 1 || m_MouseButtonDownLoc==e.X+2 || m_MouseButtonDownLoc==e.X-2)
                 {
                     if (e.Button == MouseButtons.Left)
                     {
@@ -1157,7 +1158,7 @@ namespace Obi.ProjectView
                     if (m_MainDictionary[index] != "")
                     {
                         g.DrawLine(linePen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
-                        g.FillRectangle(Brushes.White, index, 0, 6, 10);
+                        g.FillRectangle(Brushes.White, index, 0, 15, 10);
                         g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
                     }
                     
