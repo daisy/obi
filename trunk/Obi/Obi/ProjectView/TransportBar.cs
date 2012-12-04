@@ -1416,26 +1416,47 @@ namespace Obi.ProjectView
             bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
         mVUMeterPanel.BeepEnable = false;
 
+        EmptyNode firstRecordedPage = null;
+        List<PhraseNode> listOfRecordedPhrases = new List<PhraseNode>();
         try
             {
             mRecordingSession.Stop ();
-            }
-        catch (System.Exception ex)
-            {
-            mView.WriteToLogFile(ex.ToString());
-            MessageBox.Show ( ex.ToString () );
-            }
-
-            for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
-            {
-                mView.Presentation.UpdateAudioForPhrase(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i),
-                    mRecordingSession.RecordedAudio[i]);
-                if (!mRecordingSection.Used) mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Used = false;
-            }
+            
+            // update recorded phrases with audio assets
+            UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases, ref firstRecordedPage);
+            
             //Workaround to force phrases to show if they become invisible on stopping recording
             mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
+        }
+        catch (System.Exception ex)
+        {
+            mView.WriteToLogFile(ex.ToString());
+            MessageBox.Show(ex.ToString());
+        }
             mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
-            if(!wasMonitoring &&  mResumeRecordingPhrase != null )  mView.SelectFromTransportBar ( mResumeRecordingPhrase, null );
+            EmptyNode phraseNextToResumePhrase = null;
+            if (mResumeRecordingPhrase.FollowingNode != null && mResumeRecordingPhrase.FollowingNode is EmptyNode) phraseNextToResumePhrase = (EmptyNode) mResumeRecordingPhrase.FollowingNode;
+            
+
+            try
+            {
+                int phraseChildCount = mRecordingSection.PhraseChildCount;
+                AdditionalPostRecordingOperations(firstRecordedPage, listOfRecordedPhrases);
+                if (phraseChildCount != mRecordingSection.PhraseChildCount)
+                {
+                    if (phraseNextToResumePhrase != null && phraseNextToResumePhrase.PrecedingNode is PhraseNode) 
+                        mResumeRecordingPhrase =(PhraseNode) phraseNextToResumePhrase.PrecedingNode;
+                    else if ( mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1) is PhraseNode )
+                        mResumeRecordingPhrase =(PhraseNode)  mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+
+                }
+            }
+            catch (System.Exception ex)
+            {
+                mView.WriteToLogFile(ex.ToString());
+                MessageBox.Show(ex.ToString());
+            }
+            if (!wasMonitoring && mResumeRecordingPhrase != null) mView.SelectFromTransportBar(mResumeRecordingPhrase, null);
             mRecordingSession = null;
             UpdateTimeDisplay();
 
@@ -2728,7 +2749,7 @@ namespace Obi.ProjectView
                 bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
                 mVUMeterPanel.BeepEnable = false;
                 List<PhraseNode> listOfRecordedPhrases = new List<PhraseNode>();
-                EmptyNode firstRecordedPhrase = null;
+                EmptyNode firstRecordedPage = null;
                 try
                     {
                     mRecordingSession.Stop ();
@@ -2736,25 +2757,10 @@ namespace Obi.ProjectView
                     
 
                     // update phrases with audio assets
-                    if (mRecordingSession.RecordedAudio != null && mRecordingSession.RecordedAudio.Count > 0)
-                        {
-                        for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
-                            {
-                            mView.Presentation.UpdateAudioForPhrase ( mRecordingSection.PhraseChild ( mRecordingInitPhraseIndex + i ),
-                                mRecordingSession.RecordedAudio[i] );
-                            if (!mRecordingSection.Used) mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Used = false;
-                            if (mRecordingSession.PhraseIndexesToDelete.Contains(i))
-                            {
-                                mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Used = false;
-                            }
-                            //check if a page was marked
-                            if (firstRecordedPhrase == null && mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Role_ == EmptyNode.Role.Page) firstRecordedPhrase = mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i);
+                    UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases,ref firstRecordedPage);
 
-                            listOfRecordedPhrases.Add((PhraseNode) mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i));
-                            }
-                            //Workaround to force phrases to show if they become invisible on stopping recording
-                            mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
-                        }
+                    //Workaround to force phrases to show if they become invisible on stopping recording
+                    mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
                     EmptyNode lastRecordedPhrase = mRecordingSection.PhraseChildCount >0? mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1):null;
                     if (!wasMonitoring && lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar ( lastRecordedPhrase, null );
 
@@ -2770,18 +2776,11 @@ UpdateButtons();
                 
                 try
                 {
-                    if (mRecordingSession.PhraseMarksOnTheFly.Count > 0)
-                    {
-                        mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly));
-                    }
-                    if (firstRecordedPhrase != null
-                        && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPhrase, firstRecordedPhrase.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", "")));
-                    }
+                    AdditionalPostRecordingOperations(firstRecordedPage, listOfRecordedPhrases);
                 }
                 catch (System.Exception ex)
                 {
+                    mView.WriteToLogFile(ex.ToString());
                     MessageBox.Show(ex.ToString());
                 }
                 mRecordingSession = null;
@@ -2793,6 +2792,42 @@ UpdateButtons();
             mRecordingSession = null;
             mResumeRecordingPhrase = null;
 
+            }
+        }
+
+        private void UpdateRecordedPhrasesAlongWithPostRecordingOperations(List<PhraseNode> listOfRecordedPhrases,ref EmptyNode firstRecordedPage)
+        {
+            if (mRecordingSession.RecordedAudio != null && mRecordingSession.RecordedAudio.Count > 0)
+            {
+                for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
+                {
+                    mView.Presentation.UpdateAudioForPhrase(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i),
+                        mRecordingSession.RecordedAudio[i]);
+                    if (!mRecordingSection.Used) mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Used = false;
+                    if (mRecordingSession.PhraseIndexesToDelete.Contains(i))
+                    {
+                        mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Used = false;
+                    }
+                    //check if a page was marked
+                    if (firstRecordedPage == null && mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i).Role_ == EmptyNode.Role.Page) firstRecordedPage = mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i);
+
+                    listOfRecordedPhrases.Add((PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i));
+                }
+                
+            }
+        }
+
+        private void AdditionalPostRecordingOperations(EmptyNode firstRecordedPage, List<PhraseNode> listOfRecordedPhrases)
+        {
+            // make sure that recordingsession is not null before calling this function
+            if (mRecordingSession.PhraseMarksOnTheFly.Count > 0)
+            {
+                mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly));
+            }
+            if (firstRecordedPage != null
+                && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPage, firstRecordedPage.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", "")));
             }
         }
 
