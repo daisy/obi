@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1553F3D3-A820-400E-9B98-BCCA970E1D58}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -523,7 +523,6 @@
     <Compile Include="Selection.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Settings1.cs" />
     <Compile Include="UserControls\GraphicalPeakMeter.cs">
       <SubType>UserControl</SubType>
     </Compile>
