@@ -889,7 +889,6 @@ namespace Obi.ProjectView
 
         private void Waveform_Recording_MouseUp(object sender, MouseEventArgs e)
         {
-            System.Media.SystemSounds.Asterisk.Play();
             if (e.Button == MouseButtons.Left)
                 m_MouseButtonUpLoc = e.X;
             int swap = 0;
