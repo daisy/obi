@@ -2961,7 +2961,10 @@ namespace Obi
                             mSettings.RecordingToolBarIncrementVal =
                               Obi.UserControls.RecordingToolBarForm.
                                    NetSizeIncrementOfButtons;
-
+                            if (mPeakMeter != null)
+                            {
+                                mPeakMeter.TopMost = false;
+                            }
                             mRecordingToolBarForm = null;
                             mView_RecordingToolBarMenuItem.Checked = false;
 
@@ -2972,15 +2975,14 @@ namespace Obi
                         mProjectView.FocusOnContentView();
                     mRecordingToolBarForm.TopMost = true;
                     if (mPeakMeter == null) ShowPeakMeter();
+                    if (mPeakMeter != null)
+                    {
+                        mPeakMeter.TopMost = true;
+                    }
                     mRecordingToolBarForm.Show();
                     Obi.UserControls.RecordingToolBarForm.NetSizeIncrementOfButtons =
                             mSettings.RecordingToolBarIncrementVal;
                     mRecordingToolBarForm.EnlargeButtonSize();
-
-
-
-
-
 
 
 
