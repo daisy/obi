@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -24,6 +25,19 @@ namespace Obi
     [XukNamespaceAttribute(DataModelFactory.NS)]
     public class ObiPresentation : Presentation
     {
+#if DEBUG
+        public override void WarmUpAllFactories()
+        {
+            //m_ObiNodeFactory.createNode()
+            TreeNodeFactory.Create<ObiRootNode>();
+            TreeNodeFactory.Create<PhraseNode>();
+            TreeNodeFactory.Create<SectionNode>();
+            TreeNodeFactory.Create<EmptyNode>();
+
+            base.WarmUpAllFactories();
+        }
+#endif
+
         //public static readonly string XUK_NS = DataModelFactory.NS;
         //public static readonly string XukString = typeof(ObiPresentation).Name;
         //public override string GetTypeNameFormatted()
@@ -35,12 +49,13 @@ namespace Obi
         private Dictionary<string, List<EmptyNode>> mCustomClasses;  // custom classes and which nodes have them
         private ObiNodeFactory m_ObiNodeFactory; //sdk2 :local ObiNode factory used
         private List<EmptyNode> m_ListOfAnchorNodes = new List<EmptyNode>();
-        private List<SectionNode> m_ListOfSectionsToBeIteratedForAnchors = new List<SectionNode> ();
+        private List<SectionNode> m_ListOfSectionsToBeIteratedForAnchors = new List<SectionNode>();
 
         /// <summary>
         /// Create an uninitialized presentation.
         /// </summary>
-        public ObiPresentation() : base() 
+        public ObiPresentation()
+            : base()
         {
             mInitialized = false;
             mCustomClasses = new Dictionary<string, List<EmptyNode>>();
@@ -50,7 +65,7 @@ namespace Obi
         //sdk2
         //public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";  // canonical name of the audio channel
         //public static readonly string TEXT_CHANNEL_NAME = "obi.text";    // canonical name of the text channel
-        
+
         //sdk2-todo check DAISY 2.02 export
         public static readonly string PUBLISH_AUDIO_CHANNEL_NAME = "obi.publish.audio"; //canonical name of the published audio channel
 
@@ -66,29 +81,29 @@ namespace Obi
 
         public event EventHandler<urakawa.events.command.CommandEventArgs> BeforeCommandExecuted;
 
-        public void ListOfAnchorNodes_Add ( EmptyNode node) { if ( !m_ListOfAnchorNodes.Contains ( node))  m_ListOfAnchorNodes.Add (node) ; }
+        public void ListOfAnchorNodes_Add(EmptyNode node) { if (!m_ListOfAnchorNodes.Contains(node))  m_ListOfAnchorNodes.Add(node); }
         public void ListOfAnchorNodes_Remove(EmptyNode node) { if (m_ListOfAnchorNodes.Contains(node)) m_ListOfAnchorNodes.Remove(node); }
         public EmptyNode GetAnchorForReferencedNode(EmptyNode referencedNode)
         {
             List<EmptyNode> nodesToRemove = new List<EmptyNode>();
-            for (int i = 0; i < m_ListOfAnchorNodes.Count; i++ )
+            for (int i = 0; i < m_ListOfAnchorNodes.Count; i++)
             {
                 EmptyNode n = m_ListOfAnchorNodes[i];
-                if (!n.IsRooted )
+                if (!n.IsRooted)
                 {
                     m_ListOfAnchorNodes.Remove(n);
                     --i;
                     continue;
-                    
+
                 }
-                if (n.AssociatedNode != null &&  n.AssociatedNode == referencedNode) return n;
+                if (n.AssociatedNode != null && n.AssociatedNode == referencedNode) return n;
 
             }
             for (int i = 0; i < m_ListOfSectionsToBeIteratedForAnchors.Count; i++)
             {
                 SectionNode section = m_ListOfSectionsToBeIteratedForAnchors[i];
-                EmptyNode anchor = null ;
-                for ( int j=0;j<section.PhraseChildCount;j++)
+                EmptyNode anchor = null;
+                for (int j = 0; j < section.PhraseChildCount; j++)
                 {
                     EmptyNode n = section.PhraseChild(j);
                     if (n.Role_ == EmptyNode.Role.Anchor)
@@ -97,16 +112,16 @@ namespace Obi
                         if (n.AssociatedNode == referencedNode) anchor = n;
                     }
                 }
-                
+
                 m_ListOfSectionsToBeIteratedForAnchors.Remove(section);
                 i--;
                 if (anchor != null) return anchor;
             }
             return null;
         }
-        public void ListOfSectionsToBeIteratedForAnchors_Add(SectionNode section) 
-        { 
-            if(!m_ListOfSectionsToBeIteratedForAnchors.Contains(section)) m_ListOfSectionsToBeIteratedForAnchors.Add(section);
+        public void ListOfSectionsToBeIteratedForAnchors_Add(SectionNode section)
+        {
+            if (!m_ListOfSectionsToBeIteratedForAnchors.Contains(section)) m_ListOfSectionsToBeIteratedForAnchors.Add(section);
             for (int i = 0; i < section.SectionChildCount; i++)
             {
                 ListOfSectionsToBeIteratedForAnchors_Add(section.SectionChild(i));
@@ -267,7 +282,7 @@ namespace Obi
             {
                 if (node != null) mCustomClasses[customClass].Remove(node);
                 if (mCustomClasses[customClass].Count == 0
-                    ||    ( mCustomClasses[customClass].Count  == 1  &&  mCustomClasses[customClass] [0] == null )) // condition appended because custom class without an empty node is initialised with null entry
+                    || (mCustomClasses[customClass].Count == 1 && mCustomClasses[customClass][0] == null)) // condition appended because custom class without an empty node is initialised with null entry
                 {
                     mCustomClasses.Remove(customClass);
                     if (CustomClassRemoved != null) CustomClassRemoved(this, new CustomClassEventArgs(customClass));
@@ -290,7 +305,7 @@ namespace Obi
         /// </summary>
         public PhraseNode CreatePhraseNode(string path) { return CreatePhraseNode(ImportAudioFromFile(path)); }
 
-        
+
         /// <summary>
         /// Creates list of phrases from file being imported. Split by the duration parameter, or not if 0.
         /// </summary>
@@ -324,7 +339,7 @@ namespace Obi
             node.AddProperty(channelsProperty);
             // Create the text media object for the label with a default label
             TextMedia labelMedia = MediaFactory.CreateTextMedia();
-            labelMedia.Text= Localizer.Message("default_section_label");
+            labelMedia.Text = Localizer.Message("default_section_label");
             channelsProperty.SetMedia(ChannelsManager.GetOrCreateTextChannel(), labelMedia);
             return node;
         }
@@ -343,7 +358,7 @@ namespace Obi
         /// <summary>
         /// Initialize the metadata of the presentation, and create a title section if necessary.
         /// </summary>
-        public void Initialize(Session session, string title, bool createTitleSection, string id, Settings settings, bool isStubProjectForImport )
+        public void Initialize(Session session, string title, bool createTitleSection, string id, Settings settings, bool isStubProjectForImport)
         {
             Initialize(session);
             //setRootNode(new RootNode(this));
@@ -458,7 +473,7 @@ namespace Obi
             if (GetFirstMetadataItem(Metadata.DC_CREATOR) == null) SetSingleMetadataItem(Obi.Metadata.DC_CREATOR, Localizer.Message("Metadata_CreatorNameForInitializing"));//it is important for DAISY 2.02
             if (GetFirstMetadataItem(Metadata.DTB_NARRATOR) == null) SetSingleMetadataItem(Obi.Metadata.DTB_NARRATOR, userProfile.Name);
 
-            urakawa.metadata.Metadata mdGenerator = GetFirstMetadataItem(Metadata.GENERATOR) ;
+            urakawa.metadata.Metadata mdGenerator = GetFirstMetadataItem(Metadata.GENERATOR);
             if (mdGenerator == null)
             {
                 SetSingleMetadataItem(Obi.Metadata.GENERATOR, DataModelFactory.Generator);
@@ -468,7 +483,7 @@ namespace Obi
                 mdGenerator.NameContentAttribute.Value = DataModelFactory.Generator;
             }
 
-            urakawa.metadata.Metadata mdXukVersion = GetFirstMetadataItem(Metadata.OBI_XUK_VERSION) ;
+            urakawa.metadata.Metadata mdXukVersion = GetFirstMetadataItem(Metadata.OBI_XUK_VERSION);
             if (mdXukVersion == null)
             {
                 SetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION, DataModelFactory.XUK_VERSION);
@@ -499,8 +514,8 @@ namespace Obi
         //}
 
         // Create a media object from a sound file.
-        private ManagedAudioMedia ImportAudioFromFile ( string path )
-            {
+        private ManagedAudioMedia ImportAudioFromFile(string path)
+        {
             string dataProviderDirectory = DataProviderManager.DataFileDirectoryFullPath;
 
             //EnforceSinglePCMFormat is always true
@@ -515,23 +530,23 @@ namespace Obi
             //    DataManager.setEnforceSinglePCMFormat ( true );
             //    }
 
-            AudioMediaData data = MediaDataFactory.CreateAudioMediaData ();
+            AudioMediaData data = MediaDataFactory.CreateAudioMediaData();
 
             if (Path.GetFullPath(path).StartsWith(Path.GetFullPath(dataProviderDirectory)))
-                {
+            {
                 FileDataProvider dataProv = (FileDataProvider)DataProviderFactory.Create(urakawa.data.DataProviderFactory.AUDIO_WAV_MIME_TYPE);
-                dataProv.InitByMovingExistingFile ( path );
-                data.AppendPcmData ( dataProv );
-                }
+                dataProv.InitByMovingExistingFile(path);
+                data.AppendPcmData(dataProv);
+            }
             else
-                {
-                data.AppendPcmData_RiffHeader( path );
-                }
+            {
+                data.AppendPcmData_RiffHeader(path);
+            }
 
             ManagedAudioMedia media = MediaFactory.CreateManagedAudioMedia();
             media.AudioMediaData = data;
             return media;
-            }
+        }
 
         // Create a list of ManagedAudioMedia from audio file being imported
         // Split by duration, unless 0 or less.
@@ -574,7 +589,7 @@ namespace Obi
         /// <summary>
         /// Create a list of phrase nodes from a list of audio assets.
         /// </summary>
-        public List <PhraseNode> CreatePhraseNodesFromAudioAssetList(List<ManagedAudioMedia> AssetList)
+        public List<PhraseNode> CreatePhraseNodesFromAudioAssetList(List<ManagedAudioMedia> AssetList)
         {
             List<PhraseNode> PhraseList = new List<PhraseNode>();
             for (int i = 0; i < AssetList.Count; i++)
@@ -595,10 +610,10 @@ namespace Obi
         /// <summary>
         /// Export the project as DAISY to an export directory.
         /// </summary>
-        public void ExportToZ(string exportPath, string xukPath, Daisy3_Export DAISYExport )
+        public void ExportToZ(string exportPath, string xukPath, Daisy3_Export DAISYExport)
         {
             UpdatePublicationMetadata();
-            DAISYExport.DoWork () ;
+            DAISYExport.DoWork();
             /*
             if (format == Obi.ImportExport.ExportFormat.DAISY3_0)
             {
@@ -618,7 +633,7 @@ namespace Obi
             }
             */
         }
- 
+
         // Update metadata before exporting
         private void UpdatePublicationMetadata()
         {
@@ -630,7 +645,7 @@ namespace Obi
 
             if (dc_Date == null)
             {
-                
+
                 SetSingleMetadataItem(Metadata.DC_DATE, date);
             }
             if (producedDate == null)
@@ -646,9 +661,9 @@ namespace Obi
                     //int rev = Int32.Parse(revision.getContent()) + 1;
                     int rev = Int32.Parse(revision.NameContentAttribute.Value) + 1;//sdk2
                     SetMetadataEntryContent(revision, rev.ToString());
-                    if (revisionDate ==  null ) 
-                        SetSingleMetadataItem(Metadata.DTB_REVISION_DATE , date);
-                    else 
+                    if (revisionDate == null)
+                        SetSingleMetadataItem(Metadata.DTB_REVISION_DATE, date);
+                    else
                         SetMetadataEntryContent(revisionDate, date);
                 }
                 else
@@ -690,7 +705,7 @@ namespace Obi
                 XmlWriter writer = XmlWriter.Create(strBuilder, settings);
 
                 writer.WriteStartDocument();
-                
+
                 //This local XukString property should really only serialize the current context (i.e. Presentation):
                 //          xukOut(writer, getRootUri(), null);
                 //...but in order to remain compatible with the SaveXukAction mechanism (see code lines below),
@@ -698,13 +713,13 @@ namespace Obi
                 //          urakawa.xuk.SaveXukAction action = new urakawa.xuk.SaveXukAction(null, getProject(), memstream);
                 //          action.execute();
                 //TODO: decide whether the whole Project XML needs to be in the result string, or just the Presentation
-                
+
                 //Project.xukOut(writer, getRootUri(), null);
                 Project.XukOut(writer, RootUri, null);
 
                 writer.WriteEndDocument();
                 writer.Close();
-                
+
                 return strBuilder.ToString();
             }
         }
@@ -763,17 +778,17 @@ namespace Obi
             try
             {
                 //sdk2
-                urakawa.media.data.audio.PCMFormatInfo defaultPCMFormat = new urakawa.media.data.audio.PCMFormatInfo ((ushort)channels, (uint)sampleRate, (ushort)bitDepth);
+                urakawa.media.data.audio.PCMFormatInfo defaultPCMFormat = new urakawa.media.data.audio.PCMFormatInfo((ushort)channels, (uint)sampleRate, (ushort)bitDepth);
                 MediaDataManager.DefaultPCMFormat = defaultPCMFormat;
                 MediaDataManager.EnforceSinglePCMFormat = true;
-                
+
                 return true;
             }
             catch
             {
                 return false;
             }
-        }        
+        }
 
         // Get the elapsed time at the beginning of each section
         // (last section has the total time.)
@@ -802,7 +817,7 @@ namespace Obi
     public class NodeEventArgs<T> : EventArgs
     {
         private T mNode;
-        public NodeEventArgs(T node): base() { mNode = node; }
+        public NodeEventArgs(T node) : base() { mNode = node; }
         public T Node { get { return mNode; } }
     }
 
