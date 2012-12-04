@@ -372,10 +372,10 @@ namespace Obi
             }
 
             if ((m_MemStreamArray == null || e == null || m_PhDetectionMemStreamPosition > (msLentth - e.PcmDataBufferLength)) && mRecorder.RecordingPCMFormat != null)
-            {
+            {//1
 
                 if (m_MemStreamArray != null)
-                {
+                {//2
                     //m_PhDetectionMemoryStream.ReadByte();
                     
                     long threshold = (long)m_Settings.DefaultThreshold;
@@ -389,15 +389,15 @@ namespace Obi
                         (long)GapLength * AudioLib.AudioLibPCMFormat.TIME_UNIT,
                         (long)before * AudioLib.AudioLibPCMFormat.TIME_UNIT);
                     if (timingList != null)
-                    {
+                    {//3
                         Console.WriteLine("timingList " + timingList.Count);
                         double overlapTime = mRecorder.RecordingPCMFormat.ConvertBytesToTime(overlapLength);
                         //System.Media.SystemSounds.Asterisk.Play();
                         foreach (double d in timingList)
-                        {
+                        {//4
                             Console.WriteLine("Overlap time and list time " + (overlapTime / AudioLibPCMFormat.TIME_UNIT) + " : " + (d / AudioLibPCMFormat.TIME_UNIT));
                             if (d >= overlapTime )
-                            {
+                            {//5
                                 double phraseTime = d - overlapTime;
                                 double timeInSession = (mRecorder.RecordingPCMFormat.ConvertBytesToTime(m_PhDetectorBytesRecorded - msLentth) + d) / AudioLib.AudioLibPCMFormat.TIME_UNIT;
                                 Console.WriteLine("phrase time: " + phraseTime + " : " + timeInSession);
@@ -413,42 +413,43 @@ namespace Obi
                                 //@event: if (StartingPhrase != null)
                                     //@event: StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
 
-                            }
-                        }
-                    }
+                            }//-5
+                        }//-4
+                    }//-3
                     else
-                    {
+                    {//3
                         Console.WriteLine("timing list is null ");
-                    }
+                    }//-3
                     
-                }
+                }//-2
                 if (e == null) return;
                 byte[] overlapData = null;
                 if (m_MemStreamArray != null)
-                {
-                    overlapData = new byte[overlapLength];
+                {//2
+                    //@overlap: overlapData = new byte[overlapLength];
                     //@overlap: Array.Copy(m_MemStreamArray, m_MemStreamArray.Length - overlapLength - 1, overlapData, 0, overlapData.Length);
                     m_MemStreamArray = new byte[msLentth + overlapLength];
-                    overlapData.CopyTo(m_MemStreamArray, 0);
-                }
+                    //@overlap: overlapData.CopyTo(m_MemStreamArray, 0);
+                }//-2
                 else
-                {
+                {//2
                     overlapLength = 0;
                     m_MemStreamArray = new byte[msLentth];
-                }
+                }//-2
                 //Console.WriteLine("newMemStream length  " + m_MemStreamArray.Length);
                 m_PhDetectionMemStreamPosition = overlapLength;
                 m_PhDetectorBytesRecorded += msLentth;
 
-
-                e.PcmDataBuffer.CopyTo(m_MemStreamArray, m_PhDetectionMemStreamPosition);
-                m_PhDetectionMemStreamPosition += e.PcmDataBufferLength;
+                
+                    e.PcmDataBuffer.CopyTo(m_MemStreamArray, m_PhDetectionMemStreamPosition);
+                    m_PhDetectionMemStreamPosition += e.PcmDataBufferLength;
+                
                 //m_PhDetectionMemoryStream.Write(e.PcmDataBuffer, (int)m_PhDetectionMemStreamPosition, e.PcmDataBuffer.Length);
                 //m_PhDetectionMemStreamPosition = m_PhDetectionMemoryStream.Position;
                 Console.WriteLine("first writing of recorder buffer " + m_PhDetectionMemStreamPosition);
-            }
+            }//-1
             else if (m_MemStreamArray != null && e.PcmDataBuffer != null)
-            {
+            {//1
                 int leftOverLength = Convert.ToInt32(msLentth - m_PhDetectionMemStreamPosition);
                 if (leftOverLength > e.PcmDataBuffer.Length) leftOverLength = e.PcmDataBuffer.Length;
                 //Console.WriteLine("length:position:leftOver " + m_MemStreamArray.Length + " : " + m_PhDetectionMemStreamPosition + " : " + leftOverLength + " : " + e.PcmDataBuffer.Length);
@@ -456,12 +457,20 @@ namespace Obi
                 //m_PhDetectionMemStreamPosition = m_PhDetectionMemoryStream.Position;
                 //m_MemStreamArray = new byte[msLentth];
                 //m_PhDetectionMemoryStream.ToArray().CopyTo(m_MemStreamArray, 0); ;
-                e.PcmDataBuffer.CopyTo(m_MemStreamArray, m_PhDetectionMemStreamPosition);
-                m_PhDetectionMemStreamPosition += e.PcmDataBufferLength;
-
+                if (m_MemStreamArray.Length - m_PhDetectionMemStreamPosition > e.PcmDataBuffer.Length)
+                {
+                    e.PcmDataBuffer.CopyTo(m_MemStreamArray, m_PhDetectionMemStreamPosition);
+                    m_PhDetectionMemStreamPosition += e.PcmDataBufferLength;
+                }
+                else
+                {
+                    m_PhDetectionMemStreamPosition = m_MemStreamArray.Length - 1;
+                }
+                    
+                
                 //Console.WriteLine("writing recorder buffer " + m_PhDetectionMemStreamPosition);
 
-            }
+            }//-1
 
         }
 
