@@ -79,6 +79,7 @@ namespace Obi.ProjectView
         private bool m_IsDeleted = false;
         private  const int m_TopMargin=30;
         private Dictionary<double, int> m_TimeToPixelMap = new Dictionary<double, int>(); // workaround to avoid minor mismatch in timing calculations
+        private int m_PixelOfRedLine = 0;//workaround to avoid pixels mismatch for deleting red line consistenly.
 
 
 
@@ -904,6 +905,7 @@ namespace Obi.ProjectView
 
             if (e.Button == MouseButtons.Right)
             {
+                m_PixelOfRedLine = e.X;
                 g.DrawLine(new Pen(Color.Red), new Point(e.X, 0+m_TopMargin), new Point(e.X, WaveformHeight+m_TopMargin));
             }
             IsSelectionActive = true;
@@ -1116,6 +1118,10 @@ namespace Obi.ProjectView
             }
             else
             {
+                if(startSelection>m_PixelOfRedLine)
+                {
+                    startSelection = m_PixelOfRedLine;
+                }
                 if (startSelection < endSelection)
                     g.FillRectangle(Brushes.White, startSelection, 0 + m_TopMargin, endSelection - startSelection, this.WaveformHeight);
                 else
@@ -1232,7 +1238,6 @@ namespace Obi.ProjectView
 
         private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
         {
-
             if (m_NewPhraseTime > 0 && !m_IsPage)
             {
                 if (IsInSelection(ConvertTimeToPixels(m_NewPhraseTime) + (recordingTimeCursor + m_OffsetLocation)))
