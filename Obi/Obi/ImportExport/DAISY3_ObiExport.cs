@@ -87,7 +87,7 @@ namespace Obi.ImportExport
             XmlNode navMapNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(ncxDocument, true, "navMap", null); //ncxDocument.GetElementsByTagName("navMap")[0];
             Dictionary<urakawa.core.TreeNode, XmlNode> treeNode_NavNodeMap = new Dictionary<urakawa.core.TreeNode, XmlNode>();
             m_FilesList_Smil = new List<string>();
-            m_FilesList_Audio = new List<string>();
+            m_FilesList_SmilAudio = new List<string>();
             m_SmilFileNameCounter = 0;
             List<XmlNode> playOrderList_Sorted = new List<XmlNode>();
             int totalPageCount = 0;
@@ -475,8 +475,8 @@ namespace Obi.ImportExport
                     parNode.AppendChild(audioNode);
 
                     // add audio file name in audio files list for use in opf creation 
-                    
-                    if (!m_FilesList_Audio.Contains(audioFileName)) m_FilesList_Audio.Add(audioFileName);
+
+                    if (!m_FilesList_SmilAudio.Contains(audioFileName)) m_FilesList_SmilAudio.Add(audioFileName);
 
                     // add to duration 
                     durationOfCurrentSmil.Add(externalAudio.Duration);
