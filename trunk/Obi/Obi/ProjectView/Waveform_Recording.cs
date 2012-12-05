@@ -926,7 +926,7 @@ namespace Obi.ProjectView
                 return;
             else
             {
-                if (m_MouseButtonDownLoc == e.X || m_MouseButtonDownLoc == e.X + 1 || m_MouseButtonDownLoc == e.X - 1 || m_MouseButtonDownLoc==e.X+2 || m_MouseButtonDownLoc==e.X-2)
+                if (m_MouseButtonDownLoc == e.X || m_MouseButtonDownLoc == e.X + 1 || m_MouseButtonDownLoc == e.X - 1 || m_MouseButtonDownLoc==e.X+2 || m_MouseButtonDownLoc==e.X-2 || m_MouseButtonDownLoc==e.X+3 || m_MouseButtonDownLoc==e.X-3)
                 {
                     if (e.Button == MouseButtons.Left)
                     {
