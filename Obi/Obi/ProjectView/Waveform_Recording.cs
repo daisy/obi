@@ -79,8 +79,8 @@ namespace Obi.ProjectView
         private bool m_IsDeleted = false;
         private  const int m_TopMargin=30;
         private Dictionary<double, int> m_TimeToPixelMap = new Dictionary<double, int>(); // workaround to avoid minor mismatch in timing calculations
+        private int m_OverlapPixelLength = 0;
         private int m_PixelOfRedLine = 0;//workaround to avoid pixels mismatch for deleting red line consistenly.
-
 
 
         public Waveform_Recording()
@@ -100,6 +100,7 @@ namespace Obi.ProjectView
             m_MouseButtonDownLoc = 0;
             newPen = new Pen(Color.LightGray);
             blackPen = new Pen(Color.Black);
+            m_OverlapPixelLength = 0;
         }
 
         private RecordingSession m_RecordingSession;
@@ -364,6 +365,7 @@ namespace Obi.ProjectView
             m_MainDictionary = new Dictionary<int, string>();
             m_InitialStaticTime = (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
                         Time.TIME_UNIT) + m_InitialOffsetTime;
+            m_OverlapPixelLength = recordingTimeCursor;
             for (int i = listOfMinChannel1Temp.Count - recordingTimeCursor; i <= listOfMinChannel1Temp.Count - 1; i++)
             {
                 if (i >= 0)
@@ -429,6 +431,7 @@ namespace Obi.ProjectView
             listOfCurrentMinChannel2.Clear();
             listOfCurrentMaxChannel2.Clear();
             m_StaticRecordingLocation = -1;
+            m_OverlapPixelLength = 0;
         }
 
         private short[] m_Amp = new short[2];
@@ -1212,7 +1215,8 @@ namespace Obi.ProjectView
 
         public int GetAmplitude(int absLoc, List<int> listOfChannel)
         {
-            int actualLoc = absLoc - (recordingTimeCursor + m_OffsetLocation);
+            int actualLoc = absLoc - (recordingTimeCursor + m_OffsetLocation - (m_Pass == 0? 0 : m_OverlapPixelLength ));
+            
             return listOfChannel[actualLoc];
         }
 
