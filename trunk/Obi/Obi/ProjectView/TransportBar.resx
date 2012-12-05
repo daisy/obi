@@ -346,7 +346,7 @@
     <value>9</value>
   </data>
   <data name="mNextPhrase.ToolTip" xml:space="preserve">
-    <value>Go to the following phrase. (K)</value>
+    <value>Next phrase. (K)</value>
   </data>
   <data name="&gt;&gt;mNextPhrase.Name" xml:space="preserve">
     <value>mNextPhrase</value>
@@ -414,7 +414,7 @@
     <value>2</value>
   </data>
   <data name="mPrevPhraseButton.ToolTip" xml:space="preserve">
-    <value>Go to the preceding phrase. (J)</value>
+    <value>Preceding phrase. (J)</value>
   </data>
   <data name="&gt;&gt;mPrevPhraseButton.Name" xml:space="preserve">
     <value>mPrevPhraseButton</value>
@@ -480,7 +480,7 @@
     <value>11</value>
   </data>
   <data name="mNextSectionButton.ToolTip" xml:space="preserve">
-    <value>Go to the following section. (H)</value>
+    <value>Next section. (H)</value>
   </data>
   <data name="&gt;&gt;mNextSectionButton.Name" xml:space="preserve">
     <value>mNextSectionButton</value>
@@ -546,7 +546,7 @@
     <value>0</value>
   </data>
   <data name="mPrevSectionButton.ToolTip" xml:space="preserve">
-    <value>Go to the preceding section. (Shift+H)</value>
+    <value>Preceding section. (Shift+H)</value>
   </data>
   <data name="&gt;&gt;mPrevSectionButton.Name" xml:space="preserve">
     <value>mPrevSectionButton</value>
@@ -829,7 +829,7 @@
     <value>10</value>
   </data>
   <data name="mNextPageButton.ToolTip" xml:space="preserve">
-    <value>Go to the following page. (P)</value>
+    <value>Next page. (P)</value>
   </data>
   <data name="&gt;&gt;mNextPageButton.Name" xml:space="preserve">
     <value>mNextPageButton</value>
@@ -896,7 +896,7 @@
     <value>1</value>
   </data>
   <data name="mPreviousPageButton.ToolTip" xml:space="preserve">
-    <value>Go to the preceding page. (Shift+P)</value>
+    <value>Preceding page. (Shift+P)</value>
   </data>
   <data name="&gt;&gt;mPreviousPageButton.Name" xml:space="preserve">
     <value>mPreviousPageButton</value>
