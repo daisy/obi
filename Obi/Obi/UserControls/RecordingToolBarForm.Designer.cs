@@ -157,7 +157,6 @@ namespace Obi.UserControls
             // 
             // m_Reduce
             // 
-            this.m_Reduce.AccessibleName = global::Obi.messages.phrase_extra_Plain;
             resources.ApplyResources(this.m_Reduce, "m_Reduce");
             this.m_Reduce.Name = "m_Reduce";
             this.m_Reduce.UseVisualStyleBackColor = true;
