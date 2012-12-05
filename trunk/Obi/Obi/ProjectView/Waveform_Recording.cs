@@ -1208,7 +1208,7 @@ namespace Obi.ProjectView
 
         public int GetAmplitude(int absLoc, List<int> listOfChannel)
         {
-            int actualLoc = absLoc - ((m_StaticRecordingLocation>=0?m_StaticRecordingLocation:0)  + m_OverlapPixels);
+            int actualLoc = absLoc - ((m_StaticRecordingLocation>=0?m_StaticRecordingLocation:0)  - m_OverlapPixels);
             return listOfChannel[actualLoc];
         }
 
