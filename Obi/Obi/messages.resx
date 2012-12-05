@@ -2236,6 +2236,6 @@ Error text: {1}</value>
     <value>Gemerating speech...</value>
   </data>
   <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
-    <value>Detect phrases while recording</value>
+    <value>Perform phrase detection while recording</value>
   </data>
 </root>

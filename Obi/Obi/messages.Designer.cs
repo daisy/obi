@@ -241,7 +241,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detect phrases while recording.
+        ///   Looks up a localized string similar to Perform phrase detection while recording.
         /// </summary>
         internal static string Audio_DetectPhrasesWhileRecording {
             get {
