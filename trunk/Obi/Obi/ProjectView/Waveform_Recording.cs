@@ -79,7 +79,7 @@ namespace Obi.ProjectView
         private bool m_IsDeleted = false;
         private  const int m_TopMargin=30;
         private Dictionary<double, int> m_TimeToPixelMap = new Dictionary<double, int>(); // workaround to avoid minor mismatch in timing calculations
-        private int m_OverlapPixels = 0;
+
 
 
         public Waveform_Recording()
@@ -363,7 +363,6 @@ namespace Obi.ProjectView
             m_MainDictionary = new Dictionary<int, string>();
             m_InitialStaticTime = (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
                         Time.TIME_UNIT) + m_InitialOffsetTime;
-            m_OverlapPixels = recordingTimeCursor;
             for (int i = listOfMinChannel1Temp.Count - recordingTimeCursor; i <= listOfMinChannel1Temp.Count - 1; i++)
             {
                 if (i >= 0)
@@ -429,7 +428,6 @@ namespace Obi.ProjectView
             listOfCurrentMinChannel2.Clear();
             listOfCurrentMaxChannel2.Clear();
             m_StaticRecordingLocation = -1;
-            m_OverlapPixels = 0;
         }
 
         private short[] m_Amp = new short[2];
@@ -1208,8 +1206,7 @@ namespace Obi.ProjectView
 
         public int GetAmplitude(int absLoc, List<int> listOfChannel)
         {
-            int actualLoc = absLoc - ((m_StaticRecordingLocation>=0?m_StaticRecordingLocation:0)  - m_OverlapPixels);
-            if (actualLoc < 0) actualLoc  = 0;
+            int actualLoc = absLoc - (recordingTimeCursor + m_OffsetLocation);
             return listOfChannel[actualLoc];
         }
 
