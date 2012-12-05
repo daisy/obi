@@ -33,6 +33,7 @@ namespace Obi.Dialogs
             this.m_radBtnDaisy202 = new System.Windows.Forms.RadioButton();
             this.m_OKBtn = new System.Windows.Forms.Button();
             this.m_BtnCancel = new System.Windows.Forms.Button();
+            this.m_radBtnDaisy3_202 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // m_radBtnDaisy3
@@ -64,12 +65,20 @@ namespace Obi.Dialogs
             this.m_BtnCancel.UseVisualStyleBackColor = true;
             this.m_BtnCancel.Click += new System.EventHandler(this.m_BtnCancel_Click);
             // 
+            // m_radBtnDaisy3_202
+            // 
+            resources.ApplyResources(this.m_radBtnDaisy3_202, "m_radBtnDaisy3_202");
+            this.m_radBtnDaisy3_202.Name = "m_radBtnDaisy3_202";
+            this.m_radBtnDaisy3_202.TabStop = true;
+            this.m_radBtnDaisy3_202.UseVisualStyleBackColor = true;
+            // 
             // chooseDaisy3orDaisy202
             // 
             this.AcceptButton = this.m_OKBtn;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_BtnCancel;
+            this.Controls.Add(this.m_radBtnDaisy3_202);
             this.Controls.Add(this.m_BtnCancel);
             this.Controls.Add(this.m_OKBtn);
             this.Controls.Add(this.m_radBtnDaisy202);
@@ -89,5 +98,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_radBtnDaisy202;
         private System.Windows.Forms.Button m_OKBtn;
         private System.Windows.Forms.Button m_BtnCancel;
+        private System.Windows.Forms.RadioButton m_radBtnDaisy3_202;
     }
 }
