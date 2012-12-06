@@ -32,7 +32,6 @@
             this.mlbSampleRate = new System.Windows.Forms.Label();
             this.mlbAudioChannels = new System.Windows.Forms.Label();
             this.mbtnOK = new System.Windows.Forms.Button();
-            this.mbtnCancel = new System.Windows.Forms.Button();
             this.mcbSampleRate = new System.Windows.Forms.ComboBox();
             this.mcbAudioChannel = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
@@ -53,13 +52,6 @@
             this.mbtnOK.Name = "mbtnOK";
             this.mbtnOK.UseVisualStyleBackColor = true;
             this.mbtnOK.Click += new System.EventHandler(this.mbtnOK_Click);
-            // 
-            // mbtnCancel
-            // 
-            resources.ApplyResources(this.mbtnCancel, "mbtnCancel");
-            this.mbtnCancel.Name = "mbtnCancel";
-            this.mbtnCancel.UseVisualStyleBackColor = true;
-            this.mbtnCancel.Click += new System.EventHandler(this.mbtnCancel_Click);
             // 
             // mcbSampleRate
             // 
@@ -85,11 +77,11 @@
             // 
             // AudioSettings
             // 
+            this.AcceptButton = this.mbtnOK;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.mcbAudioChannel);
             this.Controls.Add(this.mcbSampleRate);
-            this.Controls.Add(this.mbtnCancel);
             this.Controls.Add(this.mbtnOK);
             this.Controls.Add(this.mlbAudioChannels);
             this.Controls.Add(this.mlbSampleRate);
@@ -105,7 +97,6 @@
         private System.Windows.Forms.Label mlbSampleRate;
         private System.Windows.Forms.Label mlbAudioChannels;
         private System.Windows.Forms.Button mbtnOK;
-        private System.Windows.Forms.Button mbtnCancel;
         private System.Windows.Forms.ComboBox mcbSampleRate;
         private System.Windows.Forms.ComboBox mcbAudioChannel;
     }
