@@ -2327,12 +2327,10 @@ namespace Obi
                                 new ProgressDialog(Localizer.Message("export_progress_dialog_title"),
                                                    delegate(ProgressDialog progress1)
                                                        {
-                                                           try
-                                                           {
+                                                           
                                                                if (DAISY3Export != null)
                                                                {
-                                                                   MessageBox.Show(exportPathDAISY3.ToString());
-                                                                   MessageBox.Show(DAISY3Export.OpfFilePath);
+                                                                   
                                                                    mSession.Presentation.ExportToZ(exportPathDAISY3, mSession.Path,
                                                                                                    DAISY3Export);
                                                                }
@@ -2341,8 +2339,7 @@ namespace Obi
                                                                    mSession.Presentation.ExportToZ(exportPathDAISY202, mSession.Path,
                                                                                                DAISY202Export);
                                                                }
-                                                           }
-                                                           catch (System.Exception ex) { MessageBox.Show(ex.ToString()); }
+                                                           
                                                        });
 
                             progress.OperationCancelled +=
