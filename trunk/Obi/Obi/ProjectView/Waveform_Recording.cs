@@ -1209,11 +1209,11 @@ namespace Obi.ProjectView
             }
         }
 
-        public int GetAmplitude(int absLoc, List<int> listOfChannel)
+        public int GetAmplitude(int absLoc, List<int> listOfChannelAmplitudes)
         {
             int actualLoc = absLoc - (recordingTimeCursor + m_OffsetLocation - (m_Pass == 0? 0 : m_OverlapPixelLength ));
-            
-            return listOfChannel[actualLoc];
+            if (actualLoc < 0 || actualLoc >= listOfChannelAmplitudes.Count) return 0;
+            return listOfChannelAmplitudes[actualLoc];
         }
 
         public bool IsValid(int location_X)
