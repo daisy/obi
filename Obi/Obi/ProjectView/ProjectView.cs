@@ -4419,10 +4419,10 @@ for (int j = 0;
             }
         }
 
-        public bool CanReplaceAudioOfSelectedNode { get { return mPresentation != null && Selection != null && (Selection.Node is SectionNode || Selection.Node is PhraseNode); } }
+        
         public void ReplaceAudioOfSelectedNode()
         {
-            if (CanReplaceAudioOfSelectedNode)
+            if (CanExportSelectedNodeAudio)
             {
                 try
                 {
