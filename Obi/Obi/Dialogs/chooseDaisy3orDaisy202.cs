@@ -32,6 +32,11 @@ namespace Obi.Dialogs
                 m_ExportFormat = Obi.ImportExport.ExportFormat.DAISY2_02;
                 Close();
             }
+            else if (m_radBtnDaisy3_202.Checked)
+            {
+                m_ExportFormat = Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202;
+                Close();
+            }
         }
 
         private void m_BtnCancel_Click(object sender, EventArgs e)
