@@ -1121,10 +1121,6 @@ namespace Obi.ProjectView
             }
             else
             {
-                if(startSelection>m_PixelOfRedLine)
-                {
-                    startSelection = m_PixelOfRedLine;
-                }
                 if (startSelection < endSelection)
                     g.FillRectangle(Brushes.White, startSelection, 0 + m_TopMargin, endSelection - startSelection, this.WaveformHeight);
                 else
@@ -1245,9 +1241,9 @@ namespace Obi.ProjectView
             if (m_NewPhraseTime > 0 && !m_IsPage)
             {
                 if (IsInSelection(ConvertTimeToPixels(m_NewPhraseTime) + (recordingTimeCursor + m_OffsetLocation)))
-                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 10 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 10 + (recordingTimeCursor + m_OffsetLocation), true);
+                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 15 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 15 + (recordingTimeCursor + m_OffsetLocation), true);
                 else
-                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 10 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 10 + (recordingTimeCursor + m_OffsetLocation), false);
+                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 15 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 15 + (recordingTimeCursor + m_OffsetLocation), false);
                 m_NewPhraseTime = -1;
             }
         }
