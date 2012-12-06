@@ -118,6 +118,8 @@ namespace Obi.Dialogs
             set { m_numericUpDownFilenameLengthLimit.Value = value;  }
         }
 
+        public string AdditionalTextForTitle { set { if (!Text.Contains (value)) Text =Text +  "("+value+")" ;} }
+
         private void mOKButton_Click(object sender, EventArgs e)
         {
             mCanClose = ObiForm.CheckProjectDirectory_Safe(DirectoryPath, true);
