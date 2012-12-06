@@ -4419,6 +4419,104 @@ for (int j = 0;
             }
         }
 
+        public bool CanReplaceAudioOfSelectedNode { get { return mPresentation != null && Selection != null && (Selection.Node is SectionNode || Selection.Node is PhraseNode); } }
+        public void ReplaceAudioOfSelectedNode()
+        {
+            if (CanReplaceAudioOfSelectedNode)
+            {
+                try
+                {
+                    ObiNode node = Selection.Node;
+                    List<EmptyNode> originalPhrases = new List<EmptyNode>();
+                    List<double> originalTimings = new List<double>();
+
+                    if (node is PhraseNode)
+                    {
+                        originalPhrases.Add((PhraseNode)node);
+                        originalTimings.Add(((PhraseNode)node).Duration);
+                    }
+                    else if (node is SectionNode)
+                    {
+                        SectionNode section = (SectionNode)node;
+                        double duration = 0;
+                        for (int i = 0; i < section.PhraseChildCount; i++)
+                        {
+                            originalPhrases.Add(section.PhraseChild(i));
+                            if (section.PhraseChild(i) is PhraseNode) originalTimings.Add(duration += ((PhraseNode)section.PhraseChild(i)).Duration);
+                        }
+                    }
+
+                    if (originalPhrases.Count == 0) return;
+                    //select audio file
+                    OpenFileDialog openAudioFileDialog = new OpenFileDialog();
+                    openAudioFileDialog.Filter = "*.wav|*.WAV";
+                    openAudioFileDialog.Multiselect = false;
+                    if (openAudioFileDialog.ShowDialog() == DialogResult.OK && System.IO.File.Exists(openAudioFileDialog.FileName))
+                    {
+                        urakawa.media.data.audio.AudioMediaData asset =
+                            (urakawa.media.data.audio.AudioMediaData)mPresentation.MediaDataFactory.Create<urakawa.media.data.audio.codec.WavAudioMediaData>();
+                        urakawa.media.data.audio.ManagedAudioMedia media = (urakawa.media.data.audio.ManagedAudioMedia)mPresentation.MediaFactory.CreateManagedAudioMedia();
+                        media.MediaData = asset;
+
+                        urakawa.data.FileDataProvider dataProv = (urakawa.data.FileDataProvider)media.Presentation.DataProviderFactory.Create(urakawa.data.DataProviderFactory.AUDIO_WAV_MIME_TYPE);
+                        dataProv.InitByCopyingExistingFile(openAudioFileDialog.FileName);
+                        media.AudioMediaData.AppendPcmData(dataProv);
+
+                        if (media.Duration.AsTimeSpan.TotalMilliseconds < originalTimings[originalTimings.Count - 1] - 100)
+                        {
+                            MessageBox.Show(string.Format(Localizer.Message("ProjectView_ErrorReplacingAudioDueToTimingMissmatch"), originalTimings[originalTimings.Count - 1], media.Duration.AsTimeSpan.TotalMilliseconds));
+                            media = null;
+                            return;
+                        }
+
+                        CompositeCommand updateAudioCommand = mPresentation.CreateCompositeCommand("Update audio for phrases");
+                        if (originalPhrases.Count == 1)
+                        {
+                            PhraseNode phrase = (PhraseNode) originalPhrases[0] ;
+                            //((PhraseNode)originalPhrases[0]).Audio = media;
+                            updateAudioCommand.ChildCommands.Insert(updateAudioCommand.ChildCommands.Count,
+                                        new Commands.Node.UpdateAudioMedia(this, phrase, media, false));
+                        }
+                        else
+                        {
+                            List<urakawa.media.data.audio.ManagedAudioMedia> mediaDataList = new List<urakawa.media.data.audio.ManagedAudioMedia>();
+
+                            for (int i = originalTimings.Count - 2; i >= 0; --i)
+                            {
+                                if (originalTimings[i] < media.Duration.AsTimeSpan.TotalMilliseconds)
+                                {
+                                    urakawa.media.data.audio.ManagedAudioMedia split = media.Split(new urakawa.media.timing.Time(Convert.ToInt64(originalTimings[i] * urakawa.media.timing.Time.TIME_UNIT)));
+                                    mediaDataList.Insert(0, split);
+                                }
+                            }// split loop ends
+                            mediaDataList.Insert(0, media);
+                            int mediaIndex = 0;
+                            
+                            for (int i = 0; i < originalPhrases.Count; i++)
+                            {
+                                if (originalPhrases[i] is PhraseNode)
+                                {
+                                    PhraseNode phrase = (PhraseNode)originalPhrases[i];
+                                    //if (phrase.Duration != mediaDataList[mediaIndex].Duration.AsTimeSpan.TotalMilliseconds) 
+                                        //MessageBox.Show(i.ToString () + "Error in timings: " + phrase.Duration.ToString() + ":" + mediaDataList[mediaIndex].Duration.AsTimeSpan.TotalMilliseconds.ToString());
+                                    //phrase.Audio = mediaDataList[mediaIndex];
+                                    updateAudioCommand.ChildCommands.Insert(updateAudioCommand.ChildCommands.Count,
+                                        new Commands.Node.UpdateAudioMedia(this, phrase, mediaDataList[mediaIndex], false));
+                                    mediaIndex++;
+                                }
+                            }// update audio for loop
+                            mPresentation.Do(updateAudioCommand);
+                        }
+                    }
+                }//try
+                catch (System.Exception ex)
+                {
+                    WriteToLogFile(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
+            }//CanReplace check
+        }
+
         public bool IsWaveformRendering { get { return mContentView.IsWaveformRendering; } }
         public void WaveformRendering_PauseOrResume(bool pause) { mContentView.WaveformRendering_PauseOrResume (pause ) ;}
 

@@ -4336,6 +4336,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to replace audio due to missmatch in audio length: Original duration is {0} : new file duration is {1}.
+        /// </summary>
+        internal static string ProjectView_ErrorReplacingAudioDueToTimingMissmatch {
+            get {
+                return ResourceManager.GetString("ProjectView_ErrorReplacingAudioDueToTimingMissmatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to find empty page(s) for speech generation.
         /// </summary>
         internal static string ProjectView_NoEmptyPageFoundForSpeechGeneration {

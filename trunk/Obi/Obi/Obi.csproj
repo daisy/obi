@@ -134,6 +134,7 @@
     <Compile Include="Commands\Node\SplitAudio.cs" />
     <Compile Include="Commands\Node\ToggleNodeTODO.cs" />
     <Compile Include="Commands\Node\ToggleNodeUsed.cs" />
+    <Compile Include="Commands\Node\UpdateAudioMedia.cs" />
     <Compile Include="Commands\TOC\MoveSectionIn.cs" />
     <Compile Include="Commands\TOC\MoveSectionOut.cs" />
     <Compile Include="DataModelFactory.cs" />
