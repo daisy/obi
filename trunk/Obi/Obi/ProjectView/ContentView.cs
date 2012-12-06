@@ -4861,6 +4861,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Enabled = mProjectView.CanClearSkippableRole;
             Context_GenerateSpeechForPageMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
             Context_SettingsFromsilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
+            Context_ReplaceAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5413,6 +5414,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void settingsFromsilencePhraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.UpdatePhraseDetectionSettingsFromSilencePhrase();
+        }
+
+        private void Context_ReplaceAudioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ReplaceAudioOfSelectedNode();
         }
         }
    /// <summary>
