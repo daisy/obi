@@ -2238,4 +2238,7 @@ Error text: {1}</value>
   <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
     <value>Perform phrase detection while recording</value>
   </data>
+  <data name="ProjectView_ErrorReplacingAudioDueToTimingMissmatch" xml:space="preserve">
+    <value>Unable to replace audio due to missmatch in audio length: Original duration is {0} : new file duration is {1}</value>
+  </data>
 </root>
