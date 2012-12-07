@@ -738,6 +738,11 @@ namespace Obi.Dialogs
                 UpdateBoolSettings();
             if (mTab.SelectedTab == mAudioTab)
             {
+                if (e.Item.Text == Localizer.Message("Audio_DetectPhrasesWhileRecording") && e.Item.Checked)
+                {
+                    MessageBox.Show(string.Format(Localizer.Message("AudioPref_LivePhraseDetectionEnable"), mSettings.DefaultThreshold, mSettings.DefaultGap,mSettings.DefaultLeadingSilence )) ;
+                }
+
                 if (m_CheckBoxListView.Items[3].Checked)
                     m_CheckBoxListView.Items[4].Checked = true;
                 
@@ -745,10 +750,7 @@ namespace Obi.Dialogs
                     m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
                 else
                     m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
-               /* if (m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
-                    m_btn_AdvancedRecording.Enabled = false;
-                else
-                    m_btn_AdvancedRecording.Enabled = true;*/
+               
             }
         }
         public void UpdateBoolSettings()
