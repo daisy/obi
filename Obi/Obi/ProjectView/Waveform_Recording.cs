@@ -224,6 +224,7 @@ namespace Obi.ProjectView
             pen_HighlightedHighContrastMono = m_ColorSettingsHC.WaveformHighlightedPen;
             m_PenTimeGrid = new Pen(m_IsColorHighContrast ? Color.LightGray : Color.Gray);
             m_PenPhrasePage = new Pen(m_IsColorHighContrast ? Color.White : Color.Black);
+            m_PenPhrasePage.Width = 2;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
