@@ -3142,7 +3142,7 @@ namespace Obi
                                                                                     }
                                                                                 
                                                                             });
-                    mPeakMeter.TopMost = false;
+                    
                     if (this.WindowState != FormWindowState.Minimized)
                     {
                         flagMaxWindow = false;
