@@ -100,7 +100,7 @@ namespace Obi.ProjectView
             m_MouseButtonUpLoc = 0;
             m_MouseButtonDownLoc = 0;
             m_PenTimeGrid = new Pen(m_IsColorHighContrast ? Color.LightGray : Color.Gray);
-            m_PenPhrasePage = new Pen(SystemColors.ControlDarkDark);
+            m_PenPhrasePage = new Pen(m_IsColorHighContrast? Color.White:Color.Black);
             m_PenPhrasePage.Width = 2;
             m_OverlapPixelLength = 0;
         }
@@ -223,6 +223,7 @@ namespace Obi.ProjectView
             pen_WaveformBaseLine = colorSettings.WaveformBaseLinePen;
             pen_HighlightedHighContrastMono = m_ColorSettingsHC.WaveformHighlightedPen;
             m_PenTimeGrid = new Pen(m_IsColorHighContrast ? Color.LightGray : Color.Gray);
+            m_PenPhrasePage = new Pen(m_IsColorHighContrast ? Color.White : Color.Black);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
