@@ -26,8 +26,8 @@ namespace Obi.ProjectView
         private Pen pen_HighContrastChannel2;
         private Pen pen_WaveformBaseLine;
 
-        private Pen newPen;
-        private Pen blackPen;
+        private Pen m_PenTimeGrid;
+        private Pen m_PenPhrasePage;
 
         private Pen pen_HighlightedHighContrastMono;
         private Font myFont = new Font("Microsoft Sans Serif", 7);
@@ -39,7 +39,7 @@ namespace Obi.ProjectView
         private bool m_IsColorHighContrast = false;
         //  private Dictionary<int, short> m_PointMMinChannelMap = new Dictionary<int, short>();
         //  private Dictionary<int, short> m_PointMaxChannelMap = new Dictionary<int, short>();
-        private Pen pen = new Pen(Color.Black);
+        
         private List<int> listOfCurrentXLocation = new List<int>();
         private List<int> listOfCurrentMinChannel1 = new List<int>();
         private List<int> listOfCurrentMaxChannel1 = new List<int>();
@@ -86,6 +86,7 @@ namespace Obi.ProjectView
         public Waveform_Recording()
         {
             InitializeComponent();
+            m_IsColorHighContrast = SystemInformation.HighContrast;   
             m_ZoomFactor = 1.0f;
             this.Visible = false;
             this.Height = Convert.ToInt32(124 * m_ZoomFactor);
@@ -98,9 +99,9 @@ namespace Obi.ProjectView
             m_InitialOffsetTime = -1;
             m_MouseButtonUpLoc = 0;
             m_MouseButtonDownLoc = 0;
-            newPen = new Pen(Color.LightGray);
-            blackPen = new Pen(Color.Black);
-            blackPen.Width = 2;
+            m_PenTimeGrid = new Pen(m_IsColorHighContrast ? Color.LightGray : Color.Gray);
+            m_PenPhrasePage = new Pen(SystemColors.ControlDarkDark);
+            m_PenPhrasePage.Width = 2;
             m_OverlapPixelLength = 0;
         }
 
@@ -138,6 +139,7 @@ namespace Obi.ProjectView
                 m_ProjectView = value;
                 if (m_ProjectView != null)
                 {
+                    m_IsColorHighContrast = SystemInformation.HighContrast;   
                     m_ProjectView.TransportBar.Recorder.PcmDataBufferAvailable += new AudioRecorder.PcmDataBufferAvailableHandler(OnPcmDataBufferAvailable_Recorder);
                     m_ProjectView.ObiForm.Resize += new EventHandler(ObiForm_Resize);
                     m_ProjectView.ObiForm.ResizeEnd += new EventHandler(ObiForm_ResizeEnd);
@@ -220,6 +222,7 @@ namespace Obi.ProjectView
             pen_Channel2 = colorSettings.WaveformChannel2Pen;
             pen_WaveformBaseLine = colorSettings.WaveformBaseLinePen;
             pen_HighlightedHighContrastMono = m_ColorSettingsHC.WaveformHighlightedPen;
+            m_PenTimeGrid = new Pen(m_IsColorHighContrast ? Color.LightGray : Color.Gray);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -305,7 +308,7 @@ namespace Obi.ProjectView
                     m_StaticRecordingLocation = m_X;
                 }
 
-                g.DrawLine(newPen, m_X, 0+m_TopMargin, m_X, WaveformHeight+m_TopMargin);
+                g.DrawLine(m_PenTimeGrid, m_X, 0+m_TopMargin, m_X, WaveformHeight+m_TopMargin);
                 if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds)
                 {
                     text = timeInSeconds.ToString();
@@ -635,16 +638,16 @@ namespace Obi.ProjectView
 
                 foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                 {
-                    g.DrawLine(newPen, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
+                    g.DrawLine(m_PenTimeGrid, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
                     if (!pair.Value.EndsWith("0") || (pair.Value.StartsWith("P")))
                     {
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
                         if (pair.Value != "")
-                            g.DrawLine(blackPen, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
+                            g.DrawLine(m_PenPhrasePage, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
                     }
                     else
                     {
-                        g.DrawLine(newPen, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
+                        g.DrawLine(m_PenTimeGrid, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
                         g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 20);
                     }
                 }
@@ -730,16 +733,16 @@ namespace Obi.ProjectView
 
                 foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                 {
-                    g.DrawLine(newPen, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
+                    g.DrawLine(m_PenTimeGrid, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
                     if (!pair.Value.EndsWith("0") || (pair.Value.StartsWith("P")))
                     {
                         g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
                         if (pair.Value != "")
-                            g.DrawLine(blackPen, pair.Key, 0+m_TopMargin, pair.Key, 0+m_TopMargin);
+                            g.DrawLine(m_PenPhrasePage, pair.Key, 0+m_TopMargin, pair.Key, 0+m_TopMargin);
                     }
                     else
                     {
-                        g.DrawLine(newPen, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
+                        g.DrawLine(m_PenTimeGrid, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
                         g.DrawString(pair.Value, myFont, Brushes.Gray, pair.Key, 20);
                     }
                 }
@@ -799,7 +802,7 @@ namespace Obi.ProjectView
                 pixel = CalculatePixels(e.TimeFromBeginning);
                 UpdateTimeToPixelDictionary(e.TimeFromBeginning, pixel);
             }
-            g.DrawLine(blackPen, pixel, 0+m_TopMargin, pixel, WaveformHeight+m_TopMargin);
+            g.DrawLine(m_PenPhrasePage, pixel, 0+m_TopMargin, pixel, WaveformHeight+m_TopMargin);
             g.DrawString("Ph", myFont, Brushes.Black, pixel, 0);
 
             if (m_MainDictionary.ContainsKey(pixel))
@@ -1184,7 +1187,7 @@ namespace Obi.ProjectView
             if (m_MainDictionary.ContainsKey(index))
             {
 
-                g.DrawLine(newPen, index, 0+m_TopMargin, index, WaveformHeight+m_TopMargin);
+                g.DrawLine(m_PenTimeGrid, index, 0+m_TopMargin, index, WaveformHeight+m_TopMargin);
                 //if ((!m_MainDictionary[index].StartsWith("P")) || m_MainDictionary[index].EndsWith("0"))
 
                 if (!m_MainDictionary[index].EndsWith("0") || (m_MainDictionary[index].StartsWith("P")))
@@ -1204,7 +1207,7 @@ namespace Obi.ProjectView
                    g.DrawString(m_MainDictionary[index], myFont, Brushes.Gray, index, 20);
                     if (m_MainDictionary[index] != "")
                     {
-                      g.DrawLine(newPen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
+                      g.DrawLine(m_PenTimeGrid, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
                     }
                 }
             }
