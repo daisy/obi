@@ -612,7 +612,7 @@ namespace Obi.ProjectView
                         pen_ChannelMono = new Pen(SystemColors.HighlightText);
                     }
                     if (tempm_X == m_MouseButtonDownLoc)
-                        pen_ChannelMono = m_ColorSettings.WaveformMonoPen;
+                        pen_ChannelMono =m_IsColorHighContrast? m_ColorSettingsHC.WaveformMonoPen: m_ColorSettings.WaveformMonoPen;
 
                     if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
                     {
