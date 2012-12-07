@@ -682,13 +682,13 @@
     <value>Elapse back duration</value>
   </data>
   <data name="m_cbOperation.Items3" xml:space="preserve">
-    <value>Default Leading Silence</value>
+    <value>Leading Silence (Phrase Detection)</value>
   </data>
   <data name="m_cbOperation.Items4" xml:space="preserve">
-    <value>Default Threshold</value>
+    <value>Threshold (Phrase Detection)</value>
   </data>
   <data name="m_cbOperation.Items5" xml:space="preserve">
-    <value>Default Gap</value>
+    <value>Gap (Phrase Detection)</value>
   </data>
   <data name="m_cbOperation.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 153</value>

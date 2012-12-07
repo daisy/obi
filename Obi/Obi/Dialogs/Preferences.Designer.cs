@@ -353,6 +353,7 @@ namespace Obi.Dialogs
             // 
             // m_cbOperation
             // 
+            this.m_cbOperation.DropDownWidth = 215;
             this.m_cbOperation.FormattingEnabled = true;
             this.m_cbOperation.Items.AddRange(new object[] {
             resources.GetString("m_cbOperation.Items"),
