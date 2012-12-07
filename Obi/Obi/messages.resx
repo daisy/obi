@@ -2241,4 +2241,7 @@ Error text: {1}</value>
   <data name="ProjectView_ErrorReplacingAudioDueToTimingMissmatch" xml:space="preserve">
     <value>Unable to replace audio due to missmatch in audio length: Original duration is {0} : new file duration is {1}</value>
   </data>
+  <data name="AudioPref_LivePhraseDetectionEnable" xml:space="preserve">
+    <value>Following values will be used for live phrase detection; Threshold:{0} ,Gap btw Phrases:{1} ,Leading Silence{2}. These settings can be modified from operations combobox of audio preferences or can be extracted from a silence phrase.</value>
+  </data>
 </root>
