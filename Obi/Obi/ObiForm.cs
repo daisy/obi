@@ -3142,6 +3142,7 @@ namespace Obi
                                                                                     }
                                                                                 
                                                                             });
+                    mPeakMeter.TopMost = false;
                     if (this.WindowState != FormWindowState.Minimized)
                     {
                         flagMaxWindow = false;
@@ -4454,8 +4455,9 @@ namespace Obi
 
             private void PeakMeterResize()
             {
-                if (this.WindowState == FormWindowState.Maximized && m_flag != true)
+                if ((this.WindowState == FormWindowState.Maximized) && m_flag != true)
                 {
+                    mPeakMeter.WindowState=FormWindowState.Normal;
                     m_tempHeightMin = mPeakMeter.Height;
                     m_flagForPeakMeterHeight = true;
 
@@ -4499,8 +4501,6 @@ namespace Obi
 
                 else if (this.WindowState == FormWindowState.Normal && m_flag != true)
                 {
-
-
                     if (this.Height >= m_tempHeightMin)
                     {
 
@@ -4521,14 +4521,21 @@ namespace Obi
                     m_flag = false;
 
                 }
-
-                mPeakMeter.Left = this.Right;
-
-              // mPeakMeter.Top = this.Top;
-
-
-                   
                 
+                if (mPeakMeter.WindowState == FormWindowState.Minimized && this.WindowState == FormWindowState.Normal)
+                {
+                    mPeakMeter.WindowState = FormWindowState.Normal;
+                    mPeakMeter.Height = this.Height;
+                }
+                mPeakMeter.Left = this.Right;
+                
+                //mPeakMeter.Height = this.Height;
+
+                // mPeakMeter.Top = this.Top;
+
+
+
+
             }
 
             private void selectedPageToolStripMenuItem_Click(object sender, EventArgs e)
