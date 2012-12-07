@@ -100,6 +100,7 @@ namespace Obi.ProjectView
             m_MouseButtonDownLoc = 0;
             newPen = new Pen(Color.LightGray);
             blackPen = new Pen(Color.Black);
+            blackPen.Width = 2;
             m_OverlapPixelLength = 0;
         }
 
