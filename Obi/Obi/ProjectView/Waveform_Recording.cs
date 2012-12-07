@@ -642,7 +642,7 @@ namespace Obi.ProjectView
                     g.DrawLine(m_PenTimeGrid, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
                     if (!pair.Value.EndsWith("0") || (pair.Value.StartsWith("P")))
                     {
-                        g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
+                        g.DrawString(pair.Value, myFont, SystemBrushes.ControlDarkDark, pair.Key, 0);
                         if (pair.Value != "")
                             g.DrawLine(m_PenPhrasePage, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
                     }
@@ -737,7 +737,7 @@ namespace Obi.ProjectView
                     g.DrawLine(m_PenTimeGrid, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
                     if (!pair.Value.EndsWith("0") || (pair.Value.StartsWith("P")))
                     {
-                        g.DrawString(pair.Value, myFont, Brushes.Black, pair.Key, 0);
+                        g.DrawString(pair.Value, myFont, SystemBrushes.ControlDarkDark, pair.Key, 0);
                         if (pair.Value != "")
                             g.DrawLine(m_PenPhrasePage, pair.Key, 0+m_TopMargin, pair.Key, 0+m_TopMargin);
                     }
@@ -804,7 +804,7 @@ namespace Obi.ProjectView
                 UpdateTimeToPixelDictionary(e.TimeFromBeginning, pixel);
             }
             g.DrawLine(m_PenPhrasePage, pixel, 0+m_TopMargin, pixel, WaveformHeight+m_TopMargin);
-            g.DrawString("Ph", myFont, Brushes.Black, pixel, 0);
+            g.DrawString("Ph", myFont, SystemBrushes.ControlDarkDark, pixel, 0);
 
             if (m_MainDictionary.ContainsKey(pixel))
             {
@@ -846,7 +846,7 @@ namespace Obi.ProjectView
             //else
                 g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), pixel + 1, 0, 35, 10);
 
-            g.DrawString(text, myFont, Brushes.Black, pixel, 0);
+            g.DrawString(text, myFont, SystemBrushes.ControlDarkDark, pixel, 0);
          //   g.DrawLine(blackPen, pixel, 0, pixel, WaveformHeight);
             if (m_MainDictionary.ContainsKey(pixel))
                 m_MainDictionary[pixel] = text;
@@ -1175,13 +1175,13 @@ namespace Obi.ProjectView
 
         public void DrawDictionary(int index, bool isSelected)
         {
-            SolidBrush brushSel = null;
+            Brush brushSel = null;
             Pen linePen = new Pen(Color.Black);
 
             if (isSelected)
-                brushSel = new SolidBrush(Color.Black);
+                brushSel = SystemBrushes.ControlDarkDark;
             else
-                brushSel = new SolidBrush(Color.Black);
+                brushSel = SystemBrushes.ControlDarkDark;
 
             
 
@@ -1196,16 +1196,16 @@ namespace Obi.ProjectView
                     if (m_MainDictionary[index] != "")
                     {
                         g.DrawLine(linePen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
-                        g.FillRectangle(Brushes.White, index, 0, 15, 10);
+                        g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), index, 0, 15, 10);
                         g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
                     }
                     
                 }
                 else
                 {
-                    
-                    g.FillRectangle(Brushes.White, index, 20, 30, 10);
-                   g.DrawString(m_MainDictionary[index], myFont, Brushes.Gray, index, 20);
+
+                    g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), index, 20, 30, 10);
+                    g.DrawString(m_MainDictionary[index], myFont, Brushes.Gray, index, 20);
                     if (m_MainDictionary[index] != "")
                     {
                       g.DrawLine(m_PenTimeGrid, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
