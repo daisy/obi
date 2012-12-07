@@ -41,9 +41,9 @@ namespace Obi
             private bool m_InputDeviceFound = true;
             private bool m_OutputDevicefound = true;
 
-            private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f; // zoom factor increment (zoom in/out)
+            private static readonly float ZOOM_FACTOR_INCREMENT = 1.4f; // zoom factor increment (zoom in/out)
             private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f; // default zoom factor (high contrast mode)
-            private static readonly float AUDIO_SCALE_INCREMENT = 1.2f; // audio scale increment (audio zoom in/out)
+            private static readonly float AUDIO_SCALE_INCREMENT = 1.4f; // audio scale increment (audio zoom in/out)
 
             private string m_RestoreProjectFilePath = null;
             private string m_OriginalPath = null;
