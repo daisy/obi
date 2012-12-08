@@ -2233,7 +2233,7 @@ Error text: {1}</value>
     <value>Unable to find empty page(s) for speech generation</value>
   </data>
   <data name="SpeechGenerationProgress" xml:space="preserve">
-    <value>Gemerating speech...</value>
+    <value>Generating speech...</value>
   </data>
   <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
     <value>Perform phrase detection while recording</value>
