@@ -177,9 +177,6 @@
   <data name="&gt;&gt;mPhraseSizeTextBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="mOKButton.AccessibleName" xml:space="preserve">
-    <value>Ok Button.</value>
-  </data>
   <data name="mOKButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -209,9 +206,6 @@
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="mCancelButton.AccessibleName" xml:space="preserve">
-    <value>Cancel Button.</value>
   </data>
   <data name="mCancelButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -303,9 +297,6 @@
   <data name="&gt;&gt;lstManualArrange.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="m_btnMoveUp.AccessibleName" xml:space="preserve">
-    <value>Move file up.</value>
-  </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 11</value>
   </data>
@@ -330,9 +321,6 @@
   <data name="&gt;&gt;m_btnMoveUp.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="m_btnMoveDown.AccessibleName" xml:space="preserve">
-    <value>Move file down.</value>
-  </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 43</value>
   </data>
@@ -356,9 +344,6 @@
   </data>
   <data name="&gt;&gt;m_btnMoveDown.ZOrder" xml:space="preserve">
     <value>5</value>
-  </data>
-  <data name="m_btnAdd.AccessibleName" xml:space="preserve">
-    <value>Add button to add audio files.</value>
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 72</value>
@@ -387,9 +372,6 @@
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
     <value>GroupBox to Add and arrange files.</value>
   </data>
-  <data name="m_btnRemove.AccessibleName" xml:space="preserve">
-    <value>Remove Button to remove audio files</value>
-  </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 101</value>
   </data>
@@ -417,21 +399,6 @@
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
     <value>Arrange audio files group box</value>
   </data>
-  <data name="mbtnDesendingOrder.AccessibleName" xml:space="preserve">
-    <value>Descending Order Button</value>
-  </data>
-  <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 34</value>
-  </data>
-  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 26</value>
-  </data>
-  <data name="mbtnDesendingOrder.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>D&amp;escending Order</value>
-  </data>
   <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
     <value>mbtnDesendingOrder</value>
   </data>
@@ -443,21 +410,6 @@
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="mbtnAscendingOrder.AccessibleName" xml:space="preserve">
-    <value>Ascending Order Button</value>
-  </data>
-  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 34</value>
-  </data>
-  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 26</value>
-  </data>
-  <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>&amp;A&amp;scending Order</value>
   </data>
   <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
     <value>mbtnAscendingOrder</value>
@@ -515,6 +467,30 @@
   </data>
   <data name="&gt;&gt;m_grpAddFiles.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 34</value>
+  </data>
+  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 26</value>
+  </data>
+  <data name="mbtnDesendingOrder.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="mbtnDesendingOrder.Text" xml:space="preserve">
+    <value>D&amp;escending Order</value>
+  </data>
+  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 34</value>
+  </data>
+  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 26</value>
+  </data>
+  <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="mbtnAscendingOrder.Text" xml:space="preserve">
+    <value>&amp;A&amp;scending Order</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
     <value>To replace with space textbox.</value>
@@ -702,9 +678,6 @@
   <data name="&gt;&gt;m_grpCreateSectionForEachAudioFile.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_rdbPhraseDetectionOnImportedFiles.AccessibleName" xml:space="preserve">
-    <value>Radio button Phrase detection on imported files.</value>
-  </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -731,9 +704,6 @@
   </data>
   <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="m_rdbSplitPhrasesOnImport.AccessibleName" xml:space="preserve">
-    <value>radio button to select phrases on import.</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -783,9 +753,9 @@
   <data name="&gt;&gt;m_grpSplitPhraseOrPhraseDetection.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
   </data>
