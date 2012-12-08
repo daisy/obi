@@ -2195,6 +2195,7 @@ namespace Obi
                 string exportDirectoryDAISY202 = "";
 
                 Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202();
+                chooseDialog.bothOptionEnabled = true;
                 if (chooseDialog.ShowDialog() == DialogResult.OK)
                 {
                     if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202)
