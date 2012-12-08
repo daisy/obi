@@ -5212,7 +5212,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gemerating speech....
+        ///   Looks up a localized string similar to Generating speech....
         /// </summary>
         internal static string SpeechGenerationProgress {
             get {
