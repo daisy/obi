@@ -1516,7 +1516,11 @@ namespace Obi.ProjectView
         /// </summary>
         public NodeSelection Selection
             {
-            get { return mSelection; }
+            get 
+            {
+                if (mSelection != null && mSelection.Node != null && !mSelection.Node.IsRooted) Selection= null;
+                return mSelection; 
+            }
             set
                 {
                     if (m_DisableSectionSelection && value != null )
