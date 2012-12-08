@@ -1210,7 +1210,7 @@
     <value>222, 22</value>
   </data>
   <data name="settingsFromSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save parameters from selected &amp;silence</value>
+    <value>Pick parameters from &amp;silence phrase</value>
   </data>
   <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
