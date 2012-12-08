@@ -48,7 +48,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool CanDecreaseLevel
         {
-            get { return IsSectionSelected && Commands.TOC.MoveSectionOut.CanMoveNode((SectionNode)mSelection.Node); }
+            get { return IsSectionSelected && Commands.TOC.MoveSectionOut.CanMoveNode((SectionNode)mSelection.Node) && !(Selection is TextSelection); }
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool CanIncreaseLevel
         {
-            get { return IsSectionSelected && Commands.TOC.MoveSectionIn.CanMoveNode((SectionNode)mSelection.Node); }
+            get { return IsSectionSelected && Commands.TOC.MoveSectionIn.CanMoveNode((SectionNode)mSelection.Node) && !(Selection is TextSelection); }
         }
 
         /// <summary>
