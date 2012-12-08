@@ -2066,6 +2066,10 @@ namespace Obi.ProjectView
                                     gap = sentenceDetection.Gap;
                                     leadingSilence = sentenceDetection.LeadingSilence;
                                 }
+                                else
+                                {
+                                    return;
+                                }
                             }
                             filesPathArray = dialog.FilesPaths;
                             Dialogs.ProgressDialog progress_AudioConverter = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileImport_ProcessingFiles"),
