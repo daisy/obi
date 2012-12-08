@@ -11,12 +11,26 @@ namespace Obi.Dialogs
     public partial class chooseDaisy3orDaisy202 : Form
     {
          private Obi.ImportExport.ExportFormat m_ExportFormat = new Obi.ImportExport.ExportFormat();
+        public bool IsBothOptionEnable;
         public chooseDaisy3orDaisy202()
         {
             InitializeComponent();
-            m_ExportFormat = Obi.ImportExport.ExportFormat.DAISY3_0;
+            m_ExportFormat = Obi.ImportExport.ExportFormat.DAISY3_0;            
         }
 
+        public bool bothOptionEnabled
+        {
+            get { return IsBothOptionEnable; }
+            set
+            {
+                IsBothOptionEnable = value;
+                if (IsBothOptionEnable)
+                    m_radBtnDaisy3_202.Enabled = true;
+                else
+                    m_radBtnDaisy3_202.Enabled = false;
+            }
+
+        }
         public Obi.ImportExport.ExportFormat chooseOption { get { return m_ExportFormat; } }       
 
         private void m_OKBtn_Click(object sender, EventArgs e)
