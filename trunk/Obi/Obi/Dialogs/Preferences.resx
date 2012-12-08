@@ -220,7 +220,7 @@
     <value>Flat</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 367</value>
+    <value>158, 387</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -253,7 +253,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>391, 367</value>
+    <value>391, 387</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -514,7 +514,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mProjectTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 311</value>
+    <value>616, 331</value>
   </data>
   <data name="mProjectTab.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1036,7 +1036,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mAudioTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 311</value>
+    <value>616, 331</value>
   </data>
   <data name="mAudioTab.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1447,7 +1447,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>624, 340</value>
+    <value>624, 360</value>
   </data>
   <data name="mTab.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2504,11 +2504,17 @@
   <data name="&gt;&gt;m_grpBoxChkBoxListView.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="m_ResetButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
   <data name="m_ResetButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_ResetButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>277, 367</value>
+    <value>277, 388</value>
+  </data>
+  <data name="m_ResetButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_ResetButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 31</value>
@@ -2538,7 +2544,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>656, 411</value>
+    <value>656, 431</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
