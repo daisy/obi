@@ -1920,8 +1920,35 @@ namespace Obi.ProjectView
         // Start recording a new page, set the right page number
         private void RecordingPage(Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
-            PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex + 1);
-            if (phrase.Role_ != EmptyNode.Role.Page )  phrase.PageNumber = mView.Presentation.PageNumberFollowing(phrase);           
+            
+                PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex + 1);
+                Console.WriteLine ("Page mark indexes: " + phrase.Index + " : " + mRecordingSection.PhraseChildCount ) ;
+                Dictionary<PhraseNode, PageNumber> phraseToPageNumberMap = new Dictionary<PhraseNode, PageNumber>();
+                phraseToPageNumberMap.Add(phrase, phrase.PageNumber);
+                // page role is automatically assigned by assigning page number 
+                phrase.PageNumber = mView.Presentation.PageNumberFollowing(phrase);
+                try
+                {
+                for (int i = phrase.Index+1 ; i < mRecordingSection.PhraseChildCount; i++)
+                {
+                    EmptyNode empty = mRecordingSection.PhraseChild(i);
+                    if (!(empty is PhraseNode) || ((PhraseNode)empty).Audio != null) break;
+                    phrase = (PhraseNode)empty;
+                    
+                    phraseToPageNumberMap.Add(phrase, phrase.PageNumber);
+                    
+                    PageNumber number = phraseToPageNumberMap[(PhraseNode)mRecordingSection.PhraseChild(i - 1)];
+                    if (number != null)
+                    {
+                        phrase.PageNumber = number;
+                    }
+                    else
+                    {
+                        phrase.Role_ = EmptyNode.Role.Plain;
+                    }
+                }
+            }
+            catch (System.Exception ex) { MessageBox.Show(ex.ToString()); }
         }
 
         // Get a node to record in. If we are resuming, this is the node to resume from;
