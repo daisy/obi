@@ -92,8 +92,6 @@ namespace Obi
         }
 
 
-        public double[] ArrayOfLoc {  get { return arrOfLocations; } }
-
         public List<double[]> DeletedItemList { get { return mDeletedTime; } }
         /// <summary>
         /// The audio recorder used by the recording session.
