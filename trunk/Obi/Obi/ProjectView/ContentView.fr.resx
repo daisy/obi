@@ -317,7 +317,10 @@
     <value>222, 22</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Réglages de phrase silence</value>
+    <value>Paramètres de phrase silence sélectionné</value>
+  </data>
+  <data name="Context_GenerateSpeechForPageMenuItem.Text" xml:space="preserve">
+    <value>générer de la parole</value>
   </data>
   <data name="Context_PhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
