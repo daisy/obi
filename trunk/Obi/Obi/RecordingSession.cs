@@ -93,6 +93,8 @@ namespace Obi
 
 
         public List<double[]> DeletedItemList { get { return mDeletedTime; } }
+        public int PhraseMarksCount { get { return mPhraseMarks != null ? mPhraseMarks.Count : 0; } }
+
         /// <summary>
         /// The audio recorder used by the recording session.
         /// </summary>
@@ -240,6 +242,7 @@ namespace Obi
             length = length - (length % 100);
             PhraseEventArgs e = new PhraseEventArgs(mSessionMedia, mSessionOffset + last, length, timeOfAssetMilliseconds);
             if (FinishingPhrase != null) FinishingPhrase(this, e);
+            
             return e;
         }
 

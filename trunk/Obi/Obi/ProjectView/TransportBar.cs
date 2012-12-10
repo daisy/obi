@@ -1922,17 +1922,19 @@ namespace Obi.ProjectView
         {
             
                 PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex + 1);
-                Console.WriteLine ("Page mark indexes: " + phrase.Index + " : " + mRecordingSection.PhraseChildCount ) ;
+                Console.WriteLine ("Page mark indexes: " + phrase.Index + " : " + mRecordingSection.PhraseChildCount + ", session phrase count  : " + (mRecordingInitPhraseIndex+mRecordingSession.PhraseMarksCount)) ;
                 Dictionary<PhraseNode, PageNumber> phraseToPageNumberMap = new Dictionary<PhraseNode, PageNumber>();
                 phraseToPageNumberMap.Add(phrase, phrase.PageNumber);
                 // page role is automatically assigned by assigning page number 
                 phrase.PageNumber = mView.Presentation.PageNumberFollowing(phrase);
                 try
                 {
-                for (int i = phrase.Index+1 ; i < mRecordingSection.PhraseChildCount; i++)
+                for (int i = phrase.Index+1 ; 
+                    i < mRecordingSection.PhraseChildCount && i<= mRecordingInitPhraseIndex + mRecordingSession.PhraseMarksCount; 
+                    i++)
                 {
                     EmptyNode empty = mRecordingSection.PhraseChild(i);
-                    if (!(empty is PhraseNode) || ((PhraseNode)empty).Audio != null) break;
+                    Console.WriteLine("iterating phrase " + i);
                     phrase = (PhraseNode)empty;
                     
                     phraseToPageNumberMap.Add(phrase, phrase.PageNumber);
