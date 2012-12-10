@@ -1925,6 +1925,8 @@ namespace Obi.ProjectView
                 Console.WriteLine ("Page mark indexes: " + phrase.Index + " : " + mRecordingSection.PhraseChildCount + ", session phrase count  : " + (mRecordingInitPhraseIndex+mRecordingSession.PhraseMarksCount)) ;
                 Dictionary<PhraseNode, PageNumber> phraseToPageNumberMap = new Dictionary<PhraseNode, PageNumber>();
                 phraseToPageNumberMap.Add(phrase, phrase.PageNumber);
+            // if the phrase is page, make it plain phrase before assigning new page number
+                if (phrase.Role_ == EmptyNode.Role.Page) phrase.Role_ = EmptyNode.Role.Plain;
                 // page role is automatically assigned by assigning page number 
                 phrase.PageNumber = mView.Presentation.PageNumberFollowing(phrase);
                 try
