@@ -528,7 +528,7 @@ namespace Obi.ProjectView
                 }
             }
 
-        public bool CanGenerateSpeechForPage { get { return Selection != null && Selection.Node is EmptyNode && ((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Page && ((EmptyNode)Selection.Node).Duration == 0; } }
+        public bool CanGenerateSpeechForPage { get { return mPresentation != null &&  Selection != null && Selection.Node is EmptyNode && ((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Page && ((EmptyNode)Selection.Node).Duration == 0; } }
         public bool CanGenerateSpeechForAllEmptyPages { get { return mPresentation != null; } }
 
         public bool CanPause { get { return mTransportBar.CanPause; } }
