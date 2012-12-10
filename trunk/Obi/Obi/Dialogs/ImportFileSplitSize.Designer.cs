@@ -73,16 +73,16 @@ namespace Obi.Dialogs
             // 
             // mOKButton
             // 
-            resources.ApplyResources(this.mOKButton, "mOKButton");
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            resources.ApplyResources(this.mOKButton, "mOKButton");
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.UseVisualStyleBackColor = true;
             this.mOKButton.Click += new System.EventHandler(this.mOKButton_Click);
             // 
             // mCancelButton
             // 
-            resources.ApplyResources(this.mCancelButton, "mCancelButton");
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.mCancelButton, "mCancelButton");
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
