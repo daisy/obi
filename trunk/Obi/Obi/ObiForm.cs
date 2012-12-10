@@ -1965,6 +1965,7 @@ namespace Obi
                 navigationToolStripMenuItem.Enabled = mSession.HasProject;
                 allEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForAllEmptyPages;
                 selectedPageToolStripMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
+                mGenerateSpeechToolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mFastPlaytoolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mRecordToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.TransportBar.CanRecord;
                 mStartRecordingDirectlyToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
