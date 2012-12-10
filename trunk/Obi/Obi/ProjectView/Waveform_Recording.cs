@@ -1178,7 +1178,7 @@ namespace Obi.ProjectView
         {
             Brush brushSel = null;
             Pen linePen = new Pen(Color.Black);
-
+            linePen.Width = 2;
             if (isSelected)
                 brushSel = SystemBrushes.ControlDarkDark;
             else
