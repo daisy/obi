@@ -1518,7 +1518,7 @@ namespace Obi.ProjectView
             {
             get 
             {
-                if (mSelection != null && mSelection.Node != null && !mSelection.Node.IsRooted) Selection= null;
+                
                 return mSelection; 
             }
             set
