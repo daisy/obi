@@ -317,7 +317,7 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
             {
                 ChangedRoleEventArgs args = new ChangedRoleEventArgs(this, mRole, mCustomRole);
                 if (mRole == EmptyNode.Role.Heading && this.IsRooted) AncestorAs<SectionNode> ().UnsetHeading ( this as PhraseNode ); //@singleSection: allow clearing of heading role without a parent
-
+                if (mRole == Role.Anchor && mRole != Role.Anchor) m_AssociatedNode = null;
                 mRole = role;
                 mCustomRole = customRole;
                 if (role != Role.Page) mPageNumber = null;

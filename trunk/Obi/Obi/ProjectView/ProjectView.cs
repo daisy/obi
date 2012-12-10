@@ -4252,7 +4252,7 @@ for (int j = 0;
                         Commands.Node.AssignRole ClearRoleCmd = new Commands.Node.AssignRole(this, anchor, EmptyNode.Role.Plain);
                         command.ChildCommands.Insert(command.ChildCommands.Count, ClearRoleCmd);
                     }
-                    anchor.AssociatedNode = null;
+                    //anchor.AssociatedNode = null;
                     if (firstNode != null)
                     {                        
                         command.ShortDescription = "Remove skippable role from the chunk";
