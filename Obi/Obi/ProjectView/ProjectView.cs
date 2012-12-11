@@ -2047,19 +2047,19 @@ namespace Obi.ProjectView
 
                 if (filesPathArray != null)
                     {
-                        long threshold = (long) Audio.PhraseDetection.DEFAULT_THRESHOLD;
-                      double gap = Audio.PhraseDetection.DEFAULT_GAP;
-                        double leadingSilence = Audio.PhraseDetection.DEFAULT_LEADING_SILENCE;
+                        long threshold = (long) ObiForm.Settings.DefaultThreshold;
+                      double gap = (double) ObiForm.Settings.DefaultGap;
+                        double leadingSilence = (double) ObiForm.Settings.DefaultLeadingSilence;
 
                     Dialogs.ImportFileSplitSize dialog =
                         new Dialogs.ImportFileSplitSize ( ObiForm.Settings , filesPathArray);
                     
                     if (dialog.ShowDialog () == DialogResult.OK)
                         {
-
+                            
                             if (dialog.ApplyPhraseDetection)
                             {
-                                Dialogs.SentenceDetection sentenceDetection = new Obi.Dialogs.SentenceDetection(null);
+                                Dialogs.SentenceDetection sentenceDetection = new Obi.Dialogs.SentenceDetection(threshold,gap,leadingSilence);
                                 if (sentenceDetection.ShowDialog() == DialogResult.OK)
                                 {
                                     threshold = sentenceDetection.Threshold;

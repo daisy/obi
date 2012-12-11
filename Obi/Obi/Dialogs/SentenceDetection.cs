@@ -32,13 +32,14 @@ namespace Obi.Dialogs
             InitializeComponent();
         }
 
+        
         /// <summary>
         /// Instantiate the dialog.
         /// </summary>
         /// <param name="silence">The silence phrase.</param>
-        public SentenceDetection(PhraseNode silence)
+        public SentenceDetection(PhraseNode silence):this    ()
         {
-            InitializeComponent();
+            
             if (silence != null)
             {
                 double threshold = Audio.PhraseDetection.GetSilenceAmplitude(silence.Audio);
@@ -59,7 +60,14 @@ namespace Obi.Dialogs
             mLeadingNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_LEADING_SILENCE);
         }
 
-
+        public SentenceDetection(long threshold, double gap, double leadingSilence ):this    ()
+        {
+            double thres = Convert.ToDouble (threshold);
+            mThresholdNumericBox.Value = Convert.ToDecimal( thres);
+            
+            mGapNumericBox.Value = Convert.ToDecimal( gap);
+            mLeadingNumericBox.Value = Convert.ToDecimal( leadingSilence);
+        }
         private void mGapNumericBox_ValueChanged ( object sender, EventArgs e )
             {
             CheckLeadingSilenceInput ();
