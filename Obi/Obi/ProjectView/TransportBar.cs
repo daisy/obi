@@ -1929,30 +1929,31 @@ namespace Obi.ProjectView
                 if (phrase.Role_ == EmptyNode.Role.Page) phrase.Role_ = EmptyNode.Role.Plain;
                 // page role is automatically assigned by assigning page number 
                 phrase.PageNumber = mView.Presentation.PageNumberFollowing(phrase);
-                try
-                {
+                
                 for (int i = phrase.Index+1 ; 
                     i < mRecordingSection.PhraseChildCount && i<= mRecordingInitPhraseIndex + mRecordingSession.PhraseMarksCount; 
                     i++)
                 {
                     EmptyNode empty = mRecordingSection.PhraseChild(i);
-                    Console.WriteLine("iterating phrase " + i);
+                    //Console.WriteLine("iterating phrase " + i);
                     phrase = (PhraseNode)empty;
                     
                     phraseToPageNumberMap.Add(phrase, phrase.PageNumber);
-                    
-                    PageNumber number = phraseToPageNumberMap[(PhraseNode)mRecordingSection.PhraseChild(i - 1)];
-                    if (number != null)
+
+                    if (phraseToPageNumberMap.ContainsKey((PhraseNode)mRecordingSection.PhraseChild(i - 1)))
                     {
-                        phrase.PageNumber = number;
-                    }
-                    else
-                    {
-                        phrase.Role_ = EmptyNode.Role.Plain;
-                    }
+                        PageNumber number = phraseToPageNumberMap[(PhraseNode)mRecordingSection.PhraseChild(i - 1)];
+                        if (number != null)
+                        {
+                            phrase.PageNumber = number;
+                        }
+                        else
+                        {
+                            phrase.Role_ = EmptyNode.Role.Plain;
+                        }
+                    }//key contains check ends
                 }
-            }
-            catch (System.Exception ex) { MessageBox.Show(ex.ToString()); }
+            
         }
 
         // Get a node to record in. If we are resuming, this is the node to resume from;
