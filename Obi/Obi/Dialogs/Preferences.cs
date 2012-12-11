@@ -764,6 +764,7 @@ namespace Obi.Dialogs
                 mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[3].Checked;
                 mSettings.OptimizeMemory = m_CheckBoxListView.Items[4].Checked;
                 mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = m_CheckBoxListView.Items[5].Checked;
+                mSettings.Project_EnableFreeDiskSpaceCheck= m_CheckBoxListView.Items[6].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -833,12 +834,14 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_FixContentViewWidth"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_OptimizeMemory"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_DeleteUnusedFilesAfterCleanUp"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_EnableFreeDiskSpaceCheck"));
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
                 m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
                 m_CheckBoxListView.Items[2].Checked = mSettings.OpenBookmarkNodeOnReopeningProject;
                 m_CheckBoxListView.Items[3].Checked = mSettings.LeftAlignPhrasesInContentView;
                 m_CheckBoxListView.Items[4].Checked = mSettings.OptimizeMemory;
                 m_CheckBoxListView.Items[5].Checked = mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
+                m_CheckBoxListView.Items[6].Checked = mSettings.Project_EnableFreeDiskSpaceCheck;
             }
             m_CheckBoxListView.View = View.Details;
             m_IsComplete = true;
@@ -884,6 +887,8 @@ namespace Obi.Dialogs
                 mSettings.OptimizeMemory = m_DefaultSettings.OptimizeMemory;
                 mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup =
                     m_DefaultSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
+                mSettings.Project_EnableFreeDiskSpaceCheck=
+                    m_DefaultSettings.Project_EnableFreeDiskSpaceCheck;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab

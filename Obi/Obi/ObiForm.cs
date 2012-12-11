@@ -4430,7 +4430,14 @@ namespace Obi
 
             public long CheckDiskSpace()
             {
-                if (mSession != null) return mSession.CheckDiskSpace();
+                if (mSession != null && mSettings.Project_EnableFreeDiskSpaceCheck)
+                {
+                    
+                        long space = mSession.CheckDiskSpace();
+                        if ( space == long.MaxValue) mSettings.Project_EnableFreeDiskSpaceCheck = false ;
+                        return space;
+                    
+                }
 
                 return long.MaxValue;
             }

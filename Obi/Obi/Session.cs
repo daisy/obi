@@ -581,14 +581,20 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         {
             string rootDir = System.IO.Path.GetPathRoot(mPath);
             long freeSpace = 0;
-
+            if ( !string.IsNullOrEmpty(rootDir ))
+            {//1
             DriveInfo driveSpace = new DriveInfo(rootDir);
             if (driveSpace.IsReady)
-            {
+            {//2
                 const int num = 1048576;// 1024*1024
                 freeSpace = driveSpace.AvailableFreeSpace / num;
-            }
+            }//-2
             return freeSpace;
+        }//-1
+            else
+    {
+        return long.MaxValue ;
+    }
         }
     }
 

@@ -4300,6 +4300,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable free disk space check.
+        /// </summary>
+        internal static string ProjectTab_EnableFreeDiskSpaceCheck {
+            get {
+                return ResourceManager.GetString("ProjectTab_EnableFreeDiskSpaceCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fix content view width.
         /// </summary>
         internal static string ProjectTab_FixContentViewWidth {
