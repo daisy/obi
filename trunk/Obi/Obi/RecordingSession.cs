@@ -342,7 +342,7 @@ namespace Obi
                 eArg = new PhraseEventArgs(mSessionMedia, mSessionOffset + phraseIndex, length, time);
                if (FinishingPage != null) FinishingPage(this, eArg);
             }
-            Console.WriteLine("Last index:" + last + "    phrase index:" + phraseIndex);
+            //Console.WriteLine("Last index:" + last + "    phrase index:" + phraseIndex);
             return phraseIndex;
         }
         
@@ -382,7 +382,7 @@ namespace Obi
                     long threshold = (long)m_Settings.DefaultThreshold;
                     long GapLength = (long)m_Settings.DefaultGap;
                     long before = (long)m_Settings.DefaultLeadingSilence;
-                    Console.WriteLine("on the fly ph detection parameters " + threshold + " : " + GapLength);
+                    //Console.WriteLine("on the fly ph detection parameters " + threshold + " : " + GapLength);
                     AudioLib.AudioLibPCMFormat audioPCMFormat = new AudioLib.AudioLibPCMFormat(mRecorder.RecordingPCMFormat.NumberOfChannels, mRecorder.RecordingPCMFormat.SampleRate, mRecorder.RecordingPCMFormat.BitDepth);
                     List<long> timingList = AudioLib.PhraseDetection.Apply(new System.IO.MemoryStream(m_MemStreamArray),
                         audioPCMFormat,
@@ -391,17 +391,17 @@ namespace Obi
                         (long)before * AudioLib.AudioLibPCMFormat.TIME_UNIT);
                     if (timingList != null)
                     {//3
-                        Console.WriteLine("timingList " + timingList.Count);
+                        //Console.WriteLine("timingList " + timingList.Count);
                         double overlapTime = mRecorder.RecordingPCMFormat.ConvertBytesToTime(overlapLength);
                         //System.Media.SystemSounds.Asterisk.Play();
                         foreach (double d in timingList)
                         {//4
-                            Console.WriteLine("Overlap time and list time " + (overlapTime / AudioLibPCMFormat.TIME_UNIT) + " : " + (d / AudioLibPCMFormat.TIME_UNIT));
+                            //Console.WriteLine("Overlap time and list time " + (overlapTime / AudioLibPCMFormat.TIME_UNIT) + " : " + (d / AudioLibPCMFormat.TIME_UNIT));
                             if (d >= overlapTime )
                             {//5
                                 double phraseTime = d - overlapTime;
                                 double timeInSession = (mRecorder.RecordingPCMFormat.ConvertBytesToTime(m_PhDetectorBytesRecorded - msLentth) + d) / AudioLib.AudioLibPCMFormat.TIME_UNIT;
-                                Console.WriteLine("phrase time: " + phraseTime + " : " + timeInSession);
+                                //Console.WriteLine("phrase time: " + phraseTime + " : " + timeInSession);
                                 //@event: if (PhraseCreatedEvent != null) PhraseCreatedEvent(this, new Audio.PhraseDetectedEventArgs(timeInSession));
 
                                 m_PhraseMarksOnTheFly.Add(timeInSession);
@@ -419,7 +419,7 @@ namespace Obi
                     }//-3
                     else
                     {//3
-                        Console.WriteLine("timing list is null ");
+                        //Console.WriteLine("timing list is null ");
                     }//-3
                     
                 }//-2
@@ -447,7 +447,7 @@ namespace Obi
                 
                 //m_PhDetectionMemoryStream.Write(e.PcmDataBuffer, (int)m_PhDetectionMemStreamPosition, e.PcmDataBuffer.Length);
                 //m_PhDetectionMemStreamPosition = m_PhDetectionMemoryStream.Position;
-                Console.WriteLine("first writing of recorder buffer " + m_PhDetectionMemStreamPosition);
+                //Console.WriteLine("first writing of recorder buffer " + m_PhDetectionMemStreamPosition);
             }//-1
             else if (m_MemStreamArray != null && e.PcmDataBuffer != null)
             {//1
