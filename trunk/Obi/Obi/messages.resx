@@ -2244,4 +2244,7 @@ Error text: {1}</value>
   <data name="AudioPref_LivePhraseDetectionEnable" xml:space="preserve">
     <value>Following values will be used for live phrase detection; Threshold:{0} ,Gap btw Phrases:{1} ,Leading Silence{2}. These settings can be modified from operations combobox of audio preferences or can be extracted from a silence phrase.</value>
   </data>
+  <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
+    <value>Enable free disk space check</value>
+  </data>
 </root>
