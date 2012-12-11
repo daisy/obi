@@ -50,7 +50,7 @@ namespace Obi.ProjectView
             this.addSectionToolStripMenuItem,
             this.phraseIsTODOToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 114);
             this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
             // 
             // markPageToolStripMenuItem
@@ -79,6 +79,7 @@ namespace Obi.ProjectView
             this.phraseIsTODOToolStripMenuItem.Name = "phraseIsTODOToolStripMenuItem";
             this.phraseIsTODOToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.phraseIsTODOToolStripMenuItem.Text = "Phrase is TODO";
+            this.phraseIsTODOToolStripMenuItem.Visible = false;
             this.phraseIsTODOToolStripMenuItem.Click += new System.EventHandler(this.phraseIsTODOToolStripMenuItem_Click);
             // 
             // Waveform_Recording
