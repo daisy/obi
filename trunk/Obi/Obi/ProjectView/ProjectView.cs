@@ -2405,7 +2405,7 @@ for (int j = 0;
         }
 
         public bool CanImportPhrases { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
-        public bool CanExportSelectedNodeAudio { get { return Selection != null && (Selection.Node is PhraseNode || (Selection.Node is SectionNode && !(Selection is StripIndexSelection))) && !TransportBar.IsRecorderActive; } }
+        public bool CanExportSelectedNodeAudio { get { return Selection != null && (Selection.Node is PhraseNode || (Selection.Node is SectionNode && !(Selection is StripIndexSelection))) && !(Selection is AudioSelection)  && !TransportBar.IsRecorderActive; } }
 
         /// <summary>
         /// Bring up the file chooser to select audio files to import and return new phrase nodes for the selected files,
