@@ -2247,4 +2247,7 @@ Error text: {1}</value>
   <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
     <value>Enable free disk space check</value>
   </data>
+  <data name="Audio_EnablePostRecordingPageRenumbering" xml:space="preserve">
+    <value>Renumber the following pages when recording ends</value>
+  </data>
 </root>

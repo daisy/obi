@@ -82,7 +82,8 @@ namespace Obi
         public decimal DefaultLeadingSilence;
         public decimal DefaultThreshold;
         public double RecordingToolBarIncrementVal;
-        public bool Project_EnableFreeDiskSpaceCheck;
+        public bool Project_EnableFreeDiskSpaceCheck; // enables free disk space check
+        public bool Audio_EnablePostRecordingPageRenumbering; //ask for renumber following pages as recording is stopped
        
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -154,6 +155,7 @@ namespace Obi
             settings.DefaultThreshold = 280;
             settings.RecordingToolBarIncrementVal = 0;
             settings.Project_EnableFreeDiskSpaceCheck = true;
+            settings.Audio_EnablePostRecordingPageRenumbering = true;
         }
 
         /// <summary>

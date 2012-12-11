@@ -2857,7 +2857,7 @@ UpdateButtons();
             {
                 mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly));
             }
-            if (m_EnablePostRecordingPageRenumbering &&  firstRecordedPage != null
+            if (mView.ObiForm.Settings.Audio_EnablePostRecordingPageRenumbering &&  m_EnablePostRecordingPageRenumbering &&  firstRecordedPage != null
                 && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPage, firstRecordedPage.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", "")));

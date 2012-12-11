@@ -250,6 +250,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Renumber the following pages when recording ends.
+        /// </summary>
+        internal static string Audio_EnablePostRecordingPageRenumbering {
+            get {
+                return ResourceManager.GetString("Audio_EnablePostRecordingPageRenumbering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to WAVE file (*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*.
         /// </summary>
         internal static string audio_file_filter {
