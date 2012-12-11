@@ -2224,7 +2224,7 @@ namespace Obi.ProjectView
             }
             return false;
         }
-
+        private bool m_EnablePostRecordingPageRenumbering = true;
         /// <summary>
         /// Move to the next section (i.e. the first phrase of the next section)
         /// </summary>
@@ -2241,7 +2241,9 @@ namespace Obi.ProjectView
 
                     if (mRecordingPhrase != null && mRecordingSession != null
                         && timeOfAssetMilliseconds < 250) return false;
+                    m_EnablePostRecordingPageRenumbering = false;
                     PauseRecording();
+                    m_EnablePostRecordingPageRenumbering = true;
                     mResumeRecordingPhrase = null;
 
                     if (mRecordingSection.FollowingSection != null && mRecordingSection.FollowingSection.Duration == 0)
@@ -2855,7 +2857,7 @@ UpdateButtons();
             {
                 mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly));
             }
-            if (firstRecordedPage != null
+            if (m_EnablePostRecordingPageRenumbering &&  firstRecordedPage != null
                 && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPage, firstRecordedPage.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", "")));
