@@ -2890,7 +2890,8 @@ UpdateButtons();
                     if (newTimingList[j] < referenceTimeForPhrase) break;
                     //Commands.Node.SplitAudio split = new Commands.Node.SplitAudio(mView, phrase, newTimingList[j]);
                     double splitTimeInPhrase = newTimingList[j] - referenceTimeForPhrase;
-                    if ( splitTimeInPhrase <= 0 || splitTimeInPhrase>= phrase.Duration ) continue ;
+                    //avoid invalid time and also too small phrases, less than 200ms
+                    if ( splitTimeInPhrase <= 0 || splitTimeInPhrase>= (phrase.Duration - 200) ) continue ;
                     CompositeCommand split = Commands.Node.SplitAudio.GetSplitCommand(mView, phrase,splitTimeInPhrase );
                     multipleSplitCommand.ChildCommands.Insert(multipleSplitCommand.ChildCommands.Count, split);
                     newTimingList.RemoveAt(j);
