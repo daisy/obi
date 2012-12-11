@@ -313,7 +313,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Following values will be used for live phrase detection; Threshold:{0} ,Gap btw Phrases:{1} ,Leading Silence{2}. These settings can be modified from operations combobox of audio preferences or can be extracted from a silence phrase..
+        ///   Looks up a localized string similar to Following values will be used for live phrase detection; Threshold: {0} ,Gap btw Phrases: {1} ,Leading Silence: {2}. These settings can be modified from operations combobox of audio preferences or can be extracted from a silence phrase..
         /// </summary>
         internal static string AudioPref_LivePhraseDetectionEnable {
             get {
