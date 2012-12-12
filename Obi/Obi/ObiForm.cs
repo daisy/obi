@@ -2171,6 +2171,7 @@ namespace Obi
                 Ready();
                 mProjectView.TransportBar.UpdateButtons();
                 if (isLeftAlignPhrasesInContentView != mSettings.LeftAlignPhrasesInContentView) UpdateZoomFactor();
+                mSession.EnableFreeDiskSpaceCheck = mSettings.Project_EnableFreeDiskSpaceCheck;
             }
 
             private void mTools_ExportAsDAISYMenuItem_Click(object sender, EventArgs e)
@@ -2678,7 +2679,7 @@ namespace Obi
                     mBaseFontSize = mStatusLabel.Font.SizeInPoints;
                     InitializeColorSettings();
                     InitializeAutoSaveTimer();
-
+                    if (!mSettings.Project_EnableFreeDiskSpaceCheck) mSession.EnableFreeDiskSpaceCheck = mSettings.Project_EnableFreeDiskSpaceCheck;
                     if (Directory.Exists(mSettings.PipelineScriptsPath))
                     {
                         mPipelineInfo = new PipelineInterface.PipelineInfo(mSettings.PipelineScriptsPath);
@@ -4430,11 +4431,15 @@ namespace Obi
 
             public long CheckDiskSpace()
             {
-                if (mSession != null && mSettings.Project_EnableFreeDiskSpaceCheck)
+                if (mSession != null && mSession.HasProject && mSettings.Project_EnableFreeDiskSpaceCheck)
                 {
                     
                         long space = mSession.CheckDiskSpace();
-                        if ( space == long.MaxValue) mSettings.Project_EnableFreeDiskSpaceCheck = false ;
+                        if (space == long.MaxValue)
+                        {
+                            mSettings.Project_EnableFreeDiskSpaceCheck = false;
+                            mSession.EnableFreeDiskSpaceCheck = false;
+                        }
                         return space;
                     
                 }
