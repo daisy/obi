@@ -42,8 +42,8 @@ namespace Obi.Dialogs
             this.m_checkBoxAddSectionNameToAudioFileName = new System.Windows.Forms.CheckBox();
             this.m_grpBoxMP3Encoding = new System.Windows.Forms.GroupBox();
             this.m_grpBoxSectionNameOperation = new System.Windows.Forms.GroupBox();
-            this.m_numericUpDownFilenameLengthLimit = new System.Windows.Forms.NumericUpDown();
             this.m_chkBoxFilenameLengthLimit = new System.Windows.Forms.CheckBox();
+            this.m_numericUpDownFilenameLengthLimit = new System.Windows.Forms.NumericUpDown();
             this.m_grpBoxMP3Encoding.SuspendLayout();
             this.m_grpBoxSectionNameOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownFilenameLengthLimit)).BeginInit();
@@ -123,6 +123,7 @@ namespace Obi.Dialogs
             // 
             // m_checkBoxAddSectionNameToAudioFileName
             // 
+            this.m_checkBoxAddSectionNameToAudioFileName.AccessibleDescription = global::Obi.messages.phrase_extra_Plain;
             resources.ApplyResources(this.m_checkBoxAddSectionNameToAudioFileName, "m_checkBoxAddSectionNameToAudioFileName");
             this.m_checkBoxAddSectionNameToAudioFileName.Name = "m_checkBoxAddSectionNameToAudioFileName";
             this.m_checkBoxAddSectionNameToAudioFileName.UseVisualStyleBackColor = true;
@@ -146,17 +147,19 @@ namespace Obi.Dialogs
             this.m_grpBoxSectionNameOperation.Name = "m_grpBoxSectionNameOperation";
             this.m_grpBoxSectionNameOperation.TabStop = false;
             // 
-            // m_numericUpDownFilenameLengthLimit
-            // 
-            resources.ApplyResources(this.m_numericUpDownFilenameLengthLimit, "m_numericUpDownFilenameLengthLimit");
-            this.m_numericUpDownFilenameLengthLimit.Name = "m_numericUpDownFilenameLengthLimit";
-            // 
             // m_chkBoxFilenameLengthLimit
             // 
+            this.m_chkBoxFilenameLengthLimit.AccessibleDescription = global::Obi.messages.phrase_extra_Plain;
             resources.ApplyResources(this.m_chkBoxFilenameLengthLimit, "m_chkBoxFilenameLengthLimit");
             this.m_chkBoxFilenameLengthLimit.Name = "m_chkBoxFilenameLengthLimit";
             this.m_chkBoxFilenameLengthLimit.UseVisualStyleBackColor = true;
             this.m_chkBoxFilenameLengthLimit.CheckedChanged += new System.EventHandler(this.m_chkBoxFilenameLengthLimit_CheckedChanged);
+            // 
+            // m_numericUpDownFilenameLengthLimit
+            // 
+            this.m_numericUpDownFilenameLengthLimit.AccessibleDescription = global::Obi.messages.phrase_extra_Plain;
+            resources.ApplyResources(this.m_numericUpDownFilenameLengthLimit, "m_numericUpDownFilenameLengthLimit");
+            this.m_numericUpDownFilenameLengthLimit.Name = "m_numericUpDownFilenameLengthLimit";
             // 
             // ExportDirectory
             // 
