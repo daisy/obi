@@ -2147,6 +2147,8 @@ namespace Obi.ProjectView
                             if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count <= MaxVisibleBlocksCount)) // @phraseLimit
                                 {
                                 this.ObiForm.Cursor = Cursors.WaitCursor;
+                                bool selectionChangePlaybackEnabled = TransportBar.SelectionChangedPlaybackEnabled;
+                                TransportBar.SelectionChangedPlaybackEnabled = false;
                                 try
                                 {
                                     if (createSectionForEachPhrase)
@@ -2170,6 +2172,7 @@ namespace Obi.ProjectView
                                     {
                                         ApplyPhraseDetectionOnPhraseList(phraseNodes, threshold, gap, leadingSilence);
                                     }
+                                    TransportBar.SelectionChangedPlaybackEnabled = selectionChangePlaybackEnabled;
                                 // hide new phrases if section's contents are hidden
                                 //HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );//@singleSection: original
                                 mContentView.CreateBlocksInStrip (); //@singleSection: new
@@ -2187,6 +2190,7 @@ namespace Obi.ProjectView
 
         private void ApplyPhraseDetectionOnPhraseList(List<PhraseNode> phraseNodes, long threshold, double gap, double before)
         {
+
             urakawa.command.CompositeCommand phraseDetectionCommand = null;
             try
             {
@@ -2200,7 +2204,7 @@ namespace Obi.ProjectView
 
             progress.ShowDialog();
             if (progress.Exception != null) throw (progress.Exception);
-            
+
             
                 if (phraseDetectionCommand != null )  mPresentation.Do(phraseDetectionCommand);
             }
@@ -2208,6 +2212,7 @@ namespace Obi.ProjectView
             {
                 MessageBox.Show(ex.ToString());
             }
+            
         }
 
         // Create a command to import phrases
