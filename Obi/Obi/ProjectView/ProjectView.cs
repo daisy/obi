@@ -4480,7 +4480,7 @@ for (int j = 0;
                         CompositeCommand updateAudioCommand = mPresentation.CreateCompositeCommand("Update audio for phrases");
                         if (originalPhrases.Count == 1)
                         {
-                            PhraseNode phrase = (PhraseNode) originalPhrases[0] ;
+                            PhraseNode phrase = (PhraseNode)originalPhrases[0];
                             //((PhraseNode)originalPhrases[0]).Audio = media;
                             updateAudioCommand.ChildCommands.Insert(updateAudioCommand.ChildCommands.Count,
                                         new Commands.Node.UpdateAudioMedia(this, phrase, media, false));
@@ -4499,22 +4499,23 @@ for (int j = 0;
                             }// split loop ends
                             mediaDataList.Insert(0, media);
                             int mediaIndex = 0;
-                            
+
                             for (int i = 0; i < originalPhrases.Count; i++)
                             {
                                 if (originalPhrases[i] is PhraseNode)
                                 {
                                     PhraseNode phrase = (PhraseNode)originalPhrases[i];
                                     //if (phrase.Duration != mediaDataList[mediaIndex].Duration.AsTimeSpan.TotalMilliseconds) 
-                                        //MessageBox.Show(i.ToString () + "Error in timings: " + phrase.Duration.ToString() + ":" + mediaDataList[mediaIndex].Duration.AsTimeSpan.TotalMilliseconds.ToString());
+                                    //MessageBox.Show(i.ToString () + "Error in timings: " + phrase.Duration.ToString() + ":" + mediaDataList[mediaIndex].Duration.AsTimeSpan.TotalMilliseconds.ToString());
                                     //phrase.Audio = mediaDataList[mediaIndex];
                                     updateAudioCommand.ChildCommands.Insert(updateAudioCommand.ChildCommands.Count,
                                         new Commands.Node.UpdateAudioMedia(this, phrase, mediaDataList[mediaIndex], false));
                                     mediaIndex++;
                                 }
                             }// update audio for loop
-                            mPresentation.Do(updateAudioCommand);
                         }
+                            if(updateAudioCommand.ChildCommands.Count > 0 )  mPresentation.Do(updateAudioCommand);
+                        
                     }
                 }//try
                 catch (System.Exception ex)
