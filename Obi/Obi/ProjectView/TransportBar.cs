@@ -1436,8 +1436,9 @@ namespace Obi.ProjectView
             mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
             EmptyNode phraseNextToResumePhrase = null;
             if (mResumeRecordingPhrase.FollowingNode != null && mResumeRecordingPhrase.FollowingNode is EmptyNode) phraseNextToResumePhrase = (EmptyNode) mResumeRecordingPhrase.FollowingNode;
-            
 
+            bool playbackEnabledOnSelectionChange = SelectionChangedPlaybackEnabled;
+            SelectionChangedPlaybackEnabled = false;
             try
             {
                 int phraseChildCount = mRecordingSection.PhraseChildCount;
@@ -1457,6 +1458,8 @@ namespace Obi.ProjectView
                 MessageBox.Show(ex.ToString());
             }
             if (!wasMonitoring && mResumeRecordingPhrase != null) mView.SelectFromTransportBar(mResumeRecordingPhrase, null);
+            SelectionChangedPlaybackEnabled = playbackEnabledOnSelectionChange;
+            
             mRecordingSession = null;
             UpdateTimeDisplay();
 
@@ -2807,7 +2810,8 @@ namespace Obi.ProjectView
                     }
                 
 UpdateButtons();
-                
+bool playbackEnabledOnSelectionChange = SelectionChangedPlaybackEnabled;
+SelectionChangedPlaybackEnabled = false;
                 try
                 {
                     AdditionalPostRecordingOperations(firstRecordedPage, listOfRecordedPhrases);
@@ -2817,6 +2821,7 @@ UpdateButtons();
                     mView.WriteToLogFile(ex.ToString());
                     MessageBox.Show(ex.ToString());
                 }
+                SelectionChangedPlaybackEnabled = playbackEnabledOnSelectionChange;
                 mRecordingSession = null;
                 mResumeRecordingPhrase = null;
 
@@ -2856,11 +2861,13 @@ UpdateButtons();
             // make sure that recordingsession is not null before calling this function
             if (mRecordingSession.PhraseMarksOnTheFly.Count > 0)
             {
+                if (IsPlaying) Pause();
                 mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly));
             }
             if (mView.ObiForm.Settings.Audio_EnablePostRecordingPageRenumbering &&  m_EnablePostRecordingPageRenumbering &&  firstRecordedPage != null
                 && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                if (IsPlaying) Pause();
                 mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPage, firstRecordedPage.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", "")));
             }
         }
