@@ -1252,8 +1252,17 @@ namespace Obi
 
             private void CheckSystemSupportForMemoryOptimization()
             {
+                if (!mSettings.OptimizeMemory) return;
+                //System.Diagnostics.Stopwatch stopWatch = new Stopwatch();
+                //stopWatch.Start();
                 try
                 {
+                    if (!System.Diagnostics.PerformanceCounterCategory.CounterExists("Available MBytes", "Memory"))
+                    {
+                        
+                        mSettings.OptimizeMemory = false;
+                        return;
+                    }
                     System.Diagnostics.PerformanceCounter ramPerformanceCounter =
                         new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
                     ramPerformanceCounter.NextValue();
@@ -1261,10 +1270,12 @@ namespace Obi
                     System.GC.GetTotalMemory(true);
                 }
                 catch (System.Exception)
-                {
-                    Settings.OptimizeMemory = false;
+                {   
+                    mSettings.OptimizeMemory = false;
 
                 }
+                //stopWatch.Stop();
+                //Console.WriteLine("stop watch performance counter: " + stopWatch.ElapsedMilliseconds);
             }
 
 
@@ -2692,6 +2703,7 @@ namespace Obi
                                                           mSettings.PipelineScriptsPath));
                     }
                     Ready();
+                    //CheckSystemSupportForMemoryOptimization();
                 }
                 catch (Exception e)
                 {
@@ -3882,7 +3894,7 @@ namespace Obi
             /// <returns></returns>
             private bool CheckAndAlertForMemoryUsage()
             {
-                if (Settings != null && !Settings.OptimizeMemory) return true;
+                if (Settings == null || !Settings.OptimizeMemory) return true;
                 System.Diagnostics.PerformanceCounter ramPerformanceCounter =
                     new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
                 if (ramPerformanceCounter.NextValue() < 100)
