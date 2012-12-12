@@ -438,11 +438,8 @@
   <data name="&gt;&gt;m_ComboBoxBitrate.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_checkBoxAddSectionNameToAudioFileName.AccessibleDescription" xml:space="preserve">
-    <value />
-  </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.AccessibleName" xml:space="preserve">
-    <value>Append SectionName to audio file name checkbox</value>
+    <value>Append SectionName to audio file name </value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -492,11 +489,8 @@
   <data name="&gt;&gt;m_grpBoxMP3Encoding.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_chkBoxFilenameLengthLimit.AccessibleDescription" xml:space="preserve">
-    <value />
-  </data>
   <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>Filename Length Limit CheckBox</value>
+    <value>Filename Length Limit</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -527,9 +521,6 @@
   </data>
   <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="m_numericUpDownFilenameLengthLimit.AccessibleDescription" xml:space="preserve">
-    <value />
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Numeric Up Down File name Length Limit</value>
