@@ -266,6 +266,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             //if (ProjectCreated != null) ProjectCreated ( this, null );
 
             SetupBackupFilesForNewSession(path);
+            ShouldDisableDiskSpaceCheck();
             Save(mPath);
             //ForceSave ();
         }
@@ -317,6 +318,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
                 Dialogs.ReportDialog reportDialog = new Obi.Dialogs.ReportDialog(Localizer.Message("Warning"), Localizer.Message("Error_Message"), listOfErrorMessages);
                 reportDialog.ShowDialog();
             }
+            ShouldDisableDiskSpaceCheck();
         }
 
         void OnDataIsMissing(object sender, urakawa.events.media.data.DataIsMissingEventArgs e)
@@ -577,9 +579,36 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             if (ProjectCreated != null) ProjectCreated(this, null);
         }
 
+        private bool m_EnableDiskSpaceCheck = true;
+        public bool EnableFreeDiskSpaceCheck
+        {
+            get { return m_EnableDiskSpaceCheck; }
+            set
+            {
+                m_EnableDiskSpaceCheck = value;
+                ShouldDisableDiskSpaceCheck();
+            }
+        }
+
+        private void ShouldDisableDiskSpaceCheck()
+        {
+            if ( !m_EnableDiskSpaceCheck) return ;
+            try
+            {
+                CheckDiskSpace();
+            }
+            catch ( System.Exception)
+            {
+                m_EnableDiskSpaceCheck = false ;
+                
+            }
+        }
+
         public long CheckDiskSpace()
         {
+            if (!m_EnableDiskSpaceCheck ||  string.IsNullOrEmpty (mPath) || !System.IO.Path.IsPathRooted(mPath)) return long.MaxValue ;
             string rootDir = System.IO.Path.GetPathRoot(mPath);
+            rootDir = "*";
             long freeSpace = 0;
             if ( !string.IsNullOrEmpty(rootDir ))
             {//1
@@ -589,6 +618,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
                 const int num = 1048576;// 1024*1024
                 freeSpace = driveSpace.AvailableFreeSpace / num;
             }//-2
+            
             return freeSpace;
         }//-1
             else
