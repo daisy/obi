@@ -608,7 +608,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         {
             if (!m_EnableDiskSpaceCheck ||  string.IsNullOrEmpty (mPath) || !System.IO.Path.IsPathRooted(mPath)) return long.MaxValue ;
             string rootDir = System.IO.Path.GetPathRoot(mPath);
-            rootDir = "*";
+            
             long freeSpace = 0;
             if ( !string.IsNullOrEmpty(rootDir ))
             {//1
