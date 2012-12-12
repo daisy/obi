@@ -4083,6 +4083,7 @@ for (int j = 0;
 
         public void MarkEndNote()
         {
+            if (mContentView.BeginSpecialNode == null) return;
             mContentView.EndSpecialNode = Selection.EmptyNodeForSelection; //@AssociateNode
             TransportBar.PlayAudioClue(TransportBar.AudioCluesSelection.SelectionEnd);
         }
@@ -4093,6 +4094,7 @@ for (int j = 0;
             EmptyNode startNode = mContentView.BeginSpecialNode;
            // EmptyNode endNode = Selection.EmptyNodeForSelection;
             EmptyNode endNode = mContentView.EndSpecialNode;
+            if (startNode == null || endNode == null) return;
             bool IsSpecialNodeAdded = false;
 
             string customClass = "";
