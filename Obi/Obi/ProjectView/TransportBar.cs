@@ -174,7 +174,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return (!m_IsProjectEmpty && IsPlayerActive && mCurrentPlaylist.CanNavigatePrevPhrase) || CanPlay;
+                return (!m_IsProjectEmpty && IsPlayerActive && mCurrentPlaylist.CanNavigatePrevPhrase && !IsRecorderActive) || CanPlay ;
             }
         }
 
@@ -192,7 +192,7 @@ namespace Obi.ProjectView
         public bool CanNavigatePrevPage 
         { 
             get 
-            { return Enabled && !m_IsProjectEmpty && (mCurrentPlaylist != null && mCurrentPlaylist.CanNavigatePrevPage); } 
+            { return Enabled && !m_IsProjectEmpty && (mCurrentPlaylist != null && mCurrentPlaylist.CanNavigatePrevPage) && !IsRecorderActive; } 
         }
         public bool CanNavigateNextPage
         {
@@ -203,7 +203,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public bool CanNavigatePrevSection { get { return Enabled && !m_IsProjectEmpty && (mCurrentPlaylist != null && mCurrentPlaylist.CanNavigatePrevSection); } }
+        public bool CanNavigatePrevSection { get { return Enabled && !m_IsProjectEmpty && (mCurrentPlaylist != null && mCurrentPlaylist.CanNavigatePrevSection) && !IsRecorderActive; } }
 
         public bool CanNavigateNextSection
         {
