@@ -857,7 +857,7 @@ Texte de l'erreur: {1}</value>
     <comment>ToString() for empty phrases</comment>
   </data>
   <data name="node_selection_to_string" xml:space="preserve">
-    <value>Sélectionné {0} à {1}</value>
+    <value>Sélectionné {0} , {1}</value>
     <comment>ToString()</comment>
   </data>
   <data name="phrase_extra_custom" xml:space="preserve">
