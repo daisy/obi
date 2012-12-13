@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
-  </data>
+  </metadata>
   <data name="mFileToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>File</value>
   </data>
   <data name="mFile_NewProjectMenuItem.AccessibleName" xml:space="preserve">
     <value>New project Ctrl+N</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mFile_NewProjectMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -1009,7 +1009,7 @@
     <value>Ctrl+Alt+OemOpenBrackets</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>245, 22</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Begin note</value>
@@ -1024,7 +1024,7 @@
     <value>Ctrl+Alt+Oem6</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>245, 22</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;End note</value>
@@ -1039,7 +1039,7 @@
     <value>Ctrl+Alt+A</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>245, 22</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.Text" xml:space="preserve">
     <value>Ad&amp;d reference</value>
@@ -1048,7 +1048,7 @@
     <value>Goto referred note</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>245, 22</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.Text" xml:space="preserve">
     <value>Goto &amp;referred note</value>
@@ -1063,7 +1063,7 @@
     <value>Ctrl+Alt+D</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>245, 22</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.Text" xml:space="preserve">
     <value>Remove re&amp;ference</value>
@@ -1072,7 +1072,7 @@
     <value>Move to start note</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>245, 22</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>Move to st&amp;art note</value>
@@ -1081,13 +1081,22 @@
     <value>Move to end note</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>245, 22</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>Mo&amp;ve to end note</value>
   </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Clear role from note</value>
+  </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Alt+C</value>
+  </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+C</value>
+  </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>245, 22</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Clear role from note</value>
@@ -1192,7 +1201,7 @@
     <value>Ctrl+Shift+P</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
     <value>Selected i&amp;tem</value>
@@ -1201,13 +1210,13 @@
     <value>Multiple sections</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Text" xml:space="preserve">
     <value>Multip&amp;le sections</value>
   </data>
   <data name="settingsFromSilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="settingsFromSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Parameters from selected &amp;silence phrase</value>
@@ -1809,9 +1818,9 @@
   <data name="&gt;&gt;mMenuStrip.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 520</value>
-  </data>
+  </metadata>
   <data name="mStatusLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
@@ -1870,7 +1879,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=2.4.0.23816, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=2.4.0.25332, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1878,9 +1887,9 @@
   <data name="&gt;&gt;mProjectView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>

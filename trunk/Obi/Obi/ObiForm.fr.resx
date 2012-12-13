@@ -1087,6 +1087,9 @@
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
   </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+C</value>
+  </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>Aller en &amp;fin de note</value>
   </data>
