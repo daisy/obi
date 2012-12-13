@@ -1929,6 +1929,9 @@ Error text: {1}</value>
   <data name="information_caption" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="Save_current_state_caption" xml:space="preserve">
+    <value>Save current state?</value>
+  </data>
   <data name="restored_project_name" xml:space="preserve">
     <value>Restored Project.obi</value>
   </data>
