@@ -3480,6 +3480,9 @@ for (int j = 0;
         /// </summary>
         public bool ShowSectionPropertiesDialog ()
             {
+                bool selectionChangedPlaybackEnabled = TransportBar.SelectionChangedPlaybackEnabled;
+                TransportBar.SelectionChangedPlaybackEnabled = false;
+                if (TransportBar.IsPlayerActive) TransportBar.Stop();
             Dialogs.SectionProperties dialog = new Dialogs.SectionProperties ( this );
             if (dialog.ShowDialog () == DialogResult.OK)
                 {
@@ -3509,6 +3512,7 @@ for (int j = 0;
                 if (command.ChildCommands.Count == 1) command.ShortDescription = command.ChildCommands.Get(0).ShortDescription ;
                 if (command.ChildCommands.Count > 0) mPresentation.Do(command);
                 }
+                TransportBar.SelectionChangedPlaybackEnabled = selectionChangedPlaybackEnabled;
             return true;
             }
 
@@ -3517,7 +3521,9 @@ for (int j = 0;
             // if custom class is to be set then playback should be paused else allowed to continue.
             if (SetCustomClassName && TransportBar.IsPlayerActive)
                 TransportBar.Pause ();
-
+            bool selectionChangedPlaybackEnabled = TransportBar.SelectionChangedPlaybackEnabled;
+            TransportBar.SelectionChangedPlaybackEnabled = false;
+            if (TransportBar.IsPlayerActive) TransportBar.Pause();
             Dialogs.PhraseProperties dialog = new Dialogs.PhraseProperties ( this, SetCustomClassName );
             if (dialog.ShowDialog () == DialogResult.OK)
                 {
@@ -3564,6 +3570,7 @@ for (int j = 0;
                 if (command.ChildCommands.Count == 1) command.ShortDescription = command.ChildCommands.Get(0).ShortDescription ;
                 if (command.ChildCommands.Count > 0) mPresentation.Do(command);
                 }
+                TransportBar.SelectionChangedPlaybackEnabled = selectionChangedPlaybackEnabled;
             return true;
             }
 
