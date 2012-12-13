@@ -4338,7 +4338,7 @@ namespace Obi
                     && mSession.Path == m_RestoreProjectFilePath)
                 {
                     if (
-                        MessageBox.Show(Localizer.Message("save_current_state"), "Save current state?",
+                        MessageBox.Show(Localizer.Message("save_current_state"), Localizer.Message("Save_current_state_caption"),
                                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
 
