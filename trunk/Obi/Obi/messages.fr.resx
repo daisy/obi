@@ -2201,15 +2201,18 @@ Texte de l'erreur: {1}</value>
     <value>détection phrase pendant l'enregistrement</value>
   </data>
   <data name="ProjectView_ErrorReplacingAudioDueToTimingMissmatch" xml:space="preserve">
-  <value>Impossible de remplacer le son en raison de décalage en longueur audio: Durée d'origine est {0}: la durée du nouveau fichier est {1}</value>
+    <value>Impossible de remplacer le son en raison de décalage en longueur audio: Durée d'origine est {0}: la durée du nouveau fichier est {1}</value>
   </data>
   <data name="AudioPref_LivePhraseDetectionEnable" xml:space="preserve">
-  <value>Les valeurs suivantes seront utilisées pour la détection phrase en direct; Seuil: {0}, Gap Phrases btw: {1}, Silence Leading {2}. Ces paramètres peuvent être modifiés à partir de combobox opérations de préférences audio ou peuvent être extraites à partir d'une phrase silence.</value>
+    <value>Les valeurs suivantes seront utilisées pour la détection phrase en direct; Seuil: {0}, Gap Phrases btw: {1}, Silence Leading {2}. Ces paramètres peuvent être modifiés à partir de combobox opérations de préférences audio ou peuvent être extraites à partir d'une phrase silence.</value>
   </data>
   <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
     <value>Activer le test d’espace libre</value>
   </data>
   <data name="Audio_EnablePostRecordingPageRenumbering" xml:space="preserve">
     <value>Renuméroter les pages après l’enregistrement</value>
+  </data>
+  <data name="Save_current_state_caption" xml:space="preserve">
+    <value>Enregistrer l’état courant?</value>
   </data>
 </root>
