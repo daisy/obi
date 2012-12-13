@@ -126,10 +126,15 @@ namespace Obi.Dialogs
 
         private void mCustomRolesList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(EmptyNode.SkippableNamesList.Contains(mCustomRolesList.SelectedItem.ToString()))
-                mRemove.Enabled = false;
-            else
-                mRemove.Enabled = true;           
+            if (mCustomRolesList.SelectedItem != null)
+            {
+                if (EmptyNode.SkippableNamesList.Contains(mCustomRolesList.SelectedItem.ToString()))
+                    mRemove.Enabled = false;
+                else
+                    mRemove.Enabled = true;
+            }
         }       
+
+
     }
 }
