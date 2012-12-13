@@ -795,7 +795,7 @@ namespace Obi.Dialogs
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
                 m_CheckBoxListView.Size = new Size(338, 69);
-                m_CheckBoxListView.Location = new Point(93, 294);
+                m_CheckBoxListView.Location = new Point(93, 284);
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_AudioClues"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_RetainInitialSilence"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_PreviewBeforeRecording"));
@@ -807,7 +807,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_DetectPhrasesWhileRecording"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_EnablePostRecordingPageRenumbering"));
                 m_grpBoxChkBoxListView.Size = new Size(352, 97);
-                m_grpBoxChkBoxListView.Location = new Point(85, 274);
+                m_grpBoxChkBoxListView.Location = new Point(85, 264);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
