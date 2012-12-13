@@ -2859,16 +2859,39 @@ SelectionChangedPlaybackEnabled = false;
         private void AdditionalPostRecordingOperations(EmptyNode firstRecordedPage, List<PhraseNode> listOfRecordedPhrases)
         {
             // make sure that recordingsession is not null before calling this function
+            bool isRecordingAtEnd = false;
+            if (listOfRecordedPhrases.Count > 0 && listOfRecordedPhrases[listOfRecordedPhrases.Count - 1].Index == mView.Presentation.LastSection.LastLeaf.Index) isRecordingAtEnd = true;
+            //Console.WriteLine("recording index :" + listOfRecordedPhrases[listOfRecordedPhrases.Count - 1].Index + " : " + (mRecordingSection.PhraseChildCount-1));
             if (mRecordingSession.PhraseMarksOnTheFly.Count > 0)
             {
                 if (IsPlaying) Pause();
                 mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly));
             }
-            if (mView.ObiForm.Settings.Audio_EnablePostRecordingPageRenumbering &&  m_EnablePostRecordingPageRenumbering &&  firstRecordedPage != null
-                && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (mView.ObiForm.Settings.Audio_EnablePostRecordingPageRenumbering &&  m_EnablePostRecordingPageRenumbering &&  firstRecordedPage != null)
+            {//1
+                int pageNum = firstRecordedPage.PageNumber.Number ;
+                PageKind pageKind = firstRecordedPage.PageNumber.Kind ;
+                bool renumber = false ;
+                foreach (PhraseNode p in listOfRecordedPhrases)
+                {//2
+                    if ( p == firstRecordedPage ) continue ;
+                    if (p.Role_ == EmptyNode.Role.Page && p.PageNumber != null && p.PageNumber.Kind == pageKind)
+                    {//3
+                        if (p.PageNumber.Number != pageNum + 1)
+                        {//4
+                            renumber = true;
+                            break;
+                        }//-4
+                        pageNum = p.PageNumber.Number;
+                    }//-3
+                }//-2
+                // check if the last recording phrase is also last phrase in section
+                if (!isRecordingAtEnd) renumber = true;
+                if(renumber && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (IsPlaying) Pause();
                 mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPage, firstRecordedPage.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", "")));
+            }
             }
         }
 
