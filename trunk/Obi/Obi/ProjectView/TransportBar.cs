@@ -2860,7 +2860,8 @@ SelectionChangedPlaybackEnabled = false;
         {
             // make sure that recordingsession is not null before calling this function
             bool isRecordingAtEnd = false;
-            if (listOfRecordedPhrases.Count > 0 && listOfRecordedPhrases[listOfRecordedPhrases.Count - 1].Index == mView.Presentation.LastSection.LastLeaf.Index) isRecordingAtEnd = true;
+            if (listOfRecordedPhrases.Count > 0 && listOfRecordedPhrases[listOfRecordedPhrases.Count - 1]== mView.Presentation.LastSection.LastLeaf) 
+                isRecordingAtEnd = true;
             //Console.WriteLine("recording index :" + listOfRecordedPhrases[listOfRecordedPhrases.Count - 1].Index + " : " + (mRecordingSection.PhraseChildCount-1));
             if (mRecordingSession.PhraseMarksOnTheFly.Count > 0)
             {
