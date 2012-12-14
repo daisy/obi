@@ -224,7 +224,7 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
                             int childIndex = -1;
                             int.TryParse(locationArray[i], out childIndex);
 
-                            iterationNode =childIndex< iterationNode.Children.Count?  iterationNode.Children.Get(childIndex): null;
+                            iterationNode =(childIndex >= 0 &&  childIndex< iterationNode.Children.Count)?  iterationNode.Children.Get(childIndex): null;
                             if (iterationNode == null) break;
                         }//-2
                         m_AssociatedNode =iterationNode != null? (EmptyNode)iterationNode: null;
