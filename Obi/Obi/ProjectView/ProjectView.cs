@@ -1899,9 +1899,9 @@ namespace Obi.ProjectView
 
         public bool CanShowInStripsView { get { return IsSectionSelected; } }
 
-        public bool CanShowPhrasePropertiesDialog { get { return Selection != null && Selection.Node is EmptyNode; } }
+        public bool CanShowPhrasePropertiesDialog { get { return Selection != null && Selection.Node is EmptyNode && !TransportBar.IsRecorderActive; } }
         public bool CanShowProjectPropertiesDialog { get { return mPresentation != null; } }
-        public bool CanShowSectionPropertiesDialog { get { return Selection != null && Selection.Node is SectionNode && Presentation != null && Presentation.FirstSection != null; } } // quick fix of inserting first section check to avoid a crash
+        public bool CanShowSectionPropertiesDialog { get { return Selection != null && Selection.Node is SectionNode && Presentation != null && Presentation.FirstSection != null && !TransportBar.IsRecorderActive; } } // quick fix of inserting first section check to avoid a crash
 
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMarkStripUnused { get { return mContentView.CanSetStripUsedStatus && mSelection.Node.Used; } }
