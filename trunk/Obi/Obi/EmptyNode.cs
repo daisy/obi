@@ -217,17 +217,18 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
                 {
                     string [] locationArray = m_AssociatedNodeLocation.Split('_') ;
                     if (locationArray.Length > 0)
-                    {
+                    {//1
                         TreeNode iterationNode = this.Root;
                         for (int i = locationArray.Length - 1; i >= 0; i--)
-                        {
+                        {//2
                             int childIndex = -1;
                             int.TryParse(locationArray[i], out childIndex);
 
-                            iterationNode = iterationNode.Children.Get(childIndex);
-                        }
-                        m_AssociatedNode = (EmptyNode)iterationNode;
-                    }
+                            iterationNode =childIndex< iterationNode.Children.Count?  iterationNode.Children.Get(childIndex): null;
+                            if (iterationNode == null) break;
+                        }//-2
+                        m_AssociatedNode =iterationNode != null? (EmptyNode)iterationNode: null;
+                    }//-1
                     m_AssociatedNodeLocation = null;
                 }
                 if (Role_ != Role.Anchor) m_AssociatedNode = null;
