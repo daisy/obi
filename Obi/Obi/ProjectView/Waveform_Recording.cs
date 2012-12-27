@@ -1332,6 +1332,20 @@ namespace Obi.ProjectView
             
         }
 
-        
+        private void deselectSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listOfSelctedPortion.Sort();
+            if (listOfSelctedPortion.Count > 0)
+            {
+                int tempMouseDown = listOfSelctedPortion[0];
+                int tempMouseUp = listOfSelctedPortion[listOfSelctedPortion.Count - 1];
+                PaintWaveform(tempMouseDown - 10, tempMouseUp + 10, false);
+            }
+            else
+            {
+                PaintWaveform(m_MouseButtonDownLoc - 10, m_MouseButtonUpLoc + 10, false);
+            }
+            listOfSelctedPortion.Clear();
+        }
         }
 }
