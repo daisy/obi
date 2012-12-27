@@ -34,7 +34,8 @@ namespace Obi.Dialogs
             mNumberOfPagesBox.Text = mNumberOfPages.ToString();
             mNumberOfPagesBox.Enabled = canSetNumberOfPages;
             m_GoToPage = false;
-            
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Assigning a page role.htm");            
         }
 
 

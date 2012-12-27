@@ -35,6 +35,7 @@ namespace Obi.Dialogs
                 this.mOpenEmptyButton = new System.Windows.Forms.Button();
                 this.mImportButton = new System.Windows.Forms.Button();
                 this.mViewManualButton = new System.Windows.Forms.Button();
+                this.helpProvider1 = new System.Windows.Forms.HelpProvider();
                 this.SuspendLayout();
                 // 
                 // mNewProjectButton
@@ -85,6 +86,10 @@ namespace Obi.Dialogs
                 this.mViewManualButton.UseVisualStyleBackColor = true;
                 this.mViewManualButton.Click += new System.EventHandler(this.mViewManualButton_Click);
                 // 
+                // helpProvider1
+                // 
+                resources.ApplyResources(this.helpProvider1, "helpProvider1");
+                // 
                 // WelcomeDialog
                 // 
                 resources.ApplyResources(this, "$this");
@@ -111,5 +116,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mOpenEmptyButton;
         private System.Windows.Forms.Button mImportButton;
         private System.Windows.Forms.Button mViewManualButton;
+        private System.Windows.Forms.HelpProvider helpProvider1;
         }
     }

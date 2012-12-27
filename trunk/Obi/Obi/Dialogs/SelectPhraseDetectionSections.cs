@@ -22,6 +22,8 @@ namespace Obi.Dialogs
         public SelectPhraseDetectionSections()
         {
             InitializeComponent();
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Auto-splitting Phrases of Multiple Sections.htm");
         }
 
         public SelectPhraseDetectionSections ( List<SectionNode> sectionsList, List<PhraseNode> silencePhraseList,SectionNode selectedSection):this     ()

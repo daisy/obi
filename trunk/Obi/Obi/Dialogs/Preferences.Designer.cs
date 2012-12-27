@@ -103,6 +103,7 @@ namespace Obi.Dialogs
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -708,6 +709,10 @@ namespace Obi.Dialogs
             this.m_ResetButton.UseVisualStyleBackColor = true;
             this.m_ResetButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -822,5 +827,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label labelTTSvoice;
         private System.Windows.Forms.ComboBox mTTSvoiceCombo;
         private System.Windows.Forms.Button m_btn_speak;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

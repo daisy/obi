@@ -54,7 +54,9 @@ namespace Obi.Dialogs
             InitializeColorPreferenceTab();
             m_IsKeyboardShortcutChanged = false;
             this.m_CheckBoxListView.BringToFront();
-            m_DefaultSettings = defaultSettings;            
+            m_DefaultSettings = defaultSettings;
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/The preferences Dialog.htm");
             }
 
         public bool IsColorChanged

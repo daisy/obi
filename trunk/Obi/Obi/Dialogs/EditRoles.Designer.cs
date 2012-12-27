@@ -36,6 +36,7 @@ namespace Obi.Dialogs
             this.mCancel = new System.Windows.Forms.Button();
             this.mAdd = new System.Windows.Forms.Button();
             this.mRemove = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // mCustomRolesList
@@ -89,6 +90,10 @@ namespace Obi.Dialogs
             this.mRemove.UseVisualStyleBackColor = true;
             this.mRemove.Click += new System.EventHandler(this.mRemove_Click);
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // EditRoles
             // 
             resources.ApplyResources(this, "$this");
@@ -121,5 +126,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mCancel;
         private System.Windows.Forms.Button mAdd;
         private System.Windows.Forms.Button mRemove;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

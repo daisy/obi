@@ -39,6 +39,7 @@
             this.m_BtnPause = new System.Windows.Forms.Button();
             this.m_BtnStop = new System.Windows.Forms.Button();
             this.m_BtnPlay = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_grpSelectSpecialPhrases.SuspendLayout();
             this.mgrp_PlayPhraseInListBox.SuspendLayout();
             this.SuspendLayout();
@@ -126,6 +127,10 @@
             this.m_BtnPlay.UseVisualStyleBackColor = true;
             this.m_BtnPlay.Click += new System.EventHandler(this.m_BtnPlay_Click);
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // SpecialPhraseList
             // 
             this.AcceptButton = this.m_btnOK;
@@ -157,5 +162,6 @@
         private System.Windows.Forms.Button m_BtnStop;
         private System.Windows.Forms.Button m_BtnPlay;
         private System.Windows.Forms.Button m_BtnPause;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

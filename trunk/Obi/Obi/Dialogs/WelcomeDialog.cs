@@ -22,6 +22,8 @@ namespace Obi.Dialogs
             InitializeComponent();
             mOpenLastProjectButton.Enabled = canOpenLastProject;
             mResult = Option.OpenEmpty;
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Introducing Obi/Getting Started/Starting Obi.htm");
         }
 
         /// <summary>

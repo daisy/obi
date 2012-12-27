@@ -37,6 +37,7 @@ namespace Obi.Dialogs
             this.mSwitchToNewCheckBox = new System.Windows.Forms.CheckBox();
             this.m_ProjectNameTextBox = new System.Windows.Forms.TextBox();
             this.m_lbl_ProjectName = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // mSelectButton
@@ -91,6 +92,10 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_lbl_ProjectName, "m_lbl_ProjectName");
             this.m_lbl_ProjectName.Name = "m_lbl_ProjectName";
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // SaveProjectAsDialog
             // 
             this.AcceptButton = this.mOKButton;
@@ -125,5 +130,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox mSwitchToNewCheckBox;
         private System.Windows.Forms.TextBox m_ProjectNameTextBox;
         private System.Windows.Forms.Label m_lbl_ProjectName;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

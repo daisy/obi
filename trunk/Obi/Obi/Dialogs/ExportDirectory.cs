@@ -47,7 +47,9 @@ namespace Obi.Dialogs
                 }
             }
             m_checkBoxMP3Encoder.Checked = encodeToMP3;
-            m_checkBoxAddSectionNameToAudioFileName.Checked = appendSectionNameToAudioFile;            
+            m_checkBoxAddSectionNameToAudioFileName.Checked = appendSectionNameToAudioFile;
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Exporting and Validating DTB/Exporting as DAISY DTB.htm");
         }
 
         /// <summary>

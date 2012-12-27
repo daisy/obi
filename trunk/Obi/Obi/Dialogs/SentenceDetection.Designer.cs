@@ -37,6 +37,7 @@ namespace Obi.Dialogs
             this.mThresholdNumericBox = new System.Windows.Forms.NumericUpDown();
             this.mGapNumericBox = new System.Windows.Forms.NumericUpDown();
             this.mLeadingNumericBox = new System.Windows.Forms.NumericUpDown();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.mThresholdNumericBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mGapNumericBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mLeadingNumericBox)).BeginInit();
@@ -126,6 +127,10 @@ namespace Obi.Dialogs
             this.mLeadingNumericBox.Name = "mLeadingNumericBox";
             this.mLeadingNumericBox.ValueChanged += new System.EventHandler(this.mLeadingNumericBox_ValueChanged);
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // SentenceDetection
             // 
             this.AcceptButton = this.mOKButton;
@@ -163,5 +168,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.NumericUpDown mThresholdNumericBox;
         private System.Windows.Forms.NumericUpDown mGapNumericBox;
         private System.Windows.Forms.NumericUpDown mLeadingNumericBox;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

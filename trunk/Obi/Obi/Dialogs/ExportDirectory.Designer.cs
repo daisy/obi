@@ -44,6 +44,7 @@ namespace Obi.Dialogs
             this.m_grpBoxSectionNameOperation = new System.Windows.Forms.GroupBox();
             this.m_chkBoxFilenameLengthLimit = new System.Windows.Forms.CheckBox();
             this.m_numericUpDownFilenameLengthLimit = new System.Windows.Forms.NumericUpDown();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_grpBoxMP3Encoding.SuspendLayout();
             this.m_grpBoxSectionNameOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownFilenameLengthLimit)).BeginInit();
@@ -161,6 +162,10 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_numericUpDownFilenameLengthLimit, "m_numericUpDownFilenameLengthLimit");
             this.m_numericUpDownFilenameLengthLimit.Name = "m_numericUpDownFilenameLengthLimit";
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // ExportDirectory
             // 
             this.AcceptButton = this.mOKButton;
@@ -210,5 +215,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.GroupBox m_grpBoxSectionNameOperation;
         private System.Windows.Forms.CheckBox m_chkBoxFilenameLengthLimit;
         private System.Windows.Forms.NumericUpDown m_numericUpDownFilenameLengthLimit;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

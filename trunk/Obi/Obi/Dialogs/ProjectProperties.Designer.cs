@@ -41,6 +41,7 @@ namespace Obi.Dialogs
             this.m_lblTitle = new System.Windows.Forms.Label();
             this.m_txtTitle = new System.Windows.Forms.TextBox();
             this.mCancelButton = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // m_lblDuration
@@ -116,6 +117,10 @@ namespace Obi.Dialogs
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // ProjectProperties
             // 
             this.AcceptButton = this.m_btnOk;
@@ -157,5 +162,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_lblTitle;
         private System.Windows.Forms.TextBox m_txtTitle;
         private System.Windows.Forms.Button mCancelButton;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

@@ -18,6 +18,8 @@ namespace Obi.Dialogs
         public MultipleOptionDialog()
         {
             InitializeComponent();
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Closing the Project.htm");
         }
         public MultipleOptionDialog(bool IsBookmarkDifferent, bool IsprojectUnsaved)
             : this()

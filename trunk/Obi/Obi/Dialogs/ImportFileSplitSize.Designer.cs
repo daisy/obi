@@ -53,6 +53,7 @@ namespace Obi.Dialogs
             this.m_grpSplitPhraseOrPhraseDetection = new System.Windows.Forms.GroupBox();
             this.m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
             this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_grpAddFiles.SuspendLayout();
             this.m_grpArrangeAudioFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numCharCountToTruncateFromStart)).BeginInit();
@@ -235,6 +236,10 @@ namespace Obi.Dialogs
             this.m_rdbSplitPhrasesOnImport.UseVisualStyleBackColor = true;
             this.m_rdbSplitPhrasesOnImport.CheckedChanged += new System.EventHandler(this.m_rdbSplitPhrasesOnImport_CheckedChanged);
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // ImportFileSplitSize
             // 
             this.AcceptButton = this.mOKButton;
@@ -291,5 +296,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mbtnDesendingOrder;
         private System.Windows.Forms.Button mbtnAscendingOrder;
         private System.Windows.Forms.Button m_btnRemove;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

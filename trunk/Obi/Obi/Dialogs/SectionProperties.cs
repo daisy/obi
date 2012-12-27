@@ -23,6 +23,8 @@ namespace Obi.Dialogs
             
             mView = View;
             mNode = View.SelectedNodeAs<SectionNode>();
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Sections/Section Properties.htm");
         }
 
 

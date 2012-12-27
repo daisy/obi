@@ -27,6 +27,8 @@ namespace Obi.Dialogs
             InitializeComponent();
             mCanClose = true;
             mUserSetLocation = false;
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Saving Project in a different Location.htm");
         }
 
         /// <summary>

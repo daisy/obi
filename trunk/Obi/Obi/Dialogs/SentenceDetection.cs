@@ -30,6 +30,8 @@ namespace Obi.Dialogs
         public SentenceDetection()
         {
             InitializeComponent();
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Phrase detection settings dialog.htm");
         }
 
         
