@@ -45,6 +45,7 @@ namespace Obi.ProjectView
         private List<int> listOfCurrentMaxChannel1 = new List<int>();
         private List<int> listOfCurrentMinChannel2 = new List<int>();
         private List<int> listOfCurrentMaxChannel2 = new List<int>();
+        private List<int> listOfSelctedPortion=new List<int>(); 
         private int m_X = 0;
         private int m_XCV = 0;
         private Dictionary<int, string> m_MainDictionary = new Dictionary<int, string>();
@@ -902,14 +903,28 @@ namespace Obi.ProjectView
                     if ((!IsValid(m_MouseButtonDownLoc) && m_MouseButtonDownLoc!= 0) 
                         || (!IsValid(m_MouseButtonUpLoc) && m_MouseButtonUpLoc != 0))
                     return;
-                    
-                    PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);
+
+                    listOfSelctedPortion.Sort();
+                    if (listOfSelctedPortion.Count > 0)
+                    {
+                        int tempMouseDown = listOfSelctedPortion[0];
+                        int tempMouseUp = listOfSelctedPortion[listOfSelctedPortion.Count - 1];
+                        PaintWaveform(tempMouseDown - 10, tempMouseUp + 10, false);
+                    }
+                    else
+                    {
+                        PaintWaveform(m_MouseButtonDownLoc - 10, m_MouseButtonUpLoc + 10, false);
+                    }
+                    listOfSelctedPortion.Clear();
+                   // PaintWaveform(m_MouseButtonDownLoc-30, m_MouseButtonUpLoc+30, false);
+
                     //    IsDeselected = true;
                     // SelectPortionOfWaveform(IsDeselected);
                 }
                 m_MouseButtonDownLoc = e.X;
                 m_MouseButtonUpLoc = 0;
                 m_TempMouseMoveLoc = m_MouseButtonDownLoc;
+                
             }
 
             if (e.Button == MouseButtons.Right)
@@ -1118,8 +1133,11 @@ namespace Obi.ProjectView
 
         public void PaintWaveform(int startSelection, int endSelection, bool IsSelected)
         {
+
             if (IsSelected)
             {
+                listOfSelctedPortion.Add(startSelection);
+                Console.WriteLine();
                 if (startSelection < endSelection)
                     g.FillRectangle(SystemBrushes.Highlight, startSelection, 0 + m_TopMargin, endSelection - startSelection, this.WaveformHeight);
                 else
@@ -1314,5 +1332,6 @@ namespace Obi.ProjectView
             
         }
 
-    }
+        
+        }
 }
