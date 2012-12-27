@@ -35,6 +35,7 @@ namespace Obi.Dialogs
             this.m_rdb_DiscardBoth = new System.Windows.Forms.RadioButton();
             this.m_btn_OK = new System.Windows.Forms.Button();
             this.m_btn_Cancel = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // m_lbl_ChooseOption
@@ -82,6 +83,10 @@ namespace Obi.Dialogs
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             this.m_btn_Cancel.Click += new System.EventHandler(this.m_btn_Cancel_Click);
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // MultipleOptionDialog
             // 
             this.AcceptButton = this.m_btn_OK;
@@ -110,5 +115,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rdb_DiscardBoth;
         private System.Windows.Forms.Button m_btn_OK;
         private System.Windows.Forms.Button m_btn_Cancel;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

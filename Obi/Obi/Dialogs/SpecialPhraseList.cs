@@ -43,6 +43,8 @@ namespace Obi.Dialogs
             m_BtnPlay.Image = m_PlayImg;
             m_BtnStop.Image = m_StopImg;
             mBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/Obi Views and Transport Bar/Collect special phrases and navigate.htm");
         }
 
         public void State_Changed_Player(object sender, AudioLib.AudioPlayer.StateChangedEventArgs e)

@@ -27,6 +27,8 @@ namespace Obi.Dialogs
             mNode = view.SelectedNodeAs<EmptyNode>();
 
             m_IsSetCustomClass = SetCustomClass;
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Phrase Properties.htm");
         }
 
 

@@ -39,6 +39,7 @@ namespace Obi.Dialogs
                 this.m_txtBox_TimeInSeconds = new System.Windows.Forms.TextBox();
                 this.m_lbl_Seconds = new System.Windows.Forms.Label();
                 this.m_lbl_Time = new System.Windows.Forms.Label();
+                this.helpProvider1 = new System.Windows.Forms.HelpProvider();
                 this.m_grpSearchPagePhrase.SuspendLayout();
                 this.SuspendLayout();
                 // 
@@ -149,6 +150,10 @@ namespace Obi.Dialogs
                 resources.ApplyResources(this.m_lbl_Time, "m_lbl_Time");
                 this.m_lbl_Time.Name = "m_lbl_Time";
                 // 
+                // helpProvider1
+                // 
+                resources.ApplyResources(this.helpProvider1, "helpProvider1");
+                // 
                 // GoToPageOrPhrase
                 // 
                 this.AcceptButton = this.m_btnOk;
@@ -197,5 +202,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox m_txtBox_TimeInSeconds;
         private System.Windows.Forms.Label m_lbl_Seconds;
         private System.Windows.Forms.Label m_lbl_Time;
+        private System.Windows.Forms.HelpProvider helpProvider1;
         }
     }

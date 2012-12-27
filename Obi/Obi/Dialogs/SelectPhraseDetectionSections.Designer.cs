@@ -46,6 +46,7 @@ namespace Obi.Dialogs
             this.m_cb_SilencePhrase = new System.Windows.Forms.ComboBox();
             this.m_btn_Cancel = new System.Windows.Forms.Button();
             this.m_grpSilencePhrase = new System.Windows.Forms.GroupBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_grpListOfSections.SuspendLayout();
             this.m_grpSelectRange.SuspendLayout();
             this.m_grpSilencePhrase.SuspendLayout();
@@ -180,6 +181,10 @@ namespace Obi.Dialogs
             this.m_grpSilencePhrase.Name = "m_grpSilencePhrase";
             this.m_grpSilencePhrase.TabStop = false;
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // SelectPhraseDetectionSections
             // 
             this.AcceptButton = this.m_btn_OK;
@@ -223,5 +228,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rb_loadFromRange;
         private System.Windows.Forms.RadioButton m_rb_loadAllSections;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

@@ -38,6 +38,7 @@ namespace Obi.Dialogs
             this.label2 = new System.Windows.Forms.Label();
             this.mPageKindComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // label1
@@ -99,6 +100,10 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // SetPageNumber
             // 
             this.AcceptButton = this.mOKButton;
@@ -136,5 +141,6 @@ namespace Obi.Dialogs
         protected System.Windows.Forms.Label label2;
         protected System.Windows.Forms.ComboBox mPageKindComboBox;
         protected System.Windows.Forms.Label label3;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

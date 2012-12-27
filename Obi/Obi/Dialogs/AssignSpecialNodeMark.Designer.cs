@@ -34,6 +34,7 @@ namespace Obi.Dialogs
             this.m_btn_Cancel = new System.Windows.Forms.Button();
             this.m_rdb_btn_SpecialPhrase = new System.Windows.Forms.RadioButton();
             this.m_rdb_btn_RenumberPages = new System.Windows.Forms.RadioButton();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // m_cmbBoxSpecialNode
@@ -81,6 +82,10 @@ namespace Obi.Dialogs
             this.m_rdb_btn_RenumberPages.UseVisualStyleBackColor = true;
             this.m_rdb_btn_RenumberPages.CheckedChanged += new System.EventHandler(this.m_rdb_btn_RenumberPages_CheckedChanged);
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // AssignSpecialNodeMark
             // 
             this.AcceptButton = this.m_btn_OK;
@@ -105,5 +110,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btn_Cancel;
         private System.Windows.Forms.RadioButton m_rdb_btn_SpecialPhrase;
         private System.Windows.Forms.RadioButton m_rdb_btn_RenumberPages;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

@@ -42,6 +42,7 @@ namespace Obi.Dialogs
             this.m_chkUsed = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_lbParentsList = new System.Windows.Forms.ListBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -126,6 +127,10 @@ namespace Obi.Dialogs
             this.m_lbParentsList.FormattingEnabled = true;
             this.m_lbParentsList.Name = "m_lbParentsList";
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // SectionProperties
             // 
             this.AcceptButton = this.m_btnOk;
@@ -171,5 +176,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_chkUsed;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListBox m_lbParentsList;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

@@ -45,6 +45,8 @@ namespace Obi.Dialogs
             if (size.Width >= MinimumSize.Width && size.Height >= MinimumSize.Height) Size = size;
             GenerateFileName();
             m_AudioSettingsDialog = new AudioSettings(defaultAudioChannels, defaultAudioSampleRate);
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Creating a new project.htm");
         }
 
 

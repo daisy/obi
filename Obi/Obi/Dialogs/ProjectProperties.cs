@@ -16,6 +16,8 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             mView = View;
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Project Properties.htm");
         }
 
         public string ProjectTitle { get { return m_txtTitle.Text; } }

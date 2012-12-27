@@ -16,6 +16,8 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             m_cmbBoxSpecialNode.SelectedIndex = 0;
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Creating a skippable note.htm");          
         }
 
         public string SelectedSpecialNode

@@ -44,7 +44,9 @@ namespace Obi.Dialogs
                 m_txtBox_SectionName.Visible = false;
                 groupBox1.Text = "List of anchor nodes";
                 m_lb_listOfAllAnchorNodes.Visible = true;
-            }                               
+            }
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Associating Skippable Note with Anchor.htm");                  
         }
 
         public Dictionary<EmptyNode,EmptyNode> DictionaryToMapValues
