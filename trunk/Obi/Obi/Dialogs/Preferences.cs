@@ -1334,11 +1334,18 @@ namespace Obi.Dialogs
 
         private void m_btn_speak_Click(object sender, EventArgs e)
         {
-            string selectedTTSVoice = GetTTSVoiceNameFromTTSCombo();
-            
-            if (!string.IsNullOrEmpty(selectedTTSVoice))
+            try
             {
-              AudioFormatConverter.TestVoice(selectedTTSVoice, selectedTTSVoice, mSettings);
+                string selectedTTSVoice = GetTTSVoiceNameFromTTSCombo();
+
+                if (!string.IsNullOrEmpty(selectedTTSVoice))
+                {
+                    AudioFormatConverter.TestVoice(selectedTTSVoice, selectedTTSVoice, mSettings);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
