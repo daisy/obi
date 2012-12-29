@@ -913,7 +913,7 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        PaintWaveform(m_MouseButtonDownLoc - 10, m_MouseButtonUpLoc + 10, false);
+                        PaintWaveform(m_MouseButtonDownLoc , m_MouseButtonUpLoc, false);
                     }
                     listOfSelctedPortion.Clear();
                    // PaintWaveform(m_MouseButtonDownLoc-30, m_MouseButtonUpLoc+30, false);
@@ -1274,6 +1274,7 @@ namespace Obi.ProjectView
 
         private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            listOfSelctedPortion.Clear();
             if (m_MouseButtonDownLoc == m_MouseButtonUpLoc)
             {
                 PaintWaveform(m_MouseButtonUpLoc - 5, m_MouseButtonUpLoc + 5, false);
