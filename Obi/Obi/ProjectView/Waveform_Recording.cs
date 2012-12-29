@@ -1347,6 +1347,8 @@ namespace Obi.ProjectView
                 PaintWaveform(m_MouseButtonDownLoc - 10, m_MouseButtonUpLoc + 10, false);
             }
             listOfSelctedPortion.Clear();
+            m_MouseButtonDownLoc = 0;
+            m_MouseButtonUpLoc = 0;
         }
         }
 }
