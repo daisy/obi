@@ -1137,7 +1137,7 @@ namespace Obi.ProjectView
             if (IsSelected)
             {
                 listOfSelctedPortion.Add(startSelection);
-                Console.WriteLine();
+
                 if (startSelection < endSelection)
                     g.FillRectangle(SystemBrushes.Highlight, startSelection, 0 + m_TopMargin, endSelection - startSelection, this.WaveformHeight);
                 else
@@ -1215,7 +1215,7 @@ namespace Obi.ProjectView
                     if (m_MainDictionary[index] != "")
                     {
                         g.DrawLine(linePen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
-                        g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), index, 0, 15, 10);
+                        g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), index, 0, m_MainDictionary[index].Length, 10);
                         g.DrawString(m_MainDictionary[index], myFont, brushSel, index, 0);
                     }
                     
@@ -1223,7 +1223,7 @@ namespace Obi.ProjectView
                 else
                 {
 
-                    g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), index, 20, 30, 10);
+                    g.FillRectangle(new System.Drawing.SolidBrush(this.BackColor), index, 20, m_MainDictionary[index].Length, 10);
                     g.DrawString(m_MainDictionary[index], myFont, Brushes.Gray, index, 20);
                     if (m_MainDictionary[index] != "")
                     {
@@ -1335,6 +1335,11 @@ namespace Obi.ProjectView
 
         private void deselectSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           DeselectSelection();
+        }
+
+        public void DeselectSelection()
+        {
             listOfSelctedPortion.Sort();
             if (listOfSelctedPortion.Count > 0)
             {
@@ -1349,6 +1354,7 @@ namespace Obi.ProjectView
             listOfSelctedPortion.Clear();
             m_MouseButtonDownLoc = 0;
             m_MouseButtonUpLoc = 0;
+            
         }
         }
 }
