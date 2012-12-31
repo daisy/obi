@@ -34,6 +34,7 @@
             this.mbtnOK = new System.Windows.Forms.Button();
             this.mcbSampleRate = new System.Windows.Forms.ComboBox();
             this.mcbAudioChannel = new System.Windows.Forms.ComboBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // mlbSampleRate
@@ -75,6 +76,10 @@
             resources.GetString("mcbAudioChannel.Items1")});
             this.mcbAudioChannel.Name = "mcbAudioChannel";
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // AudioSettings
             // 
             this.AcceptButton = this.mbtnOK;
@@ -99,5 +104,6 @@
         private System.Windows.Forms.Button mbtnOK;
         private System.Windows.Forms.ComboBox mcbSampleRate;
         private System.Windows.Forms.ComboBox mcbAudioChannel;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

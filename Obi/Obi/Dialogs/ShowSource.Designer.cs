@@ -30,28 +30,26 @@ namespace Obi.Dialogs
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowSource));
             this.sourceBox = new System.Windows.Forms.TextBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // sourceBox
             // 
-            this.sourceBox.AccessibleDescription = null;
-            this.sourceBox.AccessibleName = null;
-            resources.ApplyResources(this.sourceBox, "sourceBox");
             this.sourceBox.BackColor = System.Drawing.Color.White;
-            this.sourceBox.BackgroundImage = null;
             this.sourceBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.sourceBox, "sourceBox");
             this.sourceBox.Name = "sourceBox";
             this.sourceBox.ReadOnly = true;
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // ShowSource
             // 
-            this.AccessibleDescription = null;
-            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = null;
             this.Controls.Add(this.sourceBox);
-            this.Font = null;
             this.Name = "ShowSource";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SourceView_FormClosed);
             this.ResumeLayout(false);
@@ -62,6 +60,7 @@ namespace Obi.Dialogs
         #endregion
 
         private System.Windows.Forms.TextBox sourceBox;
+        private System.Windows.Forms.HelpProvider helpProvider1;
 
     }
 }

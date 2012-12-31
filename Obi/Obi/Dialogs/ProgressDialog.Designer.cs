@@ -32,6 +32,7 @@ namespace Obi.Dialogs
             this.mProgressBar = new System.Windows.Forms.ProgressBar();
             this.m_BtnCancel = new System.Windows.Forms.Button();
             this.m_lbWaitForCancellation = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // mProgressBar
@@ -54,6 +55,10 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_lbWaitForCancellation, "m_lbWaitForCancellation");
             this.m_lbWaitForCancellation.Name = "m_lbWaitForCancellation";
             this.m_lbWaitForCancellation.UseWaitCursor = true;
+            // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
             // ProgressDialog
             // 
@@ -79,5 +84,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ProgressBar mProgressBar;
         private System.Windows.Forms.Button m_BtnCancel;
         private System.Windows.Forms.Label m_lbWaitForCancellation;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

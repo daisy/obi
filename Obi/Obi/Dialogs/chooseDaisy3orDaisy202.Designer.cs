@@ -34,6 +34,7 @@ namespace Obi.Dialogs
             this.m_OKBtn = new System.Windows.Forms.Button();
             this.m_BtnCancel = new System.Windows.Forms.Button();
             this.m_radBtnDaisy3_202 = new System.Windows.Forms.RadioButton();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // m_radBtnDaisy3
@@ -72,6 +73,10 @@ namespace Obi.Dialogs
             this.m_radBtnDaisy3_202.TabStop = true;
             this.m_radBtnDaisy3_202.UseVisualStyleBackColor = true;
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // chooseDaisy3orDaisy202
             // 
             this.AcceptButton = this.m_OKBtn;
@@ -99,5 +104,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_OKBtn;
         private System.Windows.Forms.Button m_BtnCancel;
         private System.Windows.Forms.RadioButton m_radBtnDaisy3_202;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
