@@ -35,6 +35,7 @@ namespace Obi.Dialogs
             this.m_lblReportDialog = new System.Windows.Forms.Label();
             this.m_grpBox_lb_ErrorsList = new System.Windows.Forms.GroupBox();
             this.m_txtBoxPath = new System.Windows.Forms.TextBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_grpBox_lb_ErrorsList.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,6 +77,10 @@ namespace Obi.Dialogs
             this.m_txtBoxPath.Name = "m_txtBoxPath";
             this.m_txtBoxPath.ReadOnly = true;
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // ReportDialog
             // 
             this.AcceptButton = this.m_btnOk;
@@ -103,5 +108,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_lblReportDialog;
         private System.Windows.Forms.GroupBox m_grpBox_lb_ErrorsList;
         private System.Windows.Forms.TextBox m_txtBoxPath;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

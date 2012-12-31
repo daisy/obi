@@ -33,6 +33,7 @@ namespace Obi.Dialogs
             this.mMessageLabel = new System.Windows.Forms.Label();
             this.mCancelButton = new System.Windows.Forms.Button();
             this.mKeepWarningCheckbox = new System.Windows.Forms.CheckBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // mContinueButton
@@ -62,6 +63,10 @@ namespace Obi.Dialogs
             this.mKeepWarningCheckbox.Name = "mKeepWarningCheckbox";
             this.mKeepWarningCheckbox.UseVisualStyleBackColor = true;
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // EmptySection
             // 
             this.AcceptButton = this.mContinueButton;
@@ -90,5 +95,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label mMessageLabel;
         private System.Windows.Forms.Button mCancelButton;
         private System.Windows.Forms.CheckBox mKeepWarningCheckbox;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

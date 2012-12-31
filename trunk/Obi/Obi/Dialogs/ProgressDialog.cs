@@ -34,6 +34,9 @@ namespace Obi.Dialogs
             mOperation_Cancelable = null ;
             m_IsCancelled = false; //@singleSection
             InitializeComponent();
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");          
+        
         }
 
         /// <summary>

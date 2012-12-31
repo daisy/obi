@@ -13,7 +13,8 @@ namespace Obi.Dialogs
         private AudioSettings()
         {
             InitializeComponent();
-            
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Creating and Working with Projects\\Audio settings for the project.htm");          
         }
 
         public AudioSettings(int audioChannels, int audioSampleRate)

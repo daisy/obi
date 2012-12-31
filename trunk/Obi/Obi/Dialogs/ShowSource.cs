@@ -13,7 +13,12 @@ namespace Obi.Dialogs
     {
         private ProjectView.ProjectView mView;  // the project view with the attached project
 
-        public ShowSource() { InitializeComponent(); }
+        public ShowSource() 
+        {
+            InitializeComponent();
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");  
+        }
 
         /// <summary>
         /// Create a new source view for the current project view.

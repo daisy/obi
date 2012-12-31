@@ -25,6 +25,8 @@ namespace Obi.Dialogs
            // m_ObiNode = obiNode;
            // m_SelectedNode = selectedNode;
             InitializeComponent();
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");                  
         }
 
         public bool Is_AssignRole

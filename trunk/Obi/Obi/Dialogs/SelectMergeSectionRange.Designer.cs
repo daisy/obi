@@ -39,6 +39,7 @@ namespace Obi.Dialogs
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_statusStripForMergeSection.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -113,6 +114,10 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // SelectMergeSectionRange
             // 
             this.AcceptButton = this.m_btn_OK;
@@ -150,5 +155,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

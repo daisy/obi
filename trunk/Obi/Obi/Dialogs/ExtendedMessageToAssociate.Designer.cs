@@ -33,6 +33,7 @@ namespace Obi.Dialogs
             this.m_btn_YesToAll = new System.Windows.Forms.Button();
             this.m_btn_No = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // m_btn_Yes
@@ -63,6 +64,10 @@ namespace Obi.Dialogs
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             // 
+            // helpProvider1
+            // 
+            resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
             // ExtendedMessageToAssociate
             // 
             resources.ApplyResources(this, "$this");
@@ -84,5 +89,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btn_YesToAll;
         private System.Windows.Forms.Button m_btn_No;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

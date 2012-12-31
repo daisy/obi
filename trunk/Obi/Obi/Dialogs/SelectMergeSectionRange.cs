@@ -21,6 +21,8 @@ namespace Obi.Dialogs
         public SelectMergeSectionRange()
         {
             InitializeComponent();
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this,"HTML Files\\Creating a DTB\\Working with Sections\\Merging multiple sections.htm");                  
         }
 
         public SelectMergeSectionRange(List<SectionNode> sectionsList, int selectedIndexOfSection) : this()

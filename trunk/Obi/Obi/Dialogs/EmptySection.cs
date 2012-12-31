@@ -10,7 +10,12 @@ namespace Obi.Dialogs
 {
     public partial class EmptySection : Form
     {
-        public EmptySection() { InitializeComponent(); }
+        public EmptySection()
+        {
+            InitializeComponent();
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");          
+        }
         public EmptySection(string title) : this() { mMessageLabel.Text = string.Format(mMessageLabel.Text, title); }
 
         public bool KeepWarning
