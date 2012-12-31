@@ -1264,10 +1264,10 @@ namespace Obi.ProjectView
         {
             if (m_NewPhraseTime > 0 && !m_IsPage)
             {
-                if (IsInSelection(ConvertTimeToPixels(m_NewPhraseTime) + (recordingTimeCursor + m_OffsetLocation)))
-                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 15 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 15 + (recordingTimeCursor + m_OffsetLocation), true);
+                if (IsInSelection(CalculatePixels(m_NewPhraseTime)))
+                    PaintWaveform((CalculatePixels(m_NewPhraseTime) - 15), (CalculatePixels(m_NewPhraseTime)+15), true);
                 else
-                    PaintWaveform(ConvertTimeToPixels(m_NewPhraseTime) - 15 + (recordingTimeCursor + m_OffsetLocation), ConvertTimeToPixels(m_NewPhraseTime) + 15 + (recordingTimeCursor + m_OffsetLocation), false);
+                    PaintWaveform((CalculatePixels(m_NewPhraseTime) - 15), (CalculatePixels(m_NewPhraseTime)+15), false);
                 m_NewPhraseTime = -1;
             }
         }
