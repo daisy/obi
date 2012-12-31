@@ -55,9 +55,7 @@ namespace Obi.Dialogs
             m_IsKeyboardShortcutChanged = false;
             this.m_CheckBoxListView.BringToFront();
             m_DefaultSettings = defaultSettings;
-            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-            helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/The preferences Dialog.htm");
-            }
+           }
 
         public bool IsColorChanged
         { get { return m_IsColorChanged; } }
@@ -793,6 +791,9 @@ namespace Obi.Dialogs
             m_CheckBoxListView.Columns.Add("", 317, HorizontalAlignment.Left);
             if (this.mTab.SelectedTab == this.mAudioTab)
             {
+             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+             helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/Audio Preferences.htm");
+
                 m_CheckBoxListView.Visible = true;
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
@@ -827,6 +828,9 @@ namespace Obi.Dialogs
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
+             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+             helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/Project Preferences.htm");
+
                 m_CheckBoxListView.Visible = true;
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
@@ -858,7 +862,9 @@ namespace Obi.Dialogs
             UpdateTabControl();
             if (mTab.SelectedTab == mKeyboardShortcutTab)
             {
-                
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/Keyboard shortcut preferences.htm");         
+
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
                 m_lblShortcutKeys.Text = m_lblShortcutKeys_text;
@@ -869,11 +875,17 @@ namespace Obi.Dialogs
             }
             if (mTab.SelectedTab == mUserProfileTab)
             {
+             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+             helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/User Profile Preferences.htm");         
+
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
             }
             if (mTab.SelectedTab == mColorPreferencesTab)
             {
+             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+             helpProvider1.SetHelpKeyword(this,"HTML Files/Exploring the GUI/The Preferences Dialog/Color preferences.htm");
+
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
             }
