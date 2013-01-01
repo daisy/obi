@@ -3201,7 +3201,7 @@ for (int j = 0;
         protected override bool ProcessCmdKey ( ref Message msg, Keys key )
             {
             if (!CanUseKey ( key )) return false;
-
+            SetF1Help(key);
             return (((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
                 CanUseKey ( key ) && mShortcutKeys.ContainsKey ( key ) && mShortcutKeys[key] ()) ||
                 base.ProcessCmdKey ( ref msg, key );
@@ -3210,6 +3210,16 @@ for (int j = 0;
         // Trap the delete key to prevent deleting a node during text editing
         private bool CanUseKey ( Keys key ) { return !((Selection is TextSelection || mFindInText.ContainsFocus) && key == Keys.Delete); }
 
+        private void SetF1Help(Keys key)
+        {
+            if (key == Keys.F1)
+            {
+                if (Selection.EmptyNodeForSelection != null)
+                {
+
+                }
+            }
+        }
         #endregion
 
         private bool SelectViewsInCycle ( bool clockwise )
