@@ -46,6 +46,7 @@ namespace Obi.ProjectView
         private List<int> listOfCurrentMinChannel2 = new List<int>();
         private List<int> listOfCurrentMaxChannel2 = new List<int>();
         private List<int> listOfSelctedPortion=new List<int>(); 
+        private List<int> listOfEndSelection=new List<int>(); 
         private int m_X = 0;
         private int m_XCV = 0;
         private Dictionary<int, string> m_MainDictionary = new Dictionary<int, string>();
@@ -905,17 +906,19 @@ namespace Obi.ProjectView
                     return;
 
                     listOfSelctedPortion.Sort();
+                    listOfEndSelection.Sort();
                     if (listOfSelctedPortion.Count > 0)
                     {
                         int tempMouseDown = listOfSelctedPortion[0];
-                        int tempMouseUp = listOfSelctedPortion[listOfSelctedPortion.Count - 1];
-                        PaintWaveform(tempMouseDown - 10, tempMouseUp + 10, false);
+                        int tempMouseUp = listOfEndSelection[listOfEndSelection.Count - 1];
+                        PaintWaveform(tempMouseDown - 15, tempMouseUp + 15, false);
                     }
                     else
                     {
                         PaintWaveform(m_MouseButtonDownLoc , m_MouseButtonUpLoc, false);
                     }
                     listOfSelctedPortion.Clear();
+                    listOfEndSelection.Clear();
                    // PaintWaveform(m_MouseButtonDownLoc-30, m_MouseButtonUpLoc+30, false);
 
                     //    IsDeselected = true;
@@ -1137,7 +1140,7 @@ namespace Obi.ProjectView
             if (IsSelected)
             {
                 listOfSelctedPortion.Add(startSelection);
-
+                listOfEndSelection.Add(endSelection);
                 if (startSelection < endSelection)
                     g.FillRectangle(SystemBrushes.Highlight, startSelection, 0 + m_TopMargin, endSelection - startSelection, this.WaveformHeight);
                 else
@@ -1275,6 +1278,7 @@ namespace Obi.ProjectView
         private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             listOfSelctedPortion.Clear();
+            listOfEndSelection.Clear();
             if (m_MouseButtonDownLoc == m_MouseButtonUpLoc)
             {
                 PaintWaveform(m_MouseButtonUpLoc - 5, m_MouseButtonUpLoc + 5, false);
@@ -1341,10 +1345,11 @@ namespace Obi.ProjectView
         public void DeselectSelection()
         {
             listOfSelctedPortion.Sort();
+            listOfEndSelection.Sort();
             if (listOfSelctedPortion.Count > 0)
             {
                 int tempMouseDown = listOfSelctedPortion[0];
-                int tempMouseUp = listOfSelctedPortion[listOfSelctedPortion.Count - 1];
+                int tempMouseUp = listOfEndSelection[listOfEndSelection.Count - 1];
                 PaintWaveform(tempMouseDown - 10, tempMouseUp + 10, false);
             }
             else
@@ -1352,6 +1357,7 @@ namespace Obi.ProjectView
                 PaintWaveform(m_MouseButtonDownLoc - 10, m_MouseButtonUpLoc + 10, false);
             }
             listOfSelctedPortion.Clear();
+            listOfEndSelection.Clear();            
             m_MouseButtonDownLoc = 0;
             m_MouseButtonUpLoc = 0;
             
