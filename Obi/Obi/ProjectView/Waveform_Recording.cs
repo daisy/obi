@@ -83,6 +83,7 @@ namespace Obi.ProjectView
         private Dictionary<double, int> m_TimeToPixelMap = new Dictionary<double, int>(); // workaround to avoid minor mismatch in timing calculations
         private int m_OverlapPixelLength = 0;
         private int m_PixelOfRedLine = 0;//workaround to avoid pixels mismatch for deleting red line consistenly.
+        private bool m_ResetCalled = false;
 
 
         public Waveform_Recording()
@@ -356,6 +357,7 @@ namespace Obi.ProjectView
             Dictionary<int, string> m_TempDictionary = new Dictionary<int, string>();
             int calculatedKey = 0;
             int tempXLocation = 0;
+            m_ResetCalled = true;
 
             listOfMinChannel1Temp = listOfCurrentMinChannel1;
             listOfMinChannel2Temp = listOfCurrentMinChannel2;
@@ -969,7 +971,7 @@ namespace Obi.ProjectView
                     }
                 }
 
-                else if ((m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc > m_X) || (m_MouseButtonUpLoc < (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation)))
+                else if ((m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc > m_X) || (m_MouseButtonUpLoc < (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation)) && m_Pass==0)
                 {
                     m_MouseButtonDownLoc = 0;
                     m_MouseButtonUpLoc = 0;
@@ -1245,7 +1247,7 @@ namespace Obi.ProjectView
 
         public bool IsValid(int location_X)
         {
-            if (location_X >= (recordingTimeCursor + m_OffsetLocation) && location_X < m_X)
+            if ((location_X >= (recordingTimeCursor + m_OffsetLocation) && location_X < m_X) || (m_Pass>0 && location_X < m_X))
                 return true;
             else
                 return false;
