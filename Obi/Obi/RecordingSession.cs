@@ -352,8 +352,8 @@ namespace Obi
             arrOfLocations[0] = startTime;
             arrOfLocations[1] = endTime;
             mDeletedTime.Add(arrOfLocations);
-            int phraseIndex =  UpdatePhraseTimeList(startTime, false);
-            UpdatePhraseTimeList(endTime, false);
+            UpdatePhraseTimeList(startTime, false);
+            int phraseIndex = UpdatePhraseTimeList(endTime, false);
             if (phraseIndex >= 0 && !m_PhraseIndexesToDelete.Contains(phraseIndex)) 
                 m_PhraseIndexesToDelete.Add(phraseIndex);
         }
