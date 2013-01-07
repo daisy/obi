@@ -3265,5 +3265,39 @@ SelectionChangedPlaybackEnabled = false;
             get { return FineNavigationModeForPhrase ? Localizer.Message ("StatusMsg_FineNavigation") : ""; }
         }
 
+        public string GetHelpTopicPath()
+        {
+            if (mPlayButton.ContainsFocus || mPauseButton.ContainsFocus || mStopButton.ContainsFocus || mRecordButton.ContainsFocus)
+            {
+                return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Transport Bar States.htm";
+            }
+            else if (mRewindButton.ContainsFocus || mFastForwardButton.ContainsFocus)
+            {
+                return "HTML Files\\Creating a DTB\\Working with Audio\\Rewind and Fast Forward.htm";
+            }
+            else if(mNextPhrase.ContainsFocus || mNextPageButton.ContainsFocus || mNextSectionButton.ContainsFocus || mPrevPhraseButton.ContainsFocus
+                || mPreviousPageButton.ContainsFocus || mPrevSectionButton.ContainsFocus)
+            {
+                return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Recording Toolbar navigation controls.htm";
+            }
+            else if(mTimeDisplayBox.ContainsFocus || mDisplayBox.ContainsFocus)
+            {
+                return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Time Display.htm";
+            }
+            else if(mVUMeterPanel.ContainsFocus)
+            {
+                return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Textual peak meter.htm";
+            }
+            else if(mFastPlayRateCombobox.ContainsFocus)
+            {
+                return "HTML Files\\Creating a DTB\\Working with Audio\\Fast Play.htm";
+            }
+            else if (mToDo_CustomClassMarkButton.ContainsFocus)
+            {
+                return "HTML Files\\Creating a DTB\\Working with Phrases\\Changing the Todo or Used Status.htm";
+            }
+            else
+            { return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Audio and navigation controls.htm"; }
+        }
     }
 }

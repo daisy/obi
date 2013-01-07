@@ -3221,25 +3221,22 @@ for (int j = 0;
                {
                    helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
                    helpProvider1.SetHelpKeyword(this, "HTML Files\\Exploring the GUI\\The Menu Bar\\Edit Menu\\Find.htm");                  
-
                }
                else if ( mMetadataView.ContainsFocus )
                {
                    helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-                   helpProvider1.SetHelpKeyword(this, "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Metadata View.htm");                        
-
+                   helpProvider1.SetHelpKeyword(this, "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Metadata View.htm");      
                }
                else if (mTOCView.ContainsFocus)
                {
                    helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
                    helpProvider1.SetHelpKeyword(this, "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\TOC View.htm");                        
-
                }
                else if (mTransportBar.ContainsFocus)
                {
                    helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-                   helpProvider1.SetHelpKeyword(this, "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Transport Bar.htm");                        
-
+                 //helpProvider1.SetHelpKeyword(this, "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Transport Bar.htm");                        
+                   helpProvider1.SetHelpKeyword(this, mTransportBar.GetHelpTopicPath());
                }
                else if (Selection != null && GetSelectedPhraseSection != null)
                {
