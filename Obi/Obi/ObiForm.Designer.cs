@@ -916,8 +916,8 @@ namespace Obi
             // 
             // mSkippableClearRoleFromNoteToolStripMenuItem
             // 
-            this.mSkippableClearRoleFromNoteToolStripMenuItem.Name = "mSkippableClearRoleFromNoteToolStripMenuItem";
             resources.ApplyResources(this.mSkippableClearRoleFromNoteToolStripMenuItem, "mSkippableClearRoleFromNoteToolStripMenuItem");
+            this.mSkippableClearRoleFromNoteToolStripMenuItem.Name = "mSkippableClearRoleFromNoteToolStripMenuItem";
             this.mSkippableClearRoleFromNoteToolStripMenuItem.Click += new System.EventHandler(this.mSkippableClearRoleFromNoteToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
