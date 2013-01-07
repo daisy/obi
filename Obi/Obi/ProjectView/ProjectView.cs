@@ -63,6 +63,8 @@ namespace Obi.ProjectView
             m_DisableSectionSelection = false;
             m_LogFilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ObiSession.log");
             VerifyLogFileExistenceWhileStartup();
+            HelpProvider helpProvider1 = new HelpProvider();
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             }
 
 
@@ -3212,13 +3214,43 @@ for (int j = 0;
 
         private void SetF1Help(Keys key)
         {
-            if (key == Keys.F1)
+           /* if (key == Keys.F1)
             {
-                if (Selection.EmptyNodeForSelection != null)
+                if (Selection != null && Selection.EmptyNodeForSelection != null)
                 {
-
+                     if (Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Silence)
+                    {
+                         helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+                         helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Silence.htm");                    
+                    }
+                   else if (Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Plain)
+                   {
+                         helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+                         helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");
+                   }
+                   else if (Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Page)
+                   {
+                         helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+                         helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Assigning a page role.htm");
+                   }
+                   else if (Selection.EmptyNodeForSelection.Role_== EmptyNode.Role.Heading)
+                   {
+                            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+                            helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Heading.htm");
+                   }
+                   else if (Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Custom  && (EmptyNode.SkippableNamesList.Contains(((EmptyNode)Selection.Node).CustomRole)))
+                    {
+                           helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+                           helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Skippable notes.htm");
+                    }
+                    else if (Selection.EmptyNodeForSelection.Role_== EmptyNode.Role.Anchor)
+                    {
+                            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+                            helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Associating Skippable Note with Anchor.htm");
+                    }
+              
                 }
-            }
+            } */
         }
         #endregion
 
