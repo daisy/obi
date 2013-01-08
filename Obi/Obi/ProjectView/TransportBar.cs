@@ -3267,28 +3267,36 @@ SelectionChangedPlaybackEnabled = false;
 
         public string GetHelpTopicPath()
         {
-            if (mPlayButton.ContainsFocus || mPauseButton.ContainsFocus || mStopButton.ContainsFocus || mRecordButton.ContainsFocus)
+            if (mPlayButton.ContainsFocus || mStopButton.ContainsFocus)
             {
-                return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Transport Bar States.htm";
+                return "HTML Files\\Creating a DTB\\Working with Audio\\Playback.htm";
+            }
+            else if (mRecordButton.ContainsFocus)
+            {
+                return "HTML Files\\Creating a DTB\\Working with Audio\\Live Recording.htm";
+            }
+            else if (mPauseButton.ContainsFocus)
+            {
+                return "HTML Files\\Exploring the GUI\\The Menu Bar\\Transport Menu\\PauseResume.htm";
             }
             else if (mRewindButton.ContainsFocus || mFastForwardButton.ContainsFocus)
             {
                 return "HTML Files\\Creating a DTB\\Working with Audio\\Rewind and Fast Forward.htm";
             }
-            else if(mNextPhrase.ContainsFocus || mNextPageButton.ContainsFocus || mNextSectionButton.ContainsFocus || mPrevPhraseButton.ContainsFocus
+            else if (mNextPhrase.ContainsFocus || mNextPageButton.ContainsFocus || mNextSectionButton.ContainsFocus || mPrevPhraseButton.ContainsFocus
                 || mPreviousPageButton.ContainsFocus || mPrevSectionButton.ContainsFocus)
             {
-                return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Recording Toolbar navigation controls.htm";
+                return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Audio and navigation controls.htm";
             }
-            else if(mTimeDisplayBox.ContainsFocus || mDisplayBox.ContainsFocus)
+            else if (mTimeDisplayBox.ContainsFocus || mDisplayBox.ContainsFocus)
             {
                 return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Time Display.htm";
             }
-            else if(mVUMeterPanel.ContainsFocus)
+            else if (mVUMeterPanel.ContainsFocus)
             {
                 return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Textual peak meter.htm";
             }
-            else if(mFastPlayRateCombobox.ContainsFocus)
+            else if (mFastPlayRateCombobox.ContainsFocus)
             {
                 return "HTML Files\\Creating a DTB\\Working with Audio\\Fast Play.htm";
             }
@@ -3297,7 +3305,7 @@ SelectionChangedPlaybackEnabled = false;
                 return "HTML Files\\Creating a DTB\\Working with Phrases\\Changing the Todo or Used Status.htm";
             }
             else
-            { return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Audio and navigation controls.htm"; }
+            { return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Transport Bar.htm"; }
         }
     }
 }
