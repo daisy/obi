@@ -11,10 +11,16 @@ namespace Obi.Audio
 {
 	public partial class PeakMeterForm : Form
 	{
+        HelpProvider helpProvider1;
+
 		public PeakMeterForm()
 		{
 			InitializeComponent();
             this.TopMost = true;
+            helpProvider1 = new HelpProvider();
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Graphical Peak Meter.htm");  
 		}
 
         /// <summary>
