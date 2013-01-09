@@ -48,6 +48,7 @@ namespace Obi.Dialogs
             m_txtPageIdentificationString.Text = settings.Audio_ImportPageIdentificationString;
             m_numCharCountToTruncateFromStart.Value = settings.Audio_ImportCharCountToTruncateFromStart;
             mCanClose = true;
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Audio/Importing Audio Files.htm");
         }

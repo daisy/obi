@@ -18,6 +18,7 @@ namespace Obi.Dialogs
         public MultipleOptionDialog()
         {
             InitializeComponent();
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Closing the Project.htm");
         }

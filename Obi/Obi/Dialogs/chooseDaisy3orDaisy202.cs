@@ -17,6 +17,7 @@ namespace Obi.Dialogs
             InitializeComponent();
             m_ExportFormat = Obi.ImportExport.ExportFormat.DAISY3_0;
             m_radBtnDaisy3_202.Enabled = false;
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");                  
         }
