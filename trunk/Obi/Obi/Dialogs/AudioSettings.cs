@@ -13,6 +13,7 @@ namespace Obi.Dialogs
         private AudioSettings()
         {
             InitializeComponent();
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Creating and Working with Projects\\Audio settings for the project.htm");          
         }

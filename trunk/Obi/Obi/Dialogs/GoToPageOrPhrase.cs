@@ -54,6 +54,7 @@ namespace Obi.Dialogs
             mPhraseIndexComboBox.Items.AddRange(new object [] {(125 * i) + 1});
             }
             mPhraseIndexComboBox.Items.AddRange(new object [] {m_PhraseCount});
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/Obi Views and Transport Bar/Go to Page or Phrase dialog.htm");
             }

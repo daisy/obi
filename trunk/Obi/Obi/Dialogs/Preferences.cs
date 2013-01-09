@@ -791,6 +791,7 @@ namespace Obi.Dialogs
             m_CheckBoxListView.Columns.Add("", 317, HorizontalAlignment.Left);
             if (this.mTab.SelectedTab == this.mAudioTab)
             {
+             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
              helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
              helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/Audio Preferences.htm");
 
@@ -828,6 +829,7 @@ namespace Obi.Dialogs
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
+             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
              helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
              helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/Project Preferences.htm");
 
@@ -862,6 +864,7 @@ namespace Obi.Dialogs
             UpdateTabControl();
             if (mTab.SelectedTab == mKeyboardShortcutTab)
             {
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/Keyboard shortcut preferences.htm");         
 
@@ -875,6 +878,7 @@ namespace Obi.Dialogs
             }
             if (mTab.SelectedTab == mUserProfileTab)
             {
+             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
              helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
              helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/User Profile Preferences.htm");         
 
@@ -883,6 +887,7 @@ namespace Obi.Dialogs
             }
             if (mTab.SelectedTab == mColorPreferencesTab)
             {
+             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
              helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
              helpProvider1.SetHelpKeyword(this,"HTML Files/Exploring the GUI/The Preferences Dialog/Color preferences.htm");
 

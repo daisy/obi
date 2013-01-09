@@ -45,6 +45,7 @@ namespace Obi.Dialogs
                 groupBox1.Text = "List of anchor nodes";
                 m_lb_listOfAllAnchorNodes.Visible = true;
             }
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Associating Skippable Note with Anchor.htm");                  
         }
