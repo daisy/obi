@@ -3220,7 +3220,7 @@ for (int j = 0;
                if (mFindInText.ContainsFocus )
                {
                    helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-                   helpProvider1.SetHelpKeyword(this, "HTML Files\\Exploring the GUI\\The Menu Bar\\Edit Menu\\Find.htm");                  
+                   helpProvider1.SetHelpKeyword(this, "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Search by Text.htm");                  
                }
                else if ( mMetadataView.ContainsFocus )
                {
@@ -3258,7 +3258,7 @@ for (int j = 0;
                    else if (Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Page)
                    {
                        helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-                       helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Assigning a page role.htm");
+                       helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Pages.htm");
                    }
                    else if (Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Heading)
                    {
@@ -3274,6 +3274,11 @@ for (int j = 0;
                    {
                        helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
                        helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Associating Skippable Note with Anchor.htm");
+                   }
+                   else if (Selection.EmptyNodeForSelection.TODO)//For Todo phrases
+                   {
+                       helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+                       helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Changing the Todo or Used Status.htm");
                    }
 
                }

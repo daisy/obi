@@ -86,7 +86,7 @@ namespace Obi.UserControls
         private Image m_RecordingNextPage48;
         private Image m_RecordingNextPage64;
         private Image m_RecordingNextPage80;
-
+        HelpProvider helpProvider1;
         //public delegate void RecorderSettingsSet();
 
         //public event RecorderSettingsSet SaveTheSize;
@@ -179,6 +179,10 @@ namespace Obi.UserControls
             PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.nextpage80.png");
             m_RecordingNextPage80 = Image.FromStream(PlayPhrase);
 
+            helpProvider1 = new HelpProvider();
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Recording Toolbar.htm");  	
         }
 
         public RecordingToolBarForm(ProjectView.ProjectView projectView)

@@ -3267,7 +3267,7 @@ SelectionChangedPlaybackEnabled = false;
 
         public string GetHelpTopicPath()
         {
-            if (mPlayButton.ContainsFocus || mStopButton.ContainsFocus)
+            /*if (mPlayButton.ContainsFocus || mStopButton.ContainsFocus)
             {
                 return "HTML Files\\Creating a DTB\\Working with Audio\\Playback.htm";
             }
@@ -3287,8 +3287,8 @@ SelectionChangedPlaybackEnabled = false;
                 || mPreviousPageButton.ContainsFocus || mPrevSectionButton.ContainsFocus)
             {
                 return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Audio and navigation controls.htm";
-            }
-            else if (mTimeDisplayBox.ContainsFocus || mDisplayBox.ContainsFocus)
+            }*/
+            if (mTimeDisplayBox.ContainsFocus || mDisplayBox.ContainsFocus)
             {
                 return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Time Display.htm";
             }
