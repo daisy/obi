@@ -3250,12 +3250,7 @@ for (int j = 0;
                        helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
                        helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Silence.htm");
                    }
-                   else if (Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Plain)
-                   {
-                       helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-                       helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");
-                   }
-                   else if (Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Page)
+                  else if (Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Page)
                    {
                        helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
                        helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Pages.htm");
@@ -3279,6 +3274,11 @@ for (int j = 0;
                    {
                        helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
                        helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Phrases\\Changing the Todo or Used Status.htm");
+                   }
+                   else if (Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Plain)
+                   {
+                       helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+                       helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");
                    }
 
                }
