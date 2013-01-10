@@ -888,7 +888,11 @@ namespace Obi.ProjectView
         private void Waveform_Recording_MouseDown(object sender, MouseEventArgs e)
         {
             if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
+            {
+                m_MouseButtonDownLoc = 0;
+                m_MouseButtonUpLoc = 0;
                 return;
+            }
 
             if (IsValid(e.X))
                 markPageToolStripMenuItem.Enabled = true;
@@ -949,6 +953,9 @@ namespace Obi.ProjectView
 
         private void Waveform_Recording_MouseUp(object sender, MouseEventArgs e)
         {
+            if(m_MouseButtonDownLoc==0)
+                return;
+
             if (e.Button == MouseButtons.Left)
                 m_MouseButtonUpLoc = e.X;
             int swap = 0;
@@ -1070,15 +1077,19 @@ namespace Obi.ProjectView
             foreach (double[] arr in m_RecordingSession.DeletedItemList)
             {
                 if (time > arr[0] && time < arr[1])
+                {
                     IsAllowed = false;
-                else
-                    IsAllowed = true;
+                    return IsAllowed;
+                }
             }
             return IsAllowed;
         }
 
         private void Waveform_Recording_MouseMove(object sender, MouseEventArgs e)
         {
+            if(m_MouseButtonDownLoc==0)
+                return;
+
             if (e.Button != MouseButtons.Left)
                 return;
             if (!IsSelectionActive)
