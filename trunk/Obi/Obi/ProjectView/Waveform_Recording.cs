@@ -1074,14 +1074,37 @@ namespace Obi.ProjectView
         public bool IsPhraseMarkAllowed(double time)
         {
             bool IsAllowed = true;
-            foreach (double[] arr in m_RecordingSession.DeletedItemList)
-            {
-                if (time > arr[0] && time < arr[1])
+            int count = 1;
+
+            int noOfdeleteval = m_RecordingSession.DeletedItemList.Count;
+            if (noOfdeleteval != 0)
+                while (count <= m_RecordingSession.DeletedItemList.Count)
                 {
-                    IsAllowed = false;
-                    return IsAllowed;
+                    int mid = (count + noOfdeleteval) / 2;
+                    double[] array = m_RecordingSession.DeletedItemList[mid - 1];
+                    if (time >= array[0])
+                    {
+                        if (time <= array[1] || time == array[0])
+                        {
+                            IsAllowed = false;
+                            return IsAllowed;
+                        }
+                        else if (time > array[1])
+                        {
+                            count = mid + 1;
+                        }
+
+                    }
+                    else
+                    {
+                        noOfdeleteval = mid;
+                        if (mid == count)
+                            return IsAllowed;
+                    }
+
                 }
-            }
+
+
             return IsAllowed;
         }
 
@@ -1090,6 +1113,11 @@ namespace Obi.ProjectView
             if(m_MouseButtonDownLoc==0)
                 return;
 
+            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
+            {
+               // m_DeletedPartEnclosed = true;
+                return;
+            }
             if (e.Button != MouseButtons.Left)
                 return;
             if (!IsSelectionActive)
