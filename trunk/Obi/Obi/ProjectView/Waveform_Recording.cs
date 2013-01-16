@@ -84,6 +84,7 @@ namespace Obi.ProjectView
         private int m_OverlapPixelLength = 0;
         private int m_PixelOfRedLine = 0;//workaround to avoid pixels mismatch for deleting red line consistenly.
         private bool m_ResetCalled = false;
+        private bool m_DeletedPartEnclosed = false;
 
 
         public Waveform_Recording()
@@ -887,6 +888,7 @@ namespace Obi.ProjectView
 
         private void Waveform_Recording_MouseDown(object sender, MouseEventArgs e)
         {
+            m_DeletedPartEnclosed = false;
             if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
             {
                 m_MouseButtonDownLoc = 0;
@@ -917,7 +919,7 @@ namespace Obi.ProjectView
                     {
                         int tempMouseDown = listOfSelctedPortion[0];
                         int tempMouseUp = listOfEndSelection[listOfEndSelection.Count - 1];
-                        PaintWaveform(tempMouseDown - 15, tempMouseUp + 15, false);
+                        PaintWaveform(tempMouseDown, tempMouseUp, false);
                     }
                     else
                     {
@@ -955,6 +957,12 @@ namespace Obi.ProjectView
         {
             if(m_MouseButtonDownLoc==0)
                 return;
+
+            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)) || m_DeletedPartEnclosed)
+            {
+                m_DeletedPartEnclosed = false;
+                return;
+            }
 
             if (e.Button == MouseButtons.Left)
                 m_MouseButtonUpLoc = e.X;
@@ -1113,9 +1121,9 @@ namespace Obi.ProjectView
             if(m_MouseButtonDownLoc==0)
                 return;
 
-            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
+            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)) || m_DeletedPartEnclosed)
             {
-               // m_DeletedPartEnclosed = true;
+                m_DeletedPartEnclosed = true;
                 return;
             }
             if (e.Button != MouseButtons.Left)
@@ -1309,9 +1317,9 @@ namespace Obi.ProjectView
             if (m_NewPhraseTime > 0 && !m_IsPage)
             {
                 if (IsInSelection(CalculatePixels(m_NewPhraseTime)))
-                    PaintWaveform((CalculatePixels(m_NewPhraseTime) - 15), (CalculatePixels(m_NewPhraseTime)+15), true);
+                    PaintWaveform((CalculatePixels(m_NewPhraseTime) - 5), (CalculatePixels(m_NewPhraseTime)+5), true);
                 else
-                    PaintWaveform((CalculatePixels(m_NewPhraseTime) - 15), (CalculatePixels(m_NewPhraseTime)+15), false);
+                    PaintWaveform((CalculatePixels(m_NewPhraseTime) - 5), (CalculatePixels(m_NewPhraseTime)+5), false);
                 m_NewPhraseTime = -1;
             }
         }
