@@ -299,7 +299,7 @@ namespace Obi.ProjectView
             int timeInSeconds = Convert.ToInt32(timeOfAssetMilliseconds / 1000);
             m_Counter++;
 
-            if (ConvertPixelsToTime(m_X) < (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+            if (CalculateTime(m_X) < (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
                    Time.TIME_UNIT))
                 timer1.Interval = 90;
             else
@@ -419,6 +419,13 @@ namespace Obi.ProjectView
             int pixels = 0;
             pixels = Convert.ToInt32(time * .01);
             return pixels;
+        }
+
+        private double ConvertPixelToTime(int pixels)
+        {
+            double time = 0;
+            time = pixels / 0.01;
+            return time;
         }
 
         private void Waveform_Recording_VisibleChanged(object sender, EventArgs e)
@@ -865,6 +872,21 @@ namespace Obi.ProjectView
 
         }
 
+        private double CalculateTime(int pixel)
+        {
+            int PhraseMarkPixel = pixel;
+            double calculatedTime = 0;
+
+            double currentMarkTime = 0;
+            currentMarkTime = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+                        Time.TIME_UNIT;
+            int currentm_X = m_X;
+            int pixelGap = currentm_X - pixel;
+            calculatedTime = ConvertPixelToTime(pixelGap);
+            calculatedTime = currentMarkTime - calculatedTime;
+            return calculatedTime;
+
+        }
         private int CalculatePixels(double time)
         {
             double phraseMarkTime = time;
@@ -889,7 +911,7 @@ namespace Obi.ProjectView
         private void Waveform_Recording_MouseDown(object sender, MouseEventArgs e)
         {
             m_DeletedPartEnclosed = false;
-            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
+            if (!IsPhraseMarkAllowed(CalculateTime(e.X)))
             {
                 m_MouseButtonDownLoc = 0;
                 m_MouseButtonUpLoc = 0;
@@ -945,7 +967,7 @@ namespace Obi.ProjectView
             }
             IsSelectionActive = true;
             m_StartSelection = m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation);
-            m_Time = ConvertPixelsToTime(e.X);
+            m_Time = CalculateTime(e.X);
             m_NewPhraseTime = m_Time;
 
             m_IsPage = false;
@@ -958,7 +980,7 @@ namespace Obi.ProjectView
             if(m_MouseButtonDownLoc==0)
                 return;
 
-            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)) || m_DeletedPartEnclosed)
+            if (!IsPhraseMarkAllowed(CalculateTime(e.X)) || m_DeletedPartEnclosed)
             {
                 m_DeletedPartEnclosed = false;
                 return;
@@ -968,7 +990,7 @@ namespace Obi.ProjectView
                 m_MouseButtonUpLoc = e.X;
             int swap = 0;
             IsSelectionActive = false;
-            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
+            if (!IsPhraseMarkAllowed(CalculateTime(e.X)))
                 return;
             else
             {
@@ -1016,7 +1038,7 @@ namespace Obi.ProjectView
                         DrawDictionary(i, true);
                 }
 
-                // m_NewPhraseTime = ConvertPixelsToTime(e.X);
+                // m_NewPhraseTime = CalculateTime(e.X);
                 if (m_MouseButtonDownLoc > m_MouseButtonUpLoc)
                 {
                     swap = m_MouseButtonUpLoc;
@@ -1121,8 +1143,18 @@ namespace Obi.ProjectView
             if(m_MouseButtonDownLoc==0)
                 return;
 
-            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)) || m_DeletedPartEnclosed)
+            if (!IsPhraseMarkAllowed(CalculateTime(e.X)) || m_DeletedPartEnclosed)
             {
+                if (m_MouseButtonDownLoc < m_TempMouseMoveLoc)
+                {
+                    PaintWaveform(m_MouseButtonDownLoc, m_TempMouseMoveLoc, false);
+                }
+                else
+                {
+                    PaintWaveform(m_TempMouseMoveLoc, m_MouseButtonDownLoc, false);
+                }
+                m_MouseButtonDownLoc = 0;
+                m_TempMouseMoveLoc = 0;
                 m_DeletedPartEnclosed = true;
                 return;
             }
@@ -1333,8 +1365,8 @@ namespace Obi.ProjectView
                 PaintWaveform(m_MouseButtonUpLoc - 5, m_MouseButtonUpLoc + 5, false);
                 return;
             }
-            double beginTime = ConvertPixelsToTime(m_MouseButtonDownLoc) ;
-            double endTime = ConvertPixelsToTime(m_MouseButtonUpLoc) ;
+            double beginTime = CalculateTime(m_MouseButtonDownLoc) ;
+            double endTime = CalculateTime(m_MouseButtonUpLoc) ;
             m_RecordingSession.UpdateDeletedTimeList( beginTime,endTime );
             /*   listOfCurrentMinChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
                listOfCurrentMaxChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
@@ -1353,7 +1385,7 @@ namespace Obi.ProjectView
                        if (pair.Value != "")
                        {
                            val = int.Parse(pair.Value);
-                           tempVal = val - (Convert.ToInt32(ConvertPixelsToTime(m_MouseButtonUpLoc) - ConvertPixelsToTime(m_MouseButtonDownLoc)) / 1000);
+                           tempVal = val - (Convert.ToInt32(CalculateTime(m_MouseButtonUpLoc) - CalculateTime(m_MouseButtonDownLoc)) / 1000);
                            temp = tempVal % 10;
                            temp = tempVal - temp;
                            pairVal = temp.ToString();
