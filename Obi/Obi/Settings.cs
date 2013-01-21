@@ -120,7 +120,7 @@ namespace Obi
             settings.NoiseLevel = AudioLib.VuMeter.NoiseLevelSelection.Medium;
             settings.NudgeTimeMs = 200.0;
             settings.ObiFormSize = new Size(0, 0);
-            settings.ShowGraphicalPeakMeterAtStartup = false;
+            settings.ShowGraphicalPeakMeterAtStartup = true ;
             settings.OpenLastProject = false;
             settings.PreviewDuration = 1500;
             settings.ElapseBackTimeInMilliseconds = 1500;
