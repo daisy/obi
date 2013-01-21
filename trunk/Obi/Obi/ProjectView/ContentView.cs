@@ -3758,7 +3758,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value] = ScrollUp_LargeIncrementWithSelection;
             mShortcutKeys[keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value] = ArrowKey_Down;
             mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value] = ArrowKey_Up;
-            
+
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarRecordSingleKey.Value] = mProjectView.TransportBar.Record_Button;
         }
 
         private bool CanUseKeys { get { return (mSelection == null || !(mSelection is TextSelection)) && !m_IsBlocksVisibilityProcessActive; } }
