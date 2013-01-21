@@ -2253,4 +2253,7 @@ Error text: {1}</value>
   <data name="Audio_EnablePostRecordingPageRenumbering" xml:space="preserve">
     <value>Renumber the following pages when recording ends</value>
   </data>
+  <data name="KeyS_TransportBarRecordSingleKey" xml:space="preserve">
+    <value>Recording single key shortcut</value>
+  </data>
 </root>

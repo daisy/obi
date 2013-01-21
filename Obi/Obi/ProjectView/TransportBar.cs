@@ -1547,7 +1547,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// allows direct recording when record directly preferences is checked else it goes through monitoring first
         /// </summary>
-        public void Record_Button()
+        public bool Record_Button()
         {
             if (mView.ObiForm.Settings.RecordDirectlyWithRecordButton && CurrentState != State.Monitoring) //if monitoring go through the traditional way
             {
@@ -1557,6 +1557,7 @@ namespace Obi.ProjectView
             {
                 Record();
             }
+            return true;
         }
 
         /// <summary>
