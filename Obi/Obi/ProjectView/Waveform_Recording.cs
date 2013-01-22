@@ -233,8 +233,13 @@ namespace Obi.ProjectView
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            DrawWaveForm();
+        }
+
+        public void DrawWaveForm()
+        {
             if (!this.Visible || this.Handle.ToInt32() == 0
-                || m_ProjectView == null || m_ProjectView.TransportBar == null || m_ContentView == null || !m_ProjectView.TransportBar.IsRecorderActive) return;
+               || m_ProjectView == null || m_ProjectView.TransportBar == null || m_ContentView == null || !m_ProjectView.TransportBar.IsRecorderActive) return;
 
             if (m_StaticRecordingLocation == -1)
             {
@@ -275,21 +280,21 @@ namespace Obi.ProjectView
 
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels == 1)
             {
-                g.DrawLine(pen_ChannelMono, new Point(m_X, (WaveformHeight  - (int)Math.Round(((minChannel1 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue))+m_TopMargin),
-                     new Point(m_X, (WaveformHeight - (int)Math.Round(((maxChannel1 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue))+m_TopMargin));
+                g.DrawLine(pen_ChannelMono, new Point(m_X, (WaveformHeight - (int)Math.Round(((minChannel1 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue)) + m_TopMargin),
+                     new Point(m_X, (WaveformHeight - (int)Math.Round(((maxChannel1 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue)) + m_TopMargin));
 
             }
             if (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.NumberOfChannels > 1)
             {
-                g.DrawLine(pen_Channel1, new Point(m_X, (WaveformHeight - (int)Math.Round(((minChannel1 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue))+m_TopMargin),
-                   new Point(m_X, (WaveformHeight - (int)Math.Round(((maxChannel1 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue))+m_TopMargin));
-                g.DrawLine(pen_Channel2, new Point(m_X, (WaveformHeight - (int)Math.Round(((minChannel2 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue))+ m_TopMargin) ,
+                g.DrawLine(pen_Channel1, new Point(m_X, (WaveformHeight - (int)Math.Round(((minChannel1 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue)) + m_TopMargin),
+                   new Point(m_X, (WaveformHeight - (int)Math.Round(((maxChannel1 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue)) + m_TopMargin));
+                g.DrawLine(pen_Channel2, new Point(m_X, (WaveformHeight - (int)Math.Round(((minChannel2 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue)) + m_TopMargin),
                    new Point(m_X, (WaveformHeight - (int)Math.Round(((maxChannel2 - short.MinValue) * WaveformHeight) / (float)ushort.MaxValue)) + m_TopMargin));
             }
 
-            g.DrawLine(pen_WaveformBaseLine, 0, (WaveformHeight / 2)+m_TopMargin, m_ContentView.Width, (WaveformHeight / 2)+m_TopMargin);
+            g.DrawLine(pen_WaveformBaseLine, 0, (WaveformHeight / 2) + m_TopMargin, m_ContentView.Width, (WaveformHeight / 2) + m_TopMargin);
 
-            g.DrawLine(pen_WaveformBaseLine, 0, (WaveformHeight / 2)+m_TopMargin, Width, (WaveformHeight / 2)+m_TopMargin);
+            g.DrawLine(pen_WaveformBaseLine, 0, (WaveformHeight / 2) + m_TopMargin, Width, (WaveformHeight / 2) + m_TopMargin);
             string text = "";
 
 
@@ -299,7 +304,7 @@ namespace Obi.ProjectView
             int timeInSeconds = Convert.ToInt32(timeOfAssetMilliseconds / 1000);
             m_Counter++;
 
-            if (CalculateTime(m_X) < (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+            if (ConvertPixelsToTime(m_X) < (m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
                    Time.TIME_UNIT))
                 timer1.Interval = 90;
             else
@@ -314,7 +319,7 @@ namespace Obi.ProjectView
                     m_StaticRecordingLocation = m_X;
                 }
 
-                g.DrawLine(m_PenTimeGrid, m_X, 0+m_TopMargin, m_X, WaveformHeight+m_TopMargin);
+                g.DrawLine(m_PenTimeGrid, m_X, 0 + m_TopMargin, m_X, WaveformHeight + m_TopMargin);
                 if (timeInSeconds % 10 == 0 && m_LocalTime != timeInSeconds)
                 {
                     text = timeInSeconds.ToString();
@@ -450,6 +455,8 @@ namespace Obi.ProjectView
             listOfCurrentMaxChannel2.Clear();
             m_StaticRecordingLocation = -1;
             m_OverlapPixelLength = 0;
+            m_MouseButtonDownLoc = 0;
+            m_MouseButtonUpLoc = 0;
         }
 
         private short[] m_Amp = new short[2];
@@ -666,7 +673,10 @@ namespace Obi.ProjectView
                     }
                 }
                 m_IsMaximized = false;
+
                 timer1.Start();
+
+
             }
         }
 
@@ -911,7 +921,7 @@ namespace Obi.ProjectView
         private void Waveform_Recording_MouseDown(object sender, MouseEventArgs e)
         {
             m_DeletedPartEnclosed = false;
-            if (!IsPhraseMarkAllowed(CalculateTime(e.X)))
+            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
             {
                 m_MouseButtonDownLoc = 0;
                 m_MouseButtonUpLoc = 0;
@@ -967,7 +977,7 @@ namespace Obi.ProjectView
             }
             IsSelectionActive = true;
             m_StartSelection = m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation);
-            m_Time = CalculateTime(e.X);
+            m_Time = ConvertPixelsToTime(e.X);
             m_NewPhraseTime = m_Time;
 
             m_IsPage = false;
@@ -977,20 +987,25 @@ namespace Obi.ProjectView
 
         private void Waveform_Recording_MouseUp(object sender, MouseEventArgs e)
         {
-            if(m_MouseButtonDownLoc==0)
-                return;
-
-            if (!IsPhraseMarkAllowed(CalculateTime(e.X)) || m_DeletedPartEnclosed)
+            if (m_MouseButtonDownLoc == 0)
             {
-                m_DeletedPartEnclosed = false;
+                listOfSelctedPortion.Clear();
+                listOfEndSelection.Clear();
+                m_MouseButtonUpLoc = 0;
                 return;
             }
+
+            //if (m_DeletedPartEnclosed || !IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
+            //{
+            //    m_DeletedPartEnclosed = false;
+            //    return;
+            //}
 
             if (e.Button == MouseButtons.Left)
                 m_MouseButtonUpLoc = e.X;
             int swap = 0;
             IsSelectionActive = false;
-            if (!IsPhraseMarkAllowed(CalculateTime(e.X)))
+            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
                 return;
             else
             {
@@ -1014,9 +1029,13 @@ namespace Obi.ProjectView
                     m_MouseButtonUpLoc = 0;
                 }
                 else if (m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc < m_X && m_MouseButtonDownLoc > (recordingTimeCursor + m_OffsetLocation))
+                {
                     m_MouseButtonUpLoc = m_X;
+                }
                 else if (m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonUpLoc > (recordingTimeCursor + m_OffsetLocation) && m_MouseButtonUpLoc < m_X)
+                {
                     m_MouseButtonDownLoc = recordingTimeCursor + m_OffsetLocation;
+                }
                 else if (m_MouseButtonUpLoc > m_X && m_MouseButtonDownLoc < (recordingTimeCursor + m_OffsetLocation))
                 {
                     m_MouseButtonDownLoc = recordingTimeCursor + m_OffsetLocation;
@@ -1038,7 +1057,7 @@ namespace Obi.ProjectView
                         DrawDictionary(i, true);
                 }
 
-                // m_NewPhraseTime = CalculateTime(e.X);
+                // m_NewPhraseTime = ConvertPixelsToTime(e.X);
                 if (m_MouseButtonDownLoc > m_MouseButtonUpLoc)
                 {
                     swap = m_MouseButtonUpLoc;
@@ -1046,7 +1065,6 @@ namespace Obi.ProjectView
                     m_MouseButtonDownLoc = swap;
                 }
             }
-
         }
 
         /*      
@@ -1143,7 +1161,7 @@ namespace Obi.ProjectView
             if(m_MouseButtonDownLoc==0)
                 return;
 
-            if (!IsPhraseMarkAllowed(CalculateTime(e.X)) || m_DeletedPartEnclosed)
+            if (m_DeletedPartEnclosed || !IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
             {
                 if (m_MouseButtonDownLoc < m_TempMouseMoveLoc)
                 {
@@ -1154,6 +1172,7 @@ namespace Obi.ProjectView
                     PaintWaveform(m_TempMouseMoveLoc, m_MouseButtonDownLoc, false);
                 }
                 m_MouseButtonDownLoc = 0;
+                m_MouseButtonUpLoc = 0;
                 m_TempMouseMoveLoc = 0;
                 m_DeletedPartEnclosed = true;
                 return;
@@ -1365,8 +1384,8 @@ namespace Obi.ProjectView
                 PaintWaveform(m_MouseButtonUpLoc - 5, m_MouseButtonUpLoc + 5, false);
                 return;
             }
-            double beginTime = CalculateTime(m_MouseButtonDownLoc) ;
-            double endTime = CalculateTime(m_MouseButtonUpLoc) ;
+            double beginTime = ConvertPixelsToTime(m_MouseButtonDownLoc) ;
+            double endTime = ConvertPixelsToTime(m_MouseButtonUpLoc) ;
             m_RecordingSession.UpdateDeletedTimeList( beginTime,endTime );
             /*   listOfCurrentMinChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
                listOfCurrentMaxChannel1.RemoveRange(m_MouseButtonDownLoc - (recordingTimeCursor + m_OffsetLocation + m_DeletedOffset), (m_MouseButtonUpLoc - m_MouseButtonDownLoc));
@@ -1385,7 +1404,7 @@ namespace Obi.ProjectView
                        if (pair.Value != "")
                        {
                            val = int.Parse(pair.Value);
-                           tempVal = val - (Convert.ToInt32(CalculateTime(m_MouseButtonUpLoc) - CalculateTime(m_MouseButtonDownLoc)) / 1000);
+                           tempVal = val - (Convert.ToInt32(ConvertPixelsToTime(m_MouseButtonUpLoc) - ConvertPixelsToTime(m_MouseButtonDownLoc)) / 1000);
                            temp = tempVal % 10;
                            temp = tempVal - temp;
                            pairVal = temp.ToString();
@@ -1403,6 +1422,18 @@ namespace Obi.ProjectView
             m_TempMouseMoveLoc = 0;
             m_IsDeleted = true;
             RepaintWaveform();
+            double RecorderTime = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
+Time.TIME_UNIT;
+            if ((RecorderTime - ConvertPixelsToTime((m_X))) > 100)
+            {
+                int noOfLoops = (int)((RecorderTime - ConvertPixelsToTime((m_X))) / 100);
+                int i = 0;
+                while (i < noOfLoops)
+                {
+                    DrawWaveForm();
+                    i++;
+                }
+            }
         }
 
         private void UpdateTimeToPixelDictionary(double time, int pixel)
