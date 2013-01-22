@@ -73,6 +73,7 @@ namespace Obi
         public bool OpenBookmarkNodeOnReopeningProject;
         public int[] BookMarkNodeHierarchy;
         public bool RetainInitialSilenceInPhraseDetection;
+        public bool Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
         public int ImportToleranceForAudioInMs;
         public bool RecordDirectly;
         public bool LeftAlignPhrasesInContentView;
@@ -84,7 +85,8 @@ namespace Obi
         public double RecordingToolBarIncrementVal;
         public bool Project_EnableFreeDiskSpaceCheck; // enables free disk space check
         public bool Audio_EnablePostRecordingPageRenumbering; //ask for renumber following pages as recording is stopped
-       
+        public bool Audio_MonitorContinuously; //start monitoring whenever transport bar is in stop state
+
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
         private static void InitializeDefaultSettings(Settings settings)
@@ -145,6 +147,7 @@ namespace Obi
             settings.Export_AudioFilesNamesLengthLimit = 8;
             settings.OpenBookmarkNodeOnReopeningProject = false;
             settings.RetainInitialSilenceInPhraseDetection = true;
+            settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection = false;
             settings.ImportToleranceForAudioInMs = 100;
             settings.RecordDirectly = false;
             settings.LeftAlignPhrasesInContentView = true;
@@ -156,6 +159,7 @@ namespace Obi
             settings.RecordingToolBarIncrementVal = 0;
             settings.Project_EnableFreeDiskSpaceCheck = true;
             settings.Audio_EnablePostRecordingPageRenumbering = true;
+            settings.Audio_MonitorContinuously = false;
         }
 
         /// <summary>

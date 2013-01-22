@@ -140,7 +140,7 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
         /// Create the phrase detection command.
         /// </summary>
         public static CompositeCommand GetPhraseDetectionCommand(ProjectView.ProjectView view, ObiNode node,
-            long threshold, double gap, double before)
+            long threshold, double gap, double before, bool mergeFirstTwoPhrases)
         {
         List<PhraseNode> phraseNodesList = new List<PhraseNode> ();
         if (node is PhraseNode)
@@ -190,6 +190,13 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
                     command.ChildCommands.Insert(command.ChildCommands.Count , new Commands.Node.AddNode(view, phrases[i], parent, index, false));
                     index++;
                     }
+                    
+                    if (phrases.Count >= 2 && mergeFirstTwoPhrases)
+                    {
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new MergeAudio (view, phrases[0], phrases[1]) ) ;
+                        
+                    }
+
                 if (node is PhraseNode &&  phrases.Count > 0 && view.Selection != null)
                     {
                     //command.append ( new UpdateSelection ( view, new NodeSelection ( node, view.Selection.Control ) ) );

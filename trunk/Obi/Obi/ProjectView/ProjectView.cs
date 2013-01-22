@@ -3003,7 +3003,7 @@ for (int j = 0;
                         delegate(Dialogs.ProgressDialog progress1)
                             {
                             command = Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, phraseDetectionNode,
-                                dialog.Threshold, dialog.Gap, dialog.LeadingSilence );
+                                dialog.Threshold, dialog.Gap, dialog.LeadingSilence,ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection);
                             } );
                     progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
                     this.ProgressChanged += new ProgressChangedEventHandler(progress.UpdateProgressBar);
@@ -3092,7 +3092,7 @@ for (int j = 0;
                                 if (sectionsList[i].PhraseChildCount > 0)
                                     {
                                     listOfCommands.Add( Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, sectionsList[i],
-                                        dialog.Threshold, dialog.Gap, dialog.LeadingSilence ) );
+                                        dialog.Threshold, dialog.Gap, dialog.LeadingSilence, ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection ) );
                                     }
                                 }
                             } );
