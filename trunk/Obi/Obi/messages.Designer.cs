@@ -268,6 +268,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merge first 2 phrases detected by phrase detection.
+        /// </summary>
+        internal static string Audio_MergeFirstTwoPhrasesInPhraseDetection {
+            get {
+                return ResourceManager.GetString("Audio_MergeFirstTwoPhrasesInPhraseDetection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monitor continuously.
+        /// </summary>
+        internal static string Audio_MonitorAlways {
+            get {
+                return ResourceManager.GetString("Audio_MonitorAlways", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected audio at {0} in {1} in {2}.
         /// </summary>
         internal static string audio_selection_to_string {

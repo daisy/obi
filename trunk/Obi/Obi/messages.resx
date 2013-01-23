@@ -2256,4 +2256,10 @@ Error text: {1}</value>
   <data name="KeyS_TransportBarRecordSingleKey" xml:space="preserve">
     <value>Recording single key shortcut</value>
   </data>
+  <data name="Audio_MonitorAlways" xml:space="preserve">
+    <value>Monitor continuously</value>
+  </data>
+  <data name="Audio_MergeFirstTwoPhrasesInPhraseDetection" xml:space="preserve">
+    <value>Merge first 2 phrases detected by phrase detection</value>
+  </data>
 </root>
