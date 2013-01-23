@@ -156,6 +156,7 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
                     phraseNodesList.Add ((PhraseNode)  section.PhraseChild (i) );
                 }
             }
+            List<List<PhraseNode>> phrasesToMerge = new List<List<PhraseNode>>();
             CompositeCommand command = view.Presentation.CreateCompositeCommand(Localizer.Message("phrase_detection"));
             // if phrase is selected but phrase detection node is section,select section
             if ( node is SectionNode && view.GetSelectedPhraseSection != null 
@@ -190,10 +191,14 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
                     command.ChildCommands.Insert(command.ChildCommands.Count , new Commands.Node.AddNode(view, phrases[i], parent, index, false));
                     index++;
                     }
-                    
-                    if (phrases.Count >= 2 && mergeFirstTwoPhrases)
+                    // add first 2 phrases to the list if the merge flag is true
+                    if (phrases.Count >= 2 && mergeFirstTwoPhrases
+                        && phrases[0] is PhraseNode && phrases [1] is PhraseNode)
                     {
-                        command.ChildCommands.Insert(command.ChildCommands.Count, new MergeAudio (view, phrases[0], phrases[1]) ) ;
+                        List<PhraseNode> mergeList = new List<PhraseNode>();
+                        mergeList.Add(phrases[0]);
+                        mergeList.Add(phrases[1]);
+                        phrasesToMerge.Add(mergeList);
                         
                     }
 
@@ -222,6 +227,16 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
                 }     
                 view.TriggerProgressChangedEvent(Localizer.Message("phrase_detection"), (100 * j) / phraseNodesList.Count);
                 
+                }
+                if (phrasesToMerge.Count > 0)
+                {
+                    for (int i = 0; i < phrasesToMerge.Count; i++)
+                    {
+                        List<PhraseNode> mergeList = phrasesToMerge[i];
+                        Commands.Node.MergeAudio mergeCmd = new MergeAudio(view, mergeList[0], mergeList[1]) ;
+                        mergeCmd.UpdateSelection = false ;
+                        command.ChildCommands.Insert(command.ChildCommands.Count, mergeCmd);
+                    }
                 }
             return command;
         }
