@@ -49,6 +49,7 @@ namespace Obi.ProjectView
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
             this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
+            this.m_ChkAlwaysMonitor = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // mPlayButton
@@ -238,10 +239,18 @@ namespace Obi.ProjectView
             this.mVUMeterPanel.ShowMaxMinValues = false;
             this.mVUMeterPanel.VuMeter = null;
             // 
+            // m_ChkAlwaysMonitor
+            // 
+            resources.ApplyResources(this.m_ChkAlwaysMonitor, "m_ChkAlwaysMonitor");
+            this.m_ChkAlwaysMonitor.Name = "m_ChkAlwaysMonitor";
+            this.m_ChkAlwaysMonitor.UseVisualStyleBackColor = true;
+            this.m_ChkAlwaysMonitor.CheckedChanged += new System.EventHandler(this.m_ChkAlwaysMonitor_CheckedChanged);
+            // 
             // TransportBar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.LightSalmon;
+            this.Controls.Add(this.m_ChkAlwaysMonitor);
             this.Controls.Add(this.mToDo_CustomClassMarkButton);
             this.Controls.Add(this.mPreviousPageButton);
             this.Controls.Add(this.mNextPageButton);
@@ -269,6 +278,7 @@ namespace Obi.ProjectView
 
         }
 
+        
         #endregion
 
         private System.Windows.Forms.Button mPlayButton;
@@ -290,5 +300,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.Button mNextPageButton;
         private System.Windows.Forms.Button mPreviousPageButton;
         private System.Windows.Forms.Button mToDo_CustomClassMarkButton;
+        private System.Windows.Forms.CheckBox m_ChkAlwaysMonitor;
     }
 }

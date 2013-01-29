@@ -370,7 +370,12 @@ namespace Obi.ProjectView
             get { return base.Enabled; }
             set
             {
-                if (base.Enabled && !value && IsActive) Stop();
+                if (base.Enabled && !value && IsActive)
+                {
+                    //@MonitorContinuously
+                    if (!value && m_ChkAlwaysMonitor.Checked) m_ChkAlwaysMonitor.Checked = false;
+                    Stop();
+                }
                 base.Enabled = value;
             }
         }
@@ -874,7 +879,7 @@ namespace Obi.ProjectView
                 mPlayButton.Enabled = CanPlay || CanResumePlayback;
                 mFastPlayRateCombobox.Enabled = !IsRecorderActive;
                 mRecordButton.Enabled = CanRecord || CanResumeRecording;
-                bool recordDirectly = (mView.ObiForm  != null && mView.ObiForm.Settings.RecordDirectlyWithRecordButton) ? true : false;
+                bool recordDirectly = (mView.ObiForm  != null && IsRecordDirectlyWithRecordButton ) ? true : false;
                 if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || recordDirectly || mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording || CanResumeRecording)
                 {
                     mRecordButton.Image = m_recordButtonImage;
@@ -896,6 +901,9 @@ namespace Obi.ProjectView
                 mNextPageButton.Enabled = CanNavigateNextPage;
                 mNextSectionButton.Enabled = CanNavigateNextSection;
                 mToDo_CustomClassMarkButton.Enabled = mView.CanSetTODOStatus;
+
+                //@MonitorContinuously
+                if (IsPlayerActive && m_ChkAlwaysMonitor.Checked) m_ChkAlwaysMonitor.Checked = false;
             }
         }
         
@@ -1468,6 +1476,7 @@ namespace Obi.ProjectView
 
             // makes phrase blocks invisible if these exceed max. visible blocks count during recording
             //mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit :@singleSection: legagy code commented
+            if (m_ChkAlwaysMonitor.Checked) StartMonitoringContinuously();
         }
 
 
@@ -1507,7 +1516,7 @@ namespace Obi.ProjectView
             if (CanStop)
             {
                 if ((IsRecorderActive || CanResumeRecording) && !IsPlayerActive )
-                {
+                {   
                     StopRecording();
                 }
                 else
@@ -1549,7 +1558,10 @@ namespace Obi.ProjectView
         /// </summary>
         public bool Record_Button()
         {
-            if (mView.ObiForm.Settings.RecordDirectlyWithRecordButton && CurrentState != State.Monitoring) //if monitoring go through the traditional way
+            //@MonitorContinuously
+            if (m_ChkAlwaysMonitor.Checked) StopMonitoringContinuously();
+
+            if (IsRecordDirectlyWithRecordButton && CurrentState != State.Monitoring) //if monitoring go through the traditional way
             {
                 StartRecordingDirectly();
             }
@@ -1568,6 +1580,9 @@ namespace Obi.ProjectView
             if (mView.Selection is TextSelection || IsMetadataSelected)
                 return;
 
+            //@MonitoringContinuously
+            if (m_ChkAlwaysMonitor.Checked) StopMonitoringContinuously();
+
             if (mView.Presentation != null&& mState != State.Playing
                         &&    !IsMetadataSelected && ( mView.Selection == null || !(mView.Selection is TextSelection)))
 
@@ -1580,7 +1595,7 @@ namespace Obi.ProjectView
                     mRecordingSession.Stop ();
                     StartRecording ();
                     }
-                else if (CanResumeRecording)
+                else if (CanResumeRecording || m_ChkAlwaysMonitor.Checked) //@MonitorContinuously
                     {
                     SetupRecording ( Recording );
                     }
@@ -2022,6 +2037,31 @@ namespace Obi.ProjectView
             MessageBox.Show ( Localizer.Message ( "TransportBar_ErrorInStartingRecording" ) + "\n\n" + ex.ToString (), Localizer.Message ( "Caption_Error" ) );
             if (mState == State.Monitoring || mState == State.Recording) Stop ();
             }
+                    }
+
+                    public void StartMonitoringContinuously()
+                    {
+                        
+                        if ((mCurrentPlaylist != null && mCurrentPlaylist.State == AudioLib.AudioPlayer.State.Stopped)
+                                || (mRecorder != null && mRecorder.CurrentState == AudioLib.AudioRecorder.State.Stopped))
+                        {
+                            
+                            mRecordingSession = new RecordingSession(mView.Presentation, mRecorder, mView.ObiForm.Settings);
+                            mRecordingSession.StartMonitoring();
+                            if (mView.ObiForm.Settings.AudioClues) mVUMeterPanel.BeepEnable = true;
+                        }
+                    }
+
+                    //@MonitorContinuously
+                    public void StopMonitoringContinuously()
+                    {
+                        if (mRecordingSession != null
+                            && mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring)
+                        {
+                            mRecordingSession.Stop();
+                            mVUMeterPanel.BeepEnable = false;
+                            mRecordingSession = null;
+                        }
                     }
 
 
@@ -2711,6 +2751,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRecordingDirectly()
         {
+            
+            //@MonitorContinuously
+            if (m_ChkAlwaysMonitor.Checked) StopMonitoringContinuously();
+
             if (mView.ObiForm.Settings.Recording_PreviewBeforeStarting && mView.ObiForm.Settings.AllowOverwrite
                 && m_PreviewBeforeRecordingWorker != null && m_PreviewBeforeRecordingWorker.IsBusy)
             {
@@ -2751,6 +2795,7 @@ namespace Obi.ProjectView
             }
             else
             {
+                
                 StartRecordingDirectly_Internal();
             }
         }
@@ -2763,6 +2808,7 @@ namespace Obi.ProjectView
                 {
                 try
                     {
+                        
                     SetupRecording ( Recording );
                     }
                 catch (System.Exception ex)
@@ -2780,6 +2826,9 @@ namespace Obi.ProjectView
         // Stop recording
         private void StopRecording()
         {
+            //@MonitorContinuously
+            if (m_ChkAlwaysMonitor.Checked && CurrentState == State.Monitoring) StopMonitoringContinuously();
+
             if (mRecordingSession != null && 
                 (mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ||
                 mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording))
@@ -2831,8 +2880,11 @@ SelectionChangedPlaybackEnabled = false;
             {
             mRecordingSession = null;
             mResumeRecordingPhrase = null;
-
+            
+            
             }
+            //@MonitorContinuously
+            if (m_ChkAlwaysMonitor.Checked) StartMonitoringContinuously();
         }
 
         private void UpdateRecordedPhrasesAlongWithPostRecordingOperations(List<PhraseNode> listOfRecordedPhrases,ref EmptyNode firstRecordedPage)
@@ -2959,6 +3011,7 @@ SelectionChangedPlaybackEnabled = false;
         private bool IsPaused { get { return mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused; } }
         public bool IsRecorderActive { get { return IsListening || IsRecording; } }
         private bool IsMetadataSelected { get { return mView.Selection != null && mView.Selection.Control is MetadataView  ; } }
+        private bool IsRecordDirectlyWithRecordButton { get { return mView != null && (mView.ObiForm.Settings.RecordDirectlyWithRecordButton||m_ChkAlwaysMonitor.Checked ); } }
 
         private void mToDoMarkButton_Click ( object sender, EventArgs e ) 
         {
@@ -3265,6 +3318,21 @@ SelectionChangedPlaybackEnabled = false;
         {
             get { return FineNavigationModeForPhrase ? Localizer.Message ("StatusMsg_FineNavigation") : ""; }
         }
+
+        private void m_ChkAlwaysMonitor_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (m_ChkAlwaysMonitor.Checked)
+            {
+                
+                StartMonitoringContinuously();
+            }
+            else
+            {
+                StopMonitoringContinuously();
+            }
+        }
+
+        public bool InterceptSpaceBar { get { return m_ChkAlwaysMonitor.ContainsFocus; } }
 
         public string GetHelpTopicPath()
         {

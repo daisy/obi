@@ -3400,7 +3400,7 @@ for (int j = 0;
             if (!(mSelection is TextSelection) &&
                 (mContentView.ContainsFocus
                 || mTOCView.ContainsFocus
-                || mTransportBar.ContainsFocus))
+                || (mTransportBar.ContainsFocus && !mTransportBar.InterceptSpaceBar)))
                 {
                 if ((TransportBar.CanPausePlayback || TransportBar.CanResumePlayback) && useSelection)
                     {
