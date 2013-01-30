@@ -2829,6 +2829,7 @@ namespace Obi.ProjectView
         // Stop recording
         private void StopRecording()
         {
+            bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
             //@MonitorContinuously
             if (m_ChkAlwaysMonitor.Checked && CurrentState == State.Monitoring) StopMonitoringContinuously();
 
@@ -2836,25 +2837,25 @@ namespace Obi.ProjectView
                 (mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ||
                 mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording))
             {
-                bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
+                
                 mVUMeterPanel.BeepEnable = false;
                 List<PhraseNode> listOfRecordedPhrases = new List<PhraseNode>();
                 EmptyNode firstRecordedPage = null;
                 try
                     {
                     mRecordingSession.Stop ();
-                    
-                    
 
-                    // update phrases with audio assets
-                    UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases,ref firstRecordedPage);
 
-                    //Workaround to force phrases to show if they become invisible on stopping recording
-                    mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
-                    EmptyNode lastRecordedPhrase = mRecordingSection.PhraseChildCount >0? mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1):null;
-                    if (!wasMonitoring && lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar ( lastRecordedPhrase, null );
+                    if (mRecordingSection != null)
+                    {
+                        // update phrases with audio assets
+                        UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases, ref firstRecordedPage);
 
-                    
+                        //Workaround to force phrases to show if they become invisible on stopping recording
+                        mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
+                        EmptyNode lastRecordedPhrase = mRecordingSection.PhraseChildCount > 0 ? mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1) : null;
+                        if (!wasMonitoring && lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar(lastRecordedPhrase, null);
+                    }
 
                     }
                 catch (System.Exception ex)
@@ -2870,7 +2871,7 @@ SelectionChangedPlaybackEnabled = false;
                     AdditionalPostRecordingOperations(firstRecordedPage, listOfRecordedPhrases);
                 }
                 catch (System.Exception ex)
-                {
+                {   
                     mView.WriteToLogFile(ex.ToString());
                     MessageBox.Show(ex.ToString());
                 }
