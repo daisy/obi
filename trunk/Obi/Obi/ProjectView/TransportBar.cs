@@ -1424,6 +1424,9 @@ namespace Obi.ProjectView
             bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
         mVUMeterPanel.BeepEnable = false;
 
+        //@MonitorContinuously
+        if (m_ChkAlwaysMonitor.Checked && CurrentState == State.Monitoring) StopMonitoringContinuously();
+
         EmptyNode firstRecordedPage = null;
         List<PhraseNode> listOfRecordedPhrases = new List<PhraseNode>();
         try
