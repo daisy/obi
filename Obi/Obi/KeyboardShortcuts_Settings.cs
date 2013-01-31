@@ -34,6 +34,7 @@ namespace Obi
         public KeyboardShortcut ContentView_TransportBarFineNavigationOn = new KeyboardShortcut(Keys.F2, "KeyS_TransportBarFineNavigationOn");
         public KeyboardShortcut ContentView_TransportBarFineNavigationOff = new KeyboardShortcut(Keys.Shift | Keys.F2, "KeyS_TransportBarFineNavigationOff");
         public KeyboardShortcut ContentView_TransportBarRecordSingleKey = new KeyboardShortcut(Keys.R, "KeyS_TransportBarRecordSingleKey");
+        public KeyboardShortcut ContentView_TransportBarStopSingleKey = new KeyboardShortcut(Keys.T, "KeyS_TransportBarStopSingleKey");
         public KeyboardShortcut ContentView_MarkSelectionBeginTime = new KeyboardShortcut(Keys.OemOpenBrackets, "KeyS_MarkSelectionBeginTime");
         public KeyboardShortcut ContentView_MarkSelectionEndTime = new KeyboardShortcut(Keys.OemCloseBrackets, "KeyS_MarkSelectionEndTime");
         public KeyboardShortcut ContentView_ExpandAudioSelectionAtLeft = new KeyboardShortcut(Keys.Shift | Keys.Left, "KeyS_ExpandAudioSelectionAtLeft");
@@ -274,6 +275,7 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarPreviewUptoAudioCursor.Description), ContentView_TransportBarPreviewUptoAudioCursor);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarPreviewUptoSelection.Description), ContentView_TransportBarPreviewUptoSelection);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarRecordSingleKey.Description), ContentView_TransportBarRecordSingleKey);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarStopSingleKey.Description), ContentView_TransportBarStopSingleKey);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayStepDown.Description), ContentView_FastPlayStepDown);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayStepUp.Description), ContentView_FastPlayStepUp);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayRateNormilize.Description), ContentView_FastPlayRateNormilize);
