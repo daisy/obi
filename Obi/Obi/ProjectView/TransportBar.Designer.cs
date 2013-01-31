@@ -202,6 +202,7 @@ namespace Obi.ProjectView
             // 
             resources.ApplyResources(this.m_ChkAlwaysMonitor, "m_ChkAlwaysMonitor");
             this.m_ChkAlwaysMonitor.Name = "m_ChkAlwaysMonitor";
+            this.mTransportBarTooltip.SetToolTip(this.m_ChkAlwaysMonitor, resources.GetString("m_ChkAlwaysMonitor.ToolTip"));
             this.m_ChkAlwaysMonitor.UseVisualStyleBackColor = true;
             this.m_ChkAlwaysMonitor.CheckedChanged += new System.EventHandler(this.m_ChkAlwaysMonitor_CheckedChanged);
             // 
