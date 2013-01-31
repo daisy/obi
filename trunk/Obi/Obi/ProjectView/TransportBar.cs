@@ -1447,9 +1447,12 @@ namespace Obi.ProjectView
             mView.WriteToLogFile(ex.ToString());
             MessageBox.Show(ex.ToString());
         }
+
+        if (!wasMonitoring)
+        {
             mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
             EmptyNode phraseNextToResumePhrase = null;
-            if (mResumeRecordingPhrase.FollowingNode != null && mResumeRecordingPhrase.FollowingNode is EmptyNode) phraseNextToResumePhrase = (EmptyNode) mResumeRecordingPhrase.FollowingNode;
+            if (mResumeRecordingPhrase.FollowingNode != null && mResumeRecordingPhrase.FollowingNode is EmptyNode) phraseNextToResumePhrase = (EmptyNode)mResumeRecordingPhrase.FollowingNode;
 
             bool playbackEnabledOnSelectionChange = SelectionChangedPlaybackEnabled;
             SelectionChangedPlaybackEnabled = false;
@@ -1459,10 +1462,10 @@ namespace Obi.ProjectView
                 AdditionalPostRecordingOperations(firstRecordedPage, listOfRecordedPhrases);
                 if (phraseChildCount != mRecordingSection.PhraseChildCount)
                 {
-                    if (phraseNextToResumePhrase != null && phraseNextToResumePhrase.PrecedingNode is PhraseNode) 
-                        mResumeRecordingPhrase =(PhraseNode) phraseNextToResumePhrase.PrecedingNode;
-                    else if ( mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1) is PhraseNode )
-                        mResumeRecordingPhrase =(PhraseNode)  mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+                    if (phraseNextToResumePhrase != null && phraseNextToResumePhrase.PrecedingNode is PhraseNode)
+                        mResumeRecordingPhrase = (PhraseNode)phraseNextToResumePhrase.PrecedingNode;
+                    else if (mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1) is PhraseNode)
+                        mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
 
                 }
             }
@@ -1473,7 +1476,7 @@ namespace Obi.ProjectView
             }
             if (!wasMonitoring && mResumeRecordingPhrase != null) mView.SelectFromTransportBar(mResumeRecordingPhrase, null);
             SelectionChangedPlaybackEnabled = playbackEnabledOnSelectionChange;
-            
+        }
             mRecordingSession = null;
             UpdateTimeDisplay();
 
