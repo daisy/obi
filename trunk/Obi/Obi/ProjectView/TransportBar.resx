@@ -1037,6 +1037,9 @@
   <data name="m_ChkAlwaysMonitor.Text" xml:space="preserve">
     <value>M</value>
   </data>
+  <data name="m_ChkAlwaysMonitor.ToolTip" xml:space="preserve">
+    <value>Monitor Continuously.</value>
+  </data>
   <data name="&gt;&gt;m_ChkAlwaysMonitor.Name" xml:space="preserve">
     <value>m_ChkAlwaysMonitor</value>
   </data>
@@ -1185,7 +1188,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.5.0.21751, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.5.0.21883, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1221,7 +1224,7 @@
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="media-monitor.png" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-       <value>
+      <value>
               iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
               wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAK5SURBVFhH7VU5
               S2NRFLZRwUpRQdx3RbAQFCsLUVxxQ9x3VMRdC3EDLSwEGwu1tLIQOwv9GRMTBjdwmnFi8u57iRInkUzz
@@ -1236,6 +1239,6 @@
               dXUQra14ozbzy0/Zc9Y6AdmSPhWYoK4Mx4aeekCkJTkZb1QOF78DDEQZSgW+kAi8oBwTFnD9EHNiIkRn
               Jzxra3hta4NGfa+WlEBjo/EbPTrsU7u6YE5KCi+4TuKuogL3lL0gAu/04fHQl4+Nx7z2QD7eE9bM/3XY
               D3p6LWlpMMXGSuPxE92RiANHAaIKRBWIhAJ/AaE4KsZnOH4bAAAAAElFTkSuQmCC
-        </value>
+    </value>
   </data>
 </root>
