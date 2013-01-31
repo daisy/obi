@@ -1520,7 +1520,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// The stop button. Stopping twice deselects all.
         /// </summary>
-        public void Stop()
+        public bool Stop()
         {
             if (CanStop)
             {
@@ -1541,7 +1541,9 @@ namespace Obi.ProjectView
                     StopPlaylistPlayback ();
                     }
                 }
+                return true;
             }
+            return false;
         }
 
         private void StopPlaylistPlayback ()

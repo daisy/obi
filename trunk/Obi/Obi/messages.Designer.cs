@@ -2703,11 +2703,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recording single key shortcut.
+        ///   Looks up a localized string similar to Record: single key shortcut.
         /// </summary>
         internal static string KeyS_TransportBarRecordSingleKey {
             get {
                 return ResourceManager.GetString("KeyS_TransportBarRecordSingleKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop: single key shortcut.
+        /// </summary>
+        internal static string KeyS_TransportBarStopSingleKey {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarStopSingleKey", resourceCulture);
             }
         }
         
