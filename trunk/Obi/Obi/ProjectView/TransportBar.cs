@@ -1425,19 +1425,22 @@ namespace Obi.ProjectView
         mVUMeterPanel.BeepEnable = false;
 
         //@MonitorContinuously
-        if (m_ChkAlwaysMonitor.Checked && CurrentState == State.Monitoring) StopMonitoringContinuously();
+        if (m_ChkAlwaysMonitor.Checked && CurrentState == State.Monitoring) m_ChkAlwaysMonitor.Checked = false;
 
         EmptyNode firstRecordedPage = null;
         List<PhraseNode> listOfRecordedPhrases = new List<PhraseNode>();
         try
             {
             mRecordingSession.Stop ();
-            
-            // update recorded phrases with audio assets
-            UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases, ref firstRecordedPage);
-            
-            //Workaround to force phrases to show if they become invisible on stopping recording
-            mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
+
+            if (mRecordingSection != null)
+            {
+                // update recorded phrases with audio assets
+                UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases, ref firstRecordedPage);
+
+                //Workaround to force phrases to show if they become invisible on stopping recording
+                mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
+            }
         }
         catch (System.Exception ex)
         {
@@ -2831,7 +2834,7 @@ namespace Obi.ProjectView
         {
             bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
             //@MonitorContinuously
-            if (m_ChkAlwaysMonitor.Checked && CurrentState == State.Monitoring) StopMonitoringContinuously();
+            if (m_ChkAlwaysMonitor.Checked && CurrentState == State.Monitoring) m_ChkAlwaysMonitor.Checked = false;
 
             if (mRecordingSession != null && 
                 (mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ||
