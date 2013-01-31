@@ -1425,7 +1425,7 @@ namespace Obi.ProjectView
         mVUMeterPanel.BeepEnable = false;
 
         //@MonitorContinuously
-        if (m_ChkAlwaysMonitor.Checked && CurrentState == State.Monitoring) m_ChkAlwaysMonitor.Checked = false;
+        if (IsMonitoringContinuously) m_ChkAlwaysMonitor.Checked = false;
 
         EmptyNode firstRecordedPage = null;
         List<PhraseNode> listOfRecordedPhrases = new List<PhraseNode>();
@@ -1448,7 +1448,7 @@ namespace Obi.ProjectView
             MessageBox.Show(ex.ToString());
         }
 
-        if (!wasMonitoring)
+        if (!wasMonitoring && mRecordingSection != null)
         {
             mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
             EmptyNode phraseNextToResumePhrase = null;
@@ -2181,8 +2181,11 @@ namespace Obi.ProjectView
         {
             if (CanNavigateNextPhrase)
             {
+                //@MonitorContinuously
+                if (IsMonitoringContinuously) return false;
                 if (mState == State.Recording)
                 {
+                    
                     //mRecordingSession.AudioRecorder.TimeOfAsset
                     double timeOfAssetMilliseconds =
                    (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
@@ -2288,6 +2291,8 @@ namespace Obi.ProjectView
         {
             if (CanNavigateNextSection)
             {
+                //@MonitorContinuously
+                if (IsMonitoringContinuously) return false;
                 if (mState == State.Recording)
                 {
                     //mRecordingSession.AudioRecorder.TimeOfAsset
@@ -2839,7 +2844,7 @@ namespace Obi.ProjectView
         {
             bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
             //@MonitorContinuously
-            if (m_ChkAlwaysMonitor.Checked && CurrentState == State.Monitoring) m_ChkAlwaysMonitor.Checked = false;
+            if (IsMonitoringContinuously) m_ChkAlwaysMonitor.Checked = false;
 
             if (mRecordingSession != null && 
                 (mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ||
@@ -3024,6 +3029,7 @@ SelectionChangedPlaybackEnabled = false;
         public bool IsRecorderActive { get { return IsListening || IsRecording; } }
         private bool IsMetadataSelected { get { return mView.Selection != null && mView.Selection.Control is MetadataView  ; } }
         private bool IsRecordDirectlyWithRecordButton { get { return mView != null && (mView.ObiForm.Settings.RecordDirectlyWithRecordButton||m_ChkAlwaysMonitor.Checked ); } }
+        private bool IsMonitoringContinuously { get { return m_ChkAlwaysMonitor.Checked && CurrentState == State.Monitoring; } }
 
         private void mToDoMarkButton_Click ( object sender, EventArgs e ) 
         {
