@@ -362,6 +362,7 @@ namespace Obi.ProjectView
             List<int> listOfMaxChannel2Temp = new List<int>();
             Dictionary<int, string> m_TempDictionary = new Dictionary<int, string>();
             int calculatedKey = 0;
+            int CalculatedKeyForDelete = 0;
             int tempXLocation = 0;
             m_ResetCalled = true;
 
@@ -403,11 +404,19 @@ namespace Obi.ProjectView
             }
 
             Dictionary<double, int> tempTimeToPixelMap = new Dictionary<double, int>();
-            foreach (double t in m_TimeToPixelMap.Keys)
+            foreach (KeyValuePair<double, int> pair in m_TimeToPixelMap)
             {
-                int pixel =   CalculatePixels(t);
-                if (pixel >= m_OffsetLocation) tempTimeToPixelMap.Add(t, pixel);
+                if (pair.Value > tempXLocation - recordingTimeCursor && pair.Value < tempXLocation - 1)
+                {
+                    CalculatedKeyForDelete = pair.Value - (tempXLocation - recordingTimeCursor);
+                    tempTimeToPixelMap.Add(pair.Key, CalculatedKeyForDelete + m_OffsetLocation);
+                }
             }
+            //foreach (double t in m_TimeToPixelMap.Keys)
+            //{
+            //    int pixel =   CalculatePixels(t);
+            //    if (pixel >= m_OffsetLocation) tempTimeToPixelMap.Add(t, pixel);
+            //}
             m_TimeToPixelMap = tempTimeToPixelMap ;
         }
 
@@ -755,6 +764,19 @@ namespace Obi.ProjectView
                       }*/
                 }
 
+               foreach (double[] arr in m_RecordingSession.DeletedItemList)
+                {
+                    if (m_TimeToPixelMap.ContainsKey(arr[0]) && m_TimeToPixelMap.ContainsKey(arr[1]))
+                    {
+                        int beginPixel = m_TimeToPixelMap[arr[0]];
+                        int endPixel = m_TimeToPixelMap[arr[1]];
+                        //Console.WriteLine("Begin Pixel Value is {0}",beginPixel);
+                        //Console.WriteLine("End Pixel Value is {0}",endPixel);
+                        g.FillRectangle(SystemBrushes.ControlDark, beginPixel, m_TopMargin, endPixel - beginPixel, this.WaveformHeight);
+                        //UpdateTimeToPixelDictionary(arr[0], beginPixel);
+                        //UpdateTimeToPixelDictionary(arr[1], endPixel);
+                    }
+                }
                 foreach (KeyValuePair<int, string> pair in m_MainDictionary)
                 {
                     g.DrawLine(m_PenTimeGrid, pair.Key, 0+m_TopMargin, pair.Key, WaveformHeight+m_TopMargin);
@@ -762,7 +784,7 @@ namespace Obi.ProjectView
                     {
                         g.DrawString(pair.Value, myFont, SystemBrushes.ControlDarkDark, pair.Key, 0);
                         if (pair.Value != "")
-                            g.DrawLine(m_PenPhrasePage, pair.Key, 0+m_TopMargin, pair.Key, 0+m_TopMargin);
+                            g.DrawLine(m_PenPhrasePage, pair.Key, 0 + m_TopMargin, pair.Key, WaveformHeight + m_TopMargin);
                     }
                     else
                     {
