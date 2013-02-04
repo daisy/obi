@@ -381,7 +381,8 @@ namespace Obi
                 node.AcceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
-                        if (n is PhraseNode && n.Children.Count == 0 && (!mIsMaster || ((PhraseNode)n).Used))
+                        if (n is PhraseNode && n.Children.Count == 0 && ((PhraseNode)n).Audio != null
+                            && (!mIsMaster || ((PhraseNode)n).Used))
                         {
                             mPhrases.Add((PhraseNode)n);
                             mStartTimes.Add(mTotalTime);
