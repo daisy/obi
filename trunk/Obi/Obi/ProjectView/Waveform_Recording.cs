@@ -85,6 +85,7 @@ namespace Obi.ProjectView
         private int m_PixelOfRedLine = 0;//workaround to avoid pixels mismatch for deleting red line consistenly.
         private bool m_ResetCalled = false;
         private bool m_DeletedPartEnclosed = false;
+        private int tempXLocation=0;
 
 
         public Waveform_Recording()
@@ -763,7 +764,7 @@ namespace Obi.ProjectView
                           break;
                       }*/
                 }
-
+              
                foreach (double[] arr in m_RecordingSession.DeletedItemList)
                 {
                     if (m_TimeToPixelMap.ContainsKey(arr[0]) && m_TimeToPixelMap.ContainsKey(arr[1]))
@@ -775,6 +776,14 @@ namespace Obi.ProjectView
                         g.FillRectangle(SystemBrushes.ControlDark, beginPixel, m_TopMargin, endPixel - beginPixel, this.WaveformHeight);
                         //UpdateTimeToPixelDictionary(arr[0], beginPixel);
                         //UpdateTimeToPixelDictionary(arr[1], endPixel);
+                    }
+                    else if (m_TimeToPixelMap.ContainsKey(arr[1]))
+                    {
+                        int beginPixel = tempXLocation - recordingTimeCursor;
+                        int endPixel = m_TimeToPixelMap[arr[1]];
+                        //Console.WriteLine("Begin Pixel Value is {0}",beginPixel);
+                        //Console.WriteLine("End Pixel Value is {0}",endPixel);
+                        g.FillRectangle(SystemBrushes.ControlDark, beginPixel, m_TopMargin, endPixel - beginPixel, this.WaveformHeight);
                     }
                 }
                 foreach (KeyValuePair<int, string> pair in m_MainDictionary)
