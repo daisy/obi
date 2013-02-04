@@ -35,7 +35,12 @@ namespace Obi
         /// </summary>
         public ManagedAudioMedia Audio
         {
-            get { return (ManagedAudioMedia)GetProperty<ChannelsProperty>().GetMedia(Presentation.ChannelsManager.GetOrCreateAudioChannel()); }
+            get 
+            { 
+                urakawa.property.channel.ChannelsProperty prop =  GetProperty<ChannelsProperty>() ;
+                return prop != null? (ManagedAudioMedia)prop.GetMedia(Presentation.ChannelsManager.GetOrCreateAudioChannel()):
+                    null; 
+            }
             set
             {
                 GetProperty<ChannelsProperty>().SetMedia(Presentation.ChannelsManager.GetOrCreateAudioChannel(), value);
