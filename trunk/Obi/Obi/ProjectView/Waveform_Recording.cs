@@ -467,6 +467,10 @@ namespace Obi.ProjectView
             m_OverlapPixelLength = 0;
             m_MouseButtonDownLoc = 0;
             m_MouseButtonUpLoc = 0;
+            if (m_RecordingSession != null)
+            {
+              m_RecordingSession.DeletedItemList.Clear();
+            }
         }
 
         private short[] m_Amp = new short[2];
