@@ -3400,7 +3400,8 @@ for (int j = 0;
             if (!(mSelection is TextSelection) &&
                 (mContentView.ContainsFocus
                 || mTOCView.ContainsFocus
-                || (mTransportBar.ContainsFocus && !mTransportBar.InterceptSpaceBar)))
+                || (mTransportBar.ContainsFocus )))
+                //|| (mTransportBar.ContainsFocus && !mTransportBar.InterceptSpaceBar)))
                 {
                 if ((TransportBar.CanPausePlayback || TransportBar.CanResumePlayback) && useSelection)
                     {
@@ -4487,6 +4488,7 @@ for (int j = 0;
                 visitor.DestinationDirectory = new Uri(audioFileExportDirectory);
 
                 visitor.EncodePublishedAudioFilesToMp3 = false;
+                visitor.EncodePublishedAudioFilesStereo = mPresentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2;
                 uint sampleRate = mPresentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
                 if (sampleRate == 44100) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz44100;
                 else if (sampleRate == 22050) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz22050;
