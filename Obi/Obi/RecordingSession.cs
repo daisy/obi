@@ -160,6 +160,8 @@ namespace Obi
                 mSessionOffset = mAudioList.Count;
                 mPhraseMarks = new List<double>();
                 mSectionMarks = new List<int>();
+                mDeletedTime.Clear();
+                m_PhraseIndexesToDelete.Clear();
                 AudioMediaData asset =
                     (AudioMediaData)mPresentation.MediaDataFactory.Create<WavAudioMediaData>();
                 mSessionMedia = (ManagedAudioMedia)mPresentation.MediaFactory.CreateManagedAudioMedia();
