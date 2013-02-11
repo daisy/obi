@@ -20,6 +20,8 @@ namespace Obi.ProjectView
         private bool m_IsBlocksVisibilityProcessActive; // @phraseLimit
         private int m_OffsetForFirstPhrase = 0;//@singleSection
 
+        private StripCursor m_AnimationCursor;
+        private StripCursor m_TempCursor;
         /// <summary>
         /// This constructor is used by the designer.
         /// </summary>
@@ -746,10 +748,51 @@ namespace Obi.ProjectView
         public void SetSelectedIndexFromStripCursor(StripCursor cursor)
         {
             int index = mBlockLayout.Controls.IndexOf(cursor) / 2;
+             m_TempCursor = cursor;
             //mContentView.SelectionFromStrip = new StripIndexSelection(Node, mContentView, index);//@singleSection: original
             mContentView.SelectionFromStrip = new StripIndexSelection ( Node, mContentView, index + OffsetForFirstPhrase);//@singleSection new
         }
+        /// <summary>
+        /// Set the Animation Cursor
+        /// </summary>
+        public void SetAnimationCursor(int X, int Y)
+        { 
+            if (m_TempCursor != null)
+            {
+                int index = mBlockLayout.Controls.IndexOf(m_TempCursor);
+                Control tempPreviousPhrase = mBlockLayout.Controls[index - 1];
+                Control tempNextPhrase = mBlockLayout.Controls[index + 2];
+                Point tempPreviousPos = mContentView.LocationOfBlockInStripPanel(tempPreviousPhrase);
+                Point tempNextPos = mContentView.LocationOfBlockInStripPanel(tempNextPhrase);
+                Point cursorposition = mContentView.LocationOfBlockInStripPanel(m_TempCursor);
+                //  Console.WriteLine("Cursor Position is {0}", cursorposition);
+                Point LocationOfCursor = new Point(cursorposition.X + X, cursorposition.Y);
+                if ((X < 0 && tempPreviousPos.X-3 < LocationOfCursor.X) || (X > 0 && tempNextPos.X-13 > LocationOfCursor.X))
+                {
+                    if (m_AnimationCursor == null)
+                    {
+                        m_AnimationCursor = new StripCursor();
+                        this.Controls.Add(m_AnimationCursor);
+                    }
 
+                    m_AnimationCursor.Location = new Point(cursorposition.X + X, cursorposition.Y);
+                    m_AnimationCursor.SetHeight(mBlockHeight);
+                    m_AnimationCursor.BackColor = ColorSettings.StripSelectedBackColor;
+                    m_AnimationCursor.BringToFront();
+                }
+
+            }
+        }
+        /// <summary>
+        /// Set the Animation Cursor to null
+        /// </summary>
+        public void SetAnimationCursor()
+        {
+           if (this.Controls.Contains(m_AnimationCursor))
+                this.Controls.Remove(m_AnimationCursor);
+            m_AnimationCursor = null;
+            Console.WriteLine();
+        }
         /// <summary>
         /// Set the selection from the parent control view. (From ISelectableInContentView)
         /// </summary>
