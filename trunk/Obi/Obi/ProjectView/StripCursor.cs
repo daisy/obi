@@ -13,6 +13,7 @@ namespace Obi.ProjectView
         private bool mHighlighted;  // highlight flag
 
         private static readonly double HeightToWidthRatio = 10.0;
+        private int m_MouseDownLoc = 0;
 
 
         /// <summary>
@@ -118,6 +119,25 @@ namespace Obi.ProjectView
         internal void UpdateColors()
         {
             BackColor = Parent.BackColor;
+        }
+
+        private void StripCursor_MouseDown(object sender, MouseEventArgs e)
+        {
+            m_MouseDownLoc = 1;
+        }
+
+        private void StripCursor_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (m_MouseDownLoc == 0)
+                return;
+            if (Strip != null)
+                Strip.SetAnimationCursor(e.X, e.Y);
+        }
+
+        private void StripCursor_MouseUp(object sender, MouseEventArgs e)
+        {
+            m_MouseDownLoc = 0;
+            Strip.SetAnimationCursor();
         }
     }
 }
