@@ -761,13 +761,15 @@ namespace Obi.ProjectView
             {
                 int index = mBlockLayout.Controls.IndexOf(m_TempCursor);
                 Control tempPreviousPhrase = mBlockLayout.Controls[index - 1];
-                Control tempNextPhrase = mBlockLayout.Controls[index + 2];
-                Point tempPreviousPos = mContentView.LocationOfBlockInStripPanel(tempPreviousPhrase);
-                Point tempNextPos = mContentView.LocationOfBlockInStripPanel(tempNextPhrase);
+                Control tempNextPhrase = mBlockLayout.Controls[index + 1];
+                int tempWidthofNextPhrase = tempNextPhrase.Width;
+                int tempWidthOfPreviousPhrase = tempPreviousPhrase.Width;
+                //Point tempPreviousPos = mContentView.LocationOfBlockInStripPanel(tempPreviousPhrase);
+                //Point tempNextPos = mContentView.LocationOfBlockInStripPanel(tempNextPhrase);
                 Point cursorposition = mContentView.LocationOfBlockInStripPanel(m_TempCursor);
                 //  Console.WriteLine("Cursor Position is {0}", cursorposition);
                 Point LocationOfCursor = new Point(cursorposition.X + X, cursorposition.Y);
-                if ((X < 0 && tempPreviousPos.X-3 < LocationOfCursor.X) || (X > 0 && tempNextPos.X-13 > LocationOfCursor.X))
+                if ((X < 0 && cursorposition.X-tempWidthOfPreviousPhrase < LocationOfCursor.X) || (X > 0 && cursorposition.X + tempWidthofNextPhrase > LocationOfCursor.X))
                 {
                     if (m_AnimationCursor == null)
                     {
