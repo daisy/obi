@@ -34,10 +34,7 @@ namespace Obi.ProjectView
             // 
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.StripCursor_MouseMove);
             this.Click += new System.EventHandler(this.StripCursor_Click);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.StripCursor_MouseDown);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StripCursor_MouseUp);
             this.ResumeLayout(false);
 
         }

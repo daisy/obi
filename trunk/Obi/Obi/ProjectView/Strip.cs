@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
-using System.Collections.Generic ;
+using System.Collections.Generic;
 
 namespace Obi.ProjectView
 {
@@ -20,8 +20,6 @@ namespace Obi.ProjectView
         private bool m_IsBlocksVisibilityProcessActive; // @phraseLimit
         private int m_OffsetForFirstPhrase = 0;//@singleSection
 
-        private StripCursor m_AnimationCursor;
-        private StripCursor m_TempCursor;
         /// <summary>
         /// This constructor is used by the designer.
         /// </summary>
@@ -70,7 +68,7 @@ namespace Obi.ProjectView
                     mAudioScale = value;
                     foreach (Control c in mBlockLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
                     Resize_Blocks();
-                    mContentView.UpdateSize ();
+                    mContentView.UpdateSize();
                     mContentView.EnsureVisibilityOfSelectedItem();
                 }
             }
@@ -86,28 +84,28 @@ namespace Obi.ProjectView
         }
 
 
-// @phraseLimit
+        // @phraseLimit
         /// <summary>
         /// returns true if all the blocks in strip are visible
-                /// </summary>
+        /// </summary>
         public bool IsBlocksVisible
-            {
+        {
             get
-                {
+            {
                 if (mNode.PhraseChildCount == 0)
                     return true;
-                else if (mBlockLayout.Controls.Count < (mNode.PhraseChildCount * 2 ) + 1 )
+                else if (mBlockLayout.Controls.Count < (mNode.PhraseChildCount * 2) + 1)
                     return false;
                 else
                     return true;
-                }
             }
+        }
         // @phraseLimit
         public bool IsBlocksVisibilityProcessActive
-            {
-             get { return m_IsBlocksVisibilityProcessActive ; }
-            set { m_IsBlocksVisibilityProcessActive = value ;}
-            }
+        {
+            get { return m_IsBlocksVisibilityProcessActive; }
+            set { m_IsBlocksVisibilityProcessActive = value; }
+        }
 
 
         /// <summary>
@@ -216,50 +214,50 @@ namespace Obi.ProjectView
 
         //@singleSection
         public bool IsContentViewFilledWithBlocks
-            {
+        {
             get
-                {
+            {
                 int stripsPanelLocation = this.Parent != null ? this.Parent.Location.Y : 0;
                 if (mBlockLayout != null && mBlockLayout.Controls.Count > 0
                     && (mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + stripsPanelLocation) > mContentView.ContentViewDepthForCreatingBlocks)
-                    {
+                {
                     //Console.WriteLine ( mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + .Y );
                     return true;
-                    }
+                }
                 else
-                    {
+                {
                     return false;
-                    }
                 }
             }
+        }
 
         //@singleSection
         public int OffsetForFirstPhrase
-            {
+        {
             get
-                {
+            {
                 int offsetIndex_FirstPhrase = m_OffsetForFirstPhrase;
                 if (mBlockLayout.Controls.Count > 1)
-                    {
+                {
                     Control c = mBlockLayout.Controls[1];
                     if (c is Block)
-                        {
+                    {
                         offsetIndex_FirstPhrase = ((Block)c).Node.Index;
-                        }
                     }
+                }
                 return m_OffsetForFirstPhrase = offsetIndex_FirstPhrase;
-                }
             }
+        }
 
-//@singleSection
+        //@singleSection
         public int BlocksLayoutTopPosition
-            {
+        {
             get
-                {
+            {
                 //Console.WriteLine ( "blocks layout upper y : " + mBlockLayout.Location.Y );
-                return mBlockLayout.Location.Y ;
-                }
+                return mBlockLayout.Location.Y;
             }
+        }
 
         /// <summary>
         /// Set the zoom factor for the strip and its contents.
@@ -288,98 +286,98 @@ namespace Obi.ProjectView
             }
         }
 
-    //@singleSection
-    public bool IsContentViewFilledWithBlocksTillPixelDepth ( int pixelDepth )
+        //@singleSection
+        public bool IsContentViewFilledWithBlocksTillPixelDepth(int pixelDepth)
         {
-        //Console.WriteLine ( "pixel check : " + mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + " " + this.Parent.Location.Y );
+            //Console.WriteLine ( "pixel check : " + mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + " " + this.Parent.Location.Y );
             if (mBlockLayout != null && mBlockLayout.Controls.Count > 0
-                                     && (mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + mBlockLayout.Location.Y + 
+                                     && (mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + mBlockLayout.Location.Y +
                                      this.Parent.Location.Y) > pixelDepth)
-                {
+            {
                 //Console.WriteLine ( "pixel depth in strip " + pixelDepth );
                 return true;
-                }
+            }
             else
-                {
+            {
                 return false;
-                }
-            
+            }
+
         }
 
         //@singleSection
-        public List<int> GetBoundaryPhrasesIndexForVisiblePhrases ( int startY, int endY )
-            {
-            List<int> boundaryIndex = new List<int> ();
-            
-            foreach (Control c in mBlockLayout.Controls)
-                {
-                if (c is Block)
-                    {
-                    Block b = (Block)c;
-                    if (b.Location.Y >= startY -10 && boundaryIndex.Count == 0) boundaryIndex.Add ( b.Node.Index );
+        public List<int> GetBoundaryPhrasesIndexForVisiblePhrases(int startY, int endY)
+        {
+            List<int> boundaryIndex = new List<int>();
 
-                    if ( boundaryIndex.Count == 1 && 
-                        ( b.Location.Y > endY || b == LastBlock ))
-                        {
-                        boundaryIndex.Add ( b.Node.Index ) ;
-                        }
+            foreach (Control c in mBlockLayout.Controls)
+            {
+                if (c is Block)
+                {
+                    Block b = (Block)c;
+                    if (b.Location.Y >= startY - 10 && boundaryIndex.Count == 0) boundaryIndex.Add(b.Node.Index);
+
+                    if (boundaryIndex.Count == 1 &&
+                        (b.Location.Y > endY || b == LastBlock))
+                    {
+                        boundaryIndex.Add(b.Node.Index);
                     }
                 }
-            return boundaryIndex;
             }
+            return boundaryIndex;
+        }
 
         //@singleSection
-        public int GetPhraseCountForContentViewVisibleHeight ( int visibleHeight,int visibleWidth,  EmptyNode node, bool checkWithFollowingPhrases )
-            {
-            int expectedRows = Convert.ToInt32 ( visibleHeight / (103 * mContentView.ZoomFactor)) + 1 ;
-            int expectedMilliseconds = Convert.ToInt32 ( (visibleWidth / 12) * mContentView.ZoomFactor ) * expectedRows * 1000;
+        public int GetPhraseCountForContentViewVisibleHeight(int visibleHeight, int visibleWidth, EmptyNode node, bool checkWithFollowingPhrases)
+        {
+            int expectedRows = Convert.ToInt32(visibleHeight / (103 * mContentView.ZoomFactor)) + 1;
+            int expectedMilliseconds = Convert.ToInt32((visibleWidth / 12) * mContentView.ZoomFactor) * expectedRows * 1000;
             // use time for this
             double time = 0;
             int phraseCount = 0;
-            double maxAllowedTimePerPhrase = Convert.ToInt32 ( (visibleWidth / 12) * mContentView.ZoomFactor ) * 1000;
+            double maxAllowedTimePerPhrase = Convert.ToInt32((visibleWidth / 12) * mContentView.ZoomFactor) * 1000;
 
             for (int i = node.Index; i >= 0; --i)
-                {
-                double phraseDuration = mNode.PhraseChild ( i ).Duration ;
+            {
+                double phraseDuration = mNode.PhraseChild(i).Duration;
                 time += phraseDuration < maxAllowedTimePerPhrase ? phraseDuration : maxAllowedTimePerPhrase;
                 phraseCount++;
 
                 if (time > expectedMilliseconds)
-                    {
+                {
                     //Console.WriteLine ( " phrase count for visible page is " + phraseCount );
                     break;
-                    }
                 }
-
-            return phraseCount;
             }
 
+            return phraseCount;
+        }
+
         //@singleSection
-        public bool IsBlockForEmptyNodeExists ( EmptyNode node )
-            {
-            if ( mBlockLayout.Controls.Count == 0 ) return false;
+        public bool IsBlockForEmptyNodeExists(EmptyNode node)
+        {
+            if (mBlockLayout.Controls.Count == 0) return false;
 
             if (node.Index < OffsetForFirstPhrase) return false;
             //int startIndexForIteration = node.Index - FirstBlock.Node.Index;
             // in future if first block is not 0 index phrase then it is better to use find block function
             //int startIndexForIteration = node.Index ;
-            int startIndexForIteration = node.Index- OffsetForFirstPhrase;
+            int startIndexForIteration = node.Index - OffsetForFirstPhrase;
             int blockControlIndex = (startIndexForIteration * 2) + 1;
 
             if (blockControlIndex >= mBlockLayout.Controls.Count) return false;
             //Console.WriteLine ( "phrase index " + node.Index + "  first node " + FirstBlock.Node.Index );
             if (mBlockLayout.Controls[blockControlIndex] is Block
-                && ((Block) mBlockLayout.Controls[blockControlIndex]).Node == node)
-                {
+                && ((Block)mBlockLayout.Controls[blockControlIndex]).Node == node)
+            {
                 //Console.WriteLine ( "IsBlockForEmptyNodeExists true" );
                 return true;
-                }
-            else
-                {
-                //Console.WriteLine ( "IsBlockForEmptyNodeExists is false for : " + node.ToString () );
-                return false ;
-                }
             }
+            else
+            {
+                //Console.WriteLine ( "IsBlockForEmptyNodeExists is false for : " + node.ToString () );
+                return false;
+            }
+        }
 
         //@singleSection
         public bool IsStripsControlsWithinSafeCount
@@ -406,12 +404,12 @@ namespace Obi.ProjectView
             }
             else
             {
-            return CreateBlockForNode ( node, true );
+                return CreateBlockForNode(node, true);
             }
         }
 
         //@singleSection
-        private delegate Block BlockRangeCreationInvokation(EmptyNode startNode,EmptyNode endNode);
+        private delegate Block BlockRangeCreationInvokation(EmptyNode startNode, EmptyNode endNode);
 
         //@singleSection
         public Block AddsRangeOfBlocks(EmptyNode startNode, EmptyNode endNode)
@@ -421,26 +419,26 @@ namespace Obi.ProjectView
                 return (Block)Invoke(new BlockRangeCreationInvokation(AddsRangeOfBlocks), startNode, endNode);
             }
             else
-                {
+            {
                 for (int i = startNode.Index; i <= endNode.Index; ++i)
-                    {
-                    CreateBlockForNode ( mNode.PhraseChild ( i),endNode.Index == i ?  true : false);
-                    }
-                    UpdateColors();
-                return null ;
+                {
+                    CreateBlockForNode(mNode.PhraseChild(i), endNode.Index == i ? true : false);
                 }
+                UpdateColors();
+                return null;
             }
+        }
 
         //@singleSection
-        private Block CreateBlockForNode ( EmptyNode node , bool updateSize)
-            {
+        private Block CreateBlockForNode(EmptyNode node, bool updateSize)
+        {
             // first check if blocks count has exceeded handle limit : ( nodes limit * 2 ) +1
             if ((mBlockLayout.Controls.Count + (m_BackgroundBlockLayout != null ? m_BackgroundBlockLayout.Controls.Count : 0)) > 2001
                 || !IsStripsControlsWithinSafeCount)
                 return null;
 
 
-            if (IsBlockForEmptyNodeExists ( node )) return FindBlock ( node );
+            if (IsBlockForEmptyNodeExists(node)) return FindBlock(node);
 
             // if node index is just one less than offset of strip and node inserted is 0 node then allow insert else return null
             if (mBlockLayout.Controls.Count > 1 && OffsetForFirstPhrase - node.Index > 0 && node.Index > 0) return null;
@@ -448,49 +446,49 @@ namespace Obi.ProjectView
             if (node.Index == 0 && OffsetForFirstPhrase > 1 && mBlockLayout.Controls.Count > 0) return null;
 
             if (mBlockLayout.Controls.Count == 0)
-                {
-                StripCursor cursor = AddCursorAtBlockLayoutIndex ( 0 );
+            {
+                StripCursor cursor = AddCursorAtBlockLayoutIndex(0);
 
                 m_OffsetForFirstPhrase = node.Index;//@singleSection
                 //Console.WriteLine ( "Offset of strip at 0 blocks is " + m_OffsetForFirstPhrase );
-                }
+            }
 
-            Block block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this ) : new Block ( node, this );
+            Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
             if (mBlockLayout.Controls.Count <= 5 && mBlockLayout.Width < mContentView.Width - 50) WrapContents = false; // to make more than 3 phrases visible in merge with empty section.
-            mBlockLayout.Controls.Add ( block );
+            mBlockLayout.Controls.Add(block);
             //@singleSection: following 2 lines replaced
             //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
             //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
-             //Console.WriteLine ( "block index to place " + node.Index + " " + OffsetForFirstPhrase );
+            //Console.WriteLine ( "block index to place " + node.Index + " " + OffsetForFirstPhrase );
             //mBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index - OffsetForFirstPhrase) );
             //AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
             // adding following 3 lines for replacement of above 2 lines
-            int blockIndexToSet =node.Index == 0 && OffsetForFirstPhrase == 1 ? 1:  1 + 2 * (node.Index - OffsetForFirstPhrase );
+            int blockIndexToSet = node.Index == 0 && OffsetForFirstPhrase == 1 ? 1 : 1 + 2 * (node.Index - OffsetForFirstPhrase);
             mBlockLayout.Controls.SetChildIndex(block, blockIndexToSet);
-            AddCursorAtBlockLayoutIndex(blockIndexToSet+1);
-            block.SetZoomFactorAndHeight ( mContentView.ZoomFactor, mBlockHeight );
+            AddCursorAtBlockLayoutIndex(blockIndexToSet + 1);
+            block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
             block.Cursor = Cursor;
-            block.SizeChanged += new EventHandler ( Block_SizeChanged );
+            block.SizeChanged += new EventHandler(Block_SizeChanged);
 
-            if ( updateSize )  Resize_Blocks  ();
+            if (updateSize) Resize_Blocks();
 
             //UpdateStripCursorsAccessibleName ( 2 + 2 * node.Index );
-            int blockIndex = mBlockLayout.Controls.IndexOf ( block );
-            UpdateStripCursorsAccessibleName (blockIndex - 1) ;
+            int blockIndex = mBlockLayout.Controls.IndexOf(block);
+            UpdateStripCursorsAccessibleName(blockIndex - 1);
             //Console.WriteLine ( "block ref index " + mBlockLayout.Controls.IndexOf ( block ) + " " + (2 + 2 * node.Index) + " offset:" + OffsetForFirstPhrase);
-            if (mBlockLayout.Controls.IndexOf ( block ) == 1)
-                {
+            if (mBlockLayout.Controls.IndexOf(block) == 1)
+            {
                 m_OffsetForFirstPhrase = node.Index;
                 //Console.WriteLine ( "Offset of strip is " + OffsetForFirstPhrase);
-                
-                }
-            if (mBlockLayout.Width > mContentView.Width - 50 )// to make more than 3 phrases visible in merge with empty section.
-                {
-                WrapContents = true;
-                
-                }
-            return block;
+
             }
+            if (mBlockLayout.Width > mContentView.Width - 50)// to make more than 3 phrases visible in merge with empty section.
+            {
+                WrapContents = true;
+
+            }
+            return block;
+        }
 
         /// <summary>
         /// Return the block after the selection. In the case of a strip it is the first block.
@@ -543,31 +541,31 @@ namespace Obi.ProjectView
             //System.Diagnostics.Debug.Assert ( mBlockLayout.Controls.Count > index * 2    &&    mBlockLayout.Controls[index * 2] is StripCursor );
             //return mBlockLayout.Controls.Count > index * 2? (StripCursor)mBlockLayout.Controls[index * 2] : null;
 
-        System.Diagnostics.Debug.Assert ( (index - OffsetForFirstPhrase) * 2 < mBlockLayout.Controls.Count, "No strip cursor at index" );
-        System.Diagnostics.Debug.Assert ( mBlockLayout.Controls.Count > (index - OffsetForFirstPhrase) * 2 && mBlockLayout.Controls[(index - OffsetForFirstPhrase) * 2] is StripCursor );
-        return mBlockLayout.Controls.Count > (index - OffsetForFirstPhrase) * 2 ? (StripCursor)mBlockLayout.Controls[(index - OffsetForFirstPhrase) * 2] : null;
+            System.Diagnostics.Debug.Assert((index - OffsetForFirstPhrase) * 2 < mBlockLayout.Controls.Count, "No strip cursor at index");
+            System.Diagnostics.Debug.Assert(mBlockLayout.Controls.Count > (index - OffsetForFirstPhrase) * 2 && mBlockLayout.Controls[(index - OffsetForFirstPhrase) * 2] is StripCursor);
+            return mBlockLayout.Controls.Count > (index - OffsetForFirstPhrase) * 2 ? (StripCursor)mBlockLayout.Controls[(index - OffsetForFirstPhrase) * 2] : null;
         }
 
         //@singleSection
-        public Block FindBlockAtLocationInStrip ( int depth )
-            {
-            if ( depth < 0  || mBlockLayout.Controls.Count == 0) return null ;
+        public Block FindBlockAtLocationInStrip(int depth)
+        {
+            if (depth < 0 || mBlockLayout.Controls.Count == 0) return null;
 
-            for (int i = 0; i < mBlockLayout.Controls.Count;  i++)
-                {
+            for (int i = 0; i < mBlockLayout.Controls.Count; i++)
+            {
                 if (mBlockLayout.Controls[i] is Block
-                    && mBlockLayout.Controls[i].Location.Y + mBlockLayout.Location.Y >= depth   )
-                    {
+                    && mBlockLayout.Controls[i].Location.Y + mBlockLayout.Location.Y >= depth)
+                {
                     return (Block)mBlockLayout.Controls[i];
-                    }
                 }
-            return null;
             }
+            return null;
+        }
 
         /// <summary>
         /// Focus on the label.
         /// </summary>
-        public void FocusStripLabel () { mLabel.Focus (); }
+        public void FocusStripLabel() { mLabel.Focus(); }
 
         /// <summary>
         /// Remove the block for the given node.
@@ -575,39 +573,39 @@ namespace Obi.ProjectView
         /// (and the first one if it was the last block.)
         /// </summary>
         /// 
-        public void RemoveBlock ( EmptyNode node )
-            {
-            RemoveBlock ( node, true );
-            }
+        public void RemoveBlock(EmptyNode node)
+        {
+            RemoveBlock(node, true);
+        }
 
-        private delegate void BlockRemoveInvokation ( EmptyNode node, bool updateSize ); // @phraseLimit
+        private delegate void BlockRemoveInvokation(EmptyNode node, bool updateSize); // @phraseLimit
 
         public void RemoveBlock(EmptyNode node, bool updateSize)
         {
             if (InvokeRequired)
             {
-                Invoke ( new BlockRemoveInvokation ( RemoveBlock ), node, updateSize );
+                Invoke(new BlockRemoveInvokation(RemoveBlock), node, updateSize);
             }
-        else
+            else
             {
-            Block block = FindBlock ( node );
-            if (block != null)
+                Block block = FindBlock(node);
+                if (block != null)
                 {
-                int index = mBlockLayout.Controls.IndexOf ( block );
-                if (index < mBlockLayout.Controls.Count) mBlockLayout.Controls.RemoveAt ( index + 1 );
-                mBlockLayout.Controls.RemoveAt ( index );
-                if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt ( 0 );
-                block.SizeChanged -= new EventHandler ( Block_SizeChanged );
-                if (updateSize) Resize_Blocks ();
-                //UpdateStripCursorsAccessibleName ( index - 1 );
-                UpdateStripCursorsAccessibleName (index> 3? index - 3 : 0 );
+                    int index = mBlockLayout.Controls.IndexOf(block);
+                    if (index < mBlockLayout.Controls.Count) mBlockLayout.Controls.RemoveAt(index + 1);
+                    mBlockLayout.Controls.RemoveAt(index);
+                    if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt(0);
+                    block.SizeChanged -= new EventHandler(Block_SizeChanged);
+                    if (updateSize) Resize_Blocks();
+                    //UpdateStripCursorsAccessibleName ( index - 1 );
+                    UpdateStripCursorsAccessibleName(index > 3 ? index - 3 : 0);
 
-                // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
-                if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
+                    // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
+                    if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
                     {
-                        if(mBlockLayout.Controls.Contains(block))  mBlockLayout.Controls.Remove(block);
-                    block.Dispose ();
-                    block = null;
+                        if (mBlockLayout.Controls.Contains(block)) mBlockLayout.Controls.Remove(block);
+                        block.Dispose();
+                        block = null;
                     }
 
                 }
@@ -618,114 +616,114 @@ namespace Obi.ProjectView
         // @phraseLimit
         /// <summary>
         /// Remove and dispose all blocks in strip without removing phrases
-                /// </summary>
+        /// </summary>
         /// <param name="updateSize"></param>
         /// <returns></returns>
-        public int RemoveAllBlocks ( bool updateSize )
-            {
+        public int RemoveAllBlocks(bool updateSize)
+        {
             int blocksRemovedCount = 0;
             if (mBlockLayout.Controls.Count > 0)
+            {
+                for (int i = mBlockLayout.Controls.Count - 1; i > 0; i--)
                 {
-                    for (int i = mBlockLayout.Controls.Count - 1; i > 0; i--)
-                    {
                     if (i >= mBlockLayout.Controls.Count) continue;
 
                     if (mBlockLayout.Controls[i] is Block)
-                        {
-                        RemoveBlock ( (Block)mBlockLayout.Controls[i], updateSize );
+                    {
+                        RemoveBlock((Block)mBlockLayout.Controls[i], updateSize);
                         blocksRemovedCount++;
-                        }
                     }
                 }
-                return blocksRemovedCount;
             }
+            return blocksRemovedCount;
+        }
 
         //@singleSection
-        public int RemoveAllFollowingBlocks ( bool removeHiddenBlocks, bool updateSize )
-            {
-            if ( FirstBlock == null ) return 0 ;
+        public int RemoveAllFollowingBlocks(bool removeHiddenBlocks, bool updateSize)
+        {
+            if (FirstBlock == null) return 0;
 
-            return RemoveAllFollowingBlocks ( FirstBlock.Node, removeHiddenBlocks, updateSize );
-            }
+            return RemoveAllFollowingBlocks(FirstBlock.Node, removeHiddenBlocks, updateSize);
+        }
 
-//@singleSection
-        public int RemoveAllFollowingBlocks (EmptyNode node, bool removeTillHiddenBlocks ,bool updateSize )
-            {
+        //@singleSection
+        public int RemoveAllFollowingBlocks(EmptyNode node, bool removeTillHiddenBlocks, bool updateSize)
+        {
             int blocksRemovedCount = 0;
             int limitIndex = node.Index - OffsetForFirstPhrase;//@singleSection
             if (mBlockLayout.Controls.Count > 0)
-                {
+            {
                 for (int i = mBlockLayout.Controls.Count - 1; i > 0; i--)
-                    {
-                    if ( i >= mBlockLayout.Controls.Count) continue;
+                {
+                    if (i >= mBlockLayout.Controls.Count) continue;
 
                     if (mBlockLayout.Controls[i] is Block)
-                        {
+                    {
                         //if (((Block)mBlockLayout.Controls[i]).Node.Index <=  limitIndex
                         if (((Block)mBlockLayout.Controls[i]).Node.Index <= node.Index
-                            ||    (removeTillHiddenBlocks && !IsContentViewFilledWithBlocks ) )
-                            {
-                            Console.WriteLine ("Removal of block till " + i.ToString ()) ;
+                            || (removeTillHiddenBlocks && !IsContentViewFilledWithBlocks))
+                        {
+                            Console.WriteLine("Removal of block till " + i.ToString());
                             break;
-                            }
-
-                        RemoveBlock ( (Block)mBlockLayout.Controls[i], updateSize );
-                        blocksRemovedCount++;
                         }
+
+                        RemoveBlock((Block)mBlockLayout.Controls[i], updateSize);
+                        blocksRemovedCount++;
                     }
                 }
-            return blocksRemovedCount;
             }
+            return blocksRemovedCount;
+        }
 
 
         // @phraseLimit
-        private delegate void QuickBlockRemoveInvokation ( Block block, bool updateSize ); // @phraseLimit
+        private delegate void QuickBlockRemoveInvokation(Block block, bool updateSize); // @phraseLimit
 
         // @phraseLimit
         /// <summary>
         /// Remove and dispose a single block passed as parameter
-                /// </summary>
+        /// </summary>
         /// <param name="block"></param>
         /// <param name="updateSize"></param>
-        private void RemoveBlock (Block block,  bool updateSize )
-            {
+        private void RemoveBlock(Block block, bool updateSize)
+        {
             if (InvokeRequired)
-                {
-                Invoke ( new QuickBlockRemoveInvokation ( RemoveBlock ), block, updateSize );
-                }
-            else
-                {
-                        //Block block = (Block) mBlockLayout.Controls[i];
-                        if (block != null)
-                            {
-                            int index = mBlockLayout.Controls.IndexOf ( block );
-                            if (index < mBlockLayout.Controls.Count)
-                                {
-                                Control  stripCursorControl = mBlockLayout.Controls[index + 1];
-                                mBlockLayout.Controls.RemoveAt ( index + 1 );
-                                if (stripCursorControl != null && stripCursorControl is StripCursor)
-                                {
-                                    stripCursorControl.Dispose();
-                                }
-                                                                                                                                            }
-                            mBlockLayout.Controls.RemoveAt ( index );
-                            if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt ( 0 );
-                            block.SizeChanged -= new EventHandler ( Block_SizeChanged );
-                            if (updateSize) Resize_Blocks ();
-                            //UpdateStripCursorsAccessibleName ( index - 1 );
-                            UpdateStripCursorsAccessibleName (index > 3? index-3: 0);
-
-                            // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
-                            if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
-                                {
-                                block.Dispose ();
-                                block = null;
-                                }
-                            else // in case block is held in clipboard, just destroy handle
-                                block.DestroyBlockHandle ();
-                            }
-                        }
+            {
+                Invoke(new QuickBlockRemoveInvokation(RemoveBlock), block, updateSize);
             }
+            else
+            {
+                //Block block = (Block) mBlockLayout.Controls[i];
+                if (block != null)
+                {
+                    int index = mBlockLayout.Controls.IndexOf(block);
+                    if (index < mBlockLayout.Controls.Count)
+                    {
+                        Control stripCursorControl = mBlockLayout.Controls[index + 1];
+                        mBlockLayout.Controls.RemoveAt(index + 1);
+                        if (stripCursorControl != null && stripCursorControl is StripCursor)
+                        {
+                            stripCursorControl.Dispose();
+                        }
+                    }
+                    mBlockLayout.Controls.RemoveAt(index);
+                    if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt(0);
+                    block.SizeChanged -= new EventHandler(Block_SizeChanged);
+                    if (updateSize) Resize_Blocks();
+                    //UpdateStripCursorsAccessibleName ( index - 1 );
+                    UpdateStripCursorsAccessibleName(index > 3 ? index - 3 : 0);
+
+                    // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
+                    if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
+                    {
+                        block.Dispose();
+                        block = null;
+                    }
+                    else // in case block is held in clipboard, just destroy handle
+                        block.DestroyBlockHandle();
+                }
+            }
+        }
 
 
 
@@ -748,53 +746,10 @@ namespace Obi.ProjectView
         public void SetSelectedIndexFromStripCursor(StripCursor cursor)
         {
             int index = mBlockLayout.Controls.IndexOf(cursor) / 2;
-             m_TempCursor = cursor;
             //mContentView.SelectionFromStrip = new StripIndexSelection(Node, mContentView, index);//@singleSection: original
-            mContentView.SelectionFromStrip = new StripIndexSelection ( Node, mContentView, index + OffsetForFirstPhrase);//@singleSection new
+            mContentView.SelectionFromStrip = new StripIndexSelection(Node, mContentView, index + OffsetForFirstPhrase);//@singleSection new
         }
-        /// <summary>
-        /// Set the Animation Cursor
-        /// </summary>
-        public void SetAnimationCursor(int X, int Y)
-        { 
-            if (m_TempCursor != null)
-            {
-                int index = mBlockLayout.Controls.IndexOf(m_TempCursor);
-                Control tempPreviousPhrase = mBlockLayout.Controls[index - 1];
-                Control tempNextPhrase = mBlockLayout.Controls[index + 1];
-                int tempWidthofNextPhrase = tempNextPhrase.Width;
-                int tempWidthOfPreviousPhrase = tempPreviousPhrase.Width;
-                //Point tempPreviousPos = mContentView.LocationOfBlockInStripPanel(tempPreviousPhrase);
-                //Point tempNextPos = mContentView.LocationOfBlockInStripPanel(tempNextPhrase);
-                Point cursorposition = mContentView.LocationOfBlockInStripPanel(m_TempCursor);
-                //  Console.WriteLine("Cursor Position is {0}", cursorposition);
-                Point LocationOfCursor = new Point(cursorposition.X + X, cursorposition.Y);
-                if ((X < 0 && cursorposition.X-tempWidthOfPreviousPhrase < LocationOfCursor.X) || (X > 0 && cursorposition.X + tempWidthofNextPhrase > LocationOfCursor.X))
-                {
-                    if (m_AnimationCursor == null)
-                    {
-                        m_AnimationCursor = new StripCursor();
-                        this.Controls.Add(m_AnimationCursor);
-                    }
 
-                    m_AnimationCursor.Location = new Point(cursorposition.X + X, cursorposition.Y);
-                    m_AnimationCursor.SetHeight(mBlockHeight);
-                    m_AnimationCursor.BackColor = ColorSettings.StripSelectedBackColor;
-                    m_AnimationCursor.BringToFront();
-                }
-
-            }
-        }
-        /// <summary>
-        /// Set the Animation Cursor to null
-        /// </summary>
-        public void SetAnimationCursor()
-        {
-           if (this.Controls.Contains(m_AnimationCursor))
-                this.Controls.Remove(m_AnimationCursor);
-            m_AnimationCursor = null;
-            Console.WriteLine();
-        }
         /// <summary>
         /// Set the selection from the parent control view. (From ISelectableInContentView)
         /// </summary>
@@ -821,7 +776,7 @@ namespace Obi.ProjectView
         public int StripIndexAfter(ISelectableInContentView item)
         {
             //int lastIndex = Node.PhraseChildCount;//@singleSection: original
-        int lastIndex = Node.PhraseChildCount - OffsetForFirstPhrase;//@singleSection: new
+            int lastIndex = Node.PhraseChildCount - OffsetForFirstPhrase;//@singleSection: new
             int index = item is Strip ?
                 ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index + 1 : 0 :
                 item is Block ? (mBlockLayout.Controls.IndexOf((Control)item) + 1) / 2 :
@@ -851,14 +806,14 @@ namespace Obi.ProjectView
         ///  Updates labels of all blocks in a strip, to be used with   background worker
         /// </summary>
         private void UpdateBlockLabelsInStrip(object sender, DoWorkEventArgs e)
-            {
-            UpdateBlockLabelsInStrip () ;
-            }
+        {
+            UpdateBlockLabelsInStrip();
+        }
 
         /// <summary>
         ///  Update labels of all blocks in a strip 
-                /// </summary>
-            public void UpdateBlockLabelsInStrip () 
+        /// </summary>
+        public void UpdateBlockLabelsInStrip()
         {
             mLabelUpdateThread.WaitOne();
             try
@@ -939,7 +894,7 @@ namespace Obi.ProjectView
             cursor.SetAccessibleNameForIndex(index / 2);
             mBlockLayout.Controls.Add(cursor);
             mBlockLayout.Controls.SetChildIndex(cursor, index);
-            cursor.UpdateColors ();
+            cursor.UpdateColors();
             return cursor;
         }
 
@@ -990,58 +945,58 @@ namespace Obi.ProjectView
         {
             get
             {
-            
-            return mBlockLayout.Location.Y + Math.Max ( mBlockHeight, mBlockLayout.Height ) +
-                mBlockLayout.Margin.Bottom + BorderHeight;
-            float sizeMultiplier = 1;//@singleSection
-            //System.Media.SystemSounds.Asterisk.Play ();
+
+                return mBlockLayout.Location.Y + Math.Max(mBlockHeight, mBlockLayout.Height) +
+                    mBlockLayout.Margin.Bottom + BorderHeight;
+                float sizeMultiplier = 1;//@singleSection
+                //System.Media.SystemSounds.Asterisk.Play ();
                 // determine how many blocks are visible w.r.t. total no. of phrases
-            if (LastBlock != null ) //@singleSection
+                if (LastBlock != null) //@singleSection
                 {
-                int lastBlockIndex = mBlockLayout.Controls.IndexOf ( LastBlock ) / 2;
-                if (lastBlockIndex > 0  )
+                    int lastBlockIndex = mBlockLayout.Controls.IndexOf(LastBlock) / 2;
+                    if (lastBlockIndex > 0)
                     //&&                   (( mNode.PhraseChildCount - lastBlockIndex ) < 15
                     //||    lastBlockIndex <= 40    ||    lastBlockIndex %10 == 0))
-                                    {
-                                        sizeMultiplier = mNode.PhraseChildCount / lastBlockIndex;
-                                        //Console.WriteLine ( "Phrase index : " + lastBlockIndex + " Strip height scale: " + sizeMultiplier );
+                    {
+                        sizeMultiplier = mNode.PhraseChildCount / lastBlockIndex;
+                        //Console.WriteLine ( "Phrase index : " + lastBlockIndex + " Strip height scale: " + sizeMultiplier );
                     }
                 }
-            //Console.WriteLine ( "block layout height " + this.Size.ToString()); 
+                //Console.WriteLine ( "block layout height " + this.Size.ToString()); 
                 // If there are no contents, still show space for the block layout
-                return mBlockLayout.Location.Y + Math.Max(mBlockHeight,mBlockLayout.Height*2  ) +
+                return mBlockLayout.Location.Y + Math.Max(mBlockHeight, mBlockLayout.Height * 2) +
                     mBlockLayout.Margin.Bottom + BorderHeight;
             }
         }
 
         //@singleSection
         public int PredictedStripHeight
-            {
+        {
             get
-                {
+            {
                 float sizeMultiplier = 1;//@singleSection
                 // determine how many blocks are visible w.r.t. total no. of phrases
                 if (LastBlock != null) //@singleSection
-                    {
-                    int lastBlockIndex = mBlockLayout.Controls.IndexOf ( LastBlock ) / 2;
+                {
+                    int lastBlockIndex = mBlockLayout.Controls.IndexOf(LastBlock) / 2;
                     if (lastBlockIndex > 0)
                     //&&                   (( mNode.PhraseChildCount - lastBlockIndex ) < 15
                     //||    lastBlockIndex <= 40    ||    lastBlockIndex %10 == 0))
-                        {
+                    {
                         sizeMultiplier = mNode.PhraseChildCount / lastBlockIndex;
                         //Console.WriteLine ( "Phrase index : " + lastBlockIndex + " Strip height scale: " + sizeMultiplier );
-                        }
                     }
-                // If there are no contents, still show space for the block layout
-                return mBlockLayout.Location.Y + Math.Max ( mBlockHeight, Convert.ToInt32 ( mBlockLayout.Height * sizeMultiplier ) ) +
-                    mBlockLayout.Margin.Bottom + BorderHeight;
                 }
+                // If there are no contents, still show space for the block layout
+                return mBlockLayout.Location.Y + Math.Max(mBlockHeight, Convert.ToInt32(mBlockLayout.Height * sizeMultiplier)) +
+                    mBlockLayout.Margin.Bottom + BorderHeight;
             }
+        }
 
-        public void Resize_All() 
+        public void Resize_All()
         {
             Resize_Label();
-            Resize_Blocks(); 
+            Resize_Blocks();
         }
 
         // Blocks are added, removed, or their width has changed after the audio scale changed.
@@ -1051,7 +1006,7 @@ namespace Obi.ProjectView
             if (mWrap)
             {
                 Resize_Wrap();
-                
+
             }
             else
             {
@@ -1144,7 +1099,7 @@ namespace Obi.ProjectView
             else
             {
                 mLabel.AccessibleName = string.Concat(mNode.Used ? "" : Localizer.Message("unused"),
-                    mNode.Label + " " ,
+                    mNode.Label + " ",
                     mNode.Duration == 0.0 ? Localizer.Message("empty") : string.Format(Localizer.Message("duration_s_ms"), mNode.Duration / 1000.0),
                     string.Format(Localizer.Message("section_level_to_string"), mNode.IsRooted ? mNode.Level : 0),
                     mNode.PhraseChildCount == 0 ? "" :
@@ -1170,10 +1125,10 @@ namespace Obi.ProjectView
                 mLabel.BackColor =
                     mBlockLayout.BackColor =
                     mHighlighted ? settings.StripSelectedBackColor :
-                    mNode.Used ?( mNode.PhraseChildCount > 0 ? settings.StripBackColor : settings.StripWithoutPhrasesBackcolor ): settings.StripUnusedBackColor;
-                                mLabel.ForeColor =
-                    mHighlighted ? settings.StripSelectedForeColor :
-                    mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
+                    mNode.Used ? (mNode.PhraseChildCount > 0 ? settings.StripBackColor : settings.StripWithoutPhrasesBackcolor) : settings.StripUnusedBackColor;
+                mLabel.ForeColor =
+    mHighlighted ? settings.StripSelectedForeColor :
+    mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
                 mLabel.UpdateColors(settings);
                 foreach (Control c in mBlockLayout.Controls)
                 {
@@ -1186,18 +1141,18 @@ namespace Obi.ProjectView
         // Update the accessible label of the strip cursors after the given index.
         private void UpdateStripCursorsAccessibleName(int afterIndex)
         {
-        //return;
+            //return;
             //for (int i = afterIndex + 2; i < mBlockLayout.Controls.Count; i += 2)
-            for (int i = afterIndex ; i < mBlockLayout.Controls.Count; i += 2)
-                {
-                    int stripCursorIndex = i < mBlockLayout.Controls.Count - 1 && ((Block)mBlockLayout.Controls[i + 1]).Node.IsRooted ? ((Block)mBlockLayout.Controls[i + 1]).Node.Index :
-        i > 1 && ((Block)mBlockLayout.Controls[i - 1]).Node.IsRooted? ((Block)mBlockLayout.Controls[i - 1]).Node.Index + 1 : 
-        mBlockLayout.Controls.Count <=1?  OffsetForFirstPhrase : -1;
-                    if (stripCursorIndex == -1) continue;
+            for (int i = afterIndex; i < mBlockLayout.Controls.Count; i += 2)
+            {
+                int stripCursorIndex = i < mBlockLayout.Controls.Count - 1 && ((Block)mBlockLayout.Controls[i + 1]).Node.IsRooted ? ((Block)mBlockLayout.Controls[i + 1]).Node.Index :
+    i > 1 && ((Block)mBlockLayout.Controls[i - 1]).Node.IsRooted ? ((Block)mBlockLayout.Controls[i - 1]).Node.Index + 1 :
+    mBlockLayout.Controls.Count <= 1 ? OffsetForFirstPhrase : -1;
+                if (stripCursorIndex == -1) continue;
                 //Console.WriteLine ( "strip cursor index " + stripCursorIndex + " " + i );
-                System.Diagnostics.Debug.Assert ( mBlockLayout.Controls[i] is StripCursor );
+                System.Diagnostics.Debug.Assert(mBlockLayout.Controls[i] is StripCursor);
                 //((StripCursor)mBlockLayout.Controls[i]).SetAccessibleNameForIndex(i / 2);
-                ((StripCursor)mBlockLayout.Controls[i]).SetAccessibleNameForIndex ( stripCursorIndex);
+                ((StripCursor)mBlockLayout.Controls[i]).SetAccessibleNameForIndex(stripCursorIndex);
             }
         }
 
@@ -1230,7 +1185,7 @@ namespace Obi.ProjectView
         // Update the label of the node after the user edited it.
         private void Label_LabelEditedByUser(object sender, EventArgs e)
         {
-            if (mLabel.Label.Trim ()  != "")
+            if (mLabel.Label.Trim() != "")
             {
                 // update the label for the node
                 mContentView.RenameStrip(this);
@@ -1275,56 +1230,56 @@ namespace Obi.ProjectView
         /// <summary>
         /// updates strip without updating its blocks
         /// </summary>
-        public void RefreshStrip ()
-            {
+        public void RefreshStrip()
+        {
             Label = mNode.Label;
             //UpdateColors ();
-            }
+        }
 
 
         //@singleSection
         private System.Windows.Forms.FlowLayoutPanel m_BackgroundBlockLayout;
-        private FlowLayoutPanel CreateBackUpLayout ()
-            {
-            FlowLayoutPanel backupBlockLayout = new FlowLayoutPanel ();
+        private FlowLayoutPanel CreateBackUpLayout()
+        {
+            FlowLayoutPanel backupBlockLayout = new FlowLayoutPanel();
             backupBlockLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             backupBlockLayout.BackColor = System.Drawing.Color.GreenYellow;
-            backupBlockLayout.Location = new System.Drawing.Point ( this.Width, 78 );
-            backupBlockLayout.Margin = new System.Windows.Forms.Padding ( 3, 0, 3, 0 );
+            backupBlockLayout.Location = new System.Drawing.Point(this.Width, 78);
+            backupBlockLayout.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             backupBlockLayout.Name = "m_BackgroundBlockLayout";
-            backupBlockLayout.Size = new System.Drawing.Size ( 303, 109 );
+            backupBlockLayout.Size = new System.Drawing.Size(303, 109);
             backupBlockLayout.TabIndex = 1;
             backupBlockLayout.WrapContents = true;
-            backupBlockLayout.Click += new System.EventHandler ( this.Strip_Enter );
+            backupBlockLayout.Click += new System.EventHandler(this.Strip_Enter);
             backupBlockLayout.BackColor = mHighlighted ? ColorSettings.StripSelectedBackColor :
                     mNode.Used ? (mNode.PhraseChildCount > 0 ? ColorSettings.StripBackColor : ColorSettings.StripWithoutPhrasesBackcolor) : ColorSettings.StripUnusedBackColor;
 
-            this.Controls.Add ( backupBlockLayout );
+            this.Controls.Add(backupBlockLayout);
             return backupBlockLayout;
-            }
+        }
 
 
         EmptyNode m_BackgroundPhrasesLoadStartNode;
         EmptyNode m_BackgroundPhrasesLoadEndNode;
-        public void LoadBackUpLayout ( EmptyNode startNode, EmptyNode endNode )
-            {
-            m_BackgroundBlockLayout = CreateBackUpLayout ();
+        public void LoadBackUpLayout(EmptyNode startNode, EmptyNode endNode)
+        {
+            m_BackgroundBlockLayout = CreateBackUpLayout();
             m_BackgroundPhrasesLoadStartNode = startNode;
             m_BackgroundPhrasesLoadEndNode = endNode;
             m_BackgroundPhrasesLoadStartIndex = -1;
             m_BackgroundPhrasesloadTimer.Interval = 600;
-            m_BackgroundPhrasesloadTimer.Tick += new EventHandler ( BackgroundPhrasesloadTimer_tick );
-            m_BackgroundPhrasesloadTimer.Start ();
+            m_BackgroundPhrasesloadTimer.Tick += new EventHandler(BackgroundPhrasesloadTimer_tick);
+            m_BackgroundPhrasesloadTimer.Start();
 
-            }
+        }
 
-        System.Windows.Forms.Timer m_BackgroundPhrasesloadTimer = new System.Windows.Forms.Timer ();
+        System.Windows.Forms.Timer m_BackgroundPhrasesloadTimer = new System.Windows.Forms.Timer();
 
         int m_BackgroundPhrasesLoadStartIndex = -1;
         int m_BackgroundPhrasesLoadEndIndex = -1;
-        private void BackgroundPhrasesloadTimer_tick ( object sender, EventArgs e )
-            {
-            m_BackgroundPhrasesloadTimer.Stop ();
+        private void BackgroundPhrasesloadTimer_tick(object sender, EventArgs e)
+        {
+            m_BackgroundPhrasesloadTimer.Stop();
 
             if (m_BackgroundPhrasesLoadStartIndex == -1)
                 m_BackgroundPhrasesLoadStartIndex = m_BackgroundPhrasesLoadStartNode.Index;
@@ -1334,81 +1289,81 @@ namespace Obi.ProjectView
             m_BackgroundPhrasesLoadEndIndex = m_BackgroundPhrasesLoadStartIndex + 10;
             if (m_BackgroundPhrasesLoadEndIndex > m_BackgroundPhrasesLoadEndNode.Index) m_BackgroundPhrasesLoadEndIndex = m_BackgroundPhrasesLoadEndNode.Index;
 
-            BackUpLayoutBlockAddsRangeOfBlocks ( mNode.PhraseChild ( m_BackgroundPhrasesLoadStartIndex ), mNode.PhraseChild ( m_BackgroundPhrasesLoadEndIndex ) );
+            BackUpLayoutBlockAddsRangeOfBlocks(mNode.PhraseChild(m_BackgroundPhrasesLoadStartIndex), mNode.PhraseChild(m_BackgroundPhrasesLoadEndIndex));
 
             if (m_BackgroundPhrasesLoadEndIndex == m_BackgroundPhrasesLoadEndNode.Index)
-                {
+            {
                 m_BackgroundPhrasesLoadStartIndex = -1;
-                m_BackgroundPhrasesloadTimer.Stop ();
-                UpdateColors ();
-                m_BackgroundBlockLayout.Location =new Point ( mBlockLayout.Location.X, m_BackgroundBlockLayout.Height * -1 ) ;
+                m_BackgroundPhrasesloadTimer.Stop();
+                UpdateColors();
+                m_BackgroundBlockLayout.Location = new Point(mBlockLayout.Location.X, m_BackgroundBlockLayout.Height * -1);
                 //Console.WriteLine ( "background layout created " + m_BackgroundPhrasesLoadStartIndex + " - " + m_BackgroundPhrasesLoadEndIndex );
-                }
-            else
-                {
-                m_BackgroundPhrasesloadTimer.Start ();
-                //Console.WriteLine ( "console timer starting  " + m_BackgroundPhrasesLoadStartIndex + " - " + m_BackgroundPhrasesLoadEndIndex );
-                }
             }
+            else
+            {
+                m_BackgroundPhrasesloadTimer.Start();
+                //Console.WriteLine ( "console timer starting  " + m_BackgroundPhrasesLoadStartIndex + " - " + m_BackgroundPhrasesLoadEndIndex );
+            }
+        }
 
         //@singleSection
-        public Block BackUpLayoutBlockAddsRangeOfBlocks ( EmptyNode startNode, EmptyNode endNode )
-            {
+        public Block BackUpLayoutBlockAddsRangeOfBlocks(EmptyNode startNode, EmptyNode endNode)
+        {
             if (InvokeRequired)
-                {
-                return (Block)Invoke ( new BlockRangeCreationInvokation ( BackUpLayoutBlockAddsRangeOfBlocks ), startNode, endNode );
-                }
+            {
+                return (Block)Invoke(new BlockRangeCreationInvokation(BackUpLayoutBlockAddsRangeOfBlocks), startNode, endNode);
+            }
             else
-                {
+            {
                 for (int i = startNode.Index; i <= endNode.Index; ++i)
-                    {
-                    BackupLayout_CreateBlockForNode ( mNode.PhraseChild ( i ), endNode.Index == i ? true : false );
+                {
+                    BackupLayout_CreateBlockForNode(mNode.PhraseChild(i), endNode.Index == i ? true : false);
 
-                    }
+                }
 
                 return null;
-                }
             }
+        }
 
 
         //@singleSection
-        private Block BackupLayout_CreateBlockForNode ( EmptyNode node, bool updateSize )
-            {
+        private Block BackupLayout_CreateBlockForNode(EmptyNode node, bool updateSize)
+        {
             //MessageBox.Show ( node.Index.ToString () );
             if (m_BackgroundBlockLayout.Controls.Count == 0)
-                {
+            {
                 //@ StripCursor cursor = AddCursorAtBlockLayoutIndex ( 0 );
                 int index = 0;
-                StripCursor cursor = new StripCursor ();
-                cursor.SetHeight ( mBlockHeight );
+                StripCursor cursor = new StripCursor();
+                cursor.SetHeight(mBlockHeight);
                 cursor.ColorSettings = ColorSettings;
                 cursor.TabStop = false;
-                cursor.SetAccessibleNameForIndex ( index / 2 );
-                m_BackgroundBlockLayout.Controls.Add ( cursor );
-                m_BackgroundBlockLayout.Controls.SetChildIndex ( cursor, index );
-                }
-            Block block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this ) : new Block ( node, this );
-            m_BackgroundBlockLayout.Controls.Add ( block );
+                cursor.SetAccessibleNameForIndex(index / 2);
+                m_BackgroundBlockLayout.Controls.Add(cursor);
+                m_BackgroundBlockLayout.Controls.SetChildIndex(cursor, index);
+            }
+            Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
+            m_BackgroundBlockLayout.Controls.Add(block);
             //@singleSection: following 2 lines replaced
             //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
             //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
 
-            m_BackgroundBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index) );
+            m_BackgroundBlockLayout.Controls.SetChildIndex(block, 1 + 2 * (node.Index));
             //@ AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
             //--
-            StripCursor cursor1 = new StripCursor ();
+            StripCursor cursor1 = new StripCursor();
             int index1 = 2 + 2 * node.Index;
-            cursor1.SetHeight ( mBlockHeight );
+            cursor1.SetHeight(mBlockHeight);
             cursor1.ColorSettings = ColorSettings;
             cursor1.TabStop = false;
-            cursor1.SetAccessibleNameForIndex ( index1 / 2 );
-            m_BackgroundBlockLayout.Controls.Add ( cursor1 );
-            m_BackgroundBlockLayout.Controls.SetChildIndex ( cursor1, index1 );
+            cursor1.SetAccessibleNameForIndex(index1 / 2);
+            m_BackgroundBlockLayout.Controls.Add(cursor1);
+            m_BackgroundBlockLayout.Controls.SetChildIndex(cursor1, index1);
             //---
 
-            block.SetZoomFactorAndHeight ( mContentView.ZoomFactor, mBlockHeight );
+            block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
             block.Cursor = Cursor;
-            block.SizeChanged += new EventHandler ( Block_SizeChanged );
+            block.SizeChanged += new EventHandler(Block_SizeChanged);
 
             //@ if (updateSize) Resize_Blocks ();
 
@@ -1422,80 +1377,80 @@ namespace Obi.ProjectView
             int width_fit = mContentView.ClientRectangle.Width - Margin.Horizontal - BorderWidth -
                 m_BackgroundBlockLayout.Margin.Horizontal;
             m_BackgroundBlockLayout.MaximumSize =
-                new Size ( Math.Max ( BlockLayoutMinimumWidth, Math.Min ( BlockLayoutFullWidth, width_fit ) ), 0 );
-            Size = new Size ( WidthForContents, HeightForContents );
+                new Size(Math.Max(BlockLayoutMinimumWidth, Math.Min(BlockLayoutFullWidth, width_fit)), 0);
+            Size = new Size(WidthForContents, HeightForContents);
             //---
             //System.Media.SystemSounds.Asterisk.Play ();
             return block;
-            }
+        }
 
-        public void ReplaceBlockLayout ()
-            {
+        public void ReplaceBlockLayout()
+        {
             if (m_BackgroundBlockLayout.Controls.Count == 0) return;
             Point layoutPoint = mBlockLayout.Location;
-            if (this.Controls.Contains (mBlockLayout )) this.Controls.Remove (mBlockLayout) ;
-            mBlockLayout.Dispose ();
+            if (this.Controls.Contains(mBlockLayout)) this.Controls.Remove(mBlockLayout);
+            mBlockLayout.Dispose();
             m_BackgroundBlockLayout.Location = layoutPoint;
             mBlockLayout = m_BackgroundBlockLayout;
-            }
+        }
 
         //@singleSection
-        public void MoveCurrentBlocklayoutToBackground ()
-            {
+        public void MoveCurrentBlocklayoutToBackground()
+        {
             if (m_BackgroundBlockLayout != null)
-                {
-                this.Controls.Remove ( m_BackgroundBlockLayout );
-                m_BackgroundBlockLayout.Dispose ();
-                if (ContentView.Settings != null &&  ContentView.Settings.OptimizeMemory)
+            {
+                this.Controls.Remove(m_BackgroundBlockLayout);
+                m_BackgroundBlockLayout.Dispose();
+                if (ContentView.Settings != null && ContentView.Settings.OptimizeMemory)
                 {
                     Console.WriteLine("Background layout memory before collection :" + (System.GC.GetTotalMemory(false) / (1024 * 1024)).ToString());
                     //System.GC.Collect();
                     Console.WriteLine("Background layout memory after collection :" + (System.GC.GetTotalMemory(false) / (1024 * 1024)).ToString());
                 }
-                }
+            }
             m_BackgroundBlockLayout = mBlockLayout;
-            m_BackgroundBlockLayout.Location = new Point ( this.Location.X, Convert.ToInt32( m_BackgroundBlockLayout.Height * -1.2 ));
-            mBlockLayout = CreateBackUpLayout ();
-            mBlockLayout.Location = new System.Drawing.Point ( 3, 78 );
-            Resize_All ();
+            m_BackgroundBlockLayout.Location = new Point(this.Location.X, Convert.ToInt32(m_BackgroundBlockLayout.Height * -1.2));
+            mBlockLayout = CreateBackUpLayout();
+            mBlockLayout.Location = new System.Drawing.Point(3, 78);
+            Resize_All();
             //Console.WriteLine ( "move to background  " + "size : " + m_BackgroundBlockLayout.Size + " location : " + m_BackgroundBlockLayout.Location);
             // if previous block layout is not completely created, remove it
             // this will avoid of overlapping phrases
             if (m_BackgroundBlockLayout.Height == 0)
             {
                 this.Controls.Remove(m_BackgroundBlockLayout);
-                m_BackgroundBlockLayout.Dispose ();
+                m_BackgroundBlockLayout.Dispose();
                 m_BackgroundBlockLayout = null;
                 Console.WriteLine("in complete background layout removed");
             }
-            }
+        }
 
 
         //@singleSection
-        public bool DisplayPreviousLayout ( EmptyNode expectedLastPhrase)
-            {
+        public bool DisplayPreviousLayout(EmptyNode expectedLastPhrase)
+        {
             if (m_BackgroundBlockLayout == null || m_BackgroundBlockLayout.Controls.Count < 2) return false;
 
             bool isExpectedPhraseExists = false;
             bool isBlocksContineus = true;
             int previousNodeIndex = -1;
             for (int i = m_BackgroundBlockLayout.Controls.Count - 1; i >= 0; --i)
+            {
+                if (m_BackgroundBlockLayout.Controls[i] is Block)
                 {
-                if (m_BackgroundBlockLayout.Controls[i] is Block )
+                    EmptyNode iterationNode = ((Block)m_BackgroundBlockLayout.Controls[i]).Node;
+                    if (iterationNode == expectedLastPhrase)
                     {
-                        EmptyNode iterationNode = ((Block)m_BackgroundBlockLayout.Controls[i]).Node;
-                        if (iterationNode == expectedLastPhrase)
-                        {
-                            isExpectedPhraseExists = true;
-                            //break;
-                        }
-                        if (previousNodeIndex != -1 &&  iterationNode.IsRooted && iterationNode.Index != previousNodeIndex - 1)
-                        {
-                            isBlocksContineus = false;
-                        }
-                        if (iterationNode.IsRooted) previousNodeIndex = iterationNode.Index;
+                        isExpectedPhraseExists = true;
+                        //break;
                     }
+                    if (previousNodeIndex != -1 && iterationNode.IsRooted && iterationNode.Index != previousNodeIndex - 1)
+                    {
+                        isBlocksContineus = false;
+                    }
+                    if (iterationNode.IsRooted) previousNodeIndex = iterationNode.Index;
                 }
+            }
             if (!isExpectedPhraseExists || !isBlocksContineus) return false;
             // determine the first phrase, and return if no suitable phrase found
             int newOffset = -1;
@@ -1508,15 +1463,15 @@ namespace Obi.ProjectView
             }
             if (newOffset == -1) return false;
 
-            Point layoutLocation = new Point ( mBlockLayout.Location.X , mBlockLayout.Location.Y ) ;
+            Point layoutLocation = new Point(mBlockLayout.Location.X, mBlockLayout.Location.Y);
             FlowLayoutPanel removePanel = mBlockLayout;
-            removePanel.SendToBack ();
-            this.Controls.Remove ( removePanel );
+            removePanel.SendToBack();
+            this.Controls.Remove(removePanel);
 
             mBlockLayout = m_BackgroundBlockLayout;
             m_OffsetForFirstPhrase = newOffset;
             mBlockLayout.Location = layoutLocation;
-            mBlockLayout.BringToFront ();
+            mBlockLayout.BringToFront();
             // scan all blocks in cashed layout and remove blocks that are detached
             for (int i = mBlockLayout.Controls.Count - 1; i > 0; i--)
             {
@@ -1527,163 +1482,163 @@ namespace Obi.ProjectView
                 }
             }
 
-            Resize_All ();
-            if (removePanel != null )   removePanel.Dispose ();
+            Resize_All();
+            if (removePanel != null) removePanel.Dispose();
             //Console.WriteLine ( "Displaying previous layout  : size : location " + mBlockLayout.Size + " : " + mBlockLayout.Location);
             return true;
-            }
+        }
 
         //@singleSection
-        public void CreateNewLayout ( bool preserveExistingLayout )
-            {
+        public void CreateNewLayout(bool preserveExistingLayout)
+        {
             FlowLayoutPanel oldBlocklayout = mBlockLayout;
-            oldBlocklayout.SendToBack ();
-            mBlockLayout = CreateBackUpLayout ();
-            mBlockLayout.Location = new System.Drawing.Point ( 3, 78 );
-            mBlockLayout.BringToFront ();
-            
+            oldBlocklayout.SendToBack();
+            mBlockLayout = CreateBackUpLayout();
+            mBlockLayout.Location = new System.Drawing.Point(3, 78);
+            mBlockLayout.BringToFront();
+
             if (!preserveExistingLayout)
-                {
-                this.Controls.Remove ( oldBlocklayout );
-                oldBlocklayout.Dispose ();
-                }
-            Resize_All ();
+            {
+                this.Controls.Remove(oldBlocklayout);
+                oldBlocklayout.Dispose();
             }
+            Resize_All();
+        }
 
         //@singleSection
-        public Block FirstBlockInNextLineOrPrevious ( EmptyNode node , bool nextLine)
-            {
-            if ( node == null ) return null ;
-            Block currentBlock = FindBlock ( node );
+        public Block FirstBlockInNextLineOrPrevious(EmptyNode node, bool nextLine)
+        {
+            if (node == null) return null;
+            Block currentBlock = FindBlock(node);
             if (currentBlock != null)
-                {
-                int blockHeight = nextLine ? currentBlock.Height : Convert.ToInt32 (currentBlock.Height * 1.2) * -1 ;
-                return FindBlockAtLocationInStrip ( currentBlock.Location.Y + mBlockLayout.Location.Y + blockHeight);
-                }
+            {
+                int blockHeight = nextLine ? currentBlock.Height : Convert.ToInt32(currentBlock.Height * 1.2) * -1;
+                return FindBlockAtLocationInStrip(currentBlock.Location.Y + mBlockLayout.Location.Y + blockHeight);
+            }
             //Console.WriteLine ( " returning null " );
             return null;
 
-            }
+        }
 
 
-            private bool m_IsFlowBreakMarked = false;
-            private void ApplyFlowBreaks()
+        private bool m_IsFlowBreakMarked = false;
+        private void ApplyFlowBreaks()
+        {
+            //Console.WriteLine("width of strip " + Width);
+
+            if (mBlockLayout != null && mBlockLayout.WrapContents && mBlockLayout.Controls.Count > 1)
             {
-                //Console.WriteLine("width of strip " + Width);
-                
-                if (mBlockLayout != null && mBlockLayout.WrapContents && mBlockLayout.Controls.Count > 1)
+                if (!mContentView.Settings.LeftAlignPhrasesInContentView)
                 {
-                    if (!mContentView.Settings.LeftAlignPhrasesInContentView)
+                    if (m_IsFlowBreakMarked)
                     {
-                        if (m_IsFlowBreakMarked)
+                        foreach (Control c in mBlockLayout.Controls)
                         {
-                            foreach (Control c in mBlockLayout.Controls)
-                            {
-                                if (mBlockLayout.GetFlowBreak(c)) mBlockLayout.SetFlowBreak(c, false);
-                                
-                            }
-                            m_IsFlowBreakMarked = false;
+                            if (mBlockLayout.GetFlowBreak(c)) mBlockLayout.SetFlowBreak(c, false);
+
                         }
-                        return;
+                        m_IsFlowBreakMarked = false;
                     }
-
-int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
-                    //Console.WriteLine("boundary width " + boundaryWidth);
-                    if (!m_IsFlowBreakMarked && Width <= boundaryWidth) return;
-
-                    int firstBlockX = -1;
-                    Point previousMarkedBlockLocation =  new Point (0,0);
-                    foreach (Control c in mBlockLayout.Controls)
-                    {
-                        if (c is Block)
-                        {//2
-                            //Console.WriteLine("block " + mBlockLayout.Controls.IndexOf(c));
-                            if (firstBlockX < 0) firstBlockX = c.Location.X;
-
-                            bool isMarkedOnCurrentControl = false;
-                            if (m_IsFlowBreakMarked)
-                            {//3
-                                isMarkedOnCurrentControl = mBlockLayout.GetFlowBreak(c);
-
-                                if (isMarkedOnCurrentControl)
-                                {//4
-                                    //Console.WriteLine("marked on " + c.Location);
-                                    if (c.Location.X <= boundaryWidth || Width <= boundaryWidth)
-                                    {//5
-                                        mBlockLayout.SetFlowBreak(c, false);
-                                        isMarkedOnCurrentControl = false;
-                                        m_IsFlowBreakMarked = false;
-                                        //Console.WriteLine("removing flow break mark in " + c.Location);
-                                    }//-5
-                                    else
-                                    {//5
-                                        m_IsFlowBreakMarked = true;
-                                        isMarkedOnCurrentControl = true;
-                                        //Console.WriteLine("leaving flow break for " + c.Location);
-                                    }//-5
-                                }//-4
-                            }//--3
-                            //Console.WriteLine(Width + " : " + boundaryWidth);
-                            if (Width > boundaryWidth
-                                && !isMarkedOnCurrentControl
-                                && ((c.Location.X > boundaryWidth || (c.Width > boundaryWidth && c.Location.X > firstBlockX))
-                                                                || (previousMarkedBlockLocation.Y == c.Location.Y && previousMarkedBlockLocation.X - c.Location.X > boundaryWidth)))
-                            {//3
-                                mBlockLayout.SetFlowBreak(c, true);
-                                m_IsFlowBreakMarked = true;
-                                isMarkedOnCurrentControl = true;
-                                //Console.WriteLine("position of block " + c.Location.X);
-                            }//-3
-                            else if (isMarkedOnCurrentControl)
-                            {//3
-                                //Console.WriteLine("position of block - existing mark " + c.Location.X);
-                                m_IsFlowBreakMarked = true;
-                            }//-3
-                            if (isMarkedOnCurrentControl) previousMarkedBlockLocation = new Point(c.Location.X, c.Location.Y);
-
-                            if (!m_IsFlowBreakMarked 
-                                && (isMarkedOnCurrentControl || mBlockLayout.GetFlowBreak(c)))
-                            {//3
-                                if (Width <= boundaryWidth)
-                                {//4
-                                    mBlockLayout.SetFlowBreak(c, false);
-                                    //Console.WriteLine("removing mark on left over " + c.Location);
-                                }//-4
-                                else
-                                {//4
-                                    m_IsFlowBreakMarked = true;
-                                }//-4
-                            }    //-3
-                        }//-2
-                        
-                    }// end foreach
-                    if (this.Width < mBlockLayout.Width || this.Height < mBlockLayout.Height) Size = new Size(WidthForContents, HeightForContents);
+                    return;
                 }
+
+                int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
+                //Console.WriteLine("boundary width " + boundaryWidth);
+                if (!m_IsFlowBreakMarked && Width <= boundaryWidth) return;
+
+                int firstBlockX = -1;
+                Point previousMarkedBlockLocation = new Point(0, 0);
+                foreach (Control c in mBlockLayout.Controls)
+                {
+                    if (c is Block)
+                    {//2
+                        //Console.WriteLine("block " + mBlockLayout.Controls.IndexOf(c));
+                        if (firstBlockX < 0) firstBlockX = c.Location.X;
+
+                        bool isMarkedOnCurrentControl = false;
+                        if (m_IsFlowBreakMarked)
+                        {//3
+                            isMarkedOnCurrentControl = mBlockLayout.GetFlowBreak(c);
+
+                            if (isMarkedOnCurrentControl)
+                            {//4
+                                //Console.WriteLine("marked on " + c.Location);
+                                if (c.Location.X <= boundaryWidth || Width <= boundaryWidth)
+                                {//5
+                                    mBlockLayout.SetFlowBreak(c, false);
+                                    isMarkedOnCurrentControl = false;
+                                    m_IsFlowBreakMarked = false;
+                                    //Console.WriteLine("removing flow break mark in " + c.Location);
+                                }//-5
+                                else
+                                {//5
+                                    m_IsFlowBreakMarked = true;
+                                    isMarkedOnCurrentControl = true;
+                                    //Console.WriteLine("leaving flow break for " + c.Location);
+                                }//-5
+                            }//-4
+                        }//--3
+                        //Console.WriteLine(Width + " : " + boundaryWidth);
+                        if (Width > boundaryWidth
+                            && !isMarkedOnCurrentControl
+                            && ((c.Location.X > boundaryWidth || (c.Width > boundaryWidth && c.Location.X > firstBlockX))
+                                                            || (previousMarkedBlockLocation.Y == c.Location.Y && previousMarkedBlockLocation.X - c.Location.X > boundaryWidth)))
+                        {//3
+                            mBlockLayout.SetFlowBreak(c, true);
+                            m_IsFlowBreakMarked = true;
+                            isMarkedOnCurrentControl = true;
+                            //Console.WriteLine("position of block " + c.Location.X);
+                        }//-3
+                        else if (isMarkedOnCurrentControl)
+                        {//3
+                            //Console.WriteLine("position of block - existing mark " + c.Location.X);
+                            m_IsFlowBreakMarked = true;
+                        }//-3
+                        if (isMarkedOnCurrentControl) previousMarkedBlockLocation = new Point(c.Location.X, c.Location.Y);
+
+                        if (!m_IsFlowBreakMarked
+                            && (isMarkedOnCurrentControl || mBlockLayout.GetFlowBreak(c)))
+                        {//3
+                            if (Width <= boundaryWidth)
+                            {//4
+                                mBlockLayout.SetFlowBreak(c, false);
+                                //Console.WriteLine("removing mark on left over " + c.Location);
+                            }//-4
+                            else
+                            {//4
+                                m_IsFlowBreakMarked = true;
+                            }//-4
+                        }    //-3
+                    }//-2
+
+                }// end foreach
+                if (this.Width < mBlockLayout.Width || this.Height < mBlockLayout.Height) Size = new Size(WidthForContents, HeightForContents);
             }
+        }
 
         public void VerifyFlowBreak()
         {
             bool isMarked = false;
             foreach (Control c in mBlockLayout.Controls)
             {
-                if (c is Block &&  mBlockLayout.GetFlowBreak(c))
+                if (c is Block && mBlockLayout.GetFlowBreak(c))
                 {
                     Console.WriteLine("verification : is marked on " + c.Location);
                     isMarked = true;
                 }
             }
-            
-            MessageBox.Show ("New line mark on blocks = " + isMarked.ToString ()) ; 
+
+            MessageBox.Show("New line mark on blocks = " + isMarked.ToString());
         }
 
-        public void DestroyStripHandle ()
-            {
-            this.DestroyHandle ();
-            }
+        public void DestroyStripHandle()
+        {
+            this.DestroyHandle();
+        }
 
         private void Strip_Disposed(object sender, EventArgs e)
         {
-            if (mContentView != null )  mContentView.SizeChanged -= new EventHandler(Resize_View);
+            if (mContentView != null) mContentView.SizeChanged -= new EventHandler(Resize_View);
         }
 
     }
