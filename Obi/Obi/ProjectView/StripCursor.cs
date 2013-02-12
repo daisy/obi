@@ -13,7 +13,6 @@ namespace Obi.ProjectView
         private bool mHighlighted;  // highlight flag
 
         private static readonly double HeightToWidthRatio = 10.0;
-        private int m_MouseDownLoc = 0;
 
 
         /// <summary>
@@ -103,9 +102,9 @@ namespace Obi.ProjectView
                     points[3] = new Point(Width - 1, Height - 1);
                     pe.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                     pe.Graphics.FillPolygon(Strip.ColorSettings.BlockLayoutSelectedBrush, points);
-                }                
+                }
             }
-            else if (this.BackColor == SystemColors.Highlight && Strip != null &&  !Strip.Highlighted)
+            else if (this.BackColor == SystemColors.Highlight && Strip != null && !Strip.Highlighted)
             {
                 this.BackColor = Strip.BackColor;
                 Parent.BackColor = Strip.BackColor;
@@ -119,25 +118,6 @@ namespace Obi.ProjectView
         internal void UpdateColors()
         {
             BackColor = Parent.BackColor;
-        }
-
-        private void StripCursor_MouseDown(object sender, MouseEventArgs e)
-        {
-            m_MouseDownLoc = 1;
-        }
-
-        private void StripCursor_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (m_MouseDownLoc == 0)
-                return;
-            if (Strip != null)
-                Strip.SetAnimationCursor(e.X, e.Y);
-        }
-
-        private void StripCursor_MouseUp(object sender, MouseEventArgs e)
-        {
-            m_MouseDownLoc = 0;
-            Strip.SetAnimationCursor();
         }
     }
 }
