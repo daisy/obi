@@ -12,7 +12,7 @@ namespace Obi.ProjectView
     {
         private bool mHighlighted;  // highlight flag
 
-        private static readonly double HeightToWidthRatio = 10.0;
+        private static readonly double HeightToWidthRatio = 20;
         private int m_MouseDownLoc = 0;
 
 
