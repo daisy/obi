@@ -45,6 +45,7 @@ namespace Obi.ProjectView
         private EmptyNode m_BeginNote = null; //@AssociateNode
         private EmptyNode m_EndNote = null;  //@AssociateNode
         private Waveform_Recording waveform_recording_control;
+        private ZoomWaveform zoomWaveformPanel;
 
         /// <summary>
         /// A new strips view.
@@ -5421,6 +5422,23 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void Context_ReplaceAudioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.ReplaceAudioOfSelectedNode();
+        }
+
+        private void ContextZoomPhrase_Click(object sender, EventArgs e)
+        {
+            if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
+            {
+                zoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection);
+                this.Controls.Add(zoomWaveformPanel);
+                zoomWaveformPanel.Location = new Point(0, 0);
+                zoomWaveformPanel.Show();
+                zoomWaveformPanel.BringToFront();
+            }
+        }
+
+        public void RemovePanel()
+        {
+            this.Controls.Remove(zoomWaveformPanel);
         }
         }
    /// <summary>

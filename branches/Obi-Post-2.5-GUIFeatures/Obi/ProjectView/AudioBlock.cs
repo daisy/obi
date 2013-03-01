@@ -65,6 +65,27 @@ namespace Obi.ProjectView
             }
         }
 
+public void SetWaveformForZoom(PhraseNode node)
+        {
+            if (node != null && mWaveform != null)
+            {
+                if (node.Audio.Duration.AsTimeSpan.TotalMilliseconds > 0.0)
+                {
+                    mWaveform.Visible = true;
+                    mWaveform.BackColor = BackColor;
+                    mWaveform.AccessibleName = AccessibleName;
+                    mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
+                    //mWaveform.Size = new Size(WaveformDefaultWidth,
+                    //    Height - mLabel.Height - mLabel.Margin.Bottom - mWaveform.Margin.Vertical - BorderHeight);
+                    mWaveform.Block = this;
+                    Size = new Size(WaveformFullWidth, Height);
+                }
+                else
+                {
+                    mWaveform.Visible = false;
+                }
+            }
+        }
 
 
 
@@ -130,6 +151,13 @@ namespace Obi.ProjectView
             mRecordingLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
             mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y);
             SetWaveform(mNode as PhraseNode);
+        }
+        public  void SetZoomFactorAndHeightForZoom(float zoom, int height)
+        {
+            base.SetZoomFactorAndHeight(zoom, height);
+            mRecordingLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
+            mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y);
+            SetWaveformForZoom(mNode as PhraseNode);
         }
 
         // Update label and waveform when there is new information to display.
