@@ -232,6 +232,7 @@ private void AppendPhrasesFromSmil ()
         string smilFileName = StringArray[0];
         string strId = StringArray[1];
         string fullSmilFilePath = Path.Combine( Path.GetDirectoryName(m_NccPath), smilFileName ) ;
+        if (!File.Exists(fullSmilFilePath)) continue;
         XmlDocument smilDocument = XmlReaderWriterHelper.ParseXmlDocument(fullSmilFilePath, false,false);
         Console.WriteLine(section.Label);
         XmlNode mainSeqNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilDocument.DocumentElement, true, "seq", smilDocument.DocumentElement.NamespaceURI);
