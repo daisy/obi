@@ -32,8 +32,11 @@ namespace Obi.ImportExport
         private Dictionary<string, EmptyNode> m_NccReferenceToPageMap = new Dictionary<string, EmptyNode>();
         private AudioFormatConvertorSession m_AudioConversionSession;
         private Dictionary<string, FileDataProvider> m_OriginalAudioFile_FileDataProviderMap = new Dictionary<string, FileDataProvider>(); // maps original audio file refered by smil to FileDataProvider of sdk.
+        
+        private Settings m_Settings ;
+        protected List<TreeNode> TreenodesWithoutManagedAudioMediaData = new List<TreeNode>();
 
-        public DAISY202Import(string nccPath, ObiPresentation presentation)
+        public DAISY202Import(string nccPath, ObiPresentation presentation, Settings settings)
         {
             m_NccPath = nccPath;
             m_NccBaseDirectory = Path.GetDirectoryName(nccPath);
@@ -44,8 +47,11 @@ namespace Obi.ImportExport
                 m_Presentation.MediaDataManager.DefaultPCMFormat,
                 false,
                 false);
-            
+            m_Settings = settings;
         }
+
+        private List<string> m_ErrorsList = new List<string>();
+        public List<string> ErrorsList { get { return m_ErrorsList; } }
 
         public static String GrabTitle(string filePath)
         {
@@ -558,9 +564,9 @@ private void AppendPhrasesFromSmil ()
 
             if (media == null)
             {
-                //if (!TreenodesWithoutManagedAudioMediaData.Contains(treeNode))
+                if (!TreenodesWithoutManagedAudioMediaData.Contains(treeNode))
                 //{
-                    //TreenodesWithoutManagedAudioMediaData.Add(treeNode);
+                    TreenodesWithoutManagedAudioMediaData.Add(treeNode);
                 //}
 
                 Debug.Fail("Creating ExternalAudioMedia ??");
@@ -755,9 +761,57 @@ WavAudioMediaData mediaData =
             
             return media;
         }
+        
         protected virtual void clipEndAdjustedToNull(Time clipB, Time clipE, Time duration, TreeNode treeNode)
         {
+            double diff = clipE.AsTimeSpan.TotalMilliseconds - duration.AsTimeSpan.TotalMilliseconds;
+            if (diff > m_Settings.ImportToleranceForAudioInMs && treeNode != null)
+            {
+                EmptyNode eNode = (EmptyNode)treeNode;
+                eNode.TODO = true;
+                if (eNode.Role_ == EmptyNode.Role.Plain)
+                {
+                    eNode.Role_ = EmptyNode.Role.Custom;
+                    eNode.CustomRole = Localizer.Message("DAISY3_ObiImport_ErrorsList_truncated_audio");
+                }
+                m_ErrorsList.Add(Localizer.Message("DAISY3_ObiImport_ErrorsList_truncated_audio_in_phrase") + eNode.Index.ToString() + Localizer.Message("DAISY3_ObiImport_ErrorsList_in_section") + eNode.ParentAs<SectionNode>().Label);
+                m_ErrorsList.Add(Localizer.Message("DAISY3_ObiImport_ErrorsList_expected_clip_end") + clipE.Format_H_MN_S_MS() + Localizer.Message("DAISY3_ObiImport_ErrorsList_imported_clip_end") + duration.Format_H_MN_S_MS());
+            }
         }
+
+        private void ReplaceExternalAudioMediaPhraseWithEmptyNode(TreeNode node)
+        {
+            if (node is PhraseNode)
+            {
+                PhraseNode phrase = (PhraseNode)node;
+                SectionNode section = phrase.ParentAs<SectionNode>();
+                Console.WriteLine("replacing phrase node with empty node due to  clip problem " + section.Label + " phrase index:" + phrase.Index.ToString());
+                int phraseIndex = phrase.Index;
+                EmptyNode emptyNode = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
+                emptyNode.CopyAttributes(phrase);
+                phrase.Detach();
+
+                section.Insert(emptyNode, phraseIndex);
+                emptyNode.TODO = true;
+
+                m_ErrorsList.Add(Localizer.Message("DAISY3_ObiImport_ErrorsList_error_no_audio") + phraseIndex.ToString() + Localizer.Message("DAISY3_ObiImport_ErrorsList_in_section") + section.Label);
+            }
+
+        }
+
+        public void CorrectExternalAudioMedia()
+        {
+            if (TreenodesWithoutManagedAudioMediaData == null || TreenodesWithoutManagedAudioMediaData.Count == 0) return;
+            for (int i = 0; i < TreenodesWithoutManagedAudioMediaData.Count; i++)
+            {
+                if (TreenodesWithoutManagedAudioMediaData[i] is PhraseNode)
+                {
+                    PhraseNode phrase = (PhraseNode)TreenodesWithoutManagedAudioMediaData[i];
+                    ReplaceExternalAudioMediaPhraseWithEmptyNode(phrase);
+                }
+            }
+        }
+
 
 
     }
