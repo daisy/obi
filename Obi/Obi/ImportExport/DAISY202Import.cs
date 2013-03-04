@@ -28,7 +28,8 @@ namespace Obi.ImportExport
         private ObiPresentation m_Presentation;            // target presentation
         private SectionNode m_CurrentSection;               // section currently populated
         private Stack<Obi.SectionNode> m_OpenSectionNodes;  // these are section nodes that could accept children
-        private Dictionary<ObiNode, string> m_ObiNodesToSmilReferenceMap;
+        private Dictionary<SectionNode, string> m_SectionNodesToSmilReferenceMap;
+        private Dictionary<string, EmptyNode> m_NccReferenceToPageMap = new Dictionary<string, EmptyNode>();
         private AudioFormatConvertorSession m_AudioConversionSession;
         private Dictionary<string, FileDataProvider> m_OriginalAudioFile_FileDataProviderMap = new Dictionary<string, FileDataProvider>(); // maps original audio file refered by smil to FileDataProvider of sdk.
 
@@ -38,7 +39,7 @@ namespace Obi.ImportExport
             m_NccBaseDirectory = Path.GetDirectoryName(nccPath);
             m_OpenSectionNodes = new System.Collections.Generic.Stack<Obi.SectionNode>();
             m_Presentation = presentation;
-            m_ObiNodesToSmilReferenceMap = new Dictionary<ObiNode, string>();
+            m_SectionNodesToSmilReferenceMap = new Dictionary<SectionNode, string>();
             m_AudioConversionSession = new AudioFormatConvertorSession(m_Presentation.DataProviderManager.DataFileDirectoryFullPath,
                 m_Presentation.MediaDataManager.DefaultPCMFormat,
                 false,
@@ -87,6 +88,7 @@ namespace Obi.ImportExport
 
                 XmlNode bodyNode = nccDocument.GetElementsByTagName("body")[0];
                 ParseNccDocument(bodyNode);
+                
                 AppendPhrasesFromSmil();
             }
             catch (System.Exception ex)
@@ -109,9 +111,10 @@ namespace Obi.ImportExport
                             Obi.SectionNode section = CreateSectionNode(n);
                             if (section  != null && section.Level < 6) m_OpenSectionNodes.Push(section );
                             m_CurrentSection = section ;
+                            m_SectionNodesToSmilReferenceMap.Add(section, GetSmilReferenceString(n));
                             
                         }
-                        else if ((n.LocalName == "p" || n.LocalName == "span"))
+                        else if (n.LocalName == "p" || n.LocalName == "span")
                         {
                             string classAttr = n.Attributes.GetNamedItem("class").Value;
                             if (classAttr == "page" || classAttr == "page-normal")
@@ -159,7 +162,11 @@ namespace Obi.ImportExport
                 EmptyNode n = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
                 n.PageNumber = number;
                 m_CurrentSection.AppendChild(n);
-                m_ObiNodesToSmilReferenceMap.Add(n, GetSmilReferenceString(node));
+
+                //extract id
+
+                string strId = node.Attributes.GetNamedItem("id").Value;
+                if (strId != null) m_NccReferenceToPageMap.Add(strId, n);
             }
         }
 
@@ -178,7 +185,7 @@ namespace Obi.ImportExport
             }   
             else parent.AppendChild(section);
 
-            m_ObiNodesToSmilReferenceMap.Add(section, GetSmilReferenceString(node));
+            
             return section;
         }
         
@@ -210,20 +217,17 @@ namespace Obi.ImportExport
 
 private void AppendPhrasesFromSmil ()
 {
-    if ( m_ObiNodesToSmilReferenceMap.Count == 0 ) return ;
-    foreach (ObiNode n in m_ObiNodesToSmilReferenceMap.Keys )
-    {
-        if (!(n is SectionNode)) continue ;
-        SectionNode section = (SectionNode)n;
-        string smilReferenceString = m_ObiNodesToSmilReferenceMap[section];
+    if ( m_SectionNodesToSmilReferenceMap.Count == 0 ) return ;
+    foreach (SectionNode section in m_SectionNodesToSmilReferenceMap.Keys )
+    {   
+        
+        string smilReferenceString = m_SectionNodesToSmilReferenceMap[section];
         string[] StringArray = smilReferenceString.Split('#');
         string smilFileName = StringArray[0];
         string strId = StringArray[1];
         string fullSmilFilePath = Path.Combine( Path.GetDirectoryName(m_NccPath), smilFileName ) ;
         XmlDocument smilDocument = XmlReaderWriterHelper.ParseXmlDocument(fullSmilFilePath, false,false);
-        //XmlDocument smilDocument = new XmlDocument();
-        
-        //smilDocument.Load(fullSmilFilePath);
+        Console.WriteLine(section.Label);
         XmlNode mainSeqNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilDocument.DocumentElement, true, "seq", smilDocument.DocumentElement.NamespaceURI);
         ParseSmilDocument(section, mainSeqNode, smilFileName, strId);
     }
@@ -236,31 +240,65 @@ private void AppendPhrasesFromSmil ()
             {
                 if (n.LocalName == "par")
                 {
+                    EmptyNode page = null;
+                    EmptyNode originalPageNode = null;
+                    XmlNode txtNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(n, true, "text", n.NamespaceURI);
+                    if (txtNode != null)
+                    {
+                        string src = txtNode.Attributes.GetNamedItem("src").Value;
+                        string nccID = src.Split('#')[1];
+                        
+                        if (m_NccReferenceToPageMap.ContainsKey(nccID)) originalPageNode = m_NccReferenceToPageMap[nccID];
+                    }
                     XmlNode seqNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(n, true, "seq", n.NamespaceURI);
                     if (seqNode != null)
                     {
                         foreach (XmlNode audioNode in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(seqNode, true, "audio", seqNode.NamespaceURI, false))
                         {
-                            CreatePhraseNodeFromAudioElement(section, audioNode);
+                            EmptyNode newNode = CreatePhraseNodeFromAudioElement(section, audioNode);
+                            if (page == null) page = newNode;
                         }
-                        return;
+                        if (originalPageNode != null && page != null)
+                        {
+                            page.PageNumber = originalPageNode.PageNumber;
+                            Console.WriteLine("1 " + page.PageNumber);
+                            Console.WriteLine(smilFileName);
+                            originalPageNode.Detach();
+                        }
+                        
                     }
+                    else
+                    {//1
+                        foreach (XmlNode audioNode in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(n, true, "audio", seqNode.NamespaceURI, false))
+                        {//2
+                            EmptyNode newNode = CreatePhraseNodeFromAudioElement(section, audioNode);
+                            if (page == null) page = newNode;
+                        }//-2
+                        if (originalPageNode != null && page != null)
+                        {//2
+                            page.PageNumber = originalPageNode.PageNumber;
+                            Console.WriteLine("2 " + page.PageNumber);
+                            originalPageNode.Detach();
+                        }//-2
+                    }//-1
+                    if (page == null) ParseSmilDocument(section, n, smilFileName, strId);
                 }
                 else if (n.LocalName == "audio")
                 {
                     CreatePhraseNodeFromAudioElement(section, n);
+                    ParseSmilDocument(section, n, smilFileName, strId);
                 }
-                ParseSmilDocument(section, n, smilFileName, strId);
+                
             }
         }
 
-        private void CreatePhraseNodeFromAudioElement(SectionNode section, XmlNode audioNode)
+        private PhraseNode CreatePhraseNodeFromAudioElement(SectionNode section, XmlNode audioNode)
         {
             PhraseNode phrase = m_Presentation.CreatePhraseNode();
-            //EmptyNode phrase = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
             
             section.AppendChild(phrase);
             addAudio(phrase, audioNode, true);
+            return phrase;
         }
 
         private void addAudio(TreeNode treeNode, XmlNode xmlNode, bool isSequence)
