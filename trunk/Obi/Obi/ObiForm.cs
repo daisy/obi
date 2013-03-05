@@ -487,8 +487,24 @@ namespace Obi
                 }
                 else
                 {
-                    CreateNewProject(path, title, false, id, audioChannels,audioSampleRate);
-                    (new Obi.ImportExport.ImportStructure()).ImportFromXHTML(xhtmlPath, mSession.Presentation);
+                    // comment old xhtml structure import code
+                    //CreateNewProject(path, title, false, id, audioChannels,audioSampleRate);
+                    //(new Obi.ImportExport.ImportStructure()).ImportFromXHTML(xhtmlPath, mSession.Presentation);
+                    mSession.CreateNewPresentationInBackend(path, title, false, id, mSettings, true, audioChannels, audioSampleRate);
+                    ImportExport.DAISY202Import Import = new Obi.ImportExport.DAISY202Import(xhtmlPath, mSession.Presentation, mSettings);
+                    Import.ImportFromXHTML();
+                    Import.CorrectExternalAudioMedia();
+                    mSession.NotifyProjectCreated();
+
+                    Dialogs.ReportDialog reportDialog = new ReportDialog(Localizer.Message("Report_for_import"), false
+                        //import.RequestCancellation
+                                                                         ? Localizer.Message("import_cancelled")
+                                                                         : String.Format(
+                                                                             Localizer.Message("import_output_path"),
+                                                                             path),
+                                                                     Import != null ? Import.ErrorsList : null);
+                    reportDialog.ShowDialog();
+
                 }
             }
 
