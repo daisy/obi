@@ -276,7 +276,7 @@ private void AppendPhrasesFromSmil ()
                     }
                     else
                     {//1
-                        foreach (XmlNode audioNode in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(n, true, "audio", seqNode.NamespaceURI, false))
+                        foreach (XmlNode audioNode in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(n, true, "audio", n.NamespaceURI, false))
                         {//2
                             EmptyNode newNode = CreatePhraseNodeFromAudioElement(section, audioNode);
                             if (page == null) page = newNode;
