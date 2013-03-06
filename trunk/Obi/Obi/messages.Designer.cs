@@ -946,6 +946,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The non numeric front page number {0} is added as {1}.
+        /// </summary>
+        internal static string DAISY2_ObiImport_ErrorsList_FrontPageCorrection {
+            get {
+                return ResourceManager.GetString("DAISY2_ObiImport_ErrorsList_FrontPageCorrection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No audio in phrase.
         /// </summary>
         internal static string DAISY3_ObiImport_ErrorsList_error_no_audio {
