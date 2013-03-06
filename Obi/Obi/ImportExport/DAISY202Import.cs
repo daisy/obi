@@ -32,7 +32,7 @@ namespace Obi.ImportExport
         private Dictionary<string, EmptyNode> m_NccReferenceToPageMap = new Dictionary<string, EmptyNode>();
         private AudioFormatConvertorSession m_AudioConversionSession;
         private Dictionary<string, FileDataProvider> m_OriginalAudioFile_FileDataProviderMap = new Dictionary<string, FileDataProvider>(); // maps original audio file refered by smil to FileDataProvider of sdk.
-        
+        private int m_Counter_FrontPageCorection;        
         private Settings m_Settings ;
         protected List<TreeNode> TreenodesWithoutManagedAudioMediaData = new List<TreeNode>();
 
@@ -48,6 +48,7 @@ namespace Obi.ImportExport
                 false,
                 false);
             m_Settings = settings;
+            m_Counter_FrontPageCorection = 0;
         }
 
         private List<string> m_ErrorsList = new List<string>();
@@ -154,13 +155,22 @@ namespace Obi.ImportExport
             if (m_CurrentSection == null) throw new Exception(Localizer.Message("error_adding_page_number"));
             string pageNumberString = GetTextContent(node);
             PageNumber number = null;
+            bool markToDo = false;
             if (kind == PageKind.Special && pageNumberString != null && pageNumberString != "")
             {
                 number = new PageNumber(pageNumberString);
             }
             else if (kind == PageKind.Front || kind == PageKind.Normal)
             {
+                
                 int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
+                if (pageNumber == 0 && kind == PageKind.Front) //if front page is not numeric, make it numeric with marking it to do
+                {
+                    m_Counter_FrontPageCorection++;
+                    pageNumber = m_Counter_FrontPageCorection;
+                    markToDo = true;
+                    
+                }
                 if (pageNumber > 0) number = new PageNumber(pageNumber, kind);
             }
             if (number != null)
@@ -168,7 +178,11 @@ namespace Obi.ImportExport
                 EmptyNode n = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
                 n.PageNumber = number;
                 m_CurrentSection.AppendChild(n);
-
+                if (markToDo)
+                {
+                    n.TODO = true;
+                    m_ErrorsList.Add(string.Format(Localizer.Message("DAISY2_ObiImport_ErrorsList_FrontPageCorrection"), pageNumberString, n.PageNumber.ToString()));
+                }
                 //extract id
 
                 string strId = node.Attributes.GetNamedItem("id").Value;
