@@ -2265,4 +2265,7 @@ Error text: {1}</value>
   <data name="KeyS_TransportBarStopSingleKey" xml:space="preserve">
     <value>Stop: single key shortcut</value>
   </data>
+  <data name="DAISY2_ObiImport_ErrorsList_FrontPageCorrection" xml:space="preserve">
+    <value>The non numeric front page number {0} is added as {1}</value>
+  </data>
 </root>
