@@ -2200,7 +2200,7 @@ namespace Obi.ProjectView
             Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate(Dialogs.ProgressDialog progress1)
                             {
-                                phraseDetectionCommand = Commands.Node.SplitAudio.GetPhraseDetectionCommand(this, phraseNodes, threshold, gap, before);
+                                phraseDetectionCommand = Commands.Node.SplitAudio.GetPhraseDetectionCommand(this, phraseNodes, threshold, gap, before, ObiForm.Settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection);
         });
             progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
             this.ProgressChanged += new ProgressChangedEventHandler(progress.UpdateProgressBar);
