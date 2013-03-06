@@ -35,6 +35,7 @@
             this.btnZoomOut = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.panelZooomWaveform = new System.Windows.Forms.Panel();
+            this.txtZoomSelected = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnClose
@@ -106,12 +107,21 @@
             this.panelZooomWaveform.Size = new System.Drawing.Size(123, 58);
             this.panelZooomWaveform.TabIndex = 8;
             // 
+            // txtZoomSelected
+            // 
+            this.txtZoomSelected.Location = new System.Drawing.Point(24, 501);
+            this.txtZoomSelected.Name = "txtZoomSelected";
+            this.txtZoomSelected.ReadOnly = true;
+            this.txtZoomSelected.Size = new System.Drawing.Size(702, 20);
+            this.txtZoomSelected.TabIndex = 9;
+            // 
             // ZoomWaveform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.txtZoomSelected);
             this.Controls.Add(this.panelZooomWaveform);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnZoomOut);
@@ -121,7 +131,10 @@
             this.Controls.Add(this.btnClose);
             this.Name = "ZoomWaveform";
             this.Size = new System.Drawing.Size(963, 559);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ZoomWaveform_MouseDown);
+            this.Resize += new System.EventHandler(this.ZoomWaveform_Resize);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -134,6 +147,7 @@
         private System.Windows.Forms.Button btnZoomOut;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Panel panelZooomWaveform;
+        private System.Windows.Forms.TextBox txtZoomSelected;
 
     }
 }

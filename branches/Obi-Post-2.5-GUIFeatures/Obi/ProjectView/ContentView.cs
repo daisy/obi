@@ -5428,7 +5428,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
             {
-                zoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection);
+                zoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection,mProjectView);
                 this.Controls.Add(zoomWaveformPanel);
                 zoomWaveformPanel.Location = new Point(0, 0);
                 zoomWaveformPanel.Show();
