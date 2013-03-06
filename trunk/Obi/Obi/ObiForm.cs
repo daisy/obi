@@ -464,15 +464,36 @@ namespace Obi
 
             private bool ImportStructureFromXHtml(string path, string title, string id, string xhtmlPath, int audioChannels, int audioSampleRate)
             {
+                mSession.CreateNewPresentationInBackend(path, title, false, id, mSettings, true, audioChannels, audioSampleRate);
+                ImportExport.DAISY202Import import = new Obi.ImportExport.DAISY202Import(xhtmlPath, mSession.Presentation, mSettings);
+                
+                                
                 ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
                                                              delegate(ProgressDialog progress1)
                                                                  {
+                                                                     import.DoWork();
+                                                                     import.CorrectExternalAudioMedia();
                                                                      ImportStructureFromXHtml_ThreadSafe(path, title, id,
                                                                                                          xhtmlPath, audioChannels,audioSampleRate);
                                                                  });
+                progress.OperationCancelled += new OperationCancelledHandler(delegate(object sender, EventArgs e)
+                                                                                 {
+                                                                                     if (import != null) import.RequestCancellation = true;
+                                                                                         
+                                                                                 });
+                import.ProgressChangedEvent +=
+                    new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                 progress.ShowDialog();
                 if (progress.Exception != null) throw progress.Exception;
-                return true;
+                
+                Dialogs.ReportDialog reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
+                    import.RequestCancellation ? Localizer.Message("import_cancelled")
+                                                                     : String.Format(
+                                                                         Localizer.Message("import_output_path"),
+                                                                         path),
+                                                                 import != null ? import.ErrorsList : null);
+                reportDialog.ShowDialog();
+                return !import.RequestCancellation; 
             }
 
             private delegate void ImportStructureFromXHtml_Delegate(
@@ -490,20 +511,8 @@ namespace Obi
                     // comment old xhtml structure import code
                     //CreateNewProject(path, title, false, id, audioChannels,audioSampleRate);
                     //(new Obi.ImportExport.ImportStructure()).ImportFromXHTML(xhtmlPath, mSession.Presentation);
-                    mSession.CreateNewPresentationInBackend(path, title, false, id, mSettings, true, audioChannels, audioSampleRate);
-                    ImportExport.DAISY202Import Import = new Obi.ImportExport.DAISY202Import(xhtmlPath, mSession.Presentation, mSettings);
-                    Import.ImportFromXHTML();
-                    Import.CorrectExternalAudioMedia();
-                    mSession.NotifyProjectCreated();
 
-                    Dialogs.ReportDialog reportDialog = new ReportDialog(Localizer.Message("Report_for_import"), false
-                        //import.RequestCancellation
-                                                                         ? Localizer.Message("import_cancelled")
-                                                                         : String.Format(
-                                                                             Localizer.Message("import_output_path"),
-                                                                             path),
-                                                                     Import != null ? Import.ErrorsList : null);
-                    reportDialog.ShowDialog();
+                    mSession.NotifyProjectCreated();
 
                 }
             }

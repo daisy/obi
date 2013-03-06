@@ -21,7 +21,7 @@ using AudioLib;
 
 namespace Obi.ImportExport
 {
-    public class DAISY202Import
+    public class DAISY202Import : DualCancellableProgressReporter
     {
         private string m_NccPath;
         private string m_NccBaseDirectory;
@@ -87,7 +87,13 @@ namespace Obi.ImportExport
             return reader;
         }
 
-        public void ImportFromXHTML()
+        public override void DoWork()
+        {
+            if (RequestCancellation) return;
+            ImportFromXHTML();
+        }
+
+        private void ImportFromXHTML()
         {
             try
             {
@@ -95,8 +101,10 @@ namespace Obi.ImportExport
 
                 XmlNode bodyNode = nccDocument.GetElementsByTagName("body")[0];
                 ParseNccDocument(bodyNode);
-                
+                if (RequestCancellation) return;
+                reportProgress(20, "");
                 AppendPhrasesFromSmil();
+                reportProgress(100, "");
             }
             catch (System.Exception ex)
             {
@@ -238,9 +246,11 @@ namespace Obi.ImportExport
 private void AppendPhrasesFromSmil ()
 {
     if ( m_SectionNodesToSmilReferenceMap.Count == 0 ) return ;
+    int progressIncrement = 80 / m_SectionNodesToSmilReferenceMap.Count;
+    int progressCounter = 20 ;
     foreach (SectionNode section in m_SectionNodesToSmilReferenceMap.Keys )
-    {   
-        
+    {
+        if (RequestCancellation) return;
         string smilReferenceString = m_SectionNodesToSmilReferenceMap[section];
         string[] StringArray = smilReferenceString.Split('#');
         string smilFileName = StringArray[0];
@@ -251,6 +261,8 @@ private void AppendPhrasesFromSmil ()
         Console.WriteLine(section.Label);
         XmlNode mainSeqNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilDocument.DocumentElement, true, "seq", smilDocument.DocumentElement.NamespaceURI);
         ParseSmilDocument(section, mainSeqNode, smilFileName, strId);
+        progressCounter += progressIncrement ;
+        if(progressCounter < 100 )  reportProgress(progressCounter, "");
     }
 }
 
