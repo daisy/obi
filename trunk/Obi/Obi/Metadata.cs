@@ -46,6 +46,21 @@ namespace Obi
         public static readonly string OBI_XUK_VERSION = "obi:xukversion";
         public static readonly string OBI_DAISY3ExportPath = "obi:DAISY3.0ExportPath";
         public static readonly string OBI_DAISY2ExportPath = "obi:DAISY2.02ExportPath";
+
+        private static List<string> m_DAISY3MetadataNames ;
+        public static List<string> DAISY3MetadataNames
+        {
+            get
+            {
+                if (m_DAISY3MetadataNames == null || m_DAISY3MetadataNames.Count == 0)
+                {
+                    m_DAISY3MetadataNames = new List<string>();
+                    m_DAISY3MetadataNames.Add(DC_TITLE);
+                }
+                return m_DAISY3MetadataNames;
+            }
+        }
+
     }
 
     /// <summary>
