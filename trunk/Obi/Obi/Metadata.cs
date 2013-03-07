@@ -56,6 +56,39 @@ namespace Obi
                 {
                     m_DAISY3MetadataNames = new List<string>();
                     m_DAISY3MetadataNames.Add(DC_TITLE);
+                    m_DAISY3MetadataNames.Add(DC_CREATOR);
+                    m_DAISY3MetadataNames.Add(DC_SUBJECT);
+                    m_DAISY3MetadataNames.Add(DC_DESCRIPTION);
+                    m_DAISY3MetadataNames.Add(DC_PUBLISHER);
+                    m_DAISY3MetadataNames.Add(DC_CONTRIBUTOR);
+                    m_DAISY3MetadataNames.Add(DC_DATE);
+                    m_DAISY3MetadataNames.Add(DC_TYPE);
+                    m_DAISY3MetadataNames.Add(DC_FORMAT);
+                    m_DAISY3MetadataNames.Add(DC_IDENTIFIER);
+                    m_DAISY3MetadataNames.Add(DC_SOURCE);
+                    m_DAISY3MetadataNames.Add(DC_LANGUAGE);
+                    m_DAISY3MetadataNames.Add(DC_RELATION);
+                    m_DAISY3MetadataNames.Add(DC_COVERAGE);
+                    m_DAISY3MetadataNames.Add(DC_RIGHTS);
+                    m_DAISY3MetadataNames.Add(DTB_SOURCE_DATE);
+                    m_DAISY3MetadataNames.Add(DTB_SOURCE_EDITION);
+                    m_DAISY3MetadataNames.Add(DTB_SOURCE_PUBLISHER);
+                    m_DAISY3MetadataNames.Add(DTB_SOURCE_RIGHTS);
+                    m_DAISY3MetadataNames.Add(DTB_SOURCE_TITLE);
+                    m_DAISY3MetadataNames.Add(DTB_MULTIMEDIA_TYPE);
+                    m_DAISY3MetadataNames.Add(DTB_MULTIMEDIA_CONTENT);
+                    m_DAISY3MetadataNames.Add(DTB_NARRATOR);
+                    m_DAISY3MetadataNames.Add(DTB_PRODUCER);
+                    m_DAISY3MetadataNames.Add(DTB_PRODUCED_DATE);
+                    m_DAISY3MetadataNames.Add(DTB_REVISION);
+                    m_DAISY3MetadataNames.Add(DTB_REVISION_DATE);
+                    m_DAISY3MetadataNames.Add(DTB_REVISION_DESCRIPTION);
+                    m_DAISY3MetadataNames.Add(DTB_TOTAL_TIME);
+                    m_DAISY3MetadataNames.Add(DTB_AUDIO_FORMAT);
+                    m_DAISY3MetadataNames.Add(GENERATOR);
+                    m_DAISY3MetadataNames.Add(OBI_XUK_VERSION);
+                    m_DAISY3MetadataNames.Add(OBI_DAISY3ExportPath);
+                    m_DAISY3MetadataNames.Add(OBI_DAISY2ExportPath);
                 }
                 return m_DAISY3MetadataNames;
             }
