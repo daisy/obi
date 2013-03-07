@@ -2805,7 +2805,11 @@ namespace Obi.ProjectView
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
                 {
-                    if ( CurrentState == State.Paused )  StartRecordingDirectly_Internal();
+                    if (CurrentState == State.Paused)
+                    {
+                        if (mResumeRecordingPhrase != null) mResumeRecordingPhrase = null;
+                        StartRecordingDirectly_Internal();
+                    }
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerAsync();
             }
@@ -2958,11 +2962,11 @@ SelectionChangedPlaybackEnabled = false;
                 }//-2
                 // check if the last recording phrase is also last phrase in section
                 if (!isRecordingAtEnd) renumber = true;
-                if(renumber && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
+                //if(renumber && MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //{
                 if (IsPlaying) Pause();
                 mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPage, firstRecordedPage.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", "")));
-            }
+            //}
             }
         }
 
