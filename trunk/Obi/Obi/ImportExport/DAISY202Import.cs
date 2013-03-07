@@ -98,8 +98,9 @@ namespace Obi.ImportExport
             try
             {
                 XmlDocument nccDocument = XmlReaderWriterHelper.ParseXmlDocument(m_NccPath, false, false);
-
-                XmlNode bodyNode = nccDocument.GetElementsByTagName("body")[0];
+                XmlNode headNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(nccDocument.DocumentElement, true, "head", nccDocument.DocumentElement.NamespaceURI);
+                PopulateMetadataFromNcc(headNode);
+                XmlNode bodyNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(nccDocument.DocumentElement, true, "body", nccDocument.DocumentElement.NamespaceURI);
                 ParseNccDocument(bodyNode);
                 if (RequestCancellation) return;
                 reportProgress(20, "");
@@ -109,6 +110,32 @@ namespace Obi.ImportExport
             catch (System.Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void PopulateMetadataFromNcc(XmlNode headNode)
+        {
+            Dictionary<string,string> referenceList = new Dictionary<string,string>();
+            foreach (string s in Metadata.DAISY3MetadataNames)
+            {
+                if (s == Metadata.DC_IDENTIFIER || s == Metadata.DC_TITLE) continue;
+                string [] arrayString = s.Split(':') ;
+                string name = (arrayString.Length>1? arrayString[1]: arrayString[0] ).ToLower() ;
+                referenceList.Add(name,s);
+                //Console.WriteLine(name);
+            }
+            foreach (XmlNode metaNode in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(headNode,true, "meta", headNode.NamespaceURI, false))
+            {
+                string name =metaNode.Attributes.GetNamedItem("name") != null? metaNode.Attributes.GetNamedItem("name").Value: null;
+                string content = metaNode.Attributes.GetNamedItem("content")!=null? metaNode.Attributes.GetNamedItem("content").Value: null;
+                if (name == null) continue;
+                string[] arrayString = name.Split(':');
+                string truncatedName = (arrayString.Length > 1 ? arrayString[1] : arrayString[0]).ToLower();
+                if ( !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(content)
+                    && referenceList.ContainsKey(truncatedName.ToLower()))
+                {
+                    m_Presentation.SetSingleMetadataItem(referenceList[truncatedName.ToLower()], content);
+                }
             }
         }
 
