@@ -118,7 +118,12 @@ namespace Obi.ImportExport
             Dictionary<string,string> referenceList = new Dictionary<string,string>();
             foreach (string s in Metadata.DAISY3MetadataNames)
             {
-                if (s == Metadata.DC_IDENTIFIER || s == Metadata.DC_TITLE) continue;
+                if (s == Metadata.DC_IDENTIFIER || s == Metadata.DC_TITLE
+                    || s == Metadata.DC_FORMAT || s == Metadata.DC_TYPE || s == Metadata.DTB_AUDIO_FORMAT
+                    || s == Metadata.DTB_MULTIMEDIA_CONTENT || s == Metadata.DTB_MULTIMEDIA_TYPE || s == Metadata.DTB_TOTAL_TIME || s == Metadata.GENERATOR)
+                {
+                    continue;
+                }
                 string [] arrayString = s.Split(':') ;
                 string name = (arrayString.Length>1? arrayString[1]: arrayString[0] ).ToLower() ;
                 referenceList.Add(name,s);
