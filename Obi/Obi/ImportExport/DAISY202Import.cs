@@ -290,7 +290,7 @@ private void AppendPhrasesFromSmil ()
         string fullSmilFilePath = Path.Combine( Path.GetDirectoryName(m_NccPath), smilFileName ) ;
         if (!File.Exists(fullSmilFilePath)) continue;
         XmlDocument smilDocument = XmlReaderWriterHelper.ParseXmlDocument(fullSmilFilePath, false,false);
-        Console.WriteLine(section.Label);
+        Console.WriteLine(section.Label + " : " + smilFileName);
         XmlNode mainSeqNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilDocument.DocumentElement, true, "seq", smilDocument.DocumentElement.NamespaceURI);
         ParseSmilDocument(section, mainSeqNode, smilFileName, strId);
         progressCounter += progressIncrement ;
@@ -323,13 +323,7 @@ private void AppendPhrasesFromSmil ()
                             EmptyNode newNode = CreatePhraseNodeFromAudioElement(section, audioNode);
                             if (page == null) page = newNode;
                         }
-                        if (originalPageNode != null && page != null)
-                        {
-                            page.PageNumber = originalPageNode.PageNumber;
-                            Console.WriteLine("1 " + page.PageNumber);
-                            Console.WriteLine(smilFileName);
-                            originalPageNode.Detach();
-                        }
+                        UpdatePageNumber(originalPageNode,page);
                         
                     }
                     else
@@ -339,12 +333,7 @@ private void AppendPhrasesFromSmil ()
                             EmptyNode newNode = CreatePhraseNodeFromAudioElement(section, audioNode);
                             if (page == null) page = newNode;
                         }//-2
-                        if (originalPageNode != null && page != null)
-                        {//2
-                            page.PageNumber = originalPageNode.PageNumber;
-                            Console.WriteLine("2 " + page.PageNumber);
-                            originalPageNode.Detach();
-                        }//-2
+                        UpdatePageNumber(originalPageNode, page);
                     }//-1
                     if (page == null) ParseSmilDocument(section, n, smilFileName, strId);
                 }
@@ -357,6 +346,15 @@ private void AppendPhrasesFromSmil ()
             }
         }
 
+        private void UpdatePageNumber( EmptyNode originalPageNode , EmptyNode page )
+        {
+            if (originalPageNode != null && originalPageNode.IsRooted && page != null)
+                        {
+                            page.PageNumber = originalPageNode.PageNumber;
+                            Console.WriteLine("1 " + page.PageNumber);
+                            originalPageNode.Detach();
+                        }
+        }
         private PhraseNode CreatePhraseNodeFromAudioElement(SectionNode section, XmlNode audioNode)
         {
             PhraseNode phrase = m_Presentation.CreatePhraseNode();
