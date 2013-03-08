@@ -311,10 +311,12 @@ private void AppendPhrasesFromSmil ()
                     if (systemRequiredNode != null)
                     {
                         string strSkippableName = systemRequiredNode.Value;
-                        strSkippableName = strSkippableName.Replace("-on", "");
-                        //Console.WriteLine(strSkippableName) ;
-                        if (EmptyNode.SkippableNamesList.Contains(strSkippableName)) skippableName = strSkippableName ;
-                        
+                        if (!string.IsNullOrEmpty(strSkippableName))
+                        {
+                            strSkippableName = strSkippableName.Replace("-on", "");
+                            //Console.WriteLine(strSkippableName) ;
+                            if (EmptyNode.SkippableNamesList.Contains(strSkippableName)) skippableName = strSkippableName;
+                        }
                     }
                     EmptyNode page = null;
                     EmptyNode originalPageNode = null;
