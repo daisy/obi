@@ -305,6 +305,17 @@ private void AppendPhrasesFromSmil ()
             {
                 if (n.LocalName == "par")
                 {
+                    // check for skippable items
+                    string skippableName = null ;
+                    XmlNode systemRequiredNode =  n.Attributes.GetNamedItem("system-required");
+                    if (systemRequiredNode != null)
+                    {
+                        string strSkippableName = systemRequiredNode.Value;
+                        strSkippableName = strSkippableName.Replace("-on", "");
+                        //Console.WriteLine(strSkippableName) ;
+                        if (EmptyNode.SkippableNamesList.Contains(strSkippableName)) skippableName = strSkippableName ;
+                        
+                    }
                     EmptyNode page = null;
                     EmptyNode originalPageNode = null;
                     XmlNode txtNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(n, true, "text", n.NamespaceURI);
@@ -322,6 +333,7 @@ private void AppendPhrasesFromSmil ()
                         {
                             EmptyNode newNode = CreatePhraseNodeFromAudioElement(section, audioNode);
                             if (page == null) page = newNode;
+                            if (!string.IsNullOrEmpty(skippableName)) newNode.SetRole(EmptyNode.Role.Custom, skippableName);
                         }
                         UpdatePageNumber(originalPageNode,page);
                         
