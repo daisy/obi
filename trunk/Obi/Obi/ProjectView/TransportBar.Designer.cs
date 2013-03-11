@@ -45,13 +45,10 @@ namespace Obi.ProjectView
             this.mNextPageButton = new System.Windows.Forms.Button();
             this.mPreviousPageButton = new System.Windows.Forms.Button();
             this.mToDo_CustomClassMarkButton = new System.Windows.Forms.Button();
-            this.m_ChkAlwaysMonitor = new System.Windows.Forms.CheckBox();
             this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
             this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mPlayButton
@@ -198,14 +195,6 @@ namespace Obi.ProjectView
             this.mToDo_CustomClassMarkButton.UseVisualStyleBackColor = true;
             this.mToDo_CustomClassMarkButton.Click += new System.EventHandler(this.mToDoMarkButton_Click);
             // 
-            // m_ChkAlwaysMonitor
-            // 
-            resources.ApplyResources(this.m_ChkAlwaysMonitor, "m_ChkAlwaysMonitor");
-            this.m_ChkAlwaysMonitor.Name = "m_ChkAlwaysMonitor";
-            this.mTransportBarTooltip.SetToolTip(this.m_ChkAlwaysMonitor, resources.GetString("m_ChkAlwaysMonitor.ToolTip"));
-            this.m_ChkAlwaysMonitor.UseVisualStyleBackColor = true;
-            this.m_ChkAlwaysMonitor.CheckedChanged += new System.EventHandler(this.m_ChkAlwaysMonitor_CheckedChanged);
-            // 
             // mDisplayTimer
             // 
             this.mDisplayTimer.Tick += new System.EventHandler(this.mDisplayTimer_Tick);
@@ -240,13 +229,6 @@ namespace Obi.ProjectView
             this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
             this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.mFastPlayRateComboBox_SelectionChangeCommitted);
             // 
-            // groupBox1
-            // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Controls.Add(this.m_ChkAlwaysMonitor);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
-            // 
             // mVUMeterPanel
             // 
             this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
@@ -260,7 +242,6 @@ namespace Obi.ProjectView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.LightSalmon;
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.mToDo_CustomClassMarkButton);
             this.Controls.Add(this.mPreviousPageButton);
             this.Controls.Add(this.mNextPageButton);
@@ -283,14 +264,11 @@ namespace Obi.ProjectView
             this.Name = "TransportBar";
             this.Leave += new System.EventHandler(this.TransportBar_Leave);
             this.Enter += new System.EventHandler(this.TransportBar_Enter);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        
         #endregion
 
         private System.Windows.Forms.Button mPlayButton;
@@ -312,7 +290,5 @@ namespace Obi.ProjectView
         private System.Windows.Forms.Button mNextPageButton;
         private System.Windows.Forms.Button mPreviousPageButton;
         private System.Windows.Forms.Button mToDo_CustomClassMarkButton;
-        private System.Windows.Forms.CheckBox m_ChkAlwaysMonitor;
-        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
