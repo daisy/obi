@@ -152,9 +152,6 @@
         e/x/5cAPgJLE0sO0OSQAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="mPlayButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mPlayButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 0</value>
   </data>
@@ -168,9 +165,9 @@
   <data name="mPlayButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <metadata name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>149, 17</value>
-  </metadata>
+  </data>
   <data name="mPlayButton.ToolTip" xml:space="preserve">
     <value>Start or resume audio playback (Space)</value>
   </data>
@@ -184,7 +181,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPlayButton.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>15</value>
   </data>
   <data name="mPauseButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -213,9 +210,6 @@
         TkSuQmCC
 </value>
   </data>
-  <data name="mPauseButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mPauseButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 0</value>
   </data>
@@ -241,7 +235,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPauseButton.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>16</value>
   </data>
   <data name="mStopButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -271,9 +265,6 @@
         bhvbtnc3Y1nWWSmBGI4biBv43w38BE9OWA8H8M1VAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="mStopButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mStopButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>178, 0</value>
   </data>
@@ -299,7 +290,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mStopButton.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>14</value>
   </data>
   <data name="mNextPhrase.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -342,9 +333,6 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="mNextPhrase.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mNextPhrase.Location" type="System.Drawing.Point, System.Drawing">
     <value>283, 0</value>
   </data>
@@ -370,7 +358,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNextPhrase.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>13</value>
   </data>
   <data name="mPrevPhraseButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -413,9 +401,6 @@
         1K0bP/i/78DfuFbaKWzgiKEAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="mPrevPhraseButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mPrevPhraseButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>73, 0</value>
   </data>
@@ -441,7 +426,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPrevPhraseButton.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>12</value>
   </data>
   <data name="mNextSectionButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -482,9 +467,6 @@
         gExRMSGDVomWdBAa032af6yN58/Ak/kRWYG/AKJVyFspBdikAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="mNextSectionButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mNextSectionButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>353, 0</value>
   </data>
@@ -510,7 +492,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNextSectionButton.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>11</value>
   </data>
   <data name="mPrevSectionButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -551,9 +533,6 @@
         0UqoS9RSAslElvQ0dOS75oKWdOupr9Ud+AstZbtQo2wKdgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="mPrevSectionButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mPrevSectionButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 0</value>
   </data>
@@ -579,7 +558,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPrevSectionButton.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>10</value>
   </data>
   <data name="mRecordButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -620,9 +599,6 @@
         AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="mRecordButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mRecordButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>213, 0</value>
   </data>
@@ -648,19 +624,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mRecordButton.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="mTimeDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 21.75pt</value>
   </data>
   <data name="mTimeDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>468, 0</value>
+    <value>429, 0</value>
   </data>
   <data name="mTimeDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 33</value>
   </data>
   <data name="mTimeDisplayBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>13</value>
   </data>
   <data name="mTimeDisplayBox.Text" xml:space="preserve">
     <value>00:00:00</value>
@@ -678,7 +654,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mTimeDisplayBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="mRewindButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -713,9 +689,6 @@
         3l+9UD7kQMiB/+rAH5Q36FKOwIWXAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="mRewindButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mRewindButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>108, 0</value>
   </data>
@@ -741,7 +714,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mRewindButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="mFastForwardButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -778,9 +751,6 @@
         NV6OGyhzAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="mFastForwardButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mFastForwardButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>248, 0</value>
   </data>
@@ -806,7 +776,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mFastForwardButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="mNextPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -846,9 +816,6 @@
         LYsdyxvznNfZ9WxZXmRZzvIYQf8BsyDLDSBPVvQAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="mNextPageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mNextPageButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>318, 0</value>
   </data>
@@ -874,7 +841,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNextPageButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -916,9 +883,6 @@
         QmCC
 </value>
   </data>
-  <data name="mPreviousPageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mPreviousPageButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>38, 0</value>
   </data>
@@ -944,7 +908,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPreviousPageButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -986,9 +950,6 @@
         VNRBi+4fxgL4vqh24BUAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="mToDo_CustomClassMarkButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="mToDo_CustomClassMarkButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>391, 0</value>
   </data>
@@ -1014,47 +975,11 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_ChkAlwaysMonitor.AccessibleName" xml:space="preserve">
-    <value>Monitor continuously</value>
-  </data>
-  <data name="m_ChkAlwaysMonitor.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_ChkAlwaysMonitor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_ChkAlwaysMonitor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 15</value>
-  </data>
-  <data name="m_ChkAlwaysMonitor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 20</value>
-  </data>
-  <data name="m_ChkAlwaysMonitor.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="m_ChkAlwaysMonitor.Text" xml:space="preserve">
-    <value>M</value>
-  </data>
-  <data name="m_ChkAlwaysMonitor.ToolTip" xml:space="preserve">
-    <value>Monitor Continuously.</value>
-  </data>
-  <data name="&gt;&gt;m_ChkAlwaysMonitor.Name" xml:space="preserve">
-    <value>m_ChkAlwaysMonitor</value>
-  </data>
-  <data name="&gt;&gt;m_ChkAlwaysMonitor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_ChkAlwaysMonitor.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;m_ChkAlwaysMonitor.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
+  </data>
   <data name="mDisplayBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -1074,13 +999,13 @@
     <value>remaining (total)</value>
   </data>
   <data name="mDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>586, 5</value>
+    <value>548, 5</value>
   </data>
   <data name="mDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 24</value>
   </data>
   <data name="mDisplayBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;mDisplayBox.Name" xml:space="preserve">
     <value>mDisplayBox</value>
@@ -1092,7 +1017,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mDisplayBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="mFastPlayRateCombobox.AccessibleName" xml:space="preserve">
     <value>Fast Play Rate</value>
@@ -1125,13 +1050,13 @@
     <value>2</value>
   </data>
   <data name="mFastPlayRateCombobox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>745, 5</value>
+    <value>709, 5</value>
   </data>
   <data name="mFastPlayRateCombobox.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 24</value>
   </data>
   <data name="mFastPlayRateCombobox.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;mFastPlayRateCombobox.Name" xml:space="preserve">
     <value>mFastPlayRateCombobox</value>
@@ -1143,37 +1068,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="groupBox1.AccessibleDescription" xml:space="preserve">
-    <value>Monitor continuously checkbox</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>423, -8</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 41</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="mVUMeterPanel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mVUMeterPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>817, 2</value>
+    <value>787, 2</value>
   </data>
   <data name="mVUMeterPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 0, 0</value>
@@ -1182,28 +1083,28 @@
     <value>208, 28</value>
   </data>
   <data name="mVUMeterPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>16</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Name" xml:space="preserve">
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.5.0.21883, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.4.0.17996, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1027, 32</value>
+    <value>993, 32</value>
   </data>
   <data name="&gt;&gt;mTransportBarTooltip.Name" xml:space="preserve">
     <value>mTransportBarTooltip</value>
@@ -1224,21 +1125,21 @@
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="media-monitor.png" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-      <value>
-              iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-              wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAK5SURBVFhH7VU5
-              S2NRFLZRwUpRQdx3RbAQFCsLUVxxQ9x3VMRdC3EDLSwEGwu1tLIQOwv9GRMTBjdwmnFi8u57iRInkUzz
-              zTnXvJDIVHlJMZDAIffec8/9vvOde+6LiYn+ogpEFfjfFLg9PYWlvR2m1FSY4uPxLS5OjnmNfRHN56as
-              DI/V1XDu7uLj/Bx/rq/hvbqC5+wMjq0tPFZVgfdEhIQ5JUUCey8v4To5gXNvD9rGBrT1dTh2duA6PIT3
-              4gLOzU3w3rCSMJPEdGCQqaurUFdWoC4vQywuQszNQSwswH10hPeDA/hijPP4XlPjB5Yg8/NBc3V2FurM
-              DMT0NMTkJJTxcUnAQft8sYZJSEAxNSUBpNE4aG1iAmJsDMrICMTgIJSBAXiOj3FbWmqsFHwgA71ub0MZ
-              GvoEGB2VJgnQvzo8LH0MLPr7Ye/ogJVU0/r6YKfOuCe/EQngJjlZVqWnB6K3V4Kw6XdC7e6GUl8PW2Ul
-              rIWFeM7IwM/0dFipG1xUBktWljECnv192BoaYG9uhtLSAtHYCKW2Fgq1I5N4yc3FS04OrNnZ0n5lZkoS
-              z7Tmpi65SUgwRuDr7Q9xHloVLJQRy8i1Z7OSnJytPS8PSn6+VEApKPg0mvO6VIP22crLZayPcGgEnuh2
-              67KztCwxS85gDKqrIYqK/CTYz/u0pqbAdyM0Ahx1Rwf+Xlry11rPXqULpxUXSxD+57mugs2njqHsdcoP
-              dXUQra14ozbzy0/Zc9Y6AdmSPhWYoK4Mx4aeekCkJTkZb1QOF78DDEQZSgW+kAi8oBwTFnD9EHNiIkRn
-              Jzxra3hta4NGfa+WlEBjo/EbPTrsU7u6YE5KCi+4TuKuogL3lL0gAu/04fHQl4+Nx7z2QD7eE9bM/3XY
-              D3p6LWlpMMXGSuPxE92RiANHAaIKRBWIhAJ/AaE4KsZnOH4bAAAAAElFTkSuQmCC
-    </value>
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAK5SURBVFhH7VU5
+        S2NRFLZRwUpRQdx3RbAQFCsLUVxxQ9x3VMRdC3EDLSwEGwu1tLIQOwv9GRMTBjdwmnFi8u57iRInkUzz
+        zTnXvJDIVHlJMZDAIffec8/9vvOde+6LiYn+ogpEFfjfFLg9PYWlvR2m1FSY4uPxLS5OjnmNfRHN56as
+        DI/V1XDu7uLj/Bx/rq/hvbqC5+wMjq0tPFZVgfdEhIQ5JUUCey8v4To5gXNvD9rGBrT1dTh2duA6PIT3
+        4gLOzU3w3rCSMJPEdGCQqaurUFdWoC4vQywuQszNQSwswH10hPeDA/hijPP4XlPjB5Yg8/NBc3V2FurM
+        DMT0NMTkJJTxcUnAQft8sYZJSEAxNSUBpNE4aG1iAmJsDMrICMTgIJSBAXiOj3FbWmqsFHwgA71ub0MZ
+        GvoEGB2VJgnQvzo8LH0MLPr7Ye/ogJVU0/r6YKfOuCe/EQngJjlZVqWnB6K3V4Kw6XdC7e6GUl8PW2Ul
+        rIWFeM7IwM/0dFipG1xUBktWljECnv192BoaYG9uhtLSAtHYCKW2Fgq1I5N4yc3FS04OrNnZ0n5lZkoS
+        z7Tmpi65SUgwRuDr7Q9xHloVLJQRy8i1Z7OSnJytPS8PSn6+VEApKPg0mvO6VIP22crLZayPcGgEnuh2
+        67KztCwxS85gDKqrIYqK/CTYz/u0pqbAdyM0Ahx1Rwf+Xlry11rPXqULpxUXSxD+57mugs2njqHsdcoP
+        dXUQra14ozbzy0/Zc9Y6AdmSPhWYoK4Mx4aeekCkJTkZb1QOF78DDEQZSgW+kAi8oBwTFnD9EHNiIkRn
+        Jzxra3hta4NGfa+WlEBjo/EbPTrsU7u6YE5KCi+4TuKuogL3lL0gAu/04fHQl4+Nx7z2QD7eE9bM/3XY
+        D3p6LWlpMMXGSuPxE92RiANHAaIKRBWIhAJ/AaE4KsZnOH4bAAAAAElFTkSuQmCC
+</value>
   </data>
 </root>
