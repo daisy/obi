@@ -2206,6 +2206,7 @@ namespace Obi
                     UpdateColors();
                 Ready();
                 mProjectView.TransportBar.UpdateButtons();
+                mProjectView.TransportBar.FastPlayRateNormalise();
                 if (isLeftAlignPhrasesInContentView != mSettings.LeftAlignPhrasesInContentView) UpdateZoomFactor();
                 mSession.EnableFreeDiskSpaceCheck = mSettings.Project_EnableFreeDiskSpaceCheck;
             }

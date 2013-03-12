@@ -27,6 +27,7 @@ namespace Obi
         public int AudioBitDepth;                   // sample bit depth
         public string Audio_TTSVoice;
         public int Audio_TransportBarCounterIndex;
+        public bool Audio_FastPlayWithoutPitchChange;
         public ColorSettings ColorSettings;    // current color settings
         public ColorSettings ColorSettingsHC;  // current color settings for high contrast
         public bool CreateTitleSection;        // defaulf for "create title section" in new project
@@ -95,6 +96,7 @@ namespace Obi
             settings.AudioClues = false;
             settings.Audio_TTSVoice = "";
             settings.Audio_TransportBarCounterIndex = 0;
+            settings.Audio_FastPlayWithoutPitchChange = true;
             settings.AudioScale = 0.01f;
             settings.AllowOverwrite = false;
             settings.Recording_PreviewBeforeStarting = false;
