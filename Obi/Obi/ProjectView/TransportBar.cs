@@ -2397,12 +2397,8 @@ namespace Obi.ProjectView
             if (mFastPlayRateCombobox.SelectedIndex < mFastPlayRateCombobox.Items.Count - 1)
             {
                 mFastPlayRateCombobox.SelectedIndex = mFastPlayRateCombobox.SelectedIndex + 1;
-                float fastPlayFactor = 0;
-                float.TryParse(mFastPlayRateCombobox.SelectedItem.ToString(), out fastPlayFactor);
-                if (fastPlayFactor == 0)
-                {
-                    fastPlayFactor = float.Parse(mFastPlayRateCombobox.SelectedItem.ToString(), System.Globalization.CultureInfo.CreateSpecificCulture("en-EN"));
-                }
+                float fastPlayFactor = GetFastPlayFactorOfCombobox () ;
+                DetermineUseOfSoundTouch(fastPlayFactor);
                 mCurrentPlaylist.Audioplayer.FastPlayFactor = fastPlayFactor;
                 //mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
                 return true;
@@ -2416,12 +2412,8 @@ namespace Obi.ProjectView
             {
                 mFastPlayRateCombobox.SelectedIndex = mFastPlayRateCombobox.SelectedIndex - 1;
 
-                float fastPlayFactor = 0;
-                float.TryParse(mFastPlayRateCombobox.SelectedItem.ToString(), out fastPlayFactor);
-                if (fastPlayFactor == 0)
-                {
-                    fastPlayFactor = float.Parse(mFastPlayRateCombobox.SelectedItem.ToString(), System.Globalization.CultureInfo.CreateSpecificCulture("en-EN"));
-                }
+                float fastPlayFactor = GetFastPlayFactorOfCombobox ();
+                DetermineUseOfSoundTouch(fastPlayFactor);
                 mCurrentPlaylist.Audioplayer.FastPlayFactor = fastPlayFactor;
                 //mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
                 return true;
@@ -2432,11 +2424,20 @@ namespace Obi.ProjectView
         public bool FastPlayRateNormalise()
         {
             mFastPlayRateCombobox.SelectedIndex = 0;
+            DetermineUseOfSoundTouch(1.0f);
             mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
             return true;
         }
 
         private void mFastPlayRateComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            float fastPlayFactor = GetFastPlayFactorOfCombobox ();
+            DetermineUseOfSoundTouch(fastPlayFactor);
+            mCurrentPlaylist.Audioplayer.FastPlayFactor = fastPlayFactor;
+            //mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
+        }
+
+        private float GetFastPlayFactorOfCombobox()
         {
             float fastPlayFactor = 0;
             float.TryParse(mFastPlayRateCombobox.SelectedItem.ToString(), out fastPlayFactor);
@@ -2444,8 +2445,7 @@ namespace Obi.ProjectView
             {
                 fastPlayFactor = float.Parse(mFastPlayRateCombobox.SelectedItem.ToString(), System.Globalization.CultureInfo.CreateSpecificCulture("en-EN"));
             }
-            mCurrentPlaylist.Audioplayer.FastPlayFactor = fastPlayFactor;
-            //mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
+            return fastPlayFactor;
         }
 
         public bool FastPlayNormaliseWithLapseBack()
@@ -2455,6 +2455,7 @@ namespace Obi.ProjectView
             if (mCurrentPlaylist != null && mView.Selection is AudioSelection && mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused) Stop();
             if (IsPlayerActive)
             {
+                DetermineUseOfSoundTouch(1.0f);
                 mCurrentPlaylist.FastPlayNormaliseWithLapseBack(elapseBackInterval);
                 mFastPlayRateCombobox.SelectedIndex = 0;
                 UpdateTimeDisplay();
@@ -2478,6 +2479,28 @@ namespace Obi.ProjectView
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// sound touch is enabled if fast play is to be activated else it is restored to original DX
+        /// </summary>
+        /// <param name="fastPlayFactor"></param>
+        private void DetermineUseOfSoundTouch(float fastPlayFactor)
+        {
+            if (mPlayer == null) return;
+            if (mView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 1
+                && mView.ObiForm.Settings.Audio_FastPlayWithoutPitchChange
+                && fastPlayFactor > 1.0f
+                && !mPlayer.UseSoundTouch)
+            {
+                mPlayer.UseSoundTouch = true;
+            }
+            else if (mPlayer.UseSoundTouch 
+                && (!mView.ObiForm.Settings.Audio_FastPlayWithoutPitchChange ||  fastPlayFactor <= 1.0f))
+            {
+                mPlayer.UseSoundTouch = false;
+                Console.WriteLine("use sound touch " + mPlayer.UseSoundTouch);
+            }
         }
 
 

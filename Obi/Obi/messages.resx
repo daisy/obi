@@ -2268,4 +2268,7 @@ Error text: {1}</value>
   <data name="DAISY2_ObiImport_ErrorsList_FrontPageCorrection" xml:space="preserve">
     <value>The non numeric front page number {0} is added as {1}</value>
   </data>
+  <data name="Audio_FastPlayWithoutPitchChange" xml:space="preserve">
+    <value>Fast play without pitch change</value>
+  </data>
 </root>

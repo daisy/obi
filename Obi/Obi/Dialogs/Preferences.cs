@@ -193,6 +193,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[8].Checked = mSettings.Audio_EnableLivePhraseDetection;
                 m_CheckBoxListView.Items[9].Checked = mSettings.Audio_EnablePostRecordingPageRenumbering;
                 m_CheckBoxListView.Items[10].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
+                m_CheckBoxListView.Items[11].Checked = mSettings.Audio_FastPlayWithoutPitchChange;
                 m_IsComplete = true;
 
             }
@@ -782,6 +783,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_EnableLivePhraseDetection= m_CheckBoxListView.Items[8].Checked;
                 mSettings.Audio_EnablePostRecordingPageRenumbering= m_CheckBoxListView.Items[9].Checked;
                 mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection= m_CheckBoxListView.Items[10].Checked;
+                mSettings.Audio_FastPlayWithoutPitchChange= m_CheckBoxListView.Items[11].Checked;
             }
         }
 
@@ -814,6 +816,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_EnablePostRecordingPageRenumbering"));
                 
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_FastPlayWithoutPitchChange"));
                 m_grpBoxChkBoxListView.Size = new Size(352, 97);
                 m_grpBoxChkBoxListView.Location = new Point(85, 264);
 
@@ -828,6 +831,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[8].Checked = mSettings.Audio_EnableLivePhraseDetection;
                 m_CheckBoxListView.Items[9].Checked = mSettings.Audio_EnablePostRecordingPageRenumbering;
                 m_CheckBoxListView.Items[10].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
+                m_CheckBoxListView.Items[11].Checked = mSettings.Audio_FastPlayWithoutPitchChange;
                 if (m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
                     m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
                 else
@@ -938,6 +942,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_EnableLivePhraseDetection = m_DefaultSettings.Audio_EnableLivePhraseDetection;
                 mSettings.Audio_EnablePostRecordingPageRenumbering= m_DefaultSettings.Audio_EnablePostRecordingPageRenumbering;
                 mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection = m_DefaultSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
+                mSettings.Audio_FastPlayWithoutPitchChange= m_DefaultSettings.Audio_FastPlayWithoutPitchChange;
                 //If operation is empty then nothing will b selected.
                 mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
                 mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
