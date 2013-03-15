@@ -1085,11 +1085,17 @@ namespace Obi.ProjectView
 
         public void UpdateCursorPosition ( double time )
             {
-            if (PlaybackBlock == null && m_EnableFindPlaybackBlockDuringCursorUpdate && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@singleSection
+                if (zoomWaveformPanel != null && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@zoomwaveform
                 {
+                    zoomWaveformPanel.UpdateCursorTime(time);
+                    return;
+                }
+            if (PlaybackBlock == null && m_EnableFindPlaybackBlockDuringCursorUpdate && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@singleSection
+                {   
                 m_EnableFindPlaybackBlockDuringCursorUpdate = false;
                 SetPlaybackPhraseAndTime ( mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
                 }
+            
             if (mPlaybackBlock != null) EnsureCursorVisible ( mPlaybackBlock.UpdateCursorTime ( time ) );
 
            /* int audioCursorPosition;

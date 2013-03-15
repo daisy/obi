@@ -31,6 +31,11 @@ namespace Obi.ProjectView
             
         }
      
+        public void UpdateCursorTime (double time ) 
+        {
+            if( m_AudioBlock != null ) m_AudioBlock.UpdateCursorTime (time) ;
+            
+        }
         private void ProjectViewSelectionChanged ( object sender, EventArgs e )
         {
             if (m_ProjectView.Selection != null && m_ProjectView.Selection.Phrase != null && m_ProjectView.GetSelectedPhraseSection != null)
@@ -72,7 +77,7 @@ namespace Obi.ProjectView
                 //  m_AudioBlock.SetWaveformForZoom(m_Node as PhraseNode,zoomFactor);
                 //int a=  m_AudioBlock.ComputeWaveformDefaultWidth();
                 //m_AudioBlock.Waveform.Render();
-
+                m_AudioBlock.InitCursor(0);
             }
         }
         public ZoomWaveform(ContentView contentView, Strip strip,EmptyNode node,ProjectView mProjectView ):this    ()
@@ -113,7 +118,7 @@ namespace Obi.ProjectView
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
                 m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
-                
+                m_AudioBlock.InitCursor(0);
             }
             
         }
@@ -149,6 +154,7 @@ namespace Obi.ProjectView
                         m_AudioBlock.SetZoomFactorAndHeight(m_ZoomFactor, panelZooomWaveform.Height);
                         m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
                         m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
+                        m_AudioBlock.InitCursor(0);
                     }
                     txtZoomSelected.Text = " ";
                 }
@@ -176,6 +182,7 @@ namespace Obi.ProjectView
                     m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
                     m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
                     txtZoomSelected.Text = " ";
+                    m_AudioBlock.InitCursor(0);
                 }
             }
 
