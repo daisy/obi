@@ -92,7 +92,7 @@ namespace Obi.ProjectView
                 {
                 if (TransportBar.IsActive) TransportBar.Stop ();
 
-                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber ( NextPageNumber, false, true );
+                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber ( NextPageNumber, true, true );
                 if (dialog.ShowDialog () == DialogResult.OK) AddPageRange ( dialog.Number, dialog.NumberOfPages, dialog.Renumber );
                 }
             }
