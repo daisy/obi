@@ -470,6 +470,12 @@
     <Compile Include="ProjectView\Waveform_Recording.designer.cs">
       <DependentUpon>Waveform_Recording.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\ZoomWaveform.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\ZoomWaveform.Designer.cs">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialogs\NewProject.resx">
       <SubType>Designer</SubType>
@@ -1024,6 +1030,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\Waveform_Recording.resx">
       <DependentUpon>Waveform_Recording.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\RecordingToolBarForm.resx">
