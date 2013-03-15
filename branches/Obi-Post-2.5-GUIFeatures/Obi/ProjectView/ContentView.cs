@@ -45,7 +45,7 @@ namespace Obi.ProjectView
         private EmptyNode m_BeginNote = null; //@AssociateNode
         private EmptyNode m_EndNote = null;  //@AssociateNode
         private Waveform_Recording waveform_recording_control;
-        private ZoomWaveform zoomWaveformPanel;
+        private ZoomWaveform m_ZoomWaveformPanel;
 
         /// <summary>
         /// A new strips view.
@@ -1085,9 +1085,9 @@ namespace Obi.ProjectView
 
         public void UpdateCursorPosition ( double time )
             {
-                if (zoomWaveformPanel != null && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@zoomwaveform
+                if (m_ZoomWaveformPanel != null && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@zoomwaveform
                 {
-                    zoomWaveformPanel.UpdateCursorTime(time);
+                    m_ZoomWaveformPanel.UpdateCursorTime(time);
                     return;
                 }
             if (PlaybackBlock == null && m_EnableFindPlaybackBlockDuringCursorUpdate && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@singleSection
@@ -5434,18 +5434,23 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
             {
-                zoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection,mProjectView);
-                this.Controls.Add(zoomWaveformPanel);
-                zoomWaveformPanel.Location = new Point(0, 0);
-                zoomWaveformPanel.Show();
-                zoomWaveformPanel.BringToFront();
+                m_ZoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection,mProjectView);
+                this.Controls.Add(m_ZoomWaveformPanel);
+                m_ZoomWaveformPanel.Location = new Point(0, 0);
+                m_ZoomWaveformPanel.Show();
+                m_ZoomWaveformPanel.BringToFront();
             }
         }
 
         public void RemovePanel()
         {
-            this.Controls.Remove(zoomWaveformPanel);
+            if (m_ZoomWaveformPanel != null)
+            {
+                this.Controls.Remove(m_ZoomWaveformPanel);
+                m_ZoomWaveformPanel = null;
+            }
         }
+
         }
    /// <summary>
     /// Common interface for selection of strips and blocks.
