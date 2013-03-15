@@ -131,8 +131,6 @@
             this.Controls.Add(this.btnClose);
             this.Name = "ZoomWaveform";
             this.Size = new System.Drawing.Size(963, 559);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ZoomWaveform_MouseDown);
-            this.Resize += new System.EventHandler(this.ZoomWaveform_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 

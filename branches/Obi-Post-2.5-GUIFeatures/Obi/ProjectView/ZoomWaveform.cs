@@ -148,13 +148,7 @@ namespace Obi.ProjectView
                             panelZooomWaveform.Controls.Remove(m_AudioBlock);
                         }
                         m_AudioBlock = new AudioBlock((PhraseNode) nextNode, m_Strip);
-                        panelZooomWaveform.Controls.Add(m_AudioBlock);
-                        m_AudioBlock.Location = new Point(0, 0);
-                        initialWaveformWidth = m_AudioBlock.Waveform.Width;
-                        m_AudioBlock.SetZoomFactorAndHeight(m_ZoomFactor, panelZooomWaveform.Height);
-                        m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
-                        m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
-                        m_AudioBlock.InitCursor(0);
+                        panelRender();
                     }
                     txtZoomSelected.Text = " ";
                 }
@@ -175,17 +169,22 @@ namespace Obi.ProjectView
                         panelZooomWaveform.Controls.Remove(m_AudioBlock);
                     }
                     m_AudioBlock = new AudioBlock((PhraseNode) previousNode, m_Strip);
-                    panelZooomWaveform.Controls.Add(m_AudioBlock);
-                    m_AudioBlock.Location = new Point(0, 0);
-                    initialWaveformWidth = m_AudioBlock.Waveform.Width;
-                    m_AudioBlock.SetZoomFactorAndHeight(m_ZoomFactor, panelZooomWaveform.Height);
-                    m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
-                    m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
-                    txtZoomSelected.Text = " ";
-                    m_AudioBlock.InitCursor(0);
+                    panelRender();
                 }
+                txtZoomSelected.Text = " ";
             }
 
+        }
+
+        public void panelRender()
+        {
+            panelZooomWaveform.Controls.Add(m_AudioBlock);
+            m_AudioBlock.Location = new Point(0, 0);
+            initialWaveformWidth = m_AudioBlock.Waveform.Width;
+            m_AudioBlock.SetZoomFactorAndHeight(m_ZoomFactor, panelZooomWaveform.Height);
+            m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
+            m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
+            m_AudioBlock.InitCursor(0);
         }
 
         private void btnZoomIn_Click(object sender, EventArgs e)
@@ -201,9 +200,7 @@ namespace Obi.ProjectView
         private void btnZoomOut_Click(object sender, EventArgs e)
         {
             m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width - (int)(initialWaveformWidth * 0.5);
-
             m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
-            
             m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
             m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
             
@@ -214,21 +211,12 @@ namespace Obi.ProjectView
         {
             m_AudioBlock.Waveform.Width = initialWaveformWidth;
             m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
-
             m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
             m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
+
+        }
+
    
-        }
-
-        private void ZoomWaveform_Resize(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ZoomWaveform_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
 
        // public Panel Panel_WaveForm { get { return panel_ZoomWaveform; } }
     }
