@@ -225,7 +225,9 @@ namespace Obi.ProjectView
             resources.GetString("mFastPlayRateCombobox.Items2"),
             resources.GetString("mFastPlayRateCombobox.Items3"),
             resources.GetString("mFastPlayRateCombobox.Items4"),
-            resources.GetString("mFastPlayRateCombobox.Items5")});
+                resources.GetString("mFastPlayRateCombobox.Items5"),
+                resources.GetString("mFastPlayRateCombobox.Items6"),
+            resources.GetString("mFastPlayRateCombobox.Items7")});
             this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
             this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.mFastPlayRateComboBox_SelectionChangeCommitted);
             // 

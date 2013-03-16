@@ -2206,7 +2206,7 @@ namespace Obi
                     UpdateColors();
                 Ready();
                 mProjectView.TransportBar.UpdateButtons();
-                mProjectView.TransportBar.FastPlayRateNormalise();
+                mProjectView.TransportBar.ResetFastPlayForPreferencesChange();
                 if (isLeftAlignPhrasesInContentView != mSettings.LeftAlignPhrasesInContentView) UpdateZoomFactor();
                 mSession.EnableFreeDiskSpaceCheck = mSettings.Project_EnableFreeDiskSpaceCheck;
             }
@@ -3507,6 +3507,7 @@ namespace Obi
                                     Localizer.Message("no_device_found_caption"),
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                
                 if (mSettings.ObiFormSize.Width == 0 || mSettings.ObiFormSize.Height == 0)
                 {
                     mSettings.ObiFormSize = Size;
