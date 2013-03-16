@@ -44,18 +44,18 @@ namespace Obi.ProjectView
                 txtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
                 txtZoomSelected.Text +=" "+ m_ProjectView.GetSelectedPhraseSection.ToString();
                 string temp = m_ProjectView.Selection.Node.ToString();
-                if (m_AudioBlock.Node.ToString() != temp)
+                if (m_AudioBlock.Node.ToString() != temp && m_ProjectView.Selection.EmptyNodeForSelection != null)
                 {
-                   PhraseLoad();
+                   PhraseLoad(m_ProjectView.Selection.EmptyNodeForSelection);
                 }
               
                // txtZoomSelected.Text += m_ProjectView.Selection.Phrase.ToString();
             }
         }
-        public void PhraseLoad()
+        public void PhraseLoad(EmptyNode phrase)
         {
             //m_AudioBlock.Node.Parent;
-            m_Node = m_ProjectView.Selection.EmptyNodeForSelection;
+            m_Node = phrase;
             if (m_Node is PhraseNode)
             {
                 if (panelZooomWaveform.Controls.Contains(m_AudioBlock))
@@ -119,6 +119,7 @@ namespace Obi.ProjectView
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
                 m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
                 m_AudioBlock.InitCursor(0);
+                m_AudioBlock.Focus();
             }
             
         }
