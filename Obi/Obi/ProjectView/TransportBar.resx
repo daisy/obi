@@ -1049,6 +1049,12 @@
   <data name="mFastPlayRateCombobox.Items5" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="mFastPlayRateCombobox.Items6" xml:space="preserve">
+    <value>2.25</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items7" xml:space="preserve">
+    <value>2.5</value>
+  </data>
   <data name="mFastPlayRateCombobox.Location" type="System.Drawing.Point, System.Drawing">
     <value>709, 5</value>
   </data>

@@ -149,6 +149,7 @@ namespace Obi.ProjectView
             ResourceManager resourceManager = new ResourceManager("Obi.ProjectView.TransportBar", GetType().Assembly);
             m_monitorButtonImage = (Bitmap)resourceManager.GetObject("media-monitor.png");
             m_recordButtonImage = (Bitmap)resourceManager.GetObject("mRecordButton.Image");
+            
         }
 
         /// <summary>
@@ -544,7 +545,7 @@ namespace Obi.ProjectView
                 m_PlayerTimeComboIndex = mView.ObiForm.Settings.Audio_TransportBarCounterIndex;
                 m_RecorderTimeComboIndex = mView.ObiForm.Settings.Audio_TransportBarCounterIndex;
                 mDisplayBox.SelectedIndex = mView.ObiForm.Settings.Audio_TransportBarCounterIndex < mDisplayBox.Items.Count ? mView.ObiForm.Settings.Audio_TransportBarCounterIndex : 0;
-                
+                ResetFastPlayForPreferencesChange();
             }
         }
 
@@ -2503,7 +2504,32 @@ namespace Obi.ProjectView
             }
         }
 
-
+        public void ResetFastPlayForPreferencesChange()
+        {
+            FastPlayRateNormalise();
+            if (mFastPlayRateCombobox.Items.Count < 8)
+            {
+                System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransportBar));
+                resources.ApplyResources(this.mFastPlayRateCombobox, "mFastPlayRateCombobox");
+                mFastPlayRateCombobox.Items.Clear();
+                this.mFastPlayRateCombobox.Items.AddRange(new object[] {
+            resources.GetString("mFastPlayRateCombobox.Items"),
+            resources.GetString("mFastPlayRateCombobox.Items1"),
+            resources.GetString("mFastPlayRateCombobox.Items2"),
+            resources.GetString("mFastPlayRateCombobox.Items3"),
+            resources.GetString("mFastPlayRateCombobox.Items4"),
+                resources.GetString("mFastPlayRateCombobox.Items5"),
+                resources.GetString("mFastPlayRateCombobox.Items6"),
+            resources.GetString("mFastPlayRateCombobox.Items7")});
+            }
+            
+                if (mFastPlayRateCombobox.Items.Count == 8 &&  mView.ObiForm.Settings.Audio_FastPlayWithoutPitchChange)
+                {
+                    mFastPlayRateCombobox.Items.RemoveAt(1);
+                    mFastPlayRateCombobox.Items.RemoveAt(1);
+                }
+            
+        }
         // nudge selection
         public static readonly bool Forward = true;         // nudge forward
         public static readonly bool Backward = false;       // nudge backward
