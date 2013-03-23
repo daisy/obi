@@ -1999,7 +1999,7 @@ Error text: {1}</value>
     <value>Start recording from cursor erasing the following audio</value>
   </data>
   <data name="ProjectTab_AutoSaveWhenRecordingEnds" xml:space="preserve">
-    <value>Auto save when recording ends</value>
+    <value>Auto save to backup when recording ends</value>
   </data>
   <data name="ProjectTab_FixContentViewWidth" xml:space="preserve">
     <value>Fix content view width</value>
@@ -2270,5 +2270,8 @@ Error text: {1}</value>
   </data>
   <data name="Audio_FastPlayWithoutPitchChange" xml:space="preserve">
     <value>Fast play without pitch change</value>
+  </data>
+  <data name="Project_SaveProjectWhenRecordingEnds" xml:space="preserve">
+    <value>Save project when recording ends</value>
   </data>
 </root>

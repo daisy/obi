@@ -4345,7 +4345,16 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto save when recording ends.
+        ///   Looks up a localized string similar to Save project when recording ends.
+        /// </summary>
+        internal static string Project_SaveProjectWhenRecordingEnds {
+            get {
+                return ResourceManager.GetString("Project_SaveProjectWhenRecordingEnds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto save to backup when recording ends.
         /// </summary>
         internal static string ProjectTab_AutoSaveWhenRecordingEnds {
             get {
