@@ -2951,6 +2951,7 @@ SelectionChangedPlaybackEnabled = false;
                 mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPage, firstRecordedPage.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", "")));
             }
             }
+            if (mView != null && mView.ObiForm.Settings.Project_SaveProjectWhenRecordingEnds) mView.ObiForm.Save();
         }
 
         private CompositeCommand GetSplitCommandForOnTheFlyDetectedPhrases(List<PhraseNode> phrasesList, List<double> timingList)

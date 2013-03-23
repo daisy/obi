@@ -66,6 +66,7 @@ namespace Obi
         public bool AutoSave_RecordingEnd ; // flag to audo save whenever recording ends
         public bool AutoSaveTimeIntervalEnabled;// enables / disables auto save after time interval contained in AutoSaveTimeInterval
         public int AutoSaveTimeInterval; // time interval after which project will be auto saved 
+        public bool Project_SaveProjectWhenRecordingEnds; //save to main project file when recording stops or pauses
         public bool Export_EncodeToMP3;
         public int Export_BitRateMP3;
         public bool Export_AppendSectionNameToAudioFile;
@@ -142,6 +143,7 @@ namespace Obi
             settings.AutoSave_RecordingEnd = false;
             settings.AutoSaveTimeIntervalEnabled= true;
             settings.AutoSaveTimeInterval = 300000; // saving time interval in ms ( 5min)
+            settings.Project_SaveProjectWhenRecordingEnds = true;
             settings.Export_EncodeToMP3 = false;
             settings.Export_BitRateMP3 = 64;
             settings.Export_AppendSectionNameToAudioFile = false;
