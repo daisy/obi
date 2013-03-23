@@ -790,7 +790,7 @@ namespace Obi.ProjectView
         public bool CanDeleteSpecialNode(out EmptyNode anchor)   //@AssociateNode
         {
             anchor = null;
-            bool m_CanDeleteSpecialNode = false;             
+            bool canDeleteSpecialNode = false;             
             if (((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Custom)
             {
               //  MessageBox.Show(((EmptyNode)Selection.Node).Index.ToString());
@@ -799,7 +799,7 @@ namespace Obi.ProjectView
                 if (((EmptyNode)Selection.Node).Index == 0 && (((EmptyNode)Selection.Node).Index == 0 && ((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole))
                     return true;
                 if (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole)
-                    m_CanDeleteSpecialNode = true;
+                    canDeleteSpecialNode = true;
                 else if ((((EmptyNode)Selection.Node).Index == 0 && ((EmptyNode)Selection.Node).CustomRole == ((EmptyNode)((EmptyNode)Selection.Node).FollowingNode).CustomRole) 
                     || (((EmptyNode)Selection.Node).CustomRole != ((EmptyNode)((EmptyNode)Selection.Node).PrecedingNode).CustomRole))
                 {
@@ -809,27 +809,27 @@ namespace Obi.ProjectView
                               MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             anchor = mPresentation.GetAnchorForReferencedNode((EmptyNode)Selection.Node);
-                            m_CanDeleteSpecialNode = true;
+                            canDeleteSpecialNode = true;
                         }
                         else
                             return false;
                     }
                     else
-                        m_CanDeleteSpecialNode = true;
+                        canDeleteSpecialNode = true;
                 }
                 else
                 {
                     if (MessageBox.Show(Localizer.Message("Node_between_chunk"), "Delete", MessageBoxButtons.YesNo,
                            MessageBoxIcon.Question) == DialogResult.Yes)
-                        m_CanDeleteSpecialNode = true;
+                        canDeleteSpecialNode = true;
                     
                     else
                         return false;
                 }
             }
             else
-                m_CanDeleteSpecialNode = true;
-            return m_CanDeleteSpecialNode;
+                canDeleteSpecialNode = true;
+            return canDeleteSpecialNode;
         }
 
         public bool CanDeleteMetadataEntry ( urakawa.metadata.Metadata m )
@@ -2560,20 +2560,45 @@ for (int j = 0;
             EmptyNode node = SelectedNodeAs<EmptyNode> ();
             if (node != null)
                 {
+                    CompositeCommand command = Presentation.CommandFactory.CreateCompositeCommand();
                 if (node.Role_ != EmptyNode.Role.Silence)
                     {
-                    SetRoleForSelectedBlock ( EmptyNode.Role.Plain, null );
+                    //SetRoleForSelectedBlock ( EmptyNode.Role.Plain, null );
+                        Commands.Node.AssignRole ClearRoleCmd = new Commands.Node.AssignRole(this, node, EmptyNode.Role.Plain);
+                        command.ChildCommands.Insert(command.ChildCommands.Count, ClearRoleCmd);
+                        command.ShortDescription = ClearRoleCmd.ShortDescription;
+
+                    // if selected node is associated to anchor then it should be disassociated and if possible associated to next skippable phrase in the chunk
+                    if ( node.Role_ == EmptyNode.Role.Custom && !string.IsNullOrEmpty(node.CustomRole) && EmptyNode.SkippableNamesList.Contains (node.CustomRole) )
+                    {
+                        EmptyNode anchorNode =  mPresentation.GetAnchorForReferencedNode(node);
+                        if (anchorNode != null )
+                        {
+                            Commands.Node.DeAssociateAnchorNode disassociateCmd = new Obi.Commands.Node.DeAssociateAnchorNode(this,anchorNode ) ;
+                            disassociateCmd.UpdateSelection = false;
+                            command.ChildCommands.Insert(command.ChildCommands.Count, disassociateCmd);
+                             ObiNode next = node.FollowingNode;
+                             EmptyNode followingNode = next != null ? (EmptyNode)next : null;
+                            if (followingNode != null && followingNode.Role_ == EmptyNode.Role.Custom && followingNode.CustomRole == node.CustomRole && mPresentation.GetAnchorForReferencedNode(followingNode) == null)
+                            {
+                                Commands.Node.AssociateAnchorNode associateCmd = new Obi.Commands.Node.AssociateAnchorNode(this,anchorNode,followingNode ) ;
+                                associateCmd.UpdateSelection = false;
+                                command.ChildCommands.Insert(command.ChildCommands.Count, associateCmd);
+                            }
+                        } // check for anchor != null
+                    }// check for skippable
+
                     }
                 else
                     {
-                    CompositeCommand command = Presentation.CommandFactory.CreateCompositeCommand ();
+                    
                     Commands.Node.AssignRole ClearRoleCmd = new Commands.Node.AssignRole ( this, node, EmptyNode.Role.Plain );
                     command.ChildCommands.Insert(command.ChildCommands.Count, ClearRoleCmd );
                     command.ShortDescription = ClearRoleCmd.ShortDescription ;
                     if (!node.Used) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed ( this, node ) );
-                    Presentation.Do ( command );
+                    
                     }
-
+                    Presentation.Do(command);
                 }
             }
 
