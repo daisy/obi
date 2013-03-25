@@ -16,13 +16,35 @@ namespace Obi
             {
             //language switch, loads culture from settings 
             // strCulture is "hi-IN" for hindi, "en-US" for english
-            string strCulture = Settings.GetSettings ().UserProfile.Culture.Name;
+                Settings settings = Settings.GetSettings();
+            string strCulture = settings.UserProfile.Culture.Name;
 
             //if ( !string.IsNullOrEmpty (strCulture )
                 //&& (strCulture == "en-US" || strCulture == "hi-IN" || strCulture == "fr-FR"))
                                 //{
-                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo ( strCulture );
-                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo ( strCulture );
+            bool errorInSettingCulture = false;
+            try
+            {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(strCulture);
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(strCulture);
+            }
+            catch (System.Exception)
+            {
+                errorInSettingCulture = true;
+                Console.WriteLine("error in setting culture: " + strCulture);
+            }
+            if (errorInSettingCulture)
+            {
+                string defaultCulture = "en-US";
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(defaultCulture);
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(defaultCulture);
+                settings.UserProfile.Culture = System.Globalization.CultureInfo.GetCultureInfo(defaultCulture);
+                try
+                {
+                    settings.SaveSettings();
+                }
+                catch (System.Exception) { Console.WriteLine("error in saving default culture in settings file"); }
+            }
                 //}
             Application.EnableVisualStyles ();
             Application.SetCompatibleTextRenderingDefault ( false );
