@@ -3949,7 +3949,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Obi do not yet support language {0}. So, GUI will not be updated for this language. It will only be updated in metadata..
+        ///   Looks up a localized string similar to Obi do not yet support language {0}. The user interface could not be updated for this language..
         /// </summary>
         internal static string Peferences_GUIDonotSupportCulture {
             get {
