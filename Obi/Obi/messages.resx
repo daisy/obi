@@ -1439,7 +1439,7 @@ Error text: {1}</value>
     <value>Change page number</value>
   </data>
   <data name="Peferences_GUIDonotSupportCulture" xml:space="preserve">
-    <value>Obi do not yet support language {0}. So, GUI will not be updated for this language. It will only be updated in metadata.</value>
+    <value>Obi do not yet support language {0}. The user interface could not be updated for this language.</value>
   </data>
   <data name="Preferences_RestartForCultureChange" xml:space="preserve">
     <value>Obi has to be restarted for language changes to take effect. Please save your work and restart Obi.</value>
