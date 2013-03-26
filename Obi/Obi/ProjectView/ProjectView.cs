@@ -887,6 +887,7 @@ namespace Obi.ProjectView
                     // Collect silence node deletion commands separately in case the user wants to keep them.
                     //List<urakawa.command.Command> silence = new List<urakawa.command.Command>();
                     bool? deleteSilence = null;
+                    bool phrasesDeleted = false;
                     mPresentation.RootNode.AcceptDepthFirst(
                         delegate(urakawa.core.TreeNode node)
                         {
@@ -910,7 +911,8 @@ namespace Obi.ProjectView
                                     } // one time deleteSilence flag assignment done
                                     if (deleteSilence == false) return true;
                                 } // silence stuff ends
-                                
+
+                                phrasesDeleted = true;
                                 Commands.Node.Delete delete = new Commands.Node.Delete(this, (ObiNode)node, false);
                                 if (Selection == null || Selection.Node == node) delete.UpdateSelection = true; // temp fix, if selection is null, delete updates afterDeleteSelection to null to avoid selecting something through some event.
                                     command.ChildCommands.Insert(0, delete);
@@ -950,7 +952,8 @@ namespace Obi.ProjectView
                             Selection = new NodeSelection(section, mContentView);
                         }
                     }
-                    MessageBox.Show(Localizer.Message("UnusedPhrasesDeletedFromProject"), Localizer.Message("UnusedPhrasesDeletedCaption"), MessageBoxButtons.OK);
+                    MessageBox.Show(phrasesDeleted? Localizer.Message("UnusedPhrasesDeletedFromProject"): Localizer.Message("DeleteUnused_NoUnusedPhraseFoundToDelete"), 
+                        Localizer.Message("UnusedPhrasesDeletedCaption"), MessageBoxButtons.OK);
                 }
             }
 
