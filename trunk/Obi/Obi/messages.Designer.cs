@@ -1324,6 +1324,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No unused phrase found to delete..
+        /// </summary>
+        internal static string DeleteUnused_NoUnusedPhraseFoundToDelete {
+            get {
+                return ResourceManager.GetString("DeleteUnused_NoUnusedPhraseFoundToDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error exporting to DAISY.
         /// </summary>
         internal static string didnt_save_as_daisy_caption {
@@ -4993,7 +5002,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This operation will save the current state of project. You will not be able to reinstate the original project after this. Do you want to proceed?.
+        ///   Looks up a localized string similar to This operation will save the current state of the project. You will not be able to reinstate the original project after this. Do you want to proceed?.
         /// </summary>
         internal static string save_current_state {
             get {
@@ -5617,7 +5626,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unused Phrases Deleted.
+        ///   Looks up a localized string similar to Unused Phrases Deletion..
         /// </summary>
         internal static string UnusedPhrasesDeletedCaption {
             get {
