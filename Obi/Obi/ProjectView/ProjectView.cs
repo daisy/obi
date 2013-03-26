@@ -2229,7 +2229,7 @@ namespace Obi.ProjectView
                 // Import into a section, at 0 or at the selected index
                 parent = mContentView.Selection.Node;
                 index = mContentView.Selection is StripIndexSelection ?
-                    ((StripIndexSelection)mContentView.Selection).Index : 0;
+                    ((StripIndexSelection)mContentView.Selection).Index : parent.PhraseChildCount; //changed on 26 March 2013 for Obi 2.6-beta: when section is selected phrases are appended at the end instead of 0 position, just as recording
                 }
             else
                 {
