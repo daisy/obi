@@ -806,7 +806,7 @@ WavAudioMediaData mediaData =
             WavClip wavClip = new WavClip(dataProv);
 
             Time newClipE = clipE.Copy();
-            if (newClipE.IsGreaterThan(wavClip.MediaDuration))
+            if (newClipE.AsTimeSpan.TotalMilliseconds > wavClip.MediaDuration.AsTimeSpan.TotalMilliseconds)
             {
                 clipEndAdjustedToNull(clipB, newClipE, wavClip.MediaDuration, treeNode);
                 //newClipE = wavClip.MediaDuration;
