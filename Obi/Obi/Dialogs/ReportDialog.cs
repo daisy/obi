@@ -26,8 +26,10 @@ namespace Obi.Dialogs
           //  m_lblReportDialog.Text = labelInfo;
             m_txtBoxPath.Text = labelInfo;
             this.Text = reportDialogTitle;
-            if (problemStrings != null && problemStrings.Count != 0)
-               m_btnDetails.Enabled = true;
+            m_btnDetails.Text = Localizer.Message("Show_details");
+            m_btnDetails.AccessibleName = m_btnDetails.Text;
+            if (problemStrings != null && problemStrings.Count > 0)
+               m_btnDetails.Enabled = false;
         }
 
         private void m_btnOk_Click(object sender, EventArgs e)
@@ -42,6 +44,7 @@ namespace Obi.Dialogs
                 this.MaximumSize = new Size(453, 304);
                 this.Height = 304;
                 m_btnDetails.Text = Localizer.Message("Hide_details");
+                m_btnDetails.AccessibleName = m_btnDetails.Text;
                 m_lbDetailsOfErrors.Visible = true;
                 m_grpBox_lb_ErrorsList.Visible = true;
             }
@@ -50,6 +53,7 @@ namespace Obi.Dialogs
                 this.MaximumSize = new Size(453, 150);
                 this.Height = 150;
                 m_btnDetails.Text = Localizer.Message("Show_details");
+                m_btnDetails.AccessibleName = m_btnDetails.Text;
                 m_lbDetailsOfErrors.Visible = false;
                 m_grpBox_lb_ErrorsList.Visible = false;
             }
