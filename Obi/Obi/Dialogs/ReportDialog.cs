@@ -29,7 +29,7 @@ namespace Obi.Dialogs
             m_btnDetails.Text = Localizer.Message("Show_details");
             m_btnDetails.AccessibleName = m_btnDetails.Text;
             if (problemStrings != null && problemStrings.Count > 0)
-               m_btnDetails.Enabled = false;
+               m_btnDetails.Enabled = true;
         }
 
         private void m_btnOk_Click(object sender, EventArgs e)
