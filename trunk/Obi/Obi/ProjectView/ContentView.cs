@@ -3780,7 +3780,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             int m_KeyRepeatCount = 0;
         private bool ShouldSkipKeyDueToMemoryOverload(Keys key)
         {
-            if (Settings != null && Settings.OptimizeMemory) return false;
+            if (Settings == null || !Settings.OptimizeMemory) return false;
 
             if (m_PrevKey.ToString() == key.ToString())
             {
