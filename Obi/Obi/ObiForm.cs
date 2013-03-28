@@ -4255,8 +4255,9 @@ namespace Obi
             {
                 //Uri url = new Uri(Localizer.Message("Obi_NewFeaturesWebpage"));
                 Uri url =
-                    new Uri(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory,
-                                         "Obi 2.0 Alpha-New features help.htm"));
+                // new Uri(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory,
+                  //                       "Obi 2.0 Alpha-New features help.htm"));
+                new Uri("http://www.daisy.org/obi/obi-2.6-test-releases");
                 System.Diagnostics.Process.Start(url.ToString());
             }
 
@@ -4453,8 +4454,9 @@ namespace Obi
             {
                 try
                 {
-                    System.Diagnostics.Process.Start(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
-                                                                  "New-Features-Obi-2.0-alpha.htm"));
+                    //System.Diagnostics.Process.Start(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
+                      //                                            "New-Features-Obi-2.0-alpha.htm"));
+                    System.Diagnostics.Process.Start("http://www.daisy.org/obi/obi-2.6-test-releases");
                 }
                 catch (System.Exception ex)
                 {
