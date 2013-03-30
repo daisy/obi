@@ -41,6 +41,7 @@ namespace Obi.ImportExport
             PopulateMetadatasToRemoveList();
             m_PhrasesWithTruncatedAudio = new List<EmptyNode>();
             m_ErrorsList = new List<string>();
+            base.IsDataDirectoryWithCustomName= false;
         }
 
         public List<string> ErrorsList { get { return m_ErrorsList; } }
