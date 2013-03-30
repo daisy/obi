@@ -2077,6 +2077,9 @@ namespace Obi.ProjectView
                                     return;
                                 }
                             }
+                        // if focus is in toc view, shift it to content view
+                            if (Selection.Control == null || Selection.Control is TOCView) Selection = new NodeSelection(Selection.Node, mContentView);  
+
                             filesPathArray = dialog.FilesPaths;
                             Dialogs.ProgressDialog progress_AudioConverter = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileImport_ProcessingFiles"),
                         delegate(Dialogs.ProgressDialog progress1)
@@ -2415,7 +2418,7 @@ for (int j = 0;
             return node;
         }
 
-        public bool CanImportPhrases { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
+        public bool CanImportPhrases { get { return GetSelectedPhraseSection!= null  && !TransportBar.IsRecorderActive; } }
         public bool CanExportSelectedNodeAudio { get { return Selection != null && (Selection.Node is PhraseNode || (Selection.Node is SectionNode && !(Selection is StripIndexSelection))) && !(Selection is AudioSelection)  && !TransportBar.IsRecorderActive; } }
 
         /// <summary>
