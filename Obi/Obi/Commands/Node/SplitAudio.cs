@@ -121,7 +121,7 @@ namespace Obi.Commands.Node
                         view.Presentation.CreateCompositeCommand(Localizer.Message("split_phrase"));
                     if (end > 0.0) AppendSplitCommandWithProperties(view, command, phrase, end, false);
                     if (begin > 0.0) AppendSplitCommandWithProperties(view, command, phrase, begin,
-view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange != null  && !((AudioSelection)view.Selection).AudioRange.HasCursor && phrase.Role_ != EmptyNode.Role.Silence);
+view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange != null  && !((AudioSelection)view.Selection).AudioRange.HasCursor && !(phrase.Role_ == EmptyNode.Role.Silence || phrase.Role_ == EmptyNode.Role.Custom));
                     if (command.ChildCommands.Count > 0) return command;
                 }
             }
@@ -341,12 +341,12 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
             SplitAudio split = new SplitAudio(view, phrase, time);
             if (split.Node.TODO) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeTODO(view, split.NodeAfter));
             if (!split.Node.Used) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed(view, split.NodeAfter));
-            if (split.Node.Role_ == EmptyNode.Role.Silence)
+            if (split.Node.Role_ == EmptyNode.Role.Silence || phrase.Role_ == EmptyNode.Role.Custom)
             {
-                Commands.Node.AssignRole silence =
-                    new Commands.Node.AssignRole(view, split.NodeAfter, EmptyNode.Role.Silence);
-                silence.UpdateSelection = false;
-                command.ChildCommands.Insert(command.ChildCommands.Count, silence);
+                Commands.Node.AssignRole copyRoleCmd =
+                    new Commands.Node.AssignRole(view, split.NodeAfter, phrase.Role_, phrase.CustomRole);
+                copyRoleCmd.UpdateSelection = false;
+                command.ChildCommands.Insert(command.ChildCommands.Count, copyRoleCmd);
             }
             command.ChildCommands.Insert(command.ChildCommands.Count, split);
             if (transferRole && phrase.Role_ != EmptyNode.Role.Plain)
