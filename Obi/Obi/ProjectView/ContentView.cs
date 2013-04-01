@@ -244,7 +244,11 @@ namespace Obi.ProjectView
         public EmptyNode BeginSpecialNode   //@AssociateNode
             { 
                 get { return m_BeginNote; }
-                set { m_BeginNote = value; } 
+                set 
+                { 
+                    m_BeginNote = value;
+                    UpdateContextMenu();
+                } 
             }
 
         public EmptyNode EndSpecialNode     //@AssociateNode
