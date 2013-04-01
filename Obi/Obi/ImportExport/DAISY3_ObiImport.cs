@@ -799,6 +799,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
             m_MetadataItemsToExclude.Add(Metadata.OBI_DAISY2ExportPath);
             m_MetadataItemsToExclude.Add(Metadata.OBI_DAISY3ExportPath);
             m_MetadataItemsToExclude.Add(Metadata.GENERATOR);
+            m_MetadataItemsToExclude.Add("dtb:generator");
         }
 
         protected override void RemoveMetadataItemsToBeExcluded(Project project)
