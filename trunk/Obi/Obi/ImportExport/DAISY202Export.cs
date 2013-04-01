@@ -808,6 +808,7 @@ namespace Obi.ImportExport
             //MetadataMap.Add ("dtb:audioFormat";
 
             MetadataMap.Add ( "generator", "ncc:generator" );
+            MetadataMap.Add("Generator", "ncc:generator");
             //MetadataMap.Add ( "obi:xukversion", "obi:xukversion" );
 
             return MetadataMap;
