@@ -453,7 +453,10 @@ namespace Obi.ProjectView
             get
             {
                 EmptyNode node = SelectedNodeAs<EmptyNode>();
-                return mPresentation != null && node != null && !TransportBar.IsRecorderActive && Selection != null && BeginNote != null && node is EmptyNode && (BeginNote != mContentView.EndSpecialNode || BeginNote != node) && node.ParentAs<SectionNode>() == BeginNote.ParentAs<SectionNode>();
+                //@enable begin node = end node
+                //return mPresentation != null && node != null && !TransportBar.IsRecorderActive && Selection != null && BeginNote != null && node is EmptyNode && (BeginNote != mContentView.EndSpecialNode || BeginNote != node) && node.ParentAs<SectionNode>() == BeginNote.ParentAs<SectionNode>();
+                if (mPresentation == null || node == null || BeginNote == null || !node.IsRooted || !BeginNote.IsRooted) return false;
+                return Selection != null &&  !TransportBar.IsRecorderActive && node is EmptyNode && BeginNote.Index <= node.Index && node.ParentAs<SectionNode>() == BeginNote.ParentAs<SectionNode>();
             }
         }
 
@@ -4232,12 +4235,14 @@ for (int j = 0;
             string customClass = "";
             List<EmptyNode> listOfEmptyNodesToMarkAsSpecialNodes = new List<EmptyNode>();
             ObiNode parentNode = startNode.ParentAs<SectionNode>();
-            if (startNode.Index == endNode.Index)
-                {
-                    MessageBox.Show(Localizer.Message("Start_node_different_from_end_node"));
-                    return;
-                }
-            else if (startNode.Index > endNode.Index)
+            //@enabled begin node = end node: following if statement commented
+            //if (startNode.Index == endNode.Index)
+                //{
+                    //MessageBox.Show(Localizer.Message("Start_node_different_from_end_node"));
+                    //return;
+                //}
+            //else if (startNode.Index > endNode.Index)
+            if (startNode.Index > endNode.Index)
                 {
                     MessageBox.Show(Localizer.Message( "Start_node_index_greater_than_end"));
                     return;
@@ -4252,8 +4257,9 @@ for (int j = 0;
                     RenumberPage();
                 else
                 {
-                    if (startNode.Index < endNode.Index)
+                    if (startNode.Index <= endNode.Index)
                     {
+                        //for (int i = startNode.Index; i < endNode.Index; i++) //@enable begin node = end node
                         for (int i = startNode.Index; i <= endNode.Index; i++)
                         {
                             if (parentNode.PhraseChild(i).Role_ == EmptyNode.Role.Custom && parentNode.PhraseChild(i).CustomRole != customClass)
@@ -4271,7 +4277,7 @@ for (int j = 0;
                                     }
                                     else if (assignSpecialNodeToChunk.Is_Abort)
                                     {
-                                        endNode = parentNode.PhraseChild(i - 1);
+                                        //endNode = parentNode.PhraseChild(i - 1);//@enabled begin node = end node
                                         return;
                                     }
                                 }
@@ -4291,7 +4297,7 @@ for (int j = 0;
                                     }
                                     else if (assignSpecialNodeToChunk.Is_Abort)
                                     {
-                                        endNode = parentNode.PhraseChild(i - 1);
+                                        //endNode = parentNode.PhraseChild(i - 1);//@enabled begin node = end node
                                         return;
                                     }
                                 }
