@@ -32,7 +32,7 @@ namespace Obi.Dialogs
             {
                 m_btnDetails.Enabled = true;
             }
-            else
+            if (!m_btnDetails.Enabled || m_btnDetails.Text == Localizer.Message("Show_details") )
             {
                 m_lbDetailsOfErrors.Visible = false;
                 m_grpBox_lb_ErrorsList.Visible = false;
@@ -65,10 +65,14 @@ namespace Obi.Dialogs
                 m_grpBox_lb_ErrorsList.Visible = false;
             }
             if (m_ProblemStringList != null && m_lbDetailsOfErrors.Items.Count < 1)
-            {                
+            {
                 for (int i = 0; i < m_ProblemStringList.Count; i++)
+                {
                     m_lbDetailsOfErrors.Items.Add(m_ProblemStringList[i]);
+                }
+                m_lbDetailsOfErrors.Focus();
             }            
         }
+
     }
 } 
