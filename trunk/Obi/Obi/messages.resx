@@ -1843,7 +1843,7 @@ Error text: {1}</value>
     <value>Playing {0} {1} </value>
   </data>
   <data name="import_output_path" xml:space="preserve">
-    <value>The daisy book is successfully imported at {0}</value>
+    <value>The daisy book is successfully imported {0}at {1}</value>
   </data>
   <data name="RecToolbar_MarkedTODO" xml:space="preserve">
     <value>Marked TODO</value>
@@ -2276,5 +2276,8 @@ Error text: {1}</value>
   </data>
   <data name="DeleteUnused_NoUnusedPhraseFoundToDelete" xml:space="preserve">
     <value>No unused phrase found to delete.</value>
+  </data>
+  <data name="ImportErrorCorrectionText" xml:space="preserve">
+    <value>with some error corrections </value>
   </data>
 </root>
