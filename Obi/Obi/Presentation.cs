@@ -156,6 +156,7 @@ namespace Obi
         public void SetMetadataEntryContent(urakawa.metadata.Metadata entry, string content)
         {
             entry.NameContentAttribute.Value = content;
+            if (entry.NameContentAttribute.Name == Metadata.DC_LANGUAGE) this.Language = content;
             //sdk2 entry.setContent(content);
 
             //sdk2-todo use SDK 2.0 events
