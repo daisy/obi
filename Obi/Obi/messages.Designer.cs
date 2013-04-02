@@ -2053,7 +2053,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The daisy book is successfully imported at {0}.
+        ///   Looks up a localized string similar to The daisy book is successfully imported {0}at {1}.
         /// </summary>
         internal static string import_output_path {
             get {
@@ -2112,6 +2112,15 @@ namespace Obi {
         internal static string ImportAudio_ConvertingFormat {
             get {
                 return ResourceManager.GetString("ImportAudio_ConvertingFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to with some error corrections .
+        /// </summary>
+        internal static string ImportErrorCorrectionText {
+            get {
+                return ResourceManager.GetString("ImportErrorCorrectionText", resourceCulture);
             }
         }
         

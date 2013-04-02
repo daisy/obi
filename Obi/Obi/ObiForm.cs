@@ -450,12 +450,13 @@ namespace Obi
                 if (progress.Exception != null) throw progress.Exception;
                 if (import.RequestCancellation) return false;
                 if (!import.RequestCancellation) mSession.NotifyProjectCreated();
-
+                
                 Dialogs.ReportDialog reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
                                                                      import.RequestCancellation
                                                                          ? Localizer.Message("import_cancelled")
                                                                          : String.Format(
                                                                              Localizer.Message("import_output_path"),
+                                                                             import != null && import.ErrorsList.Count >0?Localizer.Message("ImportErrorCorrectionText"): "",
                                                                              outputPath),
                                                                      import != null ? import.ErrorsList : null);
                 reportDialog.ShowDialog();
@@ -490,6 +491,7 @@ namespace Obi
                     import.RequestCancellation ? Localizer.Message("import_cancelled")
                                                                      : String.Format(
                                                                          Localizer.Message("import_output_path"),
+                                                                         import != null && import.ErrorsList.Count > 0 ? Localizer.Message("ImportErrorCorrectionText") : "",
                                                                          path),
                                                                  import != null ? import.ErrorsList : null);
                 reportDialog.ShowDialog();
