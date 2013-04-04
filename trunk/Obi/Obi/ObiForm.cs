@@ -1,3 +1,4 @@
+using System.Drawing;
 using Obi.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -3167,9 +3168,23 @@ namespace Obi
                 if (mPeakMeter == null)
                 {
                     mPeakMeter = new Obi.Audio.PeakMeterForm();
+                    if (mSettings.PeakmeterSize.Width == 0 || mSettings.PeakmeterSize.Height == 0)
+                    {
+                        mPeakMeter.Size = new Size(170, 640);
+                        mPeakMeter.PeakMeterInit();
+                    }
+                    else
+                    {
+                        mPeakMeter.Size = mSettings.PeakmeterSize;
+                        mPeakMeter.GraphicaPeakMeterSizeSet(mSettings);
+                        mPeakMeter.flagFirstTimeInit = false;
+                    }
                     mPeakMeter.SourceVuMeter = mProjectView.TransportBar.VuMeter;
                     mPeakMeter.FormClosed += new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e)
                                                                             {
+                                                                                mSettings.PeakmeterSize =
+                                                                                    mPeakMeter.Size;
+                                                                                mPeakMeter.GraphicalPeakMeterSaveSettings(mSettings);
                                                                                 mPeakMeter = null;
                                                                                 mShowPeakMeterMenuItem.Checked = false;
                                                                                 if ((this.WindowState ==
@@ -3225,7 +3240,7 @@ namespace Obi
 
                         mPeakMeter.Top = this.Top;
                         //  mPeakMeter.Left = this.Right;
-                        mPeakMeter.Height = this.Height;
+                       // mPeakMeter.Height = this.Height;
                        // m_DiffPeakMeterGraphicalPeakMeter = mPeakMeter.Height - mPeakMeter.PeakMeterHeight;//peakmeter ref
                         mPeakMeter.StartPosition = FormStartPosition.Manual;
                     }
@@ -4541,7 +4556,7 @@ namespace Obi
 
                     //   mPeakMeter.AnchorStyle = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right);//peakmeter ref
 
-                    mPeakMeter.Height = this.Height;
+                 //   mPeakMeter.Height = this.Height;
                     mPeakMeter.Top = this.Top;
                       //  mPeakMeter.PeakMeterTop = mPeakMeter.Top;  //peakmeter ref
                        // mPeakMeter.PeakMeterHeight = mPeakMeter.PeakMeterHeight + temphgt - m_DiffPeakMeterGraphicalPeakMeter;//peakmeter ref
@@ -4582,7 +4597,7 @@ namespace Obi
                 if (mPeakMeter.WindowState == FormWindowState.Minimized && this.WindowState == FormWindowState.Normal)
                 {
                     mPeakMeter.WindowState = FormWindowState.Normal;
-                    mPeakMeter.Height = this.Height;
+                   // mPeakMeter.Height = this.Height;
                 }
                 mPeakMeter.Left = this.Right;
                 

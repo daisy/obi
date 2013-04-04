@@ -49,6 +49,8 @@ namespace Obi
         public AudioLib.VuMeter.NoiseLevelSelection NoiseLevel;  // noise level for low amplitude detection
         public double NudgeTimeMs;             // nudge time in milliseconds
         public Size ObiFormSize;               // size of the form (for future sessions)
+        public Size PeakmeterSize;             // Size of the peak meter form(for future sessions)
+        public Size GraphicalPeakMeterContolSize; //Size of the peak meter control
         public bool ShowGraphicalPeakMeterAtStartup; // displays the graphical peak meter when Obi initializes
         public bool OpenLastProject;           // open the last open project at startup
         public string PipelineScriptsPath;     // path to the pipeline script for the DTB audio encoder
@@ -125,6 +127,8 @@ namespace Obi
             settings.NoiseLevel = AudioLib.VuMeter.NoiseLevelSelection.Medium;
             settings.NudgeTimeMs = 200.0;
             settings.ObiFormSize = new Size(0, 0);
+            settings.PeakmeterSize = new Size(0, 0);
+            settings.GraphicalPeakMeterContolSize = new Size(0, 0);
             settings.ShowGraphicalPeakMeterAtStartup = true ;
             settings.OpenLastProject = false;
             settings.PreviewDuration = 1500;
