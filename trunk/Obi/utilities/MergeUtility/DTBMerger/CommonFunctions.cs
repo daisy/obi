@@ -91,7 +91,21 @@ namespace DTBMerger
                 TimeSpan additiveSpan = new TimeSpan ( Convert.ToInt64 ( .5 * 10000000 ) );
                 time = time.Add ( additiveSpan );
                 }
-            return time.ToString ().Split ( '.' )[0];
+                if (time.TotalDays < 1)
+                {
+                    return time.ToString().Split('.')[0];
+                }
+                else
+                {
+                    string strHrs = (time.Hours + (time.Days * 24)).ToString();
+                    if (strHrs.Length < 2) strHrs = "0" + strHrs;
+                    string strMins = time.Minutes.ToString();
+                    if (strMins.Length < 2) strMins = "0" + strMins;
+                    string strSeconds = time.Seconds.ToString() + "." + time.Milliseconds.ToString();
+                    if (strSeconds.Length < 2) strSeconds = "0" + strSeconds;
+                    string strTime = strHrs + ":" + strMins + ":" + strSeconds;
+                    return strTime;
+                }
             }
 
         }
