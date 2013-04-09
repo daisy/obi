@@ -101,7 +101,7 @@ namespace DTBMerger
                     if (strHrs.Length < 2) strHrs = "0" + strHrs;
                     string strMins = time.Minutes.ToString();
                     if (strMins.Length < 2) strMins = "0" + strMins;
-                    string strSeconds = time.Seconds.ToString() + "." + time.Milliseconds.ToString();
+                    string strSeconds = time.Seconds.ToString() ;
                     if (strSeconds.Length < 2) strSeconds = "0" + strSeconds;
                     string strTime = strHrs + ":" + strMins + ":" + strSeconds;
                     return strTime;
