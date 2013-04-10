@@ -2280,4 +2280,10 @@ Error text: {1}</value>
   <data name="ImportErrorCorrectionText" xml:space="preserve">
     <value>with some error corrections </value>
   </data>
+  <data name="CheckUpdate_Title" xml:space="preserve">
+    <value>New {0} release available</value>
+  </data>
+  <data name="CheckUpdate_LabelText" xml:space="preserve">
+    <value>{0}. Please select from the following options.</value>
+  </data>
 </root>

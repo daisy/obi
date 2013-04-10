@@ -610,6 +610,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}. Please select from the following options..
+        /// </summary>
+        internal static string CheckUpdate_LabelText {
+            get {
+                return ResourceManager.GetString("CheckUpdate_LabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New {0} release available.
+        /// </summary>
+        internal static string CheckUpdate_Title {
+            get {
+                return ResourceManager.GetString("CheckUpdate_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi Help.chm.
         /// </summary>
         internal static string CHMhelp_file_name {
