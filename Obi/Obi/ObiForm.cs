@@ -4625,16 +4625,16 @@ namespace Obi
                 mProjectView.UpdatePhraseDetectionSettingsFromSilencePhrase();
             }
 
-            private void CheckForNewRelease()
+            private void CheckForNewRelease(bool isAutomaticUpdate)
             {
-                Dialogs.CheckUpdates check = new CheckUpdates(mSettings);
+                Dialogs.CheckUpdates check = new CheckUpdates(mSettings, isAutomaticUpdate);
                 check.CheckForAvailableUpdate();
                 check = null;
             }
 
             private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                CheckForNewRelease();
+                CheckForNewRelease(false);
             }
 
         }

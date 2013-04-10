@@ -15,15 +15,17 @@ namespace Obi.Dialogs
         private string m_AvailableVersion;
         private string m_ReleaseUrl;
         private Settings m_Settings;
+        private bool m_IsAutomaticUpdate;
 
         private CheckUpdates()
         {
             InitializeComponent();
         }
 
-        public CheckUpdates(Settings settings):this ()
+        public CheckUpdates(Settings settings, bool isAutomaticUpdate):this ()
         {
             m_Settings = settings;
+            m_IsAutomaticUpdate = isAutomaticUpdate;
             m_IsNewVersionAvailable = false ;
         }
 
@@ -34,17 +36,13 @@ namespace Obi.Dialogs
         {
             try
             {
-                Uri releaseInfoFileUri = new Uri("http://data.daisy.org/projects/obi/releases/latest-release.txt");
-                System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)
-                    System.Net.WebRequest.Create(releaseInfoFileUri);
-                System.Net.HttpWebResponse response =
-                  (System.Net.HttpWebResponse)request.GetResponse();
-                System.IO.Stream receiveStream = response.GetResponseStream();
-                System.IO.StreamReader strReader =
-                  new System.IO.StreamReader(receiveStream, Encoding.UTF8);
-                string s = strReader.ReadToEnd();
-                response.Close();
-                string[] infoArray = s.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                string releaseInfoContents = GetReleaseInfoFileContents();
+                if (string.IsNullOrEmpty(releaseInfoContents))
+                {
+                    m_IsNewVersionAvailable = false;
+                    return;
+                }
+                string[] infoArray = releaseInfoContents.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 if (infoArray.Length > 0) m_TitleText = infoArray[0];
                 if (infoArray.Length > 1) m_LabelText = infoArray[1];
                 if (infoArray.Length > 2) m_AvailableVersion = infoArray[2];
@@ -64,12 +62,46 @@ namespace Obi.Dialogs
             }
         }
 
+        private string GetReleaseInfoFileContents()
+        {
+            Uri releaseInfoFileUri = new Uri("http://data.daisy.org/projects/obi/releases/latest-release.txt");
+            System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)
+                System.Net.WebRequest.Create(releaseInfoFileUri);
+            System.Net.HttpWebResponse response =
+              (System.Net.HttpWebResponse)request.GetResponse();
+            string s = null;
+            try
+            {
+                System.IO.Stream receiveStream = response.GetResponseStream();
+                System.IO.StreamReader strReader =
+                  new System.IO.StreamReader(receiveStream, Encoding.UTF8);
+                s = strReader.ReadToEnd();
+            }
+            finally
+            {
+                response.Close();
+            }
+            return s;
+        }
+
+        private string GetReleaseInfoFileContentsFromLocalFileForTesting()
+        {
+            System.IO.Stream receiveStream = System.IO.File.OpenRead("c:\\release-info.txt");
+            System.IO.StreamReader strReader =
+              new System.IO.StreamReader(receiveStream, Encoding.UTF8);
+            string s = strReader.ReadToEnd();
+            receiveStream.Close();
+            return s;
+        }
+
         private bool IsVersionNumberNew()
         {
             int localVersion = GetNumericVersion(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            int settingsVersion = GetNumericVersion(m_Settings.Project_LatestVersionCheckedByUpdate);
-            if (settingsVersion > localVersion) localVersion = settingsVersion;
-
+            if (m_IsAutomaticUpdate)
+            {
+                int settingsVersion = GetNumericVersion(m_Settings.Project_LatestVersionCheckedByUpdate);
+                if (settingsVersion > localVersion) localVersion = settingsVersion;
+            }
             int newVersion = GetNumericVersion(m_AvailableVersion);
 
             m_IsNewVersionAvailable =  (newVersion > localVersion);
