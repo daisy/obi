@@ -16,6 +16,7 @@ namespace Obi.Dialogs
         private string m_ReleaseUrl;
         private Settings m_Settings;
         private bool m_IsAutomaticUpdate;
+        private BackgroundWorker m_BackgroundWorker = new BackgroundWorker();
 
         private CheckUpdates()
         {
@@ -34,31 +35,68 @@ namespace Obi.Dialogs
 
         public void CheckForAvailableUpdate()
         {
-            try
-            {
-                string releaseInfoContents = GetReleaseInfoFileContents();
-                if (string.IsNullOrEmpty(releaseInfoContents))
-                {
-                    m_IsNewVersionAvailable = false;
-                    return;
-                }
-                string[] infoArray = releaseInfoContents.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                if (infoArray.Length > 0) m_TitleText = infoArray[0];
-                if (infoArray.Length > 1) m_LabelText = infoArray[1];
-                if (infoArray.Length > 2) m_AvailableVersion = infoArray[2];
-                if (infoArray.Length > 3) m_ReleaseUrl = infoArray[3];
+            // the functions checks the file named latest-release.txt on the server. The format of the file is as follows
+            //line 1: keyword to inform if new version is test version. text used is either "test" or "Obi"
+            //Line 2: a user friendly line describing which update is available
+            //line 3: numeric version number
+            // line 4: url of web page of release 
+            // typical example is as follows
+            //Test
+//A new test release, Obi 2.6 beta is available.
+//2.5.6
+//http://www.daisy.org/obi/obi-2.6-test-releases
 
-                Console.WriteLine(releaseInfoContents);
-                if (IsVersionNumberNew())
-                {
-                    this.Text = string.Format(Localizer.Message("CheckUpdate_Title"), !string.IsNullOrEmpty(m_TitleText) ? m_TitleText : "");
-                  mInfoTxtBox.Text = string.Format(Localizer.Message("CheckUpdate_LabelText"), !String.IsNullOrEmpty(m_LabelText) ? m_LabelText : "");
-                    this.Show();
-                }
-            }
-            catch (System.Exception ex)
+            if (m_BackgroundWorker.IsBusy)
             {
-                Console.WriteLine(ex.ToString());
+                MessageBox.Show(Localizer.Message("CheckUpdate_UpdateProcessActive"));
+                return;
+            }
+            m_BackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
+            {
+                try
+                {
+                    string releaseInfoContents = GetReleaseInfoFileContents();
+                    if (string.IsNullOrEmpty(releaseInfoContents))
+                    {
+                        m_IsNewVersionAvailable = false;
+                        return;
+                    }
+                    string[] infoArray = releaseInfoContents.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (infoArray.Length > 0) m_TitleText = infoArray[0];
+                    if (infoArray.Length > 1) m_LabelText = infoArray[1];
+                    if (infoArray.Length > 2) m_AvailableVersion = infoArray[2];
+                    if (infoArray.Length > 3) m_ReleaseUrl = infoArray[3];
+
+                    Console.WriteLine(releaseInfoContents);
+                    IsVersionNumberNew() ;
+                }
+                catch (System.Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            });
+            m_BackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+            {
+                if (IsNewVersionAvailable)
+                    {   
+                        ShowDialogThroughCallBack();
+                    }
+            });
+            m_BackgroundWorker.RunWorkerAsync();
+        }
+
+        private  delegate void ShowDialogDelegate () ;
+        private void ShowDialogThroughCallBack()
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new ShowDialogDelegate(ShowDialogThroughCallBack));
+            }
+            else
+            {
+this.Text = string.Format(Localizer.Message("CheckUpdate_Title"), !string.IsNullOrEmpty(m_TitleText) ? m_TitleText : "");
+                        mInfoTxtBox.Text = string.Format(Localizer.Message("CheckUpdate_LabelText"), !String.IsNullOrEmpty(m_LabelText) ? m_LabelText : "");
+                ShowDialog();
             }
         }
 
@@ -86,11 +124,19 @@ namespace Obi.Dialogs
 
         private string GetReleaseInfoFileContentsFromLocalFileForTesting()
         {
-            System.IO.Stream receiveStream = System.IO.File.OpenRead("c:\\release-info.txt");
-            System.IO.StreamReader strReader =
-              new System.IO.StreamReader(receiveStream, Encoding.UTF8);
-            string s = strReader.ReadToEnd();
-            receiveStream.Close();
+            System.IO.Stream receiveStream = null;
+            string s = null;
+            try
+            {
+                receiveStream = System.IO.File.OpenRead("c:\\latest-release.txt");
+                System.IO.StreamReader strReader =
+                  new System.IO.StreamReader(receiveStream, Encoding.UTF8);
+                s = strReader.ReadToEnd();
+            }
+            finally
+            {
+                if(receiveStream != null)  receiveStream.Close();
+            }
             return s;
         }
 

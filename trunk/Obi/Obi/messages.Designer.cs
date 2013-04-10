@@ -628,6 +628,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update checking process is already active..
+        /// </summary>
+        internal static string CheckUpdate_UpdateProcessActive {
+            get {
+                return ResourceManager.GetString("CheckUpdate_UpdateProcessActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi Help.chm.
         /// </summary>
         internal static string CHMhelp_file_name {

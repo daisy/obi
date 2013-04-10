@@ -1274,7 +1274,8 @@ namespace Obi
 
                 UpdateKeyboardFocusForSelection();
                 if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
-
+                
+                if (mSettings.Project_CheckForUpdates) CheckForNewRelease(true);
             }
 
 
@@ -4629,7 +4630,6 @@ namespace Obi
             {
                 Dialogs.CheckUpdates check = new CheckUpdates(mSettings, isAutomaticUpdate);
                 check.CheckForAvailableUpdate();
-                check = null;
             }
 
             private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
