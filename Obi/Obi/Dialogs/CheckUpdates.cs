@@ -14,6 +14,7 @@ namespace Obi.Dialogs
         private string m_LabelText;
         private string m_AvailableVersion;
         private string m_ReleaseUrl;
+        private string m_CriticalText;
         private Settings m_Settings;
         private bool m_IsAutomaticUpdate;
         private BackgroundWorker m_BackgroundWorker = new BackgroundWorker();
@@ -40,11 +41,13 @@ namespace Obi.Dialogs
             //Line 2: a user friendly line describing which update is available
             //line 3: numeric version number
             // line 4: url of web page of release 
+            // line 5: optional key word indicating critical release. It is useful for a critical bug fix etc.
             // typical example is as follows
             //Test
 //A new test release, Obi 2.6 beta is available.
 //2.5.6
 //http://www.daisy.org/obi/obi-2.6-test-releases
+            //critical
 
             if (m_BackgroundWorker.IsBusy)
             {
@@ -55,7 +58,7 @@ namespace Obi.Dialogs
             {
                 try
                 {
-                    string releaseInfoContents = GetReleaseInfoFileContents();
+                    string releaseInfoContents = GetReleaseInfoFileContentsFromLocalFileForTesting();
                     if (string.IsNullOrEmpty(releaseInfoContents))
                     {
                         m_IsNewVersionAvailable = false;
@@ -66,6 +69,7 @@ namespace Obi.Dialogs
                     if (infoArray.Length > 1) m_LabelText = infoArray[1];
                     if (infoArray.Length > 2) m_AvailableVersion = infoArray[2];
                     if (infoArray.Length > 3) m_ReleaseUrl = infoArray[3];
+                    if (infoArray.Length > 4) m_CriticalText = infoArray[4];
 
                     Console.WriteLine(releaseInfoContents);
                     IsVersionNumberNew() ;
@@ -94,8 +98,10 @@ namespace Obi.Dialogs
             }
             else
             {
-this.Text = string.Format(Localizer.Message("CheckUpdate_Title"), !string.IsNullOrEmpty(m_TitleText) ? m_TitleText : "");
-                        mInfoTxtBox.Text = string.Format(Localizer.Message("CheckUpdate_LabelText"), !String.IsNullOrEmpty(m_LabelText) ? m_LabelText : "");
+                this.Text = string.Format(Localizer.Message("CheckUpdate_Title"), !string.IsNullOrEmpty(m_TitleText) ? m_TitleText : "");
+                if (!string.IsNullOrEmpty(m_LabelText) && m_LabelText.EndsWith(".")) m_LabelText = m_LabelText.Remove(m_LabelText.LastIndexOf('.'));
+                mInfoTxtBox.Text = string.Format(Localizer.Message("CheckUpdate_LabelText"), !String.IsNullOrEmpty(m_LabelText) ? m_LabelText : "");
+                mInfoTxtBox.AccessibleName = "use arrow keys to read";
                 ShowDialog();
             }
         }
@@ -142,6 +148,11 @@ this.Text = string.Format(Localizer.Message("CheckUpdate_Title"), !string.IsNull
 
         private bool IsVersionNumberNew()
         {
+            if (!string.IsNullOrEmpty(m_CriticalText) && m_CriticalText.ToLower() == "critical")
+            {
+                m_IsNewVersionAvailable = true ;
+                return m_IsNewVersionAvailable ;
+            }
             int localVersion = GetNumericVersion(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
             if (m_IsAutomaticUpdate)
             {
