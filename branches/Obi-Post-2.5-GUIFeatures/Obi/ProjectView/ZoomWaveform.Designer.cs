@@ -104,12 +104,12 @@
             this.panelZooomWaveform.AutoScroll = true;
             this.panelZooomWaveform.Location = new System.Drawing.Point(3, 3);
             this.panelZooomWaveform.Name = "panelZooomWaveform";
-            this.panelZooomWaveform.Size = new System.Drawing.Size(123, 58);
+            this.panelZooomWaveform.Size = new System.Drawing.Size(946, 498);
             this.panelZooomWaveform.TabIndex = 8;
             // 
             // txtZoomSelected
             // 
-            this.txtZoomSelected.Location = new System.Drawing.Point(24, 501);
+            this.txtZoomSelected.Location = new System.Drawing.Point(24, 507);
             this.txtZoomSelected.Name = "txtZoomSelected";
             this.txtZoomSelected.ReadOnly = true;
             this.txtZoomSelected.Size = new System.Drawing.Size(702, 20);
