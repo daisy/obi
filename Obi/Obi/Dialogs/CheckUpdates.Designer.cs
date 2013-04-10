@@ -34,8 +34,8 @@ namespace Obi.Dialogs
             this.m_RdDisableCheckUpdates = new System.Windows.Forms.RadioButton();
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnCancel = new System.Windows.Forms.Button();
-            this.m_lblInfo = new System.Windows.Forms.Label();
             this.mCheckUpdates_grpBox = new System.Windows.Forms.GroupBox();
+            this.mInfoTxtBox = new System.Windows.Forms.TextBox();
             this.mCheckUpdates_grpBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,7 +88,7 @@ namespace Obi.Dialogs
             // 
             this.m_btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_btnOk.Location = new System.Drawing.Point(61, 171);
+            this.m_btnOk.Location = new System.Drawing.Point(61, 208);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(75, 23);
             this.m_btnOk.TabIndex = 6;
@@ -101,7 +101,7 @@ namespace Obi.Dialogs
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_btnCancel.Location = new System.Drawing.Point(267, 171);
+            this.m_btnCancel.Location = new System.Drawing.Point(267, 208);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(75, 23);
             this.m_btnCancel.TabIndex = 7;
@@ -109,26 +109,26 @@ namespace Obi.Dialogs
             this.m_btnCancel.UseVisualStyleBackColor = true;
             this.m_btnCancel.Click += new System.EventHandler(this.m_btnCancel_Click);
             // 
-            // m_lblInfo
-            // 
-            this.m_lblInfo.AutoSize = true;
-            this.m_lblInfo.Location = new System.Drawing.Point(12, 9);
-            this.m_lblInfo.Name = "m_lblInfo";
-            this.m_lblInfo.Size = new System.Drawing.Size(151, 13);
-            this.m_lblInfo.TabIndex = 1;
-            this.m_lblInfo.Text = "&Please select from the options.";
-            // 
             // mCheckUpdates_grpBox
             // 
             this.mCheckUpdates_grpBox.Controls.Add(this.m_RdOpenWebPage);
             this.mCheckUpdates_grpBox.Controls.Add(this.m_RdRemindLater);
             this.mCheckUpdates_grpBox.Controls.Add(this.m_RdRemindForNextVersion);
             this.mCheckUpdates_grpBox.Controls.Add(this.m_RdDisableCheckUpdates);
-            this.mCheckUpdates_grpBox.Location = new System.Drawing.Point(15, 36);
+            this.mCheckUpdates_grpBox.Location = new System.Drawing.Point(15, 73);
             this.mCheckUpdates_grpBox.Name = "mCheckUpdates_grpBox";
             this.mCheckUpdates_grpBox.Size = new System.Drawing.Size(369, 123);
             this.mCheckUpdates_grpBox.TabIndex = 1;
             this.mCheckUpdates_grpBox.TabStop = false;
+            // 
+            // mInfoTxtBox
+            // 
+            this.mInfoTxtBox.Location = new System.Drawing.Point(15, 12);
+            this.mInfoTxtBox.Multiline = true;
+            this.mInfoTxtBox.Name = "mInfoTxtBox";
+            this.mInfoTxtBox.Size = new System.Drawing.Size(369, 63);
+            this.mInfoTxtBox.TabIndex = 1;
+            this.mInfoTxtBox.Text = "Please select from the options.";
             // 
             // CheckUpdates
             // 
@@ -137,9 +137,9 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
-            this.ClientSize = new System.Drawing.Size(410, 204);
+            this.ClientSize = new System.Drawing.Size(397, 242);
+            this.Controls.Add(this.mInfoTxtBox);
             this.Controls.Add(this.mCheckUpdates_grpBox);
-            this.Controls.Add(this.m_lblInfo);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOk);
             this.MaximizeBox = false;
@@ -160,7 +160,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_RdDisableCheckUpdates;
         private System.Windows.Forms.Button m_btnOk;
         private System.Windows.Forms.Button m_btnCancel;
-        private System.Windows.Forms.Label m_lblInfo;
         private System.Windows.Forms.GroupBox mCheckUpdates_grpBox;
+        private System.Windows.Forms.TextBox mInfoTxtBox;
     }
 }
