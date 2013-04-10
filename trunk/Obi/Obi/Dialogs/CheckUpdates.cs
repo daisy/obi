@@ -52,7 +52,7 @@ namespace Obi.Dialogs
                 if (IsVersionNumberNew())
                 {
                     this.Text = string.Format(Localizer.Message("CheckUpdate_Title"), !string.IsNullOrEmpty(m_TitleText) ? m_TitleText : "");
-                    m_lblInfo.Text = string.Format(Localizer.Message("CheckUpdate_LabelText"), !String.IsNullOrEmpty(m_LabelText) ? m_LabelText : "");
+                  mInfoTxtBox.Text = string.Format(Localizer.Message("CheckUpdate_LabelText"), !String.IsNullOrEmpty(m_LabelText) ? m_LabelText : "");
                     this.Show();
                 }
             }
@@ -86,7 +86,7 @@ namespace Obi.Dialogs
 
         private string GetReleaseInfoFileContentsFromLocalFileForTesting()
         {
-            System.IO.Stream receiveStream = System.IO.File.OpenRead("c:\\latest-release.txt");
+            System.IO.Stream receiveStream = System.IO.File.OpenRead("c:\\release-info.txt");
             System.IO.StreamReader strReader =
               new System.IO.StreamReader(receiveStream, Encoding.UTF8);
             string s = strReader.ReadToEnd();
