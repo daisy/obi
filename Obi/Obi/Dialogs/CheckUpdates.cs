@@ -48,7 +48,7 @@ namespace Obi.Dialogs
                 if (infoArray.Length > 2) m_AvailableVersion = infoArray[2];
                 if (infoArray.Length > 3) m_ReleaseUrl = infoArray[3];
 
-                //MessageBox.Show(s + " : " + infoArray.Length.ToString ());
+                Console.WriteLine(releaseInfoContents);
                 if (IsVersionNumberNew())
                 {
                     this.Text = string.Format(Localizer.Message("CheckUpdate_Title"), !string.IsNullOrEmpty(m_TitleText) ? m_TitleText : "");
@@ -86,7 +86,7 @@ namespace Obi.Dialogs
 
         private string GetReleaseInfoFileContentsFromLocalFileForTesting()
         {
-            System.IO.Stream receiveStream = System.IO.File.OpenRead("c:\\release-info.txt");
+            System.IO.Stream receiveStream = System.IO.File.OpenRead("c:\\latest-release.txt");
             System.IO.StreamReader strReader =
               new System.IO.StreamReader(receiveStream, Encoding.UTF8);
             string s = strReader.ReadToEnd();
