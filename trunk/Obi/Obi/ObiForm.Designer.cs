@@ -205,6 +205,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1398,7 +1399,8 @@ namespace Obi
             this.mHelp_WhatsNewMenuItem,
             this.mHelp_ContentsMenuItem,
             this.mHelp_ReportBugMenuItem,
-            this.aboutObiToolStripMenuItem});
+            this.aboutObiToolStripMenuItem,
+            this.checkForUpdatesToolStripMenuItem});
             this.mHelpToolStripMenuItem.Name = "mHelpToolStripMenuItem";
             resources.ApplyResources(this.mHelpToolStripMenuItem, "mHelpToolStripMenuItem");
             // 
@@ -1461,6 +1463,12 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.checkForUpdatesToolStripMenuItem, "checkForUpdatesToolStripMenuItem");
+            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1665,6 +1673,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem selectedPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allEmptyPagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsFromSilencePhraseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
     }
 }
 

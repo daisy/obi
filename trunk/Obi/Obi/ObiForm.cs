@@ -4632,5 +4632,10 @@ namespace Obi
                 check = null;
             }
 
+            private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                CheckForNewRelease();
+            }
+
         }
     }
