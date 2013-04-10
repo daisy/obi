@@ -2286,4 +2286,7 @@ Error text: {1}</value>
   <data name="CheckUpdate_LabelText" xml:space="preserve">
     <value>{0}. Please select from the following options.</value>
   </data>
+  <data name="CheckUpdate_UpdateProcessActive" xml:space="preserve">
+    <value>Update checking process is already active.</value>
+  </data>
 </root>
