@@ -126,6 +126,7 @@ namespace Obi.Dialogs
             this.mInfoTxtBox.Location = new System.Drawing.Point(15, 12);
             this.mInfoTxtBox.Multiline = true;
             this.mInfoTxtBox.Name = "mInfoTxtBox";
+            this.mInfoTxtBox.ReadOnly = true;
             this.mInfoTxtBox.Size = new System.Drawing.Size(369, 63);
             this.mInfoTxtBox.TabIndex = 1;
             this.mInfoTxtBox.Text = "Please select from the options.";
