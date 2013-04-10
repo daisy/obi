@@ -4624,5 +4624,13 @@ namespace Obi
             {
                 mProjectView.UpdatePhraseDetectionSettingsFromSilencePhrase();
             }
+
+            private void CheckForNewRelease()
+            {
+                Dialogs.CheckUpdates check = new CheckUpdates(mSettings);
+                check.CheckForAvailableUpdate();
+                check = null;
+            }
+
         }
     }

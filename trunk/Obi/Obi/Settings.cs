@@ -54,6 +54,8 @@ namespace Obi
         public bool ShowGraphicalPeakMeterAtStartup; // displays the graphical peak meter when Obi initializes
         public bool OpenLastProject;           // open the last open project at startup
         public string PipelineScriptsPath;     // path to the pipeline script for the DTB audio encoder
+        public bool Project_CheckForUpdates;
+        public string Project_LatestVersionCheckedByUpdate;
         public bool PlayIfNoSelection;         // play all or nothing if no selection
         public bool PlayOnNavigate;            // start playback when navigating, or just change the selection
         public int PreviewDuration;            // playback preview duration in milliseconds
@@ -135,6 +137,8 @@ namespace Obi
             settings.ElapseBackTimeInMilliseconds = 1500;
             settings.PipelineScriptsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
                 Path.Combine ( "Pipeline-lite", "scripts" ) );
+            settings.Project_CheckForUpdates = true;
+            settings.Project_LatestVersionCheckedByUpdate = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             settings.PlayIfNoSelection = true;
             settings.PlayOnNavigate = false;
             settings.RecentProjects = new ArrayList();
