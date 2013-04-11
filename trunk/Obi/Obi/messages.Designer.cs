@@ -2388,20 +2388,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mark selection from cursor.
+        ///   Looks up a localized string similar to Mark selection from beginning to the cursor.
         /// </summary>
-        internal static string KeyS_MarkSelectionFromCursor {
+        internal static string KeyS_MarkSelectionFromBeginningToTheCursor {
             get {
-                return ResourceManager.GetString("KeyS_MarkSelectionFromCursor", resourceCulture);
+                return ResourceManager.GetString("KeyS_MarkSelectionFromBeginningToTheCursor", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mark selection to cursor.
+        ///   Looks up a localized string similar to Mark selection from cursor to the end.
         /// </summary>
-        internal static string KeyS_MarkSelectionToCursor {
+        internal static string KeyS_MarkSelectionFromCursorToTheEnd {
             get {
-                return ResourceManager.GetString("KeyS_MarkSelectionToCursor", resourceCulture);
+                return ResourceManager.GetString("KeyS_MarkSelectionFromCursorToTheEnd", resourceCulture);
             }
         }
         

@@ -3703,8 +3703,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[keyboardShortcuts.ContentView_FastPlayStepUp.Value] = FastPlayRateStepUp;
             mShortcutKeys[keyboardShortcuts.ContentView_FastPlayRateNormilize.Value] = FastPlayRateNormalise;
             mShortcutKeys[keyboardShortcuts.ContentView_FastPlayNormalizeWithElapseBack.Value] = FastPlayNormaliseWithLapseBack;
-            mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionFromCursor.Value] = MarkSelectionFromCursor;
-            mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionToCursor.Value] = MarkSelectionToCursor;
+            mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionFromBeginningToTheCursor.Value] = MarkSelectionFromBeginningToTheCursor;
+            mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionFromCursorToTheEnd.Value] = MarkSelectionFromCursorToTheEnd;
             /*mShortcutKeys[Keys.S] = FastPlayRateStepDown;
             mShortcutKeys[Keys.F] = FastPlayRateStepUp;
             mShortcutKeys[Keys.D] = FastPlayRateNormalise;
@@ -4706,14 +4706,14 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             return mProjectView.TransportBar.FastPlayNormaliseWithLapseBack ();
             }
 
-        private bool MarkSelectionFromCursor ()
+        private bool MarkSelectionFromBeginningToTheCursor ()
             {
-            return mProjectView.TransportBar.MarkSelectionFromCursor ();
+            return mProjectView.TransportBar.MarkSelectionFromBeginningToTheCursor ();
             }
 
-        private bool MarkSelectionToCursor ()
+        private bool MarkSelectionFromCursorToTheEnd ()
             {
-            return mProjectView.TransportBar.MarkSelectionToCursor ();
+            return mProjectView.TransportBar.MarkSelectionFromCursorToTheEnd ();
             }
 
 

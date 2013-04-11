@@ -452,7 +452,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Mark a selection from the beginning of the waveform to the current cursor position.
         /// </summary>
-        public bool MarkSelectionFromCursor()
+        public bool MarkSelectionFromBeginningToTheCursor()
         {
             if ((mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing
                 || mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused) &&
@@ -476,7 +476,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Mark a selection from the current cursor position to the end of the cursor.
         /// </summary>
-        public bool MarkSelectionToCursor()
+        public bool MarkSelectionFromCursorToTheEnd()
         {
             if ((mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing
                 || mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused) &&
