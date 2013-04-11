@@ -1701,11 +1701,11 @@ Error text: {1}</value>
   <data name="KeyS_MarkSelectionEndTime" xml:space="preserve">
     <value>Mark selection end time</value>
   </data>
-  <data name="KeyS_MarkSelectionFromCursor" xml:space="preserve">
-    <value>Mark selection from cursor</value>
+  <data name="KeyS_MarkSelectionFromBeginningToTheCursor" xml:space="preserve">
+    <value>Mark selection from beginning to the cursor</value>
   </data>
-  <data name="KeyS_MarkSelectionToCursor" xml:space="preserve">
-    <value>Mark selection to cursor</value>
+  <data name="KeyS_MarkSelectionFromCursorToTheEnd" xml:space="preserve">
+    <value>Mark selection from cursor to the end</value>
   </data>
   <data name="KeyS_MoveToNextViewClockwise" xml:space="preserve">
     <value>Move to next view clockwise</value>

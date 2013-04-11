@@ -52,8 +52,8 @@ namespace Obi
         public KeyboardShortcut ContentView_FastPlayStepUp = new KeyboardShortcut( Keys.F, "KeyS_FastPlayStepUp");
         public KeyboardShortcut ContentView_FastPlayRateNormilize = new KeyboardShortcut(Keys.D, "KeyS_FastPlayRateNormilize");
         public KeyboardShortcut ContentView_FastPlayNormalizeWithElapseBack = new KeyboardShortcut(Keys.E, "KeyS_FastPlayNormalizeWithElapseBack");
-        public KeyboardShortcut ContentView_MarkSelectionFromCursor = new KeyboardShortcut(Keys.Shift | Keys.OemOpenBrackets, "KeyS_MarkSelectionFromCursor");
-        public KeyboardShortcut ContentView_MarkSelectionToCursor = new KeyboardShortcut(Keys.Shift | Keys.OemCloseBrackets, "KeyS_MarkSelectionToCursor");
+        public KeyboardShortcut ContentView_MarkSelectionFromBeginningToTheCursor = new KeyboardShortcut(Keys.Shift | Keys.Home, "KeyS_MarkSelectionFromBeginningToTheCursor");
+        public KeyboardShortcut ContentView_MarkSelectionFromCursorToTheEnd = new KeyboardShortcut(Keys.Shift | Keys.End, "KeyS_MarkSelectionFromCursorToTheEnd");
 
 
         // Strips navigation
@@ -281,8 +281,8 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayStepUp.Description), ContentView_FastPlayStepUp);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayRateNormilize.Description), ContentView_FastPlayRateNormilize);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayNormalizeWithElapseBack.Description), ContentView_FastPlayNormalizeWithElapseBack);
-            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_MarkSelectionFromCursor.Description), ContentView_MarkSelectionFromCursor);
-            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_MarkSelectionToCursor.Description), ContentView_MarkSelectionToCursor);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_MarkSelectionFromBeginningToTheCursor.Description), ContentView_MarkSelectionFromBeginningToTheCursor);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_MarkSelectionFromCursorToTheEnd.Description), ContentView_MarkSelectionFromCursorToTheEnd);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectPrecedingPhrase.Description), ContentView_SelectPrecedingPhrase);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectFollowingPhrase.Description), ContentView_SelectFollowingPhrase);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectLastPhraseInStrip.Description), ContentView_SelectLastPhraseInStrip);
