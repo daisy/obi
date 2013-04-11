@@ -1999,6 +1999,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hard reset preferences.
+        /// </summary>
+        internal static string HardReset_Caption {
+            get {
+                return ResourceManager.GetString("HardReset_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please confirm again..
+        /// </summary>
+        internal static string HardResetSettings_ConfirmAgain {
+            get {
+                return ResourceManager.GetString("HardResetSettings_ConfirmAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This operation will hard reset all the preferences including keyboard shortcuts. Do you want to continue?.
+        /// </summary>
+        internal static string HardResetSettings_Question {
+            get {
+                return ResourceManager.GetString("HardResetSettings_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to help_en.html.
         /// </summary>
         internal static string help_file_name {
@@ -2330,6 +2357,15 @@ namespace Obi {
         internal static string KeyS_FocusOnTransportBarTimeDisplay {
             get {
                 return ResourceManager.GetString("KeyS_FocusOnTransportBarTimeDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hard reset all settings.
+        /// </summary>
+        internal static string KeyS_HardResetAllSettings {
+            get {
+                return ResourceManager.GetString("KeyS_HardResetAllSettings", resourceCulture);
             }
         }
         
@@ -5496,6 +5532,15 @@ namespace Obi {
         internal static string String1 {
             get {
                 return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hard reset all preferences.
+        /// </summary>
+        internal static string String2 {
+            get {
+                return ResourceManager.GetString("String2", resourceCulture);
             }
         }
         
