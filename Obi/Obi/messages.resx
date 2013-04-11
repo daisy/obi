@@ -2274,6 +2274,9 @@ Error text: {1}</value>
   <data name="Project_SaveProjectWhenRecordingEnds" xml:space="preserve">
     <value>Save project when recording ends</value>
   </data>
+  <data name="Project_CheckForUpdates" xml:space="preserve">
+    <value>Check for Updates</value>
+  </data>
   <data name="DeleteUnused_NoUnusedPhraseFoundToDelete" xml:space="preserve">
     <value>No unused phrase found to delete.</value>
   </data>

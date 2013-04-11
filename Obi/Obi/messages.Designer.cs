@@ -4372,6 +4372,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for Updates.
+        /// </summary>
+        internal static string Project_CheckForUpdates {
+            get {
+                return ResourceManager.GetString("Project_CheckForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not create lock file for project at &quot;{0}&quot;: {1}.
         /// </summary>
         internal static string project_lock_error {
