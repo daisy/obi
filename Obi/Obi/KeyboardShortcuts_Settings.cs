@@ -19,7 +19,7 @@ namespace Obi
     [Serializable()]
     public class KeyboardShortcuts_Settings
     {
-        // follow follow steps to add new content view / project view keyboard shortcut
+        // follow following steps to add new content view / project view keyboard shortcut
         // 1. Create a member variable of the shortcut as done below
         // 2. Add it to the descriptions dictionnary
         // 3. Add the localizer message with the description of keyboard shortcut object as the key
@@ -94,6 +94,7 @@ namespace Obi
         public KeyboardShortcut ProjectView_PlayPauseUsingAudioCursor_Default = new KeyboardShortcut(Keys.Space, "KeyS_PlayPauseUsingAudioCursor_Default");
         public KeyboardShortcut ProjectView_ShowPropertiesOfSelectedNode = new KeyboardShortcut(Keys.Alt | Keys.Enter, "KeyS_ShowPropertiesOfSelectedNode");
         public KeyboardShortcut ProjectView_FocusOnTransportBarTimeDisplay = new KeyboardShortcut(Keys.F8, "KeyS_FocusOnTransportBarTimeDisplay");
+        public KeyboardShortcut ProjectView_HardResetAllSettings = new KeyboardShortcut(Keys.Alt | Keys.Control | Keys.F10, "KeyS_HardResetAllSettings");
 
         public KeyboardShortcut[] MenuKeyboardShortCutsList;
 
@@ -311,6 +312,7 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_PlayPauseUsingAudioCursor_Default.Description), ProjectView_PlayPauseUsingAudioCursor_Default);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_ShowPropertiesOfSelectedNode.Description), ProjectView_ShowPropertiesOfSelectedNode);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_FocusOnTransportBarTimeDisplay.Description), ProjectView_FocusOnTransportBarTimeDisplay);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_HardResetAllSettings.Description), ProjectView_HardResetAllSettings);
         }
     }
 

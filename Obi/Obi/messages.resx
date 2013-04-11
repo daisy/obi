@@ -2299,6 +2299,12 @@ Error text: {1}</value>
     <value>Please confirm again.</value>
   </data>
   <data name="HardResetSettings_Question" xml:space="preserve">
-    <value>This operation will hard reset the preferences. Do you want to continue?</value>
+    <value>This operation will hard reset all the preferences including keyboard shortcuts. Do you want to continue?</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>Hard reset all preferences</value>
+  </data>
+  <data name="KeyS_HardResetAllSettings" xml:space="preserve">
+    <value>Hard reset all settings</value>
   </data>
 </root>
