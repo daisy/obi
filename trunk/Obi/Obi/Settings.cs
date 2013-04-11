@@ -219,5 +219,18 @@ namespace Obi
             soap.Serialize(stream, this);
             stream.Close();
         }
+
+
+        public void ResetSettingsFile()
+        {
+            IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
+            IsolatedStorageFileStream stream =
+                new IsolatedStorageFileStream(SETTINGS_FILE_NAME, FileMode.Create, FileAccess.Write, file);
+            InitializeDefaultSettings(this);
+            SoapFormatter soap = new SoapFormatter();
+            soap.Serialize(stream, this);
+            stream.Close();
+        }
+
     }
 }

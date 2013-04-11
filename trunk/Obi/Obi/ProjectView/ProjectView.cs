@@ -3222,6 +3222,7 @@ for (int j = 0;
             mShortcutKeys[keyboardShortcuts.ProjectView_PlayPauseUsingSelection.Value] = delegate() { return TogglePlayPause(UseSelection); };
             mShortcutKeys[keyboardShortcuts.ProjectView_ShowPropertiesOfSelectedNode.Value] = delegate() { return ShowNodePropertiesDialog(); };
             mShortcutKeys[keyboardShortcuts.ProjectView_ToggleBetweenContentViewAndTOCView.Value] = delegate() { return ToggleFocusBTWTOCViewAndContentsView(); };
+            mShortcutKeys[Keys.Alt|Keys.Control|Keys.F10] = delegate() { return SettingsFileHardReset(); };
 
           /*  mShortcutKeys[Keys.Control | Keys.Tab] = delegate () { return SelectViewsInCycle ( true ); };
             mShortcutKeys[Keys.Control | Keys.Shift | Keys.Tab] = delegate () { return SelectViewsInCycle ( false ); };
@@ -3422,6 +3423,28 @@ for (int j = 0;
             return -1;
             }
 
+        private bool SettingsFileHardReset()
+        {
+            if (MessageBox.Show(Localizer.Message("HardResetSettings_Question"), Localizer.Message("HardReset_Caption"),
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                if (MessageBox.Show( Localizer.Message("HardResetSettings_ConfirmAgain"), Localizer.Message("HardReset_Caption"), 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        ObiForm.Settings.ResetSettingsFile();
+                        MessageBox.Show("Operation successful. Please restart Obi to load the default settings");
+                        return true;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
+            return false;
+        }
 
         private static readonly bool UseSelection = true;
         private static readonly bool UseAudioCursor = false;

@@ -2292,4 +2292,13 @@ Error text: {1}</value>
   <data name="CheckUpdate_UpdateProcessActive" xml:space="preserve">
     <value>Update checking process is already active.</value>
   </data>
+  <data name="HardReset_Caption" xml:space="preserve">
+    <value>Hard reset preferences</value>
+  </data>
+  <data name="HardResetSettings_ConfirmAgain" xml:space="preserve">
+    <value>Please confirm again.</value>
+  </data>
+  <data name="HardResetSettings_Question" xml:space="preserve">
+    <value>This operation will hard reset the preferences. Do you want to continue?</value>
+  </data>
 </root>
