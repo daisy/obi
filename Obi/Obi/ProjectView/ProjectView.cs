@@ -4743,6 +4743,7 @@ public bool ShowOnlySelectedSection
         /// </summary>
         public void ReplacePhrasesWithImproperAudioWithEmptyPhrases(ObiNode node)
         {
+            if (mPresentation == null) return;
             List<EmptyNode> phrasesToReplace = new List<EmptyNode>();
             int totalPhrasesCount = 0;
             node.AcceptDepthFirst(
@@ -4752,9 +4753,8 @@ public bool ShowOnlySelectedSection
                                 {
                                     totalPhrasesCount++;
                                     PhraseNode phrase = (PhraseNode)n;
-                                    if (phrase.Audio == null || phrase.Audio.Duration == urakawa.media.timing.Time.Zero
-                                        || System.IO.File.Exists (((urakawa.data.FileDataProvider) phrase.Audio.AudioMediaData.DataProvider).DataFileFullPath) == false)
-                                    {
+                                    if (phrase.Audio == null || phrase.Audio.Duration.AsTimeSpan.TotalMilliseconds < 10)
+                                    {   
                                         phrasesToReplace.Add(phrase);
                                     }
                                 }
