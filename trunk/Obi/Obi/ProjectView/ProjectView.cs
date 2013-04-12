@@ -4737,6 +4737,75 @@ public bool ShowOnlySelectedSection
             }
         }
 
+        /// <summary>
+        /// <Find phrases with negligible audio or with corrupt data providers and replace them with empty phrases
+        /// </summary>
+        public void ReplacePhrasesWithImproperAudioWithEmptyPhrases(ObiNode node)
+        {
+            List<EmptyNode> phrasesToReplace = new List<EmptyNode>();
+            int totalPhrasesCount = 0;
+            node.AcceptDepthFirst(
+                            delegate(urakawa.core.TreeNode n)
+                            {
+                                if (n is PhraseNode)
+                                {
+                                    totalPhrasesCount++;
+                                    PhraseNode phrase = (PhraseNode)n;
+                                    if (phrase.Audio == null || phrase.Audio.Duration == urakawa.media.timing.Time.Zero) 
+                                    {
+                                        phrasesToReplace.Add(phrase);
+                                    }
+                                }
+                                return true;
+                            }, 
+                            delegate(urakawa.core.TreeNode n) { }
+                        );
+
+            if (phrasesToReplace.Count > 0
+                && MessageBox.Show(string.Format(Localizer.Message("ReplaceCorruptPhrasesWithEmptyNode_Question"), totalPhrasesCount, phrasesToReplace.Count),
+                Localizer.Message("Caption_Warning"),
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                CompositeCommand replacePhrasesCommand = mPresentation.CreateCompositeCommand(Localizer.Message("ReplacePhrasesWithEmptyNode"));
+                for (int i = 0; i < phrasesToReplace.Count; i++)
+                {
+                    EmptyNode empty = mPresentation.TreeNodeFactory.Create<EmptyNode>();
+                    empty.CopyAttributes(phrasesToReplace[i]);
+                    Commands.Node.Delete deleteCmd = new Obi.Commands.Node.Delete(this, phrasesToReplace[i], false);
+                    replacePhrasesCommand.ChildCommands.Insert(replacePhrasesCommand.ChildCommands.Count, deleteCmd);
+                    Commands.Node.AddNode add = new Obi.Commands.Node.AddNode(this, empty, phrasesToReplace[i].ParentAs<SectionNode>(), phrasesToReplace[i].Index, false);
+                    replacePhrasesCommand.ChildCommands.Insert(replacePhrasesCommand.ChildCommands.Count, add);
+                    Commands.Node.ToggleNodeTODO todoMarkCmd = new Obi.Commands.Node.ToggleNodeTODO(this, empty);
+                    todoMarkCmd.UpdateSelection = false;
+                    replacePhrasesCommand.ChildCommands.Insert(replacePhrasesCommand.ChildCommands.Count, todoMarkCmd);
+                }
+
+                //execute the command
+                ExecuteReplacePhrasesCommandWithCallBack(replacePhrasesCommand);
+            }    
+        }
+
+        private delegate void ReplacePhrasesCommandDelegate(CompositeCommand cmd);
+        private void ExecuteReplacePhrasesCommandWithCallBack(CompositeCommand cmd)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new ReplacePhrasesCommandDelegate(ExecuteReplacePhrasesCommandWithCallBack), cmd);
+            }
+            else
+            {
+                try
+                {
+                    mPresentation.Do(cmd);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            
+        }
+
         public void WriteToLogFile(string msg)
         {
             try
