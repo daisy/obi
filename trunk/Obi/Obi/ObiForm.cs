@@ -1833,6 +1833,7 @@ namespace Obi
                 mSkippableClearRoleFromNoteToolStripMenuItem.Enabled = mProjectView.CanClearSkippableRole;
                 UpdateAudioSelectionBlockMenuItems();
                 settingsFromSilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
+                mCheckForPhrasesWithImproperAudioMenuItem.Enabled = mProjectView.CanReplacePhrasesWithimproperAudioWithEmptyNodes;
             }
 
             private void UpdateAudioSelectionBlockMenuItems()
