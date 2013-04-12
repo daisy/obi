@@ -1275,7 +1275,7 @@ namespace Obi
                 UpdateKeyboardFocusForSelection();
                 if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
                 
-                if (mSettings.Project_CheckForUpdates) CheckForNewRelease(true);
+                if (mSettings.Project_CheckForUpdates) CheckForNewRelease(true);                
             }
 
 
@@ -4635,6 +4635,11 @@ namespace Obi
             private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 CheckForNewRelease(false);
+            }
+
+            private void mCheckForPhrasesWithImproperAudioMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.ReplaceAudioOfSelectedNode();
             }
 
         }
