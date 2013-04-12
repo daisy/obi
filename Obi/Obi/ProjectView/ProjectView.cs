@@ -4752,7 +4752,8 @@ public bool ShowOnlySelectedSection
                                 {
                                     totalPhrasesCount++;
                                     PhraseNode phrase = (PhraseNode)n;
-                                    if (phrase.Audio == null || phrase.Audio.Duration == urakawa.media.timing.Time.Zero) 
+                                    if (phrase.Audio == null || phrase.Audio.Duration == urakawa.media.timing.Time.Zero
+                                        || System.IO.File.Exists (((urakawa.data.FileDataProvider) phrase.Audio.AudioMediaData.DataProvider).DataFileFullPath) == false)
                                     {
                                         phrasesToReplace.Add(phrase);
                                     }
