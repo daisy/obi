@@ -151,6 +151,7 @@ namespace Obi
             this.mPreviousTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_GoToPageToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.m_GoToCollectSpecialPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCheckForPhrasesWithImproperAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteFollowingPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -201,11 +202,11 @@ namespace Obi
             this.mHelp_ContentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ReportBugMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -780,6 +781,7 @@ namespace Obi
             this.mPhraseDetectionToolStripMenuItem,
             this.mPhrases_AudioSelectionMenuItem,
             this.mGoToToolStripMenuItem,
+            this.mCheckForPhrasesWithImproperAudioMenuItem,
             this.mDeleteFollowingPhrasesToolStripMenuItem});
             this.mPhrasesToolStripMenuItem.Name = "mPhrasesToolStripMenuItem";
             resources.ApplyResources(this.mPhrasesToolStripMenuItem, "mPhrasesToolStripMenuItem");
@@ -1077,6 +1079,12 @@ namespace Obi
             resources.ApplyResources(this.m_GoToCollectSpecialPhrasesToolStripMenuItem, "m_GoToCollectSpecialPhrasesToolStripMenuItem");
             this.m_GoToCollectSpecialPhrasesToolStripMenuItem.Name = "m_GoToCollectSpecialPhrasesToolStripMenuItem";
             this.m_GoToCollectSpecialPhrasesToolStripMenuItem.Click += new System.EventHandler(this.m_GoToCollectSpecialPhrasesToolStripMenuItem_Click);
+            // 
+            // mCheckForPhrasesWithImproperAudioMenuItem
+            // 
+            this.mCheckForPhrasesWithImproperAudioMenuItem.Name = "mCheckForPhrasesWithImproperAudioMenuItem";
+            resources.ApplyResources(this.mCheckForPhrasesWithImproperAudioMenuItem, "mCheckForPhrasesWithImproperAudioMenuItem");
+            this.mCheckForPhrasesWithImproperAudioMenuItem.Click += new System.EventHandler(this.mCheckForPhrasesWithImproperAudioMenuItem_Click);
             // 
             // mDeleteFollowingPhrasesToolStripMenuItem
             // 
@@ -1428,6 +1436,12 @@ namespace Obi
             resources.ApplyResources(this.aboutObiToolStripMenuItem, "aboutObiToolStripMenuItem");
             this.aboutObiToolStripMenuItem.Click += new System.EventHandler(this.mAboutObiToolStripMenuItem_Click);
             // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.checkForUpdatesToolStripMenuItem, "checkForUpdatesToolStripMenuItem");
+            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
+            // 
             // mStatusStrip
             // 
             this.mStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1463,12 +1477,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // checkForUpdatesToolStripMenuItem
-            // 
-            resources.ApplyResources(this.checkForUpdatesToolStripMenuItem, "checkForUpdatesToolStripMenuItem");
-            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1674,6 +1682,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem allEmptyPagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsFromSilencePhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mCheckForPhrasesWithImproperAudioMenuItem;
     }
 }
 
