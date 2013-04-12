@@ -4640,7 +4640,7 @@ namespace Obi
 
             private void mCheckForPhrasesWithImproperAudioMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.ReplaceAudioOfSelectedNode();
+                mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode)mProjectView.Presentation.RootNode);
             }
 
         }
