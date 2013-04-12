@@ -2964,7 +2964,7 @@ namespace Obi
                                                                                          {
 
                                                                                              mSession.Open(path);
-
+                                                                                             if (mSession.ErrorsInOpeningProject) mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode) mProjectView.Presentation.RootNode);
                                                                                          });
                 progress.ShowDialog();
                 if (progress.Exception != null)

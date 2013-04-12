@@ -2307,4 +2307,10 @@ Error text: {1}</value>
   <data name="KeyS_HardResetAllSettings" xml:space="preserve">
     <value>Hard reset all settings</value>
   </data>
+  <data name="ReplaceCorruptPhrasesWithEmptyNode_Question" xml:space="preserve">
+    <value>The total number of phrases are {0}, out of which phrases with negligible audio or missing audio references are {1}. It is recommended to replace these phrases with empty phrases with to do marks. Will you like to continue?</value>
+  </data>
+  <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
+    <value>Replace phrases with improper audio with empty phrases</value>
+  </data>
 </root>

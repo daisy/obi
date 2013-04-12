@@ -4930,6 +4930,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The total number of phrases are {0}, out of which phrases with negligible audio or missing audio references are {1}. It is recommended to replace these phrases with empty phrases with to do marks. Will you like to continue?.
+        /// </summary>
+        internal static string ReplaceCorruptPhrasesWithEmptyNode_Question {
+            get {
+                return ResourceManager.GetString("ReplaceCorruptPhrasesWithEmptyNode_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace phrases with improper audio with empty phrases.
+        /// </summary>
+        internal static string ReplacePhrasesWithEmptyNode {
+            get {
+                return ResourceManager.GetString("ReplacePhrasesWithEmptyNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error deleting file {0}. ({1}).
         /// </summary>
         internal static string report_delete_error {
