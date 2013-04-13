@@ -307,6 +307,12 @@
     <Compile Include="Dialogs\SpecialPhraseList.Designer.cs">
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\UserRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UserRegistration.Designer.cs">
+      <DependentUpon>UserRegistration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\WelcomeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -971,6 +977,10 @@
     <EmbeddedResource Include="Dialogs\SpecialPhraseList.resx">
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UserRegistration.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UserRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\WelcomeDialog.fr.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
