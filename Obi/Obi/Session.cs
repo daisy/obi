@@ -27,7 +27,7 @@ namespace Obi
         public event EventHandler ProjectCreated;               // a new project was created
         public event EventHandler ProjectOpened;                // a project was opened
         public event EventHandler ProjectSaved;                 // a project was saved
-        List<string> listOfErrorMessages = new List<string>();
+        List<string> m_ListOfErrorMessages = new List<string>();
 
         /// <summary>
         /// Create a new session for Obi.
@@ -280,6 +280,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
         public void Open(string path)
         {
             m_ErrorsInOpeningProject = false;
+            m_ListOfErrorMessages.Clear();
             mProject = new urakawa.Project();
             //sdk2
             //mProject.setDataModelFactory ( mDataModelFactory );
@@ -312,10 +313,10 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             SetupBackupFilesForNewSession(path);
 
             if (ProjectOpened != null) ProjectOpened(this, null);
-            if (listOfErrorMessages.Count > 0)
+            if (m_ListOfErrorMessages.Count > 0)
             {
                 m_ErrorsInOpeningProject = true;
-                Dialogs.ReportDialog reportDialog = new Obi.Dialogs.ReportDialog(Localizer.Message("Warning"), Localizer.Message("Error_Message"), listOfErrorMessages);
+                Dialogs.ReportDialog reportDialog = new Obi.Dialogs.ReportDialog(Localizer.Message("Warning"), Localizer.Message("Error_Message"), m_ListOfErrorMessages);
                 reportDialog.ShowDialog();
             }
             ShouldDisableDiskSpaceCheck();
@@ -323,7 +324,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
 
         void OnDataIsMissing(object sender, urakawa.events.media.data.DataIsMissingEventArgs e)
         {
-            listOfErrorMessages.Add(e.Exception.Message);
+            m_ListOfErrorMessages.Add(e.Exception.Message);
             //Console.WriteLine(e.Exception.Message);
             //MessageBox.Show(Localizer.Message("OpenError_UseCleanUp") + "\n" + e.Exception.Message, Localizer.Message("open_project_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
