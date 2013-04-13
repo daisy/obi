@@ -3467,7 +3467,7 @@ namespace Obi
                     mProjectView.SelectionChanged -= new EventHandler(ProjectView_SelectionChanged);
                     mProjectView.BlocksVisibilityChanged -= new EventHandler(ProjectView_BlocksVisibilityChanged);
                         //@singleSection: commented
-                    mProjectView.DeleteLogFile();
+                    mProjectView.RenameLogFileAfterSession();
                     Application.Exit();
 
                 }
