@@ -58,7 +58,7 @@ namespace Obi.Dialogs
             {
                 try
                 {
-                    string releaseInfoContents = GetReleaseInfoFileContentsFromLocalFileForTesting();
+                    string releaseInfoContents = GetReleaseInfoFileContents();
                     if (string.IsNullOrEmpty(releaseInfoContents))
                     {
                         m_IsNewVersionAvailable = false;
