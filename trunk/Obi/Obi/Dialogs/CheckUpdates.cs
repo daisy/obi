@@ -76,6 +76,7 @@ namespace Obi.Dialogs
                 }
                 catch (System.Exception ex)
                 {
+                    ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
                     Console.WriteLine(ex.ToString());
                 }
             });
@@ -213,6 +214,7 @@ namespace Obi.Dialogs
             }
             catch (System.Exception ex)
             {
+                ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
                 Console.WriteLine(ex.ToString());
             }
         }

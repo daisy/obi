@@ -30,8 +30,8 @@ namespace Obi.ProjectView
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
-        public readonly string m_LogFilePath;
-        public readonly string m_LogFilePathPrev;
+        public  static string m_LogFilePath;
+        public static string m_LogFilePathPrev;
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
@@ -4816,6 +4816,11 @@ public bool ShowOnlySelectedSection
         }
 
         public void WriteToLogFile(string msg)
+        {
+            WriteToLogFile_Static(msg);
+        }
+
+        public static void WriteToLogFile_Static (string msg)
         {
             try
             {
