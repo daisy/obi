@@ -2313,4 +2313,7 @@ Error text: {1}</value>
   <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
     <value>Replace phrases with improper audio with empty phrases</value>
   </data>
+  <data name="ReplaceCorruptPhrasesWithEmptyNode_NothingFound" xml:space="preserve">
+    <value>No phrase found with corrupt audio.</value>
+  </data>
 </root>

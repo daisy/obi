@@ -4930,6 +4930,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No phrase found with corrupt audio..
+        /// </summary>
+        internal static string ReplaceCorruptPhrasesWithEmptyNode_NothingFound {
+            get {
+                return ResourceManager.GetString("ReplaceCorruptPhrasesWithEmptyNode_NothingFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The total number of phrases are {0}, out of which phrases with negligible audio or missing audio references are {1}. It is recommended to replace these phrases with empty phrases with to do marks. Will you like to continue?.
         /// </summary>
         internal static string ReplaceCorruptPhrasesWithEmptyNode_Question {
