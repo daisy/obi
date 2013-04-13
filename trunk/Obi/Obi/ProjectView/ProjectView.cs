@@ -4754,12 +4754,12 @@ public bool ShowOnlySelectedSection
                                     totalPhrasesCount++;
                                     PhraseNode phrase = (PhraseNode)n;
                                     if (phrase.Audio == null || phrase.Audio.Duration.AsTimeSpan.TotalMilliseconds < 10)
-                                    {   
+                                    {
                                         phrasesToReplace.Add(phrase);
                                     }
                                 }
                                 return true;
-                            }, 
+                            },
                             delegate(urakawa.core.TreeNode n) { }
                         );
 
@@ -4784,7 +4784,11 @@ public bool ShowOnlySelectedSection
 
                 //execute the command
                 ExecuteReplacePhrasesCommandWithCallBack(replacePhrasesCommand);
-            }    
+            }
+            else if (phrasesToReplace.Count == 0)
+            {
+                MessageBox.Show(Localizer.Message("ReplaceCorruptPhrasesWithEmptyNode_NothingFound"));
+            }
         }
 
         private delegate void ReplacePhrasesCommandDelegate(CompositeCommand cmd);
