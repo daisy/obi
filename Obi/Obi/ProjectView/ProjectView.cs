@@ -31,7 +31,8 @@ namespace Obi.ProjectView
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
         public readonly string m_LogFilePath;
-                
+        public readonly string m_LogFilePathPrev;
+
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
@@ -63,6 +64,7 @@ namespace Obi.ProjectView
             MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
             m_DisableSectionSelection = false;
             m_LogFilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ObiSession.log");
+            m_LogFilePathPrev= System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ObiSessionPrev.log");
             VerifyLogFileExistenceWhileStartup();
             helpProvider1 = new HelpProvider();
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
@@ -4806,6 +4808,7 @@ public bool ShowOnlySelectedSection
                 }
                 catch (System.Exception ex)
                 {
+                    this.WriteToLogFile(ex.ToString());
                     MessageBox.Show(ex.ToString());
                 }
             }
@@ -4834,14 +4837,19 @@ public bool ShowOnlySelectedSection
             }
         }
 
-        public void DeleteLogFile()
+        public void RenameLogFileAfterSession()
         {
             try
             {
                 if (!string.IsNullOrEmpty(m_LogFilePath)
                     && System.IO.File.Exists(m_LogFilePath))
                 {
-                    System.IO.File.Delete(m_LogFilePath);
+                    // first delete previous log file
+                    if (!string.IsNullOrEmpty(m_LogFilePathPrev) && System.IO.File.Exists(m_LogFilePathPrev))
+                    {
+                        System.IO.File.Delete(m_LogFilePathPrev);
+                    }
+                    System.IO.File.Move(m_LogFilePath, m_LogFilePathPrev);
                 }
             }
             catch (System.Exception ex)
