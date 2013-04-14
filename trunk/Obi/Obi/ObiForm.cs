@@ -1275,7 +1275,8 @@ namespace Obi
                 UpdateKeyboardFocusForSelection();
                 if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
                 
-                if (mSettings.Project_CheckForUpdates) CheckForNewRelease(true);                
+                if (mSettings.Project_CheckForUpdates) CheckForNewRelease(true);
+                UploadUsersInfo();
             }
 
 
@@ -1307,6 +1308,18 @@ namespace Obi
                 //Console.WriteLine("stop watch performance counter: " + stopWatch.ElapsedMilliseconds);
             }
 
+            private void UploadUsersInfo()
+            {   
+                if (mSettings.UsersInfoToUpload != Dialogs.UserRegistration.Registered  && mSettings.UploadAttemptsCount <= Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
+                {
+                    if (string.IsNullOrEmpty(mSettings.UsersInfoToUpload) || mSettings.UsersInfoToUpload == Dialogs.UserRegistration.NoInfo )
+                    {
+                        Dialogs.UserRegistration registrationDialog = new UserRegistration(mSettings);
+                        registrationDialog.ShowDialog();
+                    }
+                    if (mSettings.UsersInfoToUpload != Dialogs.UserRegistration.NoInfo) Dialogs.UserRegistration.UploadUserInformation(mSettings.UsersInfoToUpload);
+                }
+            }
 
 
 
