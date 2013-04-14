@@ -1317,7 +1317,10 @@ namespace Obi
                         Dialogs.UserRegistration registrationDialog = new UserRegistration(mSettings);
                         registrationDialog.ShowDialog();
                     }
-                    if (mSettings.UsersInfoToUpload != Dialogs.UserRegistration.NoInfo) Dialogs.UserRegistration.UploadUserInformation(mSettings.UsersInfoToUpload);
+                    if (!string.IsNullOrEmpty(mSettings.UsersInfoToUpload) &&  mSettings.UsersInfoToUpload != Dialogs.UserRegistration.NoInfo && mSettings.UsersInfoToUpload != Dialogs.UserRegistration.Registered)
+                    {
+                        Dialogs.UserRegistration.UploadUserInformation(mSettings);
+                    }
                 }
             }
 
