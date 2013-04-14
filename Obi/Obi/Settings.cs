@@ -71,6 +71,8 @@ namespace Obi
         public bool AutoSaveTimeIntervalEnabled;// enables / disables auto save after time interval contained in AutoSaveTimeInterval
         public int AutoSaveTimeInterval; // time interval after which project will be auto saved 
         public bool Project_SaveProjectWhenRecordingEnds; //save to main project file when recording stops or pauses
+        public string UsersInfoToUpload; //users info is temporarily stored till it is uploaded or timed out
+        public int UploadAttemptsCount; // number of times user info upload attempted
         public bool Export_EncodeToMP3;
         public int Export_BitRateMP3;
         public bool Export_AppendSectionNameToAudioFile;
@@ -152,6 +154,8 @@ namespace Obi
             settings.AutoSaveTimeIntervalEnabled= true;
             settings.AutoSaveTimeInterval = 300000; // saving time interval in ms ( 5min)
             settings.Project_SaveProjectWhenRecordingEnds = true;
+            settings.UsersInfoToUpload = "NoInfo" ;
+            settings.UploadAttemptsCount = 0 ;
             settings.Export_EncodeToMP3 = false;
             settings.Export_BitRateMP3 = 64;
             settings.Export_AppendSectionNameToAudioFile = false;

@@ -11,12 +11,24 @@ namespace Obi.Dialogs
 {
     public partial class UserRegistration : Form
     {
-        public UserRegistration()
+        public static readonly string NoInfo = "NoInfo";
+        public static readonly string Registered = "Registered";
+        public static readonly int MaxUploadAttemptsAllowed = 10;
+
+        private Settings m_Settings;
+
+        private UserRegistration()
         {
             InitializeComponent();
         }
 
-        public static void UploadUserInformation()
+        public UserRegistration(Settings settings)
+            : this()
+        {
+            m_Settings = settings;
+        }
+
+        public static void UploadUserInformation(string usersInfo)
         {
             //return;
             string dataToUpload = "un:User Name,Email:abc@abc.com,org:Organization Name,ct:Delhi,con:India";
