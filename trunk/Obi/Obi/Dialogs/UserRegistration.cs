@@ -122,17 +122,55 @@ namespace Obi.Dialogs
 
             // the upload data should be in following format
             // "un:User Name,em:abc@abc.com,og:Organization Name,ct:Delhi,cn:India";
-            string userInfo = "un:" + m_txtName.Text
-                + ",em:" + m_txtEmail.Text 
-                + ",og:" + m_txtOrganizationName.Text 
-                + ",ct:" + m_txtCity.Text 
-                + ",cn:" + m_txtCountry.Text 
-                + ",ss:"+ (m_rdbDaisyProduction.Checked?"used":"not-used") ;
-            Console.WriteLine(userInfo);
-            m_Settings.UsersInfoToUpload = userInfo;
-            m_Settings.SaveSettings();
-            //MessageBox.Show(userInfo);
-            Close();
+              if (m_txtName.Text == "" || m_txtEmail.Text == "" || m_txtCountry.Text == "" || m_txtOrganizationName.Text == "" ||
+                m_txtCity.Text == "" || m_txtCountry.Text == "")
+            {
+                string str="Please Enter the Following correctly :";
+                if (m_txtName.Text == "")
+                {
+                    str += "\nName";
+                }
+                if (m_txtEmail.Text == "")
+                {
+                    str += "\nEmail";
+                }
+                if (m_txtOrganizationName.Text == "")
+                {
+                    str += "\nOrganization Name";
+                }
+                if (m_txtCity.Text == "")
+                {
+                    str += "\nCity";
+                }
+                if (m_txtCountry.Text == "")
+                {
+                    str += "\nCountry";
+                }
+                MessageBox.Show(str);
+
+            }
+            else if (!m_txtEmail.Text.Contains("@") || !m_txtEmail.Text.Contains("."))
+            {
+                MessageBox.Show("Incorrect Email Address");
+            }
+              else if ((m_rdbDaisyProduction.Checked == false && m_rdbTryingObi.Checked == false))
+              {
+                  MessageBox.Show("Please indicate us about your usage of Obi by checking any one of the radio button ");
+              }
+              else
+              {
+                  string userInfo = "un:" + m_txtName.Text
+                                    + ",em:" + m_txtEmail.Text
+                                    + ",og:" + m_txtOrganizationName.Text
+                                    + ",ct:" + m_txtCity.Text
+                                    + ",cn:" + m_txtCountry.Text
+                                    + ",ss:" + (m_rdbDaisyProduction.Checked ? "used" : "not-used");
+                  Console.WriteLine(userInfo);
+                  m_Settings.UsersInfoToUpload = userInfo;
+                  m_Settings.SaveSettings();
+                  //MessageBox.Show(userInfo);
+                  Close();
+              }
         }
 
         private void m_btnRemindMeLater_Click(object sender, EventArgs e)
