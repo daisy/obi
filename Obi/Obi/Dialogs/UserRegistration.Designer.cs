@@ -38,11 +38,11 @@ namespace Obi.Dialogs
             this.m_lblOrgName = new System.Windows.Forms.Label();
             this.m_lblCity = new System.Windows.Forms.Label();
             this.m_lblCountry = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.m_txtEmail = new System.Windows.Forms.TextBox();
+            this.m_txtOrganizationName = new System.Windows.Forms.TextBox();
+            this.m_txtCity = new System.Windows.Forms.TextBox();
+            this.m_txtCountry = new System.Windows.Forms.TextBox();
+            this.m_txtName = new System.Windows.Forms.TextBox();
             this.m_lblSelectRadioButton = new System.Windows.Forms.Label();
             this.m_rdbDaisyProduction = new System.Windows.Forms.RadioButton();
             this.m_rdbTryingObi = new System.Windows.Forms.RadioButton();
@@ -76,11 +76,11 @@ namespace Obi.Dialogs
             // 
             // m_grpBoxUserInformation
             // 
-            this.m_grpBoxUserInformation.Controls.Add(this.textBox5);
-            this.m_grpBoxUserInformation.Controls.Add(this.textBox4);
-            this.m_grpBoxUserInformation.Controls.Add(this.textBox3);
-            this.m_grpBoxUserInformation.Controls.Add(this.textBox2);
-            this.m_grpBoxUserInformation.Controls.Add(this.textBox1);
+            this.m_grpBoxUserInformation.Controls.Add(this.m_txtName);
+            this.m_grpBoxUserInformation.Controls.Add(this.m_txtCountry);
+            this.m_grpBoxUserInformation.Controls.Add(this.m_txtCity);
+            this.m_grpBoxUserInformation.Controls.Add(this.m_txtOrganizationName);
+            this.m_grpBoxUserInformation.Controls.Add(this.m_txtEmail);
             this.m_grpBoxUserInformation.Controls.Add(this.m_lblCountry);
             this.m_grpBoxUserInformation.Controls.Add(this.m_lblCity);
             this.m_grpBoxUserInformation.Controls.Add(this.m_lblOrgName);
@@ -158,40 +158,40 @@ namespace Obi.Dialogs
             this.m_lblCountry.TabIndex = 10;
             this.m_lblCountry.Text = "Countr&y :";
             // 
-            // textBox1
+            // m_txtEmail
             // 
-            this.textBox1.Location = new System.Drawing.Point(111, 45);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 20);
-            this.textBox1.TabIndex = 5;
+            this.m_txtEmail.Location = new System.Drawing.Point(111, 45);
+            this.m_txtEmail.Name = "m_txtEmail";
+            this.m_txtEmail.Size = new System.Drawing.Size(200, 20);
+            this.m_txtEmail.TabIndex = 5;
             // 
-            // textBox2
+            // m_txtOrganizationName
             // 
-            this.textBox2.Location = new System.Drawing.Point(111, 82);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 20);
-            this.textBox2.TabIndex = 7;
+            this.m_txtOrganizationName.Location = new System.Drawing.Point(111, 82);
+            this.m_txtOrganizationName.Name = "m_txtOrganizationName";
+            this.m_txtOrganizationName.Size = new System.Drawing.Size(200, 20);
+            this.m_txtOrganizationName.TabIndex = 7;
             // 
-            // textBox3
+            // m_txtCity
             // 
-            this.textBox3.Location = new System.Drawing.Point(111, 118);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(200, 20);
-            this.textBox3.TabIndex = 9;
+            this.m_txtCity.Location = new System.Drawing.Point(111, 118);
+            this.m_txtCity.Name = "m_txtCity";
+            this.m_txtCity.Size = new System.Drawing.Size(200, 20);
+            this.m_txtCity.TabIndex = 9;
             // 
-            // textBox4
+            // m_txtCountry
             // 
-            this.textBox4.Location = new System.Drawing.Point(111, 150);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(200, 20);
-            this.textBox4.TabIndex = 11;
+            this.m_txtCountry.Location = new System.Drawing.Point(111, 150);
+            this.m_txtCountry.Name = "m_txtCountry";
+            this.m_txtCountry.Size = new System.Drawing.Size(200, 20);
+            this.m_txtCountry.TabIndex = 11;
             // 
-            // textBox5
+            // m_txtName
             // 
-            this.textBox5.Location = new System.Drawing.Point(111, 13);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(200, 20);
-            this.textBox5.TabIndex = 3;
+            this.m_txtName.Location = new System.Drawing.Point(111, 13);
+            this.m_txtName.Name = "m_txtName";
+            this.m_txtName.Size = new System.Drawing.Size(200, 20);
+            this.m_txtName.TabIndex = 3;
             // 
             // m_lblSelectRadioButton
             // 
@@ -252,11 +252,11 @@ namespace Obi.Dialogs
         private System.Windows.Forms.GroupBox m_grpBoxUserInformation;
         private System.Windows.Forms.GroupBox m_grpBoxObiUse;
         private System.Windows.Forms.TextBox m_txtBoxObiInformation;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox m_txtName;
+        private System.Windows.Forms.TextBox m_txtCountry;
+        private System.Windows.Forms.TextBox m_txtCity;
+        private System.Windows.Forms.TextBox m_txtOrganizationName;
+        private System.Windows.Forms.TextBox m_txtEmail;
         private System.Windows.Forms.Label m_lblCountry;
         private System.Windows.Forms.Label m_lblCity;
         private System.Windows.Forms.Label m_lblOrgName;
