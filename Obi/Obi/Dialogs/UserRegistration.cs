@@ -123,6 +123,11 @@ namespace Obi.Dialogs
             ///MessageBox.Show(fileName);
         }
 
+        private void m_btnRemindMeLater_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }
