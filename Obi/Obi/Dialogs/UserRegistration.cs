@@ -31,8 +31,7 @@ namespace Obi.Dialogs
 
         public static void UploadUserInformation(Settings settings)
         {
-            // the upload data should be in following format
-            // "un:User Name,em:abc@abc.com,og:Organization Name,ct:Delhi,cn:India";
+            
             
             if (settings == null || m_BackgroundWorker.IsBusy) return;
             m_Settings = settings;
@@ -117,15 +116,29 @@ namespace Obi.Dialogs
 
         private void m_btnOk_Click(object sender, EventArgs e)
         {
-            string fileName = System.DateTime.Now.ToShortDateString() + System.DateTime.Now.ToShortTimeString() + System.DateTime.Now.ToUniversalTime().ToShortTimeString();
-            fileName = fileName.Replace(":", "") + ".txt";
-            fileName = fileName.Replace("/", "");
-            ///MessageBox.Show(fileName);
+            //string fileName = System.DateTime.Now.ToShortDateString() + System.DateTime.Now.ToShortTimeString() + System.DateTime.Now.ToUniversalTime().ToShortTimeString();
+            //fileName = fileName.Replace(":", "") + ".txt";
+            //fileName = fileName.Replace("/", "");
+
+            // the upload data should be in following format
+            // "un:User Name,em:abc@abc.com,og:Organization Name,ct:Delhi,cn:India";
+            string userInfo = "un:" + m_txtName.Text
+                + ",em:" + m_txtEmail.Text 
+                + ",og:" + m_txtOrganizationName.Text 
+                + ",ct:" + m_txtCity.Text 
+                + ",cn:" + m_txtCountry.Text 
+                + ",ss:"+ (m_rdbDaisyProduction.Checked?"used":"not-used") ;
+            Console.WriteLine(userInfo);
+            m_Settings.UsersInfoToUpload = userInfo;
+            m_Settings.SaveSettings();
+            //MessageBox.Show(userInfo);
+            Close();
         }
 
         private void m_btnRemindMeLater_Click(object sender, EventArgs e)
         {
-
+            m_Settings.UploadAttemptsCount++;
+            Close();
         }
 
 
