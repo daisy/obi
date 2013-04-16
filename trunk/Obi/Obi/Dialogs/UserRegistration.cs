@@ -29,36 +29,43 @@ namespace Obi.Dialogs
             m_Settings = settings;
         }
 
+        public static string GenerateFileName ()
+        {
+            string fileName = System.DateTime.Now.ToShortDateString().Replace("/", "").Replace(":", "") + "-"
+                        + System.DateTime.Now.TimeOfDay.Ticks.ToString() + "-"
+                        + System.DateTime.Now.ToUniversalTime().ToShortTimeString().Replace("/", "").Replace(":", "")
+                        +".txt";
+
+            return fileName;
+        }
+
         public static void UploadUserInformation(Settings settings)
         {
-            
-            
+
             if (settings == null || m_BackgroundWorker.IsBusy) return;
             m_Settings = settings;
+            string fileName = GenerateFileName();
+            string uploadPath = Code.UploadCode.UploadDirectoryPath + fileName;
+            string userName = Code.UploadCode.userName;
+            string pass = Code.UploadCode.Code;
+            string dataToUpload = settings.UsersInfoToUpload;
+            bool isUploadSuccessful = false;
 
             m_BackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
             {
-                
-                string dataToUpload = settings.UsersInfoToUpload;
+
                 System.IO.MemoryStream memoryStream = null;
                 System.IO.Stream stream = null;
+
                 try
                 {
-                    string fileName = System.DateTime.Now.ToShortDateString() + System.DateTime.Now.ToShortTimeString() + System.DateTime.Now.ToUniversalTime().ToShortTimeString();
-                    fileName = fileName.Replace(":", "") + ".txt";
-                    fileName = fileName.Replace("/", "");
-
                     byte[] byteArray = Encoding.UTF8.GetBytes(dataToUpload);
                     memoryStream = new System.IO.MemoryStream(byteArray);
 
                     // Create FtpWebRequest object
-                    string uploadPath = "ftp://ftp.drivehq.com/users-info/user1.txt";
                     FtpWebRequest ftpRequest = (System.Net.FtpWebRequest)System.Net.FtpWebRequest.Create(new Uri(uploadPath));
                     // Provide username and password
-                    string userName = "obi-ftp";
-                    string pass = "obi";
                     ftpRequest.Credentials = new System.Net.NetworkCredential(userName, pass);
-
 
                     // after a command is executed, do not keep connection alive 
                     ftpRequest.KeepAlive = false;
@@ -72,7 +79,6 @@ namespace Obi.Dialogs
                     int bufferLength = 2048;
                     byte[] buff = new byte[bufferLength];
 
-
                     stream = ftpRequest.GetRequestStream();
                     // Read the memory stream 2kb at a time and copy to ftpStream
                     int dataLength = memoryStream.Read(buff, 0, bufferLength);
@@ -83,14 +89,13 @@ namespace Obi.Dialogs
                         stream.Write(buff, 0, dataLength);
                         dataLength = memoryStream.Read(buff, 0, bufferLength);
                     }
-                    // if successful then update settings for the same
-                    m_Settings.UsersInfoToUpload = Registered;
-                    m_Settings.SaveSettings();
+                    isUploadSuccessful = true;
                 }
                 catch (System.Exception ex)
                 {
                     m_Settings.UploadAttemptsCount = m_Settings.UploadAttemptsCount++;
-                    MessageBox.Show(ex.ToString());
+                    Console.WriteLine(ex.ToString());
+                    ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
                 }
                 finally
                 {
@@ -109,7 +114,35 @@ namespace Obi.Dialogs
 
             m_BackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
             {
-                MessageBox.Show("done");
+                if (!isUploadSuccessful) return;
+                try
+                {
+                    FtpWebRequest ftpRequest = (System.Net.FtpWebRequest)System.Net.FtpWebRequest.Create(new Uri(uploadPath));
+                    ftpRequest.Credentials = new System.Net.NetworkCredential(userName, pass);
+                    ftpRequest.KeepAlive = false;
+                    ftpRequest.Timeout = 20000;
+                    ftpRequest.Method = WebRequestMethods.Ftp.GetFileSize;
+                    ftpRequest.UseBinary = true;
+
+                    // if successful then update settings for the same
+
+                    if (ftpRequest.GetResponse().ContentLength > 0)
+                    {
+                        m_Settings.UsersInfoToUpload = Registered;
+                        m_Settings.SaveSettings();
+                        //MessageBox.Show("done");
+                    }
+                    else
+                    {
+                        m_Settings.UploadAttemptsCount++;
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    m_Settings.UploadAttemptsCount++;
+                    Console.WriteLine(ex.ToString());
+                    ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
+                }
             });
             m_BackgroundWorker.RunWorkerAsync();
         }
