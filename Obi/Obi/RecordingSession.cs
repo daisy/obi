@@ -353,11 +353,32 @@ namespace Obi
             arrOfLocations = new double[2];
             arrOfLocations[0] = startTime;
             arrOfLocations[1] = endTime;
-            mDeletedTime.Add(arrOfLocations);
+            if (mDeletedTime.Count == 0 || mDeletedTime[mDeletedTime.Count - 1][0] < arrOfLocations[0])
+            {
+                mDeletedTime.Add(arrOfLocations);
+            }
+            else if (mDeletedTime[0][0] > arrOfLocations[0])
+            {
+                mDeletedTime.Insert(0, arrOfLocations);
+            }
+            else
+            {
+                for (int i = mDeletedTime.Count - 1; i > 0; i--)
+                {
+                    if (mDeletedTime[i - 1][0] < arrOfLocations[0] && mDeletedTime[i][0] > arrOfLocations[0])
+                    {
+                        mDeletedTime.Insert(i, arrOfLocations);
+                        break;
+                    }
+                }
+            }
             UpdatePhraseTimeList(startTime, false);
             int phraseIndex = UpdatePhraseTimeList(endTime, false);
-            if (phraseIndex >= 0 && !m_PhraseIndexesToDelete.Contains(phraseIndex)) 
+            if (phraseIndex >= 0 && !m_PhraseIndexesToDelete.Contains(phraseIndex))
+            {
                 m_PhraseIndexesToDelete.Add(phraseIndex);
+                m_PhraseIndexesToDelete.Sort();
+            }
         }
 
         private void ApplyPhraseDetectionOnTheFly(AudioLib.AudioRecorder.PcmDataBufferAvailableEventArgs e)
