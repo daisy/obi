@@ -86,6 +86,7 @@ namespace Obi.ProjectView
         private bool m_ResetCalled = false;
         private bool m_DeletedPartEnclosed = false;
         private int tempXLocation=0;
+        private List<int> m_MouseMoveList=new List<int>(); 
 
 
         public Waveform_Recording()
@@ -1022,6 +1023,7 @@ namespace Obi.ProjectView
 
         private void Waveform_Recording_MouseUp(object sender, MouseEventArgs e)
         {
+            m_MouseMoveList.Clear();
             if (m_MouseButtonDownLoc == 0)
             {
                 listOfSelctedPortion.Clear();
@@ -1193,6 +1195,14 @@ namespace Obi.ProjectView
 
         private void Waveform_Recording_MouseMove(object sender, MouseEventArgs e)
         {
+            if (e.Button != MouseButtons.Left)
+                return;
+            m_MouseMoveList.Add(e.X);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("No of elements in Mouse Move List are {0}",m_MouseMoveList.Count);
+            //Console.WriteLine("m_MouseMove List First Element is :{0}", m_MouseMoveList[0]);
+            //Console.WriteLine("m_MouseMove List End Element is :{0}",m_MouseMoveList[m_MouseMoveList.Count-1]);
             if(m_MouseButtonDownLoc==0)
                 return;
 
@@ -1212,6 +1222,45 @@ namespace Obi.ProjectView
                 m_DeletedPartEnclosed = true;
                 return;
             }
+           // if(m_MouseMoveList[0])
+           
+            foreach (KeyValuePair<int, string> pair in m_MainDictionary)
+            {
+                //Console.WriteLine("Pair key value is :{0}", pair.Key);
+                //Console.WriteLine("m_MouseMove List First Element is :{0}", m_MouseMoveList[0]);
+                //Console.WriteLine("m_MouseMove List End Element is :{0}", m_MouseMoveList[m_MouseMoveList.Count - 1]);
+                if ((pair.Key > m_MouseMoveList[0] && pair.Key < m_MouseMoveList[m_MouseMoveList.Count - 1]) || (pair.Key < m_MouseMoveList[0] && pair.Key > m_MouseMoveList[m_MouseMoveList.Count - 1]))
+                {
+                   if (m_MainDictionary[pair.Key].StartsWith("Ph"))
+                   {
+                       //Console.WriteLine("Best Part is here");
+                       bool markDone = IsPhraseMarkAllowed(ConvertPixelsToTime(pair.Key));
+                       if (markDone == false)
+                       {
+                           m_DeletedPartEnclosed = true;
+                           Console.WriteLine("Deleted Part is reached");
+                           return;
+                       }
+                   }
+                }
+            }
+            //if (m_MainDictionary.ContainsKey(e.X))
+            //{
+            //    if (m_MainDictionary[e.X] != "")
+            //    {
+            //        if (m_MainDictionary[e.X].StartsWith("Ph"))
+            //        {
+            //            double[] temp;
+            //            temp = new double[1];
+            //            temp[0] = e.X;
+            //            Console.WriteLine("Temp value is {0}", temp[0]);
+            //            if (m_RecordingSession.DeletedItemList.Contains(temp))
+            //            {
+
+            //            }
+            //        }
+            //    }
+            //}
             if (e.Button != MouseButtons.Left)
                 return;
             if (!IsSelectionActive)
@@ -1347,9 +1396,13 @@ namespace Obi.ProjectView
 
                 g.DrawLine(m_PenTimeGrid, index, 0+m_TopMargin, index, WaveformHeight+m_TopMargin);
                 //if ((!m_MainDictionary[index].StartsWith("P")) || m_MainDictionary[index].EndsWith("0"))
-
+                //Console.WriteLine();
+                //Console.WriteLine();
+                //Console.WriteLine();
+                //Console.WriteLine("Main Dictionary is {0}",m_MainDictionary[index]);
+              //  Console.WriteLine("While the value is {0}",m_MainDictionary.Values);
                 if (!m_MainDictionary[index].EndsWith("0") || (m_MainDictionary[index].StartsWith("P")))
-                {
+                { 
                     if (m_MainDictionary[index] != "")
                     {
                         g.DrawLine(linePen, index, 0 + m_TopMargin, index, WaveformHeight + m_TopMargin);
