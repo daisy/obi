@@ -1324,7 +1324,7 @@
     <value>279, 22</value>
   </data>
   <data name="mCheckForPhrasesWithImproperAudioMenuItem.Text" xml:space="preserve">
-    <value>Chec&amp;k for phrases with improper audio</value>
+    <value>Chec&amp;k for phrases with corrupted audio</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Delete following phrases</value>

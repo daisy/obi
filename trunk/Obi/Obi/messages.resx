@@ -1990,7 +1990,7 @@ Error text: {1}</value>
     <value>Preview before recording</value>
   </data>
   <data name="AudioTab_RecordDirectlyFromTransportBar" xml:space="preserve">
-    <value>Record directly from transport bar</value>
+    <value>Always record directly from transport bar</value>
   </data>
   <data name="AudioTab_RetainInitialSilence" xml:space="preserve">
     <value>Retain initial silence while phrase detection</value>
@@ -2311,12 +2311,12 @@ Error text: {1}</value>
     <value>The total number of phrases are {0}, out of which phrases with negligible audio or missing audio references are {1}. It is recommended to replace these phrases with empty phrases with to do marks. Will you like to continue?</value>
   </data>
   <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
-    <value>Replace phrases with improper audio with empty phrases</value>
+    <value>Replace phrases with corrupted audio with empty phrases</value>
   </data>
   <data name="ReplaceCorruptPhrasesWithEmptyNode_NothingFound" xml:space="preserve">
     <value>No phrase found with corrupt audio.</value>
   </data>
   <data name="Obi_UserInformationText" xml:space="preserve">
-    <value>Please register yourself as Obi user by providing the following information.Filling up this form is important because it will enable us to provide software updates and will help us know your requirements in a better way.</value>
+    <value>Please register yourself as an Obi user by filling up this simple form. This registration will entitle you to receive latest news and product updates right in your mailbox. Moreover, you will be able to play a crucial role in providing the future direction to the product as it will allow us to understand your requirements in a better way.</value>
   </data>
 </root>

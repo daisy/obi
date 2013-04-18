@@ -111,7 +111,7 @@ namespace Obi.Dialogs
             this.m_txtBoxObiInformation.ReadOnly = true;
             this.m_txtBoxObiInformation.Size = new System.Drawing.Size(317, 66);
             this.m_txtBoxObiInformation.TabIndex = 1;
-            this.m_txtBoxObiInformation.Text = "Obi is a free open source software.";
+            this.m_txtBoxObiInformation.Text = "";
             // 
             // m_lblName
             // 
@@ -210,7 +210,7 @@ namespace Obi.Dialogs
             this.m_rdbDaisyProduction.Size = new System.Drawing.Size(221, 17);
             this.m_rdbDaisyProduction.TabIndex = 13;
             this.m_rdbDaisyProduction.TabStop = true;
-            this.m_rdbDaisyProduction.Text = "I am using Obi for &Daisy Book Production.";
+            this.m_rdbDaisyProduction.Text = "I am already using Obi for producing &DAISY books.";
             this.m_rdbDaisyProduction.UseVisualStyleBackColor = true;
             // 
             // m_rdbTryingObi
@@ -221,7 +221,7 @@ namespace Obi.Dialogs
             this.m_rdbTryingObi.Size = new System.Drawing.Size(255, 17);
             this.m_rdbTryingObi.TabIndex = 14;
             this.m_rdbTryingObi.TabStop = true;
-            this.m_rdbTryingObi.Text = "I am just trying, &testing and play around  with Obi.";
+            this.m_rdbTryingObi.Text = "I am trying and &testing Obi.";
             this.m_rdbTryingObi.UseVisualStyleBackColor = true;
             // 
             // UserRegistration
