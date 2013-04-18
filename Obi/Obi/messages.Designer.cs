@@ -385,7 +385,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Record directly from transport bar.
+        ///   Looks up a localized string similar to Always record directly from transport bar.
         /// </summary>
         internal static string AudioTab_RecordDirectlyFromTransportBar {
             get {
@@ -3787,7 +3787,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please register yourself as Obi user by providing the following information.Filling up this form is important because it will enable us to provide software updates and will help us know your requirements in a better way..
+        ///   Looks up a localized string similar to Please register yourself as an Obi user by filling up this simple form. This registration will entitle you to receive latest news and product updates right in your mailbox. Moreover, you will be able to play a crucial role in providing the future direction to the product as it will allow us to understand your requirements in a better way..
         /// </summary>
         internal static string Obi_UserInformationText {
             get {
@@ -4957,7 +4957,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replace phrases with improper audio with empty phrases.
+        ///   Looks up a localized string similar to Replace phrases with corrupted audio with empty phrases.
         /// </summary>
         internal static string ReplacePhrasesWithEmptyNode {
             get {
