@@ -3787,6 +3787,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please register yourself as Obi user by providing the following information.Filling up this form is important because it will enable us to provide software updates and will help us know your requirements in a better way..
+        /// </summary>
+        internal static string Obi_UserInformationText {
+            get {
+                return ResourceManager.GetString("Obi_UserInformationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://daisy.trac.cvsdude.com/obi.
         /// </summary>
         internal static string Obi_Wiki_Url {

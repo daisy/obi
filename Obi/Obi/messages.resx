@@ -2316,4 +2316,7 @@ Error text: {1}</value>
   <data name="ReplaceCorruptPhrasesWithEmptyNode_NothingFound" xml:space="preserve">
     <value>No phrase found with corrupt audio.</value>
   </data>
+  <data name="Obi_UserInformationText" xml:space="preserve">
+    <value>Please register yourself as Obi user by providing the following information.Filling up this form is important because it will enable us to provide software updates and will help us know your requirements in a better way.</value>
+  </data>
 </root>
