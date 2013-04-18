@@ -21,6 +21,7 @@ namespace Obi.Dialogs
         private UserRegistration()
         {
             InitializeComponent();
+            m_txtBoxObiInformation.Text = Localizer.Message("Obi_UserInformationText");
         }
 
         public UserRegistration(Settings settings)
@@ -203,6 +204,7 @@ namespace Obi.Dialogs
                   m_Settings.SaveSettings();
                   //MessageBox.Show(userInfo);
                   Close();
+                  //return;
               }
         }
 
