@@ -22,6 +22,7 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             m_txtBoxObiInformation.Text = Localizer.Message("Obi_UserInformationText");
+            m_txtBoxObiInformation.Select(0, 0);
         }
 
         public UserRegistration(Settings settings)
