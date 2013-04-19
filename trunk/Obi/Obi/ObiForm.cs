@@ -901,7 +901,12 @@ namespace Obi
             private void CleanProject()
             {
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
-
+                if (!string.IsNullOrEmpty(mSession.Path) && mSession.Path.Length > 240
+                    && MessageBox.Show(Localizer.Message("CleanUp_LongFilePath"), Localizer.Message("Caption_Error"),
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                {
+                    return;
+                }
                 //if (mProjectView.IsWaveformRendering
                 //&& MessageBox.Show(Localizer.Message ("Cleanup_WaveformLoadingWarning"), 
                 //Localizer.Message("Caption_Warning") , 
