@@ -1274,6 +1274,7 @@ namespace Obi
             {
                 if (!m_InputDeviceFound && !m_OutputDevicefound) this.Close();
                 CheckSystemSupportForMemoryOptimization();
+                UploadUsersInfo();
                 if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject, null);
                 if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog();
 
@@ -1281,7 +1282,7 @@ namespace Obi
                 if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
                 
                 if (mSettings.Project_CheckForUpdates) CheckForNewRelease(true);
-                UploadUsersInfo();
+                
             }
 
 
