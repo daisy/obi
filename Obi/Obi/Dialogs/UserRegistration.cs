@@ -156,7 +156,7 @@ namespace Obi.Dialogs
             //fileName = fileName.Replace("/", "");
 
             // the upload data should be in following format
-            // "un:User Name,em:abc@abc.com,og:Organization Name,ct:Delhi,cn:India";
+            // "un:User Name,em:abc@abc.com,og:Organization Name,ct:Delhi,cn:India",vr:Obi version,os:windows version;
               if (m_txtName.Text == "" || m_txtEmail.Text == "" || m_txtCountry.Text == "" || m_txtOrganizationName.Text == "" ||
                 m_txtCity.Text == "" || m_txtCountry.Text == "")
             {
@@ -199,7 +199,10 @@ namespace Obi.Dialogs
                                     + ",og:" + m_txtOrganizationName.Text
                                     + ",ct:" + m_txtCity.Text
                                     + ",cn:" + m_txtCountry.Text
-                                    + ",ss:" + (m_rdbDaisyProduction.Checked ? "used" : "not-used");
+                                    + ",ss:" + (m_rdbDaisyProduction.Checked ? "used" : "not-used")
+                                    + ",vr:" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()
+                                    + ",os:" + System.Environment.OSVersion.ToString();
+                  
                   Console.WriteLine(userInfo);
                   m_Settings.UsersInfoToUpload = userInfo;
                   m_Settings.SaveSettings();
