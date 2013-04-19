@@ -718,6 +718,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The project directory has long file path which may lead to major problems in cleanup causing loss of important data. It is strongly recommended to move the project directory near to the partition before starting clean up. Do you want to continue inspite of the stated warning?.
+        /// </summary>
+        internal static string CleanUp_LongFilePath {
+            get {
+                return ResourceManager.GetString("CleanUp_LongFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading waveform...some Audio file streams may be open. It is strongly recommended to try after some time. Please press No button to wait..
         /// </summary>
         internal static string Cleanup_WaveformLoadingWarning {
