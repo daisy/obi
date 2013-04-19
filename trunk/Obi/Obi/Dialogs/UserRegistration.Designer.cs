@@ -31,21 +31,21 @@ namespace Obi.Dialogs
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnRemindMeLater = new System.Windows.Forms.Button();
             this.m_grpBoxUserInformation = new System.Windows.Forms.GroupBox();
-            this.m_grpBoxObiUse = new System.Windows.Forms.GroupBox();
-            this.m_txtBoxObiInformation = new System.Windows.Forms.TextBox();
-            this.m_lblName = new System.Windows.Forms.Label();
-            this.m_lblEmail = new System.Windows.Forms.Label();
-            this.m_lblOrgName = new System.Windows.Forms.Label();
-            this.m_lblCity = new System.Windows.Forms.Label();
-            this.m_lblCountry = new System.Windows.Forms.Label();
-            this.m_txtEmail = new System.Windows.Forms.TextBox();
-            this.m_txtOrganizationName = new System.Windows.Forms.TextBox();
-            this.m_txtCity = new System.Windows.Forms.TextBox();
-            this.m_txtCountry = new System.Windows.Forms.TextBox();
             this.m_txtName = new System.Windows.Forms.TextBox();
-            this.m_lblSelectRadioButton = new System.Windows.Forms.Label();
-            this.m_rdbDaisyProduction = new System.Windows.Forms.RadioButton();
+            this.m_txtCountry = new System.Windows.Forms.TextBox();
+            this.m_txtCity = new System.Windows.Forms.TextBox();
+            this.m_txtOrganizationName = new System.Windows.Forms.TextBox();
+            this.m_txtEmail = new System.Windows.Forms.TextBox();
+            this.m_lblCountry = new System.Windows.Forms.Label();
+            this.m_lblCity = new System.Windows.Forms.Label();
+            this.m_lblOrgName = new System.Windows.Forms.Label();
+            this.m_lblEmail = new System.Windows.Forms.Label();
+            this.m_lblName = new System.Windows.Forms.Label();
+            this.m_grpBoxObiUse = new System.Windows.Forms.GroupBox();
             this.m_rdbTryingObi = new System.Windows.Forms.RadioButton();
+            this.m_rdbDaisyProduction = new System.Windows.Forms.RadioButton();
+            this.m_lblSelectRadioButton = new System.Windows.Forms.Label();
+            this.m_txtBoxObiInformation = new System.Windows.Forms.TextBox();
             this.m_grpBoxUserInformation.SuspendLayout();
             this.m_grpBoxObiUse.SuspendLayout();
             this.SuspendLayout();
@@ -92,6 +92,86 @@ namespace Obi.Dialogs
             this.m_grpBoxUserInformation.TabIndex = 2;
             this.m_grpBoxUserInformation.TabStop = false;
             // 
+            // m_txtName
+            // 
+            this.m_txtName.Location = new System.Drawing.Point(111, 13);
+            this.m_txtName.Name = "m_txtName";
+            this.m_txtName.Size = new System.Drawing.Size(200, 20);
+            this.m_txtName.TabIndex = 3;
+            // 
+            // m_txtCountry
+            // 
+            this.m_txtCountry.Location = new System.Drawing.Point(111, 150);
+            this.m_txtCountry.Name = "m_txtCountry";
+            this.m_txtCountry.Size = new System.Drawing.Size(200, 20);
+            this.m_txtCountry.TabIndex = 11;
+            // 
+            // m_txtCity
+            // 
+            this.m_txtCity.Location = new System.Drawing.Point(111, 118);
+            this.m_txtCity.Name = "m_txtCity";
+            this.m_txtCity.Size = new System.Drawing.Size(200, 20);
+            this.m_txtCity.TabIndex = 9;
+            // 
+            // m_txtOrganizationName
+            // 
+            this.m_txtOrganizationName.Location = new System.Drawing.Point(111, 82);
+            this.m_txtOrganizationName.Name = "m_txtOrganizationName";
+            this.m_txtOrganizationName.Size = new System.Drawing.Size(200, 20);
+            this.m_txtOrganizationName.TabIndex = 7;
+            // 
+            // m_txtEmail
+            // 
+            this.m_txtEmail.Location = new System.Drawing.Point(111, 45);
+            this.m_txtEmail.Name = "m_txtEmail";
+            this.m_txtEmail.Size = new System.Drawing.Size(200, 20);
+            this.m_txtEmail.TabIndex = 5;
+            // 
+            // m_lblCountry
+            // 
+            this.m_lblCountry.AutoSize = true;
+            this.m_lblCountry.Location = new System.Drawing.Point(6, 153);
+            this.m_lblCountry.Name = "m_lblCountry";
+            this.m_lblCountry.Size = new System.Drawing.Size(49, 13);
+            this.m_lblCountry.TabIndex = 10;
+            this.m_lblCountry.Text = "Countr&y :";
+            // 
+            // m_lblCity
+            // 
+            this.m_lblCity.AutoSize = true;
+            this.m_lblCity.Location = new System.Drawing.Point(6, 121);
+            this.m_lblCity.Name = "m_lblCity";
+            this.m_lblCity.Size = new System.Drawing.Size(107, 13);
+            this.m_lblCity.TabIndex = 8;
+            this.m_lblCity.Text = "&City/State/Province :";
+            // 
+            // m_lblOrgName
+            // 
+            this.m_lblOrgName.AutoSize = true;
+            this.m_lblOrgName.Location = new System.Drawing.Point(6, 85);
+            this.m_lblOrgName.Name = "m_lblOrgName";
+            this.m_lblOrgName.Size = new System.Drawing.Size(103, 13);
+            this.m_lblOrgName.TabIndex = 6;
+            this.m_lblOrgName.Text = "&Organization Name :";
+            // 
+            // m_lblEmail
+            // 
+            this.m_lblEmail.AutoSize = true;
+            this.m_lblEmail.Location = new System.Drawing.Point(6, 48);
+            this.m_lblEmail.Name = "m_lblEmail";
+            this.m_lblEmail.Size = new System.Drawing.Size(38, 13);
+            this.m_lblEmail.TabIndex = 4;
+            this.m_lblEmail.Text = "&Email :";
+            // 
+            // m_lblName
+            // 
+            this.m_lblName.AutoSize = true;
+            this.m_lblName.Location = new System.Drawing.Point(6, 16);
+            this.m_lblName.Name = "m_lblName";
+            this.m_lblName.Size = new System.Drawing.Size(38, 13);
+            this.m_lblName.TabIndex = 2;
+            this.m_lblName.Text = "&Name:";
+            // 
             // m_grpBoxObiUse
             // 
             this.m_grpBoxObiUse.Controls.Add(this.m_rdbTryingObi);
@@ -103,95 +183,27 @@ namespace Obi.Dialogs
             this.m_grpBoxObiUse.TabIndex = 3;
             this.m_grpBoxObiUse.TabStop = false;
             // 
-            // m_txtBoxObiInformation
+            // m_rdbTryingObi
             // 
-            this.m_txtBoxObiInformation.Location = new System.Drawing.Point(12, 7);
-            this.m_txtBoxObiInformation.Multiline = true;
-            this.m_txtBoxObiInformation.Name = "m_txtBoxObiInformation";
-            this.m_txtBoxObiInformation.ReadOnly = true;
-            this.m_txtBoxObiInformation.Size = new System.Drawing.Size(317, 66);
-            this.m_txtBoxObiInformation.TabIndex = 1;
-            this.m_txtBoxObiInformation.Text = "";
+            this.m_rdbTryingObi.AutoSize = true;
+            this.m_rdbTryingObi.Location = new System.Drawing.Point(9, 57);
+            this.m_rdbTryingObi.Name = "m_rdbTryingObi";
+            this.m_rdbTryingObi.Size = new System.Drawing.Size(150, 17);
+            this.m_rdbTryingObi.TabIndex = 14;
+            this.m_rdbTryingObi.TabStop = true;
+            this.m_rdbTryingObi.Text = "I am trying and &testing Obi.";
+            this.m_rdbTryingObi.UseVisualStyleBackColor = true;
             // 
-            // m_lblName
+            // m_rdbDaisyProduction
             // 
-            this.m_lblName.AutoSize = true;
-            this.m_lblName.Location = new System.Drawing.Point(6, 16);
-            this.m_lblName.Name = "m_lblName";
-            this.m_lblName.Size = new System.Drawing.Size(38, 13);
-            this.m_lblName.TabIndex = 2;
-            this.m_lblName.Text = "&Name:";
-            // 
-            // m_lblEmail
-            // 
-            this.m_lblEmail.AutoSize = true;
-            this.m_lblEmail.Location = new System.Drawing.Point(6, 48);
-            this.m_lblEmail.Name = "m_lblEmail";
-            this.m_lblEmail.Size = new System.Drawing.Size(38, 13);
-            this.m_lblEmail.TabIndex = 4;
-            this.m_lblEmail.Text = "&Email :";
-            // 
-            // m_lblOrgName
-            // 
-            this.m_lblOrgName.AutoSize = true;
-            this.m_lblOrgName.Location = new System.Drawing.Point(6, 85);
-            this.m_lblOrgName.Name = "m_lblOrgName";
-            this.m_lblOrgName.Size = new System.Drawing.Size(103, 13);
-            this.m_lblOrgName.TabIndex = 6;
-            this.m_lblOrgName.Text = "&Organization Name :";
-            // 
-            // m_lblCity
-            // 
-            this.m_lblCity.AutoSize = true;
-            this.m_lblCity.Location = new System.Drawing.Point(6, 121);
-            this.m_lblCity.Name = "m_lblCity";
-            this.m_lblCity.Size = new System.Drawing.Size(107, 13);
-            this.m_lblCity.TabIndex = 8;
-            this.m_lblCity.Text = "&City/State/Province :";
-            // 
-            // m_lblCountry
-            // 
-            this.m_lblCountry.AutoSize = true;
-            this.m_lblCountry.Location = new System.Drawing.Point(6, 153);
-            this.m_lblCountry.Name = "m_lblCountry";
-            this.m_lblCountry.Size = new System.Drawing.Size(49, 13);
-            this.m_lblCountry.TabIndex = 10;
-            this.m_lblCountry.Text = "Countr&y :";
-            // 
-            // m_txtEmail
-            // 
-            this.m_txtEmail.Location = new System.Drawing.Point(111, 45);
-            this.m_txtEmail.Name = "m_txtEmail";
-            this.m_txtEmail.Size = new System.Drawing.Size(200, 20);
-            this.m_txtEmail.TabIndex = 5;
-            // 
-            // m_txtOrganizationName
-            // 
-            this.m_txtOrganizationName.Location = new System.Drawing.Point(111, 82);
-            this.m_txtOrganizationName.Name = "m_txtOrganizationName";
-            this.m_txtOrganizationName.Size = new System.Drawing.Size(200, 20);
-            this.m_txtOrganizationName.TabIndex = 7;
-            // 
-            // m_txtCity
-            // 
-            this.m_txtCity.Location = new System.Drawing.Point(111, 118);
-            this.m_txtCity.Name = "m_txtCity";
-            this.m_txtCity.Size = new System.Drawing.Size(200, 20);
-            this.m_txtCity.TabIndex = 9;
-            // 
-            // m_txtCountry
-            // 
-            this.m_txtCountry.Location = new System.Drawing.Point(111, 150);
-            this.m_txtCountry.Name = "m_txtCountry";
-            this.m_txtCountry.Size = new System.Drawing.Size(200, 20);
-            this.m_txtCountry.TabIndex = 11;
-            // 
-            // m_txtName
-            // 
-            this.m_txtName.Location = new System.Drawing.Point(111, 13);
-            this.m_txtName.Name = "m_txtName";
-            this.m_txtName.Size = new System.Drawing.Size(200, 20);
-            this.m_txtName.TabIndex = 3;
+            this.m_rdbDaisyProduction.AutoSize = true;
+            this.m_rdbDaisyProduction.Location = new System.Drawing.Point(9, 35);
+            this.m_rdbDaisyProduction.Name = "m_rdbDaisyProduction";
+            this.m_rdbDaisyProduction.Size = new System.Drawing.Size(264, 17);
+            this.m_rdbDaisyProduction.TabIndex = 13;
+            this.m_rdbDaisyProduction.TabStop = true;
+            this.m_rdbDaisyProduction.Text = "I am already using Obi for producing &DAISY books.";
+            this.m_rdbDaisyProduction.UseVisualStyleBackColor = true;
             // 
             // m_lblSelectRadioButton
             // 
@@ -202,27 +214,15 @@ namespace Obi.Dialogs
             this.m_lblSelectRadioButton.TabIndex = 12;
             this.m_lblSelectRadioButton.Text = "&Please select any of the following :";
             // 
-            // m_rdbDaisyProduction
+            // m_txtBoxObiInformation
             // 
-            this.m_rdbDaisyProduction.AutoSize = true;
-            this.m_rdbDaisyProduction.Location = new System.Drawing.Point(9, 35);
-            this.m_rdbDaisyProduction.Name = "m_rdbDaisyProduction";
-            this.m_rdbDaisyProduction.Size = new System.Drawing.Size(221, 17);
-            this.m_rdbDaisyProduction.TabIndex = 13;
-            this.m_rdbDaisyProduction.TabStop = true;
-            this.m_rdbDaisyProduction.Text = "I am already using Obi for producing &DAISY books.";
-            this.m_rdbDaisyProduction.UseVisualStyleBackColor = true;
-            // 
-            // m_rdbTryingObi
-            // 
-            this.m_rdbTryingObi.AutoSize = true;
-            this.m_rdbTryingObi.Location = new System.Drawing.Point(9, 57);
-            this.m_rdbTryingObi.Name = "m_rdbTryingObi";
-            this.m_rdbTryingObi.Size = new System.Drawing.Size(255, 17);
-            this.m_rdbTryingObi.TabIndex = 14;
-            this.m_rdbTryingObi.TabStop = true;
-            this.m_rdbTryingObi.Text = "I am trying and &testing Obi.";
-            this.m_rdbTryingObi.UseVisualStyleBackColor = true;
+            this.m_txtBoxObiInformation.AccessibleName = "use arrow keys to read";
+            this.m_txtBoxObiInformation.Location = new System.Drawing.Point(12, 7);
+            this.m_txtBoxObiInformation.Multiline = true;
+            this.m_txtBoxObiInformation.Name = "m_txtBoxObiInformation";
+            this.m_txtBoxObiInformation.ReadOnly = true;
+            this.m_txtBoxObiInformation.Size = new System.Drawing.Size(317, 66);
+            this.m_txtBoxObiInformation.TabIndex = 1;
             // 
             // UserRegistration
             // 
