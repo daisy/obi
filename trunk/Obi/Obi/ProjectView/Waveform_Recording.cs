@@ -86,8 +86,8 @@ namespace Obi.ProjectView
         private bool m_ResetCalled = false;
         private bool m_DeletedPartEnclosed = false;
         private int tempXLocation=0;
-
-
+        private List<int> m_MouseMoveList = new List<int>();
+        
         public Waveform_Recording()
         {
             InitializeComponent();
@@ -1022,6 +1022,7 @@ namespace Obi.ProjectView
 
         private void Waveform_Recording_MouseUp(object sender, MouseEventArgs e)
         {
+            m_MouseMoveList.Clear();
             if (m_MouseButtonDownLoc == 0)
             {
                 listOfSelctedPortion.Clear();
@@ -1193,9 +1194,12 @@ namespace Obi.ProjectView
 
         private void Waveform_Recording_MouseMove(object sender, MouseEventArgs e)
         {
+            if (e.Button != MouseButtons.Left)
+                return;
+            m_MouseMoveList.Add(e.X);
             if(m_MouseButtonDownLoc==0)
                 return;
-
+            
             if (m_DeletedPartEnclosed || !IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
             {
                 if (m_MouseButtonDownLoc < m_TempMouseMoveLoc)
@@ -1210,10 +1214,39 @@ namespace Obi.ProjectView
                 m_MouseButtonUpLoc = 0;
                 m_TempMouseMoveLoc = 0;
                 m_DeletedPartEnclosed = true;
-                return;
+               return;
             }
-            if (e.Button != MouseButtons.Left)
-                return;
+
+
+         
+
+
+            if (m_RecordingSession.DeletedItemList.Count != 0)
+            {
+                double tempStartTime = ConvertPixelsToTime(m_MouseButtonDownLoc);
+                double tempEndTime = ConvertPixelsToTime(e.X);
+                for (int i = m_RecordingSession.DeletedItemList.Count - 1; i >= 0; i--)
+                {
+                    double[] arr = m_RecordingSession.DeletedItemList[i];
+
+                    if (arr[1] < tempStartTime && arr[1] < tempEndTime)
+                    {
+                        break;
+
+                    }
+                    if (arr[0] > tempStartTime && arr[0] < tempEndTime ||
+                       arr[0] < tempStartTime && arr[0] > tempEndTime ||
+                       arr[1] > tempStartTime && arr[1] < tempEndTime ||
+                       arr[1] < tempStartTime && arr[1] > tempEndTime)
+                    {
+                        Console.WriteLine("Destination Reached");
+                        m_DeletedPartEnclosed = true;
+                        return;
+                    }
+                }
+            }
+
+           
             if (!IsSelectionActive)
                 return;
             if (m_MouseButtonUpLoc == 0)
