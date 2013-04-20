@@ -2322,4 +2322,7 @@ Error text: {1}</value>
   <data name="CleanUp_LongFilePath" xml:space="preserve">
     <value>The project directory has long file path which may lead to major problems in cleanup causing loss of important data. It is strongly recommended to move the project directory near to the partition before starting clean up. Do you want to continue inspite of the stated warning?</value>
   </data>
+  <data name="UserRegistration_SendEmailMsg" xml:space="preserve">
+    <value>Unable to upload the users registration information in {0} attempts. Please send email to obi.feedback@gmail.com to register.</value>
+  </data>
 </root>

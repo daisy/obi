@@ -1338,17 +1338,27 @@ namespace Obi
             {   
                 if (mSettings.UsersInfoToUpload != Dialogs.UserRegistration.Registered  && mSettings.UploadAttemptsCount <= Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
                 {
+                    //Console.WriteLine(mSettings.UsersInfoToUpload);
                     if (string.IsNullOrEmpty(mSettings.UsersInfoToUpload) || mSettings.UsersInfoToUpload == Dialogs.UserRegistration.NoInfo )
                     {
                         Dialogs.UserRegistration registrationDialog = new UserRegistration(mSettings);
                         registrationDialog.ShowDialog();
                     }
+                    //Console.WriteLine("bypassed dialog");
                     if (!string.IsNullOrEmpty(mSettings.UsersInfoToUpload) &&  mSettings.UsersInfoToUpload != Dialogs.UserRegistration.NoInfo && mSettings.UsersInfoToUpload != Dialogs.UserRegistration.Registered)
                     {
-                        Dialogs.UserRegistration.UploadUserInformation(mSettings);
-                        if (mSettings.UploadAttemptsCount == Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
+                        Console.WriteLine("Upload attempts: " + mSettings.UploadAttemptsCount);
+                        // if attempts are less than max allowed attempts then try uploading 
+                        // but if attempts count are equal to maximum attempts allowed then send email
+                        if (mSettings.UploadAttemptsCount < Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
                         {
-                            ///Dialogs.UserRegistration.SendEmail();
+                            Console.WriteLine("uploading");
+                            Dialogs.UserRegistration.UploadUserInformation(mSettings);
+                        }
+                        else if ( MessageBox.Show(string.Format(Localizer.Message("UserRegistration_SendEmailMsg"),mSettings.UploadAttemptsCount ),
+                             Localizer.Message("Caption_Information"), MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        {
+                            Dialogs.UserRegistration.OpenEmailToSend(mSettings);
                         }
                     }
                 }
