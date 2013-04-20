@@ -97,7 +97,8 @@ namespace Obi.Dialogs
                 }
                 catch (System.Exception ex)
                 {
-                    m_Settings.UploadAttemptsCount = m_Settings.UploadAttemptsCount++;
+                    m_Settings.UploadAttemptsCount++;
+                    m_Settings.SaveSettings();
                     Console.WriteLine(ex.ToString());
                     ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
                 }
@@ -132,6 +133,7 @@ namespace Obi.Dialogs
 
                     if (ftpRequest.GetResponse().ContentLength > 0)
                     {
+                        Console.WriteLine("registered");
                         m_Settings.UsersInfoToUpload = Registered;
                         m_Settings.SaveSettings();
                         //MessageBox.Show("done");
@@ -139,11 +141,13 @@ namespace Obi.Dialogs
                     else
                     {
                         m_Settings.UploadAttemptsCount++;
+                        m_Settings.SaveSettings();
                     }
                 }
                 catch (System.Exception ex)
                 {
                     m_Settings.UploadAttemptsCount++;
+                    m_Settings.SaveSettings();
                     Console.WriteLine(ex.ToString());
                     ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
                 }
@@ -228,16 +232,25 @@ namespace Obi.Dialogs
         private void m_btnRemindMeLater_Click(object sender, EventArgs e)
         {
             m_Settings.UploadAttemptsCount++;
+            m_Settings.SaveSettings();
+            Console.WriteLine("attempts count " + m_Settings.UploadAttemptsCount);
             Close();
         }
 
       
-        public static void EmailToSend()
+        public static void OpenEmailToSend(Settings settings)
         {
-            String tempStr = "mailto:Obi.feedback@gmail.com? Subject=My Details &body=";
-            tempStr += m_Settings.UsersInfoToUpload;
-            Process.Start(tempStr);
-            
+            m_Settings = settings;
+            try
+            {
+                String tempStr = "mailto:Obi.feedback@gmail.com? Subject=My Details &body=";
+                tempStr += m_Settings.UsersInfoToUpload;
+                Process.Start(tempStr);
+            }
+            catch (System.Exception ex)
+            {
+                ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
+            }
         }
 
 

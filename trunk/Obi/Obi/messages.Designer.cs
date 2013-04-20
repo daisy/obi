@@ -5824,6 +5824,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to upload the users registration information in {0} attempts. Please send email to obi.feedback@gmail.com to register..
+        /// </summary>
+        internal static string UserRegistration_SendEmailMsg {
+            get {
+                return ResourceManager.GetString("UserRegistration_SendEmailMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Warning!.
         /// </summary>
         internal static string Warning {
