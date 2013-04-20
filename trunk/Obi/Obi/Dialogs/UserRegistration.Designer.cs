@@ -150,7 +150,7 @@ namespace Obi.Dialogs
             // m_lblOrgName
             // 
             this.m_lblOrgName.AutoSize = true;
-            this.m_lblOrgName.Location = new System.Drawing.Point(6, 85);
+            this.m_lblOrgName.Location = new System.Drawing.Point(2, 85);
             this.m_lblOrgName.Name = "m_lblOrgName";
             this.m_lblOrgName.Size = new System.Drawing.Size(103, 13);
             this.m_lblOrgName.TabIndex = 6;
@@ -229,11 +229,11 @@ namespace Obi.Dialogs
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(87, 105);
+            this.label1.Location = new System.Drawing.Point(2, 105);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(224, 13);
+            this.label1.Size = new System.Drawing.Size(143, 13);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Please Enter \"Home\" if you are a  private user";
+            this.label1.Text = "Use \"Home\" if privately used";
             // 
             // UserRegistration
             // 
