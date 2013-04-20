@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
-  </metadata>
+  </data>
   <data name="mFileToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>File</value>
   </data>
   <data name="mFile_NewProjectMenuItem.AccessibleName" xml:space="preserve">
     <value>New project Ctrl+N</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mFile_NewProjectMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -1324,7 +1324,7 @@
     <value>279, 22</value>
   </data>
   <data name="mCheckForPhrasesWithImproperAudioMenuItem.Text" xml:space="preserve">
-    <value>Chec&amp;k for phrases with corrupted audio</value>
+    <value>Chec&amp;k for corrupted audio</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Delete following phrases</value>
@@ -1830,9 +1830,9 @@
   <data name="&gt;&gt;mMenuStrip.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>0, 520</value>
-  </metadata>
+  </data>
   <data name="mStatusLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
@@ -1899,9 +1899,9 @@
   <data name="&gt;&gt;mProjectView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
