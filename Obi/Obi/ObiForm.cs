@@ -668,8 +668,9 @@ namespace Obi
                     DateTime currentDateTime= DateTime.Now ;
                     string postFix = currentDateTime.Year.ToString() + "-"
                         + (currentDateTime.Month.ToString().Length > 1 ? currentDateTime.Month.ToString() : "0" + currentDateTime.Month.ToString())  + "-"
-                        + (currentDateTime.Day.ToString().Length > 1 ? currentDateTime.Day.ToString() : "0" + currentDateTime.Day.ToString()) + "-" + currentDateTime.Hour.ToString();
-                    string backUpFileCopyAtInterval = Path.Combine(Path.GetDirectoryName(mSession.BackUpPath), Path.GetFileNameWithoutExtension(mSession.BackUpPath) +postFix  + Path.GetExtension(mSession.BackUpPath));
+                        + (currentDateTime.Day.ToString().Length > 1 ? currentDateTime.Day.ToString() : "0" + currentDateTime.Day.ToString()) 
+                        + "-" + currentDateTime.Hour.ToString() + "-";
+                    string backUpFileCopyAtInterval = Path.Combine(Path.GetDirectoryName(mSession.BackUpPath), postFix + Path.GetFileName(mSession.BackUpPath) );
                         
                     Console.WriteLine(backUpFileCopyAtInterval);
                     if (File.Exists(mSession.BackUpPath) && !File.Exists(backUpFileCopyAtInterval))
@@ -3038,8 +3039,11 @@ namespace Obi
                         if (backUpFilesList.Contains(Path.GetFullPath(mSession.BackUpPath)))
                             backUpFilesList.Remove(Path.GetFullPath(mSession.BackUpPath));
 
-                        int filesCountToDelete = allExceptPrimaryBackup ? backUpFilesList.Count : 12;
-                        for (int i = 0; i < backUpFilesList.Count && i < filesCountToDelete; i++)
+                        int filesCountToDelete = allExceptPrimaryBackup ? backUpFilesList.Count : 
+                            backUpFilesList.Count > 16? backUpFilesList.Count - 16 : 0;
+                        for (int i = 0; 
+                            i < backUpFilesList.Count && i <= filesCountToDelete; 
+                            i++)
                         {
                             Console.WriteLine(backUpFilesList[i]);
                             if (File.Exists(backUpFilesList[i])) File.Delete(backUpFilesList[i]);
