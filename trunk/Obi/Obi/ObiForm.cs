@@ -665,7 +665,24 @@ namespace Obi
                     mFile_SaveProjectAsMenuItem.Enabled = false;
 
                     if (mProjectView.TransportBar.IsRecorderActive) mProjectView.TransportBar.Stop();
-
+                    DateTime currentDateTime= DateTime.Now ;
+                    string postFix = currentDateTime.Year.ToString() + "-"
+                        + (currentDateTime.Month.ToString().Length > 1 ? currentDateTime.Month.ToString() : "0" + currentDateTime.Month.ToString())  + "-"
+                        + (currentDateTime.Day.ToString().Length > 1 ? currentDateTime.Day.ToString() : "0" + currentDateTime.Day.ToString()) + "-" + currentDateTime.Hour.ToString();
+                    string backUpFileCopyAtInterval = Path.Combine(Path.GetDirectoryName(mSession.BackUpPath), Path.GetFileNameWithoutExtension(mSession.BackUpPath) +postFix  + Path.GetExtension(mSession.BackUpPath));
+                        
+                    Console.WriteLine(backUpFileCopyAtInterval);
+                    if (File.Exists(mSession.BackUpPath) && !File.Exists(backUpFileCopyAtInterval))
+                    {
+                        try
+                        {
+                            File.Move(mSession.BackUpPath, backUpFileCopyAtInterval);
+                        }
+                        catch (System.Exception ex)
+                        {
+                            mProjectView.WriteToLogFile(ex.ToString());
+                        }
+                    }
                     mSession.SaveToBackup();
                     //mStatusLabel.Text = Localizer.Message ( "Status_ProjectSaved" );
                     // reset the  auto save timer
@@ -1042,6 +1059,7 @@ namespace Obi
                                                                                              if (true)
                                                                                                  //delete definitively
                                                                                              {
+                                                                                                 ProjectView.ProjectView.WriteToLogFile_Static ("Clean up operation: deleting files");
                                                                                                  foreach (
                                                                                                      string filePath in
                                                                                                          Directory.
@@ -1082,6 +1100,7 @@ namespace Obi
                         if (!m_IsAutoSaveActive)
                         {
                             if (!mSession.CanSave) mSession.PresentationHasChanged(1);
+                            DeleteExtraBackupFiles(true);
                             m_IsAutoSaveActive = true;
                             SaveToBackup();
                             m_IsAutoSaveActive = false;
@@ -2988,6 +3007,8 @@ namespace Obi
 
                                                                                              mSession.Open(path);
                                                                                              if (mSession.ErrorsInOpeningProject) mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode) mProjectView.Presentation.RootNode);
+                                                                                             DeleteExtraBackupFiles(false);
+
                                                                                          });
                 progress.ShowDialog();
                 if (progress.Exception != null)
@@ -3000,6 +3021,35 @@ namespace Obi
                 UpdateExportMetadataFromPrimaryExportPath();
 
                 this.Cursor = Cursors.Default;
+            }
+
+            private void DeleteExtraBackupFiles(bool allExceptPrimaryBackup)
+            {
+                try
+                {
+                    // if backup files are above 50, delete extra files
+                    string[] backupFilePaths = Directory.GetFiles(Path.GetDirectoryName(mSession.BackUpPath), "*.obi", SearchOption.AllDirectories);
+                    if (backupFilePaths.Length > 32 || 
+                        (backupFilePaths.Length > 1 &&  allExceptPrimaryBackup))
+                    {
+                        List<string> backUpFilesList = new List<string>();
+                        for (int i = 0; i < backupFilePaths.Length; i++) backUpFilesList.Add(backupFilePaths[i]);
+                        backUpFilesList.Sort();
+                        if (backUpFilesList.Contains(Path.GetFullPath(mSession.BackUpPath)))
+                            backUpFilesList.Remove(Path.GetFullPath(mSession.BackUpPath));
+
+                        int filesCountToDelete = allExceptPrimaryBackup ? backUpFilesList.Count : 12;
+                        for (int i = 0; i < backUpFilesList.Count && i < filesCountToDelete; i++)
+                        {
+                            Console.WriteLine(backUpFilesList[i]);
+                            if (File.Exists(backUpFilesList[i])) File.Delete(backUpFilesList[i]);
+                        }
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
+                }
             }
 
             // temporary function to get export path, which was stored in msession.primaryExportPath in Obi 1.0
