@@ -1346,6 +1346,10 @@ namespace Obi
                     if (!string.IsNullOrEmpty(mSettings.UsersInfoToUpload) &&  mSettings.UsersInfoToUpload != Dialogs.UserRegistration.NoInfo && mSettings.UsersInfoToUpload != Dialogs.UserRegistration.Registered)
                     {
                         Dialogs.UserRegistration.UploadUserInformation(mSettings);
+                        if (mSettings.UploadAttemptsCount == Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
+                        {
+                            ///Dialogs.UserRegistration.SendEmail();
+                        }
                     }
                 }
             }
@@ -3030,7 +3034,7 @@ namespace Obi
                 {
                     // if backup files are above 50, delete extra files
                     string[] backupFilePaths = Directory.GetFiles(Path.GetDirectoryName(mSession.BackUpPath), "*.obi", SearchOption.AllDirectories);
-                    if (backupFilePaths.Length > 32 || 
+                    if (backupFilePaths.Length > 23 || 
                         (backupFilePaths.Length > 1 &&  allExceptPrimaryBackup))
                     {
                         List<string> backUpFilesList = new List<string>();
