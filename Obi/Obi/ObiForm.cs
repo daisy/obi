@@ -146,7 +146,7 @@ namespace Obi
             // True if the user has chosen the "open last project" option, and there is a last project to open.
             private bool ShouldOpenLastProject
             {
-                get { return mSettings != null && mSettings.OpenLastProject && mSettings.LastOpenProject != "" && !mShowWelcomWindow; }
+                get { return mSettings != null && mSettings.OpenLastProject && mSettings.LastOpenProject != "" && mShowWelcomWindow; }
             }
 
             /// Set view synchronization and update the menu and settings accordingly.
