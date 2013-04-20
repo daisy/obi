@@ -157,41 +157,52 @@ namespace Obi.Dialogs
 
             // the upload data should be in following format
             // "un:User Name,em:abc@abc.com,og:Organization Name,ct:Delhi,cn:India",vr:Obi version,os:windows version;
-              if (m_txtName.Text == "" || m_txtEmail.Text == "" || m_txtCountry.Text == "" || m_txtOrganizationName.Text == "" ||
-                m_txtCity.Text == "" || m_txtCountry.Text == "")
-            {
+              //if (m_txtName.Text == "" || m_txtEmail.Text == "" || m_txtCountry.Text == "" || m_txtOrganizationName.Text == "" ||
+              //  m_txtCity.Text == "" || m_txtCountry.Text == "" || ((m_txtName.Text.Contains(" ")) && m_txtName.Text.Trim().Length==0 )
+              //  || ((m_txtEmail.Text.Contains(" ")) && m_txtEmail.Text.Trim().Length == 0) 
+              //  || ((m_txtOrganizationName.Text.Contains(" ")) && m_txtOrganizationName.Text.Trim().Length == 0)
+              //   || ((m_txtCity.Text.Contains(" ")) && m_txtCity.Text.Trim().Length == 0))
+            bool flag = false;            
                 string str="Please Enter the Following correctly :";
-                if (m_txtName.Text == "")
+                if (m_txtName.Text == "" || ((m_txtName.Text.Contains(" ")) && m_txtName.Text.Trim().Length==0 ) || (m_txtName.Text.StartsWith(".") && m_txtName.Text.EndsWith(".")))
                 {
                     str += "\nName";
+                    flag = true;
                 }
-                if (m_txtEmail.Text == "")
+                if (m_txtEmail.Text == "" || ((m_txtEmail.Text.Contains(" ")) && m_txtEmail.Text.Trim().Length == 0) || (m_txtEmail.Text.StartsWith(".") && m_txtEmail.Text.EndsWith(".")))
                 {
                     str += "\nEmail";
+                    flag = true;
                 }
-                if (m_txtOrganizationName.Text == "")
+                if (m_txtOrganizationName.Text == "" || ((m_txtOrganizationName.Text.Contains(" ")) && m_txtOrganizationName.Text.Trim().Length == 0) || (m_txtOrganizationName.Text.StartsWith(".") && m_txtOrganizationName.Text.EndsWith(".")))
                 {
                     str += "\nOrganization Name";
+                    flag = true;
                 }
-                if (m_txtCity.Text == "")
+                if (m_txtCity.Text == "" || ((m_txtCity.Text.Contains(" ")) && m_txtCity.Text.Trim().Length == 0) || (m_txtCity.Text.StartsWith(".") && m_txtCity.Text.EndsWith(".")))
                 {
                     str += "\nCity";
+                    flag = true;
                 }
-                if (m_txtCountry.Text == "")
+                if (m_txtCountry.Text == "" || ((m_txtCountry.Text.Contains(" ")) && m_txtCountry.Text.Trim().Length == 0) || (m_txtCountry.Text.StartsWith(".") && m_txtCountry.Text.EndsWith(".")))
                 {
                     str += "\nCountry";
+                    flag = true;
                 }
-                MessageBox.Show(str);
+                if (flag)
+                {
+                    MessageBox.Show(str);
+                }
 
-            }
-            else if (!m_txtEmail.Text.Contains("@") || !m_txtEmail.Text.Contains("."))
-            {
+
+                else if (!m_txtEmail.Text.Contains("@") || !m_txtEmail.Text.Contains(".") || m_txtEmail.Text.Contains(" "))
+               {
                 MessageBox.Show("Incorrect Email Address");
-            }
-              else if ((m_rdbDaisyProduction.Checked == false && m_rdbTryingObi.Checked == false))
-              {
+               }
+               else if ((m_rdbDaisyProduction.Checked == false && m_rdbTryingObi.Checked == false))
+               {
                   MessageBox.Show("Please indicate us about your usage of Obi by checking any one of the radio button ");
-              }
+               }
               else
               {
                   string userInfo = "un:" + m_txtName.Text
