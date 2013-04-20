@@ -669,7 +669,7 @@ namespace Obi
                     string postFix = currentDateTime.Year.ToString() + "-"
                         + (currentDateTime.Month.ToString().Length > 1 ? currentDateTime.Month.ToString() : "0" + currentDateTime.Month.ToString())  + "-"
                         + (currentDateTime.Day.ToString().Length > 1 ? currentDateTime.Day.ToString() : "0" + currentDateTime.Day.ToString()) 
-                        + "-" + currentDateTime.Hour.ToString() + "-";
+                        + "-" + currentDateTime.Hour.ToString() + "hr";
                     string backUpFileCopyAtInterval = Path.Combine(Path.GetDirectoryName(mSession.BackUpPath), postFix + Path.GetFileName(mSession.BackUpPath) );
                         
                     Console.WriteLine(backUpFileCopyAtInterval);
@@ -919,7 +919,7 @@ namespace Obi
             private void CleanProject()
             {
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
-                if (!string.IsNullOrEmpty(mSession.Path) && mSession.Path.Length > 240
+                if (!string.IsNullOrEmpty(mSession.Path) && mSession.Path.Length > 220
                     && MessageBox.Show(Localizer.Message("CleanUp_LongFilePath"), Localizer.Message("Caption_Error"),
                     MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2) == DialogResult.No)
                 {
