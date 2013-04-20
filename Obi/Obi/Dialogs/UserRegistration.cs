@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Net.Mail;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
@@ -227,6 +229,15 @@ namespace Obi.Dialogs
         {
             m_Settings.UploadAttemptsCount++;
             Close();
+        }
+
+      
+        public static void EmailToSend()
+        {
+            String tempStr = "mailto:Obi.feedback@gmail.com? Subject=My Details &body=";
+            tempStr += m_Settings.UsersInfoToUpload;
+            Process.Start(tempStr);
+            
         }
 
 
