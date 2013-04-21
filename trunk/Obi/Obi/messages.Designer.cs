@@ -3796,7 +3796,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please fill in the following form to register yourself as an user of obi (free/open source DAISY production tool). This registration will entitle you to receive latest news and product updates right in your mailbox. Moreover, you will be able to play a crucial role in providing the future direction to the product as it will allow us to understand your requirements in a better way..
+        ///   Looks up a localized string similar to Please fill in the following form to register yourself as an user of obi (free/open source DAISY production tool). This registration will entitle you to receive latest news and product updates right in your mailbox. Moreover, you will be able to play a crucial role in providing the future direction to the product as it will allow us to understand your requirements in a better way. Please make sure that computer is connected to internet while registration..
         /// </summary>
         internal static string Obi_UserInformationText {
             get {
@@ -5829,6 +5829,15 @@ namespace Obi {
         internal static string UserRegistration_SendEmailMsg {
             get {
                 return ResourceManager.GetString("UserRegistration_SendEmailMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not remind.
+        /// </summary>
+        internal static string UserRegistrationBtn_DoNotRemind {
+            get {
+                return ResourceManager.GetString("UserRegistrationBtn_DoNotRemind", resourceCulture);
             }
         }
         
