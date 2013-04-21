@@ -1341,7 +1341,7 @@ namespace Obi
                     //Console.WriteLine(mSettings.UsersInfoToUpload);
                     if (string.IsNullOrEmpty(mSettings.UsersInfoToUpload) || mSettings.UsersInfoToUpload == Dialogs.UserRegistration.NoInfo )
                     {
-                        Dialogs.UserRegistration registrationDialog = new UserRegistration(mSettings);
+                        Dialogs.UserRegistration registrationDialog = new UserRegistration(mSettings, mSettings.UploadAttemptsCount == Dialogs.UserRegistration.MaxUploadAttemptsAllowed-1);
                         registrationDialog.ShowDialog();
                     }
                     //Console.WriteLine("bypassed dialog");

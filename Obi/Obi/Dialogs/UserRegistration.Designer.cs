@@ -31,6 +31,7 @@ namespace Obi.Dialogs
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnRemindMeLater = new System.Windows.Forms.Button();
             this.m_grpBoxUserInformation = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.m_txtName = new System.Windows.Forms.TextBox();
             this.m_txtCountry = new System.Windows.Forms.TextBox();
             this.m_txtCity = new System.Windows.Forms.TextBox();
@@ -46,7 +47,6 @@ namespace Obi.Dialogs
             this.m_rdbDaisyProduction = new System.Windows.Forms.RadioButton();
             this.m_lblSelectRadioButton = new System.Windows.Forms.Label();
             this.m_txtBoxObiInformation = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.m_grpBoxUserInformation.SuspendLayout();
             this.m_grpBoxObiUse.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +59,7 @@ namespace Obi.Dialogs
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(95, 23);
             this.m_btnOk.TabIndex = 15;
-            this.m_btnOk.Text = "&OK";
+            this.m_btnOk.Text = "&Register";
             this.m_btnOk.UseVisualStyleBackColor = true;
             this.m_btnOk.Click += new System.EventHandler(this.m_btnOk_Click);
             // 
@@ -93,6 +93,15 @@ namespace Obi.Dialogs
             this.m_grpBoxUserInformation.Size = new System.Drawing.Size(317, 179);
             this.m_grpBoxUserInformation.TabIndex = 2;
             this.m_grpBoxUserInformation.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(2, 105);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Use \"Home\" if privately used";
             // 
             // m_txtName
             // 
@@ -226,17 +235,9 @@ namespace Obi.Dialogs
             this.m_txtBoxObiInformation.Size = new System.Drawing.Size(317, 66);
             this.m_txtBoxObiInformation.TabIndex = 1;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(2, 105);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Use \"Home\" if privately used";
-            // 
             // UserRegistration
             // 
+            this.AcceptButton = this.m_btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(341, 395);
