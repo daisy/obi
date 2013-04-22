@@ -23,6 +23,7 @@ namespace Obi.Dialogs
         private UserRegistration()
         {
             InitializeComponent();
+            m_txtWinVer.Text=Environment.OSVersion.ToString();
             m_txtBoxObiInformation.Text = Localizer.Message("Obi_UserInformationText");
             m_txtBoxObiInformation.Select(0, 0);
         }
@@ -244,8 +245,13 @@ namespace Obi.Dialogs
             m_Settings = settings;
             try
             {
-                String tempStr = "mailto:Obi.feedback@gmail.com? Subject=My Details &body=";
-                tempStr += m_Settings.UsersInfoToUpload;
+             string  tempStr = "mailto:Obi.feedback@gmail.com? Subject=User Registration &body=";
+
+               String[] temp = m_Settings.UsersInfoToUpload.Split(',');
+              foreach (string s in temp)
+               {
+                   tempStr += "%0A" + s;
+               }
                 Process.Start(tempStr);
             }
             catch (System.Exception ex)
