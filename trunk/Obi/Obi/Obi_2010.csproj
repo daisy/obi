@@ -75,6 +75,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
     </Reference>
+    <Reference Include="Code">
+      <HintPath>.\Code.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.dll</HintPath>
     </Reference>
@@ -125,6 +128,7 @@
     <Compile Include="Commands\Node\SplitAudio.cs" />
     <Compile Include="Commands\Node\ToggleNodeTODO.cs" />
     <Compile Include="Commands\Node\ToggleNodeUsed.cs" />
+    <Compile Include="Commands\Node\UpdateAudioMedia.cs" />
     <Compile Include="Commands\TOC\MoveSectionIn.cs" />
     <Compile Include="Commands\TOC\MoveSectionOut.cs" />
     <Compile Include="DataModelFactory.cs" />
@@ -145,6 +149,12 @@
     </Compile>
     <Compile Include="Dialogs\AudioSettings.Designer.cs">
       <DependentUpon>AudioSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CheckUpdates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CheckUpdates.Designer.cs">
+      <DependentUpon>CheckUpdates.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ExtendedMessageToAssociate.cs">
       <SubType>Form</SubType>
@@ -291,6 +301,12 @@
     <Compile Include="Dialogs\SpecialPhraseList.Designer.cs">
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\UserRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UserRegistration.Designer.cs">
+      <DependentUpon>UserRegistration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\WelcomeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -328,6 +344,7 @@
     <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
     <Compile Include="ImportExport\DAISY202Export.cs" />
+    <Compile Include="ImportExport\DAISY202Import.cs" />
     <Compile Include="ImportExport\DAISY3_ObiExport.cs" />
     <Compile Include="ImportExport\DAISY3_ObiImport.cs" />
     <Compile Include="ImportExport\ImportStructure.cs">
@@ -462,6 +479,9 @@
     <EmbeddedResource Include="Dialogs\AudioSettings.resx">
       <DependentUpon>AudioSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CheckUpdates.resx">
+      <DependentUpon>CheckUpdates.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewProject.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NewProject.cs</DependentUpon>
@@ -469,6 +489,9 @@
     <EmbeddedResource Include="Dialogs\Preferences.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Preferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UserRegistration.resx">
+      <DependentUpon>UserRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="messages.resx">
       <SubType>Designer</SubType>
