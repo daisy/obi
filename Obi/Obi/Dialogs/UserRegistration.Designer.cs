@@ -31,6 +31,8 @@ namespace Obi.Dialogs
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnRemindMeLater = new System.Windows.Forms.Button();
             this.m_grpBoxUserInformation = new System.Windows.Forms.GroupBox();
+            this.m_txtWinVer = new System.Windows.Forms.TextBox();
+            this.m_lblWinVer = new System.Windows.Forms.Label();
             this.m_txtName = new System.Windows.Forms.TextBox();
             this.m_txtCountry = new System.Windows.Forms.TextBox();
             this.m_txtCity = new System.Windows.Forms.TextBox();
@@ -46,8 +48,6 @@ namespace Obi.Dialogs
             this.m_rdbDaisyProduction = new System.Windows.Forms.RadioButton();
             this.m_lblSelectRadioButton = new System.Windows.Forms.Label();
             this.m_txtBoxObiInformation = new System.Windows.Forms.TextBox();
-            this.m_lblWinVer = new System.Windows.Forms.Label();
-            this.m_txtWinVer = new System.Windows.Forms.TextBox();
             this.m_grpBoxUserInformation.SuspendLayout();
             this.m_grpBoxObiUse.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +60,7 @@ namespace Obi.Dialogs
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(95, 23);
             this.m_btnOk.TabIndex = 15;
-            this.m_btnOk.Text = "&Register";
+            this.m_btnOk.Text = "Re&gister";
             this.m_btnOk.UseVisualStyleBackColor = true;
             this.m_btnOk.Click += new System.EventHandler(this.m_btnOk_Click);
             // 
@@ -95,6 +95,23 @@ namespace Obi.Dialogs
             this.m_grpBoxUserInformation.Size = new System.Drawing.Size(317, 216);
             this.m_grpBoxUserInformation.TabIndex = 2;
             this.m_grpBoxUserInformation.TabStop = false;
+            // 
+            // m_txtWinVer
+            // 
+            this.m_txtWinVer.Location = new System.Drawing.Point(111, 190);
+            this.m_txtWinVer.Name = "m_txtWinVer";
+            this.m_txtWinVer.ReadOnly = true;
+            this.m_txtWinVer.Size = new System.Drawing.Size(200, 20);
+            this.m_txtWinVer.TabIndex = 13;
+            // 
+            // m_lblWinVer
+            // 
+            this.m_lblWinVer.AutoSize = true;
+            this.m_lblWinVer.Location = new System.Drawing.Point(2, 191);
+            this.m_lblWinVer.Name = "m_lblWinVer";
+            this.m_lblWinVer.Size = new System.Drawing.Size(95, 13);
+            this.m_lblWinVer.TabIndex = 12;
+            this.m_lblWinVer.Text = "Windows Version :";
             // 
             // m_txtName
             // 
@@ -154,9 +171,9 @@ namespace Obi.Dialogs
             this.m_lblOrgName.AutoSize = true;
             this.m_lblOrgName.Location = new System.Drawing.Point(2, 85);
             this.m_lblOrgName.Name = "m_lblOrgName";
-            this.m_lblOrgName.Size = new System.Drawing.Size(122, 26);
+            this.m_lblOrgName.Size = new System.Drawing.Size(147, 26);
             this.m_lblOrgName.TabIndex = 6;
-            this.m_lblOrgName.Text = "&Organization Name :\r\n\"Home\" For Private user";
+            this.m_lblOrgName.Text = "&Organization Name :\r\n Use \"Home\" For Private user";
             // 
             // m_lblEmail
             // 
@@ -227,23 +244,6 @@ namespace Obi.Dialogs
             this.m_txtBoxObiInformation.ReadOnly = true;
             this.m_txtBoxObiInformation.Size = new System.Drawing.Size(317, 66);
             this.m_txtBoxObiInformation.TabIndex = 1;
-            // 
-            // m_lblWinVer
-            // 
-            this.m_lblWinVer.AutoSize = true;
-            this.m_lblWinVer.Location = new System.Drawing.Point(2, 191);
-            this.m_lblWinVer.Name = "m_lblWinVer";
-            this.m_lblWinVer.Size = new System.Drawing.Size(95, 13);
-            this.m_lblWinVer.TabIndex = 12;
-            this.m_lblWinVer.Text = "Windows Version :";
-            // 
-            // m_txtWinVer
-            // 
-            this.m_txtWinVer.Location = new System.Drawing.Point(111, 190);
-            this.m_txtWinVer.Name = "m_txtWinVer";
-            this.m_txtWinVer.ReadOnly = true;
-            this.m_txtWinVer.Size = new System.Drawing.Size(200, 20);
-            this.m_txtWinVer.TabIndex = 13;
             // 
             // UserRegistration
             // 
