@@ -31,7 +31,7 @@ namespace Obi.Dialogs
             : this()
         {
             m_Settings = settings;
-            m_btnRemindMeLater.Text = Localizer.Message("UserRegistrationBtn_DoNotRemind");
+            if(doNotRemindButton)  m_btnRemindMeLater.Text = Localizer.Message("UserRegistrationBtn_DoNotRemind");
         }
 
         public static string GenerateFileName ()
