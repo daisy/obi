@@ -27,11 +27,11 @@ namespace Obi.Dialogs
             m_txtBoxObiInformation.Select(0, 0);
         }
 
-        public UserRegistration(Settings settings, bool doNotRemindButton)
+        public UserRegistration(Settings settings)
             : this()
         {
             m_Settings = settings;
-            if(doNotRemindButton)  m_btnRemindMeLater.Text = Localizer.Message("UserRegistrationBtn_DoNotRemind");
+            if(settings.UploadAttemptsCount == MaxUploadAttemptsAllowed )  m_btnRemindMeLater.Text = Localizer.Message("UserRegistrationBtn_DoNotRemind");
         }
 
         public static string GenerateFileName ()
