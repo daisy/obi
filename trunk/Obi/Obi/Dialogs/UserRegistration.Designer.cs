@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserRegistration));
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnRemindMeLater = new System.Windows.Forms.Button();
             this.m_grpBoxUserInformation = new System.Windows.Forms.GroupBox();
@@ -54,25 +55,15 @@ namespace Obi.Dialogs
             // 
             // m_btnOk
             // 
-            this.m_btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_btnOk.Location = new System.Drawing.Point(58, 381);
+            resources.ApplyResources(this.m_btnOk, "m_btnOk");
             this.m_btnOk.Name = "m_btnOk";
-            this.m_btnOk.Size = new System.Drawing.Size(95, 23);
-            this.m_btnOk.TabIndex = 15;
-            this.m_btnOk.Text = "Re&gister";
             this.m_btnOk.UseVisualStyleBackColor = true;
             this.m_btnOk.Click += new System.EventHandler(this.m_btnOk_Click);
             // 
             // m_btnRemindMeLater
             // 
-            this.m_btnRemindMeLater.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btnRemindMeLater.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_btnRemindMeLater.Location = new System.Drawing.Point(193, 381);
+            resources.ApplyResources(this.m_btnRemindMeLater, "m_btnRemindMeLater");
             this.m_btnRemindMeLater.Name = "m_btnRemindMeLater";
-            this.m_btnRemindMeLater.Size = new System.Drawing.Size(95, 23);
-            this.m_btnRemindMeLater.TabIndex = 16;
-            this.m_btnRemindMeLater.Text = "&Remind me later";
             this.m_btnRemindMeLater.UseVisualStyleBackColor = true;
             this.m_btnRemindMeLater.Click += new System.EventHandler(this.m_btnRemindMeLater_Click);
             // 
@@ -90,174 +81,116 @@ namespace Obi.Dialogs
             this.m_grpBoxUserInformation.Controls.Add(this.m_lblOrgName);
             this.m_grpBoxUserInformation.Controls.Add(this.m_lblEmail);
             this.m_grpBoxUserInformation.Controls.Add(this.m_lblName);
-            this.m_grpBoxUserInformation.Location = new System.Drawing.Point(12, 68);
+            resources.ApplyResources(this.m_grpBoxUserInformation, "m_grpBoxUserInformation");
             this.m_grpBoxUserInformation.Name = "m_grpBoxUserInformation";
-            this.m_grpBoxUserInformation.Size = new System.Drawing.Size(317, 216);
-            this.m_grpBoxUserInformation.TabIndex = 2;
             this.m_grpBoxUserInformation.TabStop = false;
             // 
             // m_txtWinVer
             // 
-            this.m_txtWinVer.Location = new System.Drawing.Point(111, 190);
+            resources.ApplyResources(this.m_txtWinVer, "m_txtWinVer");
             this.m_txtWinVer.Name = "m_txtWinVer";
             this.m_txtWinVer.ReadOnly = true;
-            this.m_txtWinVer.Size = new System.Drawing.Size(200, 20);
-            this.m_txtWinVer.TabIndex = 13;
             // 
             // m_lblWinVer
             // 
-            this.m_lblWinVer.AutoSize = true;
-            this.m_lblWinVer.Location = new System.Drawing.Point(2, 191);
+            resources.ApplyResources(this.m_lblWinVer, "m_lblWinVer");
             this.m_lblWinVer.Name = "m_lblWinVer";
-            this.m_lblWinVer.Size = new System.Drawing.Size(95, 13);
-            this.m_lblWinVer.TabIndex = 12;
-            this.m_lblWinVer.Text = "Windows Version :";
             // 
             // m_txtName
             // 
-            this.m_txtName.Location = new System.Drawing.Point(111, 13);
+            resources.ApplyResources(this.m_txtName, "m_txtName");
             this.m_txtName.Name = "m_txtName";
-            this.m_txtName.Size = new System.Drawing.Size(200, 20);
-            this.m_txtName.TabIndex = 3;
             // 
             // m_txtCountry
             // 
-            this.m_txtCountry.Location = new System.Drawing.Point(111, 157);
+            resources.ApplyResources(this.m_txtCountry, "m_txtCountry");
             this.m_txtCountry.Name = "m_txtCountry";
-            this.m_txtCountry.Size = new System.Drawing.Size(200, 20);
-            this.m_txtCountry.TabIndex = 11;
             // 
             // m_txtCity
             // 
-            this.m_txtCity.Location = new System.Drawing.Point(111, 121);
+            resources.ApplyResources(this.m_txtCity, "m_txtCity");
             this.m_txtCity.Name = "m_txtCity";
-            this.m_txtCity.Size = new System.Drawing.Size(200, 20);
-            this.m_txtCity.TabIndex = 9;
             // 
             // m_txtOrganizationName
             // 
-            this.m_txtOrganizationName.Location = new System.Drawing.Point(111, 82);
+            resources.ApplyResources(this.m_txtOrganizationName, "m_txtOrganizationName");
             this.m_txtOrganizationName.Name = "m_txtOrganizationName";
-            this.m_txtOrganizationName.Size = new System.Drawing.Size(200, 20);
-            this.m_txtOrganizationName.TabIndex = 7;
             // 
             // m_txtEmail
             // 
-            this.m_txtEmail.Location = new System.Drawing.Point(111, 45);
+            resources.ApplyResources(this.m_txtEmail, "m_txtEmail");
             this.m_txtEmail.Name = "m_txtEmail";
-            this.m_txtEmail.Size = new System.Drawing.Size(200, 20);
-            this.m_txtEmail.TabIndex = 5;
             // 
             // m_lblCountry
             // 
-            this.m_lblCountry.AutoSize = true;
-            this.m_lblCountry.Location = new System.Drawing.Point(6, 160);
+            resources.ApplyResources(this.m_lblCountry, "m_lblCountry");
             this.m_lblCountry.Name = "m_lblCountry";
-            this.m_lblCountry.Size = new System.Drawing.Size(49, 13);
-            this.m_lblCountry.TabIndex = 10;
-            this.m_lblCountry.Text = "Countr&y :";
             // 
             // m_lblCity
             // 
-            this.m_lblCity.AutoSize = true;
-            this.m_lblCity.Location = new System.Drawing.Point(6, 124);
+            resources.ApplyResources(this.m_lblCity, "m_lblCity");
             this.m_lblCity.Name = "m_lblCity";
-            this.m_lblCity.Size = new System.Drawing.Size(107, 13);
-            this.m_lblCity.TabIndex = 8;
-            this.m_lblCity.Text = "&City/State/Province :";
             // 
             // m_lblOrgName
             // 
-            this.m_lblOrgName.AutoSize = true;
-            this.m_lblOrgName.Location = new System.Drawing.Point(2, 85);
+            resources.ApplyResources(this.m_lblOrgName, "m_lblOrgName");
             this.m_lblOrgName.Name = "m_lblOrgName";
-            this.m_lblOrgName.Size = new System.Drawing.Size(147, 26);
-            this.m_lblOrgName.TabIndex = 6;
-            this.m_lblOrgName.Text = "&Organization Name :\r\n Use \"Home\" For Private user";
             // 
             // m_lblEmail
             // 
-            this.m_lblEmail.AutoSize = true;
-            this.m_lblEmail.Location = new System.Drawing.Point(6, 48);
+            resources.ApplyResources(this.m_lblEmail, "m_lblEmail");
             this.m_lblEmail.Name = "m_lblEmail";
-            this.m_lblEmail.Size = new System.Drawing.Size(38, 13);
-            this.m_lblEmail.TabIndex = 4;
-            this.m_lblEmail.Text = "&Email :";
             // 
             // m_lblName
             // 
-            this.m_lblName.AutoSize = true;
-            this.m_lblName.Location = new System.Drawing.Point(6, 16);
+            resources.ApplyResources(this.m_lblName, "m_lblName");
             this.m_lblName.Name = "m_lblName";
-            this.m_lblName.Size = new System.Drawing.Size(38, 13);
-            this.m_lblName.TabIndex = 2;
-            this.m_lblName.Text = "&Name:";
             // 
             // m_grpBoxObiUse
             // 
             this.m_grpBoxObiUse.Controls.Add(this.m_rdbTryingObi);
             this.m_grpBoxObiUse.Controls.Add(this.m_rdbDaisyProduction);
             this.m_grpBoxObiUse.Controls.Add(this.m_lblSelectRadioButton);
-            this.m_grpBoxObiUse.Location = new System.Drawing.Point(12, 290);
+            resources.ApplyResources(this.m_grpBoxObiUse, "m_grpBoxObiUse");
             this.m_grpBoxObiUse.Name = "m_grpBoxObiUse";
-            this.m_grpBoxObiUse.Size = new System.Drawing.Size(317, 85);
-            this.m_grpBoxObiUse.TabIndex = 3;
             this.m_grpBoxObiUse.TabStop = false;
             // 
             // m_rdbTryingObi
             // 
-            this.m_rdbTryingObi.AutoSize = true;
-            this.m_rdbTryingObi.Location = new System.Drawing.Point(9, 57);
+            resources.ApplyResources(this.m_rdbTryingObi, "m_rdbTryingObi");
             this.m_rdbTryingObi.Name = "m_rdbTryingObi";
-            this.m_rdbTryingObi.Size = new System.Drawing.Size(150, 17);
-            this.m_rdbTryingObi.TabIndex = 14;
             this.m_rdbTryingObi.TabStop = true;
-            this.m_rdbTryingObi.Text = "I am trying and &testing Obi.";
             this.m_rdbTryingObi.UseVisualStyleBackColor = true;
             // 
             // m_rdbDaisyProduction
             // 
-            this.m_rdbDaisyProduction.AutoSize = true;
-            this.m_rdbDaisyProduction.Location = new System.Drawing.Point(9, 35);
+            resources.ApplyResources(this.m_rdbDaisyProduction, "m_rdbDaisyProduction");
             this.m_rdbDaisyProduction.Name = "m_rdbDaisyProduction";
-            this.m_rdbDaisyProduction.Size = new System.Drawing.Size(264, 17);
-            this.m_rdbDaisyProduction.TabIndex = 13;
             this.m_rdbDaisyProduction.TabStop = true;
-            this.m_rdbDaisyProduction.Text = "I am already using Obi for producing &DAISY books.";
             this.m_rdbDaisyProduction.UseVisualStyleBackColor = true;
             // 
             // m_lblSelectRadioButton
             // 
-            this.m_lblSelectRadioButton.AutoSize = true;
-            this.m_lblSelectRadioButton.Location = new System.Drawing.Point(6, 16);
+            resources.ApplyResources(this.m_lblSelectRadioButton, "m_lblSelectRadioButton");
             this.m_lblSelectRadioButton.Name = "m_lblSelectRadioButton";
-            this.m_lblSelectRadioButton.Size = new System.Drawing.Size(170, 13);
-            this.m_lblSelectRadioButton.TabIndex = 12;
-            this.m_lblSelectRadioButton.Text = "&Please select any of the following :";
             // 
             // m_txtBoxObiInformation
             // 
-            this.m_txtBoxObiInformation.AccessibleName = "use arrow keys to read";
-            this.m_txtBoxObiInformation.Location = new System.Drawing.Point(12, 7);
-            this.m_txtBoxObiInformation.Multiline = true;
+            resources.ApplyResources(this.m_txtBoxObiInformation, "m_txtBoxObiInformation");
             this.m_txtBoxObiInformation.Name = "m_txtBoxObiInformation";
             this.m_txtBoxObiInformation.ReadOnly = true;
-            this.m_txtBoxObiInformation.Size = new System.Drawing.Size(317, 66);
-            this.m_txtBoxObiInformation.TabIndex = 1;
             // 
             // UserRegistration
             // 
             this.AcceptButton = this.m_btnOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(341, 416);
             this.Controls.Add(this.m_txtBoxObiInformation);
             this.Controls.Add(this.m_grpBoxObiUse);
             this.Controls.Add(this.m_grpBoxUserInformation);
             this.Controls.Add(this.m_btnRemindMeLater);
             this.Controls.Add(this.m_btnOk);
             this.Name = "UserRegistration";
-            this.Text = "User Registration";
             this.m_grpBoxUserInformation.ResumeLayout(false);
             this.m_grpBoxUserInformation.PerformLayout();
             this.m_grpBoxObiUse.ResumeLayout(false);
