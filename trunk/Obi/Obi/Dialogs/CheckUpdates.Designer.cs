@@ -45,10 +45,10 @@ namespace Obi.Dialogs
             this.m_RdOpenWebPage.Checked = true;
             this.m_RdOpenWebPage.Location = new System.Drawing.Point(6, 19);
             this.m_RdOpenWebPage.Name = "m_RdOpenWebPage";
-            this.m_RdOpenWebPage.Size = new System.Drawing.Size(179, 17);
+            this.m_RdOpenWebPage.Size = new System.Drawing.Size(119, 17);
             this.m_RdOpenWebPage.TabIndex = 2;
             this.m_RdOpenWebPage.TabStop = true;
-            this.m_RdOpenWebPage.Text = "&Open the new version web page";
+            this.m_RdOpenWebPage.Text = "&Go to the web page";
             this.m_RdOpenWebPage.UseVisualStyleBackColor = true;
             // 
             // m_RdRemindLater
@@ -67,10 +67,10 @@ namespace Obi.Dialogs
             this.m_RdRemindForNextVersion.AutoSize = true;
             this.m_RdRemindForNextVersion.Location = new System.Drawing.Point(6, 65);
             this.m_RdRemindForNextVersion.Name = "m_RdRemindForNextVersion";
-            this.m_RdRemindForNextVersion.Size = new System.Drawing.Size(158, 17);
+            this.m_RdRemindForNextVersion.Size = new System.Drawing.Size(161, 17);
             this.m_RdRemindForNextVersion.TabIndex = 4;
             this.m_RdRemindForNextVersion.TabStop = true;
-            this.m_RdRemindForNextVersion.Text = "Remind only for &next version";
+            this.m_RdRemindForNextVersion.Text = "Inform me about &next version";
             this.m_RdRemindForNextVersion.UseVisualStyleBackColor = true;
             // 
             // m_RdDisableCheckUpdates
