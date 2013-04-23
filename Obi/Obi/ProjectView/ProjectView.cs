@@ -2682,6 +2682,8 @@ for (int j = 0;
                         if (duration > ObiForm.Settings.MaxAllowedPhraseDurationInMinutes * 60 * 1000)
                         {
                             MessageBox.Show(string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), ObiForm.Settings.MaxAllowedPhraseDurationInMinutes));
+                            
+                            TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangeStatus;
                             return;
                         }
                     mPresentation.UndoRedoManager.Execute ( Commands.Node.MergeAudio.GetMergeCommand ( this ) );
