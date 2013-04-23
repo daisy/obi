@@ -72,7 +72,14 @@ namespace Obi.Dialogs
                     if (infoArray.Length > 4) m_CriticalText = infoArray[4];
 
                     Console.WriteLine(releaseInfoContents);
-                    IsVersionNumberNew() ;
+                    if (IsVersionNumberNew())
+                    {
+                        Console.WriteLine("New version is available");
+                    }
+                    else if (!m_IsAutomaticUpdate)
+                    {
+                        MessageBox.Show(string.Format( Localizer.Message("CheckUpdates_NewVersionNotAvailable"),m_Settings.Project_LatestVersionCheckedByUpdate ));
+                    }
                 }
                 catch (System.Exception ex)
                 {

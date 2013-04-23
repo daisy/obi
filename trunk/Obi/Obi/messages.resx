@@ -2328,4 +2328,7 @@ Error text: {1}</value>
   <data name="UserRegistrationBtn_DoNotRemind" xml:space="preserve">
     <value>Do not remind</value>
   </data>
+  <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
+    <value>The last update check was for version {0}. There is no new version released thereafter.</value>
+  </data>
 </root>

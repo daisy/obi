@@ -637,6 +637,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The last update check was for version {0}. There is no new version released thereafter..
+        /// </summary>
+        internal static string CheckUpdates_NewVersionNotAvailable {
+            get {
+                return ResourceManager.GetString("CheckUpdates_NewVersionNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi Help.chm.
         /// </summary>
         internal static string CHMhelp_file_name {
