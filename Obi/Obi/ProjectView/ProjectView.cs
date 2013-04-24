@@ -4735,7 +4735,7 @@ public bool ShowOnlySelectedSection
         public void ShowSpecialPhraseList()
         {
             if (mPresentation == null) return;
-            if(mTransportBar.IsPlayerActive)  mTransportBar.Pause();
+            if(mTransportBar.IsPlayerActive)  mTransportBar.Stop();
             Dialogs.SpecialPhraseList dialogs = new Dialogs.SpecialPhraseList(this);
             if (dialogs.ShowDialog() == DialogResult.OK)
             {
@@ -4749,7 +4749,7 @@ public bool ShowOnlySelectedSection
         public void ReplacePhrasesWithImproperAudioWithEmptyPhrases(ObiNode node)
         {
             if (mPresentation == null) return;
-            if (mTransportBar.IsPlayerActive) mTransportBar.Pause();
+            if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
             List<EmptyNode> phrasesToReplace = new List<EmptyNode>();
             int totalPhrasesCount = 0;
             node.AcceptDepthFirst(
