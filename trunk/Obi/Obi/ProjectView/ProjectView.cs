@@ -1912,7 +1912,7 @@ namespace Obi.ProjectView
         public bool CanShowInStripsView { get { return IsSectionSelected; } }
 
         public bool CanShowPhrasePropertiesDialog { get { return Selection != null && Selection.Node is EmptyNode && !TransportBar.IsRecorderActive; } }
-        public bool CanShowProjectPropertiesDialog { get { return mPresentation != null; } }
+        public bool CanShowProjectPropertiesDialog { get { return mPresentation != null && !mTransportBar.IsRecorderActive; } }
         public bool CanShowSectionPropertiesDialog { get { return Selection != null && Selection.Node is SectionNode && Presentation != null && Presentation.FirstSection != null && !TransportBar.IsRecorderActive; } } // quick fix of inserting first section check to avoid a crash
 
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
@@ -3501,7 +3501,7 @@ for (int j = 0;
         /// </summary>
         public void ToggleTODOForPhrase ()
             {
-            if (TransportBar.IsActive)
+            if (TransportBar.IsPlayerActive)
                 {
                 TransportBar.MarkTodo ();
                 }
