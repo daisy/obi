@@ -1179,6 +1179,7 @@ namespace Obi.ProjectView
         {
             if (GetSelectedPhraseSection != null)
             {
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 List<SectionNode> listOfSections = ((Obi.ObiRootNode)mPresentation.RootNode).GetListOfAllSections(); //use this list in merge section dialog
                 //MessageBox.Show(listOfSections.Count.ToString()); 
                 int selectedSectionIndex = listOfSections.IndexOf(GetSelectedPhraseSection);
@@ -2450,7 +2451,7 @@ for (int j = 0;
         {
             if (CanGenerateSpeechForPage || CanGenerateSpeechForAllEmptyPages)
             {
-             
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 List<EmptyNode> listOfEmptyPages = null ;
                 if (forAllEmptyPages)
                 {
@@ -3920,6 +3921,7 @@ for (int j = 0;
         public void GoToPageOrPhrase()
         {
             if (mPresentation.FirstSection == null) return;
+            if (mTransportBar.IsPlayerActive) mTransportBar.Pause();
             Dialogs.GoToPageOrPhrase GoToDialog = new Obi.Dialogs.GoToPageOrPhrase(GetSelectedPhraseSection != null ? GetSelectedPhraseSection.PhraseChildCount : mPresentation.FirstSection.PhraseChildCount);
             
             if (GoToDialog.ShowDialog() == DialogResult.OK)

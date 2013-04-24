@@ -3931,7 +3931,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Opening project.
+        ///   Looks up a localized string similar to Opening project {0}.
         /// </summary>
         internal static string opening_project {
             get {

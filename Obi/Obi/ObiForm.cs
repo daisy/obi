@@ -2017,6 +2017,7 @@ namespace Obi
 
             private void mPhrases_EditRolesMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause();
                 EditRoles dialog = new EditRoles(mSession.Presentation, mProjectView);
                 dialog.ShowDialog();
             }
@@ -3011,7 +3012,7 @@ namespace Obi
             private void OpenProject(string path, string progressTitle)
             {
                 m_IsStatusBarEnabled = true;
-                Status_Safe(Localizer.Message("opening_project") + path); //todo localize
+                Status_Safe(string.Format( Localizer.Message("opening_project"), path));
 
                 if (string.IsNullOrEmpty(progressTitle))
                     progressTitle = Localizer.Message("OpenProject_progress_dialog_title");
