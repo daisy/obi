@@ -1957,7 +1957,7 @@ Error text: {1}</value>
     <value>Error in opening</value>
   </data>
   <data name="opening_project" xml:space="preserve">
-    <value>Opening project</value>
+    <value>Opening project {0}</value>
   </data>
   <data name="waveform_is_truncated" xml:space="preserve">
     <value>The waveform is truncated at {0}s</value>
