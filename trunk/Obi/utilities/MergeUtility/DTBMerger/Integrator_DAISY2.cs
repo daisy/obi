@@ -363,7 +363,7 @@ namespace DTBMerger
                         n.Attributes.GetNamedItem ( "name" ) != null
                     && n.Attributes.GetNamedItem ( "name" ).Value == "ncc:timeInThisSmil")
                         {
-                        n.Attributes.GetNamedItem ( "content" ).Value = totalTime.ToString ();
+                        n.Attributes.GetNamedItem ( "content" ).Value = GetTimeString(totalTime);
                         }
                     }
 
