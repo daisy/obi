@@ -92,7 +92,8 @@ namespace DTBMerger
                 if (n.Attributes.GetNamedItem ( "media-type" ).Value == "audio/mpeg"
                     || n.Attributes.GetNamedItem ( "media-type" ).Value == "audio/x-wav")
                     {
-                    m_OriginalAudioFileList.Add ( n.Attributes.GetNamedItem ( "href" ).Value );
+                    // workaround to merge with resource file used by obi
+                        if (n.Attributes.GetNamedItem("href")!= null && !n.Attributes.GetNamedItem("href").Value.Contains("narrator_res.mp3")) m_OriginalAudioFileList.Add(n.Attributes.GetNamedItem("href").Value);
                     }
 
                 }
