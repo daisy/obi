@@ -253,6 +253,8 @@ namespace Obi.Dialogs
                    tempStr += "%0A" + s;
                }
                 Process.Start(tempStr);
+                m_Settings.UsersInfoToUpload = Registered ;
+                m_Settings.SaveSettings();
             }
             catch (System.Exception ex)
             {
