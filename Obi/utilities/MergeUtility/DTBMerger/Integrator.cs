@@ -51,6 +51,7 @@ namespace DTBMerger
             List<XmlDocument> opfDocumentsList = new List<XmlDocument> ();
             XmlDocument firstOpf = CommonFunctions.CreateXmlDocument ( m_DTBFilesInfoList[0].OpfPath );
 
+            
             for (int i = 1; i < m_DTBFilesInfoList.Count; i++)
                 {
                 opfDocumentsList.Add ( CommonFunctions.CreateXmlDocument ( m_DTBFilesInfoList[i].OpfPath ) );
@@ -110,8 +111,13 @@ namespace DTBMerger
                             || n.Attributes.GetNamedItem ( "media-type" ).Value == "audio/mpeg"
                      || n.Attributes.GetNamedItem ( "media-type" ).Value == "audio/x-wav")
                             { //4
-                            XmlNode copyNode = firstOpf.ImportNode ( n.Clone (), false );
-                            firstDTDManifestNode.AppendChild ( copyNode );
+                            XmlNode attr = n.Attributes.GetNamedItem("href") ;
+                            // quick fix to solve resource file problem in merge. hard coded resource file used by obi's export
+                            if (attr != null && !attr.Value.Contains("narrator_res.mp3"))
+                            {
+                                XmlNode copyNode = firstOpf.ImportNode(n.Clone(), false);
+                                firstDTDManifestNode.AppendChild(copyNode);
+                            }
                             } //-4
                         } //-3
 
@@ -544,7 +550,7 @@ namespace DTBMerger
                     string sourcePath = Path.Combine ( m_DTBFilesInfoList[i].BaseDirectory, s );
                     string destinationPath = Path.Combine ( baseDirectory, s );
 
-                    File.Move ( sourcePath, destinationPath );
+                    if(!File.Exists(destinationPath ))  File.Move ( sourcePath, destinationPath );
                     }
                 }// DTB iterator ends
 
@@ -641,7 +647,7 @@ namespace DTBMerger
                     string strMins = time.Minutes.ToString();
                     if (strMins.Length < 2) strMins = "0" + strMins;
                     string strSeconds = time.Seconds.ToString() +"."+ time.Milliseconds.ToString ();
-                    if (strSeconds.Length < 2) strSeconds = "0" + strSeconds;
+                    if (time.Seconds < 10) strSeconds = "0" + strSeconds;
                     string strTime = strHrs + ":" + strMins + ":" + strSeconds;
                     return strTime;
                 }
