@@ -3786,24 +3786,26 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         {
             if (Settings == null || !Settings.OptimizeMemory) return false;
 
-            if (m_PrevKey.ToString() == key.ToString())
-            {
+            if (m_PrevKey.ToString() == key.ToString()
+                && mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && !(mProjectView.Selection is AudioSelection) ) // key bypass should not happen for audio selection
+            {//1
                 m_KeyRepeatCount++;
 
-                if (m_KeyRepeatCount > 50)
-                {
+                if (m_KeyRepeatCount > 70 )
+                    //|| (m_KeyRepeatCount >40 && (key == Keys.Up || key == Keys.Down)))
+                {//2
                     System.Diagnostics.PerformanceCounter ramPerformanceCounter = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
 
                     //Console.WriteLine("count " + m_KeyRepeatCount + " : " + m_KeysMillisecond);
                     if (ramPerformanceCounter.NextValue() < 100
                         && Math.Abs(DateTime.Now.Second - m_KeysMillisecond) < 2)
-                    {
+                    {//3
                         m_KeysMillisecond = DateTime.Now.Second;
                         m_PrevKey = key;
                         //Console.WriteLine("count " + m_KeyRepeatCount + " : " + m_KeysMillisecond);
                             System.GC.GetTotalMemory(true);
                             System.GC.WaitForFullGCComplete(500);
-                        }
+                        }//-3
                         System.Media.SystemSounds.Beep.Play();
                         ramPerformanceCounter.Close();
                         return true;
@@ -3811,9 +3813,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         ramPerformanceCounter.Close();
                     
                     m_KeyRepeatCount = 0;
-                }
+                }//-2
 
-            }
+            }//-1
             else if (m_KeyRepeatCount > 75)
             {
                 m_KeyRepeatCount = 0;
