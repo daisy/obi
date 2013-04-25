@@ -4770,11 +4770,12 @@ public bool ShowOnlySelectedSection
                             },
                             delegate(urakawa.core.TreeNode n) { }
                         );
-
+            float percentDefect = totalPhrasesCount > 0 ? (phrasesToReplace.Count * 100) / totalPhrasesCount: 0f;
             if (phrasesToReplace.Count > 0
                 && MessageBox.Show(string.Format(Localizer.Message("ReplaceCorruptPhrasesWithEmptyNode_Question"), totalPhrasesCount, phrasesToReplace.Count),
                 Localizer.Message("Caption_Warning"),
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, 
+                (percentDefect < 10? MessageBoxDefaultButton.Button1: MessageBoxDefaultButton.Button2)) == DialogResult.Yes)
             {
                 CompositeCommand replacePhrasesCommand = mPresentation.CreateCompositeCommand(Localizer.Message("ReplacePhrasesWithEmptyNode"));
                 for (int i = 0; i < phrasesToReplace.Count; i++)
