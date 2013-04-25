@@ -1581,7 +1581,7 @@ namespace Obi.ProjectView
             if (CanSetPageNumber)
                 {
                 if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause ();
-
+                if (mTransportBar.IsRecorderActive) mTransportBar.Stop();
                 Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber ( CurrentOrNextPageNumber, true, false );
                 if (dialog.ShowDialog () == DialogResult.OK) SetPageNumberOnSelectedBock ( dialog.Number, dialog.Renumber );
                 }
@@ -3636,7 +3636,7 @@ for (int j = 0;
             {
                 bool selectionChangedPlaybackEnabled = TransportBar.SelectionChangedPlaybackEnabled;
                 TransportBar.SelectionChangedPlaybackEnabled = false;
-                if (TransportBar.IsPlayerActive) TransportBar.Stop();
+                if (TransportBar.IsPlayerActive || mTransportBar.IsRecorderActive) TransportBar.Stop();
             Dialogs.SectionProperties dialog = new Dialogs.SectionProperties ( this );
             if (dialog.ShowDialog () == DialogResult.OK)
                 {

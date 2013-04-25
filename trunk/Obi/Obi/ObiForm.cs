@@ -2018,6 +2018,7 @@ namespace Obi
             private void mPhrases_EditRolesMenuItem_Click(object sender, EventArgs e)
             {
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause();
+                if (mProjectView.TransportBar.IsRecorderActive) mProjectView.TransportBar.Stop();
                 EditRoles dialog = new EditRoles(mSession.Presentation, mProjectView);
                 dialog.ShowDialog();
             }
