@@ -3785,8 +3785,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         private bool ShouldSkipKeyDueToMemoryOverload(Keys key)
         {
             if (Settings == null || !Settings.OptimizeMemory) return false;
+            bool isArrowKeyPressed = (key == Keys.Left || key == Keys.Right || key == (Keys.Control|Keys.Left) || key == (Keys.Control|Keys.Right)) ;
 
-            if (m_PrevKey.ToString() == key.ToString()
+            if (isArrowKeyPressed && m_PrevKey.ToString() == key.ToString()
                 && mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && !(mProjectView.Selection is AudioSelection) ) // key bypass should not happen for audio selection
             {//1
                 m_KeyRepeatCount++;
