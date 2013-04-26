@@ -3023,7 +3023,7 @@ namespace Obi
                                                                                          {
 
                                                                                              mSession.Open(path);
-                                                                                             if (mSession.ErrorsInOpeningProject) mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode) mProjectView.Presentation.RootNode);
+                                                                                             if (mSession.ErrorsInOpeningProject) mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode) mProjectView.Presentation.RootNode,false);
                                                                                              DeleteExtraBackupFiles(false);
 
                                                                                          });
@@ -4732,7 +4732,7 @@ namespace Obi
 
             private void mCheckForPhrasesWithImproperAudioMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode)mProjectView.Presentation.RootNode);
+                mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode)mProjectView.Presentation.RootNode, true);
             }
 
         }
