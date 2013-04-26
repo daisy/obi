@@ -4748,7 +4748,7 @@ public bool ShowOnlySelectedSection
         /// <summary>
         /// <Find phrases with negligible audio or with corrupt data providers and replace them with empty phrases
         /// </summary>
-        public void ReplacePhrasesWithImproperAudioWithEmptyPhrases(ObiNode node)
+        public void ReplacePhrasesWithImproperAudioWithEmptyPhrases(ObiNode node, bool isThorough)
         {
             if (mPresentation == null) return;
             if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
@@ -4765,7 +4765,25 @@ public bool ShowOnlySelectedSection
                                     {
                                         phrasesToReplace.Add(phrase);
                                     }
+                                    // apply this stream check only if requested explicitly because it is time consuming.
+                                    else if (isThorough)
+                                    {
+                                        System.IO.Stream checkingStream = null;
+                                        try
+                                        {
+                                            checkingStream = phrase.Audio.AudioMediaData.OpenInputStream();
+                                        }
+                                        catch (System.Exception)
+                                        {
+                                            phrasesToReplace.Add(phrase);
+                                        }
+                                        finally
+                                        {
+                                            if (checkingStream != null) checkingStream.Close();
+                                        }
+                                    }
                                 }
+
                                 return true;
                             },
                             delegate(urakawa.core.TreeNode n) { }
