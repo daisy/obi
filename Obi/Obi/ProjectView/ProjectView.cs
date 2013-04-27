@@ -4769,17 +4769,22 @@ public bool ShowOnlySelectedSection
                                     else if (isThorough)
                                     {
                                         System.IO.Stream checkingStream = null;
+
                                         try
                                         {
-                                            checkingStream = phrase.Audio.AudioMediaData.OpenInputStream();
+                                            checkingStream = phrase.Audio.AudioMediaData.OpenPcmInputStream();
+
                                         }
-                                        catch (System.Exception)
+                                        catch (System.Exception ex)
                                         {
+                                            Console.WriteLine("exception thrown by " + phrase.ToString());
+                                            Console.WriteLine(ex.ToString());
                                             phrasesToReplace.Add(phrase);
                                         }
                                         finally
                                         {
                                             if (checkingStream != null) checkingStream.Close();
+                                            checkingStream = null;
                                         }
                                     }
                                 }
