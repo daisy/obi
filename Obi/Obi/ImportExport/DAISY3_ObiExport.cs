@@ -61,6 +61,7 @@ namespace Obi.ImportExport
         protected override void CreateDTBookDocument()
         {
             CreateListOfLevelsForAudioNCX();
+            
         }
 
         private void CreateListOfLevelsForAudioNCX()
@@ -78,6 +79,28 @@ namespace Obi.ImportExport
                                 delegate(urakawa.core.TreeNode n) { });
         }
 
+        protected override void CreateExternalFiles()
+        {
+            base.CreateExternalFiles();
+            RemoveUnnecessaryExternalFiles();
+        }
+
+        private void RemoveUnnecessaryExternalFiles()
+        {
+            //foreach (string externalFileName in m_FilesList_ExternalFiles)
+            
+            for(int i=0 ; i< m_FilesList_ExternalFiles.Count; i++)
+            {
+                string externalFileName = m_FilesList_ExternalFiles[i];
+string ext = Path.GetExtension(externalFileName);
+if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.OrdinalIgnoreCase)
+    || urakawa.data.DataProviderFactory.XSLT_EXTENSION.Equals(ext, StringComparison.OrdinalIgnoreCase)
+    || urakawa.data.DataProviderFactory.DTD_EXTENSION.Equals(ext, StringComparison.OrdinalIgnoreCase))
+{
+    m_FilesList_ExternalFiles.Remove(externalFileName);
+}
+}
+        }
 
         protected override void CreateNcxAndSmilDocuments()
         {
