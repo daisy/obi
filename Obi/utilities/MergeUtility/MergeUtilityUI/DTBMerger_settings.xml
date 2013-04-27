@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <settings>
 <pipelineLitePath>Pipeline-lite</pipelineLitePath>
-<validatorTimeTolerance>200</validatorTimeTolerance>
+<validatorTimeTolerance>600</validatorTimeTolerance>
 <removeDuplicatePagesD3>true</removeDuplicatePagesD3>
 </settings>
