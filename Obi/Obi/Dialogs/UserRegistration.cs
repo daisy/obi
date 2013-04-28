@@ -24,6 +24,12 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             m_txtWinVer.Text=Environment.OSVersion.ToString();
+            m_txtName.AccessibleName = m_lblName.Text.Replace("&", "");
+            m_txtEmail.AccessibleName = m_lblEmail.Text.Replace("&", "");
+            m_txtCity.AccessibleName = m_lblCity.Text.Replace("&", "");
+            m_txtCountry.AccessibleName = m_lblCountry.Text.Replace("&", "");
+            m_txtOrganizationName.AccessibleName = m_lblOrgName.Text.Replace("&", "");
+            m_txtWinVer.AccessibleName = m_lblWinVer.Text.Replace("&", "");
             m_txtBoxObiInformation.Text = Localizer.Message("Obi_UserInformationText");
             m_txtBoxObiInformation.Select(0, 0);
         }
