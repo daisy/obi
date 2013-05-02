@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <metadata name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
   </metadata>
@@ -126,7 +127,7 @@
   <data name="mFile_NewProjectMenuItem.AccessibleName" xml:space="preserve">
     <value>Nouveau projet Ctrl+N</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  
   <data name="mFile_NewProjectMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -1087,12 +1088,19 @@
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
   </data>
-  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+C</value>
-  </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>Aller en &amp;fin de note</value>
   </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Clear role from note</value>
+  </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+   <value>Ctrl+Alt+C</value>
+   </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Alt+C</value>
+  </data>
+
 <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
   </data>
@@ -1213,6 +1221,12 @@
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Plusieurs sections</value>
   </data>
+  <data name="settingsFromSilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="settingsFromSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Paramètres de phrase silence sélectionné</value>
+  </data> 
   <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
@@ -1313,6 +1327,12 @@
   </data>
   <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
     <value>Al&amp;ler à...</value>
+  </data>
+  <data name="mCheckForPhrasesWithImproperAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mCheckForPhrasesWithImproperAudioMenuItem.Text" xml:space="preserve">
+    <value>Chec&amp;k for corrupted audio</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Supprimer les phrases qui suivent</value>
@@ -1531,8 +1551,36 @@
     <value>176, 22</value>
   </data>
   <data name="mRecordToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Enregistrement</value>
+  <value>&amp;Enregistrement</value>
+   </data>
+  <data name="mGenerateSpeechToolStripMenuItem.AccessibleDescription" xml:space="preserve">
+    <value>Generate speech</value>
   </data>
+  <data name="selectedPageToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Generate speech for selected page.</value>
+  </data>
+  <data name="selectedPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="selectedPageToolStripMenuItem.Text" xml:space="preserve">
+    <value>page sélectionnée</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Generate speech for all empty pages.</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Toutes les pages vides</value>
+  </data>
+  <data name="mGenerateSpeechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="mGenerateSpeechToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;générer de la parole</value>    
+  </data>
+
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 6</value>
   </data>
@@ -1746,6 +1794,9 @@
   <data name="mHelp_ContentsMenuItem.AccessibleName" xml:space="preserve">
     <value>Contenus F1</value>
   </data>
+    <data name="mHelp_ContentsMenuItem.AccessibleName" xml:space="preserve">
+    <value>Contenus F1</value>
+  </data>
   <data name="mHelp_ContentsMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F1</value>
   </data>
@@ -1771,6 +1822,15 @@
   </data>
   <data name="aboutObiToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;À propos de Obi</value>
+  </data>
+  <data name="checkForUpdatesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="checkForUpdatesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 22</value>
+  </data>
+  <data name="checkForUpdatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Check for &amp;updates</value>
   </data>
   <data name="mHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -2136,8 +2196,9 @@
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
   </data>
-
-
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
@@ -2725,8 +2786,7 @@
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator6.Name" xml:space="preserve">
-  </data>
-  <data name="&gt;&gt;toolStripSeparator6.Name" xml:space="preserve">
+
     <value>toolStripSeparator6</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator6.Type" xml:space="preserve">
@@ -2816,6 +2876,12 @@
   <data name="&gt;&gt;mApplyPhraseDetectionInProjectToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;settingsFromSilencePhraseToolStripMenuItem.Name" xml:space="preserve">
+    <value>settingsFromSilencePhraseToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;settingsFromSilencePhraseToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mPhrases_AudioSelectionMenuItem.Name" xml:space="preserve">
     <value>mPhrases_AudioSelectionMenuItem</value>
   </data>
@@ -2862,6 +2928,12 @@
     <value>m_GoToCollectSpecialPhrasesToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_GoToCollectSpecialPhrasesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mCheckForPhrasesWithImproperAudioMenuItem.Name" xml:space="preserve">
+    <value>mCheckForPhrasesWithImproperAudioMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mCheckForPhrasesWithImproperAudioMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mDeleteFollowingPhrasesToolStripMenuItem.Name" xml:space="preserve">
@@ -2994,6 +3066,24 @@
     <value>mAllowOverwriteToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mAllowOverwriteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mGenerateSpeechToolStripMenuItem.Name" xml:space="preserve">
+    <value>mGenerateSpeechToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mGenerateSpeechToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectedPageToolStripMenuItem.Name" xml:space="preserve">
+    <value>selectedPageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;selectedPageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allEmptyPagesToolStripMenuItem.Name" xml:space="preserve">
+    <value>allEmptyPagesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;allEmptyPagesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
@@ -3153,6 +3243,12 @@
   <data name="&gt;&gt;aboutObiToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;checkForUpdatesToolStripMenuItem.Name" xml:space="preserve">
+    <value>checkForUpdatesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;checkForUpdatesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mStatusLabel.Name" xml:space="preserve">
     <value>mStatusLabel</value>
   </data>
@@ -3165,22 +3261,14 @@
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="settingsFromSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Paramètres de phrase silence sélectionné</value>
-  </data> 
+ 
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mGenerateSpeechToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;générer de la parole</value>
-  </data>
-  <data name="allEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Toutes les pages vides</value>
-  </data>
-  <data name="selectedPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>page sélectionnée</value>
-  </data>
+
+
+
 </root>
