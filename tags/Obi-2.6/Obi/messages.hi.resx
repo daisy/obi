@@ -1,0 +1,1056 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="clear_recent_caption" xml:space="preserve">
+    <value>क्या हाल के प्रोजेक्ट की सूची को मिटा दिया जाए?</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="clear_recent_text" xml:space="preserve">
+    <value>क्या आप आशवस्त है की हाल के प्रोजेक्ट की सूची को मिटा दिया जाए?
+आप इस संक्रिय को निरस्त नहीं कर सकते.</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="closed_project" xml:space="preserve">
+    <value>स्मृत प्रोजेक्ट "{0}".</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="closed_project_caption" xml:space="preserve">
+    <value>आशोधित प्रोजेक्ट बन्द हो रहा है</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="closed_project_text" xml:space="preserve">
+    <value>सुधारों को बिना सुरक्षित किये आप प्रोजेक्ट बन्द कर रहे है.
+प्रोजेक्ट को बन्द करने से पहले क्या आप इन सुधारों को सुरक्षित करना चाहते है?</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="default_organization" xml:space="preserve">
+    <value>N/A</value>
+    <comment>Preferences</comment>
+  </data>
+  <data name="default_section_label" xml:space="preserve">
+    <value>शीर्षक रहित अनुभाग</value>
+    <comment>Preferences</comment>
+  </data>
+  <data name="obi" xml:space="preserve">
+    <value>ओबी</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="open_project_error_caption" xml:space="preserve">
+    <value>फाइल खोलते समय त्रुटि</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="open_project_error_text" xml:space="preserve">
+    <value>शुक फाइल को पढ़ने में असमर्थ {0}.</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="opened_project" xml:space="preserve">
+    <value>अनावृत्त फाइल "{0}".</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="ready" xml:space="preserve">
+    <value>तैयार.</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="redo_label" xml:space="preserve">
+    <value>{0} {1}</value>
+    <comment>Command</comment>
+  </data>
+  <data name="save_settings_error_caption" xml:space="preserve">
+    <value>सैटिंगस सुरक्षित नहीं हो सकी</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="save_settings_error_text" xml:space="preserve">
+    <value>सैटिंग को सुरक्षित करते सम निम्न त्रुटि हुई:
+"{0}"
+परिणामस्वरूप, कार्यस्तर के दौरान सैटिंगस में किये गये परिवर्तन सुरक्षित नहीं हुए.
+आह! अच्छा.</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="saved_project" xml:space="preserve">
+    <value>फाइल में प्रोजेक्ट को सुरक्षित करे "{0}".</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="undo_label" xml:space="preserve">
+    <value>{0} {1}</value>
+    <comment>Command</comment>
+  </data>
+  <data name="create_directory_text" xml:space="preserve">
+    <value>निर्देशिका {0} विद्यमान नहीं है. क्या आप इसे बनाना चाहते है?</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="redo" xml:space="preserve">
+    <value>पुनः करना</value>
+    <comment>Command</comment>
+  </data>
+  <data name="undo" xml:space="preserve">
+    <value>निरस्त करना</value>
+    <comment>Command</comment>
+  </data>
+  <data name="no_output_device_caption" xml:space="preserve">
+    <value>कोई श्रव्य निर्गम युक्ति नहीं पाई गई..</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="no_output_device_text" xml:space="preserve">
+    <value>श्रव्य निर्गम युक्ति का चयन नहीं हो सका; कोई भी प्राप्त नहीं.</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="create_directory_caption" xml:space="preserve">
+    <value>निर्देशिका का श्रीजन?</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="mono" xml:space="preserve">
+    <value>मोनो</value>
+    <comment>Preferences</comment>
+  </data>
+  <data name="stereo" xml:space="preserve">
+    <value>स्टीरियो</value>
+    <comment>Preferences</comment>
+  </data>
+  <data name="no_input_device_caption" xml:space="preserve">
+    <value>कोई भी इनपुट डिवाइस नहीं पाया गया</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="no_input_device_text" xml:space="preserve">
+    <value>कोई भी सलेक्टिड इनपुट डिवाइस नहीं पाया गया.</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="record" xml:space="preserve">
+    <value>रिकॉर्ड</value>
+    <comment>Button label (to be reviewed)</comment>
+  </data>
+  <data name="obi_filter" xml:space="preserve">
+    <value>ओबी प्रोजेक्ट फाइल (*.obi)|*.obi|कोई भी फाइल|*.*</value>
+    <comment>File dialog</comment>
+  </data>
+  <data name="report_delete_error" xml:space="preserve">
+    <value>फाइल हटाने में त्रुटि {0}. ({1})</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="audio_file_filter" xml:space="preserve">
+    <value>WAVE file (*.wav)|*.wav|Any file|*.*</value>
+    <comment>File dialog</comment>
+  </data>
+  <data name="Monitoring" xml:space="preserve">
+    <value>ओडियो इनपुट को जाँचना...</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="page_number" xml:space="preserve">
+    <value>पृष्ठ {0}</value>
+    <comment>Block label</comment>
+  </data>
+  <data name="normal_phrase" xml:space="preserve">
+    <value>वाक्यांश</value>
+    <comment>Block label</comment>
+  </data>
+  <data name="saved_as_daisy_text" xml:space="preserve">
+    <value>एक्सपोर्टिड प्रोजेक्ट को डेज़ी निर्देशिका में बदलना {0}</value>
+    <comment>Information dialog</comment>
+  </data>
+  <data name="title_bar" xml:space="preserve">
+    <value>{0}{1} - {2}</value>
+    <comment>Title bar</comment>
+  </data>
+  <data name="export_choose_folder" xml:space="preserve">
+    <value>कृपया उस फोल्डर का चयन करे जिसमें डेज़ी पुस्तक को सुरक्षित करना है।</value>
+    <comment>Directory dialog</comment>
+  </data>
+  <data name="default_directory_browser" xml:space="preserve">
+    <value>कृपया निम्न डिफॉल्ट डायरेक्टरी को चुने.</value>
+    <comment>Directory dialog</comment>
+  </data>
+  <data name="export_directory_browser" xml:space="preserve">
+    <value>कृपया निम्न में से डिफाल्ट एक्सपोर्ट निर्देशिका को चुने.</value>
+    <comment>Preferences</comment>
+  </data>
+  <data name="playback_rate" xml:space="preserve">
+    <value>प्लेबैक रेट x{0}</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="Recording" xml:space="preserve">
+    <value>रिकॉर्डिंग...</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="cannot_create_file_caption" xml:space="preserve">
+    <value>प्रोजेक्ट फाइल की रचना नहीं हो सकती</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="cannot_create_file_text" xml:space="preserve">
+    <value>प्रोजेक्ट फाइल की रचना नहीं हो सकती "{0}": {1}.</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="cannot_create_directory_caption" xml:space="preserve">
+    <value>निर्देशिका की रचना नहीं हो सकती</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="cannot_create_directory_text" xml:space="preserve">
+    <value>निर्देशिका की रचना नहीं हो सकती {0}: {1}.</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="cannot_delete_caption" xml:space="preserve">
+    <value>फाइल नहीं मिट सकती</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="cannot_delete_text" xml:space="preserve">
+    <value>फाइल को नहीं मिटाया जा सकता {0}. जारी रखने के लिए ओके दबाए या विफलन के लिए निरस्त करे (Reason given: {1})</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="empty_directory_caption" xml:space="preserve">
+    <value>अरिक्त निर्देशिका में नियतिन</value>
+    <comment>Warning dialog</comment>
+  </data>
+  <data name="empty_directory_text" xml:space="preserve">
+    <value>आप अपने डेज़ी प्रोजेक्ट को लगभग {0}में निर्यात करने को है। यह निर्देशिका रिक्त नहीं है (संभवतः आपने अपनी परियोजना का पुराना वर्जन निर्देशिका में निर्यात किया है) क्या आप निर्यात करने से पूर्व इस निर्देशिका को रिक्त करना चाहते है?</value>
+    <comment>Warning dialog</comment>
+  </data>
+  <data name="didnt_save_as_daisy_caption" xml:space="preserve">
+    <value>डेज़ी में त्रुटि का निर्यातन</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="didnt_save_as_daisy_text" xml:space="preserve">
+    <value>निर्देशिका {0} में प्रोजेक्ट को डे़ज़ी में निर्यात नहीं कर सकता। दिया गया कारण: {1}</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="saved_as_daisy_caption" xml:space="preserve">
+    <value>प्रोजेक्ट डेज़ी में निर्यातित</value>
+    <comment>Information dialog</comment>
+  </data>
+  <data name="import_phrase_error_caption" xml:space="preserve">
+    <value>आयातित श्रव्य में त्रुटि</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="import_phrase_error_text" xml:space="preserve">
+    <value>श्रव्य फाइल "{0}" को आयातित नहीं किया जा सकता क्योंकि श्रव्य सेटिंगस (चैनल, बिट डेप्थ, प्रतिदर्श दर) प्रोजेक्ट से मेल नहीं खाती।</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="dc_publisher_description" xml:space="preserve">
+    <value>DTB उपलब्ध कराने की जिम्मेदारी एजेंसी की है।</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_title_description" xml:space="preserve">
+    <value>DTB का शीर्षक, उपशीर्षक सहित।</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="missing_description" xml:space="preserve">
+    <value>इस अधि-आकड़े मद के लिए विवरण नदारद है।</value>
+    <comment>Metadata</comment>
+  </data>
+  <data name="help_file_name" xml:space="preserve">
+    <value>help_hi.html</value>
+    <comment>Path to file</comment>
+  </data>
+  <data name="error_metadata_name_caption" xml:space="preserve">
+    <value>आधि-आँकड़े मद का सृजन नहीं कर सकता</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="error_metadata_name_message" xml:space="preserve">
+    <value>नाम "{0}" के साथ अधि-आँकड़े मद का सृजन नहीं कर सकता: नाम "dtb:" से शुरु नहीं होना चाहिए।</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="default_project_title" xml:space="preserve">
+    <value>बिना शीर्षक ओबी प्रोजेक्ट</value>
+    <comment>Preferences</comment>
+  </data>
+  <data name="default_project_filename" xml:space="preserve">
+    <value>प्रोजेक्ट.ओबी</value>
+    <comment>Preferences</comment>
+  </data>
+  <data name="really_use_directory_caption" xml:space="preserve">
+    <value>अरिक्त नई प्रोजेक्ट निर्देशिका</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="really_use_directory_text" xml:space="preserve">
+    <value>निर्देशिका "{0}" रिक्त नहीं है। यदि आप इस निर्देशिका में नए प्रोजेक्ट का सृजन करते है तो कुछ विषय वस्तु नष्ट हो जाएगी। क्या आप जारी रखना चाहते है?</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="cannot_redo" xml:space="preserve">
+    <value>पुनः नहीं कर सकता</value>
+    <comment>Empty undo stack label</comment>
+  </data>
+  <data name="cannot_undo" xml:space="preserve">
+    <value>निरस्त नहीं कर सकता</value>
+    <comment>Empty redo stack label</comment>
+  </data>
+  <data name="rename_section" xml:space="preserve">
+    <value>अनुभाग को पुनः नाम दे</value>
+    <comment>Command</comment>
+  </data>
+  <data name="move_section_out" xml:space="preserve">
+    <value>अनुभाग स्तर को कम करे</value>
+    <comment>Command (was renamed)</comment>
+  </data>
+  <data name="move_section_in" xml:space="preserve">
+    <value>अनुभाग स्तर में वृद्धि करें</value>
+    <comment>Command (was renamed)</comment>
+  </data>
+  <data name="delete_section" xml:space="preserve">
+    <value>अनुभाग को हटाएँ (स्तरण)</value>
+    <comment>Command</comment>
+  </data>
+  <data name="copy_section" xml:space="preserve">
+    <value>प्रतिलिपि अनुभाग (स्तरण)</value>
+    <comment>Command</comment>
+  </data>
+  <data name="cut_section" xml:space="preserve">
+    <value>अनुभाग (स्तरण) कर्तन</value>
+    <comment>Command</comment>
+  </data>
+  <data name="paste_section" xml:space="preserve">
+    <value>अनुभाग चिपकाओ</value>
+    <comment>Command</comment>
+  </data>
+  <data name="import_phrases" xml:space="preserve">
+    <value>श्रव्य फाइल का आयात</value>
+    <comment>Command</comment>
+  </data>
+  <data name="importing_file" xml:space="preserve">
+    <value> फाइल को आयात करना "{0}"</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="init_error_text" xml:space="preserve">
+    <value>ओबी के आरंभीकरण के दौरान त्रुटि हुई। त्रुटि टैक्सट की विषय वस्तु के साथ कृपया रिपोर्ट प्रस्तुत करें। {0}: {1}</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="init_error_caption" xml:space="preserve">
+    <value>ओबी प्रारंभीकरण त्रुटि</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="created_new_project" xml:space="preserve">
+    <value>नए प्रोजेक्ट "{0}" का सृजन.</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="delete_phrase" xml:space="preserve">
+    <value>वाक्यांश हटाएँ</value>
+    <comment>Command</comment>
+  </data>
+  <data name="delete_section_shallow" xml:space="preserve">
+    <value>अनुभाग (shallow) हटाएँ</value>
+    <comment>Command</comment>
+  </data>
+  <data name="cut_section_shallow" xml:space="preserve">
+    <value>अनुभाग कर्तन (shallow)</value>
+    <comment>Command</comment>
+  </data>
+  <data name="split_section" xml:space="preserve">
+    <value>अनुभाग विच्छेद</value>
+    <comment>Command</comment>
+  </data>
+  <data name="merge_sections" xml:space="preserve">
+    <value>संक्लिय अनुभाग</value>
+    <comment>Command</comment>
+  </data>
+  <data name="cut_phrase" xml:space="preserve">
+    <value>कर्तन वाक्यांश</value>
+    <comment>Command</comment>
+  </data>
+  <data name="copy_phrase" xml:space="preserve">
+    <value>प्रतिलिपि वाक्यांश</value>
+    <comment>Command</comment>
+  </data>
+  <data name="find_in_text_init" xml:space="preserve">
+    <value>इस प्रोजेक्ट में खोज के लिए टेकस्ट टाइप करें.</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="find_next_in_text" xml:space="preserve">
+    <value>आगे खोजना...</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="find_prev_in_text" xml:space="preserve">
+    <value>उत्क्रम में खोजना...</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="finished_searching_all" xml:space="preserve">
+    <value>सभी टेक्स्ट खोजे.</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="found_in_text" xml:space="preserve">
+    <value> "{0}" की आवृत्ति पाई</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="not_found_in_text" xml:space="preserve">
+    <value>कोई मेल नहीं पाए गए.</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="nothing_to_search" xml:space="preserve">
+    <value>खोज हेतु कुछ नहीं!</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="searching" xml:space="preserve">
+    <value>खोजना...</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="please_enter_some_text" xml:space="preserve">
+    <value>कृपया कुछ टेक्स्ट की प्रविष्टि करें.</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="recording_command" xml:space="preserve">
+    <value>रिकॉर्डिंग</value>
+    <comment>Command</comment>
+  </data>
+  <data name="start_recording" xml:space="preserve">
+    <value>आरंभ रिकॉर्डिंग</value>
+    <comment>Button label (to be reviewed)</comment>
+  </data>
+  <data name="split_phrase" xml:space="preserve">
+    <value>विच्छेद वाक्यांश</value>
+    <comment>Command</comment>
+  </data>
+  <data name="merge_phrase_with_next" xml:space="preserve">
+    <value>टेक्स्ट के साथ वाक्यांश का संविलय</value>
+    <comment>Command</comment>
+  </data>
+  <data name="paste_phrase" xml:space="preserve">
+    <value>वाक्यांश चिपकाएं</value>
+    <comment>Command</comment>
+  </data>
+  <data name="add_role" xml:space="preserve">
+    <value>(भूमिका जोड़े)</value>
+    <comment>For the custom types dropdown</comment>
+  </data>
+  <data name="change_role" xml:space="preserve">
+    <value>भूमिका परिवर्तन</value>
+    <comment>Command</comment>
+  </data>
+  <data name="mark_phrase_used" xml:space="preserve">
+    <value>वाक्यांश को {0} जैसे चिह्नित करें</value>
+    <comment>Command</comment>
+  </data>
+  <data name="set_page_number_" xml:space="preserve">
+    <value>पृष्ठ संख्या स्थापन</value>
+    <comment>Command</comment>
+  </data>
+  <data name="add_section" xml:space="preserve">
+    <value>जोड़ अनुभाग</value>
+    <comment>Command</comment>
+  </data>
+  <data name="add_subsection" xml:space="preserve">
+    <value>जोड़ उपानुभाग</value>
+    <comment>Command</comment>
+  </data>
+  <data name="mark_section_used" xml:space="preserve">
+    <value>अनुभाग को {0} जैसे चिह्नित करें</value>
+    <comment>Command</comment>
+  </data>
+  <data name="cut_audio" xml:space="preserve">
+    <value>श्रव्य कर्तन</value>
+    <comment>Command</comment>
+  </data>
+  <data name="delete_audio" xml:space="preserve">
+    <value>श्रव्य हटाना</value>
+    <comment>Command</comment>
+  </data>
+  <data name="default_custom_class_name" xml:space="preserve">
+    <value>चिह्नित</value>
+    <comment>Role stuff</comment>
+  </data>
+  <data name="no_preceding_silent_phrase" xml:space="preserve">
+    <value>संदर्भ के लिए कोई पूर्ववर्ती मौन वाक्यांश नहीं; डिफॉल्ट मान का प्रयोग करके।</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="paste_audio" xml:space="preserve">
+    <value>श्रव्य चिपकाएँ</value>
+    <comment>Comand</comment>
+  </data>
+  <data name="copy_audio" xml:space="preserve">
+    <value>श्रव्य प्रतिलिपि करें</value>
+    <comment>Command</comment>
+  </data>
+  <data name="phrase_detection" xml:space="preserve">
+    <value>वाक्यांश संसूचन</value>
+    <comment>Command</comment>
+  </data>
+  <data name="create_new_project_from_import" xml:space="preserve">
+    <value>XHTML के आयात से नए प्रोजेक्ट का सृजन</value>
+    <comment>File dialog caption</comment>
+  </data>
+  <data name="import_failed" xml:space="preserve">
+    <value>{0} आयात से प्रोजेक्ट का सृजन नहीं हो सका</value>
+    <comment>Error message stub</comment>
+  </data>
+  <data name="xhtml_filter" xml:space="preserve">
+    <value>XHTML फाइल (*.htm;*.html;*.xhtml)|*.htm;*.html;*.xhtml|कोई फाइल|*.*</value>
+    <comment>File dialog</comment>
+  </data>
+  <data name="blank_phrase" xml:space="preserve">
+    <value>रिक्ता वाक्यांश</value>
+    <comment>Block label</comment>
+  </data>
+  <data name="kind_phrase" xml:space="preserve">
+    <value>{0} वाक्यांश</value>
+    <comment>Block label</comment>
+  </data>
+  <data name="insert_section" xml:space="preserve">
+    <value>अनुभाग निवेशन</value>
+    <comment>Command</comment>
+  </data>
+  <data name="clean_failed_caption" xml:space="preserve">
+    <value>प्रोजेक्ट विशुद्ध करने में असफल</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="clean_failed_text" xml:space="preserve">
+    <value>चालू प्रोजेक्ट को विशुद्ध करने में ओबी असफल, स्पष्टतः निम्न कारण से: {0}</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="clean_save_caption" xml:space="preserve">
+    <value>विशुद्धीकरण के बाद सुरक्षित करना</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="clean_save_text" xml:space="preserve">
+    <value>विशुद्धिकरण के बाद आपकी परियोजना सुरक्षित हो जाएगी। क्या आप जारी रखना चाहते हैं?</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="delete_unused" xml:space="preserve">
+    <value>अप्रयुक्त आंकड़े को हटाएँ</value>
+    <comment>Command</comment>
+  </data>
+  <data name="delete_metadata_entry" xml:space="preserve">
+    <value>अधि-आँकड़े प्रविष्टि हटाएँ</value>
+    <comment>Command</comment>
+  </data>
+  <data name="modify_metadata_content" xml:space="preserve">
+    <value>अधि-आँकड़ा प्रविष्टि की विषय वस्तु का संशोधन</value>
+    <comment>Metadata</comment>
+  </data>
+  <data name="modify_metadata_name" xml:space="preserve">
+    <value>modify metadata entry name</value>
+    <comment>Metadata</comment>
+  </data>
+  <data name="about_file_name" xml:space="preserve">
+    <value>about_hi.html</value>
+    <comment>Location of the HTML document for the "About" dialog</comment>
+  </data>
+  <data name="add_blank_pages" xml:space="preserve">
+    <value>खाली पृष्ठ जोड़े</value>
+    <comment>Command</comment>
+  </data>
+  <data name="add_blank_phrase" xml:space="preserve">
+    <value>खाली वाक्यांश जोडे़</value>
+    <comment>Command</comment>
+  </data>
+  <data name="add_metadata_entry" xml:space="preserve">
+    <value>अधि-आँकड़ा प्रविष्टि जोड़े</value>
+    <comment>Command</comment>
+  </data>
+  <data name="choose_import_file" xml:space="preserve">
+    <value>आयात फाइल चुनें</value>
+    <comment>File dialog caption</comment>
+  </data>
+  <data name="copy_section_shallow" xml:space="preserve">
+    <value>अनुभाग (सतही) की प्रतिलिपि करें</value>
+    <comment>Command</comment>
+  </data>
+  <data name="monitoring_short" xml:space="preserve">
+    <value>मॉनीटरन</value>
+    <comment>Transport bar display</comment>
+  </data>
+  <data name="propose_directory_caption" xml:space="preserve">
+    <value>नए प्रोजेक्ट के लिए अरिक्त निर्देशिका</value>
+    <comment>Warning dialog</comment>
+  </data>
+  <data name="propose_directory_text" xml:space="preserve">
+    <value>जिस निर्देशिका को आपने अपनी नए प्रोजेक्ट को सुरक्षित करने के लिए चुना है वह खाली नहीं है। क्या आप अपनी नए प्रोजेक्ट के लिए निम्न स्थान चुनना चाहेंगे "{0}"?</value>
+    <comment>Warning dialog</comment>
+  </data>
+  <data name="start_monitoring" xml:space="preserve">
+    <value>मॉनीटरन प्रारंभ</value>
+    <comment>Button label</comment>
+  </data>
+  <data name="content_view" xml:space="preserve">
+    <value>विषय-वस्तु देखना</value>
+  </data>
+  <data name="audio_block_label" xml:space="preserve">
+    <value>{0} {1} of {2}{3}</value>
+    <comment>Audio block label of the form "audio block n of m(, unused)"</comment>
+  </data>
+  <data name="audio_block_label_unused" xml:space="preserve">
+    <value>, अप्रयुक्त</value>
+    <comment>Audio block label additional information</comment>
+  </data>
+  <data name="Paused" xml:space="preserve">
+    <value>रूका</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="Playing" xml:space="preserve">
+    <value>श्रव्य बजाना</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>रुका हुआ</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="transport_bar" xml:space="preserve">
+    <value>परिवहन बार</value>
+  </data>
+  <data name="dc_contributor_description" xml:space="preserve">
+    <value>एक पार्टी जिसका प्रकाशन में योगदान गौड़ है उनको dc:रचियता एक पार्टी जिसको dc रचियता में नामित किया गया है उनका प्रकाशन में योगदान गौण है।</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_coverage_description" xml:space="preserve">
+    <value>स्रोत की विषय वस्तु का विस्तार अथवा परिधि। DTBs के प्रयोग के लिए अपेक्षित नहीं।</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_creator_description" xml:space="preserve">
+    <value>प्रकाशन के बौद्धिक विषय वस्तु के प्राथमिक लेख अथवा रचियता के नाम</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_date_description" xml:space="preserve">
+    <value>DTB के प्रकाशन तिथि (dtb: की स्रोत तिथि और dtb: की निर्मित तिथि की तुलना करे).</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_description_description" xml:space="preserve">
+    <value>प्रकाशन की विषय वस्तु के विवरण के लिए सादा टैक्सट.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_format_description" xml:space="preserve">
+    <value>मानक अथवा विनिर्देशन जिसके आधार पर DTB का निर्माण हुआ।</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_identifier_description" xml:space="preserve">
+    <value>DTB को पहचानने के लिए एक श्रृखंला अथवा संख्या.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_language_description" xml:space="preserve">
+    <value>प्रकाशन की विषय वस्तु की भाषा। भाषा कोड [RFC 3066] स्वीडन के लिए: "sv" or "sv-SE";  UK के लिए: "en" or "en-GB"; अमेरिका के लिए : "en" या "en-US"; आदि.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_relation_description" xml:space="preserve">
+    <value>संबंधित संसाधन का संदर्भ</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_rights_description" xml:space="preserve">
+    <value>DTB के अधिकारो के बारे में सूचना. (dtb:सोर्स राइट्स से तुलना)</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_source_description" xml:space="preserve">
+    <value>संसाधन का संदर्भ (उदाहरणार्थ मुद्रित मूल, ई-बुक आदि) जिसमें से DTB लिया गया है.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_subject_description" xml:space="preserve">
+    <value>प्रकाशन की विषय-वस्तु का शीर्षक.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_type_description" xml:space="preserve">
+    <value>DTB की विषय वस्तु का स्वरूप (यथा, ध्वनि, टेकस्ट, बिंब) डुबलिन कोर [DC-Type] की निरुपित सूची से लेना उत्तम अभ्यास है।. </value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_audio_format_description" xml:space="preserve">
+    <value>DTB की विषय वस्तु सहित SMIL फाइलों के बजने का कुल समय यह मान SMIL 2.0 क्लॉक मान है। समय और तुल्यकालन मॉड्यूल</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_multimedia_content_description" xml:space="preserve">
+    <value>Summary of the general types of media used in the content of this DTB. Value is a comma-delimited list of the top-level media types defined in [RFC2046]. In the current version of this standard, the only applicable types will be audio, text, and image. Media types that are referenced only by NCX, Resource File, or distInfo must not be listed here.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_multimedia_type_description" xml:space="preserve">
+    <value>One of the six types of DTB defined in the Structure Guidelines. Values are: audioOnly, audioNCX, audioPartText, audioFullText, textPartAudio, textNCX.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_narrator_description" xml:space="preserve">
+    <value>Name of the person whose recorded voice is embodied in the DTB.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_produced_date_description" xml:space="preserve">
+    <value>Date of first generation of the complete DTB, i.e. Production completion date. (Compare dc:Date.) In format from [ISO8601]; the syntax is YYYY[-MM[-DD]] with a mandatory 4-digit year, an optional 2-digit month, and, if the month is present, an optional 2-digit day of month.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_producer_description" xml:space="preserve">
+    <value>Name of the organization/production unit that created the DTB. (Compare dc:Publisher.)</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_revision_data_description" xml:space="preserve">
+    <value>Date associated with the specific dtb:revision. In format from [ISO8601]; the syntax is YYYY[-MM[-DD]] with a mandatory 4-digit year, an optional 2-digit month, and, if the month is present, an optional 2-digit day of month.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_revision_description" xml:space="preserve">
+    <value>Non-negative integer value of the specific version of the DTB. Incremented each time the DTB is revised.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_revision_description_description" xml:space="preserve">
+    <value>A string describing the changes introduced in a specific dtb:revision.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_source_date_description" xml:space="preserve">
+    <value>Date of publication of the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. In format from [ISO8601]; the syntax is YYYY[-MM[-DD]] with a mandatory 4-digit year, an optional 2-digit month, and, if the month is present, an optional 2-digit day of month.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_source_edition_description" xml:space="preserve">
+    <value>A string describing the edition of the resource (e.g., a print original, ebook, etc.) from which the DTB is derived.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_source_publisher_description" xml:space="preserve">
+    <value>The agency responsible for making available the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. (Compare dc:Publisher.)</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_source_rights_description" xml:space="preserve">
+    <value>The agency responsible for making available the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. (Compare dc:Publisher.)</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_source_title_description" xml:space="preserve">
+    <value>The title of the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. To be used only if different from dc:Title.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_total_time_description" xml:space="preserve">
+    <value>Total playing time of all SMIL files comprising the content of the DTB. Value is a Clock Value from SMIL 2.0 Timing and Synchronization Module.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="generator_description" xml:space="preserve">
+    <value>Generator software for this DTB.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="modify_metadata_entry" xml:space="preserve">
+    <value>modify metadata entry</value>
+    <comment>Command</comment>
+  </data>
+  <data name="obi_xuk_version_description" xml:space="preserve">
+    <value>Obi/XUK version identifier.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="metadata_name_error_caption" xml:space="preserve">
+    <value>Metadata name error</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="metadata_name_error_text" xml:space="preserve">
+    <value>Cannot change the name of this metadata entry to "{0}".</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="metadata_custom" xml:space="preserve">
+    <value>custom</value>
+    <comment>Custom metadata name</comment>
+  </data>
+  <data name="empty" xml:space="preserve">
+    <value>empty</value>
+    <comment>ToString() for empty phrases</comment>
+  </data>
+  <data name="node_selection_to_string" xml:space="preserve">
+    <value>चयनित {0} में {1}</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="phrase_extra_custom" xml:space="preserve">
+    <value>, {0}</value>
+    <comment>ToString() for custom class</comment>
+  </data>
+  <data name="phrase_extra_Heading" xml:space="preserve">
+    <value>, शीर्षक</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="phrase_extra_page" xml:space="preserve">
+    <value>,पृष्ठ संख्या {0}</value>
+    <comment>ToString() for page numbers</comment>
+  </data>
+  <data name="phrase_extra_Plain" xml:space="preserve">
+    <value />
+    <comment>ToString() (empty)</comment>
+  </data>
+  <data name="phrase_extra_Silence" xml:space="preserve">
+    <value>, मौन</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="phrase_extra_TODO" xml:space="preserve">
+    <value>, करने हेतु</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="phrase_node_to_string" xml:space="preserve">
+    <value> वाक्यांश (लंबाई: {1})</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="phrase_short_custom" xml:space="preserve">
+    <value>"{0}"</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_short_Heading" xml:space="preserve">
+    <value>शीर्षक</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_short_page" xml:space="preserve">
+    <value>पृष्ठ {0}</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_short_Plain" xml:space="preserve">
+    <value>वाक्यांश</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_short_Silence" xml:space="preserve">
+    <value>मौनता</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_short_to_string" xml:space="preserve">
+    <value>{0} ({1})</value>
+    <comment>ToStirng() short version for labels</comment>
+  </data>
+  <data name="phrase_short_TODO" xml:space="preserve">
+    <value>करने हेतु</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_to_string" xml:space="preserve">
+    <value>{0} {1} वाक्यांश {2} of {3} ({4}){5}</value>
+    <comment>ToString(); e.g. [unused] phrase 3 of 5 (2.5s), page number 2</comment>
+  </data>
+  <data name="section_level_to_string" xml:space="preserve">
+    <value>, गहनता {0}</value>
+  </data>
+  <data name="section_one_phrase_to_string" xml:space="preserve">
+    <value>, 1वाक्यांश</value>
+  </data>
+  <data name="section_phrases_to_string" xml:space="preserve">
+    <value>, {0} वाक्यांश</value>
+  </data>
+  <data name="section_to_string" xml:space="preserve">
+    <value>{0}अनुभाग "{1}" ({2}{3}{4})</value>
+  </data>
+  <data name="strips_view_to_string" xml:space="preserve">
+    <value>विषय वस्तु देखना</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="toc_view_to_string" xml:space="preserve">
+    <value>TOC view</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="unused" xml:space="preserve">
+    <value>अप्रयुक्त </value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="audio_selection_to_string" xml:space="preserve">
+    <value> {0} {1} {2}पर चयनित श्रव्य</value>
+    <comment>ToString() audio selection</comment>
+  </data>
+  <data name="strip_cursor_selection_to_string" xml:space="preserve">
+    <value>{0} {1} {2} में चयनित सूचक</value>
+    <comment>ToString() strip cursor selection</comment>
+  </data>
+  <data name="text_selection_to_string" xml:space="preserve">
+    <value>{0} {1}: "{2}" में चयनित टेकस्ट</value>
+    <comment>ToString() text selection</comment>
+  </data>
+  <data name="obi_url" xml:space="preserve">
+    <value>http://daisy-trac.cvsdude.com/obi</value>
+    <comment>Obi URL (may point to localized page.)</comment>
+  </data>
+  <data name="max_phrase_duration_invalid_input" xml:space="preserve">
+    <value>अधिकतम वाक्यांश अवधि के लिए अवैध निवेश। कृपया 0 से अधिक पूर्णांक में मिनटों का उल्लेख करें।</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="rendering_waveform" xml:space="preserve">
+    <value>वेवफार्म चित्रण...</value>
+    <comment>Waveform display before bitmap is created</comment>
+  </data>
+  <data name="duration_h_mm_ss" xml:space="preserve">
+    <value>{0}:{1:00}:{2:00}</value>
+    <comment>Format for duration</comment>
+  </data>
+  <data name="duration_mm_ss" xml:space="preserve">
+    <value>{0:00}:{1:00}</value>
+    <comment>Format for duration</comment>
+  </data>
+  <data name="duration_s_ms" xml:space="preserve">
+    <value>{0:0.00}s</value>
+    <comment>Format for duration</comment>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>घंटा</value>
+    <comment>Used for time formating (singular)</comment>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>घंटे</value>
+    <comment>Used for time formating (plural)</comment>
+  </data>
+  <data name="long_addl_time" xml:space="preserve">
+    <value> {0} {1}</value>
+    <comment>Additional time (e.g. 1 minute, 23 seconds)</comment>
+  </data>
+  <data name="long_h_mm_ss" xml:space="preserve">
+    <value>{0} {1}{2}{3}</value>
+    <comment>Longer time formating (e.g. 1 hour 23 minutes 45 seconds)</comment>
+  </data>
+  <data name="long_mm_ss" xml:space="preserve">
+    <value>{0} {1}{2}</value>
+    <comment>Longer time formating (e.g. 1 minute 23 seconds)</comment>
+  </data>
+  <data name="long_s_ms" xml:space="preserve">
+    <value>{0:0.00} {1}</value>
+    <comment>Longer time formating (e.g. 1.23 seconds)</comment>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>मिनट</value>
+    <comment>Used for time formating (singular)</comment>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>मिनट</value>
+    <comment>Used for time formating (plural)</comment>
+  </data>
+  <data name="node_position" xml:space="preserve">
+    <value>{0} of {1}</value>
+  </data>
+  <data name="second" xml:space="preserve">
+    <value>सैकंड</value>
+    <comment>Used for time formating (singular)</comment>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value> सैकंड</value>
+    <comment>Used for time formating (plural)</comment>
+  </data>
+  <data name="section_level" xml:space="preserve">
+    <value>"{0}" (level {1})</value>
+  </data>
+  <data name="top_level_section" xml:space="preserve">
+    <value>यह उच्च-स्तर का अनुभाग है।</value>
+  </data>
+  <data name="update_section" xml:space="preserve">
+    <value>अनुभाग अद्यतनीकरण</value>
+    <comment>Command</comment>
+  </data>
+  <data name="update_phrase" xml:space="preserve">
+    <value>वाक्यांश अद्यतनीकरण</value>
+    <comment>Command</comment>
+  </data>
+  <data name="error_adding_page_number" xml:space="preserve">
+    <value>पृष्ठ संख्या जोड़ने में त्रुटि: मूल अनुभाग नहीं मिला.</value>
+  </data>
+  <data name="import_failed_caption" xml:space="preserve">
+    <value>आयात विफल</value>
+  </data>
+  <data name="no_headings_found" xml:space="preserve">
+    <value>XHTML डाक्यूमेंट में शीर्षक  (h1, h2, आदि.) नहीं मिले.</value>
+  </data>
+  <data name="wrong_heading_order" xml:space="preserve">
+    <value>शीर्षक तत्व अंश गलत क्रम में हैं।.</value>
+  </data>
+  <data name="dtb_encode_error" xml:space="preserve">
+    <value>DTB कूटलेखन के दौरान त्रुटि: {0}</value>
+  </data>
+  <data name="dtb_encode_error_caption" xml:space="preserve">
+    <value>DTB कूटलेखन त्रुटि</value>
+  </data>
+  <data name="dtb_filter" xml:space="preserve">
+    <value>DTB 3.0 file|*.opf|DTB 2.02 file|ncc.html</value>
+  </data>
+  <data name="dtb_validate_error" xml:space="preserve">
+    <value>DTB वैधीकरण के दौरान त्रुटि: {0}</value>
+  </data>
+  <data name="dtb_validate_error_caption" xml:space="preserve">
+    <value>DTB वैधीकरण त्रुटि</value>
+  </data>
+  <data name="no_script" xml:space="preserve">
+    <value> "{0}" पर लिपि फाइल नहीं मिली.</value>
+  </data>
+  <data name="pipeline_path_browser" xml:space="preserve">
+    <value>कृपया निम्न से पाइपलाइन लिपि का स्थान चुनें.</value>
+  </data>
+  <data name="xml_filter" xml:space="preserve">
+    <value>XML file|*.xml</value>
+  </data>
+</root>
