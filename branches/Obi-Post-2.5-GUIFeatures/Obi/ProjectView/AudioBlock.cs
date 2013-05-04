@@ -16,6 +16,7 @@ namespace Obi.ProjectView
         public const int STRIP_SELECTED_PRIORITY = 2;
         public const int BLOCK_SELECTED_PRIORITY = 3;
         public const int WAVEFORM_SELECTED_PRIORITY = 4;
+        public bool FlagMouseDown = false;
 
         //@singleSection: height and width is increased by 20%, height is increased from properties of designer from 128 to 154
 
@@ -229,6 +230,7 @@ public void SetWaveformForZoom(PhraseNode node)
         // Update the selection position on mouse down...
         private void mWaveform_MouseDown(object sender, MouseEventArgs e)
         {
+            FlagMouseDown = true;
             if (e.Button == MouseButtons.Left && CanSelectInWaveform)
             {
                 if (mShiftKeyPressed && mWaveform.Selection != null)
@@ -259,6 +261,10 @@ public void SetWaveformForZoom(PhraseNode node)
                 }
                 Strip.ContentView.DisableScrolling();
                 Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
+            }
+            if(ContentView.zoomPanelActive)
+            {
+                
             }
         }
 

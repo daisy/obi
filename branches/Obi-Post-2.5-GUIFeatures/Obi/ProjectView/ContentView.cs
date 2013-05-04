@@ -711,8 +711,11 @@ namespace Obi.ProjectView
                         }
                         
                         mFocusing = true;
-                        if (!((Control)s).Focused) ((Control)s).Focus ();
-                        mFocusing = false;
+                        if (m_ZoomWaveformPanel == null)
+                        {
+                            if (!((Control) s).Focused) ((Control) s).Focus();
+                        }
+                            mFocusing = false;
 
                         // we do not need following condition for avoiding strip selection as it is handled in projectView.Selection disable section selection flag
                         //if (!(mSelectedItem is Strip) ) m_PreviousSelectionForScroll = null;//if section is not selected, it means that user has intentionally selected something else so selection should not restore
@@ -3774,11 +3777,18 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         
         protected override bool ProcessCmdKey ( ref Message msg, Keys key )
             {
-                if (mProjectView.ObiForm.Settings.OptimizeMemory &&  ShouldSkipKeyDueToMemoryOverload(key)) return true;
+            if (mProjectView.ObiForm.Settings.OptimizeMemory &&  ShouldSkipKeyDueToMemoryOverload(key)) return true;
             if (CanUseKeys &&
                 ((msg.Msg == ProjectView.WM_KEYDOWN) || (msg.Msg == ProjectView.WM_SYSKEYDOWN)) &&
                 mShortcutKeys.ContainsKey ( key ) && mShortcutKeys[key] ()) return true;
             if (ProcessTabKeyInContentsView ( key )) return true;
+            if (m_ZoomWaveformPanel != null)
+            {
+                m_ZoomWaveformPanel.Focus();
+                Console.WriteLine("Active Control in Contentview {0}",this.ActiveControl);
+                m_ZoomWaveformPanel.ZoomAudioFocus();
+             //  m_ZoomWaveformPanel.Focus();
+            }
             return base.ProcessCmdKey ( ref msg, key );
             }
 
@@ -5439,6 +5449,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 m_ZoomWaveformPanel.Location = new Point(0, 0);
                 m_ZoomWaveformPanel.Show();
                 m_ZoomWaveformPanel.BringToFront();
+                m_ZoomWaveformPanel.Focus();
             }
         }
 
@@ -5449,6 +5460,26 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 this.Controls.Remove(m_ZoomWaveformPanel);
                 m_ZoomWaveformPanel = null;
             }
+        }
+        public bool zoomPanelActive
+        {
+            get
+            {
+                if(m_ZoomWaveformPanel!=null)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        public void ZoomFocus()
+        {
+            m_ZoomWaveformPanel.Focus();
+        }
+
+        private void ContentView_MouseDown(object sender, MouseEventArgs e)
+        {
+
         }
 
         }
