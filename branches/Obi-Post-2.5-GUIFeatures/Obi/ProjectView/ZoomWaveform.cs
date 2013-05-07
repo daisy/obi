@@ -214,6 +214,8 @@ namespace Obi.ProjectView
         {
                 
                 ObiNode nextNode = m_Node.FollowingNode;
+            if (nextNode!=null && nextNode.Parent != null && m_AudioBlock.Node.Parent != null)
+            {
                 if (m_AudioBlock.Node.Parent == nextNode.Parent)
                 {
                     if (m_Node.FollowingNode is PhraseNode)
@@ -228,28 +230,32 @@ namespace Obi.ProjectView
                     }
                     txtZoomSelected.Text = " ";
                 }
+            }
 
         }
-       
+
 
         private void btnPreviousPhrase_Click(object sender, EventArgs e)
         {
             ObiNode previousNode = m_Node.PrecedingNode;
-            if (m_AudioBlock.Node.Parent == previousNode.Parent)
+            if (previousNode != null && previousNode.Parent != null && m_AudioBlock.Node.Parent != null)
             {
-                if (m_Node.PrecedingNode is PhraseNode)
+                if (m_AudioBlock.Node.Parent == previousNode.Parent)
                 {
-                    m_Node = previousNode as PhraseNode;
-                    if (panelZooomWaveform.Controls.Contains(m_AudioBlock))
+                    if (m_Node.PrecedingNode is PhraseNode)
                     {
-                        panelZooomWaveform.Controls.Remove(m_AudioBlock);
+                        m_Node = previousNode as PhraseNode;
+                        if (panelZooomWaveform.Controls.Contains(m_AudioBlock))
+                        {
+                            panelZooomWaveform.Controls.Remove(m_AudioBlock);
+                        }
+                        m_AudioBlock = new AudioBlock((PhraseNode) previousNode, m_Strip);
+                        panelRender();
                     }
-                    m_AudioBlock = new AudioBlock((PhraseNode) previousNode, m_Strip);
-                    panelRender();
+                    txtZoomSelected.Text = " ";
                 }
-                txtZoomSelected.Text = " ";
-            }
 
+            }
         }
 
         public void panelRender()
