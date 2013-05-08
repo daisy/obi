@@ -2052,9 +2052,9 @@ namespace Obi.ProjectView
                         return;
                     }
                 }
-
+                NodeSelection initialSelection = this.Selection;
                 string [] filesPathArray = SelectFilesToImport ();
-                
+                if (this.Selection != initialSelection) this.Selection = initialSelection;//workaround to prevent ocasional case of shifting selection from strip cursor to section
                 
 
                 if (filesPathArray != null)
