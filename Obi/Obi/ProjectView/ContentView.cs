@@ -3801,14 +3801,15 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     if (ramPerformanceCounter.NextValue() < 100
                         && Math.Abs(DateTime.Now.Second - m_KeysMillisecond) < 2)
                     {//3
-                        m_KeysMillisecond = DateTime.Now.Second;
-                        m_PrevKey = key;
+                        
                         //Console.WriteLine("count " + m_KeyRepeatCount + " : " + m_KeysMillisecond);
                             System.GC.GetTotalMemory(true);
                             System.GC.WaitForFullGCComplete(500);
                         }//-3
                         System.Media.SystemSounds.Beep.Play();
                         ramPerformanceCounter.Close();
+                        m_KeysMillisecond = DateTime.Now.Second;
+                        m_PrevKey = key;
                         return true;
                     
                         ramPerformanceCounter.Close();
@@ -3817,7 +3818,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }//-2
 
             }//-1
-            else if (m_KeyRepeatCount > 75)
+            else if (m_KeyRepeatCount > 71 || m_PrevKey != key)
             {
                 m_KeyRepeatCount = 0;
             }
