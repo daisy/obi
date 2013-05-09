@@ -3371,7 +3371,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 selection == null ? null :
                 selection is StripIndexSelection ? (ISelectableInContentView)FindStripCursor ( (StripIndexSelection)selection ) :
                 selection.Node is SectionNode ? (ISelectableInContentView)FindStrip ( (SectionNode)selection.Node ) :
-                selection.Node is EmptyNode ? (ISelectableInContentView)FindBlock ( (EmptyNode)selection.Node ) : null;
+                selection.Node is EmptyNode ? m_ZoomWaveformPanel == null? (ISelectableInContentView)FindBlock ( (EmptyNode)selection.Node ) : 
+                (ISelectableInContentView) m_ZoomWaveformPanel: null;
             }
 
         private bool IsAudioRangeSelected { get { return mSelection != null && mSelection is AudioSelection && ((AudioSelection)mSelection).AudioRange != null && !((AudioSelection)mSelection).AudioRange.HasCursor; } }
