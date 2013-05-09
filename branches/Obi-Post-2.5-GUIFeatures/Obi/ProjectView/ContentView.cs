@@ -4054,6 +4054,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private bool SelectLastBlockInStrip ()
             {
+                if (mProjectView.TransportBar.FineNavigationModeForPhrase)
+                {
+                    return mProjectView.TransportBar.FineNavigation_MoveToBeginOrEndOfPhrase(false);
+                }
             if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
             //if (mProjectView.Selection != null) CreateBlocksTillEndInStrip ( mStrips[mProjectView.GetSelectedPhraseSection] );//@singleSection//@singleSection:original
 
@@ -4071,6 +4075,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private bool SelectFirstBlockInStrip ()
             {
+                if (mProjectView.TransportBar.FineNavigationModeForPhrase)
+                {
+                    return mProjectView.TransportBar.FineNavigation_MoveToBeginOrEndOfPhrase(true);
+                }
             if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
             //if (mProjectView.Selection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount >0) CreateBlocksTillNodeInStrip( mStrips[mProjectView.GetSelectedPhraseSection], mProjectView.GetSelectedPhraseSection.PhraseChild(0),true );//@singleSection
             if (mProjectView.Selection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 0) //@singleSection

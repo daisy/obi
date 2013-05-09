@@ -2630,6 +2630,40 @@ namespace Obi.ProjectView
             return true ;
         }
 
+        /// <summary>
+        ///  moves the cursor to begin or end of phrase in the fine navigation mode.
+        /// </summary>
+        /// <param name="moveToBegin"></param>
+        /// <returns></returns>
+        public bool FineNavigation_MoveToBeginOrEndOfPhrase(bool moveToBegin)
+        {
+            if (mView.Selection != null && mView.Selection.Node is PhraseNode)
+            {
+                PhraseNode phrase = (PhraseNode) mView.Selection.Node;
+                double startTime = 0.0;
+                double endTime = phrase.Duration ;
+                if (mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                {
+                    if (moveToBegin)
+                    {
+                        endTime = ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime;
+                    }
+                    else
+                    {
+                        startTime = ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime;
+                    }
+                    mView.Selection = new AudioSelection(phrase,mView.Selection.Control , new AudioRange(startTime, endTime));
+                    return true;
+                }
+                else
+                {
+                    mView.Selection = new AudioSelection(phrase, mView.Selection.Control, new AudioRange(moveToBegin ? startTime : endTime));
+                    return true;
+                }
+            }
+            return false;
+        }
+
         // preview playback functions
         public static readonly bool From = true;
         public static readonly bool Upto = false;
