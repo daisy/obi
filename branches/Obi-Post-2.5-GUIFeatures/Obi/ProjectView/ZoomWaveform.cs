@@ -10,7 +10,7 @@ using AudioLib;
 
 namespace Obi.ProjectView
 {
-    public partial class ZoomWaveform : UserControl
+    public partial class ZoomWaveform : UserControl, ISelectableInContentViewWithColors
     {
         private ContentView m_ContentView = null;
         private Strip m_Strip;
@@ -30,7 +30,19 @@ namespace Obi.ProjectView
             this.Controls.Add(txtZoomSelected);
             
         }
-     
+        public void SetSelectionFromContentView(NodeSelection selection) 
+        {
+            if (m_AudioBlock != null) m_AudioBlock.SetSelectionFromContentView(selection);
+        }
+        private bool m_Highlighted;
+        public bool Highlighted { get { return m_Highlighted; } set { m_Highlighted =  value; } }
+        public ObiNode ObiNode { get { return m_Node; } }
+        ColorSettings m_ColorSettings ;
+        public ColorSettings ColorSettings { get { return m_ColorSettings; } set { m_ColorSettings = value; } }
+        public ContentView ContentView { get { return m_ContentView; } }
+        public Strip Strip { get { return m_Strip; } }
+        public string ToMatch() { return null; }
+
         public void UpdateCursorTime (double time ) 
         {
             if( m_AudioBlock != null ) m_AudioBlock.UpdateCursorTime (time) ;
@@ -50,6 +62,7 @@ namespace Obi.ProjectView
                 txtZoomSelected.Text +=" "+ m_ProjectView.GetSelectedPhraseSection.ToString();
                 string temp = m_ProjectView.Selection.Node.ToString();
                 if (m_AudioBlock.Node.ToString() != temp && m_ProjectView.Selection.EmptyNodeForSelection != null)
+                    
                 {
                    PhraseLoad(m_ProjectView.Selection.EmptyNodeForSelection);
                 }
