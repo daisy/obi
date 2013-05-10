@@ -158,8 +158,9 @@ namespace Obi.Dialogs
         private bool IsVersionNumberNew()
         {
             string strLocalVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            //Console.WriteLine("-" + strLocalVersion.Trim(' ') + "-" + m_AvailableVersion.Trim(' ') + "-");
             if (!string.IsNullOrEmpty(m_CriticalText) && m_CriticalText.ToLower() == "critical"
-                && m_AvailableVersion.Trim(' ') != m_Settings.Project_LatestVersionCheckedByUpdate.Trim(' '))
+                && m_AvailableVersion.Trim(' ') != strLocalVersion.Trim(' '))
             {
                 m_IsNewVersionAvailable = true ;
                 return m_IsNewVersionAvailable ;
