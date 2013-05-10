@@ -2331,4 +2331,7 @@ Error text: {1}</value>
   <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
     <value>The last update check was for version {0}. There is no new version released thereafter.</value>
   </data>
+  <data name="CheckUpdates_GoToDownloadPage" xml:space="preserve">
+    <value>&amp;Go to download page</value>
+  </data>
 </root>

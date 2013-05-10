@@ -637,6 +637,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Go to download page.
+        /// </summary>
+        internal static string CheckUpdates_GoToDownloadPage {
+            get {
+                return ResourceManager.GetString("CheckUpdates_GoToDownloadPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The last update check was for version {0}. There is no new version released thereafter..
         /// </summary>
         internal static string CheckUpdates_NewVersionNotAvailable {
