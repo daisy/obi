@@ -15,6 +15,7 @@ namespace Obi.Dialogs
         private string m_AvailableVersion;
         private string m_ReleaseUrl;
         private string m_CriticalText;
+        private string m_GoToWebPageLabel;
         private Settings m_Settings;
         private bool m_IsAutomaticUpdate;
         private BackgroundWorker m_BackgroundWorker = new BackgroundWorker();
@@ -41,14 +42,15 @@ namespace Obi.Dialogs
             //Line 2: a user friendly line describing which update is available
             //line 3: numeric version number
             // line 4: url of web page of release 
-            // line 5: optional key word indicating critical release. It is useful for a critical bug fix etc.
+            // line 5: optional key word indicating critical release. It is useful for a critical bug fix etc. Char 'c' is used to indicate critical.
+            // line 6: Optional Go to webpage text: char 'd' will change the text to go to download page
             // typical example is as follows
             //Test
 //A new test release, Obi 2.6 beta is available.
 //2.5.6
 //http://www.daisy.org/obi/obi-2.6-test-releases
-            //critical
-
+            //c
+            //d
             if (m_BackgroundWorker.IsBusy)
             {
                 MessageBox.Show(Localizer.Message("CheckUpdate_UpdateProcessActive"));
@@ -58,8 +60,8 @@ namespace Obi.Dialogs
             {
                 try
                 {
-                    string releaseInfoContents = GetReleaseInfoFileContents();
-                    //string releaseInfoContents = GetReleaseInfoFileContentsFromLocalFileForTesting();
+                    //string releaseInfoContents = GetReleaseInfoFileContents();
+                    string releaseInfoContents = GetReleaseInfoFileContentsFromLocalFileForTesting();
                     if (string.IsNullOrEmpty(releaseInfoContents))
                     {
                         m_IsNewVersionAvailable = false;
@@ -71,7 +73,8 @@ namespace Obi.Dialogs
                     if (infoArray.Length > 2) m_AvailableVersion = infoArray[2];
                     if (infoArray.Length > 3) m_ReleaseUrl = infoArray[3];
                     if (infoArray.Length > 4) m_CriticalText = infoArray[4];
-
+                    if (infoArray.Length > 5) m_GoToWebPageLabel= infoArray[5];
+                    if (m_GoToWebPageLabel != null) m_GoToWebPageLabel = m_GoToWebPageLabel.Trim(' ');
                     Console.WriteLine(releaseInfoContents);
                     if (IsVersionNumberNew())
                     {
@@ -111,6 +114,11 @@ namespace Obi.Dialogs
                 if (!string.IsNullOrEmpty(m_LabelText) && m_LabelText.EndsWith(".")) m_LabelText = m_LabelText.Remove(m_LabelText.LastIndexOf('.'));
                 mInfoTxtBox.Text = string.Format(Localizer.Message("CheckUpdate_LabelText"), !String.IsNullOrEmpty(m_LabelText) ? m_LabelText : "");
                 mInfoTxtBox.AccessibleName = "use arrow keys to read";
+                if (!string.IsNullOrEmpty(m_GoToWebPageLabel))
+                {
+                    m_RdOpenWebPage.Text = m_GoToWebPageLabel.ToLower() == "d" ? Localizer.Message("CheckUpdates_GoToDownloadPage") : 
+                        m_GoToWebPageLabel;
+                }
                 ShowDialog();
             }
         }
@@ -159,7 +167,7 @@ namespace Obi.Dialogs
         {
             string strLocalVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             //Console.WriteLine("-" + strLocalVersion.Trim(' ') + "-" + m_AvailableVersion.Trim(' ') + "-");
-            if (!string.IsNullOrEmpty(m_CriticalText) && m_CriticalText.ToLower() == "critical"
+            if (!string.IsNullOrEmpty(m_CriticalText) && m_CriticalText.ToLower() == "c"
                 && m_AvailableVersion.Trim(' ') != strLocalVersion.Trim(' '))
             {
                 m_IsNewVersionAvailable = true ;
