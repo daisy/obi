@@ -315,6 +315,9 @@
   <data name="mInfoTxtBox.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="mInfoTxtBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
   <data name="mInfoTxtBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>369, 63</value>
   </data>
