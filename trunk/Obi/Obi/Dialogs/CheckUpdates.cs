@@ -59,6 +59,7 @@ namespace Obi.Dialogs
                 try
                 {
                     string releaseInfoContents = GetReleaseInfoFileContents();
+                    //string releaseInfoContents = GetReleaseInfoFileContentsFromLocalFileForTesting();
                     if (string.IsNullOrEmpty(releaseInfoContents))
                     {
                         m_IsNewVersionAvailable = false;
@@ -156,12 +157,14 @@ namespace Obi.Dialogs
 
         private bool IsVersionNumberNew()
         {
-            if (!string.IsNullOrEmpty(m_CriticalText) && m_CriticalText.ToLower() == "critical")
+            string strLocalVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            if (!string.IsNullOrEmpty(m_CriticalText) && m_CriticalText.ToLower() == "critical"
+                && m_AvailableVersion.Trim(' ') != m_Settings.Project_LatestVersionCheckedByUpdate.Trim(' '))
             {
                 m_IsNewVersionAvailable = true ;
                 return m_IsNewVersionAvailable ;
             }
-            int localVersion = GetNumericVersion(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            int localVersion = GetNumericVersion(strLocalVersion);
             if (m_IsAutomaticUpdate)
             {
                 int settingsVersion = GetNumericVersion(m_Settings.Project_LatestVersionCheckedByUpdate);
