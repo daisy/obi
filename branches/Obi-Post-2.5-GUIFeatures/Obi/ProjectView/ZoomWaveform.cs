@@ -81,8 +81,7 @@ namespace Obi.ProjectView
         private void ZoomPanelResize(object sender,EventArgs e)
         {
             this.Height = m_ContentView.Height-22;
-            this.Width = m_ContentView.Width-12;
-           
+            this.Width = m_ContentView.Width;           
         }
          public void ZoomAudioFocus()
          {
@@ -145,23 +144,25 @@ namespace Obi.ProjectView
             m_ContentView.Resize += new EventHandler(ZoomPanelResize);
             m_Strip = strip;
             m_Node = node;
-            if (m_ProjectView.Selection.Phrase!=null)
-            if (m_ContentView != null)
+            if (m_ProjectView.Selection.Phrase != null)
             {
-                //this.Width = m_ContentView.Width-22;
-                //this.Height = m_ContentView.Height-22;
-                this.Height = m_ContentView.Height - 22;
-                this.Width = m_ContentView.Width-12;
-                this.MouseWheel += new MouseEventHandler(ZoomWaveform_MouseWheel);
-                 btnClose.Location = new Point(btnClose.Location.X, this.Height - 25);
-                btnNextPhrase.Location=new Point(btnNextPhrase.Location.X,this.Height-25);
-                btnPreviousPhrase.Location=new Point(btnPreviousPhrase.Location.X,this.Height-25);
-                btnReset.Location=new Point(btnReset.Location.X,this.Height-25);
-                btnZoomIn.Location=new Point(btnZoomIn.Location.X,this.Height-25);
-                btnZoomOut.Location=new Point(btnZoomOut.Location.X,this.Height-25);
-                panelZooomWaveform.Width = this.Width - 30;
-                panelZooomWaveform.Height = this.Height - 60;
-                txtZoomSelected.Width = this.Width - 40;
+                if (m_ContentView != null)
+                {
+                    //this.Width = m_ContentView.Width-22;
+                    //this.Height = m_ContentView.Height-22;
+                    this.Height = m_ContentView.Height - 22;
+                    this.Width = m_ContentView.Width;
+                    this.MouseWheel += new MouseEventHandler(ZoomWaveform_MouseWheel);
+                    btnClose.Location = new Point(btnClose.Location.X, this.Height - 25);
+                    btnNextPhrase.Location = new Point(btnNextPhrase.Location.X, this.Height - 25);
+                    btnPreviousPhrase.Location = new Point(btnPreviousPhrase.Location.X, this.Height - 25);
+                    btnReset.Location = new Point(btnReset.Location.X, this.Height - 25);
+                    btnZoomIn.Location = new Point(btnZoomIn.Location.X, this.Height - 25);
+                    btnZoomOut.Location = new Point(btnZoomOut.Location.X, this.Height - 25);
+                    panelZooomWaveform.Width = this.Width - 30;
+                    panelZooomWaveform.Height = this.Height - 60;
+                    txtZoomSelected.Width = this.Width - 40;
+                }
             }
            //this.Width=m_ContentView.Width;
             if (m_Node is PhraseNode)
@@ -177,7 +178,8 @@ namespace Obi.ProjectView
                 m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
-                m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
+                m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);                         
+                this.AutoScrollMinSize = new Size(this.Width, this.Height+15);                
                 m_AudioBlock.InitCursor(0);
                 m_AudioBlock.Focus();
                 this.ActiveControl = btnClose;
@@ -190,18 +192,26 @@ namespace Obi.ProjectView
            Console.WriteLine("Delta Value of MouseWheel is{0}",e.Delta);
            if(e.Delta<0)
            {
-               m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width - (int)(initialWaveformWidth * 0.5);
-               m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
-               m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
-               m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
+               int tempWidth = m_AudioBlock.Waveform.Width - (int)(initialWaveformWidth * 0.5);
+               if (tempWidth > (initialWaveformWidth / 10))
+               {
+                   m_AudioBlock.Waveform.Width = tempWidth;
+                   m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
+                   m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
+                   m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
+               }
                
            }
            if(e.Delta>0)
            {
-               m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * 0.5);
-               m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
-               m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
-               m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
+               int tempWidth = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * 0.5);
+               if (tempWidth < (initialWaveformWidth * 60))
+               {
+                   m_AudioBlock.Waveform.Width = tempWidth;
+                   m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
+                   m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
+                   m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
+               }
            }
            //  throw new NotImplementedException();
        }
@@ -315,6 +325,10 @@ namespace Obi.ProjectView
         {
 
             this.Focus();
+            if (keyData == Keys.PageDown || keyData == Keys.PageUp)
+            {
+                return false;
+            }
             return base.ProcessCmdKey(ref msg, keyData);
             // return true;
 
