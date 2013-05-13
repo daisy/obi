@@ -105,7 +105,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool CanSetSectionUsedStatus
         {
-            get { return IsSectionSelected && mSelection.Node.ParentAs<ObiNode>().Used; }
+            get { return IsSectionSelected && mSelection.Node.Parent != null &&  mSelection.Node.ParentAs<ObiNode>().Used; }
         }
 
         /// <summary>
@@ -426,7 +426,7 @@ namespace Obi.ProjectView
         }
 
         // True if a section (not its text) is selected.
-        private bool IsSectionSelected { get { return mSelection is NodeSelection; } }
+        private bool IsSectionSelected { get { return mSelection != null && mSelection is NodeSelection; } }
 
         // Tabbing inside the view
         protected override bool ProcessDialogKey(Keys KeyData)
