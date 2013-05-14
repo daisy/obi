@@ -81,7 +81,8 @@ namespace Obi.ProjectView
         private void ZoomPanelResize(object sender,EventArgs e)
         {
             this.Height = m_ContentView.Height-22;
-            this.Width = m_ContentView.Width;           
+            this.Width = m_ContentView.Width;
+            txtZoomSelected.Width = this.Width - 40;
         }
          public void ZoomAudioFocus()
          {
@@ -147,12 +148,11 @@ namespace Obi.ProjectView
             if (m_ProjectView.Selection.Phrase != null)
             {
                 if (m_ContentView != null)
-                {
-                    //this.Width = m_ContentView.Width-22;
-                    //this.Height = m_ContentView.Height-22;
+                {                    
                     this.Height = m_ContentView.Height - 22;
                     this.Width = m_ContentView.Width;
                     this.MouseWheel += new MouseEventHandler(ZoomWaveform_MouseWheel);
+                  //  btnClose.Anchor = AnchorStyles.None;
                     btnClose.Location = new Point(btnClose.Location.X, this.Height - 25);
                     btnNextPhrase.Location = new Point(btnNextPhrase.Location.X, this.Height - 25);
                     btnPreviousPhrase.Location = new Point(btnPreviousPhrase.Location.X, this.Height - 25);
@@ -325,7 +325,18 @@ namespace Obi.ProjectView
         {
 
             this.Focus();
-            if (keyData == Keys.PageDown || keyData == Keys.PageUp)
+            
+            if (keyData == Keys.Escape)
+            {
+                IControlWithSelection tempControl;
+                tempControl = m_ProjectView.Selection.Control; 
+                m_ProjectView.Selection = new NodeSelection((ObiNode)  m_Node, tempControl);         
+            }
+            if (keyData == Keys.PageDown || keyData == Keys.PageUp || keyData == (Keys.Control | Keys.Right) || keyData == (Keys.Control | Keys.Left)
+                || keyData == (Keys.Control | Keys.Shift | Keys.Down) || keyData == (Keys.Control | Keys.Shift | Keys.Right)
+                || keyData == (Keys.Control | Keys.Home) || keyData == (Keys.Control | Keys.End) || keyData == (Keys.Control | Keys.H)
+                || keyData == (Keys.Control | Keys.Alt | Keys.H) || keyData == (Keys.Control | Keys.Shift | Keys.Q) || keyData == (Keys.Control | Keys.B)
+                || keyData == (Keys.Control | Keys.Shift | Keys.B) || keyData == (Keys.Control | Keys.Shift | Keys.Space))
             {
                 return false;
             }
