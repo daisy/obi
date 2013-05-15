@@ -330,16 +330,17 @@ namespace Obi.ProjectView
 
  protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-
+     if ( m_ProjectView.ObiForm.KeyboardShortcuts == null ) return false ;
+     KeyboardShortcuts_Settings keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
             this.Focus();
             
-            if (keyData == Keys.Escape)
+            if (keyData == keyboardShortcuts.ContentView_SelectUp.Value)
             {
                 IControlWithSelection tempControl;
                 tempControl = m_ProjectView.Selection.Control; 
                 m_ProjectView.Selection = new NodeSelection((ObiNode)  m_Node, tempControl);         
             }
-            if (keyData == Keys.PageDown || keyData == Keys.PageUp || keyData == (Keys.Control | Keys.Right) || keyData == (Keys.Control | Keys.Left)
+            if (keyData == keyboardShortcuts.ContentView_ScrollDown_LargeIncrementWithSelection.Value || keyData == keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value || keyData == (Keys.Control | Keys.Right) || keyData == (Keys.Control | Keys.Left)
                 || keyData == (Keys.Control | Keys.Shift | Keys.Down) || keyData == (Keys.Control | Keys.Shift | Keys.Right)
                 || keyData == (Keys.Control | Keys.Home) || keyData == (Keys.Control | Keys.End) || keyData == (Keys.Control | Keys.H)
                 || keyData == (Keys.Control | Keys.Alt | Keys.H) || keyData == (Keys.Control | Keys.Shift | Keys.Q) || keyData == (Keys.Control | Keys.B)
