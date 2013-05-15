@@ -340,9 +340,10 @@ namespace Obi.ProjectView
                 tempControl = m_ProjectView.Selection.Control; 
                 m_ProjectView.Selection = new NodeSelection((ObiNode)  m_Node, tempControl);         
             }
-            if (keyData == keyboardShortcuts.ContentView_ScrollDown_LargeIncrementWithSelection.Value || keyData == keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value || keyData == (Keys.Control | Keys.Right) || keyData == (Keys.Control | Keys.Left)
-                || keyData == (Keys.Control | Keys.Shift | Keys.Down) || keyData == (Keys.Control | Keys.Shift | Keys.Right)
-                || keyData == (Keys.Control | Keys.Home) || keyData == (Keys.Control | Keys.End) || keyData == (Keys.Control | Keys.H)
+            if (keyData == keyboardShortcuts.ContentView_ScrollDown_LargeIncrementWithSelection.Value || keyData == keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value
+                || keyData == keyboardShortcuts.ContentView_SelectFollowingStripCursor.Value || keyData == keyboardShortcuts.ContentView_SelectPrecedingStripCursor.Value
+                || keyData == keyboardShortcuts.ContentView_SelectFollowingStrip.Value || keyData == keyboardShortcuts.ContentView_SelectPrecedingStrip.Value
+                || keyData == keyboardShortcuts.ContentView_SelectFirstStrip.Value || keyData == keyboardShortcuts.ContentView_SelectLastStrip.Value || keyData == (Keys.Control | Keys.H)
                 || keyData == (Keys.Control | Keys.Alt | Keys.H) || keyData == (Keys.Control | Keys.Shift | Keys.Q) || keyData == (Keys.Control | Keys.B)
                 || keyData == (Keys.Control | Keys.Shift | Keys.B) || keyData == (Keys.Control | Keys.Shift | Keys.Space))
             {
