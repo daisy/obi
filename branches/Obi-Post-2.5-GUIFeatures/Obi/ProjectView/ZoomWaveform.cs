@@ -19,6 +19,7 @@ namespace Obi.ProjectView
         private int initialWaveformWidth = 0;
         private float m_ZoomFactor = 0;
         private ProjectView m_ProjectView;
+        private bool m_IsPanelSizeMax = false;
        
         private ZoomWaveform()
         {
@@ -83,6 +84,29 @@ namespace Obi.ProjectView
             this.Height = m_ContentView.Height-22;
             this.Width = m_ContentView.Width;
             txtZoomSelected.Width = this.Width - 40;
+            if (m_ProjectView.ObiForm.WindowState == FormWindowState.Maximized && m_IsPanelSizeMax==false)
+            {
+
+                btnClose.Anchor = AnchorStyles.None;
+                btnClose.Location = new Point(btnClose.Location.X, this.Height - 32);
+                btnNextPhrase.Anchor = AnchorStyles.None;
+                btnNextPhrase.Location = new Point(btnNextPhrase.Location.X, this.Height - 32);
+                btnPreviousPhrase.Anchor = AnchorStyles.None;
+                btnPreviousPhrase.Location = new Point(btnPreviousPhrase.Location.X, this.Height - 32);
+                btnReset.Anchor = AnchorStyles.None;
+                btnReset.Location = new Point(btnReset.Location.X, this.Height - 32);
+                btnZoomIn.Anchor = AnchorStyles.None;
+                btnZoomIn.Location = new Point(btnZoomIn.Location.X, this.Height - 32);
+                btnZoomOut.Anchor = AnchorStyles.None;
+                btnZoomOut.Location = new Point(btnZoomOut.Location.X, this.Height - 32);
+                btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                btnNextPhrase.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                btnPreviousPhrase.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                btnReset.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                btnZoomIn.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                btnZoomOut.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+
+            }       
         }
          public void ZoomAudioFocus()
          {
@@ -151,9 +175,14 @@ namespace Obi.ProjectView
                 {                    
                     this.Height = m_ContentView.Height - 22;
                     this.Width = m_ContentView.Width;
+                    if (m_ProjectView.ObiForm.WindowState == FormWindowState.Maximized)
+                    {
+                        m_IsPanelSizeMax = true;
+                    }
                     this.MouseWheel += new MouseEventHandler(ZoomWaveform_MouseWheel);
                   //  btnClose.Anchor = AnchorStyles.None;
                     btnClose.Location = new Point(btnClose.Location.X, this.Height - 25);
+                   // btnNextPhrase.Anchor = AnchorStyles.None;
                     btnNextPhrase.Location = new Point(btnNextPhrase.Location.X, this.Height - 25);
                     btnPreviousPhrase.Location = new Point(btnPreviousPhrase.Location.X, this.Height - 25);
                     btnReset.Location = new Point(btnReset.Location.X, this.Height - 25);
