@@ -20,14 +20,13 @@ namespace Obi.ProjectView
         private float m_ZoomFactor = 0;
         private ProjectView m_ProjectView;
         private bool m_IsPanelSizeMax = false;
+        private int m_count = 0;
        
         private ZoomWaveform()
         {
             
             InitializeComponent();
-            //this.Controls.Add(hScrollBar);
-            this.Controls.Add(panelZooomWaveform);
-       
+            this.Controls.Add(panelZooomWaveform);       
             this.Controls.Add(txtZoomSelected);
             
         }
@@ -83,30 +82,7 @@ namespace Obi.ProjectView
         {
             this.Height = m_ContentView.Height-22;
             this.Width = m_ContentView.Width;
-            txtZoomSelected.Width = this.Width - 40;
-            if (m_ProjectView.ObiForm.WindowState == FormWindowState.Maximized && m_IsPanelSizeMax==false)
-            {
-
-                btnClose.Anchor = AnchorStyles.None;
-                btnClose.Location = new Point(btnClose.Location.X, this.Height - 32);
-                btnNextPhrase.Anchor = AnchorStyles.None;
-                btnNextPhrase.Location = new Point(btnNextPhrase.Location.X, this.Height - 32);
-                btnPreviousPhrase.Anchor = AnchorStyles.None;
-                btnPreviousPhrase.Location = new Point(btnPreviousPhrase.Location.X, this.Height - 32);
-                btnReset.Anchor = AnchorStyles.None;
-                btnReset.Location = new Point(btnReset.Location.X, this.Height - 32);
-                btnZoomIn.Anchor = AnchorStyles.None;
-                btnZoomIn.Location = new Point(btnZoomIn.Location.X, this.Height - 32);
-                btnZoomOut.Anchor = AnchorStyles.None;
-                btnZoomOut.Location = new Point(btnZoomOut.Location.X, this.Height - 32);
-                btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                btnNextPhrase.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                btnPreviousPhrase.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                btnReset.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                btnZoomIn.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-                btnZoomOut.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-
-            }       
+            txtZoomSelected.Width = this.Width - 40;           
         }
          public void ZoomAudioFocus()
          {
@@ -139,7 +115,9 @@ namespace Obi.ProjectView
                 txtZoomSelected.BringToFront();
                 m_ZoomFactor = zoomFactor;
                 //   m_AudioBlock.Width = m_ContentView.Width;
+              
                 m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);
+                
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
                 m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
@@ -175,10 +153,6 @@ namespace Obi.ProjectView
                 {                    
                     this.Height = m_ContentView.Height - 22;
                     this.Width = m_ContentView.Width;
-                    if (m_ProjectView.ObiForm.WindowState == FormWindowState.Maximized)
-                    {
-                        m_IsPanelSizeMax = true;
-                    }
                     this.MouseWheel += new MouseEventHandler(ZoomWaveform_MouseWheel);
                   //  btnClose.Anchor = AnchorStyles.None;
                     btnClose.Location = new Point(btnClose.Location.X, this.Height - 25);
@@ -204,7 +178,10 @@ namespace Obi.ProjectView
                 txtZoomSelected.Location = new Point(0,this.Height-50);
                 txtZoomSelected.BringToFront();
                 m_ZoomFactor = zoomFactor;
-                m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);
+              
+                m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);     
+         
+                
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
                 m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);                         
@@ -213,6 +190,7 @@ namespace Obi.ProjectView
                 m_AudioBlock.Focus();
                 this.ActiveControl = btnClose;
             }
+            m_count = 0;
             
         }
 
@@ -362,7 +340,41 @@ namespace Obi.ProjectView
      if ( m_ProjectView.ObiForm.KeyboardShortcuts == null ) return false ;
      KeyboardShortcuts_Settings keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
             this.Focus();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Zoomfactor is {0}",m_ProjectView.ZoomFactor);
+        
+
+            if (m_ProjectView.ZoomFactor > 1.4)
+            {
+                m_ProjectView.ObiForm.ZoomFactor = 1.4f;
+                return false;
+            }
             
+            //if (keyData == (Keys.Control | Keys.Alt | Keys.Oemplus))
+            //{
+            //    double tempZoomfactor = m_ProjectView.ZoomFactor;
+            //    m_count++;
+            //    if (m_count > 2)
+            //    {
+            //        m_count--;
+            //        return false;
+            //    }
+              
+               
+            //}
+            //if (keyData == (Keys.Control | Keys.Alt | Keys.OemMinus))
+            //{
+            //    double tempZoomfactor = m_ProjectView.ZoomFactor;
+            //    m_count--;
+            //    if (m_count > 2)
+            //    {
+            //        return false;
+            //    }
+               
+            //}
             if (keyData == keyboardShortcuts.ContentView_SelectUp.Value)
             {
                 IControlWithSelection tempControl;
