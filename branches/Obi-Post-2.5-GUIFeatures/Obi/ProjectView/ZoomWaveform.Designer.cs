@@ -51,7 +51,7 @@
             // 
             // btnNextPhrase
             // 
-            this.btnNextPhrase.Location = new System.Drawing.Point(146, 533);
+            this.btnNextPhrase.Location = new System.Drawing.Point(155, 533);
             this.btnNextPhrase.Name = "btnNextPhrase";
             this.btnNextPhrase.Size = new System.Drawing.Size(90, 23);
             this.btnNextPhrase.TabIndex = 2;
@@ -61,9 +61,9 @@
             // 
             // btnPreviousPhrase
             // 
-            this.btnPreviousPhrase.Location = new System.Drawing.Point(271, 533);
+            this.btnPreviousPhrase.Location = new System.Drawing.Point(284, 533);
             this.btnPreviousPhrase.Name = "btnPreviousPhrase";
-            this.btnPreviousPhrase.Size = new System.Drawing.Size(92, 23);
+            this.btnPreviousPhrase.Size = new System.Drawing.Size(109, 23);
             this.btnPreviousPhrase.TabIndex = 3;
             this.btnPreviousPhrase.Text = "Previous Phrase";
             this.btnPreviousPhrase.UseVisualStyleBackColor = true;
@@ -71,7 +71,7 @@
             // 
             // btnZoomIn
             // 
-            this.btnZoomIn.Location = new System.Drawing.Point(402, 533);
+            this.btnZoomIn.Location = new System.Drawing.Point(440, 533);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(110, 23);
             this.btnZoomIn.TabIndex = 5;
@@ -81,7 +81,7 @@
             // 
             // btnZoomOut
             // 
-            this.btnZoomOut.Location = new System.Drawing.Point(531, 533);
+            this.btnZoomOut.Location = new System.Drawing.Point(598, 533);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(91, 23);
             this.btnZoomOut.TabIndex = 6;
@@ -91,7 +91,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(651, 533);
+            this.btnReset.Location = new System.Drawing.Point(728, 533);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 7;
