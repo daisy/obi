@@ -45,7 +45,7 @@ namespace Obi.ImportExport
             :
             base(presentation, exportDirectory, null, encodeToMp3, mp3BitRate,
             sampleRate, stereo,
-            true,false)
+            true,false, true)
             {
             m_Presentation = presentation;
             m_ExportDirectory = exportDirectory;
