@@ -1260,6 +1260,10 @@ namespace Obi.ProjectView
                     }
                     if (currentlySelectedBlock != null) EnsureControlVisible ( currentlySelectedBlock );
                     }
+                    if (m_ZoomWaveformPanel != null)
+                    {
+                        m_ZoomWaveformPanel.ZoomFactor = value;
+                    }
                 }
             }
 
