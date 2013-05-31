@@ -1494,10 +1494,10 @@ Texte de l'erreur: {1}</value>
     <value>OL </value>
   </data>
   <data name="DisableAdvancedRecording" xml:space="preserve">
-    <value>Disable Advanced Recording </value>
+    <value>Désactiver l'enregistrement avancé </value>
   </data>
   <data name="EnableAdvancedRecording" xml:space="preserve">
-    <value>Enable Advanced Recording </value>
+    <value>Activer l'enregistrement avancé </value>
   </data>
   <data name="ContentViewLabel_NoSection" xml:space="preserve">
     <value>Pas de section affichée</value>
@@ -1881,10 +1881,10 @@ Texte de l'erreur: {1}</value>
     <value>Le noeud actuellement sélectionné n'est pas identique au noeud signet enregistré. Voulez-vous enregistrer ce noeud en tant que signet? Le projet sera également enregistré.</value>
   </data>
   <data name="UseDefaultValues" xml:space="preserve">
-    <value>Use Default Values</value>
+    <value>Utiliser les valeurs par défaut</value>
   </data>
   <data name="SelectDeselectAllSections" xml:space="preserve">
-    <value>Select / Deselect All Sections</value>
+    <value>Sélectionner / Désélectionner toutes les sections</value>
   </data>
   <data name="upgrade_obi_to_new_version" xml:space="preserve">
     <value>Le projet a été créé à partir d'une version antérieure de Obi. Il va être mis à jour vers la dernière version. Appuyez sur OK pour continuer</value>
@@ -1963,7 +1963,7 @@ Texte de l'erreur: {1}</value>
     <value>Ouverture à partir du fichier backup</value>
   </data>
   <data name="Save_Restore_Project" xml:space="preserve">
-    <value>SEnregistrement du projet restauré</value>
+    <value>Enregistrement du projet restauré</value>
   </data>
   <data name="error_in_opening" xml:space="preserve">
     <value>Erreur pendant l'ouverture</value>
@@ -2035,7 +2035,7 @@ Texte de l'erreur: {1}</value>
     <value>Restreindre la durée max de la phrase à 50 minutes</value>
   </data>
   <data name="Audio_ShowLiveWaveformWhileRecording" xml:space="preserve">
-    <value>Show live waveform while recording </value>
+    <value>Afficher le spectre audio pendant l'enregistrement </value>
   </data>
   <data name="KeyboardShortcuts_TextboxAccessibleName" xml:space="preserve">
     <value>{0} Touches de raccourci: (Saisir la combinaison de touche)</value>
@@ -2062,10 +2062,10 @@ Texte de l'erreur: {1}</value>
     <value>Montrer la &amp;sélection</value>
   </data>
   <data name="List_of_anchor_nodes" xml:space="preserve">
-    <value>List of anchor nodes</value>
+    <value>Liste des noeuds d'ancrage</value>
   </data>
   <data name="Selected_node" xml:space="preserve">
-    <value>Selected node</value>
+    <value>Noeud sélectionné</value>
   </data>
   <data name="Node_between_chunk" xml:space="preserve">
     <value>La sélection de la phrase spéciale est au milieu du morceau. Voulez-vous la supprimer?</value>
@@ -2092,7 +2092,7 @@ Texte de l'erreur: {1}</value>
     <value>Noeud associé</value>
   </data>
   <data name="Node_already_associated" xml:space="preserve">
-    <value>TLe noeud est déjà associé à un autre noeud ancre. Voulez-vous continuer l'association?</value>
+    <value>Le noeud est déjà associé à un autre noeud ancre. Voulez-vous continuer l'association?</value>
   </data>
   <data name="Page_not_found" xml:space="preserve">
     <value>Aucune page n'a été trouvée dans le bloc.</value>
@@ -2101,10 +2101,10 @@ Texte de l'erreur: {1}</value>
     <value>Rapport d'exportation</value>
   </data>
   <data name="Show_details" xml:space="preserve">
-    <value>Show details</value>
+    <value>Afficher les détails</value>
   </data>
   <data name="Hide_details" xml:space="preserve">
-    <value>Hide details</value>
+    <value>Masquer les détails</value>
   </data>
   <data name="MetadataView_InvalidMetadata" xml:space="preserve">
     <value>Métadonnée invalide</value>
@@ -2215,10 +2215,10 @@ Texte de l'erreur: {1}</value>
     <value>Développer la sélection audio sur le côté gauche</value>
   </data>
   <data name="Recording_RecordInNextExistingEmptyPage" xml:space="preserve">
-    <value>Record in next existing empty page</value>
+    <value>Enregistrement dans la prochaine page vide existante</value>
   </data>
   <data name="ProjectView_ClearAnchor" xml:space="preserve">
-    <value>Do you want to clear the anchor node referring to the skippable notes?</value>
+    <value>Voulez-vous effacer le noeud d'ancrage se référant aux notes facultatives?</value>
   </data>
   <data name="Elapsed" xml:space="preserve">
     <value>écoulé</value>
@@ -2233,22 +2233,22 @@ Texte de l'erreur: {1}</value>
     <value>écoulé dans la phrase</value>
   </data>
   <data name="RemainingInPhrase" xml:space="preserve">
-    <value>restand dans la phrase</value>
+    <value>restant dans la phrase</value>
   </data>
   <data name="RemainingInSelection" xml:space="preserve">
-    <value>restand dans la sélection</value>
+    <value>restant dans la sélection</value>
   </data>
   <data name="RenumberPagesCaption" xml:space="preserve">
-    <value>Renumber the following pages?</value>
+    <value>Renuméroter les pages suivantes ?</value>
   </data>
   <data name="TransportBar_RenumberPagesAfterRecording" xml:space="preserve">
-    <value>Page that follow the recorded pages may need renumbering. Will you like to renumber?</value>
+    <value>La page qui suit les pages enregistrées peut nécessiter une renumérotation. Voulez-vous renuméroter ?</value>
   </data>
   <data name="ProjectView_NoEmptyPageFoundForSpeechGeneration" xml:space="preserve">
-    <value>Unable to find empty page(s) for speech generation</value>
+    <value>Impossible de trouver la/les page(s) vide(s) pour la génération de la parole</value>
   </data>
   <data name="SpeechGenerationProgress" xml:space="preserve">
-    <value>Generating speech...</value>
+    <value>Génération de la parole...</value>
   </data>
   <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
     <value>détection phrase pendant l'enregistrement</value>
@@ -2266,81 +2266,81 @@ Texte de l'erreur: {1}</value>
     <value>Renuméroter les pages après l’enregistrement</value>
   </data>
   <data name="KeyS_TransportBarRecordSingleKey" xml:space="preserve">
-    <value>Record: single key shortcut</value>
+    <value>Enregistrement : touche de raccourci</value>
   </data>
   <data name="Audio_MonitorAlways" xml:space="preserve">
-    <value>Monitor continuously</value>
+    <value>Surveiller en continu</value>
   </data>
   <data name="Audio_MergeFirstTwoPhrasesInPhraseDetection" xml:space="preserve">
-    <value>Merge first 2 phrases detected by phrase detection</value>
+    <value>Fusionner les 2 premieres phrases détectées par la détection de phrase</value>
   </data>
   <data name="KeyS_TransportBarStopSingleKey" xml:space="preserve">
-    <value>Stop: single key shortcut</value>
+    <value>Stop : raccourci clavier</value>
   </data>
   <data name="DAISY2_ObiImport_ErrorsList_FrontPageCorrection" xml:space="preserve">
-    <value>The non numeric front page number {0} is added as {1}</value>
+    <value>Le numéro de première page non numérique {0} est ajouté comme {1}</value>
   </data>
   <data name="Audio_FastPlayWithoutPitchChange" xml:space="preserve">
-    <value>Fast play without pitch change</value>
+    <value>Lecture rapide sans modification de la hauteur</value>
   </data>
   <data name="Project_SaveProjectWhenRecordingEnds" xml:space="preserve">
-    <value>Save project when recording ends</value>
+    <value>Enregistrer le projet à la fin de l'enregistrement</value>
   </data>
   <data name="Project_CheckForUpdates" xml:space="preserve">
-    <value>Check for Updates</value>
+    <value>Vérifier les mises à jour</value>
   </data>
   <data name="DeleteUnused_NoUnusedPhraseFoundToDelete" xml:space="preserve">
-    <value>No unused phrase found to delete.</value>
+    <value>Aucune phrase inutilisée trouvé pour la suppression.</value>
   </data>
   <data name="ImportErrorCorrectionText" xml:space="preserve">
-    <value>with some error corrections </value>
+    <value>avec quelques corrections d'erreurs </value>
   </data>
   <data name="CheckUpdate_Title" xml:space="preserve">
-    <value>New {0} release available</value>
+    <value>Nouvelle version {0} disponible</value>
   </data>
   <data name="CheckUpdate_LabelText" xml:space="preserve">
-    <value>{0}. Please select from the following options.</value>
+    <value>{0}. Veuillez choisir parmi les options suivantes.</value>
   </data>
   <data name="CheckUpdate_UpdateProcessActive" xml:space="preserve">
-    <value>Update checking process is already active.</value>
+    <value>La vérification des mises à jour est déjà active.</value>
   </data>
   <data name="HardReset_Caption" xml:space="preserve">
-    <value>Hard reset preferences</value>
+    <value>Réinitialisation des préférences</value>
   </data>
   <data name="HardResetSettings_ConfirmAgain" xml:space="preserve">
-    <value>Please confirm again.</value>
+    <value>Veuillez de nouveau confirmer.</value>
   </data>
   <data name="HardResetSettings_Question" xml:space="preserve">
-    <value>This operation will hard reset all the preferences including keyboard shortcuts. Do you want to continue?</value>
+    <value>Cette opération réinitialisera toutes les préférences y compris les raccourcis clavier. Voulez-vous continuer ?</value>
   </data>
   <data name="String2" xml:space="preserve">
-    <value>Hard reset all preferences</value>
+    <value>Réinitialisation de toutes les préférences</value>
   </data>
   <data name="KeyS_HardResetAllSettings" xml:space="preserve">
-    <value>Hard reset all settings</value>
+    <value>Réinitialiser tous les paramètres</value>
   </data>
   <data name="ReplaceCorruptPhrasesWithEmptyNode_Question" xml:space="preserve">
-    <value>The total number of phrases are {0}, out of which phrases with negligible audio or missing audio references are {1}. It is recommended to replace these phrases with empty phrases with to do marks. Will you like to continue?</value>
+    <value>Le nombre total de phrases est {0}, dont les phrases avec de une quantité d'audio négligeable ou sans références audio sont {1}. Il est recommandé de remplacer ces phrases avec des phrases vides pour pouvoir les marquées. Voulez-vous continuer ?</value>
   </data>
   <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
-    <value>Replace phrases with corrupted audio with empty phrases</value>
+    <value>Remplacez les phrases avec des données audio corrompues parc des phrases vides</value>
   </data>
   <data name="ReplaceCorruptPhrasesWithEmptyNode_NothingFound" xml:space="preserve">
-    <value>No phrase found with corrupt audio.</value>
+    <value>Pas de phrase trouvée avec des données audio corrompues.</value>
   </data>
   <data name="Obi_UserInformationText" xml:space="preserve">
-    <value>Please fill in the following form to register yourself as an user of obi (free/open source DAISY production tool). This registration will entitle you to receive latest news and product updates right in your mailbox. Moreover, you will be able to play a crucial role in providing the future direction to the product as it will allow us to understand your requirements in a better way. Please make sure that computer is connected to internet while registration.</value>
+    <value>Veuillez remplir le formulaire suivant pour vous enregistrer en tant qu'utilisateur Obi (outil de production DAISY libre et open source). Cet enregistrement vous permet de recevoir les dernières informations et mises à jour directement dans votre boîte mail. En outre, en nous permettant de mieux comprendre vos besoins, vous pourrez jouer un rôle crucial dans les futures évolutions du produit. Assurez-vous d’être connecté à internet pendant la phase d'enregistrement.</value>
   </data>
   <data name="CleanUp_LongFilePath" xml:space="preserve">
-    <value>The project directory has long file path which may lead to major problems in cleanup causing loss of important data. It is strongly recommended to move the project directory near to the partition before starting clean up. Do you want to continue inspite of the stated warning?</value>
+    <value>Le répertoire du projet possède un chemin de fichier long qui peut causer des problèmes majeurs dans le nettoyage et entraîner la perte de données importantes. Il est vivement recommandé de déplacer le répertoire du projet à proximité de la racine avant de démarrer le nettoyage. Voulez-vous continuer malgré cet avertissement ?</value>
   </data>
   <data name="UserRegistration_SendEmailMsg" xml:space="preserve">
-    <value>Unable to upload the users registration information in {0} attempts. Please send email to obi.feedback@gmail.com to register.</value>
+    <value>Impossible de transmettre les informations d'enregistrement des utilisateurs en {0} tentatives. Veuillez envoyer un courriel à obi.feedback@gmail.com pour vous enregistrer.</value>
   </data>
   <data name="UserRegistrationBtn_DoNotRemind" xml:space="preserve">
-    <value>Do not remind</value>
+    <value>Ne pas rappeler</value>
   </data>
   <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
-    <value>The last update check was for version {0}. There is no new version released thereafter.</value>
+    <value>La dernière vérification de mise à jour a été pour la version {0}. Aucune nouvelle version publiée depuis.</value>
   </data>
 </root>
