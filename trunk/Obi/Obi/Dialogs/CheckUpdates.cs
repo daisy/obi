@@ -19,10 +19,12 @@ namespace Obi.Dialogs
         private Settings m_Settings;
         private bool m_IsAutomaticUpdate;
         private BackgroundWorker m_BackgroundWorker = new BackgroundWorker();
+        private System.Globalization.CultureInfo m_CurrentCulture;
 
         private CheckUpdates()
         {
             InitializeComponent();
+            m_CurrentCulture = System.Globalization.CultureInfo.CurrentUICulture;
         }
 
         public CheckUpdates(Settings settings, bool isAutomaticUpdate):this ()
@@ -36,7 +38,7 @@ namespace Obi.Dialogs
         public bool IsNewVersionAvailable { get { return m_IsNewVersionAvailable; } }
 
         public void CheckForAvailableUpdate()
-        {
+        {   
             // the functions checks the file named latest-release.txt on the server. The format of the file is as follows
             //line 1: keyword to inform if new version is test version. text used is either "test" or "Obi"
             //Line 2: a user friendly line describing which update is available
@@ -58,6 +60,8 @@ namespace Obi.Dialogs
             }
             m_BackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
             {
+                System.Threading.Thread.CurrentThread.CurrentUICulture = m_CurrentCulture;
+                
                 try
                 {
                     string releaseInfoContents = GetReleaseInfoFileContents();
@@ -81,7 +85,7 @@ namespace Obi.Dialogs
                         Console.WriteLine("New version is available");
                     }
                     else if (!m_IsAutomaticUpdate)
-                    {
+                    {   
                         MessageBox.Show(string.Format( Localizer.Message("CheckUpdates_NewVersionNotAvailable"),m_Settings.Project_LatestVersionCheckedByUpdate ));
                     }
                 }
@@ -93,6 +97,7 @@ namespace Obi.Dialogs
             });
             m_BackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
             {
+                System.Threading.Thread.CurrentThread.CurrentUICulture = m_CurrentCulture;
                 if (IsNewVersionAvailable)
                     {   
                         ShowDialogThroughCallBack();
