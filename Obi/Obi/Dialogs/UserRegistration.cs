@@ -19,10 +19,12 @@ namespace Obi.Dialogs
 
         private static Settings m_Settings;
         private static BackgroundWorker m_BackgroundWorker = new BackgroundWorker();
+        private static System.Globalization.CultureInfo m_CurrentCulture;
 
         private UserRegistration()
         {
             InitializeComponent();
+            m_CurrentCulture = System.Globalization.CultureInfo.CurrentUICulture;
             m_txtWinVer.Text=Environment.OSVersion.ToString();
             m_txtName.AccessibleName = m_lblName.Text.Replace("&", "");
             m_txtEmail.AccessibleName = m_lblEmail.Text.Replace("&", "");
@@ -65,7 +67,7 @@ namespace Obi.Dialogs
 
             m_BackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
             {
-
+                System.Threading.Thread.CurrentThread.CurrentUICulture = m_CurrentCulture;
                 System.IO.MemoryStream memoryStream = null;
                 System.IO.Stream stream = null;
 
@@ -127,6 +129,7 @@ namespace Obi.Dialogs
 
             m_BackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
             {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = m_CurrentCulture;
                 if (!isUploadSuccessful) return;
                 try
                 {
