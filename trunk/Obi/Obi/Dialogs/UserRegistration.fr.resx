@@ -136,7 +136,7 @@
     <value>15</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>Re&amp;gister</value>
+    <value>Enre&amp;gistrer</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>
@@ -166,7 +166,7 @@
     <value>16</value>
   </data>
   <data name="m_btnRemindMeLater.Text" xml:space="preserve">
-    <value>&amp;Remind me later</value>
+    <value>&amp;Rappel ultérieur</value>
   </data>
   <data name="&gt;&gt;m_btnRemindMeLater.Name" xml:space="preserve">
     <value>m_btnRemindMeLater</value>
@@ -214,7 +214,7 @@
     <value>12</value>
   </data>
   <data name="m_lblWinVer.Text" xml:space="preserve">
-    <value>Windows Version :</value>
+    <value>Version Windows :</value>
   </data>
   <data name="&gt;&gt;m_lblWinVer.Name" xml:space="preserve">
     <value>m_lblWinVer</value>
@@ -346,7 +346,7 @@
     <value>10</value>
   </data>
   <data name="m_lblCountry.Text" xml:space="preserve">
-    <value>Countr&amp;y :</value>
+    <value>&amp;Pays :</value>
   </data>
   <data name="&gt;&gt;m_lblCountry.Name" xml:space="preserve">
     <value>m_lblCountry</value>
@@ -373,7 +373,7 @@
     <value>8</value>
   </data>
   <data name="m_lblCity.Text" xml:space="preserve">
-    <value>&amp;City/State/Province :</value>
+    <value>&amp;Ville/Département :</value>
   </data>
   <data name="&gt;&gt;m_lblCity.Name" xml:space="preserve">
     <value>m_lblCity</value>
@@ -400,8 +400,8 @@
     <value>6</value>
   </data>
   <data name="m_lblOrgName.Text" xml:space="preserve">
-    <value>&amp;Organization Name :
- Use "Home" For Private user</value>
+    <value>&amp;Organisme :
+ "Home" pour un utilisateur privé</value>
   </data>
   <data name="&gt;&gt;m_lblOrgName.Name" xml:space="preserve">
     <value>m_lblOrgName</value>
@@ -455,7 +455,7 @@
     <value>2</value>
   </data>
   <data name="m_lblName.Text" xml:space="preserve">
-    <value>&amp;Name:</value>
+    <value>&amp;Nom :</value>
   </data>
   <data name="&gt;&gt;m_lblName.Name" xml:space="preserve">
     <value>m_lblName</value>
@@ -503,7 +503,7 @@
     <value>14</value>
   </data>
   <data name="m_rdbTryingObi.Text" xml:space="preserve">
-    <value>I am trying and &amp;testing Obi.</value>
+    <value>J'essaie de &amp;tester Obi.</value>
   </data>
   <data name="&gt;&gt;m_rdbTryingObi.Name" xml:space="preserve">
     <value>m_rdbTryingObi</value>
@@ -530,7 +530,7 @@
     <value>13</value>
   </data>
   <data name="m_rdbDaisyProduction.Text" xml:space="preserve">
-    <value>I am already using Obi for producing &amp;DAISY books.</value>
+    <value>J'utilise déjà Obi pour la production de livres &amp;DAISY.</value>
   </data>
   <data name="&gt;&gt;m_rdbDaisyProduction.Name" xml:space="preserve">
     <value>m_rdbDaisyProduction</value>
@@ -557,7 +557,7 @@
     <value>12</value>
   </data>
   <data name="m_lblSelectRadioButton.Text" xml:space="preserve">
-    <value>&amp;Please select any of the following :</value>
+    <value>Veuillez &amp;sélectionner un des éléments suivants :</value>
   </data>
   <data name="&gt;&gt;m_lblSelectRadioButton.Name" xml:space="preserve">
     <value>m_lblSelectRadioButton</value>
@@ -593,7 +593,7 @@
     <value>1</value>
   </data>
   <data name="m_txtBoxObiInformation.AccessibleName" xml:space="preserve">
-    <value>use arrow keys to read</value>
+    <value>utiliser les touches fléchées pour lire</value>
   </data>
   <data name="m_txtBoxObiInformation.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 7</value>
@@ -629,7 +629,7 @@
     <value>341, 416</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>User Registration</value>
+    <value>Enregistrement de l'utilisateur</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>UserRegistration</value>

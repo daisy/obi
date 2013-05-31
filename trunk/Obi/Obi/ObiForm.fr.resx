@@ -1332,7 +1332,7 @@
     <value>279, 22</value>
   </data>
   <data name="mCheckForPhrasesWithImproperAudioMenuItem.Text" xml:space="preserve">
-    <value>Chec&amp;k for corrupted audio</value>
+    <value>Vérifier l’audio endomma&amp;gé</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Supprimer les phrases qui suivent</value>
@@ -1824,13 +1824,13 @@
     <value>&amp;À propos de Obi</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Check for updates</value>
+    <value>Vérifier les mises à jour</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Check for &amp;updates</value>
+    <value>Vérifier les &amp;mises à jour</value>
   </data>
   <data name="mHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>

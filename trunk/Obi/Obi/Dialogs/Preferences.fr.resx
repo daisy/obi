@@ -436,7 +436,7 @@
     <value>0</value>
   </data>
   <data name="m_lblImportTolerance.AccessibleDescription" xml:space="preserve">
-    <value>Import tolerance</value>
+    <value>Tolérance à l'import</value>
   </data>
   <data name="m_lblImportTolerance.AccessibleName" xml:space="preserve">
     <value>Tolérance à l'import</value>
@@ -865,7 +865,7 @@
     <value>6</value>
   </data>
   <data name="mNoiseLevelComboBox.AccessibleName" xml:space="preserve">
-    <value>noise level</value>
+    <value>Niveau de bruit</value>
   </data>
   <data name="mNoiseLevelComboBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -2392,7 +2392,7 @@
     <value>464, 364</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Edition des preferences</value>
+    <value>Edition des préférences</value>
   </data>
   <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
     <value>columnHeader1</value>
