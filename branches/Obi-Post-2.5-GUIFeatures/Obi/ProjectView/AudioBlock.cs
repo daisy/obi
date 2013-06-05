@@ -16,7 +16,7 @@ namespace Obi.ProjectView
         public const int STRIP_SELECTED_PRIORITY = 2;
         public const int BLOCK_SELECTED_PRIORITY = 3;
         public const int WAVEFORM_SELECTED_PRIORITY = 4;
-        public bool FlagMouseDown = false;
+        public bool FlagMouseDown = false; //@zoomwaveform
 
         //@singleSection: height and width is increased by 20%, height is increased from properties of designer from 128 to 154
 
@@ -66,6 +66,7 @@ namespace Obi.ProjectView
             }
         }
 
+        //@zoomwaveform
 public void SetWaveformForZoom(PhraseNode node)
         {
             if (node != null && mWaveform != null)
@@ -153,6 +154,7 @@ public void SetWaveformForZoom(PhraseNode node)
             mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y);
             SetWaveform(mNode as PhraseNode);
         }
+        //@zoomwaveform
         public  void SetZoomFactorAndHeightForZoom(float zoom, int height)
         {
             base.SetZoomFactorAndHeight(zoom, height);
@@ -230,7 +232,7 @@ public void SetWaveformForZoom(PhraseNode node)
         // Update the selection position on mouse down...
         private void mWaveform_MouseDown(object sender, MouseEventArgs e)
         {
-            FlagMouseDown = true;
+            FlagMouseDown = true; //@zoomwaveform
             if (e.Button == MouseButtons.Left && CanSelectInWaveform)
             {
                 if (mShiftKeyPressed && mWaveform.Selection != null)
@@ -262,10 +264,7 @@ public void SetWaveformForZoom(PhraseNode node)
                 Strip.ContentView.DisableScrolling();
                 Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
             }
-            if(ContentView.zoomPanelActive)
-            {
-                
-            }
+
         }
 
         // ... and commit it (select) on mouse up outside of the waveform (otherwise the click event is not registered ?!)

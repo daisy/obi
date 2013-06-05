@@ -5479,23 +5479,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 m_ZoomWaveformPanel = null;
             }
         }
-        public bool zoomPanelActive
-        {
-            //@zoomwaveform
-            get
-            {
-                if(m_ZoomWaveformPanel!=null)
-                {
-                    return true;
-                }
-                return false;
-            }
-        }
-        public void ZoomFocus()
-        {
-            //@zoomwaveform
-            m_ZoomWaveformPanel.Focus();
-        }
+
 
         private void ContentView_MouseDown(object sender, MouseEventArgs e)
         {
