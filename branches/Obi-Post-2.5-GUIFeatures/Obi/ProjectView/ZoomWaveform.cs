@@ -128,7 +128,7 @@ namespace Obi.ProjectView
                 panelZooomWaveform.Controls.Add(m_AudioBlock);
                 m_AudioBlock.Location = new Point(0, 0);
                 float zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
-                txtZoomSelected.Location = new Point(0, this.Height - 50);
+               // txtZoomSelected.Location = new Point(0, this.Height - 50);
                 txtZoomSelected.BringToFront();
                 m_ZoomFactor = zoomFactor;
                 //   m_AudioBlock.Width = m_ContentView.Width;
@@ -183,6 +183,7 @@ namespace Obi.ProjectView
                     panelZooomWaveform.Width = this.Width - 30;
                     panelZooomWaveform.Height = this.Height - 60;
                     txtZoomSelected.Width = this.Width - 40;
+                    txtZoomSelected.Location = new Point(0, this.Height - 50);
                     
                 }
             }
