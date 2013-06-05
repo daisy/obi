@@ -711,6 +711,7 @@ namespace Obi.ProjectView
                         }
                         
                         mFocusing = true;
+                        //@zoomwaveform
                         if (m_ZoomWaveformPanel == null)
                         {
                             if (!((Control) s).Focused) ((Control) s).Focus();
@@ -1260,6 +1261,7 @@ namespace Obi.ProjectView
                     }
                     if (currentlySelectedBlock != null) EnsureControlVisible ( currentlySelectedBlock );
                     }
+                    //@zoomwaveform
                     if (m_ZoomWaveformPanel != null)
                     {
                         m_ZoomWaveformPanel.ZoomFactor = value;
@@ -3375,8 +3377,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 selection == null ? null :
                 selection is StripIndexSelection ? (ISelectableInContentView)FindStripCursor ( (StripIndexSelection)selection ) :
                 selection.Node is SectionNode ? (ISelectableInContentView)FindStrip ( (SectionNode)selection.Node ) :
-                selection.Node is EmptyNode ? m_ZoomWaveformPanel == null? (ISelectableInContentView)FindBlock ( (EmptyNode)selection.Node ) : 
-                (ISelectableInContentView) m_ZoomWaveformPanel: null;
+                selection.Node is EmptyNode ? m_ZoomWaveformPanel == null? (ISelectableInContentView)FindBlock ( (EmptyNode)selection.Node ) :
+                (ISelectableInContentView)m_ZoomWaveformPanel : null;  //@zoomwaveform
             }
 
         private bool IsAudioRangeSelected { get { return mSelection != null && mSelection is AudioSelection && ((AudioSelection)mSelection).AudioRange != null && !((AudioSelection)mSelection).AudioRange.HasCursor; } }
@@ -3787,10 +3789,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 ((msg.Msg == ProjectView.WM_KEYDOWN) || (msg.Msg == ProjectView.WM_SYSKEYDOWN)) &&
                 mShortcutKeys.ContainsKey ( key ) && mShortcutKeys[key] ()) return true;
             if (ProcessTabKeyInContentsView ( key )) return true;
+            //@zoomwaveform
             if (m_ZoomWaveformPanel != null)
             {
                 m_ZoomWaveformPanel.Focus();
-                Console.WriteLine("Active Control in Contentview {0}",this.ActiveControl);
+           //     Console.WriteLine("Active Control in Contentview {0}",this.ActiveControl);
                 m_ZoomWaveformPanel.ZoomAudioFocus();
              //  m_ZoomWaveformPanel.Focus();
             }
@@ -5455,6 +5458,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void ContextZoomPhrase_Click(object sender, EventArgs e)
         {
+            //@zoomwaveform
             if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
             {
                 m_ZoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection,mProjectView);
@@ -5468,6 +5472,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         public void RemovePanel()
         {
+            //@zoomwaveform
             if (m_ZoomWaveformPanel != null)
             {
                 this.Controls.Remove(m_ZoomWaveformPanel);
@@ -5476,6 +5481,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         }
         public bool zoomPanelActive
         {
+            //@zoomwaveform
             get
             {
                 if(m_ZoomWaveformPanel!=null)
@@ -5487,6 +5493,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         }
         public void ZoomFocus()
         {
+            //@zoomwaveform
             m_ZoomWaveformPanel.Focus();
         }
 
