@@ -166,7 +166,7 @@
     <value>16</value>
   </data>
   <data name="m_btnRemindMeLater.Text" xml:space="preserve">
-    <value>&amp;Rappel ultÈrieur</value>
+    <value>&amp;Rappel ult√©rieur</value>
   </data>
   <data name="&gt;&gt;m_btnRemindMeLater.Name" xml:space="preserve">
     <value>m_btnRemindMeLater</value>
@@ -373,7 +373,7 @@
     <value>8</value>
   </data>
   <data name="m_lblCity.Text" xml:space="preserve">
-    <value>&amp;Ville/DÈpartement :</value>
+    <value>&amp;Ville/D√©partement :</value>
   </data>
   <data name="&gt;&gt;m_lblCity.Name" xml:space="preserve">
     <value>m_lblCity</value>
@@ -401,7 +401,7 @@
   </data>
   <data name="m_lblOrgName.Text" xml:space="preserve">
     <value>&amp;Organisme :
- "Home" pour un utilisateur privÈ</value>
+ "Home" pour un utilisateur priv√©</value>
   </data>
   <data name="&gt;&gt;m_lblOrgName.Name" xml:space="preserve">
     <value>m_lblOrgName</value>
@@ -530,7 +530,7 @@
     <value>13</value>
   </data>
   <data name="m_rdbDaisyProduction.Text" xml:space="preserve">
-    <value>J'utilise dÈj‡ Obi pour la production de livres &amp;DAISY.</value>
+    <value>J'utilise d√©j√† Obi pour la production de livres &amp;DAISY.</value>
   </data>
   <data name="&gt;&gt;m_rdbDaisyProduction.Name" xml:space="preserve">
     <value>m_rdbDaisyProduction</value>
@@ -557,7 +557,7 @@
     <value>12</value>
   </data>
   <data name="m_lblSelectRadioButton.Text" xml:space="preserve">
-    <value>Veuillez &amp;sÈlectionner un des ÈlÈments suivants :</value>
+    <value>Veuillez &amp;s√©lectionner un des √©l√©ments suivants :</value>
   </data>
   <data name="&gt;&gt;m_lblSelectRadioButton.Name" xml:space="preserve">
     <value>m_lblSelectRadioButton</value>
@@ -593,7 +593,7 @@
     <value>1</value>
   </data>
   <data name="m_txtBoxObiInformation.AccessibleName" xml:space="preserve">
-    <value>utiliser les touches flÈchÈes pour lire</value>
+    <value>utiliser les touches fl√©ch√©es pour lire</value>
   </data>
   <data name="m_txtBoxObiInformation.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 7</value>
