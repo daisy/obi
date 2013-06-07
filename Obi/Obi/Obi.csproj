@@ -849,6 +849,10 @@
       <DependentUpon>AudioSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CheckUpdates.fr.resx">
+      <DependentUpon>CheckUpdates.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CheckUpdates.resx">
       <SubType>Designer</SubType>
       <DependentUpon>CheckUpdates.cs</DependentUpon>
@@ -980,6 +984,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SpecialPhraseList.resx">
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UserRegistration.fr.resx">
+      <DependentUpon>UserRegistration.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UserRegistration.resx">
