@@ -213,7 +213,7 @@
     <value>5</value>
   </data>
   <data name="m_RdDisableCheckUpdates.Text" xml:space="preserve">
-    <value>&amp;D�sactiver les notifications de nouvelles versions</value>
+    <value>&amp;Désactiver les notifications de nouvelles versions</value>
   </data>
   <data name="&gt;&gt;m_RdDisableCheckUpdates.Name" xml:space="preserve">
     <value>m_RdDisableCheckUpdates</value>
@@ -340,7 +340,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.AccessibleName" xml:space="preserve">
-    <value>V�rifier les mises � jour</value>
+    <value>Vérifier les mises à jour</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
