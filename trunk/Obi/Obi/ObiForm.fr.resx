@@ -142,7 +142,7 @@
     <value>&amp;Nouveau projet</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.AccessibleName" xml:space="preserve">
-    <value>Nouveau projet par importation Ctrl+Shift+N</value>
+    <value>Nouveau projet par importation Ctrl+Maj+N</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+N</value>
@@ -352,7 +352,7 @@
     <value>247, 22</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.Text" xml:space="preserve">
-    <value>Coller &amp;dans</value>
+    <value>Co&amp;ller dans</value>
   </data>
   <data name="mDeleteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Supprimer Del</value>
@@ -397,7 +397,7 @@
     <value>247, 22</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.Text" xml:space="preserve">
-    <value>Re&amp;chercher</value>
+    <value>Rec&amp;hercher</value>
   </data>
   <data name="mFindNextToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Recherche suivante F3</value>
@@ -502,13 +502,13 @@
     <value>274, 22</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Afficher la barre d'é&amp;tat</value>
+    <value>Affich&amp;er la barre d'état</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>focus sur la vue TDM / Vue du contenu F6</value>
+    <value>Focus sur la vue TDM / Vue du contenu F6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F6</value>
@@ -517,7 +517,7 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>focus sur la vue T&amp;DM / Vue du contenu</value>
+    <value>Focus sur la vue T&amp;DM / Vue du contenu</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Focus sur la vue du contenu F6</value>
@@ -545,7 +545,7 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Focus sur la &amp;barre de transport</value>
+    <value>&amp;Focus sur la barre de transport</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Synchroniser les vues Ctrl+Alt+Y</value>
@@ -575,7 +575,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
-    <value>Afficher le &amp;vu-mètres</value>
+    <value>Afficher le v&amp;u-mètres</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Afficher le code source Ctrl+Alt+O</value>
@@ -644,13 +644,13 @@
     <value>274, 22</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Text" xml:space="preserve">
-    <value>&amp;Taille normale</value>
+    <value>Ta&amp;ille normale</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.AccessibleName" xml:space="preserve">
     <value>Zoom audio avant Ctrl+Alt+Shift+plus</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Ctrl+Alt+Shift++</value>
+    <value>Ctrl+Alt+Maj++</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+Oemplus</value>
@@ -665,7 +665,7 @@
     <value>Zoom audio arrière Ctrl+Alt+Shift+ -</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Ctrl+Alt+Shift+-</value>
+    <value>Ctrl+Alt+Maj+-</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+OemMinus</value>
@@ -950,7 +950,7 @@
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>fusionner avec les &amp;phrases suivantes</value>
+    <value>Fusionner avec les &amp;phrases suivantes</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Fusionner avec les phrases précédentes</value>
@@ -965,7 +965,7 @@
     <value>240, 22</value>
   </data>
   <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Fusionner</value>
+    <value>Fus&amp;ionner</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Prélever l'audio Ctrl+Alt+Q</value>
@@ -977,7 +977,7 @@
     <value>240, 22</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
-    <value>Pré&amp;lever l'audio</value>
+    <value>Prél&amp;ever l'audio</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F9</value>
@@ -1356,7 +1356,7 @@
     <value>Ctrl+Shift+Space</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Ctrl+Shift+Espace</value>
+    <value>Ctrl+Maj+Espace</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -1563,7 +1563,7 @@
     <value>159, 22</value>
   </data>
   <data name="selectedPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>page sélectionnée</value>
+    <value>Page sélectionnée</value>
   </data>
   <data name="allEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Generate speech for all empty pages.</value>
@@ -1578,7 +1578,7 @@
     <value>176, 22</value>
   </data>
   <data name="mGenerateSpeechToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;générer de la parole</value>    
+    <value>&amp;Générer de la parole</value>    
   </data>
 
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
