@@ -136,7 +136,7 @@
     <value>0</value>
   </data>
   <data name="m_lblParentSection.Text" xml:space="preserve">
-    <value>&amp;Titre de la section parente:</value>
+    <value>&amp;Titre section parente:</value>
   </data>
   <data name="&gt;&gt;m_lblParentSection.Name" xml:space="preserve">
     <value>m_lblParentSection</value>
@@ -151,7 +151,7 @@
     <value>18</value>
   </data>
   <data name="m_txtParentSection.AccessibleName" xml:space="preserve">
-    <value>Titre de la section parente</value>
+    <value>Titre section parente</value>
   </data>
   <data name="m_txtParentSection.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>

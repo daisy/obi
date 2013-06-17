@@ -2026,7 +2026,7 @@ Texte de l'erreur: {1}</value>
     <value>Optimiser l'utilisation de la mémoire</value>
   </data>
   <data name="ProjectTab_DeleteUnusedFilesAfterCleanUp" xml:space="preserve">
-    <value>Delete unused files after clean up</value>
+    <value>Effacer les fichiers inutilisés après le nettoyage</value>
   </data>
   <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
     <value>Impossible de mettre à jour le format audio du projet en cours</value>
