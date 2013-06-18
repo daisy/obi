@@ -3442,7 +3442,7 @@ for (int j = 0;
                         ObiForm.Settings.ResetSettingsFile();
                         ObiForm.LoadDefaultKeyboardShortcuts();
                         ObiForm.KeyboardShortcuts.SaveSettings();
-                        MessageBox.Show("Operation successful. Please restart Obi to load the default settings");
+                        MessageBox.Show(Localizer.Message("Confirm_Setting"));
                         return true;
                     }
                     catch (System.Exception ex)

@@ -801,6 +801,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operation successful. Please restart Obi to load the default settings.
+        /// </summary>
+        internal static string Confirm_Setting {
+            get {
+                return ResourceManager.GetString("Confirm_Setting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Content view.
         /// </summary>
         internal static string content_view {
