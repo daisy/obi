@@ -2334,4 +2334,7 @@ Error text: {1}</value>
   <data name="CheckUpdates_GoToDownloadPage" xml:space="preserve">
     <value>&amp;Go to download page</value>
   </data>
+  <data name="Confirm_Setting" xml:space="preserve">
+    <value>Operation successful. Please restart Obi to load the default settings</value>
+  </data>
 </root>

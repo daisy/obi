@@ -2343,4 +2343,7 @@ Texte de l'erreur: {1}</value>
   <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
     <value>La dernière vérification de mise à jour a été pour la version {0}. Aucune nouvelle version publiée depuis.</value>
   </data>
+  <data name="Confirm_Setting" xml:space="preserve">
+    <value>Opération réussie. S'il vous plaît redémarrer Obi pour charger les paramètres par défaut</value>
+  </data>
 </root>
