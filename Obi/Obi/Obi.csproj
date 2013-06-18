@@ -821,6 +821,10 @@
     <Content Include="FindBarCollapse.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Audio\PeakMeterForm.fr.resx">
+      <DependentUpon>PeakMeterForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Audio\PeakMeterForm.resx">
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
       <SubType>Designer</SubType>
