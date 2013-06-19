@@ -264,6 +264,7 @@ namespace Obi.Dialogs
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ImportFileSplitSize_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImportFileSplitSize_FormClosing);
             this.m_grpAddFiles.ResumeLayout(false);
             this.m_grpArrangeAudioFiles.ResumeLayout(false);

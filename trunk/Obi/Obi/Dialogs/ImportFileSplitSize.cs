@@ -54,6 +54,15 @@ namespace Obi.Dialogs
             mchkCountToTruncateFromStart.Enabled =
                 mchkToReplaceWithSpace.Enabled =
                 mchktPageIdentificationString.Enabled = mCreateAudioFilePerSectionCheckBox.Checked;
+
+            if (m_Settings.ImportAudioCreateSectionCheck)
+            {
+                m_txtCharToReplaceWithSpace.Enabled = true;
+                m_numCharCountToTruncateFromStart.Enabled = true;
+                m_txtPageIdentificationString.Enabled = true;
+                mCreateAudioFilePerSectionCheckBox.Checked = true;
+                mchkToReplaceWithSpace.Checked = true;
+            }
         }
 
         /// <summary>
@@ -235,8 +244,8 @@ namespace Obi.Dialogs
                 m_numCharCountToTruncateFromStart.Enabled = true;
                 m_txtPageIdentificationString.Enabled = true;
                 mchkToReplaceWithSpace.Checked = true;
-                mchkCountToTruncateFromStart.Checked = true;
-                mchktPageIdentificationString.Checked = true;
+               // mchkCountToTruncateFromStart.Checked = true;
+               // mchktPageIdentificationString.Checked = true;
             }
             else
             {
@@ -417,14 +426,14 @@ namespace Obi.Dialogs
         {
             if (mchkToReplaceWithSpace.Checked)
             {
-                m_txtCharToReplaceWithSpace.Enabled = true;
+              //  m_txtCharToReplaceWithSpace.Enabled = true;
                 //m_numCharCountToTruncateFromStart.Enabled = true;
                 //m_txtPageIdentificationString.Enabled = true;
 
             }
             else
             {
-                m_txtCharToReplaceWithSpace.Enabled = false;
+              //  m_txtCharToReplaceWithSpace.Enabled = false;
             }
 
         }
@@ -433,11 +442,11 @@ namespace Obi.Dialogs
         {
             if (mchkCountToTruncateFromStart.Checked)
             {
-                m_numCharCountToTruncateFromStart.Enabled = true;
+              //  m_numCharCountToTruncateFromStart.Enabled = true;
             }
             else
             {
-                m_numCharCountToTruncateFromStart.Enabled = false;
+              //  m_numCharCountToTruncateFromStart.Enabled = false;
             }
         }
 
@@ -445,11 +454,23 @@ namespace Obi.Dialogs
         {
             if (mchktPageIdentificationString.Checked)
             {
-                m_txtPageIdentificationString.Enabled = true;
+                //m_txtPageIdentificationString.Enabled = true;
             }
             else
             {
-                m_txtPageIdentificationString.Enabled = false;
+               // m_txtPageIdentificationString.Enabled = false;
+            }
+        }
+
+        private void ImportFileSplitSize_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (mCreateAudioFilePerSectionCheckBox.Checked)
+            {
+                m_Settings.ImportAudioCreateSectionCheck = true;
+            }
+            else
+            {
+                m_Settings.ImportAudioCreateSectionCheck = false;
             }
         }
 
