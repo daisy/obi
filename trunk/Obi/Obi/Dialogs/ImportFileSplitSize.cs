@@ -51,6 +51,9 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Audio/Importing Audio Files.htm");
+            mchkCountToTruncateFromStart.Enabled =
+                mchkToReplaceWithSpace.Enabled =
+                mchktPageIdentificationString.Enabled = mCreateAudioFilePerSectionCheckBox.Checked;
         }
 
         /// <summary>
@@ -75,11 +78,11 @@ namespace Obi.Dialogs
         /// </summary>
         public uint MaxPhraseDurationMinutes { get { return mMaxPhraseDurationMinutes; } }
 
-        public string PageIdentificationString { get { return mCreateAudioFilePerSectionCheckBox.Checked && !string.IsNullOrEmpty(m_txtPageIdentificationString.Text)? m_txtPageIdentificationString.Text: null; } }
+        public string PageIdentificationString { get { return mCreateAudioFilePerSectionCheckBox.Checked && mchktPageIdentificationString.Checked && !string.IsNullOrEmpty(m_txtPageIdentificationString.Text)? m_txtPageIdentificationString.Text: null; } }
 
-        public string CharactersToBeReplacedWithSpaces { get { return mCreateAudioFilePerSectionCheckBox.Checked && !string.IsNullOrEmpty(m_txtCharToReplaceWithSpace.Text)? m_txtCharToReplaceWithSpace.Text: null; } }
+        public string CharactersToBeReplacedWithSpaces { get { return mCreateAudioFilePerSectionCheckBox.Checked && mchkToReplaceWithSpace.Checked && !string.IsNullOrEmpty(m_txtCharToReplaceWithSpace.Text)? m_txtCharToReplaceWithSpace.Text: null; } }
 
-        public int CharacterCountToTruncateFromStart { get { return mCreateAudioFilePerSectionCheckBox.Checked? Convert.ToInt32(m_numCharCountToTruncateFromStart.Value) : 0 ; } }
+        public int CharacterCountToTruncateFromStart { get { return mCreateAudioFilePerSectionCheckBox.Checked && mchkCountToTruncateFromStart.Checked? Convert.ToInt32(m_numCharCountToTruncateFromStart.Value) : 0 ; } }
 
         public bool ApplyPhraseDetection { get { return m_rdbPhraseDetectionOnImportedFiles.Checked; } }
 
@@ -223,17 +226,26 @@ namespace Obi.Dialogs
 
         private void mCreateAudioFilePerSectionCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            mchkCountToTruncateFromStart.Enabled =
+                mchkToReplaceWithSpace.Enabled =
+                mchktPageIdentificationString.Enabled = mCreateAudioFilePerSectionCheckBox.Checked;
             if(mCreateAudioFilePerSectionCheckBox.Checked)
             {
                 m_txtCharToReplaceWithSpace.Enabled = true;
                 m_numCharCountToTruncateFromStart.Enabled = true;
                 m_txtPageIdentificationString.Enabled = true;
+                mchkToReplaceWithSpace.Checked = true;
+                mchkCountToTruncateFromStart.Checked = true;
+                mchktPageIdentificationString.Checked = true;
             }
             else
             {
                 m_txtCharToReplaceWithSpace.Enabled = false;
                 m_numCharCountToTruncateFromStart.Enabled = false;
                 m_txtPageIdentificationString.Enabled = false;
+                mchkToReplaceWithSpace.Checked = false;
+                mchkCountToTruncateFromStart.Checked = false;
+                mchktPageIdentificationString.Checked = false;
             }
         }
 
@@ -400,5 +412,47 @@ namespace Obi.Dialogs
                 m_btnRemove.Enabled = false;
             }
         }
+
+        private void mchkToReplaceWithSpace_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mchkToReplaceWithSpace.Checked)
+            {
+                m_txtCharToReplaceWithSpace.Enabled = true;
+                //m_numCharCountToTruncateFromStart.Enabled = true;
+                //m_txtPageIdentificationString.Enabled = true;
+
+            }
+            else
+            {
+                m_txtCharToReplaceWithSpace.Enabled = false;
+            }
+
+        }
+
+        private void mchkCountToTruncateFromStart_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mchkCountToTruncateFromStart.Checked)
+            {
+                m_numCharCountToTruncateFromStart.Enabled = true;
+            }
+            else
+            {
+                m_numCharCountToTruncateFromStart.Enabled = false;
+            }
+        }
+
+        private void mchktPageIdentificationString_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mchktPageIdentificationString.Checked)
+            {
+                m_txtPageIdentificationString.Enabled = true;
+            }
+            else
+            {
+                m_txtPageIdentificationString.Enabled = false;
+            }
+        }
+
+ 
     }
 }

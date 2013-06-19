@@ -238,7 +238,7 @@
     <value>3</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.AccessibleName" xml:space="preserve">
-    <value>Checbox to create section for each audio file.</value>
+    <value>create section for each audio file.</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -265,7 +265,7 @@
     <value>m_grpCreateSectionForEachAudioFile</value>
   </data>
   <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
     <value>Audio files list box.</value>
@@ -517,7 +517,7 @@
     <value>m_grpCreateSectionForEachAudioFile</value>
   </data>
   <data name="&gt;&gt;m_txtCharToReplaceWithSpace.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
     <value>Page identification </value>
@@ -544,88 +544,7 @@
     <value>m_grpCreateSectionForEachAudioFile</value>
   </data>
   <data name="&gt;&gt;m_txtPageIdentificationString.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="lblToReplaceWithSpace.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 49</value>
-  </data>
-  <data name="lblToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 16</value>
-  </data>
-  <data name="lblToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="lblToReplaceWithSpace.Text" xml:space="preserve">
-    <value>&amp;To Replace With Space</value>
-  </data>
-  <data name="&gt;&gt;lblToReplaceWithSpace.Name" xml:space="preserve">
-    <value>lblToReplaceWithSpace</value>
-  </data>
-  <data name="&gt;&gt;lblToReplaceWithSpace.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblToReplaceWithSpace.Parent" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
-  </data>
-  <data name="&gt;&gt;lblToReplaceWithSpace.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblCountToTruncateFromStart.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 77</value>
-  </data>
-  <data name="lblCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 16</value>
-  </data>
-  <data name="lblCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="lblCountToTruncateFromStart.Text" xml:space="preserve">
-    <value># of initial &amp;chars to trim</value>
-  </data>
-  <data name="&gt;&gt;lblCountToTruncateFromStart.Name" xml:space="preserve">
-    <value>lblCountToTruncateFromStart</value>
-  </data>
-  <data name="&gt;&gt;lblCountToTruncateFromStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCountToTruncateFromStart.Parent" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
-  </data>
-  <data name="&gt;&gt;lblCountToTruncateFromStart.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="lbltPageIdentificationString.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lbltPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 105</value>
-  </data>
-  <data name="lbltPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 16</value>
-  </data>
-  <data name="lbltPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="lbltPageIdentificationString.Text" xml:space="preserve">
-    <value>Page &amp;Identification</value>
-  </data>
-  <data name="&gt;&gt;lbltPageIdentificationString.Name" xml:space="preserve">
-    <value>lbltPageIdentificationString</value>
-  </data>
-  <data name="&gt;&gt;lbltPageIdentificationString.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbltPageIdentificationString.Parent" xml:space="preserve">
-    <value>m_grpCreateSectionForEachAudioFile</value>
-  </data>
-  <data name="&gt;&gt;lbltPageIdentificationString.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
     <value>Number of initial chars to trim</value>
@@ -652,10 +571,100 @@
     <value>m_grpCreateSectionForEachAudioFile</value>
   </data>
   <data name="&gt;&gt;m_numCharCountToTruncateFromStart.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
     <value>Group box to create section for each audio file.</value>
+  </data>
+  <data name="mchktPageIdentificationString.AccessibleName" xml:space="preserve">
+    <value>Page Identification</value>
+  </data>
+  <data name="mchktPageIdentificationString.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 99</value>
+  </data>
+  <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 20</value>
+  </data>
+  <data name="mchktPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="mchktPageIdentificationString.Text" xml:space="preserve">
+    <value>Page &amp;Identification</value>
+  </data>
+  <data name="&gt;&gt;mchktPageIdentificationString.Name" xml:space="preserve">
+    <value>mchktPageIdentificationString</value>
+  </data>
+  <data name="&gt;&gt;mchktPageIdentificationString.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mchktPageIdentificationString.Parent" xml:space="preserve">
+    <value>m_grpCreateSectionForEachAudioFile</value>
+  </data>
+  <data name="&gt;&gt;mchktPageIdentificationString.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.AccessibleName" xml:space="preserve">
+    <value>number of initial characters to trim</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 73</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 20</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
+    <value># of initial &amp;chars to trim</value>
+  </data>
+  <data name="&gt;&gt;mchkCountToTruncateFromStart.Name" xml:space="preserve">
+    <value>mchkCountToTruncateFromStart</value>
+  </data>
+  <data name="&gt;&gt;mchkCountToTruncateFromStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mchkCountToTruncateFromStart.Parent" xml:space="preserve">
+    <value>m_grpCreateSectionForEachAudioFile</value>
+  </data>
+  <data name="&gt;&gt;mchkCountToTruncateFromStart.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.AccessibleName" xml:space="preserve">
+    <value>To Replace with space </value>
+  </data>
+  <data name="mchkToReplaceWithSpace.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 45</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 20</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
+    <value>&amp;To Replace With Space</value>
+  </data>
+  <data name="&gt;&gt;mchkToReplaceWithSpace.Name" xml:space="preserve">
+    <value>mchkToReplaceWithSpace</value>
+  </data>
+  <data name="&gt;&gt;mchkToReplaceWithSpace.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mchkToReplaceWithSpace.Parent" xml:space="preserve">
+    <value>m_grpCreateSectionForEachAudioFile</value>
+  </data>
+  <data name="&gt;&gt;mchkToReplaceWithSpace.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 215</value>

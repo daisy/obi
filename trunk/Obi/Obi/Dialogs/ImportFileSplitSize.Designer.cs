@@ -45,11 +45,11 @@ namespace Obi.Dialogs
             this.mbtnAscendingOrder = new System.Windows.Forms.Button();
             this.m_txtCharToReplaceWithSpace = new System.Windows.Forms.TextBox();
             this.m_txtPageIdentificationString = new System.Windows.Forms.TextBox();
-            this.lblToReplaceWithSpace = new System.Windows.Forms.Label();
-            this.lblCountToTruncateFromStart = new System.Windows.Forms.Label();
-            this.lbltPageIdentificationString = new System.Windows.Forms.Label();
             this.m_numCharCountToTruncateFromStart = new System.Windows.Forms.NumericUpDown();
             this.m_grpCreateSectionForEachAudioFile = new System.Windows.Forms.GroupBox();
+            this.mchktPageIdentificationString = new System.Windows.Forms.CheckBox();
+            this.mchkCountToTruncateFromStart = new System.Windows.Forms.CheckBox();
+            this.mchkToReplaceWithSpace = new System.Windows.Forms.CheckBox();
             this.m_grpSplitPhraseOrPhraseDetection = new System.Windows.Forms.GroupBox();
             this.m_rdbPhraseDetectionOnImportedFiles = new System.Windows.Forms.RadioButton();
             this.m_rdbSplitPhrasesOnImport = new System.Windows.Forms.RadioButton();
@@ -173,21 +173,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_txtPageIdentificationString, "m_txtPageIdentificationString");
             this.m_txtPageIdentificationString.Name = "m_txtPageIdentificationString";
             // 
-            // lblToReplaceWithSpace
-            // 
-            resources.ApplyResources(this.lblToReplaceWithSpace, "lblToReplaceWithSpace");
-            this.lblToReplaceWithSpace.Name = "lblToReplaceWithSpace";
-            // 
-            // lblCountToTruncateFromStart
-            // 
-            resources.ApplyResources(this.lblCountToTruncateFromStart, "lblCountToTruncateFromStart");
-            this.lblCountToTruncateFromStart.Name = "lblCountToTruncateFromStart";
-            // 
-            // lbltPageIdentificationString
-            // 
-            resources.ApplyResources(this.lbltPageIdentificationString, "lbltPageIdentificationString");
-            this.lbltPageIdentificationString.Name = "lbltPageIdentificationString";
-            // 
             // m_numCharCountToTruncateFromStart
             // 
             resources.ApplyResources(this.m_numCharCountToTruncateFromStart, "m_numCharCountToTruncateFromStart");
@@ -201,15 +186,36 @@ namespace Obi.Dialogs
             // m_grpCreateSectionForEachAudioFile
             // 
             resources.ApplyResources(this.m_grpCreateSectionForEachAudioFile, "m_grpCreateSectionForEachAudioFile");
-            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.lblToReplaceWithSpace);
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.mchktPageIdentificationString);
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.mchkCountToTruncateFromStart);
+            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.mchkToReplaceWithSpace);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.mCreateAudioFilePerSectionCheckBox);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_txtCharToReplaceWithSpace);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_numCharCountToTruncateFromStart);
             this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.m_txtPageIdentificationString);
-            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.lbltPageIdentificationString);
-            this.m_grpCreateSectionForEachAudioFile.Controls.Add(this.lblCountToTruncateFromStart);
             this.m_grpCreateSectionForEachAudioFile.Name = "m_grpCreateSectionForEachAudioFile";
             this.m_grpCreateSectionForEachAudioFile.TabStop = false;
+            // 
+            // mchktPageIdentificationString
+            // 
+            resources.ApplyResources(this.mchktPageIdentificationString, "mchktPageIdentificationString");
+            this.mchktPageIdentificationString.Name = "mchktPageIdentificationString";
+            this.mchktPageIdentificationString.UseVisualStyleBackColor = true;
+            this.mchktPageIdentificationString.CheckedChanged += new System.EventHandler(this.mchktPageIdentificationString_CheckedChanged);
+            // 
+            // mchkCountToTruncateFromStart
+            // 
+            resources.ApplyResources(this.mchkCountToTruncateFromStart, "mchkCountToTruncateFromStart");
+            this.mchkCountToTruncateFromStart.Name = "mchkCountToTruncateFromStart";
+            this.mchkCountToTruncateFromStart.UseVisualStyleBackColor = true;
+            this.mchkCountToTruncateFromStart.CheckedChanged += new System.EventHandler(this.mchkCountToTruncateFromStart_CheckedChanged);
+            // 
+            // mchkToReplaceWithSpace
+            // 
+            resources.ApplyResources(this.mchkToReplaceWithSpace, "mchkToReplaceWithSpace");
+            this.mchkToReplaceWithSpace.Name = "mchkToReplaceWithSpace";
+            this.mchkToReplaceWithSpace.UseVisualStyleBackColor = true;
+            this.mchkToReplaceWithSpace.CheckedChanged += new System.EventHandler(this.mchkToReplaceWithSpace_CheckedChanged);
             // 
             // m_grpSplitPhraseOrPhraseDetection
             // 
@@ -284,9 +290,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.GroupBox m_grpAddFiles;
         private System.Windows.Forms.TextBox m_txtCharToReplaceWithSpace;
         private System.Windows.Forms.TextBox m_txtPageIdentificationString;
-        private System.Windows.Forms.Label lblToReplaceWithSpace;
-        private System.Windows.Forms.Label lblCountToTruncateFromStart;
-        private System.Windows.Forms.Label lbltPageIdentificationString;
         private System.Windows.Forms.NumericUpDown m_numCharCountToTruncateFromStart;
         private System.Windows.Forms.GroupBox m_grpCreateSectionForEachAudioFile;
         private System.Windows.Forms.GroupBox m_grpSplitPhraseOrPhraseDetection;
@@ -297,5 +300,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mbtnAscendingOrder;
         private System.Windows.Forms.Button m_btnRemove;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.CheckBox mchkToReplaceWithSpace;
+        private System.Windows.Forms.CheckBox mchktPageIdentificationString;
+        private System.Windows.Forms.CheckBox mchkCountToTruncateFromStart;
     }
 }
