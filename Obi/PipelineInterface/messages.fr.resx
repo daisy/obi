@@ -180,7 +180,7 @@
     <value>DAISY 3 Validator</value>
   </data>
   <data name="Daisy202DTBValidator" xml:space="preserve">
-    <value>DAISY 2.02 Lumière Validator</value>
+    <value>DAISY 2.02 Light Validator</value>
   </data>
   <data name="DTBAudioEncoder" xml:space="preserve">
     <value>Convertir l’audio en MP3</value>
