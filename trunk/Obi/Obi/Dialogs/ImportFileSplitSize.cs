@@ -35,7 +35,7 @@ namespace Obi.Dialogs
             m_btnMoveDown.Enabled = false;
             m_btnRemove.Enabled = false;
             mPhraseSizeTextBox.Text = mMaxPhraseDurationMinutes.ToString();
-            foreach (string str in filesPathArray)
+            foreach (string str in m_filePaths)
             {
                 if (str != null)
                 {
