@@ -4041,7 +4041,8 @@ for (int j = 0;
                             else
                             {
                                 if (this.Selection.Node.Duration > GoToDialog.TimeInSeconds)
-                                    sel = new AudioSelection((PhraseNode) this.Selection.Node, mContentView,
+
+                                    this.Selection =  new AudioSelection((PhraseNode) this.Selection.Node, mContentView,
                                                              new AudioRange(GoToDialog.TimeInSeconds));
                                 else
                                 {
@@ -4075,9 +4076,10 @@ for (int j = 0;
                                 else
                                     break;
                             }
+                            this.Selection = new AudioSelection((PhraseNode)phrNode, mContentView,
+                                                   new AudioRange(GoToDialog.TimeInSeconds - (time - phrNode.Duration)));
                             mContentView.SelectPhraseBlockOrStrip(phrNode);
-                            sel = new AudioSelection((PhraseNode) phrNode, mContentView,
-                                                     new AudioRange(GoToDialog.TimeInSeconds - (time - phrNode.Duration)));
+                     
                         }
                     }
                         else if (GoToDialog.SelectedIndex == 2)
