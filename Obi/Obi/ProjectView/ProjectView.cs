@@ -3244,6 +3244,10 @@ for (int j = 0;
         // if the key was not handled then, proceed with the default process.
         protected override bool ProcessCmdKey ( ref Message msg, Keys key )
             {
+                if (key == (Keys.Control | Keys.H))
+                {
+                    Console.WriteLine("Hi");
+                }
             if (!CanUseKey ( key )) return false;
             SetF1Help(key);
             return (((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
@@ -4081,41 +4085,42 @@ for (int j = 0;
                             mContentView.SelectPhraseBlockOrStrip(phrNode);
                      
                         }
-                    }
                         else if (GoToDialog.SelectedIndex == 2)
                         {
-                            
+
                             double dTime = 0.0;
                             PhraseNode nodeToBeSelected = null;
 
                             this.Presentation.RootNode.AcceptDepthFirst(
                                 delegate(urakawa.core.TreeNode n)
+                                {
+                                    if (nodeToBeSelected != null) return false;
+                                    PhraseNode phraseNode = n as PhraseNode;
+                                    if (phraseNode != null)
                                     {
-                                        if (nodeToBeSelected != null) return false;
-                                        PhraseNode phraseNode = n as PhraseNode;
-                                        if (phraseNode != null)
+
+                                        if (dTime + phraseNode.Duration < GoToDialog.TimeInSeconds)
                                         {
-                                            
-                                            if (dTime+ phraseNode.Duration  < GoToDialog.TimeInSeconds)
-                                            {
-                                                dTime = (phraseNode).Duration + dTime;
-                                            }
-                                            else
-                                            {
-                                                nodeToBeSelected = phraseNode;
-                                                
-                                                return  false;
-                                            }
+                                            dTime = (phraseNode).Duration + dTime;
                                         }
-                                        return true;
-                                    },
+                                        else
+                                        {
+                                            nodeToBeSelected = phraseNode;
+
+                                            return false;
+                                        }
+                                    }
+                                    return true;
+                                },
                                 delegate(urakawa.core.TreeNode n) { });
                             if (nodeToBeSelected == null) MessageBox.Show("Time value exceeds the project");
 
                             mContentView.SelectPhraseBlockOrStrip(nodeToBeSelected);
                             Selection = new AudioSelection((PhraseNode)nodeToBeSelected, mContentView,
-                                                     new AudioRange(GoToDialog.TimeInSeconds - dTime ));
+                                                     new AudioRange(GoToDialog.TimeInSeconds - dTime));
+                         }
                     }
+                      
                     else
                     {
                         if (Selection == null)
