@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="m_lbDetailsOfErrors.AccessibleName" xml:space="preserve">
-    <value>&amp;D�tails description</value>
+    <value>&amp;Détails description</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lbDetailsOfErrors.Location" type="System.Drawing.Point, System.Drawing">
@@ -178,7 +178,7 @@
     <value>4</value>
   </data>
   <data name="m_btnDetails.AccessibleName" xml:space="preserve">
-    <value>Afficher les d�tails</value>
+    <value>Afficher les détails</value>
   </data>
   <data name="m_btnDetails.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -199,7 +199,7 @@
     <value>2</value>
   </data>
   <data name="m_btnDetails.Text" xml:space="preserve">
-    <value>Afficher les &amp;d�tails</value>
+    <value>Afficher les &amp;détails</value>
   </data>
   <data name="&gt;&gt;m_btnDetails.Name" xml:space="preserve">
     <value>m_btnDetails</value>
