@@ -348,7 +348,7 @@
     <value>3</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.AccessibleName" xml:space="preserve">
-    <value>Load Selected onwards radio button</value>
+    <value>Load Selected onwards</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -378,7 +378,7 @@
     <value>0</value>
   </data>
   <data name="m_rb_loadFromRange.AccessibleDescription" xml:space="preserve">
-    <value>Load From Range radio button</value>
+    <value>Load From Range </value>
   </data>
   <data name="m_rb_loadFromRange.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -408,7 +408,7 @@
     <value>2</value>
   </data>
   <data name="m_rb_loadAllSections.AccessibleDescription" xml:space="preserve">
-    <value>Load All sections radiobutton</value>
+    <value>Load All sections</value>
   </data>
   <data name="m_rb_loadAllSections.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
