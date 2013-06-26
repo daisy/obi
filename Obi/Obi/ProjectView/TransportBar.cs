@@ -2489,7 +2489,8 @@ namespace Obi.ProjectView
         private void DetermineUseOfSoundTouch(float fastPlayFactor)
         {
             if (mPlayer == null) return;
-            if (mView.Presentation != null &&  mView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 1
+            //if (mView.Presentation != null &&  mView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 1
+            if (mView.ObiForm != null
                 && mView.ObiForm.Settings.Audio_FastPlayWithoutPitchChange
                 && fastPlayFactor > 1.0f
                 && !mPlayer.UseSoundTouch)
