@@ -2418,7 +2418,8 @@ for (int j = 0;
             node.Audio = mPresentation.MediaFactory.CreateManagedAudioMedia();
             node.Audio.AudioMediaData = mPresentation.MediaDataFactory.Create<urakawa.media.data.audio.codec.WavAudioMediaData>();
             //byte [] zeroAudio = new byte[4096] ;\
-            byte[] zeroAudio = new byte[mPresentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate];
+            int audioLength = Convert.ToInt32(mPresentation.MediaDataManager.DefaultPCMFormat.Data.ByteRate * 0.6);
+            byte[] zeroAudio = new byte[audioLength];
             node.Audio.AudioMediaData.AppendPcmData(new System.IO.MemoryStream(zeroAudio), new urakawa.media.timing.Time(mPresentation.MediaDataManager.DefaultPCMFormat.Data.ConvertBytesToTime(zeroAudio.Length)));
             node.Role_ = EmptyNode.Role.Page;
             node.PageNumber = pgNumber;
