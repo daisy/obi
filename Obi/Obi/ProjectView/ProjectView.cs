@@ -2337,7 +2337,15 @@ for (int j = 0;
                     else
                     {
                         string pageNumberString = newSectionName.Substring(PageIdentificationString.Length, newSectionName.Length - PageIdentificationString.Length);
-
+                        pageNumberString = pageNumberString.Replace("_", " ");
+                        pageNumberString = pageNumberString.Replace("-", " ");
+                        System.Text.RegularExpressions.Regex rg = new System.Text.RegularExpressions.Regex(@"[a-zA-Z]");
+                        if (rg.IsMatch(pageNumberString))
+                        {
+                            string[] splitString = rg.Split(pageNumberString);
+                            if (splitString.Length > 0) pageNumberString = splitString[0];
+                            Console.WriteLine("page number string: " + pageNumberString);
+                        }
                         int pageNum = 0;
                         int.TryParse(pageNumberString, out pageNum);
                         if (pageNum > 0)
@@ -2383,6 +2391,15 @@ for (int j = 0;
                         int pageNumIndex = newSectionName.IndexOf(PageIdentificationString);
                         string pageNumberString = newSectionName.Substring(pageNumIndex + PageIdentificationString.Length, newSectionName.Length - pageNumIndex - PageIdentificationString.Length);
                         //MessageBox.Show(pageNumberString);
+                        pageNumberString = pageNumberString.Replace("_", " ");
+                        pageNumberString = pageNumberString.Replace("-", " ");
+                        System.Text.RegularExpressions.Regex rg = new System.Text.RegularExpressions.Regex(@"[a-zA-Z]");
+                        if (rg.IsMatch(pageNumberString))
+                        {
+                            string[] splitString = rg.Split(pageNumberString);
+                            if (splitString.Length > 0) pageNumberString = splitString[0];
+                            Console.WriteLine("page number string: " + pageNumberString);
+                        }
                         int pageNum = 0;
                         int.TryParse(pageNumberString, out pageNum);
                         if (pageNum > 0)
