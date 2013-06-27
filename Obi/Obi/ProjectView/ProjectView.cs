@@ -466,7 +466,7 @@ namespace Obi.ProjectView
         /// Can assign the heading role if there is a phrase node (must have audio)
         /// and there is no phrase role in the parent section. It must also be used.
         /// </summary>
-        public bool CanAssignHeadingRole
+        public bool CanAssignHeadingRole  
             {
             get
                 {
@@ -3263,10 +3263,6 @@ for (int j = 0;
         // if the key was not handled then, proceed with the default process.
         protected override bool ProcessCmdKey ( ref Message msg, Keys key )
             {
-                if (key == (Keys.Control | Keys.H))
-                {
-                    Console.WriteLine("Hi");
-                }
             if (!CanUseKey ( key )) return false;
             SetF1Help(key);
             return (((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
@@ -4101,8 +4097,7 @@ for (int j = 0;
                             }
                             this.Selection = new AudioSelection((PhraseNode)phrNode, mContentView,
                                                    new AudioRange(GoToDialog.TimeInSeconds - (time - phrNode.Duration)));
-                            mContentView.SelectPhraseBlockOrStrip(phrNode);
-                     
+                                           
                         }
                         else if (GoToDialog.SelectedIndex == 2)
                         {
