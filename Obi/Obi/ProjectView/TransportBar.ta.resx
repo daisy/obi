@@ -1,0 +1,1151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="mPlayButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mPlayButton.AccessibleName" xml:space="preserve">
+    <value>வாசி</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mPlayButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPlayButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mPlayButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAA1hJREFUWEftlF1I
+        U2EYx+3TiFoWalAZZU2ZFwWGXUkudNM5bW46vXDk1FRCIxNsfkxbgoGQF9PyIiK801K6nFYXYRchTDEL
+        qivL1M19b3r2cY7p0/OeTEJd+LFZhAf+nM/3fX7n//zfNyRk+9h24B934BjynUTt/1ucXJFY8DwuLkaE
+        AMdRe7cahCtMTYbiYiUjzhD1hIeHxyNAJGrXVoGwAMwcAwNvBhZk2Vnuy8lJzaGhoTEIcBi1I9ggLADl
+        ngWL3QxWuwUeP3nESKSZUwkJ8Qosfgp1IJgQSwAmixGIbE4rGKanoKZORUsk4sGYmOgUBDiBCg0GyAoA
+        AmG2ToPdaYf3H0ahoEBBi8RpnWFhYecR4Chqd8BAOBzOqgC/3DDbTOBw2eHlq/55qezKLJ9/SY1jzqKO
+        BCQfPB7vJ4CHAlLMwsq8TCawO6z4zAIPO9oZmSxzLDEpUR4bG3sadXBTbggEAhbA43WDDYvYnbY/yjXj
+        hEnDJNysrGCkUsnrlLSURKFQGMXn8/dtCESpVLIAXp8XnDMOIAVcs0722uFysFBWXB0mzITBNAUThnH4
+        NvUVHbHBu9GRheycLMjJld0n86DWD1FdXb3kgNFsYFcBKyxIgkhErsmzaXxvRAhy73I5oa9P9z1dnAp5
+        eTk3yDxyuXz9m5dWq+WmZ6SyDpDe2xwWtgUkeE50gDhBzuSeiHJT8OnzRygpK6SvKvM7m5s159ra2iI0
+        Gs3ODbWgt7eXmyXNBB/tYwuTFsxSM2woSS48Xg8rmqHBbDFDo0bNFBUVvG1qakjq6uqK0ul0m9sbBgcH
+        ufJcGdAIQP50hnKBG4sTR8j2PL8wDxRFwbOep0xJadFkXZ1Kodfro3EcZ0N/vHzQxMQEN1+Rt8IBr88D
+        Pp8Phob089fLS9219aq7Y2NjsUajMQIANmb3asQ4GVdZqFjMAK53bIPb44bx8S+gbqih69U13cPDwxfw
+        uyjU5uz2B1BaVsT2m4TMZrfhZtPG3FbdGunp6RZi0WhUYOz2B1BeUcaGrP+Fbk5VWzX9oEN7jTiDigyo
+        3f4AKqsqQN1Y621puddqtVp5QbPbH4C2vfUOJvviot2HApLutU6CRc/8Zvf6d7K1FvL3HRbfE5R0bxZs
+        e/x/5cAPgJLE0sO0OSQAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="mPlayButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 0</value>
+  </data>
+  <data name="mPlayButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPlayButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mPlayButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>149, 17</value>
+  </data>
+  <data name="mPlayButton.ToolTip" xml:space="preserve">
+    <value>ஒலி வாசிப்பை தொடங்கு அல்லது மறுபடியும் தொடங்கு(space)</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.Name" xml:space="preserve">
+    <value>mPlayButton</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPlayButton.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="mPauseButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mPauseButton.AccessibleName" xml:space="preserve">
+    <value>இடை நிறுத்து</value>
+  </data>
+  <data name="mPauseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPauseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mPauseButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAdxJREFUWEftlMtK
+        w2AQhcUXKHhBLRrxtu1D9BW0iIKLunChCxdKEUToQgQXUhAEi4s+Q1+hD1GIFS9NotZqoZhbY9sxZ5Di
+        oqXD704SmM2c85/5MvnJyEj0RBuINhBtYPgG4qFlZUBBwyPxDJ80wLG8tr5K/Sr0L/+ckXjUAGKx2BKG
+        d7td8ls+V6fTYSBoSJV41KaHpzRNW8QwDLWeDXp5tXoA0BAs8SgDJBKJBQC0222qGg9kWE8UBAFvABqC
+        JR5lgGQyOY9hwVfQA2iFnwE9aAiWeJQBUqmUxgBBi9/etKrk+x4DQEOwxKMMkE6n5zAMl+/5xWQAz3MZ
+        ABqCJR5lgEwmM7u5tcFvrVfKdHtXJse1CT1oCJZ4lAGy2Wx8eydNnu/S/WMlrDtyHJvQg4ZgiUcZIJ/P
+        z+zt74YAHhnmE1XNRwZAL5fLzSBY4lEGKBQK04dHB/wJ8A/APQAAetAQLPEoAxSLxamT7DFfwvp7jWpv
+        rwyAHjQESzzKAKVSafLs/JQBPj7qDGE7n4QeNARLPMoAuq5P5C4v+A64rsNvb9ufhB40BEs8ygCmaY5f
+        31xRv4KGYIlHGaDRaMSazeZYv4KGYIlHGQAHiWi0X/0OlXj+BBEdjjbwbzfwDV5j4T2/GV9dAAAAAElF
+        TkSuQmCC
+</value>
+  </data>
+  <data name="mPauseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 0</value>
+  </data>
+  <data name="mPauseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPauseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPauseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="mPauseButton.ToolTip" xml:space="preserve">
+    <value>ஒலி வாசிப்பை அல்லது பதிவு செய்தலை இடை நிறுத்து(space)</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.Name" xml:space="preserve">
+    <value>mPauseButton</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPauseButton.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="mStopButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mStopButton.AccessibleName" xml:space="preserve">
+    <value>நிறுத்து</value>
+  </data>
+  <data name="mStopButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mStopButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mStopButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAjxJREFUWEftlM2K
+        01AYhucClML4P2hFHbe9iN6ClhnRTQU3Ci5E6kKELkRwIYIgWLyD7rrstpegjLbT37T5a9N2TJO0SZP2
+        83uPtFRc2PHgLoF3l+ec57znS3Z24iduIG4gbuDvDezxK7clAl7q2b97cIcO7x8Epw043nlfavdEInEL
+        Cy0WCwrDkIIg2CrL5ZLAgZcSSCaTN7FQFEWk6T3qacpWgTA48FICqVTqBhYK5oHYuNtrb5UoCoUAeCmB
+        dDp9HQv5gX8qgXk4FwLgpQQymUwSC8382Z9XoPJ1iHREuqtwSxAGB15KIJvNXhMCsykZpka6of4WzeiR
+        CM/HKgoL4H1w4KUEcrnc1XsPDsWCA8uk/sAQMfs6b9gVp24rDaq3alSrH9FR9St9q34R74MDLyWQz+f3
+        Hj7Kkud5fFJVbKgoLWp16iLN9rFIgwUazSrVOceN7zSdegQOvJRAoVC48uTpY5ryiXSuWtW6nF93L+6c
+        60blnW6LOkpTtAExb+oSOPBSAsVi8fLzF894CHEF/XX9hqmvZwJ3DzHxmaIhFvI8l8CBlxIol8sXX+Vf
+        ku/7dHIyptFoSMORRdZwsJ4JzMNqQFcyEABXKpUuSQlUKpULb96+5t+vT7b9Q0iMx6MNCbRiiqHclHBd
+        h8CBlxKo1Wrn3394xw3MxL8A0415wJB5CJ/URXhDxHEn5DgTmjg2gQMvJaCq6rlPnz/Svwa8lAARneHs
+        bhvbtnc3Y1nWWSmBGI4biBv43w38BE9OWA8H8M1VAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="mStopButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>178, 0</value>
+  </data>
+  <data name="mStopButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mStopButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mStopButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="mStopButton.ToolTip" xml:space="preserve">
+    <value>ஒலி வாசிப்பை அல்லது பதிவு செய்தலை நிறுத்து(ctrl+space)</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.Name" xml:space="preserve">
+    <value>mStopButton</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mStopButton.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="mNextPhrase.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mNextPhrase.AccessibleName" xml:space="preserve">
+    <value>அடுத்த சொற்றொடர்</value>
+  </data>
+  <data name="mNextPhrase.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mNextPhrase.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mNextPhrase.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        AABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="mNextPhrase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>283, 0</value>
+  </data>
+  <data name="mNextPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mNextPhrase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mNextPhrase.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="mNextPhrase.ToolTip" xml:space="preserve">
+    <value>அடுத்த சொற்றொடர். (K)</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.Name" xml:space="preserve">
+    <value>mNextPhrase</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNextPhrase.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="mPrevPhraseButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mPrevPhraseButton.AccessibleName" xml:space="preserve">
+    <value>முந்தைய சொற்றொடர்</value>
+  </data>
+  <data name="mPrevPhraseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPrevPhraseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mPrevPhraseButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        1K0bP/i/78DfuFbaKWzgiKEAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="mPrevPhraseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 0</value>
+  </data>
+  <data name="mPrevPhraseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPrevPhraseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPrevPhraseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="mPrevPhraseButton.ToolTip" xml:space="preserve">
+    <value>முன் கடந்த சொற்றொடர் (J)</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.Name" xml:space="preserve">
+    <value>mPrevPhraseButton</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPrevPhraseButton.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="mNextSectionButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mNextSectionButton.AccessibleName" xml:space="preserve">
+    <value>அடுத்த பகுதி</value>
+  </data>
+  <data name="mNextSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mNextSectionButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mNextSectionButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="mNextSectionButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>353, 0</value>
+  </data>
+  <data name="mNextSectionButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mNextSectionButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mNextSectionButton.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="mNextSectionButton.ToolTip" xml:space="preserve">
+    <value>அடுத்த பகுதி. (H)</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.Name" xml:space="preserve">
+    <value>mNextSectionButton</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNextSectionButton.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="mPrevSectionButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
+    <value>முந்தைய பகுதி</value>
+  </data>
+  <data name="mPrevSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mPrevSectionButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mPrevSectionButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAABNRJREFUWEftVmtM
+        m1UY/mZboAVkwAgu4sYugMtuJiQgtENgOhcwjgURxwrOcUcuAqV0dEA3htlEg5fAssHKRVYoDMr9EkqZ
+        4JBljiXTSRBEf/jTH0tcmZDh43lLSeaiQov8W5Mn39v3+pz3e79zDsc9/VnZgd0qziYwj3/IyvC1h4nl
+        vNpX5CIEygSZa89mYQZxriAluuxFY8u3ZThU6PIgUMYPtTCF9e7iPP6BMJW7UXOzBLXjClQaMhGkEN4P
+        yLbdaX3WVUYG5XAvBCtE99WjBfh4KBYJmp34/KsknOs4tijO48365nNOq0xluZuvihOJ5fyp8r7UxSvf
+        5CFNuweJGi/EX92Oqhs5yKoNmWd2Q1QUx7M8+8oRG1jrO5SaiPlrdy4gVxfACOxFUqM33mvYyjrhhZrx
+        U5CW7zKyL+PTldNZ6CGW8QsTvvCb6/6uAkU9h5Hd6of3m/cxAj4mAtK6zUjV7oZ6LB/hZ9yNkhxenIUl
+        /t09UMYLjyjdYuy6W4EyvRTy9gMmAunN+80EPE0EotUuTO+PiuF0hJyyfyCRCfzXTEIst/UJUTr+3nq7
+        HJdvZEPZ9dp/EjhaJUJh92Gc75FCLBf85i/nPKwmQRPNVv9rzejpP7UTpVD1vvE3Ak++AupAxGU7HLlk
+        w74QKRRNYY8kefx7NLwWk6BJZsN0/ULHiYWe7ytROhCJ4p5wFHS9CnmHBDk6P2S27kdKiw/imzwR2/Ac
+        ItUiHKkS4M1LAkRWO+DiaDoSL/r+QcPLCGywiATb2T7LvBL6cGiqHp8Y4lDSHwFVXxiUvQeh6JZA1u2H
+        rM6XkKbzRpzWDVFfCvFWvS0ia21xVG2DiGoBYmrdUT0mQ+T5bUaJjK9aNQGJjBcT/ZH33Mi0FiMzzRia
+        qsPglBqG6ToUDRxEwYAE8j4/pHZux/FmBxzTCvEOQ3SjEG9r7NB4pxiaiWJcvV2EhltFqB8vZNu161yA
+        nBexKhKBuXwEyYUIzncwIUThsEhPw0wtivWhUOrFSO7ygLTNHlKdGUw+3ipCTIsI2rsqdkDxIc7lL7D2
+        PyRQTsKqCDzp5JvECSjYMFuD4uFgpPR64N1OB5zoZuhxXAKTSRfbbo/meyoq/ujlD+w8JQrOeRkB2ZzQ
+        KgIUtERAjYz+HaaCJ/scET/wLBIGl0Ay6ch2bfIM2Krn/9dzgQgM/FRpKkDFEvVOSB52Qsr1jSaQTDqy
+        tU6dXR8CuqkPcbLf0VSIiqZ97Yz0sSWQTDqytf24TgS0k6eRrN+EZIMT0kadkTHugqxbriaQTDqytU2v
+        E4GmSSVS9G6mdtOKM26yvX9ikwkkk45sunUgwKcZaPpBieRBNySxVaaObGStd0EmK0wgmXRkW+7A1te5
+        zWx+7Rj41kw/XSoo2JHBhQjQdLey96ubOYv22RJ0/FyCzl/OmUAy6chGPuz4XnDdw+1ise4Ub85D+VZ1
+        WSEn+mbpeuXG8PzyRmLJ096d28tiPSnenIfyUd5nVuoIHRzLq3dlMrVyCwNdOmlV+xh8Gei8D2SQmJ/0
+        n/RkJz/ypziKpzzUTZuVij9uJ6a25kBKQO2k1VDSbQw7GLweA/0nPdnJb7n99kwWMFh2Iv4DUyJEr4eS
+        0UqoS9RSAslElvQ0dOS75oKWdOupr9Ud+AstZbtQo2wKdgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="mPrevSectionButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="mPrevSectionButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPrevSectionButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPrevSectionButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="mPrevSectionButton.ToolTip" xml:space="preserve">
+    <value>முன் கடந்த  பகுதி n. (Shift+H)</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.Name" xml:space="preserve">
+    <value>mPrevSectionButton</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPrevSectionButton.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="mRecordButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mRecordButton.AccessibleName" xml:space="preserve">
+    <value>பதிவு</value>
+  </data>
+  <data name="mRecordButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mRecordButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mRecordButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAABLJJREFUWEftVm1M
+        U1cYbmn5uMY1ldEwoLZQKorEGBNTwigGE+dHGcLWVBSRj4kYERVMnKgJkhhi4g8koL9Mf/kD4Q+QKCEh
+        hGRuSlxbExQnf4elvfe0gFCKjKTv3vfKZcRsiRe3Jcs4yZN7zznve57nPOfcc65CsV7WHfiPOqBC3RsR
+        WkQ8QoOI+zfmQiR6RMZfIB3bP0dE/RNidETarlB8N6RQ9D1TKplbpVpyRUUt0Tu1Ud+ysLS/0xElx3Ep
+        38fGfvVEqXz1eteud1PXr8NCZyf89ugRLD58COH79yF49Sq83rnzHcVQrEajMet0OlqmTytGozGpjeNK
+        PBwXmm5qiiz29sLs3bswdeMGBBobIXD5MgSbmmD29m1Y7OqCqcbGCMVSjl6vN6empq59b2RlZW1sTEjI
+        98TEzMy1tcH8vXsQuHQJhIsXgTU0AKuvB3bhAgjnzoFQWwtCXR3Md3TA3K1b4I6NfUu5mZmZRrRAuSYb
+        rFar4Yla/VOwvj4SunPnPcnZs8AkYJ2dOQPs9GkQTp0C4eRJ8FdWigKCtbURys3JyTHn5uZ+JluAw+GI
+        cSYlffPSbA4tOJ0gVFeLBASG7wwJxSe1VVWBUFEBwokTwJeWAn/sGIRR8AuDIURj2Gy2L2QLKC0t3fQD
+        xz0I4Aynr10D//HjwCOBUF4ObDXKyoBhH0Ni4ehR8BcVgTcvDwIlJeA/fBgec1yX3W43yV6G6urqxJ9V
+        Ku882snQVt7hAOHIEZGELYNImN0O/L594Nu9G7xmM0ykpMCvycng3b4dZnGpXDhGTU1NenNzc4wsF+rq
+        6pLdSmU4fPMm+PbvB/+hQ8DbbMAfOAD83r3AZ2eDD0l8qakwaTTCpMEAXsQbvV4UMYFt8/iV0BgNDQ0m
+        BCdLQEtLSyIl0yATODANSoMTCRESsT8tbQWSEEnEG+yXBODsTe3t7bGyBLS2tsa71Gov2TiZlQUTRL55
+        s0hOxLzJBEJ6+gqoTu3UT3G+HTveLwGO0dHRkdbd3U33x8cXFMA902g6yXaGttPsyWaaqUTOtmyBAIKe
+        JIbaRScwLnDwIPAFBTCi0TxwOp3JH8/8R6TyscXy9Uudbi50/jx4l9damj3DDRfIyIDg1q3ik+qSCz4U
+        QjmU+9RqLezp6aFbU34ZHh7WujZs+FGw2SIz+Jmt2I+zpVkHkXhq2zbxSXUe20ngW/wshYKCiAdzBwcH
+        DbLtl6Ti5ol6ardne9TqmRk8bGbxHPATEc5QdICWAMnFZcC6gG7M4hlBsZTzvKrqy5GREfpXWHsZGxuL
+        eZ6XV+yJjg4JRUWRMN4F04WFEMDvnpH9iCC+z+ChQ32suDiCd0fIvWfPt+Pj4wlrZ161F1wuV/SYw2H1
+        xMWNvUpJWRBQwBxePOErV0TQO7X9gn0U86KsLH90dHTT8um3totoVTL93ajy8/PVKCTBY7GUu7XaHrda
+        zfCcWBKB7y6tttdlsVRgDK05/QfQZ0egfBIhWwglULIoAKFGRFdWVsYhQfzAwEASbbChoSFjf3+/vq+v
+        LxEPG1rv6GVQvCRAEiF7RT4UIQkRxfwJqF0i/mTyD9VKNq4WJTkkPVfHyJ7tesL/04HfAVMNyTveQCFd
+        AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="mRecordButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>213, 0</value>
+  </data>
+  <data name="mRecordButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mRecordButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mRecordButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="mRecordButton.ToolTip" xml:space="preserve">
+    <value>கண்காணிக்க அல்லது பதிவு செய்ய தொடங்கு(Ctrl+R)</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.Name" xml:space="preserve">
+    <value>mRecordButton</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mRecordButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="mTimeDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 21.75pt</value>
+  </data>
+  <data name="mTimeDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>429, 0</value>
+  </data>
+  <data name="mTimeDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 33</value>
+  </data>
+  <data name="mTimeDisplayBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="mTimeDisplayBox.Text" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="mTimeDisplayBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.Name" xml:space="preserve">
+    <value>mTimeDisplayBox</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mTimeDisplayBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="mRewindButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mRewindButton.AccessibleName" xml:space="preserve">
+    <value>பின்செல்</value>
+  </data>
+  <data name="mRewindButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mRewindButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mRewindButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAA19JREFUWEftlftL
+        U2EYx70kW6ANYVIkMm+1XxIMJabibVZzW42lTodIzJZTR46yEqMpSorzDmngnJeiTLJ+lfzFoAtUVv9C
+        iVHb3Kae6dnZznG+ve8xr+wa/bgXHsbe5/M+z/f5nvdsYWGhFXIg5EDIgX9z4Ag8dgJGIozYAEoEy3st
+        GY4aRsdGn8kvyDVcFBQB+D3Zh4BgeZ+zHIVZTmbmWaX4ksA0PmFw/hVwysupfbzQOPl4nPDDe20eCTPH
+        k5KS8gTF59803r2JY9gaQEt8uZiEuZRDJ4PlfU7NYjAY3LyC3N7SMin+9dvCJlxgA18Hbrfbk4Bgea/N
+        mTCTkJ6eVikSF/80jOkJl8sFCKcDrKzZYFgPCwiW99o4Ambi4uPjecXCC7P1apXDZDYCapOip8bsq2AN
+        BmZf2y8gNUj+8CPbFRPFZrNPFxUVtiO73394u4lsdrqcwL5hh4EB+zoGMDq2BUiuiKnCovz2MpkUfwd5
+        9HjWIbtsNQOz1QjMFhMwLRuByWKk+ZJSCclkMj2/NSwWK1YiET0orygBaGq0LCvL4Lf5FyxkpItabMvA
+        CvesKxa6IGIr5KV7vM3sk6+6KqdgH88CMjIyotLS0pIrK8vb6uqv4wtfPkEH4ETQetRwFVuhJ0duoL2t
+        rS2gqr1GyavK2+rVNZD/7JevrVOSHA4nyde1j4BC2AIB/9wNTd2srrvDYbNZAX3zHRsAh+F0EsBFumgB
+        t243kEj0Nq+e1fV0+uQb72hILpfrUwAtTigUMrKysuJrapTy+9qmpddzswRFUQAFuhMURdICtK3NJI/H
+        S0xNTaV5pVIh17Y0L8154Vva7tF8AD/d24hEIomRSoUprW3Nut6BLvzH4vdN95YbOuCkBXR1d5B8Pp+z
+        UzAnJydGKOSnQGG6/kEdvniI1/Uc5AMSIpPJIqEjcRqNOrtvQDf/4uUUThAO+pI+HOojRSLRrgBUcI/X
+        ZA8M6uZnXk1Dntjmh/sPCA5IwA6kUCiYcrn8ZE9Pp0I/NmxcWPhI6A1DAO55tHQ/bxh/RPOjhmGvfKBi
+        wlUqFUur1XInnupHnj2fANXV1Qm+/g0R39TUxJ18MjoyNT3pjw9Mx8zMTGRDQ0OcWq1OgJ/H/J1CjyUY
+        3l+9UD7kQMiB/+rAH5Q36FKOwIWXAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="mRewindButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>108, 0</value>
+  </data>
+  <data name="mRewindButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mRewindButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mRewindButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="mRewindButton.ToolTip" xml:space="preserve">
+    <value>பின்னுக்கு விரைவான வேகத்தில் வாசி</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.Name" xml:space="preserve">
+    <value>mRewindButton</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mRewindButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="mFastForwardButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mFastForwardButton.AccessibleName" xml:space="preserve">
+    <value>விரைவாக முன்செல்</value>
+  </data>
+  <data name="mFastForwardButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="mFastForwardButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mFastForwardButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAA8hJREFUWEftlG1I
+        U1EYx3snaYoULU1XloYDlVpqEKbNWupQxrWZBqGYvWjRLFiYk9KlWet1ka2ybOW2tIwFQYy+mH2ZvVBD
+        P+iH0pA02+6mcy9u6lVP59zaLNl29VNfduHh3rHf85z/8z/POQsW+B+/A34H/A7MOLASfkbAWANjyRyM
+        mS9PWTIqLX03SN6543pgYCAT0sEwFvrImi9PKWATEqBUNToyszIGWAmsApjBgLHcSyYpoFHx2In4hG0J
+        BQEBAb543wKCgoLIgujBjQZQWnrCkcHd85rJZG6n0Wh0mL347wp0Oj1yhsdJnstNfx0XF7c9JCRk9Wye
+        sn0Gg+EuaLNbweTkJHj3Xktge3n2XRx2TWxsbGRUVFSQqxD89srv3pNaHR8fHxkdHR1IubALgMo3ujoy
+        DRuB2TIEnGNOMDY+BmR3bjmzeBnfUlOT+SwWa21MTMyyxMREH3wdyXM4qfykpCSSpxSSkpKywSXAbBkG
+        IxYzGLGaweiojXTjx+AAOHykCBbmvuBwOay0tDSPvN0Dz+VxWdnZ2avEYvEir0IwDIuAw0TOwKBhAOjx
+        QaA36gFu0gPjkAG4Cr95+4bI2Zdt5WFZosysdJJHQi22EWC1WQDaPhTIuampKdAGeX4OZsUwnig/P38D
+        m832fMQLCwsj8vbzfw+hyQAXxYFpGCff6Lfe+BMMmU3k/9/7vwPE5ubt9ckPjwy5ecQeOJBbJhAI3HP0
+        jxtCoXB90aECMsECO7HCLlCgztCWjDpGYUdoMNuJkuNHrEePFpUfLMqfA68lio8dthYXHzpTVlYWDrfB
+        swMSiWSdoPQYWXAc2jc+MQ7G0BDCQFYajTiovVTtEJ4+pa4QV2xB/AlBiW/+4nnIn1Sfqz63WSqVBkPY
+        +8Umk8kY5RWnyYKTsNMJYoJ8EwQBXr166aysEvWKxWcxhUJBr6+vXyqXyxlnRELvfKWot6Zmhqc8BSqV
+        Krymtup3R7D76elp0NP7lbh6XWK/fLVW3NLSsg4uvsJVSK1Wh1dfqJzFfyGuXLuE+KrZPKUAjUYTLr15
+        mSxos9tA8zOVo+6OVKNUyre2tbUFzz5Cra2tYTekM3zTU6WjTibVNDc3sjzxlALa29vD7jfcBp91Hx0P
+        5ff6G1XyPK1WS+/q6vJ4iXR0dITVP6gDn3QfHA0P7/YrlY9zdTrdam88pYDu7u7QJ82PwHP1E0lPTw+j
+        s7PTbben5L6+vlBVk9zN6/V6nzylABzHaQaDYY3ZbEbT6v3G+lMJMjS73T5nnlKAH/A74HfgfznwC9nJ
+        NV6OGyhzAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="mFastForwardButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 0</value>
+  </data>
+  <data name="mFastForwardButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mFastForwardButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mFastForwardButton.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="mFastForwardButton.ToolTip" xml:space="preserve">
+    <value>முன்னுக்கு விரைவான வேகத்தில் வாசி.</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.Name" xml:space="preserve">
+    <value>mFastForwardButton</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mFastForwardButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="mNextPageButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mNextPageButton.AccessibleName" xml:space="preserve">
+    <value>அடுத்த பக்கம்</value>
+  </data>
+  <data name="mNextPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mNextPageButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="mNextPageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>318, 0</value>
+  </data>
+  <data name="mNextPageButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mNextPageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mNextPageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="mNextPageButton.ToolTip" xml:space="preserve">
+    <value>mஅடுத்த பக்கம். (P)</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.Name" xml:space="preserve">
+    <value>mNextPageButton</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNextPageButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mPreviousPageButton.AccessibleName" xml:space="preserve">
+    <value>முந்தைய பக்கம்</value>
+  </data>
+  <data name="mPreviousPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mPreviousPageButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        QmCC
+</value>
+  </data>
+  <data name="mPreviousPageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 0</value>
+  </data>
+  <data name="mPreviousPageButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mPreviousPageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mPreviousPageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="mPreviousPageButton.ToolTip" xml:space="preserve">
+    <value>முன் கடந்த பக்கம். (Shift+P)</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.Name" xml:space="preserve">
+    <value>mPreviousPageButton</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mPreviousPageButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.AccessibleDescription" xml:space="preserve">
+    <value>button</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.AccessibleName" xml:space="preserve">
+    <value>சொற்றொடரை குறி</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        VNRBi+4fxgL4vqh24BUAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>391, 0</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
+    <value>பதிவு செய்யும் பொழுது செய்ய வேண்டிய என்ற குறிப்பை சேர். (F9)</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
+    <value>mToDo_CustomClassMarkButton</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mToDo_CustomClassMarkButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>17, 17</value>
+  </data>
+  <data name="mDisplayBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mDisplayBox.Items" xml:space="preserve">
+    <value>elapsed</value>
+  </data>
+  <data name="mDisplayBox.Items1" xml:space="preserve">
+    <value>elapsed (total)</value>
+  </data>
+  <data name="mDisplayBox.Items2" xml:space="preserve">
+    <value>remaining</value>
+  </data>
+  <data name="mDisplayBox.Items3" xml:space="preserve">
+    <value>remaining (total)</value>
+  </data>
+  <data name="mDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>548, 5</value>
+  </data>
+  <data name="mDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 24</value>
+  </data>
+  <data name="mDisplayBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Name" xml:space="preserve">
+    <value>mDisplayBox</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="mFastPlayRateCombobox.AccessibleName" xml:space="preserve">
+    <value>வேக வாசிப்பு விகிதம்</value>
+  </data>
+  <data name="mFastPlayRateCombobox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mFastPlayRateCombobox.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items1" xml:space="preserve">
+    <value>1.125</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items2" xml:space="preserve">
+    <value>1.25</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items3" xml:space="preserve">
+    <value>1.5</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items4" xml:space="preserve">
+    <value>1.75</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items5" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items6" xml:space="preserve">
+    <value>2.25</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items7" xml:space="preserve">
+    <value>2.5</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>709, 5</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 24</value>
+  </data>
+  <data name="mFastPlayRateCombobox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Name" xml:space="preserve">
+    <value>mFastPlayRateCombobox</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="mVUMeterPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mVUMeterPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>787, 2</value>
+  </data>
+  <data name="mVUMeterPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 0, 0</value>
+  </data>
+  <data name="mVUMeterPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 28</value>
+  </data>
+  <data name="mVUMeterPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.Name" xml:space="preserve">
+    <value>mVUMeterPanel</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.4.0.17996, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPanel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>993, 32</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarTooltip.Name" xml:space="preserve">
+    <value>mTransportBarTooltip</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarTooltip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mDisplayTimer.Name" xml:space="preserve">
+    <value>mDisplayTimer</value>
+  </data>
+  <data name="&gt;&gt;mDisplayTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>TransportBar</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="media-monitor.png" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAK5SURBVFhH7VU5
+        S2NRFLZRwUpRQdx3RbAQFCsLUVxxQ9x3VMRdC3EDLSwEGwu1tLIQOwv9GRMTBjdwmnFi8u57iRInkUzz
+        zTnXvJDIVHlJMZDAIffec8/9vvOde+6LiYn+ogpEFfjfFLg9PYWlvR2m1FSY4uPxLS5OjnmNfRHN56as
+        DI/V1XDu7uLj/Bx/rq/hvbqC5+wMjq0tPFZVgfdEhIQ5JUUCey8v4To5gXNvD9rGBrT1dTh2duA6PIT3
+        4gLOzU3w3rCSMJPEdGCQqaurUFdWoC4vQywuQszNQSwswH10hPeDA/hijPP4XlPjB5Yg8/NBc3V2FurM
+        DMT0NMTkJJTxcUnAQft8sYZJSEAxNSUBpNE4aG1iAmJsDMrICMTgIJSBAXiOj3FbWmqsFHwgA71ub0MZ
+        GvoEGB2VJgnQvzo8LH0MLPr7Ye/ogJVU0/r6YKfOuCe/EQngJjlZVqWnB6K3V4Kw6XdC7e6GUl8PW2Ul
+        rIWFeM7IwM/0dFipG1xUBktWljECnv192BoaYG9uhtLSAtHYCKW2Fgq1I5N4yc3FS04OrNnZ0n5lZkoS
+        z7Tmpi65SUgwRuDr7Q9xHloVLJQRy8i1Z7OSnJytPS8PSn6+VEApKPg0mvO6VIP22crLZayPcGgEnuh2
+        67KztCwxS85gDKqrIYqK/CTYz/u0pqbAdyM0Ahx1Rwf+Xlry11rPXqULpxUXSxD+57mugs2njqHsdcoP
+        dXUQra14ozbzy0/Zc9Y6AdmSPhWYoK4Mx4aeekCkJTkZb1QOF78DDEQZSgW+kAi8oBwTFnD9EHNiIkRn
+        Jzxra3hta4NGfa+WlEBjo/EbPTrsU7u6YE5KCi+4TuKuogL3lL0gAu/04fHQl4+Nx7z2QD7eE9bM/3XY
+        D3p6LWlpMMXGSuPxE92RiANHAaIKRBWIhAJ/AaE4KsZnOH4bAAAAAElFTkSuQmCC
+</value>
+  </data>
+</root>
