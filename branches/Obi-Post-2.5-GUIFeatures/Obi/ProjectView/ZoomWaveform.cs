@@ -40,7 +40,13 @@ namespace Obi.ProjectView
         }
         public void SetSelectionFromContentView(NodeSelection selection) 
         {
+            if (m_AudioBlock == null 
+                || (selection != null && selection.Node is EmptyNode &&  m_AudioBlock.Node != selection.Node))
+            {
+                PhraseLoad((EmptyNode) selection.Node);
+            }
             if (m_AudioBlock != null) m_AudioBlock.SetSelectionFromContentView(selection);
+            txtZoomSelected.Focus();
         }
         private bool m_Highlighted;
         public bool Highlighted { get { return m_Highlighted; } set { m_Highlighted =  value; } }
@@ -317,12 +323,13 @@ namespace Obi.ProjectView
                     if (m_Node.FollowingNode is PhraseNode)
                     {
                         m_Node = nextNode as PhraseNode;
-                        if (panelZooomWaveform.Controls.Contains(m_AudioBlock))
-                        {
-                            panelZooomWaveform.Controls.Remove(m_AudioBlock);
-                        }
-                        m_AudioBlock = new AudioBlock((PhraseNode) nextNode, m_Strip);
-                        panelRender();
+                        m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                        //if (panelZooomWaveform.Controls.Contains(m_AudioBlock))
+                        //{
+                            //panelZooomWaveform.Controls.Remove(m_AudioBlock);
+                        //}
+                        //m_AudioBlock = new AudioBlock((PhraseNode) nextNode, m_Strip);
+                        //panelRender();
                     }
                     txtZoomSelected.Text = " ";
                 }
@@ -341,12 +348,13 @@ namespace Obi.ProjectView
                     if (m_Node.PrecedingNode is PhraseNode)
                     {
                         m_Node = previousNode as PhraseNode;
-                        if (panelZooomWaveform.Controls.Contains(m_AudioBlock))
-                        {
-                            panelZooomWaveform.Controls.Remove(m_AudioBlock);
-                        }
-                        m_AudioBlock = new AudioBlock((PhraseNode) previousNode, m_Strip);
-                        panelRender();
+                        m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                        //if (panelZooomWaveform.Controls.Contains(m_AudioBlock))
+                        //{
+                            //panelZooomWaveform.Controls.Remove(m_AudioBlock);
+                        //}
+                        //m_AudioBlock = new AudioBlock((PhraseNode) previousNode, m_Strip);
+                        //panelRender();
                     }
                     txtZoomSelected.Text = " ";
                 }
@@ -405,7 +413,7 @@ namespace Obi.ProjectView
         {
      if ( m_ProjectView.ObiForm.KeyboardShortcuts == null ) return false ;
      KeyboardShortcuts_Settings keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
-            this.Focus();
+            //this.Focus();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
@@ -413,30 +421,26 @@ namespace Obi.ProjectView
             Console.WriteLine("Zoomfactor is {0}",m_ProjectView.ZoomFactor);
 
 
-            
-            //if (keyData == (Keys.Control | Keys.Alt | Keys.Oemplus))
-            //{
-            //    double tempZoomfactor = m_ProjectView.ZoomFactor;
-            //    m_count++;
-            //    if (m_count > 2)
-            //    {
-            //        m_count--;
-            //        return false;
-            //    }
-              
-               
-            //}
-            //if (keyData == (Keys.Control | Keys.Alt | Keys.OemMinus))
-            //{
-            //    double tempZoomfactor = m_ProjectView.ZoomFactor;
-            //    m_count--;
-            //    if (m_count > 2)
-            //    {
-            //        return false;
-            //    }
-               
-            //}
-            if (keyData == keyboardShortcuts.ContentView_SelectUp.Value)
+            if (keyData == Keys.Tab
+                && this.ActiveControl != null)
+            {
+                Control c = this.ActiveControl;
+                this.SelectNextControl(c, true, true, true, true);
+                if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
+                    System.Media.SystemSounds.Beep.Play();
+                return true;
+            }
+            else if (keyData == (Keys)(Keys.Shift | Keys.Tab)
+                && this.ActiveControl != null)
+            {
+                Control c = this.ActiveControl;
+                this.SelectNextControl(c, false, true, true, true);
+                if (this.ActiveControl != null && c.TabIndex < this.ActiveControl.TabIndex)
+                    System.Media.SystemSounds.Beep.Play();
+
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ContentView_SelectUp.Value)
             {
                 IControlWithSelection tempControl;
                 tempControl = m_ProjectView.Selection.Control; 
@@ -457,6 +461,7 @@ namespace Obi.ProjectView
             // return true;
 
         }
+        /*
         protected override bool ProcessTabKey(bool forward)
         {
             Console.WriteLine("Active Control is {0}",this.ActiveControl);
@@ -472,6 +477,7 @@ namespace Obi.ProjectView
             }
             return forward;
         }
+         */ 
         public float ZoomFactor
         {
            set
