@@ -411,7 +411,7 @@ namespace Obi.ProjectView
 
         private void ContentView_commandDone ( object sender, urakawa.events.undo.DoneEventArgs e )
             {
-                if (m_ZoomWaveformPanel == null) return;//@zoomwaveform
+                if (m_ZoomWaveformPanel != null) return;//@zoomwaveform
                 ResizeForCommands();
                 
             // explicit toolstrip enabling for merge preceding, it is not so important, can be allowed to work like other commands but will be helpful to user in this operation
@@ -433,7 +433,7 @@ namespace Obi.ProjectView
 
         private void ContentView_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e)
         {
-            if (m_ZoomWaveformPanel == null) return;//@zoomwaveform
+            if (m_ZoomWaveformPanel != null) return;//@zoomwaveform
             ResizeForCommands();
             if (e.Command is CompositeCommand
                 && mProjectView.Selection != null && !(mProjectView.Selection is AudioSelection) )
@@ -445,7 +445,7 @@ namespace Obi.ProjectView
 
         private void ContentView_commandUndone (object sender, urakawa.events.undo.UnDoneEventArgs e)
         {
-            if (m_ZoomWaveformPanel == null) return;//@zoomwaveform
+            if (m_ZoomWaveformPanel != null) return;//@zoomwaveform
             ResizeForCommands();
             // workaround for making selection visible in some complex, large volume commands
             if (e.Command is CompositeCommand  && (((CompositeCommand)e.Command ).ShortDescription == Localizer.Message("split_section") || ((CompositeCommand)e.Command).ShortDescription == Localizer.Message("phrase_detection")
@@ -1094,7 +1094,7 @@ namespace Obi.ProjectView
             {
                 if (m_ZoomWaveformPanel != null && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@zoomwaveform
                 {
-                    m_ZoomWaveformPanel.UpdateCursorTime(time);
+                    m_ZoomWaveformPanel.UpdateCursorTime(time); 
                     return;
                 }
             if (PlaybackBlock == null && m_EnableFindPlaybackBlockDuringCursorUpdate && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@singleSection
@@ -1404,7 +1404,7 @@ namespace Obi.ProjectView
         private void CreateSelectedStripAndPhraseBlocks ( NodeSelection selectionValue )
             {
             if (selectionValue == null || !selectionValue.Node.IsRooted) return;
-
+            if (m_ZoomWaveformPanel != null) return;//@zoomwaveform
             // if selection restore phrase lie in next phrase lot but phrase is alreaty created with lot before, no need to refresh screen in this case
             // the calling code should check if the phrase is created or not
             if (m_DisablePhraseCreationWhileSelectionRestore) return;
@@ -3394,7 +3394,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         // Listen to changes in the presentation (new nodes being added or removed)
         private void Presentation_changed ( object sender, urakawa.events.DataModelChangedEventArgs e )
             {
-                if (m_ZoomWaveformPanel == null) return;//@zoomwaveform
+                if (m_ZoomWaveformPanel != null) return;//@zoomwaveform
                 if (e is ObjectRemovedEventArgs<urakawa.core.TreeNode> && mProjectView.ObiForm.Settings.PlayOnNavigate
                 && ((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e).m_RemovedObject is EmptyNode)
                 {
