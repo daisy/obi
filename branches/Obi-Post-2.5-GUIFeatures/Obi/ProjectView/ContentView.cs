@@ -3394,10 +3394,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         // Listen to changes in the presentation (new nodes being added or removed)
         private void Presentation_changed ( object sender, urakawa.events.DataModelChangedEventArgs e )
             {
+                if (m_ZoomWaveformPanel == null) return;//@zoomwaveform
                 if (e is ObjectRemovedEventArgs<urakawa.core.TreeNode> && mProjectView.ObiForm.Settings.PlayOnNavigate
                 && ((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e).m_RemovedObject is EmptyNode)
                 {
-                    if (m_ZoomWaveformPanel == null) return;//@zoomwaveform
+                    
                     mProjectView.TransportBar.SkipPlayOnNavigateForSection = true;
                 }
             if (e is ObjectAddedEventArgs<urakawa.core.TreeNode>)
