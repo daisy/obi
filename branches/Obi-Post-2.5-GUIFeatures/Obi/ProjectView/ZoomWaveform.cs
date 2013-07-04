@@ -130,7 +130,7 @@ namespace Obi.ProjectView
                 {
                     panelZooomWaveform.Controls.Remove(m_AudioBlock);
                 }
-                m_AudioBlock = new AudioBlock((PhraseNode)m_Node, m_Strip);
+                m_AudioBlock = new AudioBlock((PhraseNode)m_Node, m_Strip,true);
                 panelZooomWaveform.Controls.Add(m_AudioBlock);
                 m_AudioBlock.Location = new Point(0, 0);
                 float zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
@@ -187,7 +187,7 @@ namespace Obi.ProjectView
                     btnZoomIn.Location = new Point(btnZoomIn.Location.X, this.Height - 25);
                     btnZoomOut.Location = new Point(btnZoomOut.Location.X, this.Height - 25);
                     panelZooomWaveform.Width = this.Width - 30;
-                    panelZooomWaveform.Height = this.Height - 60;
+                    //panelZooomWaveform.Height = this.Height - 60;
                     txtZoomSelected.Width = this.Width - 40;
                     txtZoomSelected.Location = new Point(0, this.Height - 50);
                     
@@ -197,7 +197,8 @@ namespace Obi.ProjectView
             if (m_Node is PhraseNode)
             {
                
-                m_AudioBlock = new AudioBlock((PhraseNode)m_Node, m_Strip);
+                m_AudioBlock = new AudioBlock((PhraseNode)m_Node, m_Strip, true);
+                
                 panelZooomWaveform.Controls.Add(m_AudioBlock);
                 m_AudioBlock.Location = new Point(0, 0);
                 float zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
@@ -205,8 +206,8 @@ namespace Obi.ProjectView
                 txtZoomSelected.BringToFront();
                 m_ZoomFactor = zoomFactor;
               
-                m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);     
-         
+                m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);
+                
                 
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);

@@ -11,6 +11,8 @@ namespace Obi.ProjectView
     public partial class AudioBlock : Block
     {
         private bool mShiftKeyPressed;  // track the shift key
+        private bool m_IsAudioScaleIndependentOfStrip  = false;//@zoomwaveform
+        private float m_AudioScaleIndependentOfStrip = -1.0f;//@zoomwaveform
 
         public const int NORMAL_PRIORITY = 1;
         public const int STRIP_SELECTED_PRIORITY = 2;
@@ -33,7 +35,12 @@ namespace Obi.ProjectView
             mShiftKeyPressed = false;
         }
 
-
+        //@zoomwaveform
+        public AudioBlock(PhraseNode node, Strip strip, bool isAudioScaleIndependentOfStrip): this  (node,strip)
+        {
+            m_IsAudioScaleIndependentOfStrip = isAudioScaleIndependentOfStrip;
+            m_AudioScaleIndependentOfStrip = m_IsAudioScaleIndependentOfStrip ? 0.04f : -1.0f;
+        }
 
         // Audio of the block has changed: update the label and the width to accomodate the new audio.
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
@@ -143,8 +150,16 @@ public void SetWaveformForZoom(PhraseNode node)
 
         public float AudioScale
         {
-            get { return Strip == null ? 0.01f : Strip.AudioScale; }
-            set { SetWaveform(mNode as PhraseNode); }
+            get 
+            { 
+                return m_IsAudioScaleIndependentOfStrip? m_AudioScaleIndependentOfStrip: //@zoomwavform
+                Strip == null ? 0.01f : Strip.AudioScale; 
+            }
+            set 
+            {
+                if (m_IsAudioScaleIndependentOfStrip) m_AudioScaleIndependentOfStrip = value;
+                SetWaveform(mNode as PhraseNode); 
+            }
         }
 
         public override void SetZoomFactorAndHeight(float zoom, int height)

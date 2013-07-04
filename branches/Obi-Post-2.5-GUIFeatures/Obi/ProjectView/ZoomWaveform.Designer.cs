@@ -102,9 +102,10 @@
             // panelZooomWaveform
             // 
             this.panelZooomWaveform.AutoScroll = true;
+            this.panelZooomWaveform.BackColor = System.Drawing.SystemColors.Control;
             this.panelZooomWaveform.Location = new System.Drawing.Point(3, 3);
             this.panelZooomWaveform.Name = "panelZooomWaveform";
-            this.panelZooomWaveform.Size = new System.Drawing.Size(946, 498);
+            this.panelZooomWaveform.Size = new System.Drawing.Size(946, 488);
             this.panelZooomWaveform.TabIndex = 8;
             // 
             // txtZoomSelected
@@ -120,7 +121,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Controls.Add(this.txtZoomSelected);
             this.Controls.Add(this.panelZooomWaveform);
             this.Controls.Add(this.btnReset);
