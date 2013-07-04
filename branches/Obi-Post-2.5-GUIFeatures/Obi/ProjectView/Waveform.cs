@@ -265,6 +265,10 @@ namespace Obi.ProjectView
                 byte[] bytes = new byte[bytesPerPixel];
                 short[] samples = new short[samplesPerPixel];
                 System.IO.Stream au = Media.OpenPcmInputStream();
+                Pen channel1Pen = highlighted ? (Pen)settings.WaveformHighlightedPen.Clone() :
+                            channels == 1 ? (Pen)settings.WaveformMonoPen.Clone() : (Pen)settings.WaveformChannel1Pen.Clone();
+                Pen channel2Pen = channels == 2? (highlighted ? (Pen)settings.WaveformHighlightedPen.Clone() : (Pen)settings.WaveformChannel2Pen.Clone()):
+                    null;
                 try
                 {
                     for (int x = 0; x < Width; ++x)
@@ -272,24 +276,23 @@ namespace Obi.ProjectView
                         if (m_CancelRendering) break;
                         int read = au.Read(bytes, 0, bytesPerPixel);
                         Buffer.BlockCopy(bytes, 0, samples, 0, read);
-                        Pen channel1Pen = highlighted ? (Pen)settings.WaveformHighlightedPen.Clone() :
-                            channels == 1 ? (Pen)settings.WaveformMonoPen.Clone() : (Pen)settings.WaveformChannel1Pen.Clone();
+                        
                         DrawChannel(g, channel1Pen,
                             samples, x, read, frameSize, 0, channels);
-                        channel1Pen.Dispose();
+                        
                         if (channels == 2)
                         {
-                            Pen channel2Pen = highlighted ? (Pen)settings.WaveformHighlightedPen.Clone() : (Pen)settings.WaveformChannel2Pen.Clone();
+                            
                             DrawChannel(g,
                             channel2Pen,
                             samples, x, read, frameSize, 1, channels);
-                            channel2Pen.Dispose();
+                            
                         }
 
                     }
                     if (au != null) au.Close();
                     au = null;
-
+                    
                     if (mBlock.MaxWaveformWidth == Width && Width < Width_Expected)
                     {
                         DrawWaveformBreakMark(g, settings);
@@ -300,6 +303,8 @@ namespace Obi.ProjectView
                     if (au != null) au.Close();
                     au = null;
                 }
+                if (channel1Pen != null) channel1Pen.Dispose();
+                if (channel2Pen != null) channel2Pen.Dispose();
             }
         }
 
