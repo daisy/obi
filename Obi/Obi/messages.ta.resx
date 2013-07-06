@@ -860,7 +860,7 @@
     <comment>ToString() for custom class</comment>
   </data>
   <data name="phrase_extra_Heading" xml:space="preserve">
-    <value>, தலைப்பு</value>
+    <value>, heading</value>
     <comment>ToString()</comment>
   </data>
   <data name="phrase_extra_page" xml:space="preserve">
@@ -872,7 +872,7 @@
     <comment>ToString() (empty)</comment>
   </data>
   <data name="phrase_extra_Silence" xml:space="preserve">
-    <value>, அமைதி</value>
+    <value>, silence</value>
     <comment>ToString()</comment>
   </data>
   <data name="phrase_extra_TODO" xml:space="preserve">
@@ -880,7 +880,7 @@
     <comment>ToString()</comment>
   </data>
   <data name="phrase_node_to_string" xml:space="preserve">
-    <value>சொற்றொடர் ( நீளம்: {1})</value>
+    <value>phrase ( நீளம்: {1})</value>
     <comment>ToString()</comment>
   </data>
   <data name="phrase_short_custom" xml:space="preserve">
@@ -888,19 +888,19 @@
     <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_Heading" xml:space="preserve">
-    <value>தலைப்பு</value>
+    <value>Heading</value>
     <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_page" xml:space="preserve">
-    <value>பக்கம் {0}</value>
+    <value>Page {0}</value>
     <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_Plain" xml:space="preserve">
-    <value>சொற்றொடர்</value>
+    <value>Phrase</value>
     <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_Silence" xml:space="preserve">
-    <value>அமைதி</value>
+    <value>Silence</value>
     <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_to_string" xml:space="preserve">
@@ -1176,19 +1176,19 @@
     <comment>Localized role name</comment>
   </data>
   <data name="role_Heading" xml:space="preserve">
-    <value>தலைப்பு</value>
+    <value>Heading</value>
     <comment>Localized role name</comment>
   </data>
   <data name="role_Page" xml:space="preserve">
-    <value>பக்கம்</value>
+    <value>Page</value>
     <comment>Localized role name</comment>
   </data>
   <data name="role_Plain" xml:space="preserve">
-    <value>எளிய</value>
+    <value>Plain</value>
     <comment>Localized role name</comment>
   </data>
   <data name="role_Silence" xml:space="preserve">
-    <value>அமைதி</value>
+    <value>Silence</value>
     <comment>Localized role name</comment>
   </data>
   <data name="could_not_clean_up" xml:space="preserve">
@@ -2020,13 +2020,13 @@
     <value>{0} குறுக்குவழி விசைகள்: (குறுக்குவழி விசைகள். விசை இணைப்புகளை அமுக்கவும்)</value>
   </data>
   <data name="phrase_extra_Anchor" xml:space="preserve">
-    <value>, நங்கூரம்</value>
+    <value>, anchor</value>
   </data>
   <data name="phrase_short_Anchor" xml:space="preserve">
-    <value>நங்கூரம்</value>
+    <value>Anchor</value>
   </data>
   <data name="role_Anchor" xml:space="preserve">
-    <value>நங்கூரம்</value>
+    <value>Anchor</value>
   </data>
   <data name="Associate_next_phrase" xml:space="preserve">
     <value>குறிப்பிடப்பட்ட தவிற்க்ககூடிய சொற்றொடர் அழிக்கப்படும். அடுத்த சொற்றொடர் குறிக்கப்பட்ட சொற்றொடராகும். தொடர விரும்புகிறீர்களா?</value>
