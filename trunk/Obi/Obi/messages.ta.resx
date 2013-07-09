@@ -716,7 +716,7 @@
     <comment>Metadata description</comment>
   </data>
   <data name="dc_coverage_description" xml:space="preserve">
-    <value>¾¡Ã ¯ûÇ¼ì¸ò¾¢ý «Ç× «øÄÐ §¿¡ì¸õ. þÐ DTB கு பயன்படுத்தபடாது என்று எதிர்பார்க்கபடுகிறது.</value>
+    <value>ஆதார உள்ளடக்கத்தின் அளவு அல்லது நோக்கம். DTB கு பயன்படுத்தபடாது என்று எதிர்பார்க்கபடுகிறது.</value>
     <comment>Metadata description</comment>
   </data>
   <data name="dc_creator_description" xml:space="preserve">
@@ -1924,7 +1924,7 @@
     <value>தற்போதைய நிலையை சேமிக்கலாமா??</value>
   </data>
   <data name="restored_project_name" xml:space="preserve">
-    <value>Restored Project.obi</value>
+    <value>மீட்டமை Project.obi</value>
   </data>
   <data name="save_current_state" xml:space="preserve">
     <value>இந்த செயல்பாடு திட்டபணியின் தற்போதைய நிலையை சேமிக்கும். இதற்கு பிறகு திட்டபணியை முந்தைய நிலைக்கு கொண்டுவர முடியாது. தொடர விரும்புகிறீர்களா?</value>
@@ -2223,7 +2223,7 @@
     <value>பின்வரும் பக்கங்களின் மறு எண்ணிக்கை செய்ய வேண்டுமா?</value>
   </data>
   <data name="TransportBar_RenumberPagesAfterRecording" xml:space="preserve">
-    <value>Page பதிவு செய்த பக்கங்களின் பின்வரும் பக்கங்களை மறு எண்ணிக்கை செய்யவேண்டும். நீங்கள் அதை மறு எண்ணிக்கை செய்ய விரும்புகிறீர்களா??</value>
+    <value>Pபதிவு செய்த பக்கங்களின் பின்வரும் பக்கங்களை மறு எண்ணிக்கை செய்யவேண்டும். நீங்கள் அதை மறு எண்ணிக்கை செய்ய விரும்புகிறீர்களா??</value>
   </data>
   <data name="ProjectView_NoEmptyPageFoundForSpeechGeneration" xml:space="preserve">
     <value>பேச்சு உருவாக்க காலியான பக்கங்களை கண்டுபிடிக்க முடியவில்லை</value>
