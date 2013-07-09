@@ -117,194 +117,248 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="mRemove.Text" xml:space="preserve">
-    <value>हटाएँ</value>
-  </data>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mInstructions.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="mCancel.Text" xml:space="preserve">
-    <value>रद्द</value>
-  </data>
-  <data name="&gt;&gt;mInstructions.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="mOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
   <data name="mCustomRolesList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="mAdd.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="mOk.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mCustomRolesList.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>265, 271</value>
-  </data>
-  <data name="&gt;&gt;mOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mRemove.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="mOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
-  </data>
-  <data name="&gt;&gt;mCustomRolesList.Name" xml:space="preserve">
-    <value>mCustomRolesList</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>523, 314</value>
-  </data>
-  <data name="mInstructions.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mAdd.Text" xml:space="preserve">
-    <value>जोड़े</value>
-  </data>
-  <data name="mAdd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="&gt;&gt;mAdd.Name" xml:space="preserve">
-    <value>mAdd</value>
-  </data>
-  <data name="&gt;&gt;mNewCustomRole.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="mCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="mOk.Text" xml:space="preserve">
-    <value>ठीक</value>
-  </data>
-  <data name="&gt;&gt;mRemove.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
-  </data>
-  <data name="mRemove.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="&gt;&gt;mCustomRolesList.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mOk.Name" xml:space="preserve">
-    <value>mOk</value>
-  </data>
-  <data name="&gt;&gt;mOk.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="mOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 271</value>
-  </data>
-  <data name="mCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
-  </data>
-  <data name="mAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>407, 27</value>
-  </data>
-  <data name="mInstructions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 11</value>
-  </data>
   <data name="mCustomRolesList.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 64</value>
   </data>
-  <data name="&gt;&gt;mCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mInstructions.Name" xml:space="preserve">
-    <value>mInstructions</value>
-  </data>
-  <data name="mInstructions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 16</value>
-  </data>
-  <data name="&gt;&gt;mCancel.Name" xml:space="preserve">
-    <value>mCancel</value>
-  </data>
-  <data name="&gt;&gt;mAdd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mOk.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="mRemove.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;mNewCustomRole.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="mNewCustomRole.Size" type="System.Drawing.Size, System.Drawing">
-    <value>382, 22</value>
-  </data>
-  <data name="mOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="&gt;&gt;mCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>EditRoles</value>
-  </data>
-  <data name="mNewCustomRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="mCustomRolesList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;mInstructions.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="mCustomRolesList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>382, 162</value>
   </data>
   <data name="mCustomRolesList.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;mNewCustomRole.Name" xml:space="preserve">
-    <value>mNewCustomRole</value>
+  <data name="&gt;&gt;mCustomRolesList.Name" xml:space="preserve">
+    <value>mCustomRolesList</value>
   </data>
-  <data name="mCustomRolesList.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
+  <data name="&gt;&gt;mCustomRolesList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mCancel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;mAdd.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="mRemove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mCustomRolesList.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;mCustomRolesList.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="mCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="mNewCustomRole.AccessibleName" xml:space="preserve">
+    <value>नया कार्य जोड़े या निम्न में से चयन करें</value>
   </data>
-  <data name="mAdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+  <data name="mNewCustomRole.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
-  <data name="mRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>407, 64</value>
+  <data name="mNewCustomRole.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 31</value>
+  </data>
+  <data name="mNewCustomRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mNewCustomRole.Size" type="System.Drawing.Size, System.Drawing">
+    <value>382, 22</value>
   </data>
   <data name="mNewCustomRole.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;mNewCustomRole.Name" xml:space="preserve">
+    <value>mNewCustomRole</value>
+  </data>
+  <data name="&gt;&gt;mNewCustomRole.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNewCustomRole.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNewCustomRole.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="mInstructions.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mInstructions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 11</value>
+  </data>
+  <data name="mInstructions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="mInstructions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 16</value>
+  </data>
+  <data name="mInstructions.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="mInstructions.Text" xml:space="preserve">
+    <value>नया कार्य जोड़े या सूची में से चयन करें</value>
+  </data>
+  <data name="&gt;&gt;mInstructions.Name" xml:space="preserve">
+    <value>mInstructions</value>
+  </data>
+  <data name="&gt;&gt;mInstructions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mInstructions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mInstructions.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="mOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="mOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>157, 271</value>
+  </data>
+  <data name="mOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="mOk.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="mOk.Text" xml:space="preserve">
+    <value>स्वीकृत करें</value>
+  </data>
+  <data name="&gt;&gt;mOk.Name" xml:space="preserve">
+    <value>mOk</value>
+  </data>
+  <data name="&gt;&gt;mOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mOk.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mOk.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="mCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="mCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>265, 271</value>
+  </data>
+  <data name="mCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="mCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="mCancel.Text" xml:space="preserve">
+    <value>रद्द करें</value>
+  </data>
+  <data name="&gt;&gt;mCancel.Name" xml:space="preserve">
+    <value>mCancel</value>
+  </data>
+  <data name="&gt;&gt;mCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mCancel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mAdd.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="mAdd.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>407, 27</value>
+  </data>
+  <data name="mAdd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="mAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="mAdd.Text" xml:space="preserve">
+    <value>जोड़े</value>
+  </data>
+  <data name="&gt;&gt;mAdd.Name" xml:space="preserve">
+    <value>mAdd</value>
+  </data>
+  <data name="&gt;&gt;mAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mAdd.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mAdd.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="mRemove.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
+  </data>
+  <data name="mRemove.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mRemove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>407, 64</value>
+  </data>
+  <data name="mRemove.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mRemove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="mRemove.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="mRemove.Text" xml:space="preserve">
+    <value>हटाएँ</value>
+  </data>
+  <data name="&gt;&gt;mRemove.Name" xml:space="preserve">
+    <value>mRemove</value>
+  </data>
+  <data name="&gt;&gt;mRemove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mRemove.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mRemove.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>523, 314</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -562,61 +616,25 @@
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
   </data>
-  <data name="&gt;&gt;mNewCustomRole.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;mRemove.Name" xml:space="preserve">
-    <value>mRemove</value>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>भूमिका बदलें</value>
+    <value>कार्य सम्पादित करें</value>
   </data>
-  <data name="&gt;&gt;mAdd.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
+    <value>helpProvider1</value>
   </data>
-  <data name="mOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mInstructions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>EditRoles</value>
   </data>
-  <data name="mNewCustomRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 31</value>
-  </data>
-  <data name="mAdd.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="&gt;&gt;mInstructions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mRemove.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="mNewCustomRole.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="mCustomRolesList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>382, 162</value>
-  </data>
-  <data name="mRemove.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mAdd.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
+    <value>Microsoft Sans Serif, 11pt</value>
   </data>
-  <data name="mCustomRolesList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mInstructions.Text" xml:space="preserve">
-    <value>भूमिका जोड़े या सूची से चुने.</value>
-  </data>
-  <data name="&gt;&gt;mCustomRolesList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>
