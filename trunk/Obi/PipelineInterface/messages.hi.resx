@@ -117,7 +117,142 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CannotCreate_InputPath" xml:space="preserve">
+    <value>इनपुट : प्रकार का पाथ नहीं बनाया जा सकता </value>
+  </data>
+  <data name="Caption_Error" xml:space="preserve">
+    <value>त्रुटी</value>
+  </data>
+  <data name="Caption_Warning" xml:space="preserve">
+    <value>चेतावनी</value>
+  </data>
+  <data name="Choose_OtherDirectory" xml:space="preserve">
+    <value>किसी अन्य डायरेक्टरी का चयन करें</value>
+  </data>
+  <data name="IndexNotInRange" xml:space="preserve">
+    <value>इंडेक्स सीमा में नहीं है</value>
+  </data>
+  <data name="No_Path" xml:space="preserve">
+    <value>पाथ उपलब्ध नहीं है</value>
+  </data>
+  <data name="no_primary_export_directory" xml:space="preserve">
+    <value>डेज़ी प्रेषित किये जाने हेतु डायरेक्टरी नहीं मिली. कृपया प्रेषण हेतु पाथ चयन करें या प्रोजेक्ट डेज़ी में प्रेषित करें </value>
+  </data>
   <data name="no_script" xml:space="preserve">
-    <value> "{0}" पर लिपि फाइल नहीं मिली.</value>
+    <value>में कोई भी स्क्रिप्ट फाइल नही मिली "{0}</value>
+  </data>
+  <data name="NotAbleToCreateDirectory" xml:space="preserve">
+    <value>डायरेक्टरी बनाने में असमर्थ {0}</value>
+  </data>
+  <data name="NotAbleToSelectItem" xml:space="preserve">
+    <value>आइटम चयन करने में असमर्थ</value>
+  </data>
+  <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
+    <value>आउटपुट डायरेक्टरी खोजने में असमर्थ.\n क्या आप उसे बनाना चाहते हैं?</value>
+  </data>
+  <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
+    <value>आउटपुट डायरेक्टरी रिक्त नहीं है! क्या आप इसे रिक्त करना चाहते हैं?</value>
+  </data>
+  <data name="Pipeline_DuplicateScript" xml:space="preserve">
+    <value>{0} नाम का प्रतिरूप पैपेलिने स्क्रिप्ट मिला है. ये लोड नहीं किया जायेगा. कृपया जारी रखने के लिए स्वीकृत बटन दबाएँ.</value>
+  </data>
+  <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
+    <value>वैल्यू {0} और {1} के मध्य होनी चाहिए</value>
+  </data>
+  <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
+    <value>एक या एक से अधिक पैरामीटर अवैध हैं. कृपया सही वैल्यू प्रविष्ट करे</value>
+  </data>
+  <data name="Pipeline_InvalidString" xml:space="preserve">
+    <value>अवैध इनपुट</value>
+  </data>
+  <data name="Pipeline_OutOfRange" xml:space="preserve">
+    <value>वैल्यू प्रत्याशित सीमा में नहीं है</value>
+  </data>
+  <data name="really_use_directory_caption" xml:space="preserve">
+    <value>डायरेक्टरी को प्रयोग से पूर्व रिक्त किया जाये?</value>
+  </data>
+  <data name="really_use_directory_text" xml:space="preserve">
+    <value>"{0}" डायरेक्टरी रिक्त नहीं है. यदि आप प्रयोग से पूर्व रिक्त करना चाहें तो "हाँ" चुने.  यदि आप इस डायरेक्टरी को ऐसे ही प्रयोग करना चाहते हैं तो चयन करें "नहीं".</value>
+  </data>
+  <data name="Z3986DTBValidator" xml:space="preserve">
+    <value>डेज़ी ३ वेलिडेटर</value>
+  </data>
+  <data name="Daisy202DTBValidator" xml:space="preserve">
+    <value>डेज़ी २.०२ लाइट वेलिडेटर</value>
+  </data>
+  <data name="DTBAudioEncoder" xml:space="preserve">
+    <value>ऑडियो को MP3 में परिवर्तित करें</value>
+  </data>
+  <data name="FilesetRenamer" xml:space="preserve">
+    <value>पुनःनामकरण फाइलसेट </value>
+  </data>
+  <data name="PrettyPrinter" xml:space="preserve">
+    <value>प्रिटी प्रिंटर</value>
+  </data>
+  <data name="Input_NCC" xml:space="preserve">
+    <value>इनपुट NCC</value>
+  </data>
+  <data name="Select_the_input_NCC_document" xml:space="preserve">
+    <value>इनपुट NCC डॉक्यूमेंट का चयन करें</value>
+  </data>
+  <data name="Validation_Report" xml:space="preserve">
+    <value>वेलिडेशन रिपोर्ट</value>
+  </data>
+  <data name="Select_a_file_to_store_a_Validation_XML_report_in" xml:space="preserve">
+    <value>वेलिडेशन रिपोर्ट को रखने के लिए फाइल का चयन करें</value>
+  </data>
+  <data name="Time_Tolerance" xml:space="preserve">
+    <value>टाइम टोलेरेंस</value>
+  </data>
+  <data name="Set_the_time_tolerance_threshold_in_milliseconds" xml:space="preserve">
+    <value>टाइम टोलेरेंस की शुरुआत मिलीसेकेंड में सेट करें</value>
+  </data>
+  <data name="Input_OPF" xml:space="preserve">
+    <value>इनपुट OPF</value>
+  </data>
+  <data name="Select_the_input_Package_file_(OPF)_document" xml:space="preserve">
+    <value>इनपुट पैकेज फाइल (OPF) डॉक्यूमेंट चयन करें</value>
+  </data>
+  <data name="Output_directory" xml:space="preserve">
+    <value>आउटपुट डायरेक्टरी</value>
+  </data>
+  <data name="Select_the_output_directory" xml:space="preserve">
+    <value>आउटपुट डायरेक्टरी चयन करें</value>
+  </data>
+  <data name="Bitrate" xml:space="preserve">
+    <value>बिट दर</value>
+  </data>
+  <data name="Select_the_bitrate_of_the_encoded_files" xml:space="preserve">
+    <value>कोड की गयी फाइल की बिट दर चयन करें</value>
+  </data>
+  <data name="Input_file" xml:space="preserve">
+    <value>इनपुट_फाइल</value>
+  </data>
+  <data name="Select_the_input_manifest_file_(NCC,_OPF,_etc)" xml:space="preserve">
+    <value>प्रकट इनपुट फाइल चुने (NCC,OPF,etc.)</value>
+  </data>
+  <data name="Base_Name" xml:space="preserve">
+    <value>आधार नाम</value>
+  </data>
+  <data name="The_base_name_used_for_renaming" xml:space="preserve">
+    <value>पुनःनामकरण के लिए प्रयुक्त आधारनाम</value>
+  </data>
+  <data name="File_types_to_exclude" xml:space="preserve">
+    <value>वर्जित करने के लिए फाइलों के प्रकार</value>
+  </data>
+  <data name="comma_separated_list_of_file_types_to_exclude_from_renaming" xml:space="preserve">
+    <value>पुनःनामकरण से वर्जित करने के लिए कोमा द्वारा विलग की गयी फाइलों के प्रकार की सूची</value>
+  </data>
+  <data name="Use_only_the_characters_A-Z,a-z,0-9,_hyphen_and_underscore_in_output_filenames" xml:space="preserve">
+    <value>आउटपुट फाइल के नामों में केवल A-Z, a-z, 0-9, हायफ़न और अंडरस्कोर अक्षरों का प्रयोग करें</value>
+  </data>
+  <data name="Use_filesystem_safe_names" xml:space="preserve">
+    <value>फाइल सिस्टम सेफ नाम का प्रयोग करें</value>
+  </data>
+  <data name="Max_filename_length" xml:space="preserve">
+    <value>अधिकतम फाइल नाम की सीमा</value>
+  </data>
+  <data name="Max._number_of_characters_in_output_filename,_excluding_extension._Default_is_60" xml:space="preserve">
+    <value>एक्सटेंशन छोड़ कर फाइल के नाम में अधिकतम अक्षरों की संख्या. पूर्वनिर्धारित ६० है. </value>
   </data>
 </root>
