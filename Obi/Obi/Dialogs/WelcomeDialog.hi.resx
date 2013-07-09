@@ -123,352 +123,187 @@
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mNewProjectButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>59, 20</value>
+  <data name="mNewProjectButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 13</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 16</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>शीर्षक</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="mTitleBox.AccessibleName" xml:space="preserve">
-    <value>शीर्षक</value>
-  </data>
-  <data name="mTitleBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="mTitleBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 16</value>
-  </data>
-  <data name="mTitleBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="mNewProjectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="mTitleBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>675, 22</value>
+  <data name="mNewProjectButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 28</value>
   </data>
-  <data name="mTitleBox.TabIndex" type="System.Int32, mscorlib">
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mNewProjectButton.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;mTitleBox.Name" xml:space="preserve">
-    <value>mTitleBox</value>
+  <data name="mNewProjectButton.Text" xml:space="preserve">
+    <value>नया प्रोजेक्ट बनाये</value>
   </data>
-  <data name="&gt;&gt;mTitleBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mNewProjectButton.Name" xml:space="preserve">
+    <value>mNewProjectButton</value>
   </data>
-  <data name="&gt;&gt;mTitleBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mTitleBox.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 122</value>
-  </data>
-  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 16</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>स्थान</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="mFileBox.AccessibleName" xml:space="preserve">
-    <value>स्थान</value>
-  </data>
-  <data name="mFileBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="mFileBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 119</value>
-  </data>
-  <data name="mFileBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mFileBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>567, 22</value>
-  </data>
-  <data name="mFileBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;mFileBox.Name" xml:space="preserve">
-    <value>mFileBox</value>
-  </data>
-  <data name="&gt;&gt;mFileBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mFileBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mFileBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="mSelectButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="mSelectButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>673, 114</value>
-  </data>
-  <data name="mSelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mSelectButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
-  </data>
-  <data name="mSelectButton.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="mSelectButton.Text" xml:space="preserve">
-    <value>चयन करें</value>
-  </data>
-  <data name="&gt;&gt;mSelectButton.Name" xml:space="preserve">
-    <value>mSelectButton</value>
-  </data>
-  <data name="&gt;&gt;mSelectButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;mNewProjectButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mSelectButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mNewProjectButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;mSelectButton.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="mOKButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="mOKButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 190</value>
-  </data>
-  <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mOKButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
-  </data>
-  <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="mOKButton.Text" xml:space="preserve">
-    <value>स्वीकृत करें</value>
-  </data>
-  <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
-    <value>mOKButton</value>
-  </data>
-  <data name="&gt;&gt;mOKButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mOKButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;mNewProjectButton.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="mCancelButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="mOpenProjectButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>399, 190</value>
+  <data name="mOpenProjectButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 85</value>
   </data>
-  <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="mOpenProjectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="mCancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+  <data name="mOpenProjectButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 28</value>
   </data>
-  <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="mOpenProjectButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="mCancelButton.Text" xml:space="preserve">
-    <value>रद्द करें</value>
+  <data name="mOpenProjectButton.Text" xml:space="preserve">
+    <value>मौजूद प्रोजेक्ट खोले</value>
   </data>
-  <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
-    <value>mCancelButton</value>
+  <data name="&gt;&gt;mOpenProjectButton.Name" xml:space="preserve">
+    <value>mOpenProjectButton</value>
   </data>
-  <data name="&gt;&gt;mCancelButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;mOpenProjectButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mCancelButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mOpenProjectButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;mOpenProjectButton.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="mAutoTitleCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mAutoTitleCheckBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="mOpenLastProjectButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="mAutoTitleCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 48</value>
+  <data name="mOpenLastProjectButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 121</value>
   </data>
-  <data name="mAutoTitleCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="mOpenLastProjectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="mAutoTitleCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 20</value>
+  <data name="mOpenLastProjectButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 28</value>
   </data>
-  <data name="mAutoTitleCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="mAutoTitleCheckBox.Text" xml:space="preserve">
-    <value>इस शीर्षक के अनुरूप खंड शीर्षक स्वतः बनाये</value>
-  </data>
-  <data name="&gt;&gt;mAutoTitleCheckBox.Name" xml:space="preserve">
-    <value>mAutoTitleCheckBox</value>
-  </data>
-  <data name="&gt;&gt;mAutoTitleCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mAutoTitleCheckBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mAutoTitleCheckBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 84</value>
-  </data>
-  <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 16</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>पहचान</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="mIDBox.AccessibleName" xml:space="preserve">
-    <value>पहचान</value>
-  </data>
-  <data name="mIDBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="mIDBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 81</value>
-  </data>
-  <data name="mIDBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mIDBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>567, 22</value>
-  </data>
-  <data name="mIDBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="mOpenLastProjectButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;mIDBox.Name" xml:space="preserve">
-    <value>mIDBox</value>
+  <data name="mOpenLastProjectButton.Text" xml:space="preserve">
+    <value>अंतिम प्रोजेक्ट खोले</value>
   </data>
-  <data name="&gt;&gt;mIDBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mOpenLastProjectButton.Name" xml:space="preserve">
+    <value>mOpenLastProjectButton</value>
   </data>
-  <data name="&gt;&gt;mIDBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mOpenLastProjectButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mOpenLastProjectButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;mIDBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;mOpenLastProjectButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="mOpenEmptyButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mOpenEmptyButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 157</value>
+  </data>
+  <data name="mOpenEmptyButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mOpenEmptyButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 28</value>
+  </data>
+  <data name="mOpenEmptyButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="mOpenEmptyButton.Text" xml:space="preserve">
+    <value>ओबी बिना प्रोजेक्ट के खोलें</value>
+  </data>
+  <data name="&gt;&gt;mOpenEmptyButton.Name" xml:space="preserve">
+    <value>mOpenEmptyButton</value>
+  </data>
+  <data name="&gt;&gt;mOpenEmptyButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mOpenEmptyButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mOpenEmptyButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mImportButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mImportButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 49</value>
+  </data>
+  <data name="mImportButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mImportButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 28</value>
+  </data>
+  <data name="mImportButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="mImportButton.Text" xml:space="preserve">
+    <value>नया प्रोकेक्ट इम्पोर्ट द्वारा बनायें</value>
+  </data>
+  <data name="&gt;&gt;mImportButton.Name" xml:space="preserve">
+    <value>mImportButton</value>
+  </data>
+  <data name="&gt;&gt;mImportButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mImportButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mImportButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="mGenerateIDButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="mGenerateIDButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="mViewManualButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="mGenerateIDButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>673, 76</value>
+  <data name="mViewManualButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 193</value>
   </data>
-  <data name="mGenerateIDButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="mViewManualButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="mGenerateIDButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+  <data name="mViewManualButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 28</value>
   </data>
-  <data name="mGenerateIDButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="mViewManualButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
-  <data name="mGenerateIDButton.Text" xml:space="preserve">
-    <value>बनाये</value>
+  <data name="mViewManualButton.Text" xml:space="preserve">
+    <value>मैन्युअल देखें</value>
   </data>
-  <data name="&gt;&gt;mGenerateIDButton.Name" xml:space="preserve">
-    <value>mGenerateIDButton</value>
+  <data name="&gt;&gt;mViewManualButton.Name" xml:space="preserve">
+    <value>mViewManualButton</value>
   </data>
-  <data name="&gt;&gt;mGenerateIDButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;mViewManualButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mGenerateIDButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mViewManualButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;mGenerateIDButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;mViewManualButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
@@ -478,7 +313,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>789, 235</value>
+    <value>248, 223</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -742,11 +577,14 @@
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>264, 261</value>
+  </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>445, 236</value>
+    <value>264, 261</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>नया प्रोजेक्ट बनाये</value>
+    <value>ओबी में आपका स्वागत है</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>
@@ -755,7 +593,7 @@
     <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>NewProject</value>
+    <value>WelcomeDialog</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

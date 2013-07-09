@@ -117,184 +117,343 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="m_txtPhraseCount.AccessibleName" xml:space="preserve">
-    <value>वाक्यांशों की संख्या:</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_comboLevel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;m_btnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_chkUsed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
+  <data name="m_lblName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>59, 15</value>
   </data>
-  <data name="m_lblPhraseCount.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;m_txtPhraseCount.Name" xml:space="preserve">
-    <value>m_txtPhraseCount</value>
-  </data>
-  <data name="m_lblLevel.Text" xml:space="preserve">
-    <value>स्तर (गहराई):</value>
-  </data>
-  <data name="&gt;&gt;m_lblTimeLength.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lblName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lblName.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 16</value>
   </data>
-  <data name="&gt;&gt;m_lblPhraseCount.Name" xml:space="preserve">
-    <value>m_lblPhraseCount</value>
-  </data>
-  <data name="&gt;&gt;m_chkUsed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lbParentsList.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="m_lblTimeLength.Text" xml:space="preserve">
-    <value>अवधि:</value>
-  </data>
-  <data name="m_comboLevel.AccessibleName" xml:space="preserve">
-    <value>स्तर/गहराई</value>
-  </data>
-  <data name="&gt;&gt;m_btnOk.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_lblPhraseCount.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="m_lblPhraseCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 16</value>
-  </data>
-  <data name="&gt;&gt;m_txtPhraseCount.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="m_txtPhraseCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
-  </data>
-  <data name="m_btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="m_btnOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="&gt;&gt;m_comboLevel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="m_lblName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="&gt;&gt;m_txtPhraseCount.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblTimeLength.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="m_lblName.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
-    <value>m_btnOk</value>
+  <data name="m_lblName.Text" xml:space="preserve">
+    <value>खंड का शीर्षक</value>
+  </data>
+  <data name="&gt;&gt;m_lblName.Name" xml:space="preserve">
+    <value>m_lblName</value>
+  </data>
+  <data name="&gt;&gt;m_lblName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblName.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="m_txtName.AccessibleName" xml:space="preserve">
+    <value>खंड का शीर्षक</value>
   </data>
   <data name="m_txtName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="m_txtName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 22</value>
-  </data>
-  <data name="m_txtName.AccessibleName" xml:space="preserve">
-    <value>भाग का नाम:</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="&gt;&gt;m_comboLevel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;m_btnOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="m_txtTimeLength.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 22</value>
-  </data>
-  <data name="m_chkUsed.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;m_txtTimeLength.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="m_chkUsed.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_lblTimeLength.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
-  </data>
-  <data name="m_chkUsed.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="m_txtName.Location" type="System.Drawing.Point, System.Drawing">
     <value>148, 13</value>
   </data>
-  <data name="&gt;&gt;m_btnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_txtName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
-  <data name="m_txtTimeLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 197</value>
+  <data name="m_txtName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>367, 22</value>
   </data>
-  <data name="m_lblPhraseCount.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="m_txtName.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="m_btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
+  <data name="&gt;&gt;m_txtName.Name" xml:space="preserve">
+    <value>m_txtName</value>
   </data>
-  <data name="m_btnCancel.Text" xml:space="preserve">
-    <value>रद्द</value>
+  <data name="&gt;&gt;m_txtName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_txtName.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 16</value>
-  </data>
-  <data name="m_comboLevel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="m_lblName.Text" xml:space="preserve">
-    <value>भाग शीर्षक:</value>
-  </data>
-  <data name="&gt;&gt;m_lblLevel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_txtName.ZOrder" xml:space="preserve">
     <value>10</value>
+  </data>
+  <data name="m_lblLevel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblLevel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>59, 46</value>
+  </data>
+  <data name="m_lblLevel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lblLevel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 16</value>
+  </data>
+  <data name="m_lblLevel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="m_lblLevel.Text" xml:space="preserve">
+    <value>स्तर (गहराई)</value>
+  </data>
+  <data name="&gt;&gt;m_lblLevel.Name" xml:space="preserve">
+    <value>m_lblLevel</value>
+  </data>
+  <data name="&gt;&gt;m_lblLevel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblLevel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_lblPhraseCount.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;m_lblLevel.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
-  <data name="m_txtTimeLength.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="m_comboLevel.AccessibleName" xml:space="preserve">
+    <value>स्तर/गहराई</value>
   </data>
-  <data name="m_lblTimeLength.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 16</value>
+  <data name="m_comboLevel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="m_comboLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_comboLevel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>148, 43</value>
+  </data>
+  <data name="m_comboLevel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_comboLevel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>367, 24</value>
+  </data>
+  <data name="m_comboLevel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;m_comboLevel.Name" xml:space="preserve">
+    <value>m_comboLevel</value>
+  </data>
+  <data name="&gt;&gt;m_comboLevel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_comboLevel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_comboLevel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="m_lblTimeLength.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="m_lblTimeLength.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="m_lblTimeLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>77, 199</value>
+  </data>
+  <data name="m_lblTimeLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lblTimeLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 16</value>
+  </data>
+  <data name="m_lblTimeLength.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_lblTimeLength.Text" xml:space="preserve">
+    <value>समयाबधि</value>
+  </data>
+  <data name="&gt;&gt;m_lblTimeLength.Name" xml:space="preserve">
+    <value>m_lblTimeLength</value>
+  </data>
+  <data name="&gt;&gt;m_lblTimeLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblTimeLength.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblTimeLength.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="m_txtTimeLength.AccessibleName" xml:space="preserve">
+    <value>समयावधि</value>
+  </data>
+  <data name="m_txtTimeLength.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="m_txtTimeLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>148, 197</value>
+  </data>
+  <data name="m_txtTimeLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_txtTimeLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>367, 22</value>
+  </data>
+  <data name="m_txtTimeLength.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="m_txtTimeLength.WordWrap" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_txtTimeLength.Name" xml:space="preserve">
+    <value>m_txtTimeLength</value>
+  </data>
+  <data name="&gt;&gt;m_txtTimeLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtTimeLength.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_txtTimeLength.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="m_lblPhraseCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="m_lblPhraseCount.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 229</value>
+  </data>
+  <data name="m_lblPhraseCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="m_lblPhraseCount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 16</value>
+  </data>
+  <data name="m_lblPhraseCount.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_lblPhraseCount.Text" xml:space="preserve">
+    <value>वाक्यांशों की संख्या</value>
+  </data>
+  <data name="&gt;&gt;m_lblPhraseCount.Name" xml:space="preserve">
+    <value>m_lblPhraseCount</value>
+  </data>
+  <data name="&gt;&gt;m_lblPhraseCount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblPhraseCount.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblPhraseCount.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_txtPhraseCount.AccessibleName" xml:space="preserve">
+    <value>वाक्यांशों की संख्या</value>
+  </data>
+  <data name="m_txtPhraseCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="m_txtPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>148, 227</value>
+  </data>
+  <data name="m_txtPhraseCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_txtPhraseCount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>367, 22</value>
+  </data>
+  <data name="m_txtPhraseCount.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="m_txtPhraseCount.WordWrap" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_txtPhraseCount.Name" xml:space="preserve">
+    <value>m_txtPhraseCount</value>
+  </data>
+  <data name="&gt;&gt;m_txtPhraseCount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtPhraseCount.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_txtPhraseCount.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="m_btnOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 321</value>
+  </data>
+  <data name="m_btnOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="m_btnOk.Text" xml:space="preserve">
+    <value>स्वीकृत करें</value>
+  </data>
+  <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
+    <value>m_btnOk</value>
+  </data>
+  <data name="&gt;&gt;m_btnOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnOk.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnOk.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
   <data name="m_btnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 321</value>
+  </data>
+  <data name="m_btnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="m_btnCancel.Text" xml:space="preserve">
+    <value>रद्द करें</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.Name" xml:space="preserve">
+    <value>m_btnCancel</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_chkUsed.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="m_chkUsed.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_chkUsed.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_chkUsed.Location" type="System.Drawing.Point, System.Drawing">
@@ -303,256 +462,115 @@
   <data name="m_chkUsed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;m_chkUsed.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="m_lblLevel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="m_txtTimeLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="m_lblLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 16</value>
-  </data>
-  <data name="m_comboLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 24</value>
-  </data>
-  <data name="&gt;&gt;m_lbParentsList.Name" xml:space="preserve">
-    <value>m_lbParentsList</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>SectionProperties</value>
-  </data>
-  <data name="m_btnOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="&gt;&gt;m_comboLevel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>पूर्वज भाग:</value>
-  </data>
-  <data name="&gt;&gt;m_lblName.Name" xml:space="preserve">
-    <value>m_lblName</value>
-  </data>
-  <data name="&gt;&gt;m_lblLevel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_comboLevel.Name" xml:space="preserve">
-    <value>m_comboLevel</value>
-  </data>
-  <data name="&gt;&gt;m_lblName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="m_comboLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 43</value>
-  </data>
-  <data name="m_chkUsed.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="m_lblTimeLength.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="m_lblName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>59, 15</value>
-  </data>
-  <data name="m_btnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;m_txtName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="m_lblPhraseCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="m_lblLevel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;m_lblPhraseCount.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_txtTimeLength.Name" xml:space="preserve">
-    <value>m_txtTimeLength</value>
-  </data>
-  <data name="&gt;&gt;m_lblTimeLength.Name" xml:space="preserve">
-    <value>m_lblTimeLength</value>
-  </data>
-  <data name="m_lblTimeLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="m_comboLevel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="m_lblPhraseCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="&gt;&gt;m_lblName.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;m_txtName.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="m_lblPhraseCount.Text" xml:space="preserve">
-    <value>वाक्यांशों की संख्या:</value>
-  </data>
-  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;m_chkUsed.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>528, 362</value>
-  </data>
-  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>पेरन्ट भागों की सूची</value>
-  </data>
-  <data name="m_txtPhraseCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="m_txtPhraseCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 22</value>
-  </data>
-  <data name="&gt;&gt;m_txtTimeLength.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblLevel.Name" xml:space="preserve">
-    <value>m_lblLevel</value>
-  </data>
-  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>भाग के गुण</value>
-  </data>
-  <data name="m_txtTimeLength.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;m_btnCancel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="m_txtPhraseCount.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="m_txtName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 321</value>
-  </data>
-  <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 321</value>
-  </data>
-  <data name="m_txtTimeLength.AccessibleName" xml:space="preserve">
-    <value>सैकन्डस में अवधि:</value>
-  </data>
-  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 114</value>
-  </data>
-  <data name="&gt;&gt;m_btnOk.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="m_lblLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 46</value>
-  </data>
-  <data name="m_lblLevel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 75</value>
-  </data>
-  <data name="m_txtPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 227</value>
-  </data>
-  <data name="m_btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
-  </data>
-  <data name="m_lblTimeLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>77, 199</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
-  </data>
-  <data name="m_comboLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;m_txtTimeLength.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblTimeLength.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="m_chkUsed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 20</value>
+  </data>
+  <data name="m_chkUsed.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
   <data name="m_chkUsed.Text" xml:space="preserve">
-    <value>इस्तेमाल में</value>
-  </data>
-  <data name="m_btnOk.Text" xml:space="preserve">
-    <value>ठीक</value>
-  </data>
-  <data name="&gt;&gt;m_txtPhraseCount.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;m_lbParentsList.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;m_lblName.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_btnCancel.Name" xml:space="preserve">
-    <value>m_btnCancel</value>
-  </data>
-  <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>प्रयुक्त</value>
   </data>
   <data name="&gt;&gt;m_chkUsed.Name" xml:space="preserve">
     <value>m_chkUsed</value>
   </data>
+  <data name="&gt;&gt;m_chkUsed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_chkUsed.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_chkUsed.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;m_lbParentsList.Name" xml:space="preserve">
+    <value>m_lbParentsList</value>
+  </data>
   <data name="&gt;&gt;m_lbParentsList.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="m_lblPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 229</value>
+  <data name="&gt;&gt;m_lbParentsList.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_lbParentsList.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 74</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>509, 116</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>पूर्व खंड</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
+    <value>पूर्व खंड</value>
+  </data>
+  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 22</value>
+  </data>
+  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>359, 82</value>
+  </data>
+  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>528, 362</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
-  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 75</value>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;m_txtName.Name" xml:space="preserve">
-    <value>m_txtName</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>खंड के गुण</value>
   </data>
-  <data name="m_txtName.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
+    <value>helpProvider1</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>SectionProperties</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 11pt</value>
+  </data>
 </root>
