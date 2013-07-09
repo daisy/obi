@@ -150,7 +150,7 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.Text" xml:space="preserve">
-    <value>இறக்குமதி மூலம் புதிய திட்டபணி</value>
+    <value>&amp;இறக்குமதி மூலம் புதிய திட்டபணி</value>
   </data>
   <data name="mFile_OpenProjectMenuItem.AccessibleName" xml:space="preserve">
     <value>திட்டபணி திறCtrl+O</value>
@@ -165,7 +165,7 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_OpenProjectMenuItem.Text" xml:space="preserve">
-    <value>&amp; திட்டபணி திற</value>
+    <value>தி&amp;ட்டபணி திற</value>
   </data>
   <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>பின் நகர்விலிருந்து மீட்பு</value>
@@ -183,7 +183,7 @@
     <value>281, 22</value>
   </data>
   <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Text" xml:space="preserve">
-    <value>திட்டபணியிலிருந்து மீட்பு</value>
+    <value>அசல் திட்டபணியிலிருந்து மீட்பு</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.AccessibleName" xml:space="preserve">
     <value>திட்டபணியை மூடுCtrl+W</value>
@@ -195,7 +195,7 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.Text" xml:space="preserve">
-    <value>&amp; திட்டபணியை மூடு</value>
+    <value>திட்டபணியை &amp;மூடு</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
@@ -213,10 +213,10 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_SaveProjectMenuItem.Text" xml:space="preserve">
-    <value>&amp; திட்டபணியை  சேமி</value>
+    <value>திட்டபணியை  &amp;சேமி</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.AccessibleName" xml:space="preserve">
-    <value>திட்டப்பணியை சேமிக்க... Ctrl+Shift+S</value>
+    <value>திட்டப்பணியை இப்படி சேமி... Ctrl+Shift+S</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+S</value>
@@ -225,7 +225,7 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.Text" xml:space="preserve">
-    <value>திட்டபணியை இப்படி சேமி</value>
+    <value>திட்டபணியை இப்ப&amp;டி சேமி</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
@@ -237,13 +237,13 @@
     <value>119, 22</value>
   </data>
   <data name="mFile_ClearListMenuItem.Text" xml:space="preserve">
-    <value>&amp;பட்டியலை துடை</value>
+    <value>பட்டியலை &amp;துடை</value>
   </data>
   <data name="mFile_RecentProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
   </data>
   <data name="mFile_RecentProjectMenuItem.Text" xml:space="preserve">
-    <value>&amp; தற்போதைய திட்டபணிகள்</value>
+    <value>தற்போதைய திட்டபணிகள்</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
@@ -258,7 +258,7 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_ExitMenuItem.Text" xml:space="preserve">
-    <value>வெளியேறு</value>
+    <value>&amp;வெளியேறு</value>
   </data>
   <data name="mFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
@@ -276,10 +276,10 @@
     <value>247, 22</value>
   </data>
   <data name="mUndoToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Undo</value>
+    <value>&amp;செய்ததை தவிர்</value>
   </data>
   <data name="mRedoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>செய்ததை தவிர் Ctrl+Y</value>
+    <value>திரும்பச்செய் Ctrl+Y</value>
   </data>
   <data name="mRedoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Y</value>
@@ -288,7 +288,7 @@
     <value>247, 22</value>
   </data>
   <data name="mRedoToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;செய்ததை தவிர்</value>
+    <value>திரும்பச்செ&amp;ய்</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 6</value>
@@ -303,7 +303,7 @@
     <value>247, 22</value>
   </data>
   <data name="mCutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;வெட்டு</value>
+    <value>வெட்&amp;டு</value>
   </data>
   <data name="mCopyToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>நகல்Ctrl+C</value>
@@ -315,7 +315,7 @@
     <value>247, 22</value>
   </data>
   <data name="mCopyToolStripMenuItem.Text" xml:space="preserve">
-    <value>நகல்</value>
+    <value>&amp;நகல்</value>
   </data>
   <data name="mPasteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>ஒட்டுCtrl+V</value>
@@ -363,13 +363,13 @@
     <value>247, 22</value>
   </data>
   <data name="mDeleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;அழி</value>
+    <value>அ&amp;ழி</value>
   </data>
   <data name="mSelectNothingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
   </data>
   <data name="mSelectNothingToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;ஒன்றும் தேர்ந்தெடுக்க வேண்டாம்</value>
+    <value>ஒன்றும் தேர்ந்தெடுக்க வேண்டாம்</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 6</value>
@@ -396,7 +396,7 @@
     <value>247, 22</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;கண்டுபிடி</value>
+    <value>கண்டு&amp;பிடி</value>
   </data>
   <data name="mFindNextToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>அடுத்ததை கண்டுபிடிF3</value>
@@ -408,7 +408,7 @@
     <value>247, 22</value>
   </data>
   <data name="mFindNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>அடுத்ததை கண்டுபிடி</value>
+    <value>அடு&amp;த்ததை கண்டுபிடி</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>முந்தியதை கண்டுபிடி Shift+F3</value>
@@ -420,7 +420,7 @@
     <value>247, 22</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.Text" xml:space="preserve">
-    <value>முந்தியதை கண்டுபிடி</value>
+    <value>முந்தி&amp;யதை &amp;கண்டுபிடி</value>
   </data>
   <data name="mEdit_BookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>புத்தகக் குறி</value>
@@ -432,7 +432,7 @@
     <value>161, 22</value>
   </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>புத்தகக் குறி ஆக அமை</value>
+    <value>புத்தகக் குறி ஆக அ&amp;மை</value>
   </data>
   <data name="mEdit_GotoBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>புத்தகக் குறிக்கு போக</value>
@@ -441,13 +441,13 @@
     <value>161, 22</value>
   </data>
   <data name="mEdit_GotoBookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>புத்தகக் குறிக்கு போக</value>
+    <value>புத்தகக் கு&amp;றிக்கு போக</value>
   </data>
   <data name="mEdit_BookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
   </data>
   <data name="mEdit_BookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>புத்தகக் குறி</value>
+    <value>புத்தகக் &amp;குறி</value>
   </data>
   <data name="mEditToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -465,7 +465,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>உள்ளடக்க பார்வை</value>
+    <value>உள்ளட&amp;க்க பார்வை</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>தரவு விவர பார்வை காட்டு   Ctrl+Alt+M</value>
@@ -565,7 +565,7 @@
     <value>271, 6</value>
   </data>
   <data name="mShowPeakMeterMenuItem.AccessibleName" xml:space="preserve">
-    <value>பார்வைகளின் நிகழ்ச்சி செய் Ctrl+Alt+P</value>
+    <value>பீக் மீட்டர் காட்டு Ctrl+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+P</value>
@@ -574,7 +574,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
-    <value>பீக் மீட்டர் காட்டு</value>
+    <value>&amp;பீக் மீட்டர் காட்டு</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>ஆதார பார்வை காட்டு Ctrl+Alt+O</value>
@@ -595,7 +595,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.Text" xml:space="preserve">
-    <value>&amp; பதிவு கருவி பட்டை காட்டு</value>
+    <value> பதிவு கருவி பட்டை காட்டு</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 6</value>
@@ -613,7 +613,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ZoomInMenuItem.Text" xml:space="preserve">
-    <value>Zoom &amp;in</value>
+    <value>&amp;பெரிதாக்கு</value>
   </data>
   <data name="mView_ZoomOutMenuItem.AccessibleName" xml:space="preserve">
     <value>சிறிதாக்கு  ctrl+Alt+ -</value>
@@ -628,7 +628,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Text" xml:space="preserve">
-    <value>சிறிதாக்கு</value>
+    <value>&amp;சிறிதாக்கு</value>
   </data>
   <data name="mView_NormalSizeMenuItem.AccessibleName" xml:space="preserve">
     <value>சாதாரண அளவு ctrl+Alt+0</value>
@@ -640,7 +640,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Text" xml:space="preserve">
-    <value>சாதாரண அளவு</value>
+    <value>சாதார&amp;ண அளவு</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.AccessibleName" xml:space="preserve">
     <value>ஒலி பெரிதாக்கு Ctrl+Alt+Shift+plus</value>
@@ -655,7 +655,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Text" xml:space="preserve">
-    <value>பெரிதாக்கு</value>
+    <value>ஒ&amp;லி பெரிதாக்கு</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.AccessibleName" xml:space="preserve">
     <value>ஒலி சிறிதாக்கு Ctrl+Alt+Shift+ -</value>
@@ -712,7 +712,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.Text" xml:space="preserve">
-    <value>சொற்றொடர் பண்புகள்</value>
+    <value>சொற்&amp;றொடர் பண்புகள்</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.AccessibleName" xml:space="preserve">
     <value>பகுதி பண்புகள் Alt+Enter</value>
@@ -724,7 +724,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.Text" xml:space="preserve">
-    <value>பகுதி பண்புகள்</value>
+    <value>பகுதி ப&amp;ண்புகள்</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.AccessibleName" xml:space="preserve">
     <value>திட்டபணி பண்புகள்</value>
@@ -733,7 +733,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Text" xml:space="preserve">
-    <value>திட்டபணி பண்புகள்</value>
+    <value>திட்டப&amp;ணி பண்புகள்</value>
   </data>
   <data name="mViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -751,7 +751,7 @@
     <value>279, 22</value>
   </data>
   <data name="mAddSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; பகுதியை சேர்</value>
+    <value>பகுதி&amp;யை சேர்</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>உட்பகுதியை சேர்  Ctrl+Shift+H</value>
@@ -775,7 +775,7 @@
     <value>279, 22</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; பகுதியை செருகு</value>
+    <value>பகுதியை செருகு</value>
   </data>
   <data name="mRenameSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>பகுதியின் பெயர் மாற்றம் F2</value>
@@ -802,7 +802,7 @@
     <value>279, 22</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; பகுதியின் அளவை குறை</value>
+    <value>பகுதியின் அளவை குறை</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>பகுதியின் அளவை அதிகப்படுத்து Ctrl+Shift+Right</value>
@@ -856,7 +856,7 @@
     <value>279, 22</value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>பகுதிகளை அமிழ்த்து</value>
+    <value>பகுதிகளை அ&amp;மிழ்த்து</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 6</value>
@@ -877,7 +877,7 @@
     <value>63, 20</value>
   </data>
   <data name="mSectionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;பகுதிகள்</value>
+    <value>பகுதிக&amp;ள்</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>காலி சொற்றொடரை சேர் Ctrl+B</value>
@@ -889,7 +889,7 @@
     <value>279, 22</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>காலி சொற்றொடரை சேர்</value>
+    <value>&amp;காலி சொற்றொடரை சேர்</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>காலி பக்கங்களை சேர் Ctrl+Shift+B</value>
@@ -913,7 +913,7 @@
     <value>279, 22</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; ஒலி கோப்பைகளை இறக்குமதி செய்</value>
+    <value>ஒலி கோப்பைகளை இறக்குமதி செய்</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>சொற்றொடரை பிரி Ctrl+Q</value>
@@ -925,7 +925,7 @@
     <value>279, 22</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; சொற்றொடரை பிரி</value>
+    <value>சொற்றொடரை பிரி</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>அடுத்ததுடன் சொற்றொடரை அமிழ்த்துCtrl+M</value>
@@ -937,7 +937,7 @@
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; அடுத்ததுடன் சொற்றொடரை அமிழ்த்து</value>
+    <value>அடுத்ததுடன் சொற்றொடரை அமிழ்த்து</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>கீழே காணப்படும் சொற்றொடருடன் அமிழ்த்து</value>
@@ -961,7 +961,7 @@
     <value>279, 22</value>
   </data>
   <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; அமிழ்த்து</value>
+    <value>அமி&amp;ழ்த்து</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>ஒலியை செதுக்கு Ctrl+Alt+Q</value>
@@ -1027,7 +1027,7 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; இறுதி குறிப்புகள்</value>
+    <value>இறுதி குறி&amp;ப்புகள்</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>தொடர்புகள் சேர்</value>
@@ -1099,7 +1099,7 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; குறிப்புகளிலிருந்து பொறுப்புகளை துடை</value>
+    <value>குறிப்புகளிலிருந்து பொறுப்புகளை துடை</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -1114,7 +1114,7 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>வெற்று</value>
+    <value>&amp;வெற்று</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.AccessibleName" xml:space="preserve">
     <value>தலைப்பு Ctrl+Shift+D</value>
@@ -1126,7 +1126,7 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
-    <value>&amp; தலைப்பு</value>
+    <value>த&amp;லைப்பு</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.AccessibleName" xml:space="preserve">
     <value>பக்கம் Ctrl+Shift+G</value>
@@ -1138,7 +1138,7 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.Text" xml:space="preserve">
-    <value>&amp; பக்கம்</value>
+    <value> பக்கம்</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.AccessibleName" xml:space="preserve">
     <value>அமைதி Ctrl+Shift+E</value>
@@ -1150,7 +1150,7 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
-    <value>&amp; அமைதி</value>
+    <value> அமைதி</value>
   </data>
   <data name="mPhrases_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
@@ -1165,13 +1165,13 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
-    <value>&amp;புதிய விருப்ப பொறுப்பு</value>
+    <value>புதிய விருப்ப பொறுப்பு</value>
   </data>
   <data name="mPhrases_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
   </data>
   <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
-    <value>&amp; பொறுப்புகளை நியமிக்கவும்</value>
+    <value>பொறுப்புகளை நியமிக்கவும்</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.AccessibleName" xml:space="preserve">
     <value>பொறுப்புகளை துடை Ctrl+Shift+C</value>
@@ -1183,7 +1183,7 @@
     <value>279, 22</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.Text" xml:space="preserve">
-    <value>&amp; பொறுப்புகளை துடை</value>
+    <value> பொறுப்புகளை துடை</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -1240,7 +1240,7 @@
     <value>225, 22</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>&amp; ஒலி தேர்வுகளை தொடங்கு</value>
+    <value>ஒலி தேர்வுகளை தொ&amp;டங்கு</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
     <value>ஒலி தேர்வுகளை முடிCtrl+]</value>
@@ -1255,13 +1255,13 @@
     <value>225, 22</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;ஒலி தேர்வுகளை முடி</value>
+    <value>ஒலி தேர்வுகளை &amp;முடி</value>
   </data>
   <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
   </data>
   <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>ஒலி தேர்வு</value>
+    <value>ஒலி தேர்&amp;வு</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>அடுத்த செய்யவேண்டிய சொற்றொடர்Ctrl+F9</value>
@@ -1273,7 +1273,7 @@
     <value>271, 22</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;அடுத்த செய்யவேண்டிய சொற்றொடர்</value>
+    <value>அடுத்த செய்யவேண்டிய சொற்றொடர்</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>முந்தைய செய்யவேண்டிய சொற்றொடர் Ctrl+Shift+F9</value>
@@ -1285,7 +1285,7 @@
     <value>271, 22</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;முந்தைய செய்யவேண்டிய சொற்றொடர்</value>
+    <value>முந்தைய செய்யவேண்டிய சொற்றொடர்</value>
   </data>
   <data name="m_GoToPageToolStrip.AccessibleName" xml:space="preserve">
     <value>பக்கம் /  சொற்றொடர் Ctrl+G</value>
@@ -1312,7 +1312,7 @@
     <value>271, 22</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>விசேஷ சொற்றொடரை சேகரி</value>
+    <value>விசே&amp;ஷ சொற்றொடரை சேகரி</value>
   </data>
   <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -1339,7 +1339,7 @@
     <value>59, 20</value>
   </data>
   <data name="mPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; சொற்றொடர்கள்</value>
+    <value> சொற்றொடர்கள்</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>எல்லவற்றையும் வாசி Ctrl+Shift+Space</value>
@@ -1369,7 +1369,7 @@
     <value>176, 22</value>
   </data>
   <data name="mPlayToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; வாசி</value>
+    <value>&amp;வாசி</value>
   </data>
   <data name="mPauseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>இடை நிறுத்து இடம்</value>
@@ -1381,7 +1381,7 @@
     <value>176, 22</value>
   </data>
   <data name="mPauseToolStripMenuItem.Text" xml:space="preserve">
-    <value>இடை நிறுத்து</value>
+    <value>இ&amp;டை நிறுத்து</value>
   </data>
   <data name="mResumeToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>மறுபடியும் ஆரம்பி இடம்</value>
@@ -1393,7 +1393,7 @@
     <value>176, 22</value>
   </data>
   <data name="mResumeToolStripMenuItem.Text" xml:space="preserve">
-    <value>மறுபடியும் ஆரம்பி</value>
+    <value>மறுபடியும் ஆ&amp;ரம்பி</value>
   </data>
   <data name="mStopToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>நிறுத்து Ctrl+Space</value>
@@ -1405,7 +1405,7 @@
     <value>176, 22</value>
   </data>
   <data name="mStopToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; நிறுத்து</value>
+    <value>&amp;நிறுத்து</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>இயல்பான வேகம் Ctrl+0</value>
@@ -1417,7 +1417,7 @@
     <value>238, 22</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; இயல்பான வேகம்</value>
+    <value> இயல்பான வேகம்</value>
   </data>
   <data name="mElapseBacktoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
@@ -1453,7 +1453,7 @@
     <value>238, 22</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.Text" xml:space="preserve">
-    <value>மெதுவாக</value>
+    <value>&amp;மெதுவாக</value>
   </data>
   <data name="mFastPlaytoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1489,7 +1489,7 @@
     <value>176, 22</value>
   </data>
   <data name="mPreviewToolStripMenuItem.Text" xml:space="preserve">
-    <value>முன்னோட்டமிடு</value>
+    <value>முன்&amp;னோட்டமிடு</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>கண்காணிப்பை தொடங்கு  Ctrl+R</value>
@@ -1501,7 +1501,7 @@
     <value>267, 22</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; கண்காணிப்பை தொடங்கு</value>
+    <value>கண்காணிப்&amp;பை தொடங்கு</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>பதிவு செய்தலை ஆரம்பி  Ctrl+R</value>
@@ -1513,7 +1513,7 @@
     <value>267, 22</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; பதிவு செய்தலை ஆரம்பி</value>
+    <value>பதிவு செய்தலை ஆரம்பி</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>நேரடி பதிவு செய்தலை ஆரம்பி ctrl+shift+r</value>
@@ -1525,19 +1525,19 @@
     <value>267, 22</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.Text" xml:space="preserve">
-    <value>நேரடி பதிவு செய்தலை ஆரம்பி</value>
+    <value>&amp;நேரடி பதிவு செய்தலை ஆரம்பி</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Text" xml:space="preserve">
-    <value>மேலெழுதல் அனுமதி</value>
+    <value>மேலெ&amp;ழுதல் அனுமதி</value>
   </data>
   <data name="mRecordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
   <data name="mRecordToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; பதிவு</value>
+    <value>&amp;பதிவு</value>
   </data>
   <data name="mGenerateSpeechToolStripMenuItem.AccessibleDescription" xml:space="preserve">
     <value>பேச்சை உருவாக்கு</value>
@@ -1549,7 +1549,7 @@
     <value>159, 22</value>
   </data>
   <data name="selectedPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>தேர்ந்தெடுத்த பக்கம்</value>
+    <value>தேர்ந்&amp;தெடுத்த பக்கம்</value>
   </data>
   <data name="allEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>எல்லா காலி பக்கங்களுக்கும் பேச்சை உருவாக்கு</value>
@@ -1558,13 +1558,13 @@
     <value>159, 22</value>
   </data>
   <data name="allEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; எல்லா காலி பக்கங்கள்</value>
+    <value>எல்லா காலி பக்கங்கள்</value>
   </data>
   <data name="mGenerateSpeechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
   <data name="mGenerateSpeechToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; பேச்சை உருவாக்கு</value>
+    <value>பேச்&amp;சை உருவாக்கு</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 6</value>
@@ -1591,7 +1591,7 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>முந்தைய பக்கம்</value>
+    <value>முந்&amp;தைய பக்கம்</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>முந்தைய சொற்றொடர்  Alt+Left</value>
@@ -1603,7 +1603,7 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>முந்தைய சொற்றொடர்</value>
+    <value>மு&amp;ந்தைய சொற்றொடர்</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>அடுத்த சொற்றொடர் Alt+Right</value>
@@ -1615,7 +1615,7 @@
     <value>207, 22</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>அடுத்த சொற்றொடர்</value>
+    <value>அடுத்த சொற்றொட&amp;ர்</value>
   </data>
   <data name="mNextPageToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>அடுத்த பக்கம் Alt+PageDown</value>
@@ -1627,7 +1627,7 @@
     <value>207, 22</value>
   </data>
   <data name="mNextPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>அடுத்த பக்கம்</value>
+    <value>அடுத்த பக்க&amp;ம்</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>அடுத்த பகுதி Alt+Down</value>
@@ -1660,7 +1660,7 @@
     <value>176, 22</value>
   </data>
   <data name="navigationToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; உலாவு</value>
+    <value> உ&amp;லாவு</value>
   </data>
   <data name="mRewindToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>பின்செல் Ctrl+comma</value>
@@ -1675,7 +1675,7 @@
     <value>176, 22</value>
   </data>
   <data name="mRewindToolStripMenuItem.Text" xml:space="preserve">
-    <value>பின்செல்</value>
+    <value>பின்செ&amp;ல்</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>வேகமாக முன்னுக்கு Ctrl+period</value>
@@ -1690,7 +1690,7 @@
     <value>176, 22</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; வேகமாக முன்னோக்கு</value>
+    <value>வேக&amp;மாக முன்னோக்கு</value>
   </data>
   <data name="transportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 20</value>
@@ -1708,7 +1708,7 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_PreferencesMenuItem.Text" xml:space="preserve">
-    <value>&amp;விருப்பத்தேர்வுகள்</value>
+    <value>விருப்பத்&amp;தேர்வுகள்</value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 6</value>
@@ -1723,7 +1723,7 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.Text" xml:space="preserve">
-    <value>ஒலி ஏற்றுமதி</value>
+    <value>ஒலி ஏற்று&amp;மதி</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.AccessibleName" xml:space="preserve">
     <value>டைசியில் ஏற்றுமதி செய் Ctrl+E</value>
@@ -1735,7 +1735,7 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
-    <value>&amp; டைசியில் ஏற்றுமதி செய்</value>
+    <value>டைசியில் &amp;ஏற்றுமதி செய்</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>தொடர்பில்லாத ஒலிகளை சுத்தம் செய் ctrl+l</value>
@@ -1762,7 +1762,7 @@
     <value>238, 22</value>
   </data>
   <data name="mHelp_WhatsNewMenuItem.Text" xml:space="preserve">
-    <value>புதியது என்ன (இணைப்புகள்)</value>
+    <value>புதியது &amp;என்ன (இணைப்புகள்)</value>
   </data>
   <data name="mHelp_WhatsNewMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1774,7 +1774,7 @@
     <value>238, 22</value>
   </data>
   <data name="mHelp_ContentsMenuItem.Text" xml:space="preserve">
-    <value>&amp;உள்ளடக்கங்கள்</value>
+    <value>உள்ளடக்க&amp;ங்கள்</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.AccessibleName" xml:space="preserve">
     <value>ஆதாரத்தின் இணைப்புகள் / ப்ரச்சனையை கண்காணிப்பவர்Ctrl+Alt+R</value>
@@ -1783,13 +1783,13 @@
     <value>238, 22</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.Text" xml:space="preserve">
-    <value>ஆதாரத்தின் இணைப்புகள் / ப்ரச்சனையை கண்காணிப்பவர்</value>
+    <value>ஆதாரத்தின் இணைப்புகள் / ப்ரச்ச&amp;னையை கண்காணிப்பவர்</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Text" xml:space="preserve">
-    <value>ஓபி - ஐ பற்றி</value>
+    <value>ஓபி - &amp;ஐ பற்றி</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>புதுபித்தல் இருக்கிறதா என்று சரி பார்க்கவும்</value>
@@ -1798,7 +1798,7 @@
     <value>238, 22</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.Text" xml:space="preserve">
-    <value>புதுபித்தல் இருக்கிறதா என்று சரி பார்க்கவும்</value>
+    <value>புதுபித்தல் இ&amp;ருக்கிறதா என்று சரி பார்க்கவும்</value>
   </data>
   <data name="mHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -2168,7 +2168,7 @@
     <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Obi (ஓபி)</value>
+    <value>v</value>
   </data>
   <data name="&gt;&gt;mFileToolStripMenuItem.Name" xml:space="preserve">
     <value>mFileToolStripMenuItem</value>
