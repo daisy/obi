@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="tmUpdateText.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mRightBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -157,7 +163,7 @@
     <value>2</value>
   </data>
   <data name="lblLeft.Text" xml:space="preserve">
-    <value>L:</value>
+    <value>एल</value>
   </data>
   <data name="&gt;&gt;mLeftBox.Name" xml:space="preserve">
     <value>mLeftBox</value>
@@ -241,7 +247,7 @@
     <value>True</value>
   </data>
   <data name="mResetButton.Text" xml:space="preserve">
-    <value>पुनः निर्धारण</value>
+    <value>रिसेट</value>
   </data>
   <data name="&gt;&gt;mLeftBox.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -259,13 +265,13 @@
     <value>102, 4</value>
   </data>
   <data name="lblRight.Text" xml:space="preserve">
-    <value>R:</value>
+    <value>आर</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
   </data>
   <data name="mRightBox.AccessibleName" xml:space="preserve">
-    <value>दाया</value>
+    <value>दाहिना</value>
   </data>
   <data name="&gt;&gt;lblLeft.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -283,7 +289,7 @@
     <value>3</value>
   </data>
   <data name="mLeftBox.AccessibleName" xml:space="preserve">
-    <value>बाया</value>
+    <value>बायाँ</value>
   </data>
   <data name="&gt;&gt;mResetButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -294,10 +300,4 @@
   <data name="mResetButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 28</value>
   </data>
-  <metadata name="tmUpdateText.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>
