@@ -117,241 +117,250 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;mContentColumn.Name" xml:space="preserve">
-    <value>mContentColumn</value>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="mMetadataListView.AccessibleName" xml:space="preserve">
+    <value>मेटाडेटा सूची</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mMetadataListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="mNameColumn.Text" xml:space="preserve">
+    <value>नाम</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mNameColumn.Width" type="System.Int32, mscorlib">
     <value>143</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mNameTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 0, 4</value>
+  <data name="mContentColumn.Text" xml:space="preserve">
+    <value>सामग्री</value>
   </data>
-  <data name="&gt;&gt;mMetadataListView.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="mContentColumn.Width" type="System.Int32, mscorlib">
+    <value>178</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 331</value>
-  </data>
-  <data name="&gt;&gt;mNameColumn.Name" xml:space="preserve">
-    <value>mNameColumn</value>
-  </data>
-  <data name="&gt;&gt;mUpdateButton.Name" xml:space="preserve">
-    <value>mUpdateButton</value>
-  </data>
-  <data name="&gt;&gt;mContentLabel.Name" xml:space="preserve">
-    <value>mContentLabel</value>
-  </data>
-  <data name="mNameLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 4, 0</value>
-  </data>
   <data name="mMetadataListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
-  </data>
-  <data name="mContentLabel.Text" xml:space="preserve">
-    <value>सामग्री:</value>
-  </data>
-  <data name="&gt;&gt;mContentTextbox.Name" xml:space="preserve">
-    <value>mContentTextbox</value>
-  </data>
-  <data name="mContentLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 361</value>
   </data>
   <data name="mMetadataListView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="&gt;&gt;mContentTextbox.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="mMetadataListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 321</value>
   </data>
-  <data name="&gt;&gt;mNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mMetadataListView.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="mContentTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 359</value>
+  <data name="&gt;&gt;mMetadataListView.Name" xml:space="preserve">
+    <value>mMetadataListView</value>
   </data>
-  <data name="mContentLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;mMetadataListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mContentLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 16</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="mMetadataListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;mNameTextbox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mMetadataListView.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;mNameTextbox.Name" xml:space="preserve">
-    <value>mNameTextbox</value>
+  <data name="&gt;&gt;mMetadataListView.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mContentTextbox.AccessibleName" xml:space="preserve">
+    <value>मेटाडेटा सामग्री</value>
   </data>
   <data name="mContentTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
+  <data name="mContentTextbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 359</value>
+  </data>
+  <data name="mContentTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 0, 4</value>
+  </data>
+  <data name="mContentTextbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
   <data name="mContentTextbox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;mContentTextbox.Name" xml:space="preserve">
+    <value>mContentTextbox</value>
+  </data>
+  <data name="&gt;&gt;mContentTextbox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mContentTextbox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mContentTextbox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="mUpdateButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="mUpdateButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mUpdateButton.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="mUpdateButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mUpdateButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>246, 389</value>
+  </data>
+  <data name="mUpdateButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 0, 0</value>
+  </data>
+  <data name="mUpdateButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 28</value>
+  </data>
+  <data name="mUpdateButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="mUpdateButton.Text" xml:space="preserve">
+    <value>अपडेट</value>
+  </data>
+  <data name="&gt;&gt;mUpdateButton.Name" xml:space="preserve">
+    <value>mUpdateButton</value>
+  </data>
+  <data name="&gt;&gt;mUpdateButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mUpdateButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mUpdateButton.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="mNameTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
-  <data name="mUpdateButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="mContentLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 4, 0</value>
-  </data>
-  <data name="mContentTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 22</value>
-  </data>
-  <data name="mUpdateButton.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
-  </data>
-  <data name="mUpdateButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;mContentTextbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mNameTextbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="mUpdateButton.Text" xml:space="preserve">
-    <value>नवीनीकरण</value>
-  </data>
-  <data name="mNameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
-  <data name="mUpdateButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 28</value>
-  </data>
-  <data name="&gt;&gt;mUpdateButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="mNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MetadataView</value>
-  </data>
-  <data name="&gt;&gt;mMetadataListView.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;mContentLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="mNameTextbox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="mNameLabel.Text" xml:space="preserve">
-    <value>नाम:</value>
-  </data>
-  <data name="&gt;&gt;mContentLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="mContentTextbox.AccessibleName" xml:space="preserve">
-    <value>मेटाडेटा मान:</value>
-  </data>
-  <data name="mNameColumn.Text" xml:space="preserve">
-    <value>नाम</value>
-  </data>
-  <data name="mUpdateButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 0, 0</value>
-  </data>
-  <data name="mUpdateButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;mMetadataListView.Name" xml:space="preserve">
-    <value>mMetadataListView</value>
-  </data>
-  <data name="&gt;&gt;mContentLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;mNameColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="mContentLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;mContentColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>311, 417</value>
-  </data>
-  <data name="mMetadataListView.AccessibleName" xml:space="preserve">
-    <value>मेटा डेटा सूची</value>
-  </data>
-  <data name="mUpdateButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>246, 389</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="mNameTextbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>64, 329</value>
+  </data>
+  <data name="mNameTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 0, 4</value>
   </data>
   <data name="mNameTextbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
   </data>
-  <data name="&gt;&gt;mMetadataListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mNameTextbox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="mNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="&gt;&gt;mNameTextbox.Name" xml:space="preserve">
+    <value>mNameTextbox</value>
   </data>
-  <data name="mMetadataListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>311, 321</value>
+  <data name="&gt;&gt;mNameTextbox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mUpdateButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="&gt;&gt;mUpdateButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="mContentColumn.Width" type="System.Int32, mscorlib">
-    <value>178</value>
-  </data>
-  <data name="mContentLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;mNameLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mUpdateButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="mContentTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 0, 4</value>
-  </data>
-  <data name="mContentColumn.Text" xml:space="preserve">
-    <value>सामग्री</value>
-  </data>
-  <data name="&gt;&gt;mNameLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;mNameLabel.Name" xml:space="preserve">
-    <value>mNameLabel</value>
-  </data>
-  <data name="&gt;&gt;mContentTextbox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mNameTextbox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNameTextbox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="mNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="mNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 331</value>
+  </data>
+  <data name="mNameLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 4, 0</value>
+  </data>
+  <data name="mNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="mNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="mNameLabel.Text" xml:space="preserve">
+    <value>नाम</value>
+  </data>
+  <data name="&gt;&gt;mNameLabel.Name" xml:space="preserve">
+    <value>mNameLabel</value>
+  </data>
+  <data name="&gt;&gt;mNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNameLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNameLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mContentLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="mContentLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mContentLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 361</value>
+  </data>
+  <data name="mContentLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 4, 0</value>
+  </data>
+  <data name="mContentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 16</value>
+  </data>
+  <data name="mContentLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="mContentLabel.Text" xml:space="preserve">
+    <value>सामग्री</value>
+  </data>
+  <data name="&gt;&gt;mContentLabel.Name" xml:space="preserve">
+    <value>mContentLabel</value>
+  </data>
+  <data name="&gt;&gt;mContentLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mContentLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mContentLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
-  <data name="mMetadataListView.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 417</value>
+  </data>
+  <data name="&gt;&gt;mNameColumn.Name" xml:space="preserve">
+    <value>mNameColumn</value>
+  </data>
+  <data name="&gt;&gt;mNameColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mContentColumn.Name" xml:space="preserve">
+    <value>mContentColumn</value>
+  </data>
+  <data name="&gt;&gt;mContentColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MetadataView</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
