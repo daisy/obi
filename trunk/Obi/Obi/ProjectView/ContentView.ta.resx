@@ -251,31 +251,31 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>வெற்று</value>
+    <value>P&amp;lain</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
-    <value>&amp;தலைப்பு</value>
+    <value>&amp;Heading</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Text" xml:space="preserve">
-    <value>&amp;பக்கம்</value>
+    <value>&amp;Page</value>
   </data>
   <data name="Context_AssignRole_SilenceMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
-    <value>&amp;அமைதி</value>
+    <value>&amp;Silence</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>நங்கூரம்</value>
+    <value>Anch&amp;or</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 6</value>
