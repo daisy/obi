@@ -104,6 +104,9 @@
     <EmbeddedResource Include="messages.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="messages.ta.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ParameterControls\BaseUserControl.resx">
       <DependentUpon>BaseUserControl.cs</DependentUpon>
       <SubType>Designer</SubType>
