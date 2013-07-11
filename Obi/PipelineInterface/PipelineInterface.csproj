@@ -101,6 +101,9 @@
     <EmbeddedResource Include="messages.fr.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="messages.hi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="messages.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
