@@ -1105,10 +1105,6 @@ namespace Obi.ProjectView
             if (cursorPositionInContentView < this.Size.Width) EnsureControlVisible(mPlaybackBlock);
             */
             }
-        public void UpdateCursorForGoto(double time)
-        {
-            m_RenderingWaveform.SetCursorTimeForGoto(time);
-        }
 
         private void UpdateBlocksLabelInSelectedNodeStrip ()
             {
