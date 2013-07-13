@@ -1984,7 +1984,7 @@
     <value>போக்குவரத்து பட்டையிலிருந்து நேரடியாக பதிவு செய்யவும்</value>
   </data>
   <data name="AudioTab_RetainInitialSilence" xml:space="preserve">
-    <value>சொற்றொடர் கன்டுபிடித்தலின் பொழுது ஆரம்ப அமைதியை தக்கவைத்துகொள்ளவும்</value>
+    <value>சொற்றொடர் கண்டுபிடித்தலின் பொழுது ஆரம்ப அமைதியை தக்கவைத்துகொள்ளவும்</value>
   </data>
   <data name="AudioTab_StartRecordingFromCursor" xml:space="preserve">
     <value>திரை குறியிலிருந்து பதிவு செய்ய ஆரம்பித்து பின் வரும் ஒலிகளை அழிக்கவும்</value>

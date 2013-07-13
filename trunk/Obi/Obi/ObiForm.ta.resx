@@ -1726,7 +1726,7 @@
     <value>ஒலி ஏற்று&amp;மதி</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.AccessibleName" xml:space="preserve">
-    <value>டைசியில் ஏற்றுமதி செய் Ctrl+E</value>
+    <value>டெய்சியில் ஏற்றுமதி செய்  Ctrl+E</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+E</value>
