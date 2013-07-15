@@ -1735,7 +1735,7 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
-    <value>டைசியில் &amp;ஏற்றுமதி செய்</value>
+    <value>டெய்சியில் ஏற்றுமதி செய்</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>தொடர்பில்லாத ஒலிகளை சுத்தம் செய் ctrl+l</value>
