@@ -480,12 +480,12 @@ namespace Obi.ProjectView
         {
             if ((mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing
                 || mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused) &&
-                mCurrentPlaylist.CurrentTimeInAsset < mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.TotalMilliseconds)
+                mCurrentPlaylist.CurrentTimeInAsset < mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsMilliseconds)
             {
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                     new AudioRange(mCurrentPlaylist.CurrentTimeInAsset,
-                        mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.TotalMilliseconds));
+                        mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsMilliseconds));
                 return true;
             }
             else if (CurrentState == State.Stopped && mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
@@ -493,7 +493,7 @@ namespace Obi.ProjectView
                 double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                     new AudioRange(time ,
-                        ((PhraseNode)mView.Selection.Node).Audio.Duration.AsTimeSpan.TotalMilliseconds));
+                        ((PhraseNode)mView.Selection.Node).Audio.Duration.AsMilliseconds));
                 return true;
             }
             return false;
@@ -509,13 +509,13 @@ namespace Obi.ProjectView
             {
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
-                    new AudioRange(0.0, mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.TotalMilliseconds));
+                    new AudioRange(0.0, mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsMilliseconds));
                 return true;
             }
             else if (mState == State.Stopped && mView.Selection != null && mView.Selection.Node is PhraseNode)
             {
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
-                    new AudioRange(0.0, ((PhraseNode)mView.Selection.Node).Audio.Duration.AsTimeSpan.TotalMilliseconds));
+                    new AudioRange(0.0, ((PhraseNode)mView.Selection.Node).Audio.Duration.AsMilliseconds));
                 return true;
             }
             return false;
@@ -1020,7 +1020,7 @@ namespace Obi.ProjectView
                         }
                         if (n is PhraseNode && n.Children.Count == 0)
                         {
-                            m_ElapsedTime_Book += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                            m_ElapsedTime_Book += ((PhraseNode)n).Audio.Duration.AsMilliseconds;
                         }
                         
                         return true;
@@ -1070,7 +1070,7 @@ namespace Obi.ProjectView
                 }
                 if (n is PhraseNode && n.Children.Count == 0)
                 {
-                    m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                    m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase += ((PhraseNode)n).Audio.Duration.AsMilliseconds;
                 }
             }
 
@@ -2712,8 +2712,8 @@ namespace Obi.ProjectView
                 from = 0.0;
             }
             double end = from + duration;
-            if (end > audioData.AudioDuration.AsTimeSpan.TotalMilliseconds)
-                end = audioData.AudioDuration.AsTimeSpan.TotalMilliseconds;
+            if (end > audioData.AudioDuration.AsMilliseconds)
+                end = audioData.AudioDuration.AsMilliseconds;
 
             if (from >= end) return;
             //mPlayer.PlayPreview(audioData, from, end, forward ? from : end);

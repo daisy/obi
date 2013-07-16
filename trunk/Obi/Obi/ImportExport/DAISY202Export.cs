@@ -209,7 +209,7 @@ namespace Obi.ImportExport
                 CreateAppendXmlAttribute ( smilDocument, smilTitleMetadataNode, "content", titleMetadata.NameContentAttribute.Value);
                 }
             //AddSmilHeadElements ( smilDocument, null, m_SmilElapseTime.ToString ().Split ( '.' )[0] );
-            AddSmilHeadElements ( smilDocument, null,GetStringTotalTimeRoundedOff( m_SmilElapseTime.AsTimeSpan)  );
+            AddSmilHeadElements ( smilDocument, null,GetStringTotalTimeRoundedOff( new TimeSpan(m_SmilElapseTime.AsTimeSpanTicks))  );
 
             WriteXmlDocumentToFile ( smilDocument,
                 Path.Combine ( m_ExportDirectory, "master.smil" ) );
@@ -391,9 +391,9 @@ namespace Obi.ImportExport
                                 Path.GetFileName(externalMedia.Src);
                             CreateAppendXmlAttribute(smilDocument, audioNode, "src", relativeSRC);
                             CreateAppendXmlAttribute(smilDocument, audioNode, "clip-begin",
-                                GetNPTSmiltime(externalMedia.ClipBegin.AsTimeSpan));
+                                GetNPTSmiltime(new TimeSpan(externalMedia.ClipBegin.AsTimeSpanTicks)));
                             CreateAppendXmlAttribute(smilDocument, audioNode, "clip-end",
-                                GetNPTSmiltime(externalMedia.ClipEnd.AsTimeSpan));
+                                GetNPTSmiltime(new TimeSpan(externalMedia.ClipEnd.AsTimeSpanTicks)));
                             CreateAppendXmlAttribute(smilDocument, audioNode, "id", "aud" + IncrementID);
                             sectionDuration.Add(externalMedia.Duration);
                             if (!m_FilesList.Contains(relativeSRC)) m_FilesList.Add(relativeSRC);
@@ -431,14 +431,14 @@ namespace Obi.ImportExport
                 // first increment exported section count
                 m_ExportedSectionCount++;
 
-                string strDurTime = TruncateTimeToDecimalPlaces ( sectionDuration.AsTimeSpan.TotalSeconds.ToString (), 3 );
+                string strDurTime = TruncateTimeToDecimalPlaces(new TimeSpan(sectionDuration.AsTimeSpanTicks).TotalSeconds.ToString(), 3);
                 //string strDurTime = Math.Round ( sectionDuration.getTime ().TotalSeconds, 3, MidpointRounding.ToEven).ToString ();
                 strDurTime = strDurTime + "s";
                 CreateAppendXmlAttribute ( smilDocument, mainSeq, "dur", strDurTime );
 
                 //AddSmilHeadElements ( smilDocument, m_SmilElapseTime.ToString (), sectionDuration.ToString () );
-                AddSmilHeadElements(smilDocument, AdjustTimeStringForDay( m_SmilElapseTime.AsTimeSpan) , 
-                    AdjustTimeStringForDay( sectionDuration.AsTimeSpan ));
+                AddSmilHeadElements(smilDocument, AdjustTimeStringForDay( new TimeSpan(m_SmilElapseTime.AsTimeSpanTicks)) , 
+                    AdjustTimeStringForDay( new TimeSpan(sectionDuration.AsTimeSpanTicks) ));
                 m_SmilElapseTime.Add( sectionDuration );
                 m_SmilFile_TitleMap.Add ( smilFileName, section.Label );
 
@@ -701,7 +701,7 @@ namespace Obi.ImportExport
             headNode.AppendChild ( totalTimeNode );
             CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "name", "ncc:totalTime" );
             //CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "content", m_SmilElapseTime.ToString ().Split ( '.' )[0] );
-            CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "content", GetStringTotalTimeRoundedOff ( m_SmilElapseTime.AsTimeSpan ) );
+            CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "content", GetStringTotalTimeRoundedOff ( new TimeSpan(m_SmilElapseTime.AsTimeSpanTicks ) ));
 
             XmlNode multimediaType  = nccDocument.CreateElement(null, "meta", headNode.NamespaceURI);
             headNode.AppendChild(multimediaType);

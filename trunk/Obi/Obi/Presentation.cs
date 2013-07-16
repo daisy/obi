@@ -554,7 +554,7 @@ namespace Obi
         private List<ManagedAudioMedia> ImportAudioFromFile(string path, double durationMs)
         {
             ManagedAudioMedia media = ImportAudioFromFile(path);
-            double totalDuration = media.Duration.AsTimeSpan.TotalMilliseconds;
+            double totalDuration = media.Duration.AsMilliseconds;
             // if duration is 0 or less, just one phrase
             int phrases = durationMs <= 0.0 ? 1 : (int)Math.Floor(totalDuration / durationMs);
             double lastPhraseBegin = phrases * durationMs;

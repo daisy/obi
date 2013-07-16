@@ -515,7 +515,7 @@ namespace Obi.ProjectView
             get
             {
                 return mSelection.HasCursor &&
-                    mSelection.CursorTime >= 0.0 && mSelection.CursorTime <= Media.AudioDuration.AsTimeSpan.TotalMilliseconds;
+                    mSelection.CursorTime >= 0.0 && mSelection.CursorTime <= Media.AudioDuration.AsMilliseconds;
             }
         }
 
@@ -523,7 +523,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                double d = Media.AudioDuration.AsTimeSpan.TotalMilliseconds;
+                double d = Media.AudioDuration.AsMilliseconds;
                 return !mSelection.HasCursor &&
                     mSelection.SelectionBeginTime >= 0.0 && mSelection.SelectionBeginTime <= d &&
                     mSelection.SelectionEndTime >= 0.0 && mSelection.SelectionEndTime <= d &&
@@ -534,13 +534,13 @@ namespace Obi.ProjectView
         // Convert a pixel position into a time (in ms.)
         private double TimeFromX(int x)
         {
-            return x * Media.AudioDuration.AsTimeSpan.TotalMilliseconds / Width_Expected;
+            return x * Media.AudioDuration.AsMilliseconds / Width_Expected;
         }
 
         // Convert a time (in ms) to a pixel position.
         private int XFromTime(double time)
         {
-            return (int)Math.Round(time / Media.AudioDuration.AsTimeSpan.TotalMilliseconds * Width_Expected);
+            return (int)Math.Round(time / Media.AudioDuration.AsMilliseconds * Width_Expected);
         }
 
         private void Waveform_Disposed(object sender, EventArgs e)

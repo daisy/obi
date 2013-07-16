@@ -289,7 +289,7 @@ namespace Obi
             set
             {
                 double phraseDurationMilliseconds =
-                    mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                    mPhrases[mCurrentPhraseIndex].Audio.Duration.AsMilliseconds;
 
                 if (value >= 0 &&
                     value < phraseDurationMilliseconds)
@@ -332,7 +332,7 @@ namespace Obi
 
         public void Play(double from)
         {
-        if (from < 0 || from >= mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds)
+        if (from < 0 || from >= mPhrases[mCurrentPhraseIndex].Audio.Duration.AsMilliseconds)
             from = 0;
 
             mPlaybackStartTime = from;
@@ -341,11 +341,11 @@ namespace Obi
 
         public void Play(double from, double to)
         {
-        if (from < 0 || from >= mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds)
+        if (from < 0 || from >= mPhrases[mCurrentPhraseIndex].Audio.Duration.AsMilliseconds)
             from = 0;
 
-        if (to < 0 || to >= mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds)
-            to = mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds;
+        if (to < 0 || to >= mPhrases[mCurrentPhraseIndex].Audio.Duration.AsMilliseconds)
+            to = mPhrases[mCurrentPhraseIndex].Audio.Duration.AsMilliseconds;
 
             mPlaybackEndTime = to;
             Play(from);
@@ -386,7 +386,7 @@ namespace Obi
                         {
                             mPhrases.Add((PhraseNode)n);
                             mStartTimes.Add(mTotalTime);
-                            mTotalTime += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                            mTotalTime += ((PhraseNode)n).Audio.Duration.AsMilliseconds;
                             UpdateFirstandLastSectionsAndPages((PhraseNode)n);
                         }
                         return true;
@@ -402,7 +402,7 @@ namespace Obi
                         {
                             mPhrases.Add((PhraseNode)n);
                             mStartTimes.Add(mTotalTime);
-                            mTotalTime += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                            mTotalTime += ((PhraseNode)n).Audio.Duration.AsMilliseconds;
                             UpdateFirstandLastSectionsAndPages((PhraseNode)n);
                         }
                         return true;
@@ -448,7 +448,7 @@ namespace Obi
                 {
                     mPhrases.Add((PhraseNode)node);
                     mStartTimes.Add(mTotalTime);
-                    mTotalTime += ((PhraseNode)node).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                    mTotalTime += ((PhraseNode)node).Audio.Duration.AsMilliseconds;
                     UpdateFirstandLastSectionsAndPages((PhraseNode)node);
                 }
             }
@@ -475,11 +475,11 @@ namespace Obi
                 {
                     if (n is PhraseNode && ((PhraseNode)n).Used)
                     {
-                        double time = ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                        double time = ((PhraseNode)n).Audio.Duration.AsMilliseconds;
                         mPhrases.Insert(index, (PhraseNode)n);
                         mStartTimes.Add(0.0);
                         mStartTimes[index] = index == 0 ? 0.0 :
-                            (mStartTimes[index - 1] + mPhrases[index - 1].Audio.Duration.AsTimeSpan.TotalMilliseconds);
+                            (mStartTimes[index - 1] + mPhrases[index - 1].Audio.Duration.AsMilliseconds);
                         mTotalTime += time;
                         UpdateFirstandLastSectionsAndPages((PhraseNode)n);
                         ++index;
@@ -489,7 +489,7 @@ namespace Obi
             );
             for (int i = index; i < mStartTimes.Count - 1; ++i)
             {
-                mStartTimes[i + 1] = mStartTimes[i] + mPhrases[i].Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                mStartTimes[i + 1] = mStartTimes[i] + mPhrases[i].Audio.Duration.AsMilliseconds;
             }
         }
 
@@ -509,7 +509,7 @@ namespace Obi
         {
             if (mPhrases.Count == 0) return;
             AudioLib.AudioPlayer.StateChangedEventArgs evargs = new AudioLib.AudioPlayer.StateChangedEventArgs(mPlayer.CurrentState);
-            if (mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds == 0)
+            if (mPhrases[mCurrentPhraseIndex].Audio.Duration.AsMilliseconds == 0)
             {
                 return ;
             }
@@ -531,7 +531,7 @@ namespace Obi
             AudioLibPCMFormat format = mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.PCMFormat.Data;
 
             double phraseDurationMilliseconds =
-                    mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                    mPhrases[mCurrentPhraseIndex].Audio.Duration.AsMilliseconds;
 
             double millisecondsBegin = from;
             long bytesBegin = format.ConvertTimeToBytes((long)(millisecondsBegin * Time.TIME_UNIT));
@@ -606,7 +606,7 @@ namespace Obi
                         Console.WriteLine("removing phrases ");
                         mPhrases.RemoveAt(index);
                         if (index < mStartTimes.Count - 1) mStartTimes.RemoveAt(index + 1);
-                        mTotalTime -= ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds ;
+                        mTotalTime -= ((PhraseNode)n).Audio.Duration.AsMilliseconds ;
                     }
                     return true;
                 },
@@ -614,7 +614,7 @@ namespace Obi
             );
             for (int i = updateTimeFrom; i < mPhrases.Count; ++i)
             {
-                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Audio.Duration.AsMilliseconds;
             }
         }
 
@@ -709,7 +709,7 @@ namespace Obi
             get
             {
                 return mCurrentPhraseIndex >= 0 && mCurrentPhraseIndex < mPhrases.Count ?
-                    mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds : 0.0;
+                    mPhrases[mCurrentPhraseIndex].Audio.Duration.AsMilliseconds : 0.0;
             }
         }
 
@@ -734,11 +734,11 @@ namespace Obi
                       mPlayer.CurrentAudioPCMFormat != null?  (double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) /
                       Time.TIME_UNIT: 0;
 
-                return mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds - currentTimePosition;
+                return mPhrases[mCurrentPhraseIndex].Audio.Duration.AsMilliseconds - currentTimePosition;
             }
             set
             {
-                CurrentTimeInAsset = mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds - value;
+                CurrentTimeInAsset = mPhrases[mCurrentPhraseIndex].Audio.Duration.AsMilliseconds - value;
             }
         }
 
@@ -1226,9 +1226,9 @@ namespace Obi
         {
             for (int i = index + 1; i < mStartTimes.Count; ++i)
             {
-                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Audio.Duration.AsMilliseconds;
             }
-            mTotalTime = mStartTimes[mStartTimes.Count - 1] + mPhrases[mStartTimes.Count - 1].Audio.Duration.AsTimeSpan.TotalMilliseconds;
+            mTotalTime = mStartTimes[mStartTimes.Count - 1] + mPhrases[mStartTimes.Count - 1].Audio.Duration.AsMilliseconds;
             System.Diagnostics.Debug.Print("!!! Playlist: {0} phrase(s), length = {1}ms.", mPhrases.Count, mTotalTime);
         }
 
@@ -1374,8 +1374,8 @@ namespace Obi
         public void TriggerEndOfPreviewPlaylist ( double time   )
             {
             if (time > 0 && time <
-                mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.AudioDuration.AsTimeSpan.TotalMilliseconds
-                //Audioplayer.CurrentAudio.AudioDuration.AsTimeSpan.TotalMilliseconds
+                mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.AudioDuration.AsMilliseconds
+                //Audioplayer.CurrentAudio.AudioDuration.AsMilliseconds
                 )
                 {
                 mRevertTime = time;

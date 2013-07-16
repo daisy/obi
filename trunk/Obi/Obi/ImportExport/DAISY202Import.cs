@@ -806,9 +806,9 @@ WavAudioMediaData mediaData =
             WavClip wavClip = new WavClip(dataProv);
 
             Time newClipE = clipE.Copy();
-            if (Math.Abs( newClipE.AsTimeSpan.TotalMilliseconds) > Math.Abs( wavClip.MediaDuration.AsTimeSpan.TotalMilliseconds))
+            if (Math.Abs( newClipE.AsMilliseconds) > Math.Abs( wavClip.MediaDuration.AsMilliseconds))
             {
-                Console.WriteLine("clip adjusted. file size: " + wavClip.MediaDuration.AsTimeSpan.TotalMilliseconds + "; clip end: " + newClipE.AsTimeSpan.TotalMilliseconds);
+                Console.WriteLine("clip adjusted. file size: " + wavClip.MediaDuration.AsMilliseconds + "; clip end: " + newClipE.AsMilliseconds);
                 clipEndAdjustedToNull(clipB, newClipE, wavClip.MediaDuration, treeNode);
                 //newClipE = wavClip.MediaDuration;
                 newClipE = null;
@@ -836,7 +836,7 @@ WavAudioMediaData mediaData =
         
         protected virtual void clipEndAdjustedToNull(Time clipB, Time clipE, Time duration, TreeNode treeNode)
         {
-            double diff = clipE.AsTimeSpan.TotalMilliseconds - duration.AsTimeSpan.TotalMilliseconds;
+            double diff = clipE.AsMilliseconds - duration.AsMilliseconds;
             if (diff > m_Settings.ImportToleranceForAudioInMs && treeNode != null)
             {
                 EmptyNode eNode = (EmptyNode)treeNode;
