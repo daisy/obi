@@ -118,151 +118,151 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="clear_recent_caption" xml:space="preserve">
-<value>சமீப திட்டபணிகளின் பட்டியலை அழி</value>
+    <value>சமீப திட்டபணிகளின் பட்டியலை அழி</value>
     <comment>Confirmation dialog</comment>
   </data>
   <data name="clear_recent_text" xml:space="preserve">
-<value>உங்களுக்கு சமீப திட்டபணியின் பட்டியலை அழிக்க வேண்டுமா? இந்த செயலை மீட்க முடியாது.</value>
+    <value>உங்களுக்கு சமீப திட்டபணியின் பட்டியலை அழிக்க வேண்டுமா? இந்த செயலை மீட்க முடியாது.</value>
     <comment>Confirmation dialog</comment>
   </data>
   <data name="closed_project" xml:space="preserve">
-<value>மூடிய திட்டபணிகள் "{0}".</value>
+    <value>மூடிய திட்டபணிகள் "{0}".</value>
     <comment>Status message</comment>
   </data>
   <data name="closed_project_caption" xml:space="preserve">
-<value>மாற்றபட்ட திட்ட்பணியை மூடு</value>
+    <value>மாற்றபட்ட திட்ட்பணியை மூடு</value>
     <comment>Confirmation dialog</comment>
   </data>
   <data name="closed_project_text" xml:space="preserve">
-<value>சேமிக்க படாத மாற்றங்கள் உள்ள திட்டபணியை மூட இருக்கிறீர்கள். நீங்கள் திட்டபணியை மூடுவதற்கு முன் இந்த மாற்றத்தை சேமிக்க வேண்டுமா?</value>
+    <value>சேமிக்க படாத மாற்றங்கள் உள்ள திட்டபணியை மூட இருக்கிறீர்கள். நீங்கள் திட்டபணியை மூடுவதற்கு முன் இந்த மாற்றத்தை சேமிக்க வேண்டுமா?</value>
     <comment>Confirmation dialog</comment>
   </data>
   <data name="default_organization" xml:space="preserve">
-<value>பொருந்தாது</value>
-<comment>PREFERENCES</comment>
-</data>
+    <value>பொருந்தாது</value>
+    <comment>PREFERENCES</comment>
+  </data>
   <data name="default_section_label" xml:space="preserve">
-<value>தலைப்பு இல்லாத பகுதி</value>
-<comment>PREFERENCES</comment>
-</data>
+    <value>தலைப்பு இல்லாத பகுதி</value>
+    <comment>PREFERENCES</comment>
+  </data>
   <data name="obi" xml:space="preserve">
     <value>Obi</value>
     <comment>Window title</comment>
   </data>
   <data name="open_project_error_caption" xml:space="preserve">
-<value>திட்டபணியின் கோப்பை திறக்கும்பொழுது பிழை</value>
-<comment>ERROR DIALOG</comment>
-</data>
+    <value>திட்டபணியின் கோப்பை திறக்கும்பொழுது பிழை</value>
+    <comment>ERROR DIALOG</comment>
+  </data>
   <data name="open_project_error_text" xml:space="preserve">
-<value>XUK கோப்பையை திறக்க முடியவில்லை {0}.</value>
-<comment>ERROR DIALOG</comment>
-</data>
+    <value>XUK கோப்பையை திறக்க முடியவில்லை {0}.</value>
+    <comment>ERROR DIALOG</comment>
+  </data>
   <data name="opened_project" xml:space="preserve">
-<value>திறந்த கோப்பை "{0}".</value>
-<comment>STATUS MESSAGE</comment>
-</data>
+    <value>திறந்த கோப்பை "{0}".</value>
+    <comment>STATUS MESSAGE</comment>
+  </data>
   <data name="ready" xml:space="preserve">
-<value>தயார்.</value>
-<comment>STATUS MESSAGE</comment>
-</data>
+    <value>தயார்.</value>
+    <comment>STATUS MESSAGE</comment>
+  </data>
   <data name="redo_label" xml:space="preserve">
     <value>{0} {1}</value>
     <comment>Command</comment>
   </data>
   <data name="save_settings_error_caption" xml:space="preserve">
-<value>அமைப்புகளை சேமிக்க முடியவில்லை</value>
-<comment>ERROR DIALOG</comment>
-</data>
+    <value>அமைப்புகளை சேமிக்க முடியவில்லை</value>
+    <comment>ERROR DIALOG</comment>
+  </data>
   <data name="save_settings_error_text" xml:space="preserve">
-<value>அமைப்புகளை சேமிக்க முயர்சிக்கையில் பின்வரும் பிழை ஏற்பட்டது: "{0}" இதன் விளைவாக இநத அமர்வின்போது மாற்றப்பட்ட அமைப்புகளை சேமிக்கவில்லை.. Oh well.</value>
+    <value>அமைப்புகளை சேமிக்க முயர்சிக்கையில் பின்வரும் பிழை ஏற்பட்டது: "{0}" இதன் விளைவாக இநத அமர்வின்போது மாற்றப்பட்ட அமைப்புகளை சேமிக்கவில்லை.. Oh well.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="saved_project" xml:space="preserve">
-<value>கோப்பையுடன் சேமித்த திட்டபணி"{0}".</value>
-<comment>STATUS MESSAGE</comment>
-</data>
+    <value>கோப்பையுடன் சேமித்த திட்டபணி"{0}".</value>
+    <comment>STATUS MESSAGE</comment>
+  </data>
   <data name="undo_label" xml:space="preserve">
     <value>{0} {1}</value>
     <comment>Command</comment>
   </data>
   <data name="create_directory_text" xml:space="preserve">
-<value>கோப்பகம் {0} இல்லை. நீங்கள் அதை உருவாக்க விரும்பிகிறீர்களா?</value>
+    <value>கோப்பகம் {0} இல்லை. நீங்கள் அதை உருவாக்க விரும்பிகிறீர்களா?</value>
     <comment>Confirmation dialog</comment>
   </data>
   <data name="redo" xml:space="preserve">
-<value>&amp;திரும்பச்செய்</value>
-<comment>COMMAND</comment>
-</data>
+    <value>&amp;திரும்பச்செய்</value>
+    <comment>COMMAND</comment>
+  </data>
   <data name="undo" xml:space="preserve">
-<value>&amp;செய்ததை தவிர்</value>
-<comment>COMMAND</comment>
-</data>
+    <value>&amp;செய்ததை தவிர்</value>
+    <comment>COMMAND</comment>
+  </data>
   <data name="no_device_found_caption" xml:space="preserve">
-<value>எந்த ஒலி சாதனங்களும் காணப்படவில்லை</value>
-<comment>ERROR DIALOG</comment>
-</data>
+    <value>எந்த ஒலி சாதனங்களும் காணப்படவில்லை</value>
+    <comment>ERROR DIALOG</comment>
+  </data>
   <data name="no_device_found_text" xml:space="preserve">
-<value>எந்த ஒலி சாதனங்களும் காணப்படவில்லை. 9c, DirectX ஒழுங்காக நிறுவப்பட்டிருக்கா என்று சரிபார்க்கவும்.</value>
+    <value>எந்த ஒலி சாதனங்களும் காணப்படவில்லை. 9c, DirectX ஒழுங்காக நிறுவப்பட்டிருக்கா என்று சரிபார்க்கவும்.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="no_output_device_caption" xml:space="preserve">
-<value>எந்த ஒலி வெளியீட்டு சாதனமும் காணப்படவில்லை.</value>
-<comment>ERROR DIALOG</comment>
-</data>
+    <value>எந்த ஒலி வெளியீட்டு சாதனமும் காணப்படவில்லை.</value>
+    <comment>ERROR DIALOG</comment>
+  </data>
   <data name="no_output_device_text" xml:space="preserve">
-<value>ஒரு ஓலி வெளியீட்டு சாதனமும் தேர்ந்தெடுக்க முடியவில்லை: எதுவும் கிடைக்கவில்லை.</value>
+    <value>ஒரு ஓலி வெளியீட்டு சாதனமும் தேர்ந்தெடுக்க முடியவில்லை: எதுவும் கிடைக்கவில்லை.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="create_directory_caption" xml:space="preserve">
-<value>கோப்பகம் உருவாக்க?</value>
-<comment>CONFIRMATION DIALOG</comment>
-</data>
+    <value>கோப்பகம் உருவாக்க?</value>
+    <comment>CONFIRMATION DIALOG</comment>
+  </data>
   <data name="mono" xml:space="preserve">
-<value>ஏக</value>
-<comment>PREFERENCES</comment>
-</data>
+    <value>ஏக</value>
+    <comment>PREFERENCES</comment>
+  </data>
   <data name="stereo" xml:space="preserve">
     <value>Stereo</value>
     <comment>Preferences</comment>
   </data>
   <data name="no_input_device_caption" xml:space="preserve">
-<value>உள்ளீட்டு சாதனம் இல்லை</value>
-<comment>ERROR DIALOG</comment>
-</data>
+    <value>உள்ளீட்டு சாதனம் இல்லை</value>
+    <comment>ERROR DIALOG</comment>
+  </data>
   <data name="no_input_device_text" xml:space="preserve">
-<value>ஒரு ஓலி உள்ளீட்டு சாதனமும் தேர்ந்தெடுக்க முடியவில்லை: எதுவும் கிடைக்கவில்லை.</value>
+    <value>ஒரு ஓலி உள்ளீட்டு சாதனமும் தேர்ந்தெடுக்க முடியவில்லை: எதுவும் கிடைக்கவில்லை.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="record" xml:space="preserve">
-<value>&amp;பதிவுசெய்</value>
-<comment>Button label (to be reviewed)</comment>
-</data>
+    <value>&amp;பதிவுசெய்</value>
+    <comment>Button label (to be reviewed)</comment>
+  </data>
   <data name="obi_filter" xml:space="preserve">
-<value>Obi திட்டபணி கோப்பை (*.obi)|*.obi|Any file|*.*</value>
-<comment>FILE DIALOG</comment>
-</data>
+    <value>Obi திட்டபணி கோப்பை (*.obi)|*.obi|Any file|*.*</value>
+    <comment>FILE DIALOG</comment>
+  </data>
   <data name="report_delete_error" xml:space="preserve">
-<value>கோப்பையை அழிக்கும்பொழுது பிழை ஏற்ப்பட்டது {0}. ({1})</value>
+    <value>கோப்பையை அழிக்கும்பொழுது பிழை ஏற்ப்பட்டது {0}. ({1})</value>
     <comment>Error dialog</comment>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-<value>அலை கோப்பை (*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*</value>
-<comment>FILE DIALOG</comment>
-</data>
+    <value>அலை கோப்பை (*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*</value>
+    <comment>FILE DIALOG</comment>
+  </data>
   <data name="Monitoring" xml:space="preserve">
-<value>ஒலி உள்ளீட்டின் கண்காணிப்பு</value>
+    <value>ஒலி உள்ளீட்டின் கண்காணிப்பு</value>
     <comment>Status message</comment>
   </data>
   <data name="page_number" xml:space="preserve">
-<value>பக்கம் {0}</value>
+    <value>பக்கம் {0}</value>
     <comment>Block label</comment>
   </data>
   <data name="normal_phrase" xml:space="preserve">
-<value>சொற்றொடர்</value>
+    <value>சொற்றொடர்</value>
     <comment>Block label</comment>
   </data>
   <data name="saved_as_daisy_text" xml:space="preserve">
-<value>கோப்பகத்தில் திட்டபணியை டைசியில் ஏற்றுமதி {0}</value>
+    <value>கோப்பகத்தில் திட்டபணியை டைசியில் ஏற்றுமதி {0}</value>
     <comment>Information dialog</comment>
   </data>
   <data name="title_bar" xml:space="preserve">
@@ -270,11 +270,11 @@
     <comment>Title bar</comment>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
-<value>உங்கள் டெய்சி புத்தகத்தை சேமிக்க இங்கு கோப்புறையை தேர்ந்தெடுக்கவும்..</value>
+    <value>உங்கள் டெய்சி புத்தகத்தை சேமிக்க இங்கு கோப்புறையை தேர்ந்தெடுக்கவும்..</value>
     <comment>Directory dialog</comment>
   </data>
   <data name="default_directory_browser" xml:space="preserve">
-<value>கீழே ஒரு இயல்பான திட்டபணி கோப்பகம் தேர்வு செய்யவும்.</value>
+    <value>கீழே ஒரு இயல்பான திட்டபணி கோப்பகம் தேர்வு செய்யவும்.</value>
     <comment>Directory dialog</comment>
   </data>
   <data name="export_directory_browser" xml:space="preserve">
@@ -646,7 +646,7 @@
     <comment>Metadata</comment>
   </data>
   <data name="about_file_name" xml:space="preserve">
-    <value>about_en.html</value>
+    <value>about_ta.html</value>
     <comment>Location of the HTML document for the "About" dialog</comment>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
@@ -743,7 +743,7 @@
     <value>வெளியீடு உள்ளடக்கத்தின் மொழி. மொழி குறியீடு [RFC 3066]. For Sweden: "sv" or "sv-SE"; for UK: "en" or "en-GB"; for US: "en" or "en-US"; etc.</value>
     <comment>Metadata description</comment>
   </data>
-  <data name="dc_relation_description">
+  <data name="dc_relation_description" xml:space="preserve">
     <value>ஒரு தொடர்புடைய ஆதாரத்தின் குறிப்பு.</value>
     <comment>Metadata description</comment>
   </data>
@@ -1563,23 +1563,20 @@
   <data name="METADATA_DC_DESCRIPTION_HELP" xml:space="preserve">
     <value>வெளியீட்டின் உள்ளடக்கத்தை விவரிக்கும் வெற்று உரை.</value>
   </data>
-
-
-  
   <data name="METADATA_DC_IDENTIFIER_HELP" xml:space="preserve">
-     <value>Dtb தனிப்பட்ட முறையில் அடையாளப்படுத்தும் எண்ணெழுத்து சரம்</value>
+    <value>Dtb தனிப்பட்ட முறையில் அடையாளப்படுத்தும் எண்ணெழுத்து சரம்</value>
   </data>
   <data name="METADATA_DC_LANGUAGE_HELP" xml:space="preserve">
-   <value>வெளியீட்டு உள்ளடக்கத்தின் மொழி</value>
+    <value>வெளியீட்டு உள்ளடக்கத்தின் மொழி</value>
   </data>
   <data name="METADATA_DC_PUBLISHER_HELP" xml:space="preserve">
     <value>DTB கிடைக்க காரணமாக இருக்கும் நிறுவனம்</value>
   </data>
   <data name="METADATA_DC_RELATION_HELP" xml:space="preserve">
-   <value>தொடர்புடைய ஆதாரத்தின் குறிப்பு</value>
+    <value>தொடர்புடைய ஆதாரத்தின் குறிப்பு</value>
   </data>
   <data name="METADATA_DC_RIGHTS_HELP" xml:space="preserve">
-   <value>நடைப்பெற்ற உரிமைகள் பற்றி DTB மீது தகவல்</value>
+    <value>நடைப்பெற்ற உரிமைகள் பற்றி DTB மீது தகவல்</value>
   </data>
   <data name="METADATA_DC_SOURCE_HELP" xml:space="preserve">
     <value>DTB ஐ வருவித்த ஆதாரத்தின் குறிப்பு</value>
@@ -1594,31 +1591,31 @@
     <value>DTB உள்ளடக்கத்தின் தன்மை</value>
   </data>
   <data name="METADATA_DTB_NARRATOR_HELP" xml:space="preserve">
-     <value>புத்தகத்தை எடுத்துரைத்த நபரின் பெயர்</value>
+    <value>புத்தகத்தை எடுத்துரைத்த நபரின் பெயர்</value>
   </data>
   <data name="METADATA_DTB_PRODUCED_DATE_HELP" xml:space="preserve">
-   <value>புத்தகம் தயாரிக்கப்பட்ட தேதி. அமைப்பு YYYY[-MM[-DD]]</value>
+    <value>புத்தகம் தயாரிக்கப்பட்ட தேதி. அமைப்பு YYYY[-MM[-DD]]</value>
   </data>
   <data name="METADATA_DTB_PRODUCER_HELP" xml:space="preserve">
     <value>DTB வெளியிட்ட நிறுவனம் அல்லது நூலகத்தின் பெயர்</value>
   </data>
   <data name="METADATA_DTB_REVISION_DATE_HELP" xml:space="preserve">
-        <value>புத்தகத்தை திருத்தி கொண்ட தேதி அமைப்பு YYYY[-MM[-DD]]</value>
+    <value>புத்தகத்தை திருத்தி கொண்ட தேதி அமைப்பு YYYY[-MM[-DD]]</value>
   </data>
   <data name="METADATA_DTB_REVISION_DESC_HELP" xml:space="preserve">
-   <value>மாற்றங்களை பற்றி சுருக்கமான விவரங்களை உள்ளிடவும்</value>
+    <value>மாற்றங்களை பற்றி சுருக்கமான விவரங்களை உள்ளிடவும்</value>
   </data>
   <data name="METADATA_DTB_REVISION_HELP" xml:space="preserve">
-   <value>புத்தகத்தை திருத்தி இருந்தால் அதை குறிப்பிடும் எண்</value>
+    <value>புத்தகத்தை திருத்தி இருந்தால் அதை குறிப்பிடும் எண்</value>
   </data>
   <data name="METADATA_DTB_SOURCE_DATE_HELP" xml:space="preserve">
-      <value>இயற்பியல் புத்தகத்தில் கூறப்பட்டிருக்கும் வெளியீட்டு தேதி அமைப்பு YYYY[-MM[-DD]]</value>
+    <value>இயற்பியல் புத்தகத்தில் கூறப்பட்டிருக்கும் வெளியீட்டு தேதி அமைப்பு YYYY[-MM[-DD]]</value>
   </data>
   <data name="METADATA_DTB_SOURCE_EDITION_HELP" xml:space="preserve">
     <value>இயற்பியல் புத்தகத்தின் பதிப்பு</value>
   </data>
   <data name="METADATA_DTB_SOURCE_PUBLISHER_HELP" xml:space="preserve">
-     <value>இயற்பியல் புத்தகத்தின் வெளியீட்டாளர்</value>
+    <value>இயற்பியல் புத்தகத்தின் வெளியீட்டாளர்</value>
   </data>
   <data name="METADATA_DTB_SOURCE_RIGHTS_HELP" xml:space="preserve">
     <value>இயற்பியல் புத்தகத்தின் உரிமைகள் பெற்ற நிறுவனத்தின் பெயர்</value>
@@ -2181,7 +2178,7 @@
     <value>பகுதி</value>
   </data>
   <data name="AssociateNode_SelectedSection" xml:space="preserve">
-    <value>=>> பகுதி</value>
+    <value>=&gt;&gt; பகுதி</value>
   </data>
   <data name="LimitedDiskSpaceWarning" xml:space="preserve">
     <value>உங்கள் கணினியில் {0} Mb விட கம்மியான வட்ட இடம் உள்ளது. தொடர விரும்புகிறீர்களா?</value>
@@ -2273,10 +2270,10 @@
   <data name="DeleteUnused_NoUnusedPhraseFoundToDelete" xml:space="preserve">
     <value>அழிப்பதற்கு பயன்படாத சொற்றொடர் ஒன்றும் கிடைக்கவில்லை.</value>
   </data>
-  <data name="ImportErrorCorrectionText">
+  <data name="ImportErrorCorrectionText" xml:space="preserve">
     <value>சில பிழை திருத்தங்களுடன்</value>
   </data>
-  <data name="CheckUpdate_Title">
+  <data name="CheckUpdate_Title" xml:space="preserve">
     <value>புதிய பதிப்பு{0} கிடைக்கிறது</value>
   </data>
   <data name="CheckUpdate_LabelText" xml:space="preserve">
@@ -2330,5 +2327,4 @@
   <data name="Confirm_Setting" xml:space="preserve">
     <value>செயல்பாடு வெற்றிகரமாக முடிந்தது. இயல்பு அமைப்புகளை ஏற்ற ஓபியை மறுதொடக்கம் செய்யவும்.</value>
   </data>
-
 </root>

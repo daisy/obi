@@ -797,6 +797,9 @@
     <Content Include="about_hi.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="about_ta.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="FineNavigationOn.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -822,6 +825,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Audio\PeakMeterForm.fr.resx">
+      <DependentUpon>PeakMeterForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Audio\PeakMeterForm.hi.resx">
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1362,6 +1369,10 @@
       <DependentUpon>Waveform_Recording.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\RecordingToolBarForm.hi.resx">
+      <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\RecordingToolBarForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
@@ -1445,6 +1456,14 @@
     <EmbeddedResource Include="UserControls\media-playback-stop.png" />
     <EmbeddedResource Include="UserControls\media-playback-start.png" />
     <EmbeddedResource Include="UserControls\media-playback-pause.png" />
+    <EmbeddedResource Include="UserControls\RecordingToolBarForm.ta.resx">
+      <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextVUMeterPanel.ta.resx">
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Waveform_Recording.ta.resx">
       <DependentUpon>Waveform_Recording.cs</DependentUpon>
       <SubType>Designer</SubType>
