@@ -114,8 +114,8 @@ namespace Obi
             return base.Detach();
         }
 
-        public override string BaseString() { return base.BaseString(Audio.Duration.AsTimeSpan.TotalMilliseconds); }
-        public override string BaseStringShort() { return base.BaseStringShort(Audio.Duration.AsTimeSpan.TotalMilliseconds); }
-        public override double Duration { get { return Audio.Duration.AsTimeSpan.TotalMilliseconds; } }
+        public override string BaseString() { return base.BaseString(Audio.Duration.AsMilliseconds); }
+        public override string BaseStringShort() { return base.BaseStringShort(Audio.Duration.AsMilliseconds); }
+        public override double Duration { get { return Audio.Duration.AsMilliseconds; } }
     }
 }

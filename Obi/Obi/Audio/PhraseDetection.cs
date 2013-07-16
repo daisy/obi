@@ -81,7 +81,7 @@ namespace Obi.Audio
                     detectedAudioMediaList.Insert(0, splitAsset);
                     //MessageBox.Show(Convert.ToDouble(alPhrases[i]).ToString());
                 }
-                if (RetainSilenceInBeginningOfPhrase && audio.Duration.AsTimeSpan.TotalMilliseconds > 200 ) detectedAudioMediaList.Insert(0, audio);
+                if (RetainSilenceInBeginningOfPhrase && audio.Duration.AsMilliseconds > 200 ) detectedAudioMediaList.Insert(0, audio);
             }
 
             return detectedAudioMediaList;
@@ -130,7 +130,7 @@ namespace Obi.Audio
             // Experiment starts here
             double BlockTime = 25;
 
-            long Iterations = Convert.ToInt64(RefAsset.AudioMediaData.AudioDuration.AsTimeSpan.TotalMilliseconds/ BlockTime);
+            long Iterations = Convert.ToInt64(RefAsset.AudioMediaData.AudioDuration.AsMilliseconds/ BlockTime);
             long SampleCount = Convert.ToInt64((int)RefAsset.AudioMediaData.PCMFormat.Data.SampleRate/ (1000 / BlockTime));
 
             long lCurrentSum = 0;
@@ -204,7 +204,7 @@ namespace Obi.Audio
 
             lCountSilGap = Convert.ToInt64(ObiCalculationFunctions.ConvertByteToTime(GapLength , (int) m_AudioAsset.PCMFormat.Data.SampleRate, m_AudioAsset.PCMFormat.Data.BlockAlign) / BlockTime);
 
-            long Iterations = Convert.ToInt64(m_AudioAsset.AudioDuration.AsTimeSpan.TotalMilliseconds/ BlockTime);
+            long Iterations = Convert.ToInt64(m_AudioAsset.AudioDuration.AsMilliseconds/ BlockTime);
             long SampleCount = Convert.ToInt64(m_AudioAsset.PCMFormat.Data.SampleRate/ (1000 / BlockTime));
             double errorCompensatingCoefficient  = GetErrorCompensatingConstant ( SampleCount );
             long SpeechBlockCount = 0;

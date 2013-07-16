@@ -22,11 +22,11 @@ namespace Obi.Commands.Audio
         {
             mNode = (PhraseNode)view.Selection.Node;
             mHasAudioAfterDeleted =
-                ((AudioSelection)view.Selection).AudioRange.SelectionEndTime < mNode.Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                ((AudioSelection)view.Selection).AudioRange.SelectionEndTime < mNode.Audio.Duration.AsMilliseconds;
             mSplitTimeBegin = new Time((long)(((AudioSelection)view.Selection).AudioRange.SelectionBeginTime * Time.TIME_UNIT));
             mSplitTimeEnd = new Time((long)(((AudioSelection)view.Selection).AudioRange.SelectionEndTime * Time.TIME_UNIT));
             mSelectionAfter = mHasAudioAfterDeleted ?
-                new AudioSelection(mNode, view.Selection.Control, new AudioRange(mSplitTimeBegin.AsTimeSpan.TotalMilliseconds)) :
+                new AudioSelection(mNode, view.Selection.Control, new AudioRange(mSplitTimeBegin.AsMilliseconds)) :
                 new NodeSelection(mNode, view.Selection.Control);
 
             ManagedAudioMedia manMedia = view.Presentation.MediaFactory.CreateManagedAudioMedia();
@@ -75,7 +75,7 @@ namespace Obi.Commands.Audio
         public static urakawa.command.Command GetCommand(Obi.ProjectView.ProjectView view)
         {
             Delete command = new Delete(view);
-            if (!command.mHasAudioAfterDeleted && command.mSplitTimeBegin.AsTimeSpan.TotalMilliseconds == 0.0)
+            if (!command.mHasAudioAfterDeleted && command.mSplitTimeBegin.AsMilliseconds == 0.0)
             {
                 // Delete the whole audio
                 urakawa.command.CompositeCommand composite =

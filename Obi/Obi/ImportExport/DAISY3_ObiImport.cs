@@ -320,11 +320,11 @@ namespace Obi.ImportExport
                 Console.WriteLine("NCX Heading node is null for " + navLabelXmlNode.InnerText);
                 return null;
             }
-            double headingClipBegin = Math.Abs((new urakawa.media.timing.Time(headingAudio.Attributes.GetNamedItem("clipBegin").Value)).AsTimeSpan.TotalMilliseconds);
-            double headingClipEnd = Math.Abs((new urakawa.media.timing.Time(headingAudio.Attributes.GetNamedItem("clipEnd").Value)).AsTimeSpan.TotalMilliseconds);
+            double headingClipBegin = Math.Abs((new urakawa.media.timing.Time(headingAudio.Attributes.GetNamedItem("clipBegin").Value)).AsMilliseconds);
+            double headingClipEnd = Math.Abs((new urakawa.media.timing.Time(headingAudio.Attributes.GetNamedItem("clipEnd").Value)).AsMilliseconds);
 
-            double audioClipBegin = Math.Abs((new urakawa.media.timing.Time(audioXmlNode.Attributes.GetNamedItem("clipBegin").Value)).AsTimeSpan.TotalMilliseconds);
-            double audioClipEnd = Math.Abs((new urakawa.media.timing.Time(audioXmlNode.Attributes.GetNamedItem("clipEnd").Value)).AsTimeSpan.TotalMilliseconds);
+            double audioClipBegin = Math.Abs((new urakawa.media.timing.Time(audioXmlNode.Attributes.GetNamedItem("clipBegin").Value)).AsMilliseconds);
+            double audioClipEnd = Math.Abs((new urakawa.media.timing.Time(audioXmlNode.Attributes.GetNamedItem("clipEnd").Value)).AsMilliseconds);
 
             if (((SectionNode)navPointTreeNode).PhraseChild(0) != phraseTreeNode
                 && headingAudio.Attributes.GetNamedItem("src").Value == audioXmlNode.Attributes.GetNamedItem("src").Value
@@ -826,7 +826,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
 
         protected override void clipEndAdjustedToNull(Time clipB, Time clipE, Time duration, TreeNode treeNode)
         {
-            double diff = clipE.AsTimeSpan.TotalMilliseconds - duration.AsTimeSpan.TotalMilliseconds;
+            double diff = clipE.AsMilliseconds - duration.AsMilliseconds;
             if (diff > m_Settings.ImportToleranceForAudioInMs && treeNode != null)
             {
                 EmptyNode eNode = (EmptyNode)treeNode;
@@ -867,7 +867,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
             Time fileDuration = new Time(PCMFormat.ConvertBytesToTime((long)dataLength));
             if (clipB.IsLessThan(clipE))
             {//1
-                double diff = clipE.AsTimeSpan.TotalMilliseconds - fileDuration.AsTimeSpan.TotalMilliseconds;
+                double diff = clipE.AsMilliseconds - fileDuration.AsMilliseconds;
                 if (clipB.IsLessThan(fileDuration))
                 {//2
                     try

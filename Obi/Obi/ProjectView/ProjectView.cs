@@ -718,7 +718,7 @@ namespace Obi.ProjectView
                 PhraseNode deleted = delete is Commands.Audio.Delete ?
                     ((Commands.Audio.Delete)delete).Deleted : (PhraseNode)Selection.Node;
                 command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Audio.Copy ( this, deleted,
-                    new AudioRange ( 0.0, deleted.Audio.Duration.AsTimeSpan.TotalMilliseconds ) ) );
+                    new AudioRange ( 0.0, deleted.Audio.Duration.AsMilliseconds ) ) );
                 command.ChildCommands.Insert(command.ChildCommands.Count, delete );
                 mPresentation.Do ( command );
                 }
@@ -4664,9 +4664,9 @@ for (int j = 0;
                         dataProv.InitByCopyingExistingFile(openAudioFileDialog.FileName);
                         media.AudioMediaData.AppendPcmData(dataProv);
 
-                        if (media.Duration.AsTimeSpan.TotalMilliseconds < originalTimings[originalTimings.Count - 1] - 100)
+                        if (media.Duration.AsMilliseconds < originalTimings[originalTimings.Count - 1] - 100)
                         {
-                            MessageBox.Show(string.Format(Localizer.Message("ProjectView_ErrorReplacingAudioDueToTimingMissmatch"), originalTimings[originalTimings.Count - 1], media.Duration.AsTimeSpan.TotalMilliseconds));
+                            MessageBox.Show(string.Format(Localizer.Message("ProjectView_ErrorReplacingAudioDueToTimingMissmatch"), originalTimings[originalTimings.Count - 1], media.Duration.AsMilliseconds));
                             media = null;
                             return;
                         }
@@ -4685,7 +4685,7 @@ for (int j = 0;
 
                             for (int i = originalTimings.Count - 2; i >= 0; --i)
                             {
-                                if (originalTimings[i] < media.Duration.AsTimeSpan.TotalMilliseconds)
+                                if (originalTimings[i] < media.Duration.AsMilliseconds)
                                 {
                                     urakawa.media.data.audio.ManagedAudioMedia split = media.Split(new urakawa.media.timing.Time(Convert.ToInt64(originalTimings[i] * urakawa.media.timing.Time.TIME_UNIT)));
                                     mediaDataList.Insert(0, split);
@@ -4699,8 +4699,8 @@ for (int j = 0;
                                 if (originalPhrases[i] is PhraseNode)
                                 {
                                     PhraseNode phrase = (PhraseNode)originalPhrases[i];
-                                    //if (phrase.Duration != mediaDataList[mediaIndex].Duration.AsTimeSpan.TotalMilliseconds) 
-                                    //MessageBox.Show(i.ToString () + "Error in timings: " + phrase.Duration.ToString() + ":" + mediaDataList[mediaIndex].Duration.AsTimeSpan.TotalMilliseconds.ToString());
+                                    //if (phrase.Duration != mediaDataList[mediaIndex].Duration.AsMilliseconds) 
+                                    //MessageBox.Show(i.ToString () + "Error in timings: " + phrase.Duration.ToString() + ":" + mediaDataList[mediaIndex].Duration.AsMilliseconds.ToString());
                                     //phrase.Audio = mediaDataList[mediaIndex];
                                     updateAudioCommand.ChildCommands.Insert(updateAudioCommand.ChildCommands.Count,
                                         new Commands.Node.UpdateAudioMedia(this, phrase, mediaDataList[mediaIndex], false));
@@ -4782,7 +4782,7 @@ public bool ShowOnlySelectedSection
                                 {
                                     totalPhrasesCount++;
                                     PhraseNode phrase = (PhraseNode)n;
-                                    if (phrase.Audio == null || phrase.Audio.Duration.AsTimeSpan.TotalMilliseconds < 10)
+                                    if (phrase.Audio == null || phrase.Audio.Duration.AsMilliseconds < 10)
                                     {
                                         phrasesToReplace.Add(phrase);
                                     }

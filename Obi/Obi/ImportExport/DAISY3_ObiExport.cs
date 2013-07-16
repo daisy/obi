@@ -221,7 +221,8 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
 
                 Time urakawaNodeDur = urakawaNode.GetDurationOfManagedAudioMediaFlattened();
                 //if (currentHeadingTreeNode == null && urakawaNodeDur != null && urakawaNodeDur.AsTimeSpan == TimeSpan.Zero)
-                if (urakawaNodeDur != null && urakawaNodeDur.AsTimeSpan == TimeSpan.Zero
+                if (urakawaNodeDur != null &&
+                    urakawaNodeDur.IsEqualTo(Time.Zero)
                     || externalAudio == null)
                 {
                     return true;
@@ -902,7 +903,7 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                 return;
             }
             // write ncs document to file
-            m_TotalTime = new Time(smilElapseTime.AsTimeSpan);
+            m_TotalTime = new Time(smilElapseTime);
             AddMetadata_Ncx(ncxDocument, totalPageCount.ToString(), maxNormalPageNumber.ToString(), maxDepth.ToString(), ncxCustomTestList);
             XmlReaderWriterHelper.WriteXmlDocument(ncxDocument, Path.Combine(m_OutputDirectory, m_Filename_Ncx));
         }
