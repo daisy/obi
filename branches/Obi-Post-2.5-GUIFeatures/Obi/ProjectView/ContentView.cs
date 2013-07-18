@@ -5484,6 +5484,37 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 m_ZoomWaveformPanel = null;
             }
         }
+        public void EditPanelControls(int val)
+        {
+            if (val == 1)
+                mProjectView.Cut();
+
+            else if (val == 2)
+                mProjectView.Copy();
+
+            else if (val == 3)
+                mProjectView.Paste();
+
+            else if (val == 4)
+                mProjectView.SplitPhrase();
+
+            else if (val == 5)
+                mProjectView.Delete();
+
+            else if(val==6)
+                mProjectView.MergeBlockWithNext();
+
+            else if(val==7)
+                mProjectView.ApplyPhraseDetection();
+            
+
+            
+
+        }
+        public void EditCopy()
+        {
+            
+        }
 
 
         private void ContentView_MouseDown(object sender, MouseEventArgs e)
@@ -5511,4 +5542,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         ContentView ContentView { get; }
         ColorSettings ColorSettings { get; }
         }
+
+
+
     }

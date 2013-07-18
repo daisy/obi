@@ -19,6 +19,7 @@ namespace Obi.ProjectView
         private int initialWaveformWidth = 0;
         private float m_ZoomFactor = 0;
         private ProjectView m_ProjectView;
+        private Edit m_Edit;
         private bool m_IsPanelSizeMax = false;
         private int m_count = 0;
         private Size m_btnCloseSize;
@@ -82,6 +83,18 @@ namespace Obi.ProjectView
                 }
               
                // txtZoomSelected.Text += m_ProjectView.Selection.Phrase.ToString();
+                if (m_Edit != null)
+                {
+                    bool IsCutEnable = (m_ContentView.CanRemoveAudio || m_ContentView.CanRemoveBlock || m_ContentView.CanRemoveStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
+                    bool IsCopyEnable = (m_ContentView.CanCopyAudio || m_ContentView.CanCopyBlock || m_ContentView.CanCopyStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
+                    bool IsPasteEnable = m_ProjectView.CanPaste;
+                    bool IsSplitEnable = m_ContentView.CanSplitStrip && !m_ProjectView.TransportBar.IsRecorderActive;
+                    bool IsDeleteEnable = (m_ContentView.CanRemoveAudio || m_ContentView.CanRemoveBlock || m_ContentView.CanRemoveStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
+                    bool IsMergeEnable = m_ContentView.CanMergeBlockWithNext;
+                    m_Edit.EnableDisableCut(IsCutEnable, IsCopyEnable, IsPasteEnable, IsSplitEnable, IsDeleteEnable, IsMergeEnable);
+
+
+                }
             }
         }
          private void ZoomPanelLostFocus(object sender,EventArgs e)
@@ -187,7 +200,7 @@ namespace Obi.ProjectView
                     btnZoomIn.Location = new Point(btnZoomIn.Location.X, this.Height - 25);
                     btnZoomOut.Location = new Point(btnZoomOut.Location.X, this.Height - 25);
                     panelZooomWaveform.Width = this.Width - 30;
-                    //panelZooomWaveform.Height = this.Height - 60;
+                    panelZooomWaveform.Height = this.Height - 90;
                     txtZoomSelected.Width = this.Width - 40;
                     txtZoomSelected.Location = new Point(0, this.Height - 50);
                     
@@ -263,7 +276,11 @@ namespace Obi.ProjectView
                 this.ActiveControl = btnClose;
             }
             m_count = 0;
-            
+            m_Edit = new Edit(m_ContentView, m_Strip, m_Node, m_ProjectView);
+            this.Controls.Add(m_Edit);
+            m_Edit.Show();
+            m_Edit.Location = new Point(39,this.Height-83);
+            m_Edit.BringToFront();
         }
 
        void ZoomWaveform_MouseWheel(object sender, MouseEventArgs e)
