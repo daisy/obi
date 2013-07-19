@@ -175,8 +175,8 @@ namespace Obi.ProjectView
         public bool CanMergeBlockWithNext
             {
             get
-                {
-                EmptyNode node = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock.Node : mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
+                {                 
+                EmptyNode node = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock.Node : (mSelectedItem is Block) ? ((Block)mSelectedItem).Node : mSelectedItem is ZoomWaveform ? ((ZoomWaveform)mSelectedItem).ZoomPanelNode :null ;
                 return node != null && node.IsRooted
                     && node.Index < node.ParentAs<ObiNode> ().PhraseChildCount - 1;
                 }
@@ -5501,10 +5501,15 @@ Block lastBlock = ActiveStrip.LastBlock ;
             else if (val == 5)
                 mProjectView.Delete();
 
-            else if(val==6)
-                mProjectView.MergeBlockWithNext();
+            else if (val == 6)
+            {
+                if (m_ZoomWaveformPanel != null)
+                    //  mProjectView.MergeBlockWithNextInZoomPanel(m_ZoomWaveformPanel);
+                    mProjectView.MergeBlockWithNext();
 
-            else if(val==7)
+            }
+
+            else if (val == 7)
                 mProjectView.ApplyPhraseDetection();
             
 

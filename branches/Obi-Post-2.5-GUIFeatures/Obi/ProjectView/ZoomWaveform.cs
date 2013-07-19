@@ -67,6 +67,15 @@ namespace Obi.ProjectView
         {
             get { return this; }
         }
+  
+
+        public EmptyNode ZoomPanelNode
+        {
+            get
+            {
+                return m_Node;
+            }
+        }
         
         private void ProjectViewSelectionChanged ( object sender, EventArgs e )
         {
