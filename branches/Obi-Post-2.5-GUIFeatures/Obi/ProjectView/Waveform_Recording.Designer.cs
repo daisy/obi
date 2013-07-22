@@ -52,7 +52,7 @@ namespace Obi.ProjectView
             this.phraseIsTODOToolStripMenuItem,
             this.deselectPhraseToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 114);
             this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
             // 
             // markPageToolStripMenuItem

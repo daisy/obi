@@ -19,7 +19,7 @@ namespace Obi.ProjectView
         private int initialWaveformWidth = 0;
         private float m_ZoomFactor = 0;
         private ProjectView m_ProjectView;
-        private Edit m_Edit;
+        private Toolbar_EditAudio m_Edit;
         private bool m_IsPanelSizeMax = false;
         private int m_count = 0;
         private Size m_btnCloseSize;
@@ -285,7 +285,7 @@ namespace Obi.ProjectView
                 this.ActiveControl = btnClose;
             }
             m_count = 0;
-            m_Edit = new Edit(m_ContentView, m_Strip, m_Node, m_ProjectView);
+            m_Edit = new Toolbar_EditAudio(m_ContentView, m_Strip, m_Node, m_ProjectView);
             this.Controls.Add(m_Edit);
             m_Edit.Show();
             m_Edit.Location = new Point(39,this.Height-83);
@@ -445,16 +445,16 @@ namespace Obi.ProjectView
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("Zoomfactor is {0}",m_ProjectView.ZoomFactor);
-
-
-            if (keyData == Keys.Tab
+           if (keyData == Keys.Tab
                 && this.ActiveControl != null)
             {
+                Console.WriteLine("It will come in Tab");
                 Control c = this.ActiveControl;
                 this.SelectNextControl(c, true, true, true, true);
+                
                 if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
                     System.Media.SystemSounds.Beep.Play();
+                //Console.WriteLine("Active Control After {0}", this.ActiveControl);
                 return true;
             }
             else if (keyData == (Keys)(Keys.Shift | Keys.Tab)
@@ -468,10 +468,14 @@ namespace Obi.ProjectView
                 return true;
             }
             else if (keyData == keyboardShortcuts.ContentView_SelectUp.Value)
-            {
+            {               
                 IControlWithSelection tempControl;
                 tempControl = m_ProjectView.Selection.Control; 
                 m_ProjectView.Selection = new NodeSelection((ObiNode)  m_Node, tempControl);         
+            }
+            else if (keyData == Keys.Right || keyData == Keys.Left)
+            {
+                return false;
             }
             if (keyData == keyboardShortcuts.ContentView_ScrollDown_LargeIncrementWithSelection.Value || keyData == keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value
                 || keyData == keyboardShortcuts.ContentView_SelectFollowingStripCursor.Value || keyData == keyboardShortcuts.ContentView_SelectPrecedingStripCursor.Value
@@ -484,6 +488,7 @@ namespace Obi.ProjectView
             {
                 return false;
             }
+           
             return base.ProcessCmdKey(ref msg, keyData);
             // return true;
 

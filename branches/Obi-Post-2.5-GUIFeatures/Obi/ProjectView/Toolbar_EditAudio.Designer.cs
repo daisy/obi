@@ -1,6 +1,6 @@
 namespace Obi.ProjectView
 {
-    partial class Toolbar_EditAudoio
+    partial class Toolbar_EditAudio
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Toolbar_EditAudoio));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Toolbar_EditAudio));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.mbtnCuttoolStrip = new System.Windows.Forms.ToolStripButton();
             this.mbtnDeletetoolStrip = new System.Windows.Forms.ToolStripButton();
