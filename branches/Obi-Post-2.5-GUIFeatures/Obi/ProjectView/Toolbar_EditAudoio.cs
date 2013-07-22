@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Obi.ProjectView
 {
-    public partial class Edit : UserControl
+    public partial class Toolbar_EditAudoio : UserControl
     {
         private ContentView m_ContentView = null;
         private Strip m_Strip;
@@ -22,11 +22,11 @@ namespace Obi.ProjectView
         private const int mMergeEnable = 6;
         private const int mPhraseDetectEnable = 7;
 
-        public Edit()
+        public Toolbar_EditAudoio()
         {
             InitializeComponent();
         }
-        public Edit(ContentView contentView, Strip strip, EmptyNode node, ProjectView mProjectView)
+        public Toolbar_EditAudoio(ContentView contentView, Strip strip, EmptyNode node, ProjectView mProjectView)
             : this()
         {
             m_ContentView = contentView;
