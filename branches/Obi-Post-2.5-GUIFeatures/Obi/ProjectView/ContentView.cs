@@ -5464,14 +5464,17 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void ContextZoomPhrase_Click(object sender, EventArgs e)
         {
             //@zoomwaveform
-            if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
+            if (mProjectView != null)
             {
-                m_ZoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection,mProjectView);
-                this.Controls.Add(m_ZoomWaveformPanel);
-                m_ZoomWaveformPanel.Location = new Point(0, 0);
-                m_ZoomWaveformPanel.Show();
-                m_ZoomWaveformPanel.BringToFront();
-                m_ZoomWaveformPanel.Focus();
+                if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
+                {
+                    m_ZoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection, mProjectView);
+                    this.Controls.Add(m_ZoomWaveformPanel);
+                    m_ZoomWaveformPanel.Location = new Point(0, 0);
+                    m_ZoomWaveformPanel.Show();
+                    m_ZoomWaveformPanel.BringToFront();
+                    m_ZoomWaveformPanel.Focus();
+                }
             }
         }
 
