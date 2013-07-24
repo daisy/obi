@@ -92,10 +92,7 @@ namespace Obi.ProjectView
                 }
               
                // txtZoomSelected.Text += m_ProjectView.Selection.Phrase.ToString();
-                if (m_Edit != null)
-                {                  
-                    m_Edit.EnableDisableCut();
-                }
+
             }
         }
          private void ZoomPanelLostFocus(object sender,EventArgs e)

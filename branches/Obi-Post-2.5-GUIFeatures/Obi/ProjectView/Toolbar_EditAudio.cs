@@ -33,12 +33,15 @@ namespace Obi.ProjectView
             m_Strip = strip;
             m_Node = node;
             m_ProjectView = mProjectView;
+            m_ProjectView.SelectionChanged+= new EventHandler(ProjectViewSelectionChanged);
         }
 
-        private void mbtnCut_Click(object sender, EventArgs e)
+        private void ProjectViewSelectionChanged(object sender, EventArgs e)
         {
-         //   m_ContentView.EditPanelControls(mCutEnable);
+            EnableDisableCut();
         }
+
+
         public void EnableDisableCut()
         {
             mbtnCuttoolStrip.Enabled = (m_ContentView.CanRemoveAudio || m_ContentView.CanRemoveBlock || m_ContentView.CanRemoveStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
