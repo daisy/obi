@@ -5464,7 +5464,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void ContextZoomPhrase_Click(object sender, EventArgs e)
         {
             //@zoomwaveform
-            if (mProjectView != null)
+            if (mProjectView != null && mProjectView.Selection !=null)
             {
                 if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
                 {
