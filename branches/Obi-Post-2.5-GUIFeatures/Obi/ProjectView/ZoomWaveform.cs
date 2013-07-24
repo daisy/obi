@@ -93,16 +93,8 @@ namespace Obi.ProjectView
               
                // txtZoomSelected.Text += m_ProjectView.Selection.Phrase.ToString();
                 if (m_Edit != null)
-                {
-                    bool IsCutEnable = (m_ContentView.CanRemoveAudio || m_ContentView.CanRemoveBlock || m_ContentView.CanRemoveStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
-                    bool IsCopyEnable = (m_ContentView.CanCopyAudio || m_ContentView.CanCopyBlock || m_ContentView.CanCopyStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
-                    bool IsPasteEnable = m_ProjectView.CanPaste;
-                    bool IsSplitEnable = m_ContentView.CanSplitStrip && !m_ProjectView.TransportBar.IsRecorderActive;
-                    bool IsDeleteEnable = (m_ContentView.CanRemoveAudio || m_ContentView.CanRemoveBlock || m_ContentView.CanRemoveStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
-                    bool IsMergeEnable = m_ContentView.CanMergeBlockWithNext;
-                    m_Edit.EnableDisableCut(IsCutEnable, IsCopyEnable, IsPasteEnable, IsSplitEnable, IsDeleteEnable, IsMergeEnable);
-
-
+                {                  
+                    m_Edit.EnableDisableCut();
                 }
             }
         }

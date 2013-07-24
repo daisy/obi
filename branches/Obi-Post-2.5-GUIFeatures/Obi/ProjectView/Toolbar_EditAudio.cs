@@ -39,14 +39,14 @@ namespace Obi.ProjectView
         {
          //   m_ContentView.EditPanelControls(mCutEnable);
         }
-        public void EnableDisableCut(bool cut,bool copy,bool paste,bool split,bool delete,bool merge)
+        public void EnableDisableCut()
         {
-            mbtnCuttoolStrip.Enabled = cut;
-            mbtnCopytoolStrip.Enabled = copy;
-            mbtnPastetoolStrip.Enabled = paste;
-            mbtnSplittoolStrip.Enabled = split;
-            mbtnDeletetoolStrip.Enabled = delete;
-          //  mbtnMergetoolStrip.Enabled = merge;
+            mbtnCuttoolStrip.Enabled = (m_ContentView.CanRemoveAudio || m_ContentView.CanRemoveBlock || m_ContentView.CanRemoveStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
+            mbtnCopytoolStrip.Enabled = (m_ContentView.CanCopyAudio || m_ContentView.CanCopyBlock || m_ContentView.CanCopyStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
+            mbtnPastetoolStrip.Enabled = m_ProjectView.CanPaste;
+            mbtnSplittoolStrip.Enabled = m_ContentView.CanSplitStrip && !m_ProjectView.TransportBar.IsRecorderActive;
+            mbtnDeletetoolStrip.Enabled = (m_ContentView.CanRemoveAudio || m_ContentView.CanRemoveBlock || m_ContentView.CanRemoveStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
+            mbtnMergetoolStrip.Enabled = m_ContentView.CanMergeBlockWithNext;
             
         }
 
@@ -57,39 +57,39 @@ namespace Obi.ProjectView
 
         private void mbtnCuttoolStrip_Click(object sender, EventArgs e)
         {
-            m_ContentView.EditPanelControls(mCutEnable);
+            m_ProjectView.Cut();
         }
 
         private void mbtnCopytoolStrip_Click(object sender, EventArgs e)
         {
-            m_ContentView.EditPanelControls(mCopyEnable);
+            m_ProjectView.Copy();
         }
 
         private void mbtnPastetoolStrip_Click(object sender, EventArgs e)
         {
-            m_ContentView.EditPanelControls(mPasteEnable);
+            m_ProjectView.Paste();
 
         }
 
         private void mbtnSplittoolStrip_Click(object sender, EventArgs e)
         {
-            m_ContentView.EditPanelControls(mSplitEnable);
+            m_ProjectView.SplitPhrase();
         }
 
         private void mbtnDeletetoolStrip_Click(object sender, EventArgs e)
         {
-            m_ContentView.EditPanelControls(mDeleteEnable);
+            m_ProjectView.Delete();
 
         }
 
         private void mbtnMergetoolStrip_Click(object sender, EventArgs e)
         {
-            m_ContentView.EditPanelControls(mMergeEnable);
+            m_ProjectView.MergeBlockWithNext();
         }
 
         private void mbtnPraseDetectiontoolStrip_Click(object sender, EventArgs e)
         {
-            m_ContentView.EditPanelControls(mPhraseDetectEnable);
+            m_ProjectView.ApplyPhraseDetection();
         }
     }
 }
