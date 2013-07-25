@@ -71,6 +71,7 @@ namespace Obi
             this.mShowMetadataViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mShowEditPnaneltooolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.mFocusOnTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFocusOnStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -474,6 +475,7 @@ namespace Obi
             this.mShowMetadataViewToolStripMenuItem,
             this.mShowTransportBarToolStripMenuItem,
             this.mShowStatusBarToolStripMenuItem,
+            this.mShowEditPnaneltooolStripMenuItem,
             this.toolStripSeparator12,
             this.mFocusOnTOCViewToolStripMenuItem,
             this.mFocusOnStripsViewToolStripMenuItem,
@@ -533,6 +535,13 @@ namespace Obi
             this.mShowStatusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mShowStatusBarToolStripMenuItem.Name = "mShowStatusBarToolStripMenuItem";
             this.mShowStatusBarToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowStatusBarToolStripMenuItem_CheckedChanged);
+            // 
+            // mShowEditPnaneltooolStripMenuItem
+            // 
+            this.mShowEditPnaneltooolStripMenuItem.CheckOnClick = true;
+            this.mShowEditPnaneltooolStripMenuItem.Name = "mShowEditPnaneltooolStripMenuItem";
+            resources.ApplyResources(this.mShowEditPnaneltooolStripMenuItem, "mShowEditPnaneltooolStripMenuItem");
+            this.mShowEditPnaneltooolStripMenuItem.Click += new System.EventHandler(this.mShowEditPnaneltooolStripMenuItem_Click);
             // 
             // toolStripSeparator12
             // 
@@ -1665,6 +1674,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem selectedPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allEmptyPagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsFromSilencePhraseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mShowEditPnaneltooolStripMenuItem;
     }
 }
 

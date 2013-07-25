@@ -23,6 +23,7 @@ namespace Obi
             private float mBaseFontSize; // base font size
             private Audio.PeakMeterForm mPeakMeter; // maintain a single "peak meter" form
             private Obi.UserControls.RecordingToolBarForm mRecordingToolBarForm;
+            private Obi.ProjectView.Toolbar_EditAudio mEdit;
             private Session mSession; // current work session
             private Settings mSettings; // application settings
             private Settings m_DefaultSettings;
@@ -4578,5 +4579,19 @@ namespace Obi
             {
                 mProjectView.UpdatePhraseDetectionSettingsFromSilencePhrase();
             }
+
+            private void mShowEditPnaneltooolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                if (mShowEditPnaneltooolStripMenuItem.Checked)
+                {
+                    mProjectView.ShowEditPanel();
+                }
+                else
+                {
+                    mProjectView.RemoveEditPanel(); 
+                }
+
+            }
+
         }
     }
