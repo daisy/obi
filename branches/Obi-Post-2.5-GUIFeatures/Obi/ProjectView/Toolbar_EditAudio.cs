@@ -21,7 +21,12 @@ namespace Obi.ProjectView
         private const int mDeleteEnable = 5;
         private const int mMergeEnable = 6;
         private const int mPhraseDetectEnable = 7;
+        private bool Dragging = false;
+        private Point DragStart = Point.Empty;
 
+
+
+         
         public Toolbar_EditAudio()
         {
             InitializeComponent();
@@ -32,8 +37,16 @@ namespace Obi.ProjectView
             m_ContentView = contentView;
             m_Strip = strip;
             m_Node = node;
-            m_ProjectView = mProjectView;
+            m_ProjectView = mProjectView;          
             m_ProjectView.SelectionChanged+= new EventHandler(ProjectViewSelectionChanged);
+         
+            this.toolStrip1.MouseDown+= new MouseEventHandler(Toolbar_EditAudio_MouseDown);
+            this.toolStrip1.MouseUp+= new MouseEventHandler(Toolbar_EditAudio_MouseUp);
+            this.toolStrip1.MouseMove += new MouseEventHandler(Toolbar_EditAudio_MouseMove);
+
+            this.toolStrip1.MinimumSize = this.Size;
+            this.toolStrip1.MaximumSize = this.Size;
+            this.toolStrip1.Size = this.Size;
         }
 
         private void ProjectViewSelectionChanged(object sender, EventArgs e)
@@ -93,6 +106,46 @@ namespace Obi.ProjectView
         private void mbtnPraseDetectiontoolStrip_Click(object sender, EventArgs e)
         {
             m_ProjectView.ApplyPhraseDetection();
+        }
+
+        private void toolStrip1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void toolStrip1_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void toolStrip1_MouseUp(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void Toolbar_EditAudio_MouseDown(object sender, MouseEventArgs e)
+        {
+            Dragging = true;
+            DragStart = new Point(e.X, e.Y);
+            toolStrip1.Capture = true;
+        }
+
+        private void Toolbar_EditAudio_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Dragging)
+            {
+               
+                    this.Left = Math.Max(0, e.X + this.Left - DragStart.X);
+               
+                    this.Top = Math.Max(0, e.Y + this.Top - DragStart.Y);
+            }
+         
+        }
+
+        private void Toolbar_EditAudio_MouseUp(object sender, MouseEventArgs e)
+        {
+            Dragging = false;
+            toolStrip1.Capture = false;
         }
     }
 }

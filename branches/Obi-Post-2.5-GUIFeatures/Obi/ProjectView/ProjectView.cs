@@ -4664,7 +4664,14 @@ public bool ShowOnlySelectedSection
         }
         */
 
-
+        public void ShowEditPanel()
+        {
+            mContentView.ShowEditPanel();
+        }
+        public void RemoveEditPanel()
+        {
+            mContentView.RemoveEditPanel();   
+        }
         public void ShowSpecialPhraseList()
         {
             if (mPresentation == null) return;

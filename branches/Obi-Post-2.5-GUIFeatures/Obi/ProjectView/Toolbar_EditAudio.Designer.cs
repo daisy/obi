@@ -60,6 +60,9 @@ namespace Obi.ProjectView
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.TabStop = true;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseUp);
+            this.toolStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseDown);
+            this.toolStrip1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseMove);
             // 
             // mbtnCuttoolStrip
             // 
