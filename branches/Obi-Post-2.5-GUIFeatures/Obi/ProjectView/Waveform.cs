@@ -435,6 +435,7 @@ namespace Obi.ProjectView
         /// </summary>
         public int SetCursorTime(double time)
         {
+            Console.WriteLine("SetCursorTime, time: " + time);
             mCursor.CursorTime = time;
             Invalidate();
             return XFromTime(time);
