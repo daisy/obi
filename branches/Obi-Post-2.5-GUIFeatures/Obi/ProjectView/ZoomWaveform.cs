@@ -28,8 +28,11 @@ namespace Obi.ProjectView
         private Size m_btnZoomInPhraseSize;
         private Size m_btnZoomOutPhraseSize;
         private Size m_btnResetPhraseSize;
+        private Size m_btnZoomSelectionSize;
+        private Size m_btnResetSelectionSize;
         private bool m_buttonSizeinit = false;
         private bool flag = false;
+        private AudioSelection audioSel;
        
         private ZoomWaveform()
         {
@@ -90,8 +93,21 @@ namespace Obi.ProjectView
                 {
                    PhraseLoad(m_ProjectView.Selection.EmptyNodeForSelection);
                 }
-              
-               // txtZoomSelected.Text += m_ProjectView.Selection.Phrase.ToString();
+            //    Type type = m_ProjectView.Selection.GetType();
+                //if (!(m_ProjectView.Selection is Obi.NodeSelection))
+                //{
+                //    audioSel = (AudioSelection)m_ProjectView.Selection;
+                //    if (audioSel.AudioRange.SelectionBeginTime != audioSel.AudioRange.SelectionEndTime)
+                //    {
+                //        mbtnZoomSelection.Enabled = true;
+                //    }
+                //    else
+                //    {
+                //        mbtnZoomSelection.Enabled = false;
+                //    }
+
+                //    txtZoomSelected.Text += m_ProjectView.Selection.Phrase.ToString();
+                //}
 
             }
         }
@@ -197,6 +213,8 @@ namespace Obi.ProjectView
                     btnReset.Location = new Point(btnReset.Location.X, this.Height - 25);
                     btnZoomIn.Location = new Point(btnZoomIn.Location.X, this.Height - 25);
                     btnZoomOut.Location = new Point(btnZoomOut.Location.X, this.Height - 25);
+                    mbtnZoomSelection.Location = new Point(mbtnZoomSelection.Location.X, this.Height - 25);
+                    mbtnResetSelection.Location = new Point(mbtnResetSelection.Location.X, this.Height - 25);
                     panelZooomWaveform.Width = this.Width - 30;
                     panelZooomWaveform.Height = this.Height - 90;
                     txtZoomSelected.Width = this.Width - 40;
@@ -221,6 +239,11 @@ namespace Obi.ProjectView
                 
                 
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
+                audioSel = (AudioSelection)m_ProjectView.Selection;
+                if (audioSel.AudioRange.SelectionBeginTime != audioSel.AudioRange.SelectionEndTime)
+                {
+                    m_AudioBlock.SetTimeBoundsForWaveformDisplay(audioSel.AudioRange.SelectionBeginTime, audioSel.AudioRange.SelectionEndTime);
+                }
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
                 m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height);
                 if (m_buttonSizeinit == false)
@@ -231,6 +254,8 @@ namespace Obi.ProjectView
                     m_btnResetPhraseSize = btnReset.Size;
                     m_btnZoomInPhraseSize = btnZoomIn.Size;
                     m_btnZoomOutPhraseSize = btnZoomOut.Size;
+                    m_btnZoomSelectionSize = mbtnZoomSelection.Size;
+                    m_btnResetSelectionSize = mbtnResetSelection.Size;
                     m_buttonSizeinit = true;
                 }
                 if (m_ContentView.ZoomFactor > 1.1 && m_ContentView.ZoomFactor < 4)
@@ -252,6 +277,8 @@ namespace Obi.ProjectView
                     btnReset.Size = new Size((int)(btnReset.Size.Width + (btnReset.Size.Width * (tempZoomfactor - 1))), (int)(btnReset.Size.Height + (btnReset.Size.Height * (tempZoomfactor - 1))));
                     btnZoomIn.Size = new Size((int)(btnZoomIn.Size.Width + (btnZoomIn.Size.Width * (tempZoomfactor - 1))), (int)(btnZoomIn.Size.Height + (btnZoomIn.Size.Height * (tempZoomfactor - 1))));
                     btnZoomOut.Size = new Size((int)(btnZoomOut.Size.Width + (btnZoomOut.Size.Width * (tempZoomfactor - 1))), (int)(btnZoomOut.Size.Height + (btnZoomOut.Size.Height * (tempZoomfactor - 1))));
+                    mbtnResetSelection.Size = new Size((int)(mbtnResetSelection.Size.Width + (mbtnResetSelection.Size.Width * (tempZoomfactor - 1))), (int)(mbtnResetSelection.Size.Height + (mbtnResetSelection.Size.Height * (tempZoomfactor - 1))));
+                    mbtnZoomSelection.Size = new Size((int)(mbtnZoomSelection.Size.Width + (mbtnZoomSelection.Size.Width * (tempZoomfactor - 1))), (int)(mbtnZoomSelection.Size.Height + (mbtnZoomSelection.Size.Height * (tempZoomfactor - 1))));
 
 
                     txtZoomSelected.Font = new Font(txtZoomSelected.Font.Name, (txtZoomSelected.Font.Size + (float)3.0), FontStyle.Bold);
@@ -261,6 +288,8 @@ namespace Obi.ProjectView
                     btnReset.Font = new Font(btnReset.Font.Name, (btnReset.Font.Size + (float)3.0), FontStyle.Bold);
                     btnZoomIn.Font = new Font(btnZoomIn.Font.Name, (btnZoomIn.Font.Size + (float)3.0), FontStyle.Bold);
                     btnZoomOut.Font = new Font(btnZoomOut.Font.Name, (btnZoomOut.Font.Size + (float)3.0), FontStyle.Bold);
+                    mbtnResetSelection.Font = new Font(mbtnResetSelection.Font.Name, (mbtnResetSelection.Font.Size + (float)3.0), FontStyle.Bold);
+                    mbtnZoomSelection.Font = new Font(mbtnZoomSelection.Font.Name, (mbtnZoomSelection.Font.Size + (float)3.0), FontStyle.Bold);
                     flag = true;
 
                     this.AutoScrollMinSize = new Size(this.Width, this.Height + 35);
@@ -515,6 +544,8 @@ namespace Obi.ProjectView
                         btnReset.Size = new Size((int)(btnReset.Size.Width + (btnReset.Size.Width * (value - 1))), (int)(btnReset.Size.Height + (btnReset.Size.Height * (value - 1))));
                         btnZoomIn.Size = new Size((int)(btnZoomIn.Size.Width + (btnZoomIn.Size.Width * (value - 1))), (int)(btnZoomIn.Size.Height + (btnZoomIn.Size.Height * (value - 1))));
                         btnZoomOut.Size = new Size((int)(btnZoomOut.Size.Width + (btnZoomOut.Size.Width * (value - 1))), (int)(btnZoomOut.Size.Height + (btnZoomOut.Size.Height * (value - 1))));
+                        mbtnZoomSelection.Size = new Size((int)(mbtnZoomSelection.Size.Width + (mbtnZoomSelection.Size.Width * (value - 1))), (int)(mbtnZoomSelection.Size.Height + (mbtnZoomSelection.Size.Height * (value - 1))));
+                        mbtnResetSelection.Size = new Size((int)(mbtnResetSelection.Size.Width + (mbtnResetSelection.Size.Width * (value - 1))), (int)(mbtnResetSelection.Size.Height + (mbtnResetSelection.Size.Height * (value - 1))));
 
                         txtZoomSelected.Font = new Font(txtZoomSelected.Font.Name, (txtZoomSelected.Font.Size + (float)3.0), FontStyle.Bold);
                         btnClose.Font = new Font(btnClose.Font.Name, (btnClose.Font.Size + (float)3.0), FontStyle.Bold);
@@ -523,6 +554,8 @@ namespace Obi.ProjectView
                         btnReset.Font = new Font(btnReset.Font.Name, (btnReset.Font.Size + (float)3.0), FontStyle.Bold);
                         btnZoomIn.Font = new Font(btnZoomIn.Font.Name, (btnZoomIn.Font.Size + (float)3.0), FontStyle.Bold);
                         btnZoomOut.Font = new Font(btnZoomOut.Font.Name, (btnZoomOut.Font.Size + (float)3.0), FontStyle.Bold);
+                        mbtnZoomSelection.Font = new Font(mbtnZoomSelection.Font.Name, (mbtnZoomSelection.Font.Size + (float)3.0), FontStyle.Bold);
+                        mbtnResetSelection.Font = new Font(mbtnResetSelection.Font.Name, (mbtnResetSelection.Font.Size + (float)3.0), FontStyle.Bold);
 
                         flag = true;
                     }
@@ -536,6 +569,8 @@ namespace Obi.ProjectView
                     btnReset.Size = new Size(m_btnResetPhraseSize.Width, m_btnResetPhraseSize.Height);
                     btnZoomIn.Size = new Size(m_btnZoomInPhraseSize.Width, m_btnZoomInPhraseSize.Height);
                     btnZoomOut.Size = new Size(m_btnZoomOutPhraseSize.Width, m_btnZoomOutPhraseSize.Height);
+                    mbtnZoomSelection.Size = new Size(m_btnZoomSelectionSize.Width, m_btnZoomSelectionSize.Height);
+                    mbtnResetSelection.Size = new Size(m_btnResetSelectionSize.Width, m_btnResetSelectionSize.Height);
                     if (flag)
                     {
                         txtZoomSelected.Font = new Font(txtZoomSelected.Font.Name, (txtZoomSelected.Font.Size - (float)3.0), FontStyle.Regular);
@@ -545,12 +580,31 @@ namespace Obi.ProjectView
                         btnReset.Font = new Font(btnReset.Font.Name, (btnReset.Font.Size - (float)3.0), FontStyle.Regular);
                         btnZoomIn.Font = new Font(btnZoomIn.Font.Name, (btnZoomIn.Font.Size - (float)3.0), FontStyle.Regular);
                         btnZoomOut.Font = new Font(btnZoomOut.Font.Name, (btnZoomOut.Font.Size - (float)3.0), FontStyle.Regular);
+                        mbtnZoomSelection.Font = new Font(mbtnZoomSelection.Font.Name, (mbtnZoomSelection.Font.Size - (float)3.0), FontStyle.Regular);
+                        mbtnResetSelection.Font = new Font(mbtnResetSelection.Font.Name, (mbtnResetSelection.Font.Size - (float)3.0), FontStyle.Regular);
 
                     }
                     flag = false;
                     
                 }
             }
+        }
+
+        private void mbtnZoomSelection_Click(object sender, EventArgs e)
+        {
+            audioSel = (AudioSelection)m_ProjectView.Selection;
+            if (audioSel.AudioRange.SelectionBeginTime != audioSel.AudioRange.SelectionEndTime)
+            {
+                m_AudioBlock.SetTimeBoundsForWaveformDisplay(audioSel.AudioRange.SelectionBeginTime, audioSel.AudioRange.SelectionEndTime);
+                mbtnResetSelection.Enabled = true;
+            }
+           
+        }
+
+        private void mbtnResetSelection_Click(object sender, EventArgs e)
+        {
+            m_AudioBlock.ResetTimeBoundsForWaveformDisplay();
+            mbtnResetSelection.Enabled = false;
         }
    
 
