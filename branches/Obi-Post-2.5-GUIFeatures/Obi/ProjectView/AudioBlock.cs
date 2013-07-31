@@ -339,5 +339,20 @@ public void SetWaveformForZoom(PhraseNode node)
             base.Block_Disposed(sender, e);
         }
 
+        //@zoomwaveform
+        public void SetTimeBoundsForWaveformDisplay(double startTime, double endTime)
+        {
+            if (mWaveform != null) mWaveform.SetTimeBoundsForDisplay(startTime, endTime);
+        }
+
+        //@zoomwaveform
+        public void ResetTimeBoundsForWaveformDisplay()
+        {
+            if (mWaveform != null) mWaveform.ResetTimeBoundsForDisplay();
+        }
+
+        //@zoomwaveform
+        public bool IsPartialWaveformDisplayed { get { return mWaveform != null ? mWaveform.IsPartialWaveformDisplayed : false; } }
+
     }
 }
