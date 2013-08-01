@@ -489,10 +489,13 @@ namespace Obi.ProjectView
                 return true;
             }
             else if (keyData == keyboardShortcuts.ContentView_SelectUp.Value)
-            {               
-                IControlWithSelection tempControl;
-                tempControl = m_ProjectView.Selection.Control; 
-                m_ProjectView.Selection = new NodeSelection((ObiNode)  m_Node, tempControl);         
+            {
+                if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection.Control != null)
+                {
+                    IControlWithSelection tempControl;
+                    tempControl = m_ProjectView.Selection.Control;
+                    m_ProjectView.Selection = new NodeSelection((ObiNode)m_Node, tempControl);
+                }
             }
             else if (keyData == Keys.Right || keyData == Keys.Left)
             {
