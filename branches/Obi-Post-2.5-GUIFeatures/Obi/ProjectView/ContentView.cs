@@ -47,7 +47,7 @@ namespace Obi.ProjectView
         private Waveform_Recording waveform_recording_control;
         private ZoomWaveform m_ZoomWaveformPanel;
         private Toolbar_EditAudio m_Edit;
-        private CustomControl1 m_Custom;
+        //private CustomControl1 m_Custom;
 
         /// <summary>
         /// A new strips view.
