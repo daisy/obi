@@ -598,11 +598,14 @@ namespace Obi.ProjectView
 
         private void mbtnZoomSelection_Click(object sender, EventArgs e)
         {
-            audioSel = (AudioSelection)m_ProjectView.Selection;
-            if (audioSel.AudioRange.SelectionBeginTime != audioSel.AudioRange.SelectionEndTime)
+            if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection.Control != null)
             {
-                m_AudioBlock.SetTimeBoundsForWaveformDisplay(audioSel.AudioRange.SelectionBeginTime, audioSel.AudioRange.SelectionEndTime);
-                mbtnResetSelection.Enabled = true;
+                audioSel = (AudioSelection)m_ProjectView.Selection;
+                if (audioSel.AudioRange.SelectionBeginTime != audioSel.AudioRange.SelectionEndTime)
+                {
+                    m_AudioBlock.SetTimeBoundsForWaveformDisplay(audioSel.AudioRange.SelectionBeginTime, audioSel.AudioRange.SelectionEndTime);
+                    mbtnResetSelection.Enabled = true;
+                }
             }
            
         }
