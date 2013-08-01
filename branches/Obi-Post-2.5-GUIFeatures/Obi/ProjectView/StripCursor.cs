@@ -131,12 +131,13 @@ namespace Obi.ProjectView
             if (m_MouseDownLoc == 0)
                 return;
             if (Strip != null)
-                Strip.SetAnimationCursor(e.X, e.Y);
+                Strip.SetAnimationCursor(e.X, e.Y, false);
         }
 
         private void StripCursor_MouseUp(object sender, MouseEventArgs e)
         {
             m_MouseDownLoc = 0;
+            Strip.SetAnimationCursor(e.X, e.Y, true);
             Strip.SetAnimationCursor();
         }
     }

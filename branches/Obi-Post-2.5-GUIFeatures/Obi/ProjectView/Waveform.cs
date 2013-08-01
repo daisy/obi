@@ -569,7 +569,7 @@ namespace Obi.ProjectView
         }
 
         // Convert a time (in ms) to a pixel position.
-        private int XFromTime(double time)
+        public int XFromTime(double time)
         {
             if (IsPartialWaveformDisplayed)
             {

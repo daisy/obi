@@ -752,10 +752,11 @@ namespace Obi.ProjectView
             //mContentView.SelectionFromStrip = new StripIndexSelection(Node, mContentView, index);//@singleSection: original
             mContentView.SelectionFromStrip = new StripIndexSelection ( Node, mContentView, index + OffsetForFirstPhrase);//@singleSection new
         }
+
         /// <summary>
         /// Set the Animation Cursor
         /// </summary>
-        public void SetAnimationCursor(int X, int Y)
+        public void SetAnimationCursor(int X, int Y, bool markOnPhrase)
         { 
             if (m_TempCursor != null)
             {
@@ -781,10 +782,25 @@ namespace Obi.ProjectView
                     m_AnimationCursor.SetHeight(mBlockHeight);
                     m_AnimationCursor.BackColor = ColorSettings.StripSelectedBackColor;
                     m_AnimationCursor.BringToFront();
+
+                    if (markOnPhrase)
+                    {
+                        if (tempNextPhrase.Left < m_AnimationCursor.Right)
+                        {
+                            int relativeX = m_AnimationCursor.Right - tempNextPhrase.Left;
+                            if (tempNextPhrase is AudioBlock) ((AudioBlock)tempNextPhrase).MarkSelection(relativeX);
+                        }
+                        else if (m_AnimationCursor.Left < tempPreviousPhrase.Right)
+                        {
+                            int relativeX = tempPreviousPhrase.Left - m_AnimationCursor.Left;
+                            if (tempPreviousPhrase is AudioBlock) ((AudioBlock)tempPreviousPhrase).MarkSelection(relativeX);
+                        }
+                    }
                 }
 
             }
         }
+
         /// <summary>
         /// Set the Animation Cursor to null
         /// </summary>
@@ -795,6 +811,7 @@ namespace Obi.ProjectView
             m_AnimationCursor = null;
             Console.WriteLine();
         }
+
         /// <summary>
         /// Set the selection from the parent control view. (From ISelectableInContentView)
         /// </summary>
