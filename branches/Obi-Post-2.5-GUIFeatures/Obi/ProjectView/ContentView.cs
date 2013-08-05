@@ -5516,6 +5516,10 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 m_Edit = null;
             }
         }
+        public void SelectCursor(PhraseNode node,AudioRange audioRange)
+        {
+            mProjectView.Selection = new AudioSelection(node, mProjectView.Selection.Control, audioRange);
+        }
 
 
         private void ContentView_MouseDown(object sender, MouseEventArgs e)

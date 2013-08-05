@@ -785,14 +785,20 @@ namespace Obi.ProjectView
 
                     if (markOnPhrase)
                     {
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
                         if (tempNextPhrase.Left < m_AnimationCursor.Right)
                         {
                             int relativeX = m_AnimationCursor.Right - tempNextPhrase.Left;
+//                            relativeX = relativeX - 5;
+
                             if (tempNextPhrase is AudioBlock) ((AudioBlock)tempNextPhrase).MarkSelection(relativeX);
                         }
                         else if (m_AnimationCursor.Left < tempPreviousPhrase.Right)
                         {
-                            int relativeX = tempPreviousPhrase.Left - m_AnimationCursor.Left;
+                            int relativeX = tempPreviousPhrase.Right - m_AnimationCursor.Left;
+                            //relativeX = relativeX - 20;
                             if (tempPreviousPhrase is AudioBlock) ((AudioBlock)tempPreviousPhrase).MarkSelection(relativeX);
                         }
                     }

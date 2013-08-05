@@ -359,7 +359,14 @@ public void SetWaveformForZoom(PhraseNode node)
             if (mWaveform != null)
             {
                 int waveformX = x - this.Margin.Left - mWaveform.Left;
+                double tempTime = mWaveform.TimeFromX(waveformX);
+                AudioRange tempAudioRange = new AudioRange(tempTime);
+                PhraseNode tempNode = (PhraseNode)Node;
+                ContentView.SelectCursor(tempNode, tempAudioRange);
+
                 mWaveform.SelectionPointPosition = waveformX;
+                
+           
             }
         }
 
