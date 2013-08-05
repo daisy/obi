@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
-  </metadata>
+  </data>
   <data name="mFileToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>फाईल</value>
+    <value>फाइल </value>
   </data>
   <data name="mFile_NewProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>नया प्रोजेक्ट Ctrl+N</value>
+    <value>नया प्रोजेक्ट कण्ट्रोल+एन</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mFile_NewProjectMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -135,25 +135,25 @@
     <value>Ctrl+N</value>
   </data>
   <data name="mFile_NewProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>281, 22</value>
   </data>
   <data name="mFile_NewProjectMenuItem.Text" xml:space="preserve">
     <value>नया प्रोजेक्ट</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.AccessibleName" xml:space="preserve">
-    <value>इमपोर्ट के जरिए नया प्रोजेक्ट Ctrl+Shift+N</value>
+    <value>इम्पोर्ट से नया प्रोजेक्ट बनायें कण्ट्रोल+शिफ्ट_एन</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+N</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>281, 22</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.Text" xml:space="preserve">
-    <value>इमपोर्ट के जरिए नया प्रोजेक्ट</value>
+    <value>इम्पोर्ट से नया प्रोजेक्ट बनायें</value>
   </data>
   <data name="mFile_OpenProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>प्रोजेक्ट खोले Ctrl+O</value>
+    <value>प्रोजेक्ट खोलें कण्ट्रोल+ओ</value>
   </data>
   <data name="mFile_OpenProjectMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -162,28 +162,46 @@
     <value>Ctrl+O</value>
   </data>
   <data name="mFile_OpenProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>281, 22</value>
   </data>
   <data name="mFile_OpenProjectMenuItem.Text" xml:space="preserve">
-    <value>प्रोजेक्ट खोले</value>
+    <value>प्रोजेक्ट खोलें </value>
+  </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>पुनर्स्थापित करना</value>
+  </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.Text" xml:space="preserve">
+    <value>पुनर्स्थापित करना</value>
+  </data>
+  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>मूल प्रोजेक्ट से पुनः स्थापित करना</value>
+  </data>
+  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Text" xml:space="preserve">
+    <value>मूल प्रोजेक्ट से पुनः स्थापित करना</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>प्रोजेक्ट बन्द करे Ctrl+W</value>
+    <value>प्रोजेक्ट बंद करें कण्ट्रोल+डब्लू</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+W</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>281, 22</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.Text" xml:space="preserve">
-    <value>प्रोजेक्ट बन्द करे</value>
+    <value>प्रोजेक्ट बंद करें</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 6</value>
+    <value>278, 6</value>
   </data>
   <data name="mFile_SaveProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>प्रोजेक्ट सेव करे Ctrl+S</value>
+    <value>प्रोजेक्ट सेव करें कण्ट्रोल+एस</value>
   </data>
   <data name="mFile_SaveProjectMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -192,386 +210,398 @@
     <value>Ctrl+S</value>
   </data>
   <data name="mFile_SaveProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>281, 22</value>
   </data>
   <data name="mFile_SaveProjectMenuItem.Text" xml:space="preserve">
-    <value>प्रोजेक्ट सेव करे</value>
+    <value>प्रोजेक्ट सेव करें</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.AccessibleName" xml:space="preserve">
-    <value>प्रोजेक्ट इस रूप में सेव करे... Ctrl+Shift+S</value>
+    <value>प्रोजेक्ट को इस रूप में सेव करें...कण्ट्रोल+शिफ्ट+एस</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+S</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>281, 22</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.Text" xml:space="preserve">
-    <value>प्रोजेक्ट इस रूप में सेव करे...</value>
+    <value>प्रोजेक्ट को इस रूप में सेव करें...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 6</value>
+    <value>278, 6</value>
   </data>
   <data name="openrecentSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 6</value>
+    <value>116, 6</value>
   </data>
   <data name="mFile_ClearListMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 22</value>
+    <value>119, 22</value>
   </data>
   <data name="mFile_ClearListMenuItem.Text" xml:space="preserve">
-    <value>लिस्ट मिटाए</value>
+    <value>लिस्ट खाली करें</value>
   </data>
   <data name="mFile_RecentProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>281, 22</value>
   </data>
   <data name="mFile_RecentProjectMenuItem.Text" xml:space="preserve">
-    <value>हाल के प्रोजेक्टस</value>
+    <value>हाल का प्रोजेक्ट</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 6</value>
+    <value>278, 6</value>
   </data>
   <data name="mFile_ExitMenuItem.AccessibleName" xml:space="preserve">
-    <value>बन्द Alt+F4</value>
+    <value>बाहर आयें ऑल्ट+ऍफ़4</value>
   </data>
   <data name="mFile_ExitMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+F4</value>
   </data>
   <data name="mFile_ExitMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>281, 22</value>
   </data>
   <data name="mFile_ExitMenuItem.Text" xml:space="preserve">
-    <value>बन्द</value>
+    <value>बाहर आयें</value>
   </data>
   <data name="mFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 20</value>
+    <value>37, 20</value>
   </data>
   <data name="mFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>फाइल</value>
+    <value>फाइल </value>
   </data>
   <data name="mUndoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पूर्वत Ctrl+Z</value>
+    <value>पूर्व स्थिति में लायें कण्ट्रोल+जेड</value>
   </data>
   <data name="mUndoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Z</value>
   </data>
   <data name="mUndoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mUndoToolStripMenuItem.Text" xml:space="preserve">
-    <value>पूर्वत</value>
+    <value>पूर्व स्थिति में लायें</value>
   </data>
   <data name="mRedoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>दहोराए Ctrl+Y</value>
+    <value>पुनः करें कण्ट्रोल+वाई</value>
   </data>
   <data name="mRedoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Y</value>
   </data>
   <data name="mRedoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mRedoToolStripMenuItem.Text" xml:space="preserve">
-    <value>दहोराए</value>
+    <value>पुनः करें</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 6</value>
+    <value>244, 6</value>
   </data>
   <data name="mCutToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>कट Ctrl+X</value>
+    <value>काटें कण्ट्रोल+एक्स</value>
   </data>
   <data name="mCutToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+X</value>
   </data>
   <data name="mCutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mCutToolStripMenuItem.Text" xml:space="preserve">
-    <value>कट</value>
+    <value>काटें</value>
   </data>
   <data name="mCopyToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>कॉपी Ctrl+C</value>
+    <value>कॉपी कण्ट्रोल+सी</value>
   </data>
   <data name="mCopyToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+C</value>
   </data>
   <data name="mCopyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mCopyToolStripMenuItem.Text" xml:space="preserve">
-    <value>कॉपी</value>
+    <value>कॉपी बनायें</value>
   </data>
   <data name="mPasteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पेस्ट Ctrl+V</value>
+    <value>पेस्ट कण्ट्रोल+वी</value>
   </data>
   <data name="mPasteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+V</value>
   </data>
   <data name="mPasteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mPasteToolStripMenuItem.Text" xml:space="preserve">
     <value>पेस्ट</value>
   </data>
   <data name="mPasteBeforeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पहले पेस्ट करे Ctrl+Alt+V</value>
+    <value>पहेले पेस्ट करें कण्ट्रोल+ऑल्ट+वी</value>
   </data>
   <data name="mPasteBeforeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+V</value>
   </data>
   <data name="mPasteBeforeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mPasteBeforeToolStripMenuItem.Text" xml:space="preserve">
-    <value>पहले पेस्ट करे</value>
+    <value>पहेले पेस्ट करें </value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>अन्दर पेस्ट करे Ctrl+Shift+V</value>
+    <value>बीच में पेस्ट करें कण्ट्रोल+शिफ्ट+वी</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+V</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.Text" xml:space="preserve">
-    <value>अन्दर पेस्ट करे</value>
+    <value>बीच में पेस्ट करें </value>
   </data>
   <data name="mDeleteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>मिटाए Del</value>
+    <value>डिलीट </value>
   </data>
   <data name="mDeleteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Del</value>
   </data>
   <data name="mDeleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mDeleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>मिटाएँ</value>
+    <value>डिलीट</value>
   </data>
   <data name="mSelectNothingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mSelectNothingToolStripMenuItem.Text" xml:space="preserve">
-    <value>सलेक्शन हटाए</value>
+    <value>कुछ न चुने</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 6</value>
+    <value>244, 6</value>
   </data>
   <data name="mEdit_DeleteUnusedDataMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+L</value>
   </data>
   <data name="mEdit_DeleteUnusedDataMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mEdit_DeleteUnusedDataMenuItem.Text" xml:space="preserve">
-    <value>अनउपोयगी डाटा मिटाए</value>
+    <value>अप्रयुक्त डेटा डिलीट करें</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 6</value>
+    <value>244, 6</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>खोजे Ctrl+F</value>
+    <value>खोजो कण्ट्रोल+एफ</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.Text" xml:space="preserve">
-    <value>खोजे</value>
+    <value>खोजो</value>
   </data>
   <data name="mFindNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>आगे खोजे F3</value>
+    <value>अगला खोजो एफ़३</value>
   </data>
   <data name="mFindNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F3</value>
   </data>
   <data name="mFindNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mFindNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>आगे खोजे</value>
+    <value>अगला खोजो</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पीछे खोजे Shift+F3</value>
+    <value>पहले वाला खोजो शिफ्ट+एफ३</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Shift+F3</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>247, 22</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.Text" xml:space="preserve">
-    <value>पीछे खोजे</value>
+    <value>पहले वाला खोजो</value>
   </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
+  <data name="mEdit_BookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>पुस्तक चिन्हांकन</value>
   </data>
-  <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>एडिट</value>
+  <data name="mEdit_AssignBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>पुस्तक चिन्हांकन के रूप में सेट करें</value>
+  </data>
+  <data name="mEdit_AssignBookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="mEdit_AssignBookmarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>पुस्तक चिन्हांकन के रूप में सेट करें</value>
+  </data>
+  <data name="mEdit_GotoBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>पुस्तक चिन्हांकन पर जाएँ</value>
+  </data>
+  <data name="mEdit_GotoBookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="mEdit_GotoBookmarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>पुस्तक चिन्हांकन पर जाएँ</value>
+  </data>
+  <data name="mEdit_BookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="mEdit_BookmarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>पुस्तक चिन्हांकन</value>
+  </data>
+  <data name="mEditToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 20</value>
+  </data>
+  <data name="mEditToolStripMenuItem1.Text" xml:space="preserve">
+    <value>सम्पादित करें</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>टी ओ सी वीयू देखे Ctrl+Alt+T</value>
+    <value>टी.ओ.सी. व्यू दिखाएँ कण्ट्रोल+आल्ट+टी</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+T</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>टी ओ सी वीयू देखे</value>
+    <value>टी.ओ.सी. व्यू दिखाएँ</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>मेटा डेटा वीयू देखे Ctrl+Alt+M</value>
+    <value>मेटाडेटा व्यू दिखाएँ कण्ट्रोल+आल्ट+एम्</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+M</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>मेटा डेटा वीयू देखे</value>
+    <value>मेटाडेटा व्यू दिखाएँ</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ट्रांसपोर्ट बार देखे Ctrl+Alt+B</value>
+    <value>ट्रांसपोर्ट पट्टिका दिखाएँ कण्ट्रोल+आल्ट+एम्</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+B</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>ट्रांसपोर्ट बार देखे</value>
+    <value>ट्रांसपोर्ट पट्टिका दिखाएँ</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>सटेटस बार देखे Ctrl+Alt+U</value>
+    <value>वस्तुस्थिति पट्टिका दिखाएँ कण्ट्रोल+आल्ट+यू</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+U</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>सटेटस बार देखे</value>
+    <value>वस्तुस्थिति पट्टिका दिखाएँ</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 6</value>
+    <value>271, 6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>टी ओ सी वीयू पर जाये F6</value>
+    <value>टीओसी व्यू पर ध्यान केन्द्रित करें/कंटेंट व्यू एफ़६</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>टीओसी वीयू पर जाये</value>
+    <value>टीओसी व्यू पर ध्यान केन्द्रित करें/कंटेंट व्यू</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>कनटेन्ट वीयू पर जाये F6</value>
+    <value>कंटेंट व्यू पर ध्यान केन्द्रित करें एफ़६</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F6</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>कनटेन्ट वीयू पर जाये</value>
+    <value>कंटेंट व्यू पर ध्यान केन्द्रित करें</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mFocusOnStripsViewToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ट्रांसपोर्ट बार पर जाये Ctrl+F6</value>
+    <value>ट्रांसपोर्ट पट्टिका पर ध्यान केन्द्रित करें कण्ट्रोल+एफ़६</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F6</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>ट्रांसपोर्ट बार पर जाये</value>
+    <value>ट्रांसपोर्ट पट्टिका पर ध्यान केन्द्रित करें</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>परस्पर जुड़े हुए वीयूस Ctrl+Alt+Y</value>
+    <value>समक्रमिक व्यू कण्ट्रोल+आल्ट+याई</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Y</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Text" xml:space="preserve">
-    <value>परस्पर जुडे हुए वीयूस</value>
+    <value>समक्रमिक व्यू</value>
   </data>
-  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 6</value>
-  </data>
-  <data name="mShowOnlySelectedSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>केवल सलेकटिड सलेक्शन दिखाए F5</value>
-  </data>
-  <data name="mShowOnlySelectedSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>F5</value>
-  </data>
-  <data name="mShowOnlySelectedSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
-  </data>
-  <data name="mShowOnlySelectedSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>केवल सलेकटिड सलेक्शन दिखाए</value>
-  </data>
-  <data name="mWrappingInContentViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>केवल चयनित भाग दिखाए W Ctrl+Alt+W</value>
-  </data>
-  <data name="mWrappingInContentViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+W</value>
-  </data>
-  <data name="mWrappingInContentViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
-  </data>
-  <data name="mWrappingInContentViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>केवल चयनित भाग दिखाए</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mWrappingInContentViewToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+  <data name="mSynchronizeViewsToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 6</value>
+    <value>271, 6</value>
   </data>
   <data name="mShowPeakMeterMenuItem.AccessibleName" xml:space="preserve">
-    <value>पीक मीटर दिखाए Ctrl+Alt+P</value>
+    <value>शिखर मीटर दिखाएँ कण्ट्रोल+आल्ट+पी</value>
   </data>
   <data name="mShowPeakMeterMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
-    <value>पीक मीटर दिखाए</value>
+    <value>शिखर मीटर दिखाएँ</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>सोर्स वीयू दिखाए Ctrl+Alt+O</value>
+    <value>स्रोत व्यू दिखाएँ कण्ट्रोल+आल्ट+ओ</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+O</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Text" xml:space="preserve">
-    <value>सोर्स वीयू दिखाए</value>
+    <value>स्रोत व्यू दिखाएँ</value>
+  </data>
+  <data name="mView_RecordingToolBarMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+R</value>
+  </data>
+  <data name="mView_RecordingToolBarMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 22</value>
+  </data>
+  <data name="mView_RecordingToolBarMenuItem.Text" xml:space="preserve">
+    <value>रिकॉर्डिंग टूल पट्टिका दिखाएँ</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 6</value>
+    <value>271, 6</value>
   </data>
   <data name="mView_ZoomInMenuItem.AccessibleName" xml:space="preserve">
-    <value>आकार बढ़ाए Ctrl+Alt+plus</value>
+    <value>आकार वर्धन कण्ट्रोल+ऑल्ट++</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt++</value>
@@ -580,13 +610,13 @@
     <value>Ctrl+Alt+Oemplus</value>
   </data>
   <data name="mView_ZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mView_ZoomInMenuItem.Text" xml:space="preserve">
-    <value>आकार बढ़ाए</value>
+    <value>आकार वर्धन</value>
   </data>
   <data name="mView_ZoomOutMenuItem.AccessibleName" xml:space="preserve">
-    <value>आकार घटाए ctrl+Alt+ -</value>
+    <value>आकार घटाव कण्ट्रोल+ऑल्ट+-</value>
   </data>
   <data name="mView_ZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+-</value>
@@ -595,25 +625,25 @@
     <value>Ctrl+Alt+OemMinus</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Text" xml:space="preserve">
-    <value>आकार घटाए</value>
+    <value>आकार घटाव</value>
   </data>
   <data name="mView_NormalSizeMenuItem.AccessibleName" xml:space="preserve">
-    <value>सामान्य आकार ctrl+Alt+0</value>
+    <value>सामान्य आकार कण्ट्रोल+ऑल्ट+जीरो</value>
   </data>
   <data name="mView_NormalSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+0</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Text" xml:space="preserve">
     <value>सामान्य आकार</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.AccessibleName" xml:space="preserve">
-    <value>ध्वनि तरंग का आकार बढ़ाए Ctrl+Alt+Shift+plus</value>
+    <value>ऑडियो आकार वर्धन कण्ट्रोल+ऑल्ट+शिफ्ट++</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+Shift++</value>
@@ -622,13 +652,13 @@
     <value>Ctrl+Alt+Shift+Oemplus</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Text" xml:space="preserve">
-    <value>ध्वनि तरंग का आकार बढ़ाए</value>
+    <value>ऑडियो आकार वर्धन </value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.AccessibleName" xml:space="preserve">
-    <value>ध्वनि तरंग का आकार घटाए Ctrl+Alt+Shift+ -</value>
+    <value>ऑडियो आकार घटाव कण्ट्रोल+ऑल्ट+-</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+Shift+-</value>
@@ -637,493 +667,766 @@
     <value>Ctrl+Alt+Shift+OemMinus</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
-    <value>ध्वनि तरंग का आकार घटाए</value>
+    <value>ऑडियो आकार घटाव (और क्यू)</value>
+  </data>
+  <data name="mView_ResetAudioSizeMenuItem.AccessibleName" xml:space="preserve">
+    <value>ऑडियो आकार पुनःस्थापित करना कण्ट्रोल+ऑल्ट+शिफ्ट+0</value>
+  </data>
+  <data name="mView_ResetAudioSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+Shift+0</value>
+  </data>
+  <data name="mView_ResetAudioSizeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 22</value>
+  </data>
+  <data name="mView_ResetAudioSizeMenuItem.Text" xml:space="preserve">
+    <value>ऑडियो आकार पुनःस्थापित करना (और एच)</value>
+  </data>
+  <data name="mView_RefreshContentViewMenuItem.AccessibleName" xml:space="preserve">
+    <value>कंटेंट व्यू पुनश्चर्या करें (दोष रहित करना)</value>
+  </data>
+  <data name="mView_RefreshContentViewMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>F5</value>
+  </data>
+  <data name="mView_RefreshContentViewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 22</value>
+  </data>
+  <data name="mView_RefreshContentViewMenuItem.Text" xml:space="preserve">
+    <value>कंटेंट व्यू पुनश्चर्या करें (दोष रहित करना)</value>
+  </data>
+  <data name="mView_RefreshContentViewMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 6</value>
+    <value>271, 6</value>
   </data>
-  <data name="mView_ProjectStatisticsMenuItem.AccessibleName" xml:space="preserve">
-    <value>प्रोजेक्ट आँकड़े</value>
+  <data name="mView_PhrasePropertiesMenuItem.AccessibleName" xml:space="preserve">
+    <value>वाक्यांश गुण आल्ट+एंटर</value>
   </data>
-  <data name="mView_ProjectStatisticsMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+I</value>
+  <data name="mView_PhrasePropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Alt+Enter</value>
   </data>
-  <data name="mView_ProjectStatisticsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
+  <data name="mView_PhrasePropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 22</value>
   </data>
-  <data name="mView_ProjectStatisticsMenuItem.Text" xml:space="preserve">
-    <value>प्रोजेक्ट आकड़े</value>
+  <data name="mView_PhrasePropertiesMenuItem.Text" xml:space="preserve">
+    <value>वाक्यांश गुण</value>
+  </data>
+  <data name="mView_SectionPropertiesMenuItem.AccessibleName" xml:space="preserve">
+    <value>खंड गुण ऑल्ट+एंटर</value>
+  </data>
+  <data name="mView_SectionPropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Alt+Enter</value>
+  </data>
+  <data name="mView_SectionPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 22</value>
+  </data>
+  <data name="mView_SectionPropertiesMenuItem.Text" xml:space="preserve">
+    <value>खंड गुण</value>
+  </data>
+  <data name="mView_ProjectPropertiesMenuItem.AccessibleName" xml:space="preserve">
+    <value>प्रोजेक्ट गुण</value>
+  </data>
+  <data name="mView_ProjectPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>274, 22</value>
+  </data>
+  <data name="mView_ProjectPropertiesMenuItem.Text" xml:space="preserve">
+    <value>प्रोजेक्ट गुण</value>
   </data>
   <data name="mViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 20</value>
+    <value>44, 20</value>
   </data>
   <data name="mViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>वीयू</value>
+    <value>अवलोकन</value>
   </data>
   <data name="mAddSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>नया भाग जोडे़ Ctrl+H</value>
+    <value>खंड जोड़ें कण्ट्रोल+एच</value>
   </data>
   <data name="mAddSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+H</value>
   </data>
   <data name="mAddSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mAddSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>नया भाग जोड़े</value>
+    <value>खंड जोड़ें</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>नया अनुभाग जोड़े Ctrl+Shift+H</value>
+    <value>उपखंड जोड़ें कण्ट्रोल+शिफ्ट+एच</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+H</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>नया अनुभाग जोड़े</value>
+    <value>उपखंड जोड़ें </value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>चयनित से पहले नया भाग जोड़े Ctrl+Alt+H</value>
+    <value>खण्ड सम्मिलित करें कण्ट्रोल+ऑल्ट+एच</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+H</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>चयनित से पहले नया भाग जोड़े</value>
+    <value>खण्ड सम्मिलित करें </value>
   </data>
   <data name="mRenameSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>भाग का नाम बदले F2</value>
+    <value>खंड का पुनःनामकरण करें एफ़२</value>
   </data>
   <data name="mRenameSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F2</value>
   </data>
   <data name="mRenameSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mRenameSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>भाग का नाम बदले</value>
+    <value>खंड का पुनःनामकरण करें</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 6</value>
+    <value>276, 6</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>भाग स्तर घटाए Ctrl+Shift+Left</value>
+    <value>खंड स्तर घटायें कण्ट्रोल+शिफ्ट+लेफ्ट</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Left</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>भाग स्तर घटाए</value>
+    <value>खंड स्तर घटायें </value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>भाग स्तर बढ़ाए Ctrl+Shift+Right</value>
+    <value>खंड स्तर बढ़ाएं कण्ट्रोल+शिफ्ट+राईट</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Right</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>भाग स्तर बढ़ाए</value>
+    <value>खंड स्तर बढ़ाएं </value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>भाग तोड़े Ctrl+Shift+Q</value>
+    <value>खंड विभाजित करें कण्ट्रोल+शिफ्ट+क्यू</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Q</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>भाग तोड़े</value>
+    <value>खंड विभाजित करें</value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>अगले भाग से जोड़े Ctrl+Shift+M</value>
+    <value>खंड मिलाएं</value>
+  </data>
+  <data name="mergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>अगले में खंड मिलाएं</value>
+  </data>
+  <data name="mergeSectionWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+M</value>
+  </data>
+  <data name="mergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="mergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
+    <value>अगले में खंड मिलाएं</value>
+  </data>
+  <data name="mergeMultipleSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="mergeMultipleSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>बहुखंड मिलाएं</value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+M</value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>अगले भाग से जोड़े</value>
+    <value>खंड मिलाएं</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 6</value>
+    <value>276, 6</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>भाग इस्तेमाल करना Ctrl+K</value>
+    <value>खंड प्रयोग में है कण्ट्रोल+के</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+K</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.Text" xml:space="preserve">
-    <value>भाग इस्तेमाल करना</value>
+    <value>खंड प्रयोग में है</value>
   </data>
   <data name="mSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
+    <value>63, 20</value>
   </data>
   <data name="mSectionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>भाग</value>
+    <value>खंड</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>खाली वाक्यांश जोड़े Ctrl+B</value>
+    <value>रिक्त वाक्यांश जोड़ें कण्ट्रोल+बी</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+B</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>खाली वाक्यांश जोड़े</value>
+    <value>रिक्त वाक्यांश जोड़ें</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>खाली पृ्ष्ठ जोड़े Ctrl+Shift+B</value>
+    <value>खाली पृष्ठ जोड़ें कण्ट्रोल+शिफ्ट+बी</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+B</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
-    <value>खाली पृष्ठ जोड़े</value>
+    <value>खाली पृष्ठ जोड़ें </value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ध्वनि फाइल आयात करे Ctrl+I</value>
+    <value>ऑडियो फाइलें लायें कण्ट्रोल+एच</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+I</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>ध्वनि फाइल आयात करे</value>
+    <value>ऑडियो फाइलें लायें</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>वाक्यांश तोड़े Ctrl+Q</value>
+    <value>वाक्यांश विभाजित करें कण्ट्रोल+क्यू</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Q</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>वाक्यांश तोड़े</value>
+    <value>वाक्यांश विभाजित करें</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>अगले वाक्यांश से जोड़े Ctrl+M</value>
+    <value>अगले में वाक्यांश मिलाएं कण्ट्रोल+एम्</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+M</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>अगले वाक्यांश से जोड़े</value>
+    <value>अगले में वाक्यांश मिलाएं</value>
   </data>
-  <data name="mPhraseIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>वाक्यांश इस्तेमाल करना Ctrl+K</value>
+  <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>निम्न वाक्यांशों में मिलाएं</value>
   </data>
-  <data name="mPhraseIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+K</value>
+  <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
   </data>
-  <data name="mPhraseIsUsedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+  <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>निम्न वाक्यांशों में मिलाएं</value>
   </data>
-  <data name="mPhraseIsUsedToolStripMenuItem.Text" xml:space="preserve">
-    <value>वाक्यांश इस्तेमाल करना</value>
+  <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>पूर्ववर्ती वाक्यांशों में मिलाएं</value>
   </data>
-  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 6</value>
+  <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
   </data>
-  <data name="mSetAsHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
+  <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>पूर्ववर्ती वाक्यांशों में मिलाएं</value>
   </data>
-  <data name="mSetAsHeadingToolStripMenuItem.Text" xml:space="preserve">
-    <value>शीर्षक</value>
+  <data name="mMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
   </data>
-  <data name="mPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+G</value>
-  </data>
-  <data name="mPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
-  </data>
-  <data name="mPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>पृष्ठ</value>
-  </data>
-  <data name="mSilenceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
-  </data>
-  <data name="mSilenceToolStripMenuItem.Text" xml:space="preserve">
-    <value>शांत</value>
-  </data>
-  <data name="mTodoClasstoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>F9</value>
-  </data>
-  <data name="mTodoClasstoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
-  </data>
-  <data name="mTodoClasstoolStripMenuItem.Text" xml:space="preserve">
-    <value>सुधार हेतु</value>
-  </data>
-  <data name="mCustomRoleToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 6</value>
-  </data>
-  <data name="mAddRoleToolStripTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 21</value>
-  </data>
-  <data name="mAddRoleToolStripTextBox.Text" xml:space="preserve">
-    <value>भूमिका जोडे़</value>
-  </data>
-  <data name="mAssignRoleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
-  </data>
-  <data name="mAssignRoleToolStripMenuItem.Text" xml:space="preserve">
-    <value>भूमिका निर्धारित करे</value>
-  </data>
-  <data name="mEditRolesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
-  </data>
-  <data name="mEditRolesToolStripMenuItem.Text" xml:space="preserve">
-    <value>भूमिका बदले...</value>
-  </data>
-  <data name="mClearRoleToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Clear role Ctrl+Shift+C</value>
-  </data>
-  <data name="mClearRoleToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+C</value>
-  </data>
-  <data name="mClearRoleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
-  </data>
-  <data name="mClearRoleToolStripMenuItem.Text" xml:space="preserve">
-    <value>भूमिका हटाएं</value>
-  </data>
-  <data name="mPhraseDetectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>वाक्यांश निर्धारण Ctrl+Shift+P</value>
-  </data>
-  <data name="mPhraseDetectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+P</value>
-  </data>
-  <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
-  </data>
-  <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>वाक्यांश निर्धारण</value>
-  </data>
-  <data name="mMarkDefaultCustomClassToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पूर्णनिर्धारित कस्टम क्लास चिन्हित करे Ctrl+U</value>
-  </data>
-  <data name="mMarkDefaultCustomClassToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+U</value>
-  </data>
-  <data name="mMarkDefaultCustomClassToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
-  </data>
-  <data name="mMarkDefaultCustomClassToolStripMenuItem.Text" xml:space="preserve">
-    <value>पूर्णनिर्धारित कस्टम क्लास चिन्हित करे</value>
-  </data>
-  <data name="mMarkDefaultCustomClassToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="mBeginInPhraseSelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ध्वनि चयन आरम्भ Ctrl+[</value>
-  </data>
-  <data name="mBeginInPhraseSelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Ctrl+[</value>
-  </data>
-  <data name="mBeginInPhraseSelectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+OemOpenBrackets</value>
-  </data>
-  <data name="mBeginInPhraseSelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 22</value>
-  </data>
-  <data name="mBeginInPhraseSelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>ध्वनि चयन आरम्भ</value>
-  </data>
-  <data name="mEndInPhraseSelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ध्वनि चयन अन्त Ctrl+]</value>
-  </data>
-  <data name="mEndInPhraseSelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Ctrl+]</value>
-  </data>
-  <data name="mEndInPhraseSelectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Oem6</value>
-  </data>
-  <data name="mEndInPhraseSelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 22</value>
-  </data>
-  <data name="mEndInPhraseSelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>ध्वनि चयन अन्त</value>
-  </data>
-  <data name="mDeselectInPhraseSelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 22</value>
-  </data>
-  <data name="mDeselectInPhraseSelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>सलेक्शन हटाए</value>
-  </data>
-  <data name="mInPhraseSelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
-  </data>
-  <data name="mInPhraseSelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>ध्वनि चयन</value>
-  </data>
-  <data name="mNextTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>अगला सुधार हेतु वाक्यांश Ctrl+F9</value>
-  </data>
-  <data name="mNextTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+F9</value>
-  </data>
-  <data name="mNextTODOPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 22</value>
-  </data>
-  <data name="mNextTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>अगला सुधार हेतु वाक्यांश</value>
-  </data>
-  <data name="mPreviousTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पिछला सुधार हेतु वाक्यांश Ctrl+Shift+F9</value>
-  </data>
-  <data name="mPreviousTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+F9</value>
-  </data>
-  <data name="mPreviousTODOPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 22</value>
-  </data>
-  <data name="mPreviousTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>पिछला सुधार हेतु वाक्यांश</value>
-  </data>
-  <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
-  </data>
-  <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
-    <value>इस पर जाये...</value>
+  <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
+    <value>मिलाएं</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>अचयनित ध्वनि हटाए Ctrl+Alt+Q</value>
+    <value>ऑडियो की छटाई करें कण्ट्रोल+ऑल्ट+क्यू</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Q</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>279, 22</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
-    <value>अचयनित ध्वनि हटाए</value>
+    <value>ऑडियो की छटाई करें</value>
+  </data>
+  <data name="mPhrases_PhraseIsTODOMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>F9</value>
+  </data>
+  <data name="mPhrases_PhraseIsTODOMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mPhrases_PhraseIsTODOMenuItem.Text" xml:space="preserve">
+    <value>वाक्यांशों को भविष्य में कार्य करने हेतु चिन्हित करें</value>
+  </data>
+  <data name="mPhraseIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>वाक्यांश प्रयुक्त है कण्ट्रोल+के</value>
+  </data>
+  <data name="mPhraseIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+K</value>
+  </data>
+  <data name="mPhraseIsUsedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mPhraseIsUsedToolStripMenuItem.Text" xml:space="preserve">
+    <value>वाक्यांश प्रयुक्त है</value>
+  </data>
+  <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>छोड़े जाने योग्य नोट</value>
+  </data>
+  <data name="mSkippableBeginNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>नोट आरंभ </value>
+  </data>
+  <data name="mSkippableBeginNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Alt+[</value>
+  </data>
+  <data name="mSkippableBeginNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+OemOpenBrackets</value>
+  </data>
+  <data name="mSkippableBeginNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 22</value>
+  </data>
+  <data name="mSkippableBeginNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>नोट आरंभ </value>
+  </data>
+  <data name="mSkippableEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>नोट समाप्त</value>
+  </data>
+  <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Alt+]</value>
+  </data>
+  <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+Oem6</value>
+  </data>
+  <data name="mSkippableEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 22</value>
+  </data>
+  <data name="mSkippableEndNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>नोट समाप्त</value>
+  </data>
+  <data name="mSkippableAddReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>सन्दर्भ जोड़ें</value>
+  </data>
+  <data name="mSkippableAddReferenceToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Alt+A</value>
+  </data>
+  <data name="mSkippableAddReferenceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+A</value>
+  </data>
+  <data name="mSkippableAddReferenceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 22</value>
+  </data>
+  <data name="mSkippableAddReferenceToolStripMenuItem.Text" xml:space="preserve">
+    <value>सन्दर्भ जोड़ें</value>
+  </data>
+  <data name="mSkippableGotoToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>संदर्भित नोट पर जाएँ</value>
+  </data>
+  <data name="mSkippableGotoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 22</value>
+  </data>
+  <data name="mSkippableGotoToolStripMenuItem.Text" xml:space="preserve">
+    <value>संदर्भित नोट पर जाएँ</value>
+  </data>
+  <data name="mSkippableRemoveReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>सन्दर्भ हटायें</value>
+  </data>
+  <data name="mSkippableRemoveReferenceToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Alt+D</value>
+  </data>
+  <data name="mSkippableRemoveReferenceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+D</value>
+  </data>
+  <data name="mSkippableRemoveReferenceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 22</value>
+  </data>
+  <data name="mSkippableRemoveReferenceToolStripMenuItem.Text" xml:space="preserve">
+    <value>सन्दर्भ हटायें</value>
+  </data>
+  <data name="mSkippableMoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>नोट के प्रारंभ में जाएँ</value>
+  </data>
+  <data name="mSkippableMoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 22</value>
+  </data>
+  <data name="mSkippableMoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>नोट के प्रारंभ में जाएँ</value>
+  </data>
+  <data name="mSkippableMoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>नोट के अंत में जाएँ</value>
+  </data>
+  <data name="mSkippableMoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 22</value>
+  </data>
+  <data name="mSkippableMoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>नोट के अंत में जाएँ</value>
+  </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>नोट से भूमिका समाशोधित करें</value>
+  </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Alt+C</value>
+  </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+C</value>
+  </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 22</value>
+  </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>नोट से भूमिका समाशोधित करें</value>
+  </data>
+  <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>छोड़े जाने योग्य नोट</value>
+  </data>
+  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 6</value>
+  </data>
+  <data name="mPhrases_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 22</value>
+  </data>
+  <data name="mPhrases_AssignRole_PlainMenuItem.Text" xml:space="preserve">
+    <value>सामान्य</value>
+  </data>
+  <data name="mPhrases_AssignRole_HeadingMenuItem.AccessibleName" xml:space="preserve">
+    <value>शीर्षक कण्ट्रोल+शिफ्ट+डी</value>
+  </data>
+  <data name="mPhrases_AssignRole_HeadingMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+D</value>
+  </data>
+  <data name="mPhrases_AssignRole_HeadingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 22</value>
+  </data>
+  <data name="mPhrases_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
+    <value>शीर्षक</value>
+  </data>
+  <data name="mPhrases_AssignRole_PageMenuItem.AccessibleName" xml:space="preserve">
+    <value>पृष्ठ कण्ट्रोल+शिफ्ट+जी</value>
+  </data>
+  <data name="mPhrases_AssignRole_PageMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+G</value>
+  </data>
+  <data name="mPhrases_AssignRole_PageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 22</value>
+  </data>
+  <data name="mPhrases_AssignRole_PageMenuItem.Text" xml:space="preserve">
+    <value>पृष्ठ</value>
+  </data>
+  <data name="mPhrases_AssignRole_SilenceMenuItem.AccessibleName" xml:space="preserve">
+    <value>ध्वनिराहित कण्ट्रोल+शिफ्ट+ई</value>
+  </data>
+  <data name="mPhrases_AssignRole_SilenceMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+E</value>
+  </data>
+  <data name="mPhrases_AssignRole_SilenceMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 22</value>
+  </data>
+  <data name="mPhrases_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
+    <value>ध्वनिराहित</value>
+  </data>
+  <data name="mPhrases_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 22</value>
+  </data>
+  <data name="mPhrases_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
+    <value>एंकर</value>
+  </data>
+  <data name="mCustomRoleToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 6</value>
+  </data>
+  <data name="mPhrases_AssignRole_NewCustomRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 22</value>
+  </data>
+  <data name="mPhrases_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
+    <value>(नवीन अनुकूलनीय भूमिका...) </value>
+  </data>
+  <data name="mPhrases_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
+    <value>भूमिका सौपें</value>
+  </data>
+  <data name="mPhrases_ClearRoleMenuItem.AccessibleName" xml:space="preserve">
+    <value>भूमिका समाशोधित करें कण्ट्रोल+शिफ्ट+सी</value>
+  </data>
+  <data name="mPhrases_ClearRoleMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+C</value>
+  </data>
+  <data name="mPhrases_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mPhrases_ClearRoleMenuItem.Text" xml:space="preserve">
+    <value>भूमिका समाशोधित करें</value>
+  </data>
+  <data name="mPhrases_EditRolesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
+    <value>अनुकूलनीय भूमिका सम्पादित करें</value>
+  </data>
+  <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 6</value>
+  </data>
+  <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
+    <value>चयनित मद कण्ट्रोल+शिफ्ट+पी</value>
+  </data>
+  <data name="mPhrases_ApplyPhraseDetectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+P</value>
+  </data>
+  <data name="mPhrases_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="mPhrases_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
+    <value>चयनित मद</value>
+  </data>
+  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>बहुसंख्यक खंड</value>
+  </data>
+  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Text" xml:space="preserve">
+    <value>बहुसंख्यक खंड</value>
+  </data>
+  <data name="settingsFromSilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="settingsFromSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>चयनित ध्वनिरहित वाक्यांशों से पैरामीटर</value>
+  </data>
+  <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>वाक्यांश खोज लागू करें</value>
+  </data>
+  <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
+    <value>ऑडियो चयन प्रारंभ करें कण्ट्रोल+[</value>
+  </data>
+  <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+[</value>
+  </data>
+  <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+OemOpenBrackets</value>
+  </data>
+  <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Text" xml:space="preserve">
+    <value>ऑडियो चयन प्रारंभ करें </value>
+  </data>
+  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
+    <value>ऑडियो चयन समाप्त करें कण्ट्रोल+]</value>
+  </data>
+  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+]</value>
+  </data>
+  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Oem6</value>
+  </data>
+  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.Text" xml:space="preserve">
+    <value>ऑडियो चयन समाप्त करें </value>
+  </data>
+  <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
+    <value>ऑडियो चयन</value>
+  </data>
+  <data name="mNextTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>अगला भविष्य में कार्य करने वाला वाक्यांश कण्ट्रोल+एफ़९</value>
+  </data>
+  <data name="mNextTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+F9</value>
+  </data>
+  <data name="mNextTODOPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 22</value>
+  </data>
+  <data name="mNextTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>अगला भविष्य में कार्य करने वाला वाक्यांश</value>
+  </data>
+  <data name="mPreviousTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>पूर्ववर्ती भविष्य में कार्य करने वाला वाक्यांश कण्ट्रोल+शिफ्ट+एफ़९</value>
+  </data>
+  <data name="mPreviousTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+F9</value>
+  </data>
+  <data name="mPreviousTODOPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 22</value>
+  </data>
+  <data name="mPreviousTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>पूर्ववर्ती भविष्य में कार्य करने वाला वाक्यांश</value>
+  </data>
+  <data name="m_GoToPageToolStrip.AccessibleName" xml:space="preserve">
+    <value>पृष्ठ/वाक्यांश कण्ट्रोल+जी</value>
+  </data>
+  <data name="m_GoToPageToolStrip.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+G</value>
+  </data>
+  <data name="m_GoToPageToolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 22</value>
+  </data>
+  <data name="m_GoToPageToolStrip.Text" xml:space="preserve">
+    <value>पृष्ठ/वाक्यांश/समय</value>
+  </data>
+  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>विशिष्ठ वाक्यांश एकत्रित करें</value>
+  </data>
+  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+F3</value>
+  </data>
+  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+F3</value>
+  </data>
+  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>271, 22</value>
+  </data>
+  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>विशिष्ठ वाक्यांश एकत्रित करें</value>
+  </data>
+  <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
+    <value>पर जाएँ</value>
+  </data>
+  <data name="mCheckForPhrasesWithImproperAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mCheckForPhrasesWithImproperAudioMenuItem.Text" xml:space="preserve">
+    <value>दोषपूर्ण ऑडियो जांचे</value>
+  </data>
+  <data name="mDeleteFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>निम्न वाक्यांशों को हटायें</value>
+  </data>
+  <data name="mDeleteFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mDeleteFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>निम्न वाक्यांशों को हटायें</value>
   </data>
   <data name="mPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
+    <value>59, 20</value>
   </data>
   <data name="mPhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>वाक्यांश</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पूरा बजाए Ctrl+Shift+Space</value>
+    <value>सब कुछ प्ले करें कण्ट्रोल+शिफ्ट+स्पेस</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Space</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>208, 22</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>पूरा बजाए</value>
+    <value>सब कुछ प्ले करें </value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>चयनित हिस्सा बजाए</value>
+    <value>चयनित रिक्त स्थान को प्ले करें </value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Space</value>
+    <value>रिक्त स्थान </value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>208, 22</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>चयनित हिस्सा बजाए</value>
+    <value>चयनित प्ले करें</value>
   </data>
   <data name="mPlayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="mPlayToolStripMenuItem.Text" xml:space="preserve">
-    <value>बजाए</value>
+    <value>प्ले</value>
   </data>
   <data name="mPauseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ठहरे Space</value>
+    <value>रिक्त स्थान को अस्थायी रूप से रोकें </value>
   </data>
   <data name="mPauseToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Space</value>
+    <value>रिक्त स्थान </value>
   </data>
   <data name="mPauseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="mPauseToolStripMenuItem.Text" xml:space="preserve">
-    <value>ठहरे</value>
+    <value>अस्थायी रूप से रोके</value>
   </data>
   <data name="mResumeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पुर्न आरम्भ Space</value>
+    <value>रिक्त स्थान को पुनः आरम्भ करें</value>
   </data>
   <data name="mResumeToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Space</value>
   </data>
   <data name="mResumeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="mResumeToolStripMenuItem.Text" xml:space="preserve">
-    <value>पुर्न आरम्भ</value>
+    <value>पुनः आरम्भ करें</value>
   </data>
   <data name="mStopToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>रोके Ctrl+Space</value>
+    <value>रोकें कण्ट्रोल+स्पेस</value>
   </data>
   <data name="mStopToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Space</value>
   </data>
   <data name="mStopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="mStopToolStripMenuItem.Text" xml:space="preserve">
-    <value>रोके</value>
+    <value>रोकें</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>सामान्य गति Ctrl+0</value>
+    <value>सामान्य गति कण्ट्रोल+0</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+0</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
+    <value>238, 22</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.Text" xml:space="preserve">
     <value>सामान्य गति</value>
   </data>
   <data name="mElapseBacktoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
+    <value>238, 22</value>
   </data>
   <data name="mElapseBacktoolStripMenuItem.Text" xml:space="preserve">
-    <value>थोड़ा सा पीछे करके सामान्य गति से बजाए</value>
+    <value>पिछले बीते हुए के साथ सामान्य गति</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>गति बढ़ाए Ctrl++</value>
+    <value>गति बढ़ाएं कण्ट्रोल++</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl++</value>
@@ -1132,13 +1435,13 @@
     <value>Ctrl+Oemplus</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
+    <value>238, 22</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.Text" xml:space="preserve">
-    <value>गति बढ़ाए</value>
+    <value>गति बढ़ाएं</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>गति हटाए Ctrl+-</value>
+    <value>गति धीमी करें कण्ट्रोल+-</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+-</value>
@@ -1147,187 +1450,220 @@
     <value>Ctrl+OemMinus</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
+    <value>238, 22</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.Text" xml:space="preserve">
-    <value>गति घटाए</value>
+    <value>गति धीमी करें</value>
   </data>
   <data name="mFastPlaytoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="mFastPlaytoolStripMenuItem.Text" xml:space="preserve">
-    <value>तेज़ बजाए</value>
+    <value>तीव्र गति से प्ले करें</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पूर्वालोकन... Ctrl+P</value>
+    <value>... से पूर्वावलोकन कण्ट्रोल+पी</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+P</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.Text" xml:space="preserve">
-    <value>पूर्वालोकन...</value>
+    <value>... से पूर्वावलोकन</value>
   </data>
   <data name="mPreviewUpToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="mPreviewUpToToolStripMenuItem.Text" xml:space="preserve">
-    <value>यहा तक पूर्वालोकन...</value>
+    <value>... तक पूर्वावलोकन</value>
   </data>
   <data name="mPreviewSelectedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
+    <value>194, 22</value>
   </data>
   <data name="mPreviewSelectedToolStripMenuItem.Text" xml:space="preserve">
-    <value>चयनित का पूर्वालोकन</value>
+    <value>चयनित पूर्वावलोकन</value>
   </data>
   <data name="mPreviewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="mPreviewToolStripMenuItem.Text" xml:space="preserve">
-    <value>पूर्वालोकन</value>
+    <value>पूर्वावलोकन</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ध्वनि स्तर जाँचे Ctrl+R</value>
+    <value>मोनिटरिंग प्रारंभ करें कण्ट्रोल+आर</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>267, 22</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.Text" xml:space="preserve">
-    <value>ध्वनि स्तर जाँचे</value>
+    <value>मोनिटरिंग प्रारंभ करें </value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>रिकॉर्डिंग शुरु Ctrl+R</value>
+    <value>रिकॉर्डिंग प्रारंभ करें कण्ट्रोल+आर</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>267, 22</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.Text" xml:space="preserve">
-    <value>रिकॉर्डिंग शुरु</value>
+    <value>रिकॉर्डिंग प्रारंभ करें</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>रिकॉर्डिंग सीधे शुरू करे ctrl+shift+r</value>
+    <value>सीधे रिकॉर्डिंग प्रारंभ करें कण्ट्रोल+शिफ्ट+आर</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+R</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>267, 22</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.Text" xml:space="preserve">
-    <value>रिकॉर्डिंग सीधे शुरु करे</value>
+    <value>सीधे रिकॉर्डिंग प्रारंभ करें</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>267, 22</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Text" xml:space="preserve">
-    <value>अतिलेखन अनुमति</value>
+    <value>अधिलेखित की अनुमति दें</value>
   </data>
   <data name="mRecordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="mRecordToolStripMenuItem.Text" xml:space="preserve">
-    <value>रिकॉर्ड</value>
+    <value>रिकॉर्ड करें</value>
+  </data>
+  <data name="mGenerateSpeechToolStripMenuItem.AccessibleDescription" xml:space="preserve">
+    <value>वाणी उत्पन्न करें</value>
+  </data>
+  <data name="selectedPageToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>चयनित पृष्ठ के लिए वाणी उत्पन्न करें</value>
+  </data>
+  <data name="selectedPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="selectedPageToolStripMenuItem.Text" xml:space="preserve">
+    <value>चयनित पृष्ठ</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>सभी रिक्त पृष्ठों के लिए वाणी उत्पन्न करें</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
+    <value>सभी रिक्त पृष्ठ</value>
+  </data>
+  <data name="mGenerateSpeechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="mGenerateSpeechToolStripMenuItem.Text" xml:space="preserve">
+    <value>वाणी उत्पन्न करें</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 6</value>
+    <value>173, 6</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पिछला भाग Alt+Up</value>
+    <value>पूर्व खंड ऑल्ट+अप</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Up</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>पिछला भाग</value>
+    <value>पूर्व खंड </value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पिछला पृष्ठ Alt+PageUp</value>
+    <value>पूर्व पृष्ठ ऑल्ट+पेज अप</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+PgUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>पिछला पृष्ठ</value>
+    <value>पूर्व पृष्ठ</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पिछला वाक्यांश Alt+Left</value>
+    <value>पूर्व वाक्यांश ऑल्ट+लेफ्ट</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Left</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>पिछला वाक्यांश</value>
+    <value>पूर्व वाक्यांश</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>अगला वाक्यांश Alt+Right</value>
+    <value>अगला वाक्यांश ऑल्ट+राईट</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Right</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>अगला वाक्यांश</value>
+    <value>अगला वाक्यांश </value>
   </data>
   <data name="mNextPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>अगला पृष्ठ Alt+PageDown</value>
+    <value>अगला पृष्ठ ऑल्ट+पेज डाउन</value>
   </data>
   <data name="mNextPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+PgDn</value>
   </data>
   <data name="mNextPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="mNextPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>अगला पृष्ठ</value>
+    <value>अगला पृष्ठ </value>
   </data>
   <data name="mNextSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>अगला भाग Alt+Down</value>
+    <value>अगला खंड ऑल्ट+डाउन</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Down</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>अगला भाग</value>
+    <value>अगला खंड</value>
   </data>
   <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 6</value>
+    <value>204, 6</value>
   </data>
   <data name="mPlayOnNavigateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="mPlayOnNavigateToolStripMenuItem.Text" xml:space="preserve">
-    <value>स्वतः बजाए</value>
+    <value>संचलन पर प्ले करें</value>
+  </data>
+  <data name="mFineNavigationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="mFineNavigationToolStripMenuItem.Text" xml:space="preserve">
+    <value>सूक्ष्म संचलन</value>
   </data>
   <data name="navigationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="navigationToolStripMenuItem.Text" xml:space="preserve">
-    <value>भ्रमण</value>
+    <value>संचलन</value>
   </data>
   <data name="mRewindToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>पीछे करे Ctrl+comma</value>
+    <value>तीव्र गति से पीछे ले जाएँ कण्ट्रोल+कोमा</value>
   </data>
   <data name="mRewindToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+,</value>
@@ -1336,13 +1672,13 @@
     <value>Ctrl+Oemcomma</value>
   </data>
   <data name="mRewindToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="mRewindToolStripMenuItem.Text" xml:space="preserve">
-    <value>पीछे करे</value>
+    <value>तीव्र गति से पीछे ले जाएँ</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>आगे करे Ctrl+period</value>
+    <value>तीव्र गति से आगे ले जाएँ कण्ट्रोल+पीरियड</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+.</value>
@@ -1351,121 +1687,121 @@
     <value>Ctrl+OemPeriod</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.Text" xml:space="preserve">
-    <value>आगे करे</value>
+    <value>तीव्र गति से आगे ले जाएँ</value>
   </data>
   <data name="transportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 20</value>
+    <value>70, 20</value>
   </data>
   <data name="transportToolStripMenuItem.Text" xml:space="preserve">
-    <value>ध्वनि सम्बन्धित</value>
+    <value>ट्रांसपोर्ट</value>
   </data>
   <data name="mTools_PreferencesMenuItem.AccessibleName" xml:space="preserve">
-    <value>प्राथमिकताएँ Ctrl+Alt+F</value>
+    <value>प्राथमिकता कण्ट्रोल+ऑल्ट+एफ</value>
   </data>
   <data name="mTools_PreferencesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+F</value>
   </data>
   <data name="mTools_PreferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>250, 22</value>
   </data>
   <data name="mTools_PreferencesMenuItem.Text" xml:space="preserve">
-    <value>प्राथमिकताएँ</value>
+    <value>प्राथमिकता </value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 6</value>
+    <value>247, 6</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value>ऑडियो एक्सपोर्ट करें कण्ट्रोल+ऑल्ट+ई</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+E</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.Text" xml:space="preserve">
+    <value>ऑडियो एक्सपोर्ट करें </value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.AccessibleName" xml:space="preserve">
-    <value>DAISY पुस्तक बनाए Ctrl+E</value>
+    <value>डेज़ी के रूप में एक्सपोर्ट करें कण्ट्रोल+ई</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+E</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>250, 22</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
-    <value>DAISY पुस्तक बनाए</value>
+    <value>डेज़ी के रूप में एक्सपोर्ट करें</value>
   </data>
-  <data name="mTools_EncodeDTBAudioAsMP3MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
-  </data>
-  <data name="mTools_EncodeDTBAudioAsMP3MenuItem.Text" xml:space="preserve">
-    <value>DTB ओडियो को MP3 बनाए</value>
-  </data>
-  <data name="mTools_ValidateDTBMenuItem.AccessibleName" xml:space="preserve">
-    <value>DTB वैलीडेट करे</value>
-  </data>
-  <data name="mTools_ValidateDTBMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
-  </data>
-  <data name="mTools_ValidateDTBMenuItem.Text" xml:space="preserve">
-    <value>DTB वैलीडेट करे</value>
-  </data>
-  <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 6</value>
+  <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value>असंदर्भित ऑडियो हटायें कण्ट्रोल+आई</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+L</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
+    <value>250, 22</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
-    <value>अनउपयोगी ध्वनि हटाए</value>
+    <value>असंदर्भित ऑडियो हटायें </value>
+  </data>
+  <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 6</value>
   </data>
   <data name="mToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
+    <value>48, 20</value>
   </data>
   <data name="mToolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>उपकरण</value>
+    <value>टूल्स</value>
   </data>
-  <data name="mContentsToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>सामग्री F1</value>
+  <data name="mHelp_WhatsNewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 22</value>
   </data>
-  <data name="mContentsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>F1</value>
+  <data name="mHelp_WhatsNewMenuItem.Text" xml:space="preserve">
+    <value>नवीन क्या है? (ऑनलाइन)</value>
   </data>
-  <data name="mContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 22</value>
+  <data name="mHelp_WhatsNewMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="mContentsToolStripMenuItem.Text" xml:space="preserve">
-    <value>सामग्री</value>
+  <data name="mHelp_ContentsMenuItem.AccessibleName" xml:space="preserve">
+    <value>विषयसूची</value>
   </data>
-  <data name="mViewHelpInExternalBrowserToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>बाहरी ब्राउज़र में सहायता देखें Shift+F1</value>
+  <data name="mHelp_ContentsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 22</value>
   </data>
-  <data name="mViewHelpInExternalBrowserToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Shift+F1</value>
+  <data name="mHelp_ContentsMenuItem.Text" xml:space="preserve">
+    <value>विषयसूची</value>
   </data>
-  <data name="mViewHelpInExternalBrowserToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 22</value>
+  <data name="mHelp_ReportBugMenuItem.AccessibleName" xml:space="preserve">
+    <value>ऑनलाइन स्रोत/मुद्दे की खोज कण्ट्रोल+ऑल्ट+आर</value>
   </data>
-  <data name="mViewHelpInExternalBrowserToolStripMenuItem.Text" xml:space="preserve">
-    <value>बाहरी ब्राउज़र में सहायता देखें</value>
+  <data name="mHelp_ReportBugMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 22</value>
   </data>
-  <data name="mReportBugToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>दोष रिपोर्ट भेजे Ctrl+Alt+R</value>
-  </data>
-  <data name="mReportBugToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+R</value>
-  </data>
-  <data name="mReportBugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 22</value>
-  </data>
-  <data name="mReportBugToolStripMenuItem.Text" xml:space="preserve">
-    <value>दोष रिपोर्ट भेजे</value>
+  <data name="mHelp_ReportBugMenuItem.Text" xml:space="preserve">
+    <value>ऑनलाइन स्रोत/मुद्दे की खोज</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 22</value>
+    <value>238, 22</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Text" xml:space="preserve">
     <value>ओबी के बारे में</value>
   </data>
+  <data name="checkForUpdatesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>नवीनतम के लिए देखें</value>
+  </data>
+  <data name="checkForUpdatesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 22</value>
+  </data>
+  <data name="checkForUpdatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>नवीनतम के लिए देखें</value>
+  </data>
   <data name="mHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
+    <value>44, 20</value>
   </data>
   <data name="mHelpToolStripMenuItem.Text" xml:space="preserve">
     <value>सहायता</value>
@@ -1474,13 +1810,13 @@
     <value>0, 0</value>
   </data>
   <data name="mMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>948, 24</value>
+    <value>876, 24</value>
   </data>
   <data name="mMenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="mMenuStrip.Text" xml:space="preserve">
-    <value>मेन्यू स्ट्रीप1</value>
+    <value>menuStrip1</value>
   </data>
   <data name="&gt;&gt;mMenuStrip.Name" xml:space="preserve">
     <value>mMenuStrip</value>
@@ -1494,35 +1830,35 @@
   <data name="&gt;&gt;mMenuStrip.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 583</value>
-  </metadata>
+  <data name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>0, 520</value>
+  </data>
   <data name="mStatusLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>933, 17</value>
+    <value>861, 17</value>
   </data>
   <data name="mStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="mStatusProgessBar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mStatusProgressBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 16</value>
   </data>
-  <data name="mStatusProgessBar.Visible" type="System.Boolean, mscorlib">
+  <data name="mStatusProgressBar.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="mStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 583</value>
+    <value>0, 520</value>
   </data>
   <data name="mStatusStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>948, 22</value>
+    <value>876, 22</value>
   </data>
   <data name="mStatusStrip.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="mStatusStrip.Text" xml:space="preserve">
-    <value>स्टेटस स्ट्रीप1</value>
+    <value>statusStrip1</value>
   </data>
   <data name="&gt;&gt;mStatusStrip.Name" xml:space="preserve">
     <value>mStatusStrip</value>
@@ -1546,7 +1882,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="mProjectView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>948, 559</value>
+    <value>876, 496</value>
   </data>
   <data name="mProjectView.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1555,7 +1891,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.21579, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=2.5.5.24551, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1563,14 +1899,14 @@
   <data name="&gt;&gt;mProjectView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>948, 605</value>
+    <value>876, 542</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1828,6 +2164,9 @@
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>ओबी</value>
   </data>
@@ -1853,6 +2192,18 @@
     <value>mFile_OpenProjectMenuItem</value>
   </data>
   <data name="&gt;&gt;mFile_OpenProjectMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_RestoreFromBackupToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_RestoreFromOriginalProjectToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mFile_CloseProjectMenuItem.Name" xml:space="preserve">
@@ -1915,10 +2266,10 @@
   <data name="&gt;&gt;mFile_ExitMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
-    <value>toolStripMenuItem1</value>
+  <data name="&gt;&gt;mEditToolStripMenuItem1.Name" xml:space="preserve">
+    <value>mEditToolStripMenuItem1</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+  <data name="&gt;&gt;mEditToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mUndoToolStripMenuItem.Name" xml:space="preserve">
@@ -2017,6 +2368,24 @@
   <data name="&gt;&gt;mFindPreviousToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mEdit_BookmarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>mEdit_BookmarkToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mEdit_BookmarkToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mEdit_AssignBookmarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>mEdit_AssignBookmarkToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mEdit_AssignBookmarkToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mEdit_GotoBookmarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>mEdit_GotoBookmarkToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mEdit_GotoBookmarkToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mViewToolStripMenuItem.Name" xml:space="preserve">
     <value>mViewToolStripMenuItem</value>
   </data>
@@ -2077,24 +2446,6 @@
   <data name="&gt;&gt;mSynchronizeViewsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator8.Name" xml:space="preserve">
-    <value>toolStripSeparator8</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mShowOnlySelectedSectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mShowOnlySelectedSectionToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mShowOnlySelectedSectionToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mWrappingInContentViewToolStripMenuItem.Name" xml:space="preserve">
-    <value>mWrappingInContentViewToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mWrappingInContentViewToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;toolStripSeparator10.Name" xml:space="preserve">
     <value>toolStripSeparator10</value>
   </data>
@@ -2111,6 +2462,12 @@
     <value>mShowSourceToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mShowSourceToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mView_RecordingToolBarMenuItem.Name" xml:space="preserve">
+    <value>mView_RecordingToolBarMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mView_RecordingToolBarMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator15.Name" xml:space="preserve">
@@ -2149,16 +2506,40 @@
   <data name="&gt;&gt;mView_AudioZoomOutMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mView_ResetAudioSizeMenuItem.Name" xml:space="preserve">
+    <value>mView_ResetAudioSizeMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mView_ResetAudioSizeMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mView_RefreshContentViewMenuItem.Name" xml:space="preserve">
+    <value>mView_RefreshContentViewMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mView_RefreshContentViewMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator17.Name" xml:space="preserve">
     <value>toolStripSeparator17</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator17.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mView_ProjectStatisticsMenuItem.Name" xml:space="preserve">
-    <value>mView_ProjectStatisticsMenuItem</value>
+  <data name="&gt;&gt;mView_PhrasePropertiesMenuItem.Name" xml:space="preserve">
+    <value>mView_PhrasePropertiesMenuItem</value>
   </data>
-  <data name="&gt;&gt;mView_ProjectStatisticsMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mView_PhrasePropertiesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mView_SectionPropertiesMenuItem.Name" xml:space="preserve">
+    <value>mView_SectionPropertiesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mView_SectionPropertiesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mView_ProjectPropertiesMenuItem.Name" xml:space="preserve">
+    <value>mView_ProjectPropertiesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mView_ProjectPropertiesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mSectionsToolStripMenuItem.Name" xml:space="preserve">
@@ -2221,6 +2602,18 @@
   <data name="&gt;&gt;mMergeSectionWithNextToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mergeSectionWithNextToolStripMenuItem.Name" xml:space="preserve">
+    <value>mergeSectionWithNextToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mergeSectionWithNextToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mergeMultipleSectionsToolStripMenuItem.Name" xml:space="preserve">
+    <value>mergeMultipleSectionsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mergeMultipleSectionsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator13.Name" xml:space="preserve">
     <value>toolStripSeparator13</value>
   </data>
@@ -2263,10 +2656,40 @@
   <data name="&gt;&gt;mSplitPhraseToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mMergeToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMergeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mMergeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mMergePhraseWithNextToolStripMenuItem.Name" xml:space="preserve">
     <value>mMergePhraseWithNextToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mMergePhraseWithNextToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMergePhraseWithFollowingPhrasesToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMergePhraseWithFollowingPhrasesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mMergePhraseWithFollowingPhrasesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMergePhraseWithPrecedingPhrasesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mCropAudiotoolStripMenuItem.Name" xml:space="preserve">
+    <value>mCropAudiotoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mCropAudiotoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_PhraseIsTODOMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_PhraseIsTODOMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_PhraseIsTODOMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mPhraseIsUsedToolStripMenuItem.Name" xml:space="preserve">
@@ -2275,40 +2698,100 @@
   <data name="&gt;&gt;mPhraseIsUsedToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mSkippableNoteToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSkippableNoteToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSkippableNoteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mSkippableBeginNoteToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSkippableBeginNoteToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSkippableBeginNoteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mSkippableEndNoteToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSkippableEndNoteToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSkippableEndNoteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mSkippableAddReferenceToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSkippableAddReferenceToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSkippableAddReferenceToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mSkippableGotoToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSkippableGotoToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSkippableGotoToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mSkippableRemoveReferenceToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSkippableRemoveReferenceToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSkippableRemoveReferenceToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mSkippableMoveToStartNoteToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSkippableMoveToStartNoteToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSkippableMoveToStartNoteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mSkippableMoveToEndNoteToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSkippableMoveToEndNoteToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSkippableMoveToEndNoteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mSkippableClearRoleFromNoteToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSkippableClearRoleFromNoteToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSkippableClearRoleFromNoteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator6.Name" xml:space="preserve">
     <value>toolStripSeparator6</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator6.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mAssignRoleToolStripMenuItem.Name" xml:space="preserve">
-    <value>mAssignRoleToolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_AssignRoleMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AssignRoleMenuItem</value>
   </data>
-  <data name="&gt;&gt;mAssignRoleToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_AssignRoleMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mSetAsHeadingToolStripMenuItem.Name" xml:space="preserve">
-    <value>mSetAsHeadingToolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_AssignRole_PlainMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AssignRole_PlainMenuItem</value>
   </data>
-  <data name="&gt;&gt;mSetAsHeadingToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_AssignRole_PlainMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mPageToolStripMenuItem.Name" xml:space="preserve">
-    <value>mPageToolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_AssignRole_HeadingMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AssignRole_HeadingMenuItem</value>
   </data>
-  <data name="&gt;&gt;mPageToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_AssignRole_HeadingMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mSilenceToolStripMenuItem.Name" xml:space="preserve">
-    <value>mSilenceToolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_AssignRole_PageMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AssignRole_PageMenuItem</value>
   </data>
-  <data name="&gt;&gt;mSilenceToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_AssignRole_PageMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mTodoClasstoolStripMenuItem.Name" xml:space="preserve">
-    <value>mTodoClasstoolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_AssignRole_SilenceMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AssignRole_SilenceMenuItem</value>
   </data>
-  <data name="&gt;&gt;mTodoClasstoolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_AssignRole_SilenceMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_AssignRole_AnchorMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AssignRole_AnchorMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_AssignRole_AnchorMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mCustomRoleToolStripSeparator.Name" xml:space="preserve">
@@ -2317,23 +2800,29 @@
   <data name="&gt;&gt;mCustomRoleToolStripSeparator.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mAddRoleToolStripTextBox.Name" xml:space="preserve">
-    <value>mAddRoleToolStripTextBox</value>
+  <data name="&gt;&gt;mPhrases_AssignRole_NewCustomRoleMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AssignRole_NewCustomRoleMenuItem</value>
   </data>
-  <data name="&gt;&gt;mAddRoleToolStripTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripTextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mEditRolesToolStripMenuItem.Name" xml:space="preserve">
-    <value>mEditRolesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mEditRolesToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_AssignRole_NewCustomRoleMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mClearRoleToolStripMenuItem.Name" xml:space="preserve">
-    <value>mClearRoleToolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_ClearRoleMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_ClearRoleMenuItem</value>
   </data>
-  <data name="&gt;&gt;mClearRoleToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_ClearRoleMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_EditRolesMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_EditRolesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_EditRolesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator19.Name" xml:space="preserve">
+    <value>toolStripSeparator19</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mPhraseDetectionToolStripMenuItem.Name" xml:space="preserve">
     <value>mPhraseDetectionToolStripMenuItem</value>
@@ -2341,34 +2830,40 @@
   <data name="&gt;&gt;mPhraseDetectionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mMarkDefaultCustomClassToolStripMenuItem.Name" xml:space="preserve">
-    <value>mMarkDefaultCustomClassToolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_ApplyPhraseDetectionMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_ApplyPhraseDetectionMenuItem</value>
   </data>
-  <data name="&gt;&gt;mMarkDefaultCustomClassToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_ApplyPhraseDetectionMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mInPhraseSelectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mInPhraseSelectionToolStripMenuItem</value>
+  <data name="&gt;&gt;mApplyPhraseDetectionInProjectToolStripMenuItem.Name" xml:space="preserve">
+    <value>mApplyPhraseDetectionInProjectToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;mInPhraseSelectionToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mApplyPhraseDetectionInProjectToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mBeginInPhraseSelectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mBeginInPhraseSelectionToolStripMenuItem</value>
+  <data name="&gt;&gt;settingsFromSilencePhraseToolStripMenuItem.Name" xml:space="preserve">
+    <value>settingsFromSilencePhraseToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;mBeginInPhraseSelectionToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;settingsFromSilencePhraseToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mEndInPhraseSelectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mEndInPhraseSelectionToolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_AudioSelectionMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AudioSelectionMenuItem</value>
   </data>
-  <data name="&gt;&gt;mEndInPhraseSelectionToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_AudioSelectionMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mDeselectInPhraseSelectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mDeselectInPhraseSelectionToolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AudioSelection_BeginAudioSelectionMenuItem</value>
   </data>
-  <data name="&gt;&gt;mDeselectInPhraseSelectionToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_AudioSelection_EndAudioSelectionMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AudioSelection_EndAudioSelectionMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_AudioSelection_EndAudioSelectionMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mGoToToolStripMenuItem.Name" xml:space="preserve">
@@ -2389,10 +2884,28 @@
   <data name="&gt;&gt;mPreviousTODOPhraseToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mCropAudiotoolStripMenuItem.Name" xml:space="preserve">
-    <value>mCropAudiotoolStripMenuItem</value>
+  <data name="&gt;&gt;m_GoToPageToolStrip.Name" xml:space="preserve">
+    <value>m_GoToPageToolStrip</value>
   </data>
-  <data name="&gt;&gt;mCropAudiotoolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_GoToPageToolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_GoToCollectSpecialPhrasesToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_GoToCollectSpecialPhrasesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_GoToCollectSpecialPhrasesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mCheckForPhrasesWithImproperAudioMenuItem.Name" xml:space="preserve">
+    <value>mCheckForPhrasesWithImproperAudioMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mCheckForPhrasesWithImproperAudioMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mDeleteFollowingPhrasesToolStripMenuItem.Name" xml:space="preserve">
+    <value>mDeleteFollowingPhrasesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mDeleteFollowingPhrasesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;transportToolStripMenuItem.Name" xml:space="preserve">
@@ -2521,6 +3034,24 @@
   <data name="&gt;&gt;mAllowOverwriteToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mGenerateSpeechToolStripMenuItem.Name" xml:space="preserve">
+    <value>mGenerateSpeechToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mGenerateSpeechToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectedPageToolStripMenuItem.Name" xml:space="preserve">
+    <value>selectedPageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;selectedPageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allEmptyPagesToolStripMenuItem.Name" xml:space="preserve">
+    <value>allEmptyPagesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;allEmptyPagesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
     <value>toolStripSeparator5</value>
   </data>
@@ -2581,6 +3112,12 @@
   <data name="&gt;&gt;mPlayOnNavigateToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mFineNavigationToolStripMenuItem.Name" xml:space="preserve">
+    <value>mFineNavigationToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mFineNavigationToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mRewindToolStripMenuItem.Name" xml:space="preserve">
     <value>mRewindToolStripMenuItem</value>
   </data>
@@ -2611,22 +3148,22 @@
   <data name="&gt;&gt;toolStripSeparator16.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mTools_ExportSelectedAudioMenuItem.Name" xml:space="preserve">
+    <value>mTools_ExportSelectedAudioMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mTools_ExportSelectedAudioMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mTools_ExportAsDAISYMenuItem.Name" xml:space="preserve">
     <value>mTools_ExportAsDAISYMenuItem</value>
   </data>
   <data name="&gt;&gt;mTools_ExportAsDAISYMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mTools_EncodeDTBAudioAsMP3MenuItem.Name" xml:space="preserve">
-    <value>mTools_EncodeDTBAudioAsMP3MenuItem</value>
+  <data name="&gt;&gt;mTools_CleanUnreferencedAudioMenuItem.Name" xml:space="preserve">
+    <value>mTools_CleanUnreferencedAudioMenuItem</value>
   </data>
-  <data name="&gt;&gt;mTools_EncodeDTBAudioAsMP3MenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mTools_ValidateDTBMenuItem.Name" xml:space="preserve">
-    <value>mTools_ValidateDTBMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mTools_ValidateDTBMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mTools_CleanUnreferencedAudioMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator18.Name" xml:space="preserve">
@@ -2635,34 +3172,28 @@
   <data name="&gt;&gt;toolStripSeparator18.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mTools_CleanUnreferencedAudioMenuItem.Name" xml:space="preserve">
-    <value>mTools_CleanUnreferencedAudioMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mTools_CleanUnreferencedAudioMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;mHelpToolStripMenuItem.Name" xml:space="preserve">
     <value>mHelpToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mHelpToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mContentsToolStripMenuItem.Name" xml:space="preserve">
-    <value>mContentsToolStripMenuItem</value>
+  <data name="&gt;&gt;mHelp_WhatsNewMenuItem.Name" xml:space="preserve">
+    <value>mHelp_WhatsNewMenuItem</value>
   </data>
-  <data name="&gt;&gt;mContentsToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mHelp_WhatsNewMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mViewHelpInExternalBrowserToolStripMenuItem.Name" xml:space="preserve">
-    <value>mViewHelpInExternalBrowserToolStripMenuItem</value>
+  <data name="&gt;&gt;mHelp_ContentsMenuItem.Name" xml:space="preserve">
+    <value>mHelp_ContentsMenuItem</value>
   </data>
-  <data name="&gt;&gt;mViewHelpInExternalBrowserToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mHelp_ContentsMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mReportBugToolStripMenuItem.Name" xml:space="preserve">
-    <value>mReportBugToolStripMenuItem</value>
+  <data name="&gt;&gt;mHelp_ReportBugMenuItem.Name" xml:space="preserve">
+    <value>mHelp_ReportBugMenuItem</value>
   </data>
-  <data name="&gt;&gt;mReportBugToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mHelp_ReportBugMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;aboutObiToolStripMenuItem.Name" xml:space="preserve">
@@ -2671,16 +3202,22 @@
   <data name="&gt;&gt;aboutObiToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;checkForUpdatesToolStripMenuItem.Name" xml:space="preserve">
+    <value>checkForUpdatesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;checkForUpdatesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mStatusLabel.Name" xml:space="preserve">
     <value>mStatusLabel</value>
   </data>
   <data name="&gt;&gt;mStatusLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mStatusProgessBar.Name" xml:space="preserve">
-    <value>mStatusProgessBar</value>
+  <data name="&gt;&gt;mStatusProgressBar.Name" xml:space="preserve">
+    <value>mStatusProgressBar</value>
   </data>
-  <data name="&gt;&gt;mStatusProgessBar.Type" xml:space="preserve">
+  <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
@@ -2689,28 +3226,7 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mSectionsToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
-  </data>
-  <data name="mFileToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
-  </data>
-  <data name="mEditToolStripMenuItem1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
-  </data>
-  <data name="mViewToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
-  </data>
-  <data name="mPhrasesToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
-  </data>
-  <data name="transportToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
-  </data>
-  <data name="mToolsToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
-  </data>
-  <data name="mHelpToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
+  <data name="mMenuStrip.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15pt</value>
   </data>
 </root>
