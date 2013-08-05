@@ -11,11 +11,14 @@ namespace Obi.ProjectView
     public partial class AudioBlock : Block
     {
         private bool mShiftKeyPressed;  // track the shift key
+        private bool m_IsAudioScaleIndependentOfStrip  = false;//@zoomwaveform
+        private float m_AudioScaleIndependentOfStrip = -1.0f;//@zoomwaveform
 
         public const int NORMAL_PRIORITY = 1;
         public const int STRIP_SELECTED_PRIORITY = 2;
         public const int BLOCK_SELECTED_PRIORITY = 3;
         public const int WAVEFORM_SELECTED_PRIORITY = 4;
+        public bool FlagMouseDown = false; //@zoomwaveform
 
         //@singleSection: height and width is increased by 20%, height is increased from properties of designer from 128 to 154
 
@@ -32,7 +35,12 @@ namespace Obi.ProjectView
             mShiftKeyPressed = false;
         }
 
-
+        //@zoomwaveform
+        public AudioBlock(PhraseNode node, Strip strip, bool isAudioScaleIndependentOfStrip): this  (node,strip)
+        {
+            m_IsAudioScaleIndependentOfStrip = isAudioScaleIndependentOfStrip;
+            m_AudioScaleIndependentOfStrip = m_IsAudioScaleIndependentOfStrip ? 0.04f : -1.0f;
+        }
 
         // Audio of the block has changed: update the label and the width to accomodate the new audio.
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
@@ -47,7 +55,7 @@ namespace Obi.ProjectView
         {
             if (node != null && mWaveform != null)
             {
-                if (node.Audio.Duration.AsMilliseconds > 0.0)
+                if (node.Audio.Duration.AsMilliseconds> 0.0)
                 {
                     mWaveform.Visible = true;
                     mWaveform.BackColor = BackColor;
@@ -65,6 +73,28 @@ namespace Obi.ProjectView
             }
         }
 
+        //@zoomwaveform
+public void SetWaveformForZoom(PhraseNode node)
+        {
+            if (node != null && mWaveform != null)
+            {
+                if (node.Audio.Duration.AsMilliseconds > 0.0)
+                {
+                    mWaveform.Visible = true;
+                    mWaveform.BackColor = BackColor;
+                    mWaveform.AccessibleName = AccessibleName;
+                    mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
+                    //mWaveform.Size = new Size(WaveformDefaultWidth,
+                    //    Height - mLabel.Height - mLabel.Margin.Bottom - mWaveform.Margin.Vertical - BorderHeight);
+                    mWaveform.Block = this;
+                    Size = new Size(WaveformFullWidth, Height);
+                }
+                else
+                {
+                    mWaveform.Visible = false;
+                }
+            }
+        }
 
 
 
@@ -120,8 +150,16 @@ namespace Obi.ProjectView
 
         public float AudioScale
         {
-            get { return Strip == null ? 0.01f : Strip.AudioScale; }
-            set { SetWaveform(mNode as PhraseNode); }
+            get 
+            { 
+                return m_IsAudioScaleIndependentOfStrip? m_AudioScaleIndependentOfStrip: //@zoomwavform
+                Strip == null ? 0.01f : Strip.AudioScale; 
+            }
+            set 
+            {
+                if (m_IsAudioScaleIndependentOfStrip) m_AudioScaleIndependentOfStrip = value;
+                SetWaveform(mNode as PhraseNode); 
+            }
         }
 
         public override void SetZoomFactorAndHeight(float zoom, int height)
@@ -130,6 +168,14 @@ namespace Obi.ProjectView
             mRecordingLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
             mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y);
             SetWaveform(mNode as PhraseNode);
+        }
+        //@zoomwaveform
+        public  void SetZoomFactorAndHeightForZoom(float zoom, int height)
+        {
+            base.SetZoomFactorAndHeight(zoom, height);
+            mRecordingLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
+            mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y);
+            SetWaveformForZoom(mNode as PhraseNode);
         }
 
         // Update label and waveform when there is new information to display.
@@ -201,6 +247,7 @@ namespace Obi.ProjectView
         // Update the selection position on mouse down...
         private void mWaveform_MouseDown(object sender, MouseEventArgs e)
         {
+            FlagMouseDown = true; //@zoomwaveform
             if (e.Button == MouseButtons.Left && CanSelectInWaveform)
             {
                 if (mShiftKeyPressed && mWaveform.Selection != null)
@@ -232,6 +279,7 @@ namespace Obi.ProjectView
                 Strip.ContentView.DisableScrolling();
                 Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
             }
+
         }
 
         // ... and commit it (select) on mouse up outside of the waveform (otherwise the click event is not registered ?!)
@@ -289,6 +337,30 @@ namespace Obi.ProjectView
             if (mWaveform != null && !mWaveform.IsDisposed) mWaveform.Dispose();
             mWaveform = null;
             base.Block_Disposed(sender, e);
+        }
+
+        //@zoomwaveform
+        public void SetTimeBoundsForWaveformDisplay(double startTime, double endTime)
+        {
+            if (mWaveform != null) mWaveform.SetTimeBoundsForDisplay(startTime, endTime);
+        }
+
+        //@zoomwaveform
+        public void ResetTimeBoundsForWaveformDisplay()
+        {
+            if (mWaveform != null) mWaveform.ResetTimeBoundsForDisplay();
+        }
+
+        //@zoomwaveform
+        public bool IsPartialWaveformDisplayed { get { return mWaveform != null ? mWaveform.IsPartialWaveformDisplayed : false; } }
+
+        public void MarkSelection(int x)
+        {
+            if (mWaveform != null)
+            {
+                int waveformX = x - this.Margin.Left - mWaveform.Left;
+                mWaveform.SelectionPointPosition = waveformX;
+            }
         }
 
     }
