@@ -45,6 +45,8 @@ namespace Obi.ProjectView
         private EmptyNode m_BeginNote = null; //@AssociateNode
         private EmptyNode m_EndNote = null;  //@AssociateNode
         private Waveform_Recording waveform_recording_control;
+        private ZoomWaveform m_ZoomWaveformPanel;
+        private Toolbar_EditAudio m_Edit;
 
         /// <summary>
         /// A new strips view.
@@ -5430,6 +5432,66 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             mProjectView.ReplaceAudioOfSelectedNode();
         }
+
+        //@zoomwaveform
+        private void ShowZoomWaveformPanel ()
+        {
+            
+            if (mProjectView != null && mProjectView.Selection != null)
+            {
+                if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
+                {
+                    m_ZoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection, mProjectView);
+                    this.Controls.Add(m_ZoomWaveformPanel);
+                    m_ZoomWaveformPanel.Location = new Point(0, 0);
+                    m_ZoomWaveformPanel.Show();
+                    m_ZoomWaveformPanel.BringToFront();
+                    m_ZoomWaveformPanel.Focus();
+                }
+            }
+        }
+
+        //@zoomwaveform
+        public void RemovePanel()
+        {
+            
+            if (m_ZoomWaveformPanel != null)
+            {
+                this.Controls.Remove(m_ZoomWaveformPanel);
+                m_ZoomWaveformPanel = null;
+            }
+        }
+
+        //@zoomwaveform
+        public void ShowEditPanel()
+        {
+            if (mProjectView == null || mProjectView.Selection == null)
+            {
+                m_Edit = new Toolbar_EditAudio();
+            }
+            else
+            {
+                m_Edit = new Toolbar_EditAudio(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection, mProjectView);
+            }
+            this.Controls.Add(m_Edit);
+            m_Edit.Show();
+            //  m_Edit.Location = new Point(0, 0);
+            m_Edit.BringToFront();
+            m_Edit.Focus();
+
+        }
+
+        //@zoomwaveform
+        public void RemoveEditPanel()
+        {
+            if (m_Edit != null)
+            {
+                this.Controls.Remove(m_Edit);
+                m_Edit = null;
+            }
+        }
+
+
         }
    /// <summary>
     /// Common interface for selection of strips and blocks.
