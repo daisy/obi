@@ -356,7 +356,7 @@ namespace Obi.ProjectView
         private void btnClose_Click(object sender, EventArgs e)
         {
          m_buttonSizeinit = false;
-         //m_ContentView.RemovePanel();//todo: remove the comment
+         m_ContentView.RemovePanel();
          m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
         }
 
