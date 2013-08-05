@@ -1090,6 +1090,12 @@ namespace Obi.ProjectView
 
         public void UpdateCursorPosition ( double time )
             {
+                if (m_ZoomWaveformPanel != null && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@zoomwaveform
+                {
+                    m_ZoomWaveformPanel.UpdateCursorTime(time);
+                    return;
+                }
+
             if (PlaybackBlock == null && m_EnableFindPlaybackBlockDuringCursorUpdate && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@singleSection
                 {
                 m_EnableFindPlaybackBlockDuringCursorUpdate = false;
@@ -1256,6 +1262,12 @@ namespace Obi.ProjectView
                     }
                     if (currentlySelectedBlock != null) EnsureControlVisible ( currentlySelectedBlock );
                     }
+                    //@zoomwaveform
+                    if (m_ZoomWaveformPanel != null)
+                    {
+                        m_ZoomWaveformPanel.ZoomFactor = value;
+                    }
+
                 }
             }
 
@@ -3367,7 +3379,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 selection == null ? null :
                 selection is StripIndexSelection ? (ISelectableInContentView)FindStripCursor ( (StripIndexSelection)selection ) :
                 selection.Node is SectionNode ? (ISelectableInContentView)FindStrip ( (SectionNode)selection.Node ) :
-                selection.Node is EmptyNode ? (ISelectableInContentView)FindBlock ( (EmptyNode)selection.Node ) : null;
+                selection.Node is EmptyNode ? m_ZoomWaveformPanel == null ? (ISelectableInContentView)FindBlock((EmptyNode)selection.Node) :
+                (ISelectableInContentView)m_ZoomWaveformPanel : null;  //@zoomwaveform
             }
 
         private bool IsAudioRangeSelected { get { return mSelection != null && mSelection is AudioSelection && ((AudioSelection)mSelection).AudioRange != null && !((AudioSelection)mSelection).AudioRange.HasCursor; } }
