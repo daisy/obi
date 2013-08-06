@@ -5504,6 +5504,23 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
         }
 
+        private void Context_ZoomPhrase_Click(object sender, EventArgs e)
+        {     //@zoomwaveform
+            if (mProjectView != null && mProjectView.Selection != null)
+            {
+                if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
+                {
+                    m_ZoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection, mProjectView);
+                    this.Controls.Add(m_ZoomWaveformPanel);
+                    m_ZoomWaveformPanel.Location = new Point(0, 0);
+                    m_ZoomWaveformPanel.Show();
+                    m_ZoomWaveformPanel.BringToFront();
+                    m_ZoomWaveformPanel.Focus();
+                }
+            }
+
+        }
+
 
         }
    /// <summary>
