@@ -117,9 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="mContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>100, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Context_ZoomPhrase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_ZoomPhrase.Text" xml:space="preserve">
+    <value>Zoom Phrase</value>
   </data>
   <data name="Context_AddSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -299,19 +305,19 @@
     <value>Clear role</value>
   </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
     <value>Selected i&amp;tem</value>
   </data>
   <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text" xml:space="preserve">
     <value>Multip&amp;le sections</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Parameters from selected &amp;silence phrase</value>
@@ -494,7 +500,7 @@
     <value>Pr&amp;operties</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 688</value>
+    <value>209, 710</value>
   </data>
   <data name="&gt;&gt;mContextMenuStrip.Name" xml:space="preserve">
     <value>mContextMenuStrip</value>
@@ -612,9 +618,9 @@
   <data name="&gt;&gt;mCornerPanel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </data>
+  </metadata>
   <data name="verticalScrollToolStripContainer1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
   </data>
@@ -631,7 +637,7 @@
     <value>verticalScrollToolStripContainer1</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=2.4.0.31553, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=2.6.1.21194, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -664,7 +670,7 @@
     <value>contentViewLabel1</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=2.4.0.31553, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=2.6.1.21194, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -672,12 +678,12 @@
   <data name="&gt;&gt;contentViewLabel1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="$this.TrayHeight" type="System.Int32, mscorlib">
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>48</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>538, 573</value>
   </data>
@@ -1034,6 +1040,12 @@
   </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_ZoomPhrase.Name" xml:space="preserve">
+    <value>Context_ZoomPhrase</value>
+  </data>
+  <data name="&gt;&gt;Context_ZoomPhrase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ContentView</value>

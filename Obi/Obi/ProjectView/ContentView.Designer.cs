@@ -96,12 +96,14 @@ namespace Obi.ProjectView
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
+            this.Context_ZoomPhrase = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mContextMenuStrip
             // 
             this.mContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Context_ZoomPhrase,
             this.Context_AddSectionMenuItem,
             this.Context_InsertSectionMenuItem,
             this.Context_SplitSectionMenuItem,
@@ -355,8 +357,8 @@ namespace Obi.ProjectView
             // 
             // Context_SettingsFromsilencePhraseToolStripMenuItem
             // 
-            resources.ApplyResources(this.Context_SettingsFromsilencePhraseToolStripMenuItem, "Context_SettingsFromsilencePhraseToolStripMenuItem");
             this.Context_SettingsFromsilencePhraseToolStripMenuItem.Name = "Context_SettingsFromsilencePhraseToolStripMenuItem";
+            resources.ApplyResources(this.Context_SettingsFromsilencePhraseToolStripMenuItem, "Context_SettingsFromsilencePhraseToolStripMenuItem");
             this.Context_SettingsFromsilencePhraseToolStripMenuItem.Click += new System.EventHandler(this.settingsFromsilencePhraseToolStripMenuItem_Click);
             // 
             // Context_SkippablesMenuItem
@@ -560,6 +562,12 @@ namespace Obi.ProjectView
             this.contentViewLabel1.sectionSelected = false;
             this.contentViewLabel1.zoomFactor = 1F;
             // 
+            // Context_ZoomPhrase
+            // 
+            this.Context_ZoomPhrase.Name = "Context_ZoomPhrase";
+            resources.ApplyResources(this.Context_ZoomPhrase, "Context_ZoomPhrase");
+            this.Context_ZoomPhrase.Click += new System.EventHandler(this.Context_ZoomPhrase_Click);
+            // 
             // ContentView
             // 
             this.ContextMenuStrip = this.mContextMenuStrip;
@@ -648,5 +656,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_GenerateSpeechForPageMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_SettingsFromsilencePhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ReplaceAudioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_ZoomPhrase;
     }
 }
