@@ -20,8 +20,8 @@ namespace Obi.ProjectView
         private bool m_IsBlocksVisibilityProcessActive; // @phraseLimit
         private int m_OffsetForFirstPhrase = 0;//@singleSection
 
-        private StripCursor m_AnimationCursor;
-        private StripCursor m_TempCursor;
+        private StripCursor m_AnimationCursor;// @zoomwaveform 
+        private StripCursor m_TempCursor;// @zoomwaveform 
         /// <summary>
         /// This constructor is used by the designer.
         /// </summary>
@@ -753,6 +753,7 @@ namespace Obi.ProjectView
             mContentView.SelectionFromStrip = new StripIndexSelection ( Node, mContentView, index + OffsetForFirstPhrase);//@singleSection new
         }
 
+        // @zoomwaveform 
         /// <summary>
         /// Set the Animation Cursor
         /// </summary>
@@ -805,6 +806,7 @@ namespace Obi.ProjectView
             }
         }
 
+        // @zoomwaveform 
         /// <summary>
         /// Set the Animation Cursor to null
         /// </summary>

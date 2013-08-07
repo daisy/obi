@@ -13,8 +13,8 @@ namespace Obi.ProjectView
         private bool mHighlighted;  // highlight flag
 
         private static readonly double HeightToWidthRatio = 20;
-        private bool m_MouseDown = false;
-        private bool m_MouseMove = false;
+        private bool m_MouseDown = false; // @zoomwaveform 
+        private bool m_MouseMove = false; // @zoomwaveform 
 
 
         /// <summary>
@@ -121,12 +121,12 @@ namespace Obi.ProjectView
         {
             BackColor = Parent.BackColor;
         }
-
+        // @zoomwaveform 
         private void StripCursor_MouseDown(object sender, MouseEventArgs e)
         {
             m_MouseDown = true;
         }
-
+        // @zoomwaveform 
         private void StripCursor_MouseMove(object sender, MouseEventArgs e)
         {
             if (m_MouseDown == false)
@@ -137,7 +137,7 @@ namespace Obi.ProjectView
                 Strip.SetAnimationCursor(e.X, e.Y, false);
             }
         }
-
+        // @zoomwaveform 
         private void StripCursor_MouseUp(object sender, MouseEventArgs e)
         {
             m_MouseDown = false;
