@@ -546,7 +546,7 @@ namespace Obi.ProjectView
         }
 
         // Convert a pixel position into a time (in ms.)
-        private double TimeFromX(int x)
+        public double TimeFromX(int x)
         {
             if (IsPartialWaveformDisplayed)//@zoomwaveform
             {

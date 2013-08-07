@@ -5517,10 +5517,15 @@ Block lastBlock = ActiveStrip.LastBlock ;
                     m_ZoomWaveformPanel.BringToFront();
                     m_ZoomWaveformPanel.Focus();
                 }
-            }
+                    }
 
         }
 
+        //@zoomwaveform
+        public void SelectCursor(PhraseNode node, AudioRange audioRange)
+        {
+            mProjectView.Selection = new AudioSelection(node, mProjectView.Selection.Control, audioRange);
+        }
 
         }
    /// <summary>

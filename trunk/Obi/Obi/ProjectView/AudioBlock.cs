@@ -354,14 +354,23 @@ public void SetWaveformForZoom(PhraseNode node)
         //@zoomwaveform
         public bool IsPartialWaveformDisplayed { get { return mWaveform != null ? mWaveform.IsPartialWaveformDisplayed : false; } }
 
+        //@zoomwaveform
         public void MarkSelection(int x)
         {
             if (mWaveform != null)
             {
                 int waveformX = x - this.Margin.Left - mWaveform.Left;
+                double tempTime = mWaveform.TimeFromX(waveformX);
+                AudioRange tempAudioRange = new AudioRange(tempTime);
+                PhraseNode tempNode = (PhraseNode)Node;
+                ContentView.SelectCursor(tempNode, tempAudioRange);
+
                 mWaveform.SelectionPointPosition = waveformX;
+                
+           
             }
         }
+        
 
     }
 }
