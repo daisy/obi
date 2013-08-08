@@ -765,7 +765,7 @@ namespace Obi.ProjectView
                 int tempTotalCount = mBlockLayout.Controls.Count;
                 Control tempPreviousPhrase = null;
                 int tempWidthOfPreviousPhrase = 0;
-                if (index != 0)
+                if (index > 0)
                 {
                     tempPreviousPhrase = mBlockLayout.Controls[index - 1];
                     tempWidthOfPreviousPhrase = tempPreviousPhrase.Width;
