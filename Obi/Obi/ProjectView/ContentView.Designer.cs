@@ -31,6 +31,7 @@ namespace Obi.ProjectView
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContentView));
             this.mContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Context_ZoomPhrase = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AddSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_InsertSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SplitSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +47,8 @@ namespace Obi.ProjectView
             this.Context_SplitPhraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_MergeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_MergePhraseWithNextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_SplitMergeWithNextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_SplitMergeWithPreviousMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_Merge_MergeWithFollowingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_Merge_MergeWithPrecedingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_CropAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,7 +99,6 @@ namespace Obi.ProjectView
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
-            this.Context_ZoomPhrase = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,6 +141,12 @@ namespace Obi.ProjectView
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
             resources.ApplyResources(this.mContextMenuStrip, "mContextMenuStrip");
+            // 
+            // Context_ZoomPhrase
+            // 
+            this.Context_ZoomPhrase.Name = "Context_ZoomPhrase";
+            resources.ApplyResources(this.Context_ZoomPhrase, "Context_ZoomPhrase");
+            this.Context_ZoomPhrase.Click += new System.EventHandler(this.Context_ZoomPhrase_Click);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -224,6 +232,8 @@ namespace Obi.ProjectView
             // 
             this.Context_MergeMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Context_MergePhraseWithNextMenuItem,
+            this.Context_SplitMergeWithNextMenuItem,
+            this.Context_SplitMergeWithPreviousMenuItem,
             this.Context_Merge_MergeWithFollowingPhrasesMenuItem,
             this.Context_Merge_MergeWithPrecedingPhrasesMenuItem});
             this.Context_MergeMenuItem.Name = "Context_MergeMenuItem";
@@ -234,6 +244,16 @@ namespace Obi.ProjectView
             this.Context_MergePhraseWithNextMenuItem.Name = "Context_MergePhraseWithNextMenuItem";
             resources.ApplyResources(this.Context_MergePhraseWithNextMenuItem, "Context_MergePhraseWithNextMenuItem");
             this.Context_MergePhraseWithNextMenuItem.Click += new System.EventHandler(this.Context_MergePhraseWithNextMenuItem_Click);
+            // 
+            // Context_SplitMergeWithNextMenuItem
+            // 
+            this.Context_SplitMergeWithNextMenuItem.Name = "Context_SplitMergeWithNextMenuItem";
+            resources.ApplyResources(this.Context_SplitMergeWithNextMenuItem, "Context_SplitMergeWithNextMenuItem");
+            // 
+            // Context_SplitMergeWithPreviousMenuItem
+            // 
+            this.Context_SplitMergeWithPreviousMenuItem.Name = "Context_SplitMergeWithPreviousMenuItem";
+            resources.ApplyResources(this.Context_SplitMergeWithPreviousMenuItem, "Context_SplitMergeWithPreviousMenuItem");
             // 
             // Context_Merge_MergeWithFollowingPhrasesMenuItem
             // 
@@ -562,12 +582,6 @@ namespace Obi.ProjectView
             this.contentViewLabel1.sectionSelected = false;
             this.contentViewLabel1.zoomFactor = 1F;
             // 
-            // Context_ZoomPhrase
-            // 
-            this.Context_ZoomPhrase.Name = "Context_ZoomPhrase";
-            resources.ApplyResources(this.Context_ZoomPhrase, "Context_ZoomPhrase");
-            this.Context_ZoomPhrase.Click += new System.EventHandler(this.Context_ZoomPhrase_Click);
-            // 
             // ContentView
             // 
             this.ContextMenuStrip = this.mContextMenuStrip;
@@ -657,5 +671,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_SettingsFromsilencePhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ReplaceAudioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ZoomPhrase;
+        private System.Windows.Forms.ToolStripMenuItem Context_SplitMergeWithNextMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_SplitMergeWithPreviousMenuItem;
     }
 }

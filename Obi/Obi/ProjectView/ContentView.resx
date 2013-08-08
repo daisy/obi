@@ -145,24 +145,6 @@
   <data name="Context_SplitSectionMenuItem.Text" xml:space="preserve">
     <value>Sp&amp;lit section</value>
   </data>
-  <data name="Context_MergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge section with next</value>
-  </data>
-  <data name="Context_MergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 22</value>
-  </data>
-  <data name="Context_MergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>Merge section with ne&amp;xt</value>
-  </data>
-  <data name="Context_MergeMultipleSectionsToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge multiple sections</value>
-  </data>
-  <data name="Context_MergeMultipleSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 22</value>
-  </data>
-  <data name="Context_MergeMultipleSectionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Merge multiple se&amp;ctions</value>
-  </data>
   <data name="Context_MergeSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
@@ -214,6 +196,18 @@
   <data name="Context_MergePhraseWithNextMenuItem.Text" xml:space="preserve">
     <value>Merge with ne&amp;xt phrase</value>
   </data>
+  <data name="Context_SplitMergeWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="Context_SplitMergeWithNextMenuItem.Text" xml:space="preserve">
+    <value>Split and merge with nex&amp;t</value>
+  </data>
+  <data name="Context_SplitMergeWithPreviousMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="Context_SplitMergeWithPreviousMenuItem.Text" xml:space="preserve">
+    <value>Split and merge with previo&amp;us</value>
+  </data>
   <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
@@ -253,45 +247,6 @@
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
   </data>
-  <data name="Context_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
-  </data>
-  <data name="Context_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>P&amp;lain</value>
-  </data>
-  <data name="Context_AssignRole_HeadingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
-  </data>
-  <data name="Context_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
-    <value>&amp;Heading</value>
-  </data>
-  <data name="Context_AssignRole_PageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
-  </data>
-  <data name="Context_AssignRole_PageMenuItem.Text" xml:space="preserve">
-    <value>&amp;Page</value>
-  </data>
-  <data name="Context_AssignRole_SilenceMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
-  </data>
-  <data name="Context_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
-    <value>&amp;Silence</value>
-  </data>
-  <data name="Context_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
-  </data>
-  <data name="Context_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>Anch&amp;or</value>
-  </data>
-  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 6</value>
-  </data>
-  <data name="Context_AssignRole_NewCustomRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
-  </data>
-  <data name="Context_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
-    <value>(New custom role...)</value>
-  </data>
   <data name="Context_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
@@ -304,24 +259,6 @@
   <data name="Context_ClearRoleMenuItem.Text" xml:space="preserve">
     <value>Clear role</value>
   </data>
-  <data name="Context_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
-  </data>
-  <data name="Context_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>Selected i&amp;tem</value>
-  </data>
-  <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
-  </data>
-  <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text" xml:space="preserve">
-    <value>Multip&amp;le sections</value>
-  </data>
-  <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
-  </data>
-  <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Parameters from selected &amp;silence phrase</value>
-  </data>
   <data name="Context_PhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
@@ -331,92 +268,11 @@
   <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
     <value>Skippable notes</value>
   </data>
-  <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Begin note</value>
-  </data>
-  <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Be&amp;gin note</value>
-  </data>
-  <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>End note</value>
-  </data>
-  <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>En&amp;d note</value>
-  </data>
-  <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Add reference</value>
-  </data>
-  <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Add re&amp;ference</value>
-  </data>
-  <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Goto referred note</value>
-  </data>
-  <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Goto &amp;referred note</value>
-  </data>
-  <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Remove reference</value>
-  </data>
-  <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Remove refere&amp;nce</value>
-  </data>
-  <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Move to start note</value>
-  </data>
-  <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Move to s&amp;tart note</value>
-  </data>
-  <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Move to end note</value>
-  </data>
-  <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mo&amp;ve to end note</value>
-  </data>
-  <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Clear role from note</value>
-  </data>
   <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
     <value>Skippa&amp;ble notes</value>
-  </data>
-  <data name="Context_AudioSelection_BeginMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
-  </data>
-  <data name="Context_AudioSelection_BeginMenuItem.Text" xml:space="preserve">
-    <value>&amp;Begin audio selection</value>
-  </data>
-  <data name="Context_AudioSelection_EndMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
-  </data>
-  <data name="Context_AudioSelection_EndMenuItem.Text" xml:space="preserve">
-    <value>&amp;End audio selection</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -500,13 +356,169 @@
     <value>Pr&amp;operties</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 710</value>
+    <value>209, 678</value>
   </data>
   <data name="&gt;&gt;mContextMenuStrip.Name" xml:space="preserve">
     <value>mContextMenuStrip</value>
   </data>
   <data name="&gt;&gt;mContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Context_MergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Merge section with next</value>
+  </data>
+  <data name="Context_MergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="Context_MergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
+    <value>Merge section with ne&amp;xt</value>
+  </data>
+  <data name="Context_MergeMultipleSectionsToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Merge multiple sections</value>
+  </data>
+  <data name="Context_MergeMultipleSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="Context_MergeMultipleSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Merge multiple se&amp;ctions</value>
+  </data>
+  <data name="Context_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="Context_AssignRole_PlainMenuItem.Text" xml:space="preserve">
+    <value>P&amp;lain</value>
+  </data>
+  <data name="Context_AssignRole_HeadingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="Context_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
+    <value>&amp;Heading</value>
+  </data>
+  <data name="Context_AssignRole_PageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="Context_AssignRole_PageMenuItem.Text" xml:space="preserve">
+    <value>&amp;Page</value>
+  </data>
+  <data name="Context_AssignRole_SilenceMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="Context_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
+    <value>&amp;Silence</value>
+  </data>
+  <data name="Context_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="Context_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
+    <value>Anch&amp;or</value>
+  </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 6</value>
+  </data>
+  <data name="Context_AssignRole_NewCustomRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="Context_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
+    <value>(New custom role...)</value>
+  </data>
+  <data name="Context_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="Context_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
+    <value>Selected i&amp;tem</value>
+  </data>
+  <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text" xml:space="preserve">
+    <value>Multip&amp;le sections</value>
+  </data>
+  <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Parameters from selected &amp;silence phrase</value>
+  </data>
+  <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Begin note</value>
+  </data>
+  <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>Be&amp;gin note</value>
+  </data>
+  <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>End note</value>
+  </data>
+  <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>En&amp;d note</value>
+  </data>
+  <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Add reference</value>
+  </data>
+  <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>Add re&amp;ference</value>
+  </data>
+  <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Goto referred note</value>
+  </data>
+  <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Goto &amp;referred note</value>
+  </data>
+  <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Remove reference</value>
+  </data>
+  <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Remove refere&amp;nce</value>
+  </data>
+  <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Move to start note</value>
+  </data>
+  <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Move to s&amp;tart note</value>
+  </data>
+  <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Move to end note</value>
+  </data>
+  <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mo&amp;ve to end note</value>
+  </data>
+  <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Clear role from note</value>
+  </data>
+  <data name="Context_AudioSelection_BeginMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 22</value>
+  </data>
+  <data name="Context_AudioSelection_BeginMenuItem.Text" xml:space="preserve">
+    <value>&amp;Begin audio selection</value>
+  </data>
+  <data name="Context_AudioSelection_EndMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 22</value>
+  </data>
+  <data name="Context_AudioSelection_EndMenuItem.Text" xml:space="preserve">
+    <value>&amp;End audio selection</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mStripsPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -637,7 +649,7 @@
     <value>verticalScrollToolStripContainer1</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=2.6.1.21194, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=2.6.1.22836, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -670,7 +682,7 @@
     <value>contentViewLabel1</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=2.6.1.21194, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=2.6.1.22836, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -686,6 +698,12 @@
   </metadata>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>538, 573</value>
+  </data>
+  <data name="&gt;&gt;Context_ZoomPhrase.Name" xml:space="preserve">
+    <value>Context_ZoomPhrase</value>
+  </data>
+  <data name="&gt;&gt;Context_ZoomPhrase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AddSectionMenuItem.Name" xml:space="preserve">
     <value>Context_AddSectionMenuItem</value>
@@ -775,6 +793,18 @@
     <value>Context_MergePhraseWithNextMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_MergePhraseWithNextMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_SplitMergeWithNextMenuItem.Name" xml:space="preserve">
+    <value>Context_SplitMergeWithNextMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_SplitMergeWithNextMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_SplitMergeWithPreviousMenuItem.Name" xml:space="preserve">
+    <value>Context_SplitMergeWithPreviousMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_SplitMergeWithPreviousMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Merge_MergeWithFollowingPhrasesMenuItem.Name" xml:space="preserve">
@@ -1040,12 +1070,6 @@
   </data>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Context_ZoomPhrase.Name" xml:space="preserve">
-    <value>Context_ZoomPhrase</value>
-  </data>
-  <data name="&gt;&gt;Context_ZoomPhrase.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ContentView</value>
