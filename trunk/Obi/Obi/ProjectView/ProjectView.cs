@@ -4868,8 +4868,7 @@ public bool ShowOnlySelectedSection
 
         public void SplitAndMerge(bool mergeWithNext)
         {
-            if (Selection != null && Selection is AudioSelection)
-            {
+            
                 try
                 {
                     mPresentation.Do(GetSplitAndMergeCommand(mergeWithNext));
@@ -4879,19 +4878,66 @@ public bool ShowOnlySelectedSection
                     WriteToLogFile(ex.ToString());
                     MessageBox.Show(ex.ToString());
                 }
-            }
+            
         }
 
         private CompositeCommand GetSplitAndMergeCommand(bool mergeWithNext)
         {
-            PhraseNode selectedPhrase = (PhraseNode)Selection.Node;
+            PhraseNode selectedPhrase =mTransportBar.IsPlayerActive  && mTransportBar.PlaybackPhrase != null? mTransportBar.PlaybackPhrase:
+                Selection != null && Selection is AudioSelection? (PhraseNode)Selection.Node:
+                null;
+            Console.WriteLine("Split Merge : " + selectedPhrase);
+            if (selectedPhrase == null) return null;
+
+            double time = -1 ;
+            if (mTransportBar.IsPlayerActive && mTransportBar.PlaybackPhrase !=null)
+            {
+                time = mTransportBar.CurrentPlaylist.CurrentTimeInAsset ;
+            }
+            else if ( Selection != null && Selection is AudioSelection)
+            {
+                AudioSelection audioSel = (AudioSelection)Selection;
+                if ( audioSel.AudioRange.HasCursor)
+                {
+                    time = audioSel.AudioRange.CursorTime ;
+                }
+                else
+                {
+                    time = mergeWithNext? audioSel.AudioRange.SelectionBeginTime: 
+                        audioSel.AudioRange.SelectionEndTime ;
+                }
+            }
+            Console.WriteLine("Split Merge : " + time);
+
             CompositeCommand splitMergeCmd = mPresentation.CreateCompositeCommand("Split & merge command");
 
-            //if (mergeWithNext)
-            //{
-                CompositeCommand splitCmd = Commands.Node.SplitAudio.GetSplitCommand(this, selectedPhrase, ((AudioSelection)Selection).AudioRange.CursorTime);
-                splitMergeCmd.ChildCommands.Insert(splitMergeCmd.ChildCommands.Count, splitCmd);
-            //}
+            Commands.Node.SplitAudio splitCmd = Commands.Node.SplitAudio.AppendSplitCommandWithProperties(this, splitMergeCmd, selectedPhrase, time, false);
+            PhraseNode newPhrase = splitCmd.NodeAfter;
+            //MessageBox.Show(newPhrase.ToString());
+                //splitMergeCmd.ChildCommands.Insert(splitMergeCmd.ChildCommands.Count, splitCmd);
+
+                if (mergeWithNext)
+                {
+                    Console.WriteLine("Split Merge : bool:  " + mergeWithNext);
+                    ObiNode nextNode = selectedPhrase.FollowingNode;
+                    if ( nextNode != null && nextNode is EmptyNode && nextNode.ParentAs<SectionNode>() == selectedPhrase.ParentAs<SectionNode>())
+                    {
+                        //Console.WriteLine("Split Merge : " + newPhrase);
+                        splitMergeCmd.ChildCommands.Insert(splitMergeCmd.ChildCommands.Count,
+                            Commands.Node.MergeAudio.GetMergeCommand(this, newPhrase,(EmptyNode) nextNode) ) ;
+                    }
+                }
+                else
+                {
+                    ObiNode prevNode = selectedPhrase.PrecedingNode;
+                    if (prevNode != null && prevNode is EmptyNode && prevNode.ParentAs<SectionNode>() == selectedPhrase.ParentAs<SectionNode>())
+                    {
+                        splitMergeCmd.ChildCommands.Insert(splitMergeCmd.ChildCommands.Count,
+                            Commands.Node.MergeAudio.GetMergeCommand(this, (EmptyNode)prevNode, selectedPhrase));
+                    }
+                }
+
+
             return splitMergeCmd;
         }
 
