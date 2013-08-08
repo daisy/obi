@@ -4868,7 +4868,8 @@ public bool ShowOnlySelectedSection
 
         public void SplitAndMerge(bool mergeWithNext)
         {
-            
+            if (CanSplitPhrase)
+            {
                 try
                 {
                     mPresentation.Do(GetSplitAndMergeCommand(mergeWithNext));
@@ -4878,7 +4879,7 @@ public bool ShowOnlySelectedSection
                     WriteToLogFile(ex.ToString());
                     MessageBox.Show(ex.ToString());
                 }
-            
+            }
         }
 
         private CompositeCommand GetSplitAndMergeCommand(bool mergeWithNext)
