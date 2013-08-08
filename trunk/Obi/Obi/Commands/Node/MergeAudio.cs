@@ -15,7 +15,7 @@ namespace Obi.Commands.Node
     {
         private PhraseNode mNode;          // the selected phrase
         private PhraseNode mNextNode;      // the following phrase to merge with
-        private Time mSplitTime;           // the split time of the new merged node
+        private Time mSplitTime ;           // the split time of the new merged node
         private bool m_IsNextNodeRooted;
 
         public MergeAudio(ProjectView.ProjectView view, PhraseNode node, PhraseNode next)
@@ -24,7 +24,8 @@ namespace Obi.Commands.Node
             mNode = node;
             mNextNode = next;
 
-            mSplitTime = mNode.Audio.Duration; // new Time instance (no shared)
+            // allow setting split time while executing command if the current node does not have audio yet. it is useful for composite commands
+            mSplitTime = mNode.Audio != null? mNode.Audio.Duration : null; // new Time instance (no shared)
             
             m_IsNextNodeRooted = mNextNode.IsRooted;
         }
@@ -128,6 +129,7 @@ namespace Obi.Commands.Node
 
         public override void Execute()
         {
+            if (mSplitTime == null) mSplitTime=  mNode.Audio.Duration; // assign split time for unexecute if it was not assigned in merge constructor
             Merge(View, mNode, mNextNode, UpdateSelection);
             TriggerProgressChanged ();
         }

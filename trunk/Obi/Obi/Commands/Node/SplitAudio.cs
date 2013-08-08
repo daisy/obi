@@ -335,7 +335,7 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
 
 
         // Create a split command preserving used/TODO status, and optionally transferring the role to the next node
-        private static SplitAudio AppendSplitCommandWithProperties(ProjectView.ProjectView view, CompositeCommand command,
+        public static SplitAudio AppendSplitCommandWithProperties(ProjectView.ProjectView view, CompositeCommand command,
             PhraseNode phrase, double time, bool transferRole)
         {
             SplitAudio split = new SplitAudio(view, phrase, time);
