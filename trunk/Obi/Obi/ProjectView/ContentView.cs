@@ -676,7 +676,17 @@ namespace Obi.ProjectView
         public ObiNode SelectedNode { set { if (mProjectView != null) mProjectView.Selection = new NodeSelection ( value, this ); } }
         public PhraseNode SelectedPhraseNode { get { return IsBlockSelected ? ((Block)mSelectedItem).Node as PhraseNode : null; } }
         public SectionNode SelectedSection { get { return IsStripSelected ? ((Strip)mSelectedItem).Node : null; } }
-        public NodeSelection SelectionFromStrip { set { if (mProjectView != null) mProjectView.Selection = value; } }
+        public NodeSelection SelectionFromStrip 
+        { 
+            set
+            {
+                if (mProjectView != null)
+                {
+                    mProjectView.Selection = value;
+                    Console.WriteLine("Content View After mProjectView.Selection = value" + mProjectView.Selection);
+                }
+            }
+        }
 
         /// <summary>
         /// Set the selection from the parent view.
@@ -4841,6 +4851,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_FineNavigationMenuItem.Checked= mProjectView.TransportBar.FineNavigationModeForPhrase;
             Context_SplitPhraseMenuItem.Enabled = mProjectView.CanSplitPhrase && !mProjectView.TransportBar.IsRecorderActive;
             Context_MergePhraseWithNextMenuItem.Enabled = CanMergeBlockWithNext;
+            Context_SplitMergeWithNextMenuItem.Enabled = mProjectView.CanSplitPhrase ;
+            Context_SplitMergeWithPreviousMenuItem.Enabled = mProjectView.CanSplitPhrase ;
             Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && IsBlockOrWaveformSelected && mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 1 && !mProjectView.TransportBar.IsRecorderActive;
             Context_CropAudioMenuItem.Enabled = mProjectView.CanCropPhrase;
             //Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus && !mProjectView.TransportBar.IsActive;
@@ -5531,6 +5543,16 @@ Block lastBlock = ActiveStrip.LastBlock ;
         public void SplitAndMerge(bool mergeWithNext)
         {
             mProjectView.SplitAndMerge(mergeWithNext);
+        }
+
+        private void Context_SplitMergeWithPreviousMenuItem_Click(object sender, EventArgs e)
+        {
+          mProjectView.SplitAndMerge(false);
+        }
+
+        private void Context_SplitMergeWithNextMenuItem_Click(object sender, EventArgs e)
+        {
+          mProjectView.SplitAndMerge(true);
         }
 
         }
