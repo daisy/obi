@@ -5545,15 +5545,17 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.SplitAndMerge(mergeWithNext);
         }
 
-        private void Context_SplitMergeWithPreviousMenuItem_Click(object sender, EventArgs e)
-        {
-          mProjectView.SplitAndMerge(false);
-        }
-
         private void Context_SplitMergeWithNextMenuItem_Click(object sender, EventArgs e)
         {
-          mProjectView.SplitAndMerge(true);
+            mProjectView.SplitAndMerge(true);
         }
+
+        private void Context_SplitMergeWithPreviousMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.SplitAndMerge(false);
+        }
+
+       
 
         }
    /// <summary>
