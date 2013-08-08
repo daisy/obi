@@ -5525,6 +5525,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         public void SelectCursor(PhraseNode node, AudioRange audioRange)
         {
             mProjectView.Selection = new AudioSelection(node, mProjectView.Selection.Control, audioRange);
+            mProjectView.SplitAndMerge(true);
         }
 
         }
