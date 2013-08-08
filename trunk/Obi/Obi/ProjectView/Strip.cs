@@ -805,11 +805,15 @@ namespace Obi.ProjectView
                              int relativeX = m_AnimationCursor.Left - tempNextPhrase.Left;                           
 
                             if (tempNextPhrase is AudioBlock) ((AudioBlock)tempNextPhrase).MarkSelection(relativeX);
+                            mContentView.SplitAndMerge(false);
+
                         }
                         else if (tempPreviousPhrase != null && m_AnimationCursor.Left < tempPreviousPhrase.Right)
                         {
                             int relativeX = m_AnimationCursor.Left - tempPreviousPhrase.Left;
                             if (tempPreviousPhrase is AudioBlock) ((AudioBlock)tempPreviousPhrase).MarkSelection(relativeX);
+                            mContentView.SplitAndMerge(true);
+
                         }
                     }
                 }
