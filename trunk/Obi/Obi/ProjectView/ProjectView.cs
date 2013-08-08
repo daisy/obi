@@ -4866,6 +4866,36 @@ public bool ShowOnlySelectedSection
             
         }
 
+        public void SplitAndMerge(bool mergeWithNext)
+        {
+            if (Selection != null && Selection is AudioSelection)
+            {
+                try
+                {
+                    mPresentation.Do(GetSplitAndMergeCommand(mergeWithNext));
+                }
+                catch (System.Exception ex)
+                {
+                    WriteToLogFile(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+        }
+
+        private CompositeCommand GetSplitAndMergeCommand(bool mergeWithNext)
+        {
+            PhraseNode selectedPhrase = (PhraseNode)Selection.Node;
+            CompositeCommand splitMergeCmd = mPresentation.CreateCompositeCommand("Split & merge command");
+
+            //if (mergeWithNext)
+            //{
+                CompositeCommand splitCmd = Commands.Node.SplitAudio.GetSplitCommand(this, selectedPhrase, ((AudioSelection)Selection).AudioRange.CursorTime);
+                splitMergeCmd.ChildCommands.Insert(splitMergeCmd.ChildCommands.Count, splitCmd);
+            //}
+            return splitMergeCmd;
+        }
+
+
         public void WriteToLogFile(string msg)
         {
             WriteToLogFile_Static(msg);
