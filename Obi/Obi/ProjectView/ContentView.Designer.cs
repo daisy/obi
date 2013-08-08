@@ -249,11 +249,13 @@ namespace Obi.ProjectView
             // 
             this.Context_SplitMergeWithNextMenuItem.Name = "Context_SplitMergeWithNextMenuItem";
             resources.ApplyResources(this.Context_SplitMergeWithNextMenuItem, "Context_SplitMergeWithNextMenuItem");
+            this.Context_SplitMergeWithNextMenuItem.Click += new System.EventHandler(this.Context_SplitMergeWithNextMenuItem_Click);
             // 
             // Context_SplitMergeWithPreviousMenuItem
             // 
             this.Context_SplitMergeWithPreviousMenuItem.Name = "Context_SplitMergeWithPreviousMenuItem";
             resources.ApplyResources(this.Context_SplitMergeWithPreviousMenuItem, "Context_SplitMergeWithPreviousMenuItem");
+            this.Context_SplitMergeWithPreviousMenuItem.Click += new System.EventHandler(this.Context_SplitMergeWithPreviousMenuItem_Click);
             // 
             // Context_Merge_MergeWithFollowingPhrasesMenuItem
             // 
