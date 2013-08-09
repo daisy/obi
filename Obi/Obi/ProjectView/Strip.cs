@@ -784,13 +784,14 @@ namespace Obi.ProjectView
                 Point cursorposition = mContentView.LocationOfBlockInStripPanel(m_TempCursor);
                 //  Console.WriteLine("Cursor Position is {0}", cursorposition);
                 Point LocationOfCursor = new Point(cursorposition.X + X, cursorposition.Y);
-                if ((X < 0 && cursorposition.X-tempWidthOfPreviousPhrase < LocationOfCursor.X) || (X > 0 && cursorposition.X + tempWidthofNextPhrase > LocationOfCursor.X))
+                if (m_AnimationCursor == null)
                 {
-                    if (m_AnimationCursor == null)
-                    {
-                        m_AnimationCursor = new StripCursor();
-                        this.Controls.Add(m_AnimationCursor);
-                    }
+                    m_AnimationCursor = new StripCursor();
+                    this.Controls.Add(m_AnimationCursor);
+                }
+
+                if ((X < 0 && cursorposition.X-tempWidthOfPreviousPhrase-m_AnimationCursor.Width < LocationOfCursor.X) || (X > 0 && cursorposition.X + tempWidthofNextPhrase > LocationOfCursor.X))
+                {
 
                     m_AnimationCursor.Location = new Point(cursorposition.X + X, cursorposition.Y);
                     m_AnimationCursor.SetHeight(mBlockHeight);
@@ -816,7 +817,7 @@ namespace Obi.ProjectView
                         {
                             int relativeX = m_AnimationCursor.Left - tempPreviousPhrase.Left;
                             if (relativeX > 0)   
-                            if (tempPreviousPhrase is AudioBlock) ((AudioBlock)tempPreviousPhrase).MarkSelection(relativeX);
+                            if (tempPreviousPhrase is AudioBlock) ((AudioBlock)tempPreviousPhrase).MarkSelection(relativeX-m_AnimationCursor.Width);
                             mContentView.SplitAndMerge(true);
 
                         }
