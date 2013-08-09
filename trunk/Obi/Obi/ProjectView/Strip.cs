@@ -806,19 +806,22 @@ namespace Obi.ProjectView
                         Console.WriteLine();
                         if (tempNextPhrase != null && tempNextPhrase.Left < m_AnimationCursor.Right)
                         {
-                             int relativeX = m_AnimationCursor.Left - tempNextPhrase.Left;   
-                             if(relativeX>0)                                
-
-                            if (tempNextPhrase is AudioBlock) ((AudioBlock)tempNextPhrase).MarkSelection(relativeX);
-                            mContentView.SplitAndMerge(false);
+                             int relativeX = m_AnimationCursor.Left - tempNextPhrase.Left;
+                             if (relativeX > 0)
+                             {
+                                 if (tempNextPhrase is AudioBlock) ((AudioBlock)tempNextPhrase).MarkSelection(relativeX);
+                                 mContentView.SplitAndMerge(false);
+                             }
 
                         }
                         else if (tempPreviousPhrase != null && m_AnimationCursor.Left < tempPreviousPhrase.Right)
                         {
                             int relativeX = m_AnimationCursor.Left - tempPreviousPhrase.Left;
-                            if (relativeX > 0)   
-                            if (tempPreviousPhrase is AudioBlock) ((AudioBlock)tempPreviousPhrase).MarkSelection(relativeX-m_AnimationCursor.Width);
-                            mContentView.SplitAndMerge(true);
+                            if (relativeX > 0)
+                            {
+                                if (tempPreviousPhrase is AudioBlock) ((AudioBlock)tempPreviousPhrase).MarkSelection(relativeX - m_AnimationCursor.Width);
+                                mContentView.SplitAndMerge(true);
+                            }
 
                         }
                     }
