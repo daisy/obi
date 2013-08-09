@@ -5544,6 +5544,17 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             mProjectView.SplitAndMerge(mergeWithNext);
         }
+        public bool StripIsSelected
+        {
+            get
+            {
+
+                if (mProjectView != null && mProjectView.Selection != null && mProjectView.Selection is StripIndexSelection)
+                    return true;
+                else
+                    return false;
+            }
+        }
 
         private void Context_SplitMergeWithNextMenuItem_Click(object sender, EventArgs e)
         {
@@ -5555,7 +5566,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.SplitAndMerge(false);
         }
 
-       
+     
 
         }
    /// <summary>
