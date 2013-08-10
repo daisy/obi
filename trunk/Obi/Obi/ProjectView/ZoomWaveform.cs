@@ -478,8 +478,18 @@ namespace Obi.ProjectView
                 m_ContentView.NudgeInFineNavigation(true);
                 return true; 
             }
+            else if (keyData == keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value)
+            {
+                m_ContentView.NudgeIntervalIncrement(false);
+                return true;
+            }
+            else if (keyData == keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value)
+            {
+                m_ContentView.NudgeIntervalIncrement(true);
+                return true;
+            }
             else if (keyData == Keys.Tab
-                && this.ActiveControl != null)
+        && this.ActiveControl != null)
             {
                 Console.WriteLine("It will come in Tab");
                 Control c = this.ActiveControl;
