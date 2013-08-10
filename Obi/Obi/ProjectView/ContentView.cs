@@ -2304,7 +2304,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             return true;
             }
 
-        private bool NudgeIntervalIncrement(bool increment)
+        public bool NudgeIntervalIncrement(bool increment)
         {
             double interval = mProjectView.ObiForm.Settings.NudgeTimeMs;
             if (increment && interval < 1000)
