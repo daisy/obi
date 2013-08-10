@@ -467,20 +467,31 @@ namespace Obi.ProjectView
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
-           if (keyData == Keys.Tab
+
+            if (keyData == keyboardShortcuts.ContentView_SelectPrecedingPhrase.Value)
+            {
+                m_ContentView.NudgeInFineNavigation(false);
+                return true; 
+            }
+            else if (keyData == keyboardShortcuts.ContentView_SelectFollowingPhrase.Value)
+            {
+                m_ContentView.NudgeInFineNavigation(true);
+                return true; 
+            }
+            else if (keyData == Keys.Tab
                 && this.ActiveControl != null)
             {
                 Console.WriteLine("It will come in Tab");
                 Control c = this.ActiveControl;
                 this.SelectNextControl(c, true, true, true, true);
-                
+
                 if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
                     System.Media.SystemSounds.Beep.Play();
                 //Console.WriteLine("Active Control After {0}", this.ActiveControl);
                 return true;
             }
             else if (keyData == (Keys)(Keys.Shift | Keys.Tab)
-                && this.ActiveControl != null)
+                 && this.ActiveControl != null)
             {
                 Control c = this.ActiveControl;
                 this.SelectNextControl(c, false, true, true, true);

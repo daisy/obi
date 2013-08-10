@@ -3901,10 +3901,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
                 if (mProjectView.TransportBar.FineNavigationModeForPhrase)
                 {
-                    if (mProjectView.Selection is AudioSelection && !((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)
-                        return mProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ContractAtRight);
-                    else
-                        return mProjectView.TransportBar.Nudge(TransportBar.Backward); 
+                    return NudgeInFineNavigation(false);
                 }
                 if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
 
@@ -4009,10 +4006,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
                 if (mProjectView.TransportBar.FineNavigationModeForPhrase)
                 {
-                    if (mProjectView.Selection is AudioSelection && !((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)
-                        return mProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ExpandAtRight);
-                    else
-                        return mProjectView.TransportBar.Nudge(TransportBar.Forward); 
+                    return NudgeInFineNavigation(true);
                 }
                 if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
                 if (mProjectView.TransportBar.IsRecorderActive && mSelectedItem == null && mProjectView.Selection != null)
@@ -4043,6 +4037,24 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     return returnVal;
                 }
             }
+
+        public bool NudgeInFineNavigation (bool forward)
+        {
+            if (forward)
+            {
+                if (mProjectView.Selection is AudioSelection && !((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)
+                    return mProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ExpandAtRight);
+                else
+                    return mProjectView.TransportBar.Nudge(TransportBar.Forward);
+            }
+            else
+            {
+                if (mProjectView.Selection is AudioSelection && !((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)
+                    return mProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ContractAtRight);
+                else
+                    return mProjectView.TransportBar.Nudge(TransportBar.Backward); 
+            }
+        }
 
         private bool SelectFollowingStripCursor ()
             {
