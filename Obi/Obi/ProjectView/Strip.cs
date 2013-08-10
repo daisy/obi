@@ -817,7 +817,7 @@ namespace Obi.ProjectView
                         else if (tempPreviousPhrase != null && m_AnimationCursor.Left < tempPreviousPhrase.Right)
                         {
                             int relativeX = m_AnimationCursor.Left - tempPreviousPhrase.Left;
-                            if (relativeX > 0)
+                            if ((relativeX - m_AnimationCursor.Width) > 0)
                             {
                                 if (tempPreviousPhrase is AudioBlock) ((AudioBlock)tempPreviousPhrase).MarkSelection(relativeX - m_AnimationCursor.Width);
                                 mContentView.SplitAndMerge(true);
