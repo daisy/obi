@@ -764,6 +764,7 @@ namespace Obi.ProjectView
             {
                 int index = mBlockLayout.Controls.IndexOf(m_TempCursor);
                 int tempTotalCount = mBlockLayout.Controls.Count;
+                
                 Control tempPreviousPhrase = null;
                 int tempWidthOfPreviousPhrase = 0;
                 Console.WriteLine("Index is {0}", index);
@@ -790,7 +791,7 @@ namespace Obi.ProjectView
                     this.Controls.Add(m_AnimationCursor);
                 }
 
-                if ((X < 0 && cursorposition.X-tempWidthOfPreviousPhrase-m_AnimationCursor.Width < LocationOfCursor.X) || (X > 0 && cursorposition.X + tempWidthofNextPhrase > LocationOfCursor.X))
+                if (((X < 0 && cursorposition.X-tempWidthOfPreviousPhrase-m_AnimationCursor.Width < LocationOfCursor.X) || (X > 0 && cursorposition.X + tempWidthofNextPhrase > LocationOfCursor.X))&&(tempPreviousPhrase.Top==tempNextPhrase.Top))
                 {
 
                     m_AnimationCursor.Location = new Point(cursorposition.X + X, cursorposition.Y);
@@ -801,13 +802,11 @@ namespace Obi.ProjectView
 
                     if (markOnPhrase) 
                     {
-                        Console.WriteLine();
-                        Console.WriteLine();
-                        Console.WriteLine();
+                  
                         if (tempNextPhrase != null && tempNextPhrase.Left < m_AnimationCursor.Right)
                         {
                              int relativeX = m_AnimationCursor.Left - tempNextPhrase.Left;
-                             if (relativeX > 0)
+                            if (relativeX > 0)
                              {
                                  if (tempNextPhrase is AudioBlock) ((AudioBlock)tempNextPhrase).MarkSelection(relativeX);
                                  mContentView.SplitAndMerge(false);
@@ -817,6 +816,7 @@ namespace Obi.ProjectView
                         else if (tempPreviousPhrase != null && m_AnimationCursor.Left < tempPreviousPhrase.Right)
                         {
                             int relativeX = m_AnimationCursor.Left - tempPreviousPhrase.Left;
+                           
                             if ((relativeX - m_AnimationCursor.Width) > 0)
                             {
                                 if (tempPreviousPhrase is AudioBlock) ((AudioBlock)tempPreviousPhrase).MarkSelection(relativeX - m_AnimationCursor.Width);
