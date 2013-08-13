@@ -37,11 +37,12 @@
             this.panelZooomWaveform = new System.Windows.Forms.Panel();
             this.txtZoomSelected = new System.Windows.Forms.TextBox();
             this.mbtnZoomSelection = new System.Windows.Forms.Button();
+            this.btntxtZoomSelected = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnClose
             // 
-            this.btnClose.Cursor = System.Windows.Forms.Cursors.No;
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnClose.Location = new System.Drawing.Point(12, 533);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(91, 23);
@@ -107,7 +108,7 @@
             this.panelZooomWaveform.Location = new System.Drawing.Point(3, 3);
             this.panelZooomWaveform.Name = "panelZooomWaveform";
             this.panelZooomWaveform.Size = new System.Drawing.Size(946, 488);
-            this.panelZooomWaveform.TabIndex = 8;
+            this.panelZooomWaveform.TabIndex = 9;
             // 
             // txtZoomSelected
             // 
@@ -115,17 +116,28 @@
             this.txtZoomSelected.Name = "txtZoomSelected";
             this.txtZoomSelected.ReadOnly = true;
             this.txtZoomSelected.Size = new System.Drawing.Size(702, 20);
-            this.txtZoomSelected.TabIndex = 9;
+            this.txtZoomSelected.TabIndex = 18;
+            this.txtZoomSelected.Visible = false;
             // 
             // mbtnZoomSelection
             // 
             this.mbtnZoomSelection.Location = new System.Drawing.Point(777, 533);
             this.mbtnZoomSelection.Name = "mbtnZoomSelection";
             this.mbtnZoomSelection.Size = new System.Drawing.Size(107, 23);
-            this.mbtnZoomSelection.TabIndex = 10;
+            this.mbtnZoomSelection.TabIndex = 8;
             this.mbtnZoomSelection.Text = "Zoom Selection";
             this.mbtnZoomSelection.UseVisualStyleBackColor = true;
             this.mbtnZoomSelection.Click += new System.EventHandler(this.mbtnZoomSelection_Click);
+            // 
+            // btntxtZoomSelected
+            // 
+            this.btntxtZoomSelected.BackColor = System.Drawing.SystemColors.Control;
+            this.btntxtZoomSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btntxtZoomSelected.Location = new System.Drawing.Point(24, 504);
+            this.btntxtZoomSelected.Name = "btntxtZoomSelected";
+            this.btntxtZoomSelected.Size = new System.Drawing.Size(75, 23);
+            this.btntxtZoomSelected.TabIndex = 10;
+            this.btntxtZoomSelected.UseVisualStyleBackColor = false;
             // 
             // ZoomWaveform
             // 
@@ -133,6 +145,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Controls.Add(this.btntxtZoomSelected);
             this.Controls.Add(this.mbtnZoomSelection);
             this.Controls.Add(this.txtZoomSelected);
             this.Controls.Add(this.panelZooomWaveform);
@@ -160,6 +173,7 @@
         private System.Windows.Forms.Panel panelZooomWaveform;
         private System.Windows.Forms.TextBox txtZoomSelected;
         private System.Windows.Forms.Button mbtnZoomSelection;
+        private System.Windows.Forms.Button btntxtZoomSelected;
 
     }
 }
