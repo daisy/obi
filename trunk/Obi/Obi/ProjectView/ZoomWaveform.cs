@@ -369,7 +369,7 @@ namespace Obi.ProjectView
         {
                 
                 ObiNode nextNode = m_Node.FollowingNode;
-            if (nextNode!=null && nextNode.Parent != null && m_AudioBlock.Node.Parent != null)
+            if (nextNode!=null && nextNode.Parent != null &&  m_AudioBlock!=null && m_AudioBlock.Node!=null && m_AudioBlock.Node.Parent != null)
             {
                 if (m_AudioBlock.Node.Parent == nextNode.Parent)
                 {
@@ -394,7 +394,7 @@ namespace Obi.ProjectView
         private void btnPreviousPhrase_Click(object sender, EventArgs e)
         {
             ObiNode previousNode = m_Node.PrecedingNode;
-            if (previousNode != null && previousNode.Parent != null && m_AudioBlock.Node.Parent != null)
+            if (previousNode != null && previousNode.Parent != null && m_AudioBlock != null && m_AudioBlock.Node != null && m_AudioBlock.Node.Parent != null)
             {
                 if (m_AudioBlock.Node.Parent == previousNode.Parent)
                 {
