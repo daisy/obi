@@ -110,6 +110,10 @@ namespace Obi.ProjectView
                 //}
 
             }
+            if( m_ProjectView==null || m_ProjectView.Selection==null ||!(m_ProjectView.Selection.Node is EmptyNode))
+            {
+                IsNewProjectOpened();
+            }
         }
          private void ZoomPanelLostFocus(object sender,EventArgs e)
          {
@@ -357,6 +361,7 @@ namespace Obi.ProjectView
         {
          m_buttonSizeinit = false;
          m_ContentView.RemovePanel();
+         
          m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
         }
 
@@ -636,6 +641,13 @@ namespace Obi.ProjectView
         {
             m_AudioBlock.ResetTimeBoundsForWaveformDisplay();
           //  mbtnResetSelection.Enabled = false;
+        }
+          public void IsNewProjectOpened()
+        {
+            m_buttonSizeinit = false;
+            m_ContentView.RemovePanel();
+
+            m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
         }
    
 
