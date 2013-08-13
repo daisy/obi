@@ -791,40 +791,49 @@ namespace Obi.ProjectView
                     this.Controls.Add(m_AnimationCursor);
                 }
 
-                if (((X < 0 && cursorposition.X-tempWidthOfPreviousPhrase-m_AnimationCursor.Width < LocationOfCursor.X) || (X > 0 && cursorposition.X + tempWidthofNextPhrase > LocationOfCursor.X))&&(tempPreviousPhrase.Top==tempNextPhrase.Top))
+                if ((X < 0 && cursorposition.X - tempWidthOfPreviousPhrase - m_AnimationCursor.Width < LocationOfCursor.X) || (X > 0 && cursorposition.X + tempWidthofNextPhrase > LocationOfCursor.X))
                 {
-
-                    m_AnimationCursor.Location = new Point(cursorposition.X + X, cursorposition.Y);
-                    m_AnimationCursor.SetHeight(mBlockHeight);
-                    m_AnimationCursor.BackColor = ColorSettings.StripSelectedBackColor;
-                    m_AnimationCursor.BringToFront();
-                    
-
-                    if (markOnPhrase) 
+                    if ((tempPreviousPhrase == null && tempNextPhrase != null) ||
+                        (tempPreviousPhrase != null && tempNextPhrase == null) ||
+                        (tempNextPhrase != null && tempPreviousPhrase != null &&
+                         (tempPreviousPhrase.Top == tempNextPhrase.Top)))
                     {
-                  
-                        if (tempNextPhrase != null && tempNextPhrase.Left < m_AnimationCursor.Right)
-                        {
-                             int relativeX = m_AnimationCursor.Left - tempNextPhrase.Left;
-                            if (relativeX > 0)
-                             {
-                                 if (tempNextPhrase is AudioBlock) ((AudioBlock)tempNextPhrase).MarkSelection(relativeX);
-                                 mContentView.SplitAndMerge(false);
-                             }
+                        m_AnimationCursor.Location = new Point(cursorposition.X + X, cursorposition.Y);
+                        m_AnimationCursor.SetHeight(mBlockHeight);
+                        m_AnimationCursor.BackColor = ColorSettings.StripSelectedBackColor;
+                        m_AnimationCursor.BringToFront();
 
-                        }
-                        else if (tempPreviousPhrase != null && m_AnimationCursor.Left < tempPreviousPhrase.Right)
+
+                        if (markOnPhrase)
                         {
-                            int relativeX = m_AnimationCursor.Left - tempPreviousPhrase.Left;
-                           
-                            if ((relativeX - m_AnimationCursor.Width) > 0)
+
+                            if (tempNextPhrase != null && tempNextPhrase.Left < m_AnimationCursor.Right)
                             {
-                                if (tempPreviousPhrase is AudioBlock) ((AudioBlock)tempPreviousPhrase).MarkSelection(relativeX - m_AnimationCursor.Width);
-                                mContentView.SplitAndMerge(true);
-                            }
+                                int relativeX = m_AnimationCursor.Left - tempNextPhrase.Left;
+                                if (relativeX > 0)
+                                {
+                                    if (tempNextPhrase is AudioBlock)
+                                        ((AudioBlock) tempNextPhrase).MarkSelection(relativeX);
+                                    mContentView.SplitAndMerge(false);
+                                }
 
+                            }
+                            else if (tempPreviousPhrase != null && m_AnimationCursor.Left < tempPreviousPhrase.Right)
+                            {
+                                int relativeX = m_AnimationCursor.Left - tempPreviousPhrase.Left;
+
+                                if ((relativeX - m_AnimationCursor.Width) > 0)
+                                {
+                                    if (tempPreviousPhrase is AudioBlock)
+                                        ((AudioBlock) tempPreviousPhrase).MarkSelection(relativeX -
+                                                                                        m_AnimationCursor.Width);
+                                    mContentView.SplitAndMerge(true);
+                                }
+
+                            }
                         }
                     }
+
                 }
 
             }
