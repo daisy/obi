@@ -117,7 +117,6 @@ namespace Obi.ProjectView
         }
          private void ZoomPanelLostFocus(object sender,EventArgs e)
          {
-            // this.ActiveControl = panelZooomWaveform;
              if(this.ActiveControl==btntxtZoomSelected)
              {
                  this.ActiveControl = btntxtZoomSelected;

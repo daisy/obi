@@ -135,7 +135,7 @@
             this.btntxtZoomSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btntxtZoomSelected.Location = new System.Drawing.Point(24, 504);
             this.btntxtZoomSelected.Name = "btntxtZoomSelected";
-            this.btntxtZoomSelected.Size = new System.Drawing.Size(75, 23);
+            this.btntxtZoomSelected.Size = new System.Drawing.Size(702, 23);
             this.btntxtZoomSelected.TabIndex = 10;
             this.btntxtZoomSelected.UseVisualStyleBackColor = false;
             // 
