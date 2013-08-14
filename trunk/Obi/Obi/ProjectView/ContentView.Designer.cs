@@ -141,6 +141,7 @@ namespace Obi.ProjectView
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
             resources.ApplyResources(this.mContextMenuStrip, "mContextMenuStrip");
+            this.mContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.mContextMenuStrip_Opening);
             // 
             // Context_ZoomPhrase
             // 

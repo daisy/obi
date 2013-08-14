@@ -5578,6 +5578,18 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.SplitAndMerge(false);
         }
 
+        private void mContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            if(m_ZoomWaveformPanel==null)
+            {
+                Context_ZoomPhrase.Enabled = true;
+            }
+            else
+            {
+                Context_ZoomPhrase.Enabled = false;
+            }
+        }
+
      
 
         }
