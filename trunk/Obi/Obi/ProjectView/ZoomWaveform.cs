@@ -200,6 +200,14 @@ namespace Obi.ProjectView
             m_ContentView.Resize += new EventHandler(ZoomPanelResize);
             m_Strip = strip;
             m_Node = node;
+
+           mtoolTipZoomWaveform.SetToolTip(this.btnClose,"Close Zoom Panel");
+           mtoolTipZoomWaveform.SetToolTip(this.btnNextPhrase,"Show Next Phrase");
+           mtoolTipZoomWaveform.SetToolTip(this.btnPreviousPhrase,"ShowPrevious Phrase");
+           mtoolTipZoomWaveform.SetToolTip(this.btnReset,"Reset Waveform");
+           mtoolTipZoomWaveform.SetToolTip(this.btnZoomIn,"Zoom In  waveform");
+           mtoolTipZoomWaveform.SetToolTip(this.btnZoomOut,"Zoom Out  waveform");
+           mtoolTipZoomWaveform.SetToolTip(this.mbtnZoomSelection,"Zoom Selection");
             if (m_ProjectView.Selection.Phrase != null)
             {
                 if (m_ContentView != null)
@@ -314,6 +322,10 @@ namespace Obi.ProjectView
             m_Edit.Show();
             m_Edit.Location = new Point(39,this.Height-83);
             m_Edit.BringToFront();
+
+            btntxtZoomSelected.Text = " ";
+            btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
+            btntxtZoomSelected.Text += " " + m_ProjectView.GetSelectedPhraseSection.ToString();
         }
 
        void ZoomWaveform_MouseWheel(object sender, MouseEventArgs e)
@@ -383,7 +395,7 @@ namespace Obi.ProjectView
                         //m_AudioBlock = new AudioBlock((PhraseNode) nextNode, m_Strip);
                         //panelRender();
                     }
-                    btntxtZoomSelected.Text = " ";
+                //    btntxtZoomSelected.Text = " ";
                 }
             }
 
@@ -408,7 +420,7 @@ namespace Obi.ProjectView
                         //m_AudioBlock = new AudioBlock((PhraseNode) previousNode, m_Strip);
                         //panelRender();
                     }
-                    btntxtZoomSelected.Text = " ";
+                    //btntxtZoomSelected.Text = " ";
                 }
 
             }

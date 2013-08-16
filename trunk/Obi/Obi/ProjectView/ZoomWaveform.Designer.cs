@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ZoomWaveform));
             this.btnClose = new System.Windows.Forms.Button();
             this.btnNextPhrase = new System.Windows.Forms.Button();
             this.btnPreviousPhrase = new System.Windows.Forms.Button();
@@ -38,66 +40,73 @@
             this.txtZoomSelected = new System.Windows.Forms.TextBox();
             this.mbtnZoomSelection = new System.Windows.Forms.Button();
             this.btntxtZoomSelected = new System.Windows.Forms.Button();
+            this.mtoolTipZoomWaveform = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnClose
             // 
+            this.btnClose.AccessibleName = "Close";
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnClose.Location = new System.Drawing.Point(12, 533);
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.Location = new System.Drawing.Point(59, 533);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(91, 23);
+            this.btnClose.Size = new System.Drawing.Size(33, 23);
             this.btnClose.TabIndex = 1;
-            this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnNextPhrase
             // 
-            this.btnNextPhrase.Location = new System.Drawing.Point(131, 533);
+            this.btnNextPhrase.AccessibleName = "Next Phrase";
+            this.btnNextPhrase.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPhrase.Image")));
+            this.btnNextPhrase.Location = new System.Drawing.Point(133, 533);
             this.btnNextPhrase.Name = "btnNextPhrase";
-            this.btnNextPhrase.Size = new System.Drawing.Size(90, 23);
+            this.btnNextPhrase.Size = new System.Drawing.Size(33, 23);
             this.btnNextPhrase.TabIndex = 2;
-            this.btnNextPhrase.Text = "Next Phrase";
             this.btnNextPhrase.UseVisualStyleBackColor = true;
             this.btnNextPhrase.Click += new System.EventHandler(this.btnNextPhrase_Click);
             // 
             // btnPreviousPhrase
             // 
-            this.btnPreviousPhrase.Location = new System.Drawing.Point(245, 533);
+            this.btnPreviousPhrase.AccessibleName = "Previous Phrase";
+            this.btnPreviousPhrase.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPhrase.Image")));
+            this.btnPreviousPhrase.Location = new System.Drawing.Point(197, 533);
             this.btnPreviousPhrase.Name = "btnPreviousPhrase";
-            this.btnPreviousPhrase.Size = new System.Drawing.Size(109, 23);
+            this.btnPreviousPhrase.Size = new System.Drawing.Size(34, 23);
             this.btnPreviousPhrase.TabIndex = 3;
-            this.btnPreviousPhrase.Text = "Previous Phrase";
             this.btnPreviousPhrase.UseVisualStyleBackColor = true;
             this.btnPreviousPhrase.Click += new System.EventHandler(this.btnPreviousPhrase_Click);
             // 
             // btnZoomIn
             // 
-            this.btnZoomIn.Location = new System.Drawing.Point(383, 533);
+            this.btnZoomIn.AccessibleName = "Zoom In";
+            this.btnZoomIn.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomIn.Image")));
+            this.btnZoomIn.Location = new System.Drawing.Point(274, 533);
             this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.Size = new System.Drawing.Size(110, 23);
+            this.btnZoomIn.Size = new System.Drawing.Size(33, 23);
             this.btnZoomIn.TabIndex = 5;
-            this.btnZoomIn.Text = "Zoom In";
             this.btnZoomIn.UseVisualStyleBackColor = true;
             this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
             // 
             // btnZoomOut
             // 
-            this.btnZoomOut.Location = new System.Drawing.Point(530, 533);
+            this.btnZoomOut.AccessibleName = "Zoom Out";
+            this.btnZoomOut.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomOut.Image")));
+            this.btnZoomOut.Location = new System.Drawing.Point(348, 533);
             this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.Size = new System.Drawing.Size(91, 23);
+            this.btnZoomOut.Size = new System.Drawing.Size(32, 23);
             this.btnZoomOut.TabIndex = 6;
-            this.btnZoomOut.Text = "Zoom Out";
             this.btnZoomOut.UseVisualStyleBackColor = true;
             this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(663, 533);
+            this.btnReset.AccessibleName = "Reset";
+            this.btnReset.Image = ((System.Drawing.Image)(resources.GetObject("btnReset.Image")));
+            this.btnReset.Location = new System.Drawing.Point(419, 533);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.Size = new System.Drawing.Size(33, 23);
             this.btnReset.TabIndex = 7;
-            this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
@@ -121,11 +130,12 @@
             // 
             // mbtnZoomSelection
             // 
-            this.mbtnZoomSelection.Location = new System.Drawing.Point(777, 533);
+            this.mbtnZoomSelection.AccessibleName = "Zoom Selection";
+            this.mbtnZoomSelection.Image = ((System.Drawing.Image)(resources.GetObject("mbtnZoomSelection.Image")));
+            this.mbtnZoomSelection.Location = new System.Drawing.Point(487, 533);
             this.mbtnZoomSelection.Name = "mbtnZoomSelection";
-            this.mbtnZoomSelection.Size = new System.Drawing.Size(107, 23);
+            this.mbtnZoomSelection.Size = new System.Drawing.Size(33, 23);
             this.mbtnZoomSelection.TabIndex = 8;
-            this.mbtnZoomSelection.Text = "Zoom Selection";
             this.mbtnZoomSelection.UseVisualStyleBackColor = true;
             this.mbtnZoomSelection.Click += new System.EventHandler(this.mbtnZoomSelection_Click);
             // 
@@ -137,6 +147,7 @@
             this.btntxtZoomSelected.Name = "btntxtZoomSelected";
             this.btntxtZoomSelected.Size = new System.Drawing.Size(702, 23);
             this.btntxtZoomSelected.TabIndex = 10;
+            this.btntxtZoomSelected.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btntxtZoomSelected.UseVisualStyleBackColor = false;
             // 
             // ZoomWaveform
@@ -174,6 +185,7 @@
         private System.Windows.Forms.TextBox txtZoomSelected;
         private System.Windows.Forms.Button mbtnZoomSelection;
         private System.Windows.Forms.Button btntxtZoomSelected;
+        private System.Windows.Forms.ToolTip mtoolTipZoomWaveform;
 
     }
 }
