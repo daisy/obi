@@ -50,7 +50,7 @@
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.Location = new System.Drawing.Point(59, 533);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(33, 23);
+            this.btnClose.Size = new System.Drawing.Size(39, 23);
             this.btnClose.TabIndex = 1;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -61,7 +61,7 @@
             this.btnNextPhrase.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPhrase.Image")));
             this.btnNextPhrase.Location = new System.Drawing.Point(133, 533);
             this.btnNextPhrase.Name = "btnNextPhrase";
-            this.btnNextPhrase.Size = new System.Drawing.Size(33, 23);
+            this.btnNextPhrase.Size = new System.Drawing.Size(38, 23);
             this.btnNextPhrase.TabIndex = 2;
             this.btnNextPhrase.UseVisualStyleBackColor = true;
             this.btnNextPhrase.Click += new System.EventHandler(this.btnNextPhrase_Click);
@@ -70,9 +70,9 @@
             // 
             this.btnPreviousPhrase.AccessibleName = "Previous Phrase";
             this.btnPreviousPhrase.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPhrase.Image")));
-            this.btnPreviousPhrase.Location = new System.Drawing.Point(197, 533);
+            this.btnPreviousPhrase.Location = new System.Drawing.Point(193, 533);
             this.btnPreviousPhrase.Name = "btnPreviousPhrase";
-            this.btnPreviousPhrase.Size = new System.Drawing.Size(34, 23);
+            this.btnPreviousPhrase.Size = new System.Drawing.Size(38, 23);
             this.btnPreviousPhrase.TabIndex = 3;
             this.btnPreviousPhrase.UseVisualStyleBackColor = true;
             this.btnPreviousPhrase.Click += new System.EventHandler(this.btnPreviousPhrase_Click);
@@ -83,7 +83,7 @@
             this.btnZoomIn.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomIn.Image")));
             this.btnZoomIn.Location = new System.Drawing.Point(274, 533);
             this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.Size = new System.Drawing.Size(33, 23);
+            this.btnZoomIn.Size = new System.Drawing.Size(40, 23);
             this.btnZoomIn.TabIndex = 5;
             this.btnZoomIn.UseVisualStyleBackColor = true;
             this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
@@ -94,7 +94,7 @@
             this.btnZoomOut.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomOut.Image")));
             this.btnZoomOut.Location = new System.Drawing.Point(348, 533);
             this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.Size = new System.Drawing.Size(32, 23);
+            this.btnZoomOut.Size = new System.Drawing.Size(40, 23);
             this.btnZoomOut.TabIndex = 6;
             this.btnZoomOut.UseVisualStyleBackColor = true;
             this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
@@ -105,7 +105,7 @@
             this.btnReset.Image = ((System.Drawing.Image)(resources.GetObject("btnReset.Image")));
             this.btnReset.Location = new System.Drawing.Point(419, 533);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(33, 23);
+            this.btnReset.Size = new System.Drawing.Size(38, 23);
             this.btnReset.TabIndex = 7;
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -134,7 +134,7 @@
             this.mbtnZoomSelection.Image = ((System.Drawing.Image)(resources.GetObject("mbtnZoomSelection.Image")));
             this.mbtnZoomSelection.Location = new System.Drawing.Point(487, 533);
             this.mbtnZoomSelection.Name = "mbtnZoomSelection";
-            this.mbtnZoomSelection.Size = new System.Drawing.Size(33, 23);
+            this.mbtnZoomSelection.Size = new System.Drawing.Size(38, 23);
             this.mbtnZoomSelection.TabIndex = 8;
             this.mbtnZoomSelection.UseVisualStyleBackColor = true;
             this.mbtnZoomSelection.Click += new System.EventHandler(this.mbtnZoomSelection_Click);
