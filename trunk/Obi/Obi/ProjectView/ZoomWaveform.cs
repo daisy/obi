@@ -217,29 +217,35 @@ namespace Obi.ProjectView
                     //this.Height = m_ContentView.Height-22;
                     this.Width = m_ContentView.Width;
                     this.MouseWheel += new MouseEventHandler(ZoomWaveform_MouseWheel);
-                  //  btnClose.Anchor = AnchorStyles.None;
-                    btnClose.Location = new Point(btnClose.Location.X, this.Height - 25);
-                   // btnNextPhrase.Anchor = AnchorStyles.None;
-                    btnNextPhrase.Location = new Point(btnNextPhrase.Location.X, this.Height - 25);
-                    btnPreviousPhrase.Location = new Point(btnPreviousPhrase.Location.X, this.Height - 25);
-                    btnReset.Location = new Point(btnReset.Location.X, this.Height - 25);
-                    btnZoomIn.Location = new Point(btnZoomIn.Location.X, this.Height - 25);
-                    btnZoomOut.Location = new Point(btnZoomOut.Location.X, this.Height - 25);
-                    mbtnZoomSelection.Location = new Point(mbtnZoomSelection.Location.X, this.Height - 25);
-                  //  mbtnResetSelection.Location = new Point(mbtnResetSelection.Location.X, this.Height - 25);
+                     flowLayoutPanel1.Location = new Point(5,this.Height-35 );
+
+                    ////  btnClose.Anchor = AnchorStyles.None;
+                    //btnClose.Location = new Point(btnClose.Location.X, this.Height - 25);
+                    //// btnNextPhrase.Anchor = AnchorStyles.None;
+                    //btnNextPhrase.Location = new Point(btnNextPhrase.Location.X, this.Height - 25);
+                    //btnPreviousPhrase.Location = new Point(btnPreviousPhrase.Location.X, this.Height - 25);
+                    //btnReset.Location = new Point(btnReset.Location.X, this.Height - 25);
+                    //btnZoomIn.Location = new Point(btnZoomIn.Location.X, this.Height - 25);
+                    //btnZoomOut.Location = new Point(btnZoomOut.Location.X, this.Height - 25);
+                    //mbtnZoomSelection.Location = new Point(mbtnZoomSelection.Location.X, this.Height - 25);
+                    ////  mbtnResetSelection.Location = new Point(mbtnResetSelection.Location.X, this.Height - 25);
+
                     panelZooomWaveform.Width = this.Width - 30;
+                   // panelZooomWaveform.Location = new Point(0, 0);
+                   
                    
                     m_Edit = new Toolbar_EditAudio(m_ContentView, m_Strip, m_Node, m_ProjectView);
                     this.Controls.Add(m_Edit);
                     m_Edit.Show();
-                    m_Edit.Location = new Point(39,this.Height-83);
+                    m_Edit.Location = new Point(39,this.Height-87);
                     m_Edit.BringToFront();
-                    panelZooomWaveform.Height = this.Height - (btnClose.Height + btntxtZoomSelected.Height + m_Edit.Height+15);
+                    Console.WriteLine("Edit Toolbar position Inside the Condition {0}", m_Edit.Location);
+                     panelZooomWaveform.Height = this.Height - (flowLayoutPanel1.Height + btntxtZoomSelected.Height + m_Edit.Height+15);
+                   // panelZooomWaveform.Height = this.Height - 100;
                    
-                    Console.WriteLine("Height is ..................................................{0}",this.Height);
-                    Console.WriteLine("Contentview Height is ..................................................{0}", m_ContentView.Height);
+
                     btntxtZoomSelected.Width = this.Width - 40;
-                    btntxtZoomSelected.Location = new Point(0, this.Height - 50);
+                    btntxtZoomSelected.Location = new Point(0, this.Height - 65);
                     
                 }
             }
@@ -252,7 +258,7 @@ namespace Obi.ProjectView
                 panelZooomWaveform.Controls.Add(m_AudioBlock);
                 m_AudioBlock.Location = new Point(5,5);
                 float zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
-                btntxtZoomSelected.Location = new Point(0,this.Height-50);
+                btntxtZoomSelected.Location = new Point(0, this.Height - 55);
                 btntxtZoomSelected.BringToFront();
                 m_ZoomFactor = zoomFactor;
               
@@ -332,6 +338,7 @@ namespace Obi.ProjectView
             //m_Edit.Show();
             //m_Edit.Location = new Point(39,this.Height-83);
             //m_Edit.BringToFront();
+            Console.WriteLine("Edit Toolbar position Outside the Condition {0}",m_Edit.Location);
 
             btntxtZoomSelected.Text = " ";
             btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
