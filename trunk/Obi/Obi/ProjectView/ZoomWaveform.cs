@@ -30,6 +30,7 @@ namespace Obi.ProjectView
         private Size m_btnResetPhraseSize;
         private Size m_btnZoomSelectionSize;
         private Size m_btnResetSelectionSize;
+        private Size m_flowLayoutPanelSize;
         private bool m_buttonSizeinit = false;
         private bool flag = false;
         private AudioSelection audioSel;
@@ -285,6 +286,7 @@ namespace Obi.ProjectView
                     m_btnZoomInPhraseSize = btnZoomIn.Size;
                     m_btnZoomOutPhraseSize = btnZoomOut.Size;
                     m_btnZoomSelectionSize = mbtnZoomSelection.Size;
+                    m_flowLayoutPanelSize = flowLayoutPanel1.Size;
               //      m_btnResetSelectionSize = mbtnResetSelection.Size;
                     m_buttonSizeinit = true;
                 }
@@ -309,6 +311,8 @@ namespace Obi.ProjectView
                     btnZoomOut.Size = new Size((int)(btnZoomOut.Size.Width + (btnZoomOut.Size.Width * (tempZoomfactor - 1))), (int)(btnZoomOut.Size.Height + (btnZoomOut.Size.Height * (tempZoomfactor - 1))));
                 //    mbtnResetSelection.Size = new Size((int)(mbtnResetSelection.Size.Width + (mbtnResetSelection.Size.Width * (tempZoomfactor - 1))), (int)(mbtnResetSelection.Size.Height + (mbtnResetSelection.Size.Height * (tempZoomfactor - 1))));
                     mbtnZoomSelection.Size = new Size((int)(mbtnZoomSelection.Size.Width + (mbtnZoomSelection.Size.Width * (tempZoomfactor - 1))), (int)(mbtnZoomSelection.Size.Height + (mbtnZoomSelection.Size.Height * (tempZoomfactor - 1))));
+                    flowLayoutPanel1.Size = new Size((int)(flowLayoutPanel1.Size.Width + (flowLayoutPanel1.Size.Width * (tempZoomfactor - 1))), (int)(flowLayoutPanel1.Size.Height + (flowLayoutPanel1.Size.Height * (tempZoomfactor - 1))));
+
 
 
                     btntxtZoomSelected.Font = new Font(btntxtZoomSelected.Font.Name, (btntxtZoomSelected.Font.Size + (float)3.0), FontStyle.Bold);
@@ -403,6 +407,14 @@ namespace Obi.ProjectView
 
         private void btnNextPhrase_Click(object sender, EventArgs e)
         {
+            if (m_ProjectView.Height > m_PreviousHeight)
+            {
+                this.AutoScroll = false;
+            }
+            else
+            {
+                this.AutoScroll = true;
+            }
                 
                 ObiNode nextNode = m_Node.FollowingNode;
             if (nextNode!=null && nextNode.Parent != null &&  m_AudioBlock!=null && m_AudioBlock.Node!=null && m_AudioBlock.Node.Parent != null)
@@ -429,6 +441,14 @@ namespace Obi.ProjectView
 
         private void btnPreviousPhrase_Click(object sender, EventArgs e)
         {
+            if (m_ProjectView.Height > m_PreviousHeight)
+            {
+                this.AutoScroll = false;
+            }
+            else
+            {
+                this.AutoScroll = true;
+            }
             ObiNode previousNode = m_Node.PrecedingNode;
             if (previousNode != null && previousNode.Parent != null && m_AudioBlock != null && m_AudioBlock.Node != null && m_AudioBlock.Node.Parent != null)
             {
@@ -464,6 +484,14 @@ namespace Obi.ProjectView
 
         private void btnZoomIn_Click(object sender, EventArgs e)
         {
+            if (m_ProjectView.Height > m_PreviousHeight)
+            {
+                this.AutoScroll = false;
+            }
+            else
+            {
+                this.AutoScroll = true;
+            }
             int tempWidth = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * 0.5);
             if (tempWidth < (initialWaveformWidth * 60))
             {
@@ -477,6 +505,14 @@ namespace Obi.ProjectView
 
         private void btnZoomOut_Click(object sender, EventArgs e)
         {
+            if (m_ProjectView.Height > m_PreviousHeight)
+            {
+                this.AutoScroll = false;
+            }
+            else
+            {
+                this.AutoScroll = true;
+            }
             int tempWidth = m_AudioBlock.Waveform.Width - (int)(initialWaveformWidth * 0.5);
             if (tempWidth > (initialWaveformWidth / 10))
             {
@@ -491,6 +527,14 @@ namespace Obi.ProjectView
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            if (m_ProjectView.Height > m_PreviousHeight)
+            {
+                this.AutoScroll = false;
+            }
+            else
+            {
+                this.AutoScroll = true;
+            }
             m_AudioBlock.Waveform.Width = initialWaveformWidth;
             m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
             m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height-10);
@@ -614,6 +658,7 @@ namespace Obi.ProjectView
                         btnZoomIn.Size = new Size((int)(btnZoomIn.Size.Width + (btnZoomIn.Size.Width * (value - 1))), (int)(btnZoomIn.Size.Height + (btnZoomIn.Size.Height * (value - 1))));
                         btnZoomOut.Size = new Size((int)(btnZoomOut.Size.Width + (btnZoomOut.Size.Width * (value - 1))), (int)(btnZoomOut.Size.Height + (btnZoomOut.Size.Height * (value - 1))));
                         mbtnZoomSelection.Size = new Size((int)(mbtnZoomSelection.Size.Width + (mbtnZoomSelection.Size.Width * (value - 1))), (int)(mbtnZoomSelection.Size.Height + (mbtnZoomSelection.Size.Height * (value - 1))));
+                        flowLayoutPanel1.Size = new Size((int)(flowLayoutPanel1.Size.Width + (flowLayoutPanel1.Size.Width * (value - 1))), (int)(flowLayoutPanel1.Size.Height + (flowLayoutPanel1.Size.Height * (value - 1))));
                     //    mbtnResetSelection.Size = new Size((int)(mbtnResetSelection.Size.Width + (mbtnResetSelection.Size.Width * (value - 1))), (int)(mbtnResetSelection.Size.Height + (mbtnResetSelection.Size.Height * (value - 1))));
 
                         btntxtZoomSelected.Font = new Font(btntxtZoomSelected.Font.Name, (btntxtZoomSelected.Font.Size + (float)3.0), FontStyle.Bold);
@@ -639,6 +684,7 @@ namespace Obi.ProjectView
                     btnZoomIn.Size = new Size(m_btnZoomInPhraseSize.Width, m_btnZoomInPhraseSize.Height);
                     btnZoomOut.Size = new Size(m_btnZoomOutPhraseSize.Width, m_btnZoomOutPhraseSize.Height);
                     mbtnZoomSelection.Size = new Size(m_btnZoomSelectionSize.Width, m_btnZoomSelectionSize.Height);
+                    flowLayoutPanel1.Size = new Size(m_flowLayoutPanelSize.Width, m_flowLayoutPanelSize.Height);
                  //   mbtnResetSelection.Size = new Size(m_btnResetSelectionSize.Width, m_btnResetSelectionSize.Height);
                     if (flag)
                     {
