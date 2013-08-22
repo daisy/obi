@@ -15,8 +15,7 @@ namespace Obi.ProjectView
         private ContentView m_ContentView = null;
         private Strip m_Strip;
         private  EmptyNode m_Node;
-        private AudioBlock m_AudioBlock;
-        private Block m_Block;
+        private AudioBlock m_AudioBlock;       
         private int initialWaveformWidth = 0;
         private float m_ZoomFactor = 0;
         private ProjectView m_ProjectView;
@@ -148,8 +147,7 @@ namespace Obi.ProjectView
                 }
                m_AudioBlock = new AudioBlock((PhraseNode)m_Node, m_Strip,true);
                 
-                // m_AudioBlock=new Block(m_Node,m_Strip);
-              //   m_AudioBlock = (AudioBlock)m_Block;
+;
                 panelZooomWaveform.Controls.Add(m_AudioBlock);
                 m_AudioBlock.Location = new Point(5, 5);
                 float zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
@@ -259,16 +257,11 @@ namespace Obi.ProjectView
                         this.AutoScrollMinSize = new Size(this.Width, this.Height + 15);
                     }
                    
-               //     Console.WriteLine("The Panelwaveform Size is ..........................................{0}",panelZooomWaveform.Size);
-                    
+                             
                     panelZooomWaveform.Width = this.Width - 30;
                     panelZooomWaveform.Location = new Point(0, 0);
                    
-                   
-
-                    
-                   
-                    m_Edit.BringToFront();
+                m_Edit.BringToFront();
                 //    Console.WriteLine("Edit Toolbar position Inside the Condition {0}", m_Edit.Location);
                      
                   
