@@ -23,7 +23,9 @@ namespace Obi.ProjectView
         private bool m_IsPanelSizeMax = false;
         private int m_count = 0;
 
-        private Size m_toolStripSize;
+        private Size m_toolStripSize;       
+        private Size m_EditSize;
+        private Size m_btntxtZoomSelectedSize;
         private bool m_ResizeIsDone = false;
         private bool m_buttonSizeinit = false;
         private bool flag = false;
@@ -144,6 +146,8 @@ namespace Obi.ProjectView
                     panelZooomWaveform.Controls.Remove(m_AudioBlock);
                 }
                 m_AudioBlock = new AudioBlock((PhraseNode)m_Node, m_Strip,true);
+              //  Block mBlock=new Block(m_Node,m_Strip);
+               // m_AudioBlock.
                 panelZooomWaveform.Controls.Add(m_AudioBlock);
                 m_AudioBlock.Location = new Point(5, 5);
                 float zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
@@ -193,25 +197,73 @@ namespace Obi.ProjectView
                     this.Height = m_ContentView.Height;
                     //this.Height = m_ContentView.Height-22;
                     this.Width = m_ContentView.Width;
-                    this.MouseWheel += new MouseEventHandler(ZoomWaveform_MouseWheel);
-                    toolStripZoomPanel.Location = new Point(0, this.Height - 30);
+                    m_Edit = new Toolbar_EditAudio(m_ContentView, m_Strip, m_Node, m_ProjectView);
+                    this.Controls.Add(m_Edit);
+                    m_Edit.Show();
 
+                    this.MouseWheel += new MouseEventHandler(ZoomWaveform_MouseWheel);
+                    if (m_ContentView.ZoomFactor > 1.1 && m_ContentView.ZoomFactor < 4)
+                    {
+                        float tempZoomfactor;
+                        if (m_ContentView.ZoomFactor > 1.5)
+                        {
+                            tempZoomfactor = 1.46f;
+                        }
+                        else
+                        {
+                            tempZoomfactor = m_ContentView.ZoomFactor;
+                        }
+                        this.BringToFront();
+
+
+                        panelZooomWaveform.Height = this.Height - (toolStripZoomPanel.Height + btntxtZoomSelected.Height + m_Edit.Height + 15);
+                        btntxtZoomSelected.Size = new Size((int)(btntxtZoomSelected.Size.Width + (btntxtZoomSelected.Size.Width * (tempZoomfactor - 1))), (int)(btntxtZoomSelected.Size.Height + (btntxtZoomSelected.Size.Height * (tempZoomfactor - 1))));
+                        toolStripZoomPanel.Size = new Size((int)(toolStripZoomPanel.Size.Width + (toolStripZoomPanel.Size.Width * (tempZoomfactor - 1))), (int)(toolStripZoomPanel.Size.Height + (toolStripZoomPanel.Size.Height * (tempZoomfactor - 1))));
+                        m_Edit.Size = new Size((int)(m_Edit.Size.Width + (m_Edit.Size.Width * (tempZoomfactor - 1))), (int)(m_Edit.Size.Height + (m_Edit.Size.Height * (tempZoomfactor - 1))));
+                       // panelZooomWaveform.Size = new Size((int)(panelZooomWaveform.Size.Width), (int)(panelZooomWaveform.Size.Height + (panelZooomWaveform.Size.Height * (tempZoomfactor - 1))));
+                        //    flowLayoutPanel1.Size = new Size((int)(flowLayoutPanel1.Size.Width + (flowLayoutPanel1.Size.Width * (tempZoomfactor - 1))), (int)(flowLayoutPanel1.Size.Height + (flowLayoutPanel1.Size.Height * (tempZoomfactor - 1))));
+
+
+
+                        btntxtZoomSelected.Font = new Font(btntxtZoomSelected.Font.Name, (btntxtZoomSelected.Font.Size + (float)3.0), FontStyle.Bold);
+                        toolStripZoomPanel.Font = new Font(toolStripZoomPanel.Font.Name, (toolStripZoomPanel.Font.Size + (float)3.0), FontStyle.Bold);
+                        m_Edit.Font = new Font(m_Edit.Font.Name, (m_Edit.Font.Size + (float)3.0), FontStyle.Bold);                        
+                        //  mbtnResetSelection.Font = new Font(mbtnResetSelection.Font.Name, (mbtnResetSelection.Font.Size + (float)3.0), FontStyle.Bold);
+                        //   mbtnZoomSelection.Font = new Font(mbtnZoomSelection.Font.Name, (mbtnZoomSelection.Font.Size + (float)3.0), FontStyle.Bold);
+                        flag = true;
+                        toolStripZoomPanel.Location = new Point(0, this.Height);
+                        btntxtZoomSelected.Location = new Point(0, this.Height - btntxtZoomSelected.Height - 4);
+                        m_Edit.Location = new Point(5, this.Height - m_Edit.Height - btntxtZoomSelected.Height);
+
+                        this.AutoScrollMinSize = new Size(this.Width, this.Height + 35);
+                    }
+                    else
+                    {
+                        toolStripZoomPanel.Location = new Point(0, this.Height - toolStripZoomPanel.Height - 2);
+                        btntxtZoomSelected.Location = new Point(0, this.Height - btntxtZoomSelected.Height - toolStripZoomPanel.Height - 4);
+                        m_Edit.Location = new Point(5, this.Height - m_Edit.Height - toolStripZoomPanel.Height - btntxtZoomSelected.Height - 8);
+                        panelZooomWaveform.Height = this.Height - (toolStripZoomPanel.Height + btntxtZoomSelected.Height + m_Edit.Height + 15);
+                        this.AutoScrollMinSize = new Size(this.Width, this.Height + 15);
+                    }
+                   
+               //     Console.WriteLine("The Panelwaveform Size is ..........................................{0}",panelZooomWaveform.Size);
+                    
                     panelZooomWaveform.Width = this.Width - 30;
                     panelZooomWaveform.Location = new Point(0, 0);
                    
                    
-                    m_Edit = new Toolbar_EditAudio(m_ContentView, m_Strip, m_Node, m_ProjectView);
-                    this.Controls.Add(m_Edit);
-                    m_Edit.Show();
-                    m_Edit.Location = new Point(5,this.Height-87);
+
+                    
+                   
                     m_Edit.BringToFront();
-                    Console.WriteLine("Edit Toolbar position Inside the Condition {0}", m_Edit.Location);
-                     panelZooomWaveform.Height = this.Height - (toolStripZoomPanel.Height + btntxtZoomSelected.Height + m_Edit.Height+15);
+                //    Console.WriteLine("Edit Toolbar position Inside the Condition {0}", m_Edit.Location);
+                     
+                     Console.WriteLine("The Panelwaveform Size  is ..........................................{0}", panelZooomWaveform.Size);
                    // panelZooomWaveform.Height = this.Height - 100;
                    
 
                     btntxtZoomSelected.Width = this.Width - 40;
-                    btntxtZoomSelected.Location = new Point(0, this.Height - 65);
+                    Console.WriteLine("Initial Height is ??????????????????????????????{0}",this.Height);
                     
                 }
             }
@@ -224,7 +276,7 @@ namespace Obi.ProjectView
                 panelZooomWaveform.Controls.Add(m_AudioBlock);
                 m_AudioBlock.Location = new Point(5,5);
                 float zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
-                btntxtZoomSelected.Location = new Point(0, this.Height - 55);
+            //    btntxtZoomSelected.Location = new Point(0, this.Height - btntxtZoomSelected.Height-toolStripZoomPanel.Height-4);
                 btntxtZoomSelected.BringToFront();
                 m_ZoomFactor = zoomFactor;
               
@@ -246,41 +298,15 @@ namespace Obi.ProjectView
                 {
 
                     m_toolStripSize = toolStripZoomPanel.Size;
+                    m_EditSize = m_Edit.Size;
+                    m_btntxtZoomSelectedSize = btntxtZoomSelected.Size;
+                    
+
                 //    m_flowLayoutPanelSize = flowLayoutPanel1.Size;
               //      m_btnResetSelectionSize = mbtnResetSelection.Size;
                     m_buttonSizeinit = true;
                 }
-                if (m_ContentView.ZoomFactor > 1.1 && m_ContentView.ZoomFactor < 4)
-                {
-                    float tempZoomfactor;
-                    if (m_ContentView.ZoomFactor > 1.5)
-                    {
-                        tempZoomfactor = 1.46f;
-                    }
-                    else
-                    {
-                        tempZoomfactor = m_ContentView.ZoomFactor;
-                    }
-                    this.BringToFront();
-                
-                 
 
-                    toolStripZoomPanel.Size = new Size((int)(toolStripZoomPanel.Size.Width + (toolStripZoomPanel.Size.Width * (tempZoomfactor - 1))), (int)(toolStripZoomPanel.Size.Height + (toolStripZoomPanel.Size.Height * (tempZoomfactor - 1))));
-                //    flowLayoutPanel1.Size = new Size((int)(flowLayoutPanel1.Size.Width + (flowLayoutPanel1.Size.Width * (tempZoomfactor - 1))), (int)(flowLayoutPanel1.Size.Height + (flowLayoutPanel1.Size.Height * (tempZoomfactor - 1))));
-
-
-
-                   
-                  //  mbtnResetSelection.Font = new Font(mbtnResetSelection.Font.Name, (mbtnResetSelection.Font.Size + (float)3.0), FontStyle.Bold);
-                 //   mbtnZoomSelection.Font = new Font(mbtnZoomSelection.Font.Name, (mbtnZoomSelection.Font.Size + (float)3.0), FontStyle.Bold);
-                    flag = true;
-
-                    this.AutoScrollMinSize = new Size(this.Width, this.Height + 35);
-                }
-                else
-                {
-                    this.AutoScrollMinSize = new Size(this.Width, this.Height + 15);
-                }
                 m_AudioBlock.InitCursor(0);
                 m_AudioBlock.Focus();
                 //this.ActiveControl = btnClosetoolStrip;
@@ -291,7 +317,7 @@ namespace Obi.ProjectView
             //m_Edit.Show();
             //m_Edit.Location = new Point(39,this.Height-83);
             //m_Edit.BringToFront();
-            Console.WriteLine("Edit Toolbar position Outside the Condition {0}",m_Edit.Location);
+          //  Console.WriteLine("Edit Toolbar position Outside the Condition {0}",m_Edit.Location);
 
             btntxtZoomSelected.Text = " ";
             btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
@@ -305,6 +331,7 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = true;
             }
+        //    Console.WriteLine("AudioBlock Size is--------------------------------------------------{0}", m_AudioBlock.Size);
         }
 
        void ZoomWaveform_MouseWheel(object sender, MouseEventArgs e)
@@ -373,10 +400,7 @@ namespace Obi.ProjectView
      if ( m_ProjectView.ObiForm.KeyboardShortcuts == null ) return false ;
      KeyboardShortcuts_Settings keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
             //this.Focus();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
+
 
             if (keyData == keyboardShortcuts.ContentView_SelectPrecedingPhrase.Value && this.ActiveControl!=toolStripZoomPanel && this.ActiveControl!=m_Edit)
             {
@@ -462,12 +486,20 @@ namespace Obi.ProjectView
                      
 
                         toolStripZoomPanel.Size = new Size((int)(toolStripZoomPanel.Size.Width + (toolStripZoomPanel.Size.Width * (value - 1))), (int)(toolStripZoomPanel.Size.Height + (toolStripZoomPanel.Size.Height * (value - 1))));
+                        m_Edit.Size = new Size((int)(m_Edit.Size.Width + (m_Edit.Size.Width * (value - 1))), (int)(m_Edit.Size.Height + (m_Edit.Size.Height * (value - 1))));
+                        btntxtZoomSelected.Size = new Size((int)(btntxtZoomSelected.Size.Width + (btntxtZoomSelected.Size.Width * (value - 1))), (int)(btntxtZoomSelected.Size.Height + (btntxtZoomSelected.Size.Height * (value - 1))));
                     //    flowLayoutPanel1.Size = new Size((int)(flowLayoutPanel1.Size.Width + (flowLayoutPanel1.Size.Width * (value - 1))), (int)(flowLayoutPanel1.Size.Height + (flowLayoutPanel1.Size.Height * (value - 1))));
                     //    mbtnResetSelection.Size = new Size((int)(mbtnResetSelection.Size.Width + (mbtnResetSelection.Size.Width * (value - 1))), (int)(mbtnResetSelection.Size.Height + (mbtnResetSelection.Size.Height * (value - 1))));
 
-                     
+                        toolStripZoomPanel.Font = new Font(toolStripZoomPanel.Font.Name, (toolStripZoomPanel.Font.Size + (float)3.0), FontStyle.Bold);
+                        m_Edit.Font = new Font(m_Edit.Font.Name, (m_Edit.Font.Size + (float)3.0), FontStyle.Bold);
+                        btntxtZoomSelected.Font = new Font(btntxtZoomSelected.Font.Name, (btntxtZoomSelected.Font.Size + (float)3.0), FontStyle.Bold);
                        // mbtnZoomSelection.Font = new Font(mbtnZoomSelection.Font.Name, (mbtnZoomSelection.Font.Size + (float)3.0), FontStyle.Bold);
                      //   mbtnResetSelection.Font = new Font(mbtnResetSelection.Font.Name, (mbtnResetSelection.Font.Size + (float)3.0), FontStyle.Bold);
+                        toolStripZoomPanel.Location = new Point(0, this.Height);
+                        btntxtZoomSelected.Location = new Point(0, this.Height - btntxtZoomSelected.Height - 4);
+                        m_Edit.Location = new Point(5, this.Height - m_Edit.Height - btntxtZoomSelected.Height-8);
+                        Console.WriteLine("Modified Height during expention is ????????????????????????{0}", this.Height);
 
                         flag = true;
                     }
@@ -478,13 +510,21 @@ namespace Obi.ProjectView
                    
 
                     toolStripZoomPanel.Size = new Size(toolStripZoomPanel.Width, toolStripZoomPanel.Height);
+                    m_Edit.Size = new Size(m_Edit.Width, m_Edit.Height);
+                    btntxtZoomSelected.Size = new Size(btntxtZoomSelected.Width, btntxtZoomSelected.Height);
                 //    flowLayoutPanel1.Size = new Size(m_flowLayoutPanelSize.Width, m_flowLayoutPanelSize.Height);
                  //   mbtnResetSelection.Size = new Size(m_btnResetSelectionSize.Width, m_btnResetSelectionSize.Height);
                     if (flag)
                     {
-                    
+                        toolStripZoomPanel.Font = new Font(toolStripZoomPanel.Font.Name, (toolStripZoomPanel.Font.Size - (float)3.0), FontStyle.Regular);
+                        m_Edit.Font = new Font(m_Edit.Font.Name, (m_Edit.Font.Size - (float)3.0), FontStyle.Regular);
+                        btntxtZoomSelected.Font = new Font(btntxtZoomSelected.Font.Name, (btntxtZoomSelected.Font.Size - (float)3.0), FontStyle.Regular);
                      //   mbtnZoomSelection.Font = new Font(mbtnZoomSelection.Font.Name, (mbtnZoomSelection.Font.Size - (float)3.0), FontStyle.Regular);
                     //    mbtnResetSelection.Font = new Font(mbtnResetSelection.Font.Name, (mbtnResetSelection.Font.Size - (float)3.0), FontStyle.Regular);
+                        toolStripZoomPanel.Location = new Point(0, this.Height - toolStripZoomPanel.Height - 2);
+                        m_Edit.Location = new Point(5, this.Height - m_Edit.Height - toolStripZoomPanel.Height - btntxtZoomSelected.Height - 8);
+                        btntxtZoomSelected.Location = new Point(0, this.Height - btntxtZoomSelected.Height - toolStripZoomPanel.Height - 4);
+                        Console.WriteLine("Modified Height during Contraction is ??????????????????????{0}", this.Height);
 
                     }
                     flag = false;
