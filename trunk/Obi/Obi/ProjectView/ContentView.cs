@@ -5580,7 +5580,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void mContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
-            if(m_ZoomWaveformPanel==null && mProjectView.Selection.Node is PhraseNode)
+            if(m_ZoomWaveformPanel==null && mProjectView!=null && mProjectView.Selection!=null && mProjectView.Selection.Node is PhraseNode)
             {
                 Context_ZoomPhrase.Enabled = true;
             }
