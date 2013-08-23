@@ -5470,23 +5470,27 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.ReplaceAudioOfSelectedNode();
         }
 
-        //@zoomwaveform
-        private void ShowZoomWaveformPanel ()
-        {
+        ////@zoomwaveform
+        //private void ShowZoomWaveformPanel ()
+        //{
+        //    if (mProjectView.TransportBar.IsPlayerActive)
+        //    {
+        //        mProjectView.TransportBar.Pause();
+        //    }
             
-            if (mProjectView != null && mProjectView.Selection != null)
-            {
-                if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
-                {
-                    m_ZoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection, mProjectView);
-                    this.Controls.Add(m_ZoomWaveformPanel);
-                    m_ZoomWaveformPanel.Location = new Point(0, 0);
-                    m_ZoomWaveformPanel.Show();
-                    m_ZoomWaveformPanel.BringToFront();
-                    m_ZoomWaveformPanel.Focus();
-                }
-            }
-        }
+        //    if (mProjectView != null && mProjectView.Selection != null)
+        //    {
+        //        if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
+        //        {
+        //            m_ZoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection, mProjectView);
+        //            this.Controls.Add(m_ZoomWaveformPanel);
+        //            m_ZoomWaveformPanel.Location = new Point(0, 0);
+        //            m_ZoomWaveformPanel.Show();
+        //            m_ZoomWaveformPanel.BringToFront();
+        //            m_ZoomWaveformPanel.Focus();
+        //        }
+        //    }
+        //}
 
         //@zoomwaveform
         public void RemovePanel()
@@ -5532,6 +5536,10 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {     //@zoomwaveform
             if (mProjectView != null && mProjectView.Selection != null)
             {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    mProjectView.TransportBar.Pause();
+                }
                 if (ActiveStrip != null && mProjectView.Selection.EmptyNodeForSelection != null)
                 {
                     m_ZoomWaveformPanel = new ZoomWaveform(this, ActiveStrip, mProjectView.Selection.EmptyNodeForSelection, mProjectView);
@@ -5580,7 +5588,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void mContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
-            if(m_ZoomWaveformPanel==null && mProjectView!=null && mProjectView.Selection!=null && mProjectView.Selection.Node is PhraseNode)
+            if(m_ZoomWaveformPanel==null && mProjectView!=null && mProjectView.Selection!=null && (mProjectView.Selection.Node is PhraseNode || mProjectView.Selection.Node is EmptyNode))
             {
                 Context_ZoomPhrase.Enabled = true;
             }
