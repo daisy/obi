@@ -538,14 +538,14 @@ namespace Obi.ProjectView
             // 
             // Context_ExportAudioMenuItem
             // 
-            this.Context_ExportAudioMenuItem.Name = "Context_ExportAudioMenuItem";
             resources.ApplyResources(this.Context_ExportAudioMenuItem, "Context_ExportAudioMenuItem");
+            this.Context_ExportAudioMenuItem.Name = "Context_ExportAudioMenuItem";
             this.Context_ExportAudioMenuItem.Click += new System.EventHandler(this.Context_ExportAudioMenuItem_Click);
             // 
             // Context_ReplaceAudioMenuItem
             // 
-            this.Context_ReplaceAudioMenuItem.Name = "Context_ReplaceAudioMenuItem";
             resources.ApplyResources(this.Context_ReplaceAudioMenuItem, "Context_ReplaceAudioMenuItem");
+            this.Context_ReplaceAudioMenuItem.Name = "Context_ReplaceAudioMenuItem";
             this.Context_ReplaceAudioMenuItem.Click += new System.EventHandler(this.Context_ReplaceAudioMenuItem_Click);
             // 
             // Context_PropertiesMenuItem
