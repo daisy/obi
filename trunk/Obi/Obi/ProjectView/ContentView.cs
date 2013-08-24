@@ -177,7 +177,7 @@ namespace Obi.ProjectView
             {
             get
                 {
-                EmptyNode node = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock.Node : mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
+                EmptyNode node = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock.Node : (mSelectedItem is Block ) ? ((Block)mSelectedItem).Node : (mSelectedItem is ZoomWaveform) ? ((ZoomWaveform)mSelectedItem).ZoomPanelNode : null ;
                 return node != null && node.IsRooted
                     && node.Index < node.ParentAs<ObiNode> ().PhraseChildCount - 1;
                 }
@@ -5583,7 +5583,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void mContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
-            if(m_ZoomWaveformPanel==null && mProjectView!=null && mProjectView.Selection!=null && (mProjectView.Selection.Node is PhraseNode || mProjectView.Selection.Node is EmptyNode))
+            if (m_ZoomWaveformPanel == null && mProjectView != null && mProjectView.Selection != null && (mProjectView.Selection.Node is PhraseNode || mProjectView.Selection.Node is EmptyNode) && !mProjectView.TransportBar.IsRecorderActive)
             {
                 Context_ZoomPhrase.Enabled = true;
             }
