@@ -66,6 +66,7 @@
             // 
             // btntxtZoomSelected
             // 
+            this.btntxtZoomSelected.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.btntxtZoomSelected.BackColor = System.Drawing.SystemColors.Control;
             this.btntxtZoomSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btntxtZoomSelected.Location = new System.Drawing.Point(19, 507);
@@ -99,7 +100,7 @@
             this.btnClosetoolStrip.Image = ((System.Drawing.Image)(resources.GetObject("btnClosetoolStrip.Image")));
             this.btnClosetoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnClosetoolStrip.Name = "btnClosetoolStrip";
-            this.btnClosetoolStrip.Size = new System.Drawing.Size(56, 25);
+            this.btnClosetoolStrip.Size = new System.Drawing.Size(53, 25);
             this.btnClosetoolStrip.Text = "Close";
             this.btnClosetoolStrip.Click += new System.EventHandler(this.btnClosetoolStrip_Click);
             // 
@@ -108,7 +109,7 @@
             this.btnNextPhrasetoolStrip.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPhrasetoolStrip.Image")));
             this.btnNextPhrasetoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNextPhrasetoolStrip.Name = "btnNextPhrasetoolStrip";
-            this.btnNextPhrasetoolStrip.Size = new System.Drawing.Size(89, 25);
+            this.btnNextPhrasetoolStrip.Size = new System.Drawing.Size(85, 25);
             this.btnNextPhrasetoolStrip.Text = "Next Phrase";
             this.btnNextPhrasetoolStrip.Click += new System.EventHandler(this.btnNextPhrasetoolStrip_Click);
             // 
@@ -118,7 +119,7 @@
             this.btnPreviousPhrasetoolStrip.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPhrasetoolStrip.Image")));
             this.btnPreviousPhrasetoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPreviousPhrasetoolStrip.Name = "btnPreviousPhrasetoolStrip";
-            this.btnPreviousPhrasetoolStrip.Size = new System.Drawing.Size(110, 25);
+            this.btnPreviousPhrasetoolStrip.Size = new System.Drawing.Size(104, 25);
             this.btnPreviousPhrasetoolStrip.Text = "Previous Phrase";
             this.btnPreviousPhrasetoolStrip.Click += new System.EventHandler(this.btnPreviousPhrasetoolStrip_Click);
             // 
@@ -127,7 +128,7 @@
             this.btnZoomIntoolStrip.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomIntoolStrip.Image")));
             this.btnZoomIntoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZoomIntoolStrip.Name = "btnZoomIntoolStrip";
-            this.btnZoomIntoolStrip.Size = new System.Drawing.Size(72, 25);
+            this.btnZoomIntoolStrip.Size = new System.Drawing.Size(66, 25);
             this.btnZoomIntoolStrip.Text = "Zoom In";
             this.btnZoomIntoolStrip.Click += new System.EventHandler(this.btnZoomIntoolStrip_Click);
             // 
@@ -136,7 +137,7 @@
             this.btnZoomOuttoolStrip.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomOuttoolStrip.Image")));
             this.btnZoomOuttoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZoomOuttoolStrip.Name = "btnZoomOuttoolStrip";
-            this.btnZoomOuttoolStrip.Size = new System.Drawing.Size(82, 25);
+            this.btnZoomOuttoolStrip.Size = new System.Drawing.Size(74, 25);
             this.btnZoomOuttoolStrip.Text = "Zoom Out";
             this.btnZoomOuttoolStrip.Click += new System.EventHandler(this.btnZoomOuttoolStrip_Click);
             // 
@@ -154,7 +155,7 @@
             this.mbtnZoomSelectiontoolStrip.Image = ((System.Drawing.Image)(resources.GetObject("mbtnZoomSelectiontoolStrip.Image")));
             this.mbtnZoomSelectiontoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.mbtnZoomSelectiontoolStrip.Name = "mbtnZoomSelectiontoolStrip";
-            this.mbtnZoomSelectiontoolStrip.Size = new System.Drawing.Size(110, 25);
+            this.mbtnZoomSelectiontoolStrip.Size = new System.Drawing.Size(101, 25);
             this.mbtnZoomSelectiontoolStrip.Text = "Zoom Selection";
             this.mbtnZoomSelectiontoolStrip.Click += new System.EventHandler(this.mbtnZoomSelectiontoolStrip_Click);
             // 
