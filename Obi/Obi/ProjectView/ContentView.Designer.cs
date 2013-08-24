@@ -87,10 +87,12 @@ namespace Obi.ProjectView
             this.Context_PasteBeforeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PasteInsideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_DeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_DeleteFollowingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_Delete_deleteSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_Delete_deleteFollowingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.Context_ExportAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_ReplaceAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_ExportReplaceAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_ExportAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_ReplaceAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsPanel = new System.Windows.Forms.Panel();
             this.mHScrollBar = new System.Windows.Forms.HScrollBar();
@@ -134,10 +136,8 @@ namespace Obi.ProjectView
             this.Context_PasteBeforeMenuItem,
             this.Context_PasteInsideMenuItem,
             this.Context_DeleteMenuItem,
-            this.Context_DeleteFollowingPhrasesMenuItem,
             this.toolStripSeparator5,
-            this.Context_ExportAudioToolStripMenuItem,
-            this.Context_ReplaceAudioToolStripMenuItem,
+            this.Context_ExportReplaceAudioMenuItem,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
             resources.ApplyResources(this.mContextMenuStrip, "mContextMenuStrip");
@@ -503,32 +503,50 @@ namespace Obi.ProjectView
             // 
             // Context_DeleteMenuItem
             // 
+            this.Context_DeleteMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Context_Delete_deleteSelectionMenuItem,
+            this.Context_Delete_deleteFollowingPhrasesMenuItem});
             this.Context_DeleteMenuItem.Name = "Context_DeleteMenuItem";
             resources.ApplyResources(this.Context_DeleteMenuItem, "Context_DeleteMenuItem");
             this.Context_DeleteMenuItem.Click += new System.EventHandler(this.Context_DeleteMenuItem_Click);
             // 
-            // Context_DeleteFollowingPhrasesMenuItem
+            // Context_Delete_deleteSelectionMenuItem
             // 
-            resources.ApplyResources(this.Context_DeleteFollowingPhrasesMenuItem, "Context_DeleteFollowingPhrasesMenuItem");
-            this.Context_DeleteFollowingPhrasesMenuItem.Name = "Context_DeleteFollowingPhrasesMenuItem";
-            this.Context_DeleteFollowingPhrasesMenuItem.Click += new System.EventHandler(this.Context_DeleteFollowingPhrasesMenuItem_Click);
+            this.Context_Delete_deleteSelectionMenuItem.Name = "Context_Delete_deleteSelectionMenuItem";
+            resources.ApplyResources(this.Context_Delete_deleteSelectionMenuItem, "Context_Delete_deleteSelectionMenuItem");
+            this.Context_Delete_deleteSelectionMenuItem.Click += new System.EventHandler(this.Context_Delete_deleteSelectionMenuItem_Click);
+            // 
+            // Context_Delete_deleteFollowingPhrasesMenuItem
+            // 
+            this.Context_Delete_deleteFollowingPhrasesMenuItem.Name = "Context_Delete_deleteFollowingPhrasesMenuItem";
+            resources.ApplyResources(this.Context_Delete_deleteFollowingPhrasesMenuItem, "Context_Delete_deleteFollowingPhrasesMenuItem");
+            this.Context_Delete_deleteFollowingPhrasesMenuItem.Click += new System.EventHandler(this.Context_Delete_deleteFollowingPhrasesMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             // 
-            // Context_ExportAudioToolStripMenuItem
+            // Context_ExportReplaceAudioMenuItem
             // 
-            resources.ApplyResources(this.Context_ExportAudioToolStripMenuItem, "Context_ExportAudioToolStripMenuItem");
-            this.Context_ExportAudioToolStripMenuItem.Name = "Context_ExportAudioToolStripMenuItem";
-            this.Context_ExportAudioToolStripMenuItem.Click += new System.EventHandler(this.exportAudioToolStripMenuItem_Click);
+            resources.ApplyResources(this.Context_ExportReplaceAudioMenuItem, "Context_ExportReplaceAudioMenuItem");
+            this.Context_ExportReplaceAudioMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Context_ExportAudioMenuItem,
+            this.Context_ReplaceAudioMenuItem});
+            this.Context_ExportReplaceAudioMenuItem.Name = "Context_ExportReplaceAudioMenuItem";
+            this.Context_ExportReplaceAudioMenuItem.Click += new System.EventHandler(this.exportAudioToolStripMenuItem_Click);
             // 
-            // Context_ReplaceAudioToolStripMenuItem
+            // Context_ExportAudioMenuItem
             // 
-            resources.ApplyResources(this.Context_ReplaceAudioToolStripMenuItem, "Context_ReplaceAudioToolStripMenuItem");
-            this.Context_ReplaceAudioToolStripMenuItem.Name = "Context_ReplaceAudioToolStripMenuItem";
-            this.Context_ReplaceAudioToolStripMenuItem.Click += new System.EventHandler(this.Context_ReplaceAudioToolStripMenuItem_Click);
+            this.Context_ExportAudioMenuItem.Name = "Context_ExportAudioMenuItem";
+            resources.ApplyResources(this.Context_ExportAudioMenuItem, "Context_ExportAudioMenuItem");
+            this.Context_ExportAudioMenuItem.Click += new System.EventHandler(this.Context_ExportAudioMenuItem_Click);
+            // 
+            // Context_ReplaceAudioMenuItem
+            // 
+            this.Context_ReplaceAudioMenuItem.Name = "Context_ReplaceAudioMenuItem";
+            resources.ApplyResources(this.Context_ReplaceAudioMenuItem, "Context_ReplaceAudioMenuItem");
+            this.Context_ReplaceAudioMenuItem.Click += new System.EventHandler(this.Context_ReplaceAudioMenuItem_Click);
             // 
             // Context_PropertiesMenuItem
             // 
@@ -654,9 +672,8 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_PhraseDetectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ApplyPhraseDetectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_DeleteFollowingPhrasesMenuItem;
         private VerticalScrollToolStripContainer verticalScrollToolStripContainer1;
-        private System.Windows.Forms.ToolStripMenuItem Context_ExportAudioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_ExportReplaceAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_MergeSectionWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_MergeMultipleSectionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_AssignRole_AnchorMenuItem;
@@ -672,9 +689,12 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_ClearRoleFromNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_GenerateSpeechForPageMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_SettingsFromsilencePhraseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_ReplaceAudioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ZoomPhrase;
         private System.Windows.Forms.ToolStripMenuItem Context_SplitMergeWithNextMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_SplitMergeWithPreviousMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_Delete_deleteSelectionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_Delete_deleteFollowingPhrasesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_ExportAudioMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_ReplaceAudioMenuItem;
     }
 }

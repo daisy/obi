@@ -4887,7 +4887,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_PasteMenuItem.Enabled = mProjectView.CanPaste;
             Context_PasteBeforeMenuItem.Enabled = mProjectView.CanPasteBefore;
             Context_PasteInsideMenuItem.Enabled = mProjectView.CanPasteInside;
-            Context_DeleteMenuItem.Enabled = (CanRemoveAudio || CanRemoveBlock || CanRemoveStrip) && !mProjectView.TransportBar.IsRecorderActive;
+          Context_Delete_deleteSelectionMenuItem.Enabled = (CanRemoveAudio || CanRemoveBlock || CanRemoveStrip) && !mProjectView.TransportBar.IsRecorderActive;
             Context_AudioSelectionMenuItem.Enabled = mProjectView.CanMarkSelectionBegin;
             Context_AudioSelection_BeginMenuItem.Enabled = mProjectView.CanMarkSelectionBegin;
             Context_AudioSelection_EndMenuItem.Enabled = mProjectView.CanMarkSelectionEnd;
@@ -4896,8 +4896,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Enabled = mProjectView.CanApplyPhraseDetectionInWholeProject;
             Context_Merge_MergeWithFollowingPhrasesMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
             Context_Merge_MergeWithPrecedingPhrasesMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
-            Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
-            Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;            
+            Context_Delete_deleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
+            Context_ExportReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;            
             Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote; //@AssociateNode
          // Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && m_BeginNote != mProjectView.Selection.Node && mProjectView.Selection.Node.ParentAs<SectionNode>() == m_BeginNote.ParentAs<SectionNode>(); //@AssociateNode
             Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
@@ -4910,7 +4910,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Enabled = mProjectView.CanClearSkippableRole;
             Context_GenerateSpeechForPageMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
             Context_SettingsFromsilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
-            Context_ReplaceAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
+            Context_ReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5027,9 +5027,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         // Delete following phrases context menu item
         private void Context_DeleteFollowingPhrasesMenuItem_Click ( object sender, EventArgs e )
-            {
-            mProjectView.DeleteFollowingPhrasesInSection ();
-            }
+            {  }
 
         private void Context_AudioSelection_BeginMenuItem_Click ( object sender, EventArgs e )
             {
@@ -5058,7 +5056,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         private void Context_PasteInsideMenuItem_Click ( object sender, EventArgs e ) { mProjectView.PasteInside (); }
 
         // Delete context menu item
-        private void Context_DeleteMenuItem_Click ( object sender, EventArgs e ) { mProjectView.Delete (); }
+        private void Context_DeleteMenuItem_Click ( object sender, EventArgs e ) {  }
 
         // Properties context menu item
         private void Context_PropertiesMenuItem_Click ( object sender, EventArgs e )
@@ -5361,9 +5359,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
 
         private void exportAudioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ExportAudioOfSelectedNode();
-        }
+        {  }
 
         private void Context_MergeSectionWithNextToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -5466,8 +5462,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         }
 
         private void Context_ReplaceAudioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ReplaceAudioOfSelectedNode();
+        {          
         }
 
         ////@zoomwaveform
@@ -5596,6 +5591,26 @@ Block lastBlock = ActiveStrip.LastBlock ;
             {
                 Context_ZoomPhrase.Enabled = false;
             }
+        }
+
+        private void Context_Delete_deleteSelectionMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.Delete();
+        }
+
+        private void Context_Delete_deleteFollowingPhrasesMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.DeleteFollowingPhrasesInSection();
+        }
+
+        private void Context_ExportAudioMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ExportAudioOfSelectedNode();
+        }
+
+        private void Context_ReplaceAudioMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ReplaceAudioOfSelectedNode();
         }
 
      

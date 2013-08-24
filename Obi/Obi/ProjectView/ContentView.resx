@@ -463,11 +463,30 @@
   <data name="Context_PasteBeforeMenuItem.Text" xml:space="preserve">
     <value>Paste &amp;before</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Context_PasteBeforeMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="Context_PasteInsideMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PasteInsideMenuItem.Text" xml:space="preserve">
     <value>Paste &amp;inside</value>
+  </data>
+  <data name="Context_PasteInsideMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="Context_Delete_deleteSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 22</value>
+  </data>
+  <data name="Context_Delete_deleteSelectionMenuItem.Text" xml:space="preserve">
+    <value>Delete &amp;selection</value>
+  </data>
+  <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 22</value>
+  </data>
+  <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Text" xml:space="preserve">
+    <value>Dele&amp;te following phrases</value>
   </data>
   <data name="Context_DeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -475,35 +494,29 @@
   <data name="Context_DeleteMenuItem.Text" xml:space="preserve">
     <value>&amp;Delete</value>
   </data>
-  <data name="Context_DeleteFollowingPhrasesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Delete following phrases</value>
-  </data>
-  <data name="Context_DeleteFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_DeleteFollowingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>Dele&amp;te following phrases</value>
-  </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
   </data>
-  <data name="Context_ExportAudioToolStripMenuItem.AccessibleName" xml:space="preserve">
+  <data name="Context_ExportReplaceAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>Export Audio  Ctrl+Alt+E</value>
   </data>
-  <data name="Context_ExportAudioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="Context_ExportAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 22</value>
+  </data>
+  <data name="Context_ExportAudioMenuItem.Text" xml:space="preserve">
+    <value>E&amp;xport Audio</value>
+  </data>
+  <data name="Context_ReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 22</value>
+  </data>
+  <data name="Context_ReplaceAudioMenuItem.Text" xml:space="preserve">
+    <value>&amp;Replace Audio</value>
+  </data>
+  <data name="Context_ExportReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
-  <data name="Context_ExportAudioToolStripMenuItem.Text" xml:space="preserve">
-    <value>Export A&amp;udio</value>
-  </data>
-  <data name="Context_ReplaceAudioToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Replace Audio</value>
-  </data>
-  <data name="Context_ReplaceAudioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_ReplaceAudioToolStripMenuItem.Text" xml:space="preserve">
-    <value>Replace Audio</value>
+  <data name="Context_ExportReplaceAudioMenuItem.Text" xml:space="preserve">
+    <value>&amp;Export and replace Audio</value>
   </data>
   <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -512,7 +525,7 @@
     <value>Pr&amp;operties</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 710</value>
+    <value>209, 666</value>
   </data>
   <data name="&gt;&gt;mContextMenuStrip.Name" xml:space="preserve">
     <value>mContextMenuStrip</value>
@@ -533,7 +546,6 @@
   <data name="mStripsPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>522, 557</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mStripsPanel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -649,7 +661,7 @@
     <value>verticalScrollToolStripContainer1</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=2.6.1.19714, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=2.6.1.24359, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -682,7 +694,7 @@
     <value>contentViewLabel1</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=2.6.1.19714, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=2.6.1.24359, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1035,10 +1047,16 @@
   <data name="&gt;&gt;Context_DeleteMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Context_DeleteFollowingPhrasesMenuItem.Name" xml:space="preserve">
-    <value>Context_DeleteFollowingPhrasesMenuItem</value>
+  <data name="&gt;&gt;Context_Delete_deleteSelectionMenuItem.Name" xml:space="preserve">
+    <value>Context_Delete_deleteSelectionMenuItem</value>
   </data>
-  <data name="&gt;&gt;Context_DeleteFollowingPhrasesMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;Context_Delete_deleteSelectionMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_Delete_deleteFollowingPhrasesMenuItem.Name" xml:space="preserve">
+    <value>Context_Delete_deleteFollowingPhrasesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_Delete_deleteFollowingPhrasesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
@@ -1047,16 +1065,22 @@
   <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Context_ExportAudioToolStripMenuItem.Name" xml:space="preserve">
-    <value>Context_ExportAudioToolStripMenuItem</value>
+  <data name="&gt;&gt;Context_ExportReplaceAudioMenuItem.Name" xml:space="preserve">
+    <value>Context_ExportReplaceAudioMenuItem</value>
   </data>
-  <data name="&gt;&gt;Context_ExportAudioToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;Context_ExportReplaceAudioMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Context_ReplaceAudioToolStripMenuItem.Name" xml:space="preserve">
-    <value>Context_ReplaceAudioToolStripMenuItem</value>
+  <data name="&gt;&gt;Context_ExportAudioMenuItem.Name" xml:space="preserve">
+    <value>Context_ExportAudioMenuItem</value>
   </data>
-  <data name="&gt;&gt;Context_ReplaceAudioToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;Context_ExportAudioMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_ReplaceAudioMenuItem.Name" xml:space="preserve">
+    <value>Context_ReplaceAudioMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_ReplaceAudioMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_PropertiesMenuItem.Name" xml:space="preserve">
