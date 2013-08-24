@@ -611,7 +611,7 @@ namespace Obi.ProjectView
               }
               else if (m_Node.FollowingNode is EmptyNode)
               {
-                  if (m_AudioBlock != null || nextNode.Parent!=null)
+                  if (m_AudioBlock != null)
                   {
                       m_Node = nextNode as EmptyNode;                     
                       m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
@@ -648,7 +648,7 @@ namespace Obi.ProjectView
                       //btntxtZoomSelected.Text = " ";
                       else if (m_Node.PrecedingNode is EmptyNode)
                       {
-                         // if (m_AudioBlock != null)
+                          //if (m_AudioBlock != null)
                           {
                               m_Node = previousNode as EmptyNode;
                               m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
@@ -660,6 +660,7 @@ namespace Obi.ProjectView
               }
               else if (m_Node.PrecedingNode is EmptyNode)
               {
+               //   if (m_AudioBlock != null)
                   m_Node = previousNode as EmptyNode;
                   m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
               }
