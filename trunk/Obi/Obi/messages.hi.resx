@@ -118,939 +118,1947 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="clear_recent_caption" xml:space="preserve">
-    <value>क्या हाल के प्रोजेक्ट की सूची को मिटा दिया जाए?</value>
-    <comment>Confirmation dialog</comment>
+    <value>क्या हाल के प्रोजेक्टों की सूची मिटायें?</value>
   </data>
   <data name="clear_recent_text" xml:space="preserve">
-    <value>क्या आप आशवस्त है की हाल के प्रोजेक्ट की सूची को मिटा दिया जाए?
-आप इस संक्रिय को निरस्त नहीं कर सकते.</value>
-    <comment>Confirmation dialog</comment>
+    <value>क्या आप निश्चित हैं की हाल के प्रोजेक्टों की सूची को मिटा दिया जाये?\आर\एन\ आप इस प्रक्रिया को पूर्व स्थिति में नहीं ला पाएंगे.</value>
   </data>
   <data name="closed_project" xml:space="preserve">
-    <value>स्मृत प्रोजेक्ट "{0}".</value>
-    <comment>Status message</comment>
+    <value>बंद किये गए प्रोजेक्ट "{0}"</value>
   </data>
   <data name="closed_project_caption" xml:space="preserve">
-    <value>आशोधित प्रोजेक्ट बन्द हो रहा है</value>
-    <comment>Confirmation dialog</comment>
+    <value>सुधारे गए प्रोजेक्ट को बंद करना</value>
   </data>
   <data name="closed_project_text" xml:space="preserve">
-    <value>सुधारों को बिना सुरक्षित किये आप प्रोजेक्ट बन्द कर रहे है.
-प्रोजेक्ट को बन्द करने से पहले क्या आप इन सुधारों को सुरक्षित करना चाहते है?</value>
-    <comment>Confirmation dialog</comment>
+    <value>आप बिना सेव किये गए संशोधनों के प्रोजेक्ट को बंद करने जा रहे हैं\आर\एन क्या आप इन संशोधनों को प्रोजेक्ट बंद करने से पहेले सेव करना चाहते हैं?</value>
   </data>
   <data name="default_organization" xml:space="preserve">
-    <value>N/A</value>
-    <comment>Preferences</comment>
+    <value>एन/ए</value>
   </data>
   <data name="default_section_label" xml:space="preserve">
-    <value>शीर्षक रहित अनुभाग</value>
-    <comment>Preferences</comment>
+    <value>शीर्षकविहीन खंड</value>
   </data>
   <data name="obi" xml:space="preserve">
-    <value>ओबी</value>
-    <comment>Window title</comment>
+    <value>Obi</value>
   </data>
   <data name="open_project_error_caption" xml:space="preserve">
-    <value>फाइल खोलते समय त्रुटि</value>
-    <comment>Error dialog</comment>
+    <value>प्रोजेक्ट फाइल खोलने में त्रुटी है</value>
   </data>
   <data name="open_project_error_text" xml:space="preserve">
-    <value>शुक फाइल को पढ़ने में असमर्थ {0}.</value>
-    <comment>Error dialog</comment>
+    <value>एक्स यू के फाइल को पढ़ा नहीं जा सका {0} </value>
   </data>
   <data name="opened_project" xml:space="preserve">
-    <value>अनावृत्त फाइल "{0}".</value>
-    <comment>Status message</comment>
+    <value>खुली हुयी फाइल "{0"}</value>
   </data>
   <data name="ready" xml:space="preserve">
-    <value>तैयार.</value>
-    <comment>Status message</comment>
+    <value>तैयार</value>
   </data>
   <data name="redo_label" xml:space="preserve">
     <value>{0} {1}</value>
-    <comment>Command</comment>
   </data>
   <data name="save_settings_error_caption" xml:space="preserve">
-    <value>सैटिंगस सुरक्षित नहीं हो सकी</value>
-    <comment>Error dialog</comment>
+    <value>सेटिंग्स को सेव नहीं किया जा सका</value>
   </data>
   <data name="save_settings_error_text" xml:space="preserve">
-    <value>सैटिंग को सुरक्षित करते सम निम्न त्रुटि हुई:
-"{0}"
-परिणामस्वरूप, कार्यस्तर के दौरान सैटिंगस में किये गये परिवर्तन सुरक्षित नहीं हुए.
-आह! अच्छा.</value>
-    <comment>Error dialog</comment>
+    <value>सेटिंग्स को सेव करने का प्रयास करते समय निम्न त्रुटी आई:\आर\एन"{0}"\आर\एन परिणामस्वरुप,  इस सत्र में किये गए सेटिंग्स के परिवर्तन सेव नहीं हो सके.\आर\एन ओह ठीक है. </value>
   </data>
   <data name="saved_project" xml:space="preserve">
-    <value>फाइल में प्रोजेक्ट को सुरक्षित करे "{0}".</value>
-    <comment>Status message</comment>
+    <value>फाइल में प्रोजेक्ट सेव कर दिया गया है "{0}'</value>
   </data>
   <data name="undo_label" xml:space="preserve">
     <value>{0} {1}</value>
-    <comment>Command</comment>
   </data>
   <data name="create_directory_text" xml:space="preserve">
-    <value>निर्देशिका {0} विद्यमान नहीं है. क्या आप इसे बनाना चाहते है?</value>
-    <comment>Confirmation dialog</comment>
+    <value>"{0}" डायरेक्टरी अस्तित्व में नहीं है. क्या आप इसे बनाना चाहते हैं?</value>
   </data>
   <data name="redo" xml:space="preserve">
-    <value>पुनः करना</value>
-    <comment>Command</comment>
+    <value>पुनः करें</value>
   </data>
   <data name="undo" xml:space="preserve">
-    <value>निरस्त करना</value>
-    <comment>Command</comment>
+    <value>पूर्व भांति करें</value>
+  </data>
+  <data name="no_device_found_caption" xml:space="preserve">
+    <value>कोई भी ऑडियो यंत्र नहीं मिला</value>
+  </data>
+  <data name="no_device_found_text" xml:space="preserve">
+    <value>ऑडियो इनपुट और आउटपुट यंत्र नहीं चुना जा सका.\आर\एन कृपया जांच करें यदि डायरेक्ट एक्स 9सी सही तरीके से इंस्टाल हुआ है  </value>
   </data>
   <data name="no_output_device_caption" xml:space="preserve">
-    <value>कोई श्रव्य निर्गम युक्ति नहीं पाई गई..</value>
-    <comment>Error dialog</comment>
+    <value>कोई भी ऑडियो आउटपुट यंत्र नहीं मिला</value>
   </data>
   <data name="no_output_device_text" xml:space="preserve">
-    <value>श्रव्य निर्गम युक्ति का चयन नहीं हो सका; कोई भी प्राप्त नहीं.</value>
-    <comment>Error dialog</comment>
+    <value>ऑडियो आउटपुट यंत्र नहीं चुना जा सका: कुछ नहीं मिला.</value>
   </data>
   <data name="create_directory_caption" xml:space="preserve">
-    <value>निर्देशिका का श्रीजन?</value>
-    <comment>Confirmation dialog</comment>
+    <value>डायरेक्टरी बनायें?</value>
   </data>
   <data name="mono" xml:space="preserve">
     <value>मोनो</value>
-    <comment>Preferences</comment>
   </data>
   <data name="stereo" xml:space="preserve">
-    <value>स्टीरियो</value>
-    <comment>Preferences</comment>
+    <value>स्टीरिओ</value>
   </data>
   <data name="no_input_device_caption" xml:space="preserve">
-    <value>कोई भी इनपुट डिवाइस नहीं पाया गया</value>
-    <comment>Error dialog</comment>
+    <value>कोई भी इनपुट यंत्र नहीं मिला</value>
   </data>
   <data name="no_input_device_text" xml:space="preserve">
-    <value>कोई भी सलेक्टिड इनपुट डिवाइस नहीं पाया गया.</value>
-    <comment>Error dialog</comment>
+    <value>ऑडियो इनपुट यंत्र नहीं चुना जा सका: कुछ नहीं मिला.</value>
   </data>
   <data name="record" xml:space="preserve">
-    <value>रिकॉर्ड</value>
-    <comment>Button label (to be reviewed)</comment>
+    <value>रिकॉर्ड करें</value>
   </data>
   <data name="obi_filter" xml:space="preserve">
-    <value>ओबी प्रोजेक्ट फाइल (*.obi)|*.obi|कोई भी फाइल|*.*</value>
-    <comment>File dialog</comment>
+    <value>ओबी प्रोजेक्ट फाइल (*.ओबी)(*.ओबी)(कोई भी फाइल)*.*</value>
   </data>
   <data name="report_delete_error" xml:space="preserve">
-    <value>फाइल हटाने में त्रुटि {0}. ({1})</value>
-    <comment>Error dialog</comment>
+    <value>डिलीट करते समय त्रुटी {0}.({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>WAVE file (*.wav)|*.wav|Any file|*.*</value>
-    <comment>File dialog</comment>
+    <value>वेव फाइल (*.वेव;*.एमपी3)कोई भी फाइल)*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
-    <value>ओडियो इनपुट को जाँचना...</value>
-    <comment>Status message</comment>
+    <value>ऑडियो इनपुट को मॉनिटर करना ....</value>
   </data>
   <data name="page_number" xml:space="preserve">
-    <value>पृष्ठ {0}</value>
-    <comment>Block label</comment>
+    <value>पृष्ठ (0)</value>
   </data>
   <data name="normal_phrase" xml:space="preserve">
     <value>वाक्यांश</value>
-    <comment>Block label</comment>
   </data>
   <data name="saved_as_daisy_text" xml:space="preserve">
-    <value>एक्सपोर्टिड प्रोजेक्ट को डेज़ी निर्देशिका में बदलना {0}</value>
-    <comment>Information dialog</comment>
+    <value>डायरेक्टरी में डेज़ी का प्रोजेक्ट एक्सपोर्ट करें {0}</value>
   </data>
   <data name="title_bar" xml:space="preserve">
-    <value>{0}{1} - {2}</value>
-    <comment>Title bar</comment>
+    <value>{0}{1} ({2 }) - {3}</value>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
-    <value>कृपया उस फोल्डर का चयन करे जिसमें डेज़ी पुस्तक को सुरक्षित करना है।</value>
-    <comment>Directory dialog</comment>
+    <value>कृपया वो फोल्डर चुने जिसमे आपकी डेज़ी पुस्तक सेव होनी है.</value>
   </data>
   <data name="default_directory_browser" xml:space="preserve">
-    <value>कृपया निम्न डिफॉल्ट डायरेक्टरी को चुने.</value>
-    <comment>Directory dialog</comment>
+    <value>कृपया नीचे से डिफ़ॉल्ट प्रोजेक्ट डायरेक्टरी चुने</value>
   </data>
   <data name="export_directory_browser" xml:space="preserve">
-    <value>कृपया निम्न में से डिफाल्ट एक्सपोर्ट निर्देशिका को चुने.</value>
-    <comment>Preferences</comment>
+    <value>कृपया नीचे से डिफ़ॉल्ट एक्सपोर्ट डायरेक्टरी चुने</value>
   </data>
   <data name="playback_rate" xml:space="preserve">
-    <value>प्लेबैक रेट x{0}</value>
-    <comment>Status message</comment>
+    <value>प्लेबैक दर एक्स {0} इन {1}</value>
   </data>
   <data name="Recording" xml:space="preserve">
     <value>रिकॉर्डिंग...</value>
-    <comment>Status message</comment>
   </data>
   <data name="cannot_create_file_caption" xml:space="preserve">
-    <value>प्रोजेक्ट फाइल की रचना नहीं हो सकती</value>
-    <comment>Error dialog</comment>
+    <value>प्रोजेक्ट फाइल नहीं बनायीं जा सकती</value>
   </data>
   <data name="cannot_create_file_text" xml:space="preserve">
-    <value>प्रोजेक्ट फाइल की रचना नहीं हो सकती "{0}": {1}.</value>
-    <comment>Error dialog</comment>
+    <value>प्रोजेक्ट फाइल नहीं बनायीं जा सकती "{0}":{1}.</value>
   </data>
   <data name="cannot_create_directory_caption" xml:space="preserve">
-    <value>निर्देशिका की रचना नहीं हो सकती</value>
-    <comment>Error dialog</comment>
+    <value>डायरेक्टरी नहीं बनायीं जा सकती </value>
   </data>
   <data name="cannot_create_directory_text" xml:space="preserve">
-    <value>निर्देशिका की रचना नहीं हो सकती {0}: {1}.</value>
-    <comment>Error dialog</comment>
+    <value>डायरेक्टरी नहीं बनायीं जा सकती {0}:{1}</value>
   </data>
   <data name="cannot_delete_caption" xml:space="preserve">
-    <value>फाइल नहीं मिट सकती</value>
-    <comment>Error dialog</comment>
+    <value>फाइल डिलीट नहीं की जा सकती</value>
   </data>
   <data name="cannot_delete_text" xml:space="preserve">
-    <value>फाइल को नहीं मिटाया जा सकता {0}. जारी रखने के लिए ओके दबाए या विफलन के लिए निरस्त करे (Reason given: {1})</value>
-    <comment>Error dialog</comment>
+    <value>{0} फाइल डिलीट नहीं की जा सकती. ओके बटन जारी रखने के लिए और निरस्त बटन बाहर आने के लिए दबाये. (कारण दिया गया है:{1}) </value>
   </data>
   <data name="empty_directory_caption" xml:space="preserve">
-    <value>अरिक्त निर्देशिका में नियतिन</value>
-    <comment>Warning dialog</comment>
+    <value>एक अरिक्त डायरेक्टरी में एक्सपोर्ट किया जा रहा है</value>
   </data>
   <data name="empty_directory_text" xml:space="preserve">
-    <value>आप अपने डेज़ी प्रोजेक्ट को लगभग {0}में निर्यात करने को है। यह निर्देशिका रिक्त नहीं है (संभवतः आपने अपनी परियोजना का पुराना वर्जन निर्देशिका में निर्यात किया है) क्या आप निर्यात करने से पूर्व इस निर्देशिका को रिक्त करना चाहते है?</value>
-    <comment>Warning dialog</comment>
+    <value>आप अपना डेज़ी प्रोजेक्ट {0} में एक्सपोर्ट करने वाले है. यह डायरेक्टरी रिक्त नहीं है (शायद आपने अपने प्रोजेक्ट का पूर्व संस्करण उस डायरेक्टरी में एक्सपोर्ट किया है.) क्या आप इस डायरेक्टरी को एक्सपोर्ट करने से पहले रिक्त करना चाहते हैं?</value>
   </data>
   <data name="didnt_save_as_daisy_caption" xml:space="preserve">
-    <value>डेज़ी में त्रुटि का निर्यातन</value>
-    <comment>Error dialog</comment>
+    <value>डेज़ी एक्सपोर्ट करने में त्रुटी है</value>
   </data>
   <data name="didnt_save_as_daisy_text" xml:space="preserve">
-    <value>निर्देशिका {0} में प्रोजेक्ट को डे़ज़ी में निर्यात नहीं कर सकता। दिया गया कारण: {1}</value>
-    <comment>Error dialog</comment>
+    <value>{0} डायरेक्टरी में प्रोजेक्ट डेज़ी में एक्सपोर्ट नहीं किया जा सका.  कारण दिया गया है : {1}</value>
   </data>
   <data name="saved_as_daisy_caption" xml:space="preserve">
-    <value>प्रोजेक्ट डेज़ी में निर्यातित</value>
-    <comment>Information dialog</comment>
+    <value>प्रोजेक्ट को डेज़ी में एक्सपोर्ट कर दिया गया है</value>
   </data>
   <data name="import_phrase_error_caption" xml:space="preserve">
-    <value>आयातित श्रव्य में त्रुटि</value>
-    <comment>Error dialog</comment>
+    <value>ऑडियो इम्पोर्ट करने में त्रुटी है</value>
   </data>
   <data name="import_phrase_error_text" xml:space="preserve">
-    <value>श्रव्य फाइल "{0}" को आयातित नहीं किया जा सकता क्योंकि श्रव्य सेटिंगस (चैनल, बिट डेप्थ, प्रतिदर्श दर) प्रोजेक्ट से मेल नहीं खाती।</value>
-    <comment>Error dialog</comment>
+    <value>ऑडियो फाइल {0} इम्पोर्ट नहीं की जा सकी क्योंकि उसकी ऑडियो सेटिंग्स </value>
   </data>
   <data name="dc_publisher_description" xml:space="preserve">
-    <value>DTB उपलब्ध कराने की जिम्मेदारी एजेंसी की है।</value>
-    <comment>Metadata description</comment>
+    <value>डीटीबी बनाने के लिए उपलब्ध उत्तरदायी एजेंसी </value>
   </data>
   <data name="dc_title_description" xml:space="preserve">
-    <value>DTB का शीर्षक, उपशीर्षक सहित।</value>
-    <comment>Metadata description</comment>
+    <value>डीटीबी का शीर्षक, किसी भी उपशीर्षक सहित</value>
   </data>
   <data name="missing_description" xml:space="preserve">
-    <value>इस अधि-आकड़े मद के लिए विवरण नदारद है।</value>
-    <comment>Metadata</comment>
+    <value>इस मेटाडेटा सामग्री के लिए विवरण अनुपलब्ध है</value>
   </data>
   <data name="help_file_name" xml:space="preserve">
-    <value>help_hi.html</value>
-    <comment>Path to file</comment>
+    <value>help_en.html</value>
   </data>
   <data name="error_metadata_name_caption" xml:space="preserve">
-    <value>आधि-आँकड़े मद का सृजन नहीं कर सकता</value>
-    <comment>Error dialog</comment>
+    <value>मेटाडेटा सामग्री नहीं बनायीं जा सकती </value>
   </data>
   <data name="error_metadata_name_message" xml:space="preserve">
-    <value>नाम "{0}" के साथ अधि-आँकड़े मद का सृजन नहीं कर सकता: नाम "dtb:" से शुरु नहीं होना चाहिए।</value>
-    <comment>Error dialog</comment>
+    <value>"{0}" नाम के साथ मेटाडेटा सामग्री नहीं बनायीं जा सकती: नाम डीटीबी से प्रारंभ नहीं होना चाहिए</value>
   </data>
   <data name="default_project_title" xml:space="preserve">
-    <value>बिना शीर्षक ओबी प्रोजेक्ट</value>
-    <comment>Preferences</comment>
+    <value>शीर्षकविहीन ओबी प्रोजेक्ट</value>
   </data>
   <data name="default_project_filename" xml:space="preserve">
-    <value>प्रोजेक्ट.ओबी</value>
-    <comment>Preferences</comment>
+    <value>project.obi</value>
   </data>
   <data name="really_use_directory_caption" xml:space="preserve">
-    <value>अरिक्त नई प्रोजेक्ट निर्देशिका</value>
-    <comment>Error dialog</comment>
+    <value>डायरेक्टरी को प्रयोग के पूर्व रिक्त करें</value>
   </data>
   <data name="really_use_directory_text" xml:space="preserve">
-    <value>निर्देशिका "{0}" रिक्त नहीं है। यदि आप इस निर्देशिका में नए प्रोजेक्ट का सृजन करते है तो कुछ विषय वस्तु नष्ट हो जाएगी। क्या आप जारी रखना चाहते है?</value>
-    <comment>Error dialog</comment>
+    <value>"{0}" डायरेक्टरी रिक्त नहीं है. यदि आप इस डायरेक्टरी को प्रयोग के पूर्व रिक्त करना चाहते हैं, तो "हाँ" का चयन करें. यदि आप इस डायरेक्टरी को वर्तमान स्थिति में ही प्रयोग करना चाहते हैं तो "नहीं" का चयन करें.</value>
   </data>
   <data name="cannot_redo" xml:space="preserve">
-    <value>पुनः नहीं कर सकता</value>
-    <comment>Empty undo stack label</comment>
+    <value>पुनः नहीं किया जा सकता</value>
   </data>
   <data name="cannot_undo" xml:space="preserve">
-    <value>निरस्त नहीं कर सकता</value>
-    <comment>Empty redo stack label</comment>
+    <value>पूर्व स्थिति में नहीं लाया जा सकता</value>
   </data>
   <data name="rename_section" xml:space="preserve">
-    <value>अनुभाग को पुनः नाम दे</value>
-    <comment>Command</comment>
+    <value>खंड का पुनः नामकरण करें</value>
   </data>
   <data name="move_section_out" xml:space="preserve">
-    <value>अनुभाग स्तर को कम करे</value>
-    <comment>Command (was renamed)</comment>
+    <value>खंड का स्तर घटायें</value>
   </data>
   <data name="move_section_in" xml:space="preserve">
-    <value>अनुभाग स्तर में वृद्धि करें</value>
-    <comment>Command (was renamed)</comment>
+    <value>खंड का स्तर बढ़ाएं</value>
   </data>
   <data name="delete_section" xml:space="preserve">
-    <value>अनुभाग को हटाएँ (स्तरण)</value>
-    <comment>Command</comment>
+    <value>खंड को डिलीट करें (डीप)</value>
   </data>
   <data name="copy_section" xml:space="preserve">
-    <value>प्रतिलिपि अनुभाग (स्तरण)</value>
-    <comment>Command</comment>
+    <value>खंड की प्रति बनायें (डीप)</value>
   </data>
   <data name="cut_section" xml:space="preserve">
-    <value>अनुभाग (स्तरण) कर्तन</value>
-    <comment>Command</comment>
+    <value>खंड काटें (डीप)</value>
   </data>
   <data name="paste_section" xml:space="preserve">
-    <value>अनुभाग चिपकाओ</value>
-    <comment>Command</comment>
+    <value>खंड चिपकाएँ</value>
   </data>
   <data name="import_phrases" xml:space="preserve">
-    <value>श्रव्य फाइल का आयात</value>
-    <comment>Command</comment>
+    <value>ऑडियो फाइलें लायें</value>
   </data>
   <data name="importing_file" xml:space="preserve">
-    <value> फाइल को आयात करना "{0}"</value>
-    <comment>Status message</comment>
+    <value>"{0}" फाइल लायी जा रही है </value>
   </data>
   <data name="init_error_text" xml:space="preserve">
-    <value>ओबी के आरंभीकरण के दौरान त्रुटि हुई। त्रुटि टैक्सट की विषय वस्तु के साथ कृपया रिपोर्ट प्रस्तुत करें। {0}: {1}</value>
-    <comment>Error dialog</comment>
+    <value>ओबी प्रारंभ होते समय त्रुटी उत्पन्न हुयी. \आर\एन कृपया त्रुटी रिपोर्ट प्रस्तुत करें, '[0}" की सामग्री सहित\आर\एन  त्रुटी टेक्स्ट : {1}</value>
   </data>
   <data name="init_error_caption" xml:space="preserve">
-    <value>ओबी प्रारंभीकरण त्रुटि</value>
-    <comment>Error dialog</comment>
+    <value>ओबी प्रारंभ समय की त्रुटी</value>
   </data>
   <data name="created_new_project" xml:space="preserve">
-    <value>नए प्रोजेक्ट "{0}" का सृजन.</value>
-    <comment>Status message</comment>
+    <value>"{0}" प्रोजेक्ट नया बनाये</value>
   </data>
   <data name="delete_phrase" xml:space="preserve">
-    <value>वाक्यांश हटाएँ</value>
-    <comment>Command</comment>
+    <value>वाक्यांश डिलीट करें</value>
   </data>
   <data name="delete_section_shallow" xml:space="preserve">
-    <value>अनुभाग (shallow) हटाएँ</value>
-    <comment>Command</comment>
+    <value>खंड डिलीट करें (शैलो)</value>
   </data>
   <data name="cut_section_shallow" xml:space="preserve">
-    <value>अनुभाग कर्तन (shallow)</value>
-    <comment>Command</comment>
+    <value>खंड काटें (शैलो)</value>
   </data>
   <data name="split_section" xml:space="preserve">
-    <value>अनुभाग विच्छेद</value>
-    <comment>Command</comment>
+    <value>खंड तोड़ें </value>
   </data>
   <data name="merge_sections" xml:space="preserve">
-    <value>संक्लिय अनुभाग</value>
-    <comment>Command</comment>
+    <value>खंड मिलाएं</value>
   </data>
   <data name="cut_phrase" xml:space="preserve">
-    <value>कर्तन वाक्यांश</value>
-    <comment>Command</comment>
+    <value>वाक्यांश काटें</value>
   </data>
   <data name="copy_phrase" xml:space="preserve">
-    <value>प्रतिलिपि वाक्यांश</value>
-    <comment>Command</comment>
+    <value>वाक्यांश की प्रति बनायें</value>
   </data>
   <data name="find_in_text_init" xml:space="preserve">
-    <value>इस प्रोजेक्ट में खोज के लिए टेकस्ट टाइप करें.</value>
-    <comment>Status message</comment>
+    <value>चयनित खंड में टेक्स्ट ढूँढने के लिए इसे टंकित करें</value>
   </data>
   <data name="find_next_in_text" xml:space="preserve">
-    <value>आगे खोजना...</value>
-    <comment>Status message</comment>
+    <value>आगे ढूंढ रहा है...</value>
   </data>
   <data name="find_prev_in_text" xml:space="preserve">
-    <value>उत्क्रम में खोजना...</value>
-    <comment>Status message</comment>
+    <value>पीछे की ओर ढूंढ रहा है...</value>
   </data>
   <data name="finished_searching_all" xml:space="preserve">
-    <value>सभी टेक्स्ट खोजे.</value>
-    <comment>Status message</comment>
+    <value>सभी टेक्स्ट ढूंढ लिए.</value>
   </data>
   <data name="found_in_text" xml:space="preserve">
-    <value> "{0}" की आवृत्ति पाई</value>
-    <comment>Status message</comment>
+    <value>"{0}" की उपलब्धता पाई गयी</value>
   </data>
   <data name="not_found_in_text" xml:space="preserve">
-    <value>कोई मेल नहीं पाए गए.</value>
-    <comment>Status message</comment>
+    <value>कोई भी समानता नहीं पाई गयी</value>
   </data>
   <data name="nothing_to_search" xml:space="preserve">
-    <value>खोज हेतु कुछ नहीं!</value>
-    <comment>Status message</comment>
+    <value>ढूँढने को कुछ नहीं है!</value>
   </data>
   <data name="searching" xml:space="preserve">
-    <value>खोजना...</value>
-    <comment>Status message</comment>
+    <value>ढूंढ रहा है...</value>
   </data>
   <data name="please_enter_some_text" xml:space="preserve">
-    <value>कृपया कुछ टेक्स्ट की प्रविष्टि करें.</value>
-    <comment>Status message</comment>
+    <value>कृपया कुछ टेक्स्ट टंकित करें</value>
   </data>
   <data name="recording_command" xml:space="preserve">
     <value>रिकॉर्डिंग</value>
-    <comment>Command</comment>
   </data>
   <data name="start_recording" xml:space="preserve">
-    <value>आरंभ रिकॉर्डिंग</value>
-    <comment>Button label (to be reviewed)</comment>
+    <value>रिकॉर्डिंग आरम्भ करें</value>
   </data>
   <data name="split_phrase" xml:space="preserve">
-    <value>विच्छेद वाक्यांश</value>
-    <comment>Command</comment>
+    <value>वाक्यांश तोड़े</value>
   </data>
   <data name="merge_phrase_with_next" xml:space="preserve">
-    <value>टेक्स्ट के साथ वाक्यांश का संविलय</value>
-    <comment>Command</comment>
+    <value>अगले के साथ वाक्यांश मिलायें</value>
   </data>
   <data name="paste_phrase" xml:space="preserve">
-    <value>वाक्यांश चिपकाएं</value>
-    <comment>Command</comment>
+    <value>वाक्यांश चिपकाएँ</value>
   </data>
   <data name="add_role" xml:space="preserve">
-    <value>(भूमिका जोड़े)</value>
-    <comment>For the custom types dropdown</comment>
+    <value>(भूमिका जोड़ें)</value>
   </data>
-  <data name="change_role" xml:space="preserve">
-    <value>भूमिका परिवर्तन</value>
-    <comment>Command</comment>
+  <data name="assign_role" xml:space="preserve">
+    <value>भूमिका प्रदान करें</value>
   </data>
   <data name="mark_phrase_used" xml:space="preserve">
-    <value>वाक्यांश को {0} जैसे चिह्नित करें</value>
-    <comment>Command</comment>
+    <value>वाक्यांश को {0} के रूप में चिन्हित करें</value>
   </data>
   <data name="set_page_number_" xml:space="preserve">
-    <value>पृष्ठ संख्या स्थापन</value>
-    <comment>Command</comment>
+    <value>पृष्ठ संख्या निर्धारित करें</value>
   </data>
   <data name="add_section" xml:space="preserve">
-    <value>जोड़ अनुभाग</value>
-    <comment>Command</comment>
+    <value>खंड जोड़ें</value>
   </data>
   <data name="add_subsection" xml:space="preserve">
-    <value>जोड़ उपानुभाग</value>
-    <comment>Command</comment>
+    <value>उपखंड जोड़ें</value>
   </data>
   <data name="mark_section_used" xml:space="preserve">
-    <value>अनुभाग को {0} जैसे चिह्नित करें</value>
-    <comment>Command</comment>
+    <value>खंड को {0} के रूप में चिन्हित करें</value>
   </data>
   <data name="cut_audio" xml:space="preserve">
-    <value>श्रव्य कर्तन</value>
-    <comment>Command</comment>
+    <value>ऑडियो काटें</value>
   </data>
   <data name="delete_audio" xml:space="preserve">
-    <value>श्रव्य हटाना</value>
-    <comment>Command</comment>
+    <value>ऑडियो डिलीट करें</value>
   </data>
   <data name="default_custom_class_name" xml:space="preserve">
-    <value>चिह्नित</value>
-    <comment>Role stuff</comment>
+    <value>चिन्हित किया गया</value>
   </data>
-  <data name="no_preceding_silent_phrase" xml:space="preserve">
-    <value>संदर्भ के लिए कोई पूर्ववर्ती मौन वाक्यांश नहीं; डिफॉल्ट मान का प्रयोग करके।</value>
-    <comment>Error dialog</comment>
+  <data name="no_preceding_silence_phrase" xml:space="preserve">
+    <value>चयन के ठीक पहले मौन वाक्यांश नहीं था, अतः पूर्व निर्धारित मानकों का प्रयोग किया होगा. आप इन अनुस्थितियों को फिर भी स्वतंत्र रूप से संशोधित कर सकते हैं, अथवा निरस्त कर मौन वाक्यांश का चयन कर सकतें है.</value>
   </data>
   <data name="paste_audio" xml:space="preserve">
-    <value>श्रव्य चिपकाएँ</value>
-    <comment>Comand</comment>
+    <value>ऑडियो चिपकाएँ</value>
   </data>
   <data name="copy_audio" xml:space="preserve">
-    <value>श्रव्य प्रतिलिपि करें</value>
-    <comment>Command</comment>
+    <value>ऑडियो की प्रति बनायें</value>
   </data>
   <data name="phrase_detection" xml:space="preserve">
-    <value>वाक्यांश संसूचन</value>
-    <comment>Command</comment>
+    <value>वाक्यांश की खोज</value>
   </data>
   <data name="create_new_project_from_import" xml:space="preserve">
-    <value>XHTML के आयात से नए प्रोजेक्ट का सृजन</value>
-    <comment>File dialog caption</comment>
+    <value>नया प्रजेक्ट लाकर बनायें</value>
   </data>
   <data name="import_failed" xml:space="preserve">
-    <value>{0} आयात से प्रोजेक्ट का सृजन नहीं हो सका</value>
-    <comment>Error message stub</comment>
+    <value>{0} : लाये जाने से प्रोजेक्ट नहीं बनाया जा सका</value>
   </data>
-  <data name="xhtml_filter" xml:space="preserve">
-    <value>XHTML फाइल (*.htm;*.html;*.xhtml)|*.htm;*.html;*.xhtml|कोई फाइल|*.*</value>
-    <comment>File dialog</comment>
+  <data name="filter" xml:space="preserve">
+    <value>एक्सएचटीएमएल, ओपीएफ, एक्सएमएल फाइल (*.एचटीएम;*.एचटीएमएल;*.एक्सएचटीएमएल;*.एक्सएमएल)(*.एचटीएम;*.एचटीएमएल;*.एक्सएचटीएमएल;*.ओपीएफ;*.एक्सएमएल) (कोई भी फाइल)*.*</value>
   </data>
   <data name="blank_phrase" xml:space="preserve">
-    <value>रिक्ता वाक्यांश</value>
-    <comment>Block label</comment>
+    <value>रिक्स्त वाक्यांश</value>
   </data>
   <data name="kind_phrase" xml:space="preserve">
     <value>{0} वाक्यांश</value>
-    <comment>Block label</comment>
   </data>
   <data name="insert_section" xml:space="preserve">
-    <value>अनुभाग निवेशन</value>
-    <comment>Command</comment>
+    <value>खंड बीच में जोड़ें</value>
   </data>
   <data name="clean_failed_caption" xml:space="preserve">
-    <value>प्रोजेक्ट विशुद्ध करने में असफल</value>
-    <comment>Error dialog</comment>
+    <value>प्रोजेक्ट को क्लीन करने में असफल रहा</value>
   </data>
   <data name="clean_failed_text" xml:space="preserve">
-    <value>चालू प्रोजेक्ट को विशुद्ध करने में ओबी असफल, स्पष्टतः निम्न कारण से: {0}</value>
-    <comment>Error dialog</comment>
+    <value>ओबी वर्तमान प्रोजेक्ट को क्लीन करने में असमर्थ रहा, स्पष्टतया निम्नलिखित कारणों से : {0)</value>
+  </data>
+  <data name="clean_up_ask_for_delete_project" xml:space="preserve">
+    <value>अप्रयुक्त फाइलें डिलीट फोल्डर में भेज दी गयीं हैं. क्या आप इन अप्रयुक्त फाइलों को डिलीट करना चाहतें हैं?</value>
   </data>
   <data name="clean_save_caption" xml:space="preserve">
-    <value>विशुद्धीकरण के बाद सुरक्षित करना</value>
-    <comment>Confirmation dialog</comment>
+    <value>क्लीन करने के बाद सेव करें</value>
+  </data>
+  <data name="delete_unused_data_caption" xml:space="preserve">
+    <value>अप्रयुक्त डेटा डिलीट करें?</value>
+  </data>
+  <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
+    <value>अप्रयुक्त वाक्यांशों को डिलीट करना</value>
   </data>
   <data name="clean_save_text" xml:space="preserve">
-    <value>विशुद्धिकरण के बाद आपकी परियोजना सुरक्षित हो जाएगी। क्या आप जारी रखना चाहते हैं?</value>
-    <comment>Confirmation dialog</comment>
+    <value>आपका प्रोजेक्ट क्लीन करने के बाद सेव किया जायेगा. क्या आप जरी रखना चाहते हैं?</value>
   </data>
   <data name="delete_unused" xml:space="preserve">
-    <value>अप्रयुक्त आंकड़े को हटाएँ</value>
-    <comment>Command</comment>
+    <value>अप्रयुक्त डेटा डिलीट करें</value>
   </data>
   <data name="delete_metadata_entry" xml:space="preserve">
-    <value>अधि-आँकड़े प्रविष्टि हटाएँ</value>
-    <comment>Command</comment>
+    <value>मेटाडेटा प्रविष्टियों को डिलीट करें</value>
   </data>
   <data name="modify_metadata_content" xml:space="preserve">
-    <value>अधि-आँकड़ा प्रविष्टि की विषय वस्तु का संशोधन</value>
-    <comment>Metadata</comment>
+    <value>मेटाडेटा प्रविष्टियों की सामग्री संशोधित करें</value>
   </data>
   <data name="modify_metadata_name" xml:space="preserve">
-    <value>modify metadata entry name</value>
-    <comment>Metadata</comment>
+    <value>मेटाडेटा प्रविष्टियों का नाम संशोधित करें</value>
   </data>
   <data name="about_file_name" xml:space="preserve">
-    <value>about_hi.html</value>
-    <comment>Location of the HTML document for the "About" dialog</comment>
+    <value>about_en.html</value>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
-    <value>खाली पृष्ठ जोड़े</value>
-    <comment>Command</comment>
+    <value>रिक्त पृष्ठ जोड़ें</value>
   </data>
   <data name="add_blank_phrase" xml:space="preserve">
-    <value>खाली वाक्यांश जोडे़</value>
-    <comment>Command</comment>
+    <value>रिक्त वाक्यांश जोड़ें</value>
   </data>
   <data name="add_metadata_entry" xml:space="preserve">
-    <value>अधि-आँकड़ा प्रविष्टि जोड़े</value>
-    <comment>Command</comment>
+    <value>मेटाडेटा प्रविष्टियां जोड़ें</value>
   </data>
   <data name="choose_import_file" xml:space="preserve">
-    <value>आयात फाइल चुनें</value>
-    <comment>File dialog caption</comment>
+    <value>लायी जाने वाली फाइल का चयन करें</value>
   </data>
   <data name="copy_section_shallow" xml:space="preserve">
-    <value>अनुभाग (सतही) की प्रतिलिपि करें</value>
-    <comment>Command</comment>
+    <value>खंड की प्रति बनायें (शैलो)</value>
   </data>
   <data name="monitoring_short" xml:space="preserve">
-    <value>मॉनीटरन</value>
-    <comment>Transport bar display</comment>
+    <value>जांच की जा रही है</value>
   </data>
   <data name="propose_directory_caption" xml:space="preserve">
-    <value>नए प्रोजेक्ट के लिए अरिक्त निर्देशिका</value>
-    <comment>Warning dialog</comment>
+    <value>नए प्रोजेक्ट के लिए अरिक्त डायरेक्टरी</value>
   </data>
   <data name="propose_directory_text" xml:space="preserve">
-    <value>जिस निर्देशिका को आपने अपनी नए प्रोजेक्ट को सुरक्षित करने के लिए चुना है वह खाली नहीं है। क्या आप अपनी नए प्रोजेक्ट के लिए निम्न स्थान चुनना चाहेंगे "{0}"?</value>
-    <comment>Warning dialog</comment>
+    <value>डायरेक्टरी जिसका चयन आपने अपना नया प्रोजेक्ट सेव करने के लिए किया है रिक्त नहीं है. क्या आप निम्न: "{0}" स्थान को अपने नए प्रोजेक्ट के लिए चयन करना पसंद करेंगे?</value>
   </data>
   <data name="start_monitoring" xml:space="preserve">
-    <value>मॉनीटरन प्रारंभ</value>
-    <comment>Button label</comment>
+    <value>मोनिटरिंग आरम्भ करें</value>
   </data>
   <data name="content_view" xml:space="preserve">
-    <value>विषय-वस्तु देखना</value>
+    <value>सामग्री परिदृश्य</value>
   </data>
   <data name="audio_block_label" xml:space="preserve">
     <value>{0} {1} of {2}{3}</value>
-    <comment>Audio block label of the form "audio block n of m(, unused)"</comment>
   </data>
   <data name="audio_block_label_unused" xml:space="preserve">
     <value>, अप्रयुक्त</value>
-    <comment>Audio block label additional information</comment>
   </data>
   <data name="Paused" xml:space="preserve">
-    <value>रूका</value>
-    <comment>Status message</comment>
+    <value>अस्थायी रूप से रुका हुआ</value>
   </data>
   <data name="Playing" xml:space="preserve">
-    <value>श्रव्य बजाना</value>
-    <comment>Status message</comment>
+    <value>ऑडियो प्ले हो रहा है</value>
   </data>
   <data name="Stopped" xml:space="preserve">
     <value>रुका हुआ</value>
-    <comment>Status message</comment>
   </data>
   <data name="transport_bar" xml:space="preserve">
-    <value>परिवहन बार</value>
+    <value>ट्रांसपोर्ट बार</value>
   </data>
   <data name="dc_contributor_description" xml:space="preserve">
-    <value>एक पार्टी जिसका प्रकाशन में योगदान गौड़ है उनको dc:रचियता एक पार्टी जिसको dc रचियता में नामित किया गया है उनका प्रकाशन में योगदान गौण है।</value>
-    <comment>Metadata description</comment>
+    <value>वो पक्ष जिसका मुद्रण में सहयोग उनकी अपेक्षा अप्रधान हो जिनका नाम डी.सी. क्रीएटर में है</value>
   </data>
   <data name="dc_coverage_description" xml:space="preserve">
-    <value>स्रोत की विषय वस्तु का विस्तार अथवा परिधि। DTBs के प्रयोग के लिए अपेक्षित नहीं।</value>
-    <comment>Metadata description</comment>
+    <value>स्रोत की सामग्री की सीमा अथवा क्षेत्र. डी.टी.बी. के प्रयोगार्थ अनपेक्षित.</value>
   </data>
   <data name="dc_creator_description" xml:space="preserve">
-    <value>प्रकाशन के बौद्धिक विषय वस्तु के प्राथमिक लेख अथवा रचियता के नाम</value>
-    <comment>Metadata description</comment>
+    <value>बौद्धिक सामग्री के मुद्रण के प्रमुख लेखक अथवा रचयिता के नाम.</value>
   </data>
   <data name="dc_date_description" xml:space="preserve">
-    <value>DTB के प्रकाशन तिथि (dtb: की स्रोत तिथि और dtb: की निर्मित तिथि की तुलना करे).</value>
-    <comment>Metadata description</comment>
+    <value>डी.टी.बी. के मुद्रण की तिथि. (तुलना करें डी.टी.बी.:स्रोत तिथि एवं डी.टी.बी. उत्पादन तिथि में.) [आईएसओ8601] फॉर्मेट में से; वाकया विन्यास वाईवाईवाईवाई[-एमएम[डीडी]] जिसमे चार अंकीय वर्ष अनिवार्य है, महीना वैकल्पिक, और यदि महीना है, तब महीने का दो अंकीय दिन.</value>
   </data>
   <data name="dc_description_description" xml:space="preserve">
-    <value>प्रकाशन की विषय वस्तु के विवरण के लिए सादा टैक्सट.</value>
-    <comment>Metadata description</comment>
+    <value>मुद्रण की सामग्री का विवरण करता हुआ सादा टेक्स्ट.</value>
   </data>
   <data name="dc_format_description" xml:space="preserve">
-    <value>मानक अथवा विनिर्देशन जिसके आधार पर DTB का निर्माण हुआ।</value>
-    <comment>Metadata description</comment>
+    <value>वो मानक या विनिर्देश जिनके अंतर्गत डीटीबी बनी.</value>
   </data>
   <data name="dc_identifier_description" xml:space="preserve">
-    <value>DTB को पहचानने के लिए एक श्रृखंला अथवा संख्या.</value>
-    <comment>Metadata description</comment>
+    <value>अक्षरसमूह या अंक समूह जिनसे डीटीबी पहचानी जा सके.</value>
   </data>
   <data name="dc_language_description" xml:space="preserve">
-    <value>प्रकाशन की विषय वस्तु की भाषा। भाषा कोड [RFC 3066] स्वीडन के लिए: "sv" or "sv-SE";  UK के लिए: "en" or "en-GB"; अमेरिका के लिए : "en" या "en-US"; आदि.</value>
-    <comment>Metadata description</comment>
+    <value>मुद्रण सामग्री की भाषा. [आरएफसी 3066] भाषा कोड. स्वीडेन के लिए : "एसवी" या "एसवी-एसई"; यूके के लिए : "ईएन-जीबी"; यूएस: "ईएन" या ईएन-यूएस"; इत्यादि. </value>
   </data>
   <data name="dc_relation_description" xml:space="preserve">
-    <value>संबंधित संसाधन का संदर्भ</value>
-    <comment>Metadata description</comment>
+    <value>सम्बंधित स्रोत का सन्दर्भ.</value>
   </data>
   <data name="dc_rights_description" xml:space="preserve">
-    <value>DTB के अधिकारो के बारे में सूचना. (dtb:सोर्स राइट्स से तुलना)</value>
-    <comment>Metadata description</comment>
+    <value>डीटीबी में निहित और डीटीबी पर के सर्वाधिकार की सूचना. (तुलना करें डीटीबी: स्रोत अधिकार)</value>
   </data>
   <data name="dc_source_description" xml:space="preserve">
-    <value>संसाधन का संदर्भ (उदाहरणार्थ मुद्रित मूल, ई-बुक आदि) जिसमें से DTB लिया गया है.</value>
-    <comment>Metadata description</comment>
+    <value>स्रोत का सन्दर्भ (उदाहरण मूल मुद्रित, ईपुस्तक, इत्यादि.) जिसमे से डीटीबी प्राप्त की गयी है सर्वोत्तम उद्यम आईएसबीएन उपस्थित होने पर उसका प्रयोग करना है.</value>
   </data>
   <data name="dc_subject_description" xml:space="preserve">
-    <value>प्रकाशन की विषय-वस्तु का शीर्षक.</value>
-    <comment>Metadata description</comment>
+    <value>मुद्रण सामग्री का शीर्षक</value>
   </data>
   <data name="dc_type_description" xml:space="preserve">
-    <value>DTB की विषय वस्तु का स्वरूप (यथा, ध्वनि, टेकस्ट, बिंब) डुबलिन कोर [DC-Type] की निरुपित सूची से लेना उत्तम अभ्यास है।. </value>
-    <comment>Metadata description</comment>
+    <value>डीटीबी विषय वस्तु की प्रकृति (जैसे ध्वनि, टेक्स्ट, छवि). डबलिन कोर की गिनी हुयी सूची से लेना सर्वोत्तम उद्यम होगा [डी सी- टाइप].  </value>
   </data>
   <data name="dtb_audio_format_description" xml:space="preserve">
-    <value>DTB की विषय वस्तु सहित SMIL फाइलों के बजने का कुल समय यह मान SMIL 2.0 क्लॉक मान है। समय और तुल्यकालन मॉड्यूल</value>
-    <comment>Metadata description</comment>
+    <value>स्मिल फाइलों से बनी सभी डीटीबी की विषय वस्तुओं की बजने की कुल अवधि. वैल्यू वो वैल्यू है जो स्मिल 2.0 समय और सिंक्रोनाईजेशन मोड्यूल घडी में प्रदर्शित है.</value>
   </data>
   <data name="dtb_multimedia_content_description" xml:space="preserve">
-    <value>Summary of the general types of media used in the content of this DTB. Value is a comma-delimited list of the top-level media types defined in [RFC2046]. In the current version of this standard, the only applicable types will be audio, text, and image. Media types that are referenced only by NCX, Resource File, or distInfo must not be listed here.</value>
-    <comment>Metadata description</comment>
+    <value>साधारण मीडिया का सारांश जिनका प्रयोग इस डीटीबी की सामग्री में किया गया है. सर्वोच्च स्तरीय मीडिया के प्रकार की कोमा सीमांकक सूची है जिसकी परिभाषा [आरएफसी2046] में है. इस मानक के वर्तमान संस्करण में, उपयुक्त प्रकार केवल ऑडियो, टेक्स्ट और छवि होंगे. वे मीडिया प्रकार जो केवल एनसीएक्स,  स्रोत फाइल या डिस्टइन्फो से संदर्भित होंगे यंहा सूचीबद्ध नहीं किये जाने चाहिए.</value>
   </data>
   <data name="dtb_multimedia_type_description" xml:space="preserve">
-    <value>One of the six types of DTB defined in the Structure Guidelines. Values are: audioOnly, audioNCX, audioPartText, audioFullText, textPartAudio, textNCX.</value>
-    <comment>Metadata description</comment>
+    <value>संरचना निर्देशिका में परिभाषित छह में से एक प्रकार की डीटीबी. वैल्यू हैं : केवल ऑडियो, एनसीएक्स ऑडियो, अंश टेक्स्ट ऑडियो, पूर्ण टेक्स्ट ऑडियो, एनसीएक्स टेक्स्ट.</value>
   </data>
   <data name="dtb_narrator_description" xml:space="preserve">
-    <value>Name of the person whose recorded voice is embodied in the DTB.</value>
-    <comment>Metadata description</comment>
+    <value>उस व्यक्ति का नाम जिसकी ध्वनि डीटीबी के ऑडियो में है.</value>
   </data>
   <data name="dtb_produced_date_description" xml:space="preserve">
-    <value>Date of first generation of the complete DTB, i.e. Production completion date. (Compare dc:Date.) In format from [ISO8601]; the syntax is YYYY[-MM[-DD]] with a mandatory 4-digit year, an optional 2-digit month, and, if the month is present, an optional 2-digit day of month.</value>
-    <comment>Metadata description</comment>
+    <value>डीटीबी प्रथम रचना पूर्ण होने की तिथि अर्थात निर्माण पूर्ण होने की तिथि. (तुलना करें डीसी: तिथि.) [आईएसओ8601] प्रारूप में से;  वाक्यविन्यास है वाईवाईवाईवाई [- एमएम [- डीडी]] जिसमे वर्ष चार अंकों में देन अनिवार्य है, वैकल्पिक दो अंको में महीना और यदि महीना है तो वैकल्पिक दो अंको में तिथि.</value>
   </data>
   <data name="dtb_producer_description" xml:space="preserve">
-    <value>Name of the organization/production unit that created the DTB. (Compare dc:Publisher.)</value>
-    <comment>Metadata description</comment>
+    <value>संस्था का नाम/निर्माण इकाई जहाँ डीटीबी निर्मित हुयी. (तुलना करें डीसी:प्रकाशक.) </value>
   </data>
   <data name="dtb_revision_data_description" xml:space="preserve">
-    <value>Date associated with the specific dtb:revision. In format from [ISO8601]; the syntax is YYYY[-MM[-DD]] with a mandatory 4-digit year, an optional 2-digit month, and, if the month is present, an optional 2-digit day of month.</value>
-    <comment>Metadata description</comment>
+    <value>डीटीबी विशेष से सम्बद्ध तिथि : पुनरीक्षण. [आईएसओ8601] प्रारूप में से;  वाक्यविन्यास है वाईवाईवाईवाई [- एमएम [- डीडी]] जिसमे वर्ष चार अंकों में देन अनिवार्य है, वैकल्पिक दो अंको में महीना और यदि महीना है तो वैकल्पिक दो अंको में तिथि.</value>
   </data>
   <data name="dtb_revision_description" xml:space="preserve">
-    <value>Non-negative integer value of the specific version of the DTB. Incremented each time the DTB is revised.</value>
-    <comment>Metadata description</comment>
+    <value>डीटीबी विशेष के संस्करण की अनाकरात्मक पूर्णांक वैल्यू.   प्रत्येक बार डीटीबी के पुनरीक्षण के समय बढ़ाया जाता है.</value>
   </data>
   <data name="dtb_revision_description_description" xml:space="preserve">
-    <value>A string describing the changes introduced in a specific dtb:revision.</value>
-    <comment>Metadata description</comment>
+    <value>डीटीबी विशेष में लाये गए परिवर्तन का विवरण करते अक्षर समूह: पुनरीक्षण</value>
   </data>
   <data name="dtb_source_date_description" xml:space="preserve">
-    <value>Date of publication of the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. In format from [ISO8601]; the syntax is YYYY[-MM[-DD]] with a mandatory 4-digit year, an optional 2-digit month, and, if the month is present, an optional 2-digit day of month.</value>
-    <comment>Metadata description</comment>
+    <value>वो स्रोत (जैसे मूल मुद्रित प्रति, इपुस्तक इत्यादि) के मुद्रण की तिथि जिससे डीटीबी बनी है. [आईएसओ8601] प्रारूप में से;  वाक्यविन्यास है वाईवाईवाईवाई [- एमएम [- डीडी]] जिसमे वर्ष चार अंकों में देन अनिवार्य है, वैकल्पिक दो अंको में महीना और यदि महीना है तो वैकल्पिक दो अंको में तिथि. </value>
   </data>
   <data name="dtb_source_edition_description" xml:space="preserve">
-    <value>A string describing the edition of the resource (e.g., a print original, ebook, etc.) from which the DTB is derived.</value>
-    <comment>Metadata description</comment>
+    <value>स्रोत के संस्करण की तिथि विवरण करने वाला अक्षर समूह (जैसे मूल मुद्रित प्रति, इपुस्तक इत्यादि) जिससे डीटीबी बनी हो.</value>
   </data>
   <data name="dtb_source_publisher_description" xml:space="preserve">
-    <value>The agency responsible for making available the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. (Compare dc:Publisher.)</value>
-    <comment>Metadata description</comment>
+    <value>वो उत्तरदायी एजेंसी जिसने डीटीबी बनाने के लिए स्रोत (जैसे मूल मुद्रित प्रति, इपुस्तक इत्यादि) जिससे डीटीबी बनायीं गयी हो. तुलना करें डीसी : प्रकाशक)</value>
   </data>
   <data name="dtb_source_rights_description" xml:space="preserve">
-    <value>The agency responsible for making available the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. (Compare dc:Publisher.)</value>
-    <comment>Metadata description</comment>
+    <value>वो उत्तरदायी एजेंसी जिसने डीटीबी बनाने के लिए स्रोत (जैसे मूल मुद्रित प्रति, इपुस्तक इत्यादि) जिससे डीटीबी बनायीं गयी हो. तुलना करें डीसी : प्रकाशक)</value>
   </data>
   <data name="dtb_source_title_description" xml:space="preserve">
-    <value>The title of the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. To be used only if different from dc:Title.</value>
-    <comment>Metadata description</comment>
+    <value>उस स्रोत का शीर्षक (जैसे मूल मुद्रित प्रति, इपुस्तक इत्यादि) जिससे डीटीबी बनी हो. केवल उस दिशा में प्रयोग करें जब ये डीसी : शीर्षक से भिन्न हो.</value>
   </data>
   <data name="dtb_total_time_description" xml:space="preserve">
-    <value>Total playing time of all SMIL files comprising the content of the DTB. Value is a Clock Value from SMIL 2.0 Timing and Synchronization Module.</value>
-    <comment>Metadata description</comment>
+    <value>उन सभी स्मिल फाइलों की बजने की समयावधि जिनसे मिलकर डीटीबी की सामग्री बनी हो. वैल्यू वो वैल्यू है जो स्मिल 2.0 समय और सिंक्रोनाईजेशन मोड्यूल घडी में प्रदर्शित है.</value>
   </data>
   <data name="generator_description" xml:space="preserve">
-    <value>Generator software for this DTB.</value>
-    <comment>Metadata description</comment>
+    <value>इस डीटीबी को बनाने का सॉफ्टवेयर.</value>
   </data>
   <data name="modify_metadata_entry" xml:space="preserve">
-    <value>modify metadata entry</value>
-    <comment>Command</comment>
+    <value>मेटाडेटा प्रविष्टियों को संशोधित करें.</value>
   </data>
   <data name="obi_xuk_version_description" xml:space="preserve">
-    <value>Obi/XUK version identifier.</value>
-    <comment>Metadata description</comment>
+    <value>ओबी/एक्सयूके को पहचानने वाला संस्करण.</value>
   </data>
   <data name="metadata_name_error_caption" xml:space="preserve">
-    <value>Metadata name error</value>
-    <comment>Error dialog</comment>
+    <value>मेटाडेटा नाम के त्रुटी</value>
   </data>
   <data name="metadata_name_error_text" xml:space="preserve">
-    <value>Cannot change the name of this metadata entry to "{0}".</value>
-    <comment>Error dialog</comment>
+    <value>इस मेटाडेटा प्रविष्टि को "{0}" में परिवर्तित नहीं किया जा सकता.</value>
   </data>
   <data name="metadata_custom" xml:space="preserve">
-    <value>custom</value>
-    <comment>Custom metadata name</comment>
+    <value>परिवर्तनीय</value>
   </data>
   <data name="empty" xml:space="preserve">
-    <value>empty</value>
-    <comment>ToString() for empty phrases</comment>
+    <value>रिक्त</value>
   </data>
   <data name="node_selection_to_string" xml:space="preserve">
-    <value>चयनित {0} में {1}</value>
-    <comment>ToString()</comment>
+    <value>{1} में {0} चयनित </value>
   </data>
   <data name="phrase_extra_custom" xml:space="preserve">
-    <value>, {0}</value>
-    <comment>ToString() for custom class</comment>
+    <value>,{0}</value>
   </data>
   <data name="phrase_extra_Heading" xml:space="preserve">
-    <value>, शीर्षक</value>
-    <comment>ToString()</comment>
+    <value>,शीर्षक</value>
   </data>
   <data name="phrase_extra_page" xml:space="preserve">
-    <value>,पृष्ठ संख्या {0}</value>
-    <comment>ToString() for page numbers</comment>
+    <value>, पृष्ठ संख्या {0}</value>
   </data>
   <data name="phrase_extra_Plain" xml:space="preserve">
     <value />
-    <comment>ToString() (empty)</comment>
   </data>
   <data name="phrase_extra_Silence" xml:space="preserve">
-    <value>, मौन</value>
-    <comment>ToString()</comment>
+    <value>,मौन</value>
   </data>
   <data name="phrase_extra_TODO" xml:space="preserve">
-    <value>, करने हेतु</value>
-    <comment>ToString()</comment>
+    <value>भविष्य करने के लिए</value>
   </data>
   <data name="phrase_node_to_string" xml:space="preserve">
-    <value> वाक्यांश (लंबाई: {1})</value>
-    <comment>ToString()</comment>
+    <value>वाक्यांश (लम्बाई : {1})</value>
   </data>
   <data name="phrase_short_custom" xml:space="preserve">
     <value>"{0}"</value>
-    <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_Heading" xml:space="preserve">
     <value>शीर्षक</value>
-    <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_page" xml:space="preserve">
     <value>पृष्ठ {0}</value>
-    <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_Plain" xml:space="preserve">
     <value>वाक्यांश</value>
-    <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_Silence" xml:space="preserve">
-    <value>मौनता</value>
-    <comment>ToString() short</comment>
+    <value>मौन</value>
   </data>
   <data name="phrase_short_to_string" xml:space="preserve">
-    <value>{0} ({1})</value>
-    <comment>ToStirng() short version for labels</comment>
+    <value>{0}{1} ({2})</value>
   </data>
   <data name="phrase_short_TODO" xml:space="preserve">
-    <value>करने हेतु</value>
-    <comment>ToString() short</comment>
+    <value>*भविष्य करने के लिए*</value>
   </data>
   <data name="phrase_to_string" xml:space="preserve">
-    <value>{0} {1} वाक्यांश {2} of {3} ({4}){5}</value>
-    <comment>ToString(); e.g. [unused] phrase 3 of 5 (2.5s), page number 2</comment>
+    <value>{0}{1} वाक्यांश{2} का {3}({4}){5}</value>
   </data>
   <data name="section_level_to_string" xml:space="preserve">
-    <value>, गहनता {0}</value>
+    <value>गहरायी {0}</value>
   </data>
   <data name="section_one_phrase_to_string" xml:space="preserve">
-    <value>, 1वाक्यांश</value>
+    <value>1 वाक्यांश</value>
   </data>
   <data name="section_phrases_to_string" xml:space="preserve">
-    <value>, {0} वाक्यांश</value>
+    <value>{0} बहुवाक्यांश</value>
   </data>
   <data name="section_to_string" xml:space="preserve">
-    <value>{0}अनुभाग "{1}" ({2}{3}{4})</value>
+    <value>{0} खंड "{1}" ({2}{3}{4})</value>
   </data>
   <data name="strips_view_to_string" xml:space="preserve">
-    <value>विषय वस्तु देखना</value>
-    <comment>ToString()</comment>
+    <value>सामग्री परिदृश्य</value>
   </data>
   <data name="toc_view_to_string" xml:space="preserve">
-    <value>TOC view</value>
-    <comment>ToString()</comment>
+    <value>टीओसी परिदृश्य</value>
   </data>
   <data name="unused" xml:space="preserve">
-    <value>अप्रयुक्त </value>
-    <comment>ToString()</comment>
+    <value>अप्रयुक्त</value>
   </data>
   <data name="audio_selection_to_string" xml:space="preserve">
-    <value> {0} {1} {2}पर चयनित श्रव्य</value>
-    <comment>ToString() audio selection</comment>
+    <value>{2} में से {1} में से {0} चयनित ऑडियो</value>
   </data>
   <data name="strip_cursor_selection_to_string" xml:space="preserve">
-    <value>{0} {1} {2} में चयनित सूचक</value>
-    <comment>ToString() strip cursor selection</comment>
+    <value>{2} में से {1} में से {0} चयनित अनुक्रमाणिका</value>
   </data>
   <data name="text_selection_to_string" xml:space="preserve">
-    <value>{0} {1}: "{2}" में चयनित टेकस्ट</value>
-    <comment>ToString() text selection</comment>
+    <value>{2} में से {1} में से {0} चयनित टेक्स्ट</value>
   </data>
   <data name="obi_url" xml:space="preserve">
-    <value>http://daisy-trac.cvsdude.com/obi</value>
-    <comment>Obi URL (may point to localized page.)</comment>
+    <value>http://www.daisy.org/obi/</value>
   </data>
   <data name="max_phrase_duration_invalid_input" xml:space="preserve">
-    <value>अधिकतम वाक्यांश अवधि के लिए अवैध निवेश। कृपया 0 से अधिक पूर्णांक में मिनटों का उल्लेख करें।</value>
-    <comment>Error message</comment>
+    <value>अधिकतम वाक्यांश अवधि के लिए अमान्य इनपुट. कृपया 0 से बड़े पूर्णांक में मिनट स्पष्ट करें.</value>
   </data>
   <data name="rendering_waveform" xml:space="preserve">
-    <value>वेवफार्म चित्रण...</value>
-    <comment>Waveform display before bitmap is created</comment>
+    <value>वेव प्रारूप में प्रतिपादित करना.....</value>
   </data>
   <data name="duration_h_mm_ss" xml:space="preserve">
     <value>{0}:{1:00}:{2:00}</value>
-    <comment>Format for duration</comment>
   </data>
   <data name="duration_mm_ss" xml:space="preserve">
     <value>{0:00}:{1:00}</value>
-    <comment>Format for duration</comment>
   </data>
   <data name="duration_s_ms" xml:space="preserve">
     <value>{0:0.00}s</value>
-    <comment>Format for duration</comment>
   </data>
   <data name="hour" xml:space="preserve">
     <value>घंटा</value>
-    <comment>Used for time formating (singular)</comment>
   </data>
   <data name="hours" xml:space="preserve">
     <value>घंटे</value>
-    <comment>Used for time formating (plural)</comment>
   </data>
   <data name="long_addl_time" xml:space="preserve">
     <value> {0} {1}</value>
-    <comment>Additional time (e.g. 1 minute, 23 seconds)</comment>
   </data>
   <data name="long_h_mm_ss" xml:space="preserve">
     <value>{0} {1}{2}{3}</value>
-    <comment>Longer time formating (e.g. 1 hour 23 minutes 45 seconds)</comment>
   </data>
   <data name="long_mm_ss" xml:space="preserve">
     <value>{0} {1}{2}</value>
-    <comment>Longer time formating (e.g. 1 minute 23 seconds)</comment>
   </data>
   <data name="long_s_ms" xml:space="preserve">
     <value>{0:0.00} {1}</value>
-    <comment>Longer time formating (e.g. 1.23 seconds)</comment>
   </data>
   <data name="minute" xml:space="preserve">
     <value>मिनट</value>
-    <comment>Used for time formating (singular)</comment>
   </data>
   <data name="minutes" xml:space="preserve">
     <value>मिनट</value>
-    <comment>Used for time formating (plural)</comment>
   </data>
   <data name="node_position" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
   <data name="second" xml:space="preserve">
-    <value>सैकंड</value>
-    <comment>Used for time formating (singular)</comment>
+    <value>सेकंड</value>
   </data>
   <data name="seconds" xml:space="preserve">
-    <value> सैकंड</value>
-    <comment>Used for time formating (plural)</comment>
+    <value>सेकंड</value>
   </data>
   <data name="section_level" xml:space="preserve">
     <value>"{0}" (level {1})</value>
   </data>
   <data name="top_level_section" xml:space="preserve">
-    <value>यह उच्च-स्तर का अनुभाग है।</value>
+    <value>यह सर्वोच्च स्तरीय खंड है</value>
   </data>
   <data name="update_section" xml:space="preserve">
-    <value>अनुभाग अद्यतनीकरण</value>
-    <comment>Command</comment>
+    <value>खंड अपडेट करें</value>
   </data>
   <data name="update_phrase" xml:space="preserve">
-    <value>वाक्यांश अद्यतनीकरण</value>
-    <comment>Command</comment>
+    <value>वाक्यांश अपडेट करें</value>
   </data>
   <data name="error_adding_page_number" xml:space="preserve">
-    <value>पृष्ठ संख्या जोड़ने में त्रुटि: मूल अनुभाग नहीं मिला.</value>
+    <value>पृष्ठ संख्या जोड़ने में त्रुटी है: कोई भी पूर्व खंड नहीं पाया गया.</value>
   </data>
   <data name="import_failed_caption" xml:space="preserve">
-    <value>आयात विफल</value>
+    <value>लाया जाना असफल रहा </value>
   </data>
   <data name="no_headings_found" xml:space="preserve">
-    <value>XHTML डाक्यूमेंट में शीर्षक  (h1, h2, आदि.) नहीं मिले.</value>
+    <value>कोई भी शीर्षक (एच1, एच2 इत्यादि) एक्सएचटीएमएल नहीं पाया गया.</value>
   </data>
   <data name="wrong_heading_order" xml:space="preserve">
-    <value>शीर्षक तत्व अंश गलत क्रम में हैं।.</value>
+    <value>शीर्षक अवयव त्रुटिपूर्ण क्रम में हैं.</value>
   </data>
   <data name="dtb_encode_error" xml:space="preserve">
-    <value>DTB कूटलेखन के दौरान त्रुटि: {0}</value>
+    <value>डीटीबी एन्कोडिंग के समय {0} त्रुटी</value>
   </data>
   <data name="dtb_encode_error_caption" xml:space="preserve">
-    <value>DTB कूटलेखन त्रुटि</value>
+    <value>डीटीबी एन्कोडिंग त्रुटी</value>
   </data>
   <data name="dtb_filter" xml:space="preserve">
-    <value>DTB 3.0 file|*.opf|DTB 2.02 file|ncc.html</value>
+    <value>डीटीबी</value>
   </data>
   <data name="dtb_validate_error" xml:space="preserve">
-    <value>DTB वैधीकरण के दौरान त्रुटि: {0}</value>
+    <value>डीटीबी पैकेज फाइल (*.ओपीएफ)(*.ओपीएफ)कोई भी फाइल)*.*</value>
   </data>
   <data name="dtb_validate_error_caption" xml:space="preserve">
-    <value>DTB वैधीकरण त्रुटि</value>
+    <value>डीटीबी पुष्टिकरण त्रुटी</value>
   </data>
   <data name="no_script" xml:space="preserve">
-    <value> "{0}" पर लिपि फाइल नहीं मिली.</value>
+    <value>"{0}" में कोई भी स्क्रिप्ट फाइल नहीं मिली.</value>
   </data>
   <data name="pipeline_path_browser" xml:space="preserve">
-    <value>कृपया निम्न से पाइपलाइन लिपि का स्थान चुनें.</value>
+    <value>कृपया नीचे पाइपलाइन स्क्रिप्ट की अनुस्थिति चयन करें</value>
   </data>
   <data name="xml_filter" xml:space="preserve">
     <value>XML file|*.xml</value>
+  </data>
+  <data name="CannotCreate_InputPath" xml:space="preserve">
+    <value>इनपुट: प्रकार का पाठ नहीं बनाया जा सका.</value>
+  </data>
+  <data name="Caption_Error" xml:space="preserve">
+    <value>त्रुटी</value>
+  </data>
+  <data name="save_before_save_as_caption" xml:space="preserve">
+    <value>क्या सेव अस से पहेले ही सेव करे?</value>
+  </data>
+  <data name="Choose_OtherDirectory" xml:space="preserve">
+    <value>किसी अन्य डायरेक्टरी का चयन करें.</value>
+  </data>
+  <data name="IndexNotInRange" xml:space="preserve">
+    <value>इंडेक्स सीमा में नहीं है.</value>
+  </data>
+  <data name="Invalid_ScriptParameters" xml:space="preserve">
+    <value>एक या अधिक पैरामीटर्स अवैध हैं</value>
+  </data>
+  <data name="No_Path" xml:space="preserve">
+    <value>पाठ नहीं है</value>
+  </data>
+  <data name="NotAbleToCreateDirectory" xml:space="preserve">
+    <value>{0} डायरेक्टरी बनाने में समर्थ नहीं है</value>
+  </data>
+  <data name="NotAbleToSelectItem" xml:space="preserve">
+    <value>आइटम चयन करने में असमर्थ है</value>
+  </data>
+  <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
+    <value>आउटपुट डायरेक्टरी ढूँढने में असमर्थ.\\एन क्या आप इसे बनाना चाहते हैं?</value>
+  </data>
+  <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
+    <value>आउटपुट डायरेक्टरी रिक्त नहीं है! क्या आप इसे रिक्त करना चाहते हैं?</value>
+  </data>
+  <data name="Front_pages" xml:space="preserve">
+    <value>अग्र भाग के पृष्ठ </value>
+  </data>
+  <data name="Normal_pages" xml:space="preserve">
+    <value>सामान्य पृष्ठ</value>
+  </data>
+  <data name="renumber_before_export" xml:space="preserve">
+    <value>इस प्रोजेक्ट को प्रेषित नहीं किया जा सकता क्योंकि इसमे अब भी न्यूनतम दो पृष्ठ {0} संख्या के हैं. क्या आप पृष्ठांकन स्वतः होने देना चाहते हैं और प्रेषण को जरी रखना चाहते हैं? अन्यथा प्रेषण निरस्त हो जायेगा.</value>
+  </data>
+  <data name="renumber_before_export_caption" xml:space="preserve">
+    <value>प्रोजेक्ट में एक ही संख्या के दो पृष्ठ हैं.</value>
+  </data>
+  <data name="renumber_pages" xml:space="preserve">
+    <value>{0} का पुनः पृष्ठांकन करें.</value>
+  </data>
+  <data name="crop_audio" xml:space="preserve">
+    <value>ऑडियो काटें</value>
+  </data>
+  <data name="save_as_error_same_directory" xml:space="preserve">
+    <value>मूल प्रोजेक्ट वाली डायरेक्टरी में सेव नहीं किया जा सकता. कृपया किसी और स्थान का चयन करें.</value>
+  </data>
+  <data name="save_before_save_as" xml:space="preserve">
+    <value>क्या आप नए स्थान पर प्रोजेक्ट को सेव करने से पूर्व किये गए परिवर्तनों को सेव करना चाहते हैं?</value>
+  </data>
+  <data name="no_primary_export_directory" xml:space="preserve">
+    <value>डेज़ी प्रेषण डायरेक्टरी नहीं पाई गयी. कृपया प्रेषण पाथ का चयन करें या प्रोजेक्ट को डेज़ी में प्रेषित करें.</value>
+  </data>
+  <data name="section_unexported" xml:space="preserve">
+    <value>"{0}" खंड या इसके किसी उपखंड में ऑडियो सामग्री नहीं है और इसे प्रेषित नही किया जायेगा. क्या आप जरी रखन चाहते हैं?</value>
+  </data>
+  <data name="section_unexported_caption" xml:space="preserve">
+    <value>खंड प्रेषित नहीं किया जायेगा.</value>
+  </data>
+  <data name="default_export_dirname" xml:space="preserve">
+    <value>{0} डेज़ी3 प्रेषण</value>
+  </data>
+  <data name="ObiForm_PipelineNotFound" xml:space="preserve">
+    <value>{0} में पाइपलाइन स्क्रिप्ट मिलाने में असमर्थ. इसपर निर्भर विशिष्टताएँ कार्य नहीं करेंगी.</value>
+  </data>
+  <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
+    <value>एक या अधिक पैरामीटर्स अवैध हैं.  कृपया सही वैल्यू प्रविष्ट करें.</value>
+  </data>
+  <data name="recording_resume_check" xml:space="preserve">
+    <value>रिकॉर्डिंग जन्हा रोकी गयी थी वहां से पुनः प्रारंभ की जा रही है. रोके गए स्थान से प्रारंभ करने के लिए हाँ का चयन करें अथवा चयनित स्थान से प्रारंभ करने के लिए न का चयन करें.</value>
+  </data>
+  <data name="duration_hh_mm_ss" xml:space="preserve">
+    <value>{0:00}: {1:00}:{2:00}</value>
+  </data>
+  <data name="export_progress_dialog_title" xml:space="preserve">
+    <value>प्रोजेक्ट प्रेषित किया जा रहा है..... कृपया प्रतीक्षा करें कई क्षण लग सकते हैं.</value>
+  </data>
+  <data name="role_Custom" xml:space="preserve">
+    <value>कस्टम</value>
+  </data>
+  <data name="role_Heading" xml:space="preserve">
+    <value>शीर्षक</value>
+  </data>
+  <data name="role_Page" xml:space="preserve">
+    <value>पृष्ठ</value>
+  </data>
+  <data name="role_Plain" xml:space="preserve">
+    <value>साधारण</value>
+  </data>
+  <data name="role_Silence" xml:space="preserve">
+    <value>मौन</value>
+  </data>
+  <data name="could_not_clean_up" xml:space="preserve">
+    <value>{0} अमान्य प्रोजेक्ट को डिलीट नहीं किया जा सका. आप फाइलें स्वयं हटाने का प्रयास कर सकतें हैं. खेद है. \आर\एन</value>
+  </data>
+  <data name="could_not_clean_up_caption" xml:space="preserve">
+    <value>अमान्य प्रोजेक्ट को डिलीट नहीं किया जा सका</value>
+  </data>
+  <data name="import_progress_dialog_title" xml:space="preserve">
+    <value>लाया जा रहा है....</value>
+  </data>
+  <data name="import_audio_progress_dialog_title" xml:space="preserve">
+    <value>ऑडियो लाया जा रहा है...</value>
+  </data>
+  <data name="cleaning_up" xml:space="preserve">
+    <value>सफाई की जा रही है....</value>
+  </data>
+  <data name="remove_custom_class" xml:space="preserve">
+    <value>कस्टम क्लास हटायें</value>
+  </data>
+  <data name="strip_cursor_accessible_name" xml:space="preserve">
+    <value>कर्सर को {0}-{1} पर स्ट्रिप करें</value>
+  </data>
+  <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
+    <value>वैल्यू {0} और {1} के मध्य होनी चाहिए</value>
+  </data>
+  <data name="Pipeline_OutOfRange" xml:space="preserve">
+    <value>वैल्यू प्रत्याशित सीमा में नहीं है</value>
+  </data>
+  <data name="Pipeline_InvalidString" xml:space="preserve">
+    <value>अमान्य इनपुट</value>
+  </data>
+  <data name="save_as_new_directory_name" xml:space="preserve">
+    <value>{0} प्रति बनायें</value>
+  </data>
+  <data name="cannot_use_project_path" xml:space="preserve">
+    <value>चयनित स्थान {0} पर {1} को सेव नहीं किया जा सकता</value>
+  </data>
+  <data name="cannot_use_project_path_caption" xml:space="preserve">
+    <value>चयनित स्थान का प्रयोग नहीं किया जा सकता</value>
+  </data>
+  <data name="extension_warning" xml:space="preserve">
+    <value>आप प्रोजेक्ट फाइल को {0} में सेव करने वाले हैं. फाइल विस्तार के रूप में .ओबीई का प्रयोग करने की संस्तुति की जाती है. क्या आप निश्चित हैं कि आप चयनित फाइल विस्तार रखना चाहते हैं?</value>
+  </data>
+  <data name="extension_warning_caption" xml:space="preserve">
+    <value>फाइल विस्तार चेतावनी</value>
+  </data>
+  <data name="save_as_failed" xml:space="preserve">
+    <value>स्थान "{0}":"{1}" पर सेव करने में असफल</value>
+  </data>
+  <data name="save_as_failed_caption" xml:space="preserve">
+    <value>सेव करने में असफल</value>
+  </data>
+  <data name="cannot_empty_directory" xml:space="preserve">
+    <value>"{0}":"{1}" डायरेक्टरी रिक्त नहीं की जा सकती</value>
+  </data>
+  <data name="cannot_empty_directory_caption" xml:space="preserve">
+    <value>डायरेक्टरी रिक्त नहीं की जा सकती</value>
+  </data>
+  <data name="toggle_TODO" xml:space="preserve">
+    <value>बाद में कार्य करने योग्य टॉगल</value>
+  </data>
+  <data name="recording_resume_check_caption" xml:space="preserve">
+    <value>रोके गए स्थान से रिकॉर्डिंग पुनः आरम्भ करें?</value>
+  </data>
+  <data name="save_as_progress_dialog_title" xml:space="preserve">
+    <value>नए स्थान पे प्रोजेक्ट सेव किया जा रहा है...</value>
+  </data>
+  <data name="InvalidPaths" xml:space="preserve">
+    <value>एक या अधिक पाठ अमान्य हैं!</value>
+  </data>
+  <data name="project_lock_error" xml:space="preserve">
+    <value>प्रोजेक्ट के लिए "{0}":"{1}" पे लॉक फाइल नहीं बनायीं जा सकी</value>
+  </data>
+  <data name="project_locked" xml:space="preserve">
+    <value>प्रोजेक्ट लॉक हो गया है, चूँकि इस प्रोजेक्ट को पूर्व सत्र में सही प्रकार से बंद नहीं किया गया था या कोई अन्य दूसरा प्रोजेक्ट इसी नाम से खुला हुआ है. यदि आप निश्चित है कि कोई दूसरा ओबीई प्रोजेक्ट नहीं खुला है, आप लॉक फाइल "0" को हटा सकते हैं, परन्तु आप अपनी जिम्मेदारी पे आगे बढे.</value>
+  </data>
+  <data name="no_preceding_silence_phrase_caption" xml:space="preserve">
+    <value>कोई भी पूर्व का मौन वाक्यांश नहीं है</value>
+  </data>
+  <data name="phrase_detection_progress_dialog_title" xml:space="preserve">
+    <value>वाक्यांश खोज लागू की जा रही है...</value>
+  </data>
+  <data name="MetadataView_CannotCommitEmptyContent" xml:space="preserve">
+    <value>मेटाडेटा में रिक्त वैल्यू स्वीकार्य नहीं हैं</value>
+  </data>
+  <data name="location_error" xml:space="preserve">
+    <value>फाइल स्थान त्रुटिपूर्ण</value>
+  </data>
+  <data name="path_not_recognized" xml:space="preserve">
+    <value>"{0}" पाथ ({1}) के रूप में स्वीकार्य नहीं है</value>
+  </data>
+  <data name="path_not_rooted" xml:space="preserve">
+    <value>"{0}" पाथ रूटेड नहीं है. कृपया पूरा पाथ ड्राइव लेटर के साथ चयन करें.</value>
+  </data>
+  <data name="CHMhelp_file_name" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
+  <data name="phrase_detection_progress" xml:space="preserve">
+    <value>वाक्यांश खोज प्रगति पर है...</value>
+  </data>
+  <data name="delete_silence_phrases" xml:space="preserve">
+    <value>आपके प्रोजेक्ट में मौन वाक्यांश उपस्थित हैं. उन्हें तथा अन्य अप्रयुक्त वाक्यांशों तथा खण्डों को डिलीट करने के लिए हाँ का चयन करें. केवल अप्रयुक्त वाक्यांशों और खण्डों को डिलीट करने और मौन वाक्यांशों को रखने के लिए न का चयन करें.</value>
+  </data>
+  <data name="delete_silence_phrases_caption" xml:space="preserve">
+    <value>क्या मौन वाक्यांशों को डिलीट किया जाये?</value>
+  </data>
+  <data name="CannotDeleteAtRoot" xml:space="preserve">
+    <value>डिलीट प्रक्रिया ड्राइव विभाज्यों पर कार्य नहीं करेगी. </value>
+  </data>
+  <data name="PageDialog_InvalidInput" xml:space="preserve">
+    <value>एक या अधिक स्थानों पर अमान्य प्रविष्टियाँ हैं. कृपया वाल्यु पुनः प्रविष्ट करें.</value>
+  </data>
+  <data name="Status_ProjectSaved" xml:space="preserve">
+    <value>प्रोजेक्ट सेव हो गे है, कृपया जरी रखें....</value>
+  </data>
+  <data name="TransportBar_PlayerExceptionMsg" xml:space="preserve">
+    <value>प्लेबैक प्रारंभ नहीं किया जा सका. जरी रखने के लिए ओके दबाएँ...{0}{1}</value>
+  </data>
+  <data name="Preference_InvalidKeyExceptionMsg" xml:space="preserve">
+    <value>अमान्य बटन नियत किया गया है. कृपया कोई और बटन समूह चयन करें.....{0}{1}</value>
+  </data>
+  <data name="Player_TryAgain" xml:space="preserve">
+    <value>कृपया पुनः प्रयास करें...{0}{1}</value>
+  </data>
+  <data name="Metadata_InvalidDateFormat" xml:space="preserve">
+    <value>अमान्य तिथि प्रारूप! संस्तुत प्रारूप है वाईवाईवाईवाई-एमएम-डीडी या वाईवाईवाईवाई</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>रिकॉर्डिंग रोकने में त्रुटी. कृपया जारी रखने के लिए ओके बटन दबाएँ...</value>
+  </data>
+  <data name="TransportBar_ErrorInStartingRecording" xml:space="preserve">
+    <value>रिकॉर्डिंग प्रारंभ करने में त्रुटी. कृपया छोड़कर जरी रखने के लिए ओके बटन दबाएँ...</value>
+  </data>
+  <data name="RecordingSession_SplitError" xml:space="preserve">
+    <value>वाक्यांश समय निर्धारण में समस्या मिली. कृपया जरी रखने के लिए ओके बटन दबाएँ</value>
+  </data>
+  <data name="Block_AccessibleLabel" xml:space="preserve">
+    <value>{0}{1} वाक्यांश {2}{3}</value>
+  </data>
+  <data name="Selected_RecordingPhrase" xml:space="preserve">
+    <value>रिकॉर्डिंग वाक्यांश</value>
+  </data>
+  <data name="Obi_Wiki_Url" xml:space="preserve">
+    <value>http://daisy.trac.cvsdude.com/obi</value>
+  </data>
+  <data name="ErrorInSaving" xml:space="preserve">
+    <value>सेव करते समय एक त्रुटी का सामना किया गया </value>
+  </data>
+  <data name="OpenError_UseCleanUp" xml:space="preserve">
+    <value>कृपया प्रोजेक्ट खुलते ही क्लीन असंदर्भित ऑडियो का प्रयोग करें.</value>
+  </data>
+  <data name="ContentHidden_SectionHasOverlimitPhrases" xml:space="preserve">
+    <value>{0} खंड में बड़ी संख्या में वाक्यांश हैं, केवल {1} प्रारंभिक वाक्यांश ही दृष्टिगत है. कृपया सरे वाक्यांश स्क्रीन पर देखने के लिए खंड विभाजित करें.</value>
+  </data>
+  <data name="ContentsHidden_PhrasesExceedMaxLimitPerSection" xml:space="preserve">
+    <value>प्रत्येक {0} खंड में वाक्यांशो की संख्या निर्धारित  सीमा से अधिक हैं.</value>
+  </data>
+  <data name="ContentsHidden_StatusMessage" xml:space="preserve">
+    <value>(सामग्री आच्छादित है, अनाच्छादित करने के लिए एफ5 का प्रयोग करें)</value>
+  </data>
+  <data name="Operation_Cancelled" xml:space="preserve">
+    <value>कार्य पूर्ण करने में असमर्थ.</value>
+  </data>
+  <data name="footnote" xml:space="preserve">
+    <value>पाद टीका</value>
+  </data>
+  <data name="sidebar" xml:space="preserve">
+    <value>साइडबार</value>
+  </data>
+  <data name="prodnote" xml:space="preserve">
+    <value>प्रोडनोट</value>
+  </data>
+  <data name="note" xml:space="preserve">
+    <value>नोट</value>
+  </data>
+  <data name="endnote" xml:space="preserve">
+    <value>एंड नोट</value>
+  </data>
+  <data name="annotation" xml:space="preserve">
+    <value>टिपण्णी</value>
+  </data>
+  <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
+    <value>यह कमांड खंड पर आच्छादित सामग्री के साथ कार्यान्वित नहीं की जा सकती.  कृपया खंड सामग्री दृष्टिगत बनाकर पुनः प्रयास करें.</value>
+  </data>
+  <data name="ContentsHidden_HideNewPhrases" xml:space="preserve">
+    <value>कार्य पूर्ण हुआ, खंड की सामग्री आच्छादित है अतः जोड़े गए नए वाक्यांश भी आच्छादित होंगे. कृपया अनाच्छादित करने के लिए एफ5 दबाएँ.</value>
+  </data>
+  <data name="ExportError_EmptyProject" xml:space="preserve">
+    <value>प्रेषित नहीं किया जा सकता. प्रोजेक्ट रिक्त है!</value>
+  </data>
+  <data name="ExportAudioOfSelectedNode_Completed" xml:space="preserve">
+    <value>फाइल प्रेषित की गयी है :</value>
+  </data>
+  <data name="ObiFormStatusMsg_ExportingProject" xml:space="preserve">
+    <value>प्रोजेक्ट {0} में ओरेषित किया जा रहा है</value>
+  </data>
+  <data name="EachLevel" xml:space="preserve">
+    <value>प्रत्येक स्तर</value>
+  </data>
+  <data name="Level1" xml:space="preserve">
+    <value>स्तर 1</value>
+  </data>
+  <data name="Level2" xml:space="preserve">
+    <value>स्तर 2</value>
+  </data>
+  <data name="Level3" xml:space="preserve">
+    <value>स्तर 3</value>
+  </data>
+  <data name="Level4" xml:space="preserve">
+    <value>स्तर 4</value>
+  </data>
+  <data name="Level5" xml:space="preserve">
+    <value>स्तर 5</value>
+  </data>
+  <data name="Level6" xml:space="preserve">
+    <value>स्तर 6</value>
+  </data>
+  <data name="PageNumber_ReEnterValidNumber" xml:space="preserve">
+    <value>कृपया एक मान्य पृष्ठ संख्या प्रविष्ट करें</value>
+  </data>
+  <data name="PhraseProperties_ChangePage" xml:space="preserve">
+    <value>पृष्ठ संख्या परिवर्तित करें</value>
+  </data>
+  <data name="Peferences_GUIDonotSupportCulture" xml:space="preserve">
+    <value>ओबीआई अब तक भाषा {0} को संबल नहीं देती. इस भाषा के लिए यूजर इंटरफ़ेस अद्यतन नहीं किया जा सका.</value>
+  </data>
+  <data name="Preferences_RestartForCultureChange" xml:space="preserve">
+    <value>भाषा परिवर्तनों को प्रभावी करने के लिए ओबीआई को पुनः प्रारंभ करना होगा. कृपया अपना कार्य सेव करें और ओबीआई को पुनः प्रारंभ करें.</value>
+  </data>
+  <data name="Caption_Warning" xml:space="preserve">
+    <value>चेतावनी!</value>
+  </data>
+  <data name="Pipeline_DuplicateScript" xml:space="preserve">
+    <value>पाइपलाइन स्क्रिप्ट की {0} नाम की प्रतिलिपि पाई गयी. कृपया जरी रखने के लिए ओके बटन  दबाएँ.</value>
+  </data>
+  <data name="GoToPageOrPhrase_MoreThanPhraseCount" xml:space="preserve">
+    <value>{0} वाक्यांश सूची खंड में उपलब्ध कुल वाक्यांशों से अधिक है.  यदि आप खंड में वाक्यांश सूची : {1} के अंत पर जाना चाहते हैं हैं तो हां दबाएँ.</value>
+  </data>
+  <data name="InvalidInput" xml:space="preserve">
+    <value>अमान्य प्रविष्टि. कृपया एक मान्य वैल्यू प्रविष्ट करें.</value>
+  </data>
+  <data name="GoToPageOrPhrase_PageNumberLabel" xml:space="preserve">
+    <value>पृष्ठ संख्या</value>
+  </data>
+  <data name="GoToPageOrPhrase_PhraseIndexLabel" xml:space="preserve">
+    <value>पृष्ठ सूची</value>
+  </data>
+  <data name="obi_DAISY2ExportPath_Description" xml:space="preserve">
+    <value>डेज़ी 2.02 प्रेषण पाथ</value>
+  </data>
+  <data name="obi_DAISY3ExportPath_Description" xml:space="preserve">
+    <value>डेज़ी 3.0 प्रेषण पाथ</value>
+  </data>
+  <data name="AutoSave_Error" xml:space="preserve">
+    <value>बैकअप फाइल में सेव करते समय त्रुटी! यदि यह सन्देश बारम्बार आता है, आप स्वयं सेव विकल्प को प्रेफेरेंसस से निष्क्रिय कर सकते है और इस बग की सूचना दे सकते हैं.</value>
+  </data>
+  <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
+    <value>{0} डेज़ी 2.02 प्रेषण </value>
+  </data>
+  <data name="GoToPageOrPhrase_Title" xml:space="preserve">
+    <value>जाईये...</value>
+  </data>
+  <data name="TextVuMeter_LowIndicator" xml:space="preserve">
+    <value>निचला:</value>
+  </data>
+  <data name="TextVuMeter_OverloadIndicator" xml:space="preserve">
+    <value>OL </value>
+  </data>
+  <data name="DisableAdvancedRecording" xml:space="preserve">
+    <value>उन्नत रिकॉर्डिंग को निष्क्रिय करें</value>
+  </data>
+  <data name="EnableAdvancedRecording" xml:space="preserve">
+    <value>उन्नत रिकॉर्डिंग को सक्रीय करें</value>
+  </data>
+  <data name="ContentViewLabel_NoSection" xml:space="preserve">
+    <value>कोई भी खंड दृष्टिगत नहीं किया गया</value>
+  </data>
+  <data name="Caption_Information" xml:space="preserve">
+    <value>सूचना</value>
+  </data>
+  <data name="RecordingResumePhrasesDeleted" xml:space="preserve">
+    <value>रुके हुए वाक्यांश को ढूँढने में असफल! रिकॉर्डिंग को वर्तमान चयन से शुरू किया जा रहा है</value>
+  </data>
+  <data name="Find_ReachedInitialPoint" xml:space="preserve">
+    <value>पहुच चुके खोज के प्रारंभिक बिंदु को ढूंढें</value>
+  </data>
+  <data name="RecordingRestriction_CannotCreateStrip" xml:space="preserve">
+    <value>रिकॉर्डिंग क्रियाशील है! रिकॉर्ड किये जा रहे खंड के अतिरिक्त किसी खंड की सामग्री नहीं दिखायी जा सकती.</value>
+  </data>
+  <data name="Delete_RangeOfPhrases" xml:space="preserve">
+    <value>वक्यांशो की सीमा डिलीट करें</value>
+  </data>
+  <data name="Merge_RangeOfPhrases" xml:space="preserve">
+    <value>वाक्यांशों की सीमा मिलाएं</value>
+  </data>
+  <data name="GotoPageOrPhrase_EnterNumeric" xml:space="preserve">
+    <value>अमान्य इनपुट. कृपया एक संख्यात्मक </value>
+  </data>
+  <data name="GotoPage_MissingVal" xml:space="preserve">
+    <value>वैल्यू गायब है</value>
+  </data>
+  <data name="SelectPhraseDetection_EndOrStartValMoreThanSectionCount" xml:space="preserve">
+    <value>प्रारंभिक या अंतिम वैल्यू कुल खण्डों की संख्या से बड़ी है.</value>
+  </data>
+  <data name="SelectPhraseDetection_EndValIsSmallerThanStart" xml:space="preserve">
+    <value>अंतिम वैल्यू प्रारंभिक वैल्यू से छोटी है.</value>
+  </data>
+  <data name="SelectPhraseDetection_MissingStartOrEndVal" xml:space="preserve">
+    <value>प्रारंभिक या अंतिम वैल्यू गायब है</value>
+  </data>
+  <data name="Preferences_PipelineScriptNotFound" xml:space="preserve">
+    <value>इस स्थान पर कोई भी पाइपलाइन स्क्रिप्ट नहीं पाई गयी</value>
+  </data>
+  <data name="StatusBar_NothingSelected" xml:space="preserve">
+    <value>कुछ भी चयनित नहीं किया गया</value>
+  </data>
+  <data name="Executing {0}" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StatusBar_CommandExecuting" xml:space="preserve">
+    <value>{0} कार्यान्वित किया जा रहा है</value>
+  </data>
+  <data name="StatusBar_RecordingInPhrase" xml:space="preserve">
+    <value>{0} रिकॉर्डिंग की जा रही है</value>
+  </data>
+  <data name="MergePhrases_SizeLimitMessage" xml:space="preserve">
+    <value>सम्मिलित वाक्यांशों की समयावधि {0} मिनटों से अधिक नहीं हो सकती. कृपया सम्मिलित करने के लिए छोटी संख्या में वाक्यांश चयनित करें.</value>
+  </data>
+  <data name="Metadata_CreatorNameForInitializing" xml:space="preserve">
+    <value>रचयिता का नाम</value>
+  </data>
+  <data name="Scroll_LoadingScreen" xml:space="preserve">
+    <value>स्क्रीन लोड की जा रही है...</value>
+  </data>
+  <data name="DeleteFollowing_SectionSelection" xml:space="preserve">
+    <value>यह चयनित खंडो के सभी वाक्यांशों को डिलीट कर देगा. क्या आप जारी रखना चाहेंगे?</value>
+  </data>
+  <data name="NewProject_EmptyTitle" xml:space="preserve">
+    <value>प्रोजेक्ट में रिक्त शीर्षक नहीं हो सकता </value>
+  </data>
+  <data name="METADATA_DC_CONTRIBUTOR_HELP" xml:space="preserve">
+    <value>वो पक्ष जिसका मुद्रण में सहयोग उनकी अपेक्षा अप्रधान हो जिनका नाम डी.सी. क्रीएटर में है</value>
+  </data>
+  <data name="METADATA_DC_COVERAGE_HELP" xml:space="preserve">
+    <value>स्रोत की सामग्री की सीमा अथवा क्षेत्र. </value>
+  </data>
+  <data name="METADATA_DC_CREATOR_HELP" xml:space="preserve">
+    <value>बौद्धिक सामग्री के मुद्रण के प्रमुख लेखक अथवा रचयिता के नाम.</value>
+  </data>
+  <data name="METADATA_DC_DATE_HELP" xml:space="preserve">
+    <value>डी.टी.बी. के मुद्रण की तिथि.  वाक्य विन्यास है वाईवाईवाईवाई[-एमएम[डीडी]]</value>
+  </data>
+  <data name="METADATA_DC_DESCRIPTION_HELP" xml:space="preserve">
+    <value>मुद्रण की सामग्री का विवरण करता हुआ सादा टेक्स्ट.</value>
+  </data>
+  <data name="METADATA_DC_IDENTIFIER_HELP" xml:space="preserve">
+    <value>डीटीबी को विशिष्ट रूप से पहचानने के लिए अक्षर अंकीय तंत्र </value>
+  </data>
+  <data name="METADATA_DC_LANGUAGE_HELP" xml:space="preserve">
+    <value>मुद्रण सामग्री की भाषा.</value>
+  </data>
+  <data name="METADATA_DC_PUBLISHER_HELP" xml:space="preserve">
+    <value>डीटीबी बनाने के लिए उपलब्ध उत्तरदायी एजेंसी </value>
+  </data>
+  <data name="METADATA_DC_RELATION_HELP" xml:space="preserve">
+    <value>सम्बंधित स्रोत का सन्दर्भ.</value>
+  </data>
+  <data name="METADATA_DC_RIGHTS_HELP" xml:space="preserve">
+    <value>डीटीबी में निहित और डीटीबी पर के सर्वाधिकार की सूचना. </value>
+  </data>
+  <data name="METADATA_DC_SOURCE_HELP" xml:space="preserve">
+    <value>स्रोत का सन्दर्भ जिसमे से डीटीबी प्राप्त की गयी है. </value>
+  </data>
+  <data name="METADATA_DC_SUBJECT_HELP" xml:space="preserve">
+    <value>सामग्री का शीर्षक</value>
+  </data>
+  <data name="METADATA_DC_TITLE_HELP" xml:space="preserve">
+    <value>डीटीबी का शीर्षक उपशीर्षक सहित यदि हो</value>
+  </data>
+  <data name="METADATA_DC_TYPE_HELP" xml:space="preserve">
+    <value>डीटीबी विषय वस्तु की प्रकृति. </value>
+  </data>
+  <data name="METADATA_DTB_NARRATOR_HELP" xml:space="preserve">
+    <value>पुस्तक वचन करने वाले का नाम</value>
+  </data>
+  <data name="METADATA_DTB_PRODUCED_DATE_HELP" xml:space="preserve">
+    <value>पुस्तक निर्माण की तिथि. वाक्य विन्यास है वाईवाईवाईवाई[-एमएम[डीडी]]</value>
+  </data>
+  <data name="METADATA_DTB_PRODUCER_HELP" xml:space="preserve">
+    <value>डीटीबी निर्माता संस्था अथवा पुस्तकालय का नाम</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_DATE_HELP" xml:space="preserve">
+    <value>पुस्तक पुनरीक्षण की तिथि. वाक्य विन्यास है वाईवाईवाईवाई[-एमएम[डीडी]]</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_DESC_HELP" xml:space="preserve">
+    <value>संशोधन सम्बन्धी संक्षिप्त विवरण प्रस्तुत करें.\आर\एन</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_HELP" xml:space="preserve">
+    <value>यदि पुस्तक पुनरीक्षित की गयी है तो पुनरिक्षण संख्या.आर\एन</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_DATE_HELP" xml:space="preserve">
+    <value>पुस्तक पर अंकित मुद्रण तिथि. वाकय विन्यास है वाईवाईवाईवाई[-एमएम[डीडी]]</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_EDITION_HELP" xml:space="preserve">
+    <value>पुस्तक (वास्तविक) का योजन</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_PUBLISHER_HELP" xml:space="preserve">
+    <value>पुस्तक (वास्तविक) का प्रकाशक</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_RIGHTS_HELP" xml:space="preserve">
+    <value>पुस्तक (वास्तविक) के सर्वाधिकारों को रखने वाली संस्था का नाम</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_TITLE_HELP" xml:space="preserve">
+    <value>पुस्तक (वास्तविक) का शीर्षक</value>
+  </data>
+  <data name="METADATA_GENERATOR_HELP" xml:space="preserve">
+    <value>वो सॉफ्टवेयर जिसने पुस्तक का निर्माण किया हो</value>
+  </data>
+  <data name="METADATA_OBI_XUK_VERSION_HELP" xml:space="preserve">
+    <value>एक्सयूके फाइल का संस्करण</value>
+  </data>
+  <data name="METADATA_CUSTOM_HELP" xml:space="preserve">
+    <value>यह प्रयोगकर्ता द्वारा परिभाषित डेटा है. कृपया मेटाडेटा और उसकी वैल्यू दोनों ही प्रविष्ट करें.</value>
+  </data>
+  <data name="Recording_CreateSectionContentsInformation" xml:space="preserve">
+    <value>रिकॉर्डिंग खंड {0} की सामग्री, सामग्री दृश्य में परिदर्षित नहीं है. खंड सामग्री को दिखाने के लिए एंटर दबाये और रिकॉर्डिंग शुरू करें.</value>
+  </data>
+  <data name="METADATA_DAISY202_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>ओबीआई विशेष डेटा सेव करने के लिए डेज़ी 2.02 प्रेषण पाथ</value>
+  </data>
+  <data name="METADATA_DAISY3_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>ओबीआई विशेष डेटा सेव करने के लिए डेज़ी 3 प्रेषण पाथ</value>
+  </data>
+  <data name="MergePhrases_CountLimitMessage" xml:space="preserve">
+    <value>सम्मिलित करने के लिए वाक्यांश गणना {0} से बड़ी नहीं हो सकती.  कृपया सम्मिलित करने के लिए कम वाक्यांश चयन करें. </value>
+  </data>
+  <data name="Import_Phrase_SizeLimit" xml:space="preserve">
+    <value>फाइल {0} मिनट से बड़ी है. इसे विभक्त कर दिया जाएगा.</value>
+  </data>
+  <data name="Import_AudioFormat_RenameFile" xml:space="preserve">
+    <value>{0} नाम की फाइल का पुनः नामकरण फाइल {1} के रूप में कर दिया गया है क्योंकि पूर्व नाम की फाइल प्रोजेक्ट डायरेक्टरी में पहेले से ही है.</value>
+  </data>
+  <data name="ImportAudio_ConvertingFormat" xml:space="preserve">
+    <value>फाइलों का लाने से पहेले प्रसंस्करण</value>
+  </data>
+  <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
+    <value>{0} (सिमित वाक्यांश निष्पादन के लिए दृष्टिगत. अधिक परिदर्शन के लिए अंतिम वाक्यांशों पर क्लिक करें.)</value>
+  </data>
+  <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
+    <value>अप्रयुक्त वाक्यांश प्रोजेक्ट से डिलीट कर दिए जाते हैं.</value>
+  </data>
+  <data name="GoToPageorPhrase_PageDonotExist" xml:space="preserve">
+    <value>पृष्ट नहीं है </value>
+  </data>
+  <data name="PerformanceCheck_RAMNearOverflowMsg" xml:space="preserve">
+    <value>अधिक संभार के साथ सिस्टम कार्यशील है. इस कार्यवाही को कुछ समय बाद करने की संस्तुति की जाती है. कार्यवाही निरस्त करने के लिए न दबाएँ.</value>
+  </data>
+  <data name="SelectPhraseOrSection_ShowSection" xml:space="preserve">
+    <value>आवश्यक वाक्यांश खंड में नहीं है. क्या आप वाक्यांश वाला खंड देखना चाहेंगे?</value>
+  </data>
+  <data name="KeyS_FastPlayNormalizeWithElapseBack" xml:space="preserve">
+    <value>तीव्रगति प्ले को पिछले बीते के साथ सामान्य करें. </value>
+  </data>
+  <data name="KeyS_FastPlayRateNormilize" xml:space="preserve">
+    <value>तीव्रगति प्ले दर को सामान्य करें</value>
+  </data>
+  <data name="KeyS_FastPlayStepDown" xml:space="preserve">
+    <value>तीव्रगति प्ले को धीमा करें</value>
+  </data>
+  <data name="KeyS_FastPlayStepUp" xml:space="preserve">
+    <value>तीव्रगति प्ले की गति बढ़ाएं</value>
+  </data>
+  <data name="KeyS_FocusOnTransportBarTimeDisplay" xml:space="preserve">
+    <value>समय प्रदर्शन पर केन्द्रित करें</value>
+  </data>
+  <data name="KeyS_MarkSelectionBeginTime" xml:space="preserve">
+    <value>समय प्रारंभ चयन चिन्हित करें.</value>
+  </data>
+  <data name="KeyS_MarkSelectionEndTime" xml:space="preserve">
+    <value>समापन समय चयन चिन्हित करें</value>
+  </data>
+  <data name="KeyS_MarkSelectionFromBeginningToTheCursor" xml:space="preserve">
+    <value>कर्सर के प्रारंभ से चयन चिन्हित करें</value>
+  </data>
+  <data name="KeyS_MarkSelectionFromCursorToTheEnd" xml:space="preserve">
+    <value>कर्सर से अंत तक के चयन को चिन्हित करें</value>
+  </data>
+  <data name="KeyS_MoveToNextViewClockwise" xml:space="preserve">
+    <value>अगले दृश्य की ओर दक्षिणावर्त जाएँ</value>
+  </data>
+  <data name="KeyS_MoveToPreviousViewAnticlockwise" xml:space="preserve">
+    <value>पूर्व दृश्य की ओर वामावर्त जाएँ</value>
+  </data>
+  <data name="KeyS_PlayPauseUsingAudioCursor_Default" xml:space="preserve">
+    <value>ऑडियो कर्सर का प्ले प्रारंभ करें या रोकें</value>
+  </data>
+  <data name="KeyS_PlayPauseUsingSelection" xml:space="preserve">
+    <value>चयन का प्रयोग करते हुए प्ले प्रारंभ करें या रोके</value>
+  </data>
+  <data name="KeyS_PlaySelectedWaveform" xml:space="preserve">
+    <value>चयनित वेव प्रारूप प्ले करें</value>
+  </data>
+  <data name="KeyS_ScrollDown_LargeIncrementWithSelection" xml:space="preserve">
+    <value>एक स्क्रीन नीचे</value>
+  </data>
+  <data name="KeyS_ScrollDown_SmallIncrementWithSelection" xml:space="preserve">
+    <value>एक पंक्ति नीचे</value>
+  </data>
+  <data name="KeyS_ScrollUp_LargeIncrementWithSelection" xml:space="preserve">
+    <value>एक स्क्रीन उपर</value>
+  </data>
+  <data name="KeyS_ScrollUp_SmallIncrementWithSelection" xml:space="preserve">
+    <value>एक पंक्ति उपर</value>
+  </data>
+  <data name="KeyS_SelectCompleteWaveform" xml:space="preserve">
+    <value>वाक्यांश का पूर्ण वेव प्रारूप चयनित करें</value>
+  </data>
+  <data name="KeyS_SelectFirstPhraseInStrip" xml:space="preserve">
+    <value>खंड में प्रथम वाक्यांश चयन करें</value>
+  </data>
+  <data name="KeyS_SelectFirstStrip" xml:space="preserve">
+    <value>सामग्री परिदृश्य में प्रथम खंड चयनित करें</value>
+  </data>
+  <data name="KeyS_SelectFollowingPhrase" xml:space="preserve">
+    <value>निम्न वाक्यांश चयनित करें</value>
+  </data>
+  <data name="KeyS_SelectFollowingStrip" xml:space="preserve">
+    <value>सामग्री परिदृश्य में निम्न खंड चयन करें</value>
+  </data>
+  <data name="KeyS_SelectFollowingStripCursor" xml:space="preserve">
+    <value>स्ट्रिप कर्सर को आगे बढ़ाये</value>
+  </data>
+  <data name="KeyS_SelectLastPhraseInStrip" xml:space="preserve">
+    <value>खंड में अंतिम वाक्यांश चयनित करें</value>
+  </data>
+  <data name="KeyS_SelectLastStrip" xml:space="preserve">
+    <value>सामग्री परिदृश्य में अंतिम खंड का चयन करें</value>
+  </data>
+  <data name="KeyS_SelectNextEmptyPhrase" xml:space="preserve">
+    <value>अगला रिक्त वाक्यांश चयनित करें</value>
+  </data>
+  <data name="KeyS_SelectNextPagePhrase" xml:space="preserve">
+    <value>अगला पृष्ठ वाक्यांश चयनित करें</value>
+  </data>
+  <data name="KeyS_SelectNextSpecialRolePhrase" xml:space="preserve">
+    <value>अगला विशिष्ट भूमिका वाला वाक्यांश चयनित करें</value>
+  </data>
+  <data name="KeyS_SelectPrecedingPagePhrase" xml:space="preserve">
+    <value>पूर्ववर्ती पृष्ठ वाक्यांश का चयन करें</value>
+  </data>
+  <data name="KeyS_SelectPrecedingPhrase" xml:space="preserve">
+    <value>पूर्ववर्ती वाक्यांश का चयन करें</value>
+  </data>
+  <data name="KeyS_SelectPrecedingSpecialRolePhrase" xml:space="preserve">
+    <value>पूर्ववर्ती विशेष भूमिका वाला वाक्यांश चयनित करें</value>
+  </data>
+  <data name="KeyS_SelectPrecedingStrip" xml:space="preserve">
+    <value>सामग्री परिदृश्य में से पूर्ववर्ती खंड का चयन करें</value>
+  </data>
+  <data name="KeyS_SelectPrecedingStripCursor" xml:space="preserve">
+    <value>कर्सर स्ट्रिप को पीछे की ओर ले जाएँ</value>
+  </data>
+  <data name="KeyS_SelectUp" xml:space="preserve">
+    <value>उपर की ओर चयन करें</value>
+  </data>
+  <data name="KeyS_ShowPropertiesOfSelectedNode" xml:space="preserve">
+    <value>चयनित नोड के गुण दिखाएँ</value>
+  </data>
+  <data name="KeyS_ToggleBetweenContentViewAndTOCView" xml:space="preserve">
+    <value>सामग्री परिदृश्य एवं टीओसी परिदृश्य में टॉगल करें</value>
+  </data>
+  <data name="KeyS_TransportBarNextPage" xml:space="preserve">
+    <value>प्ले सूची में अगला पृष्ठ </value>
+  </data>
+  <data name="KeyS_TransportBarNextPhrase" xml:space="preserve">
+    <value>प्ले सूची में अगला वाक्यांश</value>
+  </data>
+  <data name="KeyS_TransportBarNextSection" xml:space="preserve">
+    <value>पली सूची में अगला खंड</value>
+  </data>
+  <data name="KeyS_TransportBarNudgeBackward" xml:space="preserve">
+    <value>पीछे की ओर धकेले</value>
+  </data>
+  <data name="KeyS_TransportBarNudgeForward" xml:space="preserve">
+    <value>आगे की ओर धकेले</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewFromAudioCursor" xml:space="preserve">
+    <value>ऑडियो कर्सर से पूर्वालोकन करें</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewFromSelection" xml:space="preserve">
+    <value>चयन से पूर्वालोकन करें</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewUptoAudioCursor" xml:space="preserve">
+    <value>ऑडियो कर्सर तक पूर्वालोकन करें</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewUptoSelection" xml:space="preserve">
+    <value>चयन तक पूर्वालोकन करें</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousPage" xml:space="preserve">
+    <value>प्ले सूची में पूर्ववर्ती का पृष्ठ</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousPhrase" xml:space="preserve">
+    <value>प्ले सूची में पूर्ववर्ती का वाक्यांश</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousSection" xml:space="preserve">
+    <value>प्ले सूची में पूर्ववर्ती का खंड</value>
+  </data>
+  <data name="KeyboardShortcut_DuplicateMessage" xml:space="preserve">
+    <value>कीबोर्ड संक्षिप्तीकरण पहेले से ही है. कृपया कोई अन्य बटन या बटन समूह आबंटित करें</value>
+  </data>
+  <data name="KeyboardShortcuts_ErrorInLoadingConfiguredKeys" xml:space="preserve">
+    <value>पूर्वनिर्धारित कीबोर्ड संक्शिप्तों को लोड करने में त्रुटी. डिफ़ॉल्ट लोड कर रहा है.</value>
+  </data>
+  <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
+    <value>ऑडियो फाइल प्रेषित की जा रही है...</value>
+  </data>
+  <data name="OpenProject_progress_dialog_title" xml:space="preserve">
+    <value>प्रोजेक्ट खुल रहा है... क्रिप्प्या प्रतीक्षा करें</value>
+  </data>
+  <data name="RecordingToolBar_StatusPlaying" xml:space="preserve">
+    <value>{0} (1} प्ले हो रहा है</value>
+  </data>
+  <data name="import_output_path" xml:space="preserve">
+    <value>डेज़ी पुस्तक {0} {1} पर सफलतापूर्वक लायी जा चुकी है </value>
+  </data>
+  <data name="RecToolbar_MarkedTODO" xml:space="preserve">
+    <value>भविष्य में कार्य करने के लिए चिन्हित</value>
+  </data>
+  <data name="RecToolbar_NewPage" xml:space="preserve">
+    <value>नवीन पृष्ठ</value>
+  </data>
+  <data name="RecToolbar_NewPhrase" xml:space="preserve">
+    <value>नवीन वाक्यांश</value>
+  </data>
+  <data name="RecToolbar_NewSection" xml:space="preserve">
+    <value>नवीन खंड</value>
+  </data>
+  <data name="RecToolbar_Recording" xml:space="preserve">
+    <value>{0} {1} रिकॉर्डिंग </value>
+  </data>
+  <data name="RecToolbar_Title" xml:space="preserve">
+    <value>{0} : ओबीआई रिकॉर्डर पट्टिका</value>
+  </data>
+  <data name="bookmark_closed_project_caption" xml:space="preserve">
+    <value>प्रोजेक्ट बंद हो रहा है</value>
+  </data>
+  <data name="SaveSelectedNodeAsBookmark" xml:space="preserve">
+    <value>वर्तमान चयनित नोड सेव किये गए चिन्हित नोड के सामान नहीं है. क्या आप इस नोड को बुकमार्क की तरह सेव करना चाहते हैं.? प्रोजेक्ट भी सेव हो जायेगा.</value>
+  </data>
+  <data name="UseDefaultValues" xml:space="preserve">
+    <value>डिफ़ॉल्ट वैल्यू प्रयोग करें</value>
+  </data>
+  <data name="SelectDeselectAllSections" xml:space="preserve">
+    <value>सभी खण्डों को चयनित / अचयनित करें</value>
+  </data>
+  <data name="upgrade_obi_to_new_version" xml:space="preserve">
+    <value>प्रोजेक्ट ओबीआई के पूर्ववर्ती संस्करण में सेव किया गया था. इसे नवीनतम संस्करण में अद्यतन कर दिया जायेगा. कृपया जारी रखने के लिए ओके दबाएँ.</value>
+  </data>
+  <data name="upgrading_obi" xml:space="preserve">
+    <value>अद्यतन हो रहा प्रोजेक्ट.</value>
+  </data>
+  <data name="Obi_NewFeaturesWebpage" xml:space="preserve">
+    <value>एचटीटीपी://डेज़ी.टीआरएसी.सीवीएसडीयूडीई.कोम/ओबीआई/डब्ल्यूआईडब्ल्यूआई/डॉक्यूमेंटेशन/ओबीआई2.0_फीचरसएक्सप्लेनेशन</value>
+  </data>
+  <data name="Cleanup_WaveformLoadingWarning" xml:space="preserve">
+    <value>वेव रूप लोड हो रहा है... कुछ ऑडियो फाइल धाराएँ खुली हो सकती है. यह दृढ़तापूर्वक संस्तुति की जाती है की कुछ समय पश्चात् प्रयास करे. कृपया प्रतीक्षा करने के लिए नहीं बटन दबाये</value>
+  </data>
+  <data name="ImportProject_OverwriteProjectMsg" xml:space="preserve">
+    <value>प्रोजेक्ट फाइल निर्दिष्ट स्थान पर उपस्थित है. क्या आप वर्तमान प्रोजेक्ट को अधिलेखित करना चाहते हैं?</value>
+  </data>
+  <data name="no_audio" xml:space="preserve">
+    <value>चयनित सामग्री में ऑडियो नहीं है</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_error_no_audio" xml:space="preserve">
+    <value>वाक्यांश में ऑडियो नहीं </value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_expected_clip_end" xml:space="preserve">
+    <value>प्रत्याशित क्लिप समापन</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_imported_clip_end" xml:space="preserve">
+    <value>लाया गया क्लिप समापन</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_in_section" xml:space="preserve">
+    <value>खंड में</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_truncated_audio" xml:space="preserve">
+    <value>विच्छिनित ऑडियो</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_truncated_audio_in_phrase" xml:space="preserve">
+    <value>वाक्यांश में विच्छिनित ऑडियो</value>
+  </data>
+  <data name="import_cancelled" xml:space="preserve">
+    <value>लाया जाना रद्द</value>
+  </data>
+  <data name="Report_for_import" xml:space="preserve">
+    <value>लाने के लिए रिपोर्ट</value>
+  </data>
+  <data name="AudioFileImport_ProcessingFiles" xml:space="preserve">
+    <value>ऑडियो फाइलें लाये जाने के लिए प्रसंस्करण</value>
+  </data>
+  <data name="SaveAs_cannot_save_in_root" xml:space="preserve">
+    <value>{0} स्थान पर फाइल सेव नहीं की जा सकती. कृपया किसी अन्य स्थान का चयन करें.</value>
+  </data>
+  <data name="backup_file_missing" xml:space="preserve">
+    <value>पुनः स्थापित करने में असमर्थ. कोई भी बैकअप फाइल {0} पर नहीं मिली.</value>
+  </data>
+  <data name="information_caption" xml:space="preserve">
+    <value>सूचना</value>
+  </data>
+  <data name="Save_current_state_caption" xml:space="preserve">
+    <value>क्या वर्तमान स्थिति सेव करें?</value>
+  </data>
+  <data name="restored_project_name" xml:space="preserve">
+    <value>Restored Project.obi</value>
+  </data>
+  <data name="save_current_state" xml:space="preserve">
+    <value>यह कार्यवाही प्रोजेक्ट की वर्तमान स्थिति सेव करेगी. इसके पश्चात् आप प्रोजेक्ट को मूल स्थित में वापस नहीं ला पाएंगे. क्या आप आगे बढ़ाना चाहते हैं?</value>
+  </data>
+  <data name="open_from_backup_file" xml:space="preserve">
+    <value>प्रोजेक्ट बैकअप फाइल से खुलेगा. क्या आप जरी रखना चाहते हैं?</value>
+  </data>
+  <data name="AudioFormatConverter_Error_FileExtentionNodSupported" xml:space="preserve">
+    <value>ऑडियो प्रारूप अचिन्हित है. केवल .वेव तथा .एम.पी3 फाइलों को ही पढ़ा जायेगा. {0} लाने को छोड़ना.</value>
+  </data>
+  <data name="Load_Original_Project" xml:space="preserve">
+    <value>मूल प्रोजेक्ट लोड किया जा रहा है.</value>
+  </data>
+  <data name="Open_Backup_file" xml:space="preserve">
+    <value>बैकअप फाइलों से खोला जा रहा है</value>
+  </data>
+  <data name="Save_Restore_Project" xml:space="preserve">
+    <value>पुनः स्थापित प्रोजेक्ट सेव किया जा रहा है</value>
+  </data>
+  <data name="error_in_opening" xml:space="preserve">
+    <value>खुलने में त्रुटी</value>
+  </data>
+  <data name="opening_project" xml:space="preserve">
+    <value>{0} प्रोजेक्ट खुल रहा है</value>
+  </data>
+  <data name="waveform_is_truncated" xml:space="preserve">
+    <value>वेव प्रारूप {0} पर विच्छिनित है</value>
+  </data>
+  <data name="GoToPageOrPhrase_Time" xml:space="preserve">
+    <value>समय </value>
+  </data>
+  <data name="no_phrases_in_section" xml:space="preserve">
+    <value>इस खंड में कोई भी वाक्यांश नहीं है</value>
+  </data>
+  <data name="select_phrase" xml:space="preserve">
+    <value>कृपया कोई वाक्यांश चुने</value>
+  </data>
+  <data name="select_phrase_or_section" xml:space="preserve">
+    <value>कृपया कोई वाक्यांश या खंड चुने</value>
+  </data>
+  <data name="time_exceeds_duration_phrase" xml:space="preserve">
+    <value>समय वाक्यांश की अवधि से अधिक है</value>
+  </data>
+  <data name="time_exceeds_duration_section" xml:space="preserve">
+    <value>समय खंड की अवधि से अधिक है</value>
+  </data>
+  <data name="AudioTab_AllowOverwrite" xml:space="preserve">
+    <value>रिकॉर्डिंग के समय अधिलेखन की अनुमति दे</value>
+  </data>
+  <data name="AudioTab_AudioClues" xml:space="preserve">
+    <value>आडियो सूत्र</value>
+  </data>
+  <data name="AudioTab_PreviewBeforeRecording" xml:space="preserve">
+    <value>रिकॉर्डिंग से पूर्व पूर्वावलोकन करें</value>
+  </data>
+  <data name="AudioTab_RecordDirectlyFromTransportBar" xml:space="preserve">
+    <value>सदैव ट्रांसपोर्ट पट्टिका से सीधे रिकॉर्ड करें</value>
+  </data>
+  <data name="AudioTab_RetainInitialSilence" xml:space="preserve">
+    <value>वाक्यांश खोज के समय प्रारंभिक मौन रखें</value>
+  </data>
+  <data name="AudioTab_StartRecordingFromCursor" xml:space="preserve">
+    <value>कर्सर से रिकॉर्डिंग प्रारंभ करें बाद के ऑडियो को मिटाते हुए</value>
+  </data>
+  <data name="ProjectTab_AutoSaveWhenRecordingEnds" xml:space="preserve">
+    <value>रिकॉर्डिंग समापन पर स्वतः सेव करें</value>
+  </data>
+  <data name="ProjectTab_FixContentViewWidth" xml:space="preserve">
+    <value>सामग्री परिदृश्य की चौड़ान नियत करें</value>
+  </data>
+  <data name="ProjectTab_OpenLastProject" xml:space="preserve">
+    <value>अंतिम प्रोजेक्ट खोलें</value>
+  </data>
+  <data name="ProjectTab_SelectBookmark" xml:space="preserve">
+    <value>प्रोजेक्ट पुनः खुलने पर बुकमार्क चयन करें</value>
+  </data>
+  <data name="ProjectTab_OptimizeMemory" xml:space="preserve">
+    <value>स्मृति का इष्टतम उपयोग </value>
+  </data>
+  <data name="ProjectTab_DeleteUnusedFilesAfterCleanUp" xml:space="preserve">
+    <value>सफाई के पश्चात् अप्रयुक ऑडियो फाइलें डिलीट करें</value>
+  </data>
+  <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
+    <value>वर्तमान प्रोजेक्ट का ऑडियो प्रारूप अद्यतन नहीं किया जा सकता</value>
+  </data>
+  <data name="AudioTab_Limit max phrase duration to 50 minutes" xml:space="preserve">
+    <value>वाक्यांश समयावधि को अधिकतम 50 मिनट तक सिमित करें</value>
+  </data>
+  <data name="Audio_ShowLiveWaveformWhileRecording" xml:space="preserve">
+    <value>रिकॉर्डिंग के समय सजीव वेव प्रारूप दिखाएँ</value>
+  </data>
+  <data name="KeyboardShortcuts_TextboxAccessibleName" xml:space="preserve">
+    <value>{0} संक्षेप बटन : (बटन युग्म दबाएँ)</value>
+  </data>
+  <data name="phrase_extra_Anchor" xml:space="preserve">
+    <value>एंकर</value>
+  </data>
+  <data name="phrase_short_Anchor" xml:space="preserve">
+    <value>एंकर</value>
+  </data>
+  <data name="role_Anchor" xml:space="preserve">
+    <value>एंकर</value>
+  </data>
+  <data name="Associate_next_phrase" xml:space="preserve">
+    <value>संदर्भित छूटा वाक्यांश डिलीट कर दिया जायेगा. अगल वाक्यांश संदर्भित वाक्यांश बन जायेगा. क्या आप आगे बढ़ना चाहते हैं?</value>
+  </data>
+  <data name="Associate_node_with_anchor_node" xml:space="preserve">
+    <value>इस एंकर नोड के साथ कोई भी विशिष्ट वाक्यांश सम्बद्ध नहीं है. कृपया इस एंकर नोड के साथ नोड सम्बद्ध करें.</value>
+  </data>
+  <data name="Associate_show_all" xml:space="preserve">
+    <value>सब कुछ दिखाएँ</value>
+  </data>
+  <data name="Associate_show_selected" xml:space="preserve">
+    <value>चयनित दिखाएँ</value>
+  </data>
+  <data name="List_of_anchor_nodes" xml:space="preserve">
+    <value>एंकर नोड की सूची</value>
+  </data>
+  <data name="Selected_node" xml:space="preserve">
+    <value>चयनित नोड </value>
+  </data>
+  <data name="Node_between_chunk" xml:space="preserve">
+    <value>चयनित विशिष्ट वाक्यांश अंश समूह में है. क्या आप इसे डिलीट करना चाहते हैं?</value>
+  </data>
+  <data name="Start_node_different_from_end_node" xml:space="preserve">
+    <value>प्रारंभिक नोड अंतिम नोड के समान नहीं होना चाहिए. कृपया भिन्न अंतिम नोड का चयन करें.</value>
+  </data>
+  <data name="Start_node_index_greater_than_end" xml:space="preserve">
+    <value>प्रारंभिक नोड सूची अंतिम नोड सूची से बड़ी है. कृपया पुनः चयन करें.</value>
+  </data>
+  <data name="Export_AnchorErrors" xml:space="preserve">
+    <value>खंड नाम : {0}, वाक्यांश : {1}</value>
+  </data>
+  <data name="Export_SkippableWithEmptyNode" xml:space="preserve">
+    <value>निम्न एंकर छोड़े जाने योग्य रिक्त वाक्यांशों सहित अवयवों को संदर्भित करते हैं जो प्रेषित नहीं किये जायेंगे.  फिर भी जारी रखने के लिए ओके दबाएँ और त्रुटियों को सुधारने के लिए निरस्त दबाएँ. </value>
+  </data>
+  <data name="Anchor_node_error" xml:space="preserve">
+    <value>कुछ एंकर नोड्स हैं जो खाली हैं या वो रिक्त नोडो को संदर्भित करते हैं.</value>
+  </data>
+  <data name="Anchor_node_not_associated" xml:space="preserve">
+    <value>इस एंकर नोड से सम्बद्ध कोई भी नोड नहीं है. कृपया इस एंकर नोड के साथ किसी नोड को सम्बद्ध करें.</value>
+  </data>
+  <data name="Associate" xml:space="preserve">
+    <value>नोड सम्बद्ध करें</value>
+  </data>
+  <data name="Node_already_associated" xml:space="preserve">
+    <value>नोड किसी अन्य नोड के साथ पहेले से ही सम्बद्ध है. क्या आप सम्बद्ध करना जारी रखना चाहते हैं?</value>
+  </data>
+  <data name="Page_not_found" xml:space="preserve">
+    <value>इस अंश समूह में कोई भी पृष्ठ नहीं पाया गया.</value>
+  </data>
+  <data name="Report_for_export" xml:space="preserve">
+    <value>प्रेषण के लिए रिपोर्ट करें</value>
+  </data>
+  <data name="Show_details" xml:space="preserve">
+    <value>विवरण दिखाएँ</value>
+  </data>
+  <data name="Hide_details" xml:space="preserve">
+    <value>विवरण आच्छादित करें</value>
+  </data>
+  <data name="MetadataView_InvalidMetadata" xml:space="preserve">
+    <value>अमान्य मेटाडेटा</value>
+  </data>
+  <data name="ObiFormMsg_PipelineExtractionFail" xml:space="preserve">
+    <value>पाइपलाइन नहीं प्राप्त की जा सकी</value>
+  </data>
+  <data name="ObiFormMsg_RedoFail" xml:space="preserve">
+    <value>बाद में करने के लिए नहीं बनाया जा सकता </value>
+  </data>
+  <data name="ObiFormMsg_UndoFail" xml:space="preserve">
+    <value>पूर्व स्थिति में नहीं लाया जा सकता</value>
+  </data>
+  <data name="ProjectViewFormMsg_AddingReferenceFail" xml:space="preserve">
+    <value>सन्दर्भ जोड़ना विफल हुआ</value>
+  </data>
+  <data name="ProjectViewFormMsg_AssigningSkippableFail" xml:space="preserve">
+    <value>छोड़े जाने योग्य निरूपण विफल हुआ</value>
+  </data>
+  <data name="ProjectViewFormMsg_CutOperationFail" xml:space="preserve">
+    <value>कटाई कार्यवाही विफल हुयी</value>
+  </data>
+  <data name="ProjectViewFormMsg_DeassociatingSkippableFail" xml:space="preserve">
+    <value>छोड़े जाने योग्य नोड्स से सन्दर्भ अलग किया जाना विफल रहा</value>
+  </data>
+  <data name="ProjectViewFormMsg_DeleteOperationFail" xml:space="preserve">
+    <value>डिलीट कार्यवाही विफल रही</value>
+  </data>
+  <data name="ProjectViewFormMsg_ExportingAudioFail" xml:space="preserve">
+    <value>ऑडियो प्रेषण विफल रहा</value>
+  </data>
+  <data name="ProjectViewFormMsg_MergeOperationFail" xml:space="preserve">
+    <value>सम्मिलन विफल रहा</value>
+  </data>
+  <data name="ProjectViewFormMsg_PasteOperationFail" xml:space="preserve">
+    <value>चिपकाने की कार्यवाही विफल रही</value>
+  </data>
+  <data name="ProjectViewFormMsg_PhraseDetectionFail" xml:space="preserve">
+    <value>वाक्यांश खोज विफल रहा</value>
+  </data>
+  <data name="ProjectViewFormMsg_SplitOperationFail" xml:space="preserve">
+    <value>विघटन कार्यवाही विफल रही</value>
+  </data>
+  <data name="KeyS_SelectFirstSkippableNode" xml:space="preserve">
+    <value>छोड़े जाने योग्य वर्तमान नोट का पहला वाक्यांश चयन करें</value>
+  </data>
+  <data name="KeyS_SelectLastSkippableNode" xml:space="preserve">
+    <value>छोड़े जाने योग्य वर्तमान नोट का अंतिम वाक्यांश चयन करें</value>
+  </data>
+  <data name="KeyS_TransportBarFineNavigationOn" xml:space="preserve">
+    <value>सूक्ष्म संचलन मोड चालू है</value>
+  </data>
+  <data name="KeyS_TransportBarFineNavigationOff" xml:space="preserve">
+    <value>सूक्ष्म संचलन मोड बंद है</value>
+  </data>
+  <data name="StatusMsg_FineNavigation" xml:space="preserve">
+    <value>सूक्ष्म संचलन</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>निम्न आईडीज से सम्बद्ध ऑडियो फाइलें नहीं मिल रही है</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>चेतावनी!</value>
+  </data>
+  <data name="ContentView_wrap" xml:space="preserve">
+    <value>वाक्यांश या खंड सम्मिलित करने के लिए चयनित करनी चाहिए</value>
+  </data>
+  <data name="limited_sections_merge" xml:space="preserve">
+    <value>सभी खण्डों की कुल वाक्यांश संख्या 7000 से अधिक है. केवल खंड {0} खंड तक सम्मिलित किये जायेंगे.</value>
+  </data>
+  <data name="merged_sections" xml:space="preserve">
+    <value>सम्मिलित खंड {0} से (1) तक होंगे.</value>
+  </data>
+  <data name="not_enough_sections_to_merge" xml:space="preserve">
+    <value>सम्मिलन के लिए पर्याप्त खंड नहीं है. कम से कम दो एक के बाद एक आने वाले खंडो का चयन करें.</value>
+  </data>
+  <data name="phrase_count_more_than_7000" xml:space="preserve">
+    <value>कुल वाक्यांश संख्या 7000 से अधिक है. कम खंड चयन करें.</value>
+  </data>
+  <data name="Preferences_advanced_recording_mode" xml:space="preserve">
+    <value>उन्नत रिकॉर्डिंग मोड</value>
+  </data>
+  <data name="Preferences_Allow_overwrite" xml:space="preserve">
+    <value>अधिलेखन की अनुमति दे, ऑडियो मिटाते हुए कर्सर से रिकॉर्डिंग प्रारंभ करें और सीधे ट्रांसपोर्ट पट्टिका से रिकॉर्ड करें, चेक बोक्स चेक हो जायेंगे. क्या आप जरी रखना चाहते हैं? </value>
+  </data>
+  <data name="select_one_more_section" xml:space="preserve">
+    <value>{0} चयनित. सम्मिलन के लिए कम से कम एक और खंड का चयन करें. </value>
+  </data>
+  <data name="ProjectViewMsg_LogFileCreatedOnDesktop" xml:space="preserve">
+    <value>ओबीआई का पूर्व सत्र अकस्मात बंद कर दिया गया. लाग फाइल ओबीआईसेशन.लाग डेस्कटॉप पर बना डी गयी है.</value>
+  </data>
+  <data name="AssociateNode_Section" xml:space="preserve">
+    <value>खंड</value>
+  </data>
+  <data name="AssociateNode_SelectedSection" xml:space="preserve">
+    <value>खंड</value>
+  </data>
+  <data name="LimitedDiskSpaceWarning" xml:space="preserve">
+    <value>आपके सिस्टम में {0} एमबी से कम डिस्क स्थान बचा है. क्या आप जरी रखना चाहते हैं?</value>
+  </data>
+  <data name="Memory_Warning" xml:space="preserve">
+    <value>डिस्क स्थान की सूचना</value>
+  </data>
+  <data name="KeyS_ContractAudioSelectionAtLeft" xml:space="preserve">
+    <value>बायीं ओर ऑडियो खंड को संकुचित करें</value>
+  </data>
+  <data name="KeyS_ExpandAudioSelectionAtLeft" xml:space="preserve">
+    <value>बायीं ओर ऑडियो खंड को विस्तारित करें</value>
+  </data>
+  <data name="Recording_RecordInNextExistingEmptyPage" xml:space="preserve">
+    <value>अगले रिक्त पृष्ठ में रिकॉर्ड करें</value>
+  </data>
+  <data name="ProjectView_ClearAnchor" xml:space="preserve">
+    <value>क्या आप छोड़े जाने योग्य संदर्भित एंकर नोड को हटाना चाहते हैं?</value>
+  </data>
+  <data name="Elapsed" xml:space="preserve">
+    <value>व्यतित</value>
+  </data>
+  <data name="ElapsedInSection" xml:space="preserve">
+    <value>खंड में व्यतित</value>
+  </data>
+  <data name="ElapsedInProject" xml:space="preserve">
+    <value>प्रोजेक्ट में व्यतित</value>
+  </data>
+  <data name="ElapsedInPhrase" xml:space="preserve">
+    <value>वाक्यांश में व्यतित</value>
+  </data>
+  <data name="RemainingInPhrase" xml:space="preserve">
+    <value>वाक्यांश में शेष</value>
+  </data>
+  <data name="RemainingInSelection" xml:space="preserve">
+    <value>चयन में शेष</value>
+  </data>
+  <data name="RenumberPagesCaption" xml:space="preserve">
+    <value>क्या निम्न पृष्ठों को पुनः अंकन करें?</value>
+  </data>
+  <data name="TransportBar_RenumberPagesAfterRecording" xml:space="preserve">
+    <value>रिकॉर्ड हुए पृष्ठ के बाद वाले पृष्ठ को पुनः अंकन की आवश्यकता हो सकती है. क्या आप पुनः अंकन करना चाहेंगे?</value>
+  </data>
+  <data name="ProjectView_NoEmptyPageFoundForSpeechGeneration" xml:space="preserve">
+    <value>ध्वनि उत्पादन हेतु रिक्त पृष्ठ ढूँढने में असमर्थ.</value>
+  </data>
+  <data name="SpeechGenerationProgress" xml:space="preserve">
+    <value>ध्वनि उत्पादन...</value>
+  </data>
+  <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
+    <value>रिकॉर्डिंग के समय वाक्यांश खोज करें</value>
+  </data>
+  <data name="ProjectView_ErrorReplacingAudioDueToTimingMissmatch" xml:space="preserve">
+    <value>ऑडियो पुनः स्थापित करने में ऑडियो समयावधि असमान होने के कारण असमर्थ : मूल समयावधि है {0} : नयी फाइल की समयावधि है {1}</value>
+  </data>
+  <data name="AudioPref_LivePhraseDetectionEnable" xml:space="preserve">
+    <value>निम्न मान सजीव वाक्यांश खोज के लिए प्रयुक्त होंगे, शुरुआत:{0}, वाक्यांशों के मध्य अंतर : {1}, अग्र मौन : {2}. ये व्यवस्थाएं ऑडियो अधिमान कोम्बोबोक्स या रिक्त मौन निष्कासन से परिवर्तित की जा सकती हैं.  </value>
+  </data>
+  <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
+    <value>रिक्त डिस्क स्थान जांच चालू करें</value>
+  </data>
+  <data name="Audio_EnablePostRecordingPageRenumbering" xml:space="preserve">
+    <value>रिकॉर्डिंग समापन पर निम्न पृष्ठों का पुनः अंकन करें</value>
+  </data>
+  <data name="KeyS_TransportBarRecordSingleKey" xml:space="preserve">
+    <value>रिकॉर्ड : एक बटन संक्षेप</value>
+  </data>
+  <data name="Audio_MonitorAlways" xml:space="preserve">
+    <value>लगता मॉनिटर करें</value>
+  </data>
+  <data name="Audio_MergeFirstTwoPhrasesInPhraseDetection" xml:space="preserve">
+    <value>वाक्यांश खोज द्वारा मिले पहेले 2 वाक्यांश सम्मिलित करें</value>
+  </data>
+  <data name="KeyS_TransportBarStopSingleKey" xml:space="preserve">
+    <value>रोकें : एक बटन संक्षेप</value>
+  </data>
+  <data name="DAISY2_ObiImport_ErrorsList_FrontPageCorrection" xml:space="preserve">
+    <value>बिना संख्या वाला आगे का {0} पृष्ठ {1} के रूप में जोड़ा गया </value>
+  </data>
+  <data name="Audio_FastPlayWithoutPitchChange" xml:space="preserve">
+    <value>दवानी परिवर्तन के बिना तीव्र गति से प्ले</value>
+  </data>
+  <data name="Project_SaveProjectWhenRecordingEnds" xml:space="preserve">
+    <value>रिकॉर्डिंग समापन पर प्रोजेक्ट सेव करें</value>
+  </data>
+  <data name="Project_CheckForUpdates" xml:space="preserve">
+    <value>अद्यतन के लिए जांच करें</value>
+  </data>
+  <data name="DeleteUnused_NoUnusedPhraseFoundToDelete" xml:space="preserve">
+    <value>डिलीट करने के लिए कोई अप्रयुक्त वाक्यांश नहीं मिला</value>
+  </data>
+  <data name="ImportErrorCorrectionText" xml:space="preserve">
+    <value>कुछ त्रुटियों के साथ सुधार</value>
+  </data>
+  <data name="CheckUpdate_Title" xml:space="preserve">
+    <value>नया {0} संस्करण उपलब्ध है</value>
+  </data>
+  <data name="CheckUpdate_LabelText" xml:space="preserve">
+    <value>{0}. कृपया निम्न विकल्पों में से चयन करें.</value>
+  </data>
+  <data name="CheckUpdate_UpdateProcessActive" xml:space="preserve">
+    <value>अद्यतन प्रक्रिया पहले से ही क्रियाशील है</value>
+  </data>
+  <data name="HardReset_Caption" xml:space="preserve">
+    <value>हार्ड रिसेट वरीयताएँ</value>
+  </data>
+  <data name="HardResetSettings_ConfirmAgain" xml:space="preserve">
+    <value>कृपया पुनः सुनिश्चित करें</value>
+  </data>
+  <data name="HardResetSettings_Question" xml:space="preserve">
+    <value>यह प्रक्रिया सभी वरीयताओं को कीबोर्ड संक्षेपों सहित हार्ड रिसेट कर देगी. क्या आप जरी रखना चाहते हैं?</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>सभी वरीयताओं को हार्ड रिसेट करें</value>
+  </data>
+  <data name="KeyS_HardResetAllSettings" xml:space="preserve">
+    <value>सभी व्यवस्थाओं को हार्ड रिसेट करें</value>
+  </data>
+  <data name="ReplaceCorruptPhrasesWithEmptyNode_Question" xml:space="preserve">
+    <value>कुल वाक्यांशों की संख्या {0} है, जिसमे से न के बराबर ऑडियो वाले या बिना ऑडियो वाले वाक्यांश {1} हैं. इन वाक्यांशों को बाद में काम करने वाले रिक्त वाक्यांशों से पुनः स्थापित करने की संस्तुति की जाती है. क्या आप जारी रखना चाहेंगे?</value>
+  </data>
+  <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
+    <value>त्रुटीपूर्ण ऑडियो वाले वाक्यांशों को रिक्त वाक्यांशों से पुनः स्थापित करें</value>
+  </data>
+  <data name="ReplaceCorruptPhrasesWithEmptyNode_NothingFound" xml:space="preserve">
+    <value>ख़राब ऑडियो वाला कोई वाक्यांश नहीं मिला</value>
+  </data>
+  <data name="Obi_UserInformationText" xml:space="preserve">
+    <value>ओबीआई प्रयोगकर्ता के रूप में स्वयं को पंजीकृत करने के लिए निम्न फॉर्म को भरें (डेज़ी निर्माण हेतु निःशुक्ल/स्वतंत्र स्रोत यंत्र).  इस पंजीयन द्वारा आप उत्पाद सम्बन्धी नवीनतम जानकारी एवं अद्यतन सीधे अपने मेल बोक्स में पाने के अधिकारी बन जायेंगे. साथ ही, आप उत्पाद को भविष्य में नवीन दिशाएं देने हेतु महत्वपूर्ण भूमिका अदा करेंगे, चूँकि यह हमे आपकी आवश्यकताओं को बेहतर समझने में सहायक होगा.  कृपया पंजीयन के समय यह सुनिश्चित करें की आपका कंप्यूटर इन्टरनेट से जुड़ा हुआ है.</value>
+  </data>
+  <data name="CleanUp_LongFilePath" xml:space="preserve">
+    <value>प्रोजेक्ट डायरेक्टरी का पाथ बहुत लम्बा है, जिससे क्लीनअप के समय गंभीर समस्याये उत्पन्न हो सकती है, परिणामस्वरुप महत्वपूर्ण डेटा नष्ट हो सकता है. अतएव प्रोजेक्ट डायरेक्टरी को क्लीनअप से पूर्व पार्टीशन के निकटतम ले जाये जाने की संस्तुति की जाती है. क्या आप इंगित चेतावनी के बावजूद जरी रखन चाहते हैं?</value>
+  </data>
+  <data name="UserRegistration_SendEmailMsg" xml:space="preserve">
+    <value>{0} प्रयासों में प्रयोगकर्ता का पंजीयन अपलोड करने में विफल. कृपया पंजीयन के लिए ओबीआई.फीडबैक@जीमेल.कॉम इमेल भेजे.</value>
+  </data>
+  <data name="UserRegistrationBtn_DoNotRemind" xml:space="preserve">
+    <value>स्मरण न कराएँ</value>
+  </data>
+  <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
+    <value>अंतिम अद्यतन जांच {0} संस्करण के लिए थी. इसके पश्चात् कोई नया संस्करण नहीं जारी किया गया है.</value>
+  </data>
+  <data name="CheckUpdates_GoToDownloadPage" xml:space="preserve">
+    <value>डाउनलोड पृष्ठ पर जाएँ</value>
+  </data>
+  <data name="Confirm_Setting" xml:space="preserve">
+    <value>प्रक्रिया सफल हुयी. कृपया पूर्व निर्धारित व्यवस्थाओं को लेन के लिए ओबीआई पुनः प्रारंभ करें. </value>
   </data>
 </root>
