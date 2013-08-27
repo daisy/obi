@@ -558,4 +558,7 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>Obi.Dialogs.SetPageNumber, Obi, Version=2.5.0.25599, Culture=neutral, PublicKeyToken=null</value>
   </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
 </root>
