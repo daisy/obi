@@ -3720,7 +3720,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarPreviewUptoAudioCursor.Value] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseAudioCursor); };
             //mShortcutKeys[Keys.X] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseAudioCursor); };
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarPreviewUptoSelection.Value] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseSelection); };
-            //mShortcutKeys[Keys.Shift | Keys.X] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseSelection); };
+            mShortcutKeys[keyboardShortcuts.ContentView_ZoomWaveformPanel.Value] = delegate() { return ShowZoomWaveformPanel(); };
+            
 
             // playback shortcuts.
 
@@ -5529,6 +5530,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void Context_ZoomPhrase_Click(object sender, EventArgs e)
         {     //@zoomwaveform
+            ShowZoomWaveformPanel();
+        }
+
+        private bool ShowZoomWaveformPanel()
+        {
             if (mProjectView != null && mProjectView.Selection != null)
             {
                 if (mProjectView.TransportBar.IsPlayerActive)
@@ -5543,9 +5549,10 @@ Block lastBlock = ActiveStrip.LastBlock ;
                     m_ZoomWaveformPanel.Show();
                     m_ZoomWaveformPanel.BringToFront();
                     m_ZoomWaveformPanel.Focus();
+                    return true;
                 }
-                    }
-
+            }
+            return false;
         }
 
         //@zoomwaveform
