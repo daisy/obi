@@ -2334,6 +2334,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close Zoom Panel.
+        /// </summary>
+        internal static string KeyS_CloseZoomPanel {
+            get {
+                return ResourceManager.GetString("KeyS_CloseZoomPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contract the audio selection on the left side.
         /// </summary>
         internal static string KeyS_ContractAudioSelectionAtLeft {
@@ -2460,6 +2469,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rander Next Phrase.
+        /// </summary>
+        internal static string KeyS_NextPhrase {
+            get {
+                return ResourceManager.GetString("KeyS_NextPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play/Pause using audio cursor.
         /// </summary>
         internal static string KeyS_PlayPauseUsingAudioCursor_Default {
@@ -2483,6 +2501,24 @@ namespace Obi {
         internal static string KeyS_PlaySelectedWaveform {
             get {
                 return ResourceManager.GetString("KeyS_PlaySelectedWaveform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Render Previous Phrase.
+        /// </summary>
+        internal static string KeyS_PreviousPhrase {
+            get {
+                return ResourceManager.GetString("KeyS_PreviousPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Zoom Panel.
+        /// </summary>
+        internal static string KeyS_ResetZoomPanel {
+            get {
+                return ResourceManager.GetString("KeyS_ResetZoomPanel", resourceCulture);
             }
         }
         
@@ -2852,6 +2888,33 @@ namespace Obi {
         internal static string KeyS_TransportBarStopSingleKey {
             get {
                 return ResourceManager.GetString("KeyS_TransportBarStopSingleKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom In Waveform.
+        /// </summary>
+        internal static string KeyS_ZoomInWaveform {
+            get {
+                return ResourceManager.GetString("KeyS_ZoomInWaveform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom Out Waveform.
+        /// </summary>
+        internal static string KeyS_ZoomOutWaveform {
+            get {
+                return ResourceManager.GetString("KeyS_ZoomOutWaveform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom Selected Waveform Select Waveform.
+        /// </summary>
+        internal static string KeyS_ZoomSelectedWaveform {
+            get {
+                return ResourceManager.GetString("KeyS_ZoomSelectedWaveform", resourceCulture);
             }
         }
         

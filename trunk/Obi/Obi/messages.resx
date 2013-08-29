@@ -2340,4 +2340,25 @@ Error text: {1}</value>
   <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
     <value>Show zoom waveform panel</value>
   </data>
+  <data name="KeyS_CloseZoomPanel" xml:space="preserve">
+    <value>Close Zoom Panel</value>
+  </data>
+  <data name="KeyS_ResetZoomPanel" xml:space="preserve">
+    <value>Reset Zoom Panel</value>
+  </data>
+  <data name="KeyS_ZoomInWaveform" xml:space="preserve">
+    <value>Zoom In Waveform</value>
+  </data>
+  <data name="KeyS_ZoomOutWaveform" xml:space="preserve">
+    <value>Zoom Out Waveform</value>
+  </data>
+  <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
+    <value>Zoom Selected Waveform Select Waveform</value>
+  </data>
+  <data name="KeyS_NextPhrase" xml:space="preserve">
+    <value>Rander Next Phrase</value>
+  </data>
+  <data name="KeyS_PreviousPhrase" xml:space="preserve">
+    <value>Render Previous Phrase</value>
+  </data>
 </root>
