@@ -208,13 +208,13 @@
     <value>रिकॉर्ड करें</value>
   </data>
   <data name="obi_filter" xml:space="preserve">
-    <value>ओबी प्रोजेक्ट फाइल (*.ओबी)(*.ओबी)(कोई भी फाइल)*.*</value>
+    <value>ओबी प्रोजेक्ट फाइल  (*.obi)|*.obi|Any file|*.*</value>
   </data>
   <data name="report_delete_error" xml:space="preserve">
     <value>डिलीट करते समय त्रुटी {0}.({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>वेव फाइल (*.वेव;*.एमपी3)कोई भी फाइल)*.*</value>
+    <value>वेव फाइल(*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>ऑडियो इनपुट को मॉनिटर करना ....</value>
