@@ -117,9 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="mContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>100, 17</value>
+  </metadata>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>48</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Context_ZoomPhrase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_ZoomPhrase.Text" xml:space="preserve">
+    <value>ज़ूम वाक्यांश</value>
   </data>
   <data name="Context_AddSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -138,24 +153,6 @@
   </data>
   <data name="Context_SplitSectionMenuItem.Text" xml:space="preserve">
     <value>खंडे तोड़े</value>
-  </data>
-  <data name="Context_MergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>अगले खंड के साथ जोड़े</value>
-  </data>
-  <data name="Context_MergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 22</value>
-  </data>
-  <data name="Context_MergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>अगले खंड के साथ जोड़े</value>
-  </data>
-  <data name="Context_MergeMultipleSectionsToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>बहुखण्डों को जोड़े</value>
-  </data>
-  <data name="Context_MergeMultipleSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 22</value>
-  </data>
-  <data name="Context_MergeMultipleSectionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>बहुखण्डों को जोड़े</value>
   </data>
   <data name="Context_MergeSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -202,24 +199,6 @@
   <data name="Context_SplitPhraseMenuItem.Text" xml:space="preserve">
     <value>वाक्यांश तोड़े</value>
   </data>
-  <data name="Context_MergePhraseWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="Context_MergePhraseWithNextMenuItem.Text" xml:space="preserve">
-    <value>अगले वाक्यांश के साथ जोड़े</value>
-  </data>
-  <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>निम्न वाक्यांशों के साथ जोड़े</value>
-  </data>
-  <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>पूर्व वाक्यांशों के साथ जोड़े</value>
-  </data>
   <data name="Context_MergeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
@@ -246,6 +225,182 @@
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
+  </data>
+  <data name="Context_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_AssignRoleMenuItem.Text" xml:space="preserve">
+    <value>कार्य निरूपित करें</value>
+  </data>
+  <data name="Context_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_ClearRoleMenuItem.Text" xml:space="preserve">
+    <value>कार्य समाप्त करें</value>
+  </data>
+  <data name="Context_PhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PhraseDetectionMenuItem.Text" xml:space="preserve">
+    <value>वाक्यांश खोज लागू करें</value>
+  </data>
+  <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
+    <value>छोड़ने योग्य नोट्स</value>
+  </data>
+  <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
+    <value>छोड़ने योग्य नोट्स</value>
+  </data>
+  <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_AudioSelectionMenuItem.Text" xml:space="preserve">
+    <value>ऑडियो चयन</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 6</value>
+  </data>
+  <data name="Context_CutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_CutMenuItem.Text" xml:space="preserve">
+    <value>काटें</value>
+  </data>
+  <data name="Context_CopyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_CopyMenuItem.Text" xml:space="preserve">
+    <value>कॉपी</value>
+  </data>
+  <data name="Context_PasteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PasteMenuItem.Text" xml:space="preserve">
+    <value>पेस्ट</value>
+  </data>
+  <data name="Context_PasteBeforeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PasteBeforeMenuItem.Text" xml:space="preserve">
+    <value>पहेले पेस्ट करें</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Context_PasteBeforeMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="Context_PasteInsideMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PasteInsideMenuItem.Text" xml:space="preserve">
+    <value>अन्दर पेस्ट करें</value>
+  </data>
+  <data name="Context_PasteInsideMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="Context_DeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_DeleteMenuItem.Text" xml:space="preserve">
+    <value>डिलीट</value>
+  </data>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 6</value>
+  </data>
+  <data name="Context_ExportReplaceAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value>निर्यात और ऑडियो की जगह</value>
+  </data>
+  <data name="Context_ExportAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value>ऑडियो भेजें Ctrl+Alt+E</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Context_ExportAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+E</value>
+  </data>
+  <data name="Context_ExportAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 22</value>
+  </data>
+  <data name="Context_ExportAudioMenuItem.Text" xml:space="preserve">
+    <value>ऑडियो भेजें</value>
+  </data>
+  <data name="Context_ReplaceAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Context_ReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 22</value>
+  </data>
+  <data name="Context_ReplaceAudioMenuItem.Text" xml:space="preserve">
+    <value>ऑडियो प्रतिस्थापित करें</value>
+  </data>
+  <data name="Context_ExportReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_ExportReplaceAudioMenuItem.Text" xml:space="preserve">
+    <value>&amp;निर्यात और ऑडियो की जगह</value>
+  </data>
+  <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
+    <value>गुण</value>
+  </data>
+  <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 666</value>
+  </data>
+  <data name="&gt;&gt;mContextMenuStrip.Name" xml:space="preserve">
+    <value>mContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;mContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Context_MergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>अगले खंड के साथ जोड़े</value>
+  </data>
+  <data name="Context_MergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="Context_MergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
+    <value>अगले खंड के साथ जोड़े</value>
+  </data>
+  <data name="Context_MergeMultipleSectionsToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>बहुखण्डों को जोड़े</value>
+  </data>
+  <data name="Context_MergeMultipleSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 22</value>
+  </data>
+  <data name="Context_MergeMultipleSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>बहुखण्डों को जोड़े</value>
+  </data>
+  <data name="Context_MergePhraseWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="Context_MergePhraseWithNextMenuItem.Text" xml:space="preserve">
+    <value>अगले वाक्यांश के साथ जोड़े</value>
+  </data>
+  <data name="Context_SplitMergeWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="Context_SplitMergeWithNextMenuItem.Text" xml:space="preserve">
+    <value>भाजित और अगले के साथ विलय</value>
+  </data>
+  <data name="Context_SplitMergeWithPreviousMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="Context_SplitMergeWithPreviousMenuItem.Text" xml:space="preserve">
+    <value>भाजित और पिछले के साथ विलय</value>
+  </data>
+  <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Text" xml:space="preserve">
+    <value>निम्न वाक्यांशों के साथ जोड़े</value>
+  </data>
+  <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text" xml:space="preserve">
+    <value>पूर्व वाक्यांशों के साथ जोड़े</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
@@ -286,44 +441,23 @@
   <data name="Context_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
     <value>नया अनुकूलनीय कार्य</value>
   </data>
-  <data name="Context_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_AssignRoleMenuItem.Text" xml:space="preserve">
-    <value>कार्य निरूपित करें</value>
-  </data>
-  <data name="Context_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_ClearRoleMenuItem.Text" xml:space="preserve">
-    <value>कार्य समाप्त करें</value>
-  </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
     <value>चयनित आइटम्स</value>
   </data>
   <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text" xml:space="preserve">
     <value>बहुखंड</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 22</value>
+    <value>285, 22</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>चयनित मौन वाक्यांश से पैरामीटर्स</value>
-  </data>
-  <data name="Context_PhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>वाक्यांश खोज लागू करें</value>
-  </data>
-  <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
-    <value>छोड़ने योग्य नोट्स</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>नोट प्रारंभ करें</value>
@@ -394,12 +528,6 @@
   <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>नोट से कार्य हटायें</value>
   </data>
-  <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>छोड़ने योग्य नोट्स</value>
-  </data>
   <data name="Context_AudioSelection_BeginMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
   </data>
@@ -412,97 +540,18 @@
   <data name="Context_AudioSelection_EndMenuItem.Text" xml:space="preserve">
     <value>ऑडियो चयन ख़त्म करें</value>
   </data>
-  <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+  <data name="Context_Delete_deleteSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 22</value>
   </data>
-  <data name="Context_AudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>ऑडियो चयन</value>
+  <data name="Context_Delete_deleteSelectionMenuItem.Text" xml:space="preserve">
+    <value>चयन हटाएँ</value>
   </data>
-  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
+  <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>203, 22</value>
   </data>
-  <data name="Context_CutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_CutMenuItem.Text" xml:space="preserve">
-    <value>काटें</value>
-  </data>
-  <data name="Context_CopyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_CopyMenuItem.Text" xml:space="preserve">
-    <value>कॉपी</value>
-  </data>
-  <data name="Context_PasteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PasteMenuItem.Text" xml:space="preserve">
-    <value>पेस्ट</value>
-  </data>
-  <data name="Context_PasteBeforeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PasteBeforeMenuItem.Text" xml:space="preserve">
-    <value>पहेले पेस्ट करें</value>
-  </data>
-  <data name="Context_PasteInsideMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PasteInsideMenuItem.Text" xml:space="preserve">
-    <value>अन्दर पेस्ट करें</value>
-  </data>
-  <data name="Context_DeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_DeleteMenuItem.Text" xml:space="preserve">
-    <value>डिलीट</value>
-  </data>
-  <data name="Context_DeleteFollowingPhrasesMenuItem.AccessibleName" xml:space="preserve">
+  <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Text" xml:space="preserve">
     <value>निम्न वाक्यांशों को डिलीट करें</value>
   </data>
-  <data name="Context_DeleteFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_DeleteFollowingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>निम्न वाक्यांशों को डिलीट करें</value>
-  </data>
-  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
-  </data>
-  <data name="Context_ExportAudioToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ऑडियो भेजें Ctrl+Alt+E</value>
-  </data>
-  <data name="Context_ExportAudioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_ExportAudioToolStripMenuItem.Text" xml:space="preserve">
-    <value>ऑडियो भेजें</value>
-  </data>
-  <data name="Context_ReplaceAudioToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ऑडियो प्रतिस्थापित करें</value>
-  </data>
-  <data name="Context_ReplaceAudioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_ReplaceAudioToolStripMenuItem.Text" xml:space="preserve">
-    <value>ऑडियो प्रतिस्थापित करें</value>
-  </data>
-  <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
-    <value>गुण</value>
-  </data>
-  <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 688</value>
-  </data>
-  <data name="&gt;&gt;mContextMenuStrip.Name" xml:space="preserve">
-    <value>mContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;mContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mStripsPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -515,7 +564,6 @@
   <data name="mStripsPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>522, 557</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mStripsPanel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -612,9 +660,6 @@
   <data name="&gt;&gt;mCornerPanel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>17, 17</value>
-  </data>
   <data name="verticalScrollToolStripContainer1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
   </data>
@@ -631,7 +676,7 @@
     <value>verticalScrollToolStripContainer1</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=2.4.0.31553, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=2.6.1.29239, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -664,7 +709,7 @@
     <value>contentViewLabel1</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=2.4.0.31553, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=2.6.1.29239, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -672,14 +717,14 @@
   <data name="&gt;&gt;contentViewLabel1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="$this.TrayHeight" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>538, 573</value>
+  </data>
+  <data name="&gt;&gt;Context_ZoomPhrase.Name" xml:space="preserve">
+    <value>Context_ZoomPhrase</value>
+  </data>
+  <data name="&gt;&gt;Context_ZoomPhrase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AddSectionMenuItem.Name" xml:space="preserve">
     <value>Context_AddSectionMenuItem</value>
@@ -769,6 +814,18 @@
     <value>Context_MergePhraseWithNextMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_MergePhraseWithNextMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_SplitMergeWithNextMenuItem.Name" xml:space="preserve">
+    <value>Context_SplitMergeWithNextMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_SplitMergeWithNextMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_SplitMergeWithPreviousMenuItem.Name" xml:space="preserve">
+    <value>Context_SplitMergeWithPreviousMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_SplitMergeWithPreviousMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_Merge_MergeWithFollowingPhrasesMenuItem.Name" xml:space="preserve">
@@ -999,10 +1056,16 @@
   <data name="&gt;&gt;Context_DeleteMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Context_DeleteFollowingPhrasesMenuItem.Name" xml:space="preserve">
-    <value>Context_DeleteFollowingPhrasesMenuItem</value>
+  <data name="&gt;&gt;Context_Delete_deleteSelectionMenuItem.Name" xml:space="preserve">
+    <value>Context_Delete_deleteSelectionMenuItem</value>
   </data>
-  <data name="&gt;&gt;Context_DeleteFollowingPhrasesMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;Context_Delete_deleteSelectionMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_Delete_deleteFollowingPhrasesMenuItem.Name" xml:space="preserve">
+    <value>Context_Delete_deleteFollowingPhrasesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_Delete_deleteFollowingPhrasesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
@@ -1011,16 +1074,22 @@
   <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Context_ExportAudioToolStripMenuItem.Name" xml:space="preserve">
-    <value>Context_ExportAudioToolStripMenuItem</value>
+  <data name="&gt;&gt;Context_ExportReplaceAudioMenuItem.Name" xml:space="preserve">
+    <value>Context_ExportReplaceAudioMenuItem</value>
   </data>
-  <data name="&gt;&gt;Context_ExportAudioToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;Context_ExportReplaceAudioMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Context_ReplaceAudioToolStripMenuItem.Name" xml:space="preserve">
-    <value>Context_ReplaceAudioToolStripMenuItem</value>
+  <data name="&gt;&gt;Context_ExportAudioMenuItem.Name" xml:space="preserve">
+    <value>Context_ExportAudioMenuItem</value>
   </data>
-  <data name="&gt;&gt;Context_ReplaceAudioToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;Context_ExportAudioMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_ReplaceAudioMenuItem.Name" xml:space="preserve">
+    <value>Context_ReplaceAudioMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_ReplaceAudioMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_PropertiesMenuItem.Name" xml:space="preserve">
@@ -1041,7 +1110,6 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  
   <data name="mContextMenuStrip.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
