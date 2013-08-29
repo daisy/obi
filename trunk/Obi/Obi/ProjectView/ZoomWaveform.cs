@@ -425,7 +425,41 @@ namespace Obi.ProjectView
      KeyboardShortcuts_Settings keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
             //this.Focus();
 
-
+             if (keyData == keyboardShortcuts.ZoomPanel_Close.Value) 
+             {
+                 Close();
+                 return true;
+             }
+             else if(keyData ==keyboardShortcuts.ZoomPanel_NextPhrase.Value )
+             {
+                 NextPhrase();
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ZoomPanel_PreviousPhrase.Value)
+             {
+                 PreviousPhrase();
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ZoomPanel_Reset.Value)
+             {
+                 Reset();
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ZoomPanel_ZoomIn.Value)
+             {
+                 ZoomIn();
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ZoomPanel_ZoomOut.Value)
+             {
+                 ZoomOut();
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ZoomPanel_ZoomSelection.Value)
+             {
+                 ZoomSelection();
+                 return true;
+             }
             if (keyData == keyboardShortcuts.ContentView_SelectPrecedingPhrase.Value && this.ActiveControl!=toolStripZoomPanel && this.ActiveControl!=m_Edit)
             {
                 m_ContentView.NudgeInFineNavigation(false);
@@ -568,186 +602,212 @@ namespace Obi.ProjectView
 
           private void btnClosetoolStrip_Click(object sender, EventArgs e)
           {
-              m_buttonSizeinit = false;
-              m_ContentView.RemovePanel();
-
-              m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
+              Close();
           }
+          private void Close()
+          {
+                m_buttonSizeinit = false;
+                m_ContentView.RemovePanel();
+
+                m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
+           }
+       
 
           private void btnNextPhrasetoolStrip_Click(object sender, EventArgs e)
           {
-              if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
-              {
-                  this.AutoScroll = false;
-              }
-              else
-              {
-                  this.AutoScroll = true;
-              }
-
-              ObiNode nextNode = m_Node.FollowingNode;
-              if (nextNode != null && nextNode.Parent != null && m_AudioBlock != null && m_AudioBlock.Node != null && m_AudioBlock.Node.Parent != null)
-              {
-                  if (m_AudioBlock.Node.Parent == nextNode.Parent)
-                  {
-                      if (m_Node.FollowingNode is PhraseNode)
-                      {
-                          m_Node = nextNode as PhraseNode;
-                          m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
-                          //if (panelZooomWaveform.Controls.Contains(m_AudioBlock))
-                          //{
-                          //panelZooomWaveform.Controls.Remove(m_AudioBlock);
-                          //}
-                          //m_AudioBlock = new AudioBlock((PhraseNode) nextNode, m_Strip);
-                          //panelRender();
-                      }
-                      //    btntxtZoomSelected.Text = " ";
-                      else if (m_Node.FollowingNode is EmptyNode)
-                      {
-                          m_Node = nextNode as EmptyNode;                         
-                          m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
-                      }
-                  }
-              }
-              else if (m_Node.FollowingNode is EmptyNode)
-              {
-                  if (m_AudioBlock != null)
-                  {
-                      m_Node = nextNode as EmptyNode;                     
-                      m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
-                  }
-              }
+              NextPhrase();
           }
+        private void NextPhrase()
+        {
+            if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
+            {
+                this.AutoScroll = false;
+            }
+            else
+            {
+                this.AutoScroll = true;
+            }
+
+            ObiNode nextNode = m_Node.FollowingNode;
+            if (nextNode != null && nextNode.Parent != null && m_AudioBlock != null && m_AudioBlock.Node != null && m_AudioBlock.Node.Parent != null)
+            {
+                if (m_AudioBlock.Node.Parent == nextNode.Parent)
+                {
+                    if (m_Node.FollowingNode is PhraseNode)
+                    {
+                        m_Node = nextNode as PhraseNode;
+                        m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                        //if (panelZooomWaveform.Controls.Contains(m_AudioBlock))
+                        //{
+                        //panelZooomWaveform.Controls.Remove(m_AudioBlock);
+                        //}
+                        //m_AudioBlock = new AudioBlock((PhraseNode) nextNode, m_Strip);
+                        //panelRender();
+                    }
+                    //    btntxtZoomSelected.Text = " ";
+                    else if (m_Node.FollowingNode is EmptyNode)
+                    {
+                        m_Node = nextNode as EmptyNode;
+                        m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                    }
+                }
+            }
+            else if (m_Node.FollowingNode is EmptyNode)
+            {
+                if (m_AudioBlock != null)
+                {
+                    m_Node = nextNode as EmptyNode;
+                    m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                }
+            }
+        }
 
           private void btnPreviousPhrasetoolStrip_Click(object sender, EventArgs e)
           {
-              if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
-              {
-                  this.AutoScroll = false;
-              }
-              else
-              {
-                  this.AutoScroll = true;
-              }
-              ObiNode previousNode = m_Node.PrecedingNode;
-              if (previousNode != null && previousNode.Parent != null && m_AudioBlock != null && m_AudioBlock.Node != null && m_AudioBlock.Node.Parent != null)
-              {
-                  if (m_AudioBlock.Node.Parent == previousNode.Parent)
-                  {
-                      if (m_Node.PrecedingNode is PhraseNode)
-                      {
-                          m_Node = previousNode as PhraseNode;
-                          m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
-                          //if (panelZooomWaveform.Controls.Contains(m_AudioBlock))
-                          //{
-                          //panelZooomWaveform.Controls.Remove(m_AudioBlock);
-                          //}
-                          //m_AudioBlock = new AudioBlock((PhraseNode) previousNode, m_Strip);
-                          //panelRender();
-                      }
-                      //btntxtZoomSelected.Text = " ";
-                      else if (m_Node.PrecedingNode is EmptyNode)
-                      {
-                          //if (m_AudioBlock != null)
-                          {
-                              m_Node = previousNode as EmptyNode;
-                              m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
-                          }
-                      }
-
-                  }
-
-              }
-              else if (m_Node.PrecedingNode is EmptyNode)
-              {
-               //   if (m_AudioBlock != null)
-                  m_Node = previousNode as EmptyNode;
-                  m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
-              }
+              PreviousPhrase();
           }
+        private void PreviousPhrase()
+        {
+            if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
+            {
+                this.AutoScroll = false;
+            }
+            else
+            {
+                this.AutoScroll = true;
+            }
+            ObiNode previousNode = m_Node.PrecedingNode;
+            if (previousNode != null && previousNode.Parent != null && m_AudioBlock != null && m_AudioBlock.Node != null && m_AudioBlock.Node.Parent != null)
+            {
+                if (m_AudioBlock.Node.Parent == previousNode.Parent)
+                {
+                    if (m_Node.PrecedingNode is PhraseNode)
+                    {
+                        m_Node = previousNode as PhraseNode;
+                        m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                        //if (panelZooomWaveform.Controls.Contains(m_AudioBlock))
+                        //{
+                        //panelZooomWaveform.Controls.Remove(m_AudioBlock);
+                        //}
+                        //m_AudioBlock = new AudioBlock((PhraseNode) previousNode, m_Strip);
+                        //panelRender();
+                    }
+                    //btntxtZoomSelected.Text = " ";
+                    else if (m_Node.PrecedingNode is EmptyNode)
+                    {
+                        //if (m_AudioBlock != null)
+                        {
+                            m_Node = previousNode as EmptyNode;
+                            m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                        }
+                    }
+
+                }
+
+            }
+            else if (m_Node.PrecedingNode is EmptyNode)
+            {
+                //   if (m_AudioBlock != null)
+                m_Node = previousNode as EmptyNode;
+                m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+            }
+        }
 
           private void btnZoomIntoolStrip_Click(object sender, EventArgs e)
           {
-              if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
-              {
-                  this.AutoScroll = false;
-              }
-              else
-              {
-                  this.AutoScroll = true;
-              }
-              if (m_Node is PhraseNode)
-              {
-                  int tempWidth = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * 0.5);
-                  if (tempWidth < (initialWaveformWidth * 60))
-                  {
-                      m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * 0.5);
-                      m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
-                      m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
-                      m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
-                  }
-              }
-
+              ZoomIn();
           }
+        private void ZoomIn()
+        {
+            if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
+            {
+                this.AutoScroll = false;
+            }
+            else
+            {
+                this.AutoScroll = true;
+            }
+            if (m_Node is PhraseNode)
+            {
+                int tempWidth = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * 0.5);
+                if (tempWidth < (initialWaveformWidth * 60))
+                {
+                    m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * 0.5);
+                    m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
+                    m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
+                    m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
+                }
+            }
+        }
 
           private void btnZoomOuttoolStrip_Click(object sender, EventArgs e)
           {
-              if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
-              {
-                  this.AutoScroll = false;
-              }
-              else
-              {
-                  this.AutoScroll = true;
-              }
-              if (m_Node is PhraseNode)
-              {
-                  int tempWidth = m_AudioBlock.Waveform.Width - (int)(initialWaveformWidth * 0.5);
-                  if (tempWidth > (initialWaveformWidth / 10))
-                  {
-                      m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width - (int)(initialWaveformWidth * 0.5);
-                      m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
-                      m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
-                      m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
-                  }
-              }
-            
+              ZoomOut();        
           }
+        private void ZoomOut()
+        {
+            if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
+            {
+                this.AutoScroll = false;
+            }
+            else
+            {
+                this.AutoScroll = true;
+            }
+            if (m_Node is PhraseNode)
+            {
+                int tempWidth = m_AudioBlock.Waveform.Width - (int)(initialWaveformWidth * 0.5);
+                if (tempWidth > (initialWaveformWidth / 10))
+                {
+                    m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width - (int)(initialWaveformWidth * 0.5);
+                    m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
+                    m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
+                    m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
+                }
+            }
+        }
 
           private void btnResettoolStrip_Click(object sender, EventArgs e)
           {
-              if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
-              {
-                  this.AutoScroll = false;
-              }
-              else
-              {
-                  this.AutoScroll = true;
-              }
-              if (m_Node is PhraseNode)
-              {
-                  m_AudioBlock.Waveform.Width = initialWaveformWidth;
-                  m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
-                  m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
-                  m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
-                  m_AudioBlock.ResetTimeBoundsForWaveformDisplay();
-              }
-
+              Reset();
           }
+
+        private void Reset()
+        {
+            if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
+            {
+                this.AutoScroll = false;
+            }
+            else
+            {
+                this.AutoScroll = true;
+            }
+            if (m_Node is PhraseNode)
+            {
+                m_AudioBlock.Waveform.Width = initialWaveformWidth;
+                m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
+                m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
+                m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
+                m_AudioBlock.ResetTimeBoundsForWaveformDisplay();
+            }
+        }
 
           private void mbtnZoomSelectiontoolStrip_Click(object sender, EventArgs e)
           {
-              if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection.Control != null && m_ProjectView.Selection is Obi.AudioSelection)
-              {
-                  audioSel = (AudioSelection)m_ProjectView.Selection;
-                  if (audioSel.AudioRange.SelectionBeginTime != audioSel.AudioRange.SelectionEndTime)
-                  {
-                      m_AudioBlock.SetTimeBoundsForWaveformDisplay(audioSel.AudioRange.SelectionBeginTime, audioSel.AudioRange.SelectionEndTime);
-                      //    mbtnResetSelection.Enabled = true;
-                  }
-              }
+              ZoomSelection();
           }
-   
+        private void ZoomSelection()
+        {
+            if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection.Control != null && m_ProjectView.Selection is Obi.AudioSelection)
+            {
+                audioSel = (AudioSelection)m_ProjectView.Selection;
+                if (audioSel.AudioRange.SelectionBeginTime != audioSel.AudioRange.SelectionEndTime)
+                {
+                    m_AudioBlock.SetTimeBoundsForWaveformDisplay(audioSel.AudioRange.SelectionBeginTime, audioSel.AudioRange.SelectionEndTime);
+                    //    mbtnResetSelection.Enabled = true;
+                }
+            }
+        }
 
        // public Panel Panel_WaveForm { get { return panel_ZoomWaveform; } }
     }
