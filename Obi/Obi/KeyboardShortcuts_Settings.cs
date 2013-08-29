@@ -47,6 +47,15 @@ namespace Obi
         public KeyboardShortcut ContentView_TransportBarPreviewUptoSelection = new KeyboardShortcut(Keys.Shift | Keys.X, "KeyS_TransportBarPreviewUptoSelection");
         public KeyboardShortcut ContentView_ZoomWaveformPanel = new KeyboardShortcut(Keys.Z, "KeyS_ZoomWaveformPanel");
 
+        //Zoom Paenl Shortcuts        
+        public KeyboardShortcut ZoomPanel_Close = new KeyboardShortcut(Keys.Alt | Keys.C, "KeyS_CloseZoomPanel");
+        public KeyboardShortcut ZoomPanel_Reset = new KeyboardShortcut(Keys.Alt | Keys.R, "KeyS_ResetZoomPanel");
+        public KeyboardShortcut ZoomPanel_ZoomIn = new KeyboardShortcut(Keys.Alt | Keys.Oemplus, "KeyS_ZoomInWaveform");
+        public KeyboardShortcut ZoomPanel_ZoomOut = new KeyboardShortcut(Keys.Alt | Keys.OemMinus, "KeyS_ZoomOutWaveform");
+        public KeyboardShortcut ZoomPanel_ZoomSelection = new KeyboardShortcut(Keys.Alt | Keys.S, "KeyS_ZoomSelectedWaveform");
+        public KeyboardShortcut ZoomPanel_NextPhrase = new KeyboardShortcut(Keys.Alt | Keys.N, "KeyS_NextPhrase");
+        public KeyboardShortcut ZoomPanel_PreviousPhrase = new KeyboardShortcut(Keys.Alt | Keys.P, "KeyS_PreviousPhrase");
+
         // playback shortcuts.
 
         public KeyboardShortcut ContentView_FastPlayStepDown = new KeyboardShortcut(Keys.S, "KeyS_FastPlayStepDown");
@@ -315,6 +324,13 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_ShowPropertiesOfSelectedNode.Description), ProjectView_ShowPropertiesOfSelectedNode);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_FocusOnTransportBarTimeDisplay.Description), ProjectView_FocusOnTransportBarTimeDisplay);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_HardResetAllSettings.Description), ProjectView_HardResetAllSettings);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_Close.Description), ZoomPanel_Close);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_NextPhrase.Description), ZoomPanel_NextPhrase);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_PreviousPhrase.Description), ZoomPanel_PreviousPhrase);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_Reset.Description), ZoomPanel_Reset);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_ZoomIn.Description), ZoomPanel_ZoomIn);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_ZoomOut.Description), ZoomPanel_ZoomOut);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_ZoomSelection.Description), ZoomPanel_ZoomSelection);
         }
     }
 
