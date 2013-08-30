@@ -30,8 +30,8 @@ namespace Obi.Dialogs
         {
             m_SectionList = sectionsList;
             m_SelectedIndex = selectedIndexOfSection;
-            populateListboxForSectionsToMerge();
-            m_StatusLabelForMergeSection.Text = String.Format("Showing section {0} to {1}. Please select sections to merge. ", m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);
+            populateListboxForSectionsToMerge();          
+            m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("StatusForMergeSection"), m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);
         }
 
         public List<SectionNode> SelectedSections
