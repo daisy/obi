@@ -2346,4 +2346,7 @@ Texte de l'erreur: {1}</value>
   <data name="Confirm_Setting" xml:space="preserve">
     <value>Opération réussie. S'il vous plaît redémarrer Obi pour charger les paramètres par défaut</value>
   </data>
+  <data name="StatusForMergeSection" xml:space="preserve">
+    <value>Showing section {0} to {1}. Please select sections to merge.</value>
+    </data>
 </root>

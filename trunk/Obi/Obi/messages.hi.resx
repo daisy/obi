@@ -2061,4 +2061,7 @@
   <data name="Confirm_Setting" xml:space="preserve">
     <value>प्रक्रिया सफल हुयी. कृपया पूर्व निर्धारित व्यवस्थाओं को लेन के लिए ओबीआई पुनः प्रारंभ करें. </value>
   </data>
+  <data name="StatusForMergeSection" xml:space="preserve">
+    <value>खंड{0} से {1}दिखा रहा है. मर्ज करने के लिए वर्गों का चयन करें.</value>
+    </data>
 </root>
