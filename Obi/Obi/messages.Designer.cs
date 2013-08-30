@@ -5644,6 +5644,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Showing section {0} to {1}. Please select sections to merge..
+        /// </summary>
+        internal static string StatusForMergeSection {
+            get {
+                return ResourceManager.GetString("StatusForMergeSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fine navigation:.
         /// </summary>
         internal static string StatusMsg_FineNavigation {

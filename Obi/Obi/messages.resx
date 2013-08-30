@@ -2337,6 +2337,9 @@ Error text: {1}</value>
   <data name="Confirm_Setting" xml:space="preserve">
     <value>Operation successful. Please restart Obi to load the default settings</value>
   </data>
+  <data name="StatusForMergeSection" xml:space="preserve">
+    <value>Showing section {0} to {1}. Please select sections to merge.</value>
+    </data>
   <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
     <value>Show zoom waveform panel</value>
   </data>

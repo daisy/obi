@@ -2327,4 +2327,7 @@
   <data name="Confirm_Setting" xml:space="preserve">
     <value>செயல்பாடு வெற்றிகரமாக முடிந்தது. இயல்பு அமைப்புகளை ஏற்ற ஓபியை மறுதொடக்கம் செய்யவும்.</value>
   </data>
+  <data name="StatusForMergeSection" xml:space="preserve">
+    <value>Showing section {0} to {1}. Please select sections to merge.</value>
+    </data>
 </root>
