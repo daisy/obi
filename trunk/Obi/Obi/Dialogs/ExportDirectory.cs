@@ -17,6 +17,7 @@ namespace Obi.Dialogs
         private bool m_IsMP3Check;
         private bool m_SectionNameToAudioFileNameCheck;
         private bool m_FilenameLengthLimit;
+        private ExportAdvance mExportAdvance;
 
         public ExportDirectory(string path, string xukPath, bool encodeToMP3, int bitRate, bool appendSectionNameToAudioFile)
         {
@@ -159,6 +160,16 @@ namespace Obi.Dialogs
         {
             m_SectionNameToAudioFileNameCheck = m_checkBoxAddSectionNameToAudioFileName.Checked;
             m_chkBoxFilenameLengthLimit.Enabled = m_checkBoxAddSectionNameToAudioFileName.Checked;
+
+        }
+
+
+        private void mbtnAdvance_Click(object sender, EventArgs e)
+        {
+            mExportAdvance = new ExportAdvance();
+            // this.Controls.Add(mExportAdvance);    
+            mExportAdvance.Show();
+            
 
         }              
     }

@@ -45,6 +45,7 @@ namespace Obi.Dialogs
             this.m_chkBoxFilenameLengthLimit = new System.Windows.Forms.CheckBox();
             this.m_numericUpDownFilenameLengthLimit = new System.Windows.Forms.NumericUpDown();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.mbtnAdvance = new System.Windows.Forms.Button();
             this.m_grpBoxMP3Encoding.SuspendLayout();
             this.m_grpBoxSectionNameOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownFilenameLengthLimit)).BeginInit();
@@ -124,7 +125,6 @@ namespace Obi.Dialogs
             // 
             // m_checkBoxAddSectionNameToAudioFileName
             // 
-            this.m_checkBoxAddSectionNameToAudioFileName.AccessibleDescription = global::Obi.messages.phrase_extra_Plain;
             resources.ApplyResources(this.m_checkBoxAddSectionNameToAudioFileName, "m_checkBoxAddSectionNameToAudioFileName");
             this.m_checkBoxAddSectionNameToAudioFileName.Name = "m_checkBoxAddSectionNameToAudioFileName";
             this.m_checkBoxAddSectionNameToAudioFileName.UseVisualStyleBackColor = true;
@@ -150,7 +150,6 @@ namespace Obi.Dialogs
             // 
             // m_chkBoxFilenameLengthLimit
             // 
-            this.m_chkBoxFilenameLengthLimit.AccessibleDescription = global::Obi.messages.phrase_extra_Plain;
             resources.ApplyResources(this.m_chkBoxFilenameLengthLimit, "m_chkBoxFilenameLengthLimit");
             this.m_chkBoxFilenameLengthLimit.Name = "m_chkBoxFilenameLengthLimit";
             this.m_chkBoxFilenameLengthLimit.UseVisualStyleBackColor = true;
@@ -158,7 +157,6 @@ namespace Obi.Dialogs
             // 
             // m_numericUpDownFilenameLengthLimit
             // 
-            this.m_numericUpDownFilenameLengthLimit.AccessibleDescription = global::Obi.messages.phrase_extra_Plain;
             resources.ApplyResources(this.m_numericUpDownFilenameLengthLimit, "m_numericUpDownFilenameLengthLimit");
             this.m_numericUpDownFilenameLengthLimit.Name = "m_numericUpDownFilenameLengthLimit";
             // 
@@ -166,12 +164,20 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
+            // mbtnAdvance
+            // 
+            resources.ApplyResources(this.mbtnAdvance, "mbtnAdvance");
+            this.mbtnAdvance.Name = "mbtnAdvance";
+            this.mbtnAdvance.UseVisualStyleBackColor = true;
+            this.mbtnAdvance.Click += new System.EventHandler(this.mbtnAdvance_Click);
+            // 
             // ExportDirectory
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.mbtnAdvance);
             this.Controls.Add(this.m_grpBoxSectionNameOperation);
             this.Controls.Add(this.m_grpBoxMP3Encoding);
             this.Controls.Add(this.m_ComboSelectLevelForAudioFiles);
@@ -216,5 +222,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_chkBoxFilenameLengthLimit;
         private System.Windows.Forms.NumericUpDown m_numericUpDownFilenameLengthLimit;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.Button mbtnAdvance;
     }
 }
