@@ -152,7 +152,7 @@ namespace Obi.ProjectView
                 {
                     panelZooomWaveform.Controls.Remove(m_Block);
                 }
-               m_Block = new AudioBlock((PhraseNode)m_Node, m_Strip,true);
+               m_Block = new AudioBlock((PhraseNode)m_Node, m_Strip,true, true);
                m_AudioBlock = (AudioBlock)m_Block;              
 
                 panelZooomWaveform.Controls.Add(m_Block);
@@ -285,7 +285,7 @@ namespace Obi.ProjectView
             if (m_Node is PhraseNode)
             {
                
-                m_Block = new AudioBlock((PhraseNode)m_Node, m_Strip, true);
+                m_Block = new AudioBlock((PhraseNode)m_Node, m_Strip, true,true);
                 m_AudioBlock = (AudioBlock)m_Block;
                 panelZooomWaveform.Controls.Add(m_Block);
                 m_AudioBlock.Location = new Point(5,5);
