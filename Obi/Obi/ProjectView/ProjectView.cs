@@ -3927,7 +3927,8 @@ for (int j = 0;
                 if (section != null)
                 {
                     mContentView.RemoveBlocksInStrip(section);
-                    mContentView.CreateStripForAddedSectionNode(section, true);
+                    
+                    mContentView.CreateBlocksInStrip();
                     if (previousSelection != null && previousSelection.Control is ContentView) Selection = new NodeSelection(previousSelection.Node, previousSelection.Control);
                 }
             }
