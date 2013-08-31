@@ -764,7 +764,7 @@ namespace Obi.Dialogs
                 mSettings.OpenLastProject = m_CheckBoxListView.Items[0].Checked;
                 mSettings.AutoSave_RecordingEnd = m_CheckBoxListView.Items[1].Checked;
                 mSettings.OpenBookmarkNodeOnReopeningProject = m_CheckBoxListView.Items[2].Checked;
-                mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[3].Checked;
+                mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[9].Checked; // true only if waveform is shown in content view
                 mSettings.OptimizeMemory = m_CheckBoxListView.Items[4].Checked;
                 mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = m_CheckBoxListView.Items[5].Checked;
                 mSettings.Project_EnableFreeDiskSpaceCheck= m_CheckBoxListView.Items[6].Checked;
