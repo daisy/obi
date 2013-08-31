@@ -112,6 +112,7 @@ namespace Obi.ProjectView
                     if (mBlock != null && Width > 0 && Height > 0)
                     {
                         BackgroundWorker worker = new BackgroundWorker();
+                        if (!mBlock.ShowWaveform) return worker;
                         worker.WorkerReportsProgress = false;
                         worker.WorkerSupportsCancellation = false;
                         worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)

@@ -2364,4 +2364,7 @@ Error text: {1}</value>
   <data name="KeyS_PreviousPhrase" xml:space="preserve">
     <value>Render Previous Phrase</value>
   </data>
+  <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
+    <value>Show waveforms in content view</value>
+  </data>
 </root>
