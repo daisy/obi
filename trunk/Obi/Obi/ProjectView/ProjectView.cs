@@ -3918,7 +3918,26 @@ for (int j = 0;
 
             }
 
-        
+        public void RecreateStrip()
+        {
+            try
+            {
+                SectionNode section = mContentView.ActiveStrip != null ? mContentView.ActiveStrip.Node : null;
+                NodeSelection previousSelection = Selection != null && Selection is NodeSelection ? Selection : null;
+                if (section != null)
+                {
+                    mContentView.RemoveBlocksInStrip(section);
+                    mContentView.CreateStripForAddedSectionNode(section, true);
+                    if (previousSelection != null && previousSelection.Control is ContentView) Selection = new NodeSelection(previousSelection.Node, previousSelection.Control);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                WriteToLogFile(ex.ToString());
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
 
         //@phraseLimit
         public void ChangeVisibilityProcessState ( bool active )
