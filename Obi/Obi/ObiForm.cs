@@ -2262,6 +2262,7 @@ namespace Obi
             {
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause();
                 bool isLeftAlignPhrasesInContentView = mSettings.LeftAlignPhrasesInContentView;
+                bool showWaveform = mSettings.Project_ShowWaveformInContentView;
                 Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation,
                                                                     mProjectView.TransportBar, m_DefaultSettings);
                 prefs.ShowDialog();
@@ -2272,6 +2273,10 @@ namespace Obi
                 mProjectView.TransportBar.ResetFastPlayForPreferencesChange();
                 if (isLeftAlignPhrasesInContentView != mSettings.LeftAlignPhrasesInContentView) UpdateZoomFactor();
                 mSession.EnableFreeDiskSpaceCheck = mSettings.Project_EnableFreeDiskSpaceCheck;
+                if (showWaveform != mSettings.Project_ShowWaveformInContentView)
+                {
+                    mProjectView.RecreateStrip();
+                }
             }
 
             private void mTools_ExportAsDAISYMenuItem_Click(object sender, EventArgs e)

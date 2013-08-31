@@ -790,7 +790,8 @@ namespace Obi.ProjectView
         public void DisableScrolling () { mEnableScrolling = false; }
 
         // Ensure that the playback cursor is visible given its position in the waveform.
-        private void EnsureCursorVisible ( int x )
+        
+ void EnsureCursorVisible ( int x )
             {
             /*int x_cursor = x;
             for (Control parent = mPlaybackBlock.Parent; parent != mStripsPanel; parent = parent.Parent)
