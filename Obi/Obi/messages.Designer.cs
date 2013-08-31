@@ -4561,6 +4561,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show waveforms in content view.
+        /// </summary>
+        internal static string Project_ShowWaveformsInContentView {
+            get {
+                return ResourceManager.GetString("Project_ShowWaveformsInContentView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto save to backup when recording ends.
         /// </summary>
         internal static string ProjectTab_AutoSaveWhenRecordingEnds {

@@ -86,6 +86,7 @@ namespace Obi
         public bool RecordDirectly;
         public bool LeftAlignPhrasesInContentView;
         public bool OptimizeMemory;
+        public bool Project_ShowWaveformInContentView;
         public string Font;
         public decimal DefaultGap;
         public decimal DefaultLeadingSilence;
@@ -169,6 +170,7 @@ namespace Obi
             settings.RecordDirectly = false;
             settings.LeftAlignPhrasesInContentView = true;
             settings.OptimizeMemory = true;
+            settings.Project_ShowWaveformInContentView = true;
             settings.Font = "Times New Roman";
             settings.DefaultGap = 300;
             settings.DefaultLeadingSilence = 50;

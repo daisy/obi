@@ -13,6 +13,7 @@ namespace Obi.ProjectView
         private bool mShiftKeyPressed;  // track the shift key
         private bool m_IsAudioScaleIndependentOfStrip  = false;//@zoomwaveform
         private float m_AudioScaleIndependentOfStrip = -1.0f;//@zoomwaveform
+        private bool m_ShowWaveform = true;
 
         public const int NORMAL_PRIORITY = 1;
         public const int STRIP_SELECTED_PRIORITY = 2;
@@ -25,22 +26,24 @@ namespace Obi.ProjectView
         /// <summary>
         /// Create a new audio block for a phrase node in a strip.
         /// </summary>
-        public AudioBlock(PhraseNode node, Strip strip)
+        public AudioBlock(PhraseNode node, Strip strip, bool showWaveform)
             : base(node, strip)
         {
             InitializeComponent();
-            
+            m_ShowWaveform = showWaveform;
             SetWaveform(Node as PhraseNode);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
             mShiftKeyPressed = false;
         }
 
         //@zoomwaveform
-        public AudioBlock(PhraseNode node, Strip strip, bool isAudioScaleIndependentOfStrip): this  (node,strip)
+        public AudioBlock(PhraseNode node, Strip strip, bool isAudioScaleIndependentOfStrip, bool showWaveform): this  (node,strip, showWaveform)
         {
             m_IsAudioScaleIndependentOfStrip = isAudioScaleIndependentOfStrip;
             m_AudioScaleIndependentOfStrip = m_IsAudioScaleIndependentOfStrip ? 0.04f : -1.0f;
         }
+
+        public bool ShowWaveform { get { return m_ShowWaveform; } }
 
         // Audio of the block has changed: update the label and the width to accomodate the new audio.
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
@@ -216,7 +219,7 @@ public void SetWaveformForZoom(PhraseNode node)
             long time = (long)((PhraseNode)Node).Audio.Duration.AsMilliseconds;
             // originally, 1 second should has width of 10 pixels
             //int w =  time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale);//@singleSection: original
-            int w = time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale * 1.2f);//@singleSection: updated
+            int w = time == 0.0 || !m_ShowWaveform? LabelFullWidth : (int)Math.Round(time * AudioScale * 1.2f);//@singleSection: updated
             return w;
         }
 

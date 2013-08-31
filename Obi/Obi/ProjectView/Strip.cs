@@ -455,7 +455,7 @@ namespace Obi.ProjectView
                 //Console.WriteLine ( "Offset of strip at 0 blocks is " + m_OffsetForFirstPhrase );
                 }
 
-            Block block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this ) : new Block ( node, this );
+            Block block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this, mContentView.Settings.Project_ShowWaveformInContentView ) : new Block ( node, this );
             if (mBlockLayout.Controls.Count <= 5 && mBlockLayout.Width < mContentView.Width - 50) WrapContents = false; // to make more than 3 phrases visible in merge with empty section.
             mBlockLayout.Controls.Add ( block );
             //@singleSection: following 2 lines replaced
@@ -1443,7 +1443,7 @@ namespace Obi.ProjectView
                 m_BackgroundBlockLayout.Controls.Add ( cursor );
                 m_BackgroundBlockLayout.Controls.SetChildIndex ( cursor, index );
                 }
-            Block block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this ) : new Block ( node, this );
+            Block block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this, mContentView.Settings.Project_ShowWaveformInContentView ) : new Block ( node, this );
             m_BackgroundBlockLayout.Controls.Add ( block );
             //@singleSection: following 2 lines replaced
             //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
