@@ -35,7 +35,7 @@ namespace Obi.Dialogs
         private double m_DefaultGap = 300.0;
         private double m_DefaultLeadingSilence = 50.0;
         private double m_DefaultThreshold = 280.0;
-
+        private bool m_PrevShowContentViewVal = true;
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
@@ -755,6 +755,14 @@ namespace Obi.Dialogs
                     m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
                
             }
+            else if (mTab.SelectedTab == mProjectTab)
+            {
+
+                if (m_CheckBoxListView.Items[9].Checked && !m_PrevShowContentViewVal)
+                {
+                    m_CheckBoxListView.Items[3].Checked = true;
+                }
+            }
         }
         public void UpdateBoolSettings()
         {
@@ -770,6 +778,8 @@ namespace Obi.Dialogs
                 mSettings.Project_EnableFreeDiskSpaceCheck= m_CheckBoxListView.Items[6].Checked;
                 mSettings.Project_SaveProjectWhenRecordingEnds= m_CheckBoxListView.Items[7].Checked;
                 mSettings.Project_CheckForUpdates = m_CheckBoxListView.Items[8].Checked;
+
+                m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
                 mSettings.Project_ShowWaveformInContentView = m_CheckBoxListView.Items[9].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
