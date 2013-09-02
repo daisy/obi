@@ -3929,7 +3929,11 @@ for (int j = 0;
                     mContentView.RemoveBlocksInStrip(section);
                     
                     mContentView.CreateBlocksInStrip();
-                    if (previousSelection != null && previousSelection.Control is ContentView) Selection = new NodeSelection(previousSelection.Node, previousSelection.Control);
+                    if (previousSelection != null && previousSelection.Control is ContentView)
+                    {
+                        if (previousSelection.Node is SectionNode && ((SectionNode)previousSelection.Node).PhraseChildCount > 0) Selection = new NodeSelection ( ((SectionNode) previousSelection.Node).PhraseChild(0) , previousSelection.Control);
+                        Selection = new NodeSelection(previousSelection.Node, previousSelection.Control);
+                    }
                 }
             }
             catch (System.Exception ex)
