@@ -49,7 +49,7 @@ namespace Obi
 
         //Zoom Paenl Shortcuts        
         public KeyboardShortcut ZoomPanel_Close = new KeyboardShortcut(Keys.Alt | Keys.C, "KeyS_CloseZoomPanel");
-        public KeyboardShortcut ZoomPanel_Reset = new KeyboardShortcut(Keys.Alt | Keys.R, "KeyS_ResetZoomPanel");
+        public KeyboardShortcut ZoomPanel_Reset = new KeyboardShortcut(Keys.Alt | Keys.D0, "KeyS_ResetZoomPanel");
         public KeyboardShortcut ZoomPanel_ZoomIn = new KeyboardShortcut(Keys.Alt | Keys.Oemplus, "KeyS_ZoomInWaveform");
         public KeyboardShortcut ZoomPanel_ZoomOut = new KeyboardShortcut(Keys.Alt | Keys.OemMinus, "KeyS_ZoomOutWaveform");
         public KeyboardShortcut ZoomPanel_ZoomSelection = new KeyboardShortcut(Keys.Alt | Keys.S, "KeyS_ZoomSelectedWaveform");
