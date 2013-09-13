@@ -2658,6 +2658,10 @@ namespace Obi
             /// </summary>
             public void Status(string message)
             {
+                if(message.Contains("\n"))
+                {
+                 message= message.Replace("\n",String.Empty);
+                }
                 if (IsStatusBarEnabled) mStatusLabel.Text = message;
             }
 
@@ -3267,7 +3271,7 @@ namespace Obi
                 if (mPeakMeter == null)
                 {
                     mPeakMeter = new Obi.Audio.PeakMeterForm();
-                    if (mSettings.PeakmeterSize.Width == 0 || mSettings.PeakmeterSize.Height == 0)
+                    if (mSettings.PeakmeterSize.Width == 0 || mSettings.PeakmeterSize.Height == 0 || mSettings.PeakmeterSize.Height < mSettings.GraphicalPeakMeterContolSize.Height)
                     {
                         mPeakMeter.Size = new Size(170, 640);
                         mPeakMeter.PeakMeterInit();
