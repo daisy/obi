@@ -164,7 +164,7 @@ namespace Obi.ProjectView
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped && !m_IsProjectEmpty && !mView.IsContentViewScrollActive; } }
         public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring  ||  (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing 
-            && mCurrentPlaylist.PlaybackRate == 0)) &&  mView.IsPhraseCountWithinLimit && !mView.IsContentViewScrollActive; } } // @phraseLimit
+            && mCurrentPlaylist.PlaybackRate == 0)) &&  mView.IsPhraseCountWithinLimit && !mView.IsContentViewScrollActive && !ZoomWaveform.IsZoomWaveformActive; } } // @phraseLimit
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused   &&   !mView.IsContentViewScrollActive; } }
         public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted    &&   (mState != State.Playing  ||   (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) )&& !mView.IsContentViewScrollActive; } }
         public bool CanRewind { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
@@ -1517,7 +1517,10 @@ namespace Obi.ProjectView
                     if (mState == State.Stopped)
                     {
                     mView.SetPlaybackPhraseAndTime ( null, 0.0 );
+                    if (ZoomWaveform.IsZoomWaveformActive == false)
+                    {
                         mView.Selection = null;
+                    }
                     }
                     else
                     {
