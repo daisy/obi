@@ -5536,7 +5536,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private bool ShowZoomWaveformPanel()
         {
-            if (mProjectView != null && mProjectView.Selection != null)
+            if (mProjectView != null && mProjectView.Selection != null && !mProjectView.TransportBar.IsRecorderActive)
             {
                 if (mProjectView.TransportBar.IsPlayerActive)
                 {
