@@ -41,7 +41,7 @@
             this.btnZoomIntoolStrip = new System.Windows.Forms.ToolStripButton();
             this.btnZoomOuttoolStrip = new System.Windows.Forms.ToolStripButton();
             this.btnResettoolStrip = new System.Windows.Forms.ToolStripButton();
-            this.mbtnZoomSelectiontoolStrip = new System.Windows.Forms.ToolStripButton();
+            this.btnZoomSelectiontoolStrip = new System.Windows.Forms.ToolStripButton();
             this.toolStripZoomPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,7 +86,7 @@
             this.btnZoomIntoolStrip,
             this.btnZoomOuttoolStrip,
             this.btnResettoolStrip,
-            this.mbtnZoomSelectiontoolStrip});
+            this.btnZoomSelectiontoolStrip});
             this.toolStripZoomPanel.Location = new System.Drawing.Point(0, 0);
             this.toolStripZoomPanel.MinimumSize = new System.Drawing.Size(617, 28);
             this.toolStripZoomPanel.Name = "toolStripZoomPanel";
@@ -150,21 +150,21 @@
             this.btnResettoolStrip.Text = "Reset";
             this.btnResettoolStrip.Click += new System.EventHandler(this.btnResettoolStrip_Click);
             // 
-            // mbtnZoomSelectiontoolStrip
+            // btnZoomSelectiontoolStrip
             // 
-            this.mbtnZoomSelectiontoolStrip.Image = ((System.Drawing.Image)(resources.GetObject("mbtnZoomSelectiontoolStrip.Image")));
-            this.mbtnZoomSelectiontoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.mbtnZoomSelectiontoolStrip.Name = "mbtnZoomSelectiontoolStrip";
-            this.mbtnZoomSelectiontoolStrip.Size = new System.Drawing.Size(110, 25);
-            this.mbtnZoomSelectiontoolStrip.Text = "Zoom Selection";
-            this.mbtnZoomSelectiontoolStrip.Click += new System.EventHandler(this.mbtnZoomSelectiontoolStrip_Click);
+            this.btnZoomSelectiontoolStrip.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomSelectiontoolStrip.Image")));
+            this.btnZoomSelectiontoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnZoomSelectiontoolStrip.Name = "btnZoomSelectiontoolStrip";
+            this.btnZoomSelectiontoolStrip.Size = new System.Drawing.Size(110, 25);
+            this.btnZoomSelectiontoolStrip.Text = "Zoom Selection";
+            this.btnZoomSelectiontoolStrip.Click += new System.EventHandler(this.mbtnZoomSelectiontoolStrip_Click);
             // 
             // ZoomWaveform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Controls.Add(this.toolStripZoomPanel);
             this.Controls.Add(this.btntxtZoomSelected);
             this.Controls.Add(this.txtZoomSelected);
@@ -191,7 +191,7 @@
         private System.Windows.Forms.ToolStripButton btnZoomIntoolStrip;
         private System.Windows.Forms.ToolStripButton btnZoomOuttoolStrip;
         private System.Windows.Forms.ToolStripButton btnResettoolStrip;
-        private System.Windows.Forms.ToolStripButton mbtnZoomSelectiontoolStrip;
+        private System.Windows.Forms.ToolStripButton btnZoomSelectiontoolStrip;
 
     }
 }

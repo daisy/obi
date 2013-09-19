@@ -164,7 +164,7 @@ namespace Obi.ProjectView
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped && !m_IsProjectEmpty && !mView.IsContentViewScrollActive; } }
         public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring  ||  (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing 
-            && mCurrentPlaylist.PlaybackRate == 0)) &&  mView.IsPhraseCountWithinLimit && !mView.IsContentViewScrollActive && !ZoomWaveform.IsZoomWaveformActive; } } // @phraseLimit
+            && mCurrentPlaylist.PlaybackRate == 0)) &&  mView.IsPhraseCountWithinLimit && !mView.IsContentViewScrollActive && !mView.IsZoomWaveformActive; } } // @phraseLimit
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused   &&   !mView.IsContentViewScrollActive; } }
         public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted    &&   (mState != State.Playing  ||   (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) )&& !mView.IsContentViewScrollActive; } }
         public bool CanRewind { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
@@ -1517,7 +1517,7 @@ namespace Obi.ProjectView
                     if (mState == State.Stopped)
                     {
                     mView.SetPlaybackPhraseAndTime ( null, 0.0 );
-                    if (ZoomWaveform.IsZoomWaveformActive == false)
+                    if (mView.IsZoomWaveformActive == false)
                     {
                         mView.Selection = null;
                     }
@@ -1571,7 +1571,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Record()
         {
-            if (mView.Selection is TextSelection || IsMetadataSelected)
+            if (mView.Selection is TextSelection || IsMetadataSelected || mView.IsZoomWaveformActive)
                 return;
 
             if (mView.Presentation != null&& mState != State.Playing
@@ -2768,6 +2768,10 @@ namespace Obi.ProjectView
         {
             if (mView.ObiForm.Settings.Recording_PreviewBeforeStarting && mView.ObiForm.Settings.AllowOverwrite
                 && m_PreviewBeforeRecordingWorker != null && m_PreviewBeforeRecordingWorker.IsBusy)
+            {
+                return;
+            }
+            if (mView.IsZoomWaveformActive)
             {
                 return;
             }

@@ -3826,6 +3826,24 @@ for (int j = 0;
                 }
             }
 
+            /// <summary>
+            /// To check whether zoom panel is active or not.
+            /// </summary>
+        public bool IsZoomWaveformActive
+        {
+            get
+            {
+                if (mContentView.IsZoomWaveformActive == false)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
         /// <summary>
         /// Update the context menus of the view.
         /// </summary>
