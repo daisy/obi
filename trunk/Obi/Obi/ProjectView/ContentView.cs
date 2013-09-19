@@ -5549,11 +5549,26 @@ Block lastBlock = ActiveStrip.LastBlock ;
                     m_ZoomWaveformPanel.Location = new Point(0, 0);
                     m_ZoomWaveformPanel.Show();
                     m_ZoomWaveformPanel.BringToFront();
-                    m_ZoomWaveformPanel.Focus();
+                 //   mProjectView.TransportBar.Hide();
+                    m_ZoomWaveformPanel.Focus();                    
                     return true;
                 }
             }
             return false;
+        }
+        public bool IsZoomWaveformActive
+        {
+            get
+            {
+                if (m_ZoomWaveformPanel == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
         }
 
         //@zoomwaveform

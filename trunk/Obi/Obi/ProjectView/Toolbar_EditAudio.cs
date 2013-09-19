@@ -14,15 +14,10 @@ namespace Obi.ProjectView
         private Strip m_Strip;
         private EmptyNode m_Node;
         private ProjectView m_ProjectView;
-        private const int mCutEnable = 1;
-        private const int mCopyEnable = 2;
-        private const int mPasteEnable = 3;
-        private const int mSplitEnable = 4;
-        private const int mDeleteEnable = 5;
-        private const int mMergeEnable = 6;
-        private const int mPhraseDetectEnable = 7;
         private bool Dragging = false;
         private Point DragStart = Point.Empty;
+        private KeyboardShortcuts_Settings keyboardShortcuts;
+      
 
 
 
@@ -47,6 +42,15 @@ namespace Obi.ProjectView
             this.toolStrip1.MinimumSize = this.Size;
             this.toolStrip1.MaximumSize = this.Size;
             this.toolStrip1.Size = this.Size;
+
+          //  mInitialSizeOfPanel = this.Size;
+            keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
+          //  this.mbtnCopytoolStrip.ToolTipText= keyboardShortcuts.KeyboardShortcutsDescription["Copy"].Value.ToString();
+
+            //this.mbtnCopytoolStrip.ToolTipText = "Copy (Cntrl+C)";
+            //this.mbtnCuttoolStrip.ToolTipText = "Copy (Cntrl+X)";
+            //this.mbtnDeletetoolStrip.ToolTipText="Delete (Del)";
+            //this.
         }
 
         private void ProjectViewSelectionChanged(object sender, EventArgs e)
@@ -68,7 +72,31 @@ namespace Obi.ProjectView
 
        
 
-
+        public void SetEditPanelFontSize(Size thisSize)
+        {
+            if (m_ContentView.ZoomFactor > 1.1 && m_ContentView.ZoomFactor < 4)
+            {
+                float tempZoomfactor;
+                if (m_ContentView.ZoomFactor > 1.5)
+                {
+                    tempZoomfactor = 1.46f;
+                }
+                else
+                {
+                    tempZoomfactor = m_ContentView.ZoomFactor;
+                }
+              //  this.toolStrip1.Size = new Size((int)(this.toolStrip1.Size.Width + (this.toolStrip1.Size.Width * (tempZoomfactor - 1))), (int)(this.toolStrip1.Size.Height + (this.toolStrip1.Size.Height * (tempZoomfactor - 1))));
+              //  this.toolStrip1.Size = thisSize;
+                this.toolStrip1.MinimumSize = thisSize;
+                this.toolStrip1.Font = new Font(this.toolStrip1.Font.Name, (this.toolStrip1.Font.Size + (float)3.0), FontStyle.Bold);
+            }
+            else
+            {
+                this.toolStrip1.MinimumSize = new Size(574, 25);
+                this.toolStrip1.Size = new Size(574, 25);
+                this.toolStrip1.Font = new Font(this.toolStrip1.Font.Name, (this.toolStrip1.Font.Size - (float)3.0), FontStyle.Regular);
+            }
+        }
 
 
         private void mbtnCuttoolStrip_Click(object sender, EventArgs e)
@@ -146,6 +174,11 @@ namespace Obi.ProjectView
         {
             Dragging = false;
             toolStrip1.Capture = false;
+        }
+
+        private void toolStrip1_MouseHover(object sender, EventArgs e)
+        {
+            
         }
     }
 }
