@@ -144,13 +144,13 @@ namespace Obi.ProjectView
             {
                 this.Height = m_ContentView.Height;
             }
-            if (m_ZoomfactorFlag == false || m_ContentView.ZoomFactor > 1)
+            if (m_ZoomfactorFlag == false || m_ContentView.ZoomFactor > 1.1)
             {
                 this.AutoScroll = true;
               //  this.AutoScrollMinSize = new Size(this.Width, this.Height + 55);
                
             }
-            else if (m_ContentView.ZoomFactor <= 1 && m_ZoomfactorFlag == true && (m_ProjectView.Height >= m_PreviousHeight))
+            else if (m_ContentView.ZoomFactor <= 1.1 && m_ZoomfactorFlag == true && (m_ProjectView.Height >= m_PreviousHeight))
             {
                 this.AutoScroll = false;
                 m_ZoomfactorFlag = false;
@@ -606,8 +606,8 @@ namespace Obi.ProjectView
                 {
                     if (flag == false)
                     {
-                     
 
+                                             
                         toolStripZoomPanel.Size = new Size((int)(toolStripZoomPanel.Size.Width + (toolStripZoomPanel.Size.Width * (value - 1))), (int)(toolStripZoomPanel.Size.Height + (toolStripZoomPanel.Size.Height * (value - 1))));
                         m_Edit.Size = new Size((int)(m_EditSize.Width + (m_EditSize.Width * (value - 1))), (int)(m_EditSize.Height + (m_EditSize.Height * (value - 1))));
                         btntxtZoomSelected.Size = new Size((int)(btntxtZoomSelected.Size.Width + (btntxtZoomSelected.Size.Width * (value - 1))), (int)(btntxtZoomSelected.Size.Height + (btntxtZoomSelected.Size.Height * (value - 1))));
@@ -665,10 +665,10 @@ namespace Obi.ProjectView
                         
                       //  panelZooomWaveform.Height = this.Height - (toolStripZoomPanel.Height + btntxtZoomSelected.Height + m_Edit.Height );
                      //   this.AutoScrollMinSize = new Size(this.Width, this.Height + 15);
-
+                        flag = false;
 
                     }
-                    flag = false;
+                    
                    
                     
                 }
