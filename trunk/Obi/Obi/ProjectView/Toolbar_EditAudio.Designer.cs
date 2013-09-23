@@ -63,6 +63,7 @@ namespace Obi.ProjectView
             this.toolStrip1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseUp);
             this.toolStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseDown);
             this.toolStrip1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseMove);
+            this.toolStrip1.MouseHover += new System.EventHandler(this.toolStrip1_MouseHover);
             // 
             // mbtnCuttoolStrip
             // 
@@ -132,6 +133,7 @@ namespace Obi.ProjectView
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.toolStrip1);
+            this.MinimumSize = new System.Drawing.Size(583, 28);
             this.Name = "Toolbar_EditAudio";
             this.Size = new System.Drawing.Size(583, 28);
             this.toolStrip1.ResumeLayout(false);
