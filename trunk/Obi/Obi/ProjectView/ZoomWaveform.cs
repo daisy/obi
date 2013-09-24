@@ -298,7 +298,8 @@ namespace Obi.ProjectView
                         panelZooomWaveform.Height = this.Height - (toolStripZoomPanel.Height + btntxtZoomSelected.Height + m_Edit.Height + 15);
                         btntxtZoomSelected.Size = new Size((int)(btntxtZoomSelected.Size.Width + (btntxtZoomSelected.Size.Width * (tempZoomfactor - 1))), (int)(btntxtZoomSelected.Size.Height + (btntxtZoomSelected.Size.Height * (tempZoomfactor - 1))));
                         toolStripZoomPanel.Size = new Size((int)(toolStripZoomPanel.Size.Width + (toolStripZoomPanel.Size.Width * (tempZoomfactor - 1))), (int)(toolStripZoomPanel.Size.Height + (toolStripZoomPanel.Size.Height * (tempZoomfactor - 1))));
-                        m_Edit.Size = new Size((int)(m_Edit.Size.Width + (m_Edit.Size.Width * (tempZoomfactor - 1.4))), (int)(m_Edit.Size.Height + (m_Edit.Size.Height * (tempZoomfactor - 1.4))));
+                        //m_Edit.Size = new Size((int)(m_Edit.Size.Width + (m_Edit.Size.Width * (tempZoomfactor - 1.4))), (int)(m_Edit.Size.Height + (m_Edit.Size.Height * (tempZoomfactor - 1.4))));
+                        m_Edit.Size = new Size((int)(m_Edit.Size.Width + (m_Edit.Size.Width * (tempZoomfactor - 1.4))), (int)(m_Edit.Size.Height));
                         //m_Edit.Size = toolStripZoomPanel.Size;
                        // panelZooomWaveform.Size = new Size((int)(panelZooomWaveform.Size.Width), (int)(panelZooomWaveform.Size.Height + (panelZooomWaveform.Size.Height * (tempZoomfactor - 1))));
                         //    flowLayoutPanel1.Size = new Size((int)(flowLayoutPanel1.Size.Width + (flowLayoutPanel1.Size.Width * (tempZoomfactor - 1))), (int)(flowLayoutPanel1.Size.Height + (flowLayoutPanel1.Size.Height * (tempZoomfactor - 1))));
@@ -609,7 +610,8 @@ namespace Obi.ProjectView
 
                                              
                         toolStripZoomPanel.Size = new Size((int)(toolStripZoomPanel.Size.Width + (toolStripZoomPanel.Size.Width * (value - 1))), (int)(toolStripZoomPanel.Size.Height + (toolStripZoomPanel.Size.Height * (value - 1))));
-                        m_Edit.Size = new Size((int)(m_EditSize.Width + (m_EditSize.Width * (value - 1))), (int)(m_EditSize.Height + (m_EditSize.Height * (value - 1))));
+                       // m_Edit.Size = new Size((int)(m_EditSize.Width + (m_EditSize.Width * (value - 1))), (int)(m_EditSize.Height + (m_EditSize.Height * (value - 1))));
+                        m_Edit.Size = new Size((int)(m_Edit.Size.Width + (m_Edit.Size.Width * (value - 1))), (int)(m_Edit.Size.Height));
                         btntxtZoomSelected.Size = new Size((int)(btntxtZoomSelected.Size.Width + (btntxtZoomSelected.Size.Width * (value - 1))), (int)(btntxtZoomSelected.Size.Height + (btntxtZoomSelected.Size.Height * (value - 1))));
                        // panelZooomWaveform.Height = this.Height - (toolStripZoomPanel.Height + btntxtZoomSelected.Height + m_Edit.Height + 15);
                     //    flowLayoutPanel1.Size = new Size((int)(flowLayoutPanel1.Size.Width + (flowLayoutPanel1.Size.Width * (value - 1))), (int)(flowLayoutPanel1.Size.Height + (flowLayoutPanel1.Size.Height * (value - 1))));
