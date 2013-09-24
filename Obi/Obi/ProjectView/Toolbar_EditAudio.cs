@@ -17,6 +17,7 @@ namespace Obi.ProjectView
         private bool Dragging = false;
         private Point DragStart = Point.Empty;
         private KeyboardShortcuts_Settings keyboardShortcuts;
+        private bool IsSelection = false;
       
 
 
@@ -64,13 +65,13 @@ namespace Obi.ProjectView
             mbtnCuttoolStrip.Enabled = (m_ContentView.CanRemoveAudio || m_ContentView.CanRemoveBlock || m_ContentView.CanRemoveStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
             mbtnCopytoolStrip.Enabled = (m_ContentView.CanCopyAudio || m_ContentView.CanCopyBlock || m_ContentView.CanCopyStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
             mbtnPastetoolStrip.Enabled = m_ProjectView.CanPaste;
-     //       mbtnSplittoolStrip.Enabled = !m_ProjectView.TransportBar.IsRecorderActive;
+            mbtnSplittoolStrip.Enabled =  m_ProjectView.CanSplitPhrase;
             mbtnDeletetoolStrip.Enabled = (m_ContentView.CanRemoveAudio || m_ContentView.CanRemoveBlock || m_ContentView.CanRemoveStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
             mbtnMergetoolStrip.Enabled = m_ContentView.CanMergeBlockWithNext;
             
         }
 
-       
+
 
         public void SetEditPanelFontSize(Size thisSize)
         {
