@@ -76,7 +76,7 @@ namespace Obi.ProjectView
            // Control c = m_AudioBlock.AudioCursorControl;
             int XVal = m_AudioBlock.UpdateCursorTime(time);
            
-            if (XVal >= (m_TempAudioCursorPos + panelZooomWaveform.Width))
+            if (XVal >= (m_TempAudioCursorPos + m_ContentView.Width))
             {
                 panelZooomWaveform.AutoScrollPosition = new Point(XVal, 5); 
                 m_TempAudioCursorPos = XVal;
