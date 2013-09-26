@@ -186,6 +186,8 @@ namespace Obi.ProjectView
                 if (panelZooomWaveform.Controls.Contains(m_Block))
                 {
                     panelZooomWaveform.Controls.Remove(m_Block);
+                    m_Block.Dispose();
+                    m_Block = null;
                 }
                m_Block = new AudioBlock((PhraseNode)m_Node, m_Strip,true, true);
                m_AudioBlock = (AudioBlock)m_Block;              
@@ -697,7 +699,7 @@ namespace Obi.ProjectView
                 m_ContentView.RemovePanel();
 
                 m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
-               
+                this.Dispose();
            }
        
 
