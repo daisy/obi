@@ -164,7 +164,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.toolStripZoomPanel);
             this.Controls.Add(this.btntxtZoomSelected);
             this.Controls.Add(this.txtZoomSelected);
