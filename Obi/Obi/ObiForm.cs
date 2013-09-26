@@ -2658,10 +2658,6 @@ namespace Obi
             /// </summary>
             public void Status(string message)
             {
-                if(message.Contains("\n"))
-                {
-                 message= message.Replace("\n",String.Empty);
-                }
                 if (IsStatusBarEnabled) mStatusLabel.Text = message;
             }
 
@@ -3427,6 +3423,16 @@ namespace Obi
                            (mProjectView.Selection != null
                                 ? mProjectView.Selection.ToString()
                                 : Localizer.Message("StatusBar_NothingSelected")) + limitedBlocksShownMsg);
+                string temp = (strFineNavigation + strRecordingInfo +
+                           (mProjectView.Selection != null
+                                ? mProjectView.Selection.ToString()
+                                : Localizer.Message("StatusBar_NothingSelected")) + limitedBlocksShownMsg);
+                //string let = mProjectView.Selection.ToString();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("This is the string????????{0}",temp);
             }
 
             // Update all of Obi.
