@@ -35,6 +35,7 @@ namespace Obi.ProjectView
         private int m_PreviousHeight = 0;
         private int m_TempAudioCursorPos = 0;
         private bool m_ZoomfactorFlag = false;
+        private int XVal = 0;
         
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -74,8 +75,8 @@ namespace Obi.ProjectView
         {
             if( m_AudioBlock != null ) m_AudioBlock.UpdateCursorTime (time) ;
            // Control c = m_AudioBlock.AudioCursorControl;
-            int XVal = m_AudioBlock.UpdateCursorTime(time);
-           
+             XVal = m_AudioBlock.UpdateCursorTime(time);          
+            
             if (XVal >= (m_TempAudioCursorPos + m_ContentView.Width))
             {
                 panelZooomWaveform.AutoScrollPosition = new Point(XVal, 5); 
@@ -98,7 +99,15 @@ namespace Obi.ProjectView
                 return m_Node;
             }
         }
-        
+        private void TransportBar_StateChanged(object sender, AudioPlayer.StateChangedEventArgs e)
+        {
+            if (m_ProjectView.TransportBar.IsStopped)
+            {
+                XVal = 0;
+                m_TempAudioCursorPos = XVal;
+                panelZooomWaveform.AutoScrollPosition = new Point(XVal, 5); 
+            }
+        }
         private void ProjectViewSelectionChanged ( object sender, EventArgs e )
         {
             if (m_ProjectView.Selection != null && m_ProjectView.GetSelectedPhraseSection != null)
@@ -245,6 +254,7 @@ namespace Obi.ProjectView
             m_ProjectView = mProjectView;
             m_ProjectView.SelectionChanged += new EventHandler(ProjectViewSelectionChanged);
             this.LostFocus += new EventHandler(ZoomPanelLostFocus);
+            m_ProjectView.TransportBar.StateChanged += new AudioPlayer.StateChangedHandler(TransportBar_StateChanged);
 
             keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
             //panelZooomWaveform.LostFocus+=new EventHandler(ZoomPanelLostFocus);
@@ -411,6 +421,8 @@ namespace Obi.ProjectView
          //   panelZooomWaveform.ScrollControlIntoView(m_AudioBlock);     
 
         }
+
+
 
        void ZoomWaveform_MouseWheel(object sender, MouseEventArgs e)
        {
