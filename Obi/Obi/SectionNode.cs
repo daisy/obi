@@ -305,9 +305,10 @@ namespace Obi
         /// </summary>
         public override string ToString()
         {
+            string tempLabel = Label.Replace("\n", string.Empty);
             return string.Format(Localizer.Message("section_to_string"),
                 Used ? "" : Localizer.Message("unused"),
-                Label,
+                tempLabel,
                 Duration == 0.0 ? Localizer.Message("empty") : string.Format(Localizer.Message("duration_s_ms"), Duration / 1000.0),
                 string.Format(Localizer.Message("section_level_to_string"), IsRooted ? Level : 0),
                 PhraseChildCount == 0 ? "" :
