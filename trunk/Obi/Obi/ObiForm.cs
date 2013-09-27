@@ -3498,7 +3498,7 @@ namespace Obi
                                                                         : mProjectView.TransportBar.PlaybackPhrase.
                                                                               ToString()) + "--" +
                                                                    mProjectView.TransportBar.PlaybackPhrase.ParentAs
-                                                                       <SectionNode>().Label
+                                                                       <SectionNode>().Label.Replace("\n",string.Empty)
                                                                  : (mProjectView.TransportBar.IsRecorderActive &&
                                                                     mProjectView.TransportBar.RecordingPhrase != null
                                                                         ? mProjectView.TransportBar.RecordingPhrase.
