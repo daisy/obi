@@ -2339,7 +2339,7 @@ Error text: {1}</value>
   </data>
   <data name="StatusForMergeSection" xml:space="preserve">
     <value>Showing section {0} to {1}. Please select sections to merge.</value>
-    </data>
+  </data>
   <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
     <value>Show zoom waveform panel</value>
   </data>
@@ -2366,5 +2366,8 @@ Error text: {1}</value>
   </data>
   <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
     <value>Show waveforms in content view</value>
+  </data>
+  <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
+    <value>Always ignore indentation for DAISY export files</value>
   </data>
 </root>
