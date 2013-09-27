@@ -4854,14 +4854,14 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         /// </summary>
         public void UpdateContextMenu ()
             {
-            Context_AddSectionMenuItem.Enabled = mProjectView.CanAddSection;
+            Context_AddSectionMenuItem.Enabled = mProjectView.CanAddSection && !IsZoomWaveformActive;
             Context_InsertSectionMenuItem.Enabled = mProjectView.CanInsertSection;
-            Context_SplitSectionMenuItem.Enabled = CanSplitStrip && !mProjectView.TransportBar.IsRecorderActive;
-            Context_MergeSectionMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+            Context_SplitSectionMenuItem.Enabled = CanSplitStrip && !mProjectView.TransportBar.IsRecorderActive && !IsZoomWaveformActive;
+            Context_MergeSectionMenuItem.Enabled = mProjectView.CanMergeStripWithNext && !IsZoomWaveformActive;
             Context_AddBlankPhraseMenuItem.Enabled = mProjectView.CanAddEmptyBlock && !mProjectView.TransportBar.IsRecorderActive;
             Context_AddEmptyPagesMenuItem.Enabled = mProjectView.CanAddEmptyBlock && !mProjectView.TransportBar.IsRecorderActive;
             Context_ImportAudioFilesMenuItem.Enabled = mProjectView.CanImportPhrases;
-            Context_FineNavigationMenuItem.Enabled = mProjectView.TransportBar.FineNavigationModeForPhrase || mProjectView.TransportBar.CanEnterFineNavigationMode;
+            Context_FineNavigationMenuItem.Enabled = (mProjectView.TransportBar.FineNavigationModeForPhrase || mProjectView.TransportBar.CanEnterFineNavigationMode) && !IsZoomWaveformActive;
             Context_FineNavigationMenuItem.Checked= mProjectView.TransportBar.FineNavigationModeForPhrase;
             Context_SplitPhraseMenuItem.Enabled = mProjectView.CanSplitPhrase && !mProjectView.TransportBar.IsRecorderActive;
             Context_MergePhraseWithNextMenuItem.Enabled = CanMergeBlockWithNext;

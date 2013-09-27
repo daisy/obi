@@ -326,11 +326,11 @@ namespace Obi.ProjectView
         public bool CanAddEmptyBlock { get { return mContentView.Selection != null && IsPhraseCountWithinLimit; } } // @phraseLimit
         public bool CanAddMetadataEntry () { return mPresentation != null; }
         public bool CanAddMetadataEntry ( MetadataEntryDescription d ) { return mMetadataView.CanAdd ( d ); }
-        public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip) && !(Selection is TextSelection) ; } }
+        public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip) && !(Selection is TextSelection) && !IsZoomWaveformActive ; } }
         public bool CanAddSubsection { get { return mTOCView.CanAddSubsection; } }
 
         public bool CanUpdatePhraseDetectionSettingsFromSilencePhrase { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode && Selection.EmptyNodeForSelection.Role_ == EmptyNode.Role.Silence; } }
-        public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.RootNode.Children.Count > 0 && !TransportBar.IsRecorderActive; } }
+        public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.RootNode.Children.Count > 0 && !TransportBar.IsRecorderActive && !IsZoomWaveformActive; } }
         public bool CanApplyPhraseDetection
             {
             get
@@ -446,7 +446,7 @@ namespace Obi.ProjectView
             get
             {
                 EmptyNode node = SelectedNodeAs<EmptyNode>();
-                return Selection != null && node != null && !TransportBar.IsRecorderActive && node is EmptyNode && node.Role_ != EmptyNode.Role.Anchor;
+                return Selection != null && node != null && !TransportBar.IsRecorderActive && node is EmptyNode && node.Role_ != EmptyNode.Role.Anchor && !IsZoomWaveformActive;
             }
         }
 
@@ -458,7 +458,7 @@ namespace Obi.ProjectView
                 //@enable begin node = end node
                 //return mPresentation != null && node != null && !TransportBar.IsRecorderActive && Selection != null && BeginNote != null && node is EmptyNode && (BeginNote != mContentView.EndSpecialNode || BeginNote != node) && node.ParentAs<SectionNode>() == BeginNote.ParentAs<SectionNode>();
                 if (mPresentation == null || node == null || BeginNote == null || !node.IsRooted || !BeginNote.IsRooted) return false;
-                return Selection != null &&  !TransportBar.IsRecorderActive && node is EmptyNode && BeginNote.Index <= node.Index && node.ParentAs<SectionNode>() == BeginNote.ParentAs<SectionNode>();
+                return Selection != null &&  !TransportBar.IsRecorderActive && node is EmptyNode && BeginNote.Index <= node.Index && node.ParentAs<SectionNode>() == BeginNote.ParentAs<SectionNode>() && !IsZoomWaveformActive;
             }
         }
 
@@ -496,7 +496,7 @@ namespace Obi.ProjectView
         public bool CanFocusOnContentView { get { return mPresentation != null && !mContentView.Focused; } }
         public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel && !TransportBar.IsRecorderActive; } }
-        public bool CanInsertSection { get { return (CanInsertStrip || mTOCView.CanInsertSection) && !TransportBar.IsRecorderActive && Presentation != null && Presentation.FirstSection != null && !(Selection is TextSelection); } }
+        public bool CanInsertSection { get { return (CanInsertStrip || mTOCView.CanInsertSection) && !TransportBar.IsRecorderActive && Presentation != null && Presentation.FirstSection != null && !(Selection is TextSelection) && !IsZoomWaveformActive ; } }
         public bool CanInsertStrip { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
         //public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive; } }
         public bool CanNavigateNextPage { get { return mTransportBar.CanNavigateNextPage; } }
@@ -558,7 +558,7 @@ namespace Obi.ProjectView
         public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus; } }
         public bool CanSetTODOStatus { get { return IsBlockSelected || mTransportBar.IsActive; } }
         public bool CanShowOnlySelectedSection { get { return SelectedNodeAs<ObiNode> () != null; } }
-        public bool CanSplitStrip { get { return mContentView.CanSplitStrip && !TransportBar.IsRecorderActive; } }
+        public bool CanSplitStrip { get { return mContentView.CanSplitStrip && !TransportBar.IsRecorderActive && !IsZoomWaveformActive; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
         public bool CanCropPhrase
             {
@@ -1918,7 +1918,7 @@ namespace Obi.ProjectView
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMarkStripUnused { get { return mContentView.CanSetStripUsedStatus && mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mContentView.CanMergeBlockWithNext; } }
-        public bool CanMergePhraseWithFollowingPhrasesInSection { get { return CanMergeBlockWithNext; } }
+        public bool CanMergePhraseWithFollowingPhrasesInSection { get { return CanMergeBlockWithNext && !IsZoomWaveformActive; } }
         public bool CanSplitPhrase { get { return mTransportBar.CanSplitPhrase; } }
 
         public bool IsBlockUsed { get { return mContentView.IsBlockUsed; } }
@@ -1930,7 +1930,7 @@ namespace Obi.ProjectView
                 { 
                 EmptyNode node   =  mContentView.PlaybackBlock != null? mContentView.PlaybackBlock.Node : 
                     Selection != null && Selection.Node is EmptyNode ? (EmptyNode) Selection.Node : null ;
-                return node != null && node.IsRooted && node.Index > 0 && !TransportBar.IsRecorderActive ;
+                return node != null && node.IsRooted && node.Index > 0 && !TransportBar.IsRecorderActive && !IsZoomWaveformActive;
                 }
             }
 
