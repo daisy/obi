@@ -36,6 +36,7 @@ namespace Obi.ProjectView
         private int m_TempAudioCursorPos = 0;
         private bool m_ZoomfactorFlag = false;
         private int XVal = 0;
+        private Obi.ProjectView.TransportBar.State mState;
         
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -101,7 +102,8 @@ namespace Obi.ProjectView
         }
         private void TransportBar_StateChanged(object sender, AudioPlayer.StateChangedEventArgs e)
         {
-            if (m_ProjectView.TransportBar.IsStopped)
+            mState = m_ProjectView.TransportBar.CurrentState;
+            if(mState==Obi.ProjectView.TransportBar.State.Stopped) 
             {
                 XVal = 0;
                 m_TempAudioCursorPos = XVal;
