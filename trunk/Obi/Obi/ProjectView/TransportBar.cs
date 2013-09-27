@@ -169,16 +169,6 @@ namespace Obi.ProjectView
         public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted    &&   (mState != State.Playing  ||   (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) )&& !mView.IsContentViewScrollActive; } }
         public bool CanRewind { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
         public bool CanStop { get { return Enabled && (mState != State.Stopped || mView.Selection != null); } }
-        public bool IsStopped
-        {
-            get
-            {
-                if (mState == State.Stopped)
-                    return true;
-                else
-                    return false;
-            }
-        }
 
 
         public bool CanNavigatePrevPhrase
