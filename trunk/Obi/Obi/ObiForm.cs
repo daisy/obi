@@ -2423,6 +2423,7 @@ namespace Obi
 
                                 DAISY202Export.AddSectionNameToAudioFile = ExportDialogDAISY202.AppendSectionNameToAudioFileName;
                                 DAISY202Export.AudioFileNameCharsLimit = ExportDialogDAISY202.AudioFileNameCharsLimit;
+                                ((Obi.ImportExport.DAISY202Export) DAISY202Export).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                             }
                             //DAISYExport.BitRate_Mp3 = dialog.BitRate;
                             

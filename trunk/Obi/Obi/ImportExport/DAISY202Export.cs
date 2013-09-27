@@ -55,7 +55,15 @@ namespace Obi.ImportExport
             m_AudioFileSectionLevel = audioFileSectionLevel;
             m_FilesList = new List<string>();
             //m_EncodeToMP3 = encodeToMP3;
+            
             }
+
+        private bool m_AlwaysIgnoreIndentation = false;
+        public bool AlwaysIgnoreIndentation
+        {
+            get { return m_AlwaysIgnoreIndentation; }
+            set { m_AlwaysIgnoreIndentation = value; }
+        }
 
         public override void ConfigureAudioFileDelegates()
         {
@@ -583,7 +591,7 @@ namespace Obi.ImportExport
                     }
 
                 writer = new XmlTextWriter ( path, null );
-                writer.Formatting = Formatting.Indented;
+                writer.Formatting = AlwaysIgnoreIndentation?Formatting.None: Formatting.Indented;
                 xmlDoc.Save ( writer );
                 }
             finally
