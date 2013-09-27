@@ -74,17 +74,17 @@ namespace Obi.ProjectView
 
         public void UpdateCursorTime (double time ) 
         {
-            if( m_AudioBlock != null ) m_AudioBlock.UpdateCursorTime (time) ;
-           // Control c = m_AudioBlock.AudioCursorControl;
-             XVal = m_AudioBlock.UpdateCursorTime(time);          
-            
-            if (XVal >= (m_TempAudioCursorPos + m_ContentView.Width))
-            {
-                panelZooomWaveform.AutoScrollPosition = new Point(XVal, 5); 
-                m_TempAudioCursorPos = XVal;
-            }
+            if( m_AudioBlock != null ) m_AudioBlock.UpdateCursorTime (time) ;        
+             XVal = m_AudioBlock.UpdateCursorTime(time);
+
+             if (XVal>=m_ContentView.Width+Math.Abs(m_AudioBlock.Location.X))
+             {
+                 panelZooomWaveform.AutoScrollPosition = new Point(XVal, panelZooomWaveform.AutoScrollPosition.Y);
+             }
             
         }
+
+
 
 
         public ZoomWaveform ZoomWaveformObj
@@ -106,8 +106,8 @@ namespace Obi.ProjectView
             if(mState==Obi.ProjectView.TransportBar.State.Stopped) 
             {
                 XVal = 0;
-                m_TempAudioCursorPos = XVal;
-                panelZooomWaveform.AutoScrollPosition = new Point(XVal, 5); 
+              //  m_TempAudioCursorPos = XVal;
+                panelZooomWaveform.AutoScrollPosition = new Point(XVal, panelZooomWaveform.AutoScrollPosition.Y); 
             }
         }
         private void ProjectViewSelectionChanged ( object sender, EventArgs e )
