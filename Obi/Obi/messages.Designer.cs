@@ -4525,6 +4525,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Always ignore indentation for DAISY export files.
+        /// </summary>
+        internal static string Project_AlwaysIgnoreIndentationForExportFiles {
+            get {
+                return ResourceManager.GetString("Project_AlwaysIgnoreIndentationForExportFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for Updates.
         /// </summary>
         internal static string Project_CheckForUpdates {

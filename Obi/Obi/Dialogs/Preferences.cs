@@ -781,6 +781,7 @@ namespace Obi.Dialogs
 
                 m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
                 mSettings.Project_ShowWaveformInContentView = m_CheckBoxListView.Items[9].Checked;
+                mSettings.Export_AlwaysIgnoreIndentation= m_CheckBoxListView.Items[10].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -873,6 +874,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveProjectWhenRecordingEnds"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_CheckForUpdates"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ShowWaveformsInContentView"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_AlwaysIgnoreIndentationForExportFiles"));
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
                 m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
                 m_CheckBoxListView.Items[2].Checked = mSettings.OpenBookmarkNodeOnReopeningProject;
@@ -883,6 +885,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[7].Checked = mSettings.Project_SaveProjectWhenRecordingEnds;
                 m_CheckBoxListView.Items[8].Checked = mSettings.Project_CheckForUpdates;
                 m_CheckBoxListView.Items[9].Checked = mSettings.Project_ShowWaveformInContentView;
+                m_CheckBoxListView.Items[10].Checked = mSettings.Export_AlwaysIgnoreIndentation;
             }
             m_CheckBoxListView.View = View.Details;
             m_IsComplete = true;
@@ -945,6 +948,7 @@ namespace Obi.Dialogs
                     m_DefaultSettings.Project_SaveProjectWhenRecordingEnds;
                 mSettings.Project_CheckForUpdates = m_DefaultSettings.Project_CheckForUpdates;
                 mSettings.Project_ShowWaveformInContentView = m_DefaultSettings.Project_ShowWaveformInContentView;
+                mSettings.Export_AlwaysIgnoreIndentation = m_DefaultSettings.Export_AlwaysIgnoreIndentation;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
