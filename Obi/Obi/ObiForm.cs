@@ -3503,8 +3503,7 @@ namespace Obi
                                                                     mProjectView.TransportBar.RecordingPhrase != null
                                                                         ? mProjectView.TransportBar.RecordingPhrase.
                                                                               ToString()
-                                                                        : "");
-                additionalTransportbarOperationInfo = additionalTransportbarOperationInfo.Replace("\n", string.Empty);
+                                                                        : ""); 
                 Status(mProjectView.TransportBar.FineNavigationStatusMsg +
                        Localizer.Message(mProjectView.TransportBar.CurrentState.ToString()) + " " +
                        additionalTransportbarOperationInfo);
