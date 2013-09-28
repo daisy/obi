@@ -30,9 +30,9 @@ namespace Obi.Dialogs
         {
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.mChkReplayGain = new System.Windows.Forms.CheckBox();
-            this.mChkResample = new System.Windows.Forms.CheckBox();
-            this.mComboBoxStereoMode = new System.Windows.Forms.ComboBox();
+            this.m_ChkReplayGain = new System.Windows.Forms.CheckBox();
+            this.m_ChkResample = new System.Windows.Forms.CheckBox();
+            this.m_ComboBoxStereoMode = new System.Windows.Forms.ComboBox();
             this.mLblStereoMode = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -46,6 +46,7 @@ namespace Obi.Dialogs
             this.btnOk.TabIndex = 6;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnCancel
             // 
@@ -59,40 +60,42 @@ namespace Obi.Dialogs
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // mChkReplayGain
+            // m_ChkReplayGain
             // 
-            this.mChkReplayGain.AccessibleName = "ReplayGain";
-            this.mChkReplayGain.AutoSize = true;
-            this.mChkReplayGain.Location = new System.Drawing.Point(38, 25);
-            this.mChkReplayGain.Name = "mChkReplayGain";
-            this.mChkReplayGain.Size = new System.Drawing.Size(81, 17);
-            this.mChkReplayGain.TabIndex = 8;
-            this.mChkReplayGain.Text = "ReplayGain";
-            this.mChkReplayGain.UseVisualStyleBackColor = true;
+            this.m_ChkReplayGain.AccessibleName = "ReplayGain";
+            this.m_ChkReplayGain.AutoSize = true;
+            this.m_ChkReplayGain.Location = new System.Drawing.Point(38, 25);
+            this.m_ChkReplayGain.Name = "m_ChkReplayGain";
+            this.m_ChkReplayGain.Size = new System.Drawing.Size(81, 17);
+            this.m_ChkReplayGain.TabIndex = 8;
+            this.m_ChkReplayGain.Text = "ReplayGain";
+            this.m_ChkReplayGain.UseVisualStyleBackColor = true;
             // 
-            // mChkResample
+            // m_ChkResample
             // 
-            this.mChkResample.AccessibleName = "Resample";
-            this.mChkResample.AutoSize = true;
-            this.mChkResample.Location = new System.Drawing.Point(38, 60);
-            this.mChkResample.Name = "mChkResample";
-            this.mChkResample.Size = new System.Drawing.Size(73, 17);
-            this.mChkResample.TabIndex = 9;
-            this.mChkResample.Text = "Resample";
-            this.mChkResample.UseVisualStyleBackColor = true;
+            this.m_ChkResample.AccessibleName = "Resample";
+            this.m_ChkResample.AutoSize = true;
+            this.m_ChkResample.Checked = true;
+            this.m_ChkResample.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.m_ChkResample.Location = new System.Drawing.Point(38, 60);
+            this.m_ChkResample.Name = "m_ChkResample";
+            this.m_ChkResample.Size = new System.Drawing.Size(73, 17);
+            this.m_ChkResample.TabIndex = 9;
+            this.m_ChkResample.Text = "Resample";
+            this.m_ChkResample.UseVisualStyleBackColor = true;
             // 
-            // mComboBoxStereoMode
+            // m_ComboBoxStereoMode
             // 
-            this.mComboBoxStereoMode.FormattingEnabled = true;
-            this.mComboBoxStereoMode.Items.AddRange(new object[] {
+            this.m_ComboBoxStereoMode.FormattingEnabled = true;
+            this.m_ComboBoxStereoMode.Items.AddRange(new object[] {
             "s",
             "j",
             "f",
             "m"});
-            this.mComboBoxStereoMode.Location = new System.Drawing.Point(113, 97);
-            this.mComboBoxStereoMode.Name = "mComboBoxStereoMode";
-            this.mComboBoxStereoMode.Size = new System.Drawing.Size(61, 21);
-            this.mComboBoxStereoMode.TabIndex = 10;
+            this.m_ComboBoxStereoMode.Location = new System.Drawing.Point(113, 97);
+            this.m_ComboBoxStereoMode.Name = "m_ComboBoxStereoMode";
+            this.m_ComboBoxStereoMode.Size = new System.Drawing.Size(61, 21);
+            this.m_ComboBoxStereoMode.TabIndex = 10;
             // 
             // mLblStereoMode
             // 
@@ -110,9 +113,9 @@ namespace Obi.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(233, 260);
             this.Controls.Add(this.mLblStereoMode);
-            this.Controls.Add(this.mComboBoxStereoMode);
-            this.Controls.Add(this.mChkResample);
-            this.Controls.Add(this.mChkReplayGain);
+            this.Controls.Add(this.m_ComboBoxStereoMode);
+            this.Controls.Add(this.m_ChkResample);
+            this.Controls.Add(this.m_ChkReplayGain);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Name = "ExportAdvance";
@@ -126,9 +129,9 @@ namespace Obi.Dialogs
 
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.CheckBox mChkReplayGain;
-        private System.Windows.Forms.CheckBox mChkResample;
-        private System.Windows.Forms.ComboBox mComboBoxStereoMode;
+        private System.Windows.Forms.CheckBox m_ChkReplayGain;
+        private System.Windows.Forms.CheckBox m_ChkResample;
+        private System.Windows.Forms.ComboBox m_ComboBoxStereoMode;
         private System.Windows.Forms.Label mLblStereoMode;
     }
 }
