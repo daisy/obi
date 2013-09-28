@@ -13,8 +13,6 @@ namespace Obi.Dialogs
         public ExportAdvance()
         {
             InitializeComponent();
-            this.txtReplayGain.Text = "--noreplaygain";
-            this.txtStereoToMono.Text = "-a";
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
