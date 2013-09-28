@@ -110,7 +110,7 @@ namespace Obi.ProjectView
                 btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
                 btntxtZoomSelected.Text += " " + m_ProjectView.GetSelectedPhraseSection.ToString();
 
-                if (m_ProjectView.Selection.Phrase != null || m_ProjectView.Selection.EmptyNodeForSelection != null)
+                if (m_ProjectView.Selection.Phrase != null)
                 {
                     //btntxtZoomSelected.Text=" ";
                     //btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
