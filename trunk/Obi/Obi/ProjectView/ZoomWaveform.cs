@@ -33,11 +33,9 @@ namespace Obi.ProjectView
         private bool flag = false;
         private AudioSelection audioSel;
         private int m_PreviousHeight = 0;
-        private int m_TempAudioCursorPos = 0;
         private bool m_ZoomfactorFlag = false;
         private int XVal = 0;
-        private Obi.ProjectView.TransportBar.State mState;
-        
+    
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
 
@@ -75,10 +73,17 @@ namespace Obi.ProjectView
         public void UpdateCursorTime (double time ) 
         {
             if( m_AudioBlock != null ) m_AudioBlock.UpdateCursorTime (time) ;        
-             XVal = m_AudioBlock.UpdateCursorTime(time);
-
-             if (XVal>=m_ContentView.Width+Math.Abs(m_AudioBlock.Location.X))
+             XVal = m_AudioBlock.UpdateCursorTime(time);             
+             //if (XVal < m_ContentView.Width && m_AudioBlock.Location.X < 0)
+             //{
+             //    panelZooomWaveform.AutoScrollPosition = new Point(XVal, panelZooomWaveform.AutoScrollPosition.Y);
+             //}
+             if ((XVal >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (XVal < m_ContentView.Width && m_AudioBlock.Location.X < 0) || (XVal < Math.Abs(m_AudioBlock.Location.X)))
              {
+                 Console.WriteLine("Comming inside the loop to reposition......................................................");
+                 Console.WriteLine("m_AudioBlock.Location.X  {0}", m_AudioBlock.Location.X);
+                 Console.WriteLine("m_ContentView.Width  {0}", m_ContentView.Width);
+                 Console.WriteLine("XVal Value {0}", XVal);
                  panelZooomWaveform.AutoScrollPosition = new Point(XVal, panelZooomWaveform.AutoScrollPosition.Y);
              }
             
@@ -100,16 +105,7 @@ namespace Obi.ProjectView
                 return m_Node;
             }
         }
-        private void TransportBar_StateChanged(object sender, AudioPlayer.StateChangedEventArgs e)
-        {
-            mState = m_ProjectView.TransportBar.CurrentState;
-            if(mState==Obi.ProjectView.TransportBar.State.Stopped) 
-            {
-                XVal = 0;
-              //  m_TempAudioCursorPos = XVal;
-                panelZooomWaveform.AutoScrollPosition = new Point(XVal, panelZooomWaveform.AutoScrollPosition.Y); 
-            }
-        }
+
         private void ProjectViewSelectionChanged ( object sender, EventArgs e )
         {
             if (m_ProjectView.Selection != null && m_ProjectView.GetSelectedPhraseSection != null)
@@ -118,12 +114,13 @@ namespace Obi.ProjectView
                 btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
                 btntxtZoomSelected.Text += " " + m_ProjectView.GetSelectedPhraseSection.ToString();
 
-                if ( m_ProjectView.Selection.Phrase != null )
+                if (m_ProjectView.Selection.Phrase != null || m_ProjectView.Selection.EmptyNodeForSelection != null)
                 {
                     //btntxtZoomSelected.Text=" ";
                     //btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
                     //btntxtZoomSelected.Text +=" "+ m_ProjectView.GetSelectedPhraseSection.ToString();
                     string temp = m_ProjectView.Selection.Node.ToString();
+                    //if (m_AudioBlock.Node.ToString() != temp && m_ProjectView.Selection.EmptyNodeForSelection != null)
                     if (m_AudioBlock.Node.ToString() != temp && m_ProjectView.Selection.EmptyNodeForSelection != null)
                     {
                         PhraseLoad(m_ProjectView.Selection.EmptyNodeForSelection);
@@ -256,7 +253,7 @@ namespace Obi.ProjectView
             m_ProjectView = mProjectView;
             m_ProjectView.SelectionChanged += new EventHandler(ProjectViewSelectionChanged);
             this.LostFocus += new EventHandler(ZoomPanelLostFocus);
-            m_ProjectView.TransportBar.StateChanged += new AudioPlayer.StateChangedHandler(TransportBar_StateChanged);
+            
 
             keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
             //panelZooomWaveform.LostFocus+=new EventHandler(ZoomPanelLostFocus);
@@ -712,7 +709,7 @@ namespace Obi.ProjectView
                 m_buttonSizeinit = false;
                 m_ContentView.RemovePanel();
 
-                m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
+                m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);               
                 this.Dispose();
            }
        

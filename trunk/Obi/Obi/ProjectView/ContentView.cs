@@ -4899,7 +4899,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Merge_MergeWithFollowingPhrasesMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
             Context_Merge_MergeWithPrecedingPhrasesMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
             Context_Delete_deleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
-            Context_ExportReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;            
+            Context_ExportReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
+            Context_SkippablesMenuItem.Enabled = !IsZoomWaveformActive;
             Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote; //@AssociateNode
          // Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && m_BeginNote != null && mProjectView.Selection.Node is EmptyNode && m_BeginNote != mProjectView.Selection.Node && mProjectView.Selection.Node.ParentAs<SectionNode>() == m_BeginNote.ParentAs<SectionNode>(); //@AssociateNode
             Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
