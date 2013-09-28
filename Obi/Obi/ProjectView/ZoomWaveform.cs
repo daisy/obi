@@ -80,10 +80,6 @@ namespace Obi.ProjectView
              //}
              if ((XVal >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (XVal < m_ContentView.Width && m_AudioBlock.Location.X < 0) || (XVal < Math.Abs(m_AudioBlock.Location.X)))
              {
-                 Console.WriteLine("Comming inside the loop to reposition......................................................");
-                 Console.WriteLine("m_AudioBlock.Location.X  {0}", m_AudioBlock.Location.X);
-                 Console.WriteLine("m_ContentView.Width  {0}", m_ContentView.Width);
-                 Console.WriteLine("XVal Value {0}", XVal);
                  panelZooomWaveform.AutoScrollPosition = new Point(XVal, panelZooomWaveform.AutoScrollPosition.Y);
              }
             
