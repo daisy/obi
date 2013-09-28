@@ -1876,7 +1876,7 @@ namespace Obi
                     //@AssociateNode
                 m_GoToPageToolStrip.Enabled = mSession.Presentation != null &&
                                               !mProjectView.TransportBar.IsRecorderActive;
-                mSkippableNoteToolStripMenuItem.Enabled = mSession.Presentation != null;
+                mSkippableNoteToolStripMenuItem.Enabled = mSession.Presentation != null && !mProjectView.IsZoomWaveformActive;
                 mSkippableBeginNoteToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote; //@AssociateNode
                 mSkippableEndNoteToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote; //@AssociateNode
                 mSkippableGotoToolStripMenuItem.Enabled = mProjectView.CanGotoSkippableNote; //@AssociateNode           
