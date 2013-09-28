@@ -2413,6 +2413,7 @@ namespace Obi
 
                                 DAISY3Export.AddSectionNameToAudioFile = ExportDialogDAISY3.AppendSectionNameToAudioFileName;
                                 DAISY3Export.AudioFileNameCharsLimit = ExportDialogDAISY3.AudioFileNameCharsLimit;
+                                if(ExportDialogDAISY3.EnabledAdvancedParameters)  DAISY3Export.SetAdditionalMp3EncodingParameters(ExportDialogDAISY3.Mp3ChannelMode, ExportDialogDAISY3.Mp3ReSample, ExportDialogDAISY3.Mp3RePlayGain);
                             }
                             if (ExportDialogDAISY202 != null)
                             {
@@ -2423,6 +2424,7 @@ namespace Obi
 
                                 DAISY202Export.AddSectionNameToAudioFile = ExportDialogDAISY202.AppendSectionNameToAudioFileName;
                                 DAISY202Export.AudioFileNameCharsLimit = ExportDialogDAISY202.AudioFileNameCharsLimit;
+                                if(ExportDialogDAISY202.EnabledAdvancedParameters)  DAISY202Export.SetAdditionalMp3EncodingParameters(ExportDialogDAISY202.Mp3ChannelMode, ExportDialogDAISY202.Mp3ReSample, ExportDialogDAISY202.Mp3RePlayGain);
                                 ((Obi.ImportExport.DAISY202Export) DAISY202Export).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                             }
                             //DAISYExport.BitRate_Mp3 = dialog.BitRate;
