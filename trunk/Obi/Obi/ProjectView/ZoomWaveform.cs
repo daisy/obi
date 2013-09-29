@@ -123,6 +123,7 @@ namespace Obi.ProjectView
                     }
 
                 }
+
             }
             if( m_ProjectView==null || m_ProjectView.Selection==null ||!(m_ProjectView.Selection.Node is EmptyNode))
             {
