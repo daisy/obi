@@ -45,7 +45,7 @@ namespace Obi.Dialogs
             this.m_chkBoxFilenameLengthLimit = new System.Windows.Forms.CheckBox();
             this.m_numericUpDownFilenameLengthLimit = new System.Windows.Forms.NumericUpDown();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.mbtnAdvance = new System.Windows.Forms.Button();
+            this.m_btnAdvance = new System.Windows.Forms.Button();
             this.m_grpBoxMP3Encoding.SuspendLayout();
             this.m_grpBoxSectionNameOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownFilenameLengthLimit)).BeginInit();
@@ -164,12 +164,12 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
-            // mbtnAdvance
+            // m_btnAdvance
             // 
-            resources.ApplyResources(this.mbtnAdvance, "mbtnAdvance");
-            this.mbtnAdvance.Name = "mbtnAdvance";
-            this.mbtnAdvance.UseVisualStyleBackColor = true;
-            this.mbtnAdvance.Click += new System.EventHandler(this.mbtnAdvance_Click);
+            resources.ApplyResources(this.m_btnAdvance, "m_btnAdvance");
+            this.m_btnAdvance.Name = "m_btnAdvance";
+            this.m_btnAdvance.UseVisualStyleBackColor = true;
+            this.m_btnAdvance.Click += new System.EventHandler(this.mbtnAdvance_Click);
             // 
             // ExportDirectory
             // 
@@ -177,7 +177,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.Controls.Add(this.mbtnAdvance);
+            this.Controls.Add(this.m_btnAdvance);
             this.Controls.Add(this.m_grpBoxSectionNameOperation);
             this.Controls.Add(this.m_grpBoxMP3Encoding);
             this.Controls.Add(this.m_ComboSelectLevelForAudioFiles);
@@ -222,6 +222,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_chkBoxFilenameLengthLimit;
         private System.Windows.Forms.NumericUpDown m_numericUpDownFilenameLengthLimit;
         private System.Windows.Forms.HelpProvider helpProvider1;
-        private System.Windows.Forms.Button mbtnAdvance;
+        private System.Windows.Forms.Button m_btnAdvance;
     }
 }

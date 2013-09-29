@@ -147,7 +147,8 @@ namespace Obi.Dialogs
         private void m_checkBoxMP3Encoder_CheckedChanged(object sender, EventArgs e)
         {
             m_IsMP3Check = m_checkBoxMP3Encoder.Checked;
-            m_ComboBoxBitrate.Enabled = m_checkBoxMP3Encoder.Checked;            
+            m_ComboBoxBitrate.Enabled = m_checkBoxMP3Encoder.Checked;
+            m_btnAdvance.Enabled = m_checkBoxMP3Encoder.Checked;            
         }
 
         

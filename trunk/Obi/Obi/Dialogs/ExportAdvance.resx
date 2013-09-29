@@ -117,4 +117,211 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnOk.AccessibleName" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 225</value>
+  </data>
+  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btnOk.Text" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
+    <value>btnOk</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnCancel.AccessibleName" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 225</value>
+  </data>
+  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
+    <value>btnCancel</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_ChkReplayGain.AccessibleName" xml:space="preserve">
+    <value>ReplayGain</value>
+  </data>
+  <data name="m_ChkReplayGain.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_ChkReplayGain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 25</value>
+  </data>
+  <data name="m_ChkReplayGain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 17</value>
+  </data>
+  <data name="m_ChkReplayGain.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_ChkReplayGain.Text" xml:space="preserve">
+    <value>ReplayGain</value>
+  </data>
+  <data name="&gt;&gt;m_ChkReplayGain.Name" xml:space="preserve">
+    <value>m_ChkReplayGain</value>
+  </data>
+  <data name="&gt;&gt;m_ChkReplayGain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_ChkReplayGain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_ChkReplayGain.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_ChkResample.AccessibleName" xml:space="preserve">
+    <value>Resample</value>
+  </data>
+  <data name="m_ChkResample.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_ChkResample.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 60</value>
+  </data>
+  <data name="m_ChkResample.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 17</value>
+  </data>
+  <data name="m_ChkResample.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="m_ChkResample.Text" xml:space="preserve">
+    <value>Resample</value>
+  </data>
+  <data name="&gt;&gt;m_ChkResample.Name" xml:space="preserve">
+    <value>m_ChkResample</value>
+  </data>
+  <data name="&gt;&gt;m_ChkResample.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_ChkResample.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_ChkResample.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_ComboBoxStereoMode.Items" xml:space="preserve">
+    <value>mono</value>
+  </data>
+  <data name="m_ComboBoxStereoMode.Items1" xml:space="preserve">
+    <value>stereo</value>
+  </data>
+  <data name="m_ComboBoxStereoMode.Items2" xml:space="preserve">
+    <value>joint stereo</value>
+  </data>
+  <data name="m_ComboBoxStereoMode.Items3" xml:space="preserve">
+    <value>forced joint stereo</value>
+  </data>
+  <data name="m_ComboBoxStereoMode.Items4" xml:space="preserve">
+    <value>dual channels</value>
+  </data>
+  <data name="m_ComboBoxStereoMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 97</value>
+  </data>
+  <data name="m_ComboBoxStereoMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 21</value>
+  </data>
+  <data name="m_ComboBoxStereoMode.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;m_ComboBoxStereoMode.Name" xml:space="preserve">
+    <value>m_ComboBoxStereoMode</value>
+  </data>
+  <data name="&gt;&gt;m_ComboBoxStereoMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_ComboBoxStereoMode.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_ComboBoxStereoMode.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mLblStereoMode.AccessibleName" xml:space="preserve">
+    <value>Stereo Mode</value>
+  </data>
+  <data name="mLblStereoMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mLblStereoMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 100</value>
+  </data>
+  <data name="mLblStereoMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 13</value>
+  </data>
+  <data name="mLblStereoMode.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="mLblStereoMode.Text" xml:space="preserve">
+    <value>Stereo Mode</value>
+  </data>
+  <data name="&gt;&gt;mLblStereoMode.Name" xml:space="preserve">
+    <value>mLblStereoMode</value>
+  </data>
+  <data name="&gt;&gt;mLblStereoMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mLblStereoMode.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mLblStereoMode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>233, 260</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Export Advance</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ExportAdvance</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
