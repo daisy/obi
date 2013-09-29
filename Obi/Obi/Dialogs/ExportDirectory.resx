@@ -489,54 +489,6 @@
   <data name="&gt;&gt;m_grpBoxMP3Encoding.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_chkBoxFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_numericUpDownFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 148</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>441, 74</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
-    <value>Section Name Operation :</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Name" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Filename Length Limit</value>
   </data>
@@ -597,40 +549,64 @@
   <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="m_grpBoxSectionNameOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 148</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>441, 74</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
+    <value>Section Name Operation :</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Name" xml:space="preserve">
+    <value>m_grpBoxSectionNameOperation</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
-  <data name="mbtnAdvance.AccessibleName" xml:space="preserve">
+  <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
     <value>Advance</value>
   </data>
-  <data name="mbtnAdvance.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="m_btnAdvance.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="mbtnAdvance.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_btnAdvance.Location" type="System.Drawing.Point, System.Drawing">
     <value>461, 100</value>
   </data>
-  <data name="mbtnAdvance.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_btnAdvance.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
   </data>
-  <data name="mbtnAdvance.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+  <data name="m_btnAdvance.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="mbtnAdvance.Text" xml:space="preserve">
+  <data name="m_btnAdvance.Text" xml:space="preserve">
     <value>A&amp;dvance</value>
   </data>
-  <data name="&gt;&gt;mbtnAdvance.Name" xml:space="preserve">
-    <value>mbtnAdvance</value>
+  <data name="&gt;&gt;m_btnAdvance.Name" xml:space="preserve">
+    <value>m_btnAdvance</value>
   </data>
-  <data name="&gt;&gt;mbtnAdvance.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_btnAdvance.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mbtnAdvance.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_btnAdvance.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;mbtnAdvance.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_btnAdvance.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

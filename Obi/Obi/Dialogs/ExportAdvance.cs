@@ -24,7 +24,8 @@ namespace Obi.Dialogs
                 return m_ComboBoxStereoMode.SelectedIndex == 0 ? "m" :
                     m_ComboBoxStereoMode.SelectedIndex == 1 ? "s" :
                     m_ComboBoxStereoMode.SelectedIndex == 2 ? "j" :
-                    m_ComboBoxStereoMode.SelectedIndex == 3 ? "f" : null;
+                    m_ComboBoxStereoMode.SelectedIndex == 3 ? "f" :
+                    m_ComboBoxStereoMode.SelectedIndex == 4 ? "d" : null;
             }
         }
 
