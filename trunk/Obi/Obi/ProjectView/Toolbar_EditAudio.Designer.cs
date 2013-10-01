@@ -45,13 +45,13 @@ namespace Obi.ProjectView
             this.toolStrip1.AccessibleName = "Edit audio";
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mbtnCuttoolStrip,
-            this.mbtnDeletetoolStrip,
             this.mbtnSplittoolStrip,
-            this.mbtnPastetoolStrip,
+            this.mbtnMergetoolStrip,
+            this.mbtnCuttoolStrip,
             this.mbtnCopytoolStrip,
-            this.mbtnPraseDetectiontoolStrip,
-            this.mbtnMergetoolStrip});
+            this.mbtnPastetoolStrip,
+            this.mbtnDeletetoolStrip,
+            this.mbtnPraseDetectiontoolStrip});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.MaximumSize = new System.Drawing.Size(204, 25);
             this.toolStrip1.MinimumSize = new System.Drawing.Size(574, 0);
