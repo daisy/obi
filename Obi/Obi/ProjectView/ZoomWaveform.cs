@@ -273,9 +273,18 @@ namespace Obi.ProjectView
                 {                    
                     this.Height = m_ContentView.Height;
                     this.Width = m_ContentView.Width;
+
                     m_Edit = new Toolbar_EditAudio(m_ContentView, m_Strip, m_Node, m_ProjectView);
+                    m_Edit.TabIndex = 0;
+                    m_Edit.TabStop = true;
+                
                     this.Controls.Add(m_Edit);
                     m_Edit.Show();
+                    toolStripZoomPanel.TabIndex = 1;
+                    toolStripZoomPanel.TabStop = true;
+                    btntxtZoomSelected.TabIndex = 2;
+                    btntxtZoomSelected.TabStop = true;
+                    
 
                     this.MouseWheel += new MouseEventHandler(ZoomWaveform_MouseWheel);
                     if (m_buttonSizeinit == false)
@@ -402,7 +411,7 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = true;
             }
-     
+            this.ActiveControl = m_Edit;
 
         }
 

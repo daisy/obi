@@ -52,7 +52,7 @@
             this.panelZooomWaveform.Location = new System.Drawing.Point(3, 3);
             this.panelZooomWaveform.Name = "panelZooomWaveform";
             this.panelZooomWaveform.Size = new System.Drawing.Size(946, 488);
-            this.panelZooomWaveform.TabIndex = 9;
+            this.panelZooomWaveform.TabIndex = 1;
             this.panelZooomWaveform.TabStop = true;
             // 
             // txtZoomSelected
@@ -72,7 +72,7 @@
             this.btntxtZoomSelected.Location = new System.Drawing.Point(19, 507);
             this.btntxtZoomSelected.Name = "btntxtZoomSelected";
             this.btntxtZoomSelected.Size = new System.Drawing.Size(702, 23);
-            this.btntxtZoomSelected.TabIndex = 10;
+            this.btntxtZoomSelected.TabIndex = 2;
             this.btntxtZoomSelected.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btntxtZoomSelected.UseVisualStyleBackColor = false;
             // 
@@ -92,7 +92,7 @@
             this.toolStripZoomPanel.MinimumSize = new System.Drawing.Size(617, 28);
             this.toolStripZoomPanel.Name = "toolStripZoomPanel";
             this.toolStripZoomPanel.Size = new System.Drawing.Size(617, 28);
-            this.toolStripZoomPanel.TabIndex = 19;
+            this.toolStripZoomPanel.TabIndex = 3;
             this.toolStripZoomPanel.TabStop = true;
             this.toolStripZoomPanel.Text = "toolStrip1";
             // 
