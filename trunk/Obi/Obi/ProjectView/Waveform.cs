@@ -338,7 +338,7 @@ namespace Obi.ProjectView
         protected override void OnPaint(PaintEventArgs pe)
         {
             ColorSettings settings = ColorSettings;
-            if (settings != null && mBlock != null)
+            if (settings != null && mBlock != null && mBlock.ShowWaveform)//@zoomwaveform: added the showwaveform check
             {
             mPaintMutex.WaitOne ();
                 if (mBitmap != null)
@@ -386,6 +386,18 @@ namespace Obi.ProjectView
                     pe.Graphics.FillPolygon(settings.WaveformCursorBrush, points);
                 }
             mPaintMutex.ReleaseMutex ();
+            }
+            else if (!mBlock.ShowWaveform)//@zoomwaveform
+            {
+                if (mBlock != null && mBlock.Node != null && mBlock.Node is PhraseNode)
+                {
+                    float seconds = (float) Math.Round(((PhraseNode)mBlock.Node).Duration / 1000, 1, MidpointRounding.ToEven);
+                    string strSeconds = seconds.ToString() + "s";
+                    System.Drawing.Font ft = new Font(FontFamily.GenericSansSerif, this.Height/5);
+                    pe.Graphics.DrawString(strSeconds, ft,
+                            mBlock.ColorSettings.WaveformTextBrush, new PointF(0.0f, this.Height / 4));
+                    Console.WriteLine(this.Height);
+                }
             }
             base.OnPaint(pe);
         }
