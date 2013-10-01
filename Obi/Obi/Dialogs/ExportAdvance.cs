@@ -16,7 +16,7 @@ namespace Obi.Dialogs
         }
 
         public bool OptionalReSample { get { return m_ChkResample.Checked; } }
-        public bool OptionalRePlayGain { get { return m_ChkReplayGain.Checked; } }
+        public bool OptionalRePlayGain { get { return false; } }
         public string OptionalChannelMode
         {
             get

@@ -31,10 +31,11 @@ namespace Obi.Dialogs
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExportAdvance));
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.m_ChkReplayGain = new System.Windows.Forms.CheckBox();
             this.m_ChkResample = new System.Windows.Forms.CheckBox();
             this.m_ComboBoxStereoMode = new System.Windows.Forms.ComboBox();
             this.mLblStereoMode = new System.Windows.Forms.Label();
+            this.m_LblReplayGain = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnOk
@@ -50,12 +51,6 @@ namespace Obi.Dialogs
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // m_ChkReplayGain
-            // 
-            resources.ApplyResources(this.m_ChkReplayGain, "m_ChkReplayGain");
-            this.m_ChkReplayGain.Name = "m_ChkReplayGain";
-            this.m_ChkReplayGain.UseVisualStyleBackColor = true;
             // 
             // m_ChkResample
             // 
@@ -82,14 +77,31 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.mLblStereoMode, "mLblStereoMode");
             this.mLblStereoMode.Name = "mLblStereoMode";
             // 
+            // m_LblReplayGain
+            // 
+            resources.ApplyResources(this.m_LblReplayGain, "m_LblReplayGain");
+            this.m_LblReplayGain.Name = "m_LblReplayGain";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            resources.GetString("comboBox1.Items"),
+            resources.GetString("comboBox1.Items1"),
+            resources.GetString("comboBox1.Items2"),
+            resources.GetString("comboBox1.Items3")});
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Name = "comboBox1";
+            // 
             // ExportAdvance
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.m_LblReplayGain);
             this.Controls.Add(this.mLblStereoMode);
             this.Controls.Add(this.m_ComboBoxStereoMode);
             this.Controls.Add(this.m_ChkResample);
-            this.Controls.Add(this.m_ChkReplayGain);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Name = "ExportAdvance";
@@ -102,9 +114,10 @@ namespace Obi.Dialogs
 
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.CheckBox m_ChkReplayGain;
         private System.Windows.Forms.CheckBox m_ChkResample;
         private System.Windows.Forms.ComboBox m_ComboBoxStereoMode;
         private System.Windows.Forms.Label mLblStereoMode;
+        private System.Windows.Forms.Label m_LblReplayGain;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
