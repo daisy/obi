@@ -185,6 +185,11 @@ namespace Obi.ProjectView
                 mBitmap.Dispose();
                 mBitmap = null;
             }
+            if (mBitmap_Highlighted!= null)
+            {
+                mBitmap_Highlighted.Dispose();
+                mBitmap_Highlighted  = null;
+            }
             if (ColorSettings == null)
             {
                 mBitmap = null;
