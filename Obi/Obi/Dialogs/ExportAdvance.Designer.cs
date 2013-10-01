@@ -35,7 +35,7 @@ namespace Obi.Dialogs
             this.m_ComboBoxStereoMode = new System.Windows.Forms.ComboBox();
             this.mLblStereoMode = new System.Windows.Forms.Label();
             this.m_LblReplayGain = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.m_comboBoxReplayGain = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnOk
@@ -82,22 +82,22 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_LblReplayGain, "m_LblReplayGain");
             this.m_LblReplayGain.Name = "m_LblReplayGain";
             // 
-            // comboBox1
+            // m_comboBoxReplayGain
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            resources.GetString("comboBox1.Items"),
-            resources.GetString("comboBox1.Items1"),
-            resources.GetString("comboBox1.Items2"),
-            resources.GetString("comboBox1.Items3")});
-            resources.ApplyResources(this.comboBox1, "comboBox1");
-            this.comboBox1.Name = "comboBox1";
+            resources.ApplyResources(this.m_comboBoxReplayGain, "m_comboBoxReplayGain");
+            this.m_comboBoxReplayGain.FormattingEnabled = true;
+            this.m_comboBoxReplayGain.Items.AddRange(new object[] {
+            resources.GetString("m_comboBoxReplayGain.Items"),
+            resources.GetString("m_comboBoxReplayGain.Items1"),
+            resources.GetString("m_comboBoxReplayGain.Items2"),
+            resources.GetString("m_comboBoxReplayGain.Items3")});
+            this.m_comboBoxReplayGain.Name = "m_comboBoxReplayGain";
             // 
             // ExportAdvance
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.m_comboBoxReplayGain);
             this.Controls.Add(this.m_LblReplayGain);
             this.Controls.Add(this.mLblStereoMode);
             this.Controls.Add(this.m_ComboBoxStereoMode);
@@ -118,6 +118,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox m_ComboBoxStereoMode;
         private System.Windows.Forms.Label mLblStereoMode;
         private System.Windows.Forms.Label m_LblReplayGain;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox m_comboBoxReplayGain;
     }
 }
