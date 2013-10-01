@@ -133,7 +133,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>1</value>
   </data>
   <data name="btnOk.Text" xml:space="preserve">
     <value>Ok</value>
@@ -163,7 +163,7 @@
     <value>75, 23</value>
   </data>
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>2</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -193,7 +193,7 @@
     <value>73, 17</value>
   </data>
   <data name="m_ChkResample.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>3</value>
   </data>
   <data name="m_ChkResample.Text" xml:space="preserve">
     <value>Resample</value>
@@ -232,7 +232,7 @@
     <value>121, 21</value>
   </data>
   <data name="m_ComboBoxStereoMode.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;m_ComboBoxStereoMode.Name" xml:space="preserve">
     <value>m_ComboBoxStereoMode</value>
@@ -259,7 +259,7 @@
     <value>68, 13</value>
   </data>
   <data name="mLblStereoMode.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>6</value>
   </data>
   <data name="mLblStereoMode.Text" xml:space="preserve">
     <value>Stereo Mode</value>
@@ -289,7 +289,7 @@
     <value>62, 13</value>
   </data>
   <data name="m_LblReplayGain.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>4</value>
   </data>
   <data name="m_LblReplayGain.Text" xml:space="preserve">
     <value>ReplayGain</value>
@@ -306,37 +306,40 @@
   <data name="&gt;&gt;m_LblReplayGain.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="comboBox1.Items" xml:space="preserve">
+  <data name="m_comboBoxReplayGain.AccessibleName" xml:space="preserve">
+    <value>ReplayGain</value>
+  </data>
+  <data name="m_comboBoxReplayGain.Items" xml:space="preserve">
     <value>Default</value>
   </data>
-  <data name="comboBox1.Items1" xml:space="preserve">
+  <data name="m_comboBoxReplayGain.Items1" xml:space="preserve">
     <value>No ReplayGain</value>
   </data>
-  <data name="comboBox1.Items2" xml:space="preserve">
+  <data name="m_comboBoxReplayGain.Items2" xml:space="preserve">
     <value>ReplayGain Accurate</value>
   </data>
-  <data name="comboBox1.Items3" xml:space="preserve">
+  <data name="m_comboBoxReplayGain.Items3" xml:space="preserve">
     <value>ReplayGain Fast</value>
   </data>
-  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_comboBoxReplayGain.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 57</value>
   </data>
-  <data name="comboBox1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_comboBoxReplayGain.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 21</value>
   </data>
-  <data name="comboBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+  <data name="m_comboBoxReplayGain.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="&gt;&gt;comboBox1.Name" xml:space="preserve">
-    <value>comboBox1</value>
+  <data name="&gt;&gt;m_comboBoxReplayGain.Name" xml:space="preserve">
+    <value>m_comboBoxReplayGain</value>
   </data>
-  <data name="&gt;&gt;comboBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_comboBoxReplayGain.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;comboBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_comboBoxReplayGain.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_comboBoxReplayGain.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
