@@ -1294,7 +1294,7 @@ namespace Obi
             {
                 if (!m_InputDeviceFound && !m_OutputDevicefound) this.Close();
                 CheckSystemSupportForMemoryOptimization();
-                UploadUsersInfo();
+                //UploadUsersInfo();//commented for 3.0 beta1 release on Oct 1, 2013.
                 if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject, null);
                 if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog();
 
