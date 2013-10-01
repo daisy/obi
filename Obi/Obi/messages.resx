@@ -2370,4 +2370,25 @@ Error text: {1}</value>
   <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
     <value>Always ignore indentation for DAISY export files</value>
   </data>
+  <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
+    <value>Show Next Phrase</value>
+  </data>
+  <data name="ZoomAudioTT_ShowPreviousPhrase" xml:space="preserve">
+    <value>Show Previous Phrase</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomIn" xml:space="preserve">
+    <value>Zoom In</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomOut" xml:space="preserve">
+    <value>Zoom Out</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomSelection" xml:space="preserve">
+    <value>Zoom Selection</value>
+  </data>
+   <data name="ZoomAudioTT_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ZoomAudioTT_Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
 </root>
