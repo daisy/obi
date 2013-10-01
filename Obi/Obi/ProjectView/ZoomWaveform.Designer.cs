@@ -78,6 +78,7 @@
             // 
             // toolStripZoomPanel
             // 
+            this.toolStripZoomPanel.AccessibleName = "Navigation Toolbar";
             this.toolStripZoomPanel.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStripZoomPanel.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnClosetoolStrip,
