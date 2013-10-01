@@ -306,7 +306,8 @@ namespace Obi.ProjectView
                     if (au != null) au.Close();
                     au = null;
 
-                    if (mBlock.MaxWaveformWidth == Width && Width < Width_Expected)
+                    if (mBlock.MaxWaveformWidth == Width && Width < Width_Expected
+                        && m_WaveformStartTime < 0 && m_WaveformEndTime < 0)//@zoomwaveform: the curve should not be drawn if only the selected part of waveform is shown
                     {
                         DrawWaveformBreakMark(g, settings);
                     }
