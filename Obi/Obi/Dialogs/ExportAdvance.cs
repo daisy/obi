@@ -13,10 +13,23 @@ namespace Obi.Dialogs
         public ExportAdvance()
         {
             InitializeComponent();
+            m_comboBoxReplayGain.SelectedIndex = 0;
         }
 
         public bool OptionalReSample { get { return m_ChkResample.Checked; } }
-        public bool OptionalRePlayGain { get { return false; } }
+
+        public string OptionalRePlayGain 
+        { 
+            get 
+            {
+                return m_comboBoxReplayGain.SelectedIndex == 0 ? null :
+                    m_comboBoxReplayGain.SelectedIndex == 1 ? " --noreplaygain" :
+                    m_comboBoxReplayGain.SelectedIndex == 2 ? " --replaygain-accurate" :
+                    m_comboBoxReplayGain.SelectedIndex == 3 ? " --replaygain-fast": 
+                    null;
+            } 
+        }
+
         public string OptionalChannelMode
         {
             get

@@ -99,7 +99,7 @@ namespace Obi.Dialogs
         public bool EnabledAdvancedParameters { get { return m_ExportAdvance != null && m_ExportAdvance.EnableAdvancedParameters; } }
 
         public bool Mp3ReSample { get { return EnabledAdvancedParameters && m_ExportAdvance.OptionalReSample ; } }
-        public bool Mp3RePlayGain { get { return EnabledAdvancedParameters && m_ExportAdvance.OptionalRePlayGain; } }
+        public string Mp3RePlayGain { get { return EnabledAdvancedParameters? m_ExportAdvance.OptionalRePlayGain: null; } }
         public string Mp3ChannelMode { get { return EnabledAdvancedParameters? m_ExportAdvance.OptionalChannelMode: null; } }
 
         public bool AppendSectionNameToAudioFileName
