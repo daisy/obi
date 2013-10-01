@@ -206,12 +206,13 @@ namespace Obi.ProjectView
                 m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height-10);
                 if (m_AudioBlock != null)
                 {
-   
+                    
                     m_AudioBlock.GotFocus += new EventHandler(m_AudioBlock_MouseDown);
                 }
                 m_AudioBlock.TabStop = false;
 
                 m_AudioBlock.InitCursor(0);
+                if (m_ProjectView.TransportBar.IsPlayerActive) UpdateCursorTime(m_ProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset);
                 m_Block = m_AudioBlock;
                 
             }
@@ -382,7 +383,9 @@ namespace Obi.ProjectView
 
 
                 m_AudioBlock.InitCursor(0);
-                m_AudioBlock.Focus();
+                if (m_ProjectView.TransportBar.IsPlayerActive) UpdateCursorTime(m_ProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset);
+                btntxtZoomSelected.Focus();
+                //m_AudioBlock.Focus();
                 //this.ActiveControl = btnClosetoolStrip;
                 m_Block = m_AudioBlock;
             }
@@ -697,6 +700,7 @@ namespace Obi.ProjectView
 
                 m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);               
                 this.Dispose();
+                if (m_ProjectView.TransportBar.IsPlayerActive) m_ProjectView.TransportBar.Pause();
            }
        
 
