@@ -701,6 +701,7 @@ namespace Obi.ProjectView
                 m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);               
                 this.Dispose();
                 if (m_ProjectView.TransportBar.IsPlayerActive) m_ProjectView.TransportBar.Pause();
+                m_ContentView.EnsureVisibilityOfSelectedItem();
            }
        
 
