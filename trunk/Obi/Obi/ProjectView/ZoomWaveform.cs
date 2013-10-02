@@ -705,11 +705,14 @@ namespace Obi.ProjectView
                 NodeSelection previousSelection = m_ProjectView.Selection is NodeSelection? m_ProjectView.Selection:null;
                 if (previousSelection != null)
                 {
+                    bool playOnNavigateStatus = m_ProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+                    m_ProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
                     m_ProjectView.Selection = new NodeSelection(previousSelection.Node, m_ContentView);
                     if (previousSelection is AudioSelection)
                     {
                         m_ProjectView.Selection = new AudioSelection((PhraseNode)previousSelection.Node, m_ContentView, ((AudioSelection)previousSelection).AudioRange);
                     }
+                    m_ProjectView.TransportBar.SelectionChangedPlaybackEnabled = playOnNavigateStatus;
                     m_ContentView.EnsureVisibilityOfSelectedItem();
                 }
                 
