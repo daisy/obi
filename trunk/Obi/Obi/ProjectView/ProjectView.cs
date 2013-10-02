@@ -3952,6 +3952,11 @@ for (int j = 0;
                         if (previousSelection.Node is SectionNode && ((SectionNode)previousSelection.Node).PhraseChildCount > 0) Selection = new NodeSelection ( ((SectionNode) previousSelection.Node).PhraseChild(0) , previousSelection.Control);
                         Selection = new NodeSelection(previousSelection.Node, previousSelection.Control);
                     }
+                    else if (previousSelection != null || previousSelection is NodeSelection)
+                    {
+                        Selection = new NodeSelection(section, mContentView);
+                        Selection = previousSelection;
+                    }
                 }
             }
             catch (System.Exception ex)
