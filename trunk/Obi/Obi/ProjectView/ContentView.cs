@@ -5497,7 +5497,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
             if (m_ZoomWaveformPanel != null)
             {
                 this.Controls.Remove(m_ZoomWaveformPanel);
-                this.Dispose();
+                m_ZoomWaveformPanel.Dispose();
+                m_ZoomWaveformPanel = null;
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause();
                 NodeSelection previousSelection = mProjectView.Selection is NodeSelection ? mProjectView.Selection : null;
                 if (previousSelection != null)
