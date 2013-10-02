@@ -415,7 +415,7 @@ namespace Obi.ProjectView
                 this.AutoScroll = true;
             }
             this.ActiveControl = m_Edit;
-            Console.WriteLine("constructor " + (m_ProjectView.Selection is AudioSelection? "audio selection": "") +  m_ProjectView.Selection);
+            //Console.WriteLine("constructor " + (m_ProjectView.Selection is AudioSelection? "audio selection": "") +  m_ProjectView.Selection);
         }
 
 
@@ -556,8 +556,8 @@ namespace Obi.ProjectView
             {
                 Control c = this.ActiveControl;
                 this.SelectNextControl(c, true, true, false, true);
-                Console.WriteLine(c.ToString());
-                Console.WriteLine(m_ProjectView.Selection);
+                //Console.WriteLine(c.ToString());
+                //Console.WriteLine(m_ProjectView.Selection);
                 if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
                     System.Media.SystemSounds.Beep.Play();
             
@@ -700,21 +700,8 @@ namespace Obi.ProjectView
                 m_ContentView.RemovePanel();
 
                 m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);               
-                this.Dispose();
-                if (m_ProjectView.TransportBar.IsPlayerActive) m_ProjectView.TransportBar.Pause();
-                NodeSelection previousSelection = m_ProjectView.Selection is NodeSelection? m_ProjectView.Selection:null;
-                if (previousSelection != null)
-                {
-                    bool playOnNavigateStatus = m_ProjectView.TransportBar.SelectionChangedPlaybackEnabled;
-                    m_ProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
-                    m_ProjectView.Selection = new NodeSelection(previousSelection.Node, m_ContentView);
-                    if (previousSelection is AudioSelection)
-                    {
-                        m_ProjectView.Selection = new AudioSelection((PhraseNode)previousSelection.Node, m_ContentView, ((AudioSelection)previousSelection).AudioRange);
-                    }
-                    m_ProjectView.TransportBar.SelectionChangedPlaybackEnabled = playOnNavigateStatus;
-                    m_ContentView.EnsureVisibilityOfSelectedItem();
-                }
+                
+                
                 
            }
        

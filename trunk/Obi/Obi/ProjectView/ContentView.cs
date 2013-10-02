@@ -5497,6 +5497,21 @@ Block lastBlock = ActiveStrip.LastBlock ;
             if (m_ZoomWaveformPanel != null)
             {
                 this.Controls.Remove(m_ZoomWaveformPanel);
+                this.Dispose();
+                if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause();
+                NodeSelection previousSelection = mProjectView.Selection is NodeSelection ? mProjectView.Selection : null;
+                if (previousSelection != null)
+                {
+                    bool playOnNavigateStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
+                    mProjectView.Selection = new NodeSelection(previousSelection.Node, this);
+                    if (previousSelection is AudioSelection)
+                    {
+                        mProjectView.Selection = new AudioSelection((PhraseNode)previousSelection.Node, this, ((AudioSelection)previousSelection).AudioRange);
+                    }
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = playOnNavigateStatus;
+                    EnsureVisibilityOfSelectedItem();
+                }
                 m_ZoomWaveformPanel = null;
             }
         }
