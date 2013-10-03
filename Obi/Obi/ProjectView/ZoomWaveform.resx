@@ -117,13 +117,96 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="panelZooomWaveform.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="panelZooomWaveform.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="panelZooomWaveform.Size" type="System.Drawing.Size, System.Drawing">
+    <value>946, 488</value>
+  </data>
+  <data name="panelZooomWaveform.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;panelZooomWaveform.Name" xml:space="preserve">
+    <value>panelZooomWaveform</value>
+  </data>
+  <data name="&gt;&gt;panelZooomWaveform.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelZooomWaveform.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelZooomWaveform.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtZoomSelected.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 507</value>
+  </data>
+  <data name="txtZoomSelected.Size" type="System.Drawing.Size, System.Drawing">
+    <value>702, 20</value>
+  </data>
+  <data name="txtZoomSelected.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="txtZoomSelected.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;txtZoomSelected.Name" xml:space="preserve">
+    <value>txtZoomSelected</value>
+  </data>
+  <data name="&gt;&gt;txtZoomSelected.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtZoomSelected.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtZoomSelected.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btntxtZoomSelected.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btntxtZoomSelected.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 507</value>
+  </data>
+  <data name="btntxtZoomSelected.Size" type="System.Drawing.Size, System.Drawing">
+    <value>702, 23</value>
+  </data>
+  <data name="btntxtZoomSelected.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btntxtZoomSelected.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="&gt;&gt;btntxtZoomSelected.Name" xml:space="preserve">
+    <value>btntxtZoomSelected</value>
+  </data>
+  <data name="&gt;&gt;btntxtZoomSelected.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btntxtZoomSelected.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btntxtZoomSelected.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <metadata name="mtoolTipZoomWaveform.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <metadata name="toolStripZoomPanel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>206, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="toolStripZoomPanel.AccessibleName" xml:space="preserve">
+    <value>Navigation &amp; Zoom Toolbar</value>
+  </data>
+  <data name="toolStripZoomPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="btnClosetoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGQAAABfCAYAAAAeX2I6AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -278,6 +361,15 @@
         B/iaKwpPfTjhqSke2IxhGBGW9X8AL7wiXBGaA/AAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnClosetoolStrip.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="btnClosetoolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 25</value>
+  </data>
+  <data name="btnClosetoolStrip.Text" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="btnNextPhrasetoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB8AAAAXCAYAAADz/ZRUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -293,6 +385,15 @@
         vtfrxaPaPHc7fFMQO50OHvkem82m+nw+/KSHqv4Df+2/MZx+MbsAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnNextPhrasetoolStrip.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="btnNextPhrasetoolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 25</value>
+  </data>
+  <data name="btnNextPhrasetoolStrip.Text" xml:space="preserve">
+    <value>Next Phrase</value>
+  </data>
   <data name="btnPreviousPhrasetoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB8AAAAXCAYAAADz/ZRUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -307,6 +408,15 @@
         f7/fQ1eE9vi3l5FOp6FIcblc3NJmtVpB9xHuaZJIJKC4XC658Z7FYgF9Wv36N/CXaDSqEmkv/4bnl04q
         lVKOfzSciMfjiqi342mx2WwUn9bSH7L8A6iqvyjh5xolAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="btnPreviousPhrasetoolStrip.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="btnPreviousPhrasetoolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 25</value>
+  </data>
+  <data name="btnPreviousPhrasetoolStrip.Text" xml:space="preserve">
+    <value>Previous Phrase</value>
   </data>
   <data name="btnZoomIntoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -327,6 +437,15 @@
         vf4k+FVPYEnL5XzYngoTJ9MhNg3KI+DuOAPLUm6uq4K+jNWgLmDTwOiKs8D5+hosS7mc7xUXYOTgWtCX
         H4NIOMgE6S/gpN5kpPlA2wAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="btnZoomIntoolStrip.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="btnZoomIntoolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 25</value>
+  </data>
+  <data name="btnZoomIntoolStrip.Text" xml:space="preserve">
+    <value>Zoom In</value>
   </data>
   <data name="btnZoomOuttoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -354,6 +473,15 @@
         9d5L3Fo2g9ub5tC6e/Q5GpO+kFr4DG9D9vODR+TUVWM4GE/DundoSpgthSjd8MJBAj16+Qr/AOA3+nu5
         PGE6AAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="btnZoomOuttoolStrip.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="btnZoomOuttoolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 25</value>
+  </data>
+  <data name="btnZoomOuttoolStrip.Text" xml:space="preserve">
+    <value>Zoom Out</value>
   </data>
   <data name="btnResettoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -385,6 +513,15 @@
         n6fv9sM/Kv+X+H16+/uoOL2H0LJVOClccJS/yIJti4ipTKD+xwbJ6mHAv1kP9x22HZr7AAAAAElFTkSu
         QmCC
 </value>
+  </data>
+  <data name="btnResettoolStrip.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="btnResettoolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 25</value>
+  </data>
+  <data name="btnResettoolStrip.Text" xml:space="preserve">
+    <value>Reset</value>
   </data>
   <data name="btnZoomSelectiontoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -420,7 +557,106 @@
         /jFG+penGJ0AAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnZoomSelectiontoolStrip.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="btnZoomSelectiontoolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 25</value>
+  </data>
+  <data name="btnZoomSelectiontoolStrip.Text" xml:space="preserve">
+    <value>Zoom Selection</value>
+  </data>
+  <data name="toolStripZoomPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="toolStripZoomPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>617, 28</value>
+  </data>
+  <data name="toolStripZoomPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="toolStripZoomPanel.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;toolStripZoomPanel.Name" xml:space="preserve">
+    <value>toolStripZoomPanel</value>
+  </data>
+  <data name="&gt;&gt;toolStripZoomPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripZoomPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;toolStripZoomPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>42</value>
   </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>963, 559</value>
+  </data>
+  <data name="&gt;&gt;mtoolTipZoomWaveform.Name" xml:space="preserve">
+    <value>mtoolTipZoomWaveform</value>
+  </data>
+  <data name="&gt;&gt;mtoolTipZoomWaveform.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnClosetoolStrip.Name" xml:space="preserve">
+    <value>btnClosetoolStrip</value>
+  </data>
+  <data name="&gt;&gt;btnClosetoolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnNextPhrasetoolStrip.Name" xml:space="preserve">
+    <value>btnNextPhrasetoolStrip</value>
+  </data>
+  <data name="&gt;&gt;btnNextPhrasetoolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnPreviousPhrasetoolStrip.Name" xml:space="preserve">
+    <value>btnPreviousPhrasetoolStrip</value>
+  </data>
+  <data name="&gt;&gt;btnPreviousPhrasetoolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnZoomIntoolStrip.Name" xml:space="preserve">
+    <value>btnZoomIntoolStrip</value>
+  </data>
+  <data name="&gt;&gt;btnZoomIntoolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnZoomOuttoolStrip.Name" xml:space="preserve">
+    <value>btnZoomOuttoolStrip</value>
+  </data>
+  <data name="&gt;&gt;btnZoomOuttoolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnResettoolStrip.Name" xml:space="preserve">
+    <value>btnResettoolStrip</value>
+  </data>
+  <data name="&gt;&gt;btnResettoolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnZoomSelectiontoolStrip.Name" xml:space="preserve">
+    <value>btnZoomSelectiontoolStrip</value>
+  </data>
+  <data name="&gt;&gt;btnZoomSelectiontoolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ZoomWaveform</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

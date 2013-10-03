@@ -48,6 +48,7 @@ namespace Obi.Dialogs
             // btnCancel
             // 
             resources.ApplyResources(this.btnCancel, "btnCancel");
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -95,8 +96,10 @@ namespace Obi.Dialogs
             // 
             // ExportAdvance
             // 
+            this.AcceptButton = this.btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.Controls.Add(this.m_comboBoxReplayGain);
             this.Controls.Add(this.m_LblReplayGain);
             this.Controls.Add(this.mLblStereoMode);
