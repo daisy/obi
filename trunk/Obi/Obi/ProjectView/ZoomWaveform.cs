@@ -196,6 +196,7 @@ namespace Obi.ProjectView
                 m_AudioBlock.Location = new Point(5, 5);
                 float zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
                 m_AudioBlock.IsFineNavigationMode = true;
+                m_AudioBlock.UpdateColors();
                 btntxtZoomSelected.BringToFront();
                 m_ZoomFactor = zoomFactor;
               
@@ -363,6 +364,7 @@ namespace Obi.ProjectView
                 m_AudioBlock.Location = new Point(5,5);
                 float zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
                 m_AudioBlock.IsFineNavigationMode = true;
+                m_AudioBlock.UpdateColors();
                 btntxtZoomSelected.BringToFront();
                 m_ZoomFactor = zoomFactor;
               
