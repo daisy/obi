@@ -1890,6 +1890,8 @@ namespace Obi
                 UpdateAudioSelectionBlockMenuItems();
                 settingsFromSilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
                 mCheckForPhrasesWithImproperAudioMenuItem.Enabled = mProjectView.CanReplacePhrasesWithimproperAudioWithEmptyNodes;
+                splitAndMergeWithNextToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
+                splitAndMergeWithPreviousToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
             }
 
             private void UpdateAudioSelectionBlockMenuItems()
