@@ -18,6 +18,7 @@ namespace Obi.ProjectView
         private Point DragStart = Point.Empty;
         private KeyboardShortcuts_Settings keyboardShortcuts;
         private bool IsSelection = false;
+        private Size m_InitialtoolStripSize;
       
 
 
@@ -26,6 +27,7 @@ namespace Obi.ProjectView
         public Toolbar_EditAudio()
         {
             InitializeComponent();
+            m_InitialtoolStripSize = this.toolStrip1.Size;
         }
         public Toolbar_EditAudio(ContentView contentView, Strip strip, EmptyNode node, ProjectView mProjectView)
             : this()
@@ -93,8 +95,10 @@ namespace Obi.ProjectView
             }
             else
             {
-                this.toolStrip1.MinimumSize = new Size(574, 25);
-                this.toolStrip1.Size = new Size(574, 25);
+                //this.toolStrip1.MinimumSize = new Size(574, 25);
+                //this.toolStrip1.Size = new Size(574, 25);
+                this.toolStrip1.MinimumSize = m_InitialtoolStripSize;
+                this.toolStrip1.Size = m_InitialtoolStripSize;
                 this.toolStrip1.Font = new Font(this.toolStrip1.Font.Name, (this.toolStrip1.Font.Size - (float)3.0), FontStyle.Regular);
             }
         }

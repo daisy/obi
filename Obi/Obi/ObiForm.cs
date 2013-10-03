@@ -4294,6 +4294,15 @@ namespace Obi
                 mProjectView.MergeWithPhrasesBeforeInSection();
             }
 
+            private void splitAndMergeWithNextToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.SplitAndMerge(true);
+            }
+
+            private void splitAndMergeWithPreviousToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.SplitAndMerge(false);
+            }
             private void mDeleteFollowingPhrasesToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 mProjectView.DeleteFollowingPhrasesInSection();
@@ -4750,6 +4759,10 @@ namespace Obi
             {
                 mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode)mProjectView.Presentation.RootNode, true);
             }
+
+
+
+
 
         }
     }
