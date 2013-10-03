@@ -684,9 +684,10 @@ namespace Obi.ProjectView
           public void IsNewProjectOpened()
         {
             m_buttonSizeinit = false;
+            m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
             m_ContentView.RemovePanel();
 
-            m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
+            
            
         }
 
