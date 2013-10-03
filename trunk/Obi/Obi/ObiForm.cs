@@ -2094,7 +2094,14 @@ namespace Obi
 
             private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.TransportBar.PlayAll();
+                if (!mProjectView.IsZoomWaveformActive)//@zoomwaveform: if zoom waveform is not active, start play all else start play selection
+                {
+                    mProjectView.TransportBar.PlayAll();
+                }
+                else
+                {
+                    mProjectView.TransportBar.PlayOrResume();
+                }
             }
 
             private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
