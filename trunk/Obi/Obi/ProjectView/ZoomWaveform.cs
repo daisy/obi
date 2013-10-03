@@ -416,7 +416,7 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = true;
             }
-            this.ActiveControl = m_Edit;
+            this.ActiveControl = btntxtZoomSelected;
             //Console.WriteLine("constructor " + (m_ProjectView.Selection is AudioSelection? "audio selection": "") +  m_ProjectView.Selection);
         }
 
