@@ -64,11 +64,11 @@ namespace Obi.ProjectView
 
         public void EnableDisableCut()
         {
-            mbtnCuttoolStrip.Enabled = (m_ContentView.CanRemoveAudio || m_ContentView.CanRemoveBlock || m_ContentView.CanRemoveStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
+            mbtnCuttoolStrip.Enabled = (m_ContentView.CanRemoveAudio ) && !m_ProjectView.TransportBar.IsRecorderActive;
             mbtnCopytoolStrip.Enabled = (m_ContentView.CanCopyAudio || m_ContentView.CanCopyBlock || m_ContentView.CanCopyStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
             mbtnPastetoolStrip.Enabled = m_ProjectView.CanPaste;
             mbtnSplittoolStrip.Enabled =  m_ProjectView.CanSplitPhrase;
-            mbtnDeletetoolStrip.Enabled = (m_ContentView.CanRemoveAudio || m_ContentView.CanRemoveBlock || m_ContentView.CanRemoveStrip) && !m_ProjectView.TransportBar.IsRecorderActive;
+            mbtnDeletetoolStrip.Enabled = (m_ContentView.CanRemoveAudio ) && !m_ProjectView.TransportBar.IsRecorderActive;
             mbtnMergetoolStrip.Enabled = m_ContentView.CanMergeBlockWithNext;
             
         }

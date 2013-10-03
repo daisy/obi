@@ -282,6 +282,7 @@ namespace Obi.ProjectView
                 
                     this.Controls.Add(m_Edit);
                     m_Edit.Show();
+                    m_Edit.EnableDisableCut();
                     toolStripZoomPanel.TabIndex = 1;
                     toolStripZoomPanel.TabStop = true;
                     btntxtZoomSelected.TabIndex = 2;
