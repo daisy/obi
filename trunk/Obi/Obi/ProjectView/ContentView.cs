@@ -4867,7 +4867,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_MergePhraseWithNextMenuItem.Enabled = CanMergeBlockWithNext;
             Context_SplitMergeWithNextMenuItem.Enabled = mProjectView.CanSplitPhrase ;
             Context_SplitMergeWithPreviousMenuItem.Enabled = mProjectView.CanSplitPhrase ;
-            Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && IsBlockOrWaveformSelected && mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 1 && !mProjectView.TransportBar.IsRecorderActive;
+            Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && (IsBlockOrWaveformSelected || IsZoomWaveformActive) && mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 1 && !mProjectView.TransportBar.IsRecorderActive;
             Context_CropAudioMenuItem.Enabled = mProjectView.CanCropPhrase;
             //Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus && !mProjectView.TransportBar.IsActive;
             Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus; // made consistent with drop down menu. if not suitable the commented lines around can be restored.

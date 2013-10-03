@@ -113,6 +113,8 @@ namespace Obi
             this.mSplitPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergePhraseWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitAndMergeWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitAndMergeWithPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergePhraseWithFollowingPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergePhraseWithPrecedingPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCropAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -814,6 +816,8 @@ namespace Obi
             // 
             this.mMergeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mMergePhraseWithNextToolStripMenuItem,
+            this.splitAndMergeWithNextToolStripMenuItem,
+            this.splitAndMergeWithPreviousToolStripMenuItem,
             this.mMergePhraseWithFollowingPhrasesToolStripMenuItem,
             this.mMergePhraseWithPrecedingPhrasesToolStripMenuItem});
             this.mMergeToolStripMenuItem.Name = "mMergeToolStripMenuItem";
@@ -824,6 +828,18 @@ namespace Obi
             resources.ApplyResources(this.mMergePhraseWithNextToolStripMenuItem, "mMergePhraseWithNextToolStripMenuItem");
             this.mMergePhraseWithNextToolStripMenuItem.Name = "mMergePhraseWithNextToolStripMenuItem";
             this.mMergePhraseWithNextToolStripMenuItem.Click += new System.EventHandler(this.mMergePhraseWithNextToolStripMenuItem_Click);
+            // 
+            // splitAndMergeWithNextToolStripMenuItem
+            // 
+            this.splitAndMergeWithNextToolStripMenuItem.Name = "splitAndMergeWithNextToolStripMenuItem";
+            resources.ApplyResources(this.splitAndMergeWithNextToolStripMenuItem, "splitAndMergeWithNextToolStripMenuItem");
+            this.splitAndMergeWithNextToolStripMenuItem.Click += new System.EventHandler(this.splitAndMergeWithNextToolStripMenuItem_Click);
+            // 
+            // splitAndMergeWithPreviousToolStripMenuItem
+            // 
+            this.splitAndMergeWithPreviousToolStripMenuItem.Name = "splitAndMergeWithPreviousToolStripMenuItem";
+            resources.ApplyResources(this.splitAndMergeWithPreviousToolStripMenuItem, "splitAndMergeWithPreviousToolStripMenuItem");
+            this.splitAndMergeWithPreviousToolStripMenuItem.Click += new System.EventHandler(this.splitAndMergeWithPreviousToolStripMenuItem_Click);
             // 
             // mMergePhraseWithFollowingPhrasesToolStripMenuItem
             // 
@@ -1683,6 +1699,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem settingsFromSilencePhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCheckForPhrasesWithImproperAudioMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem splitAndMergeWithNextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem splitAndMergeWithPreviousToolStripMenuItem;
     }
 }
 
