@@ -283,7 +283,7 @@ namespace Obi.ProjectView
                 {
                     long startPosition = Media.PCMFormat.Data.ConvertTimeToBytes(Convert.ToInt64(m_WaveformStartTime * AudioLib.AudioLibPCMFormat.TIME_UNIT));
                     startPosition = Media.PCMFormat.Data.AdjustByteToBlockAlignFrameSize(startPosition);
-                    Console.WriteLine("Drawing waveform: StartPosition: " + startPosition);
+                    //Console.WriteLine("Drawing waveform: StartPosition: " + startPosition);
                     au.Position = startPosition;
                 }
                 try
@@ -402,7 +402,7 @@ namespace Obi.ProjectView
                     System.Drawing.Font ft = new Font(FontFamily.GenericSansSerif, this.Height/5);
                     pe.Graphics.DrawString(strSeconds, ft,
                             mBlock.ColorSettings.WaveformTextBrush, new PointF(0.0f, this.Height / 4));
-                    Console.WriteLine(this.Height);
+                    //Console.WriteLine(this.Height);
                 }
             }
             base.OnPaint(pe);
@@ -571,8 +571,8 @@ namespace Obi.ProjectView
             if (IsPartialWaveformDisplayed)//@zoomwaveform
             {
                 double millisecondsPerPixel = (m_WaveformEndTime - m_WaveformStartTime) / Width_Expected;
-                Console.WriteLine("TimeFromX");
-                Console.WriteLine("Start time: " + m_WaveformStartTime + "; relative time: " + m_WaveformStartTime + (x * millisecondsPerPixel) + "; Absolute time: " + (x * Media.AudioDuration.AsMilliseconds / Width_Expected));
+                //Console.WriteLine("TimeFromX");
+                //Console.WriteLine("Start time: " + m_WaveformStartTime + "; relative time: " + m_WaveformStartTime + (x * millisecondsPerPixel) + "; Absolute time: " + (x * Media.AudioDuration.AsMilliseconds / Width_Expected));
                 return m_WaveformStartTime + (x * millisecondsPerPixel);
             }
             else
@@ -590,8 +590,8 @@ namespace Obi.ProjectView
                 if (relativeTime < 0) return 0;
 
                 double millisecondsPerPixel = (m_WaveformEndTime - m_WaveformStartTime) / Width_Expected;
-                Console.WriteLine("XFromTime");
-                Console.WriteLine("Relative pixels: " + Convert.ToInt32(relativeTime / millisecondsPerPixel) + "; Absolute pixels: " + (int)Math.Round(time / Media.AudioDuration.AsMilliseconds * Width_Expected));
+                //Console.WriteLine("XFromTime");
+                //Console.WriteLine("Relative pixels: " + Convert.ToInt32(relativeTime / millisecondsPerPixel) + "; Absolute pixels: " + (int)Math.Round(time / Media.AudioDuration.AsMilliseconds * Width_Expected));
                 return Convert.ToInt32(relativeTime / millisecondsPerPixel);
             }
             else
@@ -632,7 +632,7 @@ namespace Obi.ProjectView
         {
             m_WaveformStartTime = startTime;
             m_WaveformEndTime = endTime;
-            Console.WriteLine("SetTimeBoundsForDisplay");
+            //Console.WriteLine("SetTimeBoundsForDisplay");
             RequestRendering();
         }
 
@@ -641,7 +641,7 @@ namespace Obi.ProjectView
         {
             m_WaveformStartTime = -1;
             m_WaveformEndTime = -1;
-            Console.WriteLine("ResetTimeBoundsForDisplay");
+            //Console.WriteLine("ResetTimeBoundsForDisplay");
             RequestRendering();
         }
 
