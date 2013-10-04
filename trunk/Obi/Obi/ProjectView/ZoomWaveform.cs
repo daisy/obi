@@ -59,7 +59,7 @@ namespace Obi.ProjectView
                 PhraseLoad((EmptyNode) selection.Node);
             }
             if (m_AudioBlock != null) m_AudioBlock.SetSelectionFromContentView(selection);
-            btntxtZoomSelected.Focus();
+            //btntxtZoomSelected.Focus();
         }
         private bool m_Highlighted;
         public bool Highlighted { get { return m_Highlighted; } set { m_Highlighted =  value; } }
@@ -239,7 +239,7 @@ namespace Obi.ProjectView
         }
        public ZoomWaveform(ContentView contentView, Strip strip,EmptyNode node,ProjectView mProjectView ):this    ()
         {
-           
+            this.Load += new EventHandler(ZoomWaveform_Load);
             m_ContentView = contentView;
             m_ProjectView = mProjectView;
             m_ProjectView.SelectionChanged += new EventHandler(ProjectViewSelectionChanged);
@@ -417,8 +417,13 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = true;
             }
-            this.ActiveControl = btntxtZoomSelected;
+            //btntxtZoomSelected.Focus ();
             //Console.WriteLine("constructor " + (m_ProjectView.Selection is AudioSelection? "audio selection": "") +  m_ProjectView.Selection);
+        }
+
+        void ZoomWaveform_Load(object sender, EventArgs e)
+        {
+            btntxtZoomSelected.Focus();
         }
 
 
