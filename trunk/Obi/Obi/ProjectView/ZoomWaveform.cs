@@ -544,12 +544,12 @@ namespace Obi.ProjectView
                 m_ContentView.NudgeInFineNavigation(true);
                 return true; 
             }
-            else if (keyData == keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+            else if (keyData == keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value )
             {
                 m_ContentView.NudgeIntervalIncrement(false);
                 return true;
             }
-            else if (keyData == keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+            else if (keyData == keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value )
             {
                 m_ContentView.NudgeIntervalIncrement(true);
                 return true;
