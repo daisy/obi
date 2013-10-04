@@ -239,7 +239,7 @@ namespace Obi.ProjectView
         }
        public ZoomWaveform(ContentView contentView, Strip strip,EmptyNode node,ProjectView mProjectView ):this    ()
         {
-            this.Load += new EventHandler(ZoomWaveform_Load);
+            
             m_ContentView = contentView;
             m_ProjectView = mProjectView;
             m_ProjectView.SelectionChanged += new EventHandler(ProjectViewSelectionChanged);
@@ -417,6 +417,7 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = true;
             }
+            this.Load += new EventHandler(ZoomWaveform_Load);
             //btntxtZoomSelected.Focus ();
             //Console.WriteLine("constructor " + (m_ProjectView.Selection is AudioSelection? "audio selection": "") +  m_ProjectView.Selection);
         }
