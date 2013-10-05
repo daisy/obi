@@ -758,7 +758,7 @@ namespace Obi.Dialogs
             else if (mTab.SelectedTab == mProjectTab)
             {
 
-                //if (m_CheckBoxListView.Items[9].Checked && m_PrevShowContentViewVal )
+                //if (m_CheckBoxListView.Items[9].Checked && !m_PrevShowContentViewVal )
                 //{
                     //m_CheckBoxListView.Items[3].Checked = true;
                 //}
