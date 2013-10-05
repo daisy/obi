@@ -758,10 +758,10 @@ namespace Obi.Dialogs
             else if (mTab.SelectedTab == mProjectTab)
             {
 
-                if (m_CheckBoxListView.Items[9].Checked && !m_PrevShowContentViewVal)
-                {
-                    m_CheckBoxListView.Items[3].Checked = true;
-                }
+                //if (m_CheckBoxListView.Items[9].Checked && m_PrevShowContentViewVal )
+                //{
+                    //m_CheckBoxListView.Items[3].Checked = true;
+                //}
             }
         }
         public void UpdateBoolSettings()
@@ -772,7 +772,8 @@ namespace Obi.Dialogs
                 mSettings.OpenLastProject = m_CheckBoxListView.Items[0].Checked;
                 mSettings.AutoSave_RecordingEnd = m_CheckBoxListView.Items[1].Checked;
                 mSettings.OpenBookmarkNodeOnReopeningProject = m_CheckBoxListView.Items[2].Checked;
-                mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[9].Checked; // true only if waveform is shown in content view
+                mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[9].Checked ? m_CheckBoxListView.Items[3].Checked: false ; // false if waveform is disabled
+                //MessageBox.Show(mSettings.Project_ShowWaveformInContentView.ToString () + " : " +  mSettings.LeftAlignPhrasesInContentView.ToString()); 
                 mSettings.OptimizeMemory = m_CheckBoxListView.Items[4].Checked;
                 mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = m_CheckBoxListView.Items[5].Checked;
                 mSettings.Project_EnableFreeDiskSpaceCheck= m_CheckBoxListView.Items[6].Checked;
