@@ -36,6 +36,7 @@ namespace Obi.Dialogs
         private double m_DefaultLeadingSilence = 50.0;
         private double m_DefaultThreshold = 280.0;
         private bool m_PrevShowContentViewVal = true;
+        private bool m_KeepTrack = false;
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
@@ -758,10 +759,11 @@ namespace Obi.Dialogs
             else if (mTab.SelectedTab == mProjectTab)
             {
 
-                //if (m_CheckBoxListView.Items[9].Checked && !m_PrevShowContentViewVal )
-                //{
-                    //m_CheckBoxListView.Items[3].Checked = true;
-                //}
+                if (m_CheckBoxListView.Items[9].Checked && !m_PrevShowContentViewVal)
+                {
+                    m_CheckBoxListView.Items[3].Checked = true;
+                }
+
             }
         }
         public void UpdateBoolSettings()
@@ -780,7 +782,7 @@ namespace Obi.Dialogs
                 mSettings.Project_SaveProjectWhenRecordingEnds= m_CheckBoxListView.Items[7].Checked;
                 mSettings.Project_CheckForUpdates = m_CheckBoxListView.Items[8].Checked;
 
-                m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
+                //m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
                 mSettings.Project_ShowWaveformInContentView = m_CheckBoxListView.Items[9].Checked;
                 mSettings.Export_AlwaysIgnoreIndentation= m_CheckBoxListView.Items[10].Checked;
             }
@@ -887,6 +889,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[8].Checked = mSettings.Project_CheckForUpdates;
                 m_CheckBoxListView.Items[9].Checked = mSettings.Project_ShowWaveformInContentView;
                 m_CheckBoxListView.Items[10].Checked = mSettings.Export_AlwaysIgnoreIndentation;
+                m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
             }
             m_CheckBoxListView.View = View.Details;
             m_IsComplete = true;
