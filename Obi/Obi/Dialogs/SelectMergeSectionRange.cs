@@ -31,8 +31,7 @@ namespace Obi.Dialogs
             m_SectionList = sectionsList;
             m_SelectedIndex = selectedIndexOfSection;
             populateListboxForSectionsToMerge();          
-            m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("StatusForMergeSection"), m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);
-            m_StatusLabelForMergeSection.AccessibleName = String.Format(Localizer.Message("StatusForMergeSection"), m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);
+            m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("StatusForMergeSection"), m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);           
         }
 
         public List<SectionNode> SelectedSections
@@ -84,6 +83,7 @@ namespace Obi.Dialogs
             {
                 if (m_SectionList[i].Level >= firstSection.Level)
                 {
+                   m_SectionList[i].Label=m_SectionList[i].Label.Replace("\n", string.Empty);
                     m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
                 }
                 else
