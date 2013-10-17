@@ -32,6 +32,7 @@ namespace Obi.Dialogs
             m_SelectedIndex = selectedIndexOfSection;
             populateListboxForSectionsToMerge();          
             m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("StatusForMergeSection"), m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);
+            m_StatusLabelForMergeSection.AccessibleName = String.Format(Localizer.Message("StatusForMergeSection"), m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);
         }
 
         public List<SectionNode> SelectedSections
@@ -82,7 +83,9 @@ namespace Obi.Dialogs
             for (int i = 0; i <= (m_SectionList.Count - 1); i++)
             {
                 if (m_SectionList[i].Level >= firstSection.Level)
-                    m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);                 
+                {
+                    m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
+                }
                 else
                     return;
             }
@@ -127,7 +130,10 @@ namespace Obi.Dialogs
                      }*/                                  
             }
             if (m_lb_listofSectionsToMerge.SelectedItems.Count == 1)
-                m_StatusLabelForMergeSection.Text = String.Format("Selected {0}. Select at least one more section to merge", m_lb_listofSectionsToMerge.SelectedItem);
+            {
+                m_StatusLabelForMergeSection.Text = String.Format("Selected {0}. Select at least one more section to merge", m_lb_listofSectionsToMerge.SelectedItem);                
+            }
+
             if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
                 m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();
             m_IsDeselected = false;
@@ -224,9 +230,13 @@ namespace Obi.Dialogs
                if (totalPhraseCount < 7000)
                {
                    if (m_lb_listofSectionsToMerge.SelectedItems.Count == 1)
-                       m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("select_one_more_section"), m_lb_listofSectionsToMerge.SelectedItem);
+                   {
+                       m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("select_one_more_section"), m_lb_listofSectionsToMerge.SelectedItem);                       
+                   }
                    else
-                       m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("merged_sections"), listOfLargestNumberOfSections[0].Label, listOfLargestNumberOfSections[listOfLargestNumberOfSections.Count - 1].Label);
+                   {
+                       m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("merged_sections"), listOfLargestNumberOfSections[0].Label, listOfLargestNumberOfSections[listOfLargestNumberOfSections.Count - 1].Label);                      
+                   }
 
                //    MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", newList[0], newList[newList.Count - 1]));
                }
@@ -259,8 +269,8 @@ namespace Obi.Dialogs
                 }
             }
             if (totalPhraseCount > 7000)
-                MessageBox.Show(String.Format(Localizer.Message("limited_sections_merge"), m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count - 1].Label));
-            m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("merged_sections"), m_SectionList[0].Label, m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count - 1].Label);
+                MessageBox.Show(String.Format(Localizer.Message("limited_sections_merge"), m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count - 1].Label));           
+            m_StatusLabelForMergeSection.AccessibleName = String.Format(Localizer.Message("merged_sections"), m_SectionList[0].Label, m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count - 1].Label);
         
         }
     }
