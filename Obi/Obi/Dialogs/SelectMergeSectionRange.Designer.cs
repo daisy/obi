@@ -72,11 +72,14 @@ namespace Obi.Dialogs
             // 
             this.m_statusStripForMergeSection.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_StatusLabelForMergeSection});
+            this.m_statusStripForMergeSection.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             resources.ApplyResources(this.m_statusStripForMergeSection, "m_statusStripForMergeSection");
             this.m_statusStripForMergeSection.Name = "m_statusStripForMergeSection";
+            this.m_statusStripForMergeSection.ShowItemToolTips = true;
             // 
             // m_StatusLabelForMergeSection
             // 
+            this.m_StatusLabelForMergeSection.AutoToolTip = true;
             this.m_StatusLabelForMergeSection.Name = "m_StatusLabelForMergeSection";
             resources.ApplyResources(this.m_StatusLabelForMergeSection, "m_StatusLabelForMergeSection");
             // 
