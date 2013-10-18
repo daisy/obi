@@ -1151,7 +1151,7 @@
     <comment>Warning at export time (caption)</comment>
   </data>
   <data name="default_export_dirname" xml:space="preserve">
-    <value>{0}DAISY3 ஏற்றுமதி</value>
+    <value>{0}DAISY3 Export</value>
     <comment>Default name for the export directory</comment>
   </data>
   <data name="ObiForm_PipelineNotFound" xml:space="preserve">
@@ -1463,7 +1463,7 @@
     <value>காப்பு கோப்பையை சேமிக்கும்பொழுது பிழை ஏற்ப்பட்டது. இந்த செய்தி மீண்டும் மீண்டும் வந்தால், நீங்கள் விருப்பத்தேர்வுகளிலிருந்து தானாக சேமியை முடக்கி இந்த பிழையின் அறிக்கை செய்யவும்</value>
   </data>
   <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
-    <value>{0}DAISY 2.02 ஏற்றுமதி</value>
+    <value>{0}DAISY 2.02 export</value>
   </data>
   <data name="GoToPageOrPhrase_Title" xml:space="preserve">
     <value>போகவும்...</value>
@@ -2329,5 +2329,5 @@
   </data>
   <data name="StatusForMergeSection" xml:space="preserve">
     <value>Showing section {0} to {1}. Please select sections to merge.</value>
-    </data>
+  </data>
 </root>
