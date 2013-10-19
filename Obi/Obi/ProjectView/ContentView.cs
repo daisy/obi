@@ -5511,6 +5511,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
                         mProjectView.Selection = new AudioSelection((PhraseNode)previousSelection.Node, this, ((AudioSelection)previousSelection).AudioRange);
                     }
                     mProjectView.TransportBar.SelectionChangedPlaybackEnabled = playOnNavigateStatus;
+                    if (mProjectView.TransportBar.IsPlayerActive) UpdateCursorPosition(mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset);
                     EnsureVisibilityOfSelectedItem();
                 }
                 m_ZoomWaveformPanel = null;
