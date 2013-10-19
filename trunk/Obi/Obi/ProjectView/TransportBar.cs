@@ -714,6 +714,7 @@ namespace Obi.ProjectView
                 }
                 UpdateTimeDisplay();
                 UpdateButtons();
+                if (mState == State.Stopped && mView != null && mCurrentPlaylist != null && !mCurrentPlaylist.CanNavigateNextPhrase) mView.UpdateCursorPosition(0.0); // audio coursor returns to 0 position if the single phrase is being played
 
                 if (StateChanged != null) StateChanged(this, e);
 
