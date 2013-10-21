@@ -2530,8 +2530,16 @@ for (int j = 0;
                     {
                         MessageBox.Show(ex.ToString());
                     }
-                
+
+                    if (forAllEmptyPages)
+                    {
+                        if (IsZoomWaveformActive && listOfEmptyPages!=null)
+                        {
+                            MessageBox.Show(Localizer.Message("ProjectView_GenarteSpeechForAllPages"));
+                        }
+                    }
             }
+
         }
 
         private List<EmptyNode> GetListOfEmptyPagesInProject()

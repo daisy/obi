@@ -2391,4 +2391,7 @@ Error text: {1}</value>
   <data name="ZoomAudioTT_Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
+    <value>Speech is generated for all the pages</value>
+  </data>  
 </root>
