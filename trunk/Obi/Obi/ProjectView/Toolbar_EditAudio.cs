@@ -48,12 +48,30 @@ namespace Obi.ProjectView
 
           //  mInitialSizeOfPanel = this.Size;
             keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
+           // keyboardShortcuts.MenuNameDictionary
           //  this.mbtnCopytoolStrip.ToolTipText= keyboardShortcuts.KeyboardShortcutsDescription["Copy"].Value.ToString();
 
             //this.mbtnCopytoolStrip.ToolTipText = "Copy (Cntrl+C)";
             //this.mbtnCuttoolStrip.ToolTipText = "Copy (Cntrl+X)";
             //this.mbtnDeletetoolStrip.ToolTipText="Delete (Del)";
             //this.
+            this.mbtnCuttoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Cut") +"("+ FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCutToolStripMenuItem"].Value.ToString())+")";
+            this.mbtnCopytoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Copy") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCopyToolStripMenuItem"].Value.ToString()) + ")";
+            this.mbtnDeletetoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Delete") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mDeleteToolStripMenuItem"].Value.ToString()) + ")";
+            this.mbtnPastetoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Paste") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteToolStripMenuItem"].Value.ToString()) + ")";
+            this.mbtnMergetoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Merge") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergePhraseWithNextToolStripMenuItem"].Value.ToString()) + ")";
+            this.mbtnPraseDetectiontoolStrip.ToolTipText = Localizer.Message("EditAudioTT_PhraseDetect") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_ApplyPhraseDetectionMenuItem"].Value.ToString()) + ")";
+            this.mbtnSplittoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Split") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSplitPhraseToolStripMenuItem"].Value.ToString()) + ")";
+        }
+        private string FormatKeyboardShorcut(string str)
+        {
+            string[] tempStore = str.Split(',');
+            //return new string( charArray );
+            if (tempStore.Length > 1)
+            {
+                str = tempStore[1] + "+" + tempStore[0];
+            }
+            return str;
         }
 
         private void ProjectViewSelectionChanged(object sender, EventArgs e)

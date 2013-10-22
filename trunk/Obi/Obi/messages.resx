@@ -2393,5 +2393,23 @@ Error text: {1}</value>
   </data>
   <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
     <value>Speech is generated for all the pages</value>
+  </data>
+  <data name="EditAudioTT_Cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="EditAudioTT_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="EditAudioTT_Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="EditAudioTT_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="EditAudioTT_Merge" xml:space="preserve">
+    <value>Merge With Next Phrase</value>
+  </data>
+  <data name="EditAudioTT_Split" xml:space="preserve">
+    <value>Split Phrase</value>
   </data>  
 </root>
