@@ -2533,7 +2533,7 @@ for (int j = 0;
 
                     if (forAllEmptyPages)
                     {
-                        if (IsZoomWaveformActive && listOfEmptyPages!=null)
+                        if (listOfEmptyPages!=null)
                         {
                             MessageBox.Show(Localizer.Message("ProjectView_GenarteSpeechForAllPages"));
                         }
