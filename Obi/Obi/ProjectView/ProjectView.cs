@@ -2510,7 +2510,7 @@ for (int j = 0;
                         
                         cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.Delete(this, listOfEmptyPages[i]));
                         Commands.Node.AddNode add = new Obi.Commands.Node.AddNode(this, pagePhrase, listOfEmptyPages[i].ParentAs<SectionNode>(), listOfEmptyPages[i].Index);
-                        add.UpdateSelection = listOfEmptyPages.Count==1;
+                        add.UpdateSelection = !forAllEmptyPages;
                         cmd.ChildCommands.Insert(cmd.ChildCommands.Count, add);
 
 
