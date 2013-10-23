@@ -75,9 +75,13 @@ namespace Obi.ProjectView
             if( m_AudioBlock != null ) m_AudioBlock.UpdateCursorTime (time) ;        
              XVal = m_AudioBlock.UpdateCursorTime(time);             
 
-             if ((XVal >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (XVal < m_ContentView.Width && m_AudioBlock.Location.X < 0) || (XVal < Math.Abs(m_AudioBlock.Location.X)))
+            // if ((XVal >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (XVal < m_ContentView.Width && m_AudioBlock.Location.X < 0) || (XVal < Math.Abs(m_AudioBlock.Location.X)))
+             if ((XVal >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (XVal < Math.Abs(m_AudioBlock.Location.X)))
              {
                  panelZooomWaveform.AutoScrollPosition = new Point(XVal, panelZooomWaveform.AutoScrollPosition.Y);
+                 Console.WriteLine("Xval Value {0}", XVal);
+                 Console.WriteLine("Content view width {0}", m_ContentView.Width);
+                 Console.WriteLine("Location.X value {0}", m_AudioBlock.Location.X);
              }
             
         }
