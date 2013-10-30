@@ -14,7 +14,7 @@ namespace Obi.Dialogs
     public partial class UserRegistration : Form
     {
         public static readonly string NoInfo = "NoInfo";
-        public static readonly string Registered = "Registered";
+        //public static readonly string Registered = "Registered";
         public static readonly int MaxUploadAttemptsAllowed = 10;
 
         private static Settings_Permanent m_Settings;
@@ -145,7 +145,8 @@ namespace Obi.Dialogs
                     if (ftpRequest.GetResponse().ContentLength > 0)
                     {
                         Console.WriteLine("registered");
-                        m_Settings.UsersInfoToUpload = Registered;
+                        //m_Settings.UsersInfoToUpload = Registered;
+                        m_Settings.RegistrationComplete = true;
                         m_Settings.SaveSettings();
                         //MessageBox.Show("done");
                     }
@@ -262,7 +263,8 @@ namespace Obi.Dialogs
                    tempStr += "%0A" + s;
                }
                 Process.Start(tempStr);
-                m_Settings.UsersInfoToUpload = Registered ;
+                //m_Settings.UsersInfoToUpload = Registered ;
+                m_Settings.RegistrationComplete = true;
                 m_Settings.SaveSettings();
             }
             catch (System.Exception ex)
