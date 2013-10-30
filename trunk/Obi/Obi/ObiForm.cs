@@ -1342,7 +1342,8 @@ namespace Obi
 
             private void UploadUsersInfo()
             {
-                if (m_Settings_Permanent.UsersInfoToUpload != Dialogs.UserRegistration.Registered && m_Settings_Permanent.UploadAttemptsCount <= Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
+                //if (m_Settings_Permanent.UsersInfoToUpload != Dialogs.UserRegistration.Registered && m_Settings_Permanent.UploadAttemptsCount <= Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
+                if (!m_Settings_Permanent.RegistrationComplete && m_Settings_Permanent.UploadAttemptsCount <= Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
                 {
                     //Console.WriteLine(mSettings.UsersInfoToUpload);
                     if (string.IsNullOrEmpty(m_Settings_Permanent.UsersInfoToUpload) || m_Settings_Permanent.UsersInfoToUpload == Dialogs.UserRegistration.NoInfo)
@@ -1351,7 +1352,7 @@ namespace Obi
                         registrationDialog.ShowDialog();
                     }
                     //Console.WriteLine("bypassed dialog");
-                    if (!string.IsNullOrEmpty(m_Settings_Permanent.UsersInfoToUpload) && m_Settings_Permanent.UsersInfoToUpload != Dialogs.UserRegistration.NoInfo && m_Settings_Permanent.UsersInfoToUpload != Dialogs.UserRegistration.Registered)
+                    if (!string.IsNullOrEmpty(m_Settings_Permanent.UsersInfoToUpload) && m_Settings_Permanent.UsersInfoToUpload != Dialogs.UserRegistration.NoInfo && !m_Settings_Permanent.RegistrationComplete)
                     {
                         Console.WriteLine("Upload attempts: " + m_Settings_Permanent.UploadAttemptsCount);
                         // if attempts are less than max allowed attempts then try uploading 
