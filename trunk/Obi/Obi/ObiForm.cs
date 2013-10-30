@@ -27,6 +27,7 @@ namespace Obi
             private Session mSession; // current work session
             private Settings mSettings; // application settings
             private Settings m_DefaultSettings;
+            private Settings_Permanent m_Settings_Permanent;
             private KeyboardShortcuts_Settings m_KeyboardShortcuts; // keyboard shortcuts used by application
             private Dialogs.ShowSource mSourceView; // maintain a single "source view" dialog
             private PipelineInterface.PipelineInfo mPipelineInfo; // instance for easy access to pipeline information
@@ -141,6 +142,11 @@ namespace Obi
             public KeyboardShortcuts_Settings KeyboardShortcuts
             {
                 get { return m_KeyboardShortcuts; }
+            }
+
+            public Settings_Permanent Settings_Permanent
+            {
+                get { return m_Settings_Permanent; }
             }
 
             // True if the user has chosen the "open last project" option, and there is a last project to open.
@@ -1294,7 +1300,7 @@ namespace Obi
             {
                 if (!m_InputDeviceFound && !m_OutputDevicefound) this.Close();
                 CheckSystemSupportForMemoryOptimization();
-                //UploadUsersInfo();//commented for 3.0 beta1 release on Oct 1, 2013.
+                UploadUsersInfo();
                 if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject, null);
                 if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog();
 
@@ -1335,30 +1341,30 @@ namespace Obi
             }
 
             private void UploadUsersInfo()
-            {   
-                if (mSettings.UsersInfoToUpload != Dialogs.UserRegistration.Registered  && mSettings.UploadAttemptsCount <= Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
+            {
+                if (m_Settings_Permanent.UsersInfoToUpload != Dialogs.UserRegistration.Registered && m_Settings_Permanent.UploadAttemptsCount <= Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
                 {
                     //Console.WriteLine(mSettings.UsersInfoToUpload);
-                    if (string.IsNullOrEmpty(mSettings.UsersInfoToUpload) || mSettings.UsersInfoToUpload == Dialogs.UserRegistration.NoInfo )
+                    if (string.IsNullOrEmpty(m_Settings_Permanent.UsersInfoToUpload) || m_Settings_Permanent.UsersInfoToUpload == Dialogs.UserRegistration.NoInfo)
                     {
-                        Dialogs.UserRegistration registrationDialog = new UserRegistration(mSettings);
+                        Dialogs.UserRegistration registrationDialog = new UserRegistration(m_Settings_Permanent);
                         registrationDialog.ShowDialog();
                     }
                     //Console.WriteLine("bypassed dialog");
-                    if (!string.IsNullOrEmpty(mSettings.UsersInfoToUpload) &&  mSettings.UsersInfoToUpload != Dialogs.UserRegistration.NoInfo && mSettings.UsersInfoToUpload != Dialogs.UserRegistration.Registered)
+                    if (!string.IsNullOrEmpty(m_Settings_Permanent.UsersInfoToUpload) && m_Settings_Permanent.UsersInfoToUpload != Dialogs.UserRegistration.NoInfo && m_Settings_Permanent.UsersInfoToUpload != Dialogs.UserRegistration.Registered)
                     {
-                        Console.WriteLine("Upload attempts: " + mSettings.UploadAttemptsCount);
+                        Console.WriteLine("Upload attempts: " + m_Settings_Permanent.UploadAttemptsCount);
                         // if attempts are less than max allowed attempts then try uploading 
                         // but if attempts count are equal to maximum attempts allowed then send email
-                        if (mSettings.UploadAttemptsCount < Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
+                        if (m_Settings_Permanent.UploadAttemptsCount < Dialogs.UserRegistration.MaxUploadAttemptsAllowed)
                         {
                             Console.WriteLine("uploading");
-                            Dialogs.UserRegistration.UploadUserInformation(mSettings);
+                            Dialogs.UserRegistration.UploadUserInformation(m_Settings_Permanent);
                         }
-                        else if ( MessageBox.Show(string.Format(Localizer.Message("UserRegistration_SendEmailMsg"),mSettings.UploadAttemptsCount ),
+                        else if (MessageBox.Show(string.Format(Localizer.Message("UserRegistration_SendEmailMsg"), m_Settings_Permanent.UploadAttemptsCount),
                              Localizer.Message("Caption_Information"), MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
-                            Dialogs.UserRegistration.OpenEmailToSend(mSettings);
+                            Dialogs.UserRegistration.OpenEmailToSend(m_Settings_Permanent);
                         }
                     }
                 }
@@ -3599,6 +3605,7 @@ namespace Obi
             private void InitializeSettings()
             {
                 mSettings = Settings.GetSettings();
+                m_Settings_Permanent = Settings_Permanent.GetSettings();
                 for (int i = mSettings.RecentProjects.Count - 1; i >= 0; --i)
                 {
                     if (!AddRecentProjectsItem((string) mSettings.RecentProjects[i]))

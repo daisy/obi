@@ -17,7 +17,7 @@ namespace Obi.Dialogs
         public static readonly string Registered = "Registered";
         public static readonly int MaxUploadAttemptsAllowed = 10;
 
-        private static Settings m_Settings;
+        private static Settings_Permanent m_Settings;
         private static BackgroundWorker m_BackgroundWorker = new BackgroundWorker();
         private static System.Globalization.CultureInfo m_CurrentCulture;
 
@@ -36,7 +36,7 @@ namespace Obi.Dialogs
             m_txtBoxObiInformation.Select(0, 0);
         }
 
-        public UserRegistration(Settings settings)
+        public UserRegistration(Settings_Permanent settings)
             : this()
         {
             m_Settings = settings;
@@ -53,7 +53,7 @@ namespace Obi.Dialogs
             return fileName;
         }
 
-        public static void UploadUserInformation(Settings settings)
+        public static void UploadUserInformation(Settings_Permanent settings)
         {
 
             if (settings == null || m_BackgroundWorker.IsBusy) return;
@@ -249,7 +249,7 @@ namespace Obi.Dialogs
         }
 
       
-        public static void OpenEmailToSend(Settings settings)
+        public static void OpenEmailToSend(Settings_Permanent settings)
         {
             m_Settings = settings;
             try
