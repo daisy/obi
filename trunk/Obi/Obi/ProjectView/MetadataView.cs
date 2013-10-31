@@ -126,11 +126,12 @@ namespace Obi.ProjectView
                 mContentLabel.Font = new Font ( mContentLabel.Font.FontFamily, size );
                 mContentTextbox.Font = new Font ( mContentTextbox.Font.FontFamily, size );
                 mUpdateButton.Font = new Font ( mUpdateButton.Font.FontFamily, size );
-                int labelEdge = mNameLabel.Width > mContentLabel.Width ?
-                    mNameLabel.Location.X + mNameLabel.Width + mNameLabel.Margin.Right :
+                int labelEdge = mNameLabel.Width > mContentLabel.Width ? mNameLabel.Location.X + mNameLabel.Width + mNameLabel.Margin.Right :
                     mContentLabel.Location.X + mContentLabel.Width + mContentLabel.Margin.Right;
-                mContentTextbox.Location = new Point ( labelEdge + mContentTextbox.Margin.Left,
-                    mUpdateButton.Location.Y - mUpdateButton.Margin.Top - mContentTextbox.Margin.Bottom - mContentTextbox.Height );
+                mContentTextbox.Location = new Point ( labelEdge + mContentTextbox.Margin.Left, mUpdateButton.Location.Y - mUpdateButton.Margin.Top - mContentTextbox.Margin.Bottom - mContentTextbox.Height );
+                
+                m_BtnContextMenu.Location = new Point((mUpdateButton.Location.X + mUpdateButton.Width), mUpdateButton.Location.Y);
+
                 mContentTextbox.Width = Width - mContentTextbox.Location.X - mContentTextbox.Margin.Right;
                 mContentLabel.Location = new Point ( labelEdge - mContentLabel.Margin.Right - mContentLabel.Width,
                     mContentTextbox.Location.Y + labelOffset );

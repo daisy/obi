@@ -160,7 +160,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mMetadataListView.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="mContentTextbox.AccessibleName" xml:space="preserve">
     <value>Metadata Content:</value>
@@ -190,7 +190,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mContentTextbox.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="mUpdateButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -205,7 +205,7 @@
     <value>Flat</value>
   </data>
   <data name="mUpdateButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>246, 389</value>
+    <value>211, 389</value>
   </data>
   <data name="mUpdateButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 0, 0</value>
@@ -229,7 +229,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mUpdateButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="mNameTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -256,7 +256,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNameTextbox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="mNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -289,7 +289,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNameLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="mContentLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -322,11 +322,48 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mContentLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="m_BtnContextMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnContextMenu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABl0lEQVRYR8WSvUoDQRSFA2op
+        WPgcFnkBXyO72WYlJIRYmSJW6gso+BT+YDQGQ0RE3ERrxU60iFgZFVSwvs5ZZsKsHLUJ1wMfLN/ce+cu
+        TE5E/hUqNaFSEyo1oVITKjWhUhMqNaFSEyo1oVITKn1MpqrV6lupVJKFOJb4D1CDWvSgFwPYXAeVPiYz
+        5XJZ3j8+Zfj8Kk/Dl19BDWrRg95xLDAbRdH5+samDB4eZWunadiT7d1mBjicoQa16EHvOBaYNswVCoVk
+        ZXVNbu/uZb/VlubBYQY4nKEGteixvXSug0ofk0kD/iSPwY3Gslxd30j7qCutdicF33A4s5fnbQ966VwH
+        lT42E4Z0iSAIkvpSXXr9Szk5PUtJ+hcChzPU2Fr0pGFzHVT6eBktEYZBUlusSad7nGJevIRhSC9H2FwH
+        lT7fMlqiWCz2KpWKAHzD2bPM5Qib66DSh8QtgUc2b8E3vRxhcx1U+vwQPC68cFwK8J0+OBY210GlzzjC
+        5jqo1IRKTajUhEpNqNSESk2o1IRKTajUhEo9JPcFLZCrGDM4cHAAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="m_BtnContextMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>279, 389</value>
+  </data>
+  <data name="m_BtnContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 28</value>
+  </data>
+  <data name="m_BtnContextMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;m_BtnContextMenu.Name" xml:space="preserve">
+    <value>m_BtnContextMenu</value>
+  </data>
+  <data name="&gt;&gt;m_BtnContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnContextMenu.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_BtnContextMenu.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
