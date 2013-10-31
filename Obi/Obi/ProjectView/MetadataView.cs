@@ -26,6 +26,7 @@ namespace Obi.ProjectView
             mBaseFontSize = Font.SizeInPoints;
             m_IsImportingMetadata = false;
             initializeMetadataDictionary();
+            m_BtnContextMenu.Location = new Point((mUpdateButton.Right + 10), mUpdateButton.Location.Y);
             }
 
 
@@ -130,7 +131,7 @@ namespace Obi.ProjectView
                     mContentLabel.Location.X + mContentLabel.Width + mContentLabel.Margin.Right;
                 mContentTextbox.Location = new Point ( labelEdge + mContentTextbox.Margin.Left, mUpdateButton.Location.Y - mUpdateButton.Margin.Top - mContentTextbox.Margin.Bottom - mContentTextbox.Height );
                 
-                m_BtnContextMenu.Location = new Point((mUpdateButton.Location.X + mUpdateButton.Width), mUpdateButton.Location.Y);
+                m_BtnContextMenu.Location = new Point((mUpdateButton.Right + 10), mUpdateButton.Location.Y);
 
                 mContentTextbox.Width = Width - mContentTextbox.Location.X - mContentTextbox.Margin.Right;
                 mContentLabel.Location = new Point ( labelEdge - mContentLabel.Margin.Right - mContentLabel.Width,

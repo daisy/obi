@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Drawing;
+using System.Collections.Generic ;
 
 namespace Obi
 {
@@ -20,7 +21,8 @@ namespace Obi
 
         public string UsersInfoToUpload; //users info is temporarily stored till it is uploaded or timed out
         public int UploadAttemptsCount; // number of times user info upload attempted
-        public bool RegistrationComplete;        
+        public bool RegistrationComplete;
+        private string[] DefaultMetadataArray;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_permanent_settings.xml";
 
@@ -52,7 +54,7 @@ namespace Obi
             Settings_Permanent settings = new Settings_Permanent();
             InitializeDefaultSettings(settings);
             
-            System.Windows.Forms.MessageBox.Show(GetSettingFilePath());
+            
             //IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
             {
@@ -91,13 +93,43 @@ namespace Obi
             stream.Close();
         }
 
-        private static string GetSettingFilePath()
+                private static string GetSettingFilePath()
         {
             string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
             string obiSettingsDir = System.IO.Path.Combine(appDataDir, "Obi");
             if (!System.IO.Directory.Exists(obiSettingsDir)) System.IO.Directory.CreateDirectory(obiSettingsDir);
             string permanentSettingsPath = System.IO.Path.Combine(obiSettingsDir, SETTINGS_FILE_NAME);
             return permanentSettingsPath;
+        }
+
+        public Dictionary<string, string> GetDefaultMetadata()
+        {
+            Dictionary<string, string> metadataDictionary = new Dictionary<string, string>();
+            if (DefaultMetadataArray != null && DefaultMetadataArray.Length > 0)
+            {
+                for (int i = 0; i < DefaultMetadataArray.Length; i++)
+                {
+                    string[] name_Content = DefaultMetadataArray[i].Split('@');
+                    metadataDictionary.Add(name_Content[0], name_Content[1]);
+                }
+            }
+            return metadataDictionary;
+        }
+
+        public void UpdateDefaultMetadata(Dictionary<string, string> metadataDictionary)
+        {
+            if (metadataDictionary != null && metadataDictionary.Count > 0)
+            {
+                DefaultMetadataArray = new string[metadataDictionary.Count];
+                int counter = 0;
+                foreach (string s in metadataDictionary.Keys)
+                {
+                    string metadataString = s + "@" + metadataDictionary[s];
+                    DefaultMetadataArray[counter] = metadataString;
+                    counter++;
+                }
+
+            }
         }
 
     }
