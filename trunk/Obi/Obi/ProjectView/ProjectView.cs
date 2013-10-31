@@ -3562,7 +3562,14 @@ for (int j = 0;
                 else if (TransportBar.CanPause)
                     {
                     // Pause playback or recording
-                    TransportBar.Pause ();
+                        if (ObiForm.Settings.Audio_UseRecordingPauseShortcutForStopping && mTransportBar.CurrentState == TransportBar.State.Recording)
+                        {
+                            TransportBar.Stop();
+                        }
+                        else
+                        {
+                            TransportBar.Pause();
+                        }
                     return true;
                     }
                 else if (TransportBar.CanPlay || TransportBar.CanResumePlayback)

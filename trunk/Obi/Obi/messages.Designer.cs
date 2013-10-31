@@ -313,6 +313,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use pause recording shortcut for stopping recording.
+        /// </summary>
+        internal static string Audio_UseRecordingPauseShortcutForStopping {
+            get {
+                return ResourceManager.GetString("Audio_UseRecordingPauseShortcutForStopping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exporting audio File....
         /// </summary>
         internal static string AudioFileExport_progress_dialog_title {
@@ -1644,6 +1653,60 @@ namespace Obi {
         internal static string EachLevel {
             get {
                 return ResourceManager.GetString("EachLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        internal static string EditAudioTT_Copy {
+            get {
+                return ResourceManager.GetString("EditAudioTT_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cut.
+        /// </summary>
+        internal static string EditAudioTT_Cut {
+            get {
+                return ResourceManager.GetString("EditAudioTT_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string EditAudioTT_Delete {
+            get {
+                return ResourceManager.GetString("EditAudioTT_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge With Next Phrase.
+        /// </summary>
+        internal static string EditAudioTT_Merge {
+            get {
+                return ResourceManager.GetString("EditAudioTT_Merge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        internal static string EditAudioTT_Paste {
+            get {
+                return ResourceManager.GetString("EditAudioTT_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split Phrase.
+        /// </summary>
+        internal static string EditAudioTT_Split {
+            get {
+                return ResourceManager.GetString("EditAudioTT_Split", resourceCulture);
             }
         }
         
@@ -3480,6 +3543,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set default metadata.
+        /// </summary>
+        internal static string Metadata_SetDefaults {
+            get {
+                return ResourceManager.GetString("Metadata_SetDefaults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Metadata cannot have empty values..
         /// </summary>
         internal static string MetadataView_CannotCommitEmptyContent {
@@ -4656,6 +4728,15 @@ namespace Obi {
         internal static string ProjectView_ErrorReplacingAudioDueToTimingMissmatch {
             get {
                 return ResourceManager.GetString("ProjectView_ErrorReplacingAudioDueToTimingMissmatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speech is generated for all the pages.
+        /// </summary>
+        internal static string ProjectView_GenarteSpeechForAllPages {
+            get {
+                return ResourceManager.GetString("ProjectView_GenarteSpeechForAllPages", resourceCulture);
             }
         }
         
@@ -6000,6 +6081,69 @@ namespace Obi {
         internal static string xml_filter {
             get {
                 return ResourceManager.GetString("xml_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        internal static string ZoomAudioTT_Close {
+            get {
+                return ResourceManager.GetString("ZoomAudioTT_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        internal static string ZoomAudioTT_Reset {
+            get {
+                return ResourceManager.GetString("ZoomAudioTT_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Next Phrase.
+        /// </summary>
+        internal static string ZoomAudioTT_ShowNextPhrase {
+            get {
+                return ResourceManager.GetString("ZoomAudioTT_ShowNextPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Previous Phrase.
+        /// </summary>
+        internal static string ZoomAudioTT_ShowPreviousPhrase {
+            get {
+                return ResourceManager.GetString("ZoomAudioTT_ShowPreviousPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom In.
+        /// </summary>
+        internal static string ZoomAudioTT_ZoomIn {
+            get {
+                return ResourceManager.GetString("ZoomAudioTT_ZoomIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom Out.
+        /// </summary>
+        internal static string ZoomAudioTT_ZoomOut {
+            get {
+                return ResourceManager.GetString("ZoomAudioTT_ZoomOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom Selection.
+        /// </summary>
+        internal static string ZoomAudioTT_ZoomSelection {
+            get {
+                return ResourceManager.GetString("ZoomAudioTT_ZoomSelection", resourceCulture);
             }
         }
     }

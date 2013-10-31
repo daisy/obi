@@ -2385,7 +2385,7 @@ Error text: {1}</value>
   <data name="ZoomAudioTT_ZoomSelection" xml:space="preserve">
     <value>Zoom Selection</value>
   </data>
-   <data name="ZoomAudioTT_Close" xml:space="preserve">
+  <data name="ZoomAudioTT_Close" xml:space="preserve">
     <value>Close</value>
   </data>
   <data name="ZoomAudioTT_Reset" xml:space="preserve">
@@ -2411,5 +2411,11 @@ Error text: {1}</value>
   </data>
   <data name="EditAudioTT_Split" xml:space="preserve">
     <value>Split Phrase</value>
-  </data>  
+  </data>
+  <data name="Metadata_SetDefaults" xml:space="preserve">
+    <value>Set default metadata</value>
+  </data>
+  <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
+    <value>Use pause recording shortcut for stopping recording</value>
+  </data>
 </root>
