@@ -205,7 +205,7 @@
     <value>Flat</value>
   </data>
   <data name="mUpdateButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 389</value>
+    <value>206, 389</value>
   </data>
   <data name="mUpdateButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 0, 0</value>
@@ -327,6 +327,15 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="m_BtnContextMenu.AccessibleName" xml:space="preserve">
+    <value>More options submenu</value>
+  </data>
+  <data name="m_BtnContextMenu.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="m_BtnContextMenu.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
   <data name="m_BtnContextMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -344,7 +353,7 @@
 </value>
   </data>
   <data name="m_BtnContextMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, 389</value>
+    <value>275, 389</value>
   </data>
   <data name="m_BtnContextMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 28</value>
@@ -367,6 +376,15 @@
   <metadata name="mMetadataContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>114, 17</value>
   </metadata>
+  <data name="mMetadataContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 70</value>
+  </data>
+  <data name="&gt;&gt;mMetadataContextMenuStrip.Name" xml:space="preserve">
+    <value>mMetadataContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;mMetadataContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="SetDefaultMetadataStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
@@ -384,15 +402,6 @@
   </data>
   <data name="SaveAsDefaultMetadataToolStripMenuItem.Text" xml:space="preserve">
     <value>Save as default metadata</value>
-  </data>
-  <data name="mMetadataContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 92</value>
-  </data>
-  <data name="&gt;&gt;mMetadataContextMenuStrip.Name" xml:space="preserve">
-    <value>mMetadataContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;mMetadataContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
