@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,13 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>181, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblParentSection.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblParentSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 17</value>
+    <value>22, 17</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblParentSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -157,13 +166,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtParentSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 15</value>
+    <value>149, 15</value>
   </data>
   <data name="m_txtParentSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtParentSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>356, 22</value>
+    <value>366, 22</value>
   </data>
   <data name="m_txtParentSection.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -247,7 +256,7 @@
     <value>True</value>
   </data>
   <data name="m_lblPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 238</value>
+    <value>21, 238</value>
   </data>
   <data name="m_lblPhraseRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -319,7 +328,7 @@
     <value>True</value>
   </data>
   <data name="m_lblCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 272</value>
+    <value>5, 272</value>
   </data>
   <data name="m_lblCustomClassName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -553,10 +562,10 @@
     <value>Flat</value>
   </data>
   <data name="m_comboCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 269</value>
+    <value>208, 269</value>
   </data>
   <data name="m_comboCustomClassName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>310, 24</value>
+    <value>317, 24</value>
   </data>
   <data name="m_comboCustomClassName.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -573,10 +582,27 @@
   <data name="&gt;&gt;m_comboCustomClassName.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  
+  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
+    <value>sections parentes:</value>
+  </data>
+  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>136, 25</value>
+  </data>
+  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 82</value>
+  </data>
+  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
   <data name="&gt;&gt;m_lbParentsList.Name" xml:space="preserve">
     <value>m_lbParentsList</value>
   </data>
@@ -611,40 +637,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-   <value>4</value>
-  </data>
-  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>sections parentes:</value>
-  </data>
-  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top , Bottom , Left , Right </value>
-  </data>
-  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 25</value>
-  </data>
-  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>361, 82</value>
-  </data>
-  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;m_lbParentsList.Name" xml:space="preserve">
-    <value>m_lbParentsList</value>
-  </data>
-  <data name="&gt;&gt;m_lbParentsList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lbParentsList.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;m_lbParentsList.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="m_lblPageNumberDetails.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -734,7 +727,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_chkChangePageNumber.ZOrder" xml:space="preserve">
-  <value>1</value>
+    <value>1</value>
   </data>
   <data name="m_lbl_ReferredNote.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -766,15 +759,9 @@
   <data name="&gt;&gt;m_lbl_ReferredNote.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>181, 17</value>
-  </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
   </data>

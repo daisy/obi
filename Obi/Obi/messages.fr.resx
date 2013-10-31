@@ -321,7 +321,7 @@ Oh well.</value>
   </data>
   <data name="empty_directory_caption" xml:space="preserve">
     <value>Exportation vers un répertoire non vide</value>
-    <comment>Warning dialog</comment>
+    <comment>ToString() for empty phrases</comment>
   </data>
   <data name="empty_directory_text" xml:space="preserve">
     <value>Vous êtes sur le point d'exporter votre projet DAISY vers {0}. Ce répertoire n'est pas vide (peut-être avez-vous exporté une version précédente de votre projet vers ce répertoire). Voulez-vous vider ce répertoire avant d'exporter?</value>
@@ -384,7 +384,7 @@ Oh well.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="really_use_directory_text" xml:space="preserve">
-    <value>Le répertoire "{0}"is not empty. n'est pas vide. Si vous voulez vider le répertoire avant de l'utiliser, choisir "Oui." Si vous voulez utiliser ce répertoire tel quel, choisir "Non."</value>
+    <value>Le répertoire "{0}" n'est pas vide. Si vous voulez vider le répertoire avant de l'utiliser, choisir "Oui." Si vous voulez utiliser ce répertoire tel quel, choisir "Non."</value>
     <comment>Error dialog</comment>
   </data>
   <data name="cannot_redo" xml:space="preserve">
@@ -421,7 +421,7 @@ Oh well.</value>
   </data>
   <data name="paste_section" xml:space="preserve">
     <value>Coller la section</value>
-    <comment>Command</comment>
+    <comment>Comand</comment>
   </data>
   <data name="import_phrases" xml:space="preserve">
     <value>importer des fichiers audio</value>
@@ -527,7 +527,7 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="paste_phrase" xml:space="preserve">
     <value>coller la phrase</value>
-    <comment>Command</comment>
+    <comment>Comand</comment>
   </data>
   <data name="add_role" xml:space="preserve">
     <value>(Ajouter un rôle)</value>
@@ -548,12 +548,6 @@ Texte de l'erreur: {1}</value>
   <data name="add_section" xml:space="preserve">
     <value>ajouter une section</value>
     <comment>Command</comment>
-  </data>
-  <data name="UseDefaultValues" xml:space="preserve">
-    <value>Utiliser valeurs par défaut</value>
-  </data>
-  <data name="SelectDeselectAllSections" xml:space="preserve">
-    <value>Sélectionner/Désélectionner sections</value>
   </data>
   <data name="add_subsection" xml:space="preserve">
     <value>ajouter une sous-section</value>
@@ -600,7 +594,7 @@ Texte de l'erreur: {1}</value>
     <comment>Error message stub</comment>
   </data>
   <data name="filter" xml:space="preserve">
-    <value>XHTML, Opf, XML file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|tous les fichiers|*.*</value>
+    <value>fichier XHTML, Opf, XML (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|tous les fichiers|*.*</value>
     <comment>File dialog</comment>
   </data>
   <data name="blank_phrase" xml:space="preserve">
@@ -623,9 +617,21 @@ Texte de l'erreur: {1}</value>
     <value>Obi n'a pas pu nettoyer le projet courant, pour la raison apparente suivante: {0}</value>
     <comment>Error dialog</comment>
   </data>
+  <data name="clean_up_ask_for_delete_project" xml:space="preserve">
+    <value>Les fichiers inutilisés seront déplacés vers le dossier des éléments supprimés. Voulez-vous continuer?</value>
+    <comment>Confirmation dialog</comment>
+  </data>
   <data name="clean_save_caption" xml:space="preserve">
     <value>Enregistrer après le nettoyage</value>
     <comment>Confirmation dialog</comment>
+  </data>
+  <data name="delete_unused_data_caption" xml:space="preserve">
+    <value>Supprimer les données inutilisées?</value>
+    <comment>Confirmation dialog</comment>
+  </data>
+  <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
+    <value>Phrases inutilisées supprimées</value>
+    <comment>Command</comment>
   </data>
   <data name="clean_save_text" xml:space="preserve">
     <value>Votre projet sera enregistré après nettoyage. Voulez-vous continuer?</value>
@@ -689,9 +695,6 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="content_view" xml:space="preserve">
     <value>Vue du contenu</value>
-  </data>
-  <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
-    <value>Les phrases inutilisées sont supprimées du projet.</value>
   </data>
   <data name="audio_block_label" xml:space="preserve">
     <value>{0} {1} de {2}{3}</value>
@@ -854,7 +857,6 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="empty" xml:space="preserve">
     <value>vide</value>
-    <comment>ToString() for empty phrases</comment>
   </data>
   <data name="node_selection_to_string" xml:space="preserve">
     <value>Sélectionné {0} , {1}</value>
@@ -986,7 +988,7 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="hours" xml:space="preserve">
     <value>heures</value>
-    <comment>Used for time formating (plural)</comment>
+    <comment>Used for time formating (singular)</comment>
   </data>
   <data name="long_addl_time" xml:space="preserve">
     <value> {0} {1}</value>
@@ -1015,15 +1017,6 @@ Texte de l'erreur: {1}</value>
   <data name="node_position" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
-  <data name="Audio_ShowLiveWaveformWhileRecording" xml:space="preserve">
-    <value>Visualiser le signal pendant l’enregistrement</value>
-  </data>
-  <data name="DisableAdvancedRecording" xml:space="preserve">
-    <value>Enreg. Avancé inactif</value>
-  </data>
-  <data name="EnableAdvancedRecording" xml:space="preserve">
-    <value>Enreg. Avancé actif</value>
-  </data>
   <data name="second" xml:space="preserve">
     <value>seconde</value>
     <comment>Used for time formating (singular)</comment>
@@ -1031,9 +1024,6 @@ Texte de l'erreur: {1}</value>
   <data name="seconds" xml:space="preserve">
     <value>secondes</value>
     <comment>Used for time formating (plural)</comment>
-  </data>
-  <data name="ProjectTab_DeleteUnusedFilesAfterCleanUp" xml:space="preserve">
-    <value>Supprimez les fichiers inutilisés après le nettoyage</value>
   </data>
   <data name="section_level" xml:space="preserve">
     <value>"{0}" (level {1})</value>
@@ -1156,7 +1146,7 @@ Texte de l'erreur: {1}</value>
     <value>Voulez-vous enregistrer les modifications avant de sauvegarder le projet vers un nouvel emplacement? </value>
   </data>
   <data name="no_primary_export_directory" xml:space="preserve">
-    <value>Le répertoire d’exportation Daisy n'a pas été trouvé. Veuillez sélectionner un chemin d'exportation ou exporter le projet vers Daisy.</value>
+    <value>Le répertoire d’exportation DAISY n'a pas été trouvé. Veuillez sélectionner un chemin d'exportation ou exporter le projet vers Daisy.</value>
     <comment>Pipeline interface error message</comment>
   </data>
   <data name="section_unexported" xml:space="preserve">
@@ -1182,7 +1172,7 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="duration_hh_mm_ss" xml:space="preserve">
     <value>{0:00}:{1:00}:{2:00}</value>
-    <comment>Format pour une durée (utilisé pour l'affichage de la barre de transport)</comment>
+    <comment>Format for duration (used for the transport bar display)</comment>
   </data>
   <data name="export_progress_dialog_title" xml:space="preserve">
     <value>Exportation du projet...  Veuillez patienter, cela peut prendre plusieurs minutes</value>
@@ -1387,7 +1377,7 @@ Texte de l'erreur: {1}</value>
   <data name="Operation_Cancelled" xml:space="preserve">
     <value>Impossible de terminer l'opération. </value>
   </data>
- <data name="footnote" xml:space="preserve">
+  <data name="footnote" xml:space="preserve">
     <value>notedebasdepage</value>
   </data>
   <data name="sidebar" xml:space="preserve">
@@ -1405,7 +1395,6 @@ Texte de l'erreur: {1}</value>
   <data name="annotation" xml:space="preserve">
     <value>annotation</value>
   </data>
-
   <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
     <value>Cette commande ne peut être exécutée sur une section avec des contenus cachés. Veuillez rendre le contenu de la section visible et essayez à nouveau.</value>
   </data>
@@ -1498,6 +1487,7 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="EnableAdvancedRecording" xml:space="preserve">
     <value>Activer l'enregistrement avancé </value>
+    <comment>Warning dialog</comment>
   </data>
   <data name="ContentViewLabel_NoSection" xml:space="preserve">
     <value>Pas de section affichée</value>
@@ -1516,11 +1506,11 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="Delete_RangeOfPhrases" xml:space="preserve">
     <value>Supprimer l'étendue de phrases</value>
-    <comment>command</comment>
+    <comment>Command</comment>
   </data>
   <data name="Merge_RangeOfPhrases" xml:space="preserve">
     <value>Fusionner l'étendue de phrases</value>
-    <comment>command</comment>
+    <comment>Command</comment>
   </data>
   <data name="GotoPageOrPhrase_EnterNumeric" xml:space="preserve">
     <value>Entrée invalide. Veuillez entrer une valeur numérique.</value>
@@ -1553,7 +1543,7 @@ Texte de l'erreur: {1}</value>
     <value> Enregistrement {0}</value>
   </data>
   <data name="MergePhrases_SizeLimitMessage" xml:space="preserve">
-    <value>La durée de la phrase fusionnée ne peut pas être supérieure à {0} minutes. Veuillez sélectionner un plus petit nombre de phrases à fusionner</value>
+    <value>La durée de la phrase fusionnée ne peut être supérieure à {0} minutes. Veuillez sélectionner un plus petit nombre de phrases à fusionner</value>
   </data>
   <data name="Metadata_CreatorNameForInitializing" xml:space="preserve">
     <value>Nom du créateur</value>
@@ -1640,7 +1630,7 @@ Texte de l'erreur: {1}</value>
     <value>Éditeur du livre physique</value>
   </data>
   <data name="METADATA_DTB_SOURCE_RIGHTS_HELP" xml:space="preserve">
-    <value>Nom de l'organisation détentrice des droits du livre physique</value>
+    <value> Nom de l'organisation détentrice des droits du livre physique</value>
   </data>
   <data name="METADATA_DTB_SOURCE_TITLE_HELP" xml:space="preserve">
     <value>Titre du livre physique</value>
@@ -1678,9 +1668,8 @@ Texte de l'erreur: {1}</value>
   <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
     <value>{0} (Limitation du nombre de phrases affichées pour améliorer la performance. Cliquez sur les dernières phrases pour en afficher d'avantage)</value>
   </data>
-  <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
-    <value>Phrases inutilisées supprimées</value>
-    <comment>Command</comment>
+  <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
+    <value>Les phrases inutilisées sont supprimées du projet.</value>
   </data>
   <data name="GoToPageorPhrase_PageDonotExist" xml:space="preserve">
     <value>La page n'existe pas </value>
@@ -1712,11 +1701,11 @@ Texte de l'erreur: {1}</value>
   <data name="KeyS_MarkSelectionEndTime" xml:space="preserve">
     <value>Marquer l'heure de fin de sélection</value>
   </data>
-  <data name="KeyS_MarkSelectionFromCursor" xml:space="preserve">
-    <value>Marquer la sélection à partir du curseur</value>
+  <data name="KeyS_MarkSelectionFromBeginningToTheCursor" xml:space="preserve">
+    <value>Marquer la sélection du début jusqu'au curseur</value>
   </data>
-  <data name="KeyS_MarkSelectionToCursor" xml:space="preserve">
-    <value>Marquer la sélection jusqu'au curseur</value>
+  <data name="KeyS_MarkSelectionFromCursorToTheEnd" xml:space="preserve">
+    <value>Marquer la sélection du curseur jusqu'à la fin</value>
   </data>
   <data name="KeyS_MoveToNextViewClockwise" xml:space="preserve">
     <value>Se déplacer vers la vue suivante dans le sens horaire</value>
@@ -1752,7 +1741,7 @@ Texte de l'erreur: {1}</value>
     <value>Sélectionner la première phrase dans la section</value>
   </data>
   <data name="KeyS_SelectFirstStrip" xml:space="preserve">
-    <value>Sélectiionner la première section dans la vue du contenu</value>
+    <value>Sélectionner la première section dans la vue du contenu</value>
   </data>
   <data name="KeyS_SelectFollowingPhrase" xml:space="preserve">
     <value>Sélectionner la phrase suivante</value>
@@ -1806,7 +1795,7 @@ Texte de l'erreur: {1}</value>
     <value>Page suivante dans la liste de lecture</value>
   </data>
   <data name="KeyS_TransportBarNextPhrase" xml:space="preserve">
-    <value>&gt;Phrase suivante dans la liste de lecture</value>
+    <value>Phrase suivante dans la liste de lecture</value>
   </data>
   <data name="KeyS_TransportBarNextSection" xml:space="preserve">
     <value>Section suivante dans la liste de lecture</value>
@@ -1943,7 +1932,6 @@ Texte de l'erreur: {1}</value>
   <data name="Save_current_state_caption" xml:space="preserve">
     <value>Enregistrer l’état courant?</value>
   </data>
-
   <data name="restored_project_name" xml:space="preserve">
     <value>Restorer Project.obi</value>
   </data>
@@ -2048,6 +2036,7 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="role_Anchor" xml:space="preserve">
     <value>Ancre</value>
+    <comment>Localized role name</comment>
   </data>
   <data name="Associate_next_phrase" xml:space="preserve">
     <value>La phrase cible pouvant être sautée sera effacée. La phrase suivante deviendra la phrase cible. Voulez-vous continuer?</value>
@@ -2086,7 +2075,7 @@ Texte de l'erreur: {1}</value>
     <value>Il y a des noeuds ancres vides ou qui se réfèrent à des noeuds vides.</value>
   </data>
   <data name="Anchor_node_not_associated" xml:space="preserve">
-    <value>Il n'ya pas de noeud associé à ce noeud ancre. Veuillez associer un noeud avec ce noeud ancre.</value>
+    <value>Il n'y a pas de noeud associé à ce noeud ancre. Veuillez associer un noeud avec ce noeud ancre.</value>
   </data>
   <data name="Associate" xml:space="preserve">
     <value>Noeud associé</value>
@@ -2221,22 +2210,22 @@ Texte de l'erreur: {1}</value>
     <value>Voulez-vous effacer le noeud d'ancrage se référant aux notes facultatives?</value>
   </data>
   <data name="Elapsed" xml:space="preserve">
-    <value>écoulé</value>
+    <value>Écoulé</value>
   </data>
   <data name="ElapsedInSection" xml:space="preserve">
-    <value>écoulé dans la selection</value>
+    <value>Écoulé dans la selection</value>
   </data>
   <data name="ElapsedInProject" xml:space="preserve">
-    <value>écoulé dans le projet</value>
+    <value>Écoulé dans le projet</value>
   </data>
   <data name="ElapsedInPhrase" xml:space="preserve">
-    <value>écoulé dans la phrase</value>
+    <value>Écoulé dans la phrase</value>
   </data>
   <data name="RemainingInPhrase" xml:space="preserve">
-    <value>restant dans la phrase</value>
+    <value>Restant dans la phrase</value>
   </data>
   <data name="RemainingInSelection" xml:space="preserve">
-    <value>restant dans la sélection</value>
+    <value>Restant dans la sélection</value>
   </data>
   <data name="RenumberPagesCaption" xml:space="preserve">
     <value>Renuméroter les pages suivantes ?</value>
@@ -2251,7 +2240,7 @@ Texte de l'erreur: {1}</value>
     <value>Génération de la parole...</value>
   </data>
   <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
-    <value>détection phrase pendant l'enregistrement</value>
+    <value>Détection phrase pendant l'enregistrement</value>
   </data>
   <data name="ProjectView_ErrorReplacingAudioDueToTimingMissmatch" xml:space="preserve">
     <value>Impossible de remplacer le son en raison de décalage en longueur audio: Durée d'origine est {0}: la durée du nouveau fichier est {1}</value>
@@ -2320,10 +2309,10 @@ Texte de l'erreur: {1}</value>
     <value>Réinitialiser tous les paramètres</value>
   </data>
   <data name="ReplaceCorruptPhrasesWithEmptyNode_Question" xml:space="preserve">
-    <value>Le nombre total de phrases est {0}, dont les phrases avec de une quantité d'audio négligeable ou sans références audio sont {1}. Il est recommandé de remplacer ces phrases avec des phrases vides pour pouvoir les marquées. Voulez-vous continuer ?</value>
+    <value>Le nombre total de phrases est {0}, dont les phrases avec une quantité d'audio négligeable ou sans références audio sont {1}. Il est recommandé de remplacer ces phrases avec des phrases vides pour pouvoir les marquées. Voulez-vous continuer ?</value>
   </data>
   <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
-    <value>Remplacez les phrases avec des données audio corrompues parc des phrases vides</value>
+    <value>Remplacez les phrases avec des données audio corrompues par des phrases vides</value>
   </data>
   <data name="ReplaceCorruptPhrasesWithEmptyNode_NothingFound" xml:space="preserve">
     <value>Pas de phrase trouvée avec des données audio corrompues.</value>
@@ -2343,10 +2332,85 @@ Texte de l'erreur: {1}</value>
   <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
     <value>La dernière vérification de mise à jour a été pour la version {0}. Aucune nouvelle version publiée depuis.</value>
   </data>
+  <data name="CheckUpdates_GoToDownloadPage" xml:space="preserve">
+    <value>&amp;Aller à la page de téléchargement</value>
+  </data>
   <data name="Confirm_Setting" xml:space="preserve">
     <value>Opération réussie. S'il vous plaît redémarrer Obi pour charger les paramètres par défaut</value>
   </data>
   <data name="StatusForMergeSection" xml:space="preserve">
-    <value>Showing section {0} to {1}. Please select sections to merge.</value>
-    </data>
+    <value>Affichage sections {0} à {1}. Veuillez sélectionner les sections à fusionner.</value>
+  </data>
+  <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
+    <value>Afficher le Zoom du spectre audio</value>
+  </data>
+  <data name="KeyS_CloseZoomPanel" xml:space="preserve">
+    <value>Fermer le panneau de Zoom</value>
+  </data>
+  <data name="KeyS_ResetZoomPanel" xml:space="preserve">
+    <value>Réinitialiser le panneau de Zoom</value>
+  </data>
+  <data name="KeyS_ZoomInWaveform" xml:space="preserve">
+    <value>Zoom avant du spectre audio</value>
+  </data>
+  <data name="KeyS_ZoomOutWaveform" xml:space="preserve">
+    <value>Zoom arrière du spectre audio</value>
+  </data>
+  <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
+    <value>Zoom de spectre audio sélectionné</value>
+  </data>
+  <data name="KeyS_NextPhrase" xml:space="preserve">
+    <value>Restituer la prochaine phrase</value>
+  </data>
+  <data name="KeyS_PreviousPhrase" xml:space="preserve">
+    <value>Restituer la phrase précédente</value>
+  </data>
+  <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
+    <value>Afficher les spectres audio dans la vue du contenu</value>
+  </data>
+  <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
+    <value>Toujours ignorer l'indentation pour les fichiers DAISY exportés</value>
+  </data>
+  <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
+    <value>Afficher la phrase suivante</value>
+  </data>
+  <data name="ZoomAudioTT_ShowPreviousPhrase" xml:space="preserve">
+    <value>Afficher la phrase précédente</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomIn" xml:space="preserve">
+    <value>Zoom avant</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomOut" xml:space="preserve">
+    <value>Zoom arrière</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomSelection" xml:space="preserve">
+    <value>Sélection du Zoom</value>
+  </data>
+  <data name="ZoomAudioTT_Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="ZoomAudioTT_Reset" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
+    <value>Speech is generated for all the pages</value>
+  </data>
+  <data name="EditAudioTT_Cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="EditAudioTT_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="EditAudioTT_Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="EditAudioTT_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="EditAudioTT_Merge" xml:space="preserve">
+    <value>Merge With Next Phrase</value>
+  </data>
+  <data name="EditAudioTT_Split" xml:space="preserve">
+    <value>Split Phrase</value>
+  </data>
 </root>

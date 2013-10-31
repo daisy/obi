@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="mMetadataListView.AccessibleName" xml:space="preserve">
-    <value>Liste des mtadonn&amp;es</value>
+    <value>Liste des métadonnées</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mMetadataListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -163,7 +169,7 @@
     <value>2</value>
   </data>
   <data name="mContentTextbox.AccessibleName" xml:space="preserve">
-    <value>Contenu des m�tadonn�es:</value>
+    <value>Contenu des Métadonnées:</value>
   </data>
   <data name="mContentTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -217,7 +223,7 @@
     <value>5</value>
   </data>
   <data name="mUpdateButton.Text" xml:space="preserve">
-    <value>&amp;Mise &#224; jour</value>
+    <value>&amp;Mise à jour</value>
   </data>
   <data name="&gt;&gt;mUpdateButton.Name" xml:space="preserve">
     <value>mUpdateButton</value>
@@ -324,12 +330,6 @@
   <data name="&gt;&gt;mContentLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>

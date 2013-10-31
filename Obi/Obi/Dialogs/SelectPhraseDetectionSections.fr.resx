@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="m_lv_ListOfSelectedSectionsForPhraseDetection.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="m_cb_StartRangeForNumberOfSections.AccessibleName" xml:space="preserve">
     <value>Start Section Range</value>
   </data>
@@ -186,7 +195,7 @@
     <value>2</value>
   </data>
   <data name="startSectionRange.Text" xml:space="preserve">
-    <value>&amp;D&#233;but de la plage</value>
+    <value>&amp;Début de la plage</value>
   </data>
   <data name="&gt;&gt;startSectionRange.Name" xml:space="preserve">
     <value>startSectionRange</value>
@@ -291,9 +300,6 @@
   <data name="&gt;&gt;m_btn_OK.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="m_lv_ListOfSelectedSectionsForPhraseDetection.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.AccessibleDescription" xml:space="preserve">
     <value>ListView containing list of sections selected for phrase detection</value>
   </data>
@@ -364,7 +370,7 @@
     <value>1</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.Text" xml:space="preserve">
-    <value>Charger &#224; partir de la s&#233;lection</value>
+    <value>Charger à partir de la sélection</value>
   </data>
   <data name="&gt;&gt;m_rb_loadSelectedOnwards.Name" xml:space="preserve">
     <value>m_rb_loadSelectedOnwards</value>
@@ -394,7 +400,7 @@
     <value>1</value>
   </data>
   <data name="m_rb_loadFromRange.Text" xml:space="preserve">
-    <value>Charger dans l'&amp;&#233;tendue</value>
+    <value>Charger dans l'&amp;étendue</value>
   </data>
   <data name="&gt;&gt;m_rb_loadFromRange.Name" xml:space="preserve">
     <value>m_rb_loadFromRange</value>
@@ -448,7 +454,7 @@
     <value>0</value>
   </data>
   <data name="m_grpSelectRange.Text" xml:space="preserve">
-    <value>Sections slectionn&#233;es</value>
+    <value>Sections slectionnées</value>
   </data>
   <data name="&gt;&gt;m_grpSelectRange.Name" xml:space="preserve">
     <value>m_grpSelectRange</value>
@@ -564,15 +570,9 @@
   <data name="&gt;&gt;m_grpSilencePhrase.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -580,7 +580,7 @@
     <value>475, 365</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Choix des sections pour la d&#233;tection de phrase</value>
+    <value>Choix des sections pour la détection de phrase</value>
   </data>
   <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
     <value>columnHeader1</value>
