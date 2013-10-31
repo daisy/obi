@@ -39,6 +39,7 @@ namespace Obi.ProjectView
             this.mNameLabel = new System.Windows.Forms.Label();
             this.mContentLabel = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.m_BtnContextMenu = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mMetadataListView
@@ -100,9 +101,16 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.mContentLabel, "mContentLabel");
             this.mContentLabel.Name = "mContentLabel";
             // 
+            // m_BtnContextMenu
+            // 
+            resources.ApplyResources(this.m_BtnContextMenu, "m_BtnContextMenu");
+            this.m_BtnContextMenu.Name = "m_BtnContextMenu";
+            this.m_BtnContextMenu.UseVisualStyleBackColor = true;
+            // 
             // MetadataView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.m_BtnContextMenu);
             this.Controls.Add(this.mContentLabel);
             this.Controls.Add(this.mNameLabel);
             this.Controls.Add(this.mMetadataListView);
@@ -128,6 +136,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.Label mNameLabel;
         private System.Windows.Forms.Label mContentLabel;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button m_BtnContextMenu;
 
     }
 }
