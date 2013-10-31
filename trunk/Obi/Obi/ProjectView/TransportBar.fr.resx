@@ -169,7 +169,7 @@
     <value>149, 17</value>
   </data>
   <data name="mPlayButton.ToolTip" xml:space="preserve">
-    <value>D&#233;marrer ou reprendre la lecture (Espace)</value>
+    <value>Démarrer ou reprendre la lecture (Espace)</value>
   </data>
   <data name="&gt;&gt;mPlayButton.Name" xml:space="preserve">
     <value>mPlayButton</value>
@@ -278,7 +278,7 @@
     <value>6</value>
   </data>
   <data name="mStopButton.ToolTip" xml:space="preserve">
-    <value>Arr&#234;t de la lecture ou de l'enregistrement. (Ctrl+Espace)</value>
+    <value>Arrêt de la lecture ou de l'enregistrement. (Ctrl+Espace)</value>
   </data>
   <data name="&gt;&gt;mStopButton.Name" xml:space="preserve">
     <value>mStopButton</value>
@@ -296,7 +296,7 @@
     <value>button</value>
   </data>
   <data name="mNextPhrase.AccessibleName" xml:space="preserve">
-    <value>Next phrase</value>
+    <value>Phrase suivante</value>
   </data>
   <data name="mNextPhrase.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -346,7 +346,7 @@
     <value>9</value>
   </data>
   <data name="mNextPhrase.ToolTip" xml:space="preserve">
-    <value>Aller &#224; la phrase suivante.(K)</value>
+    <value>Aller à la phrase suivante.(K)</value>
   </data>
   <data name="&gt;&gt;mNextPhrase.Name" xml:space="preserve">
     <value>mNextPhrase</value>
@@ -364,7 +364,7 @@
     <value>button</value>
   </data>
   <data name="mPrevPhraseButton.AccessibleName" xml:space="preserve">
-    <value>Previous phrase</value>
+    <value>Phrase précédente</value>
   </data>
   <data name="mPrevPhraseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -414,7 +414,7 @@
     <value>2</value>
   </data>
   <data name="mPrevPhraseButton.ToolTip" xml:space="preserve">
-    <value>Aller &#224; la phrase pr&#233;c&#233;dente. (J)</value>
+    <value>Aller à la phrase précédente. (J)</value>
   </data>
   <data name="&gt;&gt;mPrevPhraseButton.Name" xml:space="preserve">
     <value>mPrevPhraseButton</value>
@@ -432,7 +432,7 @@
     <value>button</value>
   </data>
   <data name="mNextSectionButton.AccessibleName" xml:space="preserve">
-    <value>Next section</value>
+    <value>Section suivante</value>
   </data>
   <data name="mNextSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -480,7 +480,7 @@
     <value>11</value>
   </data>
   <data name="mNextSectionButton.ToolTip" xml:space="preserve">
-    <value>Aller &#224; la section suivante. (H)</value>
+    <value>Aller à la section suivante. (H)</value>
   </data>
   <data name="&gt;&gt;mNextSectionButton.Name" xml:space="preserve">
     <value>mNextSectionButton</value>
@@ -498,7 +498,7 @@
     <value>button</value>
   </data>
   <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
-    <value>Previous section</value>
+    <value>Section précédente</value>
   </data>
   <data name="mPrevSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -546,7 +546,7 @@
     <value>0</value>
   </data>
   <data name="mPrevSectionButton.ToolTip" xml:space="preserve">
-    <value>Allez &#224; la section pr&#233;c&#233;dente. (Maj+H)</value>
+    <value>Allez à la section précédente. (Maj+H)</value>
   </data>
   <data name="&gt;&gt;mPrevSectionButton.Name" xml:space="preserve">
     <value>mPrevSectionButton</value>
@@ -564,7 +564,7 @@
     <value>button</value>
   </data>
   <data name="mRecordButton.AccessibleName" xml:space="preserve">
-    <value>Record</value>
+    <value>Enregistrement</value>
   </data>
   <data name="mRecordButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -612,7 +612,7 @@
     <value>7</value>
   </data>
   <data name="mRecordButton.ToolTip" xml:space="preserve">
-    <value>D&#233;marrer le monitoring ou l'enregistrement. (Ctrl+R)</value>
+    <value>Démarrer le monitoring ou l'enregistrement. (Ctrl+R)</value>
   </data>
   <data name="&gt;&gt;mRecordButton.Name" xml:space="preserve">
     <value>mRecordButton</value>
@@ -660,7 +660,7 @@
     <value>button</value>
   </data>
   <data name="mRewindButton.AccessibleName" xml:space="preserve">
-    <value>Rewind</value>
+    <value>Rembobinage</value>
   </data>
   <data name="mRewindButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -702,7 +702,7 @@
     <value>3</value>
   </data>
   <data name="mRewindButton.ToolTip" xml:space="preserve">
-    <value>Lecture vers l'arri&#232;re plus rapide.</value>
+    <value>Lecture vers l'arrière plus rapide.</value>
   </data>
   <data name="&gt;&gt;mRewindButton.Name" xml:space="preserve">
     <value>mRewindButton</value>
@@ -720,7 +720,7 @@
     <value>button</value>
   </data>
   <data name="mFastForwardButton.AccessibleName" xml:space="preserve">
-    <value>Fast forward</value>
+    <value>Avance rapide</value>
   </data>
   <data name="mFastForwardButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -782,7 +782,7 @@
     <value>button</value>
   </data>
   <data name="mNextPageButton.AccessibleName" xml:space="preserve">
-    <value>Next page</value>
+    <value>Page suivante</value>
   </data>
   <data name="mNextPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -829,7 +829,7 @@
     <value>10</value>
   </data>
   <data name="mNextPageButton.ToolTip" xml:space="preserve">
-    <value>Aller &#224; la page suivante. (P)</value>
+    <value>Aller à la page suivante. (P)</value>
   </data>
   <data name="&gt;&gt;mNextPageButton.Name" xml:space="preserve">
     <value>mNextPageButton</value>
@@ -847,7 +847,7 @@
     <value>button</value>
   </data>
   <data name="mPreviousPageButton.AccessibleName" xml:space="preserve">
-    <value>Previous page</value>
+    <value>Page précédente</value>
   </data>
   <data name="mPreviousPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -896,7 +896,7 @@
     <value>1</value>
   </data>
   <data name="mPreviousPageButton.ToolTip" xml:space="preserve">
-    <value>Aller &#224; la page pr&#233;c&#233;dente. (Maj+P)</value>
+    <value>Aller à la page précédente. (Maj+P)</value>
   </data>
   <data name="&gt;&gt;mPreviousPageButton.Name" xml:space="preserve">
     <value>mPreviousPageButton</value>
@@ -914,7 +914,7 @@
     <value>button</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleName" xml:space="preserve">
-    <value>Mark phrase</value>
+    <value>Marquer la phrase</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1020,7 +1020,7 @@
     <value>7</value>
   </data>
   <data name="mFastPlayRateCombobox.AccessibleName" xml:space="preserve">
-    <value>Fast Play Rate</value>
+    <value>Vitesse de lecture rapide</value>
   </data>
   <data name="mFastPlayRateCombobox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1049,6 +1049,12 @@
   <data name="mFastPlayRateCombobox.Items5" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="mFastPlayRateCombobox.Items6" xml:space="preserve">
+    <value>2.25</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items7" xml:space="preserve">
+    <value>2.5</value>
+  </data>
   <data name="mFastPlayRateCombobox.Location" type="System.Drawing.Point, System.Drawing">
     <value>709, 5</value>
   </data>
@@ -1074,7 +1080,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mVUMeterPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>781, 2</value>
+    <value>787, 2</value>
   </data>
   <data name="mVUMeterPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 0, 0</value>

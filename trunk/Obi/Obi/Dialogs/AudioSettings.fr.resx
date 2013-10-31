@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mlbSampleRate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -147,7 +153,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mlbSampleRate.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="mlbAudioChannels.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -177,7 +183,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mlbAudioChannels.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="mbtnOK.AccessibleDescription" xml:space="preserve">
     <value>ok button</value>
@@ -190,7 +196,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mbtnOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 77</value>
+    <value>170, 77</value>
   </data>
   <data name="mbtnOK.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 30</value>
@@ -211,39 +217,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mbtnOK.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="mbtnCancel.AccessibleDescription" xml:space="preserve">
-    <value>Cancel button</value>
-  </data>
-  <data name="mbtnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mbtnCancel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="mbtnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 77</value>
-  </data>
-  <data name="mbtnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
-  </data>
-  <data name="mbtnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="mbtnCancel.Text" xml:space="preserve">
-    <value>&amp;Cancel</value>
-  </data>
-  <data name="&gt;&gt;mbtnCancel.Name" xml:space="preserve">
-    <value>mbtnCancel</value>
-  </data>
-  <data name="&gt;&gt;mbtnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mbtnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mbtnCancel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="mcbSampleRate.AccessibleName" xml:space="preserve">
@@ -263,9 +236,6 @@
   </data>
   <data name="mcbSampleRate.Items2" xml:space="preserve">
     <value>44100</value>
-  </data>
-  <data name="mcbSampleRate.Items3" xml:space="preserve">
-    <value>48000</value>
   </data>
   <data name="mcbSampleRate.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 19</value>
@@ -324,15 +294,9 @@
   <data name="&gt;&gt;mcbAudioChannel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -353,5 +317,8 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 11pt</value>
   </data>
 </root>

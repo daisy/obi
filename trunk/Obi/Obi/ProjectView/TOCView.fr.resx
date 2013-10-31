@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -120,11 +120,17 @@
   <metadata name="mContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
   <data name="Context_ShowContentsMenuItem.AccessibleDescription" xml:space="preserve">
     <value>Show Contents of Section</value>
   </data>
   <data name="Context_ShowContentsMenuItem.AccessibleName" xml:space="preserve">
-    <value>Show Contents</value>
+    <value>Afficher contenus</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Context_ShowContentsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -149,13 +155,13 @@
     <value>189, 22</value>
   </data>
   <data name="Context_InsertSectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ins&#233;rer une section</value>
+    <value>&amp;Insérer une section</value>
   </data>
   <data name="Context_MergeSectionMenuItem.AccessibleName" xml:space="preserve">
     <value>Fusio&amp;nner une section</value>
   </data>
   <data name="Context_MergeSectionWithNextMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge Section with next</value>
+    <value>Fusionner la section avec la suivante</value>
   </data>
   <data name="Context_MergeSectionWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 22</value>
@@ -164,7 +170,7 @@
     <value>Fusionner avec la &amp;suivante</value>
   </data>
   <data name="Context_MergeMultipleSectionsMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge multiple section</value>
+    <value>Fusionner plusieurs sections</value>
   </data>
   <data name="Context_MergeMultipleSectionsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 22</value>
@@ -200,7 +206,7 @@
     <value>189, 22</value>
   </data>
   <data name="Context_SectionIsUsedMenuItem.Text" xml:space="preserve">
-    <value>Sec&amp;tion utilis&#233;e</value>
+    <value>Sec&amp;tion utilisée</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 6</value>
@@ -248,7 +254,7 @@
     <value>189, 22</value>
   </data>
   <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
-    <value>&amp;Propri&#233;t&#233;s</value>
+    <value>&amp;Propriétés</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 368</value>
@@ -259,12 +265,6 @@
   <data name="&gt;&gt;mContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
