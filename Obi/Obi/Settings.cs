@@ -96,7 +96,8 @@ namespace Obi
         public bool Project_EnableFreeDiskSpaceCheck; // enables free disk space check
         public bool Audio_EnablePostRecordingPageRenumbering; //ask for renumber following pages as recording is stopped
         public bool Audio_MonitorContinuously; //start monitoring whenever transport bar is in stop state
-        public bool ImportAudioCreateSectionCheck; //Cheked status for the Create section for each audio file in importfilesize dialog 
+        public bool ImportAudioCreateSectionCheck; //Checked status for the Create section for each audio file in importfilesize dialog 
+        public bool Audio_UseRecordingPauseShortcutForStopping;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -182,6 +183,7 @@ namespace Obi
             settings.Audio_EnablePostRecordingPageRenumbering = true;
             settings.Audio_MonitorContinuously = false;
             settings.ImportAudioCreateSectionCheck = true;
+            settings.Audio_UseRecordingPauseShortcutForStopping = false;
         }
 
         /// <summary>
