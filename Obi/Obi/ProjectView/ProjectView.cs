@@ -139,6 +139,63 @@ namespace Obi.ProjectView
             return cmd.Entry;
             }
 
+        public void SaveDefaultMetadatas()
+        {
+            if (mPresentation != null)
+            {
+                Dictionary<string, string> metadataDictionary = new Dictionary<string, string>();
+                foreach (urakawa.metadata.Metadata m in mPresentation.Metadatas.ContentsAs_ListCopy)
+                {
+                    metadataDictionary.Add(m.NameContentAttribute.Name, m.NameContentAttribute.Value);
+                }
+                ObiForm.Settings_Permanent.UpdateDefaultMetadata(metadataDictionary);
+                ObiForm.Settings_Permanent.SaveSettings();
+            }
+        }
+
+        public void LoadDefaultMetadata(bool overwriteExisting)
+        {
+            if (mPresentation == null) return;
+            Dictionary<string, string> defaultMetadatas = ObiForm.Settings_Permanent.GetDefaultMetadata();
+            if (defaultMetadatas != null && defaultMetadatas.Count > 0)
+            {
+                CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("Metadata_SetDefaults"));
+                foreach (urakawa.metadata.Metadata m in mPresentation.Metadatas.ContentsAs_ListCopy)
+                {
+                    if (defaultMetadatas.ContainsKey(m.NameContentAttribute.Name))
+                    {
+                        if (m.NameContentAttribute.Name == Metadata.DC_IDENTIFIER) continue;
+                        if (overwriteExisting)
+                        {
+                            string content = m.NameContentAttribute.Name == Metadata.DC_DATE? DateTime.Today.ToString("yyyy-MM-dd") : defaultMetadatas[m.NameContentAttribute.Name];
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(this, m, content));
+                        }
+                        defaultMetadatas.Remove(m.NameContentAttribute.Name);
+                    }
+                }
+                    foreach( string name in defaultMetadatas.Keys)
+                    {
+                        Commands.Metadata.AddEntry addEntryCmd = new Commands.Metadata.AddEntry(this, name);
+                        command.ChildCommands.Insert(command.ChildCommands.Count, addEntryCmd);
+
+                        string content = name == Metadata.DC_DATE ? DateTime.Today.ToString("yyyy-MM-dd") :
+                            name == Metadata.DC_IDENTIFIER? Guid.NewGuid().ToString():
+                            defaultMetadatas[name];
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(this, addEntryCmd.Entry, content));
+                    }
+                    try
+                    {
+                        if (command.ChildCommands.Count > 0) mPresentation.Do(command);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        WriteToLogFile(ex.ToString());
+                        MessageBox.Show(ex.ToString());
+                    }
+
+            }
+        }
+
         /// <summary>
         /// Add a new section or strip.
         /// </summary>
