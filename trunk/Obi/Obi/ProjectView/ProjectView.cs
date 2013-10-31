@@ -146,7 +146,7 @@ namespace Obi.ProjectView
                 Dictionary<string, string> metadataDictionary = new Dictionary<string, string>();
                 foreach (urakawa.metadata.Metadata m in mPresentation.Metadatas.ContentsAs_ListCopy)
                 {
-                    metadataDictionary.Add(m.NameContentAttribute.Name, m.NameContentAttribute.Value);
+                    if(!metadataDictionary.ContainsKey(m.NameContentAttribute.Name)) metadataDictionary.Add(m.NameContentAttribute.Name, m.NameContentAttribute.Value);
                 }
                 ObiForm.Settings_Permanent.UpdateDefaultMetadata(metadataDictionary);
                 ObiForm.Settings_Permanent.SaveSettings();
