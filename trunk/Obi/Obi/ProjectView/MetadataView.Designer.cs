@@ -40,6 +40,11 @@ namespace Obi.ProjectView
             this.mContentLabel = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.m_BtnContextMenu = new System.Windows.Forms.Button();
+            this.mMetadataContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SetDefaultMetadataStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SetDefaultMetadataOverwriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveAsDefaultMetadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMetadataContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mMetadataListView
@@ -106,6 +111,34 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.m_BtnContextMenu, "m_BtnContextMenu");
             this.m_BtnContextMenu.Name = "m_BtnContextMenu";
             this.m_BtnContextMenu.UseVisualStyleBackColor = true;
+            this.m_BtnContextMenu.Click += new System.EventHandler(this.m_BtnContextMenu_Click);
+            // 
+            // mMetadataContextMenuStrip
+            // 
+            this.mMetadataContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SetDefaultMetadataStripMenuItem,
+            this.SetDefaultMetadataOverwriteToolStripMenuItem,
+            this.SaveAsDefaultMetadataToolStripMenuItem});
+            this.mMetadataContextMenuStrip.Name = "mMetadataContextMenuStrip";
+            resources.ApplyResources(this.mMetadataContextMenuStrip, "mMetadataContextMenuStrip");
+            // 
+            // SetDefaultMetadataStripMenuItem
+            // 
+            this.SetDefaultMetadataStripMenuItem.Name = "SetDefaultMetadataStripMenuItem";
+            resources.ApplyResources(this.SetDefaultMetadataStripMenuItem, "SetDefaultMetadataStripMenuItem");
+            this.SetDefaultMetadataStripMenuItem.Click += new System.EventHandler(this.SetDefaultMetadataStripMenuItem_Click);
+            // 
+            // SetDefaultMetadataOverwriteToolStripMenuItem
+            // 
+            this.SetDefaultMetadataOverwriteToolStripMenuItem.Name = "SetDefaultMetadataOverwriteToolStripMenuItem";
+            resources.ApplyResources(this.SetDefaultMetadataOverwriteToolStripMenuItem, "SetDefaultMetadataOverwriteToolStripMenuItem");
+            this.SetDefaultMetadataOverwriteToolStripMenuItem.Click += new System.EventHandler(this.SetDefaultMetadataOverwriteToolStripMenuItem_Click);
+            // 
+            // SaveAsDefaultMetadataToolStripMenuItem
+            // 
+            this.SaveAsDefaultMetadataToolStripMenuItem.Name = "SaveAsDefaultMetadataToolStripMenuItem";
+            resources.ApplyResources(this.SaveAsDefaultMetadataToolStripMenuItem, "SaveAsDefaultMetadataToolStripMenuItem");
+            this.SaveAsDefaultMetadataToolStripMenuItem.Click += new System.EventHandler(this.SaveAsDefaultMetadataToolStripMenuItem_Click);
             // 
             // MetadataView
             // 
@@ -120,6 +153,7 @@ namespace Obi.ProjectView
             resources.ApplyResources(this, "$this");
             this.Name = "MetadataView";
             this.VisibleChanged += new System.EventHandler(this.MetadataView_VisibleChanged);
+            this.mMetadataContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,6 +171,10 @@ namespace Obi.ProjectView
         private System.Windows.Forms.Label mContentLabel;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button m_BtnContextMenu;
+        private System.Windows.Forms.ContextMenuStrip mMetadataContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem SetDefaultMetadataStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveAsDefaultMetadataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SetDefaultMetadataOverwriteToolStripMenuItem;
 
     }
 }

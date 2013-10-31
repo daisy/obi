@@ -759,6 +759,29 @@ namespace Obi.ProjectView
         {
              if ( mMetadataTooltipDictionary.ContainsKey (e.Item.Text))    e.Item.ToolTipText = Localizer.Message(mMetadataTooltipDictionary[e.Item.Text]);            
         }
+
+        private void m_BtnContextMenu_Click(object sender, EventArgs e)
+        {
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
+            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
+            mMetadataContextMenuStrip.Show(ptLowerLeft);        
+        }
+
+        private void SetDefaultMetadataStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mView.LoadDefaultMetadata(false);
+        }
+
+        private void SetDefaultMetadataOverwriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mView.LoadDefaultMetadata(true);
+        }
+
+        private void SaveAsDefaultMetadataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mView.SaveDefaultMetadatas();
+        }
         }
 
     public class MetadataItemSelection
