@@ -180,7 +180,11 @@ namespace Obi.ProjectView
             if (m_HighlightedSectionNodeWithoutSelection != null && (value == null ||  m_HighlightedSectionNodeWithoutSelection != value))
                 {
                 TreeNode treeNodeForRemovingHighlight = FindTreeNodeWithoutLabel ( m_HighlightedSectionNodeWithoutSelection );
-                if ( treeNodeForRemovingHighlight != null )  treeNodeForRemovingHighlight.BackColor = System.Drawing.Color.Empty;
+                if (treeNodeForRemovingHighlight != null)
+                {
+                    if (m_HighlightedSectionNodeWithoutSelection.Duration != 0.0)             
+                    treeNodeForRemovingHighlight.BackColor = System.Drawing.Color.Empty;
+                }
                 }
 
             if (value != null && (m_HighlightedSectionNodeWithoutSelection == null || m_HighlightedSectionNodeWithoutSelection != value))
@@ -206,7 +210,17 @@ namespace Obi.ProjectView
             if (m_HighlightedSectionNodeWithoutSelection != null )
             {
                                 TreeNode treeNodeToHighlight = FindTreeNodeWithoutLabel(m_HighlightedSectionNodeWithoutSelection);
-                if (treeNodeToHighlight != null) treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
+                                if (treeNodeToHighlight != null)
+                                {
+                                    if (m_HighlightedSectionNodeWithoutSelection.Duration==0.0)
+                                    {
+                                        treeNodeToHighlight.BackColor = Color.LightPink;
+                                    }
+                                    else
+                                    {
+                                        treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
+                                    }
+                                }
             }
         }
 
@@ -353,6 +367,10 @@ namespace Obi.ProjectView
                     n.EnsureVisible();
                     n.ExpandAll();
                     ChangeColorUsed(n, mProjectView.ColorSettings);
+                    if (node.Duration==0.0)
+                    {
+                        n.BackColor = Color.LightPink;
+                    }
                 }
                 //if (n != null || node is RootNode)
                 if (n != null || node == mProjectView.Presentation.RootNode)//sdk2
@@ -452,7 +470,7 @@ namespace Obi.ProjectView
             if (e.m_AddedObject is SectionNode)
             {
                 // ignore the selection of the new tree node
-                AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);
+                AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);               
                 CreateTreeNodeForSectionNode((SectionNode)e.m_AddedObject);
                 AfterSelect += new TreeViewEventHandler(TOCTree_AfterSelect);
             }
@@ -589,6 +607,7 @@ namespace Obi.ProjectView
         {
             NodeSelection s = new NodeSelection((SectionNode)e.Node.Tag, this);
             if (s != mProjectView.Selection) mProjectView.Selection = s;
+
         }
 
         // Make a text selection in the view.
@@ -626,11 +645,12 @@ namespace Obi.ProjectView
                     HighlightNodeWithoutSelection = mProjectView.GetSelectedPhraseSection;
                 }
             }   
+               
         }
 
         private void TOCView_Leave(object sender, EventArgs e)
         {
-            PaintSelectedNode(true);
+            PaintSelectedNode(true);           
         }
 
         private void PaintSelectedNode(bool isSelected)
@@ -644,7 +664,14 @@ namespace Obi.ProjectView
                 TreeNode treeNodeToSelect = FindTreeNodeWithoutLabel((SectionNode)mSelection.Node);
                 if (treeNodeToSelect != null)
                 {
-                    if (isSelected)
+
+                    if (mSelection.Node.Duration == 0.0)
+                    {
+                        treeNodeToSelect.BackColor = Color.LightPink;
+                        treeNodeToSelect.ForeColor = SystemColors.ControlText;
+                    }
+
+                    else if (isSelected)
                     {
                         treeNodeToSelect.BackColor = SystemColors.Highlight;
                         treeNodeToSelect.ForeColor = SystemColors.HighlightText;
@@ -659,6 +686,12 @@ namespace Obi.ProjectView
             }
         }
 
+        private void TOCView_Click(object sender, EventArgs e)
+        {
+           
+            
+        }
+        
 
     }
 }
