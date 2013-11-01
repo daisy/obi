@@ -1781,6 +1781,13 @@ namespace Obi.ProjectView
                 mRecordingSection = node.AncestorAs<SectionNode>();
                 mRecordingInitPhraseIndex = node.Index;
             }
+            // if audio after cursor has to be replaced, delete following phrases command should be used
+            if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && node is EmptyNode && ((EmptyNode)node).Index < ((EmptyNode)node).ParentAs<SectionNode>().PhraseChildCount-1)
+            {
+                EmptyNode eNode = (EmptyNode)node ;
+                SectionNode section = eNode.ParentAs<SectionNode> () ;
+                command.ChildCommands.Insert(command.ChildCommands.Count, mView.GetDeleteRangeOfPhrasesInSectionCommand(section,section.PhraseChild(eNode.Index+1),section.PhraseChild(section.PhraseChildCount-1)));
+            }
         if (IsPlayerActive) StopPlaylistPlayback (); // stop if split recording starts while playback is paused
 
         }
