@@ -1101,7 +1101,7 @@ namespace Obi.ProjectView
 
         public void UpdateCursorPosition ( double time )
             {
-                if (m_ZoomWaveformPanel != null && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@zoomwaveform
+                if (m_ZoomWaveformPanel != null && mProjectView.TransportBar.IsPlayerActive)//@zoomwaveform
                 {
                     m_ZoomWaveformPanel.UpdateCursorTime(time);
                     return;
