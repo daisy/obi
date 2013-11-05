@@ -304,6 +304,7 @@ namespace Obi.Dialogs
         // Update settings
         private void mOKButton_Click ( object sender, EventArgs e )
             {
+                UpdateBoolSettings();
             if (UpdateProjectSettings ()
             && UpdateAudioSettings ()
             && UpdateUserProfile ())
@@ -739,8 +740,8 @@ namespace Obi.Dialogs
         {
             if (!m_IsComplete)
                 return;
-            else
-                UpdateBoolSettings();
+            //else
+                //UpdateBoolSettings();
             if (mTab.SelectedTab == mAudioTab)
             {
                 if (e.Item.Text == Localizer.Message("Audio_DetectPhrasesWhileRecording") && e.Item.Checked)
@@ -760,10 +761,21 @@ namespace Obi.Dialogs
             else if (mTab.SelectedTab == mProjectTab)
             {
 
+                if (m_CheckBoxListView.Items[9].Checked && m_PrevShowContentViewVal)
+                {
+                    m_KeepTrack = false;
+                }
                 if (m_CheckBoxListView.Items[9].Checked && !m_PrevShowContentViewVal)
                 {
                     m_CheckBoxListView.Items[3].Checked = true;
+                    m_PrevShowContentViewVal = true;
                 }
+                else if (!m_CheckBoxListView.Items[9].Checked && m_CheckBoxListView.Items[3].Checked && m_KeepTrack == false)
+                {
+                    m_CheckBoxListView.Items[3].Checked = false;
+
+                }
+
 
             }
         }
@@ -894,6 +906,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[9].Checked = mSettings.Project_ShowWaveformInContentView;
                 m_CheckBoxListView.Items[10].Checked = mSettings.Export_AlwaysIgnoreIndentation;
                 m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
+                m_KeepTrack = true;
             }
             m_CheckBoxListView.View = View.Details;
             m_IsComplete = true;
