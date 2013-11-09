@@ -51,6 +51,7 @@ namespace Obi.ProjectView
         private string mPrevSectionAccessibleName;   // Normal accessible name for the previous section button ???
         private string mStopButtonAccessibleName;    // Normal accessible name for the stop button ???
 
+
         // Set the accessible name of previous section/stop buttons (???)
         private void AddTransportBarAccessibleName()
         {
@@ -148,8 +149,7 @@ namespace Obi.ProjectView
             
             ResourceManager resourceManager = new ResourceManager("Obi.ProjectView.TransportBar", GetType().Assembly);
             m_monitorButtonImage = (Bitmap)resourceManager.GetObject("media-monitor.png");
-            m_recordButtonImage = (Bitmap)resourceManager.GetObject("mRecordButton.Image");
-            
+            m_recordButtonImage = (Bitmap)resourceManager.GetObject("mRecordButton.Image");            
         }
 
         /// <summary>
@@ -3360,6 +3360,16 @@ SelectionChangedPlaybackEnabled = false;
             }
             else
             { return "HTML Files\\Exploring the GUI\\Obi Views and Transport Bar\\Audio and Navigation controls.htm"; }
+        }
+
+
+        private void m_btnMoniter_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            Point ptLowerLeft = new Point(0, btn.Height);
+            ptLowerLeft = btn.PointToScreen(ptLowerLeft);
+            m_btnMoniteringContextMenuStrip.Show(ptLowerLeft); 
+
         }
     }
 }

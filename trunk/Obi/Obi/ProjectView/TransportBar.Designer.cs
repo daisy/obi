@@ -48,7 +48,12 @@ namespace Obi.ProjectView
             this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
             this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
+            this.m_btnMoniter = new System.Windows.Forms.Button();
+            this.m_btnMoniteringContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.m_MoniterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mDeletePhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
+            this.m_btnMoniteringContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mPlayButton
@@ -225,11 +230,36 @@ namespace Obi.ProjectView
             resources.GetString("mFastPlayRateCombobox.Items2"),
             resources.GetString("mFastPlayRateCombobox.Items3"),
             resources.GetString("mFastPlayRateCombobox.Items4"),
-                resources.GetString("mFastPlayRateCombobox.Items5"),
-                resources.GetString("mFastPlayRateCombobox.Items6"),
+            resources.GetString("mFastPlayRateCombobox.Items5"),
+            resources.GetString("mFastPlayRateCombobox.Items6"),
             resources.GetString("mFastPlayRateCombobox.Items7")});
             this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
             this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.mFastPlayRateComboBox_SelectionChangeCommitted);
+            // 
+            // m_btnMoniter
+            // 
+            resources.ApplyResources(this.m_btnMoniter, "m_btnMoniter");
+            this.m_btnMoniter.Name = "m_btnMoniter";
+            this.m_btnMoniter.UseVisualStyleBackColor = true;
+            this.m_btnMoniter.Click += new System.EventHandler(this.m_btnMoniter_Click);
+            // 
+            // m_btnMoniteringContextMenuStrip
+            // 
+            this.m_btnMoniteringContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_MoniterToolStripMenuItem,
+            this.mDeletePhrasesToolStripMenuItem});
+            this.m_btnMoniteringContextMenuStrip.Name = "contextMenuStrip1";
+            resources.ApplyResources(this.m_btnMoniteringContextMenuStrip, "m_btnMoniteringContextMenuStrip");
+            // 
+            // m_MoniterToolStripMenuItem
+            // 
+            this.m_MoniterToolStripMenuItem.Name = "m_MoniterToolStripMenuItem";
+            resources.ApplyResources(this.m_MoniterToolStripMenuItem, "m_MoniterToolStripMenuItem");
+            // 
+            // mDeletePhrasesToolStripMenuItem
+            // 
+            this.mDeletePhrasesToolStripMenuItem.Name = "mDeletePhrasesToolStripMenuItem";
+            resources.ApplyResources(this.mDeletePhrasesToolStripMenuItem, "mDeletePhrasesToolStripMenuItem");
             // 
             // mVUMeterPanel
             // 
@@ -245,6 +275,7 @@ namespace Obi.ProjectView
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.LightSalmon;
             this.Controls.Add(this.mToDo_CustomClassMarkButton);
+            this.Controls.Add(this.m_btnMoniter);
             this.Controls.Add(this.mPreviousPageButton);
             this.Controls.Add(this.mNextPageButton);
             this.Controls.Add(this.mFastPlayRateCombobox);
@@ -266,6 +297,7 @@ namespace Obi.ProjectView
             this.Name = "TransportBar";
             this.Leave += new System.EventHandler(this.TransportBar_Leave);
             this.Enter += new System.EventHandler(this.TransportBar_Enter);
+            this.m_btnMoniteringContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,5 +324,9 @@ namespace Obi.ProjectView
         private System.Windows.Forms.Button mNextPageButton;
         private System.Windows.Forms.Button mPreviousPageButton;
         private System.Windows.Forms.Button mToDo_CustomClassMarkButton;
+        private System.Windows.Forms.Button m_btnMoniter;
+        private System.Windows.Forms.ContextMenuStrip m_btnMoniteringContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem m_MoniterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mDeletePhrasesToolStripMenuItem;
     }
 }
