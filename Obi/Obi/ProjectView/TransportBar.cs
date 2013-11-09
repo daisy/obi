@@ -1589,11 +1589,11 @@ namespace Obi.ProjectView
                     }
                 else if (CanResumeRecording)
                     {
-                    SetupRecording ( Recording );
+                    SetupRecording ( Recording , false);
                     }
                 else if (!IsRecorderActive)
                     {
-                    SetupRecording ( Monitoring );
+                    SetupRecording ( Monitoring, false );
                     }
                 }
             catch (System.Exception ex)
@@ -1610,10 +1610,10 @@ namespace Obi.ProjectView
         private static readonly bool Recording = true;
         private static readonly bool Monitoring = false;
 
-        private void SetupRecording(bool recording) { SetupRecording(recording, null); }
+        private void SetupRecording(bool recording, bool deleteFollowingPhrases) { SetupRecording(recording, null, deleteFollowingPhrases); }
 
         // Setup recording and start recording or monitoring
-        private void SetupRecording(bool recording, SectionNode afterSection)
+        private void SetupRecording(bool recording, SectionNode afterSection, bool deleteFollowingPhrases)
         {
 
             if (mView.ObiForm.CheckDiskSpace() <= 100)
@@ -1696,7 +1696,7 @@ namespace Obi.ProjectView
                 if (mResumeRecordingPhrase == null) mRecordingPhrase = null;
 
             ObiNode node = GetRecordingNode ( command, afterSection );
-            InitRecordingSectionAndPhraseIndex ( node, mView.ObiForm.Settings.AllowOverwrite, command );
+            InitRecordingSectionAndPhraseIndex ( node, mView.ObiForm.Settings.AllowOverwrite, command , deleteFollowingPhrases);
             if (mView.Selection == null && node is SectionNode) mView.SelectFromTransportBar(node, null);// if nothing is selected, new section is created, select it in content view
             // Set events
             mRecordingSession = new RecordingSession ( mView.Presentation, mRecorder, mView.ObiForm.Settings );
@@ -1741,7 +1741,7 @@ namespace Obi.ProjectView
 
         // Initialize recording section/phrase index depending on the
         // context node for recording and the settings.
-        private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, urakawa.command.CompositeCommand  command)
+        private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, urakawa.command.CompositeCommand  command, bool deleteFollowingPhrases)
         {
         m_IsAfterRecordingSplitTransferEnabled = false;
         m_TempNodeForPropertiesTransfer = null;
@@ -1782,7 +1782,8 @@ namespace Obi.ProjectView
                 mRecordingInitPhraseIndex = node.Index;
             }
             // if audio after cursor has to be replaced, delete following phrases command should be used
-            if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && node is EmptyNode && ((EmptyNode)node).Index < ((EmptyNode)node).ParentAs<SectionNode>().PhraseChildCount-1)
+            if ((mView.ObiForm.Settings.Recording_ReplaceAfterCursor || deleteFollowingPhrases)
+                && node is EmptyNode && ((EmptyNode)node).Index < ((EmptyNode)node).ParentAs<SectionNode>().PhraseChildCount-1)
             {
                 EmptyNode eNode = (EmptyNode)node ;
                 SectionNode section = eNode.ParentAs<SectionNode> () ;
@@ -2275,7 +2276,7 @@ namespace Obi.ProjectView
 
                     try
                         {
-                        SetupRecording ( Recording );
+                        SetupRecording ( Recording , false);
                         }
                     catch (System.Exception ex)
                         {
@@ -2290,7 +2291,7 @@ namespace Obi.ProjectView
 
                     try
                         {
-                        SetupRecording ( Recording, mRecordingSection );
+                        SetupRecording ( Recording, mRecordingSection, false );
                         }
                     catch (System.Exception ex)
                         {
@@ -2815,18 +2816,18 @@ namespace Obi.ProjectView
                     if (CurrentState == State.Paused)
                     {
                         if (mResumeRecordingPhrase != null) mResumeRecordingPhrase = null;
-                        StartRecordingDirectly_Internal();
+                        StartRecordingDirectly_Internal(false);
                     }
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerAsync();
             }
             else
             {
-                StartRecordingDirectly_Internal();
+                StartRecordingDirectly_Internal(false);
             }
         }
 
-        private void StartRecordingDirectly_Internal()
+        private void StartRecordingDirectly_Internal(bool deleteFollowingPhrases)
     {
             if (mRecordingSession == null
                 && mCurrentPlaylist.Audioplayer.CurrentState != AudioLib.AudioPlayer.State.Playing
@@ -2834,7 +2835,7 @@ namespace Obi.ProjectView
                 {
                 try
                     {
-                    SetupRecording ( Recording );
+                    SetupRecording ( Recording, deleteFollowingPhrases );
                     }
                 catch (System.Exception ex)
                     {
@@ -3371,5 +3372,20 @@ SelectionChangedPlaybackEnabled = false;
             m_btnMoniteringContextMenuStrip.Show(ptLowerLeft); 
 
         }
+
+        private void RecordingOptions_Monitoring_Click(object sender, EventArgs e)
+        {
+            if (CanResumePlayback || mState == State.Stopped)
+            {
+                mRecordingSession.StartMonitoring();                
+            }
+        }
+
+        private void RecordingOptions_RecordWithDeleteFollowing_Click(object sender, EventArgs e)
+        {
+            if (CanRecord) StartRecordingDirectly_Internal(true);
+        }
+
+
     }
 }
