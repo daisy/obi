@@ -151,7 +151,7 @@ namespace Obi.ProjectView
             m_PlayOnSelectionChangedMutex = new Mutex ();
             m_DisplayComboBoxItems = new List<string>();
             for (int i = 0; i < mDisplayBox.Items.Count; i++) m_DisplayComboBoxItems.Add(mDisplayBox.Items[i].ToString());
-          
+            
             ResourceManager resourceManager = new ResourceManager("Obi.ProjectView.TransportBar", GetType().Assembly);
             m_monitorButtonImage = (Bitmap)resourceManager.GetObject("media-monitor.png");
             m_recordButtonImage = (Bitmap)resourceManager.GetObject("mRecordButton.Image");            
@@ -900,10 +900,10 @@ namespace Obi.ProjectView
                     //m_DeletePhrasestoolStripMenuItem.Text = "Delete the following phrases";
                 }
 
-                this.m_RecordingOptionsContextMenuStrip.Items.AddRange(new ToolStripItem[] {this.m_MoniteringtoolStripMenuItem,this.m_DeletePhrasestoolStripMenuItem});
-              
+                this.m_RecordingOptionsContextMenuStrip.Items.AddRange(new ToolStripItem[] { this.m_MoniteringtoolStripMenuItem, this.m_DeletePhrasestoolStripMenuItem });
 
                 bool recordDirectly = (mView.ObiForm  != null && mView.ObiForm.Settings.RecordDirectlyWithRecordButton) ? true : false;
+
                 if (recordDirectly)
                 {
                     m_btnRecordingOptions.Visible = true;
@@ -916,9 +916,9 @@ namespace Obi.ProjectView
                     m_MoniteringtoolStripMenuItem.Visible = false;
                     m_DeletePhrasestoolStripMenuItem.Visible = false;
                 }
+
                 if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || recordDirectly || mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording || CanResumeRecording)
-                {                   
-                    
+                {
                     mRecordButton.Image = m_recordButtonImage;
                     mRecordButton.Invalidate();
                 }
@@ -1629,11 +1629,11 @@ namespace Obi.ProjectView
                     }
                 else if (CanResumeRecording)
                     {
-                        SetupRecording(Recording, false);
+                    SetupRecording ( Recording , false);
                     }
                 else if (!IsRecorderActive)
                     {
-                        SetupRecording(Monitoring, false);
+                    SetupRecording ( Monitoring, false );
                     }
                 }
             catch (System.Exception ex)
@@ -1736,7 +1736,7 @@ namespace Obi.ProjectView
                 if (mResumeRecordingPhrase == null) mRecordingPhrase = null;
 
             ObiNode node = GetRecordingNode ( command, afterSection );
-            InitRecordingSectionAndPhraseIndex(node, mView.ObiForm.Settings.AllowOverwrite, command, deleteFollowingPhrases);
+            InitRecordingSectionAndPhraseIndex ( node, mView.ObiForm.Settings.AllowOverwrite, command , deleteFollowingPhrases);
             if (mView.Selection == null && node is SectionNode) mView.SelectFromTransportBar(node, null);// if nothing is selected, new section is created, select it in content view
             // Set events
             mRecordingSession = new RecordingSession ( mView.Presentation, mRecorder, mView.ObiForm.Settings );
@@ -1781,7 +1781,7 @@ namespace Obi.ProjectView
 
         // Initialize recording section/phrase index depending on the
         // context node for recording and the settings.
-        private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, urakawa.command.CompositeCommand command, bool deleteFollowingPhrases) 
+        private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, urakawa.command.CompositeCommand  command, bool deleteFollowingPhrases)
         {
         m_IsAfterRecordingSplitTransferEnabled = false;
         m_TempNodeForPropertiesTransfer = null;
@@ -1822,7 +1822,8 @@ namespace Obi.ProjectView
                 mRecordingInitPhraseIndex = node.Index;
             }
             // if audio after cursor has to be replaced, delete following phrases command should be used
-            if ((mView.ObiForm.Settings.Recording_ReplaceAfterCursor || deleteFollowingPhrases) && node is EmptyNode && ((EmptyNode)node).Index < ((EmptyNode)node).ParentAs<SectionNode>().PhraseChildCount - 1)
+            if ((mView.ObiForm.Settings.Recording_ReplaceAfterCursor || deleteFollowingPhrases)
+                && node is EmptyNode && ((EmptyNode)node).Index < ((EmptyNode)node).ParentAs<SectionNode>().PhraseChildCount-1)
             {
                 EmptyNode eNode = (EmptyNode)node ;
                 SectionNode section = eNode.ParentAs<SectionNode> () ;
@@ -2315,7 +2316,7 @@ namespace Obi.ProjectView
 
                     try
                         {
-                            SetupRecording(Recording, false);
+                        SetupRecording ( Recording , false);
                         }
                     catch (System.Exception ex)
                         {
@@ -2330,7 +2331,7 @@ namespace Obi.ProjectView
 
                     try
                         {
-                            SetupRecording(Recording, mRecordingSection, false);
+                        SetupRecording ( Recording, mRecordingSection, false );
                         }
                     catch (System.Exception ex)
                         {
@@ -2874,7 +2875,7 @@ namespace Obi.ProjectView
                 {
                 try
                     {
-                        SetupRecording(Recording, deleteFollowingPhrases);
+                    SetupRecording ( Recording, deleteFollowingPhrases );
                     }
                 catch (System.Exception ex)
                     {
@@ -3403,24 +3404,20 @@ SelectionChangedPlaybackEnabled = false;
         }
 
 
-
-
         private void m_btnRecordingOptions_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             Point ptLowerLeft = new Point(0, btn.Height);
             ptLowerLeft = btn.PointToScreen(ptLowerLeft);
-            m_RecordingOptionsContextMenuStrip.Show(ptLowerLeft); 
+            m_RecordingOptionsContextMenuStrip.Show(ptLowerLeft);  
+
         }
 
         private void RecordingOptions_Monitoring_Click(object sender, EventArgs e)
         {
             if (CanResumePlayback || mState == State.Stopped)
             {
-                if (mRecordingSession != null)
-                {
-                    mRecordingSession.StartMonitoring();
-                }
+                mRecordingSession.StartMonitoring();                
             }
         }
 
@@ -3428,5 +3425,7 @@ SelectionChangedPlaybackEnabled = false;
         {
             if (CanRecord) StartRecordingDirectly_Internal(true);
         }
+
+
     }
 }
