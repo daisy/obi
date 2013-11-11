@@ -3417,7 +3417,7 @@ SelectionChangedPlaybackEnabled = false;
         {
             if (CanResumePlayback || mState == State.Stopped)
             {
-                mRecordingSession.StartMonitoring();                
+                SetupRecording(Monitoring, false); 
             }
         }
 
