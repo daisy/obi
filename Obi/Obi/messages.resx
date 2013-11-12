@@ -2416,6 +2416,6 @@ Error text: {1}</value>
     <value>Set default metadata</value>
   </data>
   <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
-    <value>Use pause recording shortcut for stopping recording</value>
+    <value>Use Space key to stop recording</value>
   </data>
 </root>

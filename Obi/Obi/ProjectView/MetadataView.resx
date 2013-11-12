@@ -376,32 +376,32 @@
   <metadata name="mMetadataContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>114, 17</value>
   </metadata>
+  <data name="SetDefaultMetadataStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="SetDefaultMetadataStripMenuItem.Text" xml:space="preserve">
+    <value>Insert default metadata</value>
+  </data>
+  <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Overwrite with default metadata</value>
+  </data>
+  <data name="SaveAsDefaultMetadataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="SaveAsDefaultMetadataToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save as default metadata</value>
+  </data>
   <data name="mMetadataContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 70</value>
+    <value>245, 92</value>
   </data>
   <data name="&gt;&gt;mMetadataContextMenuStrip.Name" xml:space="preserve">
     <value>mMetadataContextMenuStrip</value>
   </data>
   <data name="&gt;&gt;mMetadataContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SetDefaultMetadataStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 22</value>
-  </data>
-  <data name="SetDefaultMetadataStripMenuItem.Text" xml:space="preserve">
-    <value>Set default metadata</value>
-  </data>
-  <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 22</value>
-  </data>
-  <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Set default metadata (Overwrite)</value>
-  </data>
-  <data name="SaveAsDefaultMetadataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 22</value>
-  </data>
-  <data name="SaveAsDefaultMetadataToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save as default metadata</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
