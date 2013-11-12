@@ -48,11 +48,11 @@ namespace Obi.ProjectView
             this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
             this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
-            this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.m_btnRecordingOptions = new System.Windows.Forms.Button();
             this.m_RecordingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.m_MonitoringtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_DeletePhrasestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.m_RecordingOptionsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -236,15 +236,6 @@ namespace Obi.ProjectView
             this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
             this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.mFastPlayRateComboBox_SelectionChangeCommitted);
             // 
-            // mVUMeterPanel
-            // 
-            this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
-            this.mVUMeterPanel.BeepEnable = false;
-            resources.ApplyResources(this.mVUMeterPanel, "mVUMeterPanel");
-            this.mVUMeterPanel.Name = "mVUMeterPanel";
-            this.mVUMeterPanel.ShowMaxMinValues = false;
-            this.mVUMeterPanel.VuMeter = null;
-            // 
             // m_btnRecordingOptions
             // 
             resources.ApplyResources(this.m_btnRecordingOptions, "m_btnRecordingOptions");
@@ -272,13 +263,22 @@ namespace Obi.ProjectView
             this.m_DeletePhrasestoolStripMenuItem.Name = "m_DeletePhrasestoolStripMenuItem";
             this.m_DeletePhrasestoolStripMenuItem.Click += new System.EventHandler(this.RecordingOptions_RecordWithDeleteFollowing_Click);
             // 
+            // mVUMeterPanel
+            // 
+            this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
+            this.mVUMeterPanel.BeepEnable = false;
+            resources.ApplyResources(this.mVUMeterPanel, "mVUMeterPanel");
+            this.mVUMeterPanel.Name = "mVUMeterPanel";
+            this.mVUMeterPanel.ShowMaxMinValues = false;
+            this.mVUMeterPanel.VuMeter = null;
+            // 
             // TransportBar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.LightSalmon;
-            this.Controls.Add(this.m_btnRecordingOptions);
             this.Controls.Add(this.mToDo_CustomClassMarkButton);
             this.Controls.Add(this.mPreviousPageButton);
+            this.Controls.Add(this.m_btnRecordingOptions);
             this.Controls.Add(this.mNextPageButton);
             this.Controls.Add(this.mFastPlayRateCombobox);
             this.Controls.Add(this.mFastForwardButton);
@@ -286,9 +286,9 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mVUMeterPanel);
             this.Controls.Add(this.mDisplayBox);
             this.Controls.Add(this.mTimeDisplayBox);
-            this.Controls.Add(this.mRecordButton);
             this.Controls.Add(this.mPrevSectionButton);
             this.Controls.Add(this.mNextSectionButton);
+            this.Controls.Add(this.mRecordButton);
             this.Controls.Add(this.mPrevPhraseButton);
             this.Controls.Add(this.mNextPhrase);
             this.Controls.Add(this.mStopButton);

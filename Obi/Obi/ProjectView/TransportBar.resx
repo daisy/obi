@@ -152,6 +152,9 @@
         QYbH7m38p4iI+AGAksTSVkM0awAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="mPlayButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="mPlayButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 0</value>
   </data>
@@ -209,6 +212,9 @@
         AABJRU5ErkJggg==
 </value>
   </data>
+  <data name="mPauseButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="mPauseButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>143, 0</value>
   </data>
@@ -263,6 +269,9 @@
         2PaUwIEXUXJSFOXK5y+f2ATm/F+A7cY+YMkcmJ3UhtkL4ak9oel0QpOpReDAiyg56bp++dv3ryRr8CJK
         TkR0gfnStrYsa8OmaV4UUZEiRfofFYv9BU9OWA9rCl5TAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="mStopButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="mStopButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>178, 0</value>
@@ -332,6 +341,9 @@
         PnMfAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="mNextPhrase.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="mNextPhrase.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 0</value>
   </data>
@@ -400,6 +412,9 @@
         RU5ErkJggg==
 </value>
   </data>
+  <data name="mPrevPhraseButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="mPrevPhraseButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>73, 0</value>
   </data>
@@ -466,6 +481,9 @@
         OuvH+g+I4/4EolXIW7ee1QcAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="mNextSectionButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="mNextSectionButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>373, 0</value>
   </data>
@@ -491,7 +509,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNextSectionButton.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>12</value>
   </data>
   <data name="mPrevSectionButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -532,6 +550,9 @@
         SDaJJT9tOhr7xBM+xTqA4/4CLWW7UEFujLIAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="mPrevSectionButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="mPrevSectionButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 0</value>
   </data>
@@ -557,7 +578,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPrevSectionButton.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>11</value>
   </data>
   <data name="mRecordButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -597,8 +618,11 @@
         kWQvJSAlETXWJiElIiTzD5TWJNsNia8FBZEoBV7Lz202sYkIIJP9DVMNyTvg58QsAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="mRecordButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="mRecordButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 0</value>
+    <value>205, 0</value>
   </data>
   <data name="mRecordButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 3, 0</value>
@@ -607,7 +631,7 @@
     <value>32, 32</value>
   </data>
   <data name="mRecordButton.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="mRecordButton.ToolTip" xml:space="preserve">
     <value>Start monitoring or recording. (Ctrl+R)</value>
@@ -622,7 +646,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mRecordButton.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="mTimeDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 21.75pt</value>
@@ -687,6 +711,9 @@
         AAAASUVORK5CYII=
 </value>
   </data>
+  <data name="mRewindButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="mRewindButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>108, 0</value>
   </data>
@@ -748,6 +775,9 @@
         eWxfd3d3oOqxYtrX6/Vzb7crSJJkGgyGlSaTCe1W2vZBh2mz2ebse/Hi5T+FwfgB2ck1XlhuTYoAAAAA
         SUVORK5CYII=
 </value>
+  </data>
+  <data name="mFastForwardButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="mFastForwardButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>268, 0</value>
@@ -813,6 +843,9 @@
         YMcI4IdVk6xW6o6FvRUFGM2qZbhzAB8fn2kDyMEAHkLPywHGcokA/8yaNest4gm5ywGoJTPDIlRNFGIs
         FRau6vTw8HibeM4BaI0XotbMEJoj9MYo63UhT6EXhSYJPebm5ub2L7Mgyw2fIE5BAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="mNextPageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="mNextPageButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>338, 0</value>
@@ -881,6 +914,9 @@
         aMtMLokw8QAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="mPreviousPageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="mPreviousPageButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>38, 0</value>
   </data>
@@ -906,7 +942,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPreviousPageButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -948,6 +984,9 @@
         6DXSIGhSB5l0jP0LxgL4vh8XfwcAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="mToDo_CustomClassMarkButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="mToDo_CustomClassMarkButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>411, 0</value>
   </data>
@@ -973,7 +1012,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <metadata name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -1074,6 +1113,79 @@
   <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
+    <value>Recording Options</value>
+  </data>
+  <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDAAA
+        CwwBP0AiyAAAAjNJREFUOE/Vkl9IU3EUx0evPRRULz0EEWRBPfRSxBCJXuqhhJpiRX/wwVZhRUQQ6rCQ
+        /szQSDBjkdhyCFIR9Ni2u93NOVs5wghiY5KJRpm7u9v9/W4+fPudG1Lb3R+FXnz4cLiH8/v8zrnnZ5Fl
+        Gf+bFSwNBoPLptCRJ6UCX3gEvuhbwRh8o9E/REbhJUYiefiIUMgkzpN6Q2GwV0NgPbegubrB+nvAnj4E
+        G3SBDT0BGx4Af+4GfzEI9tIj4jPwN6/hlUOlpX5BMv4e2vY1yNlqoJ21gV0/B+5sgd53DwseFxaEXH98
+        H7yrHb/sdUjGxuAP/nUQpvGl+AcozjZoR6qhNZ8Aa20G72wT0k7wgV7o7j7oYgpd5NRHXZDejZcfn5AC
+        AXz8Oo2sdSuyxw9Au3wa7OZV8O4b4L13BU7wBx3gF09iIpE06gsdJind6o1E8d3TD9VaBfXUYWhXGqE5
+        LoF1XBO/ohV6ywX8GHYbyyrskjBJiYC4PTY9A/XgHmRqq5E9U4ucvQHZpnrkzh+DZq9HbPKLUVfsfFEp
+        QRudishQt61H5pAVmaP7kLHth7p7C6ZkybTxfykppbHCn5NIN9ZB2bUJ6ZqdUPZWQWlqEPlE0bEXKSkl
+        /OJgYjKF+XUWzO/YiPSGVUikUka+WP0iZaXUjX88jp93HJhbbcHcbYfxXa5LoqyUoCczMfsNyua1Riz2
+        hAqpKDW6lSR8mpk1YqUuiYpSgkTU4VKExJKky2WlSGX8BpgghyexT7VQAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="m_btnRecordingOptions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btnRecordingOptions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>241, 5</value>
+  </data>
+  <data name="m_btnRecordingOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="m_btnRecordingOptions.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
+    <value>m_btnRecordingOptions</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>320, 17</value>
+  </metadata>
+  <data name="m_MonitoringtoolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Monitoring</value>
+  </data>
+  <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 22</value>
+  </data>
+  <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
+    <value>Monitoring</value>
+  </data>
+  <data name="m_DeletePhrasestoolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Delete the following phrases</value>
+  </data>
+  <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 22</value>
+  </data>
+  <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
+    <value>Delete the following phrases</value>
+  </data>
+  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 48</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_RecordingOptionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="mVUMeterPanel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
@@ -1093,86 +1205,13 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.7.6.33539, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.7.6.36459, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.ZOrder" xml:space="preserve">
     <value>8</value>
-  </data>
-  <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
-    <value>Recording Options</value>
-  </data>
-  <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
-        CxABrSO9dQAAAjNJREFUOE/Vkl9IU3EUx0evPRRULz0EEWRBPfRSxBCJXuqhhJpiRX/wwVZhRUQQ6rCQ
-        /szQSDBjkdhyCFIR9Ni2u93NOVs5wghiY5KJRpm7u9v9/W4+fPudG1Lb3R+FXnz4cLiH8/v8zrnnZ5Fl
-        Gf+bFSwNBoPLptCRJ6UCX3gEvuhbwRh8o9E/REbhJUYiefiIUMgkzpN6Q2GwV0NgPbegubrB+nvAnj4E
-        G3SBDT0BGx4Af+4GfzEI9tIj4jPwN6/hlUOlpX5BMv4e2vY1yNlqoJ21gV0/B+5sgd53DwseFxaEXH98
-        H7yrHb/sdUjGxuAP/nUQpvGl+AcozjZoR6qhNZ8Aa20G72wT0k7wgV7o7j7oYgpd5NRHXZDejZcfn5AC
-        AXz8Oo2sdSuyxw9Au3wa7OZV8O4b4L13BU7wBx3gF09iIpE06gsdJind6o1E8d3TD9VaBfXUYWhXGqE5
-        LoF1XBO/ohV6ywX8GHYbyyrskjBJiYC4PTY9A/XgHmRqq5E9U4ucvQHZpnrkzh+DZq9HbPKLUVfsfFEp
-        QRudishQt61H5pAVmaP7kLHth7p7C6ZkybTxfykppbHCn5NIN9ZB2bUJ6ZqdUPZWQWlqEPlE0bEXKSkl
-        /OJgYjKF+XUWzO/YiPSGVUikUka+WP0iZaXUjX88jp93HJhbbcHcbYfxXa5LoqyUoCczMfsNyua1Riz2
-        hAqpKDW6lSR8mpk1YqUuiYpSgkTU4VKExJKky2WlSGX8BpgghyexT7VQAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="m_btnRecordingOptions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_btnRecordingOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 5</value>
-  </data>
-  <data name="m_btnRecordingOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 23</value>
-  </data>
-  <data name="m_btnRecordingOptions.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
-    <value>m_btnRecordingOptions</value>
-  </data>
-  <data name="&gt;&gt;m_btnRecordingOptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnRecordingOptions.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_btnRecordingOptions.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>320, 17</value>
-  </metadata>
-  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 48</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
-    <value>m_RecordingOptionsContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="m_MonitoringtoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Monitoring</value>
-  </data>
-  <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
-  </data>
-  <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Monitoring</value>
-  </data>
-  <data name="m_DeletePhrasestoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Delete the following phrases</value>
-  </data>
-  <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
-  </data>
-  <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete the following phrases</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
