@@ -1093,7 +1093,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.7.6.31636, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.7.6.33539, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1107,15 +1107,17 @@
   <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAGYktHRAD/AP8A/6C9p5MAAAAJdnBBZwAAAGQAAABkAIcm
-        XuYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTAtMTItMjJUMTQ6MjQ6NDYtMDU6MDAyGm1oAAAAJXRFWHRk
-        YXRlOm1vZGlmeQAyMDEwLTEyLTIyVDE0OjI0OjQ2LTA1OjAwQ0fV1AAAABl0RVh0U29mdHdhcmUAd3d3
-        Lmlua3NjYXBlLm9yZ5vuPBoAAAE7SURBVDhPrZW9isJAFEYHBDsrBbGwVV9lSYKPYWvpf2XhLqwoRhFB
-        EO0FwQcQsbUQfJ+7c81nNtlMJhPXDw7M3Ln3JCSBCKdep3m/T9+dzr9hj+04JFy5ICHexlT6BF9Bdfgq
-        X9KXLN3vKZT7Xd0HzKTrNWzI+azuA2bS1Qo2JLW0Wg01PFguYUNU0lrNX0el3S7R5fK7ZxYL2JC/0s2G
-        aLv191FpoxEddF2v9kzwbLfzaqORX4uXcm43rzYeo4CcTl79eERBxljKuV6JhkNskMMh+plppc0mulJm
-        NtNIMxl0pUyhoJE+SZNcLjQbL2VMks9H5vTSpEdRLCrn9FImTlwqqfslyVImm4UJKZfVfcBMyvDL4FQq
-        6vMADyn/AlSHrzIdDEhYtk2TXo8+2209rZa6HmAib/DDsugHfIWFGCV9grYAAAAASUVORK5CYII=
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
+        CxABrSO9dQAAAjNJREFUOE/Vkl9IU3EUx0evPRRULz0EEWRBPfRSxBCJXuqhhJpiRX/wwVZhRUQQ6rCQ
+        /szQSDBjkdhyCFIR9Ni2u93NOVs5wghiY5KJRpm7u9v9/W4+fPudG1Lb3R+FXnz4cLiH8/v8zrnnZ5Fl
+        Gf+bFSwNBoPLptCRJ6UCX3gEvuhbwRh8o9E/REbhJUYiefiIUMgkzpN6Q2GwV0NgPbegubrB+nvAnj4E
+        G3SBDT0BGx4Af+4GfzEI9tIj4jPwN6/hlUOlpX5BMv4e2vY1yNlqoJ21gV0/B+5sgd53DwseFxaEXH98
+        H7yrHb/sdUjGxuAP/nUQpvGl+AcozjZoR6qhNZ8Aa20G72wT0k7wgV7o7j7oYgpd5NRHXZDejZcfn5AC
+        AXz8Oo2sdSuyxw9Au3wa7OZV8O4b4L13BU7wBx3gF09iIpE06gsdJind6o1E8d3TD9VaBfXUYWhXGqE5
+        LoF1XBO/ohV6ywX8GHYbyyrskjBJiYC4PTY9A/XgHmRqq5E9U4ucvQHZpnrkzh+DZq9HbPKLUVfsfFEp
+        QRudishQt61H5pAVmaP7kLHth7p7C6ZkybTxfykppbHCn5NIN9ZB2bUJ6ZqdUPZWQWlqEPlE0bEXKSkl
+        /OJgYjKF+XUWzO/YiPSGVUikUka+WP0iZaXUjX88jp93HJhbbcHcbYfxXa5LoqyUoCczMfsNyua1Riz2
+        hAqpKDW6lSR8mpk1YqUuiYpSgkTU4VKExJKky2WlSGX8BpgghyexT7VQAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="m_btnRecordingOptions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -1145,6 +1147,15 @@
   <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 17</value>
   </metadata>
+  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 48</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_RecordingOptionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="m_MonitoringtoolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Monitoring</value>
   </data>
@@ -1162,15 +1173,6 @@
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
     <value>Delete the following phrases</value>
-  </data>
-  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 48</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
-    <value>m_RecordingOptionsContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
