@@ -49,6 +49,11 @@ namespace Obi.ProjectView
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
             this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
+            this.m_btnRecordingOptions = new System.Windows.Forms.Button();
+            this.m_RecordingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.m_MonitoringtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_DeletePhrasestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_RecordingOptionsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mPlayButton
@@ -240,10 +245,38 @@ namespace Obi.ProjectView
             this.mVUMeterPanel.ShowMaxMinValues = false;
             this.mVUMeterPanel.VuMeter = null;
             // 
+            // m_btnRecordingOptions
+            // 
+            resources.ApplyResources(this.m_btnRecordingOptions, "m_btnRecordingOptions");
+            this.m_btnRecordingOptions.Name = "m_btnRecordingOptions";
+            this.m_btnRecordingOptions.UseVisualStyleBackColor = true;
+            this.m_btnRecordingOptions.Click += new System.EventHandler(this.m_btnRecordingOptions_Click);
+            // 
+            // m_RecordingOptionsContextMenuStrip
+            // 
+            this.m_RecordingOptionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_MonitoringtoolStripMenuItem,
+            this.m_DeletePhrasestoolStripMenuItem});
+            this.m_RecordingOptionsContextMenuStrip.Name = "m_RecordingOptionsContextMenuStrip";
+            resources.ApplyResources(this.m_RecordingOptionsContextMenuStrip, "m_RecordingOptionsContextMenuStrip");
+            // 
+            // m_MonitoringtoolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_MonitoringtoolStripMenuItem, "m_MonitoringtoolStripMenuItem");
+            this.m_MonitoringtoolStripMenuItem.Name = "m_MonitoringtoolStripMenuItem";
+            this.m_MonitoringtoolStripMenuItem.Click += new System.EventHandler(this.RecordingOptions_Monitoring_Click);
+            // 
+            // m_DeletePhrasestoolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_DeletePhrasestoolStripMenuItem, "m_DeletePhrasestoolStripMenuItem");
+            this.m_DeletePhrasestoolStripMenuItem.Name = "m_DeletePhrasestoolStripMenuItem";
+            this.m_DeletePhrasestoolStripMenuItem.Click += new System.EventHandler(this.RecordingOptions_RecordWithDeleteFollowing_Click);
+            // 
             // TransportBar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.LightSalmon;
+            this.Controls.Add(this.m_btnRecordingOptions);
             this.Controls.Add(this.mToDo_CustomClassMarkButton);
             this.Controls.Add(this.mPreviousPageButton);
             this.Controls.Add(this.mNextPageButton);
@@ -266,6 +299,7 @@ namespace Obi.ProjectView
             this.Name = "TransportBar";
             this.Leave += new System.EventHandler(this.TransportBar_Leave);
             this.Enter += new System.EventHandler(this.TransportBar_Enter);
+            this.m_RecordingOptionsContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,5 +326,9 @@ namespace Obi.ProjectView
         private System.Windows.Forms.Button mNextPageButton;
         private System.Windows.Forms.Button mPreviousPageButton;
         private System.Windows.Forms.Button mToDo_CustomClassMarkButton;
+        private System.Windows.Forms.Button m_btnRecordingOptions;
+        private System.Windows.Forms.ContextMenuStrip m_RecordingOptionsContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem m_MonitoringtoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_DeletePhrasestoolStripMenuItem;
     }
 }
