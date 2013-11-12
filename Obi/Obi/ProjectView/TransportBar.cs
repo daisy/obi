@@ -157,9 +157,7 @@ namespace Obi.ProjectView
             ResourceManager resourceManager = new ResourceManager("Obi.ProjectView.TransportBar", GetType().Assembly);
             m_monitorButtonImage = (Bitmap)resourceManager.GetObject("media-monitor.png");
             m_recordButtonImage = (Bitmap)resourceManager.GetObject("mRecordButton.Image");
-         //   ResourceManager resource = new ResourceManager("Obi.images.icons.media-recording-options.png", GetType().Assembly);
-           // reso
-           // m_recordOptionsButtonImage = (Bitmap)resource.GetObject("media-recording-options.png");            
+         
         }
 
         /// <summary>
@@ -887,30 +885,7 @@ namespace Obi.ProjectView
                 mFastPlayRateCombobox.Enabled = !IsRecorderActive;
                 mRecordButton.Enabled = CanRecord || CanResumeRecording;
 
-                //if (m_btnRecordingOptions == null)
-                //{
-                //    Assembly myAssembly = Assembly.GetExecutingAssembly();
-                //    Stream tempStream = null;
-                // //   Stream playStr = null;
-                //    tempStream = myAssembly.GetManifestResourceStream("Obi.images.icons.media-recording-options.png");
-                    
-                //    m_btnRecordingOptions = new Button();
-                //    this.Controls.Add(m_btnRecordingOptions);
-                //    m_btnRecordingOptions.Location = new Point(215, 4);
-                //    m_btnRecordingOptions.Size = new Size(18, 24);
-                //    m_btnRecordingOptions.Image = Image.FromStream(tempStream);
-                  
-                //    //  this.m_btnRecordingOptions.UseVisualStyleBackColor = true;
-                //    m_btnRecordingOptions.Click += new EventHandler(m_btnRecordingOptions_Click);
-                //    m_RecordingOptionsContextMenuStrip = new ContextMenuStrip();
-                //    m_MoniteringtoolStripMenuItem = new ToolStripMenuItem("Monitoring");
-                //    m_MoniteringtoolStripMenuItem.Click += new EventHandler(RecordingOptions_Monitoring_Click);
-                //    m_DeletePhrasestoolStripMenuItem = new ToolStripMenuItem("Delete the following phrases");
-                //    m_DeletePhrasestoolStripMenuItem.Click += new EventHandler(RecordingOptions_RecordWithDeleteFollowing_Click);
-                    
-                //}
-
-                //this.m_RecordingOptionsContextMenuStrip.Items.AddRange(new ToolStripItem[] { this.m_MoniteringtoolStripMenuItem, this.m_DeletePhrasestoolStripMenuItem });
+               
 
                 bool recordDirectly = (mView.ObiForm  != null && mView.ObiForm.Settings.RecordDirectlyWithRecordButton) ? true : false;
 
