@@ -313,7 +313,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use pause recording shortcut for stopping recording.
+        ///   Looks up a localized string similar to Use Space key to stop recording.
         /// </summary>
         internal static string Audio_UseRecordingPauseShortcutForStopping {
             get {
