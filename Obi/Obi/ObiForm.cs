@@ -2080,7 +2080,7 @@ namespace Obi
                 mFastPlaytoolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mRecordToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.TransportBar.CanRecord;
                 mStartRecordingDirectlyToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
-                m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening;
+                m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening && mSettings.RecordDirectlyWithRecordButton;
                 if (mProjectView.TransportBar.IsListening)
                 {
                     mStartMonitoringToolStripMenuItem.Visible = false;
@@ -4785,12 +4785,12 @@ namespace Obi
             {
                 if (mSettings.AllowOverwrite)
                 {
-                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening;
+                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening && mSettings.RecordDirectlyWithRecordButton;
                     mAllowOverwriteToolStripMenuItem.Checked = true;
                 }
                 else
                 {
-                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening;
+                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening && mSettings.RecordDirectlyWithRecordButton;
                     mAllowOverwriteToolStripMenuItem.Checked = false;
                 }
 

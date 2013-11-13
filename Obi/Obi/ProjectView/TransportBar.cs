@@ -891,7 +891,19 @@ namespace Obi.ProjectView
 
                 if (recordDirectly)
                 {
-                    m_btnRecordingOptions.Enabled = true;
+                    m_btnRecordingOptions.Enabled = CanRecord || CanResumeRecording;                   
+                    if (this.IsListening)
+                    {
+                        m_MonitoringtoolStripMenuItem.Visible = false;
+                        m_RecordingtoolStripMenuItem.Visible = true;
+                    }
+
+                    else
+                    {
+                        m_MonitoringtoolStripMenuItem.Visible = true;                     
+                        m_RecordingtoolStripMenuItem.Visible = false;                     
+
+                    }                    
                     if (mView.ObiForm.Settings.AllowOverwrite)
                     {
                         m_DeletePhrasestoolStripMenuItem.Enabled = true;
@@ -3419,6 +3431,23 @@ SelectionChangedPlaybackEnabled = false;
         public void RecordWithDeleteFollowing()
         {
             if (CanRecord) StartRecordingDirectly_Internal(true);
+        }
+
+        private void m_RecordingtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Record();
+        }
+
+        private void m_RecordingOptionsContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (mView.ObiForm.Settings.AllowOverwrite)
+            {
+                m_DeletePhrasestoolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                m_DeletePhrasestoolStripMenuItem.Enabled = false;
+            }
         }
 
     }

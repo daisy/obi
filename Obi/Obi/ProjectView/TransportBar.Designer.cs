@@ -51,6 +51,7 @@ namespace Obi.ProjectView
             this.m_btnRecordingOptions = new System.Windows.Forms.Button();
             this.m_RecordingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.m_MonitoringtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_RecordingtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_DeletePhrasestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.m_RecordingOptionsContextMenuStrip.SuspendLayout();
@@ -247,15 +248,23 @@ namespace Obi.ProjectView
             // 
             this.m_RecordingOptionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_MonitoringtoolStripMenuItem,
+            this.m_RecordingtoolStripMenuItem,
             this.m_DeletePhrasestoolStripMenuItem});
             this.m_RecordingOptionsContextMenuStrip.Name = "m_RecordingOptionsContextMenuStrip";
             resources.ApplyResources(this.m_RecordingOptionsContextMenuStrip, "m_RecordingOptionsContextMenuStrip");
+            this.m_RecordingOptionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.m_RecordingOptionsContextMenuStrip_Opening);
             // 
             // m_MonitoringtoolStripMenuItem
             // 
             resources.ApplyResources(this.m_MonitoringtoolStripMenuItem, "m_MonitoringtoolStripMenuItem");
             this.m_MonitoringtoolStripMenuItem.Name = "m_MonitoringtoolStripMenuItem";
             this.m_MonitoringtoolStripMenuItem.Click += new System.EventHandler(this.RecordingOptions_Monitoring_Click);
+            // 
+            // m_RecordingtoolStripMenuItem
+            // 
+            this.m_RecordingtoolStripMenuItem.Name = "m_RecordingtoolStripMenuItem";
+            resources.ApplyResources(this.m_RecordingtoolStripMenuItem, "m_RecordingtoolStripMenuItem");
+            this.m_RecordingtoolStripMenuItem.Click += new System.EventHandler(this.m_RecordingtoolStripMenuItem_Click);
             // 
             // m_DeletePhrasestoolStripMenuItem
             // 
@@ -330,5 +339,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ContextMenuStrip m_RecordingOptionsContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem m_MonitoringtoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_DeletePhrasestoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_RecordingtoolStripMenuItem;
     }
 }
