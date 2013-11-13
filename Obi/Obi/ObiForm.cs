@@ -2054,14 +2054,9 @@ namespace Obi
                     mPauseToolStripMenuItem.Enabled = mProjectView.CanPause;
                     mResumeToolStripMenuItem.Visible = false;
                 }
-                if (mSettings.AllowOverwrite)
-                {
-                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = true;
-                }
-                else
-                {
-                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = false;
-                }
+                
+                    
+                
                 mStopToolStripMenuItem.Enabled = mProjectView.CanStop;
                 mPreviewToolStripMenuItem.Enabled = mProjectView.CanPreview || mProjectView.CanPreviewAudioSelection;
                 mPreviewFromToolStripMenuItem.Enabled = mProjectView.CanPreview;
@@ -2085,6 +2080,7 @@ namespace Obi
                 mFastPlaytoolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mRecordToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.TransportBar.CanRecord;
                 mStartRecordingDirectlyToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
+                m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening;
                 if (mProjectView.TransportBar.IsListening)
                 {
                     mStartMonitoringToolStripMenuItem.Visible = false;
@@ -4789,12 +4785,12 @@ namespace Obi
             {
                 if (mSettings.AllowOverwrite)
                 {
-                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = true;
+                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening;
                     mAllowOverwriteToolStripMenuItem.Checked = true;
                 }
                 else
                 {
-                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = false;
+                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening;
                     mAllowOverwriteToolStripMenuItem.Checked = false;
                 }
 
