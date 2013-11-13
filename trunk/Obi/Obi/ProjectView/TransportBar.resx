@@ -1163,7 +1163,7 @@
     <value>Monitoring</value>
   </data>
   <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>244, 22</value>
   </data>
   <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
     <value>Monitoring</value>
@@ -1172,13 +1172,13 @@
     <value>Delete the following phrases</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>223, 22</value>
+    <value>244, 22</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete the following phrases</value>
+    <value>Record over subsequent phrases</value>
   </data>
   <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 48</value>
+    <value>245, 70</value>
   </data>
   <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
     <value>m_RecordingOptionsContextMenuStrip</value>
@@ -1205,7 +1205,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.7.6.36459, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.7.6.22791, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>

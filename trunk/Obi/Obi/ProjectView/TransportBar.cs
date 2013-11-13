@@ -892,11 +892,21 @@ namespace Obi.ProjectView
                 if (recordDirectly)
                 {
                     m_btnRecordingOptions.Enabled = true;
+                    if (mView.ObiForm.Settings.AllowOverwrite)
+                    {
+                        m_DeletePhrasestoolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+                        m_DeletePhrasestoolStripMenuItem.Enabled = false;
+                    }
                 }
                 else
                 {
                     m_btnRecordingOptions.Enabled = false;
                 }
+
+               
 
                 if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || recordDirectly || mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording || CanResumeRecording)
                 {
@@ -3404,9 +3414,12 @@ SelectionChangedPlaybackEnabled = false;
 
         private void RecordingOptions_RecordWithDeleteFollowing_Click(object sender, EventArgs e)
         {
+            RecordWithDeleteFollowing();
+        }
+        public void RecordWithDeleteFollowing()
+        {
             if (CanRecord) StartRecordingDirectly_Internal(true);
         }
-
 
     }
 }

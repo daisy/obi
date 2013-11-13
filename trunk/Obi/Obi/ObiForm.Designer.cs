@@ -175,6 +175,7 @@ namespace Obi
             this.mStartMonitoringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStartRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStartRecordingDirectlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_DeletePhrasesWhileRecordingtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAllowOverwriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mGenerateSpeechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectedPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1231,9 +1232,11 @@ namespace Obi
             this.mStartMonitoringToolStripMenuItem,
             this.mStartRecordingToolStripMenuItem,
             this.mStartRecordingDirectlyToolStripMenuItem,
+            this.m_DeletePhrasesWhileRecordingtoolStripMenuItem,
             this.mAllowOverwriteToolStripMenuItem});
             this.mRecordToolStripMenuItem.Name = "mRecordToolStripMenuItem";
             resources.ApplyResources(this.mRecordToolStripMenuItem, "mRecordToolStripMenuItem");
+            this.mRecordToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mRecordToolStripMenuItem_DropDownOpening);
             // 
             // mStartMonitoringToolStripMenuItem
             // 
@@ -1252,6 +1255,12 @@ namespace Obi
             resources.ApplyResources(this.mStartRecordingDirectlyToolStripMenuItem, "mStartRecordingDirectlyToolStripMenuItem");
             this.mStartRecordingDirectlyToolStripMenuItem.Name = "mStartRecordingDirectlyToolStripMenuItem";
             this.mStartRecordingDirectlyToolStripMenuItem.Click += new System.EventHandler(this.mStartRecordingDirectlyToolStripMenuItem_Click);
+            // 
+            // m_DeletePhrasesWhileRecordingtoolStripMenuItem
+            // 
+            this.m_DeletePhrasesWhileRecordingtoolStripMenuItem.Name = "m_DeletePhrasesWhileRecordingtoolStripMenuItem";
+            resources.ApplyResources(this.m_DeletePhrasesWhileRecordingtoolStripMenuItem, "m_DeletePhrasesWhileRecordingtoolStripMenuItem");
+            this.m_DeletePhrasesWhileRecordingtoolStripMenuItem.Click += new System.EventHandler(this.m_DeletePhrasesWhileRecordingtoolStripMenuItem_Click);
             // 
             // mAllowOverwriteToolStripMenuItem
             // 
@@ -1701,6 +1710,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mCheckForPhrasesWithImproperAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem splitAndMergeWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem splitAndMergeWithPreviousToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_DeletePhrasesWhileRecordingtoolStripMenuItem;
     }
 }
 

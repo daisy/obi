@@ -2054,6 +2054,14 @@ namespace Obi
                     mPauseToolStripMenuItem.Enabled = mProjectView.CanPause;
                     mResumeToolStripMenuItem.Visible = false;
                 }
+                if (mSettings.AllowOverwrite)
+                {
+                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = false;
+                }
                 mStopToolStripMenuItem.Enabled = mProjectView.CanStop;
                 mPreviewToolStripMenuItem.Enabled = mProjectView.CanPreview || mProjectView.CanPreviewAudioSelection;
                 mPreviewFromToolStripMenuItem.Enabled = mProjectView.CanPreview;
@@ -4768,6 +4776,28 @@ namespace Obi
             private void mCheckForPhrasesWithImproperAudioMenuItem_Click(object sender, EventArgs e)
             {
                 mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode)mProjectView.Presentation.RootNode, true);
+            }
+
+            private void m_DeletePhrasesWhileRecordingtoolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.TransportBar.RecordWithDeleteFollowing();
+            }
+
+
+
+            private void mRecordToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+            {
+                if (mSettings.AllowOverwrite)
+                {
+                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = true;
+                    mAllowOverwriteToolStripMenuItem.Checked = true;
+                }
+                else
+                {
+                    m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = false;
+                    mAllowOverwriteToolStripMenuItem.Checked = false;
+                }
+
             }
 
 
