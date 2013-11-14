@@ -1144,6 +1144,9 @@
   <data name="m_btnRecordingOptions.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
+  <data name="m_btnRecordingOptions.ToolTip" xml:space="preserve">
+    <value>Recording Options</value>
+  </data>
   <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
     <value>m_btnRecordingOptions</value>
   </data>
@@ -1159,29 +1162,17 @@
   <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 17</value>
   </metadata>
-  <data name="m_MonitoringtoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Monitoring</value>
-  </data>
-  <data name="m_MonitoringtoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+R</value>
-  </data>
   <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
     <value>Start Monitoring</value>
   </data>
-  <data name="m_RecordingtoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+R</value>
-  </data>
   <data name="m_RecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
     <value>Start Recording</value>
-  </data>
-  <data name="m_DeletePhrasestoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Delete the following phrases</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
@@ -1190,7 +1181,7 @@
     <value>Record over subsequent phrases</value>
   </data>
   <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 92</value>
+    <value>245, 70</value>
   </data>
   <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
     <value>m_RecordingOptionsContextMenuStrip</value>
@@ -1217,7 +1208,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.7.6.35090, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.7.6.28445, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
