@@ -241,6 +241,7 @@ namespace Obi.ProjectView
             // 
             resources.ApplyResources(this.m_btnRecordingOptions, "m_btnRecordingOptions");
             this.m_btnRecordingOptions.Name = "m_btnRecordingOptions";
+            this.mTransportBarTooltip.SetToolTip(this.m_btnRecordingOptions, resources.GetString("m_btnRecordingOptions.ToolTip"));
             this.m_btnRecordingOptions.UseVisualStyleBackColor = true;
             this.m_btnRecordingOptions.Click += new System.EventHandler(this.m_btnRecordingOptions_Click);
             // 
@@ -256,8 +257,8 @@ namespace Obi.ProjectView
             // 
             // m_MonitoringtoolStripMenuItem
             // 
-            resources.ApplyResources(this.m_MonitoringtoolStripMenuItem, "m_MonitoringtoolStripMenuItem");
             this.m_MonitoringtoolStripMenuItem.Name = "m_MonitoringtoolStripMenuItem";
+            resources.ApplyResources(this.m_MonitoringtoolStripMenuItem, "m_MonitoringtoolStripMenuItem");
             this.m_MonitoringtoolStripMenuItem.Click += new System.EventHandler(this.RecordingOptions_Monitoring_Click);
             // 
             // m_RecordingtoolStripMenuItem
@@ -268,8 +269,8 @@ namespace Obi.ProjectView
             // 
             // m_DeletePhrasestoolStripMenuItem
             // 
-            resources.ApplyResources(this.m_DeletePhrasestoolStripMenuItem, "m_DeletePhrasestoolStripMenuItem");
             this.m_DeletePhrasestoolStripMenuItem.Name = "m_DeletePhrasestoolStripMenuItem";
+            resources.ApplyResources(this.m_DeletePhrasestoolStripMenuItem, "m_DeletePhrasestoolStripMenuItem");
             this.m_DeletePhrasestoolStripMenuItem.Click += new System.EventHandler(this.RecordingOptions_RecordWithDeleteFollowing_Click);
             // 
             // mVUMeterPanel
