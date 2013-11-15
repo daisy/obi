@@ -2176,7 +2176,7 @@ Error text: {1}</value>
     <value>Advance recording mode</value>
   </data>
   <data name="Preferences_Allow_overwrite" xml:space="preserve">
-    <value>Allow overwrite, Start recording from cursor erasing the following audio and Record directly from transport bar checkboxes will be checked. Do you want to proceed?</value>
+    <value>Allow overwrite,Record directly and Perform phrase detection while recording from transport bar checkboxes will be checked. Do you want to proceed?</value>
   </data>
   <data name="select_one_more_section" xml:space="preserve">
     <value>Selected {0}. Select at least one more section to merge</value>
@@ -2418,4 +2418,5 @@ Error text: {1}</value>
   <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
     <value>Use Space key to stop recording</value>
   </data>
+
 </root>

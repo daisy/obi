@@ -1882,6 +1882,13 @@ namespace Obi.ProjectView
                 }
             }
 
+
+        public void TOCUpdate()
+        {
+             //mTOCView.PaintSelectedNode(false);
+            
+        }
+
         /// <summary>
         /// Get the transport bar for this project view.
         /// </summary>
