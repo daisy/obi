@@ -186,7 +186,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
-                m_CheckBoxListView.Items[3].Checked = mSettings.Recording_ReplaceAfterCursor;
+                m_CheckBoxListView.Items[3].Checked = mSettings.Audio_UseRecordingPauseShortcutForStopping;
                 m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite;
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
                 m_CheckBoxListView.Items[6].Checked = mSettings.MaxAllowedPhraseDurationInMinutes == 50 ;
@@ -194,8 +194,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[8].Checked = mSettings.Audio_EnableLivePhraseDetection;
                 m_CheckBoxListView.Items[9].Checked = mSettings.Audio_EnablePostRecordingPageRenumbering;
                 m_CheckBoxListView.Items[10].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
-                m_CheckBoxListView.Items[11].Checked = mSettings.Audio_FastPlayWithoutPitchChange;
-                m_CheckBoxListView.Items[12].Checked = mSettings.Audio_UseRecordingPauseShortcutForStopping;
+                m_CheckBoxListView.Items[11].Checked = mSettings.Audio_FastPlayWithoutPitchChange;               
                 m_IsComplete = true;
 
             }
@@ -749,10 +748,7 @@ namespace Obi.Dialogs
                     MessageBox.Show(string.Format(Localizer.Message("AudioPref_LivePhraseDetectionEnable"), mSettings.DefaultThreshold, mSettings.DefaultGap,mSettings.DefaultLeadingSilence )) ;
                 }
 
-                if (m_CheckBoxListView.Items[3].Checked)
-                    m_CheckBoxListView.Items[4].Checked = true;
-                
-                if (m_CheckBoxListView.Items[3].Checked == false || m_CheckBoxListView.Items[5].Checked == false)
+                if (m_CheckBoxListView.Items[4].Checked == false || m_CheckBoxListView.Items[5].Checked == false || m_CheckBoxListView.Items[8].Checked==false)
                     m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
                 else
                     m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
@@ -798,13 +794,14 @@ namespace Obi.Dialogs
                 //m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
                 mSettings.Project_ShowWaveformInContentView = m_CheckBoxListView.Items[9].Checked;
                 mSettings.Export_AlwaysIgnoreIndentation= m_CheckBoxListView.Items[10].Checked;
+               // mSettings.Project_BackgroundColorForEmptySection=m_CheckBoxListView.Items[11].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
                 mSettings.AudioClues = m_CheckBoxListView.Items[0].Checked;
                 mSettings.RetainInitialSilenceInPhraseDetection = m_CheckBoxListView.Items[1].Checked;
                 mSettings.Recording_PreviewBeforeStarting = m_CheckBoxListView.Items[2].Checked;
-                mSettings.Recording_ReplaceAfterCursor = m_CheckBoxListView.Items[3].Checked;
+                mSettings.Audio_UseRecordingPauseShortcutForStopping = m_CheckBoxListView.Items[3].Checked;
                 mSettings.AllowOverwrite = m_CheckBoxListView.Items[4].Checked;                
                 mSettings.RecordDirectlyWithRecordButton = m_CheckBoxListView.Items[5].Checked;
                 
@@ -813,8 +810,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_EnableLivePhraseDetection= m_CheckBoxListView.Items[8].Checked;
                 mSettings.Audio_EnablePostRecordingPageRenumbering= m_CheckBoxListView.Items[9].Checked;
                 mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection= m_CheckBoxListView.Items[10].Checked;
-                mSettings.Audio_FastPlayWithoutPitchChange= m_CheckBoxListView.Items[11].Checked;
-                mSettings.Audio_UseRecordingPauseShortcutForStopping = m_CheckBoxListView.Items[12].Checked;
+                mSettings.Audio_FastPlayWithoutPitchChange= m_CheckBoxListView.Items[11].Checked;               
             }
         }
 
@@ -838,7 +834,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_AudioClues"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_RetainInitialSilence"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_PreviewBeforeRecording"));
-                m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_StartRecordingFromCursor"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_UseRecordingPauseShortcutForStopping"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_AllowOverwrite"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_RecordDirectlyFromTransportBar"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes"));
@@ -848,14 +844,13 @@ namespace Obi.Dialogs
                 
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_FastPlayWithoutPitchChange"));
-                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_UseRecordingPauseShortcutForStopping"));
                 m_grpBoxChkBoxListView.Size = new Size(352, 97);
                 m_grpBoxChkBoxListView.Location = new Point(85, 264);
 
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
-                m_CheckBoxListView.Items[3].Checked = mSettings.Recording_ReplaceAfterCursor;
+                m_CheckBoxListView.Items[3].Checked = mSettings.Audio_UseRecordingPauseShortcutForStopping;
                 m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite;
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
                 m_CheckBoxListView.Items[6].Checked = mSettings.MaxAllowedPhraseDurationInMinutes == 50 ;
@@ -864,8 +859,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[9].Checked = mSettings.Audio_EnablePostRecordingPageRenumbering;
                 m_CheckBoxListView.Items[10].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
                 m_CheckBoxListView.Items[11].Checked = mSettings.Audio_FastPlayWithoutPitchChange;
-                m_CheckBoxListView.Items[12].Checked = mSettings.Audio_UseRecordingPauseShortcutForStopping;
-                if (m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
+                if (m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[4].Checked && m_CheckBoxListView.Items[8].Checked)
                     m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
                 else
                     m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
@@ -894,6 +888,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_CheckForUpdates"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ShowWaveformsInContentView"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_AlwaysIgnoreIndentationForExportFiles"));
+               // m_CheckBoxListView.Items.Add(Localizer.Message("Project_BackgroundColorForEmptySection"));
+
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
                 m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
                 m_CheckBoxListView.Items[2].Checked = mSettings.OpenBookmarkNodeOnReopeningProject;
@@ -905,6 +901,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[8].Checked = mSettings.Project_CheckForUpdates;
                 m_CheckBoxListView.Items[9].Checked = mSettings.Project_ShowWaveformInContentView;
                 m_CheckBoxListView.Items[10].Checked = mSettings.Export_AlwaysIgnoreIndentation;
+              //  m_CheckBoxListView.Items[11].Checked = mSettings.Project_BackgroundColorForEmptySection;
+
                 m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
                 m_KeepTrack = true;
             }
@@ -970,6 +968,7 @@ namespace Obi.Dialogs
                 mSettings.Project_CheckForUpdates = m_DefaultSettings.Project_CheckForUpdates;
                 mSettings.Project_ShowWaveformInContentView = m_DefaultSettings.Project_ShowWaveformInContentView;
                 mSettings.Export_AlwaysIgnoreIndentation = m_DefaultSettings.Export_AlwaysIgnoreIndentation;
+              //  mSettings.Project_BackgroundColorForEmptySection = m_DefaultSettings.Project_BackgroundColorForEmptySection;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
@@ -983,7 +982,7 @@ namespace Obi.Dialogs
                 mSettings.RetainInitialSilenceInPhraseDetection = m_DefaultSettings.RetainInitialSilenceInPhraseDetection;
                 mSettings.Recording_PreviewBeforeStarting = m_DefaultSettings.Recording_PreviewBeforeStarting;
                 mSettings.AllowOverwrite = m_DefaultSettings.AllowOverwrite;
-                mSettings.Recording_ReplaceAfterCursor= m_DefaultSettings.Recording_ReplaceAfterCursor;
+                mSettings.Audio_UseRecordingPauseShortcutForStopping = m_DefaultSettings.Audio_UseRecordingPauseShortcutForStopping;
                 mSettings.RecordDirectlyWithRecordButton = m_DefaultSettings.RecordDirectlyWithRecordButton;
                 mSettings.MaxAllowedPhraseDurationInMinutes = m_DefaultSettings.MaxAllowedPhraseDurationInMinutes;
                 mSettings.Audio_ShowLiveWaveformWhileRecording = m_DefaultSettings.Audio_ShowLiveWaveformWhileRecording;
@@ -991,7 +990,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_EnablePostRecordingPageRenumbering= m_DefaultSettings.Audio_EnablePostRecordingPageRenumbering;
                 mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection = m_DefaultSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
                 mSettings.Audio_FastPlayWithoutPitchChange= m_DefaultSettings.Audio_FastPlayWithoutPitchChange;
-                mSettings.Audio_UseRecordingPauseShortcutForStopping= m_DefaultSettings.Audio_UseRecordingPauseShortcutForStopping;
+
                 //If operation is empty then nothing will b selected.
                 mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
                 mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
@@ -1044,9 +1043,9 @@ namespace Obi.Dialogs
                 if (MessageBox.Show(Localizer.Message("Preferences_Allow_overwrite"),Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    m_CheckBoxListView.Items[3].Checked = true;
                     m_CheckBoxListView.Items[4].Checked = true;
                     m_CheckBoxListView.Items[5].Checked = true;
+                    m_CheckBoxListView.Items[8].Checked = true;
                     m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
                 }
                 else
@@ -1054,9 +1053,9 @@ namespace Obi.Dialogs
             }
             else if (m_btn_AdvancedRecording.Text ==  Localizer.Message("DisableAdvancedRecording"))
             {
-                m_CheckBoxListView.Items[3].Checked = false;
                 m_CheckBoxListView.Items[4].Checked = false;
                 m_CheckBoxListView.Items[5].Checked = false;
+                m_CheckBoxListView.Items[8].Checked = false;
                 m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
             }
         }
