@@ -1882,6 +1882,17 @@ namespace Obi.ProjectView
                 }
             }
 
+
+        public void UpdateTOCBackColorForEmptySection(SectionNode n)
+        {
+            if (n!=null)
+            {
+                mTOCView.UpdateTOCBackColorForEmptySection((SectionNode)n);
+
+            }
+          
+            
+        }
         /// <summary>
         /// Get the transport bar for this project view.
         /// </summary>

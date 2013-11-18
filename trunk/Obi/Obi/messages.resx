@@ -2418,5 +2418,7 @@ Error text: {1}</value>
   <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
     <value>Use Space key to stop recording</value>
   </data>
-
+  <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
+    <value>Background Color for Empty Secton</value>
+  </data>
 </root>
