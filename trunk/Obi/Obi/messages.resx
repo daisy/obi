@@ -2418,7 +2418,20 @@ Error text: {1}</value>
   <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
     <value>Use Space key to stop recording</value>
   </data>
+  <data name="MergeProjectCommand" xml:space="preserve">
+    <value>Merge project</value>
+  </data>
+  <data name="MergeProject_NoSectionToMerge" xml:space="preserve">
+    <value>No section found in source project</value>
+  </data>
+  <data name="MergeProject_progress_dialog_title" xml:space="preserve">
+    <value>Merging project...</value>
+  </data>
+  <data name="MergeProject_SectionProgress" xml:space="preserve">
+    <value>Merging section: {0}</value>
+  </data>
   <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
     <value>Background Color for Empty Secton</value>
   </data>
+>>>>>>> .r5545
 </root>

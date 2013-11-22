@@ -8,13 +8,16 @@ using urakawa.core;
 using urakawa.progress;
 using urakawa.xuk;
 using urakawa.property.xml;
+using AudioLib;
+
 namespace Obi
 {
-    class SplitMergeProject
+    class SplitMergeProject : DualCancellableProgressReporter
     {
         private readonly Session m_session;
         private string m_SourceProjectPath;
         private readonly string m_docPath;
+        private List<SectionNode> m_SectionsToMerge = new List<SectionNode>();
 
         public SplitMergeProject(Session session, string sourceProjectPath)
         {
@@ -22,8 +25,16 @@ namespace Obi
             m_SourceProjectPath = sourceProjectPath;
         }
 
+        public List<SectionNode> SectionsToMerge { get { return m_SectionsToMerge; } }
+
+        public override void DoWork()
+        {
+            MergeProject();
+        }
+
         public void MergeProject()
         {
+            m_SectionsToMerge.Clear();
             try
                             {//1
                                 Uri uri = new Uri(m_SourceProjectPath, UriKind.Absolute);
@@ -36,37 +47,50 @@ namespace Obi
                                 action.Execute();
 
                                 Presentation subpresentation = subproject.Presentations.Get(0);
+                // compare audio formats
+                                if (m_session.Presentation.MediaDataManager.DefaultPCMFormat.Data.BitDepth != subpresentation.MediaDataManager.DefaultPCMFormat.Data.BitDepth
+                                    || m_session.Presentation.MediaDataManager.DefaultPCMFormat.Data.BlockAlign != subpresentation.MediaDataManager.DefaultPCMFormat.Data.BlockAlign
+                                    || m_session.Presentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate != subpresentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate)
+                                {
+                                    throw new System.Exception("Audio format of project does not match");
+                                }
                                 TreeNode subroot = subpresentation.RootNode;
-                                
-
-                TreeNode level = subroot.GetFirstDescendantWithText();
-                                while (level != null)
+                int sectionCount = ((ObiRootNode)subroot).SectionChildCount  ;
+                                if (sectionCount == 0) return ;
+                int progressValue = 0 ;
+                
+                                reportProgress (progressValue, "") ;
+                SectionNode section =((ObiRootNode) subroot).SectionChild(0);
+                                while (section != null)
                                 {//2
-
-                                    TreeNode importedLevel = level.Export(m_session.Presentation);
+                                    if (RequestCancellation) return;
+                                    TreeNode importedLevel = section.Export(m_session.Presentation);
 
                                     ObiRootNode parent = (ObiRootNode)m_session.Presentation.RootNode;
-                                        parent.AppendChild((SectionNode) importedLevel);
-                                    
-                                    
-                                        System.Windows.Forms.MessageBox.Show(level.GetText().ToString());
-level = level.GetNextSiblingWithText ();
+                                        //parent.AppendChild((SectionNode) importedLevel);
+                                    m_SectionsToMerge.Add((SectionNode) importedLevel);
+                                    progressValue += 90/sectionCount ;
+                                    reportProgress(progressValue, 
+                                        string.Format( Localizer.Message("MergeProject_SectionProgress"),section.Label));
+                                        //System.Windows.Forms.MessageBox.Show(section.GetText().ToString());
+section = section.NextSibling;
                                 }//-2
                             }//-1
-                            catch (Exception ex)
-                            {//1
+                            //catch (Exception ex)
+                            //{//1
                                 //messageBoxAlert("PROBLEM:\n " + xukPath, null);
                                 //m_session.messageBoxText("MERGE PROBLEM", xukPath, ex.Message);
 
                                 //throw ex;
-                                System.Windows.Forms.MessageBox.Show(ex.ToString());
-                            }//-1
+                                //System.Windows.Forms.MessageBox.Show(ex.ToString());
+                            //}//-1
                         
-
+                
                 finally
                 {
                     
                 }
+                reportProgress(100, "");
         }
 
         /*
