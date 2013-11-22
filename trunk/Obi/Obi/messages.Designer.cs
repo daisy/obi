@@ -4003,6 +4003,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obi project file (*.obi)|*.obi.
+        /// </summary>
+        internal static string Obi_ProjectMergeFilter {
+            get {
+                return ResourceManager.GetString("Obi_ProjectMergeFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://www.daisy.org/obi/.
         /// </summary>
         internal static string obi_url {
