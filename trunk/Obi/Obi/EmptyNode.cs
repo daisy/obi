@@ -346,6 +346,14 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
             }
         }
 
+        protected override TreeNode ExportProtected(urakawa.Presentation destPres)
+        {
+            EmptyNode exportedNode = (EmptyNode) base.ExportProtected(destPres);
+            exportedNode.CopyAttributes(this);
+            //exportedNode.AssociatedNode = this.AssociatedNode;
+            return exportedNode;
+        }
+
         public override void Insert(ObiNode node, int index) { throw new Exception("Empty nodes have no children."); }
         public override SectionNode SectionChild(int index) { throw new Exception("Empty nodes have no children."); }
         public override int SectionChildCount { get { return 0; } }
@@ -604,5 +612,8 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
         public LocalizedRole(EmptyNode.Role role) { mRole = role; }
         public EmptyNode.Role Role { get { return mRole; } }
         public override string ToString() { return Localizer.Message("role_" + mRole.ToString()); }
+
+        
+
     }
 }
