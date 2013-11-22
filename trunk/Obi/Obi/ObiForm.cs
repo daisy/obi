@@ -4803,7 +4803,7 @@ namespace Obi
             {
                 OpenFileDialog dialog=new OpenFileDialog();
                 dialog.Filter = Localizer.Message("obi_filter");
-                dialog.InitialDirectory = mSettings.DefaultPath;
+                dialog.Title = Localizer.Message("Obi_ProjectMerge");
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                    mProjectView.MergeProject(mSession, dialog.FileName);
