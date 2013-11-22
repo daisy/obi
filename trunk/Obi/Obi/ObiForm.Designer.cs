@@ -34,13 +34,15 @@ namespace Obi
             this.mFile_NewProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_NewProjectFromImportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_OpenProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_RestoreFromBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_RestoreFromOriginalProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mFile_CloseProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.mFile_SaveProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_SaveProjectAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mFile_MergeProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_RestoreFromBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_RestoreFromOriginalProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFile_CloseProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.mFile_RecentProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openrecentSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.mFile_ClearListMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -236,13 +238,15 @@ namespace Obi
             this.mFile_NewProjectMenuItem,
             this.mFile_NewProjectFromImportMenuItem,
             this.mFile_OpenProjectMenuItem,
-            this.m_RestoreFromBackupToolStripMenuItem,
-            this.m_RestoreFromOriginalProjectToolStripMenuItem,
-            this.mFile_CloseProjectMenuItem,
             this.toolStripSeparator9,
             this.mFile_SaveProjectMenuItem,
             this.mFile_SaveProjectAsMenuItem,
             this.toolStripSeparator2,
+            this.mFile_MergeProjectMenuItem,
+            this.m_RestoreFromBackupToolStripMenuItem,
+            this.m_RestoreFromOriginalProjectToolStripMenuItem,
+            this.mFile_CloseProjectMenuItem,
+            this.toolStripSeparator8,
             this.mFile_RecentProjectMenuItem,
             this.toolStripSeparator3,
             this.mFile_ExitMenuItem});
@@ -266,24 +270,6 @@ namespace Obi
             this.mFile_OpenProjectMenuItem.Name = "mFile_OpenProjectMenuItem";
             this.mFile_OpenProjectMenuItem.Click += new System.EventHandler(this.File_OpenProjectMenuItem_Click);
             // 
-            // m_RestoreFromBackupToolStripMenuItem
-            // 
-            resources.ApplyResources(this.m_RestoreFromBackupToolStripMenuItem, "m_RestoreFromBackupToolStripMenuItem");
-            this.m_RestoreFromBackupToolStripMenuItem.Name = "m_RestoreFromBackupToolStripMenuItem";
-            this.m_RestoreFromBackupToolStripMenuItem.Click += new System.EventHandler(this.m_RestoreFromBackupToolStripMenuItem_Click);
-            // 
-            // m_RestoreFromOriginalProjectToolStripMenuItem
-            // 
-            resources.ApplyResources(this.m_RestoreFromOriginalProjectToolStripMenuItem, "m_RestoreFromOriginalProjectToolStripMenuItem");
-            this.m_RestoreFromOriginalProjectToolStripMenuItem.Name = "m_RestoreFromOriginalProjectToolStripMenuItem";
-            this.m_RestoreFromOriginalProjectToolStripMenuItem.Click += new System.EventHandler(this.m_RestoreFromOriginalProjectToolStripMenuItem_Click);
-            // 
-            // mFile_CloseProjectMenuItem
-            // 
-            resources.ApplyResources(this.mFile_CloseProjectMenuItem, "mFile_CloseProjectMenuItem");
-            this.mFile_CloseProjectMenuItem.Name = "mFile_CloseProjectMenuItem";
-            this.mFile_CloseProjectMenuItem.Click += new System.EventHandler(this.File_CloseProjectMenuItem_Click);
-            // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
@@ -305,6 +291,35 @@ namespace Obi
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            // 
+            // mFile_MergeProjectMenuItem
+            // 
+            resources.ApplyResources(this.mFile_MergeProjectMenuItem, "mFile_MergeProjectMenuItem");
+            this.mFile_MergeProjectMenuItem.Name = "mFile_MergeProjectMenuItem";
+            this.mFile_MergeProjectMenuItem.Click += new System.EventHandler(this.mFile_MergeProjectMenuItem_Click);
+            // 
+            // m_RestoreFromBackupToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_RestoreFromBackupToolStripMenuItem, "m_RestoreFromBackupToolStripMenuItem");
+            this.m_RestoreFromBackupToolStripMenuItem.Name = "m_RestoreFromBackupToolStripMenuItem";
+            this.m_RestoreFromBackupToolStripMenuItem.Click += new System.EventHandler(this.m_RestoreFromBackupToolStripMenuItem_Click);
+            // 
+            // m_RestoreFromOriginalProjectToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_RestoreFromOriginalProjectToolStripMenuItem, "m_RestoreFromOriginalProjectToolStripMenuItem");
+            this.m_RestoreFromOriginalProjectToolStripMenuItem.Name = "m_RestoreFromOriginalProjectToolStripMenuItem";
+            this.m_RestoreFromOriginalProjectToolStripMenuItem.Click += new System.EventHandler(this.m_RestoreFromOriginalProjectToolStripMenuItem_Click);
+            // 
+            // mFile_CloseProjectMenuItem
+            // 
+            resources.ApplyResources(this.mFile_CloseProjectMenuItem, "mFile_CloseProjectMenuItem");
+            this.mFile_CloseProjectMenuItem.Name = "mFile_CloseProjectMenuItem";
+            this.mFile_CloseProjectMenuItem.Click += new System.EventHandler(this.File_CloseProjectMenuItem_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
             // 
             // mFile_RecentProjectMenuItem
             // 
@@ -1711,6 +1726,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem splitAndMergeWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem splitAndMergeWithPreviousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_DeletePhrasesWhileRecordingtoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFile_MergeProjectMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
     }
 }
 

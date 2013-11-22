@@ -167,36 +167,6 @@
   <data name="mFile_OpenProjectMenuItem.Text" xml:space="preserve">
     <value>&amp;Open project</value>
   </data>
-  <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Restore from backup</value>
-  </data>
-  <data name="m_RestoreFromBackupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 22</value>
-  </data>
-  <data name="m_RestoreFromBackupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Restore from &amp;backup</value>
-  </data>
-  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Restore from original project</value>
-  </data>
-  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 22</value>
-  </data>
-  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Text" xml:space="preserve">
-    <value>Restore from ori&amp;ginal project</value>
-  </data>
-  <data name="mFile_CloseProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>Close project Ctrl+W</value>
-  </data>
-  <data name="mFile_CloseProjectMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+W</value>
-  </data>
-  <data name="mFile_CloseProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 22</value>
-  </data>
-  <data name="mFile_CloseProjectMenuItem.Text" xml:space="preserve">
-    <value>&amp;Close project</value>
-  </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
   </data>
@@ -228,6 +198,48 @@
     <value>Save project &amp;as...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>278, 6</value>
+  </data>
+  <data name="mFile_MergeProjectMenuItem.AccessibleName" xml:space="preserve">
+    <value>Merge Project</value>
+  </data>
+  <data name="mFile_MergeProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="mFile_MergeProjectMenuItem.Text" xml:space="preserve">
+    <value>Merge Project</value>
+  </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Restore from backup</value>
+  </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Restore from &amp;backup</value>
+  </data>
+  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Restore from original project</value>
+  </data>
+  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Text" xml:space="preserve">
+    <value>Restore from ori&amp;ginal project</value>
+  </data>
+  <data name="mFile_CloseProjectMenuItem.AccessibleName" xml:space="preserve">
+    <value>Close project Ctrl+W</value>
+  </data>
+  <data name="mFile_CloseProjectMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+W</value>
+  </data>
+  <data name="mFile_CloseProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="mFile_CloseProjectMenuItem.Text" xml:space="preserve">
+    <value>&amp;Close project</value>
+  </data>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
   </data>
   <data name="openrecentSeparator.Size" type="System.Drawing.Size, System.Drawing">
@@ -1909,7 +1921,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=2.7.6.23898, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=2.7.6.23520, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2182,9 +2194,6 @@
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
   </data>
@@ -2212,24 +2221,6 @@
   <data name="&gt;&gt;mFile_OpenProjectMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_RestoreFromBackupToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_RestoreFromOriginalProjectToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mFile_CloseProjectMenuItem.Name" xml:space="preserve">
-    <value>mFile_CloseProjectMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mFile_CloseProjectMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;toolStripSeparator9.Name" xml:space="preserve">
     <value>toolStripSeparator9</value>
   </data>
@@ -2252,6 +2243,36 @@
     <value>toolStripSeparator2</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFile_MergeProjectMenuItem.Name" xml:space="preserve">
+    <value>mFile_MergeProjectMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mFile_MergeProjectMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_RestoreFromBackupToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_RestoreFromOriginalProjectToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFile_CloseProjectMenuItem.Name" xml:space="preserve">
+    <value>mFile_CloseProjectMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mFile_CloseProjectMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator8.Name" xml:space="preserve">
+    <value>toolStripSeparator8</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator8.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mFile_RecentProjectMenuItem.Name" xml:space="preserve">
