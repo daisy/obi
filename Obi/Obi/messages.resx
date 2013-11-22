@@ -2433,5 +2433,7 @@ Error text: {1}</value>
   <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
     <value>Background Color for Empty Secton</value>
   </data>
->>>>>>> .r5545
+  <data name="Obi_ProjectMerge" xml:space="preserve">
+    <value>Please select project to merge</value>
+  </data>
 </root>

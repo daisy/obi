@@ -3994,6 +3994,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select project to merge.
+        /// </summary>
+        internal static string Obi_ProjectMerge {
+            get {
+                return ResourceManager.GetString("Obi_ProjectMerge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://www.daisy.org/obi/.
         /// </summary>
         internal static string obi_url {
@@ -4588,7 +4597,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allow overwrite, Start recording from cursor erasing the following audio and Record directly from transport bar checkboxes will be checked. Do you want to proceed?.
+        ///   Looks up a localized string similar to Allow overwrite,Record directly and Perform phrase detection while recording from transport bar checkboxes will be checked. Do you want to proceed?.
         /// </summary>
         internal static string Preferences_Allow_overwrite {
             get {
@@ -4638,6 +4647,15 @@ namespace Obi {
         internal static string Project_AlwaysIgnoreIndentationForExportFiles {
             get {
                 return ResourceManager.GetString("Project_AlwaysIgnoreIndentationForExportFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background Color for Empty Secton.
+        /// </summary>
+        internal static string Project_BackgroundColorForEmptySection {
+            get {
+                return ResourceManager.GetString("Project_BackgroundColorForEmptySection", resourceCulture);
             }
         }
         
