@@ -624,6 +624,7 @@ namespace Obi.ProjectView
                 return Selection != null && Selection is AudioSelection && ((AudioSelection)Selection).AudioRange != null && !((AudioSelection)Selection).AudioRange.HasCursor && IsPhraseCountWithinLimit; // @phraseLimit
                 }
             }
+        public bool CanMergeProject { get { return mPresentation != null; } }
 
         // @phraseLimit
         /// <summary>
@@ -5072,6 +5073,50 @@ public bool ShowOnlySelectedSection
             return splitMergeCmd;
         }
 
+        public void MergeProject (Session session, string sourceProjectPath)
+        {
+            try
+            {
+                SplitMergeProject splitMerge = new SplitMergeProject(session, sourceProjectPath);
+                Dialogs.ProgressDialog progress =
+                                new Obi.Dialogs.ProgressDialog(Localizer.Message("MergeProject_progress_dialog_title"),
+                                                   delegate(Dialogs.ProgressDialog progress1)
+                                                       {
+                
+                splitMerge.DoWork();
+            });
+
+                progress.OperationCancelled +=
+                    new Obi.Dialogs.OperationCancelledHandler(
+                        delegate(object sender, EventArgs e) { splitMerge.RequestCancellation = true; });
+                if (splitMerge != null) splitMerge.ProgressChangedEvent +=
+                    new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
+                progress.ShowDialog();
+                if (progress.Exception != null) throw progress.Exception;
+
+                List<SectionNode> sectionsToMerge = splitMerge.SectionsToMerge;
+                if (sectionsToMerge == null || sectionsToMerge.Count == 0)
+                {
+                    MessageBox.Show(Localizer.Message("MergeProject_NoSectionToMerge")) ;
+                    return;
+                }
+
+                CompositeCommand mergeProjectCommand = mPresentation.CreateCompositeCommand(Localizer.Message("MergeProjectCommand")) ;
+                ObiRootNode root =(ObiRootNode) mPresentation.RootNode;
+                for( int i=0 ; i < sectionsToMerge.Count; i++ )
+                {
+                    SectionNode section = sectionsToMerge[i];
+                    mergeProjectCommand.ChildCommands.Insert(mergeProjectCommand.ChildCommands.Count, 
+                        new Commands.Node.AddNode(this,section, root, root.SectionChildCount+i,false) ) ;
+            }
+            if (mergeProjectCommand.ChildCommands.Count > 0) mPresentation.Do(mergeProjectCommand);
+            }
+                catch (System.Exception ex)
+            {
+                    WriteToLogFile(ex.ToString ()) ;
+                    MessageBox.Show(ex.ToString ()) ;
+                }
+        }
 
         public void WriteToLogFile(string msg)
         {

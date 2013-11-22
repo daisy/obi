@@ -3225,6 +3225,42 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No section found in source project.
+        /// </summary>
+        internal static string MergeProject_NoSectionToMerge {
+            get {
+                return ResourceManager.GetString("MergeProject_NoSectionToMerge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merging project....
+        /// </summary>
+        internal static string MergeProject_progress_dialog_title {
+            get {
+                return ResourceManager.GetString("MergeProject_progress_dialog_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merging section: {0}.
+        /// </summary>
+        internal static string MergeProject_SectionProgress {
+            get {
+                return ResourceManager.GetString("MergeProject_SectionProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge project.
+        /// </summary>
+        internal static string MergeProjectCommand {
+            get {
+                return ResourceManager.GetString("MergeProjectCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creator name.
         /// </summary>
         internal static string Metadata_CreatorNameForInitializing {
