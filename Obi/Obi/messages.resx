@@ -2436,4 +2436,7 @@ Error text: {1}</value>
   <data name="Obi_ProjectMerge" xml:space="preserve">
     <value>Please select project to merge</value>
   </data>
+  <data name="Obi_ProjectMergeFilter" xml:space="preserve">
+        <value>Obi project file (*.obi)|*.obi</value>
+  </data>
 </root>

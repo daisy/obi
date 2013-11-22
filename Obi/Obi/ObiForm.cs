@@ -4802,7 +4802,7 @@ namespace Obi
             private void mFile_MergeProjectMenuItem_Click(object sender, EventArgs e)
             {
                 OpenFileDialog dialog=new OpenFileDialog();
-                dialog.Filter = Localizer.Message("obi_filter");
+                dialog.Filter = Localizer.Message("Obi_ProjectMergeFilter");
                 dialog.Title = Localizer.Message("Obi_ProjectMerge");
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
