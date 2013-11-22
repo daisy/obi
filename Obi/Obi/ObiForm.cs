@@ -238,6 +238,7 @@ namespace Obi
                 mFile_RecentProjectMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
                 mFile_ClearListMenuItem.Enabled = true;
                 mFile_ExitMenuItem.Enabled = true;
+                mFile_MergeProjectMenuItem.Enabled = mProjectView.CanMergeProject;
             }
 
             private void File_NewProjectMenuItem_Click(object sender, EventArgs e)
@@ -4796,6 +4797,17 @@ namespace Obi
                     mAllowOverwriteToolStripMenuItem.Checked = false;
                 }
 
+            }
+
+            private void mFile_MergeProjectMenuItem_Click(object sender, EventArgs e)
+            {
+                OpenFileDialog dialog=new OpenFileDialog();
+                dialog.Filter = Localizer.Message("obi_filter");
+                dialog.InitialDirectory = mSettings.DefaultPath;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                   mProjectView.MergeProject(mSession, dialog.FileName);
+                }
             }
 
 
