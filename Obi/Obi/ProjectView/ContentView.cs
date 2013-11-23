@@ -171,7 +171,7 @@ namespace Obi.ProjectView
             }
 
         public bool CanSetBlockUsedStatus { get { return IsBlockOrWaveformSelected && mSelection.Node.ParentAs<ObiNode> ().Used; } }
-        public bool CanSetStripUsedStatus { get { return IsStripSelected && mSelection.Node.ParentAs<ObiNode>().Used; } }
+        public bool CanSetStripUsedStatus { get { return IsStripSelected && mSelection != null && mSelection.Node.IsRooted &&  mSelection.Node.ParentAs<ObiNode>().Used; } }
 
         public bool CanMergeBlockWithNext
             {
