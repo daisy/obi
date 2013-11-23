@@ -2520,20 +2520,20 @@ for (int j = 0;
         /// Bring up the file chooser to select audio files to import and return new phrase nodes for the selected files,
         /// or null if nothing was selected.
         /// </summary>
-        private string [] SelectFilesToImport ()
-            {
-            OpenFileDialog dialog = new OpenFileDialog ();
+        private string[] SelectFilesToImport()
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
             dialog.Multiselect = true;
-            dialog.Filter = Localizer.Message ( "audio_file_filter" );
+            dialog.Filter = Localizer.Message("audio_file_filter");
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 return dialog.FileNames;
             }
             else
             {
-               return null;
-    }
+                return null;
             }
+        }
 
         public void GenerateSpeechForPage(bool forAllEmptyPages)
         {
@@ -5072,11 +5072,37 @@ public bool ShowOnlySelectedSection
 
             return splitMergeCmd;
         }
-
-        public void MergeProject (Session session, List<string> sourceProjectPaths)
+        public string SelectProjectFile()
         {
-            if (sourceProjectPaths == null || sourceProjectPaths.Count == 0 ) return ;
+             OpenFileDialog dialog=new OpenFileDialog();
+                dialog.Filter = Localizer.Message("Obi_ProjectMergeFilter");
+                dialog.Title = Localizer.Message("Obi_ProjectMerge");
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    return dialog.FileName;
+                }
+                else
+                {
+                    return null;
+                }
+           
+        }
+        public void MergeProject (Session session)
+        {
+            string projectFile = SelectProjectFile();
+            List<string> sourceProjectPaths=null;
+            if (projectFile != null)
+            {
+                Dialogs.MergeProject dialog =
+                           new Dialogs.MergeProject(projectFile);
 
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {   
+                     sourceProjectPaths = new List<string>(dialog.FilesPaths);
+
+                }
+            }
+            if (sourceProjectPaths == null || sourceProjectPaths.Count == 0 ) return ;            
             SplitMergeProject splitMerge = new SplitMergeProject(session, sourceProjectPaths[0]); 
             List<SectionNode> sectionsToMerge = new List<SectionNode>();
             try
