@@ -11,6 +11,7 @@ namespace Obi.Dialogs
 {
     public partial class MergeProject : Form
     {
+        private List<string> m_filePaths;
         public MergeProject()
         {
             InitializeComponent();
@@ -18,18 +19,16 @@ namespace Obi.Dialogs
         public MergeProject(string filepath)
         {
             InitializeComponent();
-        //    string nameOfFile = System.IO.Path.GetFileName(fil
-            lstManualArrange.Items.Add(filepath);          
-
-
+            m_filePaths = new List<string>();
+            m_filePaths.Add(filepath);
+            string[] arr = filepath.Split(Path.DirectorySeparatorChar);
+            lstManualArrange.Items.Add(arr[arr.Length-2]+"\\"+arr[arr.Length-1] );    
         }
         public string[] FilesPaths
         {
             get
             {
-                string[] arr = new string[lstManualArrange.Items.Count];
-                this.lstManualArrange.Items.CopyTo(arr,0);
-                return arr;
+                return m_filePaths.ToArray();
 
             }
         }
@@ -42,7 +41,9 @@ namespace Obi.Dialogs
                 mOKButton.Enabled = true;
                 string fileName = select_File.FileName;
                 string nameOfFile = System.IO.Path.GetFullPath(fileName);
-                lstManualArrange.Items.Add(nameOfFile);
+                m_filePaths.Add(fileName);
+                string[] arr = fileName.Split(Path.DirectorySeparatorChar);
+                lstManualArrange.Items.Add((arr[arr.Length - 2] + "\\" + arr[arr.Length - 1]));
 
                 lstManualArrange.SelectedIndex = -1;
 
@@ -60,7 +61,8 @@ namespace Obi.Dialogs
                         object item = lstManualArrange.SelectedItem;
                         int tempIndex = lstManualArrange.SelectedIndex;
                         lstManualArrange.Items.Remove(item);
-
+                         m_filePaths.RemoveAt(tempIndex);
+                      
                         if (lstManualArrange.Items.Count != 0)
                         {
                             if (tempIndex > lstManualArrange.Items.Count - 1)
@@ -102,9 +104,14 @@ namespace Obi.Dialogs
 
                         int index = lstManualArrange.SelectedIndex;
                        
+                        object itemInList = m_filePaths[index];
+
                         lstManualArrange.Items.RemoveAt(index);
-                        
+                        m_filePaths.RemoveAt(index);
+
+
                         lstManualArrange.Items.Insert(index - 1, item);
+                        m_filePaths.Insert(index - 1, itemInList.ToString());
                         if ((tempIndexStore - 1) != -1)
                             lstManualArrange.SelectedIndex = tempIndexStore - 1;
 
@@ -132,10 +139,15 @@ namespace Obi.Dialogs
                         int tempIndexStore = lstManualArrange.SelectedIndex;
                         object item = lstManualArrange.SelectedItem;
 
+                        object itemInList = m_filePaths[index];
                         lstManualArrange.Items.RemoveAt(index);
-                                               
+
+                        m_filePaths.RemoveAt(index);
+
                         lstManualArrange.Items.Insert(index + 1, item);
 
+                        m_filePaths.Insert(index + 1, itemInList.ToString());
+                        //   if ((tempIndexStore+1) != lstManualArrange.Items.Count - 1)
                         lstManualArrange.SelectedIndex = tempIndexStore + 1;
                     }
                 }
@@ -149,18 +161,15 @@ namespace Obi.Dialogs
         private void mbtnAscendingOrder_Click(object sender, EventArgs e)
         {
 
-            List<string> files = new List<string>();
-            foreach (string item in lstManualArrange.Items)
-            {
-                files.Add(item);
-            }
+
+            m_filePaths.Sort();
             lstManualArrange.Items.Clear();
-            files.Sort();
-            foreach (string str in files)
+            foreach (string str in m_filePaths)
             {
                 if (str != null)
                 {
-                    lstManualArrange.Items.Add(System.IO.Path.GetFullPath(str));
+                    string[] arr = str.Split(Path.DirectorySeparatorChar);
+                    lstManualArrange.Items.Add(arr[arr.Length - 2] + "\\" + arr[arr.Length - 1]);                      
                 }
             }
             m_btnMoveUp.Enabled = false;
@@ -170,30 +179,28 @@ namespace Obi.Dialogs
 
         private void mbtnDesendingOrder_Click(object sender, EventArgs e)
         {
-            List<string> m_filePaths = new List<string>();
-            foreach (string item in lstManualArrange.Items)
-            {
-                m_filePaths.Add(item);                
-            }
+
+
             m_filePaths.Sort();
             int totLength = m_filePaths.Count;
-            List<string> tempDescending=new List<string>();
+            List<string> tempDescending = new List<string>();
 
 
 
-            for (int i = totLength-1; i >= 0;i--)
+            for (int i = totLength - 1; i >= 0; i--)
             {
                 tempDescending.Add(m_filePaths[i]);
             }
 
-                m_filePaths = tempDescending;
+            m_filePaths = tempDescending;
 
             lstManualArrange.Items.Clear();
             foreach (string str in m_filePaths)
             {
                 if (str != null)
                 {
-                    lstManualArrange.Items.Add(System.IO.Path.GetFullPath(str));
+                    string[] arr = str.Split(Path.DirectorySeparatorChar);
+                    lstManualArrange.Items.Add(arr[arr.Length - 2] + "\\" + arr[arr.Length - 1]);   
                 }
             }
             m_btnMoveUp.Enabled = false;

@@ -45,6 +45,7 @@ namespace Obi.Dialogs
             // 
             // mbtnDesendingOrder
             // 
+            this.mbtnDesendingOrder.AccessibleName = "Descending Order";
             this.mbtnDesendingOrder.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.mbtnDesendingOrder.Location = new System.Drawing.Point(168, 34);
             this.mbtnDesendingOrder.Name = "mbtnDesendingOrder";
@@ -61,7 +62,7 @@ namespace Obi.Dialogs
             this.lstManualArrange.HorizontalScrollbar = true;
             this.lstManualArrange.Location = new System.Drawing.Point(10, 11);
             this.lstManualArrange.Name = "lstManualArrange";
-            this.lstManualArrange.Size = new System.Drawing.Size(550, 108);
+            this.lstManualArrange.Size = new System.Drawing.Size(433, 108);
             this.lstManualArrange.TabIndex = 2;
             this.lstManualArrange.SelectedIndexChanged += new System.EventHandler(this.lstManualArrange_SelectedIndexChanged);
             // 
@@ -70,7 +71,7 @@ namespace Obi.Dialogs
             this.m_grpArrangeAudioFiles.AccessibleName = "Arrange audio files group box";
             this.m_grpArrangeAudioFiles.Controls.Add(this.mbtnDesendingOrder);
             this.m_grpArrangeAudioFiles.Controls.Add(this.mbtnAscendingOrder);
-            this.m_grpArrangeAudioFiles.Location = new System.Drawing.Point(161, 125);
+            this.m_grpArrangeAudioFiles.Location = new System.Drawing.Point(65, 138);
             this.m_grpArrangeAudioFiles.Name = "m_grpArrangeAudioFiles";
             this.m_grpArrangeAudioFiles.Size = new System.Drawing.Size(315, 65);
             this.m_grpArrangeAudioFiles.TabIndex = 7;
@@ -79,6 +80,7 @@ namespace Obi.Dialogs
             // 
             // mbtnAscendingOrder
             // 
+            this.mbtnAscendingOrder.AccessibleName = "Ascending Order";
             this.mbtnAscendingOrder.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.mbtnAscendingOrder.Location = new System.Drawing.Point(10, 34);
             this.mbtnAscendingOrder.Name = "mbtnAscendingOrder";
@@ -99,14 +101,15 @@ namespace Obi.Dialogs
             this.m_grpAddFiles.Controls.Add(this.m_btnMoveDown);
             this.m_grpAddFiles.Location = new System.Drawing.Point(12, 12);
             this.m_grpAddFiles.Name = "m_grpAddFiles";
-            this.m_grpAddFiles.Size = new System.Drawing.Size(673, 209);
+            this.m_grpAddFiles.Size = new System.Drawing.Size(570, 209);
             this.m_grpAddFiles.TabIndex = 2;
             this.m_grpAddFiles.TabStop = false;
             // 
             // m_btnRemove
             // 
+            this.m_btnRemove.AccessibleName = "Remove";
             this.m_btnRemove.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_btnRemove.Location = new System.Drawing.Point(579, 105);
+            this.m_btnRemove.Location = new System.Drawing.Point(464, 109);
             this.m_btnRemove.Name = "m_btnRemove";
             this.m_btnRemove.Size = new System.Drawing.Size(88, 23);
             this.m_btnRemove.TabIndex = 6;
@@ -116,8 +119,9 @@ namespace Obi.Dialogs
             // 
             // m_btnAdd
             // 
+            this.m_btnAdd.AccessibleName = "Add";
             this.m_btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_btnAdd.Location = new System.Drawing.Point(577, 76);
+            this.m_btnAdd.Location = new System.Drawing.Point(462, 80);
             this.m_btnAdd.Name = "m_btnAdd";
             this.m_btnAdd.Size = new System.Drawing.Size(91, 23);
             this.m_btnAdd.TabIndex = 5;
@@ -127,8 +131,9 @@ namespace Obi.Dialogs
             // 
             // m_btnMoveUp
             // 
+            this.m_btnMoveUp.AccessibleName = "Move Up";
             this.m_btnMoveUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_btnMoveUp.Location = new System.Drawing.Point(577, 15);
+            this.m_btnMoveUp.Location = new System.Drawing.Point(462, 19);
             this.m_btnMoveUp.Name = "m_btnMoveUp";
             this.m_btnMoveUp.Size = new System.Drawing.Size(91, 23);
             this.m_btnMoveUp.TabIndex = 3;
@@ -138,8 +143,9 @@ namespace Obi.Dialogs
             // 
             // m_btnMoveDown
             // 
+            this.m_btnMoveDown.AccessibleName = "Move Down";
             this.m_btnMoveDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_btnMoveDown.Location = new System.Drawing.Point(577, 47);
+            this.m_btnMoveDown.Location = new System.Drawing.Point(462, 51);
             this.m_btnMoveDown.Name = "m_btnMoveDown";
             this.m_btnMoveDown.Size = new System.Drawing.Size(91, 23);
             this.m_btnMoveDown.TabIndex = 4;
@@ -149,10 +155,11 @@ namespace Obi.Dialogs
             // 
             // mCancelButton
             // 
+            this.mCancelButton.AccessibleName = "Cancel";
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mCancelButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.mCancelButton.Location = new System.Drawing.Point(326, 238);
+            this.mCancelButton.Location = new System.Drawing.Point(292, 238);
             this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(100, 31);
@@ -162,10 +169,11 @@ namespace Obi.Dialogs
             // 
             // mOKButton
             // 
+            this.mOKButton.AccessibleName = "Ok";
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mOKButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.mOKButton.Location = new System.Drawing.Point(208, 238);
+            this.mOKButton.Location = new System.Drawing.Point(174, 238);
             this.mOKButton.Margin = new System.Windows.Forms.Padding(4);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(100, 31);
@@ -175,14 +183,15 @@ namespace Obi.Dialogs
             // 
             // MergeProject
             // 
+            this.AccessibleName = "Merge Project";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 282);
+            this.ClientSize = new System.Drawing.Size(607, 282);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
             this.Controls.Add(this.m_grpAddFiles);
             this.Name = "MergeProject";
-            this.Text = "MergeProject";
+            this.Text = "Merge Project";
             this.m_grpArrangeAudioFiles.ResumeLayout(false);
             this.m_grpAddFiles.ResumeLayout(false);
             this.ResumeLayout(false);
