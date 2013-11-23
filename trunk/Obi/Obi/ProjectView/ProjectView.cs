@@ -5073,17 +5073,34 @@ public bool ShowOnlySelectedSection
             return splitMergeCmd;
         }
 
-        public void MergeProject (Session session, string sourceProjectPath)
+        public void MergeProject (Session session, List<string> sourceProjectPaths)
         {
+            if (sourceProjectPaths == null || sourceProjectPaths.Count == 0 ) return ;
+
+            SplitMergeProject splitMerge = new SplitMergeProject(session, sourceProjectPaths[0]); 
+            List<SectionNode> sectionsToMerge = new List<SectionNode>();
             try
             {
-                SplitMergeProject splitMerge = new SplitMergeProject(session, sourceProjectPath);
+                
+                
                 Dialogs.ProgressDialog progress =
                                 new Obi.Dialogs.ProgressDialog(Localizer.Message("MergeProject_progress_dialog_title"),
                                                    delegate(Dialogs.ProgressDialog progress1)
                                                        {
-                
-                splitMerge.DoWork();
+                                                           // first execute thesplit merge object created for first source project file
+                                                           splitMerge.DoWork();
+                                                           if (splitMerge.SectionsToMerge != null && splitMerge.SectionsToMerge.Count > 0) sectionsToMerge = splitMerge.SectionsToMerge;
+
+                                                           for (int i = 1; i < sourceProjectPaths.Count; i++)
+                                                           {
+                                                               splitMerge = new SplitMergeProject(session, sourceProjectPaths[i]);
+                                                               splitMerge.DoWork();
+                                                               if (splitMerge.SectionsToMerge != null && splitMerge.SectionsToMerge.Count > 0)
+                                                               {
+                                                                   foreach (SectionNode section in splitMerge.SectionsToMerge) sectionsToMerge.Add(section);
+                                                               }
+
+                                                           }
             });
 
                 progress.OperationCancelled +=
@@ -5094,7 +5111,7 @@ public bool ShowOnlySelectedSection
                 progress.ShowDialog();
                 if (progress.Exception != null) throw progress.Exception;
 
-                List<SectionNode> sectionsToMerge = splitMerge.SectionsToMerge;
+                
                 if (sectionsToMerge == null || sectionsToMerge.Count == 0)
                 {
                     MessageBox.Show(Localizer.Message("MergeProject_NoSectionToMerge")) ;
