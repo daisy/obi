@@ -5103,8 +5103,8 @@ public bool ShowOnlySelectedSection
                 }
             }
             if (sourceProjectPaths == null || sourceProjectPaths.Count == 0 ) return ;            
-            SplitMergeProject splitMerge = new SplitMergeProject(session, sourceProjectPaths[0]); 
-            List<SectionNode> sectionsToMerge = new List<SectionNode>();
+            SplitMergeProject splitMerge = new SplitMergeProject(session, sourceProjectPaths[0]);
+            List<List<SectionNode>> sectionsToMerge = new List<List<SectionNode>>();
             try
             {
                 
@@ -5115,7 +5115,7 @@ public bool ShowOnlySelectedSection
                                                        {
                                                            // first execute thesplit merge object created for first source project file
                                                            splitMerge.DoWork();
-                                                           if (splitMerge.SectionsToMerge != null && splitMerge.SectionsToMerge.Count > 0) sectionsToMerge = splitMerge.SectionsToMerge;
+                                                           if (splitMerge.SectionsToMerge != null && splitMerge.SectionsToMerge.Count > 0) sectionsToMerge.Add(splitMerge.SectionsToMerge);
 
                                                            for (int i = 1; i < sourceProjectPaths.Count; i++)
                                                            {
@@ -5123,7 +5123,7 @@ public bool ShowOnlySelectedSection
                                                                splitMerge.DoWork();
                                                                if (splitMerge.SectionsToMerge != null && splitMerge.SectionsToMerge.Count > 0)
                                                                {
-                                                                   foreach (SectionNode section in splitMerge.SectionsToMerge) sectionsToMerge.Add(section);
+                                                                   sectionsToMerge.Add(splitMerge.SectionsToMerge);
                                                                }
 
                                                            }
@@ -5146,13 +5146,32 @@ public bool ShowOnlySelectedSection
 
                 CompositeCommand mergeProjectCommand = mPresentation.CreateCompositeCommand(Localizer.Message("MergeProjectCommand")) ;
                 ObiRootNode root =(ObiRootNode) mPresentation.RootNode;
+                int sectionInsertionIndex = 0;
                 for( int i=0 ; i < sectionsToMerge.Count; i++ )
                 {
-                    SectionNode section = sectionsToMerge[i];
-                    mergeProjectCommand.ChildCommands.Insert(mergeProjectCommand.ChildCommands.Count, 
-                        new Commands.Node.AddNode(this,section, root, root.SectionChildCount+i,false) ) ;
+                    List<SectionNode> currentSectionsList = sectionsToMerge[i] ;
+                    for (int j = 0; j < currentSectionsList.Count; j++)
+                    {
+                        SectionNode section = currentSectionsList[j];
+                        mergeProjectCommand.ChildCommands.Insert(mergeProjectCommand.ChildCommands.Count,
+                            new Commands.Node.AddNode(this, section, root, root.SectionChildCount + sectionInsertionIndex, false));
+                        sectionInsertionIndex++;
+                    }
             }
             if (mergeProjectCommand.ChildCommands.Count > 0) mPresentation.Do(mergeProjectCommand);
+
+            for (int i = 0; i < sectionsToMerge.Count; i++)
+            {
+                List<SectionNode> currentSectionsList = sectionsToMerge[i] ;
+                if(currentSectionsList.Count == 0 ) continue ;
+                int firstOffset = currentSectionsList[0].Index ;
+                
+                foreach (SectionNode section in currentSectionsList)
+                {
+                    for (int j = 0; j < section.PhraseChildCount; j++)
+                        section.PhraseChild(j).AssignAssociatedNodeByParsingLocationString(firstOffset);
+                }
+            }
             }
                 catch (System.Exception ex)
             {
