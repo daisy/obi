@@ -126,13 +126,13 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 42</value>
+    <value>150, 42</value>
   </data>
   <data name="mbtnDesendingOrder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 32</value>
+    <value>149, 32</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mbtnDesendingOrder.TabIndex" type="System.Int32, mscorlib">
@@ -172,7 +172,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 132</value>
+    <value>218, 132</value>
   </data>
   <data name="lstManualArrange.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -199,13 +199,13 @@
     <value>NoControl</value>
   </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 42</value>
+    <value>8, 42</value>
   </data>
   <data name="mbtnAscendingOrder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 32</value>
+    <value>125, 32</value>
   </data>
   <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -238,7 +238,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>420, 80</value>
+    <value>319, 80</value>
   </data>
   <data name="m_grpArrangeAudioFiles.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -271,7 +271,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>452, 133</value>
+    <value>268, 130</value>
   </data>
   <data name="m_btnRemove.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -307,7 +307,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>452, 97</value>
+    <value>268, 94</value>
   </data>
   <data name="m_btnAdd.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -343,7 +343,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>452, 26</value>
+    <value>268, 23</value>
   </data>
   <data name="m_btnMoveUp.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -379,7 +379,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>452, 62</value>
+    <value>268, 59</value>
   </data>
   <data name="m_btnMoveDown.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -415,7 +415,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>592, 257</value>
+    <value>408, 257</value>
   </data>
   <data name="m_grpAddFiles.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -442,7 +442,7 @@
     <value>NoControl</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>311, 281</value>
+    <value>201, 275</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -478,7 +478,7 @@
     <value>NoControl</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 281</value>
+    <value>43, 275</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
@@ -514,7 +514,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>619, 347</value>
+    <value>446, 326</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
