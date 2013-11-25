@@ -242,6 +242,35 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
             }
         }
 
+        // to do: call this function in getter of AssociatedNode property
+        public void AssignAssociatedNodeByParsingLocationString(int firstDecemdentOffset)
+        {
+            if (m_AssociatedNode == null && !string.IsNullOrEmpty(m_AssociatedNodeLocation))
+            {
+                string[] locationArray = m_AssociatedNodeLocation.Split('_');
+                if (locationArray.Length > 0)
+                {//1
+                    TreeNode iterationNode = this.Root;
+                    for (int i = locationArray.Length - 1; i >= 0; i--)
+                    {//2
+                        int childIndex = -1;
+                        int.TryParse(locationArray[i], out childIndex);
+                        if (childIndex > -1 && i == locationArray.Length - 1) childIndex = childIndex + firstDecemdentOffset;
+
+                        iterationNode = (childIndex >= 0 && childIndex < iterationNode.Children.Count) ? iterationNode.Children.Get(childIndex) : null;
+                        if (iterationNode == null) break;
+                    }//-2
+                    m_AssociatedNode = iterationNode != null ? (EmptyNode)iterationNode : null;
+                }//-1
+            }
+        }
+
+        //public void UpdateAssociatedNodeString(string locationString)
+        //{
+            //m_AssociatedNodeLocation = locationString;
+        //}
+
+
         /// <summary>
         /// Get or set the TODO status of the phrase.
         /// </summary>
@@ -348,8 +377,10 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
 
         protected override TreeNode ExportProtected(urakawa.Presentation destPres)
         {
+            UpdateAssociatedNodeLocationString();
             EmptyNode exportedNode = (EmptyNode) base.ExportProtected(destPres);
             exportedNode.CopyAttributes(this);
+            exportedNode.m_AssociatedNodeLocation = this.m_AssociatedNodeLocation;
             //exportedNode.AssociatedNode = this.AssociatedNode;
             return exportedNode;
         }
@@ -543,20 +574,30 @@ private static Dictionary <string,string> m_SkippableLocalizedNameMap = null ;
                 if (mTODO) wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
                 if (AssociatedNode != null && AssociatedNode.IsRooted)       //@AssociateNode
                 {
-                    ObiNode iterationNode = AssociatedNode;
-                    m_AssociatedNodeLocation = "";
-                    while (iterationNode != this.Root)
-                    {
-                        if (AssociatedNode  != iterationNode) m_AssociatedNodeLocation += "_";
-                        m_AssociatedNodeLocation += iterationNode.Parent.Children.IndexOf(iterationNode).ToString();
-                        iterationNode = iterationNode.ParentAs<ObiNode> () ;
-                    }
+                    UpdateAssociatedNodeLocationString();
                     
                     wr.WriteAttributeString(XUK_ATTR_NAME_AssociateNode, m_AssociatedNodeLocation);
                 }
             }
             base.XukOutAttributes(wr, baseUri);
         }
+
+        private void UpdateAssociatedNodeLocationString()
+        {
+            if (AssociatedNode != null && AssociatedNode.IsRooted)       //@AssociateNode
+            {
+                ObiNode iterationNode = AssociatedNode;
+                m_AssociatedNodeLocation = "";
+                while (iterationNode != this.Root)
+                {
+                    if (AssociatedNode != iterationNode) m_AssociatedNodeLocation += "_";
+                    m_AssociatedNodeLocation += iterationNode.Parent.Children.IndexOf(iterationNode).ToString();
+                    iterationNode = iterationNode.ParentAs<ObiNode>();
+                }
+
+            }
+        }
+
 
         /// <summary>
         /// Attempt to parse a page number from a string; return 0 on negative/non-number values.
