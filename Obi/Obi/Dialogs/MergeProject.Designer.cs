@@ -129,8 +129,10 @@ namespace Obi.Dialogs
             // 
             // MergeProject
             // 
+            this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.mCancelButton;
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
             this.Controls.Add(this.m_grpAddFiles);
