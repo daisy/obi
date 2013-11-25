@@ -3234,7 +3234,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merging project....
+        ///   Looks up a localized string similar to Merging project {0} of {1}....
         /// </summary>
         internal static string MergeProject_progress_dialog_title {
             get {
