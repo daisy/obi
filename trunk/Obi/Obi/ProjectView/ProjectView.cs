@@ -5103,41 +5103,35 @@ public bool ShowOnlySelectedSection
                 }
             }
             if (sourceProjectPaths == null || sourceProjectPaths.Count == 0 ) return ;            
-            SplitMergeProject splitMerge = new SplitMergeProject(session, sourceProjectPaths[0]);
+            SplitMergeProject splitMerge = null;
             List<List<SectionNode>> sectionsToMerge = new List<List<SectionNode>>();
             try
             {
-                
-                
-                Dialogs.ProgressDialog progress =
-                                new Obi.Dialogs.ProgressDialog(Localizer.Message("MergeProject_progress_dialog_title"),
-                                                   delegate(Dialogs.ProgressDialog progress1)
+                for (int i = 0; i < sourceProjectPaths.Count; i++)
+                {
+                    splitMerge = new SplitMergeProject(session, sourceProjectPaths[i]);
+                    Dialogs.ProgressDialog progress =
+                                    new Obi.Dialogs.ProgressDialog(string.Format( Localizer.Message("MergeProject_progress_dialog_title"), (i+1).ToString () , sourceProjectPaths.Count.ToString()),
+                                                       delegate(Dialogs.ProgressDialog progress1)
                                                        {
-                                                           // first execute thesplit merge object created for first source project file
-                                                           splitMerge.DoWork();
-                                                           if (splitMerge.SectionsToMerge != null && splitMerge.SectionsToMerge.Count > 0) sectionsToMerge.Add(splitMerge.SectionsToMerge);
-
-                                                           for (int i = 1; i < sourceProjectPaths.Count; i++)
-                                                           {
-                                                               splitMerge = new SplitMergeProject(session, sourceProjectPaths[i]);
-                                                               splitMerge.DoWork();
-                                                               if (splitMerge.SectionsToMerge != null && splitMerge.SectionsToMerge.Count > 0)
-                                                               {
-                                                                   sectionsToMerge.Add(splitMerge.SectionsToMerge);
-                                                               }
-
-                                                           }
-            });
-
-                progress.OperationCancelled +=
-                    new Obi.Dialogs.OperationCancelledHandler(
-                        delegate(object sender, EventArgs e) { splitMerge.RequestCancellation = true; });
-                if (splitMerge != null) splitMerge.ProgressChangedEvent +=
-                    new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
-                progress.ShowDialog();
-                if (progress.Exception != null) throw progress.Exception;
-
                 
+                                                           splitMerge.DoWork();
+                                                           if (splitMerge.SectionsToMerge != null && splitMerge.SectionsToMerge.Count > 0)
+                                                           {
+                                                               sectionsToMerge.Add(splitMerge.SectionsToMerge);
+                                                           }
+
+                                                       });
+
+                    progress.OperationCancelled +=
+                        new Obi.Dialogs.OperationCancelledHandler(
+                            delegate(object sender, EventArgs e) { splitMerge.RequestCancellation = true; });
+                    if (splitMerge != null) splitMerge.ProgressChangedEvent +=
+                        new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
+                    progress.ShowDialog();
+                    if (progress.Exception != null) throw progress.Exception;
+
+                }
                 if (sectionsToMerge == null || sectionsToMerge.Count == 0)
                 {
                     MessageBox.Show(Localizer.Message("MergeProject_NoSectionToMerge")) ;

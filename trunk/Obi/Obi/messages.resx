@@ -2425,7 +2425,7 @@ Error text: {1}</value>
     <value>No section found in source project</value>
   </data>
   <data name="MergeProject_progress_dialog_title" xml:space="preserve">
-    <value>Merging project...</value>
+    <value>Merging project {0} of {1}...</value>
   </data>
   <data name="MergeProject_SectionProgress" xml:space="preserve">
     <value>Merging section: {0}</value>
@@ -2437,6 +2437,6 @@ Error text: {1}</value>
     <value>Please select project to merge</value>
   </data>
   <data name="Obi_ProjectMergeFilter" xml:space="preserve">
-        <value>Obi project file (*.obi)|*.obi</value>
+    <value>Obi project file (*.obi)|*.obi</value>
   </data>
 </root>
