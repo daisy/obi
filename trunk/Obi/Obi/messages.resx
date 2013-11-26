@@ -2275,7 +2275,7 @@ Error text: {1}</value>
     <value>Save project when recording ends</value>
   </data>
   <data name="Project_CheckForUpdates" xml:space="preserve">
-    <value>Check for Updates</value>
+    <value>Check for updates</value>
   </data>
   <data name="DeleteUnused_NoUnusedPhraseFoundToDelete" xml:space="preserve">
     <value>No unused phrase found to delete.</value>
@@ -2431,7 +2431,7 @@ Error text: {1}</value>
     <value>Merging section: {0}</value>
   </data>
   <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
-    <value>Background Color for Empty Secton</value>
+    <value>Background color for empty secton in top view</value>
   </data>
   <data name="Obi_ProjectMerge" xml:space="preserve">
     <value>Please select project to merge</value>
