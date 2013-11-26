@@ -697,7 +697,7 @@ namespace Obi.ProjectView
 
         public void EmptySectionBackColor(ObiNode node)
         {
-            if (node.Duration == 0.0  && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection)
+            if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
             {
                 TreeNode treeNodeToSelect = FindTreeNodeWithoutLabel((SectionNode)node);
                 treeNodeToSelect.BackColor = Color.LightPink;
@@ -708,7 +708,7 @@ namespace Obi.ProjectView
         public void UpdateTOCBackColorForEmptySection(SectionNode node)
         {
 
-            if (node.Duration == 0.0 && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection)
+            if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
             {
                 TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
                 treeNode.BackColor = Color.LightPink;
