@@ -5162,8 +5162,18 @@ public bool ShowOnlySelectedSection
                 
                 foreach (SectionNode section in currentSectionsList)
                 {
-                    for (int j = 0; j < section.PhraseChildCount; j++)
-                        section.PhraseChild(j).AssignAssociatedNodeByParsingLocationString(firstOffset);
+                    section.AcceptDepthFirst(delegate(urakawa.core.TreeNode n)
+                {   
+                    //for (int j = 0; j < section.PhraseChildCount; j++)
+                        //section.PhraseChild(j).AssignAssociatedNodeByParsingLocationString(firstOffset);
+                    if ( n is EmptyNode)
+                    {
+                        ((EmptyNode)n).AssignAssociatedNodeByParsingLocationString(firstOffset);
+                    }
+                    return true;
+                }, delegate(urakawa.core.TreeNode n) { });
+
+
                 }
             }
             }
