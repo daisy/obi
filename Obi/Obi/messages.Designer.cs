@@ -4660,7 +4660,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Background Color for Empty Secton.
+        ///   Looks up a localized string similar to Background color for empty secton in top view.
         /// </summary>
         internal static string Project_BackgroundColorForEmptySection {
             get {
@@ -4669,7 +4669,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check for Updates.
+        ///   Looks up a localized string similar to Check for updates.
         /// </summary>
         internal static string Project_CheckForUpdates {
             get {
