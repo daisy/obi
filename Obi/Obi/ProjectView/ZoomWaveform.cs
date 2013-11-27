@@ -108,8 +108,11 @@ namespace Obi.ProjectView
             if (m_ProjectView.Selection != null && m_ProjectView.GetSelectedPhraseSection != null)
             {
                 btntxtZoomSelected.Text = " ";
-                btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
-                btntxtZoomSelected.Text += " " +(m_ProjectView.GetSelectedPhraseSection!= null? m_ProjectView.GetSelectedPhraseSection.ToString(): "");
+                if (m_ProjectView != null && m_ProjectView.Selection != null)
+                {
+                    btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
+                    btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
+                }
                 
                 if (m_ProjectView.Selection.Phrase != null)
                 {
@@ -410,7 +413,7 @@ namespace Obi.ProjectView
 
 
             btntxtZoomSelected.Text = " ";
-            if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.GetSelectedPhraseSection != null)
+            if (m_ProjectView != null && m_ProjectView.Selection != null)
             {
                 btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
                 btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
