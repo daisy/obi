@@ -2556,12 +2556,16 @@ for (int j = 0;
                     return;
                 }
                 bool isException = false ;
-                int selectedPhraseIndex = Selection != null && Selection.Node is EmptyNode && Selection.Node.IsRooted ? ((EmptyNode)Selection.Node).Index : -1;
-                SectionNode selectedSection = GetSelectedPhraseSection;
-
+                EmptyNode nodeToBeSelected = null;
+                
                 try
                     {
+                    
                         CompositeCommand cmd = mPresentation.CreateCompositeCommand("Generate speech from page text");
+                        if (Selection != null && forAllEmptyPages)
+                        {
+                            cmd.ChildCommands.Insert( cmd.ChildCommands.Count, new Commands.UpdateSelection (this, new NodeSelection(Selection.Node,Selection.Control)) );
+                        }
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "SpeechGenerationProgress" ),
                         delegate(Dialogs.ProgressDialog progress1)
                             {
@@ -2584,7 +2588,10 @@ for (int j = 0;
                         cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.Delete(this, listOfEmptyPages[i]));
                         Commands.Node.AddNode add = new Obi.Commands.Node.AddNode(this, pagePhrase, listOfEmptyPages[i].ParentAs<SectionNode>(), listOfEmptyPages[i].Index);
                         add.UpdateSelection = !forAllEmptyPages;
-                        
+                        if (Selection != null && Selection.Node == listOfEmptyPages[i])
+                        {
+                            nodeToBeSelected = pagePhrase;
+                        }
                         cmd.ChildCommands.Insert(cmd.ChildCommands.Count, add);
                         
 
@@ -2597,7 +2604,15 @@ for (int j = 0;
                     progress.ShowDialog();
                     if (progress.Exception != null) throw (progress.Exception);
 
-
+                    if (Selection != null && forAllEmptyPages)
+                    {
+                        if (nodeToBeSelected != null)
+                        {
+                            NodeSelection sel = new NodeSelection(nodeToBeSelected, mContentView);
+                            cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.UpdateSelection(this, sel));
+                            
+                        }
+                    }
                     mPresentation.Do(cmd);
                 }
                     catch (System.Exception ex)
@@ -2613,10 +2628,10 @@ for (int j = 0;
                         if (!isException &&  listOfEmptyPages!=null && listOfEmptyPages.Count > 0)
                         {
                             MessageBox.Show(Localizer.Message("ProjectView_GenarteSpeechForAllPages"));
-                            if (Selection != null && !Selection.Node.IsRooted && selectedPhraseIndex > -1)
-                            {
-                                if (selectedSection != null && selectedPhraseIndex < selectedSection.PhraseChildCount) Selection = new NodeSelection(selectedSection.PhraseChild(selectedPhraseIndex), mContentView);
-                            }
+                            //if (Selection != null && !Selection.Node.IsRooted && selectedPhraseIndex > -1)
+                            //{
+                                //if (selectedSection != null && selectedPhraseIndex < selectedSection.PhraseChildCount) Selection = new NodeSelection(selectedSection.PhraseChild(selectedPhraseIndex), mContentView);
+                            //}
                         }
                     }
             }
