@@ -2555,7 +2555,7 @@ for (int j = 0;
                     MessageBox.Show(Localizer.Message("ProjectView_NoEmptyPageFoundForSpeechGeneration"));
                     return;
                 }
-
+                bool isException = false ;
                 try
                     {
                         CompositeCommand cmd = mPresentation.CreateCompositeCommand("Generate speech from page text");
@@ -2564,7 +2564,8 @@ for (int j = 0;
                             {
                 for (int i = 0; i < listOfEmptyPages.Count; i++)
                 {
-                    string text = "Page " + listOfEmptyPages[i].PageNumber.Number.ToString();
+                    PageNumber number = listOfEmptyPages[i].PageNumber;
+                    string text = "Page" + (number.Kind == PageKind.Front ? " front, " + number.Number.ToString() : number.Kind == PageKind.Normal ? ", " + number.Number.ToString() : ", " + number.Unquoted);
                     string filePath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath, mPresentation.DataProviderManager.GetNewDataFileRelPath(".wav"));
                     Audio.AudioFormatConverter.InitializeTTS(ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
                     Audio.AudioFormatConverter.Speak(text, filePath, ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
@@ -2580,8 +2581,9 @@ for (int j = 0;
                         cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.Delete(this, listOfEmptyPages[i]));
                         Commands.Node.AddNode add = new Obi.Commands.Node.AddNode(this, pagePhrase, listOfEmptyPages[i].ParentAs<SectionNode>(), listOfEmptyPages[i].Index);
                         add.UpdateSelection = !forAllEmptyPages;
+                        
                         cmd.ChildCommands.Insert(cmd.ChildCommands.Count, add);
-
+                        
 
                         
                 }
@@ -2597,12 +2599,14 @@ for (int j = 0;
                 }
                     catch (System.Exception ex)
                     {
+                        isException = true;
+                        WriteToLogFile(ex.ToString());
                         MessageBox.Show(ex.ToString());
                     }
 
                     if (forAllEmptyPages)
                     {
-                        if (listOfEmptyPages!=null)
+                        if (!isException &&  listOfEmptyPages!=null && listOfEmptyPages.Count > 0)
                         {
                             MessageBox.Show(Localizer.Message("ProjectView_GenarteSpeechForAllPages"));
                         }
