@@ -3225,6 +3225,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please make sure that that the projects to be merged have the same audio format and are created on Obi 3.0 Beta 2 or later version..
+        /// </summary>
+        internal static string MergeProject_Information {
+            get {
+                return ResourceManager.GetString("MergeProject_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No section found in source project.
         /// </summary>
         internal static string MergeProject_NoSectionToMerge {
@@ -4660,7 +4669,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Background color for empty secton in top view.
+        ///   Looks up a localized string similar to Background color for empty sections in top view.
         /// </summary>
         internal static string Project_BackgroundColorForEmptySection {
             get {

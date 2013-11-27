@@ -5089,6 +5089,12 @@ public bool ShowOnlySelectedSection
         }
         public void MergeProject (Session session)
         {
+            if (MessageBox.Show(Localizer.Message("MergeProject_Information"),
+                Localizer.Message("Caption_Information"),
+                MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+            {
+                return;
+            }
             string projectFile = SelectProjectFile();
             List<string> sourceProjectPaths=null;
             if (projectFile != null)
