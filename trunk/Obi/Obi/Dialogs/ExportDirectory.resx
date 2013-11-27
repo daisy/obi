@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblDirectoryPath.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="mPathTextBox.AccessibleName" xml:space="preserve">
     <value>Export directory:</value>
@@ -178,7 +178,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPathTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="mSelectButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -211,7 +211,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mSelectButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="mOKButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -244,7 +244,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -277,7 +277,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -304,7 +304,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.AccessibleName" xml:space="preserve">
     <value>Create one audio file per section till:</value>
@@ -328,7 +328,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="m_checkBoxMP3Encoder.AccessibleDescription" xml:space="preserve">
     <value>Encode to MP3 Checkbox</value>
@@ -358,7 +358,7 @@
     <value>m_grpBoxMP3Encoding</value>
   </data>
   <data name="&gt;&gt;m_checkBoxMP3Encoder.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_Bitrate.AccessibleDescription" xml:space="preserve">
     <value>Bitrate</value>
@@ -388,7 +388,7 @@
     <value>m_grpBoxMP3Encoding</value>
   </data>
   <data name="&gt;&gt;m_Bitrate.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="m_ComboBoxBitrate.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -436,7 +436,7 @@
     <value>m_grpBoxMP3Encoding</value>
   </data>
   <data name="&gt;&gt;m_ComboBoxBitrate.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.AccessibleName" xml:space="preserve">
     <value>Append SectionName to audio file name </value>
@@ -468,11 +468,41 @@
   <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
+    <value>Advance</value>
+  </data>
+  <data name="m_btnAdvance.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnAdvance.Location" type="System.Drawing.Point, System.Drawing">
+    <value>368, 19</value>
+  </data>
+  <data name="m_btnAdvance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="m_btnAdvance.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_btnAdvance.Text" xml:space="preserve">
+    <value>A&amp;dvance</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdvance.Name" xml:space="preserve">
+    <value>m_btnAdvance</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdvance.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdvance.Parent" xml:space="preserve">
+    <value>m_grpBoxMP3Encoding</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdvance.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_grpBoxMP3Encoding.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 82</value>
   </data>
   <data name="m_grpBoxMP3Encoding.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 60</value>
+    <value>488, 60</value>
   </data>
   <data name="m_grpBoxMP3Encoding.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -487,7 +517,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_grpBoxMP3Encoding.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Filename Length Limit</value>
@@ -553,7 +583,7 @@
     <value>12, 148</value>
   </data>
   <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>441, 74</value>
+    <value>491, 74</value>
   </data>
   <data name="m_grpBoxSectionNameOperation.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -571,43 +601,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_grpBoxSectionNameOperation.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
-  </data>
-  <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
-    <value>Advance</value>
-  </data>
-  <data name="m_btnAdvance.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_btnAdvance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>461, 100</value>
-  </data>
-  <data name="m_btnAdvance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="m_btnAdvance.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="m_btnAdvance.Text" xml:space="preserve">
-    <value>A&amp;dvance</value>
-  </data>
-  <data name="&gt;&gt;m_btnAdvance.Name" xml:space="preserve">
-    <value>m_btnAdvance</value>
-  </data>
-  <data name="&gt;&gt;m_btnAdvance.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnAdvance.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_btnAdvance.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

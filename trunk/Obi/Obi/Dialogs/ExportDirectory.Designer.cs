@@ -132,6 +132,7 @@ namespace Obi.Dialogs
             // 
             // m_grpBoxMP3Encoding
             // 
+            this.m_grpBoxMP3Encoding.Controls.Add(this.m_btnAdvance);
             this.m_grpBoxMP3Encoding.Controls.Add(this.m_Bitrate);
             this.m_grpBoxMP3Encoding.Controls.Add(this.m_ComboBoxBitrate);
             this.m_grpBoxMP3Encoding.Controls.Add(this.m_checkBoxMP3Encoder);
@@ -177,7 +178,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.Controls.Add(this.m_btnAdvance);
             this.Controls.Add(this.m_grpBoxSectionNameOperation);
             this.Controls.Add(this.m_grpBoxMP3Encoding);
             this.Controls.Add(this.m_ComboSelectLevelForAudioFiles);
