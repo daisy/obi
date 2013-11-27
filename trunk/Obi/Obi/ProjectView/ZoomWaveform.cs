@@ -109,8 +109,8 @@ namespace Obi.ProjectView
             {
                 btntxtZoomSelected.Text = " ";
                 btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
-                btntxtZoomSelected.Text += " " + m_ProjectView.GetSelectedPhraseSection.ToString();
-
+                btntxtZoomSelected.Text += " " +(m_ProjectView.GetSelectedPhraseSection!= null? m_ProjectView.GetSelectedPhraseSection.ToString(): "");
+                
                 if (m_ProjectView.Selection.Phrase != null)
                 {
 
@@ -411,7 +411,7 @@ namespace Obi.ProjectView
 
             btntxtZoomSelected.Text = " ";
             btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
-            btntxtZoomSelected.Text += " " + m_ProjectView.GetSelectedPhraseSection.ToString();
+            btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
             m_PreviousHeight = this.Height;
             if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight )
             {
