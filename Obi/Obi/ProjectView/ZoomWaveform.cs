@@ -105,14 +105,12 @@ namespace Obi.ProjectView
 
         private void ProjectViewSelectionChanged ( object sender, EventArgs e )
         {
-            if (m_ProjectView.Selection != null && m_ProjectView.GetSelectedPhraseSection != null)
+            if (m_ProjectView != null && m_ProjectView.Selection != null)
             {
                 btntxtZoomSelected.Text = " ";
-                if (m_ProjectView != null && m_ProjectView.Selection != null)
-                {
-                    btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
-                    btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
-                }
+                btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
+                btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
+               
                 
                 if (m_ProjectView.Selection.Phrase != null)
                 {
@@ -250,8 +248,7 @@ namespace Obi.ProjectView
             m_ContentView = contentView;
             m_ProjectView = mProjectView;
             m_ProjectView.SelectionChanged += new EventHandler(ProjectViewSelectionChanged);
-            this.LostFocus += new EventHandler(ZoomPanelLostFocus);
-            
+            this.LostFocus += new EventHandler(ZoomPanelLostFocus);          
 
             keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
   
