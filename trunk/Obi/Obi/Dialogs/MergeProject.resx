@@ -192,6 +192,27 @@
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
     <value>Arrange files</value>
   </data>
+  <data name="mbtnAscendingOrder.AccessibleName" xml:space="preserve">
+    <value>Ascending Order</value>
+  </data>
+  <data name="mbtnAscendingOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 42</value>
+  </data>
+  <data name="mbtnAscendingOrder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 32</value>
+  </data>
+  <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="mbtnAscendingOrder.Text" xml:space="preserve">
+    <value>A&amp;scending Order</value>
+  </data>
   <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
     <value>mbtnAscendingOrder</value>
   </data>
@@ -235,39 +256,6 @@
     <value>m_grpAddFiles</value>
   </data>
   <data name="&gt;&gt;m_grpArrangeAudioFiles.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="mbtnAscendingOrder.AccessibleName" xml:space="preserve">
-    <value>Ascending Order</value>
-  </data>
-  <data name="mbtnAscendingOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 42</value>
-  </data>
-  <data name="mbtnAscendingOrder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 32</value>
-  </data>
-  <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>&amp;A&amp;scending Order</value>
-  </data>
-  <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
-    <value>mbtnAscendingOrder</value>
-  </data>
-  <data name="&gt;&gt;mbtnAscendingOrder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mbtnAscendingOrder.Parent" xml:space="preserve">
-    <value>m_grpArrangeAudioFiles</value>
-  </data>
-  <data name="&gt;&gt;mbtnAscendingOrder.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
@@ -367,7 +355,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>Move Up</value>
+    <value>Move &amp;Up</value>
   </data>
   <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
     <value>m_btnMoveUp</value>
