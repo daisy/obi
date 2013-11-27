@@ -2439,4 +2439,7 @@ Error text: {1}</value>
   <data name="Obi_ProjectMergeFilter" xml:space="preserve">
     <value>Obi project file (*.obi)|*.obi</value>
   </data>
+  <data name="MergeProject_Information" xml:space="preserve">
+    <value>Please make sure that that the projects to be merged have the same audio format and are created on Obi 3.0 Beta 2 or later version.</value>
+  </data>
 </root>
