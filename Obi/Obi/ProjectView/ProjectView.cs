@@ -2556,6 +2556,9 @@ for (int j = 0;
                     return;
                 }
                 bool isException = false ;
+                int selectedPhraseIndex = Selection != null && Selection.Node is EmptyNode && Selection.Node.IsRooted ? ((EmptyNode)Selection.Node).Index : -1;
+                SectionNode selectedSection = GetSelectedPhraseSection;
+
                 try
                     {
                         CompositeCommand cmd = mPresentation.CreateCompositeCommand("Generate speech from page text");
@@ -2602,6 +2605,7 @@ for (int j = 0;
                         isException = true;
                         WriteToLogFile(ex.ToString());
                         MessageBox.Show(ex.ToString());
+                        
                     }
 
                     if (forAllEmptyPages)
@@ -2609,6 +2613,10 @@ for (int j = 0;
                         if (!isException &&  listOfEmptyPages!=null && listOfEmptyPages.Count > 0)
                         {
                             MessageBox.Show(Localizer.Message("ProjectView_GenarteSpeechForAllPages"));
+                            if (Selection != null && !Selection.Node.IsRooted && selectedPhraseIndex > -1)
+                            {
+                                if (selectedSection != null && selectedPhraseIndex < selectedSection.PhraseChildCount) Selection = new NodeSelection(selectedSection.PhraseChild(selectedPhraseIndex), mContentView);
+                            }
                         }
                     }
             }
