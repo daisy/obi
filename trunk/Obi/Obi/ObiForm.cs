@@ -2284,6 +2284,7 @@ namespace Obi
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause();
                 bool isLeftAlignPhrasesInContentView = mSettings.LeftAlignPhrasesInContentView;
                 bool showWaveform = mSettings.Project_ShowWaveformInContentView;
+                bool enableEmptySectionColorInTOC = mSettings.Project_BackgroundColorForEmptySection;
                 Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation,
                                                                     mProjectView.TransportBar, m_DefaultSettings);
                 prefs.ShowDialog();
@@ -2291,7 +2292,7 @@ namespace Obi
                     UpdateColors();
                 Ready();
                 mProjectView.TransportBar.UpdateButtons();
-                if (mProjectView.Presentation != null && mProjectView.Presentation.FirstSection != null)  mProjectView.UpdateTOCBackColorForEmptySection((SectionNode)mProjectView.Presentation.FirstSection);
+                if ( mProjectView.Presentation != null && mProjectView.Presentation.FirstSection != null && enableEmptySectionColorInTOC != mSettings.Project_BackgroundColorForEmptySection)  mProjectView.UpdateTOCBackColorForEmptySection((SectionNode)mProjectView.Presentation.FirstSection);
                 mProjectView.TransportBar.ResetFastPlayForPreferencesChange();
                 if (isLeftAlignPhrasesInContentView != mSettings.LeftAlignPhrasesInContentView) UpdateZoomFactor();
                 mSession.EnableFreeDiskSpaceCheck = mSettings.Project_EnableFreeDiskSpaceCheck;

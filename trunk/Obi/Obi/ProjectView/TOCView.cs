@@ -683,7 +683,7 @@ namespace Obi.ProjectView
                         treeNodeToSelect.ForeColor = SystemColors.ControlText;
                     }
                     
-                    EmptySectionBackColor(mSelection.Node);
+                    if(mSettings != null &&  mSettings.Project_BackgroundColorForEmptySection) EmptySectionBackColor(mSelection.Node);
                 }
                 
             }
