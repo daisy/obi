@@ -4669,7 +4669,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Background color for empty sections in top view.
+        ///   Looks up a localized string similar to Background color for empty sections in TOC view.
         /// </summary>
         internal static string Project_BackgroundColorForEmptySection {
             get {
