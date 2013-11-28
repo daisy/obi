@@ -316,7 +316,7 @@
     <value>ஒரு நொடிக்கு ஒரு ஒலி கோப்பை உருவாக்கவும் இது வரைக்கும்:l:</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>360, 52</value>
+    <value>349, 52</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
@@ -364,7 +364,7 @@
     <value>m_grpBoxMP3Encoding</value>
   </data>
   <data name="&gt;&gt;m_checkBoxMP3Encoder.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_Bitrate.AccessibleDescription" xml:space="preserve">
     <value>நுண் வீதம்</value>
@@ -394,7 +394,7 @@
     <value>m_grpBoxMP3Encoding</value>
   </data>
   <data name="&gt;&gt;m_Bitrate.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="m_ComboBoxBitrate.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -442,7 +442,7 @@
     <value>m_grpBoxMP3Encoding</value>
   </data>
   <data name="&gt;&gt;m_ComboBoxBitrate.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.AccessibleName" xml:space="preserve">
     <value>பகுதி பெயரை ஒலி கோப்பை பெயராக மாற்று</value>
@@ -474,11 +474,41 @@
   <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
+    <value>Advance</value>
+  </data>
+  <data name="m_btnAdvance.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnAdvance.Location" type="System.Drawing.Point, System.Drawing">
+    <value>368, 19</value>
+  </data>
+  <data name="m_btnAdvance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="m_btnAdvance.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_btnAdvance.Text" xml:space="preserve">
+    <value>A&amp;dvance</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdvance.Name" xml:space="preserve">
+    <value>m_btnAdvance</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdvance.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdvance.Parent" xml:space="preserve">
+    <value>m_grpBoxMP3Encoding</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdvance.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_grpBoxMP3Encoding.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 82</value>
   </data>
   <data name="m_grpBoxMP3Encoding.Size" type="System.Drawing.Size, System.Drawing">
-    <value>438, 60</value>
+    <value>488, 60</value>
   </data>
   <data name="m_grpBoxMP3Encoding.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -559,7 +589,7 @@
     <value>12, 148</value>
   </data>
   <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>441, 74</value>
+    <value>491, 74</value>
   </data>
   <data name="m_grpBoxSectionNameOperation.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
