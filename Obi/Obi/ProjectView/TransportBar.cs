@@ -910,7 +910,7 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        m_DeletePhrasestoolStripMenuItem.Enabled = !this.IsListening;
+                        m_DeletePhrasestoolStripMenuItem.Enabled = false;
                     }
                 }
                 else
@@ -3446,7 +3446,7 @@ SelectionChangedPlaybackEnabled = false;
             }
             else
             {
-                m_DeletePhrasestoolStripMenuItem.Enabled = !IsListening;
+                m_DeletePhrasestoolStripMenuItem.Enabled = false;
             }
         }
 
