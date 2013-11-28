@@ -906,11 +906,11 @@ namespace Obi.ProjectView
                     }                    
                     if (mView.ObiForm.Settings.AllowOverwrite)
                     {
-                        m_DeletePhrasestoolStripMenuItem.Enabled = true;
+                        m_DeletePhrasestoolStripMenuItem.Enabled = !this.IsListening;
                     }
                     else
                     {
-                        m_DeletePhrasestoolStripMenuItem.Enabled = false;
+                        m_DeletePhrasestoolStripMenuItem.Enabled = !this.IsListening;
                     }
                 }
                 else
@@ -3442,11 +3442,11 @@ SelectionChangedPlaybackEnabled = false;
         {
             if (mView.ObiForm.Settings.AllowOverwrite)
             {
-                m_DeletePhrasestoolStripMenuItem.Enabled = true;
+                m_DeletePhrasestoolStripMenuItem.Enabled = !IsListening;
             }
             else
             {
-                m_DeletePhrasestoolStripMenuItem.Enabled = false;
+                m_DeletePhrasestoolStripMenuItem.Enabled = !IsListening;
             }
         }
 
