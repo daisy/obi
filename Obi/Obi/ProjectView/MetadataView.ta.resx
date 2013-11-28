@@ -120,6 +120,9 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="mMetadataContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>114, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -166,7 +169,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mMetadataListView.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="mContentTextbox.AccessibleName" xml:space="preserve">
     <value>தரவு விவர உள்ளடக்கம்:</value>
@@ -196,7 +199,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mContentTextbox.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="mUpdateButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -211,7 +214,7 @@
     <value>Flat</value>
   </data>
   <data name="mUpdateButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>246, 389</value>
+    <value>206, 389</value>
   </data>
   <data name="mUpdateButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 0, 0</value>
@@ -235,7 +238,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mUpdateButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="mNameTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -262,7 +265,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNameTextbox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="mNameLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -295,7 +298,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNameLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="mContentLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -328,7 +331,80 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mContentLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
+  </data>
+  <data name="m_BtnContextMenu.AccessibleName" xml:space="preserve">
+    <value>More options submenu</value>
+  </data>
+  <data name="m_BtnContextMenu.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="m_BtnContextMenu.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="m_BtnContextMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnContextMenu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABl0lEQVRYR8WSvUoDQRSFA2op
+        WPgcFnkBXyO72WYlJIRYmSJW6gso+BT+YDQGQ0RE3ERrxU60iFgZFVSwvs5ZZsKsHLUJ1wMfLN/ce+cu
+        TE5E/hUqNaFSEyo1oVITKjWhUhMqNaFSEyo1oVITKn1MpqrV6lupVJKFOJb4D1CDWvSgFwPYXAeVPiYz
+        5XJZ3j8+Zfj8Kk/Dl19BDWrRg95xLDAbRdH5+samDB4eZWunadiT7d1mBjicoQa16EHvOBaYNswVCoVk
+        ZXVNbu/uZb/VlubBYQY4nKEGteixvXSug0ofk0kD/iSPwY3Gslxd30j7qCutdicF33A4s5fnbQ966VwH
+        lT42E4Z0iSAIkvpSXXr9Szk5PUtJ+hcChzPU2Fr0pGFzHVT6eBktEYZBUlusSad7nGJevIRhSC9H2FwH
+        lT7fMlqiWCz2KpWKAHzD2bPM5Qib66DSh8QtgUc2b8E3vRxhcx1U+vwQPC68cFwK8J0+OBY210GlzzjC
+        5jqo1IRKTajUhEpNqNSESk2o1IRKTajUhEo9JPcFLZCrGDM4cHAAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="m_BtnContextMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>275, 389</value>
+  </data>
+  <data name="m_BtnContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 28</value>
+  </data>
+  <data name="m_BtnContextMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;m_BtnContextMenu.Name" xml:space="preserve">
+    <value>m_BtnContextMenu</value>
+  </data>
+  <data name="&gt;&gt;m_BtnContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnContextMenu.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_BtnContextMenu.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SetDefaultMetadataStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="SetDefaultMetadataStripMenuItem.Text" xml:space="preserve">
+    <value>Insert default metadata</value>
+  </data>
+  <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Overwrite with default metadata</value>
+  </data>
+  <data name="SaveAsDefaultMetadataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="SaveAsDefaultMetadataToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save as default metadata</value>
+  </data>
+  <data name="mMetadataContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 92</value>
+  </data>
+  <data name="&gt;&gt;mMetadataContextMenuStrip.Name" xml:space="preserve">
+    <value>mMetadataContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;mMetadataContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -356,6 +432,24 @@
   </data>
   <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SetDefaultMetadataStripMenuItem.Name" xml:space="preserve">
+    <value>SetDefaultMetadataStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;SetDefaultMetadataStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SetDefaultMetadataOverwriteToolStripMenuItem.Name" xml:space="preserve">
+    <value>SetDefaultMetadataOverwriteToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;SetDefaultMetadataOverwriteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SaveAsDefaultMetadataToolStripMenuItem.Name" xml:space="preserve">
+    <value>SaveAsDefaultMetadataToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;SaveAsDefaultMetadataToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MetadataView</value>
