@@ -207,7 +207,7 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_MergeProjectMenuItem.Text" xml:space="preserve">
-    <value>Merge Project</value>
+    <value>&amp;Merge Project</value>
   </data>
   <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Restore from backup</value>
@@ -1921,7 +1921,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=2.7.6.23520, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=2.7.6.21680, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
