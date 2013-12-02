@@ -285,6 +285,7 @@ namespace Obi.UserControls
             m_recordingToolBarPrePhraseBtn.Enabled = m_TransportBar.CanNavigatePrevPhrase;
             m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.CanNavigateNextPhrase;
             m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.CanNavigateNextSection;
+            m_TODOBtn.Enabled = m_ProjectView.CanSetTODOStatus;
             if ((m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) && m_TransportBar.RecordingSection != null)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), m_TransportBar.RecordingSection.Label.ToString());
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing && m_TransportBar.PlaybackPhrase != null && m_TransportBar.PlaybackPhrase.IsRooted)
