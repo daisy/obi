@@ -64,7 +64,8 @@
             resources.GetString("m_cb_SpecialPhrases.Items5"),
             resources.GetString("m_cb_SpecialPhrases.Items6"),
             resources.GetString("m_cb_SpecialPhrases.Items7"),
-            resources.GetString("m_cb_SpecialPhrases.Items8")});
+            resources.GetString("m_cb_SpecialPhrases.Items8"),
+            resources.GetString("m_cb_SpecialPhrases.Items9")});
             resources.ApplyResources(this.m_cb_SpecialPhrases, "m_cb_SpecialPhrases");
             this.m_cb_SpecialPhrases.Name = "m_cb_SpecialPhrases";
             this.m_cb_SpecialPhrases.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.m_cb_SpecialPhrases_PreviewKeyDown);
