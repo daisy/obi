@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CannotCreate_InputPath" xml:space="preserve">
+    <value>Polkua ei voi luoda tyypille:input</value>
+  </data>
+  <data name="Caption_Error" xml:space="preserve">
+    <value>VIRHE</value>
+  </data>
+  <data name="Caption_Warning" xml:space="preserve">
+    <value>Varoitus!</value>
+  </data>
+  <data name="Choose_OtherDirectory" xml:space="preserve">
+    <value>Valitse joku toinen hakemisto</value>
+  </data>
+  <data name="IndexNotInRange" xml:space="preserve">
+    <value>Indeksi ei ole alueella</value>
+  </data>
+  <data name="No_Path" xml:space="preserve">
+    <value>polkua ei ole olemassa</value>
+  </data>
+  <data name="no_primary_export_directory" xml:space="preserve">
+    <value>DAISY exporthakemistoa ei löytynyt. Valitse exportpolku tai vie projeti DAISY.</value>
+  </data>
+  <data name="no_script" xml:space="preserve">
+    <value>Komentosarjaa ei löydy kohteessa "{0}".</value>
+  </data>
+  <data name="NotAbleToCreateDirectory" xml:space="preserve">
+    <value>Ei voi luoda hakemistoa{0}</value>
+  </data>
+  <data name="NotAbleToSelectItem" xml:space="preserve">
+    <value>Ei voi valita osiota</value>
+  </data>
+  <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
+    <value>Output hakemistoa ei löydy.\n Haluatko luoda sen?</value>
+  </data>
+  <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
+    <value>Output hakemisto ei ole tyhjä! Haluatko tyhjentää sen?</value>
+  </data>
+  <data name="Pipeline_DuplicateScript" xml:space="preserve">
+    <value>Toinen pipeline komentosarja nimeltä{0} löytyy. Tätä ei ladata. Paina OK jatkaaksesi.</value>
+  </data>
+  <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
+    <value>Arvon tulee olla väliltä{0} ja {1}</value>
+  </data>
+  <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
+    <value>Yksi tai useampi parametri on väärä. Korjaa virheelliset arvot.</value>
+  </data>
+  <data name="Pipeline_InvalidString" xml:space="preserve">
+    <value>epäkelpo syöte</value>
+  </data>
+  <data name="Pipeline_OutOfRange" xml:space="preserve">
+    <value>Arvo ei ole oletusalueen sisällä</value>
+  </data>
+  <data name="really_use_directory_caption" xml:space="preserve">
+    <value>Tyhjennetäänkö hakemisto ennen käyttöä?</value>
+  </data>
+  <data name="really_use_directory_text" xml:space="preserve">
+    <value>Hakemisto"{0}"ei ole tyhjä. Jos haluat tyhjentää sen ennen käyttöä, valitse "Kyllä". Jos haluat käyttää hakemistoa sellaisenaan, valitse "Ei"</value>
+  </data>
+  <data name="Z3986DTBValidator" xml:space="preserve">
+    <value>DAISY 3 Validator</value>
+  </data>
+  <data name="Daisy202DTBValidator" xml:space="preserve">
+    <value>Daisy 2.02 Light Validator</value>
+  </data>
+  <data name="DTBAudioEncoder" xml:space="preserve">
+    <value>Muunna äänitiedosto MP3 muotoon</value>
+  </data>
+  <data name="FilesetRenamer" xml:space="preserve">
+    <value>Tiedostojoukon uudelleen nimeäminen</value>
+  </data>
+  <data name="PrettyPrinter" xml:space="preserve">
+    <value>Pretty tulostin</value>
+  </data>
+  <data name="Input_NCC" xml:space="preserve">
+    <value>Input NCC</value>
+  </data>
+  <data name="Select_the_input_NCC_document" xml:space="preserve">
+    <value>Valitse input NCC dokumentti</value>
+  </data>
+  <data name="Validation_Report" xml:space="preserve">
+    <value>Validointiraportti</value>
+  </data>
+  <data name="Select_a_file_to_store_a_Validation_XML_report_in" xml:space="preserve">
+    <value>Valitse tiedosto johon XML validointiraportti tallennetaan</value>
+  </data>
+  <data name="Time_Tolerance" xml:space="preserve">
+    <value>Aikatoleranssi</value>
+  </data>
+  <data name="Set_the_time_tolerance_threshold_in_milliseconds" xml:space="preserve">
+    <value>Aseta aikatoleranssin kynnysarvo millisekunneissa</value>
+  </data>
+  <data name="Input_OPF" xml:space="preserve">
+    <value>Input OPF</value>
+  </data>
+  <data name="Select_the_input_Package_file_(OPF)_document" xml:space="preserve">
+    <value>Valitse input OPF pakettitiedoston sisältävä dokumentti</value>
+  </data>
+  <data name="Output_directory" xml:space="preserve">
+    <value>Output hakemisto</value>
+  </data>
+  <data name="Select_the_output_directory" xml:space="preserve">
+    <value>Valitse output hakemisto</value>
+  </data>
+  <data name="Bitrate" xml:space="preserve">
+    <value>Bittinopeus</value>
+  </data>
+  <data name="Select_the_bitrate_of_the_encoded_files" xml:space="preserve">
+    <value>Valitse bittinopeus koodatuille tiedostoille</value>
+  </data>
+  <data name="Input_file" xml:space="preserve">
+    <value>Input_tiedosto</value>
+  </data>
+  <data name="Select_the_input_manifest_file_(NCC,_OPF,_etc)" xml:space="preserve">
+    <value>Valitse input manifest tiedosto (NCC, OPF, etc.)</value>
+  </data>
+  <data name="Base_Name" xml:space="preserve">
+    <value>Kantanimi</value>
+  </data>
+  <data name="The_base_name_used_for_renaming" xml:space="preserve">
+    <value>Kantanimi uudelleen nimeämistä varten</value>
+  </data>
+  <data name="File_types_to_exclude" xml:space="preserve">
+    <value>Poissuljettavat tiedostotyypit</value>
+  </data>
+  <data name="comma_separated_list_of_file_types_to_exclude_from_renaming" xml:space="preserve">
+    <value>pilkuilla erotettu lista poissuljettavista tiedostotyypeistä uudelleen nimeämisessä</value>
+  </data>
+  <data name="Use_only_the_characters_A-Z,a-z,0-9,_hyphen_and_underscore_in_output_filenames" xml:space="preserve">
+    <value>Käytä tiedostonimissä vain merkkejä A-Z, a-z, 0-9, yhdysviiva ja alaviiva</value>
+  </data>
+  <data name="Use_filesystem_safe_names" xml:space="preserve">
+    <value>Käytä tiedostojärjestelmälle turvallisia nimiä</value>
+  </data>
+  <data name="Max_filename_length" xml:space="preserve">
+    <value>Tiedostonimen suurin sallittu pituus</value>
+  </data>
+  <data name="Max._number_of_characters_in_output_filename,_excluding_extension._Default_is_60" xml:space="preserve">
+    <value>Output tiedostonimen suurin sallittu merkkimäärä ilman laajennetta. Oletusarvo on 60.</value>
+  </data>
+</root>
