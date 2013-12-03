@@ -98,6 +98,9 @@
     <Compile Include="ScriptParser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="messages.fi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="messages.fr.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
