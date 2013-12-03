@@ -1,0 +1,2180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="clear_recent_caption" xml:space="preserve">
+    <value>Tyhjennetäänkö viimeisimpien projektien lista?</value>
+  </data>
+  <data name="clear_recent_text" xml:space="preserve">
+    <value>Haluatko varmasti tyhjentää viimeisimpien projektien listan?
+ Toimintoa ei voi kumota.</value>
+  </data>
+  <data name="closed_project" xml:space="preserve">
+    <value>Suljettu projekti"{0}".</value>
+  </data>
+  <data name="closed_project_caption" xml:space="preserve">
+    <value>Suljetaan muokattu projekti</value>
+  </data>
+  <data name="closed_project_text" xml:space="preserve">
+    <value>Olet sulkemassa projektia jonka muutoksia ei ole tallennettu.
+ Haluatko tallentaa muutokset ennen sulkemista?</value>
+  </data>
+  <data name="default_organization" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="default_section_label" xml:space="preserve">
+    <value>Nimeämätön kappale</value>
+  </data>
+  <data name="obi" xml:space="preserve">
+    <value>Obi</value>
+  </data>
+  <data name="open_project_error_caption" xml:space="preserve">
+    <value>Virhe avattaessa projektia</value>
+  </data>
+  <data name="open_project_error_text" xml:space="preserve">
+    <value>Ei voida lukea XUK tiedostoa {0}.</value>
+  </data>
+  <data name="opened_project" xml:space="preserve">
+    <value>Avattu tiedosto"{0}".</value>
+  </data>
+  <data name="ready" xml:space="preserve">
+    <value>Valmis.</value>
+  </data>
+  <data name="redo_label" xml:space="preserve">
+    <value>{0} {1}</value>
+  </data>
+  <data name="save_settings_error_caption" xml:space="preserve">
+    <value>Asetuksia ei voitu tallentaa</value>
+  </data>
+  <data name="save_settings_error_text" xml:space="preserve">
+    <value>Seuraava virhe tapahtui yritettäessä tallentaa asetuksia:"{0}"
+Seurauksena, että nyt tehdyt asetusmuutokset eivät tallentuneet.
+ No hyvä on.</value>
+  </data>
+  <data name="saved_project" xml:space="preserve">
+    <value>Projekti tallennettu tiedostoon"{0}".</value>
+  </data>
+  <data name="undo_label" xml:space="preserve">
+    <value>{0} {1}</value>
+  </data>
+  <data name="create_directory_text" xml:space="preserve">
+    <value>Hakemistoa"{0}" ei ole. Haluatko luoda sen?</value>
+  </data>
+  <data name="redo" xml:space="preserve">
+    <value>Tee &amp;uudelleen</value>
+  </data>
+  <data name="undo" xml:space="preserve">
+    <value>&amp;Kumoa</value>
+  </data>
+  <data name="no_device_found_caption" xml:space="preserve">
+    <value>Äänilaitteita ei löydy</value>
+  </data>
+  <data name="no_device_found_text" xml:space="preserve">
+    <value>Äänen input- ja output-laitteita ei voitu valita.
+ Tarkista, että DirectX 9c on oikein asennettu.</value>
+  </data>
+  <data name="no_output_device_caption" xml:space="preserve">
+    <value>Äänen output-laitetta ei löydy</value>
+  </data>
+  <data name="no_output_device_text" xml:space="preserve">
+    <value>Äänen output-laitetta ei voitu valita: yhtään ei löydy</value>
+  </data>
+  <data name="create_directory_caption" xml:space="preserve">
+    <value>Luodaanko hakemisto?</value>
+  </data>
+  <data name="mono" xml:space="preserve">
+    <value>Mono</value>
+  </data>
+  <data name="stereo" xml:space="preserve">
+    <value>Stereo</value>
+  </data>
+  <data name="no_input_device_caption" xml:space="preserve">
+    <value>Äänen input-laitetta ei löydy</value>
+  </data>
+  <data name="no_input_device_text" xml:space="preserve">
+    <value>Äänen intput-laitetta ei voitu valita: yhtään ei löydy</value>
+  </data>
+  <data name="record" xml:space="preserve">
+    <value>&amp;Äänitys</value>
+  </data>
+  <data name="obi_filter" xml:space="preserve">
+    <value>Obi projektitiedosto  (*.obi)|*.obi|Any file|*.*</value>
+  </data>
+  <data name="report_delete_error" xml:space="preserve">
+    <value>Virhe poistettaessa tiedostoa {0}. ({1})</value>
+  </data>
+  <data name="audio_file_filter" xml:space="preserve">
+    <value>WAVE tiedosto  (*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*</value>
+  </data>
+  <data name="Monitoring" xml:space="preserve">
+    <value>Monitoroidaan äänen sisäänmenoa...</value>
+  </data>
+  <data name="page_number" xml:space="preserve">
+    <value>sivu {0}</value>
+  </data>
+  <data name="normal_phrase" xml:space="preserve">
+    <value>Lause</value>
+  </data>
+  <data name="saved_as_daisy_text" xml:space="preserve">
+    <value>Viedään projekti DAISY hakemistoon {0}</value>
+  </data>
+  <data name="title_bar" xml:space="preserve">
+    <value>{0}{1} ({2}) - {3}</value>
+  </data>
+  <data name="export_choose_folder" xml:space="preserve">
+    <value>Valitse hakemisto johon DAISY kirja tallennetaan.</value>
+  </data>
+  <data name="default_directory_browser" xml:space="preserve">
+    <value>Valitse alta projektien oletushakemisto.</value>
+  </data>
+  <data name="export_directory_browser" xml:space="preserve">
+    <value>Valitse alta oletushakemisto export-toiminnolle.</value>
+  </data>
+  <data name="playback_rate" xml:space="preserve">
+    <value>Toistonopeus x{0} in {1}</value>
+  </data>
+  <data name="Recording" xml:space="preserve">
+    <value>Äänitys...</value>
+  </data>
+  <data name="cannot_create_file_caption" xml:space="preserve">
+    <value>Projektitiedostoa ei voi luoda</value>
+  </data>
+  <data name="cannot_create_file_text" xml:space="preserve">
+    <value>Projektitiedostoa "{0}": {1} ei voi luoda.</value>
+  </data>
+  <data name="cannot_create_directory_caption" xml:space="preserve">
+    <value>Hakemistoa ei voi luoda</value>
+  </data>
+  <data name="cannot_create_directory_text" xml:space="preserve">
+    <value>Hakemistoa "{0}": {1} ei voi luoda.</value>
+  </data>
+  <data name="cannot_delete_caption" xml:space="preserve">
+    <value>Tiedostoa ei voi poistaa</value>
+  </data>
+  <data name="cannot_delete_text" xml:space="preserve">
+    <value>Tiedostoa  {0} ei voi poistaa. Paina OK tai Peruuta. (Syynä:  {1})</value>
+  </data>
+  <data name="empty_directory_caption" xml:space="preserve">
+    <value>Export-toiminto hakemistoon, joka ei ole tyhjä</value>
+  </data>
+  <data name="empty_directory_text" xml:space="preserve">
+    <value>Olet viemässä Daisy-projektia hakemistoon {0}. Tämä hakemisto ei ole tyhjä (mahdollisesti tallensit edellisen version tähän hakemistoon). Haluatko tyhjentää hakemiston ennen vientiä?</value>
+  </data>
+  <data name="didnt_save_as_daisy_caption" xml:space="preserve">
+    <value>Virhe vietäessä DAISY-muotoon.</value>
+  </data>
+  <data name="didnt_save_as_daisy_text" xml:space="preserve">
+    <value>Projektia ei voitu viedä DAISY-muotoon hakemistoon {0}. (Syynä: {1})</value>
+  </data>
+  <data name="saved_as_daisy_caption" xml:space="preserve">
+    <value>Projekti tallennettu DAISY-muotoon.</value>
+  </data>
+  <data name="import_phrase_error_caption" xml:space="preserve">
+    <value>Virhe tuotaessa äänitiedostoa</value>
+  </data>
+  <data name="import_phrase_error_text" xml:space="preserve">
+    <value>Äänitiedostoa "{0}" ei voitu tuoda, koska sen ääniasetukset (kanavat, bittimäärä, näytteenottotaajuus) eivät vastaa projektin asetuksia.</value>
+  </data>
+  <data name="dc_publisher_description" xml:space="preserve">
+    <value>Toimielin, joka vastaa DTB äänikirjojen saatavuudesta.</value>
+  </data>
+  <data name="dc_title_description" xml:space="preserve">
+    <value>DTB Äänikirjan otsikko, mukaan lukien aliotsikot</value>
+  </data>
+  <data name="missing_description" xml:space="preserve">
+    <value>Kuvaus tästä metadata-osasta puuttuu.</value>
+  </data>
+  <data name="help_file_name" xml:space="preserve">
+    <value>help_en.html</value>
+  </data>
+  <data name="error_metadata_name_caption" xml:space="preserve">
+    <value>Metadata-kohdetta ei voi luoda</value>
+  </data>
+  <data name="error_metadata_name_message" xml:space="preserve">
+    <value>Metadata-kohdetta nimellä "{0}" ei voi luoda. Nimi ei ei saa alkaa ”dtb:”</value>
+  </data>
+  <data name="default_project_title" xml:space="preserve">
+    <value>Nimeämätön Obi-projekti</value>
+  </data>
+  <data name="default_project_filename" xml:space="preserve">
+    <value>project.obi</value>
+  </data>
+  <data name="really_use_directory_caption" xml:space="preserve">
+    <value>Tyhjennetäänkö hakemisto ennen sen käyttöä?</value>
+  </data>
+  <data name="really_use_directory_text" xml:space="preserve">
+    <value>Hakemisto  "{0}" ei ole tyhjä. Jos haluat tyhjentää sen ennen käyttöä, valitse ”Kyllä”. Jos haluat käyttää sitä sellaisenaan, valitse ”Ei”.</value>
+  </data>
+  <data name="cannot_redo" xml:space="preserve">
+    <value>Ei voi toistaa</value>
+  </data>
+  <data name="cannot_undo" xml:space="preserve">
+    <value>Ei voi kumota</value>
+  </data>
+  <data name="rename_section" xml:space="preserve">
+    <value>nimeä kappale uudelleen</value>
+  </data>
+  <data name="move_section_out" xml:space="preserve">
+    <value>pudota kappaleen tasoa</value>
+  </data>
+  <data name="move_section_in" xml:space="preserve">
+    <value>nosta kappaleen tasoa</value>
+  </data>
+  <data name="delete_section" xml:space="preserve">
+    <value>poista kappale (syvällinen)</value>
+  </data>
+  <data name="copy_section" xml:space="preserve">
+    <value>kopio kappale (syvällinen)</value>
+  </data>
+  <data name="cut_section" xml:space="preserve">
+    <value>leikkaa kappale (syvällinen)</value>
+  </data>
+  <data name="paste_section" xml:space="preserve">
+    <value>liimaa kappale (syvällinen)</value>
+  </data>
+  <data name="import_phrases" xml:space="preserve">
+    <value>tuo äänitiedostoja</value>
+  </data>
+  <data name="importing_file" xml:space="preserve">
+    <value>tuodaan tiedostoa "{0}"</value>
+  </data>
+  <data name="init_error_text" xml:space="preserve">
+    <value>Tapahtui virhe alustettaessa Obi-ohjelmaa.
+ Ole hyvä ja lähetä virheraportti mukaan lukien sisältö {0}
+Error text: {1}</value>
+  </data>
+  <data name="init_error_caption" xml:space="preserve">
+    <value>Obi-ohjelman alustusvirhe</value>
+  </data>
+  <data name="created_new_project" xml:space="preserve">
+    <value>Luotu uusi projekti "{0}".</value>
+  </data>
+  <data name="delete_phrase" xml:space="preserve">
+    <value>poista lause</value>
+  </data>
+  <data name="delete_section_shallow" xml:space="preserve">
+    <value>poista kappale (pintapuolinen)</value>
+  </data>
+  <data name="cut_section_shallow" xml:space="preserve">
+    <value>leikkaa kappale  (pintapuolinen)</value>
+  </data>
+  <data name="split_section" xml:space="preserve">
+    <value>jaa kappale</value>
+  </data>
+  <data name="merge_sections" xml:space="preserve">
+    <value>yhdistä kappale</value>
+  </data>
+  <data name="cut_phrase" xml:space="preserve">
+    <value>leikkaa lause</value>
+  </data>
+  <data name="copy_phrase" xml:space="preserve">
+    <value>kopioi lause</value>
+  </data>
+  <data name="find_in_text_init" xml:space="preserve">
+    <value>Kirjoita valituista kappaleista haettava teksti.</value>
+  </data>
+  <data name="find_next_in_text" xml:space="preserve">
+    <value>Haetaan eteenpäin...</value>
+  </data>
+  <data name="find_prev_in_text" xml:space="preserve">
+    <value>Haetetaan taaksepäin...</value>
+  </data>
+  <data name="finished_searching_all" xml:space="preserve">
+    <value>Haettu koko teksti.</value>
+  </data>
+  <data name="found_in_text" xml:space="preserve">
+    <value>Löydetty etsitty haku  "{0}".</value>
+  </data>
+  <data name="not_found_in_text" xml:space="preserve">
+    <value>Yhtään hakutulosta ei löytynyt</value>
+  </data>
+  <data name="nothing_to_search" xml:space="preserve">
+    <value>Tyhjä haku!</value>
+  </data>
+  <data name="searching" xml:space="preserve">
+    <value>Haetaan...</value>
+  </data>
+  <data name="please_enter_some_text" xml:space="preserve">
+    <value>Syötä joku teksti.</value>
+  </data>
+  <data name="recording_command" xml:space="preserve">
+    <value>äänitys</value>
+  </data>
+  <data name="start_recording" xml:space="preserve">
+    <value>Aloita äänitys</value>
+  </data>
+  <data name="split_phrase" xml:space="preserve">
+    <value>jaa lause osiin</value>
+  </data>
+  <data name="merge_phrase_with_next" xml:space="preserve">
+    <value>yhdistä lause seuraavaan</value>
+  </data>
+  <data name="paste_phrase" xml:space="preserve">
+    <value>liimaa lause</value>
+  </data>
+  <data name="add_role" xml:space="preserve">
+    <value>(Lisää rooli)</value>
+  </data>
+  <data name="assign_role" xml:space="preserve">
+    <value>määritä rooli</value>
+  </data>
+  <data name="mark_phrase_used" xml:space="preserve">
+    <value>merkitse lause  "{0}"</value>
+  </data>
+  <data name="set_page_number_" xml:space="preserve">
+    <value>aseta sivun numero</value>
+  </data>
+  <data name="add_section" xml:space="preserve">
+    <value>lisää kappale</value>
+  </data>
+  <data name="add_subsection" xml:space="preserve">
+    <value>lisää ala-kappale</value>
+  </data>
+  <data name="mark_section_used" xml:space="preserve">
+    <value>merkitse kappale  "{0}"</value>
+  </data>
+  <data name="cut_audio" xml:space="preserve">
+    <value>leikkaa kappale</value>
+  </data>
+  <data name="delete_audio" xml:space="preserve">
+    <value>poista ääni</value>
+  </data>
+  <data name="default_custom_class_name" xml:space="preserve">
+    <value>Merkintä</value>
+  </data>
+  <data name="no_preceding_silence_phrase" xml:space="preserve">
+    <value>Valintaa edeltävä äänetön lause puuttuu, oletusarvot otetaan käyttöön. Voit muokata oletusarvoja vapaasti, tai peruuttaa ja valita tyhjän lauseen.</value>
+  </data>
+  <data name="paste_audio" xml:space="preserve">
+    <value>liimaa ääni</value>
+  </data>
+  <data name="copy_audio" xml:space="preserve">
+    <value>kopio ääni</value>
+  </data>
+  <data name="phrase_detection" xml:space="preserve">
+    <value>lauseen tunnistus</value>
+  </data>
+  <data name="create_new_project_from_import" xml:space="preserve">
+    <value>Luo uusi projekti import-toiminnolla</value>
+  </data>
+  <data name="import_failed" xml:space="preserve">
+    <value>Projektia ei voitu luoda import-toiminnolla  "{0}"</value>
+  </data>
+  <data name="filter" xml:space="preserve">
+    <value>XHTML, Opf, XML file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|Any file|*.*</value>
+  </data>
+  <data name="blank_phrase" xml:space="preserve">
+    <value>Tyhjä lause</value>
+  </data>
+  <data name="kind_phrase" xml:space="preserve">
+    <value>{0} lause</value>
+  </data>
+  <data name="insert_section" xml:space="preserve">
+    <value>liitä kappale</value>
+  </data>
+  <data name="clean_failed_caption" xml:space="preserve">
+    <value>Projektin siistiminen epäonnistui</value>
+  </data>
+  <data name="clean_failed_text" xml:space="preserve">
+    <value>Obi ei voinut siistiä projektia, todennäköisesti syy on:{0}</value>
+  </data>
+  <data name="clean_up_ask_for_delete_project" xml:space="preserve">
+    <value>Käyttämättömät tiedostot on siirretty roskalaatikkoon. Haluatko poistaa nämä käyttämättömät tiedostot?</value>
+  </data>
+  <data name="clean_save_caption" xml:space="preserve">
+    <value>Tallenna siistimisen jälkeen</value>
+  </data>
+  <data name="delete_unused_data_caption" xml:space="preserve">
+    <value>Poistetaanko käyttämättömät tiedot?</value>
+  </data>
+  <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
+    <value>Käyttämättömien lauseiden poisto.</value>
+  </data>
+  <data name="clean_save_text" xml:space="preserve">
+    <value>Projekti tallennetaan siistimisen jälkeen. Haluatko jatkaa?</value>
+  </data>
+  <data name="delete_unused" xml:space="preserve">
+    <value>poista käyttämätön data</value>
+  </data>
+  <data name="delete_metadata_entry" xml:space="preserve">
+    <value>poista metadata merkintä</value>
+  </data>
+  <data name="modify_metadata_content" xml:space="preserve">
+    <value>muokkaa metadata merkinnän sisältöä</value>
+  </data>
+  <data name="modify_metadata_name" xml:space="preserve">
+    <value>muokkaa metadata merkinnän nimeä</value>
+  </data>
+  <data name="about_file_name" xml:space="preserve">
+    <value>about_en.html</value>
+  </data>
+  <data name="add_blank_pages" xml:space="preserve">
+    <value>lisää tyhjiä sivuja</value>
+  </data>
+  <data name="add_blank_phrase" xml:space="preserve">
+    <value>lisää tyhjiä lauseita</value>
+  </data>
+  <data name="add_metadata_entry" xml:space="preserve">
+    <value>lisää metadata merkintä</value>
+  </data>
+  <data name="choose_import_file" xml:space="preserve">
+    <value>Valitse tiedosto import-toiminnolle</value>
+  </data>
+  <data name="copy_section_shallow" xml:space="preserve">
+    <value>kopio kappale (pintapuolinen)</value>
+  </data>
+  <data name="monitoring_short" xml:space="preserve">
+    <value>Monitorointi</value>
+  </data>
+  <data name="propose_directory_caption" xml:space="preserve">
+    <value>Uuden projektin hakemisto ei ole tyhjä</value>
+  </data>
+  <data name="propose_directory_text" xml:space="preserve">
+    <value>Hakemisto, joka on valittu uuden projektin tallentamiseen, ei ole tyhjä. Onko parempi valita uudelle projektille sijainniksi: "{0}"?</value>
+  </data>
+  <data name="start_monitoring" xml:space="preserve">
+    <value>Aloita monitorointi</value>
+  </data>
+  <data name="content_view" xml:space="preserve">
+    <value>Sisällön näyttö</value>
+  </data>
+  <data name="audio_block_label" xml:space="preserve">
+    <value>{0} {1} of {2}{3}</value>
+  </data>
+  <data name="audio_block_label_unused" xml:space="preserve">
+    <value>, käyttämätön</value>
+  </data>
+  <data name="Paused" xml:space="preserve">
+    <value>Keskeytetty</value>
+  </data>
+  <data name="Playing" xml:space="preserve">
+    <value>Äänen toisto</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Pysäytetty</value>
+  </data>
+  <data name="transport_bar" xml:space="preserve">
+    <value>Etenemispalkki</value>
+  </data>
+  <data name="dc_contributor_description" xml:space="preserve">
+    <value>Osapuoli, jonka panos julkaisuun on toissijainen verrattuna osapuoleen, joka nimetty kohdassa dc:Luoja</value>
+  </data>
+  <data name="dc_coverage_description" xml:space="preserve">
+    <value>Lähteen sisällön laajuus tai alue. Ei yleensä odoteta käytettävän äänikirjoissa (DTB)</value>
+  </data>
+  <data name="dc_creator_description" xml:space="preserve">
+    <value>Julkaisun luovan sisällön ensisijaisten kirjoittajien tai luojien nimet</value>
+  </data>
+  <data name="dc_date_description" xml:space="preserve">
+    <value>Äänikirjan (DTB) julkaisupäivä. (Vertaa dtb:sourceDate ja dtb:produceDate.) ISO8601 määrittelemässä formaatissa; Syntaksi on YYYY[-MM[-DD]] pakollisena 4-numeroisena vuosiluku, valinnaisena kuukausi 2-numeroisena, jos kuukausi merkittynä, valinnaisena kuukaudenpäivä 2-numeroisena.</value>
+  </data>
+  <data name="dc_description_description" xml:space="preserve">
+    <value>Tekstikuvaus julkaisun sisällöstä</value>
+  </data>
+  <data name="dc_format_description" xml:space="preserve">
+    <value>Standardi tai spesifikaatio, jonka mukaisesti äänikirja (DTB) on julkaistu.</value>
+  </data>
+  <data name="dc_identifier_description" xml:space="preserve">
+    <value>Merkkijono tai numero joka identifioi äänikirjan (DTB)</value>
+  </data>
+  <data name="dc_language_description" xml:space="preserve">
+    <value>Julkaisun sisällön kieli. RFC 3066 määrittämän kielikoodin mukaisesti. Suomi: ”fi”; Ruotsi: ”sv” tai ”sv-SE”; UK: ”en” tai ”en-GB”; US: ”en tai ”en-US”; jne.</value>
+  </data>
+  <data name="dc_relation_description" xml:space="preserve">
+    <value>Viittaus liittyvään lähteeseen</value>
+  </data>
+  <data name="dc_rights_description" xml:space="preserve">
+    <value>Tiedot julkaisuun (DTB) liittyvistä oikeuksista. (Vertaa dtb:sourceRights.)</value>
+  </data>
+  <data name="dc_source_description" xml:space="preserve">
+    <value>Viittaus lähteeseen (esim. painettu originaali, ebook, jne.) josta äänikirja (DTB) on peräisin. Paras tapa on käyttää ISBN tunnistetta, jos se on saatavilla.</value>
+  </data>
+  <data name="dc_subject_description" xml:space="preserve">
+    <value>Julkaisun sisällön aihepiiri.</value>
+  </data>
+  <data name="dc_type_description" xml:space="preserve">
+    <value>Äänikirjan (DTB) sisällön luonne (ts. äänite, teksti, kuva). Paras tapa on hyödyntää Dublin Core-määrittelyn listaa.</value>
+  </data>
+  <data name="dtb_audio_format_description" xml:space="preserve">
+    <value>Kokonaistoistoaika kaikille äänikirjan sisältöä käsittäville SMIL tiedostoille. Arvo on SMIL 2.0 Timing and Syncronization Moduulin Clock Value-arvo.</value>
+  </data>
+  <data name="dtb_multimedia_content_description" xml:space="preserve">
+    <value>Yhteenveto yleisistä mediatyypeistä, joita käytetty tämän äänikirjan (DTB) sisällössä. Arvo on pilkulla eroteltu lista ylimmän tason mediatyypeistä, jotka on määritelty [RFC2046].Tämän standardin  nykyisen version mukaisesti, sovellettavia tyyppejä ovat ääni, teksti ja kuva. Media tyypit, joihin viitataan vain NCX, resurssitiedosto tai distInfo ei saa luetella tässä.</value>
+  </data>
+  <data name="dtb_multimedia_type_description" xml:space="preserve">
+    <value>Yksi kuudesta äänikirjan (DTB) tyypistä, jotka on määritelty Structure Guidelines-määrittelyissä. Arvot ovat: audioOnly, audioNCX, audioPartText, audioFullText, textPartAudio, textNCX.</value>
+  </data>
+  <data name="dtb_narrator_description" xml:space="preserve">
+    <value>Äänikirjan(DTB) lukijan nimi.</value>
+  </data>
+  <data name="dtb_produced_date_description" xml:space="preserve">
+    <value>Ensimmäisen painoksen täydellisen äänikirjan (DTB) päiväys, eli tuotanto valmistumisajankohta. (Vertaa dc:Date.)  ISO8601 määrittelemässä formaatissa; Syntaksi on YYYY[-MM[-DD]] pakollisena 4-numeroisena vuosiluku, valinnaisena kuukausi 2-numeroisena, jos kuukausi merkittynä, valinnaisena kuukaudenpäivä 2-numeroisena. kuukauden päivä.</value>
+  </data>
+  <data name="dtb_producer_description" xml:space="preserve">
+    <value>Äänikirjan (DTB) julkaisevan Organisaation / Tuotantoyksikön nimi. (Vertaa dc:Publisher.)</value>
+  </data>
+  <data name="dtb_revision_data_description" xml:space="preserve">
+    <value>Päiväys, joka liittyy tiettyyn äänikirjan (DTB) uudistettuun versioon. (Vertaa dtb:revision). ISO8601 määrittelemässä formaatissa; Syntaksi on YYYY[-MM[-DD]] pakollisena 4-numeroisena vuosiluku, valinnaisena kuukausi 2-numeroisena, jos kuukausi merkittynä, valinnaisena kuukaudenpäivä 2-numeroisena.</value>
+  </data>
+  <data name="dtb_revision_description" xml:space="preserve">
+    <value>Äänikirjan (DTB) versionumeron ei-negatiivinen kokonaislukuarvo. Arvo kasvaa aina kun teosta muutetaan.</value>
+  </data>
+  <data name="dtb_revision_description_description" xml:space="preserve">
+    <value>Merkkijono, joka kuvaa dtb:revision muutokset</value>
+  </data>
+  <data name="dtb_source_date_description" xml:space="preserve">
+    <value>Äänikirjan (DTB) lähteen (esim. painettu julkaisu, ebook, jne.) päiväys.  ISO8601 määrittelemässä formaatissa; Syntaksi on YYYY[-MM[-DD]] pakollisena 4-numeroisena vuosiluku, valinnaisena kuukausi 2-numeroisena, jos kuukausi merkittynä, valinnaisena kuukaudenpäivä 2-numeroisena.</value>
+  </data>
+  <data name="dtb_source_edition_description" xml:space="preserve">
+    <value>Merkkijono, joka kuvaa lähdedokumentin (esim. painettu julkaisu, ebook, jne.) painoksen, josta äänikirja (DTB) on tuotettu.</value>
+  </data>
+  <data name="dtb_source_publisher_description" xml:space="preserve">
+    <value>Laitos, joka on tuottanut lähdedokumentin (esim. painettu julkaisu, ebook, jne.), josta äänikirja (DTB) on tuotettu. (Vertaa dc:Publisher.)</value>
+  </data>
+  <data name="dtb_source_rights_description" xml:space="preserve">
+    <value>Laitos, joka on tuottanut lähdedokumentin (esim. painettu julkaisu, ebook, jne.), josta äänikirja (DTB) on tuotettu. (Vertaa dc:Publisher.)</value>
+  </data>
+  <data name="dtb_source_title_description" xml:space="preserve">
+    <value>Äänikirjan (DTB) lähteen (esim. painettu julkaisu, ebook, jne.) nimike. Käytetään vain, jos eri kuin dc:Title.</value>
+  </data>
+  <data name="dtb_total_time_description" xml:space="preserve">
+    <value>Kokonaistoistoaika kaikille äänikirjan sisältöä käsittäville SMIL tiedostoille. Arvo on SMIL 2.0 Timing and Syncronizatio Moduulin Clock Value-arvo.</value>
+  </data>
+  <data name="generator_description" xml:space="preserve">
+    <value>Tämän äänikirjan (DTB) tuottanut ohjelmisto.</value>
+  </data>
+  <data name="modify_metadata_entry" xml:space="preserve">
+    <value>muokkaa metadata merkintää</value>
+  </data>
+  <data name="obi_xuk_version_description" xml:space="preserve">
+    <value>Obi/XUK versiotunniste</value>
+  </data>
+  <data name="metadata_name_error_caption" xml:space="preserve">
+    <value>Metadata nimi virheellinen</value>
+  </data>
+  <data name="metadata_name_error_text" xml:space="preserve">
+    <value>Metadatan nimenä ei voi käyttää "{0}".</value>
+  </data>
+  <data name="metadata_custom" xml:space="preserve">
+    <value>käytäntö</value>
+  </data>
+  <data name="empty" xml:space="preserve">
+    <value>tyhjä</value>
+  </data>
+  <data name="node_selection_to_string" xml:space="preserve">
+    <value>Valittu  {0} kohdassa {1}</value>
+  </data>
+  <data name="phrase_extra_custom" xml:space="preserve">
+    <value>, {0}</value>
+  </data>
+  <data name="phrase_extra_Heading" xml:space="preserve">
+    <value>, otsikko</value>
+  </data>
+  <data name="phrase_extra_page" xml:space="preserve">
+    <value>, sivunumero  {0}</value>
+  </data>
+  <data name="phrase_extra_Plain" xml:space="preserve">
+    <value />
+  </data>
+  <data name="phrase_extra_Silence" xml:space="preserve">
+    <value>, äänetön</value>
+  </data>
+  <data name="phrase_extra_TODO" xml:space="preserve">
+    <value>, keskeneräinen</value>
+  </data>
+  <data name="phrase_node_to_string" xml:space="preserve">
+    <value>lause (pituus: {1})</value>
+  </data>
+  <data name="phrase_short_custom" xml:space="preserve">
+    <value>"{0}"</value>
+  </data>
+  <data name="phrase_short_Heading" xml:space="preserve">
+    <value>Otsikko</value>
+  </data>
+  <data name="phrase_short_page" xml:space="preserve">
+    <value>Sivu {0}</value>
+  </data>
+  <data name="phrase_short_Plain" xml:space="preserve">
+    <value>Lause</value>
+  </data>
+  <data name="phrase_short_Silence" xml:space="preserve">
+    <value>Äänetön</value>
+  </data>
+  <data name="phrase_short_to_string" xml:space="preserve">
+    <value>{0}{1} ({2})</value>
+  </data>
+  <data name="phrase_short_TODO" xml:space="preserve">
+    <value>*keskeneräinen*</value>
+  </data>
+  <data name="phrase_to_string" xml:space="preserve">
+    <value>{0}{1}lause {2} of {3} ({4}){5}</value>
+  </data>
+  <data name="section_level_to_string" xml:space="preserve">
+    <value>, syvyys  {0}</value>
+  </data>
+  <data name="section_one_phrase_to_string" xml:space="preserve">
+    <value>, 1 lause</value>
+  </data>
+  <data name="section_phrases_to_string" xml:space="preserve">
+    <value>,  {0} lausetta</value>
+  </data>
+  <data name="section_to_string" xml:space="preserve">
+    <value>{0}kappale "{1}" ({2}{3}{4})</value>
+  </data>
+  <data name="strips_view_to_string" xml:space="preserve">
+    <value>sisältönäkymä</value>
+  </data>
+  <data name="toc_view_to_string" xml:space="preserve">
+    <value>Sisällysluettelo-näkymä</value>
+  </data>
+  <data name="unused" xml:space="preserve">
+    <value>käyttämätön</value>
+  </data>
+  <data name="audio_selection_to_string" xml:space="preserve">
+    <value>Valittu ääni kohdassa {0} in {1} in {2}</value>
+  </data>
+  <data name="strip_cursor_selection_to_string" xml:space="preserve">
+    <value>Kappale indeksi {0} in {1} in {2}</value>
+  </data>
+  <data name="text_selection_to_string" xml:space="preserve">
+    <value>Valittu teksti kohdasta {0} in {1} in {2}</value>
+  </data>
+  <data name="obi_url" xml:space="preserve">
+    <value>http://www.daisy.org/obi/</value>
+  </data>
+  <data name="max_phrase_duration_invalid_input" xml:space="preserve">
+    <value>Virheellinen arvo lauseen maksimi pituudelle. Syötä minuuteille nollaa suurempi kokonaisluku.</value>
+  </data>
+  <data name="rendering_waveform" xml:space="preserve">
+    <value>Tulkitaan aaltomuotoa...</value>
+  </data>
+  <data name="duration_h_mm_ss" xml:space="preserve">
+    <value>{0}:{1:00}:{2:00}</value>
+  </data>
+  <data name="duration_mm_ss" xml:space="preserve">
+    <value>{0:00}:{1:00}</value>
+  </data>
+  <data name="duration_s_ms" xml:space="preserve">
+    <value>{0:0.00}s</value>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>tunti</value>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>tuntia</value>
+  </data>
+  <data name="long_addl_time" xml:space="preserve">
+    <value> {0} {1}</value>
+  </data>
+  <data name="long_h_mm_ss" xml:space="preserve">
+    <value>{0} {1}{2}{3}</value>
+  </data>
+  <data name="long_mm_ss" xml:space="preserve">
+    <value>{0} {1}{2}</value>
+  </data>
+  <data name="long_s_ms" xml:space="preserve">
+    <value>{0:0.00} {1}</value>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>minuutti</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>minuuttia</value>
+  </data>
+  <data name="node_position" xml:space="preserve">
+    <value>{0} of {1}</value>
+  </data>
+  <data name="second" xml:space="preserve">
+    <value>sekunti</value>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>sekuntia</value>
+  </data>
+  <data name="section_level" xml:space="preserve">
+    <value>"{0}" (level {1})</value>
+  </data>
+  <data name="top_level_section" xml:space="preserve">
+    <value>Tämä on ylimmän tason kappale</value>
+  </data>
+  <data name="update_section" xml:space="preserve">
+    <value>päivitä kappale</value>
+  </data>
+  <data name="update_phrase" xml:space="preserve">
+    <value>päivitä lause</value>
+  </data>
+  <data name="error_adding_page_number" xml:space="preserve">
+    <value>Virhe lisättäessä sivunumero: ylemmän tason kappaletta ei löydy</value>
+  </data>
+  <data name="import_failed_caption" xml:space="preserve">
+    <value>Import-toiminto epäonnistui</value>
+  </data>
+  <data name="no_headings_found" xml:space="preserve">
+    <value>Otsikoita (h1, h2, jne.) ei löydy XHTML dokumentista.</value>
+  </data>
+  <data name="wrong_heading_order" xml:space="preserve">
+    <value>Otsikko-elementit ovat väärässä järjestyksessä.</value>
+  </data>
+  <data name="dtb_encode_error" xml:space="preserve">
+    <value>Virhe koodattaessa äänikirjaa (DTB): {0}</value>
+  </data>
+  <data name="dtb_encode_error_caption" xml:space="preserve">
+    <value>Äänikirjan (DTB) koodausvirhe</value>
+  </data>
+  <data name="dtb_filter" xml:space="preserve">
+    <value>Äänikirjan (DTB) pakettitiedosto (*.opf)*.opf|Any file|*.*</value>
+  </data>
+  <data name="dtb_validate_error" xml:space="preserve">
+    <value>Virhe äänikirjan (DTB) validointivaiheessa: {0}</value>
+  </data>
+  <data name="dtb_validate_error_caption" xml:space="preserve">
+    <value>Äänikirjan (DTB) validointivirhe</value>
+  </data>
+  <data name="no_script" xml:space="preserve">
+    <value>Komentosarja tiedostoa ei löydy paikassa "{0}".</value>
+  </data>
+  <data name="pipeline_path_browser" xml:space="preserve">
+    <value>Valitse pipeline-komentosarjan sijaintipaikka alta.</value>
+  </data>
+  <data name="xml_filter" xml:space="preserve">
+    <value>XML file|*.xml</value>
+  </data>
+  <data name="CannotCreate_InputPath" xml:space="preserve">
+    <value>Polkua ei voi luoda tyypille: input</value>
+  </data>
+  <data name="Caption_Error" xml:space="preserve">
+    <value>VIRHE</value>
+  </data>
+  <data name="save_before_save_as_caption" xml:space="preserve">
+    <value>Tallenna ennen nimellä tallennusta?</value>
+  </data>
+  <data name="Choose_OtherDirectory" xml:space="preserve">
+    <value>Valitse joku toinen hakemisto</value>
+  </data>
+  <data name="IndexNotInRange" xml:space="preserve">
+    <value>Indeksi ei ole alueella</value>
+  </data>
+  <data name="Invalid_ScriptParameters" xml:space="preserve">
+    <value>Yksi tai useampi parametri on virheellinen</value>
+  </data>
+  <data name="No_Path" xml:space="preserve">
+    <value>polkua ei ole olemassa</value>
+  </data>
+  <data name="NotAbleToCreateDirectory" xml:space="preserve">
+    <value>Ei voi luoda hakemistoa{0}</value>
+  </data>
+  <data name="NotAbleToSelectItem" xml:space="preserve">
+    <value>Kohtaa ei voi valita</value>
+  </data>
+  <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
+    <value>Output-hakemistoa ei löydy.\n Haluatko luoda sen?</value>
+  </data>
+  <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
+    <value>Output-hakemisto ei ole tyhjä! Haluatko tyhjentää sen?</value>
+  </data>
+  <data name="Front_pages" xml:space="preserve">
+    <value>etusivut</value>
+  </data>
+  <data name="Normal_pages" xml:space="preserve">
+    <value>normaalisivut</value>
+  </data>
+  <data name="renumber_before_export" xml:space="preserve">
+    <value>Projektia ei voi viedä export-toiminnolla, koska siinä on vähintään kaksi sivua numerolla {0}. Haluatko uudelleen numeroida sivut automaattisesti ja jatkaa toimintoa? Muutoin toiminto keskeytetään.</value>
+  </data>
+  <data name="renumber_before_export_caption" xml:space="preserve">
+    <value>Useampi saman numeroinen sivu projektissa.</value>
+  </data>
+  <data name="renumber_pages" xml:space="preserve">
+    <value>numeroi uudelleen {0}</value>
+  </data>
+  <data name="crop_audio" xml:space="preserve">
+    <value>rajaa äänitiedosto</value>
+  </data>
+  <data name="save_as_error_same_directory" xml:space="preserve">
+    <value>Tallennusta ei voi tehdä samaan hakemistoon alkuperäisen projektin kanssa. Valitse joku toinen paikka.</value>
+  </data>
+  <data name="save_before_save_as" xml:space="preserve">
+    <value>Haluatko tallentaa muutokset ennen tallennusta uuteen paikkaan?</value>
+  </data>
+  <data name="no_primary_export_directory" xml:space="preserve">
+    <value>DAISY vientihakemistoa ei löydy. Valitse polku export-toiminnolle tai vie projekti DAISY-muotoon.</value>
+  </data>
+  <data name="section_unexported" xml:space="preserve">
+    <value>Kappaleella "{0}" ei ole äänisisältöä, eikä sitä,eikä sen alemman tason kappaleita viedä export-toiminnolla. Haluatko jatkaa?</value>
+  </data>
+  <data name="section_unexported_caption" xml:space="preserve">
+    <value>Kappaletta ei viedä export-toiminnolla</value>
+  </data>
+  <data name="default_export_dirname" xml:space="preserve">
+    <value>{0}DAISY3 Export</value>
+  </data>
+  <data name="ObiForm_PipelineNotFound" xml:space="preserve">
+    <value>Pipeline-komentosarjaa ei löydy kohdassa {0}. Siitä riippuvat ominaisuudet eivät ehkä toimi.</value>
+  </data>
+  <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
+    <value>Yksi tai useampi parametri on virheellinen. Syötä kelvolliset parametrit.</value>
+  </data>
+  <data name="recording_resume_check" xml:space="preserve">
+    <value>Äänitys jatkuu keskeytystilasta. Valitse Kyllä jatkumaan keskeytyskohdasta, valitse Ei jatkumaan nykyisestä valinnasta.</value>
+  </data>
+  <data name="duration_hh_mm_ss" xml:space="preserve">
+    <value>{0:00}:{1:00}:{2:00}</value>
+  </data>
+  <data name="export_progress_dialog_title" xml:space="preserve">
+    <value>Export-toiminta käynnissä... Odota, toiminto saattaa kestää useita minuutteja.</value>
+  </data>
+  <data name="role_Custom" xml:space="preserve">
+    <value>Mukautettu</value>
+  </data>
+  <data name="role_Heading" xml:space="preserve">
+    <value>Otsikko</value>
+  </data>
+  <data name="role_Page" xml:space="preserve">
+    <value>Sivu</value>
+  </data>
+  <data name="role_Plain" xml:space="preserve">
+    <value>Tavallinen</value>
+  </data>
+  <data name="role_Silence" xml:space="preserve">
+    <value>Äänetön</value>
+  </data>
+  <data name="could_not_clean_up" xml:space="preserve">
+    <value>Viallinen projekti, ei voi poistaa.  {0} Voit yrittää poistaa tiedostot käsin. Pahoittelut.
+</value>
+  </data>
+  <data name="could_not_clean_up_caption" xml:space="preserve">
+    <value>Viallinen projekti, ei voi poistaa.</value>
+  </data>
+  <data name="import_progress_dialog_title" xml:space="preserve">
+    <value>Import-toiminta käynnissä....</value>
+  </data>
+  <data name="import_audio_progress_dialog_title" xml:space="preserve">
+    <value>Importoidaan äänitiedostoa...</value>
+  </data>
+  <data name="cleaning_up" xml:space="preserve">
+    <value>Siistitään...</value>
+  </data>
+  <data name="remove_custom_class" xml:space="preserve">
+    <value>poista mukautettu luokka</value>
+  </data>
+  <data name="strip_cursor_accessible_name" xml:space="preserve">
+    <value>Suikaloi kursorikohdasta  {0}-{1}</value>
+  </data>
+  <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
+    <value>Arvon tullee olla alueen  {0} ja {1} välillä</value>
+  </data>
+  <data name="Pipeline_OutOfRange" xml:space="preserve">
+    <value>Arvo ei ole odotetulla alueella</value>
+  </data>
+  <data name="Pipeline_InvalidString" xml:space="preserve">
+    <value>virheellinen input-arvo</value>
+  </data>
+  <data name="save_as_new_directory_name" xml:space="preserve">
+    <value>{0} kopio</value>
+  </data>
+  <data name="cannot_use_project_path" xml:space="preserve">
+    <value>Valittua sijaintia "{0}" ei voi käyttää tallentamaan: {1}</value>
+  </data>
+  <data name="cannot_use_project_path_caption" xml:space="preserve">
+    <value>Valittua sijaintia ei voi käyttää</value>
+  </data>
+  <data name="extension_warning" xml:space="preserve">
+    <value>Olet tallentamassa projektia laajenteella {0}. Suositeltavaa on, että käytät .obi laajennetta. Haluatko varmasti käyttää valittua laajennetta?</value>
+  </data>
+  <data name="extension_warning_caption" xml:space="preserve">
+    <value>Tiedostolaajenteen varoitus</value>
+  </data>
+  <data name="save_as_failed" xml:space="preserve">
+    <value>Tallennus epäonnistui sijaintipaikkakaan "{0}": {1}</value>
+  </data>
+  <data name="save_as_failed_caption" xml:space="preserve">
+    <value>Tallennus epäonnistui</value>
+  </data>
+  <data name="cannot_empty_directory" xml:space="preserve">
+    <value>Hakemistoa "{0}": {1} ei voi tyhjentää</value>
+  </data>
+  <data name="cannot_empty_directory_caption" xml:space="preserve">
+    <value>Hakemistoa ei voi tyhjentää</value>
+  </data>
+  <data name="toggle_TODO" xml:space="preserve">
+    <value>vaihtele keskeneräinen-tilaa</value>
+  </data>
+  <data name="recording_resume_check_caption" xml:space="preserve">
+    <value>Jatka äänitystä keskeytyskohdasta?</value>
+  </data>
+  <data name="save_as_progress_dialog_title" xml:space="preserve">
+    <value>Tallennetaan projektia uuteen paikkaan...</value>
+  </data>
+  <data name="InvalidPaths" xml:space="preserve">
+    <value>Yksi tai useampi polku on väärä!</value>
+  </data>
+  <data name="project_lock_error" xml:space="preserve">
+    <value>Projektin lukkotiedostoa ei voitu luoda paikkaan "{0}": {1}</value>
+  </data>
+  <data name="project_locked" xml:space="preserve">
+    <value>Projekti on lukittu, oletettavasti ongelman syynä joko projektin aiemman istunnon epäonnistunut lopetus, tai avoin toinen Obi-istunto samasta projektista. Jos olet varma, ettei muita istuntoja ole. Voit yrittää poistaa lukitustiedoston "{0}", mutta otot samalla tietoisen riskin.</value>
+  </data>
+  <data name="no_preceding_silence_phrase_caption" xml:space="preserve">
+    <value>Ei edeltävää äänetöntä lausetta</value>
+  </data>
+  <data name="phrase_detection_progress_dialog_title" xml:space="preserve">
+    <value>Toteutetaan lauseen tunnistusta...</value>
+  </data>
+  <data name="MetadataView_CannotCommitEmptyContent" xml:space="preserve">
+    <value>Metadatassa ei voi olla tyhjää arvoa</value>
+  </data>
+  <data name="location_error" xml:space="preserve">
+    <value>Virhe tiedoston sijainnissa</value>
+  </data>
+  <data name="path_not_recognized" xml:space="preserve">
+    <value>Polkua "{0}" ei tunnisteta ({1}).</value>
+  </data>
+  <data name="path_not_rooted" xml:space="preserve">
+    <value>Polulla "{0}" ei ole juurihakemistoa. Valitse täydellinen polku aseman tunnuksineen.</value>
+  </data>
+  <data name="CHMhelp_file_name" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
+  <data name="phrase_detection_progress" xml:space="preserve">
+    <value>Lauseen tunnistus meneillään...</value>
+  </data>
+  <data name="delete_silence_phrases" xml:space="preserve">
+    <value>Projektissa on äänettömiä lauseita. Paina Kyllä, jolloin ne ja muut käyttämättömät lauseet ja kappaleet poistetaan. Valitse Ei, jolloin vain käyttämättömät lauseet ja kappaleet poistetaan ja hiljaiset lauseet säilytetään.</value>
+  </data>
+  <data name="delete_silence_phrases_caption" xml:space="preserve">
+    <value>Poistetaanko äänettömät lauseet?</value>
+  </data>
+  <data name="CannotDeleteAtRoot" xml:space="preserve">
+    <value>Poisto toimintoa ei voi suorittaa tällä levyosiolla</value>
+  </data>
+  <data name="PageDialog_InvalidInput" xml:space="preserve">
+    <value>Yhdessä tai useammassa kentässä on kelvoton syöte. Syötä oikeat arvot.</value>
+  </data>
+  <data name="Status_ProjectSaved" xml:space="preserve">
+    <value>Projekti tallennettu, jatka toimintaa...</value>
+  </data>
+  <data name="TransportBar_PlayerExceptionMsg" xml:space="preserve">
+    <value>Toistoa ei voitu käynnistää. Paina OK jatkaaksesi..... {0} {1}</value>
+  </data>
+  <data name="Preference_InvalidKeyExceptionMsg" xml:space="preserve">
+    <value>Epäkelpo koodi määritelty. Valitse toinen näppäinyhdistelmä.... {0} {1}</value>
+  </data>
+  <data name="Player_TryAgain" xml:space="preserve">
+    <value>Yritä uudelleen...  {0} {1}</value>
+  </data>
+  <data name="Metadata_InvalidDateFormat" xml:space="preserve">
+    <value>Epäkelpo päiväys formaatti! Suositeltava formaatti on YYYY-MM-DD tai YYYY.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Virhe äänityksen pysäytyksessä. Paina OK jatkaaksesi...</value>
+  </data>
+  <data name="TransportBar_ErrorInStartingRecording" xml:space="preserve">
+    <value>Virhe äänityksen aloituksessa. Paina OK jatkaaksesi...</value>
+  </data>
+  <data name="RecordingSession_SplitError" xml:space="preserve">
+    <value>Ongelma havaittu lauseen ajoituksessa. Paina OK jatkaaksesi</value>
+  </data>
+  <data name="Block_AccessibleLabel" xml:space="preserve">
+    <value>{0}{1}lause ({2}){3}</value>
+  </data>
+  <data name="Selected_RecordingPhrase" xml:space="preserve">
+    <value>:Lauseen äänitys</value>
+  </data>
+  <data name="Obi_Wiki_Url" xml:space="preserve">
+    <value>http://daisy.trac.cvsdude.com/obi</value>
+  </data>
+  <data name="ErrorInSaving" xml:space="preserve">
+    <value>Tapahtui virhe tallennettaessa.</value>
+  </data>
+  <data name="OpenError_UseCleanUp" xml:space="preserve">
+    <value>Käytä puhdasta viittaamatonta ääntä projektin avautuessa.</value>
+  </data>
+  <data name="ContentHidden_SectionHasOverlimitPhrases" xml:space="preserve">
+    <value>Kappaleessa {0} on suuri määrä lauseita, vain ensimmäiset {1} ovat näkyvillä. Palastele kappale, jotta näet kaikki lauseet näytöllä.</value>
+  </data>
+  <data name="ContentsHidden_PhrasesExceedMaxLimitPerSection" xml:space="preserve">
+    <value>Kappaleen sisältämien lauseiden lukumäärä ylittää määritellyn maksimirajan {0}.</value>
+  </data>
+  <data name="ContentsHidden_StatusMessage" xml:space="preserve">
+    <value>(Sisältö salattu, paina F5 salauksen poistoon)</value>
+  </data>
+  <data name="Operation_Cancelled" xml:space="preserve">
+    <value>Toimintoaa ei voi suorittaa loppuun.</value>
+  </data>
+  <data name="footnote" xml:space="preserve">
+    <value>alaviite</value>
+  </data>
+  <data name="sidebar" xml:space="preserve">
+    <value>sivupalkki</value>
+  </data>
+  <data name="prodnote" xml:space="preserve">
+    <value>tuottajan kommentti</value>
+  </data>
+  <data name="note" xml:space="preserve">
+    <value>kommentti</value>
+  </data>
+  <data name="endnote" xml:space="preserve">
+    <value>loppukommentti</value>
+  </data>
+  <data name="annotation" xml:space="preserve">
+    <value>sivuhuomautus</value>
+  </data>
+  <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
+    <value>Tätä käskyä ei voi suorittaa kappaleille, joissa on salattua sisältöä. Poista sisällön salaus ja yritä uudelleen.</value>
+  </data>
+  <data name="ContentsHidden_HideNewPhrases" xml:space="preserve">
+    <value>Toiminto suoritettu, kappaleen sisältö on salattu, joten uudet lisätyt lauseet tulevat myös salatuiksi. Paina F5 salauksen poistoon</value>
+  </data>
+  <data name="ExportError_EmptyProject" xml:space="preserve">
+    <value>Export-toimintoa ei voi suorittaa. Projekti on tyhjä!</value>
+  </data>
+  <data name="ExportAudioOfSelectedNode_Completed" xml:space="preserve">
+    <value>Tiedosto on viety hakemistoon:</value>
+  </data>
+  <data name="ObiFormStatusMsg_ExportingProject" xml:space="preserve">
+    <value>Projektin vienti paikkaan {0}</value>
+  </data>
+  <data name="EachLevel" xml:space="preserve">
+    <value>Kaikki tasot</value>
+  </data>
+  <data name="Level1" xml:space="preserve">
+    <value>Taso 1</value>
+  </data>
+  <data name="Level2" xml:space="preserve">
+    <value>Taso 2</value>
+  </data>
+  <data name="Level3" xml:space="preserve">
+    <value>Taso 3</value>
+  </data>
+  <data name="Level4" xml:space="preserve">
+    <value>Taso 4</value>
+  </data>
+  <data name="Level5" xml:space="preserve">
+    <value>Taso 5</value>
+  </data>
+  <data name="Level6" xml:space="preserve">
+    <value>Taso 6</value>
+  </data>
+  <data name="PageNumber_ReEnterValidNumber" xml:space="preserve">
+    <value>Syötä kelvollinen sivunumero</value>
+  </data>
+  <data name="PhraseProperties_ChangePage" xml:space="preserve">
+    <value>Vaihda sivunumero</value>
+  </data>
+  <data name="Peferences_GUIDonotSupportCulture" xml:space="preserve">
+    <value>Obi-ohjelma ei tue {0} kieltä. Käyttöliittymää ei voi päivittää tälle kielelle.</value>
+  </data>
+  <data name="Preferences_RestartForCultureChange" xml:space="preserve">
+    <value>Obi-ohjelma täytyy käynnistää uudelleen muutosten toteutumiseksi. Tallenna työsi ja käynnistä Obi-ohjelma uudelleen.</value>
+  </data>
+  <data name="Caption_Warning" xml:space="preserve">
+    <value>Varoitus!</value>
+  </data>
+  <data name="Pipeline_DuplicateScript" xml:space="preserve">
+    <value>Samanniminen pipeline-komentosarja {0} havaittu. Latausta ei suoriteta. Paina OK jatkaaksesi.</value>
+  </data>
+  <data name="GoToPageOrPhrase_MoreThanPhraseCount" xml:space="preserve">
+    <value>Lause-indeksi {0} on suurempi kuin lauseiden kokonaismäärä kappaleessa. Jos haluat siirtyä viimeisen lauseen indeksiin:{1} kappaleessa, paina Kyllä.</value>
+  </data>
+  <data name="InvalidInput" xml:space="preserve">
+    <value>Epäkelpo syöte. Syötä kelvollinen arvo.</value>
+  </data>
+  <data name="GoToPageOrPhrase_PageNumberLabel" xml:space="preserve">
+    <value>&amp;Sivunumero:</value>
+  </data>
+  <data name="GoToPageOrPhrase_PhraseIndexLabel" xml:space="preserve">
+    <value>&amp;Lauseindeksi:</value>
+  </data>
+  <data name="obi_DAISY2ExportPath_Description" xml:space="preserve">
+    <value>DAISY 2.02 expoxt-toiminnon polku</value>
+  </data>
+  <data name="obi_DAISY3ExportPath_Description" xml:space="preserve">
+    <value>DAISY 3.0 export-toiminnon polku</value>
+  </data>
+  <data name="AutoSave_Error" xml:space="preserve">
+    <value>Virhe tallennettaessa backup tiedostoon! Jos tämä ilmoitus tulee uudelleen ja uudelleen, voit poistaa automaattitallennuksen asetuksista ja raportoida tästä virheestä.</value>
+  </data>
+  <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
+    <value>DAISY 2.02 expoxt-toiminto</value>
+  </data>
+  <data name="GoToPageOrPhrase_Title" xml:space="preserve">
+    <value>Siirry...</value>
+  </data>
+  <data name="TextVuMeter_LowIndicator" xml:space="preserve">
+    <value>Low:</value>
+  </data>
+  <data name="TextVuMeter_OverloadIndicator" xml:space="preserve">
+    <value>OL </value>
+  </data>
+  <data name="DisableAdvancedRecording" xml:space="preserve">
+    <value>Estä edistynyt äänitys</value>
+  </data>
+  <data name="EnableAdvancedRecording" xml:space="preserve">
+    <value>Salli edistynyt äänitys</value>
+  </data>
+  <data name="ContentViewLabel_NoSection" xml:space="preserve">
+    <value>Ei yhtään kappaletta näytössä</value>
+  </data>
+  <data name="Caption_Information" xml:space="preserve">
+    <value>Tiedot julkaisuun (DTB) liittyvistä oikeuksista. (Vertaa dtb:sourceRights.)</value>
+  </data>
+  <data name="RecordingResumePhrasesDeleted" xml:space="preserve">
+    <value>Keskeytettyä lausetta ei löydy! Äänitys alkaa nykyisestä valinnasta.</value>
+  </data>
+  <data name="Find_ReachedInitialPoint" xml:space="preserve">
+    <value>Etsintä saavutti etsinnän alkupisteen...</value>
+  </data>
+  <data name="RecordingRestriction_CannotCreateStrip" xml:space="preserve">
+    <value>Äänitys aktiivisena! Vain äänitettävän kappaleen sisältö voidaan näyttää.</value>
+  </data>
+  <data name="Delete_RangeOfPhrases" xml:space="preserve">
+    <value>Poista valittu alue lauseita</value>
+  </data>
+  <data name="Merge_RangeOfPhrases" xml:space="preserve">
+    <value>Yhdistä valittu alue lauseita</value>
+  </data>
+  <data name="GotoPageOrPhrase_EnterNumeric" xml:space="preserve">
+    <value>Epäkelpo syöte. Syötä numeerinen arvo.</value>
+  </data>
+  <data name="GotoPage_MissingVal" xml:space="preserve">
+    <value>Arvo puuttuu</value>
+  </data>
+  <data name="SelectPhraseDetection_EndOrStartValMoreThanSectionCount" xml:space="preserve">
+    <value>Alku- tai loppuarvo on suurempi kuin kappaleiden kokonaismäärä</value>
+  </data>
+  <data name="SelectPhraseDetection_EndValIsSmallerThanStart" xml:space="preserve">
+    <value>Loppuarvo on pienempi kuin alkuarvo.</value>
+  </data>
+  <data name="SelectPhraseDetection_MissingStartOrEndVal" xml:space="preserve">
+    <value>Alku- tai loppuarvo puuttuu</value>
+  </data>
+  <data name="Preferences_PipelineScriptNotFound" xml:space="preserve">
+    <value>Pipeline-komentosarjaa ei löydy tästä paikasta</value>
+  </data>
+  <data name="StatusBar_NothingSelected" xml:space="preserve">
+    <value>Valintaa ei ole suoritettu</value>
+  </data>
+  <data name="Executing {0}" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StatusBar_CommandExecuting" xml:space="preserve">
+    <value>Suoritetaan {0}</value>
+  </data>
+  <data name="StatusBar_RecordingInPhrase" xml:space="preserve">
+    <value>Äänitetään {0}</value>
+  </data>
+  <data name="MergePhrases_SizeLimitMessage" xml:space="preserve">
+    <value>Yhdistettyjen lauseiden kestoaika ei voi olla suurempi kuin {0} minuuttia. Vähennä yhdistettävien lauseiden määrää</value>
+  </data>
+  <data name="Metadata_CreatorNameForInitializing" xml:space="preserve">
+    <value>Luojan nimi</value>
+  </data>
+  <data name="Scroll_LoadingScreen" xml:space="preserve">
+    <value>Ladataan näyttöä...</value>
+  </data>
+  <data name="DeleteFollowing_SectionSelection" xml:space="preserve">
+    <value>Tämä poistaa kaikki lauseet valitusta kappaleesta. Haluatko jatkaa?</value>
+  </data>
+  <data name="NewProject_EmptyTitle" xml:space="preserve">
+    <value>Projektilla ei voi olla tyhjää nimikettä.</value>
+  </data>
+  <data name="METADATA_DC_CONTRIBUTOR_HELP" xml:space="preserve">
+    <value>Osapuoli, jonka panos julkaisuun on toisarvoinen verrattuna osapuoliin, jotka nimetty kohdassa dc:Creator</value>
+  </data>
+  <data name="METADATA_DC_COVERAGE_HELP" xml:space="preserve">
+    <value>Lähteen sisällön kattavuus tai laajuus</value>
+  </data>
+  <data name="METADATA_DC_CREATOR_HELP" xml:space="preserve">
+    <value>Luovan sisällön ensisijaisten laatijoiden tai luojien nimet</value>
+  </data>
+  <data name="METADATA_DC_DATE_HELP" xml:space="preserve">
+    <value>Äänikirjan (DTB) julkaisupäivämäärä muodossa YYYY[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DC_DESCRIPTION_HELP" xml:space="preserve">
+    <value>Julkaisun sisällön kuvaava leipäteksti.
+</value>
+  </data>
+  <data name="METADATA_DC_IDENTIFIER_HELP" xml:space="preserve">
+    <value>Äänikirjaa (DTB) kuvaava yksilöllinen alfanumeerinen merkkijono</value>
+  </data>
+  <data name="METADATA_DC_LANGUAGE_HELP" xml:space="preserve">
+    <value>Julkaisun sisällön kieli</value>
+  </data>
+  <data name="METADATA_DC_PUBLISHER_HELP" xml:space="preserve">
+    <value>Äänikirjan (DTB) julkaisusta vastaava toimielin</value>
+  </data>
+  <data name="METADATA_DC_RELATION_HELP" xml:space="preserve">
+    <value>Viittaus liittyvään lähdeaineistoon</value>
+  </data>
+  <data name="METADATA_DC_RIGHTS_HELP" xml:space="preserve">
+    <value>Tiedot äänikirjan (DTB) liittyvistä ja sisältyvistä oikeuksista</value>
+  </data>
+  <data name="METADATA_DC_SOURCE_HELP" xml:space="preserve">
+    <value>Viittaus lähdeaineistoon, josta äänikirja (DTB) on tuotettu</value>
+  </data>
+  <data name="METADATA_DC_SUBJECT_HELP" xml:space="preserve">
+    <value>Sisällön aihepiiri</value>
+  </data>
+  <data name="METADATA_DC_TITLE_HELP" xml:space="preserve">
+    <value>Äänikirjan (DTB) otsikko sisältäen mahdolliset alaotsikot</value>
+  </data>
+  <data name="METADATA_DC_TYPE_HELP" xml:space="preserve">
+    <value>Äänikirjan (DTB) sisällön luonne</value>
+  </data>
+  <data name="METADATA_DTB_NARRATOR_HELP" xml:space="preserve">
+    <value>Äänikirjan lukijan nimi</value>
+  </data>
+  <data name="METADATA_DTB_PRODUCED_DATE_HELP" xml:space="preserve">
+    <value>Päiväys, jolloin äänikirja on tuotettu, muodossa YYYY[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DTB_PRODUCER_HELP" xml:space="preserve">
+    <value>Organisaation tai kirjaston nimi, joka julkaisi äänikirjan (DTB)</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_DATE_HELP" xml:space="preserve">
+    <value>Päiväys, jolloin uusi painos äänikirjasta on tuotettu, muodossa YYYY[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_DESC_HELP" xml:space="preserve">
+    <value>Syötä lyhyt kuvaus muutoksista.
+</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_HELP" xml:space="preserve">
+    <value>Painoksen numero, jos kirjaa on uudistettu.
+</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_DATE_HELP" xml:space="preserve">
+    <value>Painetun teoksen julkaisupäivä, muodossa YYYY[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_EDITION_HELP" xml:space="preserve">
+    <value>Painetun teoksen painos</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_PUBLISHER_HELP" xml:space="preserve">
+    <value>Painetun teoksen julkaisija</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_RIGHTS_HELP" xml:space="preserve">
+    <value>Organisaation nimi, joka omistaa painetun teoksen oikeudet</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_TITLE_HELP" xml:space="preserve">
+    <value>Painetun teoksen otsikko</value>
+  </data>
+  <data name="METADATA_GENERATOR_HELP" xml:space="preserve">
+    <value>Kirjan tuottanut ohjelmisto</value>
+  </data>
+  <data name="METADATA_OBI_XUK_VERSION_HELP" xml:space="preserve">
+    <value>xuk tiedoston versio</value>
+  </data>
+  <data name="METADATA_CUSTOM_HELP" xml:space="preserve">
+    <value>Käyttäjän määrittämä tieto. Syötä metadatalle nimi ja arvo.</value>
+  </data>
+  <data name="Recording_CreateSectionContentsInformation" xml:space="preserve">
+    <value>Sisältöä äänitettävästä kappaleesta: {0} ei näytettävissä. Paina Enter-nappulaa nähdäksesi sisältö ja aloita äänitys.</value>
+  </data>
+  <data name="METADATA_DAISY202_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Obi-ohjelman erityistieto tallennettaessa Daisy 2.02 export-polku</value>
+  </data>
+  <data name="METADATA_DAISY3_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Obi-ohjelman erityistieto tallennettaessa Daisy 3 export-polku</value>
+  </data>
+  <data name="MergePhrases_CountLimitMessage" xml:space="preserve">
+    <value>Yhdistettävien lauseiden lukumäärä ei voi olla suurempi kuin {0}. Valitse suppeampi joukko yhdistettäviä lauseita</value>
+  </data>
+  <data name="Import_Phrase_SizeLimit" xml:space="preserve">
+    <value>Tiedosto on pidempi kuin {0} minuuttia. Tiedosto ositetaan.</value>
+  </data>
+  <data name="Import_AudioFormat_RenameFile" xml:space="preserve">
+    <value>Tiedostolle {0} annetaan uusi nimi {1}, koska saman niminen tiedosto on jo projektin hakemistossa</value>
+  </data>
+  <data name="ImportAudio_ConvertingFormat" xml:space="preserve">
+    <value>Käsitellään tiedostoja ennen import-toimintoa</value>
+  </data>
+  <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
+    <value>{0} (Suorituskyvyn vuoksi vain rajoitettu määrä lauseita näytetään. Klikkaa viimeistä lausetta nähdäksesi enemmän)</value>
+  </data>
+  <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
+    <value>Käyttämättömät lauseet poistetaan projektista</value>
+  </data>
+  <data name="GoToPageorPhrase_PageDonotExist" xml:space="preserve">
+    <value>Sivua ei ole</value>
+  </data>
+  <data name="PerformanceCheck_RAMNearOverflowMsg" xml:space="preserve">
+    <value>Järjestelmä on kuormittunut. Yritä uudelleen hetken kuluttua. Paina Ei toiminnon keskeyttämiseksi.</value>
+  </data>
+  <data name="SelectPhraseOrSection_ShowSection" xml:space="preserve">
+    <value>Haluttu lause ei ole käsiteltävässä kappaleessa. Haluatko nähdä kappaleen, jossa haluttu lause on?</value>
+  </data>
+  <data name="KeyS_FastPlayNormalizeWithElapseBack" xml:space="preserve">
+    <value>Nopea toisto -nopeuden normalisointi ja paluu</value>
+  </data>
+  <data name="KeyS_FastPlayRateNormilize" xml:space="preserve">
+    <value>Nopea toisto -nopeuden normalisointi</value>
+  </data>
+  <data name="KeyS_FastPlayStepDown" xml:space="preserve">
+    <value>Nopea toisto -nopeus ylöspäin</value>
+  </data>
+  <data name="KeyS_FastPlayStepUp" xml:space="preserve">
+    <value>Nopea toisto -nopeus alaspäin</value>
+  </data>
+  <data name="KeyS_FocusOnTransportBarTimeDisplay" xml:space="preserve">
+    <value>Kohdistus aika-näyttöön</value>
+  </data>
+  <data name="KeyS_MarkSelectionBeginTime" xml:space="preserve">
+    <value>Merkitse valinnan alkuaika</value>
+  </data>
+  <data name="KeyS_MarkSelectionEndTime" xml:space="preserve">
+    <value>Merkitse valinnan loppuaika</value>
+  </data>
+  <data name="KeyS_MarkSelectionFromBeginningToTheCursor" xml:space="preserve">
+    <value>Merkitse valinta alkukohdasta kursorikohtaan</value>
+  </data>
+  <data name="KeyS_MarkSelectionFromCursorToTheEnd" xml:space="preserve">
+    <value>Merkitse valinta kursorikohdasta loppuun.</value>
+  </data>
+  <data name="KeyS_MoveToNextViewClockwise" xml:space="preserve">
+    <value>Siirry myötäpäivään seuraavaan näyttöön</value>
+  </data>
+  <data name="KeyS_MoveToPreviousViewAnticlockwise" xml:space="preserve">
+    <value>Siirry vastapäivään edelliseen näyttöön</value>
+  </data>
+  <data name="KeyS_PlayPauseUsingAudioCursor_Default" xml:space="preserve">
+    <value>Toisto/Tauko käyttäen äänikursoria</value>
+  </data>
+  <data name="KeyS_PlayPauseUsingSelection" xml:space="preserve">
+    <value>Toisto/Tauko käyttäen valintaa</value>
+  </data>
+  <data name="KeyS_PlaySelectedWaveform" xml:space="preserve">
+    <value>Toista valittu äänimuoto</value>
+  </data>
+  <data name="KeyS_ScrollDown_LargeIncrementWithSelection" xml:space="preserve">
+    <value>Yksi näyttö alaspäin</value>
+  </data>
+  <data name="KeyS_ScrollDown_SmallIncrementWithSelection" xml:space="preserve">
+    <value>Yksi rivi alaspäin</value>
+  </data>
+  <data name="KeyS_ScrollUp_LargeIncrementWithSelection" xml:space="preserve">
+    <value>Yksi näyttö ylöspäin</value>
+  </data>
+  <data name="KeyS_ScrollUp_SmallIncrementWithSelection" xml:space="preserve">
+    <value>Yksi rivi ylöspäin</value>
+  </data>
+  <data name="KeyS_SelectCompleteWaveform" xml:space="preserve">
+    <value>Valitse koko lauseen äänimuoto</value>
+  </data>
+  <data name="KeyS_SelectFirstPhraseInStrip" xml:space="preserve">
+    <value>Valitse kappaleen ensimmäinen lause</value>
+  </data>
+  <data name="KeyS_SelectFirstStrip" xml:space="preserve">
+    <value>Valitse ensimmäinen kappale sisältönäytöstä</value>
+  </data>
+  <data name="KeyS_SelectFollowingPhrase" xml:space="preserve">
+    <value>Valitse seuraava lause</value>
+  </data>
+  <data name="KeyS_SelectFollowingStrip" xml:space="preserve">
+    <value>Valitse seuraava kappale sisältönäytöstä</value>
+  </data>
+  <data name="KeyS_SelectFollowingStripCursor" xml:space="preserve">
+    <value>Siirrä strip-kursoria eteenpäin</value>
+  </data>
+  <data name="KeyS_SelectLastPhraseInStrip" xml:space="preserve">
+    <value>Valitse kappaleen viimeinen lause</value>
+  </data>
+  <data name="KeyS_SelectLastStrip" xml:space="preserve">
+    <value>Valitse viimeinen kappale sisältönäytöstä</value>
+  </data>
+  <data name="KeyS_SelectNextEmptyPhrase" xml:space="preserve">
+    <value>Valitse seuraava tyhjä lause</value>
+  </data>
+  <data name="KeyS_SelectNextPagePhrase" xml:space="preserve">
+    <value>Valitse seuraava sivu</value>
+  </data>
+  <data name="KeyS_SelectNextSpecialRolePhrase" xml:space="preserve">
+    <value>Valitse seuraava erityisroolin lause</value>
+  </data>
+  <data name="KeyS_SelectPrecedingPagePhrase" xml:space="preserve">
+    <value>Valitse edeltävän sivun lause</value>
+  </data>
+  <data name="KeyS_SelectPrecedingPhrase" xml:space="preserve">
+    <value>Valitse edeltävä lause</value>
+  </data>
+  <data name="KeyS_SelectPrecedingSpecialRolePhrase" xml:space="preserve">
+    <value>Valitse edeltävä erityisroolin lause</value>
+  </data>
+  <data name="KeyS_SelectPrecedingStrip" xml:space="preserve">
+    <value>Valitse edeltävä kappale sisältönäytöstä</value>
+  </data>
+  <data name="KeyS_SelectPrecedingStripCursor" xml:space="preserve">
+    <value>Siirrä strip-kursoria taaksepäin</value>
+  </data>
+  <data name="KeyS_SelectUp" xml:space="preserve">
+    <value>Valitse ylös</value>
+  </data>
+  <data name="KeyS_ShowPropertiesOfSelectedNode" xml:space="preserve">
+    <value>Näytä valitun tietosolun ominaisuudet</value>
+  </data>
+  <data name="KeyS_ToggleBetweenContentViewAndTOCView" xml:space="preserve">
+    <value>Vaihtele TOC-näytön ja sisältönäytön välillä</value>
+  </data>
+  <data name="KeyS_TransportBarNextPage" xml:space="preserve">
+    <value>Seuraava sivu toistolistalla</value>
+  </data>
+  <data name="KeyS_TransportBarNextPhrase" xml:space="preserve">
+    <value>Seuraava lause toistolistalla</value>
+  </data>
+  <data name="KeyS_TransportBarNextSection" xml:space="preserve">
+    <value>Seuraava kappale toistolistalla</value>
+  </data>
+  <data name="KeyS_TransportBarNudgeBackward" xml:space="preserve">
+    <value>Hiplaa taaksepäin</value>
+  </data>
+  <data name="KeyS_TransportBarNudgeForward" xml:space="preserve">
+    <value>Hiplaa eteenpäin</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewFromAudioCursor" xml:space="preserve">
+    <value>Esikatselu ääni-kursorista</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewFromSelection" xml:space="preserve">
+    <value>Esikatselu valinnasta</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewUptoAudioCursor" xml:space="preserve">
+    <value>Esikatselu ääni-kursoriin asti</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewUptoSelection" xml:space="preserve">
+    <value>Esikatselu Valintaan asti</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousPage" xml:space="preserve">
+    <value>Edellinen sivu toistolistalla</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousPhrase" xml:space="preserve">
+    <value>Edellinen lause toistolistalla</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousSection" xml:space="preserve">
+    <value>Edellinen kappale toistolistalla</value>
+  </data>
+  <data name="KeyboardShortcut_DuplicateMessage" xml:space="preserve">
+    <value>Pikavalinta on jo olemassa. Määrittele toinen yhdistelmä.</value>
+  </data>
+  <data name="KeyboardShortcuts_ErrorInLoadingConfiguredKeys" xml:space="preserve">
+    <value>Virhe ladattaessa määriteltyä pikavalintaa. Palautetaan oletusasetus.</value>
+  </data>
+  <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
+    <value>Export-toiminto äänitiedostolle...</value>
+  </data>
+  <data name="OpenProject_progress_dialog_title" xml:space="preserve">
+    <value>Avataan projektia...Odota.</value>
+  </data>
+  <data name="RecordingToolBar_StatusPlaying" xml:space="preserve">
+    <value>Toistetaan  {0} {1}</value>
+  </data>
+  <data name="import_output_path" xml:space="preserve">
+    <value>Daisy-kirja on onnistuneesti tuotu  {0} {1}</value>
+  </data>
+  <data name="RecToolbar_MarkedTODO" xml:space="preserve">
+    <value>Merkitty keskeneräiseksi</value>
+  </data>
+  <data name="RecToolbar_NewPage" xml:space="preserve">
+    <value>Uusi sivu</value>
+  </data>
+  <data name="RecToolbar_NewPhrase" xml:space="preserve">
+    <value>Uusi lause</value>
+  </data>
+  <data name="RecToolbar_NewSection" xml:space="preserve">
+    <value>Uusi kappale</value>
+  </data>
+  <data name="RecToolbar_Recording" xml:space="preserve">
+    <value>Äänitetään  {0} {1}</value>
+  </data>
+  <data name="RecToolbar_Title" xml:space="preserve">
+    <value>Obi äänityspalkki</value>
+  </data>
+  <data name="bookmark_closed_project_caption" xml:space="preserve">
+    <value>Suljetaan projekti</value>
+  </data>
+  <data name="SaveSelectedNodeAsBookmark" xml:space="preserve">
+    <value>Täällä hetkellä valittu tietosolu ei ole sama kuin kirjanmerkkinä tallennettu. Haluatko tallentaa tämän tietosolun kirjanmerkiksi? Projekti tallennetaan samalla.</value>
+  </data>
+  <data name="UseDefaultValues" xml:space="preserve">
+    <value>Käytä oletusasetuksia</value>
+  </data>
+  <data name="SelectDeselectAllSections" xml:space="preserve">
+    <value>Valitse / Vapauta kaikki kappaleet</value>
+  </data>
+  <data name="upgrade_obi_to_new_version" xml:space="preserve">
+    <value>Projekti on luotu Obi-ohjelman aiemmalla versiolla. Päivitetään viimeisimpään versioon. Paina OK jatkaaksesi.</value>
+  </data>
+  <data name="upgrading_obi" xml:space="preserve">
+    <value>Projektia päivitetään</value>
+  </data>
+  <data name="Obi_NewFeaturesWebpage" xml:space="preserve">
+    <value>http://daisy.trac.cvsdude.com/obi/wiki/documentation/Obi2.0_FeaturesExplanation</value>
+  </data>
+  <data name="Cleanup_WaveformLoadingWarning" xml:space="preserve">
+    <value>Ladataan äänimuotoa...joitakin tiedostojen äänivirtoja voi olla avoinna. On tärkeää yrittää uudelleen hetken kuluttua. Paina Ei-painiketta odottaaksesi.</value>
+  </data>
+  <data name="ImportProject_OverwriteProjectMsg" xml:space="preserve">
+    <value>Projekti on jo olemassa määritellyssä paikassa. Haluatko korvata olemassa olevan projektin?</value>
+  </data>
+  <data name="no_audio" xml:space="preserve">
+    <value>Valitussa kohteessa ei ole äänisisältöä.</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_error_no_audio" xml:space="preserve">
+    <value>Lause ei ole äänisisältöä</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_expected_clip_end" xml:space="preserve">
+    <value>Odotettu leikkeen loppu:</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_imported_clip_end" xml:space="preserve">
+    <value>Tuodun leikkeen loppu:</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_in_section" xml:space="preserve">
+    <value>kappaleessa:</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_truncated_audio" xml:space="preserve">
+    <value>Typistetty ääni</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_truncated_audio_in_phrase" xml:space="preserve">
+    <value>Typistetty ääni lauseessa</value>
+  </data>
+  <data name="import_cancelled" xml:space="preserve">
+    <value>Tuonti keskeytetty</value>
+  </data>
+  <data name="Report_for_import" xml:space="preserve">
+    <value>Raportti import-toiminnosta</value>
+  </data>
+  <data name="AudioFileImport_ProcessingFiles" xml:space="preserve">
+    <value>Käsitellään tiedostoa import-toimintoa varten</value>
+  </data>
+  <data name="SaveAs_cannot_save_in_root" xml:space="preserve">
+    <value>Tiedostoa ei voi tallentaa kohteeseen: {0}. Valitse toinen paikka.</value>
+  </data>
+  <data name="backup_file_missing" xml:space="preserve">
+    <value>Palautusta ei voi toteuttaa. Backup-tiedostoa ei löydy kohteesta:</value>
+  </data>
+  <data name="information_caption" xml:space="preserve">
+    <value>Tietoja</value>
+  </data>
+  <data name="Save_current_state_caption" xml:space="preserve">
+    <value>Tallenna nykyinen tila?</value>
+  </data>
+  <data name="restored_project_name" xml:space="preserve">
+    <value>Palautettu Project.obi</value>
+  </data>
+  <data name="save_current_state" xml:space="preserve">
+    <value>Tämä toiminto tallentaa projektin nykyisen tilan. Alkuperäistä projektia ei voi tämän jälkeen palauttaa. Haluatko jatkaa?</value>
+  </data>
+  <data name="open_from_backup_file" xml:space="preserve">
+    <value>Projekti avataan backup-tiedostosta. Haluatko jatkaa?</value>
+  </data>
+  <data name="AudioFormatConverter_Error_FileExtentionNodSupported" xml:space="preserve">
+    <value>ääniformaattia ei tunnistettu. Vain .wav ja .mp3 tiedostomuodot käytössä. Import-toiminto ohitetaan tiedostolle {0}</value>
+  </data>
+  <data name="Load_Original_Project" xml:space="preserve">
+    <value>Ladataan alkuperäinen projekti</value>
+  </data>
+  <data name="Open_Backup_file" xml:space="preserve">
+    <value>Avataan backup-tiedostosta</value>
+  </data>
+  <data name="Save_Restore_Project" xml:space="preserve">
+    <value>Tallennetaan palautettu projekti</value>
+  </data>
+  <data name="error_in_opening" xml:space="preserve">
+    <value>Virhe avattaessa</value>
+  </data>
+  <data name="opening_project" xml:space="preserve">
+    <value>Avataan projekti {0}</value>
+  </data>
+  <data name="waveform_is_truncated" xml:space="preserve">
+    <value>Aaltomuoto on typistetty kohdassa {0}s</value>
+  </data>
+  <data name="GoToPageOrPhrase_Time" xml:space="preserve">
+    <value>Aika :</value>
+  </data>
+  <data name="no_phrases_in_section" xml:space="preserve">
+    <value>Tässä kappaleessa ei ole lauseita</value>
+  </data>
+  <data name="select_phrase" xml:space="preserve">
+    <value>Valitse lause</value>
+  </data>
+  <data name="select_phrase_or_section" xml:space="preserve">
+    <value>Valitse jokin lause tai kappale</value>
+  </data>
+  <data name="time_exceeds_duration_phrase" xml:space="preserve">
+    <value>Aika ylittää lauseen kestoajan</value>
+  </data>
+  <data name="time_exceeds_duration_section" xml:space="preserve">
+    <value>Aika ylittää kappaleen kestoajan</value>
+  </data>
+  <data name="AudioTab_AllowOverwrite" xml:space="preserve">
+    <value>Salli päällekirjoitus äänitettäessä</value>
+  </data>
+  <data name="AudioTab_AudioClues" xml:space="preserve">
+    <value>Äänivihjeet</value>
+  </data>
+  <data name="AudioTab_PreviewBeforeRecording" xml:space="preserve">
+    <value>Esikatsele ennen äänitystä</value>
+  </data>
+  <data name="AudioTab_RecordDirectlyFromTransportBar" xml:space="preserve">
+    <value>Tallenna aina suoraan siirtopalkista</value>
+  </data>
+  <data name="AudioTab_RetainInitialSilence" xml:space="preserve">
+    <value>Säilytä alkuhiljaisuus lauseen tunnistustoiminnon aikana</value>
+  </data>
+  <data name="AudioTab_StartRecordingFromCursor" xml:space="preserve">
+    <value>Aloita äänitys kursorikohdasta poistaen sen jälkeinen tallenne</value>
+  </data>
+  <data name="ProjectTab_AutoSaveWhenRecordingEnds" xml:space="preserve">
+    <value>Äänityksen päätyttyä tee backup automaattisesti</value>
+  </data>
+  <data name="ProjectTab_FixContentViewWidth" xml:space="preserve">
+    <value>Sovita sisältönäytön leveys</value>
+  </data>
+  <data name="ProjectTab_OpenLastProject" xml:space="preserve">
+    <value>Avaa viimeisin projekti</value>
+  </data>
+  <data name="ProjectTab_SelectBookmark" xml:space="preserve">
+    <value>Valitse kirjanmerkki kun projekti avataan uudelleen</value>
+  </data>
+  <data name="ProjectTab_OptimizeMemory" xml:space="preserve">
+    <value>Optimoi muistin käyttö</value>
+  </data>
+  <data name="ProjectTab_DeleteUnusedFilesAfterCleanUp" xml:space="preserve">
+    <value>Poista käyttämättömät tiedostot puhdistus-toiminnon jälkeen</value>
+  </data>
+  <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
+    <value>Ääniformaatin päivitys nykyisessä projektissa ei onnistu</value>
+  </data>
+  <data name="AudioTab_Limit max phrase duration to 50 minutes" xml:space="preserve">
+    <value>Rajoita lauseen enimmäispituus 50 minuuttiin</value>
+  </data>
+  <data name="Audio_ShowLiveWaveformWhileRecording" xml:space="preserve">
+    <value>Näytä aaltomuoto äänityksen aikana</value>
+  </data>
+  <data name="KeyboardShortcuts_TextboxAccessibleName" xml:space="preserve">
+    <value>{0} Pikavalinta: (Paina näppäinyhdistelmää)</value>
+  </data>
+  <data name="phrase_extra_Anchor" xml:space="preserve">
+    <value>, linkki</value>
+  </data>
+  <data name="phrase_short_Anchor" xml:space="preserve">
+    <value>Linkki</value>
+  </data>
+  <data name="role_Anchor" xml:space="preserve">
+    <value>Linkki</value>
+  </data>
+  <data name="Associate_next_phrase" xml:space="preserve">
+    <value>Viitattu ohitettava lause poistetaan. Seuraavaan lauseeseen tulee viittaus. Haluatko jatkaa?</value>
+  </data>
+  <data name="Associate_node_with_anchor_node" xml:space="preserve">
+    <value>Tälle linkki-tietosolulle ei ole liitetty mitään erikoislausetta. Tee määritys tälle linkki-tietosolulle.</value>
+  </data>
+  <data name="Associate_show_all" xml:space="preserve">
+    <value>Näytä &amp;kaikki</value>
+  </data>
+  <data name="Associate_show_selected" xml:space="preserve">
+    <value>Näytä &amp;valitut</value>
+  </data>
+  <data name="List_of_anchor_nodes" xml:space="preserve">
+    <value>Luettelo linkki-tietosoluista</value>
+  </data>
+  <data name="Selected_node" xml:space="preserve">
+    <value>Valittu tietosolu</value>
+  </data>
+  <data name="Node_between_chunk" xml:space="preserve">
+    <value>Valittu erityislause on lohkon välissä. Haluatko poistaa sen?</value>
+  </data>
+  <data name="Start_node_different_from_end_node" xml:space="preserve">
+    <value>Tietosolujen alku- ja loppukohta ei voi olla sama. Valitse uusi loppukohta.</value>
+  </data>
+  <data name="Start_node_index_greater_than_end" xml:space="preserve">
+    <value>Tietosolun alkukohta on suurempi kuin loppukohta. Valitse uudelleen.</value>
+  </data>
+  <data name="Export_AnchorErrors" xml:space="preserve">
+    <value>Kappaleen nimi:  {0},Lause: {1}</value>
+  </data>
+  <data name="Export_SkippableWithEmptyNode" xml:space="preserve">
+    <value>Seuraavat linkit viittaavat tyhjiin ohitettaviin lauseisiin, joita ei viedä export-toiminnolla. Paina OK jatkaaksesi kuitenkin tai Poistu korjataksesi virheet.</value>
+  </data>
+  <data name="Anchor_node_error" xml:space="preserve">
+    <value>Linkki-tietosolut ovat tyhjiä, tai ne viittaavat tyhjiin tietosoluihin.</value>
+  </data>
+  <data name="Anchor_node_not_associated" xml:space="preserve">
+    <value>Tälle linkkisolulle ei ole määritetty mitään tietosolua. Määritä solujen välinen linkkiyhteys.</value>
+  </data>
+  <data name="Associate" xml:space="preserve">
+    <value>Määritä tietosolu.</value>
+  </data>
+  <data name="Node_already_associated" xml:space="preserve">
+    <value>Tämä solu on jo liitetty soiseen soluun. Haluatko jatkaa määrittelyä?</value>
+  </data>
+  <data name="Page_not_found" xml:space="preserve">
+    <value>Yhtään sivua ei löydy alueelta</value>
+  </data>
+  <data name="Report_for_export" xml:space="preserve">
+    <value>Export-toiminnon raportti</value>
+  </data>
+  <data name="Show_details" xml:space="preserve">
+    <value>Näytä yksityiskohdat</value>
+  </data>
+  <data name="Hide_details" xml:space="preserve">
+    <value>Piilota yksityiskohdat</value>
+  </data>
+  <data name="MetadataView_InvalidMetadata" xml:space="preserve">
+    <value>Virheellinen metadata</value>
+  </data>
+  <data name="ObiFormMsg_PipelineExtractionFail" xml:space="preserve">
+    <value>Pipeline-komentosarjaa ei voitu purkaa.</value>
+  </data>
+  <data name="ObiFormMsg_RedoFail" xml:space="preserve">
+    <value>Tee uudelleen -toimintoa ei voitu toteuttaa</value>
+  </data>
+  <data name="ObiFormMsg_UndoFail" xml:space="preserve">
+    <value>Peruuta -toimintoa ei voitu toteuttaa</value>
+  </data>
+  <data name="ProjectViewFormMsg_AddingReferenceFail" xml:space="preserve">
+    <value>Referenssin liittäminen epäonnistui</value>
+  </data>
+  <data name="ProjectViewFormMsg_AssigningSkippableFail" xml:space="preserve">
+    <value>Ohitettava -toiminto epäonnistui</value>
+  </data>
+  <data name="ProjectViewFormMsg_CutOperationFail" xml:space="preserve">
+    <value>Leikkaa -toiminto epäonnistui</value>
+  </data>
+  <data name="ProjectViewFormMsg_DeassociatingSkippableFail" xml:space="preserve">
+    <value>Viittauksen irrottaminen ohitettavaan tietosoluun epäonnistui.</value>
+  </data>
+  <data name="ProjectViewFormMsg_DeleteOperationFail" xml:space="preserve">
+    <value>Poistotoiminto epäonnistui.</value>
+  </data>
+  <data name="ProjectViewFormMsg_ExportingAudioFail" xml:space="preserve">
+    <value>Äänitiedoston vienti epäonnistui.</value>
+  </data>
+  <data name="ProjectViewFormMsg_MergeOperationFail" xml:space="preserve">
+    <value>Yhdistäminen epäonnistui.</value>
+  </data>
+  <data name="ProjectViewFormMsg_PasteOperationFail" xml:space="preserve">
+    <value>Liitä -toiminto epäonnistui.</value>
+  </data>
+  <data name="ProjectViewFormMsg_PhraseDetectionFail" xml:space="preserve">
+    <value>Lauseen tunnistus-toiminto epäonnistui.</value>
+  </data>
+  <data name="ProjectViewFormMsg_SplitOperationFail" xml:space="preserve">
+    <value>Jaa -toiminto epäonnistui.</value>
+  </data>
+  <data name="KeyS_SelectFirstSkippableNode" xml:space="preserve">
+    <value>Valitse ensimmäinen lause nykyisestä ohitettavasta huomautuksesta</value>
+  </data>
+  <data name="KeyS_SelectLastSkippableNode" xml:space="preserve">
+    <value>Valitse viimeinen lause nykyisestä ohitettavasta huomautuksesta</value>
+  </data>
+  <data name="KeyS_TransportBarFineNavigationOn" xml:space="preserve">
+    <value>Hienonavigointitila käytössä</value>
+  </data>
+  <data name="KeyS_TransportBarFineNavigationOff" xml:space="preserve">
+    <value>Hienonavigointitila pois käytöstä</value>
+  </data>
+  <data name="StatusMsg_FineNavigation" xml:space="preserve">
+    <value>Hienonavigointi:</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>Seuraavien tunnisteiden mukaiset äänitiedostot puuttuvat:</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Varoitus!</value>
+  </data>
+  <data name="ContentView_wrap" xml:space="preserve">
+    <value>Kappale tai lause pitäisi olla valittuna paketointia varten</value>
+  </data>
+  <data name="limited_sections_merge" xml:space="preserve">
+    <value>Kappaleiden sisältämien lauseiden kokonaismäärä on enemmän kuin 7000. Yhdistetään kappaleeseen {0} asti.</value>
+  </data>
+  <data name="merged_sections" xml:space="preserve">
+    <value>Yhdistettävät kappaleet alkaen {0} ja päättyen {1}</value>
+  </data>
+  <data name="not_enough_sections_to_merge" xml:space="preserve">
+    <value>Yhdistettävien lauseiden määrä riittämätön. Valitse vähintään kaksi lausetta.</value>
+  </data>
+  <data name="phrase_count_more_than_7000" xml:space="preserve">
+    <value>Lauseiden kokonaismäärä on enemmän kuin 7000. Valitse pienempi määrä.</value>
+  </data>
+  <data name="Preferences_advanced_recording_mode" xml:space="preserve">
+    <value>Edistynyt äänitysmoodi.</value>
+  </data>
+  <data name="Preferences_Allow_overwrite" xml:space="preserve">
+    <value>Seuraavat valintaruudut tarkistetaan: Salli päällekirjoitus äänitettäessä, Aloita äänitys kursorikohdasta poistaen sen jälkeinen tallenne ja Tallenna aina suoraan siirtopalkista. Haluatko jatkaa?</value>
+  </data>
+  <data name="select_one_more_section" xml:space="preserve">
+    <value>Valittuna {0}. Valitse yhdistettäväksi ainakin yksi kappale lisää.</value>
+  </data>
+  <data name="ProjectViewMsg_LogFileCreatedOnDesktop" xml:space="preserve">
+    <value>Edellinen Obi-ohjelman istunto keskeytyi yllättäen. Tapahtumaloki on työpöydällä tiedostossa ObiSession.log</value>
+  </data>
+  <data name="AssociateNode_Section" xml:space="preserve">
+    <value>Valinta</value>
+  </data>
+  <data name="AssociateNode_SelectedSection" xml:space="preserve">
+    <value>Virhe:509</value>
+  </data>
+  <data name="LimitedDiskSpaceWarning" xml:space="preserve">
+    <value>Järjestelmän levytilaa jäljellä vähemmän kuin {0} Mb. Haluatko jatkaa?</value>
+  </data>
+  <data name="Memory_Warning" xml:space="preserve">
+    <value>Levytilan tiedot</value>
+  </data>
+  <data name="KeyS_ContractAudioSelectionAtLeft" xml:space="preserve">
+    <value>Supista äänivalinta vasemmalla puolella</value>
+  </data>
+  <data name="KeyS_ExpandAudioSelectionAtLeft" xml:space="preserve">
+    <value>Laajenna äänivalinta vasemmalla puolella</value>
+  </data>
+  <data name="Recording_RecordInNextExistingEmptyPage" xml:space="preserve">
+    <value>Äänitä seuraavalle tyhjälle sivulle</value>
+  </data>
+  <data name="ProjectView_ClearAnchor" xml:space="preserve">
+    <value>Haluatko poistaa ohitettavaan huomautukseen viittaavan linkkitietosolun?</value>
+  </data>
+  <data name="Elapsed" xml:space="preserve">
+    <value>Kulunut</value>
+  </data>
+  <data name="ElapsedInSection" xml:space="preserve">
+    <value>Kulunut kappaleessa</value>
+  </data>
+  <data name="ElapsedInProject" xml:space="preserve">
+    <value>Kulunut projektissa</value>
+  </data>
+  <data name="ElapsedInPhrase" xml:space="preserve">
+    <value>Kulunut lauseessa</value>
+  </data>
+  <data name="RemainingInPhrase" xml:space="preserve">
+    <value>Jäljellä lauseessa</value>
+  </data>
+  <data name="RemainingInSelection" xml:space="preserve">
+    <value>Jäljellä valinnassa</value>
+  </data>
+  <data name="RenumberPagesCaption" xml:space="preserve">
+    <value>Numeroidaanko seuraavat sivut uudelleen?</value>
+  </data>
+  <data name="TransportBar_RenumberPagesAfterRecording" xml:space="preserve">
+    <value>Äänitettyjen sivujen jälkeiset sivut saattavat tarvita uudelleen numerointia. Haluatko tehdä numeroinnin uudelleen?</value>
+  </data>
+  <data name="ProjectView_NoEmptyPageFoundForSpeechGeneration" xml:space="preserve">
+    <value>Puheen tuottamiselle ei löydy tyhjää sivua</value>
+  </data>
+  <data name="SpeechGenerationProgress" xml:space="preserve">
+    <value>Tuotetaan puhetta...</value>
+  </data>
+  <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
+    <value>Suorita lauseen tunnistus äänityksen aikana</value>
+  </data>
+  <data name="ProjectView_ErrorReplacingAudioDueToTimingMissmatch" xml:space="preserve">
+    <value>Äänitiedostoa ei voi korvata. Kestoajat eri pituiset: Alkuperäisen kestoaika on {0} : uuden kestoaika {1}</value>
+  </data>
+  <data name="AudioPref_LivePhraseDetectionEnable" xml:space="preserve">
+    <value>Live-äänityksen aikaisessa lauseentunnistuksessa käytössä seuraavat parametrien arvot: Kynnysarvo: {0} ,Lauseiden väli: {1} ,Esimykistys: {2}. Näitä asetuksia voi muuttaa ääniasetusten yhdistelmävalikosta tai arvot voi poimia äänettömästä lauseesta.</value>
+  </data>
+  <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
+    <value>Salli vapaan levytilan tarkistus</value>
+  </data>
+  <data name="Audio_EnablePostRecordingPageRenumbering" xml:space="preserve">
+    <value>Äänityksen päätyttyä numeroi seuraavat sivut uudelleen</value>
+  </data>
+  <data name="KeyS_TransportBarRecordSingleKey" xml:space="preserve">
+    <value>Äänitys: pikavalintanäppäin</value>
+  </data>
+  <data name="Audio_MonitorAlways" xml:space="preserve">
+    <value>Jatkuva monitorointi</value>
+  </data>
+  <data name="Audio_MergeFirstTwoPhrasesInPhraseDetection" xml:space="preserve">
+    <value>Yhdistä lauseentunnistuksen tunnistamat kaksi ensimmäistä lausetta</value>
+  </data>
+  <data name="KeyS_TransportBarStopSingleKey" xml:space="preserve">
+    <value>Seis: pikavalintanäppäin</value>
+  </data>
+  <data name="DAISY2_ObiImport_ErrorsList_FrontPageCorrection" xml:space="preserve">
+    <value>Ei numeerinen etusivun numero {0} lisätty numerona {1}</value>
+  </data>
+  <data name="Audio_FastPlayWithoutPitchChange" xml:space="preserve">
+    <value>Nopea toisto ilman äänenkorkeuden muutosta</value>
+  </data>
+  <data name="Project_SaveProjectWhenRecordingEnds" xml:space="preserve">
+    <value>Äänityksen päätyttyä tallenna projekti</value>
+  </data>
+  <data name="Project_CheckForUpdates" xml:space="preserve">
+    <value>Tarkista päivitykset</value>
+  </data>
+  <data name="DeleteUnused_NoUnusedPhraseFoundToDelete" xml:space="preserve">
+    <value>Käyttämätön lause löytyi poistettavaksi</value>
+  </data>
+  <data name="ImportErrorCorrectionText" xml:space="preserve">
+    <value>sisältää joitakin virheiden korjauksia</value>
+  </data>
+  <data name="CheckUpdate_Title" xml:space="preserve">
+    <value>Uusi {0} julkistus on saatavilla</value>
+  </data>
+  <data name="CheckUpdate_LabelText" xml:space="preserve">
+    <value>{0}. Valitse seuraavista vaihtoehdoista.</value>
+  </data>
+  <data name="CheckUpdate_UpdateProcessActive" xml:space="preserve">
+    <value>Päivitysten tarkistusprosessi on jo aktiivinen.</value>
+  </data>
+  <data name="HardReset_Caption" xml:space="preserve">
+    <value>Oletusarvojen palautukset asetukset</value>
+  </data>
+  <data name="HardResetSettings_ConfirmAgain" xml:space="preserve">
+    <value>Vahvista uudelleen.</value>
+  </data>
+  <data name="HardResetSettings_Question" xml:space="preserve">
+    <value>Tämä toiminto palauttaa kaikki lisäasetukset oletusarvoihin mukaan lukien pikavalintojen asetukset. Haluatko jatkaa</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>Palauta oletusarvoihin kaikki lisäasetukset</value>
+  </data>
+  <data name="KeyS_HardResetAllSettings" xml:space="preserve">
+    <value>Palauta oletusarvoihin kaikki asetukset</value>
+  </data>
+  <data name="ReplaceCorruptPhrasesWithEmptyNode_Question" xml:space="preserve">
+    <value>Lauseiden kokonaislukumäärä on {0}, joista olemattoman hiljaista ääntä tai puuttuvia ääniviitteitä on {1}. On suositeltavaa vaihtaa nämä lauseet tyhjillä lauseilla ja merkitä ne keskeneräisiksi. Haluatko jatkaa?</value>
+  </data>
+  <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
+    <value>Vaihda lauseet, joiden äänisisältö on vioittunut, tyhjillä lauseilla</value>
+  </data>
+  <data name="ReplaceCorruptPhrasesWithEmptyNode_NothingFound" xml:space="preserve">
+    <value>Lauseita, joiden äänisisältö on vioittunut, ei löytynyt.</value>
+  </data>
+  <data name="Obi_UserInformationText" xml:space="preserve">
+    <value>Täytä oheinen lomake ja rekisteröidy Obi-ohjelman käyttäjäksi (vapaa / avoimeen lähdekoodiin perustuva DAISY tuotannon väline). Tämä rekisteröinti oikeuttaa sinut vastaanottamaan uusimmat uutiset ja tiedotteet tuotteiden päivityksistä sähköpostiisi. Lisäksi voit olla ratkaisevassa roolissa määriteltäessä tuotteen tulevaisuuden suuntaa, koska palaute antaa meille mahdollisuuden ymmärtää asiakkaan tarpeita paremmin. Varmista, että tietokone on kytketty Internetiin rekisteröinnin aikana.</value>
+  </data>
+  <data name="CleanUp_LongFilePath" xml:space="preserve">
+    <value>Projekti hakemistossa on pitkä tiedostopolku, joka voi johtaa suuriin ongelmiin uudelleenjärjestämisessä ja saattaa aiheuttaa tärkeiden tietojen menettämiseen. On erittäin suositeltavaa siirtää projektin hakemisto lähellä osion alkua ennen siivoamista. Haluatko jatkaa tästä varoituksesta huolimatta?</value>
+  </data>
+  <data name="UserRegistration_SendEmailMsg" xml:space="preserve">
+    <value>Käyttäjän rekisteröinti ei onnistunut {0} yrityksestä huolimatta. Lähetä rekisteröinti sähköpostilla osoitteeseen obi.feedback@gmail.com</value>
+  </data>
+  <data name="UserRegistrationBtn_DoNotRemind" xml:space="preserve">
+    <value>Älä muistuta uudelleen</value>
+  </data>
+  <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
+    <value>Viimeisin päivitystarkistus löysi version {0}. Uudempaa versiota ei ole julkaistu sen jälkeen.</value>
+  </data>
+  <data name="CheckUpdates_GoToDownloadPage" xml:space="preserve">
+    <value>&amp;Siirry imurointisivulle</value>
+  </data>
+  <data name="Confirm_Setting" xml:space="preserve">
+    <value>Tehtävä suoritettu onnistuneesti. Käynnistä Obi-ohjelma uudelleen, jolloin oletus asetusarvot palautetaan.</value>
+  </data>
+  <data name="StatusForMergeSection" xml:space="preserve">
+    <value>Näytetään kappaleet välillä {0} ja {1}. Valitse yhdistettävät kappaleet.</value>
+  </data>
+  <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
+    <value>Näytä aaltomuodon zoomauspaneeli</value>
+  </data>
+  <data name="KeyS_CloseZoomPanel" xml:space="preserve">
+    <value>Sulje zoomauspaneeli</value>
+  </data>
+  <data name="KeyS_ResetZoomPanel" xml:space="preserve">
+    <value>Tyhjennä zoomauspaneeli</value>
+  </data>
+  <data name="KeyS_ZoomInWaveform" xml:space="preserve">
+    <value>Suurenna zoomausta aaltomuodon näytössä</value>
+  </data>
+  <data name="KeyS_ZoomOutWaveform" xml:space="preserve">
+    <value>Pienennä zoomausta aaltomuodon näytössä</value>
+  </data>
+  <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
+    <value>Zoomaa valittu aaltomuoto</value>
+  </data>
+  <data name="KeyS_NextPhrase" xml:space="preserve">
+    <value>Tulkitse seuraava lause</value>
+  </data>
+  <data name="KeyS_PreviousPhrase" xml:space="preserve">
+    <value>Tulkitse edellinen lause</value>
+  </data>
+  <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
+    <value>Näytä aaltomuoto sisältönäytössä</value>
+  </data>
+  <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
+    <value>Jätä aina huomiotta sisennys DAISY vientitiedostoille</value>
+  </data>
+  <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
+    <value>Näytä seuraava lause</value>
+  </data>
+  <data name="ZoomAudioTT_ShowPreviousPhrase" xml:space="preserve">
+    <value>Näytä edellinen lause</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomIn" xml:space="preserve">
+    <value>Suurenna zoomausta</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomOut" xml:space="preserve">
+    <value>Pienennä zoomausta</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomSelection" xml:space="preserve">
+    <value>Zoomausvalinta</value>
+  </data>
+  <data name="ZoomAudioTT_Close" xml:space="preserve">
+    <value>Sulje</value>
+  </data>
+  <data name="ZoomAudioTT_Reset" xml:space="preserve">
+    <value>Palautus alkutilaan</value>
+  </data>
+  <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
+    <value>Speech is generated for all the pages</value>
+  </data>
+  <data name="EditAudioTT_Cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="EditAudioTT_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="EditAudioTT_Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="EditAudioTT_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="EditAudioTT_Merge" xml:space="preserve">
+    <value>Merge With Next Phrase</value>
+  </data>
+  <data name="EditAudioTT_Split" xml:space="preserve">
+    <value>Split Phrase</value>
+  </data>
+  <data name="Metadata_SetDefaults" xml:space="preserve">
+    <value>Set default metadata</value>
+  </data>
+  <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
+    <value>Use Space key to stop recording</value>
+  </data>
+  <data name="MergeProjectCommand" xml:space="preserve">
+    <value>Merge project</value>
+  </data>
+  <data name="MergeProject_NoSectionToMerge" xml:space="preserve">
+    <value>No section found in source project</value>
+  </data>
+  <data name="MergeProject_progress_dialog_title" xml:space="preserve">
+    <value>Merging project {0} of {1}...</value>
+  </data>
+  <data name="MergeProject_SectionProgress" xml:space="preserve">
+    <value>Merging section: {0}</value>
+  </data>
+  <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
+    <value>Background color for empty sections in TOC view</value>
+  </data>
+  <data name="Obi_ProjectMerge" xml:space="preserve">
+    <value>Please select project to merge</value>
+  </data>
+  <data name="Obi_ProjectMergeFilter" xml:space="preserve">
+    <value>Obi project file (*.obi)|*.obi</value>
+  </data>
+  <data name="MergeProject_Information" xml:space="preserve">
+    <value>Please make sure that that the projects to be merged have the same audio format and are created on Obi 3.0 Beta 2 or later version.</value>
+  </data>
+</root>
