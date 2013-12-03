@@ -276,7 +276,7 @@ namespace Obi.UserControls
 
         private void UpdateButtons()
         {
-            m_recordingToolBarPlayBtn.Enabled = !m_TransportBar.IsRecorderActive;
+            m_recordingToolBarPlayBtn.Enabled = !m_TransportBar.IsRecorderActive && (m_TransportBar.CanPlay || m_TransportBar.CanResumePlayback);
             //  m_recordingToolBarRecordingBtn.Enabled = m_TransportBar.CanRecord || m_TransportBar.CanResumeRecording || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped);
             m_recordingToolBarRecordingBtn.Enabled = (m_TransportBar.CanRecord || m_TransportBar.CanResumeRecording || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped)) && m_ProjectView.Selection != null;
             m_recordingToolBarStopBtn.Enabled = m_TransportBar.CanStop || !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped);
