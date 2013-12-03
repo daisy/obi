@@ -121,34 +121,34 @@
     <value>Select special phrases to show in list box</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items" xml:space="preserve">
-    <value>Unused Phrases</value>
-  </data>
-  <data name="m_cb_SpecialPhrases.Items1" xml:space="preserve">
     <value>Todo Marked Phrases</value>
   </data>
-  <data name="m_cb_SpecialPhrases.Items2" xml:space="preserve">
+  <data name="m_cb_SpecialPhrases.Items1" xml:space="preserve">
     <value>Empty Phrases</value>
   </data>
-  <data name="m_cb_SpecialPhrases.Items3" xml:space="preserve">
+  <data name="m_cb_SpecialPhrases.Items2" xml:space="preserve">
     <value>Heading</value>
   </data>
-  <data name="m_cb_SpecialPhrases.Items4" xml:space="preserve">
+  <data name="m_cb_SpecialPhrases.Items3" xml:space="preserve">
     <value>Silence</value>
   </data>
-  <data name="m_cb_SpecialPhrases.Items5" xml:space="preserve">
+  <data name="m_cb_SpecialPhrases.Items4" xml:space="preserve">
     <value>All Pages</value>
   </data>
-  <data name="m_cb_SpecialPhrases.Items6" xml:space="preserve">
+  <data name="m_cb_SpecialPhrases.Items5" xml:space="preserve">
     <value>Front Pages</value>
   </data>
-  <data name="m_cb_SpecialPhrases.Items7" xml:space="preserve">
+  <data name="m_cb_SpecialPhrases.Items6" xml:space="preserve">
     <value>Normal Pages</value>
   </data>
-  <data name="m_cb_SpecialPhrases.Items8" xml:space="preserve">
+  <data name="m_cb_SpecialPhrases.Items7" xml:space="preserve">
     <value>Special Pages</value>
   </data>
-  <data name="m_cb_SpecialPhrases.Items9" xml:space="preserve">
+  <data name="m_cb_SpecialPhrases.Items8" xml:space="preserve">
     <value>Anchor</value>
+  </data>
+  <data name="m_cb_SpecialPhrases.Items9" xml:space="preserve">
+    <value>Unused Phrases</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cb_SpecialPhrases.Location" type="System.Drawing.Point, System.Drawing">
