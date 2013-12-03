@@ -850,6 +850,10 @@
     <Content Include="FindBarCollapse.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Audio\PeakMeterForm.fi.resx">
+      <DependentUpon>PeakMeterForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Audio\PeakMeterForm.fr.resx">
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -862,12 +866,20 @@
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\About.fi.resx">
+      <DependentUpon>About.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\About.fr.resx">
       <DependentUpon>About.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\About.ta.resx">
       <DependentUpon>About.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AssignSpecialNodeMark.fi.resx">
+      <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AssignSpecialNodeMark.fr.resx">
@@ -886,6 +898,10 @@
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AssociateSpecialNode.fi.resx">
+      <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AssociateSpecialNode.fr.resx">
       <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -896,6 +912,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AssociateSpecialNode.ta.resx">
       <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioSettings.fi.resx">
+      <DependentUpon>AudioSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioSettings.fr.resx">
@@ -914,6 +934,10 @@
       <DependentUpon>AudioSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CheckUpdates.fi.resx">
+      <DependentUpon>CheckUpdates.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CheckUpdates.fr.resx">
       <DependentUpon>CheckUpdates.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -930,6 +954,10 @@
       <DependentUpon>CheckUpdates.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\chooseDaisy3orDaisy202.fi.resx">
+      <DependentUpon>chooseDaisy3orDaisy202.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\chooseDaisy3orDaisy202.fr.resx">
       <DependentUpon>chooseDaisy3orDaisy202.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -942,12 +970,20 @@
       <DependentUpon>chooseDaisy3orDaisy202.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditRoles.fi.resx">
+      <DependentUpon>EditRoles.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EditRoles.fr.resx">
       <DependentUpon>EditRoles.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EditRoles.ta.resx">
       <DependentUpon>EditRoles.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EmptySection.fi.resx">
+      <DependentUpon>EmptySection.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EmptySection.fr.resx">
@@ -962,6 +998,10 @@
       <DependentUpon>EmptySection.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportAdvance.fi.resx">
+      <DependentUpon>ExportAdvance.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExportAdvance.fr.resx">
       <DependentUpon>ExportAdvance.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -970,12 +1010,20 @@
       <DependentUpon>ExportAdvance.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportDirectory.fi.resx">
+      <DependentUpon>ExportDirectory.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExportDirectory.fr.resx">
       <DependentUpon>ExportDirectory.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExportDirectory.ta.resx">
       <DependentUpon>ExportDirectory.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExtendedMessageToAssociate.fi.resx">
+      <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExtendedMessageToAssociate.fr.resx">
@@ -1002,6 +1050,10 @@
       <DependentUpon>ExtendedMessageToAssociate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\GoToPageOrPhrase.fi.resx">
+      <DependentUpon>GoToPageOrPhrase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\GoToPageOrPhrase.fr.resx">
       <DependentUpon>GoToPageOrPhrase.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1019,12 +1071,20 @@
       <DependentUpon>GoToPageOrPhrase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Help.fi.resx">
+      <DependentUpon>Help.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Help.fr.resx">
       <DependentUpon>Help.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Help.ta.resx">
       <DependentUpon>Help.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ImportFileSplitSize.fi.resx">
+      <DependentUpon>ImportFileSplitSize.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ImportFileSplitSize.fr.resx">
@@ -1035,8 +1095,16 @@
       <DependentUpon>ImportFileSplitSize.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MergeProject.fi.resx">
+      <DependentUpon>MergeProject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MergeProject.resx">
       <DependentUpon>MergeProject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MultipleOptionDialog.fi.resx">
+      <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MultipleOptionDialog.fr.resx">
@@ -1055,12 +1123,20 @@
       <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewProject.fi.resx">
+      <DependentUpon>NewProject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewProject.fr.resx">
       <DependentUpon>NewProject.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewProject.ta.resx">
       <DependentUpon>NewProject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PhraseProperties.fi.resx">
+      <DependentUpon>PhraseProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\PhraseProperties.fr.resx">
@@ -1071,6 +1147,10 @@
       <DependentUpon>PhraseProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Preferences.fi.resx">
+      <DependentUpon>Preferences.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Preferences.fr.resx">
       <DependentUpon>Preferences.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1078,6 +1158,10 @@
     <EmbeddedResource Include="Dialogs\Preferences.ta.resx">
       <DependentUpon>Preferences.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProgressDialog.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgressDialog.fr.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
@@ -1091,6 +1175,10 @@
       <DependentUpon>ProgressDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProjectProperties.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProjectProperties.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProjectProperties.fr.resx">
       <DependentUpon>ProjectProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1098,6 +1186,10 @@
     <EmbeddedResource Include="Dialogs\ProjectProperties.ta.resx">
       <DependentUpon>ProjectProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ReportDialog.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ReportDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ReportDialog.fr.resx">
       <DependentUpon>ReportDialog.cs</DependentUpon>
@@ -1115,6 +1207,10 @@
       <DependentUpon>ReportDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SaveProjectAsDialog.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SaveProjectAsDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SaveProjectAsDialog.fr.resx">
       <DependentUpon>SaveProjectAsDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1127,6 +1223,10 @@
       <DependentUpon>SaveProjectAsDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SectionProperties.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SectionProperties.fr.resx">
       <DependentUpon>SectionProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1134,6 +1234,10 @@
     <EmbeddedResource Include="Dialogs\SectionProperties.ta.resx">
       <DependentUpon>SectionProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectMergeSectionRange.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectMergeSectionRange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectMergeSectionRange.fr.resx">
       <DependentUpon>SelectMergeSectionRange.cs</DependentUpon>
@@ -1151,6 +1255,10 @@
       <DependentUpon>SelectMergeSectionRange.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectPhraseDetectionSections.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectPhraseDetectionSections.fr.resx">
       <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1167,6 +1275,10 @@
       <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SentenceDetection.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SentenceDetection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SentenceDetection.fr.resx">
       <DependentUpon>SentenceDetection.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1174,6 +1286,10 @@
     <EmbeddedResource Include="Dialogs\SentenceDetection.ta.resx">
       <DependentUpon>SentenceDetection.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SetPageNumber.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SetPageNumber.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SetPageNumber.fr.resx">
       <DependentUpon>SetPageNumber.cs</DependentUpon>
@@ -1183,6 +1299,10 @@
       <DependentUpon>SetPageNumber.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ShowSource.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ShowSource.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ShowSource.fr.resx">
       <DependentUpon>ShowSource.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1190,6 +1310,10 @@
     <EmbeddedResource Include="Dialogs\ShowSource.ta.resx">
       <DependentUpon>ShowSource.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SpecialPhraseList.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SpecialPhraseList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SpecialPhraseList.fr.resx">
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
@@ -1207,6 +1331,10 @@
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UserRegistration.fi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UserRegistration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UserRegistration.fr.resx">
       <DependentUpon>UserRegistration.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1223,6 +1351,10 @@
       <DependentUpon>UserRegistration.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\WelcomeDialog.fi.resx">
+      <DependentUpon>WelcomeDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\WelcomeDialog.fr.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1235,6 +1367,9 @@
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="messages.fi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="messages.fr.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1243,12 +1378,20 @@
     <EmbeddedResource Include="messages.ta.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ObiForm.fi.resx">
+      <DependentUpon>ObiForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ObiForm.fr.resx">
       <DependentUpon>ObiForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ObiForm.ta.resx">
       <DependentUpon>ObiForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\AudioBlock.fi.resx">
+      <DependentUpon>AudioBlock.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\AudioBlock.fr.resx">
@@ -1271,6 +1414,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>Block.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ContentView.fi.resx">
+      <DependentUpon>ContentView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ContentView.fr.resx">
       <DependentUpon>ContentView.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1281,6 +1428,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ContentView.ta.resx">
       <DependentUpon>ContentView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ContentViewLabel.fi.resx">
+      <DependentUpon>ContentViewLabel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ContentViewLabel.fr.resx">
@@ -1299,12 +1450,20 @@
       <DependentUpon>ContentViewLabel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\EditableLabel.fi.resx">
+      <DependentUpon>EditableLabel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\EditableLabel.fr.resx">
       <DependentUpon>EditableLabel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\EditableLabel.ta.resx">
       <DependentUpon>EditableLabel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\FindInText.fi.resx">
+      <DependentUpon>FindInText.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\FindInText.fr.resx">
@@ -1315,12 +1474,20 @@
       <DependentUpon>FindInText.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\MetadataView.fi.resx">
+      <DependentUpon>MetadataView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\MetadataView.fr.resx">
       <DependentUpon>MetadataView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\MetadataView.ta.resx">
       <DependentUpon>MetadataView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ProjectView.fi.resx">
+      <DependentUpon>ProjectView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ProjectView.fr.resx">
@@ -1347,6 +1514,10 @@
       <DependentUpon>StripCursor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\TOCView.fi.resx">
+      <DependentUpon>TOCView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\TOCView.fr.resx">
       <DependentUpon>TOCView.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1359,8 +1530,20 @@
       <DependentUpon>TOCView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.fi.resx">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.fr.resx">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.resx">
       <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\TransportBar.fi.resx">
+      <DependentUpon>TransportBar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\TransportBar.fr.resx">
@@ -1373,6 +1556,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\TransportBar.ta.resx">
       <DependentUpon>TransportBar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\VerticalScrollToolStripContainer.fi.resx">
+      <DependentUpon>VerticalScrollToolStripContainer.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\VerticalScrollToolStripContainer.fr.resx">
@@ -1411,8 +1598,20 @@
       <DependentUpon>Waveform_Recording.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.fi.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.fr.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ZoomWaveform.resx">
       <DependentUpon>ZoomWaveform.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\RecordingToolBarForm.fi.resx">
+      <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\RecordingToolBarForm.fr.resx">
@@ -1508,6 +1707,10 @@
     <EmbeddedResource Include="UserControls\media-playback-pause.png" />
     <EmbeddedResource Include="UserControls\RecordingToolBarForm.ta.resx">
       <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextVUMeterPanel.fi.resx">
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.ta.resx">
