@@ -214,7 +214,7 @@ namespace Obi
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
-                    if (mPhraseMarks[i] < mSessionMedia.Duration.AsMilliseconds)
+                        if (mPhraseMarks[i] < mSessionMedia.Duration.AsMilliseconds && mSessionMedia.Duration.AsMilliseconds > 200)
                         {
                             ManagedAudioMedia split = mSessionMedia.Split(new Time(Convert.ToInt64(mPhraseMarks[i] * Time.TIME_UNIT)));
                         mAudioList.Insert ( mSessionOffset, split );
