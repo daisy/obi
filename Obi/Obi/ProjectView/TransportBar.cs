@@ -1716,8 +1716,7 @@ namespace Obi.ProjectView
                     mView.SelectPhraseInContentView ( mResumeRecordingPhrase );
                     }
                     
-                    if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor
-                        &&    ( (CurrentState == State.Paused  && mView.Selection.Node is EmptyNode)    ||    (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor )))
+                    if (deleteFollowingPhrases && ( (CurrentState == State.Paused  && mView.Selection.Node is EmptyNode)    ||    (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor )))
                     {
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(mView, new NodeSelection(selectionNode, mView.Selection.Control)));
                         //MessageBox.Show("recording selection update");   
