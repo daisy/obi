@@ -4545,6 +4545,19 @@ for (int j = 0;
                     break;
                 } 
             }
+            for (ObiNode n = BeginNote; n != mContentView.EndSpecialNode.FollowingNode; n = n.FollowingNode)
+            {
+                if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                {
+                    pageFound = true;
+
+                }
+            }
+            if (!pageFound)
+            {
+                MessageBox.Show(Localizer.Message("Page_not_found"));
+                return;
+            }
             Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false);
             dialog.IsRenumberChecked = true;
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -4566,15 +4579,9 @@ for (int j = 0;
                                         cmd = new Commands.Node.SetPageNumber(this, SelectedNodeAs<EmptyNode>(), number);
                                        
                                     }
-                                    k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber(this, (EmptyNode)n, number));
-                                    pageFound = true;
+                                    k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber(this, (EmptyNode)n, number));                                    
                                     number = number.NextPageNumber();
                                 }                                
-                        }
-                        if(!pageFound)
-                        {
-                            MessageBox.Show(Localizer.Message("Page_not_found"));
-                            return;
                         }
                         if (mContentView.EndSpecialNode.Role_ == EmptyNode.Role.Page)
                             k.ChildCommands.Insert(k.ChildCommands.Count, cmd);
