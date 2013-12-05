@@ -133,9 +133,12 @@ namespace Obi.ProjectView
 
         private void ProjectviewUpdated(object sender, EventArgs e)
         {
-            btntxtZoomSelected.Text = " ";
-            btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
-            btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
+            if (m_ProjectView != null && m_ProjectView.Selection != null)
+            {
+                btntxtZoomSelected.Text = " ";
+                btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
+                btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
+            }
         }
          private void ZoomPanelLostFocus(object sender,EventArgs e)
          {
