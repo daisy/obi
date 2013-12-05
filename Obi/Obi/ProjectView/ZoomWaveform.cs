@@ -130,6 +130,13 @@ namespace Obi.ProjectView
                 IsNewProjectOpened();
             }
         }
+
+        private void ProjectviewUpdated(object sender, EventArgs e)
+        {
+            btntxtZoomSelected.Text = " ";
+            btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
+            btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
+        }
          private void ZoomPanelLostFocus(object sender,EventArgs e)
          {
              if(this.ActiveControl==btntxtZoomSelected)
@@ -182,6 +189,10 @@ namespace Obi.ProjectView
              }
           
          }
+        public void AfterSelection()
+        {
+
+        }
         public void PhraseLoad(EmptyNode phrase)
         {
           
@@ -247,7 +258,8 @@ namespace Obi.ProjectView
             
             m_ContentView = contentView;
             m_ProjectView = mProjectView;
-            m_ProjectView.SelectionChanged += new EventHandler(ProjectViewSelectionChanged);
+            m_ProjectView.SelectionChanged += new EventHandler(ProjectViewSelectionChanged);          
+            mProjectView.Presentation.UndoRedoManager.CommandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ProjectviewUpdated);
             this.LostFocus += new EventHandler(ZoomPanelLostFocus);          
 
             keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
