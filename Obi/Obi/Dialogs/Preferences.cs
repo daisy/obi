@@ -757,18 +757,18 @@ namespace Obi.Dialogs
             else if (mTab.SelectedTab == mProjectTab)
             {
 
-                if (m_CheckBoxListView.Items[9].Checked && m_PrevShowContentViewVal)
+                if (m_CheckBoxListView.Items[8].Checked && m_PrevShowContentViewVal)
                 {
                     m_KeepTrack = false;
                 }
-                if (m_CheckBoxListView.Items[9].Checked && !m_PrevShowContentViewVal)
+                if (m_CheckBoxListView.Items[8].Checked && !m_PrevShowContentViewVal)
                 {
-                    m_CheckBoxListView.Items[3].Checked = true;
+                    m_CheckBoxListView.Items[2].Checked = true;
                     m_PrevShowContentViewVal = true;
                 }
-                else if (!m_CheckBoxListView.Items[9].Checked && m_CheckBoxListView.Items[3].Checked && m_KeepTrack == false)
+                else if (!m_CheckBoxListView.Items[8].Checked && m_CheckBoxListView.Items[2].Checked && m_KeepTrack == false)
                 {
-                    m_CheckBoxListView.Items[3].Checked = false;
+                    m_CheckBoxListView.Items[2].Checked = false;
 
                 }
 
@@ -781,20 +781,20 @@ namespace Obi.Dialogs
             if (mTab.SelectedTab == mProjectTab)
             {
                 mSettings.OpenLastProject = m_CheckBoxListView.Items[0].Checked;
-                mSettings.AutoSave_RecordingEnd = m_CheckBoxListView.Items[1].Checked;
-                mSettings.OpenBookmarkNodeOnReopeningProject = m_CheckBoxListView.Items[2].Checked;
-                mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[9].Checked ? m_CheckBoxListView.Items[3].Checked: false ; // false if waveform is disabled
+               // mSettings.AutoSave_RecordingEnd = m_CheckBoxListView.Items[1].Checked;
+                mSettings.OpenBookmarkNodeOnReopeningProject = m_CheckBoxListView.Items[1].Checked;
+                mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[8].Checked ? m_CheckBoxListView.Items[2].Checked: false ; // false if waveform is disabled
                 //MessageBox.Show(mSettings.Project_ShowWaveformInContentView.ToString () + " : " +  mSettings.LeftAlignPhrasesInContentView.ToString()); 
-                mSettings.OptimizeMemory = m_CheckBoxListView.Items[4].Checked;
-                mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = m_CheckBoxListView.Items[5].Checked;
-                mSettings.Project_EnableFreeDiskSpaceCheck= m_CheckBoxListView.Items[6].Checked;
-                mSettings.Project_SaveProjectWhenRecordingEnds= m_CheckBoxListView.Items[7].Checked;
-                mSettings.Project_CheckForUpdates = m_CheckBoxListView.Items[8].Checked;
+                mSettings.OptimizeMemory = m_CheckBoxListView.Items[3].Checked;
+                mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = m_CheckBoxListView.Items[4].Checked;
+                mSettings.Project_EnableFreeDiskSpaceCheck= m_CheckBoxListView.Items[5].Checked;
+                mSettings.Project_SaveProjectWhenRecordingEnds= m_CheckBoxListView.Items[6].Checked;
+                mSettings.Project_CheckForUpdates = m_CheckBoxListView.Items[7].Checked;
 
                 //m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
-                mSettings.Project_ShowWaveformInContentView = m_CheckBoxListView.Items[9].Checked;
-                mSettings.Export_AlwaysIgnoreIndentation= m_CheckBoxListView.Items[10].Checked;
-                mSettings.Project_BackgroundColorForEmptySection = m_CheckBoxListView.Items[11].Checked;
+                mSettings.Project_ShowWaveformInContentView = m_CheckBoxListView.Items[8].Checked;
+                mSettings.Export_AlwaysIgnoreIndentation= m_CheckBoxListView.Items[9].Checked;
+                mSettings.Project_BackgroundColorForEmptySection = m_CheckBoxListView.Items[10].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -878,7 +878,7 @@ namespace Obi.Dialogs
                 m_grpBoxChkBoxListView.Size = new Size(375, 126);
                 m_grpBoxChkBoxListView.Location = new Point(75, 220);
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_OpenLastProject"));
-                m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_AutoSaveWhenRecordingEnds"));
+               // m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_AutoSaveWhenRecordingEnds"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_SelectBookmark"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_FixContentViewWidth"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_OptimizeMemory"));
@@ -891,17 +891,17 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_BackgroundColorForEmptySection"));
 
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
-                m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
-                m_CheckBoxListView.Items[2].Checked = mSettings.OpenBookmarkNodeOnReopeningProject;
-                m_CheckBoxListView.Items[3].Checked = mSettings.LeftAlignPhrasesInContentView;
-                m_CheckBoxListView.Items[4].Checked = mSettings.OptimizeMemory;
-                m_CheckBoxListView.Items[5].Checked = mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
-                m_CheckBoxListView.Items[6].Checked = mSettings.Project_EnableFreeDiskSpaceCheck;
-                m_CheckBoxListView.Items[7].Checked = mSettings.Project_SaveProjectWhenRecordingEnds;
-                m_CheckBoxListView.Items[8].Checked = mSettings.Project_CheckForUpdates;
-                m_CheckBoxListView.Items[9].Checked = mSettings.Project_ShowWaveformInContentView;
-                m_CheckBoxListView.Items[10].Checked = mSettings.Export_AlwaysIgnoreIndentation;
-                m_CheckBoxListView.Items[11].Checked = mSettings.Project_BackgroundColorForEmptySection;
+              // m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
+                m_CheckBoxListView.Items[1].Checked = mSettings.OpenBookmarkNodeOnReopeningProject;
+                m_CheckBoxListView.Items[2].Checked = mSettings.LeftAlignPhrasesInContentView;
+                m_CheckBoxListView.Items[3].Checked = mSettings.OptimizeMemory;
+                m_CheckBoxListView.Items[4].Checked = mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
+                m_CheckBoxListView.Items[5].Checked = mSettings.Project_EnableFreeDiskSpaceCheck;
+                m_CheckBoxListView.Items[6].Checked = mSettings.Project_SaveProjectWhenRecordingEnds;
+                m_CheckBoxListView.Items[7].Checked = mSettings.Project_CheckForUpdates;
+                m_CheckBoxListView.Items[8].Checked = mSettings.Project_ShowWaveformInContentView;
+                m_CheckBoxListView.Items[9].Checked = mSettings.Export_AlwaysIgnoreIndentation;
+                m_CheckBoxListView.Items[10].Checked = mSettings.Project_BackgroundColorForEmptySection;
 
                 m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
                 m_KeepTrack = true;
