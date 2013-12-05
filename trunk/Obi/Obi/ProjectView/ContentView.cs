@@ -850,6 +850,7 @@ namespace Obi.ProjectView
                     Strip c_Strip = c is Strip ? (Strip)c : 
                         c is Block? ((Block)c).Strip:
                         ((StripCursor)c).Strip;
+                    if (c_Strip == null) return;
                     if (c_Strip.OffsetForFirstPhrase > 0) stripLabelOffset = c_Strip.BlocksLayoutTopPosition;
                     //Console.WriteLine ( "adjusting cordinates : " + stripLabelOffset );
                     }
