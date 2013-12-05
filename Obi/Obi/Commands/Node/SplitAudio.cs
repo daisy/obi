@@ -114,6 +114,7 @@ namespace Obi.Commands.Node
             {
                 double begin = view.TransportBar.SplitBeginTime;
                 double end = view.TransportBar.SplitEndTime;
+                if (begin >= phrase.Duration) begin = 0.0;
                 if (end >= phrase.Duration) end = 0.0;
                 if (begin > 0.0 || end > 0.0)
                 {
