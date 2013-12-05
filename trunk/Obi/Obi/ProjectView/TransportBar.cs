@@ -1785,6 +1785,7 @@ namespace Obi.ProjectView
         // context node for recording and the settings.
         private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, urakawa.command.CompositeCommand  command, bool deleteFollowingPhrases)
         {
+            
         m_IsAfterRecordingSplitTransferEnabled = false;
         m_TempNodeForPropertiesTransfer = null;
 
@@ -1795,6 +1796,10 @@ namespace Obi.ProjectView
                 mRecordingSection = (SectionNode)node;
                 mRecordingInitPhraseIndex = mView.Selection is StripIndexSelection ?
                     ((StripIndexSelection)mView.Selection).Index : mRecordingSection.PhraseChildCount;
+                if (mView.Selection is StripIndexSelection && mView.Selection.Node != null)
+                {
+                    AddTheDeleteSubsequentPhrasesCommand(mRecordingSection, deleteFollowingPhrases, command);
+                }
             }
             else if (node is PhraseNode)
             {
@@ -1827,12 +1832,26 @@ namespace Obi.ProjectView
             if ((mView.ObiForm.Settings.Recording_ReplaceAfterCursor || deleteFollowingPhrases)
                 && node is EmptyNode && ((EmptyNode)node).Index < ((EmptyNode)node).ParentAs<SectionNode>().PhraseChildCount-1)
             {
-                EmptyNode eNode = (EmptyNode)node ;
-                SectionNode section = eNode.ParentAs<SectionNode> () ;
-                command.ChildCommands.Insert(command.ChildCommands.Count, mView.GetDeleteRangeOfPhrasesInSectionCommand(section,section.PhraseChild(eNode.Index+1),section.PhraseChild(section.PhraseChildCount-1)));
+                AddTheDeleteSubsequentPhrasesCommand(node, deleteFollowingPhrases, command);
             }
         if (IsPlayerActive) StopPlaylistPlayback (); // stop if split recording starts while playback is paused
 
+        }
+
+        private void AddTheDeleteSubsequentPhrasesCommand(ObiNode node, bool deleteFollowingPhrases, CompositeCommand command)
+        {
+            if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor || deleteFollowingPhrases)
+            {
+                int phraseIndex =(node != null &&   node is EmptyNode)? ((EmptyNode)node).Index + 1:
+                    (mView.Selection != null && mView.Selection is StripIndexSelection )? ((StripIndexSelection)mView.Selection).Index: -1 ;
+                SectionNode section = node != null && node is EmptyNode? ((EmptyNode)node).ParentAs<SectionNode>():
+                    mView.Selection != null && mView.Selection is StripIndexSelection? (SectionNode)mView.Selection.Node: null ;
+                //MessageBox.Show(phraseIndex.ToString());
+                if (section == null || phraseIndex < 0 || phraseIndex >= section.PhraseChildCount) return;
+
+                command.ChildCommands.Insert(command.ChildCommands.Count, 
+                    mView.GetDeleteRangeOfPhrasesInSectionCommand(section, section.PhraseChild(phraseIndex), section.PhraseChild(section.PhraseChildCount - 1)));
+            }
         }
 
         private delegate void RecordingPhraseStarted_Delegate(Obi.Events.Audio.Recorder.PhraseEventArgs e,
