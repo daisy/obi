@@ -1495,8 +1495,9 @@ namespace Obi.ProjectView
                     {
                     //if (currentlyActiveStrip == null) MessageBox.Show ( "active is null " );
                     //if (selectionValue is StripIndexSelection ) MessageBox.Show ("selection is  " + (( StripIndexSelection) selectionValue).Index.ToString () );
+                        
                     EmptyNode eNode = selectionValue is StripIndexSelection ? (((StripIndexSelection)selectionValue).Index < currentlyActiveStrip.Node.PhraseChildCount ? ((StripIndexSelection)selectionValue).EmptyNodeForSelection :
-                            currentlyActiveStrip.Node.PhraseChild ( currentlyActiveStrip.Node.PhraseChildCount - 1 )) :
+                        currentlyActiveStrip.Node.PhraseChildCount > 0? currentlyActiveStrip.Node.PhraseChild ( currentlyActiveStrip.Node.PhraseChildCount - 1 ): null) :
                                 (EmptyNode)selectionValue.Node;
                     CreateLimitedBlocksInStrip ( currentlyActiveStrip, eNode );
                     // enable upper toolstrip in case first block is not 0 index, this is because new strip is created with top toolstrip disabled
