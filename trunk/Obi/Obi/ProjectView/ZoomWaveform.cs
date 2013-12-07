@@ -74,7 +74,7 @@ namespace Obi.ProjectView
         {
             if( m_AudioBlock != null ) m_AudioBlock.UpdateCursorTime (time) ;        
              XVal = m_AudioBlock.UpdateCursorTime(time);
-             if (m_ProjectView.TransportBar.CurrentPlaylist.CurrentPhrase.Duration != m_ProjectView.Selection.Node.Duration)
+             if (m_ProjectView.TransportBar.CurrentPlaylist.CurrentPhrase != m_ProjectView.Selection.Node)
              {
                  m_ProjectView.TransportBar.Stop();
              }
