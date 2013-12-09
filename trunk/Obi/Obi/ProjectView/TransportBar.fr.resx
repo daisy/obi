@@ -1120,7 +1120,7 @@
     <value>5</value>
   </data>
   <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
-    <value>Recording Options</value>
+    <value>options d'enregistrement</value>
   </data>
   <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1151,7 +1151,7 @@
     <value>8</value>
   </data>
   <data name="m_btnRecordingOptions.ToolTip" xml:space="preserve">
-    <value>Recording Options</value>
+    <value>options d'enregistrement</value>
   </data>
   <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
     <value>m_btnRecordingOptions</value>
@@ -1169,19 +1169,19 @@
     <value>244, 22</value>
   </data>
   <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Start Monitoring</value>
+    <value>démarrer le contrôle</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Start Recording</value>
+    <value>démarrer l'enregistrement</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
-    <value>Record over subsequent phrases</value>
+    <value>Enregistrez plus de phrases suivantes</value>
   </data>
   <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 70</value>

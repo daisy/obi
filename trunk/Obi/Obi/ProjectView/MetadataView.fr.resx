@@ -334,7 +334,7 @@
     <value>2</value>
   </data>
   <data name="m_BtnContextMenu.AccessibleName" xml:space="preserve">
-    <value>More options submenu</value>
+    <value>Plus d'options sous-menu</value>
   </data>
   <data name="m_BtnContextMenu.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -383,19 +383,19 @@
     <value>244, 22</value>
   </data>
   <data name="SetDefaultMetadataStripMenuItem.Text" xml:space="preserve">
-    <value>Insert default metadata</value>
+    <value>Insérer des métadonnées par défaut</value>
   </data>
   <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Overwrite with default metadata</value>
+    <value>Ecraser les métadonnées par défaut</value>
   </data>
   <data name="SaveAsDefaultMetadataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="SaveAsDefaultMetadataToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save as default metadata</value>
+    <value>Enregistrer en tant que métadonnées par défaut</value>
   </data>
   <data name="mMetadataContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 92</value>

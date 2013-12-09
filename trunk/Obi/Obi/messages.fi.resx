@@ -162,7 +162,9 @@
     <value>Asetuksia ei voitu tallentaa</value>
   </data>
   <data name="save_settings_error_text" xml:space="preserve">
-    <value>Seuraava virhe tapahtui yritettäessä tallentaa asetuksia:"{0}"
+    <value>Seuraava virhe tapahtui yritettäessä tallentaa asetuksia:
+
+"{0}"
 Seurauksena, että nyt tehdyt asetusmuutokset eivät tallentuneet.
  No hyvä on.</value>
   </data>
@@ -779,7 +781,7 @@ Error text: {1}</value>
     <value>tuntia</value>
   </data>
   <data name="long_addl_time" xml:space="preserve">
-    <value> {0} {1}</value>
+    <value>{0} {1}</value>
   </data>
   <data name="long_h_mm_ss" xml:space="preserve">
     <value>{0} {1}{2}{3}</value>
@@ -1218,7 +1220,7 @@ Error text: {1}</value>
     <value>Low:</value>
   </data>
   <data name="TextVuMeter_OverloadIndicator" xml:space="preserve">
-    <value>OL </value>
+    <value>OL</value>
   </data>
   <data name="DisableAdvancedRecording" xml:space="preserve">
     <value>Estä edistynyt äänitys</value>
@@ -2127,52 +2129,52 @@ Error text: {1}</value>
     <value>Palautus alkutilaan</value>
   </data>
   <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
-    <value>Speech is generated for all the pages</value>
+    <value>Puhe generoidaan kaikille sivuille</value>
   </data>
   <data name="EditAudioTT_Cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>Leikkaa</value>
   </data>
   <data name="EditAudioTT_Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Kopio</value>
   </data>
   <data name="EditAudioTT_Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Liimaa</value>
   </data>
   <data name="EditAudioTT_Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Poista käyttämättömät tiedostot puhdistus-toiminnon jälkeen</value>
   </data>
   <data name="EditAudioTT_Merge" xml:space="preserve">
-    <value>Merge With Next Phrase</value>
+    <value>Yhdistä seuraavaan lauseeseen</value>
   </data>
   <data name="EditAudioTT_Split" xml:space="preserve">
-    <value>Split Phrase</value>
+    <value>Jaa lause</value>
   </data>
   <data name="Metadata_SetDefaults" xml:space="preserve">
-    <value>Set default metadata</value>
+    <value>Aseta oletus metadata</value>
   </data>
   <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
-    <value>Use Space key to stop recording</value>
+    <value>Käytä välilyönti-näppäintä äänityksen pysäytykseen</value>
   </data>
   <data name="MergeProjectCommand" xml:space="preserve">
-    <value>Merge project</value>
+    <value>Yhdistä projekti</value>
   </data>
   <data name="MergeProject_NoSectionToMerge" xml:space="preserve">
-    <value>No section found in source project</value>
+    <value>Kappaleita ei löydy lähdeprojektissa</value>
   </data>
   <data name="MergeProject_progress_dialog_title" xml:space="preserve">
-    <value>Merging project {0} of {1}...</value>
+    <value>Yhdistetään projekti {0}  {1}...</value>
   </data>
   <data name="MergeProject_SectionProgress" xml:space="preserve">
-    <value>Merging section: {0}</value>
+    <value>Yhdistetään kappale: {0}</value>
   </data>
   <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
-    <value>Background color for empty sections in TOC view</value>
+    <value>Taustaväri tyhjille kappaleille TOC-näytössä</value>
   </data>
   <data name="Obi_ProjectMerge" xml:space="preserve">
-    <value>Please select project to merge</value>
+    <value>Valitse yhdistettävä projekti</value>
   </data>
   <data name="Obi_ProjectMergeFilter" xml:space="preserve">
-    <value>Obi project file (*.obi)|*.obi</value>
+    <value>Obi projektitiedosto (*.obi)|*.obi</value>
   </data>
   <data name="MergeProject_Information" xml:space="preserve">
     <value>Please make sure that that the projects to be merged have the same audio format and are created on Obi 3.0 Beta 2 or later version.</value>
