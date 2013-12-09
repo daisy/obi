@@ -392,7 +392,9 @@ namespace Obi
             {
                 //@overlap: overlapLength = Convert.ToInt32(0.250 * (mRecorder.RecordingPCMFormat.BlockAlign * mRecorder.RecordingPCMFormat.SampleRate));
                 //@overlap: if (e != null) overlapLength = (Math.Abs(overlapLength / e.PcmDataBufferLength) * e.PcmDataBufferLength);
-                msLentth = e != null? Convert.ToInt32( e.PcmDataBufferLength * 480): m_MemStreamArray.Length;
+                msLentth = e != null? Convert.ToInt32( e.PcmDataBufferLength * 480): 
+                    m_MemStreamArray != null? m_MemStreamArray.Length: 0;
+                
             }
 
             if ((m_MemStreamArray == null || e == null || m_PhDetectionMemStreamPosition > (msLentth - e.PcmDataBufferLength)) && mRecorder.RecordingPCMFormat != null)
