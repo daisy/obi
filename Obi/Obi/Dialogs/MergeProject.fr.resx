@@ -121,7 +121,7 @@
     <value>True</value>
   </metadata>
   <data name="mbtnDesendingOrder.AccessibleName" xml:space="preserve">
-    <value>Laskeva järjestys</value>
+    <value>Ordre décroissant</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mbtnDesendingOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -142,7 +142,7 @@
     <value>9</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>&amp;Laskeva järjestys</value>
+    <value>Ordre &amp;décroissant</value>
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
     <value>mbtnDesendingOrder</value>
@@ -157,7 +157,7 @@
     <value>0</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
-    <value>Projektitiedostot valintalista.</value>
+    <value>Project files list box.</value>
   </data>
   <data name="lstManualArrange.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -193,10 +193,10 @@
     <value>2</value>
   </data>
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
-    <value>Järjestele tidostot</value>
+    <value>Organiser les fichier</value>
   </data>
   <data name="mbtnAscendingOrder.AccessibleName" xml:space="preserve">
-    <value>Nouseva järjestys</value>
+    <value>Ordre croissant</value>
   </data>
   <data name="mbtnAscendingOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -214,7 +214,7 @@
     <value>8</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>&amp;Nouseva järjestys</value>
+    <value>Ordre &amp;croissant</value>
   </data>
   <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
     <value>mbtnAscendingOrder</value>
@@ -247,7 +247,7 @@
     <value>7</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
-    <value>Järjestele tidostot:</value>
+    <value>Organiser les fichier:</value>
   </data>
   <data name="&gt;&gt;m_grpArrangeAudioFiles.Name" xml:space="preserve">
     <value>m_grpArrangeAudioFiles</value>
@@ -262,10 +262,10 @@
     <value>1</value>
   </data>
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
-    <value>Ryhmäkehys tiedostojen lisäykseen ja järjestelyyn</value>
+    <value>Zone de groupe pour ajouter et organiser les fichiers.</value>
   </data>
   <data name="m_btnRemove.AccessibleName" xml:space="preserve">
-    <value>Poista</value>
+    <value>Enlever</value>
   </data>
   <data name="m_btnRemove.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -286,7 +286,7 @@
     <value>6</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
-    <value>P&amp;oista</value>
+    <value>&amp;Enlever</value>
   </data>
   <data name="&gt;&gt;m_btnRemove.Name" xml:space="preserve">
     <value>m_btnRemove</value>
@@ -301,7 +301,7 @@
     <value>0</value>
   </data>
   <data name="m_btnAdd.AccessibleName" xml:space="preserve">
-    <value>Lisää</value>
+    <value>Ajouter</value>
   </data>
   <data name="m_btnAdd.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -322,7 +322,7 @@
     <value>5</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
-    <value>Lisää</value>
+    <value>&amp;Ajouter</value>
   </data>
   <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
     <value>m_btnAdd</value>
@@ -337,7 +337,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.AccessibleName" xml:space="preserve">
-    <value>Siirrä ylös</value>
+    <value>Vers le Haut</value>
   </data>
   <data name="m_btnMoveUp.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -358,7 +358,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>Siirrä &amp;ylös</value>
+    <value>Vers le &amp;Haut</value>
   </data>
   <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
     <value>m_btnMoveUp</value>
@@ -373,7 +373,7 @@
     <value>4</value>
   </data>
   <data name="m_btnMoveDown.AccessibleName" xml:space="preserve">
-    <value>Siirrä alas</value>
+    <value>Vers le Bas</value>
   </data>
   <data name="m_btnMoveDown.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -394,7 +394,7 @@
     <value>4</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
-    <value>Siirrä &amp;alas</value>
+    <value>Vers le &amp;Bas</value>
   </data>
   <data name="&gt;&gt;m_btnMoveDown.Name" xml:space="preserve">
     <value>m_btnMoveDown</value>
@@ -436,7 +436,7 @@
     <value>2</value>
   </data>
   <data name="mCancelButton.AccessibleName" xml:space="preserve">
-    <value>Peruuta</value>
+    <value>Annuler</value>
   </data>
   <data name="mCancelButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -457,7 +457,7 @@
     <value>11</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;Peruuta</value>
+    <value>&amp;Annuler</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -472,7 +472,7 @@
     <value>0</value>
   </data>
   <data name="mOKButton.AccessibleName" xml:space="preserve">
-    <value>OK</value>
+    <value>Ok</value>
   </data>
   <data name="mOKButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -508,7 +508,7 @@
     <value>1</value>
   </data>
   <data name="$this.AccessibleName" xml:space="preserve">
-    <value>Yhdistä projekti</value>
+    <value>Fusionner projet</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
@@ -523,7 +523,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Yhdistä projekti</value>
+    <value>Fusionner projet</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MergeProject</value>

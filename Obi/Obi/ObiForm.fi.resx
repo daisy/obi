@@ -207,13 +207,13 @@
     <value>278, 6</value>
   </data>
   <data name="mFile_MergeProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge Project</value>
+    <value>Yhdistä projekti</value>
   </data>
   <data name="mFile_MergeProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
   </data>
   <data name="mFile_MergeProjectMenuItem.Text" xml:space="preserve">
-    <value>&amp;Merge Project</value>
+    <value>&amp;Yhdistä projekti</value>
   </data>
   <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Palauta Backup</value>
