@@ -217,28 +217,32 @@ namespace Obi.Dialogs
                {
                 MessageBox.Show("Incorrect Email Address");
                }
+               else if (m_txtEmail.Text.Trim().CompareTo(m_txtRetypeEmail.Text.Trim()) != 0)
+               {
+                   MessageBox.Show("The entered emails does not match. Please retype the emails.");
+               }
                else if ((m_rdbDaisyProduction.Checked == false && m_rdbTryingObi.Checked == false))
                {
-                  MessageBox.Show("Please indicate us about your usage of Obi by checking any one of the radio button ");
+                   MessageBox.Show("Please indicate us about your usage of Obi by checking any one of the radio button ");
                }
-              else
-              {
-                  string userInfo = "un:" + m_txtName.Text
-                                    + ",em:" + m_txtEmail.Text
-                                    + ",og:" + m_txtOrganizationName.Text
-                                    + ",ct:" + m_txtCity.Text
-                                    + ",cn:" + m_txtCountry.Text
-                                    + ",ss:" + (m_rdbDaisyProduction.Checked ? "used" : "not-used")
-                                    + ",vr:" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()
-                                    + ",os:" + System.Environment.OSVersion.ToString();
-                  
-                  Console.WriteLine(userInfo);
-                  m_Settings.UsersInfoToUpload = userInfo;
-                  m_Settings.SaveSettings();
-                  //MessageBox.Show(userInfo);
-                  Close();
-                  //return;
-              }
+               else
+               {
+                   string userInfo = "un:" + m_txtName.Text
+                                     + ",em:" + m_txtEmail.Text
+                                     + ",og:" + m_txtOrganizationName.Text
+                                     + ",ct:" + m_txtCity.Text
+                                     + ",cn:" + m_txtCountry.Text
+                                     + ",ss:" + (m_rdbDaisyProduction.Checked ? "used" : "not-used")
+                                     + ",vr:" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()
+                                     + ",os:" + System.Environment.OSVersion.ToString();
+
+                   Console.WriteLine(userInfo);
+                   m_Settings.UsersInfoToUpload = userInfo;
+                   m_Settings.SaveSettings();
+                   //MessageBox.Show(userInfo);
+                   Close();
+                   //return;
+               }
         }
 
         private void m_btnRemindMeLater_Click(object sender, EventArgs e)
