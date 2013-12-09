@@ -32,6 +32,8 @@ namespace Obi.Dialogs
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnRemindMeLater = new System.Windows.Forms.Button();
             this.m_grpBoxUserInformation = new System.Windows.Forms.GroupBox();
+            this.m_txtRetypeEmail = new System.Windows.Forms.TextBox();
+            this.m_lblRetypeEmail = new System.Windows.Forms.Label();
             this.m_txtWinVer = new System.Windows.Forms.TextBox();
             this.m_lblWinVer = new System.Windows.Forms.Label();
             this.m_txtName = new System.Windows.Forms.TextBox();
@@ -69,6 +71,8 @@ namespace Obi.Dialogs
             // 
             // m_grpBoxUserInformation
             // 
+            this.m_grpBoxUserInformation.Controls.Add(this.m_txtRetypeEmail);
+            this.m_grpBoxUserInformation.Controls.Add(this.m_lblRetypeEmail);
             this.m_grpBoxUserInformation.Controls.Add(this.m_txtWinVer);
             this.m_grpBoxUserInformation.Controls.Add(this.m_lblWinVer);
             this.m_grpBoxUserInformation.Controls.Add(this.m_txtName);
@@ -84,6 +88,16 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_grpBoxUserInformation, "m_grpBoxUserInformation");
             this.m_grpBoxUserInformation.Name = "m_grpBoxUserInformation";
             this.m_grpBoxUserInformation.TabStop = false;
+            // 
+            // m_txtRetypeEmail
+            // 
+            resources.ApplyResources(this.m_txtRetypeEmail, "m_txtRetypeEmail");
+            this.m_txtRetypeEmail.Name = "m_txtRetypeEmail";
+            // 
+            // m_lblRetypeEmail
+            // 
+            resources.ApplyResources(this.m_lblRetypeEmail, "m_lblRetypeEmail");
+            this.m_lblRetypeEmail.Name = "m_lblRetypeEmail";
             // 
             // m_txtWinVer
             // 
@@ -222,5 +236,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rdbDaisyProduction;
         private System.Windows.Forms.Label m_lblWinVer;
         private System.Windows.Forms.TextBox m_txtWinVer;
+        private System.Windows.Forms.TextBox m_txtRetypeEmail;
+        private System.Windows.Forms.Label m_lblRetypeEmail;
     }
 }
