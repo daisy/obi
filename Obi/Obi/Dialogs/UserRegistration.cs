@@ -184,27 +184,27 @@ namespace Obi.Dialogs
                 string str="Please Enter the Following correctly :";
                 if (m_txtName.Text == "" || ((m_txtName.Text.Contains(" ")) && m_txtName.Text.Trim().Length==0 ) || (m_txtName.Text.StartsWith(".") && m_txtName.Text.EndsWith(".")))
                 {
-                    str += "\nName";
+                    str += Localizer.Message("UserRegistration_Name");
                     flag = true;
                 }
                 if (m_txtEmail.Text == "" || ((m_txtEmail.Text.Contains(" ")) && m_txtEmail.Text.Trim().Length == 0) || (m_txtEmail.Text.StartsWith(".") && m_txtEmail.Text.EndsWith(".")))
                 {
-                    str += "\nEmail";
+                    str += "\n" + Localizer.Message("UserRegistration_Email");
                     flag = true;
                 }
                 if (m_txtOrganizationName.Text == "" || ((m_txtOrganizationName.Text.Contains(" ")) && m_txtOrganizationName.Text.Trim().Length == 0) || (m_txtOrganizationName.Text.StartsWith(".") && m_txtOrganizationName.Text.EndsWith(".")))
                 {
-                    str += "\nOrganization Name";
+                    str += "\n" + Localizer.Message("UserRegistration_Org_Name");
                     flag = true;
                 }
                 if (m_txtCity.Text == "" || ((m_txtCity.Text.Contains(" ")) && m_txtCity.Text.Trim().Length == 0) || (m_txtCity.Text.StartsWith(".") && m_txtCity.Text.EndsWith(".")))
                 {
-                    str += "\nCity";
+                    str += "\n" + Localizer.Message("UserRegistration_City");
                     flag = true;
                 }
                 if (m_txtCountry.Text == "" || ((m_txtCountry.Text.Contains(" ")) && m_txtCountry.Text.Trim().Length == 0) || (m_txtCountry.Text.StartsWith(".") && m_txtCountry.Text.EndsWith(".")))
                 {
-                    str += "\nCountry";
+                    str += "\n" + Localizer.Message("UserRegistration_Country");
                     flag = true;
                 }
                 if (flag)
@@ -215,15 +215,15 @@ namespace Obi.Dialogs
 
                 else if (!m_txtEmail.Text.Contains("@") || !m_txtEmail.Text.Contains(".") || m_txtEmail.Text.Contains(" "))
                {
-                MessageBox.Show("Incorrect Email Address");
+                   MessageBox.Show(Localizer.Message("UserRegistration_WrongEmail"));
                }
                else if (m_txtEmail.Text.Trim().CompareTo(m_txtRetypeEmail.Text.Trim()) != 0)
                {
-                   MessageBox.Show("The entered emails does not match. Please retype the emails.");
+                   MessageBox.Show(Localizer.Message("UserRegistration_NoMatchEmail"));
                }
                else if ((m_rdbDaisyProduction.Checked == false && m_rdbTryingObi.Checked == false))
                {
-                   MessageBox.Show("Please indicate us about your usage of Obi by checking any one of the radio button ");
+                   MessageBox.Show(Localizer.Message("UserRegistration_IndiacateUsage"));
                }
                else
                {

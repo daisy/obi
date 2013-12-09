@@ -2442,4 +2442,28 @@ Error text: {1}</value>
   <data name="MergeProject_Information" xml:space="preserve">
     <value>Please make sure that that the projects to be merged have the same audio format and are created on Obi 3.0 Beta 2 or later version.</value>
   </data>
+  <data name="UserRegistration_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="UserRegistration_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="UserRegistration_Org_Name" xml:space="preserve">
+    <value>Organization Name</value>
+  </data>
+  <data name="UserRegistration_City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="UserRegistration_Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="UserRegistration_WrongEmail" xml:space="preserve">
+    <value>Incorrect Email Address</value>
+  </data>
+  <data name="UserRegistration_NoMatchEmail" xml:space="preserve">
+    <value>The entered emails does not match. Please retype the emails.</value>
+  </data>
+  <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
+    <value>Please indicate us about your usage of Obi by checking any one of the radio button</value>
+  </data>
 </root>
