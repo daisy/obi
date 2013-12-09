@@ -373,7 +373,8 @@ namespace Obi.ProjectView
                     n.EnsureVisible();
                     n.ExpandAll();
                     ChangeColorUsed(n, mProjectView.ColorSettings);
-                    if (node.Duration==0.0 && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection)
+                    if (mProjectView.ObiForm.Settings != null &&  mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection
+                        && node is SectionNode && node.Duration == 0)
                     {
                         n.BackColor = Color.LightPink;
                     }
@@ -554,14 +555,21 @@ namespace Obi.ProjectView
         // Reflect changes in the presentation (added or deleted nodes)
         private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
+            urakawa.core.TreeNode changedNode = null;
             if (e is ObjectAddedEventArgs<urakawa.core.TreeNode>)
             {
                 TreeNodeAdded((ObjectAddedEventArgs<urakawa.core.TreeNode>)e);
+                changedNode = ((ObjectAddedEventArgs<urakawa.core.TreeNode>)e).m_AddedObject;
             }
             else if (e is ObjectRemovedEventArgs<urakawa.core.TreeNode>)
             {
                 TreeNodeRemoved((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e);
+                changedNode = ((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e).m_RemovedObject;
             }
+            if (changedNode != null   && (changedNode is SectionNode || changedNode is EmptyNode) && ((ObiNode) changedNode).IsRooted) 
+            {
+                PaintColorForEmptySection(changedNode is SectionNode ? (SectionNode)changedNode : ((EmptyNode)changedNode).ParentAs<SectionNode>(), false);
+                }
         }
 
         // When a node was renamed, show the new name in the tree.
@@ -682,7 +690,7 @@ namespace Obi.ProjectView
                         treeNodeToSelect.ForeColor = SystemColors.ControlText;
                     }
 
-                    EmptySectionBackColor(mSelection.Node);
+                    EmptySectionBackColor(mSelection.Node, treeNodeToSelect);
                 }
                 
             }
@@ -694,11 +702,12 @@ namespace Obi.ProjectView
             
         }
 
-        public void EmptySectionBackColor(ObiNode node)
+        public void EmptySectionBackColor(ObiNode node, TreeNode treeNodeToSelect)
         {
+            if (node == null || treeNodeToSelect == null) return;
             if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
             {
-                TreeNode treeNodeToSelect = FindTreeNodeWithoutLabel((SectionNode)node);
+                //TreeNode treeNodeToSelect = FindTreeNodeWithoutLabel((SectionNode)node);
                 treeNodeToSelect.BackColor = Color.LightPink;
                 treeNodeToSelect.ForeColor = SystemColors.ControlText;
             }
@@ -706,21 +715,9 @@ namespace Obi.ProjectView
         }
         public void UpdateTOCBackColorForEmptySection(SectionNode node)
         {
+            PaintColorForEmptySection(node, true);
 
-            if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
-            {
-                TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
-                treeNode.BackColor = Color.LightPink;
-                treeNode.ForeColor = SystemColors.ControlText;
-
-            }
-            else
-            {
-                TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
-                treeNode.BackColor = Color.Empty;
-                treeNode.ForeColor = SystemColors.ControlText;
-
-            }
+            
             if (node.FollowingSection != null)
             {
                 if (node.FollowingSection is SectionNode)
@@ -730,7 +727,28 @@ namespace Obi.ProjectView
             }
 
         }
-       
+
+        private void PaintColorForEmptySection(SectionNode node, bool isIterating)
+{
+            if (!mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && !isIterating  ) return ;
+            //System.Media.SystemSounds.Asterisk.Play();
+            //Console.WriteLine("pink color");
+    if (node.Duration == 0.0)
+            {
+                TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
+                treeNode.BackColor = Color.LightPink;
+                treeNode.ForeColor = SystemColors.ControlText;
+
+            }
+            else
+            {
+                TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
+                
+                treeNode.BackColor = Color.Empty;
+                treeNode.ForeColor = SystemColors.ControlText;
+
+            }
+}
 
     }
 }
