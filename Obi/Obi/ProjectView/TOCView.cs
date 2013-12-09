@@ -14,7 +14,6 @@ namespace Obi.ProjectView
         private float mBaseFontSize;       // base font size (for scaling)
         private ProjectView mProjectView;  // the parent project view
         private NodeSelection mSelection;  // actual selection context   
-        private Settings mSettings;
         private TreeNode mTreeNodes;
 
 
@@ -682,8 +681,8 @@ namespace Obi.ProjectView
                         treeNodeToSelect.BackColor = Color.Empty;
                         treeNodeToSelect.ForeColor = SystemColors.ControlText;
                     }
-                    
-                    if(mSettings != null &&  mSettings.Project_BackgroundColorForEmptySection) EmptySectionBackColor(mSelection.Node);
+
+                    EmptySectionBackColor(mSelection.Node);
                 }
                 
             }
