@@ -48,7 +48,15 @@ namespace Obi.ProjectView
         // Audio of the block has changed: update the label and the width to accomodate the new audio.
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
         {
-            SetWaveform(e.Node);
+            if (m_IsAudioScaleIndependentOfStrip)//@zoomwaveform
+            {
+                SetWaveformForZoom(e.Node);
+                //System.Media.SystemSounds.Asterisk.Play();
+            }
+            else
+            {
+                SetWaveform(e.Node);
+            }
             UpdateLabel();
         }
 
