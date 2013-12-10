@@ -183,7 +183,7 @@ namespace Obi.ProjectView
                 TreeNode treeNodeForRemovingHighlight = FindTreeNodeWithoutLabel ( m_HighlightedSectionNodeWithoutSelection );
                 if (treeNodeForRemovingHighlight != null)
                 {
-                    if (m_HighlightedSectionNodeWithoutSelection.Duration != 0.0 && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection)             
+                   if (!mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection || (m_HighlightedSectionNodeWithoutSelection.Duration != 0.0 && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection))             
                     treeNodeForRemovingHighlight.BackColor = System.Drawing.Color.Empty;
                 }
                 }
@@ -194,7 +194,7 @@ namespace Obi.ProjectView
                 TreeNode treeNodeToHighlight = FindTreeNodeWithoutLabel ( m_HighlightedSectionNodeWithoutSelection );
                 if (treeNodeToHighlight != null)
                 {
-                    if (m_HighlightedSectionNodeWithoutSelection.Duration != 0.0 && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection)
+                    if (!mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection || (m_HighlightedSectionNodeWithoutSelection.Duration != 0.0 && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection))
                     {
                         treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
                     }
@@ -220,7 +220,7 @@ namespace Obi.ProjectView
                                 TreeNode treeNodeToHighlight = FindTreeNodeWithoutLabel(m_HighlightedSectionNodeWithoutSelection);
                                 if (treeNodeToHighlight != null)
                                 {
-                                    if (m_HighlightedSectionNodeWithoutSelection.Duration != 0.0 && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection)
+                                    if (!mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection || (m_HighlightedSectionNodeWithoutSelection.Duration != 0.0 && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection))
                                     {
                                         treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
                                     }
@@ -738,8 +738,8 @@ namespace Obi.ProjectView
                 TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
                 treeNode.BackColor = Color.LightPink;
                 treeNode.ForeColor = SystemColors.ControlText;
-                //System.Media.SystemSounds.Asterisk.Play();
-                //Console.WriteLine("pink color");
+                System.Media.SystemSounds.Asterisk.Play();
+                Console.WriteLine("pink color");
             }
             else
             {
