@@ -1900,6 +1900,7 @@ namespace Obi
                 mCheckForPhrasesWithImproperAudioMenuItem.Enabled = mProjectView.CanReplacePhrasesWithimproperAudioWithEmptyNodes;
                 splitAndMergeWithNextToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
                 splitAndMergeWithPreviousToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
+                mPhrases_RenumberPagesMenuItem.Enabled = mProjectView.Presentation != null;
             }
 
             private void UpdateAudioSelectionBlockMenuItems()
@@ -4812,7 +4813,41 @@ namespace Obi
 
             private void mPhrases_RenumberPagesMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.Presentation != null)
+                {
+                    try
+                    {
+                        EmptyNode startNode = mProjectView.Selection != null ? (mProjectView.Selection.Node is EmptyNode? (EmptyNode)mProjectView.Selection.Node : mProjectView.Selection.Node is SectionNode && ((SectionNode)mProjectView.Selection.Node).PhraseChildCount > 0? (EmptyNode)((SectionNode)mProjectView.Selection.Node).FirstLeaf:null):
+                                        mProjectView.Presentation.FirstSection != null ? (EmptyNode)mProjectView.Presentation.FirstSection.FirstLeaf :
+                                        null;
 
+                        if (startNode == null) return;
+
+                        PageNumber num = null;
+                        for (ObiNode n = startNode.PrecedingNode; n != null; n = n.PrecedingNode)
+                        {
+                            if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                            {
+                                num = ((EmptyNode)n).PageNumber;
+                                break;
+                            }
+                        }
+                        Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false);
+                        dialog.IsRenumberChecked = true;
+                        if (dialog.ShowDialog() == DialogResult.OK)
+                        {
+
+                            urakawa.command.CompositeCommand k = mProjectView.GetPageRenumberCommand(startNode, dialog.Number, "renumber command");
+                            mProjectView.Presentation.Do(k);
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        mProjectView.WriteToLogFile(ex.ToString());
+                        MessageBox.Show(ex.ToString());
+                    }
+
+                }
             }
 
 
