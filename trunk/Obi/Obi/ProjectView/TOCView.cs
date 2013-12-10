@@ -733,12 +733,13 @@ namespace Obi.ProjectView
             if (!mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && !isIterating  ) return ;
             //System.Media.SystemSounds.Asterisk.Play();
             //Console.WriteLine("pink color");
-    if (node.Duration == 0.0)
+            if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
             {
                 TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
                 treeNode.BackColor = Color.LightPink;
                 treeNode.ForeColor = SystemColors.ControlText;
-
+                System.Media.SystemSounds.Asterisk.Play();
+                Console.WriteLine("pink color");
             }
             else
             {
