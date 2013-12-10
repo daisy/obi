@@ -738,8 +738,8 @@ namespace Obi.ProjectView
                 TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
                 treeNode.BackColor = Color.LightPink;
                 treeNode.ForeColor = SystemColors.ControlText;
-                System.Media.SystemSounds.Asterisk.Play();
-                Console.WriteLine("pink color");
+                //System.Media.SystemSounds.Asterisk.Play();
+                //Console.WriteLine("pink color");
             }
             else
             {
