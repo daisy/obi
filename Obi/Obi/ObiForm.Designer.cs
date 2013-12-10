@@ -142,6 +142,7 @@ namespace Obi
             this.mPhrases_AssignRole_NewCustomRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_EditRolesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_RenumberPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.mPhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_ApplyPhraseDetectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -212,7 +213,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mPhrases_RenumberPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1028,6 +1028,12 @@ namespace Obi
             resources.ApplyResources(this.mPhrases_EditRolesMenuItem, "mPhrases_EditRolesMenuItem");
             this.mPhrases_EditRolesMenuItem.Click += new System.EventHandler(this.mPhrases_EditRolesMenuItem_Click);
             // 
+            // mPhrases_RenumberPagesMenuItem
+            // 
+            this.mPhrases_RenumberPagesMenuItem.Name = "mPhrases_RenumberPagesMenuItem";
+            resources.ApplyResources(this.mPhrases_RenumberPagesMenuItem, "mPhrases_RenumberPagesMenuItem");
+            this.mPhrases_RenumberPagesMenuItem.Click += new System.EventHandler(this.mPhrases_RenumberPagesMenuItem_Click);
+            // 
             // toolStripSeparator19
             // 
             this.toolStripSeparator19.Name = "toolStripSeparator19";
@@ -1519,12 +1525,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // mPhrases_RenumberPagesMenuItem
-            // 
-            this.mPhrases_RenumberPagesMenuItem.Name = "mPhrases_RenumberPagesMenuItem";
-            resources.ApplyResources(this.mPhrases_RenumberPagesMenuItem, "mPhrases_RenumberPagesMenuItem");
-            this.mPhrases_RenumberPagesMenuItem.Click += new System.EventHandler(this.mPhrases_RenumberPagesMenuItem_Click);
             // 
             // ObiForm
             // 
