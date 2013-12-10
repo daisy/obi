@@ -4807,6 +4807,11 @@ namespace Obi
                    CanAutoSave = true;                
             }
 
+            private void mPhrases_RenumberPagesMenuItem_Click(object sender, EventArgs e)
+            {
+
+            }
+
 
 
 

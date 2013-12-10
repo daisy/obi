@@ -212,6 +212,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mPhrases_RenumberPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -795,6 +796,7 @@ namespace Obi
             this.mPhrases_AssignRoleMenuItem,
             this.mPhrases_ClearRoleMenuItem,
             this.mPhrases_EditRolesMenuItem,
+            this.mPhrases_RenumberPagesMenuItem,
             this.toolStripSeparator19,
             this.mPhraseDetectionToolStripMenuItem,
             this.mPhrases_AudioSelectionMenuItem,
@@ -1518,6 +1520,12 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
+            // mPhrases_RenumberPagesMenuItem
+            // 
+            this.mPhrases_RenumberPagesMenuItem.Name = "mPhrases_RenumberPagesMenuItem";
+            resources.ApplyResources(this.mPhrases_RenumberPagesMenuItem, "mPhrases_RenumberPagesMenuItem");
+            this.mPhrases_RenumberPagesMenuItem.Click += new System.EventHandler(this.mPhrases_RenumberPagesMenuItem_Click);
+            // 
             // ObiForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1728,6 +1736,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_DeletePhrasesWhileRecordingtoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFile_MergeProjectMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_RenumberPagesMenuItem;
     }
 }
 
