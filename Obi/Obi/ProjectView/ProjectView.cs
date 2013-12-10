@@ -1195,6 +1195,7 @@ namespace Obi.ProjectView
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                     {
                     EmptyNode newPhraseNode = (EmptyNode)next.PhraseChild ( i ).Copy ( false, true );
+                    newPhraseNode.AssociatedNode = ((EmptyNode)next.PhraseChild(i)).AssociatedNode;
                     if (newPhraseNode.Role_ == EmptyNode.Role.Heading) newPhraseNode.Role_ = EmptyNode.Role.Plain;
                     if (!section.Used && newPhraseNode.Used) newPhraseNode.Used = section.Used;
                     
