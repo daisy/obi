@@ -1215,6 +1215,12 @@
   <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
     <value>E&amp;dit custom roles...</value>
   </data>
+  <data name="mPhrases_RenumberPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
+    <value>Renumber pag&amp;es</value>
+  </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
   </data>
@@ -1921,7 +1927,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=2.7.6.21680, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=2.8.6.20798, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3276,6 +3282,12 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_RenumberPagesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>
