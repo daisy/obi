@@ -3256,4 +3256,7 @@
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Text" xml:space="preserve">
     <value>Enregistrez plus de phrases suivantes</value>
   </data>
+  <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
+    <value>Renuméroter pages</value>
+  </data>
 </root>
