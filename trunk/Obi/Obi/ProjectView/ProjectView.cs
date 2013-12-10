@@ -4466,7 +4466,7 @@ for (int j = 0;
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
 
                 if (AssignSpecialNodeDialog.IsRenumberChecked)
-                    RenumberPage();
+                    RenumberPage(BeginNote, mContentView.EndSpecialNode);
                 else
                 {
                     if (startNode.Index <= endNode.Index)
@@ -4533,12 +4533,12 @@ for (int j = 0;
             mContentView.BeginSpecialNode = null;
         }
 
-        public void RenumberPage()
+        public void RenumberPage( EmptyNode startNode, EmptyNode endNode)
         {
             bool pageFound = false;
             if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause();
             PageNumber num = null;
-            for (ObiNode n = BeginNote.PrecedingNode; n != null; n = n.PrecedingNode)
+            for (ObiNode n = startNode.PrecedingNode; n != null; n = n.PrecedingNode)
             {
                 if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                 {
@@ -4546,7 +4546,7 @@ for (int j = 0;
                     break;
                 } 
             }
-            for (ObiNode n = BeginNote; n != mContentView.EndSpecialNode.FollowingNode; n = n.FollowingNode)
+            for (ObiNode n = startNode; n != endNode.FollowingNode; n = n.FollowingNode)
             {
                 if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                 {
@@ -4570,12 +4570,12 @@ for (int j = 0;
                     {
                         CompositeCommand k = Presentation.CreateCompositeCommand(cmd.ShortDescription);
                        
-                        for (ObiNode n = BeginNote; n != mContentView.EndSpecialNode.FollowingNode; n = n.FollowingNode )
+                        for (ObiNode n = startNode; n != endNode.FollowingNode; n = n.FollowingNode )
                         {
                                 if (n is EmptyNode &&( (EmptyNode)n).Role_ == EmptyNode.Role.Page &&
                                     ((EmptyNode)n).PageNumber.Kind == number.Kind)
                                 {
-                                    if (n == mContentView.EndSpecialNode)
+                                    if (n == endNode)
                                     {
                                         cmd = new Commands.Node.SetPageNumber(this, SelectedNodeAs<EmptyNode>(), number);
                                        
@@ -4584,7 +4584,7 @@ for (int j = 0;
                                     number = number.NextPageNumber();
                                 }                                
                         }
-                        if (mContentView.EndSpecialNode.Role_ == EmptyNode.Role.Page)
+                        if (endNode.Role_ == EmptyNode.Role.Page)
                             k.ChildCommands.Insert(k.ChildCommands.Count, cmd);
                         cmd = k;
                     }
