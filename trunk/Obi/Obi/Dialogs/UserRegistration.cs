@@ -184,7 +184,7 @@ namespace Obi.Dialogs
                 string str="Please Enter the Following correctly :";
                 if (m_txtName.Text == "" || ((m_txtName.Text.Contains(" ")) && m_txtName.Text.Trim().Length==0 ) || (m_txtName.Text.StartsWith(".") && m_txtName.Text.EndsWith(".")))
                 {
-                    str += Localizer.Message("UserRegistration_Name");
+                    str += "\n" + Localizer.Message("UserRegistration_Name");
                     flag = true;
                 }
                 if (m_txtEmail.Text == "" || ((m_txtEmail.Text.Contains(" ")) && m_txtEmail.Text.Trim().Length == 0) || (m_txtEmail.Text.StartsWith(".") && m_txtEmail.Text.EndsWith(".")))
