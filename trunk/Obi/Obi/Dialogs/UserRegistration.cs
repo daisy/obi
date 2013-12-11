@@ -67,7 +67,7 @@ namespace Obi.Dialogs
 
             m_BackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
             {
-                System.Threading.Thread.CurrentThread.CurrentUICulture = m_CurrentCulture;
+                if(m_CurrentCulture != null)  System.Threading.Thread.CurrentThread.CurrentUICulture = m_CurrentCulture;
                 System.IO.MemoryStream memoryStream = null;
                 System.IO.Stream stream = null;
 
@@ -129,7 +129,7 @@ namespace Obi.Dialogs
 
             m_BackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
             {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = m_CurrentCulture;
+            if(m_CurrentCulture != null)  System.Threading.Thread.CurrentThread.CurrentUICulture = m_CurrentCulture;
                 if (!isUploadSuccessful) return;
                 try
                 {
