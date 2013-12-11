@@ -125,11 +125,14 @@
   <data name="m_btnOk.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
+  <data name="m_btnOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 424</value>
+    <value>58, 416</value>
   </data>
   <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 22</value>
+    <value>95, 30</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
@@ -157,10 +160,10 @@
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="m_btnRemindMeLater.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 424</value>
+    <value>193, 416</value>
   </data>
   <data name="m_btnRemindMeLater.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 22</value>
+    <value>95, 30</value>
   </data>
   <data name="m_btnRemindMeLater.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
