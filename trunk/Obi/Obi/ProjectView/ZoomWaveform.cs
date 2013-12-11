@@ -263,6 +263,8 @@ namespace Obi.ProjectView
             m_ProjectView = mProjectView;
             m_ProjectView.SelectionChanged += new EventHandler(ProjectViewSelectionChanged);          
             mProjectView.Presentation.UndoRedoManager.CommandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ProjectviewUpdated);
+            mProjectView.Presentation.UndoRedoManager.CommandUnDone+= new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ProjectviewUpdated);
+            mProjectView.Presentation.UndoRedoManager.CommandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ProjectviewUpdated);
             this.LostFocus += new EventHandler(ZoomPanelLostFocus);          
 
             keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
