@@ -57,6 +57,7 @@ namespace Obi.Dialogs
             // 
             // m_btnOk
             // 
+            this.m_btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.m_btnOk, "m_btnOk");
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.UseVisualStyleBackColor = true;
@@ -64,6 +65,7 @@ namespace Obi.Dialogs
             // 
             // m_btnRemindMeLater
             // 
+            this.m_btnRemindMeLater.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.m_btnRemindMeLater, "m_btnRemindMeLater");
             this.m_btnRemindMeLater.Name = "m_btnRemindMeLater";
             this.m_btnRemindMeLater.UseVisualStyleBackColor = true;
@@ -199,6 +201,7 @@ namespace Obi.Dialogs
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btnRemindMeLater;
             this.Controls.Add(this.m_txtBoxObiInformation);
             this.Controls.Add(this.m_grpBoxObiUse);
             this.Controls.Add(this.m_grpBoxUserInformation);

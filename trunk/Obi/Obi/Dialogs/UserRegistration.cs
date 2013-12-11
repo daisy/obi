@@ -238,6 +238,7 @@ namespace Obi.Dialogs
 
                    Console.WriteLine(userInfo);
                    m_Settings.UsersInfoToUpload = userInfo;
+                   m_Settings.ObiVersionWhileSendingUserInfo = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
                    m_Settings.SaveSettings();
                    //MessageBox.Show(userInfo);
                    Close();

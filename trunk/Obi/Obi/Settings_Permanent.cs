@@ -22,6 +22,7 @@ namespace Obi
         public string UsersInfoToUpload; //users info is temporarily stored till it is uploaded or timed out
         public int UploadAttemptsCount; // number of times user info upload attempted
         public bool RegistrationComplete;
+        public string ObiVersionWhileSendingUserInfo;
         private string[] DefaultMetadataArray;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_permanent_settings.xml";
@@ -32,6 +33,7 @@ namespace Obi
             settings.UsersInfoToUpload = "NoInfo" ;
             settings.UploadAttemptsCount = 0 ;
             settings.RegistrationComplete = false;
+            settings.ObiVersionWhileSendingUserInfo = "";
         }
 
         /// <summary>
