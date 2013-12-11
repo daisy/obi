@@ -4834,6 +4834,7 @@ namespace Obi
                         }
                         Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false);
                         dialog.IsRenumberChecked = true;
+                        dialog.EnableRenumberCheckBox = false;
                         dialog.Text = Localizer.Message("RenumberPages");
                         if (dialog.ShowDialog() == DialogResult.OK)
                         {
