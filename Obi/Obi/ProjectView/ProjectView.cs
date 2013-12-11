@@ -593,8 +593,8 @@ namespace Obi.ProjectView
                 }
             }
 
-        public bool CanGenerateSpeechForPage { get { return mPresentation != null &&  Selection != null && Selection.Node is EmptyNode && ((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Page && ((EmptyNode)Selection.Node).Duration == 0; } }
-        public bool CanGenerateSpeechForAllEmptyPages { get { return mPresentation != null; } }
+        public bool CanGenerateSpeechForPage { get { return mPresentation != null && Selection != null && Selection.Node is EmptyNode && ((EmptyNode)Selection.Node).Role_ == EmptyNode.Role.Page && ((EmptyNode)Selection.Node).Duration == 0 && !TransportBar.IsRecorderActive;  } }
+        public bool CanGenerateSpeechForAllEmptyPages { get { return mPresentation != null && !TransportBar.IsRecorderActive; } }
 
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
