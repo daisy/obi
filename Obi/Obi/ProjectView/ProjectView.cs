@@ -2279,6 +2279,7 @@ namespace Obi.ProjectView
             urakawa.command.CompositeCommand phraseDetectionCommand = null;
             try
             {
+                if (IsZoomWaveformActive) mContentView.RemovePanel();
             Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate(Dialogs.ProgressDialog progress1)
                             {
