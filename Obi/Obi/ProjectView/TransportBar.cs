@@ -3027,7 +3027,7 @@ SelectionChangedPlaybackEnabled = false;
                     //&& MessageBox.Show(Localizer.Message("TransportBar_RenumberPagesAfterRecording"), Localizer.Message("RenumberPagesCaption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (IsPlaying) Pause();
-                mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPage, firstRecordedPage.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", "")));
+                mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPage, firstRecordedPage.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", ""),true));
             }
             }
             if (mView != null && mView.ObiForm.Settings.Project_SaveProjectWhenRecordingEnds) mView.ObiForm.Save();

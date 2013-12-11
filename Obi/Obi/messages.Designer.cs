@@ -5218,6 +5218,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Renumber Pages.
+        /// </summary>
+        internal static string RenumberPages {
+            get {
+                return ResourceManager.GetString("RenumberPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Renumber the following pages?.
         /// </summary>
         internal static string RenumberPagesCaption {
