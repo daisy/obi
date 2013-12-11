@@ -4834,10 +4834,11 @@ namespace Obi
                         }
                         Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false);
                         dialog.IsRenumberChecked = true;
+                        dialog.Text = Localizer.Message("RenumberPages");
                         if (dialog.ShowDialog() == DialogResult.OK)
                         {
-
-                            urakawa.command.CompositeCommand k = mProjectView.GetPageRenumberCommand(startNode, dialog.Number, "renumber command");
+                            PageNumber pgNumber = new PageNumber(dialog.Number.Number - 1, dialog.Number.Kind);
+                            urakawa.command.CompositeCommand k = mProjectView.GetPageRenumberCommand(startNode, pgNumber, "renumber command",false);
                             mProjectView.Presentation.Do(k);
                         }
                     }

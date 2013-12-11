@@ -3029,7 +3029,7 @@ for (int j = 0;
                 urakawa.command.Command cmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), number );
                 if (renumber)
                     {
-                        CompositeCommand k = GetPageRenumberCommand (SelectedNodeAs<EmptyNode> (), number, cmd.ShortDescription ) ;
+                        CompositeCommand k = GetPageRenumberCommand (SelectedNodeAs<EmptyNode> (), number, cmd.ShortDescription ,true) ;
                     //CompositeCommand k = Presentation.CreateCompositeCommand ( cmd.ShortDescription );
                     //for (ObiNode n = SelectedNodeAs<EmptyNode> ().FollowingNode; n != null; n = n.FollowingNode)
                         //{
@@ -3054,10 +3054,13 @@ for (int j = 0;
         /// <param name="number"></param>
         /// <param name="shortDescription"></param>
         /// <returns></returns>
-        public CompositeCommand GetPageRenumberCommand(EmptyNode pageNode, PageNumber number, string shortDescription)
+        public CompositeCommand GetPageRenumberCommand(EmptyNode pageNode, PageNumber number, string shortDescription, bool renumberFromNextNode)
         {
+            // when bool renumberFromNextNode is true, code bahaves as earlier
             CompositeCommand k = Presentation.CreateCompositeCommand(shortDescription);
-            for (ObiNode n = pageNode.FollowingNode; n != null; n = n.FollowingNode)
+            for (ObiNode n = renumberFromNextNode? pageNode.FollowingNode: pageNode; 
+                n != null; 
+                n = n.FollowingNode)
             {
                 if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
                     ((EmptyNode)n).PageNumber.Kind == number.Kind)
