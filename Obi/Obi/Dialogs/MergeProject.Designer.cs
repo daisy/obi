@@ -40,6 +40,7 @@ namespace Obi.Dialogs
             this.m_btnMoveDown = new System.Windows.Forms.Button();
             this.mCancelButton = new System.Windows.Forms.Button();
             this.mOKButton = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_grpArrangeAudioFiles.SuspendLayout();
             this.m_grpAddFiles.SuspendLayout();
             this.SuspendLayout();
@@ -156,6 +157,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnMoveDown;
         private System.Windows.Forms.Button mCancelButton;
         private System.Windows.Forms.Button mOKButton;
+        private System.Windows.Forms.HelpProvider helpProvider1;
 
 
     }

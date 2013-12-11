@@ -22,8 +22,12 @@ namespace Obi.Dialogs
             m_filePaths = new List<string>();
             m_filePaths.Add(filepath);
             string[] arr = filepath.Split(Path.DirectorySeparatorChar);
-            lstManualArrange.Items.Add(arr[arr.Length-2]+"\\"+arr[arr.Length-1] );    
+            lstManualArrange.Items.Add(arr[arr.Length-2]+"\\"+arr[arr.Length-1] );
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Merging projects.htm");
         }
+
         public string[] FilesPaths
         {
             get

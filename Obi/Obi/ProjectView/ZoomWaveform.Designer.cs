@@ -42,6 +42,7 @@
             this.btnZoomOuttoolStrip = new System.Windows.Forms.ToolStripButton();
             this.btnResettoolStrip = new System.Windows.Forms.ToolStripButton();
             this.btnZoomSelectiontoolStrip = new System.Windows.Forms.ToolStripButton();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.toolStripZoomPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -155,6 +156,7 @@
         private System.Windows.Forms.ToolStripButton btnZoomOuttoolStrip;
         private System.Windows.Forms.ToolStripButton btnResettoolStrip;
         private System.Windows.Forms.ToolStripButton btnZoomSelectiontoolStrip;
+        private System.Windows.Forms.HelpProvider helpProvider1;
 
     }
 }

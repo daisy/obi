@@ -42,15 +42,15 @@ namespace Obi.ProjectView
        
        
         private ZoomWaveform()
-        {
-            
+        {            
             InitializeComponent();
             this.Controls.Add(panelZooomWaveform);       
             this.Controls.Add(btntxtZoomSelected);
-            
-            
-            
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/Obi Views and Transport Bar/Zoomed Waveform view.htm");           
         }
+
         public void SetSelectionFromContentView(NodeSelection selection) 
         {
             if (m_AudioBlock == null 
