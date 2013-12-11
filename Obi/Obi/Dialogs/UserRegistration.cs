@@ -209,7 +209,7 @@ namespace Obi.Dialogs
                 }
                 if (flag)
                 {
-                    MessageBox.Show(str);
+                    MessageBox.Show(str, Localizer.Message("Caption_Warning"));
                 }
 
 
