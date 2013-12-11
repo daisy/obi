@@ -2107,6 +2107,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset user registration. Will you like to reset the user registration also? You will need to register again if you proceed..
+        /// </summary>
+        internal static string HardResetPermanentSettings_Question {
+            get {
+                return ResourceManager.GetString("HardResetPermanentSettings_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please confirm again..
         /// </summary>
         internal static string HardResetSettings_ConfirmAgain {
@@ -6103,11 +6112,83 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        internal static string UserRegistration_City {
+            get {
+                return ResourceManager.GetString("UserRegistration_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        internal static string UserRegistration_Country {
+            get {
+                return ResourceManager.GetString("UserRegistration_Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string UserRegistration_Email {
+            get {
+                return ResourceManager.GetString("UserRegistration_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please indicate us about your usage of Obi by checking any one of the radio button.
+        /// </summary>
+        internal static string UserRegistration_IndiacateUsage {
+            get {
+                return ResourceManager.GetString("UserRegistration_IndiacateUsage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string UserRegistration_Name {
+            get {
+                return ResourceManager.GetString("UserRegistration_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The entered emails does not match. Please retype the emails..
+        /// </summary>
+        internal static string UserRegistration_NoMatchEmail {
+            get {
+                return ResourceManager.GetString("UserRegistration_NoMatchEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Name.
+        /// </summary>
+        internal static string UserRegistration_Org_Name {
+            get {
+                return ResourceManager.GetString("UserRegistration_Org_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to upload the users registration information in {0} attempts. Please send email to obi.feedback@gmail.com to register..
         /// </summary>
         internal static string UserRegistration_SendEmailMsg {
             get {
                 return ResourceManager.GetString("UserRegistration_SendEmailMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect Email Address.
+        /// </summary>
+        internal static string UserRegistration_WrongEmail {
+            get {
+                return ResourceManager.GetString("UserRegistration_WrongEmail", resourceCulture);
             }
         }
         

@@ -3566,6 +3566,12 @@ for (int j = 0;
                         ObiForm.Settings.ResetSettingsFile();
                         ObiForm.LoadDefaultKeyboardShortcuts();
                         ObiForm.KeyboardShortcuts.SaveSettings();
+
+                        if (MessageBox.Show(Localizer.Message("HardResetPermanentSettings_Question"), Localizer.Message("HardReset_Caption"),
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                        {
+                            if (ObiForm.Settings_Permanent != null) ObiForm.Settings_Permanent.ResetSettingsFile();
+                        }
                         MessageBox.Show(Localizer.Message("Confirm_Setting"));
                         return true;
                     }

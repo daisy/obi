@@ -2466,4 +2466,7 @@ Error text: {1}</value>
   <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
     <value>Please indicate us about your usage of Obi by checking any one of the radio button</value>
   </data>
+  <data name="HardResetPermanentSettings_Question" xml:space="preserve">
+    <value>Reset user registration. Will you like to reset the user registration also? You will need to register again if you proceed.</value>
+  </data>
 </root>
