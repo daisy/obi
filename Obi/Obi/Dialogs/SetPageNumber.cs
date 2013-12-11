@@ -78,6 +78,12 @@ namespace Obi.Dialogs
             }
         }
 
+        public bool EnableRenumberCheckBox
+        {
+            get { return mRenumber.Enabled; }
+            set { mRenumber.Enabled = value; }
+        }
+
         public int NumberOfPages
         {
             get
