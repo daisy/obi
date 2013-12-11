@@ -1913,7 +1913,7 @@ Error text: {1}</value>
     <value>Edistynyt äänitysmoodi.</value>
   </data>
   <data name="Preferences_Allow_overwrite" xml:space="preserve">
-    <value>Seuraavat valintaruudut tarkistetaan: Salli päällekirjoitus äänitettäessä, Aloita äänitys kursorikohdasta poistaen sen jälkeinen tallenne ja Tallenna aina suoraan siirtopalkista. Haluatko jatkaa?</value>
+    <value>Seuraavat valintaruudut tarkistetaan: Salli päällekirjoitus äänitettäessä, Suorita lauseen tunnistus äänityksen aikana ja Tallenna aina suoraan siirtopalkista. Haluatko jatkaa?</value>
   </data>
   <data name="select_one_more_section" xml:space="preserve">
     <value>Valittuna {0}. Valitse yhdistettäväksi ainakin yksi kappale lisää.</value>

@@ -1912,7 +1912,7 @@ Texte de l'erreur: {1}</value>
     <value>Mode d'enregistrement avancé</value>
   </data>
   <data name="Preferences_Allow_overwrite" xml:space="preserve">
-    <value>Autoriser l'écrasement, démarre l'enregistrement à partir du curseur, efface l'audio suivant et enregistre directement à partir des cases à cocher sélectionnées de la barre de transport. Voulez-vous continuer?</value>
+    <value>Autoriser l'écrasement,Détection phrase pendant l'enregistrement et enregistre directement à partir des cases à cocher sélectionnées de la barre de transport. Voulez-vous continuer?</value>
   </data>
   <data name="select_one_more_section" xml:space="preserve">
     <value>{0} Sélectionné. Sélectionnez au moins une autre section pour la fusion</value>
