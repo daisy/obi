@@ -5190,6 +5190,8 @@ public bool ShowOnlySelectedSection
                 }
 
                 CompositeCommand mergeProjectCommand = mPresentation.CreateCompositeCommand(Localizer.Message("MergeProjectCommand")) ;
+                mergeProjectCommand.ChildCommands.Insert(mergeProjectCommand.ChildCommands.Count,
+                   new Commands.UpdateSelection(this, Selection));
                 ObiRootNode root =(ObiRootNode) mPresentation.RootNode;
                 int sectionInsertionIndex = 0;
                 for( int i=0 ; i < sectionsToMerge.Count; i++ )
