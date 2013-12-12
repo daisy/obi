@@ -101,7 +101,14 @@ namespace Obi.Audio
             {
                 int diff = this.Height - tempFormHeight;
                 Console.WriteLine("Difference is {0}", diff);
-                this.mGraphicalPeakMeter.Height = mGraphicalPeakMeter.Height + diff;
+                if ((mGraphicalPeakMeter.Height + diff) > (chkOnTop.Height*2))
+                {
+                    this.mGraphicalPeakMeter.Height = mGraphicalPeakMeter.Height + diff;
+                }
+                else
+                {
+                   this.Height = tempFormHeight;
+                }
                 this.chkOnTop.Location = new Point(this.chkOnTop.Location.X, mGraphicalPeakMeter.Height);
             }
         }
