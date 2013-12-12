@@ -2317,7 +2317,7 @@ Error text: {1}</value>
     <value>No phrase found with corrupt audio.</value>
   </data>
   <data name="Obi_UserInformationText" xml:space="preserve">
-    <value>Please fill in the following form to register yourself as an user of obi (free/open source DAISY production tool). This registration will entitle you to receive latest news and product updates right in your mailbox. Moreover, you will be able to play a crucial role in providing the future direction to the product as it will allow us to understand your requirements in a better way. Please make sure that computer is connected to internet while registration.</value>
+    <value>Please fill in the following form to register yourself as an user of obi (free/open source DAISY production tool). This registration will entitle you to receive latest news and product updates right in your mailbox. Moreover, you will be able to play a crucial role in providing the future direction to the product as it will allow us to understand your requirements in a better way. Please make sure that computer is connected to internet while registration. Existing users are requested to register again because this registration will be stored permanently for next versions of Obi also.</value>
   </data>
   <data name="CleanUp_LongFilePath" xml:space="preserve">
     <value>The project directory has long file path which may lead to major problems in cleanup causing loss of important data. It is strongly recommended to move the project directory near to the partition before starting clean up. Do you want to continue inspite of the stated warning?</value>

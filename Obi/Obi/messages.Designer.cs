@@ -4039,7 +4039,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please fill in the following form to register yourself as an user of obi (free/open source DAISY production tool). This registration will entitle you to receive latest news and product updates right in your mailbox. Moreover, you will be able to play a crucial role in providing the future direction to the product as it will allow us to understand your requirements in a better way. Please make sure that computer is connected to internet while registration..
+        ///   Looks up a localized string similar to Please fill in the following form to register yourself as an user of obi (free/open source DAISY production tool). This registration will entitle you to receive latest news and product updates right in your mailbox. Moreover, you will be able to play a crucial role in providing the future direction to the product as it will allow us to understand your requirements in a better way. Please make sure that computer is connected to internet while registration. Existing users are requested to register again becau [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Obi_UserInformationText {
             get {
