@@ -4030,14 +4030,21 @@ namespace Obi
                 if (!CheckAndAlertForMemoryUsage()) return;
 
                 mView_AudioZoomInMenuItem.Enabled = false;
-                ProjectView.Strip strip = mProjectView.StripForSelection;
-                if (strip == null)
+                if (!mProjectView.IsZoomWaveformActive)
                 {
-                    AudioScale *= AUDIO_SCALE_INCREMENT;
+                    ProjectView.Strip strip = mProjectView.StripForSelection;
+                    if (strip == null)
+                    {
+                        AudioScale *= AUDIO_SCALE_INCREMENT;
+                    }
+                    else if (strip.AudioScale < 0.1f)
+                    {
+                        strip.AudioScale *= AUDIO_SCALE_INCREMENT;
+                    }
                 }
-                else if (strip.AudioScale < 0.1f)
+                else
                 {
-                    strip.AudioScale *= AUDIO_SCALE_INCREMENT;
+                    mProjectView.ZoomPanelZoomIn();
                 }
                 mView_AudioZoomInMenuItem.Enabled = mSession.HasProject;
             }
@@ -4049,16 +4056,22 @@ namespace Obi
                 if (!CheckAndAlertForMemoryUsage()) return;
 
                 mView_AudioZoomOutMenuItem.Enabled = false;
-                ProjectView.Strip strip = mProjectView.StripForSelection;
-                if (strip == null)
+                if (!mProjectView.IsZoomWaveformActive)
                 {
-                    AudioScale /= AUDIO_SCALE_INCREMENT;
+                    ProjectView.Strip strip = mProjectView.StripForSelection;
+                    if (strip == null)
+                    {
+                        AudioScale /= AUDIO_SCALE_INCREMENT;
+                    }
+                    else if (strip.AudioScale > 0.002f)
+                    {
+                        strip.AudioScale /= AUDIO_SCALE_INCREMENT;
+                    }
                 }
-                else if (strip.AudioScale > 0.002f)
+                else
                 {
-                    strip.AudioScale /= AUDIO_SCALE_INCREMENT;
+                    mProjectView.ZoomPanelZoomOut();
                 }
-
                 mView_AudioZoomOutMenuItem.Enabled = mSession.HasProject;
             }
 
@@ -4151,9 +4164,15 @@ namespace Obi
             private void mView_ResetAudioSizeMenuItem_Click(object sender, EventArgs e)
             {
                 if (!CheckAndAlertForMemoryUsage()) return;
-
-                //AudioScale = AudioScale;
-                AudioScale = 0.01f;
+                if (!mProjectView.IsZoomWaveformActive)
+                {
+                    //AudioScale = AudioScale;
+                    AudioScale = 0.01f;
+                }
+                else
+                {
+                    mProjectView.ZoomPanelReset();
+                }
             }
 
             private void PipelineToolStripItems_Click(object sender, EventArgs e)

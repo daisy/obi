@@ -836,8 +836,10 @@ namespace Obi.ProjectView
           {
               ZoomIn();
           }
-        private void ZoomIn()
+        public void ZoomIn()
         {
+            
+            //Console.WriteLine("Zoom In");
             if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
             {
                 this.AutoScroll = false;
@@ -863,8 +865,10 @@ namespace Obi.ProjectView
           {
               ZoomOut();        
           }
-        private void ZoomOut()
+        public void ZoomOut()
         {
+            
+            //Console.WriteLine("zoom out");
             if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
             {
                 this.AutoScroll = false;
@@ -891,8 +895,10 @@ namespace Obi.ProjectView
               Reset();
           }
 
-        private void Reset()
+        public void Reset()
         {
+            
+            //Console.WriteLine("zoom reset");
             if (toolStripZoomPanel.Width < m_ContentView.Width && (m_Edit.Width + 5) < m_ContentView.Width && m_ProjectView.Height > m_PreviousHeight && m_ResizeIsDone == false)
             {
                 this.AutoScroll = false;
