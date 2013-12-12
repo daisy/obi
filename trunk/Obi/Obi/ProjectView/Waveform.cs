@@ -393,7 +393,7 @@ namespace Obi.ProjectView
                 }
             mPaintMutex.ReleaseMutex ();
             }
-            else if (!mBlock.ShowWaveform)//@zoomwaveform
+            else if (mBlock != null && !mBlock.ShowWaveform)//@zoomwaveform
             {
                 if (mBlock != null && mBlock.Node != null && mBlock.Node is PhraseNode)
                 {
