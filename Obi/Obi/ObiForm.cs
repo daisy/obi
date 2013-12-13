@@ -1974,6 +1974,12 @@ namespace Obi
             public void AddCustomRoleToMenu(string name, ToolStripItemCollection items, ToolStripMenuItem contextItem)
             {
                 int index = items.IndexOf(contextItem);
+                int startIndex = items.IndexOf(mCustomRoleToolStripSeparator);
+                
+                if (startIndex < index && startIndex > 0 && index < items.Count)
+                {
+                    for (int i = startIndex; i < index; i++) { if (items[i].Text == name) return; }
+                }
                 ToolStripMenuItem item = new ToolStripMenuItem();
                 item.Text = name;
                 item.Click += new EventHandler(delegate(object sender, EventArgs e)
