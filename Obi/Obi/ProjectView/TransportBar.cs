@@ -1716,12 +1716,15 @@ namespace Obi.ProjectView
                     mView.SelectPhraseInContentView ( mResumeRecordingPhrase );
                     }
                     
-                    if (deleteFollowingPhrases && ( (CurrentState == State.Paused  && mView.Selection.Node is EmptyNode)    ||    (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor )))
+                    if (deleteFollowingPhrases 
+                        && ( (CurrentState == State.Paused  && mView.Selection.Node is EmptyNode)    
+                        ||    (mView.Selection is AudioSelection )))
                     {
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(mView, new NodeSelection(selectionNode, mView.Selection.Control)));
                         //MessageBox.Show("recording selection update");   
                         double replaceStartTime = IsPlayerActive ? CurrentPlaylist.CurrentTimeInAsset:
-                            (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor) ? ((AudioSelection)mView.Selection).AudioRange.CursorTime : selectionNode.Duration;
+                            mView.Selection is AudioSelection?( ((AudioSelection)mView.Selection).AudioRange.HasCursor? ((AudioSelection)mView.Selection).AudioRange.CursorTime : ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime ): 
+                            selectionNode.Duration;
 
                         mView.Selection = new AudioSelection((PhraseNode) selectionNode, mView.Selection.Control, new AudioRange(replaceStartTime, selectionNode.Duration) );
                         
