@@ -285,8 +285,10 @@ namespace Obi
                 if (mCustomClasses[customClass].Count == 0
                     || (mCustomClasses[customClass].Count == 1 && mCustomClasses[customClass][0] == null)) // condition appended because custom class without an empty node is initialised with null entry
                 {
+                    if (EmptyNode.SkippableNamesList.Contains(customClass)) return ;
                     mCustomClasses.Remove(customClass);
                     if (CustomClassRemoved != null) CustomClassRemoved(this, new CustomClassEventArgs(customClass));
+                
                 }
             }
         }
