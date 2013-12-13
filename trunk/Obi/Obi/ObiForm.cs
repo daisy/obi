@@ -1991,6 +1991,7 @@ namespace Obi
 
             private void RemoveCustomClassFromMenu(string customClassName)
             {
+                if (!string.IsNullOrEmpty(customClassName) && EmptyNode.SkippableNamesList.Contains(customClassName)) return;
                 ToolStripItemCollection items = mPhrases_AssignRoleMenuItem.DropDownItems;
                 int index;
                 for (index = items.IndexOf(mCustomRoleToolStripSeparator);
