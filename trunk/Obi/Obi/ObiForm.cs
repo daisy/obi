@@ -4624,7 +4624,8 @@ namespace Obi
 
             private void mPhrases_AssignRole_AnchorMenuItem_Click(object sender, EventArgs e)
             {
-                ((EmptyNode) mProjectView.Selection.Node).Role_ = EmptyNode.Role.Anchor;
+                //((EmptyNode) mProjectView.Selection.Node).Role_ = EmptyNode.Role.Anchor;
+                mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Anchor, null);
             }
 
             private void mFineNavigationToolStripMenuItem_Click(object sender, EventArgs e)

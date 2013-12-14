@@ -5010,7 +5010,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         private void Context_AssignRole_AnchorMenuItem_Click(object sender, EventArgs e)   //@AssociateNode
         {
             // mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Anchor, "Anchor");     // @Anchor
-            ((EmptyNode)mProjectView.Selection.Node).Role_ = EmptyNode.Role.Anchor;
+            //((EmptyNode)mProjectView.Selection.Node).Role_ = EmptyNode.Role.Anchor;
+            mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Anchor, null);
         }
 
         // Clear role context menu item
