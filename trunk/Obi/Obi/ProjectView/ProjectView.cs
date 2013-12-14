@@ -1199,13 +1199,31 @@ namespace Obi.ProjectView
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                     {
                     EmptyNode newPhraseNode = (EmptyNode)next.PhraseChild ( i ).Copy ( false, true );
-                    newPhraseNode.AssociatedNode = ((EmptyNode)next.PhraseChild(i)).AssociatedNode;
+                    EmptyNode existingNode = ((EmptyNode)next.PhraseChild(i));
+                    newPhraseNode.AssociatedNode = existingNode.AssociatedNode;
+                    
                     if (newPhraseNode.Role_ == EmptyNode.Role.Heading) newPhraseNode.Role_ = EmptyNode.Role.Plain;
                     if (!section.Used && newPhraseNode.Used) newPhraseNode.Used = section.Used;
                     
                     Commands.Command add = new Commands.Node.AddNode ( this, newPhraseNode, section, section.PhraseChildCount + i, false );
+                    
                     if (i % progressInterval == 0) add.ProgressPercentage = (i * 90 / next.PhraseChildCount); 
                     command.ChildCommands.Insert(command.ChildCommands.Count,add );
+                    
+                    if (existingNode.Role_ == EmptyNode.Role.Custom && EmptyNode.SkippableNamesList.Contains(existingNode.CustomRole)
+                        && existingNode.PrecedingNode != null && existingNode.PrecedingNode is EmptyNode && ((EmptyNode)existingNode.PrecedingNode).CustomRole != existingNode.CustomRole)
+                    {
+                        EmptyNode anchorNode = mPresentation.GetAnchorForReferencedNode(existingNode);
+                        if (anchorNode != null)
+                        {
+                            Commands.Node.DeAssociateAnchorNode disassociateCmd = new Obi.Commands.Node.DeAssociateAnchorNode(this, anchorNode);
+                            Commands.Node.AssociateAnchorNode associateCmd = new Obi.Commands.Node.AssociateAnchorNode(this, anchorNode, newPhraseNode);
+                            command.ChildCommands.Insert(command.ChildCommands.Count, disassociateCmd);
+                            command.ChildCommands.Insert(command.ChildCommands.Count, associateCmd);
+                        }
+                    }
+
+
                     }
                 Console.WriteLine ( "add in merge complete" );
                 //command.ChildCommands.Insert(command.ChildCommands.Count, mContentView.DeleteStripCommand ( next ) );
