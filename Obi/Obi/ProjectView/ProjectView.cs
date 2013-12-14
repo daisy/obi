@@ -146,7 +146,10 @@ namespace Obi.ProjectView
                 Dictionary<string, string> metadataDictionary = new Dictionary<string, string>();
                 foreach (urakawa.metadata.Metadata m in mPresentation.Metadatas.ContentsAs_ListCopy)
                 {
-                    if(!metadataDictionary.ContainsKey(m.NameContentAttribute.Name)) metadataDictionary.Add(m.NameContentAttribute.Name, m.NameContentAttribute.Value);
+                    if (m.NameContentAttribute.Name != Metadata.DC_IDENTIFIER)
+                    {
+                        if (!metadataDictionary.ContainsKey(m.NameContentAttribute.Name)) metadataDictionary.Add(m.NameContentAttribute.Name, m.NameContentAttribute.Value);
+                    }
                 }
                 ObiForm.Settings_Permanent.UpdateDefaultMetadata(metadataDictionary);
                 ObiForm.Settings_Permanent.SaveSettings();
@@ -165,6 +168,7 @@ namespace Obi.ProjectView
                     if (defaultMetadatas.ContainsKey(m.NameContentAttribute.Name))
                     {
                         if (m.NameContentAttribute.Name == Metadata.DC_IDENTIFIER) continue;
+                        //Console.WriteLine(m.NameContentAttribute.Name);
                         if (overwriteExisting)
                         {
                             string content = m.NameContentAttribute.Name == Metadata.DC_DATE? DateTime.Today.ToString("yyyy-MM-dd") : defaultMetadatas[m.NameContentAttribute.Name];
@@ -175,12 +179,12 @@ namespace Obi.ProjectView
                 }
                     foreach( string name in defaultMetadatas.Keys)
                     {
+                        if (name == Metadata.DC_IDENTIFIER) continue;
                         Commands.Metadata.AddEntry addEntryCmd = new Commands.Metadata.AddEntry(this, name);
                         command.ChildCommands.Insert(command.ChildCommands.Count, addEntryCmd);
 
-                        string content = name == Metadata.DC_DATE ? DateTime.Today.ToString("yyyy-MM-dd") :
-                            name == Metadata.DC_IDENTIFIER? Guid.NewGuid().ToString():
-                            defaultMetadatas[name];
+                        string content = name == Metadata.DC_DATE ? DateTime.Today.ToString("yyyy-MM-dd") : defaultMetadatas[name];
+                            
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(this, addEntryCmd.Entry, content));
                     }
                     try
