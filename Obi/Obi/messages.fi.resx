@@ -523,7 +523,7 @@ Error text: {1}</value>
     <value>muokkaa metadata merkinnän nimeä</value>
   </data>
   <data name="about_file_name" xml:space="preserve">
-    <value>about_en.html</value>
+    <value>about_fi.html</value>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
     <value>lisää tyhjiä sivuja</value>
