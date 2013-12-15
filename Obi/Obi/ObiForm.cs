@@ -1475,7 +1475,7 @@ namespace Obi
                     && mProjectView.Presentation != null)
                 {
                     foreach (string customClass in mProjectView.Presentation.CustomClasses)
-                        RemoveCustomClassFromMenu(customClass);
+                        RemoveCustomClassFromMenu(customClass, true);
                     mProjectView.Presentation.Changed -=
                         new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                     mProjectView.Presentation.BeforeCommandExecuted -=
@@ -1991,13 +1991,13 @@ namespace Obi
             // Update the custom class menu to remove this class
             private void Presentation_CustomClassRemoved(object sender, CustomClassEventArgs e)
             {
-                RemoveCustomClassFromMenu(e.CustomClass);
+                RemoveCustomClassFromMenu(e.CustomClass, false);
             }
 
 
-            private void RemoveCustomClassFromMenu(string customClassName)
+            private void RemoveCustomClassFromMenu(string customClassName, bool isProjectClosing)
             {
-                if (!string.IsNullOrEmpty(customClassName) && EmptyNode.SkippableNamesList.Contains(customClassName)) return;
+                if (!isProjectClosing &&  !string.IsNullOrEmpty(customClassName) && EmptyNode.SkippableNamesList.Contains(customClassName)) return;
                 ToolStripItemCollection items = mPhrases_AssignRoleMenuItem.DropDownItems;
                 int index;
                 for (index = items.IndexOf(mCustomRoleToolStripSeparator);
