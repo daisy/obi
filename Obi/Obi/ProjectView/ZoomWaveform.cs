@@ -253,8 +253,16 @@ namespace Obi.ProjectView
         {
             string[] tempStore = str.Split(',');
             //return new string( charArray );
-            str = tempStore[1] + "+" + tempStore[0];
-            return str;
+            if (tempStore.Length == 0) return "";
+            string formattedString = "";
+            for (int i = tempStore.Length - 1; i >= 0; i--)
+            {
+                //str = tempStore[1] + "+" + tempStore[0];
+                formattedString  += tempStore[i];
+                if (i > 0) formattedString += "+";
+            }
+            
+            return formattedString ;
         }
        public ZoomWaveform(ContentView contentView, Strip strip,EmptyNode node,ProjectView mProjectView ):this    ()
         {
