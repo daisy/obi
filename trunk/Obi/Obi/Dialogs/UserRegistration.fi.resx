@@ -128,15 +128,18 @@
   <data name="m_btnOk.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
+  <data name="m_btnOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 381</value>
+    <value>58, 416</value>
   </data>
   <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 23</value>
+    <value>95, 30</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>18</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
     <value>&amp;Rekisteröinti</value>
@@ -160,13 +163,13 @@
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="m_btnRemindMeLater.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 381</value>
+    <value>193, 416</value>
   </data>
   <data name="m_btnRemindMeLater.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 23</value>
+    <value>95, 30</value>
   </data>
   <data name="m_btnRemindMeLater.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>19</value>
   </data>
   <data name="m_btnRemindMeLater.Text" xml:space="preserve">
     <value>Muistuta minua m&amp;yöhemmin</value>
@@ -183,14 +186,65 @@
   <data name="&gt;&gt;m_btnRemindMeLater.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="m_txtRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 82</value>
+  </data>
+  <data name="m_txtRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 20</value>
+  </data>
+  <data name="m_txtRetypeEmail.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;m_txtRetypeEmail.Name" xml:space="preserve">
+    <value>m_txtRetypeEmail</value>
+  </data>
+  <data name="&gt;&gt;m_txtRetypeEmail.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtRetypeEmail.Parent" xml:space="preserve">
+    <value>m_grpBoxUserInformation</value>
+  </data>
+  <data name="&gt;&gt;m_txtRetypeEmail.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_lblRetypeEmail.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblRetypeEmail.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_lblRetypeEmail.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 89</value>
+  </data>
+  <data name="m_lblRetypeEmail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 13</value>
+  </data>
+  <data name="m_lblRetypeEmail.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_lblRetypeEmail.Text" xml:space="preserve">
+    <value>Vahvista Sähköposti :</value>
+  </data>
+  <data name="&gt;&gt;m_lblRetypeEmail.Name" xml:space="preserve">
+    <value>m_lblRetypeEmail</value>
+  </data>
+  <data name="&gt;&gt;m_lblRetypeEmail.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblRetypeEmail.Parent" xml:space="preserve">
+    <value>m_grpBoxUserInformation</value>
+  </data>
+  <data name="&gt;&gt;m_lblRetypeEmail.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="m_txtWinVer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 190</value>
+    <value>111, 226</value>
   </data>
   <data name="m_txtWinVer.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 20</value>
   </data>
   <data name="m_txtWinVer.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;m_txtWinVer.Name" xml:space="preserve">
     <value>m_txtWinVer</value>
@@ -202,19 +256,19 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_txtWinVer.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="m_lblWinVer.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblWinVer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 191</value>
+    <value>2, 227</value>
   </data>
   <data name="m_lblWinVer.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 13</value>
   </data>
   <data name="m_lblWinVer.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="m_lblWinVer.Text" xml:space="preserve">
     <value>Windosws versio:</value>
@@ -229,7 +283,7 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_lblWinVer.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="m_txtName.Location" type="System.Drawing.Point, System.Drawing">
     <value>111, 13</value>
@@ -250,16 +304,16 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_txtName.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="m_txtCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 157</value>
+    <value>111, 193</value>
   </data>
   <data name="m_txtCountry.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 20</value>
   </data>
   <data name="m_txtCountry.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;m_txtCountry.Name" xml:space="preserve">
     <value>m_txtCountry</value>
@@ -271,16 +325,16 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_txtCountry.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="m_txtCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 121</value>
+    <value>111, 157</value>
   </data>
   <data name="m_txtCity.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 20</value>
   </data>
   <data name="m_txtCity.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;m_txtCity.Name" xml:space="preserve">
     <value>m_txtCity</value>
@@ -292,16 +346,16 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_txtCity.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="m_txtOrganizationName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 82</value>
+    <value>111, 118</value>
   </data>
   <data name="m_txtOrganizationName.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 20</value>
   </data>
   <data name="m_txtOrganizationName.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;m_txtOrganizationName.Name" xml:space="preserve">
     <value>m_txtOrganizationName</value>
@@ -313,7 +367,7 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_txtOrganizationName.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="m_txtEmail.Location" type="System.Drawing.Point, System.Drawing">
     <value>111, 45</value>
@@ -334,19 +388,19 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_txtEmail.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="m_lblCountry.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblCountry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 160</value>
+    <value>6, 196</value>
   </data>
   <data name="m_lblCountry.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 13</value>
   </data>
   <data name="m_lblCountry.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="m_lblCountry.Text" xml:space="preserve">
     <value>&amp;Maa:</value>
@@ -361,19 +415,19 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_lblCountry.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="m_lblCity.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 124</value>
+    <value>6, 160</value>
   </data>
   <data name="m_lblCity.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 13</value>
   </data>
   <data name="m_lblCity.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_lblCity.Text" xml:space="preserve">
     <value>&amp;Paikkakunta:</value>
@@ -388,19 +442,19 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_lblCity.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_lblOrgName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblOrgName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 85</value>
+    <value>2, 122</value>
   </data>
   <data name="m_lblOrgName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 26</value>
+    <value>144, 26</value>
   </data>
   <data name="m_lblOrgName.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="m_lblOrgName.Text" xml:space="preserve">
     <value>&amp;Organisaatio: 
@@ -416,7 +470,7 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_lblOrgName.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="m_lblEmail.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -443,7 +497,7 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_lblEmail.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="m_lblName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -470,13 +524,13 @@
     <value>m_grpBoxUserInformation</value>
   </data>
   <data name="&gt;&gt;m_lblName.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="m_grpBoxUserInformation.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 68</value>
   </data>
   <data name="m_grpBoxUserInformation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>317, 216</value>
+    <value>317, 252</value>
   </data>
   <data name="m_grpBoxUserInformation.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -497,13 +551,13 @@
     <value>True</value>
   </data>
   <data name="m_rdbTryingObi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 57</value>
+    <value>9, 60</value>
   </data>
   <data name="m_rdbTryingObi.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 17</value>
   </data>
   <data name="m_rdbTryingObi.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>17</value>
   </data>
   <data name="m_rdbTryingObi.Text" xml:space="preserve">
     <value>Kokeilen ja testaan Obi-ohjelmaa</value>
@@ -524,13 +578,13 @@
     <value>True</value>
   </data>
   <data name="m_rdbDaisyProduction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 35</value>
+    <value>9, 38</value>
   </data>
   <data name="m_rdbDaisyProduction.Size" type="System.Drawing.Size, System.Drawing">
     <value>264, 17</value>
   </data>
   <data name="m_rdbDaisyProduction.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="m_rdbDaisyProduction.Text" xml:space="preserve">
     <value>Käytössäni on jo Obi-ohjelma DAISY äänikirjojen tekemiseen</value>
@@ -551,13 +605,13 @@
     <value>True</value>
   </data>
   <data name="m_lblSelectRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
+    <value>6, 19</value>
   </data>
   <data name="m_lblSelectRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 13</value>
   </data>
   <data name="m_lblSelectRadioButton.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="m_lblSelectRadioButton.Text" xml:space="preserve">
     <value>&amp;Valitse jokin seuraavista:</value>
@@ -575,10 +629,10 @@
     <value>2</value>
   </data>
   <data name="m_grpBoxObiUse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 290</value>
+    <value>12, 326</value>
   </data>
   <data name="m_grpBoxObiUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>317, 85</value>
+    <value>317, 84</value>
   </data>
   <data name="m_grpBoxObiUse.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -626,7 +680,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>341, 416</value>
+    <value>341, 453</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Käyttäjän rekisteröinti</value>
