@@ -66,12 +66,31 @@ namespace Obi.ProjectView
         private string FormatKeyboardShorcut(string str)
         {
             string[] tempStore = str.Split(',');
-            //return new string( charArray );
+            if (tempStore.Length == 0)
+            {
+                return "";
+            }
+            string tempstr = null;
             if (tempStore.Length > 1)
             {
-                str = tempStore[1] + "+" + tempStore[0];
+                for (int i = tempStore.Length - 1; i >= 0; i--)
+                {
+                    if (i > 0)
+                    {
+                        tempstr += tempStore[i] + "+";
+                    }
+                    else if (i == 0)
+                    {
+                        tempstr += tempStore[i];
+                    }
+                }
+            }
+            if (tempstr != null)
+            {
+                str = tempstr;
             }
             return str;
+
         }
 
         private void ProjectViewSelectionChanged(object sender, EventArgs e)
