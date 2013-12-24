@@ -48,55 +48,16 @@ namespace Obi.ProjectView
 
           //  mInitialSizeOfPanel = this.Size;
             keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
-           // keyboardShortcuts.MenuNameDictionary
-          //  this.mbtnCopytoolStrip.ToolTipText= keyboardShortcuts.KeyboardShortcutsDescription["Copy"].Value.ToString();
 
-            //this.mbtnCopytoolStrip.ToolTipText = "Copy (Cntrl+C)";
-            //this.mbtnCuttoolStrip.ToolTipText = "Copy (Cntrl+X)";
-            //this.mbtnDeletetoolStrip.ToolTipText="Delete (Del)";
-            //this.
-            this.mbtnCuttoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Cut") +"("+ FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCutToolStripMenuItem"].Value.ToString())+")";
-            this.mbtnCopytoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Copy") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCopyToolStripMenuItem"].Value.ToString()) + ")";
-            this.mbtnDeletetoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Delete") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mDeleteToolStripMenuItem"].Value.ToString()) + ")";
-            this.mbtnPastetoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Paste") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteToolStripMenuItem"].Value.ToString()) + ")";
-            this.mbtnMergetoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Merge") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergePhraseWithNextToolStripMenuItem"].Value.ToString()) + ")";
-            this.mbtnPraseDetectiontoolStrip.ToolTipText = Localizer.Message("EditAudioTT_PhraseDetect") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_ApplyPhraseDetectionMenuItem"].Value.ToString()) + ")";
-            this.mbtnSplittoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Split") + "(" + FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSplitPhraseToolStripMenuItem"].Value.ToString()) + ")";
+            this.mbtnCuttoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Cut") +"("+ keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCutToolStripMenuItem"].Value.ToString())+")";
+            this.mbtnCopytoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Copy") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCopyToolStripMenuItem"].Value.ToString()) + ")";
+            this.mbtnDeletetoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Delete") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mDeleteToolStripMenuItem"].Value.ToString()) + ")";
+            this.mbtnPastetoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Paste") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteToolStripMenuItem"].Value.ToString()) + ")";
+            this.mbtnMergetoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Merge") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergePhraseWithNextToolStripMenuItem"].Value.ToString()) + ")";
+            this.mbtnPraseDetectiontoolStrip.ToolTipText = Localizer.Message("EditAudioTT_PhraseDetect") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_ApplyPhraseDetectionMenuItem"].Value.ToString()) + ")";
+            this.mbtnSplittoolStrip.ToolTipText = Localizer.Message("EditAudioTT_Split") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSplitPhraseToolStripMenuItem"].Value.ToString()) + ")";
         }
-        private string FormatKeyboardShorcut(string str)
-        {
-            string[] tempStore = str.Split(',');
-            if (tempStore.Length == 0)
-            {
-                return "";
-            }
-            string tempstr = null;
-            if (tempStore.Length > 1)
-            {
-                for (int i = tempStore.Length - 1; i >= 0; i--)
-                {
-                    Keys tempKey = (Keys)Enum.Parse(typeof(Keys), tempStore[i]);
-                    if (keyboardShortcuts.UserFriendlyNameDirectory.ContainsKey(tempKey))
-                    {
-                        tempStore[i] = keyboardShortcuts.UserFriendlyNameDirectory[tempKey];
-                    }
-                    if (i > 0)
-                    {
-                        tempstr += tempStore[i] + "+";
-                    }
-                    else if (i == 0)
-                    {
-                        tempstr += tempStore[i];
-                    }
-                }
-            }
-            if (tempstr != null)
-            {
-                str = tempstr;
-            }
-            return str;
 
-        }
 
         private void ProjectViewSelectionChanged(object sender, EventArgs e)
         {
@@ -130,15 +91,11 @@ namespace Obi.ProjectView
                 {
                     tempZoomfactor = m_ContentView.ZoomFactor;
                 }
-              //  this.toolStrip1.Size = new Size((int)(this.toolStrip1.Size.Width + (this.toolStrip1.Size.Width * (tempZoomfactor - 1))), (int)(this.toolStrip1.Size.Height + (this.toolStrip1.Size.Height * (tempZoomfactor - 1))));
-              //  this.toolStrip1.Size = thisSize;
                 this.toolStrip1.MinimumSize = thisSize;
                 this.toolStrip1.Font = new Font(this.toolStrip1.Font.Name, (this.toolStrip1.Font.Size + (float)3.0), FontStyle.Bold);
             }
             else
             {
-                //this.toolStrip1.MinimumSize = new Size(574, 25);
-                //this.toolStrip1.Size = new Size(574, 25);
                 this.toolStrip1.MinimumSize = m_InitialtoolStripSize;
                 this.toolStrip1.Size = m_InitialtoolStripSize;
                 this.toolStrip1.Font = new Font(this.toolStrip1.Font.Name, (this.toolStrip1.Font.Size - (float)3.0), FontStyle.Regular);
