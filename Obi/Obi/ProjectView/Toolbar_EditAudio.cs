@@ -96,23 +96,6 @@ namespace Obi.ProjectView
             }
             return str;
 
-            //string[] tempStore = str.Split(',');
-            ////return new string( charArray );
-            //if (tempStore.Length == 0) return "";
-            //string formattedString = "";
-            //for (int i = tempStore.Length - 1; i >= 0; i--)
-            //{
-            //    //tempStore[i].Replace("\r",string.Empty );
-            //    //if (keyboardShortcuts.UserFriendlyNameDirectory.ContainsKey(tempStore[i]))
-            //    //{
-            //    //    tempStore[i] = keyboardShortcuts.UserFriendlyNameDirectory[tempStore[i]];
-            //    //}
-            //    formattedString += tempStore[i];
-            //    if (i > 0) formattedString += "+";
-            //}
-
-            //return formattedString;
-
         }
 
         private void ProjectViewSelectionChanged(object sender, EventArgs e)
