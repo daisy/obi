@@ -120,7 +120,7 @@ namespace Obi
         public static Dictionary<string, KeyboardShortcut> MenuNameDefaultShortcutDictionary = new Dictionary<string,KeyboardShortcut> ();
 
         [NonSerialized()]
-        public Dictionary<Keys, string> UserFriendlyNameDirectory;
+        private Dictionary<Keys, string> UserFriendlyNameDirectory;
 
         /// <summary>
         /// Read the settings from the settings file; missing values are replaced with defaults.
@@ -360,9 +360,27 @@ namespace Obi
                 UserFriendlyNameDirectory.Add(Keys.OemPeriod, ".");
                 UserFriendlyNameDirectory.Add(Keys.Oemplus, "+");
                 UserFriendlyNameDirectory.Add(Keys.OemSemicolon, ";");
-                UserFriendlyNameDirectory.Add(Keys.Control, "CTRL");
+                UserFriendlyNameDirectory.Add(Keys.Control, "Ctrl");
                 
             }
+        }
+        public string FormatKeyboardShorcut(string str)
+        {
+            string[] tempStore = str.Split(',');
+            if (tempStore.Length == 0) return "";
+            string formattedString = "";
+            for (int i = tempStore.Length - 1; i >= 0; i--)
+            {
+                Keys tempKey = (Keys)Enum.Parse(typeof(Keys), tempStore[i]);
+                if (this.UserFriendlyNameDirectory.ContainsKey(tempKey))
+                {
+                    tempStore[i] = this.UserFriendlyNameDirectory[tempKey];
+                }
+                formattedString += tempStore[i];
+                if (i > 0) formattedString += "+";
+            }
+
+            return formattedString;
         }
     }
 
