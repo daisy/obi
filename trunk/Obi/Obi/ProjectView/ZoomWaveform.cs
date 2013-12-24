@@ -255,13 +255,19 @@ namespace Obi.ProjectView
             //return new string( charArray );
             if (tempStore.Length == 0) return "";
             string formattedString = "";
+          //  tempStore[tempStore.Length] += "Control";
+            
             for (int i = tempStore.Length - 1; i >= 0; i--)
             {
-                //str = tempStore[1] + "+" + tempStore[0];
+                Keys tempKey = (Keys)Enum.Parse(typeof(Keys), tempStore[i]);
+                if (keyboardShortcuts.UserFriendlyNameDirectory.ContainsKey(tempKey))
+                {
+                    tempStore[i] = keyboardShortcuts.UserFriendlyNameDirectory[tempKey];
+                }
                 formattedString  += tempStore[i];
                 if (i > 0) formattedString += "+";
             }
-            
+           
             return formattedString ;
         }
        public ZoomWaveform(ContentView contentView, Strip strip,EmptyNode node,ProjectView mProjectView ):this    ()

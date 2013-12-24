@@ -119,6 +119,9 @@ namespace Obi
         [NonSerialized()]
         public static Dictionary<string, KeyboardShortcut> MenuNameDefaultShortcutDictionary = new Dictionary<string,KeyboardShortcut> ();
 
+        [NonSerialized()]
+        public Dictionary<Keys, string> UserFriendlyNameDirectory;
+
         /// <summary>
         /// Read the settings from the settings file; missing values are replaced with defaults.
         /// </summary>
@@ -148,7 +151,9 @@ namespace Obi
                 settings.MenuNameDictionary.Add(settings.MenuKeyboardShortCutsList[i].Description, settings.MenuKeyboardShortCutsList[i]);
             }
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
+            settings.UserFriendlyNameDirectory = new Dictionary<Keys, string>();
             settings.PopulateKeyboardShortcutsDictionary();
+            settings.PopulateUserFriendlyNamesForKeyboardKeys();
             
             return settings;
         }
@@ -171,6 +176,7 @@ namespace Obi
             if (settings.KeyboardShortcutsDescription != null) settings.KeyboardShortcutsDescription.Clear();
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             settings.PopulateKeyboardShortcutsDictionary();
+            settings.PopulateUserFriendlyNamesForKeyboardKeys();
             
             return settings;
         }
@@ -331,6 +337,32 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_ZoomIn.Description), ZoomPanel_ZoomIn);
             KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_ZoomOut.Description), ZoomPanel_ZoomOut);
             KeyboardShortcutsDescription.Add(Localizer.Message(ZoomPanel_ZoomSelection.Description), ZoomPanel_ZoomSelection);
+        }
+
+        private void PopulateUserFriendlyNamesForKeyboardKeys()
+        {
+          //  UserFriendlyNameDirectory = new Dictionary<string, KeyboardShortcut>();
+            if (UserFriendlyNameDirectory != null)
+            {
+                UserFriendlyNameDirectory.Add(Keys.D0, "0");
+                UserFriendlyNameDirectory.Add(Keys.D1, "1");
+                UserFriendlyNameDirectory.Add(Keys.D2, "2");
+                UserFriendlyNameDirectory.Add(Keys.D3, "3");
+                UserFriendlyNameDirectory.Add(Keys.D4, "4");
+                UserFriendlyNameDirectory.Add(Keys.D5, "5");
+                UserFriendlyNameDirectory.Add(Keys.D6, "6");
+                UserFriendlyNameDirectory.Add(Keys.D7, "7");
+                UserFriendlyNameDirectory.Add(Keys.D8, "8");
+                UserFriendlyNameDirectory.Add(Keys.D9, "9");
+                UserFriendlyNameDirectory.Add(Keys.Divide, "/");
+                UserFriendlyNameDirectory.Add(Keys.Oemcomma, ",");
+                UserFriendlyNameDirectory.Add(Keys.OemMinus, "-");
+                UserFriendlyNameDirectory.Add(Keys.OemPeriod, ".");
+                UserFriendlyNameDirectory.Add(Keys.Oemplus, "+");
+                UserFriendlyNameDirectory.Add(Keys.OemSemicolon, ";");
+                UserFriendlyNameDirectory.Add(Keys.Control, "CTRL");
+                
+            }
         }
     }
 
