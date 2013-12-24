@@ -75,6 +75,11 @@ namespace Obi.ProjectView
             {
                 for (int i = tempStore.Length - 1; i >= 0; i--)
                 {
+                    Keys tempKey = (Keys)Enum.Parse(typeof(Keys), tempStore[i]);
+                    if (keyboardShortcuts.UserFriendlyNameDirectory.ContainsKey(tempKey))
+                    {
+                        tempStore[i] = keyboardShortcuts.UserFriendlyNameDirectory[tempKey];
+                    }
                     if (i > 0)
                     {
                         tempstr += tempStore[i] + "+";
@@ -90,6 +95,23 @@ namespace Obi.ProjectView
                 str = tempstr;
             }
             return str;
+
+            //string[] tempStore = str.Split(',');
+            ////return new string( charArray );
+            //if (tempStore.Length == 0) return "";
+            //string formattedString = "";
+            //for (int i = tempStore.Length - 1; i >= 0; i--)
+            //{
+            //    //tempStore[i].Replace("\r",string.Empty );
+            //    //if (keyboardShortcuts.UserFriendlyNameDirectory.ContainsKey(tempStore[i]))
+            //    //{
+            //    //    tempStore[i] = keyboardShortcuts.UserFriendlyNameDirectory[tempStore[i]];
+            //    //}
+            //    formattedString += tempStore[i];
+            //    if (i > 0) formattedString += "+";
+            //}
+
+            //return formattedString;
 
         }
 
