@@ -3379,6 +3379,7 @@ for (int j = 0;
             mShortcutKeys[keyboardShortcuts.ProjectView_ShowPropertiesOfSelectedNode.Value] = delegate() { return ShowNodePropertiesDialog(); };
             mShortcutKeys[keyboardShortcuts.ProjectView_ToggleBetweenContentViewAndTOCView.Value] = delegate() { return ToggleFocusBTWTOCViewAndContentsView(); };
             mShortcutKeys[keyboardShortcuts.ProjectView_HardResetAllSettings.Value] = delegate() { return SettingsFileHardReset(); };
+            mTransportBar.InitializeTooltipsForTransportpar();
 
           /*  mShortcutKeys[Keys.Control | Keys.Tab] = delegate () { return SelectViewsInCycle ( true ); };
             mShortcutKeys[Keys.Control | Keys.Shift | Keys.Tab] = delegate () { return SelectViewsInCycle ( false ); };
