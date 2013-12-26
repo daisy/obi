@@ -132,9 +132,6 @@
   <data name="mPlayButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
-  <data name="mPlayButton.AccessibleName" xml:space="preserve">
-    <value>வாசி</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mPlayButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -179,9 +176,6 @@
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mPlayButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
-  </data>
-  <data name="mPlayButton.ToolTip" xml:space="preserve">
-    <value>ஒலி வாசிப்பை தொடங்கு அல்லது மறுபடியும் தொடங்கு(space)</value>
   </data>
   <data name="&gt;&gt;mPlayButton.Name" xml:space="preserve">
     <value>mPlayButton</value>
@@ -254,9 +248,6 @@
   <data name="mStopButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
-  <data name="mStopButton.AccessibleName" xml:space="preserve">
-    <value>நிறுத்து</value>
-  </data>
   <data name="mStopButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
   </data>
@@ -294,9 +285,6 @@
   <data name="mStopButton.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="mStopButton.ToolTip" xml:space="preserve">
-    <value>ஒலி வாசிப்பை அல்லது பதிவு செய்தலை நிறுத்து(ctrl+space)</value>
-  </data>
   <data name="&gt;&gt;mStopButton.Name" xml:space="preserve">
     <value>mStopButton</value>
   </data>
@@ -311,9 +299,6 @@
   </data>
   <data name="mNextPhrase.AccessibleDescription" xml:space="preserve">
     <value>button</value>
-  </data>
-  <data name="mNextPhrase.AccessibleName" xml:space="preserve">
-    <value>அடுத்த சொற்றொடர்</value>
   </data>
   <data name="mNextPhrase.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -365,9 +350,6 @@
   <data name="mNextPhrase.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="mNextPhrase.ToolTip" xml:space="preserve">
-    <value>அடுத்த சொற்றொடர். (K)</value>
-  </data>
   <data name="&gt;&gt;mNextPhrase.Name" xml:space="preserve">
     <value>mNextPhrase</value>
   </data>
@@ -382,9 +364,6 @@
   </data>
   <data name="mPrevPhraseButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
-  </data>
-  <data name="mPrevPhraseButton.AccessibleName" xml:space="preserve">
-    <value>முந்தைய சொற்றொடர்</value>
   </data>
   <data name="mPrevPhraseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -436,9 +415,6 @@
   <data name="mPrevPhraseButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="mPrevPhraseButton.ToolTip" xml:space="preserve">
-    <value>முன் கடந்த சொற்றொடர் (J)</value>
-  </data>
   <data name="&gt;&gt;mPrevPhraseButton.Name" xml:space="preserve">
     <value>mPrevPhraseButton</value>
   </data>
@@ -453,9 +429,6 @@
   </data>
   <data name="mNextSectionButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
-  </data>
-  <data name="mNextSectionButton.AccessibleName" xml:space="preserve">
-    <value>அடுத்த பகுதி</value>
   </data>
   <data name="mNextSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -505,9 +478,6 @@
   <data name="mNextSectionButton.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="mNextSectionButton.ToolTip" xml:space="preserve">
-    <value>அடுத்த பகுதி. (H)</value>
-  </data>
   <data name="&gt;&gt;mNextSectionButton.Name" xml:space="preserve">
     <value>mNextSectionButton</value>
   </data>
@@ -522,9 +492,6 @@
   </data>
   <data name="mPrevSectionButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
-  </data>
-  <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
-    <value>முந்தைய பகுதி</value>
   </data>
   <data name="mPrevSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -574,9 +541,6 @@
   <data name="mPrevSectionButton.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="mPrevSectionButton.ToolTip" xml:space="preserve">
-    <value>முன் கடந்த  பகுதி n. (Shift+H)</value>
-  </data>
   <data name="&gt;&gt;mPrevSectionButton.Name" xml:space="preserve">
     <value>mPrevSectionButton</value>
   </data>
@@ -591,9 +555,6 @@
   </data>
   <data name="mRecordButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
-  </data>
-  <data name="mRecordButton.AccessibleName" xml:space="preserve">
-    <value>பதிவு</value>
   </data>
   <data name="mRecordButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -642,9 +603,6 @@
   <data name="mRecordButton.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="mRecordButton.ToolTip" xml:space="preserve">
-    <value>கண்காணிக்க அல்லது பதிவு செய்ய தொடங்கு(Ctrl+R)</value>
-  </data>
   <data name="&gt;&gt;mRecordButton.Name" xml:space="preserve">
     <value>mRecordButton</value>
   </data>
@@ -690,9 +648,6 @@
   <data name="mRewindButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
-  <data name="mRewindButton.AccessibleName" xml:space="preserve">
-    <value>பின்செல்</value>
-  </data>
   <data name="mRewindButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
   </data>
@@ -735,9 +690,6 @@
   <data name="mRewindButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="mRewindButton.ToolTip" xml:space="preserve">
-    <value>பின்னுக்கு விரைவான வேகத்தில் வாசி</value>
-  </data>
   <data name="&gt;&gt;mRewindButton.Name" xml:space="preserve">
     <value>mRewindButton</value>
   </data>
@@ -752,9 +704,6 @@
   </data>
   <data name="mFastForwardButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
-  </data>
-  <data name="mFastForwardButton.AccessibleName" xml:space="preserve">
-    <value>விரைவாக முன்செல்</value>
   </data>
   <data name="mFastForwardButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -800,9 +749,6 @@
   <data name="mFastForwardButton.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="mFastForwardButton.ToolTip" xml:space="preserve">
-    <value>முன்னுக்கு விரைவான வேகத்தில் வாசி.</value>
-  </data>
   <data name="&gt;&gt;mFastForwardButton.Name" xml:space="preserve">
     <value>mFastForwardButton</value>
   </data>
@@ -817,9 +763,6 @@
   </data>
   <data name="mNextPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
-  </data>
-  <data name="mNextPageButton.AccessibleName" xml:space="preserve">
-    <value>அடுத்த பக்கம்</value>
   </data>
   <data name="mNextPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -868,9 +811,6 @@
   <data name="mNextPageButton.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="mNextPageButton.ToolTip" xml:space="preserve">
-    <value>mஅடுத்த பக்கம். (P)</value>
-  </data>
   <data name="&gt;&gt;mNextPageButton.Name" xml:space="preserve">
     <value>mNextPageButton</value>
   </data>
@@ -885,9 +825,6 @@
   </data>
   <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
-  </data>
-  <data name="mPreviousPageButton.AccessibleName" xml:space="preserve">
-    <value>முந்தைய பக்கம்</value>
   </data>
   <data name="mPreviousPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -938,9 +875,6 @@
   <data name="mPreviousPageButton.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="mPreviousPageButton.ToolTip" xml:space="preserve">
-    <value>முன் கடந்த பக்கம். (Shift+P)</value>
-  </data>
   <data name="&gt;&gt;mPreviousPageButton.Name" xml:space="preserve">
     <value>mPreviousPageButton</value>
   </data>
@@ -955,9 +889,6 @@
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
-  </data>
-  <data name="mToDo_CustomClassMarkButton.AccessibleName" xml:space="preserve">
-    <value>சொற்றொடரை குறி</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1007,9 +938,6 @@
   </data>
   <data name="mToDo_CustomClassMarkButton.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
-  </data>
-  <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
-    <value>பதிவு செய்யும் பொழுது செய்ய வேண்டிய என்ற குறிப்பை சேர். (F9)</value>
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
     <value>mToDo_CustomClassMarkButton</value>
@@ -1119,9 +1047,6 @@
   <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
-    <value>Recording Options</value>
-  </data>
   <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1149,9 +1074,6 @@
   </data>
   <data name="m_btnRecordingOptions.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
-  </data>
-  <data name="m_btnRecordingOptions.ToolTip" xml:space="preserve">
-    <value>Recording Options</value>
   </data>
   <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
     <value>m_btnRecordingOptions</value>
