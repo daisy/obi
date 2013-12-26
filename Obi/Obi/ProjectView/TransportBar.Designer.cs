@@ -45,10 +45,10 @@ namespace Obi.ProjectView
             this.mNextPageButton = new System.Windows.Forms.Button();
             this.mPreviousPageButton = new System.Windows.Forms.Button();
             this.mToDo_CustomClassMarkButton = new System.Windows.Forms.Button();
+            this.m_btnRecordingOptions = new System.Windows.Forms.Button();
             this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
             this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
-            this.m_btnRecordingOptions = new System.Windows.Forms.Button();
             this.m_RecordingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.m_MonitoringtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_RecordingtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +63,6 @@ namespace Obi.ProjectView
             this.mPlayButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mPlayButton.FlatAppearance.BorderSize = 0;
             this.mPlayButton.Name = "mPlayButton";
-            this.mTransportBarTooltip.SetToolTip(this.mPlayButton, resources.GetString("mPlayButton.ToolTip"));
             this.mPlayButton.UseVisualStyleBackColor = true;
             this.mPlayButton.Click += new System.EventHandler(this.mPlayButton_Click);
             // 
@@ -83,7 +82,6 @@ namespace Obi.ProjectView
             this.mStopButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mStopButton.FlatAppearance.BorderSize = 0;
             this.mStopButton.Name = "mStopButton";
-            this.mTransportBarTooltip.SetToolTip(this.mStopButton, resources.GetString("mStopButton.ToolTip"));
             this.mStopButton.UseVisualStyleBackColor = true;
             this.mStopButton.Click += new System.EventHandler(this.mStopButton_Click);
             // 
@@ -93,7 +91,6 @@ namespace Obi.ProjectView
             this.mNextPhrase.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mNextPhrase.FlatAppearance.BorderSize = 0;
             this.mNextPhrase.Name = "mNextPhrase";
-            this.mTransportBarTooltip.SetToolTip(this.mNextPhrase, resources.GetString("mNextPhrase.ToolTip"));
             this.mNextPhrase.UseVisualStyleBackColor = true;
             this.mNextPhrase.Click += new System.EventHandler(this.mNextPhrase_Click);
             // 
@@ -113,7 +110,6 @@ namespace Obi.ProjectView
             this.mNextSectionButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mNextSectionButton.FlatAppearance.BorderSize = 0;
             this.mNextSectionButton.Name = "mNextSectionButton";
-            this.mTransportBarTooltip.SetToolTip(this.mNextSectionButton, resources.GetString("mNextSectionButton.ToolTip"));
             this.mNextSectionButton.UseVisualStyleBackColor = true;
             this.mNextSectionButton.Click += new System.EventHandler(this.mNextSectionButton_Click);
             // 
@@ -123,7 +119,6 @@ namespace Obi.ProjectView
             this.mPrevSectionButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mPrevSectionButton.FlatAppearance.BorderSize = 0;
             this.mPrevSectionButton.Name = "mPrevSectionButton";
-            this.mTransportBarTooltip.SetToolTip(this.mPrevSectionButton, resources.GetString("mPrevSectionButton.ToolTip"));
             this.mPrevSectionButton.UseVisualStyleBackColor = true;
             this.mPrevSectionButton.Click += new System.EventHandler(this.mPrevSectionButton_Click);
             // 
@@ -134,7 +129,6 @@ namespace Obi.ProjectView
             this.mRecordButton.FlatAppearance.BorderSize = 0;
             this.mRecordButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.mRecordButton.Name = "mRecordButton";
-            this.mTransportBarTooltip.SetToolTip(this.mRecordButton, resources.GetString("mRecordButton.ToolTip"));
             this.mRecordButton.UseVisualStyleBackColor = true;
             this.mRecordButton.Click += new System.EventHandler(this.mRecordButton_Click);
             // 
@@ -157,7 +151,6 @@ namespace Obi.ProjectView
             this.mRewindButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mRewindButton.FlatAppearance.BorderSize = 0;
             this.mRewindButton.Name = "mRewindButton";
-            this.mTransportBarTooltip.SetToolTip(this.mRewindButton, resources.GetString("mRewindButton.ToolTip"));
             this.mRewindButton.UseVisualStyleBackColor = true;
             this.mRewindButton.Click += new System.EventHandler(this.mRewindButton_Click);
             // 
@@ -167,7 +160,6 @@ namespace Obi.ProjectView
             this.mFastForwardButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mFastForwardButton.FlatAppearance.BorderSize = 0;
             this.mFastForwardButton.Name = "mFastForwardButton";
-            this.mTransportBarTooltip.SetToolTip(this.mFastForwardButton, resources.GetString("mFastForwardButton.ToolTip"));
             this.mFastForwardButton.UseVisualStyleBackColor = true;
             this.mFastForwardButton.Click += new System.EventHandler(this.mFastForwardButton_Click);
             // 
@@ -177,7 +169,6 @@ namespace Obi.ProjectView
             this.mNextPageButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mNextPageButton.FlatAppearance.BorderSize = 0;
             this.mNextPageButton.Name = "mNextPageButton";
-            this.mTransportBarTooltip.SetToolTip(this.mNextPageButton, resources.GetString("mNextPageButton.ToolTip"));
             this.mNextPageButton.UseVisualStyleBackColor = true;
             this.mNextPageButton.Click += new System.EventHandler(this.mNextPageButton_Click);
             // 
@@ -187,7 +178,6 @@ namespace Obi.ProjectView
             this.mPreviousPageButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mPreviousPageButton.FlatAppearance.BorderSize = 0;
             this.mPreviousPageButton.Name = "mPreviousPageButton";
-            this.mTransportBarTooltip.SetToolTip(this.mPreviousPageButton, resources.GetString("mPreviousPageButton.ToolTip"));
             this.mPreviousPageButton.UseVisualStyleBackColor = true;
             this.mPreviousPageButton.Click += new System.EventHandler(this.mPreviousPageButton_Click);
             // 
@@ -197,9 +187,15 @@ namespace Obi.ProjectView
             this.mToDo_CustomClassMarkButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mToDo_CustomClassMarkButton.FlatAppearance.BorderSize = 0;
             this.mToDo_CustomClassMarkButton.Name = "mToDo_CustomClassMarkButton";
-            this.mTransportBarTooltip.SetToolTip(this.mToDo_CustomClassMarkButton, resources.GetString("mToDo_CustomClassMarkButton.ToolTip"));
             this.mToDo_CustomClassMarkButton.UseVisualStyleBackColor = true;
             this.mToDo_CustomClassMarkButton.Click += new System.EventHandler(this.mToDoMarkButton_Click);
+            // 
+            // m_btnRecordingOptions
+            // 
+            resources.ApplyResources(this.m_btnRecordingOptions, "m_btnRecordingOptions");
+            this.m_btnRecordingOptions.Name = "m_btnRecordingOptions";
+            this.m_btnRecordingOptions.UseVisualStyleBackColor = true;
+            this.m_btnRecordingOptions.Click += new System.EventHandler(this.m_btnRecordingOptions_Click);
             // 
             // mDisplayTimer
             // 
@@ -236,14 +232,6 @@ namespace Obi.ProjectView
             resources.GetString("mFastPlayRateCombobox.Items7")});
             this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
             this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.mFastPlayRateComboBox_SelectionChangeCommitted);
-            // 
-            // m_btnRecordingOptions
-            // 
-            resources.ApplyResources(this.m_btnRecordingOptions, "m_btnRecordingOptions");
-            this.m_btnRecordingOptions.Name = "m_btnRecordingOptions";
-            this.mTransportBarTooltip.SetToolTip(this.m_btnRecordingOptions, resources.GetString("m_btnRecordingOptions.ToolTip"));
-            this.m_btnRecordingOptions.UseVisualStyleBackColor = true;
-            this.m_btnRecordingOptions.Click += new System.EventHandler(this.m_btnRecordingOptions_Click);
             // 
             // m_RecordingOptionsContextMenuStrip
             // 
