@@ -2179,4 +2179,43 @@ Error text: {1}</value>
   <data name="MergeProject_Information" xml:space="preserve">
     <value>Varmista, että yhdistettävät projektit ovat samassa audio-muodossa ja ovat luotu Obi 3.0 Beta 2 tai uudemmalla versiolla.</value>
   </data>
+  <data name="Transport_PreviousPhrase" xml:space="preserve">
+    <value>Edeltävä lause</value>
+  </data>
+  <data name="Transport_PreviousSection" xml:space="preserve">
+    <value>Edeltävä kappale</value>
+  </data>
+  <data name="Transport_PreviousPage" xml:space="preserve">
+    <value>Edeltävä sivu</value>
+  </data>
+  <data name="Transport_FastPlayBackward" xml:space="preserve">
+    <value>Toista taaksepäin suuremmalla nopeudella.</value>
+  </data>
+  <data name="Transport_StartPlayback" xml:space="preserve">
+    <value>Käynnistä tai jatka äänen toistoa</value>
+  </data>
+  <data name="Transport_StopPlayback" xml:space="preserve">
+    <value>Lopeta äänen toisto tai äänitys</value>
+  </data>
+  <data name="Transport_StartRecording" xml:space="preserve">
+    <value>Aloita monitorointi tai äänitys</value>
+  </data>
+  <data name="Transport_RecordingOptions" xml:space="preserve">
+    <value>Äänitysvalinnat</value>
+  </data>
+  <data name="Transport_FastPlayForward" xml:space="preserve">
+    <value>Toista eteenpäin suuremmalla nopeudella</value>
+  </data>
+  <data name="Transport_NextPhrase" xml:space="preserve">
+    <value>Seuraava lause</value>
+  </data>
+  <data name="Transport_NextPage" xml:space="preserve">
+    <value>Seuraava sivu</value>
+  </data>
+  <data name="Transport_NextSection" xml:space="preserve">
+    <value>Seuraava kappale</value>
+  </data>
+  <data name="Transport_AddTodo" xml:space="preserve">
+    <value>Merkitse keskeneräinen -merkillä äänityksen aikana</value>
+  </data>
 </root>

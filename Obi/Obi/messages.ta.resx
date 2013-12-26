@@ -2330,4 +2330,44 @@
   <data name="StatusForMergeSection" xml:space="preserve">
     <value>Showing section {0} to {1}. Please select sections to merge.</value>
   </data>
+
+  <data name="Transport_PreviousPhrase" xml:space="preserve">
+    <value>முன் கடந்த சொற்றொடர்</value>
+  </data>
+  <data name="Transport_PreviousSection" xml:space="preserve">
+    <value>முன் கடந்த  பகுதி </value>
+  </data>
+  <data name="Transport_PreviousPage" xml:space="preserve">
+    <value>முன் கடந்த பக்கம்</value>
+  </data>
+  <data name="Transport_FastPlayBackward" xml:space="preserve">
+    <value>பின்னுக்கு விரைவான வேகத்தில் வாசி</value>
+  </data>
+  <data name="Transport_StartPlayback" xml:space="preserve">
+    <value>ஒலி வாசிப்பை தொடங்கு அல்லது மறுபடியும் தொடங்கு</value>
+  </data>
+  <data name="Transport_StopPlayback" xml:space="preserve">
+    <value>ஒலி வாசிப்பை அல்லது பதிவு செய்தலை நிறுத்து</value>
+  </data>
+  <data name="Transport_StartRecording" xml:space="preserve">
+    <value>கண்காணிக்க அல்லது பதிவு செய்ய தொடங்கு</value>
+  </data>
+  <data name="Transport_RecordingOptions" xml:space="preserve">
+    <value>Recording Options</value>
+  </data>
+  <data name="Transport_FastPlayForward" xml:space="preserve">
+    <value>முன்னுக்கு விரைவான வேகத்தில் வாசி</value>
+  </data>
+  <data name="Transport_NextPhrase" xml:space="preserve">
+    <value>அடுத்த சொற்றொடர்</value>
+  </data>
+  <data name="Transport_NextPage" xml:space="preserve">
+    <value>mஅடுத்த பக்கம்</value>
+  </data>
+  <data name="Transport_NextSection" xml:space="preserve">
+    <value>அடுத்த பகுதி</value>
+  </data>
+  <data name="Transport_AddTodo" xml:space="preserve">
+    <value>பதிவு செய்யும் பொழுது செய்ய வேண்டிய என்ற குறிப்பை சேர்</value>
+  </data>
 </root>

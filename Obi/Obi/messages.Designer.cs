@@ -6103,7 +6103,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start monitoring or recording. (Ctrl+R).
+        ///   Looks up a localized string similar to Start monitoring or recording.
         /// </summary>
         internal static string Transport_StartRecording {
             get {
