@@ -2500,7 +2500,7 @@ Error text: {1}</value>
     <value>Stop audio playback or recording</value>
   </data>
   <data name="Transport_StartRecording" xml:space="preserve">
-    <value>Start monitoring or recording. (Ctrl+R)</value>
+    <value>Start monitoring or recording</value>
   </data>
   <data name="Transport_RecordingOptions" xml:space="preserve">
     <value>Recording Options</value>
