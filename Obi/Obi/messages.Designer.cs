@@ -1702,7 +1702,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merge With Next Phrase.
+        ///   Looks up a localized string similar to Phrase Deduction.
         /// </summary>
         internal static string EditAudioTT_PhraseDetect {
             get {
