@@ -5995,11 +5995,128 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a TODO mark while recording.
+        /// </summary>
+        internal static string Transport_AddTodo {
+            get {
+                return ResourceManager.GetString("Transport_AddTodo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transport Bar.
         /// </summary>
         internal static string transport_bar {
             get {
                 return ResourceManager.GetString("transport_bar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play backward at faster speed..
+        /// </summary>
+        internal static string Transport_FastPlayBackward {
+            get {
+                return ResourceManager.GetString("Transport_FastPlayBackward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play forward at faster speed.
+        /// </summary>
+        internal static string Transport_FastPlayForward {
+            get {
+                return ResourceManager.GetString("Transport_FastPlayForward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next page.
+        /// </summary>
+        internal static string Transport_NextPage {
+            get {
+                return ResourceManager.GetString("Transport_NextPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next phrase.
+        /// </summary>
+        internal static string Transport_NextPhrase {
+            get {
+                return ResourceManager.GetString("Transport_NextPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next section.
+        /// </summary>
+        internal static string Transport_NextSection {
+            get {
+                return ResourceManager.GetString("Transport_NextSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preceding page.
+        /// </summary>
+        internal static string Transport_PreviousPage {
+            get {
+                return ResourceManager.GetString("Transport_PreviousPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preceding phrase.
+        /// </summary>
+        internal static string Transport_PreviousPhrase {
+            get {
+                return ResourceManager.GetString("Transport_PreviousPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preceding section.
+        /// </summary>
+        internal static string Transport_PreviousSection {
+            get {
+                return ResourceManager.GetString("Transport_PreviousSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recording Options.
+        /// </summary>
+        internal static string Transport_RecordingOptions {
+            get {
+                return ResourceManager.GetString("Transport_RecordingOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start or resume audio playback.
+        /// </summary>
+        internal static string Transport_StartPlayback {
+            get {
+                return ResourceManager.GetString("Transport_StartPlayback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start monitoring or recording. (Ctrl+R).
+        /// </summary>
+        internal static string Transport_StartRecording {
+            get {
+                return ResourceManager.GetString("Transport_StartRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop audio playback or recording.
+        /// </summary>
+        internal static string Transport_StopPlayback {
+            get {
+                return ResourceManager.GetString("Transport_StopPlayback", resourceCulture);
             }
         }
         
