@@ -2148,6 +2148,9 @@ Texte de l'erreur: {1}</value>
   <data name="EditAudioTT_Split" xml:space="preserve">
     <value>Fractionner la phrase</value>
   </data>
+  <data name="EditAudioTT_PhraseDetect" xml:space="preserve">
+    <value>Détection de phrase</value>
+  </data>
   <data name="Metadata_SetDefaults" xml:space="preserve">
     <value>Définir les métadonnées par défaut</value>
   </data>

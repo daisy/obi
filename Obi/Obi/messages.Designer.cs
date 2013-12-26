@@ -1702,6 +1702,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merge With Next Phrase.
+        /// </summary>
+        internal static string EditAudioTT_PhraseDetect {
+            get {
+                return ResourceManager.GetString("EditAudioTT_PhraseDetect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Split Phrase.
         /// </summary>
         internal static string EditAudioTT_Split {
