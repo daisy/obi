@@ -2064,4 +2064,44 @@
   <data name="StatusForMergeSection" xml:space="preserve">
     <value>खंड{0} से {1}दिखा रहा है. मर्ज करने के लिए वर्गों का चयन करें.</value>
   </data>
+
+  <data name="Transport_PreviousPhrase" xml:space="preserve">
+    <value>ठीक पहेले वाला वाक्यांश </value>
+  </data>
+  <data name="Transport_PreviousSection" xml:space="preserve">
+    <value>ठीक पहेले वाला खंड</value>
+  </data>
+  <data name="Transport_PreviousPage" xml:space="preserve">
+    <value>ठीक पहेले का पृष्ठ</value>
+  </data>
+  <data name="Transport_FastPlayBackward" xml:space="preserve">
+    <value>पीछे की ओर तीव्रतर गति से बजाएं</value>
+  </data>
+  <data name="Transport_StartPlayback" xml:space="preserve">
+    <value>ऑडियो प्लेबैक प्रारम्भ या पुनः प्रारंभ करें</value>
+  </data>
+  <data name="Transport_StopPlayback" xml:space="preserve">
+    <value>ऑडियो प्लेबैक या रिकॉर्डिंग रोके</value>
+  </data>
+  <data name="Transport_StartRecording" xml:space="preserve">
+    <value>मोनिटरिंग या रिकॉर्डिंग शुरू करें</value>
+  </data>
+  <data name="Transport_RecordingOptions" xml:space="preserve">
+    <value>Recording Options</value>
+  </data>
+  <data name="Transport_FastPlayForward" xml:space="preserve">
+    <value>आगे की ओर तीव्रतर गति से बजाएं</value>
+  </data>
+  <data name="Transport_NextPhrase" xml:space="preserve">
+    <value>अगला वाक्यांश</value>
+  </data>
+  <data name="Transport_NextPage" xml:space="preserve">
+    <value>अगला पृष्ठ</value>
+  </data>
+  <data name="Transport_NextSection" xml:space="preserve">
+    <value>अगल खंड</value>
+  </data>
+  <data name="Transport_AddTodo" xml:space="preserve">
+    <value>रिकॉर्डिंग के समय टूडू चिन्ह जोड़े</value>
+  </data>
 </root>

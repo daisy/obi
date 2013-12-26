@@ -2178,4 +2178,44 @@ Texte de l'erreur: {1}</value>
   <data name="MergeProject_Information" xml:space="preserve">
     <value>S'il vous plaît assurez que ce que les projets à fusionner ont le même format audio et sont créés sur Obi 3.0 Beta 2 ou une version ultérieure.</value>
   </data>
+
+  <data name="Transport_PreviousPhrase" xml:space="preserve">
+    <value>Aller à la phrase précédente</value>
+  </data>
+  <data name="Transport_PreviousSection" xml:space="preserve">
+    <value>Allez à la section précédente</value>
+  </data>
+  <data name="Transport_PreviousPage" xml:space="preserve">
+    <value>Aller à la page précédente</value>
+  </data>
+  <data name="Transport_FastPlayBackward" xml:space="preserve">
+    <value>Lecture vers l'arrière plus rapide.</value>
+  </data>
+  <data name="Transport_StartPlayback" xml:space="preserve">
+    <value>Démarrer ou reprendre la lecture</value>
+  </data>
+  <data name="Transport_StopPlayback" xml:space="preserve">
+    <value>Arrêt de la lecture ou de l'enregistrement</value>
+  </data>
+  <data name="Transport_StartRecording" xml:space="preserve">
+    <value>Démarrer le monitoring ou l'enregistrement</value>
+  </data>
+  <data name="Transport_RecordingOptions" xml:space="preserve">
+    <value>options d'enregistrement</value>
+  </data>
+  <data name="Transport_FastPlayForward" xml:space="preserve">
+    <value>Lecture vers l'avant plus rapide</value>
+  </data>
+  <data name="Transport_NextPhrase" xml:space="preserve">
+    <value>Aller à la phrase suivante.</value>
+  </data>
+  <data name="Transport_NextPage" xml:space="preserve">
+    <value>Aller à la page suivante</value>
+  </data>
+  <data name="Transport_NextSection" xml:space="preserve">
+    <value>Aller à la section suivante</value>
+  </data>
+  <data name="Transport_AddTodo" xml:space="preserve">
+    <value>Ajouter une marque AFAIRE lors de l'enregistrement.</value>
+  </data>
 </root>
