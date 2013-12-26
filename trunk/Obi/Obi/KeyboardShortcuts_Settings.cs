@@ -175,6 +175,7 @@ namespace Obi
             
             if (settings.KeyboardShortcutsDescription != null) settings.KeyboardShortcutsDescription.Clear();
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
+            settings.UserFriendlyNameDirectory = new Dictionary<Keys, string>();
             settings.PopulateKeyboardShortcutsDictionary();
             settings.PopulateUserFriendlyNamesForKeyboardKeys();
             
@@ -372,12 +373,15 @@ namespace Obi
             for (int i = tempStore.Length - 1; i >= 0; i--)
             {
                 Keys tempKey = (Keys)Enum.Parse(typeof(Keys), tempStore[i]);
-                if (this.UserFriendlyNameDirectory.ContainsKey(tempKey))
+                if (this.UserFriendlyNameDirectory != null)
                 {
-                    tempStore[i] = this.UserFriendlyNameDirectory[tempKey];
+                    if (this.UserFriendlyNameDirectory.ContainsKey(tempKey))
+                    {
+                        tempStore[i] = this.UserFriendlyNameDirectory[tempKey];
+                    }
+                    formattedString += tempStore[i];
+                    if (i > 0) formattedString += "+";
                 }
-                formattedString += tempStore[i];
-                if (i > 0) formattedString += "+";
             }
 
             return formattedString;
