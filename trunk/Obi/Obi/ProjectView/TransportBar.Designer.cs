@@ -100,7 +100,6 @@ namespace Obi.ProjectView
             this.mPrevPhraseButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mPrevPhraseButton.FlatAppearance.BorderSize = 0;
             this.mPrevPhraseButton.Name = "mPrevPhraseButton";
-            this.mTransportBarTooltip.SetToolTip(this.mPrevPhraseButton, resources.GetString("mPrevPhraseButton.ToolTip"));
             this.mPrevPhraseButton.UseVisualStyleBackColor = true;
             this.mPrevPhraseButton.Click += new System.EventHandler(this.mPrevPhraseButton_Click);
             // 

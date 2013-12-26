@@ -418,9 +418,6 @@
   <data name="mPrevPhraseButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="mPrevPhraseButton.ToolTip" xml:space="preserve">
-    <value>Preceding phrase. (J)</value>
-  </data>
   <data name="&gt;&gt;mPrevPhraseButton.Name" xml:space="preserve">
     <value>mPrevPhraseButton</value>
   </data>
@@ -1172,7 +1169,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.0.27453, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.0.30358, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
