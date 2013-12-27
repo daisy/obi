@@ -6013,6 +6013,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mark phrase.
+        /// </summary>
+        internal static string Transport_AddTodoAcc {
+            get {
+                return ResourceManager.GetString("Transport_AddTodoAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transport Bar.
         /// </summary>
         internal static string transport_bar {
@@ -6031,11 +6040,29 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rewind.
+        /// </summary>
+        internal static string Transport_FastPlayBackwardAcc {
+            get {
+                return ResourceManager.GetString("Transport_FastPlayBackwardAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Play forward at faster speed.
         /// </summary>
         internal static string Transport_FastPlayForward {
             get {
                 return ResourceManager.GetString("Transport_FastPlayForward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fast forward.
+        /// </summary>
+        internal static string Transport_FastPlayForwardAcc {
+            get {
+                return ResourceManager.GetString("Transport_FastPlayForwardAcc", resourceCulture);
             }
         }
         
@@ -6076,11 +6103,29 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Previous page.
+        /// </summary>
+        internal static string Transport_PreviousPageAcc {
+            get {
+                return ResourceManager.GetString("Transport_PreviousPageAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preceding phrase.
         /// </summary>
         internal static string Transport_PreviousPhrase {
             get {
                 return ResourceManager.GetString("Transport_PreviousPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous phrase.
+        /// </summary>
+        internal static string Transport_PreviousPhraseAcc {
+            get {
+                return ResourceManager.GetString("Transport_PreviousPhraseAcc", resourceCulture);
             }
         }
         
@@ -6094,11 +6139,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recording Options.
+        ///   Looks up a localized string similar to Previous section.
         /// </summary>
-        internal static string Transport_RecordingOptions {
+        internal static string Transport_PreviousSectionAcc {
             get {
-                return ResourceManager.GetString("Transport_RecordingOptions", resourceCulture);
+                return ResourceManager.GetString("Transport_PreviousSectionAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause.
+        /// </summary>
+        internal static string Transport_StartPausebackAcc {
+            get {
+                return ResourceManager.GetString("Transport_StartPausebackAcc", resourceCulture);
             }
         }
         
@@ -6108,6 +6162,15 @@ namespace Obi {
         internal static string Transport_StartPlayback {
             get {
                 return ResourceManager.GetString("Transport_StartPlayback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play.
+        /// </summary>
+        internal static string Transport_StartPlaybackAcc {
+            get {
+                return ResourceManager.GetString("Transport_StartPlaybackAcc", resourceCulture);
             }
         }
         
@@ -6126,6 +6189,15 @@ namespace Obi {
         internal static string Transport_StopPlayback {
             get {
                 return ResourceManager.GetString("Transport_StopPlayback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop.
+        /// </summary>
+        internal static string Transport_StopPlaybackAcc {
+            get {
+                return ResourceManager.GetString("Transport_StopPlaybackAcc", resourceCulture);
             }
         }
         

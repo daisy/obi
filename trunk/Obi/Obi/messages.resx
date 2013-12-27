@@ -2505,9 +2505,6 @@ Error text: {1}</value>
   <data name="Transport_StartRecording" xml:space="preserve">
     <value>Start monitoring or recording</value>
   </data>
-  <data name="Transport_RecordingOptions" xml:space="preserve">
-    <value>Recording Options</value>
-  </data>
   <data name="Transport_FastPlayForward" xml:space="preserve">
     <value>Play forward at faster speed</value>
   </data>
@@ -2522,5 +2519,33 @@ Error text: {1}</value>
   </data>
   <data name="Transport_AddTodo" xml:space="preserve">
     <value>Add a TODO mark while recording</value>
+  </data>
+  
+  <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
+    <value>Previous phrase</value>
+  </data>
+  <data name="Transport_PreviousSectionAcc" xml:space="preserve">
+    <value>Previous section</value>
+  </data>
+  <data name="Transport_PreviousPageAcc" xml:space="preserve">
+    <value>Previous page</value>
+  </data>
+  <data name="Transport_FastPlayBackwardAcc" xml:space="preserve">
+    <value>Rewind</value>
+  </data>
+  <data name="Transport_StartPlaybackAcc" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="Transport_StartPausebackAcc" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="Transport_StopPlaybackAcc" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Transport_FastPlayForwardAcc" xml:space="preserve">
+    <value>Fast forward</value>
+  </data>
+  <data name="Transport_AddTodoAcc" xml:space="preserve">
+    <value>Mark phrase</value>
   </data>
 </root>
