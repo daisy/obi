@@ -932,11 +932,22 @@ namespace Obi.ProjectView
                     mRecordButton.Image = m_monitorButtonImage;
                     mRecordButton.Invalidate();
                 }
-                mRecordButton.AccessibleName = Localizer.Message(
-                    (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || (recordDirectly && CurrentState != State.Recording))
-                        ? "start_recording"
-                        : "start_monitoring"
-                    );
+                if (keyboardShortcuts != null)
+                {
+                    mRecordButton.AccessibleName = Localizer.Message(
+                        (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || (recordDirectly && CurrentState != State.Recording))
+                            ? "start_recording"
+                            : "start_monitoring"
+                        ) + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStartMonitoringToolStripMenuItem"].Value.ToString()) + ")";
+                }
+                else
+                {
+                    mRecordButton.AccessibleName = Localizer.Message(
+                                           (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || (recordDirectly && CurrentState != State.Recording))
+                                               ? "start_recording"
+                                               : "start_monitoring"
+                                           );
+                }
                 mStopButton.Enabled = CanStop;
                 mFastForwardButton.Enabled = CanFastForward;
                 mNextPhrase.Enabled = CanNavigateNextPhrase;
@@ -3457,7 +3468,7 @@ SelectionChangedPlaybackEnabled = false;
             mRewindButton.AccessibleName = Localizer.Message("Transport_FastPlayBackwardAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mRewindToolStripMenuItem"].Value.ToString()) + ")"; 
             mPlayButton.AccessibleName = Localizer.Message("Transport_StartPlaybackAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ProjectView_PlayPauseUsingAudioCursor_Default.Value.ToString()) + ")";
             mPauseButton.AccessibleName = Localizer.Message("Transport_StartPausebackAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ProjectView_PlayPauseUsingAudioCursor_Default.Value.ToString()) + ")";
-            mStopButton.AccessibleName = Localizer.Message("Transport_StopPlaybackAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStopToolStripMenuItem"].Value.ToString()) + ")";
+            mStopButton.AccessibleName = Localizer.Message("Transport_StopPlaybackAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStopToolStripMenuItem"].Value.ToString()) + ")";        
             mNextPhrase.AccessibleName = Localizer.Message("Transport_NextPhrase") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarNextPhrase.Value.ToString()) + ")";
             mNextPageButton.AccessibleName = Localizer.Message("Transport_NextPage") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarNextPage.Value.ToString()) + ")";
             mNextSectionButton.AccessibleName = Localizer.Message("Transport_NextSection") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarNextSection.Value.ToString()) + ")";
