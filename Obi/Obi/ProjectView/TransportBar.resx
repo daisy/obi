@@ -121,7 +121,7 @@
     <value>button</value>
   </data>
   <data name="mPlayButton.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Play</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mPlayButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
@@ -167,6 +167,12 @@
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mPlayButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
+  </data>
+  <metadata name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>149, 17</value>
+  </metadata>
+  <data name="mPlayButton.ToolTip" xml:space="preserve">
+    <value>Start or resume audio playback (Space)</value>
   </data>
   <data name="&gt;&gt;mPlayButton.Name" xml:space="preserve">
     <value>mPlayButton</value>
@@ -221,9 +227,6 @@
   <data name="mPauseButton.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <metadata name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>149, 17</value>
-  </metadata>
   <data name="mPauseButton.ToolTip" xml:space="preserve">
     <value>Pause audio playback or recording (Space)</value>
   </data>
@@ -243,7 +246,7 @@
     <value>button</value>
   </data>
   <data name="mStopButton.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Stop</value>
   </data>
   <data name="mStopButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -282,6 +285,9 @@
   <data name="mStopButton.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
+  <data name="mStopButton.ToolTip" xml:space="preserve">
+    <value>Stop audio playback or recording. (Ctrl+Space)</value>
+  </data>
   <data name="&gt;&gt;mStopButton.Name" xml:space="preserve">
     <value>mStopButton</value>
   </data>
@@ -298,7 +304,7 @@
     <value>button</value>
   </data>
   <data name="mNextPhrase.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Next phrase</value>
   </data>
   <data name="mNextPhrase.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -350,6 +356,9 @@
   <data name="mNextPhrase.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
+  <data name="mNextPhrase.ToolTip" xml:space="preserve">
+    <value>Next phrase. (K)</value>
+  </data>
   <data name="&gt;&gt;mNextPhrase.Name" xml:space="preserve">
     <value>mNextPhrase</value>
   </data>
@@ -366,7 +375,7 @@
     <value>button</value>
   </data>
   <data name="mPrevPhraseButton.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Previous phrase</value>
   </data>
   <data name="mPrevPhraseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -418,6 +427,9 @@
   <data name="mPrevPhraseButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
+  <data name="mPrevPhraseButton.ToolTip" xml:space="preserve">
+    <value>Preceding phrase. (J)</value>
+  </data>
   <data name="&gt;&gt;mPrevPhraseButton.Name" xml:space="preserve">
     <value>mPrevPhraseButton</value>
   </data>
@@ -434,7 +446,7 @@
     <value>button</value>
   </data>
   <data name="mNextSectionButton.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Next section</value>
   </data>
   <data name="mNextSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -484,6 +496,9 @@
   <data name="mNextSectionButton.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
+  <data name="mNextSectionButton.ToolTip" xml:space="preserve">
+    <value>Next section. (H)</value>
+  </data>
   <data name="&gt;&gt;mNextSectionButton.Name" xml:space="preserve">
     <value>mNextSectionButton</value>
   </data>
@@ -500,7 +515,7 @@
     <value>button</value>
   </data>
   <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Previous section</value>
   </data>
   <data name="mPrevSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -550,6 +565,9 @@
   <data name="mPrevSectionButton.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="mPrevSectionButton.ToolTip" xml:space="preserve">
+    <value>Preceding section. (Shift+H)</value>
+  </data>
   <data name="&gt;&gt;mPrevSectionButton.Name" xml:space="preserve">
     <value>mPrevSectionButton</value>
   </data>
@@ -566,7 +584,7 @@
     <value>button</value>
   </data>
   <data name="mRecordButton.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Record</value>
   </data>
   <data name="mRecordButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -615,6 +633,9 @@
   <data name="mRecordButton.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
+  <data name="mRecordButton.ToolTip" xml:space="preserve">
+    <value>Start monitoring or recording. (Ctrl+R)</value>
+  </data>
   <data name="&gt;&gt;mRecordButton.Name" xml:space="preserve">
     <value>mRecordButton</value>
   </data>
@@ -661,7 +682,7 @@
     <value>button</value>
   </data>
   <data name="mRewindButton.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Rewind</value>
   </data>
   <data name="mRewindButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -705,6 +726,9 @@
   <data name="mRewindButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="mRewindButton.ToolTip" xml:space="preserve">
+    <value>Play backward at faster speed.</value>
+  </data>
   <data name="&gt;&gt;mRewindButton.Name" xml:space="preserve">
     <value>mRewindButton</value>
   </data>
@@ -721,7 +745,7 @@
     <value>button</value>
   </data>
   <data name="mFastForwardButton.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Fast forward</value>
   </data>
   <data name="mFastForwardButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -767,6 +791,9 @@
   <data name="mFastForwardButton.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
+  <data name="mFastForwardButton.ToolTip" xml:space="preserve">
+    <value>Play forward at faster speed.</value>
+  </data>
   <data name="&gt;&gt;mFastForwardButton.Name" xml:space="preserve">
     <value>mFastForwardButton</value>
   </data>
@@ -783,7 +810,7 @@
     <value>button</value>
   </data>
   <data name="mNextPageButton.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Next page</value>
   </data>
   <data name="mNextPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -832,6 +859,9 @@
   <data name="mNextPageButton.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
+  <data name="mNextPageButton.ToolTip" xml:space="preserve">
+    <value>Next page. (P)</value>
+  </data>
   <data name="&gt;&gt;mNextPageButton.Name" xml:space="preserve">
     <value>mNextPageButton</value>
   </data>
@@ -848,7 +878,7 @@
     <value>button</value>
   </data>
   <data name="mPreviousPageButton.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Previous page</value>
   </data>
   <data name="mPreviousPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -899,6 +929,9 @@
   <data name="mPreviousPageButton.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
+  <data name="mPreviousPageButton.ToolTip" xml:space="preserve">
+    <value>Preceding page. (Shift+P)</value>
+  </data>
   <data name="&gt;&gt;mPreviousPageButton.Name" xml:space="preserve">
     <value>mPreviousPageButton</value>
   </data>
@@ -915,7 +948,7 @@
     <value>button</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleName" xml:space="preserve">
-    <value />
+    <value>Mark phrase</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -966,6 +999,9 @@
   <data name="mToDo_CustomClassMarkButton.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
+  <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
+    <value>Add a TODO mark while recording. (F9)</value>
+  </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
     <value>mToDo_CustomClassMarkButton</value>
   </data>
@@ -977,49 +1013,6 @@
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
-    <value />
-  </data>
-  <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDAAA
-        CwwBP0AiyAAAAjNJREFUOE/Vkl9IU3EUx0evPRRULz0EEWRBPfRSxBCJXuqhhJpiRX/wwVZhRUQQ6rCQ
-        /szQSDBjkdhyCFIR9Ni2u93NOVs5wghiY5KJRpm7u9v9/W4+fPudG1Lb3R+FXnz4cLiH8/v8zrnnZ5Fl
-        Gf+bFSwNBoPLptCRJ6UCX3gEvuhbwRh8o9E/REbhJUYiefiIUMgkzpN6Q2GwV0NgPbegubrB+nvAnj4E
-        G3SBDT0BGx4Af+4GfzEI9tIj4jPwN6/hlUOlpX5BMv4e2vY1yNlqoJ21gV0/B+5sgd53DwseFxaEXH98
-        H7yrHb/sdUjGxuAP/nUQpvGl+AcozjZoR6qhNZ8Aa20G72wT0k7wgV7o7j7oYgpd5NRHXZDejZcfn5AC
-        AXz8Oo2sdSuyxw9Au3wa7OZV8O4b4L13BU7wBx3gF09iIpE06gsdJind6o1E8d3TD9VaBfXUYWhXGqE5
-        LoF1XBO/ohV6ywX8GHYbyyrskjBJiYC4PTY9A/XgHmRqq5E9U4ucvQHZpnrkzh+DZq9HbPKLUVfsfFEp
-        QRudishQt61H5pAVmaP7kLHth7p7C6ZkybTxfykppbHCn5NIN9ZB2bUJ6ZqdUPZWQWlqEPlE0bEXKSkl
-        /OJgYjKF+XUWzO/YiPSGVUikUka+WP0iZaXUjX88jp93HJhbbcHcbYfxXa5LoqyUoCczMfsNyua1Riz2
-        hAqpKDW6lSR8mpk1YqUuiYpSgkTU4VKExJKky2WlSGX8BpgghyexT7VQAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="m_btnRecordingOptions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_btnRecordingOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>241, 5</value>
-  </data>
-  <data name="m_btnRecordingOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 23</value>
-  </data>
-  <data name="m_btnRecordingOptions.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
-    <value>m_btnRecordingOptions</value>
-  </data>
-  <data name="&gt;&gt;m_btnRecordingOptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnRecordingOptions.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_btnRecordingOptions.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <metadata name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -1120,6 +1113,52 @@
   <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
+    <value>Recording Options</value>
+  </data>
+  <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDAAA
+        CwwBP0AiyAAAAjNJREFUOE/Vkl9IU3EUx0evPRRULz0EEWRBPfRSxBCJXuqhhJpiRX/wwVZhRUQQ6rCQ
+        /szQSDBjkdhyCFIR9Ni2u93NOVs5wghiY5KJRpm7u9v9/W4+fPudG1Lb3R+FXnz4cLiH8/v8zrnnZ5Fl
+        Gf+bFSwNBoPLptCRJ6UCX3gEvuhbwRh8o9E/REbhJUYiefiIUMgkzpN6Q2GwV0NgPbegubrB+nvAnj4E
+        G3SBDT0BGx4Af+4GfzEI9tIj4jPwN6/hlUOlpX5BMv4e2vY1yNlqoJ21gV0/B+5sgd53DwseFxaEXH98
+        H7yrHb/sdUjGxuAP/nUQpvGl+AcozjZoR6qhNZ8Aa20G72wT0k7wgV7o7j7oYgpd5NRHXZDejZcfn5AC
+        AXz8Oo2sdSuyxw9Au3wa7OZV8O4b4L13BU7wBx3gF09iIpE06gsdJind6o1E8d3TD9VaBfXUYWhXGqE5
+        LoF1XBO/ohV6ywX8GHYbyyrskjBJiYC4PTY9A/XgHmRqq5E9U4ucvQHZpnrkzh+DZq9HbPKLUVfsfFEp
+        QRudishQt61H5pAVmaP7kLHth7p7C6ZkybTxfykppbHCn5NIN9ZB2bUJ6ZqdUPZWQWlqEPlE0bEXKSkl
+        /OJgYjKF+XUWzO/YiPSGVUikUka+WP0iZaXUjX88jp93HJhbbcHcbYfxXa5LoqyUoCczMfsNyua1Riz2
+        hAqpKDW6lSR8mpk1YqUuiYpSgkTU4VKExJKky2WlSGX8BpgghyexT7VQAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="m_btnRecordingOptions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btnRecordingOptions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>241, 5</value>
+  </data>
+  <data name="m_btnRecordingOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="m_btnRecordingOptions.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_btnRecordingOptions.ToolTip" xml:space="preserve">
+    <value>Recording Options</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
+    <value>m_btnRecordingOptions</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnRecordingOptions.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>320, 17</value>
   </metadata>
@@ -1169,7 +1208,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.0.31933, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=2.7.6.28445, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
