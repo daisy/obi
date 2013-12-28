@@ -3465,20 +3465,20 @@ SelectionChangedPlaybackEnabled = false;
             mTransportBarTooltip.SetToolTip(mFastForwardButton, Localizer.Message("Transport_FastPlayForward") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mFastForwardToolStripMenuItem"].Value.ToString()) + ")");
 
 
-            mPrevPhraseButton.AccessibleName = Localizer.Message("Transport_PreviousPhraseAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPreviousPhraseToolStripMenuItem"].Value.ToString()) + ")";
-            mPrevSectionButton.AccessibleName = Localizer.Message("Transport_PreviousSectionAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPreviousSectionToolStripMenuItem"].Value.ToString()) + ")";
-            mPreviousPageButton.AccessibleName = Localizer.Message("Transport_PreviousPageAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPreviousPageToolStripMenuItem"].Value.ToString()) + ")";
-            mRewindButton.AccessibleName = Localizer.Message("Transport_FastPlayBackwardAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mRewindToolStripMenuItem"].Value.ToString()) + ")";
+            mPrevPhraseButton.AccessibleName = Localizer.Message("Transport_PreviousPhraseAcc") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPreviousPhraseToolStripMenuItem"].Value.ToString());
+            mPrevSectionButton.AccessibleName = Localizer.Message("Transport_PreviousSectionAcc") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPreviousSectionToolStripMenuItem"].Value.ToString());
+            mPreviousPageButton.AccessibleName = Localizer.Message("Transport_PreviousPageAcc") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPreviousPageToolStripMenuItem"].Value.ToString());
+            mRewindButton.AccessibleName = Localizer.Message("Transport_FastPlayBackwardAcc") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mRewindToolStripMenuItem"].Value.ToString());
             //mPlayButton.AccessibleName = Localizer.Message("Transport_StartPlaybackAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPlaySelectionToolStripMenuItem"].Value.ToString()) + ")";
             //mPauseButton.AccessibleName = Localizer.Message("Transport_StartPausebackAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPauseToolStripMenuItem"].Value.ToString()) + ")";
-            mPlayButton.AccessibleName = Localizer.Message("Transport_StartPlaybackAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ProjectView_PlayPauseUsingAudioCursor_Default.Value.ToString()) + ")";
-            mPauseButton.AccessibleName = Localizer.Message("Transport_StartPausebackAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ProjectView_PlayPauseUsingAudioCursor_Default.Value.ToString()) + ")";
-            mStopButton.AccessibleName = Localizer.Message("Transport_StopPlaybackAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStopToolStripMenuItem"].Value.ToString()) + ")";
-            mNextPhrase.AccessibleName = Localizer.Message("Transport_NextPhrase") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mNextPhraseToolStripMenuItem"].Value.ToString()) + ")";
-            mNextPageButton.AccessibleName = Localizer.Message("Transport_NextPage") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mNextPageToolStripMenuItem"].Value.ToString()) + ")";
-            mNextSectionButton.AccessibleName = Localizer.Message("Transport_NextSection") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mNextSectionToolStripMenuItem"].Value.ToString()) + ")";
-            mToDo_CustomClassMarkButton.AccessibleName = Localizer.Message("Transport_AddTodoAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_PhraseIsTODOMenuItem"].Value.ToString()) + ")";
-            mFastForwardButton.AccessibleName = Localizer.Message("Transport_FastPlayForwardAcc") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mFastForwardToolStripMenuItem"].Value.ToString()) + ")";          
+            mPlayButton.AccessibleName = Localizer.Message("Transport_StartPlaybackAcc") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ProjectView_PlayPauseUsingAudioCursor_Default.Value.ToString());
+            mPauseButton.AccessibleName = Localizer.Message("Transport_StartPausebackAcc") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ProjectView_PlayPauseUsingAudioCursor_Default.Value.ToString());
+            mStopButton.AccessibleName = Localizer.Message("Transport_StopPlaybackAcc") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStopToolStripMenuItem"].Value.ToString());
+            mNextPhrase.AccessibleName = Localizer.Message("Transport_NextPhrase") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mNextPhraseToolStripMenuItem"].Value.ToString());
+            mNextPageButton.AccessibleName = Localizer.Message("Transport_NextPage") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mNextPageToolStripMenuItem"].Value.ToString());
+            mNextSectionButton.AccessibleName = Localizer.Message("Transport_NextSection") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mNextSectionToolStripMenuItem"].Value.ToString());
+            mToDo_CustomClassMarkButton.AccessibleName = Localizer.Message("Transport_AddTodoAcc") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_PhraseIsTODOMenuItem"].Value.ToString());
+            mFastForwardButton.AccessibleName = Localizer.Message("Transport_FastPlayForwardAcc") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mFastForwardToolStripMenuItem"].Value.ToString());          
         }
 
     }

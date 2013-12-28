@@ -275,13 +275,13 @@ namespace Obi.ProjectView
             this.btnZoomOuttoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ZoomOut") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomOut.Value.ToString()) + ")";
             this.btnZoomSelectiontoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ZoomSelection") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomSelection.Value.ToString()) + ")";
 
-            this.toolStripZoomPanel.AccessibleName = Localizer.Message("ZoomAudioTT_Close") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Close.Value.ToString()) + ")";
-            this.btnNextPhrasetoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ShowNextPhrase") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_NextPhrase.Value.ToString()) + ")";
-            this.btnPreviousPhrasetoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ShowPreviousPhrase") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_PreviousPhrase.Value.ToString()) + ")";
-            this.btnResettoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_Reset") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Reset.Value.ToString()) + ")";
-            this.btnZoomIntoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomIn") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomIn.Value.ToString()) + ")";
-            this.btnZoomOuttoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomOut") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomOut.Value.ToString()) + ")";
-            this.btnZoomSelectiontoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomSelection") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomSelection.Value.ToString()) + ")";
+            this.toolStripZoomPanel.AccessibleName = Localizer.Message("ZoomAudioTT_Close") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Close.Value.ToString());
+            this.btnNextPhrasetoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ShowNextPhrase") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_NextPhrase.Value.ToString());
+            this.btnPreviousPhrasetoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ShowPreviousPhrase") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_PreviousPhrase.Value.ToString());
+            this.btnResettoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_Reset") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Reset.Value.ToString());
+            this.btnZoomIntoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomIn") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomIn.Value.ToString());
+            this.btnZoomOuttoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomOut") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomOut.Value.ToString());
+            this.btnZoomSelectiontoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomSelection") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomSelection.Value.ToString());
 
 
             if (m_ProjectView.Selection.Phrase != null || m_Node is EmptyNode)
