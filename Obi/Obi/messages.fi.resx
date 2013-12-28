@@ -2221,4 +2221,32 @@ Error text: {1}</value>
   <data name="Transport_AddTodo" xml:space="preserve">
     <value>Merkitse keskeneräinen -merkillä äänityksen aikana</value>
   </data>
+
+  <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
+    <value>Äskeinen lause</value>
+  </data>
+  <data name="Transport_PreviousSectionAcc" xml:space="preserve">
+    <value>Äskeinen kappale</value>
+  </data>
+  <data name="Transport_PreviousPageAcc" xml:space="preserve">
+    <value>Edellinen sivu</value>
+  </data>
+  <data name="Transport_FastPlayBackwardAcc" xml:space="preserve">
+    <value>Kelaa taaksepäin</value>
+  </data>
+  <data name="Transport_StartPlaybackAcc" xml:space="preserve">
+    <value>Toista</value>
+  </data>
+  <data name="Transport_StartPausebackAcc" xml:space="preserve">
+    <value>Tauko</value>
+  </data>
+  <data name="Transport_StopPlaybackAcc" xml:space="preserve">
+    <value>Lopetus</value>
+  </data>
+  <data name="Transport_FastPlayForwardAcc" xml:space="preserve">
+    <value>Pikakelaus eteenpäin</value>
+  </data>
+  <data name="Transport_AddTodoAcc" xml:space="preserve">
+    <value>Merkitse lause</value>
+  </data>
 </root>

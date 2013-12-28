@@ -132,6 +132,9 @@
   <data name="mPlayButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
+  <data name="mPlayButton.AccessibleName" xml:space="preserve">
+    <value>Play</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mPlayButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -176,6 +179,9 @@
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mPlayButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
+  </data>
+  <data name="mPlayButton.ToolTip" xml:space="preserve">
+    <value>Démarrer ou reprendre la lecture (Espace)</value>
   </data>
   <data name="&gt;&gt;mPlayButton.Name" xml:space="preserve">
     <value>mPlayButton</value>
@@ -248,6 +254,9 @@
   <data name="mStopButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
+  <data name="mStopButton.AccessibleName" xml:space="preserve">
+    <value>Stop</value>
+  </data>
   <data name="mStopButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
   </data>
@@ -285,6 +294,9 @@
   <data name="mStopButton.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
+  <data name="mStopButton.ToolTip" xml:space="preserve">
+    <value>Arrêt de la lecture ou de l'enregistrement. (Ctrl+Espace)</value>
+  </data>
   <data name="&gt;&gt;mStopButton.Name" xml:space="preserve">
     <value>mStopButton</value>
   </data>
@@ -299,6 +311,9 @@
   </data>
   <data name="mNextPhrase.AccessibleDescription" xml:space="preserve">
     <value>button</value>
+  </data>
+  <data name="mNextPhrase.AccessibleName" xml:space="preserve">
+    <value>Phrase suivante</value>
   </data>
   <data name="mNextPhrase.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -350,6 +365,9 @@
   <data name="mNextPhrase.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
+  <data name="mNextPhrase.ToolTip" xml:space="preserve">
+    <value>Aller à la phrase suivante.(K)</value>
+  </data>
   <data name="&gt;&gt;mNextPhrase.Name" xml:space="preserve">
     <value>mNextPhrase</value>
   </data>
@@ -364,6 +382,9 @@
   </data>
   <data name="mPrevPhraseButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
+  </data>
+  <data name="mPrevPhraseButton.AccessibleName" xml:space="preserve">
+    <value>Phrase précédente</value>
   </data>
   <data name="mPrevPhraseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -415,6 +436,9 @@
   <data name="mPrevPhraseButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
+  <data name="mPrevPhraseButton.ToolTip" xml:space="preserve">
+    <value>Aller à la phrase précédente. (J)</value>
+  </data>
   <data name="&gt;&gt;mPrevPhraseButton.Name" xml:space="preserve">
     <value>mPrevPhraseButton</value>
   </data>
@@ -429,6 +453,9 @@
   </data>
   <data name="mNextSectionButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
+  </data>
+  <data name="mNextSectionButton.AccessibleName" xml:space="preserve">
+    <value>Section suivante</value>
   </data>
   <data name="mNextSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -478,6 +505,9 @@
   <data name="mNextSectionButton.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
+  <data name="mNextSectionButton.ToolTip" xml:space="preserve">
+    <value>Aller à la section suivante. (H)</value>
+  </data>
   <data name="&gt;&gt;mNextSectionButton.Name" xml:space="preserve">
     <value>mNextSectionButton</value>
   </data>
@@ -493,7 +523,10 @@
   <data name="mPrevSectionButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
-   <data name="mPrevSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+  <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
+    <value>Section précédente</value>
+  </data>
+  <data name="mPrevSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
   </data>
   <data name="mPrevSectionButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
@@ -541,6 +574,9 @@
   <data name="mPrevSectionButton.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="mPrevSectionButton.ToolTip" xml:space="preserve">
+    <value>Allez à la section précédente. (Maj+H)</value>
+  </data>
   <data name="&gt;&gt;mPrevSectionButton.Name" xml:space="preserve">
     <value>mPrevSectionButton</value>
   </data>
@@ -555,6 +591,9 @@
   </data>
   <data name="mRecordButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
+  </data>
+  <data name="mRecordButton.AccessibleName" xml:space="preserve">
+    <value>Enregistrement</value>
   </data>
   <data name="mRecordButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -603,6 +642,9 @@
   <data name="mRecordButton.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
+  <data name="mRecordButton.ToolTip" xml:space="preserve">
+    <value>Démarrer le monitoring ou l'enregistrement. (Ctrl+R)</value>
+  </data>
   <data name="&gt;&gt;mRecordButton.Name" xml:space="preserve">
     <value>mRecordButton</value>
   </data>
@@ -648,6 +690,9 @@
   <data name="mRewindButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
+  <data name="mRewindButton.AccessibleName" xml:space="preserve">
+    <value>Rembobinage</value>
+  </data>
   <data name="mRewindButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
   </data>
@@ -690,6 +735,9 @@
   <data name="mRewindButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="mRewindButton.ToolTip" xml:space="preserve">
+    <value>Lecture vers l'arrière plus rapide.</value>
+  </data>
   <data name="&gt;&gt;mRewindButton.Name" xml:space="preserve">
     <value>mRewindButton</value>
   </data>
@@ -704,6 +752,9 @@
   </data>
   <data name="mFastForwardButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
+  </data>
+  <data name="mFastForwardButton.AccessibleName" xml:space="preserve">
+    <value>Avance rapide</value>
   </data>
   <data name="mFastForwardButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -749,6 +800,9 @@
   <data name="mFastForwardButton.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
+  <data name="mFastForwardButton.ToolTip" xml:space="preserve">
+    <value>Lecture vers l'avant plus rapide.</value>
+  </data>
   <data name="&gt;&gt;mFastForwardButton.Name" xml:space="preserve">
     <value>mFastForwardButton</value>
   </data>
@@ -763,6 +817,9 @@
   </data>
   <data name="mNextPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
+  </data>
+  <data name="mNextPageButton.AccessibleName" xml:space="preserve">
+    <value>Page suivante</value>
   </data>
   <data name="mNextPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -811,6 +868,9 @@
   <data name="mNextPageButton.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
+  <data name="mNextPageButton.ToolTip" xml:space="preserve">
+    <value>Aller à la page suivante. (P)</value>
+  </data>
   <data name="&gt;&gt;mNextPageButton.Name" xml:space="preserve">
     <value>mNextPageButton</value>
   </data>
@@ -825,6 +885,9 @@
   </data>
   <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
+  </data>
+  <data name="mPreviousPageButton.AccessibleName" xml:space="preserve">
+    <value>Page précédente</value>
   </data>
   <data name="mPreviousPageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -875,6 +938,9 @@
   <data name="mPreviousPageButton.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
+  <data name="mPreviousPageButton.ToolTip" xml:space="preserve">
+    <value>Aller à la page précédente. (Maj+P)</value>
+  </data>
   <data name="&gt;&gt;mPreviousPageButton.Name" xml:space="preserve">
     <value>mPreviousPageButton</value>
   </data>
@@ -889,6 +955,9 @@
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.AccessibleName" xml:space="preserve">
+    <value>Marquer la phrase</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -938,6 +1007,9 @@
   </data>
   <data name="mToDo_CustomClassMarkButton.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
+  </data>
+  <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
+    <value>Ajouter une marque AFAIRE lors de l'enregistrement. (F9)</value>
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
     <value>mToDo_CustomClassMarkButton</value>
@@ -1047,6 +1119,9 @@
   <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
+    <value>options d'enregistrement</value>
+  </data>
   <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1074,6 +1149,9 @@
   </data>
   <data name="m_btnRecordingOptions.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
+  </data>
+  <data name="m_btnRecordingOptions.ToolTip" xml:space="preserve">
+    <value>options d'enregistrement</value>
   </data>
   <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
     <value>m_btnRecordingOptions</value>

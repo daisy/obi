@@ -2104,4 +2104,32 @@
   <data name="Transport_AddTodo" xml:space="preserve">
     <value>रिकॉर्डिंग के समय टूडू चिन्ह जोड़े</value>
   </data>
+
+  <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
+    <value>पहेले वाला वाक्यांश </value>
+  </data>
+  <data name="Transport_PreviousSectionAcc" xml:space="preserve">
+    <value>Pपहेले वाला खंड</value>
+  </data>
+  <data name="Transport_PreviousPageAcc" xml:space="preserve">
+    <value>पहेले का पृष्ठ</value>
+  </data>
+  <data name="Transport_FastPlayBackwardAcc" xml:space="preserve">
+    <value>रिवाइंड</value>
+  </data>
+  <data name="Transport_StartPlaybackAcc" xml:space="preserve">
+    <value>बजाएं</value>
+  </data>
+  <data name="Transport_StartPausebackAcc" xml:space="preserve">
+    <value>अस्थायी रोक</value>
+  </data>
+  <data name="Transport_StopPlaybackAcc" xml:space="preserve">
+    <value>रोके</value>
+  </data>
+  <data name="Transport_FastPlayForwardAcc" xml:space="preserve">
+    <value>फ़ास्ट फॉरवर्ड</value>
+  </data>
+  <data name="Transport_AddTodoAcc" xml:space="preserve">
+    <value>वाक्यांश चिन्हित करें</value>
+  </data>
 </root>

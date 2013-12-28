@@ -2221,4 +2221,32 @@ Texte de l'erreur: {1}</value>
   <data name="Transport_AddTodo" xml:space="preserve">
     <value>Ajouter une marque AFAIRE lors de l'enregistrement.</value>
   </data>
+
+  <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
+    <value>Phrase précédente</value>
+  </data>
+  <data name="Transport_PreviousSectionAcc" xml:space="preserve">
+    <value>Section précédente</value>
+  </data>
+  <data name="Transport_PreviousPageAcc" xml:space="preserve">
+    <value>Page précédente</value>
+  </data>
+  <data name="Transport_FastPlayBackwardAcc" xml:space="preserve">
+    <value>Rembobinage</value>
+  </data>
+  <data name="Transport_StartPlaybackAcc" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="Transport_StartPausebackAcc" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="Transport_StopPlaybackAcc" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Transport_FastPlayForwardAcc" xml:space="preserve">
+    <value>Avance rapide</value>
+  </data>
+  <data name="Transport_AddTodoAcc" xml:space="preserve">
+    <value>Marquer la phrase</value>
+  </data>
 </root>
