@@ -2370,4 +2370,32 @@
   <data name="Transport_AddTodo" xml:space="preserve">
     <value>பதிவு செய்யும் பொழுது செய்ய வேண்டிய என்ற குறிப்பை சேர்</value>
   </data>
+
+  <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
+    <value>முந்தைய சொற்றொடர்</value>
+  </data>
+  <data name="Transport_PreviousSectionAcc" xml:space="preserve">
+    <value>முந்தைய பகுதி</value>
+  </data>
+  <data name="Transport_PreviousPageAcc" xml:space="preserve">
+    <value>முந்தைய பக்கம்</value>
+  </data>
+  <data name="Transport_FastPlayBackwardAcc" xml:space="preserve">
+    <value>பின்செல்</value>
+  </data>
+  <data name="Transport_StartPlaybackAcc" xml:space="preserve">
+    <value>வாசி</value>
+  </data>
+  <data name="Transport_StartPausebackAcc" xml:space="preserve">
+    <value>இடை நிறுத்து</value>
+  </data>
+  <data name="Transport_StopPlaybackAcc" xml:space="preserve">
+    <value>நிறுத்து</value>
+  </data>
+  <data name="Transport_FastPlayForwardAcc" xml:space="preserve">
+    <value>விரைவாக முன்செல்</value>
+  </data>
+  <data name="Transport_AddTodoAcc" xml:space="preserve">
+    <value>சொற்றொடரை குறி</value>
+  </data>
 </root>
