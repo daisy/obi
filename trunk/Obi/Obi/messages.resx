@@ -2413,7 +2413,7 @@ Error text: {1}</value>
     <value>Split Phrase</value>
   </data>
   <data name="EditAudioTT_PhraseDetect" xml:space="preserve">
-    <value>Phrase Deduction</value>
+    <value>Phrase Detection</value>
   </data>
   <data name="Metadata_SetDefaults" xml:space="preserve">
     <value>Set default metadata</value>
@@ -2475,15 +2475,6 @@ Error text: {1}</value>
   <data name="RenumberPages" xml:space="preserve">
     <value>Renumber Pages</value>
   </data>
-  <data name="RenumberPages" xml:space="preserve">
-    <value>Renumber Pages</value>
-  </data>
-  <data name="RenumberPages" xml:space="preserve">
-    <value>Renumber Pages</value>
-  </data>
-  <data name="RenumberPages" xml:space="preserve">
-    <value>Renumber Pages</value>
-  </data>
   <data name="Transport_PreviousPhrase" xml:space="preserve">
     <value>Preceding phrase</value>
   </data>
@@ -2520,7 +2511,6 @@ Error text: {1}</value>
   <data name="Transport_AddTodo" xml:space="preserve">
     <value>Add a TODO mark while recording</value>
   </data>
-  
   <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
     <value>Previous phrase</value>
   </data>
