@@ -356,9 +356,9 @@ namespace Obi
                 UserFriendlyNameDirectory.Add(Keys.D8, "8");
                 UserFriendlyNameDirectory.Add(Keys.D9, "9");
                 UserFriendlyNameDirectory.Add(Keys.Divide, "/");
-                UserFriendlyNameDirectory.Add(Keys.Oemcomma, " ,");
+                UserFriendlyNameDirectory.Add(Keys.Oemcomma, "Comma");
                 UserFriendlyNameDirectory.Add(Keys.OemMinus, "-");
-                UserFriendlyNameDirectory.Add(Keys.OemPeriod, " .");
+                UserFriendlyNameDirectory.Add(Keys.OemPeriod, "Period");
                 UserFriendlyNameDirectory.Add(Keys.Oemplus, "+");
                 UserFriendlyNameDirectory.Add(Keys.OemSemicolon, ";");
                 UserFriendlyNameDirectory.Add(Keys.Control, "Ctrl");
