@@ -151,9 +151,9 @@ namespace Obi
                 settings.MenuNameDictionary.Add(settings.MenuKeyboardShortCutsList[i].Description, settings.MenuKeyboardShortCutsList[i]);
             }
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
-            settings.UserFriendlyNameDirectory = new Dictionary<Keys, string>();
+            
             settings.PopulateKeyboardShortcutsDictionary();
-            settings.PopulateUserFriendlyNamesForKeyboardKeys();
+            
             
             return settings;
         }
@@ -356,17 +356,24 @@ namespace Obi
                 UserFriendlyNameDirectory.Add(Keys.D8, "8");
                 UserFriendlyNameDirectory.Add(Keys.D9, "9");
                 UserFriendlyNameDirectory.Add(Keys.Divide, "/");
-                UserFriendlyNameDirectory.Add(Keys.Oemcomma, ",");
+                UserFriendlyNameDirectory.Add(Keys.Oemcomma, " ,");
                 UserFriendlyNameDirectory.Add(Keys.OemMinus, "-");
-                UserFriendlyNameDirectory.Add(Keys.OemPeriod, ".");
+                UserFriendlyNameDirectory.Add(Keys.OemPeriod, " .");
                 UserFriendlyNameDirectory.Add(Keys.Oemplus, "+");
                 UserFriendlyNameDirectory.Add(Keys.OemSemicolon, ";");
                 UserFriendlyNameDirectory.Add(Keys.Control, "Ctrl");
+                UserFriendlyNameDirectory.Add(Keys.Next,"Page Down");
+                UserFriendlyNameDirectory.Add(Keys.PageUp, "Page Up");
                 
             }
         }
         public string FormatKeyboardShorcut(string str)
         {
+            if( UserFriendlyNameDirectory == null || UserFriendlyNameDirectory.Count == 0 )
+            {
+                UserFriendlyNameDirectory = new Dictionary<Keys, string>();
+                PopulateUserFriendlyNamesForKeyboardKeys();
+            }
             string[] tempStore = str.Split(',');
             if (tempStore.Length == 0) return "";
             string formattedString = "";
