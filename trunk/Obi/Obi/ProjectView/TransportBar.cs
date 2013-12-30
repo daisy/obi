@@ -3480,9 +3480,10 @@ SelectionChangedPlaybackEnabled = false;
                 mTransportBarTooltip.SetToolTip(mStopButton, Localizer.Message("Transport_StopPlayback") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStopToolStripMenuItem"].Value.ToString()) + ")");
                 mStopButton.AccessibleName = Localizer.Message("Transport_StopPlaybackAcc") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStopToolStripMenuItem"].Value.ToString());
             }
-
+if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripMenuItem"))
+{
             mTransportBarTooltip.SetToolTip(mRecordButton, Localizer.Message("Transport_StartRecording") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStartMonitoringToolStripMenuItem"].Value.ToString()) + ")");
-
+}
             if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mNextPhraseToolStripMenuItem"))
             {
                 mTransportBarTooltip.SetToolTip(mNextPhrase, Localizer.Message("Transport_NextPhrase") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mNextPhraseToolStripMenuItem"].Value.ToString()) + ")");
