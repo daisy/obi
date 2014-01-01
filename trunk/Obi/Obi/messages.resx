@@ -2359,10 +2359,10 @@ Error text: {1}</value>
     <value>Zoom Selected Waveform Select Waveform</value>
   </data>
   <data name="KeyS_NextPhrase" xml:space="preserve">
-    <value>Rander Next Phrase</value>
+    <value>Show Next Phrase</value>
   </data>
   <data name="KeyS_PreviousPhrase" xml:space="preserve">
-    <value>Render Previous Phrase</value>
+    <value>Show Previous Phrase</value>
   </data>
   <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
     <value>Show waveforms in content view</value>

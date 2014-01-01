@@ -2550,7 +2550,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rander Next Phrase.
+        ///   Looks up a localized string similar to Show Next Phrase.
         /// </summary>
         internal static string KeyS_NextPhrase {
             get {
@@ -2586,7 +2586,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Render Previous Phrase.
+        ///   Looks up a localized string similar to Show Previous Phrase.
         /// </summary>
         internal static string KeyS_PreviousPhrase {
             get {
