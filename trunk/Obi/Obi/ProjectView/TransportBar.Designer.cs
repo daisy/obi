@@ -45,10 +45,10 @@ namespace Obi.ProjectView
             this.mNextPageButton = new System.Windows.Forms.Button();
             this.mPreviousPageButton = new System.Windows.Forms.Button();
             this.mToDo_CustomClassMarkButton = new System.Windows.Forms.Button();
+            this.m_btnRecordingOptions = new System.Windows.Forms.Button();
             this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
             this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
-            this.m_btnRecordingOptions = new System.Windows.Forms.Button();
             this.m_RecordingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.m_MonitoringtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_RecordingtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -201,6 +201,14 @@ namespace Obi.ProjectView
             this.mToDo_CustomClassMarkButton.UseVisualStyleBackColor = true;
             this.mToDo_CustomClassMarkButton.Click += new System.EventHandler(this.mToDoMarkButton_Click);
             // 
+            // m_btnRecordingOptions
+            // 
+            resources.ApplyResources(this.m_btnRecordingOptions, "m_btnRecordingOptions");
+            this.m_btnRecordingOptions.Name = "m_btnRecordingOptions";
+            this.mTransportBarTooltip.SetToolTip(this.m_btnRecordingOptions, resources.GetString("m_btnRecordingOptions.ToolTip"));
+            this.m_btnRecordingOptions.UseVisualStyleBackColor = true;
+            this.m_btnRecordingOptions.Click += new System.EventHandler(this.m_btnRecordingOptions_Click);
+            // 
             // mDisplayTimer
             // 
             this.mDisplayTimer.Tick += new System.EventHandler(this.mDisplayTimer_Tick);
@@ -236,14 +244,6 @@ namespace Obi.ProjectView
             resources.GetString("mFastPlayRateCombobox.Items7")});
             this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
             this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.mFastPlayRateComboBox_SelectionChangeCommitted);
-            // 
-            // m_btnRecordingOptions
-            // 
-            resources.ApplyResources(this.m_btnRecordingOptions, "m_btnRecordingOptions");
-            this.m_btnRecordingOptions.Name = "m_btnRecordingOptions";
-            this.mTransportBarTooltip.SetToolTip(this.m_btnRecordingOptions, resources.GetString("m_btnRecordingOptions.ToolTip"));
-            this.m_btnRecordingOptions.UseVisualStyleBackColor = true;
-            this.m_btnRecordingOptions.Click += new System.EventHandler(this.m_btnRecordingOptions_Click);
             // 
             // m_RecordingOptionsContextMenuStrip
             // 
@@ -286,24 +286,24 @@ namespace Obi.ProjectView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.LightSalmon;
-            this.Controls.Add(this.mToDo_CustomClassMarkButton);
             this.Controls.Add(this.mPreviousPageButton);
-            this.Controls.Add(this.m_btnRecordingOptions);
+            this.Controls.Add(this.mRewindButton);
+            this.Controls.Add(this.mToDo_CustomClassMarkButton);
             this.Controls.Add(this.mNextPageButton);
             this.Controls.Add(this.mFastPlayRateCombobox);
+            this.Controls.Add(this.m_btnRecordingOptions);
             this.Controls.Add(this.mFastForwardButton);
-            this.Controls.Add(this.mRewindButton);
-            this.Controls.Add(this.mVUMeterPanel);
-            this.Controls.Add(this.mDisplayBox);
-            this.Controls.Add(this.mTimeDisplayBox);
             this.Controls.Add(this.mPrevSectionButton);
-            this.Controls.Add(this.mNextSectionButton);
-            this.Controls.Add(this.mRecordButton);
+            this.Controls.Add(this.mTimeDisplayBox);
             this.Controls.Add(this.mPrevPhraseButton);
-            this.Controls.Add(this.mNextPhrase);
-            this.Controls.Add(this.mStopButton);
+            this.Controls.Add(this.mDisplayBox);
+            this.Controls.Add(this.mNextSectionButton);
+            this.Controls.Add(this.mVUMeterPanel);
             this.Controls.Add(this.mPlayButton);
+            this.Controls.Add(this.mStopButton);
+            this.Controls.Add(this.mNextPhrase);
             this.Controls.Add(this.mPauseButton);
+            this.Controls.Add(this.mRecordButton);
             this.DoubleBuffered = true;
             resources.ApplyResources(this, "$this");
             this.Name = "TransportBar";
