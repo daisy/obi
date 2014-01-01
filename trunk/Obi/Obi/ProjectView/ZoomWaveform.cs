@@ -261,27 +261,28 @@ namespace Obi.ProjectView
             mProjectView.Presentation.UndoRedoManager.CommandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ProjectviewUpdated);
             this.LostFocus += new EventHandler(ZoomPanelLostFocus);          
 
-            keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
+            //keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
   
             m_ContentView.Resize += new EventHandler(ZoomPanelResize);
             m_Strip = strip;
             m_Node = node;
+            ZoomPanelToolTipInit();
 
-            this.btnClosetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_Close") + "(" +keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Close.Value.ToString()) + ")";
-            this.btnNextPhrasetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ShowNextPhrase")+"(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_NextPhrase.Value.ToString()) + ")";
-            this.btnPreviousPhrasetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ShowPreviousPhrase") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_PreviousPhrase.Value.ToString()) + ")";
-            this.btnResettoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_Reset") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Reset.Value.ToString()) + ")";
-            this.btnZoomIntoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ZoomIn") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomIn.Value.ToString()) + ")";
-            this.btnZoomOuttoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ZoomOut") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomOut.Value.ToString()) + ")";
-            this.btnZoomSelectiontoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ZoomSelection") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomSelection.Value.ToString()) + ")";
+            //this.btnClosetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_Close") + "(" +keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Close.Value.ToString()) + ")";
+            //this.btnNextPhrasetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ShowNextPhrase")+"(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_NextPhrase.Value.ToString()) + ")";
+            //this.btnPreviousPhrasetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ShowPreviousPhrase") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_PreviousPhrase.Value.ToString()) + ")";
+            //this.btnResettoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_Reset") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Reset.Value.ToString()) + ")";
+            //this.btnZoomIntoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ZoomIn") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomIn.Value.ToString()) + ")";
+            //this.btnZoomOuttoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ZoomOut") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomOut.Value.ToString()) + ")";
+            //this.btnZoomSelectiontoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ZoomSelection") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomSelection.Value.ToString()) + ")";
 
-            this.toolStripZoomPanel.AccessibleName = Localizer.Message("ZoomAudioTT_Close") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Close.Value.ToString());
-            this.btnNextPhrasetoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ShowNextPhrase") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_NextPhrase.Value.ToString());
-            this.btnPreviousPhrasetoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ShowPreviousPhrase") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_PreviousPhrase.Value.ToString());
-            this.btnResettoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_Reset") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Reset.Value.ToString());
-            this.btnZoomIntoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomIn") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomIn.Value.ToString());
-            this.btnZoomOuttoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomOut") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomOut.Value.ToString());
-            this.btnZoomSelectiontoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomSelection") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomSelection.Value.ToString());
+            //this.toolStripZoomPanel.AccessibleName = Localizer.Message("ZoomAudioTT_Close") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Close.Value.ToString());
+            //this.btnNextPhrasetoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ShowNextPhrase") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_NextPhrase.Value.ToString());
+            //this.btnPreviousPhrasetoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ShowPreviousPhrase") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_PreviousPhrase.Value.ToString());
+            //this.btnResettoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_Reset") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Reset.Value.ToString());
+            //this.btnZoomIntoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomIn") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomIn.Value.ToString());
+            //this.btnZoomOuttoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomOut") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomOut.Value.ToString());
+            //this.btnZoomSelectiontoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomSelection") +  keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomSelection.Value.ToString());
 
 
             if (m_ProjectView.Selection.Phrase != null || m_Node is EmptyNode)
@@ -925,6 +926,29 @@ namespace Obi.ProjectView
                     m_AudioBlock.SetTimeBoundsForWaveformDisplay(audioSel.AudioRange.SelectionBeginTime, audioSel.AudioRange.SelectionEndTime);
                   
                 }
+            }
+        }
+        public void ZoomPanelToolTipInit()
+        {
+            keyboardShortcuts = m_ProjectView.ObiForm.KeyboardShortcuts;
+            this.btnClosetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_Close") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Close.Value.ToString()) + ")";
+            this.btnNextPhrasetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ShowNextPhrase") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_NextPhrase.Value.ToString()) + ")";
+            this.btnPreviousPhrasetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ShowPreviousPhrase") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_PreviousPhrase.Value.ToString()) + ")";
+            this.btnResettoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_Reset") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Reset.Value.ToString()) + ")";
+            this.btnZoomIntoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ZoomIn") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomIn.Value.ToString()) + ")";
+            this.btnZoomOuttoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ZoomOut") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomOut.Value.ToString()) + ")";
+            this.btnZoomSelectiontoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ZoomSelection") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomSelection.Value.ToString()) + ")";
+
+            this.toolStripZoomPanel.AccessibleName = Localizer.Message("ZoomAudioTT_Close") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Close.Value.ToString());
+            this.btnNextPhrasetoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ShowNextPhrase") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_NextPhrase.Value.ToString());
+            this.btnPreviousPhrasetoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ShowPreviousPhrase") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_PreviousPhrase.Value.ToString());
+            this.btnResettoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_Reset") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Reset.Value.ToString());
+            this.btnZoomIntoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomIn") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomIn.Value.ToString());
+            this.btnZoomOuttoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomOut") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomOut.Value.ToString());
+            this.btnZoomSelectiontoolStrip.AccessibleName = Localizer.Message("ZoomAudioTT_ZoomSelection") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_ZoomSelection.Value.ToString());
+            if (m_Edit != null)
+            {
+                m_Edit.EditAudioPanelToolTipInit();
             }
         }
 
