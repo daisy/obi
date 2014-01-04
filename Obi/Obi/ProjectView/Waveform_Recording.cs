@@ -55,6 +55,7 @@ namespace Obi.ProjectView
         private bool m_IsToBeRepainted = false;
         private Dictionary<int, string> m_CurrentDictionary = new Dictionary<int, string>();
         private int m_OffsetLocation = 400;
+        private int m_OffsetLocationTemp = 400;
         private int m_StaticRecordingLocation = 0;
         private int m_TotalPixelCount = 0;
         private int m_Pass = 0;
@@ -700,6 +701,7 @@ namespace Obi.ProjectView
 
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
             int temp = m_X;
+            m_OffsetLocationTemp = 0;
             if (m_IsMaximized)
             {
                 m_IsMaximized = false;
@@ -958,8 +960,13 @@ namespace Obi.ProjectView
             m_DeletedPartEnclosed = false;
             if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
             {
+                if (m_MouseButtonDownLoc != m_MouseButtonUpLoc)
+                {
+                    PaintWaveform(m_MouseButtonDownLoc, m_MouseButtonUpLoc, false);
+                }
                 m_MouseButtonDownLoc = 0;
                 m_MouseButtonUpLoc = 0;
+                markPageToolStripMenuItem.Enabled = false;
                 return;
             }
 
@@ -1049,7 +1056,7 @@ namespace Obi.ProjectView
                 {
                     if (e.Button == MouseButtons.Left)
                     {
-                        if (e.X < (m_OffsetLocation + recordingTimeCursor) || e.X > m_X)
+                        if (e.X < (m_OffsetLocationTemp + recordingTimeCursor) || e.X > m_X)
                         {
                             m_MouseButtonDownLoc = 0;
                             m_MouseButtonUpLoc = 0;
