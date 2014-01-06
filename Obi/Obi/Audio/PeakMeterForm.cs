@@ -14,10 +14,14 @@ namespace Obi.Audio
         HelpProvider helpProvider1;
         public bool flagFirstTimeInit = false;
         private int tempFormHeight = 0;
+        private Size m_InitPeakmeterFormSize;
+        private Size m_InitGraphicalPeakMeterSize;
 
 		public PeakMeterForm()
 		{
 			InitializeComponent();
+            m_InitPeakmeterFormSize = this.Size;
+            m_InitGraphicalPeakMeterSize = this.mGraphicalPeakMeter.Size;
             this.TopMost = true;
             mGraphicalPeakMeter.Dock = DockStyle.None;
             flagFirstTimeInit = true;
@@ -47,22 +51,23 @@ namespace Obi.Audio
 				mGraphicalPeakMeter.SourceVuMeter = value;
 			}
 		}
+        public int MinimumDiff
+        {
+            get
+            {
+                return (chkOnTop.Height * 2+10);  
+            }
+        }
         public void GraphicalPeakMeterDocPropSet()
         {
             mGraphicalPeakMeter.Dock = DockStyle.None;
         }
         public void PeakMeterInit()
         {
-            mGraphicalPeakMeter.Size = new Size(154, 580);
+            this.Size = m_InitPeakmeterFormSize;
+            mGraphicalPeakMeter.Size = m_InitGraphicalPeakMeterSize;          
             this.chkOnTop.Location = new Point(this.chkOnTop.Location.X, mGraphicalPeakMeter.Height);
-            //this.Size=new Size(170,640);
-            //this.mGraphicalPeakMeter.Height = this.Height;
-            //this.Height = this.Height + 10;
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("Peakmeter Size {0}", mGraphicalPeakMeter.Size);
+
             flagFirstTimeInit = false;
 
 
@@ -101,13 +106,17 @@ namespace Obi.Audio
             {
                 int diff = this.Height - tempFormHeight;
                 Console.WriteLine("Difference is {0}", diff);
-                if ((mGraphicalPeakMeter.Height + diff) > (chkOnTop.Height*2))
+                if ((mGraphicalPeakMeter.Height + diff) > (MinimumDiff))
                 {
                     this.mGraphicalPeakMeter.Height = mGraphicalPeakMeter.Height + diff;
                 }
                 else
                 {
                    this.Height = tempFormHeight;
+                }
+                if ((this.Height - this.mGraphicalPeakMeter.Height) < (MinimumDiff))
+                {
+                    PeakMeterInit();
                 }
                 this.chkOnTop.Location = new Point(this.chkOnTop.Location.X, mGraphicalPeakMeter.Height);
             }
