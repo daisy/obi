@@ -3305,9 +3305,8 @@ namespace Obi
                 if (mPeakMeter == null)
                 {
                     mPeakMeter = new Obi.Audio.PeakMeterForm();
-                    if (mSettings.PeakmeterSize.Width == 0 || mSettings.PeakmeterSize.Height == 0 || mSettings.PeakmeterSize.Height < mSettings.GraphicalPeakMeterContolSize.Height)
-                    {
-                        mPeakMeter.Size = new Size(170, 640);
+                    if (mSettings.PeakmeterSize.Width == 0 || mSettings.PeakmeterSize.Height == 0 || mSettings.PeakmeterSize.Height < mSettings.GraphicalPeakMeterContolSize.Height || (mSettings.PeakmeterSize.Height-mSettings.GraphicalPeakMeterContolSize.Height<(mPeakMeter.MinimumDiff)))
+                    {                       
                         mPeakMeter.PeakMeterInit();
                     }
                     else
