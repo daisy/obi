@@ -749,7 +749,7 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = true;
             }
-            if (m_Node != null && m_Node.FollowingNode != null)
+            if (m_Node != null && m_Node.FollowingNode != null && m_Node.Parent!=null)
             {
                 ObiNode nextNode = m_Node.FollowingNode;
                 if (nextNode != null && nextNode.Parent != null && m_Block != null && m_Block.Node != null && m_Block.Node.Parent != null)
@@ -795,7 +795,7 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = true;
             }
-            if (m_Node != null && m_Node.PrecedingNode != null)
+            if (m_Node != null && m_Node.PrecedingNode != null && m_Node.Parent!=null)
             {
                 ObiNode previousNode = m_Node.PrecedingNode;
                 if (previousNode != null && previousNode.Parent != null && m_Block != null && m_Block.Node != null && m_Block.Node.Parent != null)
