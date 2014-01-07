@@ -795,7 +795,7 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = true;
             }
-            if (m_Node != null && m_Node.PrecedingNode != null && m_Node.Parent!=null)
+            if (m_Node != null && m_Node.Parent != null && m_Node.PrecedingNode != null)
             {
                 ObiNode previousNode = m_Node.PrecedingNode;
                 if (previousNode != null && previousNode.Parent != null && m_Block != null && m_Block.Node != null && m_Block.Node.Parent != null)
