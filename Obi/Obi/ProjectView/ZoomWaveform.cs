@@ -749,32 +749,34 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = true;
             }
-
-            ObiNode nextNode = m_Node.FollowingNode;
-            if (nextNode != null && nextNode.Parent != null && m_Block != null && m_Block.Node != null && m_Block.Node.Parent != null)
+            if (m_Node != null && m_Node.FollowingNode != null)
             {
-                if (m_Block.Node.Parent == nextNode.Parent)
+                ObiNode nextNode = m_Node.FollowingNode;
+                if (nextNode != null && nextNode.Parent != null && m_Block != null && m_Block.Node != null && m_Block.Node.Parent != null)
                 {
-                    if (m_Node.FollowingNode is PhraseNode)
+                    if (m_Block.Node.Parent == nextNode.Parent)
                     {
-                        m_Node = nextNode as PhraseNode;
-                        m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                        if (m_Node.FollowingNode is PhraseNode)
+                        {
+                            m_Node = nextNode as PhraseNode;
+                            m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
 
+                        }
+
+                        else if (m_Node.FollowingNode is EmptyNode)
+                        {
+                            m_Node = nextNode as EmptyNode;
+                            m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                        }
                     }
-
-                    else if (m_Node.FollowingNode is EmptyNode)
+                }
+                else if (m_Node.FollowingNode is EmptyNode)
+                {
+                    if (m_AudioBlock != null)
                     {
                         m_Node = nextNode as EmptyNode;
                         m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
                     }
-                }
-            }
-            else if (m_Node.FollowingNode is EmptyNode)
-            {
-              if (m_AudioBlock != null)
-                {
-                    m_Node = nextNode as EmptyNode;
-                    m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
                 }
             }
         }
@@ -793,36 +795,39 @@ namespace Obi.ProjectView
             {
                 this.AutoScroll = true;
             }
-            ObiNode previousNode = m_Node.PrecedingNode;
-            if (previousNode != null && previousNode.Parent != null && m_Block != null && m_Block.Node != null && m_Block.Node.Parent != null)
+            if (m_Node != null && m_Node.PrecedingNode != null)
             {
-                if (m_Block.Node.Parent == previousNode.Parent)
+                ObiNode previousNode = m_Node.PrecedingNode;
+                if (previousNode != null && previousNode.Parent != null && m_Block != null && m_Block.Node != null && m_Block.Node.Parent != null)
                 {
-                    if (m_Node.PrecedingNode is PhraseNode)
+                    if (m_Block.Node.Parent == previousNode.Parent)
                     {
-                        m_Node = previousNode as PhraseNode;
-                        m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
-             
-                    }
-    
-                    else if (m_Node.PrecedingNode is EmptyNode)
-                    {
-
+                        if (m_Node.PrecedingNode is PhraseNode)
                         {
-                            m_Node = previousNode as EmptyNode;
+                            m_Node = previousNode as PhraseNode;
                             m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+
                         }
+
+                        else if (m_Node.PrecedingNode is EmptyNode)
+                        {
+
+                            {
+                                m_Node = previousNode as EmptyNode;
+                                m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                            }
+                        }
+
                     }
 
                 }
-
-            }
-            else if (m_Node.PrecedingNode is EmptyNode)
-            {
-                if (m_AudioBlock != null)
+                else if (m_Node.PrecedingNode is EmptyNode)
                 {
-                    m_Node = previousNode as EmptyNode;
-                    m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                    if (m_AudioBlock != null)
+                    {
+                        m_Node = previousNode as EmptyNode;
+                        m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
+                    }
                 }
             }
         }
