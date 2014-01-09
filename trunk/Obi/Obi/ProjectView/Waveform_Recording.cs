@@ -427,19 +427,8 @@ namespace Obi.ProjectView
         private double ConvertPixelsToTime(int pixels)
         {
             double time = 0;
-            //if (m_Counter == 10)
-            //{
-                
-            //}
-           // time = m_InitialStaticTime + (pixels - m_X) * 100;
-           // double temp = (pixels - m_StaticRecordingLocation) * 100;
-            //Console.WriteLine("Converting pixels to time will give you {0}", m_StaticRecordingLocation);
-            //Console.WriteLine("Converting M_X to time will give you {0}", m_X);
-
+  
            time = m_InitialStaticTime + (pixels - m_StaticRecordingLocation) * 100;
-
-            
-          //  time = m_InitialStaticTime + 500;
 
             return time;
         }
