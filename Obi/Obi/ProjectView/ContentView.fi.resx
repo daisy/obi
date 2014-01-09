@@ -251,7 +251,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>[DAISY book structure term]</value>
+    <value>Skippa&amp;ble notes</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -412,13 +412,13 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
-    <value>[DAISY book structure term]</value>
+    <value>&amp;Heading</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Text" xml:space="preserve">
-    <value>[DAISY book structure term]</value>
+    <value>&amp;Page</value>
   </data>
   <data name="Context_AssignRole_SilenceMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
@@ -430,7 +430,7 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>[DAISY book structure term]</value>
+    <value>Anch&amp;or</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 6</value>
