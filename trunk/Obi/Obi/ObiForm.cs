@@ -2290,6 +2290,10 @@ namespace Obi
             private void mTools_PreferencesMenuItem_Click(object sender, EventArgs e)
             {
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause();
+                if (mProjectView.IsZoomWaveformActive)
+                {
+                    mProjectView.ZoomPanelClose();
+                }
                 bool isLeftAlignPhrasesInContentView = mSettings.LeftAlignPhrasesInContentView;
                 bool showWaveform = mSettings.Project_ShowWaveformInContentView;
                 bool enableEmptySectionColorInTOC = mSettings.Project_BackgroundColorForEmptySection;
@@ -2316,7 +2320,12 @@ namespace Obi
 
             private void mTools_ExportAsDAISYMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.IsZoomWaveformActive)
+                {
+                    mProjectView.ZoomPanelClose();
+                }
                 ExportProject();
+
             }
 
             // Export the project as DAISY 3.
@@ -2540,7 +2549,12 @@ namespace Obi
 
             private void mTools_CleanUnreferencedAudioMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.IsZoomWaveformActive)
+                {
+                    mProjectView.ZoomPanelClose();
+                }
                 CleanProject();
+
             }
 
 
@@ -4394,6 +4408,10 @@ namespace Obi
             private void mtools_ExportSelectedAudioMenuItem_Click(object sender, EventArgs e)
             {
                 //String directoryPath = Path.GetDirectoryName(mSession.Path);
+                if (mProjectView.IsZoomWaveformActive)
+                {
+                    mProjectView.ZoomPanelClose();
+                }
                 mProjectView.ExportAudioOfSelectedNode();
             }
 
@@ -4689,6 +4707,13 @@ namespace Obi
                         PeakMeterResize();
 
                     }
+                }
+            }
+            public FormWindowState ObiformWindowsState
+            {
+                get
+                {
+                    return this.WindowState;
                 }
             }
 

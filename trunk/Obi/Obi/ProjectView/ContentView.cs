@@ -5524,7 +5524,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
         public void ZoomPanelZoomIn() { if (IsZoomWaveformActive) m_ZoomWaveformPanel.ZoomIn (); } //@zoomwaveform
         public void ZoomPanelZoomOut() { if (IsZoomWaveformActive) m_ZoomWaveformPanel.ZoomOut () ; } //@zoomWaveform
         public void ZoomPanelReset() { if (IsZoomWaveformActive) m_ZoomWaveformPanel.Reset () ; } //@zoomWaveform
-        public void ZoomPanelToolTipInit() { if (IsZoomWaveformActive) m_ZoomWaveformPanel.ZoomPanelToolTipInit(); } //@zoomWaveform       
+        public void ZoomPanelToolTipInit() { if (IsZoomWaveformActive) m_ZoomWaveformPanel.ZoomPanelToolTipInit(); } //@zoomWaveform    
+        public void ZoomPanelClose() { if (IsZoomWaveformActive) m_ZoomWaveformPanel.IsNewProjectOpened(); }
 
         //@zoomwaveform
         public void ShowEditPanel()

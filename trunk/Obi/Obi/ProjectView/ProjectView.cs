@@ -3993,6 +3993,7 @@ for (int j = 0;
         public void ZoomPanelZoomOut() { if (IsZoomWaveformActive) mContentView.ZoomPanelZoomOut(); } //@zoomWaveform
         public void ZoomPanelReset() { if (IsZoomWaveformActive) mContentView.ZoomPanelReset(); } //@zoomWaveform
         public void ZoomPanelToolTipInit() { if (IsZoomWaveformActive)  mContentView.ZoomPanelToolTipInit(); }
+        public void ZoomPanelClose() { if (IsZoomWaveformActive) mContentView.ZoomPanelClose(); }
 
         /// <summary>
         /// Update the context menus of the view.
