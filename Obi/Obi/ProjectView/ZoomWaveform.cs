@@ -714,9 +714,7 @@ namespace Obi.ProjectView
             m_buttonSizeinit = false;
             m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
             m_ContentView.RemovePanel();
-
-            
-           
+            Close();   
         }
 
           private void btnClosetoolStrip_Click(object sender, EventArgs e)
