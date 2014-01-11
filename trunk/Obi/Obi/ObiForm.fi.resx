@@ -360,7 +360,7 @@
     <value>Liitä etee&amp;n</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Liitä sisään Ctrl+Shit+V</value>
+    <value>Liitä sisään Ctrl+Shift+V</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+V</value>
@@ -664,7 +664,7 @@
     <value>Äänen zoomaus suuremmaksi Ctrl+Alt+Shift+plus</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Ctrl+Alt+Shit++</value>
+    <value>Ctrl+Alt+Shift++</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+Oemplus</value>
@@ -1180,7 +1180,7 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
-    <value>&amp;Äänetön Ctrl+Shift+E</value>
+    <value>&amp;Äänetön</value>
   </data>
   <data name="mPhrases_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
@@ -1561,7 +1561,7 @@
     <value>267, 22</value>
   </data>
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Record over subsequent phrases</value>
+    <value>Äänitä seuraavien lauseiden päälle</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>

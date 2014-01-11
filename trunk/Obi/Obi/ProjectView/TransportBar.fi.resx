@@ -181,7 +181,7 @@
     <value>4</value>
   </data>
   <data name="mPlayButton.ToolTip" xml:space="preserve">
-    <value>Käynnistä tai jatka äänen toistoa (Välilyönti)</value>
+    <value>Käynnistä tai jatka äänen toistoa (Space)</value>
   </data>
   <data name="&gt;&gt;mPlayButton.Name" xml:space="preserve">
     <value>mPlayButton</value>
