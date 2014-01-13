@@ -406,7 +406,7 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>&amp;Yksinkertainen</value>
+    <value>Tava&amp;llinen</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
@@ -430,7 +430,7 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>Anch&amp;or</value>
+    <value>&amp;Linkki</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 6</value>

@@ -1731,7 +1731,7 @@
     <value>False</value>
   </data>
   <data name="m_lblChooseFont.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 245</value>
+    <value>118, 245</value>
   </data>
   <data name="m_lblChooseFont.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 16</value>
@@ -1893,7 +1893,7 @@
     <value>True</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 216</value>
+    <value>70, 216</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 16</value>
