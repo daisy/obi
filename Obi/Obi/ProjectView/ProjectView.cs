@@ -2093,6 +2093,10 @@ namespace Obi.ProjectView
             //iterating over the layout panel seems to be the way to search the sections 
             if (mContentView.ContainsFocus)
                 {
+                    if (IsZoomWaveformActive)
+                    {
+                        mContentView.ZoomPanelClose();
+                    }
                 mFindInText.StartNewSearch ( mTOCView, mContentView,  FindViews.ContentView);
                 }
             else
