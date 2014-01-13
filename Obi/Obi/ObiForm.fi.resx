@@ -1144,7 +1144,7 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>Tava%llinen</value>
+    <value>Tava&amp;llinen</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.AccessibleName" xml:space="preserve">
     <value>Heading Ctrl+Shift+D</value>
