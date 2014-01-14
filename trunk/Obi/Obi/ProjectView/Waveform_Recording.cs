@@ -88,8 +88,6 @@ namespace Obi.ProjectView
         private bool m_DeletedPartEnclosed = false;
         private int tempXLocation=0;
         private List<int> m_MouseMoveList = new List<int>();
-        private int count = 0;
-
         
         public Waveform_Recording()
         {
@@ -427,8 +425,7 @@ namespace Obi.ProjectView
         private double ConvertPixelsToTime(int pixels)
         {
             double time = 0;
-  
-           time = m_InitialStaticTime + (pixels - m_StaticRecordingLocation) * 100;
+            time = m_InitialStaticTime + (pixels - m_StaticRecordingLocation) * 100;
 
             return time;
         }
@@ -537,27 +534,20 @@ namespace Obi.ProjectView
             if (m_IsResizing)
                 return;
             //m_CounterWaveform = listOfCurrentMinChannel1.Count;
-            Console.WriteLine("Repaint is called from under Obi form Resize");
-            
             RepaintWaveform();
-            
             m_IsResizing = false;
-            
         }
 
         private void ObiForm_ResizeBegin(object sender, EventArgs e)
         {
             m_IsResizing = true;
-            
         }
 
         private void ObiForm_ResizeEnd(object sender, EventArgs e)
         {
             //          m_CounterWaveform = listOfCurrentMinChannel1.Count;
-            Console.WriteLine("Repaint is called from under Resize Ending of Obi form");         
-            
+
             RepaintWaveform();
-            
             m_IsResizing = false;
         }
 
@@ -596,19 +586,15 @@ namespace Obi.ProjectView
             if (m_IsResizing)
                 return;
             //            m_CounterWaveform = listOfCurrentMinChannel1.Count;
-            Console.WriteLine("Repaint is called from inside of Content view Resize");
-            
+
             RepaintWaveform();
-            
             m_IsResizing = false;
         }
 
         private void RepaintWaveform()
         {
             Font myFont = new Font("Microsoft Sans Serif", 7);
-            count++;
-            Console.WriteLine();
-            Console.WriteLine("Repaint is called {0} times", count);
+
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
             int tempm_X = m_X;
             int counterWaveform = 0;
@@ -644,7 +630,6 @@ namespace Obi.ProjectView
                 this.Location = new Point((m_X - recordingTimeCursor) * -1, Location.Y);
                 foreach (double[] arr in m_RecordingSession.DeletedItemList)
                 {
-                    Console.WriteLine("Delete Portion a1= {0} a2= {1}", arr[0], arr[1]);
                     int beginPixel = m_TimeToPixelMap.ContainsKey (arr[0])? m_TimeToPixelMap[arr[0]] : CalculatePixels(arr[0]) ;
                     int endPixel = m_TimeToPixelMap.ContainsKey(arr[1])? m_TimeToPixelMap[arr[1]]: CalculatePixels(arr[1]);
                     g.FillRectangle(SystemBrushes.ControlDark, beginPixel, m_TopMargin,endPixel -beginPixel , this.WaveformHeight);
@@ -849,18 +834,14 @@ namespace Obi.ProjectView
             m_ExistingPhrase = m_ProjectView.TransportBar.RecordingPhrase;
 
             if (!m_MainDictionary.ContainsKey(xLocation))
-                m_MainDictionary.Add(xLocation, text); 
+                m_MainDictionary.Add(xLocation, text);
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             if (m_IsToBeRepainted)
-            {
-                Console.WriteLine("Repaint is called from inside of On Paint");
-                
                 RepaintWaveform();
-            }
 
             m_IsToBeRepainted = true;
             m_IsMaximized = false;
@@ -948,14 +929,8 @@ namespace Obi.ProjectView
                         Time.TIME_UNIT;
             int currentm_X = m_X;
             int pixelGap = currentm_X - pixel;
-            double time = 0;
-         //   calculatedTime = m_InitialStaticTime + (pixel-pixelGap - m_StaticRecordingLocation) * 100;
-          //  calculatedTime = ConvertPixelToTime(pixel);
-            currentMarkTime = ConvertPixelsToTime(pixel);
-            calculatedTime = ConvertPixelsToTime(pixelGap);
-
+            calculatedTime = ConvertPixelToTime(pixelGap);
             calculatedTime = currentMarkTime - calculatedTime;
-            //calculatedTime = currentMarkTime;
             return calculatedTime;
 
         }
@@ -983,7 +958,7 @@ namespace Obi.ProjectView
         private void Waveform_Recording_MouseDown(object sender, MouseEventArgs e)
         {
             m_DeletedPartEnclosed = false;
-            if (!IsPhraseMarkAllowed(CalculateTime(e.X)))
+            if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
             {
                 if (m_MouseButtonDownLoc != m_MouseButtonUpLoc)
                 {
@@ -1521,13 +1496,7 @@ namespace Obi.ProjectView
             m_MouseButtonUpLoc = 0;
             m_TempMouseMoveLoc = 0;
             m_IsDeleted = true;
-            
-            if (m_IsToBeRepainted)
-            {
-                Console.WriteLine("Repaint is called from inside of delete");
-                RepaintWaveform();
-            }
-            m_IsToBeRepainted = false;
+            RepaintWaveform();
             double RecorderTime = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
 Time.TIME_UNIT;
             if ((RecorderTime - ConvertPixelsToTime((m_X))) > 100)
