@@ -268,7 +268,7 @@
     <value>5</value>
   </data>
   <data name="mCancel.Text" xml:space="preserve">
-    <value>Poi&amp;sta</value>
+    <value>&amp;Peruuta</value>
   </data>
   <data name="&gt;&gt;mCancel.Name" xml:space="preserve">
     <value>mCancel</value>
