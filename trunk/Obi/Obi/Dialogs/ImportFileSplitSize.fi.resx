@@ -187,7 +187,7 @@
     <value>Flat</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 465</value>
+    <value>100, 465</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -217,7 +217,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 465</value>
+    <value>218, 465</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -313,7 +313,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>Siirrä&amp;ylös</value>
+    <value>Siirrä &amp;ylös</value>
   </data>
   <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
     <value>m_btnMoveUp</value>
@@ -433,7 +433,7 @@
     <value>10, 34</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 26</value>
+    <value>138, 26</value>
   </data>
   <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -457,7 +457,7 @@
     <value>6, 138</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>315, 65</value>
+    <value>430, 65</value>
   </data>
   <data name="m_grpArrangeAudioFiles.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -481,7 +481,7 @@
     <value>12, 6</value>
   </data>
   <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>359, 209</value>
+    <value>459, 209</value>
   </data>
   <data name="m_grpAddFiles.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -751,7 +751,7 @@
     <value>12, 346</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 103</value>
+    <value>459, 103</value>
   </data>
   <data name="m_grpSplitPhraseOrPhraseDetection.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
