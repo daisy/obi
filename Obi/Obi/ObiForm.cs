@@ -9,6 +9,7 @@ using System.ComponentModel;
 using urakawa.core;
 using urakawa.data;
 using PipelineInterface;
+using Jaime.Olivares;
 
 
 namespace Obi
@@ -4901,6 +4902,49 @@ namespace Obi
                         MessageBox.Show(ex.ToString());
                     }
 
+                }
+            }
+
+            private void m_ToolsLangPack_Click(object sender, EventArgs e)
+            {
+                OpenFileDialog select_File = new OpenFileDialog();
+                select_File.Filter = "(*.zip)|*.zip";
+                if (select_File.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = select_File.FileName;
+                    string nameOfFile = System.IO.Path.GetFileName(fileName);
+                    string installationPath = Application.StartupPath;
+                    
+                    
+                    ZipStorer zip = ZipStorer.Open(fileName, FileAccess.Read);
+                    List<ZipStorer.ZipFileEntry> dir =zip.ReadCentralDir();
+
+                    bool flag = false;
+                   
+                    foreach (ZipStorer.ZipFileEntry entry in dir)
+                    {
+                        if (Path.GetFileName(entry.FilenameInZip) == "Obi.resources.dll")
+                        {
+                            string tempStr = dir[0].ToString().Replace("/", string.Empty);                           
+                            zip.ExtractFile(entry, installationPath + @"\" + tempStr + @"\Obi.resources.dll");
+                            flag = true;
+                        }
+                        else if(Path.GetFileName(entry.FilenameInZip) == "PipelineInterface.resources.dll")
+                        {
+                            string tempStr = dir[0].ToString().Replace("/", string.Empty);   
+                            zip.ExtractFile(entry, installationPath + @"\" + tempStr + @"\PipelineInterface.resources.dll");  
+                        }
+
+                    }
+                    if (!flag)
+                    {
+                        MessageBox.Show(Localizer.Message("Language_Pack"));
+                    }
+                    
+                    zip.Close();
+                    
+                  //  ZipStorer zip=ZipStorer.Open(
+                    
                 }
             }
 

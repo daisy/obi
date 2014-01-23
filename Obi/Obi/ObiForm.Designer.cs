@@ -202,6 +202,7 @@ namespace Obi
             this.mTools_ExportSelectedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportAsDAISYMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_ToolsLangPack = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_WhatsNewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1411,6 +1412,7 @@ namespace Obi
             this.mTools_ExportSelectedAudioMenuItem,
             this.mTools_ExportAsDAISYMenuItem,
             this.mTools_CleanUnreferencedAudioMenuItem,
+            this.m_ToolsLangPack,
             this.toolStripSeparator18});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
             resources.ApplyResources(this.mToolsToolStripMenuItem, "mToolsToolStripMenuItem");
@@ -1443,6 +1445,12 @@ namespace Obi
             resources.ApplyResources(this.mTools_CleanUnreferencedAudioMenuItem, "mTools_CleanUnreferencedAudioMenuItem");
             this.mTools_CleanUnreferencedAudioMenuItem.Name = "mTools_CleanUnreferencedAudioMenuItem";
             this.mTools_CleanUnreferencedAudioMenuItem.Click += new System.EventHandler(this.mTools_CleanUnreferencedAudioMenuItem_Click);
+            // 
+            // m_ToolsLangPack
+            // 
+            this.m_ToolsLangPack.Name = "m_ToolsLangPack";
+            resources.ApplyResources(this.m_ToolsLangPack, "m_ToolsLangPack");
+            this.m_ToolsLangPack.Click += new System.EventHandler(this.m_ToolsLangPack_Click);
             // 
             // toolStripSeparator18
             // 
@@ -1737,6 +1745,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mFile_MergeProjectMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_RenumberPagesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_ToolsLangPack;
     }
 }
 
