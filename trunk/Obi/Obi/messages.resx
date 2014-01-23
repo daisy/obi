@@ -2538,4 +2538,10 @@ Error text: {1}</value>
   <data name="Transport_AddTodoAcc" xml:space="preserve">
     <value>Mark phrase</value>
   </data>
+  <data name="Transport_AddTodoAcc" xml:space="preserve">
+    <value>Mark phrase</value>
+  </data>
+  <data name="Language_Pack" xml:space="preserve">
+    <value>You have selected the wrong file</value>
+  </data>
 </root>
