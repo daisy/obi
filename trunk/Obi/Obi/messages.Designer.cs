@@ -3018,6 +3018,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have selected the wrong file.
+        /// </summary>
+        internal static string Language_Pack {
+            get {
+                return ResourceManager.GetString("Language_Pack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lanuage Pack update is successfull. Please restart Obi for the changes to take effect.
+        /// </summary>
+        internal static string Language_Pack_Complete {
+            get {
+                return ResourceManager.GetString("Language_Pack_Complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Language Pack zip file.
+        /// </summary>
+        internal static string Language_Pack_Select {
+            get {
+                return ResourceManager.GetString("Language_Pack_Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Level 1.
         /// </summary>
         internal static string Level1 {
