@@ -4907,6 +4907,7 @@ namespace Obi
 
             private void m_ToolsLangPack_Click(object sender, EventArgs e)
             {
+                MessageBox.Show(Localizer.Message("Language_Pack_Select"));
                 OpenFileDialog select_File = new OpenFileDialog();
                 select_File.Filter = "(*.zip)|*.zip";
                 if (select_File.ShowDialog() == DialogResult.OK)
@@ -4939,6 +4940,10 @@ namespace Obi
                     if (!flag)
                     {
                         MessageBox.Show(Localizer.Message("Language_Pack"));
+                    }
+                    else
+                    {
+                        MessageBox.Show(Localizer.Message("Language_Pack_Complete"));
                     }
                     
                     zip.Close();

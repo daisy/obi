@@ -2544,4 +2544,10 @@ Error text: {1}</value>
   <data name="Language_Pack" xml:space="preserve">
     <value>You have selected the wrong file</value>
   </data>
+  <data name="Language_Pack_Select" xml:space="preserve">
+    <value>Please select Language Pack zip file</value>
+  </data>
+  <data name="Language_Pack_Complete" xml:space="preserve">
+    <value>Lanuage Pack update is successfull. Please restart Obi for the changes to take effect</value>
+  </data>
 </root>
