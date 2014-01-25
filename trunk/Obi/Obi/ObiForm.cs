@@ -57,6 +57,7 @@ namespace Obi
             private bool m_FlagWindowState = false; //indicates whether window is in max or min state
             private int m_DiffPeakMeterGraphicalPeakMeter=0; // stores the difference between the hight of the peak meter and graphical peak  
             private bool m_NormalAfterMax = false;    //Used to revert back to the window of the original size from max obi window
+            private bool m_FlagLangUpdate = false;
 
 
             /// <summary>
@@ -4907,7 +4908,10 @@ namespace Obi
 
             private void m_ToolsLangPack_Click(object sender, EventArgs e)
             {
-                MessageBox.Show(Localizer.Message("Language_Pack_Select"));
+                if (m_FlagLangUpdate == false)
+                {
+                    MessageBox.Show(Localizer.Message("Language_Pack_Select"), Localizer.Message("Language_Pack_Select_Caption"));
+                }
                 OpenFileDialog select_File = new OpenFileDialog();
                 select_File.Filter = "(*.zip)|*.zip";
                 if (select_File.ShowDialog() == DialogResult.OK)
@@ -4915,41 +4919,47 @@ namespace Obi
                     string fileName = select_File.FileName;
                     string nameOfFile = System.IO.Path.GetFileName(fileName);
                     string installationPath = Application.StartupPath;
-                    
-                    
+
+
                     ZipStorer zip = ZipStorer.Open(fileName, FileAccess.Read);
-                    List<ZipStorer.ZipFileEntry> dir =zip.ReadCentralDir();
+                    List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();
 
                     bool flag = false;
-                   
+
                     foreach (ZipStorer.ZipFileEntry entry in dir)
                     {
                         if (Path.GetFileName(entry.FilenameInZip) == "Obi.resources.dll")
                         {
-                            string tempStr = dir[0].ToString().Replace("/", string.Empty);                           
+                            string tempStr = dir[0].ToString().Replace("/", string.Empty);
                             zip.ExtractFile(entry, installationPath + @"\" + tempStr + @"\Obi.resources.dll");
                             flag = true;
                         }
-                        else if(Path.GetFileName(entry.FilenameInZip) == "PipelineInterface.resources.dll")
+                        else if (Path.GetFileName(entry.FilenameInZip) == "PipelineInterface.resources.dll")
                         {
-                            string tempStr = dir[0].ToString().Replace("/", string.Empty);   
-                            zip.ExtractFile(entry, installationPath + @"\" + tempStr + @"\PipelineInterface.resources.dll");  
+                            string tempStr = dir[0].ToString().Replace("/", string.Empty);
+                            zip.ExtractFile(entry, installationPath + @"\" + tempStr + @"\PipelineInterface.resources.dll");
                         }
 
                     }
                     if (!flag)
                     {
-                        MessageBox.Show(Localizer.Message("Language_Pack"));
+                        MessageBox.Show(Localizer.Message("Language_Pack"), Localizer.Message("Language_Pack_Caption"));
+                        m_FlagLangUpdate = true;
+                        m_ToolsLangPack_Click(sender, e);
                     }
                     else
                     {
-                        MessageBox.Show(Localizer.Message("Language_Pack_Complete"));
+                        MessageBox.Show(Localizer.Message("Language_Pack_Complete"), Localizer.Message("Language_Pack_Complete_Caption"));
                     }
-                    
+
                     zip.Close();
-                    
-                  //  ZipStorer zip=ZipStorer.Open(
-                    
+
+                    //  ZipStorer zip=ZipStorer.Open(
+
+                }
+                else
+                {
+                    m_FlagLangUpdate = false;
                 }
             }
 

@@ -2548,6 +2548,15 @@ Error text: {1}</value>
     <value>Please select Language Pack zip file</value>
   </data>
   <data name="Language_Pack_Complete" xml:space="preserve">
-    <value>Lanuage Pack update is successfull. Please restart Obi for the changes to take effect</value>
+    <value>Language Pack update is successfull. Please restart Obi for the changes to take effect</value>
+  </data>
+  <data name="Language_Pack_Caption" xml:space="preserve">
+    <value>Wrong File</value>
+  </data>
+  <data name="Language_Pack_Select_Caption" xml:space="preserve">
+    <value>Select Zip File</value>
+  </data>
+  <data name="Language_Pack_Complete_Caption" xml:space="preserve">
+    <value>Update Successfull</value>
   </data>
 </root>

@@ -3027,11 +3027,29 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lanuage Pack update is successfull. Please restart Obi for the changes to take effect.
+        ///   Looks up a localized string similar to Wrong File.
+        /// </summary>
+        internal static string Language_Pack_Caption {
+            get {
+                return ResourceManager.GetString("Language_Pack_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language Pack update is successfull. Please restart Obi for the changes to take effect.
         /// </summary>
         internal static string Language_Pack_Complete {
             get {
                 return ResourceManager.GetString("Language_Pack_Complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Successfull.
+        /// </summary>
+        internal static string Language_Pack_Complete_Caption {
+            get {
+                return ResourceManager.GetString("Language_Pack_Complete_Caption", resourceCulture);
             }
         }
         
@@ -3041,6 +3059,15 @@ namespace Obi {
         internal static string Language_Pack_Select {
             get {
                 return ResourceManager.GetString("Language_Pack_Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Zip File.
+        /// </summary>
+        internal static string Language_Pack_Select_Caption {
+            get {
+                return ResourceManager.GetString("Language_Pack_Select_Caption", resourceCulture);
             }
         }
         
