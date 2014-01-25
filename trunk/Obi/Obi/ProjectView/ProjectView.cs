@@ -1281,14 +1281,24 @@ namespace Obi.ProjectView
 
                     if (lastSelectedSectionIndex < listOfSections.Count - 1)
                     {
-                        for (int i = lastSelectedSectionIndex + 1; i < listOfSections.Count; i++)
+                        for (int i =listOfSections.Count-1; i > lastSelectedSectionIndex; i--)
                         {
                             if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
                             {
                                 mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
-                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, firstSection.SectionChildCount, false));
+                                int insertIndex = firstSection.SectionChildCount > 0 ? firstSection.SectionChild(0).Index : 0;
+                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, insertIndex, false));
                             }
                         }
+                    
+                        //for (int i = lastSelectedSectionIndex + 1; i < listOfSections.Count; i++)
+                        //{
+                            //if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
+                            //{
+                                //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
+                                //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, firstSection.SectionChildCount, false));
+                            //}
+                        //}
                     }
 
                     List<EmptyNode> phraseList = new List<EmptyNode>();
