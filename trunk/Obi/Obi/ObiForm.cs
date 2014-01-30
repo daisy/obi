@@ -2307,10 +2307,10 @@ namespace Obi
                 Ready();
                 mProjectView.TransportBar.UpdateButtons();
                 mProjectView.ZoomPanelToolTipInit();
-                //if (mProjectView.Presentation != null && mProjectView.Presentation.FirstSection != null && enableEmptySectionColorInTOC != mSettings.Project_BackgroundColorForEmptySection)
-                //{
-                //    mProjectView.UpdateTOCBackColorForEmptySection((SectionNode)mProjectView.Presentation.FirstSection);
-                //}
+                if (mProjectView.Presentation != null && mProjectView.Presentation.FirstSection != null && enableEmptySectionColorInTOC != mSettings.Project_BackgroundColorForEmptySection)
+                {
+                    mProjectView.UpdateTOCBackColorForEmptySection((SectionNode)mProjectView.Presentation.FirstSection);
+                }
                 mProjectView.TransportBar.ResetFastPlayForPreferencesChange();
                 if (isLeftAlignPhrasesInContentView != mSettings.LeftAlignPhrasesInContentView) UpdateZoomFactor();
                 mSession.EnableFreeDiskSpaceCheck = mSettings.Project_EnableFreeDiskSpaceCheck;
