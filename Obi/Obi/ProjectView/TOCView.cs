@@ -165,6 +165,7 @@ namespace Obi.ProjectView
         }
 
     private SectionNode m_HighlightedSectionNodeWithoutSelection = null;
+    private SectionNode m_LastHighlightedSectionNodeWithoutSelection = null;
         /// <summary>
         /// highlights the section selected in content view, without moving keyboard focus to toc view.
         /// </summary>
@@ -353,6 +354,12 @@ namespace Obi.ProjectView
                     n.EnsureVisible();
                     n.ExpandAll();
                     ChangeColorUsed(n, mProjectView.ColorSettings);
+                    if (mProjectView.ObiForm.Settings != null && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection
+    && node is SectionNode && node.Duration == 0)
+                    {
+                       // n.BackColor = Color.LightPink;
+                        EmptySectionBackColor(node, n);
+                    }
                 }
                 //if (n != null || node is RootNode)
                 if (n != null || node == mProjectView.Presentation.RootNode)//sdk2
@@ -530,13 +537,20 @@ namespace Obi.ProjectView
         // Reflect changes in the presentation (added or deleted nodes)
         private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
+            urakawa.core.TreeNode changedNode = null;
             if (e is ObjectAddedEventArgs<urakawa.core.TreeNode>)
             {
                 TreeNodeAdded((ObjectAddedEventArgs<urakawa.core.TreeNode>)e);
+                changedNode = ((ObjectAddedEventArgs<urakawa.core.TreeNode>)e).m_AddedObject;
             }
             else if (e is ObjectRemovedEventArgs<urakawa.core.TreeNode>)
             {
                 TreeNodeRemoved((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e);
+                changedNode = ((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e).m_RemovedObject;
+            }
+            if (changedNode != null && (changedNode is SectionNode || changedNode is EmptyNode) && ((ObiNode)changedNode).IsRooted)
+            {
+                PaintColorForEmptySection(changedNode is SectionNode ? (SectionNode)changedNode : ((EmptyNode)changedNode).ParentAs<SectionNode>(), false);
             }
         }
 
@@ -625,6 +639,18 @@ namespace Obi.ProjectView
                 {
                     HighlightNodeWithoutSelection = mProjectView.GetSelectedPhraseSection;
                 }
+
+                if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && (m_HighlightedSectionNodeWithoutSelection.Duration == 0.0 || (m_LastHighlightedSectionNodeWithoutSelection != null && m_LastHighlightedSectionNodeWithoutSelection.Duration == 0.0)) && (m_LastHighlightedSectionNodeWithoutSelection != m_HighlightedSectionNodeWithoutSelection))
+                {
+                    if (m_LastHighlightedSectionNodeWithoutSelection != null)
+                    {
+                        TreeNode treeNodeToHighlightTemp = FindTreeNodeWithoutLabel(m_LastHighlightedSectionNodeWithoutSelection);
+                        EmptySectionBackColor(m_LastHighlightedSectionNodeWithoutSelection, treeNodeToHighlightTemp);
+
+                    }
+                    m_LastHighlightedSectionNodeWithoutSelection = m_HighlightedSectionNodeWithoutSelection;
+
+                }
             }   
         }
 
@@ -654,8 +680,60 @@ namespace Obi.ProjectView
                         treeNodeToSelect.BackColor = Color.Empty;
                         treeNodeToSelect.ForeColor = SystemColors.ControlText;
                     }
+                   if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection)
+                    {
+                        EmptySectionBackColor(mSelection.Node, treeNodeToSelect);
+                    }
                 }
                 
+            }
+        }
+
+        public void EmptySectionBackColor(ObiNode node, TreeNode treeNodeToSelect)
+        {
+            if (node == null || treeNodeToSelect == null) return;
+            if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
+            {
+                {
+                    treeNodeToSelect.BackColor = Color.LightPink;
+                    treeNodeToSelect.ForeColor = SystemColors.ControlText;
+                }
+            }
+        }
+
+ 
+        public void UpdateTOCBackColorForEmptySection(SectionNode node)
+        {
+            PaintColorForEmptySection(node, true);
+
+
+            if (node.FollowingSection != null)
+            {
+                if (node.FollowingSection is SectionNode)
+                {
+                    UpdateTOCBackColorForEmptySection((SectionNode)node.FollowingSection);
+                }
+            }
+
+        }
+
+        private void PaintColorForEmptySection(SectionNode node, bool isIterating)
+        {
+            if (!mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && !isIterating) return;
+            if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
+            {
+                TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
+                treeNode.BackColor = Color.LightPink;
+                treeNode.ForeColor = SystemColors.ControlText;
+                System.Media.SystemSounds.Asterisk.Play();
+            }
+            else if(m_HighlightedSectionNodeWithoutSelection!=(SectionNode)node)
+            {
+                TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
+
+                treeNode.BackColor = Color.Empty;
+                treeNode.ForeColor = SystemColors.ControlText;
+
             }
         }
 
