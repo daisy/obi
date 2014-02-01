@@ -357,7 +357,6 @@ namespace Obi.ProjectView
                     if (mProjectView.ObiForm.Settings != null && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection
     && node is SectionNode && node.Duration == 0)
                     {
-                       // n.BackColor = Color.LightPink;
                         EmptySectionBackColor(node, n);
                     }
                 }
