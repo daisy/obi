@@ -178,11 +178,19 @@ namespace Obi.ProjectView
             if (m_HighlightedSectionNodeWithoutSelection != null 
                 && mProjectView.Presentation.RootNode != m_HighlightedSectionNodeWithoutSelection.Presentation.RootNode) 
                 m_HighlightedSectionNodeWithoutSelection = null;
-            if (m_HighlightedSectionNodeWithoutSelection != null && (value == null ||  m_HighlightedSectionNodeWithoutSelection != value))
+            if (m_HighlightedSectionNodeWithoutSelection != null && (value == null || m_HighlightedSectionNodeWithoutSelection != value))
+            {
+                TreeNode treeNodeForRemovingHighlight = FindTreeNodeWithoutLabel(m_HighlightedSectionNodeWithoutSelection);
+                if (treeNodeForRemovingHighlight != null)
                 {
-                TreeNode treeNodeForRemovingHighlight = FindTreeNodeWithoutLabel ( m_HighlightedSectionNodeWithoutSelection );
-                if ( treeNodeForRemovingHighlight != null )  treeNodeForRemovingHighlight.BackColor = System.Drawing.Color.Empty;
+                    treeNodeForRemovingHighlight.BackColor = System.Drawing.Color.Empty;
+                    if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && m_HighlightedSectionNodeWithoutSelection.Duration == 0.0)
+                    {
+                        EmptySectionBackColor(m_HighlightedSectionNodeWithoutSelection, treeNodeForRemovingHighlight);
+                       // treeNodeForRemovingHighlight.BackColor = System.Drawing.Color.Empty;
+                    }
                 }
+            }
 
             if (value != null && (m_HighlightedSectionNodeWithoutSelection == null || m_HighlightedSectionNodeWithoutSelection != value))
                 {
@@ -639,17 +647,6 @@ namespace Obi.ProjectView
                     HighlightNodeWithoutSelection = mProjectView.GetSelectedPhraseSection;
                 }
 
-                if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && (m_HighlightedSectionNodeWithoutSelection.Duration == 0.0 || (m_LastHighlightedSectionNodeWithoutSelection != null && m_LastHighlightedSectionNodeWithoutSelection.Duration == 0.0)) && (m_LastHighlightedSectionNodeWithoutSelection != m_HighlightedSectionNodeWithoutSelection))
-                {
-                    if (m_LastHighlightedSectionNodeWithoutSelection != null)
-                    {
-                        TreeNode treeNodeToHighlightTemp = FindTreeNodeWithoutLabel(m_LastHighlightedSectionNodeWithoutSelection);
-                        EmptySectionBackColor(m_LastHighlightedSectionNodeWithoutSelection, treeNodeToHighlightTemp);
-
-                    }
-                    m_LastHighlightedSectionNodeWithoutSelection = m_HighlightedSectionNodeWithoutSelection;
-
-                }
             }   
         }
 
