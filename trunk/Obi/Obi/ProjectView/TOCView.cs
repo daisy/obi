@@ -184,10 +184,9 @@ namespace Obi.ProjectView
                 if (treeNodeForRemovingHighlight != null)
                 {
                     treeNodeForRemovingHighlight.BackColor = System.Drawing.Color.Empty;
-                    if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && m_HighlightedSectionNodeWithoutSelection.Duration == 0.0)
+                    if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && m_HighlightedSectionNodeWithoutSelection.Duration == 0.0) // @emptysectioncolor
                     {
                         EmptySectionBackColor(m_HighlightedSectionNodeWithoutSelection, treeNodeForRemovingHighlight);
-                       // treeNodeForRemovingHighlight.BackColor = System.Drawing.Color.Empty;
                     }
                 }
             }
@@ -363,7 +362,7 @@ namespace Obi.ProjectView
                     n.ExpandAll();
                     ChangeColorUsed(n, mProjectView.ColorSettings);
                     if (mProjectView.ObiForm.Settings != null && mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection
-    && node is SectionNode && node.Duration == 0)
+    && node is SectionNode && node.Duration == 0) // @emptysectioncolor
                     {
                         EmptySectionBackColor(node, n);
                     }
@@ -555,7 +554,7 @@ namespace Obi.ProjectView
                 TreeNodeRemoved((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e);
                 changedNode = ((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e).m_RemovedObject;
             }
-            if (changedNode != null && (changedNode is SectionNode || changedNode is EmptyNode) && ((ObiNode)changedNode).IsRooted)
+            if (changedNode != null && (changedNode is SectionNode || changedNode is EmptyNode) && ((ObiNode)changedNode).IsRooted) // @emptysectioncolor
             {
                 PaintColorForEmptySection(changedNode is SectionNode ? (SectionNode)changedNode : ((EmptyNode)changedNode).ParentAs<SectionNode>(), false);
             }
@@ -676,7 +675,7 @@ namespace Obi.ProjectView
                         treeNodeToSelect.BackColor = Color.Empty;
                         treeNodeToSelect.ForeColor = SystemColors.ControlText;
                     }
-                   if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection)
+                    if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection) // @emptysectioncolor
                     {
                         EmptySectionBackColor(mSelection.Node, treeNodeToSelect);
                     }
@@ -685,7 +684,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public void EmptySectionBackColor(ObiNode node, TreeNode treeNodeToSelect)
+        public void EmptySectionBackColor(ObiNode node, TreeNode treeNodeToSelect) // @emptysectioncolor
         {
             if (node == null || treeNodeToSelect == null) return;
             if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
@@ -697,8 +696,8 @@ namespace Obi.ProjectView
             }
         }
 
- 
-        public void UpdateTOCBackColorForEmptySection(SectionNode node)
+
+        public void UpdateTOCBackColorForEmptySection(SectionNode node) // @emptysectioncolor
         {
             PaintColorForEmptySection(node, true);
 
@@ -713,7 +712,7 @@ namespace Obi.ProjectView
 
         }
 
-        private void PaintColorForEmptySection(SectionNode node, bool isIterating)
+        private void PaintColorForEmptySection(SectionNode node, bool isIterating) // @emptysectioncolor
         {
             if (!mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && !isIterating) return;
             if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
