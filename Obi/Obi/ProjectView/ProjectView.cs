@@ -1917,7 +1917,7 @@ namespace Obi.ProjectView
             }
 
 
-        public void UpdateTOCBackColorForEmptySection(SectionNode n)
+        public void UpdateTOCBackColorForEmptySection(SectionNode n) // @emptysectioncolor
         {
             if (n != null && ObiForm.Settings != null)
             {

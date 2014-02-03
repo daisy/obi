@@ -2307,9 +2307,9 @@ namespace Obi
                 Ready();
                 mProjectView.TransportBar.UpdateButtons();
                 mProjectView.ZoomPanelToolTipInit();
-                if (mProjectView.Presentation != null && mProjectView.Presentation.FirstSection != null && enableEmptySectionColorInTOC != mSettings.Project_BackgroundColorForEmptySection)
+                if (mProjectView.Presentation != null && mProjectView.Presentation.FirstSection != null && enableEmptySectionColorInTOC != mSettings.Project_BackgroundColorForEmptySection)// @emptysectioncolor
                 {
-                    mProjectView.UpdateTOCBackColorForEmptySection((SectionNode)mProjectView.Presentation.FirstSection);
+                    mProjectView.UpdateTOCBackColorForEmptySection((SectionNode)mProjectView.Presentation.FirstSection);// @emptysectioncolor
                 }
                 mProjectView.TransportBar.ResetFastPlayForPreferencesChange();
                 if (isLeftAlignPhrasesInContentView != mSettings.LeftAlignPhrasesInContentView) UpdateZoomFactor();
