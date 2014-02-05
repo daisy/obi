@@ -2562,14 +2562,14 @@ Error text: {1}</value>
   <data name="Preferences_Advance_Mode" xml:space="preserve">
     <value>Audio Clues,Preview Before recording,Use Space key to stop recording,Allow overwrite,Record directly,Show Live Waveform,Perform phrase detection  while recording and Merge first 2 phrases detedted by phrase detection checkboxes will be checked. Do you want to proceed?</value>
   </data>
-  <data name="Preferences_Intermidiate_recording_mode" xml:space="preserve">
-    <value>Intermidiate recording mode</value>
+  <data name="Preferences_Intermediate_recording_mode" xml:space="preserve">
+    <value>Intermediate recording mode</value>
   </data>
   <data name="Preferences_Level_ComboBox_Basic" xml:space="preserve">
     <value>Basic</value>
   </data>
-  <data name="Preferences_Level_ComboBox_Intermidiate" xml:space="preserve">
-    <value>Intermidiate</value>
+  <data name="Preferences_Level_ComboBox_Intermediate" xml:space="preserve">
+    <value>Intermediate</value>
   </data>
   <data name="Preferences_Level_ComboBox_Advance" xml:space="preserve">
     <value>Advance</value>
