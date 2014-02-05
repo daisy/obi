@@ -38,6 +38,7 @@ namespace Obi.Dialogs
         private bool m_PrevShowContentViewVal = true;
         private bool m_KeepTrack = false;
         private bool m_FlagComboBoxIndexChange = false;
+        private int m_IndexOfLevelCombox = 0;
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
@@ -57,6 +58,7 @@ namespace Obi.Dialogs
             m_IsKeyboardShortcutChanged = false;
             this.m_CheckBoxListView.BringToFront();
             m_DefaultSettings = defaultSettings;
+            m_IndexOfLevelCombox = mSettings.Audio_LevelComboBoxIndex;
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Basic"));
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Intermediate"));
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Advance"));
@@ -1481,6 +1483,7 @@ namespace Obi.Dialogs
                     if (MessageBox.Show(Localizer.Message("Preferences_Allow_overwrite"), Localizer.Message("Preferences_Intermediate_recording_mode"), MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
                     {
+                        m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
                         m_FlagComboBoxIndexChange = true;
                         m_CheckBoxListView.Items[0].Checked = false;
                         m_CheckBoxListView.Items[2].Checked = false;
@@ -1493,8 +1496,11 @@ namespace Obi.Dialogs
                         m_FlagComboBoxIndexChange = false;
 
                     }
-                    //else
-                    //    return;
+                    else
+                    {
+                        m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
+                    }
+                    
                 }
             }
             if (m_SelectLevelComboBox.SelectedIndex == 2)
@@ -1506,6 +1512,7 @@ namespace Obi.Dialogs
                     if (MessageBox.Show(Localizer.Message("Preferences_Advance_Mode"), Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
                     {
+                        m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
                         m_FlagComboBoxIndexChange = true;
                         m_CheckBoxListView.Items[0].Checked = true;
                         m_CheckBoxListView.Items[2].Checked = true;
@@ -1516,6 +1523,10 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[8].Checked = true;
                         m_CheckBoxListView.Items[10].Checked = true;
                         m_FlagComboBoxIndexChange = false;
+                    }
+                    else
+                    {
+                        m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
                     }
                 }
 
