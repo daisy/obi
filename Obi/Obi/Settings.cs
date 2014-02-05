@@ -99,6 +99,7 @@ namespace Obi
         public bool ImportAudioCreateSectionCheck; //Checked status for the Create section for each audio file in importfilesize dialog 
         public bool Audio_UseRecordingPauseShortcutForStopping;
         public bool Project_BackgroundColorForEmptySection;
+        public int Audio_LevelComboBoxIndex;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -185,7 +186,8 @@ namespace Obi
             settings.Audio_MonitorContinuously = false;
             settings.ImportAudioCreateSectionCheck = true;
             settings.Audio_UseRecordingPauseShortcutForStopping = false;
-            settings.Project_BackgroundColorForEmptySection = false;
+            settings.Project_BackgroundColorForEmptySection = true;
+            settings.Audio_LevelComboBoxIndex = 0;
         }
 
         /// <summary>
