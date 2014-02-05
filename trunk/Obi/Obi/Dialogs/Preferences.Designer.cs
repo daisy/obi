@@ -49,10 +49,10 @@ namespace Obi.Dialogs
             this.mPipelineBrowseButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.mAudioTab = new System.Windows.Forms.TabPage();
+            this.m_SelectLevelComboBox = new System.Windows.Forms.ComboBox();
             this.m_btn_speak = new System.Windows.Forms.Button();
             this.labelTTSvoice = new System.Windows.Forms.Label();
             this.mTTSvoiceCombo = new System.Windows.Forms.ComboBox();
-            this.m_btn_AdvancedRecording = new System.Windows.Forms.Button();
             this.m_OperationDurationUpDown = new System.Windows.Forms.NumericUpDown();
             this.m_cbOperation = new System.Windows.Forms.ComboBox();
             this.mlbOperation = new System.Windows.Forms.Label();
@@ -276,10 +276,10 @@ namespace Obi.Dialogs
             // 
             // mAudioTab
             // 
+            this.mAudioTab.Controls.Add(this.m_SelectLevelComboBox);
             this.mAudioTab.Controls.Add(this.m_btn_speak);
             this.mAudioTab.Controls.Add(this.labelTTSvoice);
             this.mAudioTab.Controls.Add(this.mTTSvoiceCombo);
-            this.mAudioTab.Controls.Add(this.m_btn_AdvancedRecording);
             this.mAudioTab.Controls.Add(this.m_OperationDurationUpDown);
             this.mAudioTab.Controls.Add(this.m_cbOperation);
             this.mAudioTab.Controls.Add(this.mlbOperation);
@@ -300,6 +300,13 @@ namespace Obi.Dialogs
             this.mAudioTab.Name = "mAudioTab";
             this.mAudioTab.UseVisualStyleBackColor = true;
             // 
+            // m_SelectLevelComboBox
+            // 
+            this.m_SelectLevelComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.m_SelectLevelComboBox, "m_SelectLevelComboBox");
+            this.m_SelectLevelComboBox.Name = "m_SelectLevelComboBox";
+            this.m_SelectLevelComboBox.SelectedIndexChanged += new System.EventHandler(this.m_SelectLevelComboBox_SelectedIndexChanged);
+            // 
             // m_btn_speak
             // 
             resources.ApplyResources(this.m_btn_speak, "m_btn_speak");
@@ -318,13 +325,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.mTTSvoiceCombo, "mTTSvoiceCombo");
             this.mTTSvoiceCombo.FormattingEnabled = true;
             this.mTTSvoiceCombo.Name = "mTTSvoiceCombo";
-            // 
-            // m_btn_AdvancedRecording
-            // 
-            resources.ApplyResources(this.m_btn_AdvancedRecording, "m_btn_AdvancedRecording");
-            this.m_btn_AdvancedRecording.Name = "m_btn_AdvancedRecording";
-            this.m_btn_AdvancedRecording.UseVisualStyleBackColor = true;
-            this.m_btn_AdvancedRecording.Click += new System.EventHandler(this.m_btn_AdvancedRecording_Click);
             // 
             // m_OperationDurationUpDown
             // 
@@ -808,7 +808,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label m_lblImportTolerance;
         private System.Windows.Forms.NumericUpDown m_NumImportTolerance;
-        private System.Windows.Forms.Button m_btn_AdvancedRecording;
         private System.Windows.Forms.TabPage mColorPreferencesTab;
         private System.Windows.Forms.ComboBox mNormalColorCombo;
         private System.Windows.Forms.ComboBox mHighContrastCombo;
@@ -828,5 +827,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox mTTSvoiceCombo;
         private System.Windows.Forms.Button m_btn_speak;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.ComboBox m_SelectLevelComboBox;
     }
 }

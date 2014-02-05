@@ -4678,6 +4678,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Audio Clues,Preview Before recording,Use Space key to stop recording,Allow overwrite,Record directly,Show Live Waveform,Perform phrase detection  while recording and Merge first 2 phrases detedted by phrase detection checkboxes will be checked. Do you want to proceed?.
+        /// </summary>
+        internal static string Preferences_Advance_Mode {
+            get {
+                return ResourceManager.GetString("Preferences_Advance_Mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Advance recording mode.
         /// </summary>
         internal static string Preferences_advanced_recording_mode {
@@ -4692,6 +4701,51 @@ namespace Obi {
         internal static string Preferences_Allow_overwrite {
             get {
                 return ResourceManager.GetString("Preferences_Allow_overwrite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intermidiate recording mode.
+        /// </summary>
+        internal static string Preferences_Intermidiate_recording_mode {
+            get {
+                return ResourceManager.GetString("Preferences_Intermidiate_recording_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advance.
+        /// </summary>
+        internal static string Preferences_Level_ComboBox_Advance {
+            get {
+                return ResourceManager.GetString("Preferences_Level_ComboBox_Advance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic.
+        /// </summary>
+        internal static string Preferences_Level_ComboBox_Basic {
+            get {
+                return ResourceManager.GetString("Preferences_Level_ComboBox_Basic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        internal static string Preferences_Level_ComboBox_Custom {
+            get {
+                return ResourceManager.GetString("Preferences_Level_ComboBox_Custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intermidiate.
+        /// </summary>
+        internal static string Preferences_Level_ComboBox_Intermidiate {
+            get {
+                return ResourceManager.GetString("Preferences_Level_ComboBox_Intermidiate", resourceCulture);
             }
         }
         

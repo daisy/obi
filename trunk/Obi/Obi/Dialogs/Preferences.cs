@@ -37,6 +37,7 @@ namespace Obi.Dialogs
         private double m_DefaultThreshold = 280.0;
         private bool m_PrevShowContentViewVal = true;
         private bool m_KeepTrack = false;
+        private bool m_FlagComboBoxIndexChange = false;
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
@@ -56,6 +57,10 @@ namespace Obi.Dialogs
             m_IsKeyboardShortcutChanged = false;
             this.m_CheckBoxListView.BringToFront();
             m_DefaultSettings = defaultSettings;
+            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Basic"));
+            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Intermidiate"));
+            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Advance"));
+            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Custom"));
            }
 
         public bool IsColorChanged
@@ -748,10 +753,30 @@ namespace Obi.Dialogs
                     MessageBox.Show(string.Format(Localizer.Message("AudioPref_LivePhraseDetectionEnable"), mSettings.DefaultThreshold, mSettings.DefaultGap,mSettings.DefaultLeadingSilence )) ;
                 }
 
-                if (m_CheckBoxListView.Items[4].Checked == false || m_CheckBoxListView.Items[5].Checked == false || m_CheckBoxListView.Items[8].Checked==false)
-                    m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
-                else
-                    m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
+                //if (m_CheckBoxListView.Items[4].Checked == false || m_CheckBoxListView.Items[5].Checked == false || m_CheckBoxListView.Items[8].Checked==false)
+                //    m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
+                //else
+                //    m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
+                if (m_FlagComboBoxIndexChange == false)
+                {
+                    m_SelectLevelComboBox.SelectedIndex = 3;
+                }
+                //m_FlagComboBoxIndexChange = false;
+               
+                //if (m_SelectLevelComboBox.SelectedIndex == 0 && !m_FlagComboBoxIndexChange)
+                //{
+                //    if (m_CheckBoxListView.Items[0].Checked || m_CheckBoxListView.Items[2].Checked || m_CheckBoxListView.Items[3].Checked || m_CheckBoxListView.Items[4].Checked
+                //      || m_CheckBoxListView.Items[5].Checked || m_CheckBoxListView.Items[7].Checked || m_CheckBoxListView.Items[8].Checked
+                //      || m_CheckBoxListView.Items[10].Checked)
+                //    {
+                //        m_SelectLevelComboBox.SelectedIndex = 3;
+                //    }
+
+                //}
+                //else if (m_SelectLevelComboBox.SelectedIndex == 1)
+                //{
+
+                //}
                
             }
             else if (mTab.SelectedTab == mProjectTab)
@@ -810,7 +835,8 @@ namespace Obi.Dialogs
                 mSettings.Audio_EnableLivePhraseDetection= m_CheckBoxListView.Items[8].Checked;
                 mSettings.Audio_EnablePostRecordingPageRenumbering= m_CheckBoxListView.Items[9].Checked;
                 mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection= m_CheckBoxListView.Items[10].Checked;
-                mSettings.Audio_FastPlayWithoutPitchChange= m_CheckBoxListView.Items[11].Checked;               
+                mSettings.Audio_FastPlayWithoutPitchChange= m_CheckBoxListView.Items[11].Checked;
+                mSettings.Audio_LevelComboBoxIndex = m_SelectLevelComboBox.SelectedIndex;
             }
         }
 
@@ -859,10 +885,11 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[9].Checked = mSettings.Audio_EnablePostRecordingPageRenumbering;
                 m_CheckBoxListView.Items[10].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
                 m_CheckBoxListView.Items[11].Checked = mSettings.Audio_FastPlayWithoutPitchChange;
-                if (m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[4].Checked && m_CheckBoxListView.Items[8].Checked)
-                    m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
-                else
-                    m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
+                //if (m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[4].Checked && m_CheckBoxListView.Items[8].Checked)
+                //    m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
+                //else
+                //    m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
+                m_SelectLevelComboBox.SelectedIndex = mSettings.Audio_LevelComboBoxIndex;
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
@@ -912,7 +939,9 @@ namespace Obi.Dialogs
 
         private void mTab_SelectedIndexChanged(object sender, EventArgs e)
         {
+            m_FlagComboBoxIndexChange = true;
             UpdateTabControl();
+            m_FlagComboBoxIndexChange = false;
             if (mTab.SelectedTab == mKeyboardShortcutTab)
             {
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
@@ -999,6 +1028,7 @@ namespace Obi.Dialogs
                 mSettings.DefaultThreshold = m_DefaultSettings.DefaultThreshold;
                 mSettings.DefaultGap = m_DefaultSettings.DefaultGap;
                 mSettings.ImportToleranceForAudioInMs = m_DefaultSettings.ImportToleranceForAudioInMs;
+                mSettings.Audio_LevelComboBoxIndex = m_DefaultSettings.Audio_LevelComboBoxIndex;
 
                 InitializeAudioTab();
                 m_cbOperation.SelectedIndex = 0;
@@ -1036,29 +1066,29 @@ namespace Obi.Dialogs
             this.AcceptButton = mOKButton;
         }
 
-        private void m_btn_AdvancedRecording_Click(object sender, EventArgs e)
-        {
-            if (m_btn_AdvancedRecording.Text == Localizer.Message("EnableAdvancedRecording"))
-            {
-                if (MessageBox.Show(Localizer.Message("Preferences_Allow_overwrite"),Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    m_CheckBoxListView.Items[4].Checked = true;
-                    m_CheckBoxListView.Items[5].Checked = true;
-                    m_CheckBoxListView.Items[8].Checked = true;
-                    m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
-                }
-                else
-                    return;
-            }
-            else if (m_btn_AdvancedRecording.Text ==  Localizer.Message("DisableAdvancedRecording"))
-            {
-                m_CheckBoxListView.Items[4].Checked = false;
-                m_CheckBoxListView.Items[5].Checked = false;
-                m_CheckBoxListView.Items[8].Checked = false;
-                m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
-            }
-        }
+        //private void m_btn_AdvancedRecording_Click(object sender, EventArgs e)
+        //{
+        //    if (m_btn_AdvancedRecording.Text == Localizer.Message("EnableAdvancedRecording"))
+        //    {
+        //        if (MessageBox.Show(Localizer.Message("Preferences_Allow_overwrite"),Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
+        //                    MessageBoxIcon.Question) == DialogResult.Yes)
+        //        {
+        //            m_CheckBoxListView.Items[4].Checked = true;
+        //            m_CheckBoxListView.Items[5].Checked = true;
+        //            m_CheckBoxListView.Items[8].Checked = true;
+        //            m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
+        //        }
+        //        else
+        //            return;
+        //    }
+        //    else if (m_btn_AdvancedRecording.Text ==  Localizer.Message("DisableAdvancedRecording"))
+        //    {
+        //        m_CheckBoxListView.Items[4].Checked = false;
+        //        m_CheckBoxListView.Items[5].Checked = false;
+        //        m_CheckBoxListView.Items[8].Checked = false;
+        //        m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
+        //    }
+        //}
 
         private void m_lvShortcutKeysList_ItemMouseHover(object sender, ListViewItemMouseHoverEventArgs e)
         {
@@ -1424,6 +1454,77 @@ namespace Obi.Dialogs
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void m_SelectLevelComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (m_SelectLevelComboBox.SelectedIndex == 0)
+            {
+                m_FlagComboBoxIndexChange = true;
+                m_CheckBoxListView.Items[0].Checked = false;
+                m_CheckBoxListView.Items[2].Checked = false;
+                m_CheckBoxListView.Items[3].Checked = false;
+                m_CheckBoxListView.Items[4].Checked = false;
+                m_CheckBoxListView.Items[5].Checked = false;
+                m_CheckBoxListView.Items[7].Checked = false;
+                m_CheckBoxListView.Items[8].Checked = false;
+                m_CheckBoxListView.Items[10].Checked = false;
+                m_FlagComboBoxIndexChange = false;
+                
+            }
+            if (m_SelectLevelComboBox.SelectedIndex == 1)
+            {
+                if ( m_CheckBoxListView.Items[0].Checked || m_CheckBoxListView.Items[2].Checked || m_CheckBoxListView.Items[3].Checked ||
+                    !m_CheckBoxListView.Items[4].Checked || !m_CheckBoxListView.Items[5].Checked || m_CheckBoxListView.Items[7].Checked
+                    || !m_CheckBoxListView.Items[8].Checked || m_CheckBoxListView.Items[10].Checked)
+                {
+                    if (MessageBox.Show(Localizer.Message("Preferences_Allow_overwrite"), Localizer.Message("Preferences_Intermidiate_recording_mode"), MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        m_FlagComboBoxIndexChange = true;
+                        m_CheckBoxListView.Items[0].Checked = false;
+                        m_CheckBoxListView.Items[2].Checked = false;
+                        m_CheckBoxListView.Items[3].Checked = false;
+                        m_CheckBoxListView.Items[4].Checked = true;
+                        m_CheckBoxListView.Items[5].Checked = true;
+                        m_CheckBoxListView.Items[7].Checked = false;
+                        m_CheckBoxListView.Items[8].Checked = true;
+                        m_CheckBoxListView.Items[10].Checked = false;
+                        m_FlagComboBoxIndexChange = false;
+
+                    }
+                    //else
+                    //    return;
+                }
+            }
+            if (m_SelectLevelComboBox.SelectedIndex == 2)
+            {
+                if (!(m_CheckBoxListView.Items[0].Checked && m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked
+                     && m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[7].Checked && m_CheckBoxListView.Items[8].Checked
+                     && m_CheckBoxListView.Items[10].Checked))
+                {
+                    if (MessageBox.Show(Localizer.Message("Preferences_Advance_Mode"), Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        m_FlagComboBoxIndexChange = true;
+                        m_CheckBoxListView.Items[0].Checked = true;
+                        m_CheckBoxListView.Items[2].Checked = true;
+                        m_CheckBoxListView.Items[3].Checked = true;
+                        m_CheckBoxListView.Items[4].Checked = true;
+                        m_CheckBoxListView.Items[5].Checked = true;
+                        m_CheckBoxListView.Items[7].Checked = true;
+                        m_CheckBoxListView.Items[8].Checked = true;
+                        m_CheckBoxListView.Items[10].Checked = true;
+                        m_FlagComboBoxIndexChange = false;
+                    }
+                }
+
+            }
+            else if (m_SelectLevelComboBox.SelectedIndex == 3)
+            {
+                m_FlagComboBoxIndexChange = false;
+            }
+
         }
 
     }

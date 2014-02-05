@@ -660,6 +660,27 @@
   <data name="&gt;&gt;mProjectTab.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="m_SelectLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>481, 253</value>
+  </data>
+  <data name="m_SelectLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 24</value>
+  </data>
+  <data name="m_SelectLevelComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;m_SelectLevelComboBox.Name" xml:space="preserve">
+    <value>m_SelectLevelComboBox</value>
+  </data>
+  <data name="&gt;&gt;m_SelectLevelComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_SelectLevelComboBox.Parent" xml:space="preserve">
+    <value>mAudioTab</value>
+  </data>
+  <data name="&gt;&gt;m_SelectLevelComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_btn_speak.AccessibleName" xml:space="preserve">
     <value> Speak button to check TTS voice</value>
   </data>
@@ -688,7 +709,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;m_btn_speak.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="labelTTSvoice.AccessibleName" xml:space="preserve">
     <value>Set TTS Synthetic Voice</value>
@@ -718,7 +739,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelTTSvoice.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="mTTSvoiceCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -742,36 +763,6 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mTTSvoiceCombo.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 248</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 26</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.Text" xml:space="preserve">
-    <value>Enable advanced recording</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.Name" xml:space="preserve">
-    <value>m_btn_AdvancedRecording</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="m_OperationDurationUpDown.AccessibleName" xml:space="preserve">
