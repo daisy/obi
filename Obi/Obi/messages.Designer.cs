@@ -4705,11 +4705,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Intermidiate recording mode.
+        ///   Looks up a localized string similar to Intermediate recording mode.
         /// </summary>
-        internal static string Preferences_Intermidiate_recording_mode {
+        internal static string Preferences_Intermediate_recording_mode {
             get {
-                return ResourceManager.GetString("Preferences_Intermidiate_recording_mode", resourceCulture);
+                return ResourceManager.GetString("Preferences_Intermediate_recording_mode", resourceCulture);
             }
         }
         
@@ -4741,11 +4741,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Intermidiate.
+        ///   Looks up a localized string similar to Intermediate.
         /// </summary>
-        internal static string Preferences_Level_ComboBox_Intermidiate {
+        internal static string Preferences_Level_ComboBox_Intermediate {
             get {
-                return ResourceManager.GetString("Preferences_Level_ComboBox_Intermidiate", resourceCulture);
+                return ResourceManager.GetString("Preferences_Level_ComboBox_Intermediate", resourceCulture);
             }
         }
         
