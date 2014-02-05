@@ -1471,6 +1471,10 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[7].Checked = false;
                 m_CheckBoxListView.Items[8].Checked = false;
                 m_CheckBoxListView.Items[10].Checked = false;
+                m_CheckBoxListView.Items[1].Checked = true;
+                m_CheckBoxListView.Items[6].Checked = true;
+                m_CheckBoxListView.Items[9].Checked = true;
+                m_CheckBoxListView.Items[11].Checked = true;
                 m_FlagComboBoxIndexChange = false;
                 
             }
@@ -1478,7 +1482,8 @@ namespace Obi.Dialogs
             {
                 if ( m_CheckBoxListView.Items[0].Checked || m_CheckBoxListView.Items[2].Checked || m_CheckBoxListView.Items[3].Checked ||
                     !m_CheckBoxListView.Items[4].Checked || !m_CheckBoxListView.Items[5].Checked || m_CheckBoxListView.Items[7].Checked
-                    || !m_CheckBoxListView.Items[8].Checked || m_CheckBoxListView.Items[10].Checked)
+                    || !m_CheckBoxListView.Items[8].Checked || m_CheckBoxListView.Items[10].Checked || !m_CheckBoxListView.Items[1].Checked ||
+                    !m_CheckBoxListView.Items[6].Checked || !m_CheckBoxListView.Items[9].Checked || !m_CheckBoxListView.Items[11].Checked)
                 {
                     if (MessageBox.Show(Localizer.Message("Preferences_Allow_overwrite"), Localizer.Message("Preferences_Intermediate_recording_mode"), MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
@@ -1493,6 +1498,10 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[7].Checked = false;
                         m_CheckBoxListView.Items[8].Checked = true;
                         m_CheckBoxListView.Items[10].Checked = false;
+                        m_CheckBoxListView.Items[1].Checked = true;
+                        m_CheckBoxListView.Items[6].Checked = true;
+                        m_CheckBoxListView.Items[9].Checked = true;
+                        m_CheckBoxListView.Items[11].Checked = true;
                         m_FlagComboBoxIndexChange = false;
 
                     }
@@ -1507,7 +1516,8 @@ namespace Obi.Dialogs
             {
                 if (!(m_CheckBoxListView.Items[0].Checked && m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked
                      && m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[7].Checked && m_CheckBoxListView.Items[8].Checked
-                     && m_CheckBoxListView.Items[10].Checked))
+                     && m_CheckBoxListView.Items[10].Checked && m_CheckBoxListView.Items[1].Checked && m_CheckBoxListView.Items[6].Checked
+                     && m_CheckBoxListView.Items[9].Checked && m_CheckBoxListView.Items[11].Checked))
                 {
                     if (MessageBox.Show(Localizer.Message("Preferences_Advance_Mode"), Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
@@ -1522,6 +1532,10 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[7].Checked = true;
                         m_CheckBoxListView.Items[8].Checked = true;
                         m_CheckBoxListView.Items[10].Checked = true;
+                        m_CheckBoxListView.Items[1].Checked = true;
+                        m_CheckBoxListView.Items[6].Checked = true;
+                        m_CheckBoxListView.Items[9].Checked = true;
+                        m_CheckBoxListView.Items[11].Checked = true;
                         m_FlagComboBoxIndexChange = false;
                     }
                     else
@@ -1534,6 +1548,7 @@ namespace Obi.Dialogs
             else if (m_SelectLevelComboBox.SelectedIndex == 3)
             {
                 m_FlagComboBoxIndexChange = false;
+                m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
             }
 
         }
