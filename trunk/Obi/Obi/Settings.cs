@@ -100,7 +100,7 @@ namespace Obi
         public bool Audio_UseRecordingPauseShortcutForStopping;
         public bool Project_BackgroundColorForEmptySection;
         public int Audio_LevelComboBoxIndex;
-        public bool Audio_RecordOverSubsequentBtn;
+        public bool Audio_UseRecordBtnToRecordOverSubsequentAudio;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -189,7 +189,7 @@ namespace Obi
             settings.Audio_UseRecordingPauseShortcutForStopping = false;
             settings.Project_BackgroundColorForEmptySection = false;
             settings.Audio_LevelComboBoxIndex = 0;
-            settings.Audio_RecordOverSubsequentBtn = false;
+            settings.Audio_UseRecordBtnToRecordOverSubsequentAudio = false;
         }
 
         /// <summary>

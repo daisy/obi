@@ -4837,7 +4837,7 @@ namespace Obi
 
             private void m_DeletePhrasesWhileRecordingtoolStripMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.TransportBar.RecordWithDeleteFollowing();
+                mProjectView.TransportBar.RecordOverSubsequentPhrases();
             }
 
 

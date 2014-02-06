@@ -202,7 +202,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[9].Checked = mSettings.Audio_EnablePostRecordingPageRenumbering;
                 m_CheckBoxListView.Items[10].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
                 m_CheckBoxListView.Items[11].Checked = mSettings.Audio_FastPlayWithoutPitchChange;
-                m_CheckBoxListView.Items[12].Checked = mSettings.Audio_RecordOverSubsequentBtn;  
+                m_CheckBoxListView.Items[12].Checked = mSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio;  
                 m_IsComplete = true;
 
             }
@@ -839,7 +839,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_EnablePostRecordingPageRenumbering= m_CheckBoxListView.Items[9].Checked;
                 mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection= m_CheckBoxListView.Items[10].Checked;
                 mSettings.Audio_FastPlayWithoutPitchChange= m_CheckBoxListView.Items[11].Checked;
-                mSettings.Audio_RecordOverSubsequentBtn = m_CheckBoxListView.Items[12].Checked;
+                mSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio = m_CheckBoxListView.Items[12].Checked;
                 mSettings.Audio_LevelComboBoxIndex = m_SelectLevelComboBox.SelectedIndex;
             }
         }
@@ -890,7 +890,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[9].Checked = mSettings.Audio_EnablePostRecordingPageRenumbering;
                 m_CheckBoxListView.Items[10].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
                 m_CheckBoxListView.Items[11].Checked = mSettings.Audio_FastPlayWithoutPitchChange;
-                m_CheckBoxListView.Items[12].Checked = mSettings.Audio_RecordOverSubsequentBtn;
+                m_CheckBoxListView.Items[12].Checked = mSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio;
 
                 m_SelectLevelComboBox.SelectedIndex = mSettings.Audio_LevelComboBoxIndex;
             }
