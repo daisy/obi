@@ -17,6 +17,7 @@ namespace Obi.Dialogs
         private bool mCanClose;
         private ObiPresentation mPresentation;  // presentation
         private List<string> m_filePaths;
+        private List<string> m_fileNames;
         private Settings m_Settings;
 
         public ImportFileSplitSize( Settings settings,string []filesPathArray)

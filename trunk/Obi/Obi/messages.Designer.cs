@@ -295,6 +295,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use Record Button to record over subsequent audio.
+        /// </summary>
+        internal static string Audio_RecordSubsequentPhrases {
+            get {
+                return ResourceManager.GetString("Audio_RecordSubsequentPhrases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected audio at {0} in {1} in {2}.
         /// </summary>
         internal static string audio_selection_to_string {
