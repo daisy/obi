@@ -1614,7 +1614,14 @@ namespace Obi.ProjectView
         {
             if (mView.ObiForm.Settings.RecordDirectlyWithRecordButton && CurrentState != State.Monitoring) //if monitoring go through the traditional way
             {
-                StartRecordingDirectly();
+                if (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio)
+                {
+                    RecordOverSubsequentPhrases();
+                }
+                else
+                {
+                    StartRecordingDirectly();
+                }
             }
             else
             {
@@ -3419,9 +3426,10 @@ SelectionChangedPlaybackEnabled = false;
 
         private void RecordingOptions_RecordWithDeleteFollowing_Click(object sender, EventArgs e)
         {
-            RecordWithDeleteFollowing();
+            RecordOverSubsequentPhrases();
         }
-        public void RecordWithDeleteFollowing()
+
+        public void RecordOverSubsequentPhrases()
         {
             if (CanRecord) StartRecordingDirectly_Internal(true);
         }
