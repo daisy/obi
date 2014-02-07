@@ -1459,7 +1459,9 @@ namespace Obi.Dialogs
             }
         }
 
-        private void m_SelectLevelComboBox_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        private void m_SelectLevelComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (m_SelectLevelComboBox.SelectedIndex == 0)
             {
@@ -1478,14 +1480,14 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[11].Checked = true;
                 m_CheckBoxListView.Items[12].Checked = false;
                 m_FlagComboBoxIndexChange = false;
-                
+
             }
             if (m_SelectLevelComboBox.SelectedIndex == 1)
             {
-                if ( m_CheckBoxListView.Items[0].Checked || m_CheckBoxListView.Items[2].Checked || m_CheckBoxListView.Items[3].Checked ||
+                if (m_CheckBoxListView.Items[0].Checked || m_CheckBoxListView.Items[2].Checked || m_CheckBoxListView.Items[3].Checked ||
                     !m_CheckBoxListView.Items[4].Checked || !m_CheckBoxListView.Items[5].Checked || m_CheckBoxListView.Items[7].Checked
                     || !m_CheckBoxListView.Items[8].Checked || m_CheckBoxListView.Items[10].Checked || !m_CheckBoxListView.Items[1].Checked ||
-                    !m_CheckBoxListView.Items[6].Checked || !m_CheckBoxListView.Items[9].Checked || !m_CheckBoxListView.Items[11].Checked || 
+                    !m_CheckBoxListView.Items[6].Checked || !m_CheckBoxListView.Items[9].Checked || !m_CheckBoxListView.Items[11].Checked ||
                     m_CheckBoxListView.Items[12].Checked)
                 {
                     if (MessageBox.Show(Localizer.Message("Preferences_Allow_overwrite"), Localizer.Message("Preferences_Intermediate_recording_mode"), MessageBoxButtons.YesNo,
@@ -1513,7 +1515,7 @@ namespace Obi.Dialogs
                     {
                         m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
                     }
-                    
+
                 }
             }
             if (m_SelectLevelComboBox.SelectedIndex == 2)
@@ -1555,7 +1557,6 @@ namespace Obi.Dialogs
                 m_FlagComboBoxIndexChange = false;
                 m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
             }
-
         }
 
     }
