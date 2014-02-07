@@ -305,7 +305,7 @@ namespace Obi.Dialogs
             this.m_SelectLevelComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.m_SelectLevelComboBox, "m_SelectLevelComboBox");
             this.m_SelectLevelComboBox.Name = "m_SelectLevelComboBox";
-            this.m_SelectLevelComboBox.SelectedIndexChanged += new System.EventHandler(this.m_SelectLevelComboBox_SelectedIndexChanged);
+            this.m_SelectLevelComboBox.SelectionChangeCommitted += new System.EventHandler(this.m_SelectLevelComboBox_SelectionChangeCommitted);
             // 
             // m_btn_speak
             // 
