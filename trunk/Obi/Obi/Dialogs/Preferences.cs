@@ -849,6 +849,7 @@ namespace Obi.Dialogs
             m_IsComplete = false;
             m_CheckBoxListView.Columns.Clear();
             m_CheckBoxListView.HeaderStyle = ColumnHeaderStyle.None;
+            m_CheckBoxListView.ShowItemToolTips = true;
             m_CheckBoxListView.Columns.Add("", 317, HorizontalAlignment.Left);
             if (this.mTab.SelectedTab == this.mAudioTab)
             {
@@ -857,6 +858,7 @@ namespace Obi.Dialogs
              helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/The Preferences Dialog/Audio Preferences.htm");
 
                 m_CheckBoxListView.Visible = true;
+               
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
                 m_CheckBoxListView.Size = new Size(338, 69);
@@ -879,18 +881,31 @@ namespace Obi.Dialogs
                 m_grpBoxChkBoxListView.Location = new Point(85, 264);
 
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
+                m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_AudioClues");                
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
+                m_CheckBoxListView.Items[1].ToolTipText = Localizer.Message("AudioTab_RetainInitialSilence");
                 m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
+                m_CheckBoxListView.Items[2].ToolTipText = Localizer.Message("AudioTab_PreviewBeforeRecording");
                 m_CheckBoxListView.Items[3].Checked = mSettings.Audio_UseRecordingPauseShortcutForStopping;
+                m_CheckBoxListView.Items[3].ToolTipText = Localizer.Message("Audio_UseRecordingPauseShortcutForStopping");
                 m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite;
+                m_CheckBoxListView.Items[4].ToolTipText = Localizer.Message("AudioTab_AllowOverwrite");
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
+                m_CheckBoxListView.Items[5].ToolTipText = Localizer.Message("AudioTab_RecordDirectlyFromTransportBar");
                 m_CheckBoxListView.Items[6].Checked = mSettings.MaxAllowedPhraseDurationInMinutes == 50 ;
+                m_CheckBoxListView.Items[6].ToolTipText = Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes");
                 m_CheckBoxListView.Items[7].Checked = mSettings.Audio_ShowLiveWaveformWhileRecording;
+                m_CheckBoxListView.Items[7].ToolTipText = Localizer.Message("Audio_ShowLiveWaveformWhileRecording");
                 m_CheckBoxListView.Items[8].Checked = mSettings.Audio_EnableLivePhraseDetection;
+                m_CheckBoxListView.Items[8].ToolTipText = Localizer.Message("Audio_DetectPhrasesWhileRecording");
                 m_CheckBoxListView.Items[9].Checked = mSettings.Audio_EnablePostRecordingPageRenumbering;
+                m_CheckBoxListView.Items[9].ToolTipText = Localizer.Message("Audio_EnablePostRecordingPageRenumbering");
                 m_CheckBoxListView.Items[10].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
+                m_CheckBoxListView.Items[10].ToolTipText = Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection");
                 m_CheckBoxListView.Items[11].Checked = mSettings.Audio_FastPlayWithoutPitchChange;
+                m_CheckBoxListView.Items[11].ToolTipText = Localizer.Message("Audio_FastPlayWithoutPitchChange");
                 m_CheckBoxListView.Items[12].Checked = mSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio;
+                m_CheckBoxListView.Items[12].ToolTipText = Localizer.Message("Audio_RecordSubsequentPhrases");
 
                 m_SelectLevelComboBox.SelectedIndex = mSettings.Audio_LevelComboBoxIndex;
             }
@@ -921,17 +936,27 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_BackgroundColorForEmptySection"));
 
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
-              // m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
+                m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
                 m_CheckBoxListView.Items[1].Checked = mSettings.OpenBookmarkNodeOnReopeningProject;
+                m_CheckBoxListView.Items[1].ToolTipText = Localizer.Message("ProjectTab_SelectBookmark");
                 m_CheckBoxListView.Items[2].Checked = mSettings.LeftAlignPhrasesInContentView;
+                m_CheckBoxListView.Items[2].ToolTipText = Localizer.Message("ProjectTab_FixContentViewWidth");
                 m_CheckBoxListView.Items[3].Checked = mSettings.OptimizeMemory;
+                m_CheckBoxListView.Items[3].ToolTipText = Localizer.Message("ProjectTab_OptimizeMemory");
                 m_CheckBoxListView.Items[4].Checked = mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
+                m_CheckBoxListView.Items[4].ToolTipText = Localizer.Message("ProjectTab_DeleteUnusedFilesAfterCleanUp");
                 m_CheckBoxListView.Items[5].Checked = mSettings.Project_EnableFreeDiskSpaceCheck;
+                m_CheckBoxListView.Items[5].ToolTipText = Localizer.Message("ProjectTab_EnableFreeDiskSpaceCheck");
                 m_CheckBoxListView.Items[6].Checked = mSettings.Project_SaveProjectWhenRecordingEnds;
+                m_CheckBoxListView.Items[6].ToolTipText = Localizer.Message("Project_SaveProjectWhenRecordingEnds");
                 m_CheckBoxListView.Items[7].Checked = mSettings.Project_CheckForUpdates;
+                m_CheckBoxListView.Items[7].ToolTipText = Localizer.Message("Project_CheckForUpdates");
                 m_CheckBoxListView.Items[8].Checked = mSettings.Project_ShowWaveformInContentView;
+                m_CheckBoxListView.Items[8].ToolTipText = Localizer.Message("Project_ShowWaveformsInContentView");
                 m_CheckBoxListView.Items[9].Checked = mSettings.Export_AlwaysIgnoreIndentation;
+                m_CheckBoxListView.Items[9].ToolTipText = Localizer.Message("Project_AlwaysIgnoreIndentationForExportFiles");
                 m_CheckBoxListView.Items[10].Checked = mSettings.Project_BackgroundColorForEmptySection;
+                m_CheckBoxListView.Items[10].ToolTipText = Localizer.Message("Project_BackgroundColorForEmptySection");
 
                 m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
                 m_KeepTrack = true;
@@ -1490,7 +1515,12 @@ namespace Obi.Dialogs
                     !m_CheckBoxListView.Items[6].Checked || !m_CheckBoxListView.Items[9].Checked || !m_CheckBoxListView.Items[11].Checked ||
                     m_CheckBoxListView.Items[12].Checked)
                 {
-                    if (MessageBox.Show(Localizer.Message("Preferences_Allow_overwrite"), Localizer.Message("Preferences_Intermediate_recording_mode"), MessageBoxButtons.YesNo,
+                    string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* "+
+                    Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_AllowOverwrite")+"\n* "+
+                    Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes")
+                    + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " + Localizer.Message("Audio_EnablePostRecordingPageRenumbering")
+                    + "\n* " + Localizer.Message("Audio_FastPlayWithoutPitchChange");
+                    if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Intermediate_recording_mode"), MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
@@ -1525,7 +1555,15 @@ namespace Obi.Dialogs
                      && m_CheckBoxListView.Items[10].Checked && m_CheckBoxListView.Items[1].Checked && m_CheckBoxListView.Items[6].Checked
                      && m_CheckBoxListView.Items[9].Checked && m_CheckBoxListView.Items[11].Checked && m_CheckBoxListView.Items[12].Checked))
                 {
-                    if (MessageBox.Show(Localizer.Message("Preferences_Advance_Mode"), Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
+                    string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " + Localizer.Message("AudioTab_AudioClues") + "\n* " +
+                    Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_PreviewBeforeRecording") + "\n* " +
+                    Localizer.Message("Audio_UseRecordingPauseShortcutForStopping") + "\n* " + Localizer.Message("AudioTab_AllowOverwrite") + "\n* " +
+                    Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") + "\n* " +
+                    Localizer.Message("Audio_ShowLiveWaveformWhileRecording") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
+                    Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection") + "\n* " +
+                    Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_RecordSubsequentPhrases");
+
+                    if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;

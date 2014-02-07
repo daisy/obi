@@ -4687,7 +4687,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio Clues,Preview Before recording,Use Space key to stop recording,Allow overwrite,Record directly,Show Live Waveform,Perform phrase detection  while recording and Merge first 2 phrases detedted by phrase detection checkboxes will be checked. Do you want to proceed?.
+        ///   Looks up a localized string similar to Following checkboxes will be checked. Do you want to proceed?.
         /// </summary>
         internal static string Preferences_Advance_Mode {
             get {
