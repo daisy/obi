@@ -2560,7 +2560,7 @@ Error text: {1}</value>
     <value>Update Successfull</value>
   </data>
   <data name="Preferences_Advance_Mode" xml:space="preserve">
-    <value>Audio Clues,Preview Before recording,Use Space key to stop recording,Allow overwrite,Record directly,Show Live Waveform,Perform phrase detection  while recording and Merge first 2 phrases detedted by phrase detection checkboxes will be checked. Do you want to proceed?</value>
+    <value>Following checkboxes will be checked. Do you want to proceed?</value>
   </data>
   <data name="Preferences_Intermediate_recording_mode" xml:space="preserve">
     <value>Intermediate recording mode</value>
