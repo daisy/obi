@@ -1489,6 +1489,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[11].Checked = true;
                 m_CheckBoxListView.Items[12].Checked = false;
                 m_FlagComboBoxIndexChange = false;
+                m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
 
             }
             if (m_SelectLevelComboBox.SelectedIndex == 1)
@@ -1575,6 +1576,11 @@ namespace Obi.Dialogs
 
             }
             else if (m_SelectLevelComboBox.SelectedIndex == 4)
+            {
+                m_FlagComboBoxIndexChange = false;
+                m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+            }
+            else if (m_SelectLevelComboBox.SelectedIndex == 3)
             {
                 m_FlagComboBoxIndexChange = false;
                 m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
