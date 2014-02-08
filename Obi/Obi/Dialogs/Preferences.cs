@@ -39,6 +39,7 @@ namespace Obi.Dialogs
         private bool m_KeepTrack = false;
         private bool m_FlagComboBoxIndexChange = false;
         private int m_IndexOfLevelCombox = 0;
+        private bool m_IsComboBoxExpanded = false;
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
@@ -1468,9 +1469,7 @@ namespace Obi.Dialogs
             }
         }
 
-
-
-        private void m_SelectLevelComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        private void ComboBoxSelection()
         {
             if (m_SelectLevelComboBox.SelectedIndex == 0)
             {
@@ -1500,8 +1499,8 @@ namespace Obi.Dialogs
                     !m_CheckBoxListView.Items[6].Checked || !m_CheckBoxListView.Items[9].Checked || !m_CheckBoxListView.Items[11].Checked ||
                     m_CheckBoxListView.Items[12].Checked)
                 {
-                    string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* "+
-                    Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_AllowOverwrite")+"\n* "+
+                    string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " +
+                    Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_AllowOverwrite") + "\n* " +
                     Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes")
                     + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " + Localizer.Message("Audio_EnablePostRecordingPageRenumbering")
                     + "\n* " + Localizer.Message("Audio_FastPlayWithoutPitchChange");
@@ -1585,6 +1584,29 @@ namespace Obi.Dialogs
                 m_FlagComboBoxIndexChange = false;
                 m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
             }
+        }
+
+        private void m_SelectLevelComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (m_IsComboBoxExpanded)
+            {
+                ComboBoxSelection();
+            }
+        }
+
+        private void m_SelectLevelComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            m_IsComboBoxExpanded = false;
+        }
+
+        private void m_SelectLevelComboBox_DropDown(object sender, EventArgs e)
+        {
+            m_IsComboBoxExpanded = true;
+        }
+
+        private void m_SelectLevelComboBox_Leave(object sender, EventArgs e)
+        {
+            ComboBoxSelection();   
         }
 
     }

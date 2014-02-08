@@ -308,6 +308,9 @@ namespace Obi.Dialogs
             this.m_SelectLevelComboBox.FormattingEnabled = true;
             this.m_SelectLevelComboBox.Name = "m_SelectLevelComboBox";
             this.m_SelectLevelComboBox.SelectionChangeCommitted += new System.EventHandler(this.m_SelectLevelComboBox_SelectionChangeCommitted);
+            this.m_SelectLevelComboBox.Leave += new System.EventHandler(this.m_SelectLevelComboBox_Leave);
+            this.m_SelectLevelComboBox.DropDownClosed += new System.EventHandler(this.m_SelectLevelComboBox_DropDownClosed);
+            this.m_SelectLevelComboBox.DropDown += new System.EventHandler(this.m_SelectLevelComboBox_DropDown);
             // 
             // m_btn_speak
             // 
