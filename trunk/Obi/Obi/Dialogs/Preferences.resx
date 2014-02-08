@@ -307,7 +307,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelInputDeviceName.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="mInputDeviceCombo.AccessibleName" xml:space="preserve">
     <value>Input device name:</value>
@@ -340,7 +340,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mInputDeviceCombo.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="labelOutputDeviceName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -370,7 +370,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelOutputDeviceName.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="mOutputDeviceCombo.AccessibleName" xml:space="preserve">
     <value>Output device name:</value>
@@ -403,7 +403,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mOutputDeviceCombo.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="mTab.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -660,6 +660,36 @@
   <data name="&gt;&gt;mProjectTab.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="m_lblProfile.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>481, 234</value>
+  </data>
+  <data name="m_lblProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 16</value>
+  </data>
+  <data name="m_lblProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="m_lblProfile.Text" xml:space="preserve">
+    <value>Profile:</value>
+  </data>
+  <data name="&gt;&gt;m_lblProfile.Name" xml:space="preserve">
+    <value>m_lblProfile</value>
+  </data>
+  <data name="&gt;&gt;m_lblProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblProfile.Parent" xml:space="preserve">
+    <value>mAudioTab</value>
+  </data>
+  <data name="&gt;&gt;m_lblProfile.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_SelectLevelComboBox.AccessibleName" xml:space="preserve">
+    <value>Profile</value>
+  </data>
   <data name="m_SelectLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>481, 253</value>
   </data>
@@ -679,7 +709,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;m_SelectLevelComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="m_btn_speak.AccessibleName" xml:space="preserve">
     <value> Speak button to check TTS voice</value>
@@ -709,7 +739,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;m_btn_speak.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="labelTTSvoice.AccessibleName" xml:space="preserve">
     <value>Set TTS Synthetic Voice</value>
@@ -739,7 +769,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelTTSvoice.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="mTTSvoiceCombo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -763,7 +793,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mTTSvoiceCombo.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_OperationDurationUpDown.AccessibleName" xml:space="preserve">
     <value>Duration in milliseconds</value>
@@ -787,7 +817,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;m_OperationDurationUpDown.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_cbOperation.Items" xml:space="preserve">
     <value>Nudge duration</value>
@@ -826,7 +856,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;m_cbOperation.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="mlbOperation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -853,7 +883,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mlbOperation.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="mNoiseLevelComboBox.AccessibleName" xml:space="preserve">
     <value>noise level</value>
@@ -892,7 +922,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mNoiseLevelComboBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -922,7 +952,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -949,7 +979,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="mChannelsTextbox.AccessibleName" xml:space="preserve">
     <value>Project channels:</value>
@@ -982,7 +1012,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mChannelsTextbox.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="mSampleRateTextbox.AccessibleName" xml:space="preserve">
     <value>Project sample rate:</value>
@@ -1015,7 +1045,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mSampleRateTextbox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="mChannelsCombo.AccessibleName" xml:space="preserve">
     <value>Default channels:</value>
@@ -1048,7 +1078,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mChannelsCombo.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="labelChannels.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1078,7 +1108,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelChannels.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="mSampleRateCombo.AccessibleName" xml:space="preserve">
     <value>Default sample rate:</value>
@@ -1111,7 +1141,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mSampleRateCombo.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="labelSampleRate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1141,7 +1171,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelSampleRate.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="mAudioTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>

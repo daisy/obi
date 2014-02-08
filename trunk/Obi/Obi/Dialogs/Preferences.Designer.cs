@@ -104,6 +104,7 @@ namespace Obi.Dialogs
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_lblProfile = new System.Windows.Forms.Label();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -276,6 +277,7 @@ namespace Obi.Dialogs
             // 
             // mAudioTab
             // 
+            this.mAudioTab.Controls.Add(this.m_lblProfile);
             this.mAudioTab.Controls.Add(this.m_SelectLevelComboBox);
             this.mAudioTab.Controls.Add(this.m_btn_speak);
             this.mAudioTab.Controls.Add(this.labelTTSvoice);
@@ -302,8 +304,8 @@ namespace Obi.Dialogs
             // 
             // m_SelectLevelComboBox
             // 
-            this.m_SelectLevelComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.m_SelectLevelComboBox, "m_SelectLevelComboBox");
+            this.m_SelectLevelComboBox.FormattingEnabled = true;
             this.m_SelectLevelComboBox.Name = "m_SelectLevelComboBox";
             this.m_SelectLevelComboBox.SelectionChangeCommitted += new System.EventHandler(this.m_SelectLevelComboBox_SelectionChangeCommitted);
             // 
@@ -713,6 +715,11 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
+            // m_lblProfile
+            // 
+            resources.ApplyResources(this.m_lblProfile, "m_lblProfile");
+            this.m_lblProfile.Name = "m_lblProfile";
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -828,5 +835,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btn_speak;
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.ComboBox m_SelectLevelComboBox;
+        private System.Windows.Forms.Label m_lblProfile;
     }
 }
