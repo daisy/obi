@@ -1610,12 +1610,14 @@ namespace Obi.Dialogs
             m_IsComboBoxExpanded = true;
         }
 
-        private void m_SelectLevelComboBox_Leave(object sender, EventArgs e)
+
+        private void m_SelectLevelComboBox_Validating(object sender, CancelEventArgs e)
         {
             if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex)
             {
                 ComboBoxSelection();
             }
+
         }
 
     }
