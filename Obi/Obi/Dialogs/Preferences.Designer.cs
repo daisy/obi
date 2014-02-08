@@ -49,6 +49,7 @@ namespace Obi.Dialogs
             this.mPipelineBrowseButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.mAudioTab = new System.Windows.Forms.TabPage();
+            this.m_lblProfile = new System.Windows.Forms.Label();
             this.m_SelectLevelComboBox = new System.Windows.Forms.ComboBox();
             this.m_btn_speak = new System.Windows.Forms.Button();
             this.labelTTSvoice = new System.Windows.Forms.Label();
@@ -104,7 +105,6 @@ namespace Obi.Dialogs
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.m_lblProfile = new System.Windows.Forms.Label();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -146,6 +146,7 @@ namespace Obi.Dialogs
             // mCancelButton
             // 
             resources.ApplyResources(this.mCancelButton, "mCancelButton");
+            this.mCancelButton.CausesValidation = false;
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.UseVisualStyleBackColor = true;
@@ -302,13 +303,18 @@ namespace Obi.Dialogs
             this.mAudioTab.Name = "mAudioTab";
             this.mAudioTab.UseVisualStyleBackColor = true;
             // 
+            // m_lblProfile
+            // 
+            resources.ApplyResources(this.m_lblProfile, "m_lblProfile");
+            this.m_lblProfile.Name = "m_lblProfile";
+            // 
             // m_SelectLevelComboBox
             // 
             resources.ApplyResources(this.m_SelectLevelComboBox, "m_SelectLevelComboBox");
             this.m_SelectLevelComboBox.FormattingEnabled = true;
             this.m_SelectLevelComboBox.Name = "m_SelectLevelComboBox";
+            this.m_SelectLevelComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.m_SelectLevelComboBox_Validating);
             this.m_SelectLevelComboBox.SelectionChangeCommitted += new System.EventHandler(this.m_SelectLevelComboBox_SelectionChangeCommitted);
-            this.m_SelectLevelComboBox.Leave += new System.EventHandler(this.m_SelectLevelComboBox_Leave);
             this.m_SelectLevelComboBox.DropDownClosed += new System.EventHandler(this.m_SelectLevelComboBox_DropDownClosed);
             this.m_SelectLevelComboBox.DropDown += new System.EventHandler(this.m_SelectLevelComboBox_DropDown);
             // 
@@ -710,6 +716,7 @@ namespace Obi.Dialogs
             // m_ResetButton
             // 
             resources.ApplyResources(this.m_ResetButton, "m_ResetButton");
+            this.m_ResetButton.CausesValidation = false;
             this.m_ResetButton.Name = "m_ResetButton";
             this.m_ResetButton.UseVisualStyleBackColor = true;
             this.m_ResetButton.Click += new System.EventHandler(this.button1_Click);
@@ -717,11 +724,6 @@ namespace Obi.Dialogs
             // helpProvider1
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
-            // 
-            // m_lblProfile
-            // 
-            resources.ApplyResources(this.m_lblProfile, "m_lblProfile");
-            this.m_lblProfile.Name = "m_lblProfile";
             // 
             // Preferences
             // 
