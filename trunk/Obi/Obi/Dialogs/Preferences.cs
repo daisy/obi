@@ -62,6 +62,7 @@ namespace Obi.Dialogs
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Basic"));
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Intermediate"));
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Advance"));
+            m_SelectLevelComboBox.Items.Add("Profile 1");
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Custom"));
            }
 
@@ -756,30 +757,13 @@ namespace Obi.Dialogs
                     MessageBox.Show(string.Format(Localizer.Message("AudioPref_LivePhraseDetectionEnable"), mSettings.DefaultThreshold, mSettings.DefaultGap,mSettings.DefaultLeadingSilence )) ;
                 }
 
-                //if (m_CheckBoxListView.Items[4].Checked == false || m_CheckBoxListView.Items[5].Checked == false || m_CheckBoxListView.Items[8].Checked==false)
-                //    m_btn_AdvancedRecording.Text = Localizer.Message("EnableAdvancedRecording");
-                //else
-                //    m_btn_AdvancedRecording.Text = Localizer.Message("DisableAdvancedRecording");
+
                 if (m_FlagComboBoxIndexChange == false)
                 {
-                    m_SelectLevelComboBox.SelectedIndex = 3;
+                    m_SelectLevelComboBox.SelectedIndex = 4;
+                    m_IndexOfLevelCombox = 4;
                 }
-                //m_FlagComboBoxIndexChange = false;
-               
-                //if (m_SelectLevelComboBox.SelectedIndex == 0 && !m_FlagComboBoxIndexChange)
-                //{
-                //    if (m_CheckBoxListView.Items[0].Checked || m_CheckBoxListView.Items[2].Checked || m_CheckBoxListView.Items[3].Checked || m_CheckBoxListView.Items[4].Checked
-                //      || m_CheckBoxListView.Items[5].Checked || m_CheckBoxListView.Items[7].Checked || m_CheckBoxListView.Items[8].Checked
-                //      || m_CheckBoxListView.Items[10].Checked)
-                //    {
-                //        m_SelectLevelComboBox.SelectedIndex = 3;
-                //    }
 
-                //}
-                //else if (m_SelectLevelComboBox.SelectedIndex == 1)
-                //{
-
-                //}
                
             }
             else if (mTab.SelectedTab == mProjectTab)
@@ -1590,7 +1574,7 @@ namespace Obi.Dialogs
                 }
 
             }
-            else if (m_SelectLevelComboBox.SelectedIndex == 3)
+            else if (m_SelectLevelComboBox.SelectedIndex == 4)
             {
                 m_FlagComboBoxIndexChange = false;
                 m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
