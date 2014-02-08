@@ -40,6 +40,7 @@ namespace Obi.Dialogs
         private bool m_FlagComboBoxIndexChange = false;
         private int m_IndexOfLevelCombox = 0;
         private bool m_IsComboBoxExpanded = false;
+
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
@@ -311,27 +312,31 @@ namespace Obi.Dialogs
             }
 
         // Update settings
-        private void mOKButton_Click ( object sender, EventArgs e )
+        private void mOKButton_Click(object sender, EventArgs e)
+        {
+            if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex)
             {
-                UpdateBoolSettings();
-            if (UpdateProjectSettings ()
-            && UpdateAudioSettings ()
-            && UpdateUserProfile ())
-                {
-                    if (m_IsKeyboardShortcutChanged)
-                    {
-                        mForm.KeyboardShortcuts.SaveSettings();
-                        mForm.InitializeKeyboardShortcuts(false);
-                    }
-                 //   UpdateColorSettings();
-                DialogResult = DialogResult.OK;
-                Close ();
-                }
-            else
-                {
-                return;
-                }
+                ComboBoxSelection();
             }
+            UpdateBoolSettings();
+            if (UpdateProjectSettings()
+            && UpdateAudioSettings()
+            && UpdateUserProfile())
+            {
+                if (m_IsKeyboardShortcutChanged)
+                {
+                    mForm.KeyboardShortcuts.SaveSettings();
+                    mForm.InitializeKeyboardShortcuts(false);
+                }
+                //   UpdateColorSettings();
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+            {
+                return;
+            }
+        }
 
         // Update project settings
         private bool UpdateProjectSettings ()
@@ -1072,6 +1077,7 @@ namespace Obi.Dialogs
         private void button1_Click(object sender, EventArgs e)
         {
             ResetPreferences();
+            m_SelectLevelComboBox.SelectedIndex = 0;
         }
 
         private void m_txtShortcutKeys_Leave(object sender, EventArgs e)
@@ -1588,7 +1594,7 @@ namespace Obi.Dialogs
 
         private void m_SelectLevelComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (m_IsComboBoxExpanded)
+            if (m_IsComboBoxExpanded && (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex))
             {
                 ComboBoxSelection();
             }
@@ -1606,7 +1612,10 @@ namespace Obi.Dialogs
 
         private void m_SelectLevelComboBox_Leave(object sender, EventArgs e)
         {
-            ComboBoxSelection();   
+            if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex)
+            {
+                ComboBoxSelection();
+            }
         }
 
     }
