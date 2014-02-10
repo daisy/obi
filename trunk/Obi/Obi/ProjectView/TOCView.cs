@@ -554,6 +554,15 @@ namespace Obi.ProjectView
                 TreeNodeRemoved((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e);
                 changedNode = ((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e).m_RemovedObject;
             }
+            else if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && e is urakawa.events.media.data.audio.AudioDataInsertedEventArgs)
+            {
+                TreeNode TreeNode = FindTreeNodeWithoutLabel((SectionNode)m_HighlightedSectionNodeWithoutSelection);
+                if (TreeNode.BackColor == Color.LightPink)
+                {
+                    TreeNode.BackColor = Color.Empty;
+                    TreeNode.ForeColor = SystemColors.ControlText;
+                }
+            }
             if (changedNode != null && (changedNode is SectionNode || changedNode is EmptyNode) && ((ObiNode)changedNode).IsRooted) // @emptysectioncolor
             {
                 PaintColorForEmptySection(changedNode is SectionNode ? (SectionNode)changedNode : ((EmptyNode)changedNode).ParentAs<SectionNode>(), false);
@@ -734,7 +743,5 @@ namespace Obi.ProjectView
 
             }
         }
-
-
     }
 }
