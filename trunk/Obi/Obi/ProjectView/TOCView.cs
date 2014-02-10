@@ -674,11 +674,14 @@ namespace Obi.ProjectView
                     {
                         treeNodeToSelect.BackColor = Color.Empty;
                         treeNodeToSelect.ForeColor = SystemColors.ControlText;
+                        if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection) // @emptysectioncolor
+                        {
+                            EmptySectionBackColor(mSelection.Node, treeNodeToSelect);
+                        }
+
                     }
-                    if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection) // @emptysectioncolor
-                    {
-                        EmptySectionBackColor(mSelection.Node, treeNodeToSelect);
-                    }
+
+ 
                 }
                 
             }
