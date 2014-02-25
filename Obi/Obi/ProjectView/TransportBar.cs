@@ -2985,8 +2985,13 @@ SelectionChangedPlaybackEnabled = false;
                 if (IsPlaying) Pause();
 
                 EmptyNode lastPhrase = listOfRecordedPhrases.Count > 0 ? listOfRecordedPhrases[listOfRecordedPhrases.Count - 1] : null;//@AdvanceRecording
-                EmptyNode nextToLastPhrase = lastPhrase.Index < lastPhrase.ParentAs<SectionNode>().PhraseChildCount - 1 ? (EmptyNode)lastPhrase.FollowingNode :
-                    null;//@AdvanceRecording
+                EmptyNode nextToLastPhrase = null;
+                if (lastPhrase != null)
+                {
+                    nextToLastPhrase = lastPhrase.Index < lastPhrase.ParentAs<SectionNode>().PhraseChildCount - 1 ? (EmptyNode)lastPhrase.FollowingNode :
+                        null;//@AdvanceRecording
+                }
+
 
                 mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly));
 
@@ -3069,7 +3074,7 @@ SelectionChangedPlaybackEnabled = false;
         }
 
 
-        private bool IsRecording
+        public bool IsRecording
         {
             get
             {

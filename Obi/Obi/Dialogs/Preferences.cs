@@ -40,6 +40,7 @@ namespace Obi.Dialogs
         private bool m_FlagComboBoxIndexChange = false;
         private int m_IndexOfLevelCombox = 0;
         private bool m_IsComboBoxExpanded = false;
+        private bool m_LeaveOnEscape = false;
 
         /// <summary>
         /// Initialize the preferences with the user settings.
@@ -1613,11 +1614,21 @@ namespace Obi.Dialogs
 
         private void m_SelectLevelComboBox_Validating(object sender, CancelEventArgs e)
         {
+            if (m_LeaveOnEscape)
+                return;
             if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex)
             {
                 ComboBoxSelection();
             }
 
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                m_LeaveOnEscape = true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
     }

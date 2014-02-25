@@ -3012,7 +3012,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private void Recorder_StateChanged(object sender, EventArgs e)
         {
-            if (mProjectView.ObiForm.Settings.Audio_ShowLiveWaveformWhileRecording && mProjectView.TransportBar.IsRecorderActive)
+            if (mProjectView.ObiForm.Settings.Audio_ShowLiveWaveformWhileRecording && mProjectView.TransportBar.IsRecording)
             {
                 waveform_recording_control.Visible = true;    //@Onthefly
                 waveform_recording_control.BringToFront();
