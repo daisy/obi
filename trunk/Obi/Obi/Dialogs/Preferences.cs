@@ -206,7 +206,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[9].Checked = mSettings.Audio_EnablePostRecordingPageRenumbering;
                 m_CheckBoxListView.Items[10].Checked = mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
                 m_CheckBoxListView.Items[11].Checked = mSettings.Audio_FastPlayWithoutPitchChange;
-                m_CheckBoxListView.Items[12].Checked = mSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio;  
+                m_CheckBoxListView.Items[12].Checked = mSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio;
+                m_CheckBoxListView.Items[13].Checked = mSettings.Audio_EnforceSingleCursor;
                 m_IsComplete = true;
 
             }
@@ -315,7 +316,7 @@ namespace Obi.Dialogs
         // Update settings
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex)
+            if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
             {
                 ComboBoxSelection();
             }
@@ -831,6 +832,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection= m_CheckBoxListView.Items[10].Checked;
                 mSettings.Audio_FastPlayWithoutPitchChange= m_CheckBoxListView.Items[11].Checked;
                 mSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio = m_CheckBoxListView.Items[12].Checked;
+                mSettings.Audio_EnforceSingleCursor = m_CheckBoxListView.Items[13].Checked;
                 mSettings.Audio_LevelComboBoxIndex = m_SelectLevelComboBox.SelectedIndex;
             }
         }
@@ -868,6 +870,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_FastPlayWithoutPitchChange"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RecordSubsequentPhrases"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_EnforceSingleCursor"));
                 m_grpBoxChkBoxListView.Size = new Size(352, 97);
                 m_grpBoxChkBoxListView.Location = new Point(85, 264);
 
@@ -897,6 +900,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[11].ToolTipText = Localizer.Message("Audio_FastPlayWithoutPitchChange");
                 m_CheckBoxListView.Items[12].Checked = mSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio;
                 m_CheckBoxListView.Items[12].ToolTipText = Localizer.Message("Audio_RecordSubsequentPhrases");
+                m_CheckBoxListView.Items[13].Checked = mSettings.Audio_EnforceSingleCursor;
+                m_CheckBoxListView.Items[13].ToolTipText = Localizer.Message("Audio_EnforceSingleCursor");
 
                 m_SelectLevelComboBox.SelectedIndex = mSettings.Audio_LevelComboBoxIndex;
             }
@@ -1494,6 +1499,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[9].Checked = true;
                 m_CheckBoxListView.Items[11].Checked = true;
                 m_CheckBoxListView.Items[12].Checked = false;
+                m_CheckBoxListView.Items[13].Checked = false;
                 m_FlagComboBoxIndexChange = false;
                 m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
 
@@ -1529,6 +1535,7 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[9].Checked = true;
                         m_CheckBoxListView.Items[11].Checked = true;
                         m_CheckBoxListView.Items[12].Checked = false;
+                        m_CheckBoxListView.Items[13].Checked = false;
                         m_FlagComboBoxIndexChange = false;
 
                     }
@@ -1552,7 +1559,7 @@ namespace Obi.Dialogs
                     Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") + "\n* " +
                     Localizer.Message("Audio_ShowLiveWaveformWhileRecording") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
                     Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection") + "\n* " +
-                    Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_RecordSubsequentPhrases");
+                    Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_RecordSubsequentPhrases") + "\n* " + Localizer.Message("Audio_EnforceSingleCursor");
 
                     if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
@@ -1572,6 +1579,7 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[9].Checked = true;
                         m_CheckBoxListView.Items[11].Checked = true;
                         m_CheckBoxListView.Items[12].Checked = true;
+                        m_CheckBoxListView.Items[13].Checked = true;
                         m_FlagComboBoxIndexChange = false;
                     }
                     else
@@ -1595,8 +1603,9 @@ namespace Obi.Dialogs
 
         private void m_SelectLevelComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (m_IsComboBoxExpanded && (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex))
+            if (m_IsComboBoxExpanded && (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex) && (this.mTab.SelectedTab == mAudioTab))
             {
+                
                 ComboBoxSelection();
             }
         }
@@ -1616,7 +1625,7 @@ namespace Obi.Dialogs
         {
             if (m_LeaveOnEscape)
                 return;
-            if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex)
+            if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
             {
                 ComboBoxSelection();
             }
