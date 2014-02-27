@@ -2995,15 +2995,24 @@ SelectionChangedPlaybackEnabled = false;
 
                 mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly));
 
+                
                 if (nextToLastPhrase != null && nextToLastPhrase.Index > 0)//@advanceRecording
                 {
                     SectionNode section = nextToLastPhrase.ParentAs<SectionNode>();
                     mView.SelectFromTransportBar( section.PhraseChild(nextToLastPhrase.Index - 1), null);
+                    
                 }
                 else if (lastPhrase != null)
                 {
                     SectionNode section = lastPhrase.ParentAs<SectionNode>();
                     mView.SelectFromTransportBar(section.PhraseChild(section.PhraseChildCount-1), null);
+                }
+
+                if (mView.Selection != null)
+                {
+                    Commands.UpdateSelection updateSelectionCmd = updateSelectionCmd = new Obi.Commands.UpdateSelection(mView,
+                        new NodeSelection(mView.Selection.Node, mView.Selection.Control));
+                    mView.Presentation.Do(updateSelectionCmd);
                 }
             }
             if (mView.ObiForm.Settings.Audio_EnablePostRecordingPageRenumbering &&  m_EnablePostRecordingPageRenumbering &&  firstRecordedPage != null)
