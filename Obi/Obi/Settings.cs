@@ -101,6 +101,7 @@ namespace Obi
         public bool Project_BackgroundColorForEmptySection;
         public int Audio_LevelComboBoxIndex;
         public bool Audio_UseRecordBtnToRecordOverSubsequentAudio;
+        public bool Audio_EnforceSingleCursor;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -190,6 +191,7 @@ namespace Obi
             settings.Project_BackgroundColorForEmptySection = false;
             settings.Audio_LevelComboBoxIndex = 0;
             settings.Audio_UseRecordBtnToRecordOverSubsequentAudio = false;
+            settings.Audio_EnforceSingleCursor = false;
         }
 
         /// <summary>

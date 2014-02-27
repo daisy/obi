@@ -2580,4 +2580,7 @@ Error text: {1}</value>
   <data name="Audio_RecordSubsequentPhrases" xml:space="preserve">
     <value>Use Record Button to record over subsequent audio</value>
   </data>
+  <data name="Audio_EnforceSingleCursor" xml:space="preserve">
+    <value>Enforce single audio cursor</value>
+  </data>
 </root>
