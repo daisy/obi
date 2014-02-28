@@ -3552,5 +3552,33 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                    
         }
 
+        private void m_btnPlayingOptions_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            Point ptLowerLeft = new Point(0, btn.Height);
+            ptLowerLeft = btn.PointToScreen(ptLowerLeft);
+            m_PlayingOptionsContextMenuStrip.Show(ptLowerLeft); 
+        }
+
+        private void m_PlaySectiontoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void m_PlayAlltoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void m_PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void m_PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
