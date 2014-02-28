@@ -54,6 +54,7 @@ namespace Obi.ProjectView
             this.m_RecordingtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_DeletePhrasestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
+            this.mPreviewBeforeRecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_RecordingOptionsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -250,6 +251,7 @@ namespace Obi.ProjectView
             this.m_RecordingOptionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_MonitoringtoolStripMenuItem,
             this.m_RecordingtoolStripMenuItem,
+            this.mPreviewBeforeRecToolStripMenuItem,
             this.m_DeletePhrasestoolStripMenuItem});
             this.m_RecordingOptionsContextMenuStrip.Name = "m_RecordingOptionsContextMenuStrip";
             resources.ApplyResources(this.m_RecordingOptionsContextMenuStrip, "m_RecordingOptionsContextMenuStrip");
@@ -281,6 +283,11 @@ namespace Obi.ProjectView
             this.mVUMeterPanel.Name = "mVUMeterPanel";
             this.mVUMeterPanel.ShowMaxMinValues = false;
             this.mVUMeterPanel.VuMeter = null;
+            // 
+            // mPreviewBeforeRecToolStripMenuItem
+            // 
+            this.mPreviewBeforeRecToolStripMenuItem.Name = "mPreviewBeforeRecToolStripMenuItem";
+            resources.ApplyResources(this.mPreviewBeforeRecToolStripMenuItem, "mPreviewBeforeRecToolStripMenuItem");
             // 
             // TransportBar
             // 
@@ -341,5 +348,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem m_MonitoringtoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_DeletePhrasestoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_RecordingtoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPreviewBeforeRecToolStripMenuItem;
     }
 }
