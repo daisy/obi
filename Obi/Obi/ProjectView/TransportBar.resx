@@ -1174,6 +1174,12 @@
   <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
     <value>Start Recording</value>
   </data>
+  <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
+    <value>Preview Before Recording</value>
+  </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
@@ -1181,7 +1187,7 @@
     <value>Record over subsequent phrases</value>
   </data>
   <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 70</value>
+    <value>245, 114</value>
   </data>
   <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
     <value>m_RecordingOptionsContextMenuStrip</value>
@@ -1208,7 +1214,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.0.28789, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.23261, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1253,6 +1259,12 @@
     <value>m_DeletePhrasestoolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_DeletePhrasestoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPreviewBeforeRecToolStripMenuItem.Name" xml:space="preserve">
+    <value>mPreviewBeforeRecToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPreviewBeforeRecToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
