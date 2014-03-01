@@ -39,6 +39,8 @@ namespace Obi.ProjectView
         private Playlist mMasterPlaylist;            // master playlist (all phrases in the project)
         private Playlist mQAMasterPlaylist;          // QA master playlist (all used phrases in the project)
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null) TO BE REMOVED
+        private bool IsPlaySection = false;
+        private bool mPreviewBeforeRec = false;
 
         Bitmap m_monitorButtonImage;
         Bitmap m_recordButtonImage;
@@ -886,9 +888,23 @@ namespace Obi.ProjectView
                 mPlayButton.Enabled = CanPlay || CanResumePlayback;
                 mFastPlayRateCombobox.Enabled = !IsRecorderActive;
                 mRecordButton.Enabled = CanRecord || CanResumeRecording;
-
-               
-
+                if (IsPlaying)
+                {
+                    m_btnPlayingOptions.Enabled = false;
+                }
+                else
+                {
+                    m_btnPlayingOptions.Enabled = true;
+                }
+                if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null && mView.Selection != null
+    && mView.ObiForm.Settings.AllowOverwrite && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
+                {
+                    mPreviewBeforeRecToolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    mPreviewBeforeRecToolStripMenuItem.Enabled = false;
+                }
                 bool recordDirectly = (mView.ObiForm  != null && mView.ObiForm.Settings.RecordDirectlyWithRecordButton) ? true : false;
 
                 if (recordDirectly)
@@ -1281,9 +1297,17 @@ namespace Obi.ProjectView
             else if (node != null)
             {
                 if (!node.IsRooted) return;
-
-                bool neglectSelection = mView.Selection == null
-                    || (node is EmptyNode && mView.Selection.Node != node);
+                bool neglectSelection;
+                if (IsPlaySection == false)
+                {
+                     neglectSelection = mView.Selection == null
+                        || (node is EmptyNode && mView.Selection.Node != node);
+                }
+                else
+                {
+                    neglectSelection = true;
+                    IsPlaySection = false;
+                }
                 
                 if (neglectSelection)
                 {
@@ -2834,8 +2858,8 @@ namespace Obi.ProjectView
                 if (mView.Selection == null || !(mView.Selection.Node is EmptyNode) || mView.Selection.Node != mCurrentPlaylist.CurrentPhrase) return;
             }
 
-            if (mView.ObiForm.Settings.Recording_PreviewBeforeStarting && mView.ObiForm.Settings.AllowOverwrite
-                && ((CurrentState == State.Paused &&  !(mView.Selection is AudioSelection)) || (mView.Selection!= null && mView.Selection is AudioSelection  &&  ((AudioSelection)mView.Selection).AudioRange.HasCursor )))
+            if ((mView.ObiForm.Settings.Recording_PreviewBeforeStarting || mPreviewBeforeRec) && mView.ObiForm.Settings.AllowOverwrite
+               && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
             {
                 
                 m_PreviewBeforeRecordingWorker = new System.ComponentModel.BackgroundWorker();
@@ -2863,6 +2887,7 @@ namespace Obi.ProjectView
                     }
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerAsync();
+                mPreviewBeforeRec = false;
             }
             else
             {
@@ -3474,10 +3499,12 @@ SelectionChangedPlaybackEnabled = false;
             if (mView.ObiForm.Settings.AllowOverwrite)
             {
                 m_DeletePhrasestoolStripMenuItem.Enabled = !IsListening;
+                mPreviewBeforeRecToolStripMenuItem.Enabled = true;
             }
             else
             {
                 m_DeletePhrasestoolStripMenuItem.Enabled = false;
+                mPreviewBeforeRecToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -3562,22 +3589,70 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
 
         private void m_PlaySectiontoolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //PhraseNode phrNode = mCurrentPlaylist.CurrentPhrase;
+            //ObiNode nodeSel = phrNode.ParentAs<SectionNode>();
+            PhraseNode pharse=null;
+            ObiNode nodeSelect = null;
+            if (mView != null && mView.Selection != null)
+            {
 
+
+                if (mView.Selection.Node is PhraseNode)
+                {
+                    pharse = (PhraseNode)mView.Selection.Node;
+                    nodeSelect = pharse.ParentAs<SectionNode>();
+                }
+                else if (mView.Selection.Node is SectionNode)
+                {
+                    nodeSelect = mView.Selection.Node;
+                }
+                if (nodeSelect != null)
+                {
+
+                    IsPlaySection = true;
+                    PlayOrResume(nodeSelect);
+                }
+            }
         }
 
         private void m_PlayAlltoolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (!mView.IsZoomWaveformActive)//@zoomwaveform: if zoom waveform is not active, start play all else start play selection
+            {
+                PlayAll();
+            }
+            else
+            {
+                PlayOrResume();
+            }
         }
 
         private void m_PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Preview(From, UseAudioCursor);
         }
 
         private void m_PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Preview(Upto, UseAudioCursor);
+        }
 
+        private void m_PlayingOptionsContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (mView == null || mView.Selection == null)
+            {
+                m_PlaySectiontoolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                m_PlaySectiontoolStripMenuItem.Enabled = true;
+            }
+        }
+
+        private void mPreviewBeforeRecToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mPreviewBeforeRec = true;
+            StartRecordingDirectly();
         }
 
     }

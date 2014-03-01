@@ -289,6 +289,7 @@ namespace Obi.ProjectView
             // 
             this.mPreviewBeforeRecToolStripMenuItem.Name = "mPreviewBeforeRecToolStripMenuItem";
             resources.ApplyResources(this.mPreviewBeforeRecToolStripMenuItem, "mPreviewBeforeRecToolStripMenuItem");
+            this.mPreviewBeforeRecToolStripMenuItem.Click += new System.EventHandler(this.mPreviewBeforeRecToolStripMenuItem_Click);
             // 
             // m_DeletePhrasestoolStripMenuItem
             // 
@@ -305,6 +306,7 @@ namespace Obi.ProjectView
             this.m_PreviewUptotoolStripMenuItem});
             this.m_PlayingOptionsContextMenuStrip.Name = "m_PlayingOptionsContextMenuStrip";
             resources.ApplyResources(this.m_PlayingOptionsContextMenuStrip, "m_PlayingOptionsContextMenuStrip");
+            this.m_PlayingOptionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.m_PlayingOptionsContextMenuStrip_Opening);
             // 
             // m_PlaySectiontoolStripMenuItem
             // 
