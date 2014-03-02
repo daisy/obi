@@ -608,6 +608,17 @@ namespace Obi.ProjectView
                 mView.BlocksVisibilityChanged += new EventHandler(mView_BlocksVisibilityChanged);
                 mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) {
                     if(mView.Selection == null || mView.Selection.Node != m_FineNavigationPhrase ) FineNavigationModeForPhrase = false;
+
+                    //@enforce single cursor
+                    if (mView.ObiForm != null && mView.ObiForm.Settings.Audio_EnforceSingleCursor
+                        && CurrentState == State.Paused &&  mView.Selection != null && mView.Selection is AudioSelection
+                    && ((AudioSelection)mView.Selection).AudioRange.HasCursor )
+                    {
+                        double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime  ;
+                        mView.UpdateCursorPosition (time) ;
+                        mCurrentPlaylist.CurrentTimeInAsset = time;
+                    }
+
                     UpdateButtons();
                     //if (Enabled && mSelectionChangedPlayEnable &&  mView.ObiForm.Settings.PlayOnNavigate)   PlaybackOnSelectionChange();
                     if (Enabled && mSelectionChangedPlayEnable ) PlaybackOnSelectionChange_Safe ();
