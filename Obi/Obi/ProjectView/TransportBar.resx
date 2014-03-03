@@ -153,6 +153,177 @@
   <metadata name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>398, 17</value>
   </metadata>
+  <metadata name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>266, 17</value>
+  </metadata>
+  <data name="mDisplayBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mDisplayBox.Items" xml:space="preserve">
+    <value>elapsed</value>
+  </data>
+  <data name="mDisplayBox.Items1" xml:space="preserve">
+    <value>elapsed (total)</value>
+  </data>
+  <data name="mDisplayBox.Items2" xml:space="preserve">
+    <value>remaining</value>
+  </data>
+  <data name="mDisplayBox.Items3" xml:space="preserve">
+    <value>remaining (total)</value>
+  </data>
+  <data name="mDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>585, 4</value>
+  </data>
+  <data name="mDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 24</value>
+  </data>
+  <data name="mDisplayBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Name" xml:space="preserve">
+    <value>mDisplayBox</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mDisplayBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="mFastPlayRateCombobox.AccessibleName" xml:space="preserve">
+    <value>Fast Play Rate</value>
+  </data>
+  <data name="mFastPlayRateCombobox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mFastPlayRateCombobox.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items1" xml:space="preserve">
+    <value>1.125</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items2" xml:space="preserve">
+    <value>1.25</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items3" xml:space="preserve">
+    <value>1.5</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items4" xml:space="preserve">
+    <value>1.75</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items5" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items6" xml:space="preserve">
+    <value>2.25</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Items7" xml:space="preserve">
+    <value>2.5</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>746, 4</value>
+  </data>
+  <data name="mFastPlayRateCombobox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 24</value>
+  </data>
+  <data name="mFastPlayRateCombobox.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Name" xml:space="preserve">
+    <value>mFastPlayRateCombobox</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>569, 17</value>
+  </metadata>
+  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 92</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_RecordingOptionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
+    <value>Start Monitoring</value>
+  </data>
+  <data name="m_RecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
+    <value>Start Recording</value>
+  </data>
+  <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
+    <value>Preview Before Recording</value>
+  </data>
+  <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
+    <value>Record over subsequent phrases</value>
+  </data>
+  <metadata name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 92</value>
+  </data>
+  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_PlayingOptionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="m_PlaySectiontoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 22</value>
+  </data>
+  <data name="m_PlaySectiontoolStripMenuItem.Text" xml:space="preserve">
+    <value>Play Section</value>
+  </data>
+  <data name="m_PlayAlltoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 22</value>
+  </data>
+  <data name="m_PlayAlltoolStripMenuItem.Text" xml:space="preserve">
+    <value>Play All</value>
+  </data>
+  <data name="m_PreviewFromtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 22</value>
+  </data>
+  <data name="m_PreviewFromtoolStripMenuItem.Text" xml:space="preserve">
+    <value>Preview From</value>
+  </data>
+  <data name="m_PreviewUptotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 22</value>
+  </data>
+  <data name="m_PreviewUptotoolStripMenuItem.Text" xml:space="preserve">
+    <value>Preview Upto</value>
+  </data>
   <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
@@ -1063,6 +1234,22 @@
   <data name="m_btnPlayingOptions.AccessibleName" xml:space="preserve">
     <value>Playing Options</value>
   </data>
+  <data name="m_btnPlayingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEAAA
+        CxABrSO9dQAAAjNJREFUOE/Vkl9IU3EUx0evPRRULz0EEWRBPfRSxBCJXuqhhJpiRX/wwVZhRUQQ6rCQ
+        /szQSDBjkdhyCFIR9Ni2u93NOVs5wghiY5KJRpm7u9v9/W4+fPudG1Lb3R+FXnz4cLiH8/v8zrnnZ5Fl
+        Gf+bFSwNBoPLptCRJ6UCX3gEvuhbwRh8o9E/REbhJUYiefiIUMgkzpN6Q2GwV0NgPbegubrB+nvAnj4E
+        G3SBDT0BGx4Af+4GfzEI9tIj4jPwN6/hlUOlpX5BMv4e2vY1yNlqoJ21gV0/B+5sgd53DwseFxaEXH98
+        H7yrHb/sdUjGxuAP/nUQpvGl+AcozjZoR6qhNZ8Aa20G72wT0k7wgV7o7j7oYgpd5NRHXZDejZcfn5AC
+        AXz8Oo2sdSuyxw9Au3wa7OZV8O4b4L13BU7wBx3gF09iIpE06gsdJind6o1E8d3TD9VaBfXUYWhXGqE5
+        LoF1XBO/ohV6ywX8GHYbyyrskjBJiYC4PTY9A/XgHmRqq5E9U4ucvQHZpnrkzh+DZq9HbPKLUVfsfFEp
+        QRudishQt61H5pAVmaP7kLHth7p7C6ZkybTxfykppbHCn5NIN9ZB2bUJ6ZqdUPZWQWlqEPlE0bEXKSkl
+        /OJgYjKF+XUWzO/YiPSGVUikUka+WP0iZaXUjX88jp93HJhbbcHcbYfxXa5LoqyUoCczMfsNyua1Riz2
+        hAqpKDW6lSR8mpk1YqUuiYpSgkTU4VKExJKky2WlSGX8BpgghyexT7VQAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="m_btnPlayingOptions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1090,177 +1277,6 @@
   <data name="&gt;&gt;m_btnPlayingOptions.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <metadata name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>266, 17</value>
-  </metadata>
-  <data name="mDisplayBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="mDisplayBox.Items" xml:space="preserve">
-    <value>elapsed</value>
-  </data>
-  <data name="mDisplayBox.Items1" xml:space="preserve">
-    <value>elapsed (total)</value>
-  </data>
-  <data name="mDisplayBox.Items2" xml:space="preserve">
-    <value>remaining</value>
-  </data>
-  <data name="mDisplayBox.Items3" xml:space="preserve">
-    <value>remaining (total)</value>
-  </data>
-  <data name="mDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>585, 4</value>
-  </data>
-  <data name="mDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 24</value>
-  </data>
-  <data name="mDisplayBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;mDisplayBox.Name" xml:space="preserve">
-    <value>mDisplayBox</value>
-  </data>
-  <data name="&gt;&gt;mDisplayBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mDisplayBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mDisplayBox.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="mFastPlayRateCombobox.AccessibleName" xml:space="preserve">
-    <value>Fast Play Rate</value>
-  </data>
-  <data name="mFastPlayRateCombobox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="mFastPlayRateCombobox.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Items" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Items1" xml:space="preserve">
-    <value>1.125</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Items2" xml:space="preserve">
-    <value>1.25</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Items3" xml:space="preserve">
-    <value>1.5</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Items4" xml:space="preserve">
-    <value>1.75</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Items5" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Items6" xml:space="preserve">
-    <value>2.25</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Items7" xml:space="preserve">
-    <value>2.5</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 4</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 24</value>
-  </data>
-  <data name="mFastPlayRateCombobox.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;mFastPlayRateCombobox.Name" xml:space="preserve">
-    <value>mFastPlayRateCombobox</value>
-  </data>
-  <data name="&gt;&gt;mFastPlayRateCombobox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mFastPlayRateCombobox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>569, 17</value>
-  </metadata>
-  <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Start Monitoring</value>
-  </data>
-  <data name="m_RecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Start Recording</value>
-  </data>
-  <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview Before Recording</value>
-  </data>
-  <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
-    <value>Record over subsequent phrases</value>
-  </data>
-  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 114</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
-    <value>m_RecordingOptionsContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <metadata name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="m_PlaySectiontoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 22</value>
-  </data>
-  <data name="m_PlaySectiontoolStripMenuItem.Text" xml:space="preserve">
-    <value>Play Section</value>
-  </data>
-  <data name="m_PlayAlltoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 22</value>
-  </data>
-  <data name="m_PlayAlltoolStripMenuItem.Text" xml:space="preserve">
-    <value>Play All</value>
-  </data>
-  <data name="m_PreviewFromtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 22</value>
-  </data>
-  <data name="m_PreviewFromtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview From</value>
-  </data>
-  <data name="m_PreviewUptotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 22</value>
-  </data>
-  <data name="m_PreviewUptotoolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview Upto</value>
-  </data>
-  <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 92</value>
-  </data>
-  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Name" xml:space="preserve">
-    <value>m_PlayingOptionsContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="mVUMeterPanel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
@@ -1280,7 +1296,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.23765, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.20195, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1362,5 +1378,25 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="media-monitor.png" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+
+      iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+      wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAK5SURBVFhH7VU5
+      S2NRFLZRwUpRQdx3RbAQFCsLUVxxQ9x3VMRdC3EDLSwEGwu1tLIQOwv9GRMTBjdwmnFi8u57iRInkUzz
+      zTnXvJDIVHlJMZDAIffec8/9vvOde+6LiYn+ogpEFfjfFLg9PYWlvR2m1FSY4uPxLS5OjnmNfRHN56as
+      DI/V1XDu7uLj/Bx/rq/hvbqC5+wMjq0tPFZVgfdEhIQ5JUUCey8v4To5gXNvD9rGBrT1dTh2duA6PIT3
+      4gLOzU3w3rCSMJPEdGCQqaurUFdWoC4vQywuQszNQSwswH10hPeDA/hijPP4XlPjB5Yg8/NBc3V2FurM
+      DMT0NMTkJJTxcUnAQft8sYZJSEAxNSUBpNE4aG1iAmJsDMrICMTgIJSBAXiOj3FbWmqsFHwgA71ub0MZ
+      GvoEGB2VJgnQvzo8LH0MLPr7Ye/ogJVU0/r6YKfOuCe/EQngJjlZVqWnB6K3V4Kw6XdC7e6GUl8PW2Ul
+      rIWFeM7IwM/0dFipG1xUBktWljECnv192BoaYG9uhtLSAtHYCKW2Fgq1I5N4yc3FS04OrNnZ0n5lZkoS
+      z7Tmpi65SUgwRuDr7Q9xHloVLJQRy8i1Z7OSnJytPS8PSn6+VEApKPg0mvO6VIP22crLZayPcGgEnuh2
+      67KztCwxS85gDKqrIYqK/CTYz/u0pqbAdyM0Ahx1Rwf+Xlry11rPXqULpxUXSxD+57mugs2njqHsdcoP
+      dXUQra14ozbzy0/Zc9Y6AdmSPhWYoK4Mx4aeekCkJTkZb1QOF78DDEQZSgW+kAi8oBwTFnD9EHNiIkRn
+      Jzxra3hta4NGfa+WlEBjo/EbPTrsU7u6YE5KCi+4TuKuogL3lL0gAu/04fHQl4+Nx7z2QD7eE9bM/3XY
+      D3p6LWlpMMXGSuPxE92RiANHAaIKRBWIhAJ/AaE4KsZnOH4bAAAAAElFTkSuQmCC
+
+    </value>
   </data>
 </root>

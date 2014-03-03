@@ -3650,14 +3650,12 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
 
         private void m_PlayingOptionsContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (mView == null || mView.Selection == null)
-            {
-                m_PlaySectiontoolStripMenuItem.Enabled = false;
-            }
-            else
-            {
-                m_PlaySectiontoolStripMenuItem.Enabled = true;
-            }
+            m_PlayAlltoolStripMenuItem.Enabled = mView.CanPlay || mView.CanResume;
+            m_PlaySectiontoolStripMenuItem.Enabled = mView.CanPlaySelection || mView.CanResume;
+
+            m_PreviewFromtoolStripMenuItem.Enabled = mView.CanPreview || mView.CanPreviewAudioSelection;
+            m_PreviewUptotoolStripMenuItem.Enabled = mView.CanPreview || mView.CanPreviewAudioSelection;
+            
         }
 
         private void mPreviewBeforeRecToolStripMenuItem_Click(object sender, EventArgs e)

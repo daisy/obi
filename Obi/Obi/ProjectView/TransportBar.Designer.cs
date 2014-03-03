@@ -32,6 +32,19 @@ namespace Obi.ProjectView
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransportBar));
             this.mTimeDisplayBox = new System.Windows.Forms.TextBox();
             this.mTransportBarTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
+            this.mDisplayBox = new System.Windows.Forms.ComboBox();
+            this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
+            this.m_RecordingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.m_MonitoringtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_RecordingtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPreviewBeforeRecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_DeletePhrasestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_PlayingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.m_PlaySectiontoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_PlayAlltoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_PreviewFromtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_PreviewUptotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousPageButton = new System.Windows.Forms.Button();
             this.mRewindButton = new System.Windows.Forms.Button();
             this.mToDo_CustomClassMarkButton = new System.Windows.Forms.Button();
@@ -47,19 +60,6 @@ namespace Obi.ProjectView
             this.mFastForwardButton = new System.Windows.Forms.Button();
             this.m_btnRecordingOptions = new System.Windows.Forms.Button();
             this.m_btnPlayingOptions = new System.Windows.Forms.Button();
-            this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
-            this.mDisplayBox = new System.Windows.Forms.ComboBox();
-            this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
-            this.m_RecordingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.m_MonitoringtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_RecordingtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mPreviewBeforeRecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_DeletePhrasestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_PlayingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.m_PlaySectiontoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_PlayAlltoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_PreviewFromtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_PreviewUptotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.m_RecordingOptionsContextMenuStrip.SuspendLayout();
             this.m_PlayingOptionsContextMenuStrip.SuspendLayout();
@@ -77,6 +77,112 @@ namespace Obi.ProjectView
             // 
             this.mTransportBarTooltip.IsBalloon = true;
             this.mTransportBarTooltip.ToolTipTitle = "Transport bar";
+            // 
+            // mDisplayTimer
+            // 
+            this.mDisplayTimer.Tick += new System.EventHandler(this.mDisplayTimer_Tick);
+            // 
+            // mDisplayBox
+            // 
+            this.mDisplayBox.AllowDrop = true;
+            this.mDisplayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.mDisplayBox, "mDisplayBox");
+            this.mDisplayBox.FormattingEnabled = true;
+            this.mDisplayBox.Items.AddRange(new object[] {
+            resources.GetString("mDisplayBox.Items"),
+            resources.GetString("mDisplayBox.Items1"),
+            resources.GetString("mDisplayBox.Items2"),
+            resources.GetString("mDisplayBox.Items3")});
+            this.mDisplayBox.Name = "mDisplayBox";
+            this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
+            this.mDisplayBox.SelectedIndexChanged += new System.EventHandler(this.mDisplayBox_SelectedIndexChanged);
+            // 
+            // mFastPlayRateCombobox
+            // 
+            resources.ApplyResources(this.mFastPlayRateCombobox, "mFastPlayRateCombobox");
+            this.mFastPlayRateCombobox.AllowDrop = true;
+            this.mFastPlayRateCombobox.FormattingEnabled = true;
+            this.mFastPlayRateCombobox.Items.AddRange(new object[] {
+            resources.GetString("mFastPlayRateCombobox.Items"),
+            resources.GetString("mFastPlayRateCombobox.Items1"),
+            resources.GetString("mFastPlayRateCombobox.Items2"),
+            resources.GetString("mFastPlayRateCombobox.Items3"),
+            resources.GetString("mFastPlayRateCombobox.Items4"),
+            resources.GetString("mFastPlayRateCombobox.Items5"),
+            resources.GetString("mFastPlayRateCombobox.Items6"),
+            resources.GetString("mFastPlayRateCombobox.Items7")});
+            this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
+            this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.mFastPlayRateComboBox_SelectionChangeCommitted);
+            // 
+            // m_RecordingOptionsContextMenuStrip
+            // 
+            this.m_RecordingOptionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_MonitoringtoolStripMenuItem,
+            this.m_RecordingtoolStripMenuItem,
+            this.mPreviewBeforeRecToolStripMenuItem,
+            this.m_DeletePhrasestoolStripMenuItem});
+            this.m_RecordingOptionsContextMenuStrip.Name = "m_RecordingOptionsContextMenuStrip";
+            resources.ApplyResources(this.m_RecordingOptionsContextMenuStrip, "m_RecordingOptionsContextMenuStrip");
+            this.m_RecordingOptionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.m_RecordingOptionsContextMenuStrip_Opening);
+            // 
+            // m_MonitoringtoolStripMenuItem
+            // 
+            this.m_MonitoringtoolStripMenuItem.Name = "m_MonitoringtoolStripMenuItem";
+            resources.ApplyResources(this.m_MonitoringtoolStripMenuItem, "m_MonitoringtoolStripMenuItem");
+            this.m_MonitoringtoolStripMenuItem.Click += new System.EventHandler(this.RecordingOptions_Monitoring_Click);
+            // 
+            // m_RecordingtoolStripMenuItem
+            // 
+            this.m_RecordingtoolStripMenuItem.Name = "m_RecordingtoolStripMenuItem";
+            resources.ApplyResources(this.m_RecordingtoolStripMenuItem, "m_RecordingtoolStripMenuItem");
+            this.m_RecordingtoolStripMenuItem.Click += new System.EventHandler(this.m_RecordingtoolStripMenuItem_Click);
+            // 
+            // mPreviewBeforeRecToolStripMenuItem
+            // 
+            this.mPreviewBeforeRecToolStripMenuItem.Name = "mPreviewBeforeRecToolStripMenuItem";
+            resources.ApplyResources(this.mPreviewBeforeRecToolStripMenuItem, "mPreviewBeforeRecToolStripMenuItem");
+            this.mPreviewBeforeRecToolStripMenuItem.Click += new System.EventHandler(this.mPreviewBeforeRecToolStripMenuItem_Click);
+            // 
+            // m_DeletePhrasestoolStripMenuItem
+            // 
+            this.m_DeletePhrasestoolStripMenuItem.Name = "m_DeletePhrasestoolStripMenuItem";
+            resources.ApplyResources(this.m_DeletePhrasestoolStripMenuItem, "m_DeletePhrasestoolStripMenuItem");
+            this.m_DeletePhrasestoolStripMenuItem.Click += new System.EventHandler(this.RecordingOptions_RecordWithDeleteFollowing_Click);
+            // 
+            // m_PlayingOptionsContextMenuStrip
+            // 
+            this.m_PlayingOptionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_PlaySectiontoolStripMenuItem,
+            this.m_PlayAlltoolStripMenuItem,
+            this.m_PreviewFromtoolStripMenuItem,
+            this.m_PreviewUptotoolStripMenuItem});
+            this.m_PlayingOptionsContextMenuStrip.Name = "m_PlayingOptionsContextMenuStrip";
+            resources.ApplyResources(this.m_PlayingOptionsContextMenuStrip, "m_PlayingOptionsContextMenuStrip");
+            this.m_PlayingOptionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.m_PlayingOptionsContextMenuStrip_Opening);
+            // 
+            // m_PlaySectiontoolStripMenuItem
+            // 
+            this.m_PlaySectiontoolStripMenuItem.Name = "m_PlaySectiontoolStripMenuItem";
+            resources.ApplyResources(this.m_PlaySectiontoolStripMenuItem, "m_PlaySectiontoolStripMenuItem");
+            this.m_PlaySectiontoolStripMenuItem.Click += new System.EventHandler(this.m_PlaySectiontoolStripMenuItem_Click);
+            // 
+            // m_PlayAlltoolStripMenuItem
+            // 
+            this.m_PlayAlltoolStripMenuItem.Name = "m_PlayAlltoolStripMenuItem";
+            resources.ApplyResources(this.m_PlayAlltoolStripMenuItem, "m_PlayAlltoolStripMenuItem");
+            this.m_PlayAlltoolStripMenuItem.Click += new System.EventHandler(this.m_PlayAlltoolStripMenuItem_Click);
+            // 
+            // m_PreviewFromtoolStripMenuItem
+            // 
+            this.m_PreviewFromtoolStripMenuItem.Name = "m_PreviewFromtoolStripMenuItem";
+            resources.ApplyResources(this.m_PreviewFromtoolStripMenuItem, "m_PreviewFromtoolStripMenuItem");
+            this.m_PreviewFromtoolStripMenuItem.Click += new System.EventHandler(this.m_PreviewFromtoolStripMenuItem_Click);
+            // 
+            // m_PreviewUptotoolStripMenuItem
+            // 
+            this.m_PreviewUptotoolStripMenuItem.Name = "m_PreviewUptotoolStripMenuItem";
+            resources.ApplyResources(this.m_PreviewUptotoolStripMenuItem, "m_PreviewUptotoolStripMenuItem");
+            this.m_PreviewUptotoolStripMenuItem.Click += new System.EventHandler(this.m_PreviewUptotoolStripMenuItem_Click);
             // 
             // mPreviousPageButton
             // 
@@ -220,117 +326,10 @@ namespace Obi.ProjectView
             // m_btnPlayingOptions
             // 
             resources.ApplyResources(this.m_btnPlayingOptions, "m_btnPlayingOptions");
-            this.m_btnPlayingOptions.Image = global::Obi.Properties.Resources.bullet_arrow_down;
             this.m_btnPlayingOptions.Name = "m_btnPlayingOptions";
             this.mTransportBarTooltip.SetToolTip(this.m_btnPlayingOptions, resources.GetString("m_btnPlayingOptions.ToolTip"));
             this.m_btnPlayingOptions.UseVisualStyleBackColor = true;
             this.m_btnPlayingOptions.Click += new System.EventHandler(this.m_btnPlayingOptions_Click);
-            // 
-            // mDisplayTimer
-            // 
-            this.mDisplayTimer.Tick += new System.EventHandler(this.mDisplayTimer_Tick);
-            // 
-            // mDisplayBox
-            // 
-            this.mDisplayBox.AllowDrop = true;
-            this.mDisplayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.mDisplayBox, "mDisplayBox");
-            this.mDisplayBox.FormattingEnabled = true;
-            this.mDisplayBox.Items.AddRange(new object[] {
-            resources.GetString("mDisplayBox.Items"),
-            resources.GetString("mDisplayBox.Items1"),
-            resources.GetString("mDisplayBox.Items2"),
-            resources.GetString("mDisplayBox.Items3")});
-            this.mDisplayBox.Name = "mDisplayBox";
-            this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
-            this.mDisplayBox.SelectedIndexChanged += new System.EventHandler(this.mDisplayBox_SelectedIndexChanged);
-            // 
-            // mFastPlayRateCombobox
-            // 
-            resources.ApplyResources(this.mFastPlayRateCombobox, "mFastPlayRateCombobox");
-            this.mFastPlayRateCombobox.AllowDrop = true;
-            this.mFastPlayRateCombobox.FormattingEnabled = true;
-            this.mFastPlayRateCombobox.Items.AddRange(new object[] {
-            resources.GetString("mFastPlayRateCombobox.Items"),
-            resources.GetString("mFastPlayRateCombobox.Items1"),
-            resources.GetString("mFastPlayRateCombobox.Items2"),
-            resources.GetString("mFastPlayRateCombobox.Items3"),
-            resources.GetString("mFastPlayRateCombobox.Items4"),
-            resources.GetString("mFastPlayRateCombobox.Items5"),
-            resources.GetString("mFastPlayRateCombobox.Items6"),
-            resources.GetString("mFastPlayRateCombobox.Items7")});
-            this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
-            this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.mFastPlayRateComboBox_SelectionChangeCommitted);
-            // 
-            // m_RecordingOptionsContextMenuStrip
-            // 
-            this.m_RecordingOptionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.m_MonitoringtoolStripMenuItem,
-            this.m_RecordingtoolStripMenuItem,
-            this.mPreviewBeforeRecToolStripMenuItem,
-            this.m_DeletePhrasestoolStripMenuItem});
-            this.m_RecordingOptionsContextMenuStrip.Name = "m_RecordingOptionsContextMenuStrip";
-            resources.ApplyResources(this.m_RecordingOptionsContextMenuStrip, "m_RecordingOptionsContextMenuStrip");
-            this.m_RecordingOptionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.m_RecordingOptionsContextMenuStrip_Opening);
-            // 
-            // m_MonitoringtoolStripMenuItem
-            // 
-            this.m_MonitoringtoolStripMenuItem.Name = "m_MonitoringtoolStripMenuItem";
-            resources.ApplyResources(this.m_MonitoringtoolStripMenuItem, "m_MonitoringtoolStripMenuItem");
-            this.m_MonitoringtoolStripMenuItem.Click += new System.EventHandler(this.RecordingOptions_Monitoring_Click);
-            // 
-            // m_RecordingtoolStripMenuItem
-            // 
-            this.m_RecordingtoolStripMenuItem.Name = "m_RecordingtoolStripMenuItem";
-            resources.ApplyResources(this.m_RecordingtoolStripMenuItem, "m_RecordingtoolStripMenuItem");
-            this.m_RecordingtoolStripMenuItem.Click += new System.EventHandler(this.m_RecordingtoolStripMenuItem_Click);
-            // 
-            // mPreviewBeforeRecToolStripMenuItem
-            // 
-            this.mPreviewBeforeRecToolStripMenuItem.Name = "mPreviewBeforeRecToolStripMenuItem";
-            resources.ApplyResources(this.mPreviewBeforeRecToolStripMenuItem, "mPreviewBeforeRecToolStripMenuItem");
-            this.mPreviewBeforeRecToolStripMenuItem.Click += new System.EventHandler(this.mPreviewBeforeRecToolStripMenuItem_Click);
-            // 
-            // m_DeletePhrasestoolStripMenuItem
-            // 
-            this.m_DeletePhrasestoolStripMenuItem.Name = "m_DeletePhrasestoolStripMenuItem";
-            resources.ApplyResources(this.m_DeletePhrasestoolStripMenuItem, "m_DeletePhrasestoolStripMenuItem");
-            this.m_DeletePhrasestoolStripMenuItem.Click += new System.EventHandler(this.RecordingOptions_RecordWithDeleteFollowing_Click);
-            // 
-            // m_PlayingOptionsContextMenuStrip
-            // 
-            this.m_PlayingOptionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.m_PlaySectiontoolStripMenuItem,
-            this.m_PlayAlltoolStripMenuItem,
-            this.m_PreviewFromtoolStripMenuItem,
-            this.m_PreviewUptotoolStripMenuItem});
-            this.m_PlayingOptionsContextMenuStrip.Name = "m_PlayingOptionsContextMenuStrip";
-            resources.ApplyResources(this.m_PlayingOptionsContextMenuStrip, "m_PlayingOptionsContextMenuStrip");
-            this.m_PlayingOptionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.m_PlayingOptionsContextMenuStrip_Opening);
-            // 
-            // m_PlaySectiontoolStripMenuItem
-            // 
-            this.m_PlaySectiontoolStripMenuItem.Name = "m_PlaySectiontoolStripMenuItem";
-            resources.ApplyResources(this.m_PlaySectiontoolStripMenuItem, "m_PlaySectiontoolStripMenuItem");
-            this.m_PlaySectiontoolStripMenuItem.Click += new System.EventHandler(this.m_PlaySectiontoolStripMenuItem_Click);
-            // 
-            // m_PlayAlltoolStripMenuItem
-            // 
-            this.m_PlayAlltoolStripMenuItem.Name = "m_PlayAlltoolStripMenuItem";
-            resources.ApplyResources(this.m_PlayAlltoolStripMenuItem, "m_PlayAlltoolStripMenuItem");
-            this.m_PlayAlltoolStripMenuItem.Click += new System.EventHandler(this.m_PlayAlltoolStripMenuItem_Click);
-            // 
-            // m_PreviewFromtoolStripMenuItem
-            // 
-            this.m_PreviewFromtoolStripMenuItem.Name = "m_PreviewFromtoolStripMenuItem";
-            resources.ApplyResources(this.m_PreviewFromtoolStripMenuItem, "m_PreviewFromtoolStripMenuItem");
-            this.m_PreviewFromtoolStripMenuItem.Click += new System.EventHandler(this.m_PreviewFromtoolStripMenuItem_Click);
-            // 
-            // m_PreviewUptotoolStripMenuItem
-            // 
-            this.m_PreviewUptotoolStripMenuItem.Name = "m_PreviewUptotoolStripMenuItem";
-            resources.ApplyResources(this.m_PreviewUptotoolStripMenuItem, "m_PreviewUptotoolStripMenuItem");
-            this.m_PreviewUptotoolStripMenuItem.Click += new System.EventHandler(this.m_PreviewUptotoolStripMenuItem_Click);
             // 
             // mVUMeterPanel
             // 
