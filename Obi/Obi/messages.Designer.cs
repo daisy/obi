@@ -6535,6 +6535,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        internal static string VUMeter_Left {
+            get {
+                return ResourceManager.GetString("VUMeter_Left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        internal static string VUMeter_Reset {
+            get {
+                return ResourceManager.GetString("VUMeter_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        internal static string VUMeter_Right {
+            get {
+                return ResourceManager.GetString("VUMeter_Right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Warning!.
         /// </summary>
         internal static string Warning {

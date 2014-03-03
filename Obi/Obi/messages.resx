@@ -2583,4 +2583,13 @@ Error text: {1}</value>
   <data name="Audio_EnforceSingleCursor" xml:space="preserve">
     <value>Enforce single audio cursor</value>
   </data>
+  <data name="VUMeter_Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="VUMeter_Right" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="VUMeter_Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
 </root>
