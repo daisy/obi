@@ -36,6 +36,7 @@ namespace Obi.UserControls
             this.mRightBox = new System.Windows.Forms.TextBox();
             this.mResetButton = new System.Windows.Forms.Button();
             this.tmUpdateText = new System.Windows.Forms.Timer(this.components);
+            this.mVUMeterPaneltoolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // lblLeft
@@ -66,6 +67,7 @@ namespace Obi.UserControls
             // 
             resources.ApplyResources(this.mResetButton, "mResetButton");
             this.mResetButton.BackColor = System.Drawing.SystemColors.Control;
+            this.mResetButton.MaximumSize = new System.Drawing.Size(32, 28);
             this.mResetButton.Name = "mResetButton";
             this.mResetButton.UseVisualStyleBackColor = false;
             this.mResetButton.Click += new System.EventHandler(this.mResetButton_Click);
@@ -100,6 +102,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.TextBox mRightBox;
         private System.Windows.Forms.Button mResetButton;
         private System.Windows.Forms.Timer tmUpdateText;
+        private System.Windows.Forms.ToolTip mVUMeterPaneltoolTip;
 
     }
 }

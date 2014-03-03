@@ -38,6 +38,10 @@ namespace Obi.UserControls
             m_strRightLowLevelIndicator = "";
             mShowMaxMinValues = false;
             m_BeepEnabled = false;
+            mVUMeterPaneltoolTip.SetToolTip(mResetButton, Localizer.Message("VUMeter_Reset"));
+            mVUMeterPaneltoolTip.SetToolTip(mRightBox, Localizer.Message("VUMeter_Right"));
+            mVUMeterPaneltoolTip.SetToolTip(mLeftBox,Localizer.Message("VUMeter_Left"));
+           
         }
 
         public AudioLib.VuMeter VuMeter
