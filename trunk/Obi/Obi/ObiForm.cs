@@ -2286,6 +2286,7 @@ namespace Obi
                                                                 !mProjectView.TransportBar.IsRecorderActive;
                 mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
                 PipelineMenuItemsEnabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
+                m_ToolsLangPack.Enabled = !mProjectView.TransportBar.IsRecorderActive && !mProjectView.TransportBar.IsPlaying;
             }
 
             // Open the preferences dialog
