@@ -3661,6 +3661,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
         {
             m_PlayAlltoolStripMenuItem.Enabled = mView.CanPlay || mView.CanResume;
             m_PlaySectiontoolStripMenuItem.Enabled = mView.CanPlaySelection || mView.CanResume;
+            m_playHeadingToolStripMenuItem.Enabled = mView.CanPlaySelection || mView.CanResume;
 
             m_PreviewFromtoolStripMenuItem.Enabled = mView.CanPreview || mView.CanPreviewAudioSelection;
             m_PreviewUptotoolStripMenuItem.Enabled = mView.CanPreview || mView.CanPreviewAudioSelection;
@@ -3671,6 +3672,37 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
         {
             mPreviewBeforeRec = true;
             StartRecordingDirectly();
+        }
+
+        private void m_playHeadingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PhraseNode pharse=null;
+            SectionNode nodeSelect = null;
+            EmptyNode emptyNode = null;
+            if (mView != null && mView.Selection != null)
+            {
+
+
+                if (mView.Selection.Node is PhraseNode)
+                {
+                    pharse = (PhraseNode)mView.Selection.Node;
+                    nodeSelect = pharse.ParentAs<SectionNode>();
+                }
+                else if (mView.Selection.Node is SectionNode)
+                {
+                    nodeSelect = (SectionNode)mView.Selection.Node;
+                }
+                else if (mView.Selection.Node is EmptyNode)
+                {
+                    emptyNode = (EmptyNode)mView.Selection.Node;
+                    nodeSelect = emptyNode.ParentAs<SectionNode>();
+                }
+                if (nodeSelect != null)
+                {                    
+                    PlayHeadingPhrase(nodeSelect);
+                }
+            }
+           
         }
 
     }
