@@ -899,7 +899,7 @@ namespace Obi.ProjectView
                 mPlayButton.Enabled = CanPlay || CanResumePlayback;
                 mFastPlayRateCombobox.Enabled = !IsRecorderActive;
                 mRecordButton.Enabled = CanRecord || CanResumeRecording;
-                if (IsPlaying)
+                if (IsPlaying || IsRecorderActive)
                 {
                     m_btnPlayingOptions.Enabled = false;
                 }
