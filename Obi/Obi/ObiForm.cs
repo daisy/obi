@@ -1902,7 +1902,7 @@ namespace Obi
                 mCheckForPhrasesWithImproperAudioMenuItem.Enabled = mProjectView.CanReplacePhrasesWithimproperAudioWithEmptyNodes;
                 splitAndMergeWithNextToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
                 splitAndMergeWithPreviousToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
-                mPhrases_RenumberPagesMenuItem.Enabled = mProjectView.Presentation != null;
+                mPhrases_RenumberPagesMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive;
             }
 
             private void UpdateAudioSelectionBlockMenuItems()
