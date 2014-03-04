@@ -907,7 +907,7 @@ namespace Obi.ProjectView
                 {
                     m_btnPlayingOptions.Enabled = true;
                 }
-                if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null && mView.Selection != null
+                if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null && mView.Selection != null && CurrentState!=State.Monitoring
     && mView.ObiForm.Settings.AllowOverwrite && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
                 {
                     mPreviewBeforeRecToolStripMenuItem.Enabled = true;
@@ -3507,15 +3507,24 @@ SelectionChangedPlaybackEnabled = false;
 
         private void m_RecordingOptionsContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (mView.ObiForm.Settings.AllowOverwrite)
+            if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null && mView.Selection != null && CurrentState != State.Monitoring
+    && mView.ObiForm.Settings.AllowOverwrite && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
+           
             {
-                m_DeletePhrasestoolStripMenuItem.Enabled = !IsListening;
                 mPreviewBeforeRecToolStripMenuItem.Enabled = true;
             }
             else
             {
-                m_DeletePhrasestoolStripMenuItem.Enabled = false;
                 mPreviewBeforeRecToolStripMenuItem.Enabled = false;
+            }
+
+            if (mView.ObiForm.Settings.AllowOverwrite)
+            {
+                m_DeletePhrasestoolStripMenuItem.Enabled = !IsListening;
+            }
+            else
+            {
+                m_DeletePhrasestoolStripMenuItem.Enabled = false;
             }
         }
 
