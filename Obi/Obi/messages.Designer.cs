@@ -3027,6 +3027,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expand Play Options Button.
+        /// </summary>
+        internal static string KeysS_TransportBarExpandPlayOptions {
+            get {
+                return ResourceManager.GetString("KeysS_TransportBarExpandPlayOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand Record Options Button.
+        /// </summary>
+        internal static string KeysS_TransportBarExpandRecordOptions {
+            get {
+                return ResourceManager.GetString("KeysS_TransportBarExpandRecordOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} phrase.
         /// </summary>
         internal static string kind_phrase {

@@ -2592,4 +2592,10 @@ Error text: {1}</value>
   <data name="VUMeter_Left" xml:space="preserve">
     <value>Left</value>
   </data>
+  <data name="KeysS_TransportBarExpandPlayOptions" xml:space="preserve">
+    <value>Expand Play Options Button</value>
+  </data>
+  <data name="KeysS_TransportBarExpandRecordOptions" xml:space="preserve">
+    <value>Expand Record Options Button</value>
+  </data>
 </root>
