@@ -909,7 +909,7 @@ namespace Obi.ProjectView
                 {
                     m_btnPlayingOptions.Enabled = true;
                 }
-                if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null && mView.Selection != null && CurrentState != null 
+                if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null && mView.Selection != null 
                     && ((AudioSelection)mView.Selection).AudioRange != null  && CurrentState!=State.Monitoring && mView.ObiForm.Settings.AllowOverwrite
                     && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection 
                     && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
@@ -3511,7 +3511,7 @@ SelectionChangedPlaybackEnabled = false;
 
         private void m_RecordingOptionsContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null && mView.Selection != null && CurrentState != null
+            if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null && mView.Selection != null
      && ((AudioSelection)mView.Selection).AudioRange != null && CurrentState != State.Monitoring && mView.ObiForm.Settings.AllowOverwrite
      && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection
      && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
