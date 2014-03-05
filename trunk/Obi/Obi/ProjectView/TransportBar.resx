@@ -1066,8 +1066,8 @@
   <data name="m_btnPlayingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDgAA
-        Cw4BQL7hQQAAAjNJREFUOE/Vkl9IU3EUx0evPRRULz0EEWRBPfRSxBCJXuqhhJpiRX/wwVZhRUQQ6rCQ
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALDAAA
+        CwwBP0AiyAAAAjNJREFUOE/Vkl9IU3EUx0evPRRULz0EEWRBPfRSxBCJXuqhhJpiRX/wwVZhRUQQ6rCQ
         /szQSDBjkdhyCFIR9Ni2u93NOVs5wghiY5KJRpm7u9v9/W4+fPudG1Lb3R+FXnz4cLiH8/v8zrnnZ5Fl
         Gf+bFSwNBoPLptCRJ6UCX3gEvuhbwRh8o9E/REbhJUYiefiIUMgkzpN6Q2GwV0NgPbegubrB+nvAnj4E
         G3SBDT0BGx4Af+4GfzEI9tIj4jPwN6/hlUOlpX5BMv4e2vY1yNlqoJ21gV0/B+5sgd53DwseFxaEXH98
@@ -1208,6 +1208,15 @@
   <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>569, 17</value>
   </metadata>
+  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 92</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_RecordingOptionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
@@ -1232,35 +1241,26 @@
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
     <value>Record over subsequent phrases</value>
   </data>
-  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 92</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
-    <value>m_RecordingOptionsContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <metadata name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="m_PlaySectiontoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="m_PlaySectiontoolStripMenuItem.Text" xml:space="preserve">
-    <value>Play Section</value>
-  </data>
   <data name="m_PlayAlltoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
   </data>
   <data name="m_PlayAlltoolStripMenuItem.Text" xml:space="preserve">
     <value>Play All</value>
   </data>
-  <data name="m_playHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_PlaySectiontoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
   </data>
+  <data name="m_PlaySectiontoolStripMenuItem.Text" xml:space="preserve">
+    <value>Play Section</value>
+  </data>
+  <data name="m_playHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
   <data name="m_playHeadingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Play Heading</value>
+    <value>Play Section Heading</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
@@ -1275,7 +1275,7 @@
     <value>Preview Upto</value>
   </data>
   <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 136</value>
+    <value>187, 114</value>
   </data>
   <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Name" xml:space="preserve">
     <value>m_PlayingOptionsContextMenuStrip</value>
@@ -1302,7 +1302,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.24472, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.18517, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1367,6 +1367,12 @@
   <data name="&gt;&gt;m_PlayAlltoolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;m_playHeadingToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_playHeadingToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_playHeadingToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;m_PreviewFromtoolStripMenuItem.Name" xml:space="preserve">
     <value>m_PreviewFromtoolStripMenuItem</value>
   </data>
@@ -1377,12 +1383,6 @@
     <value>m_PreviewUptotoolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_PreviewUptotoolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_playHeadingToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_playHeadingToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_playHeadingToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
