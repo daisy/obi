@@ -2113,6 +2113,17 @@ namespace Obi
                     mStartRecordingToolStripMenuItem.Visible = false;
                     mStartRecordingDirectlyToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
                 }
+                if (mProjectView != null && mProjectView.ObiForm != null && mProjectView.ObiForm.Settings != null && mProjectView.Selection != null && !mProjectView.TransportBar.IsListening
+&& mSettings.AllowOverwrite && ((mProjectView.TransportBar.IsPaused && !(mProjectView.Selection is AudioSelection)) || (mProjectView.Selection != null && mProjectView.Selection is AudioSelection && ((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)))
+                {
+                    m_PreviewBeforeRecordingToolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    m_PreviewBeforeRecordingToolStripMenuItem.Enabled = false;
+                }
+                m_PlayHeadingToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume;
+                m_PlaySectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume;
 
             }
 
@@ -4856,6 +4867,15 @@ namespace Obi
                     
                     mAllowOverwriteToolStripMenuItem.Checked = false;
                 }
+                if (mProjectView != null && mProjectView.ObiForm != null && mProjectView.ObiForm.Settings != null && mProjectView.Selection != null && !mProjectView.TransportBar.IsListening
+&& mSettings.AllowOverwrite && (( mProjectView.TransportBar.IsPaused && !(mProjectView.Selection is AudioSelection)) || (mProjectView.Selection != null && mProjectView.Selection is AudioSelection && ((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)))
+                {
+                    m_PreviewBeforeRecordingToolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    m_PreviewBeforeRecordingToolStripMenuItem.Enabled = false;
+                }
 
             }
 
@@ -4962,6 +4982,67 @@ namespace Obi
                 {
                     m_FlagLangUpdate = false;
                 }
+            }
+
+            private void m_PlaySectionToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                PhraseNode pharse = null;
+                ObiNode nodeSelect = null;
+                if (mProjectView != null && mProjectView.Selection != null)
+                {
+
+
+                    if (mProjectView.Selection.Node is PhraseNode)
+                    {
+                        pharse = (PhraseNode)mProjectView.Selection.Node;
+                        nodeSelect = pharse.ParentAs<SectionNode>();
+                    }
+                    else if (mProjectView.Selection.Node is SectionNode)
+                    {
+                        nodeSelect = mProjectView.Selection.Node;
+                    }
+                    if (nodeSelect != null)
+                    {
+                       mProjectView.TransportBar.IsPlaySection = true;        
+                       mProjectView.TransportBar.PlayOrResume(nodeSelect);
+                    }
+                }
+            }
+
+            private void m_PlayHeadingToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                PhraseNode pharse = null;
+                SectionNode nodeSelect = null;
+                EmptyNode emptyNode = null;
+                if (mProjectView != null && mProjectView.Selection != null)
+                {
+
+
+                    if (mProjectView.Selection.Node is PhraseNode)
+                    {
+                        pharse = (PhraseNode)mProjectView.Selection.Node;
+                        nodeSelect = pharse.ParentAs<SectionNode>();
+                    }
+                    else if (mProjectView.Selection.Node is SectionNode)
+                    {
+                        nodeSelect = (SectionNode)mProjectView.Selection.Node;
+                    }
+                    else if (mProjectView.Selection.Node is EmptyNode)
+                    {
+                        emptyNode = (EmptyNode)mProjectView.Selection.Node;
+                        nodeSelect = emptyNode.ParentAs<SectionNode>();
+                    }
+                    if (nodeSelect != null)
+                    {
+                      mProjectView.TransportBar.PlayHeadingPhrase(nodeSelect);
+                    }
+                }
+            }
+
+            private void m_PreviewBeforeRecordingToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.TransportBar.IsPreviewBeforeRec = true;
+                mProjectView.TransportBar.StartRecordingDirectly();
             }
 
 

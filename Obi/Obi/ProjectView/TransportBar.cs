@@ -39,8 +39,10 @@ namespace Obi.ProjectView
         private Playlist mMasterPlaylist;            // master playlist (all phrases in the project)
         private Playlist mQAMasterPlaylist;          // QA master playlist (all used phrases in the project)
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null) TO BE REMOVED
-        private bool IsPlaySection = false;
-        private bool mPreviewBeforeRec = false;
+ 
+        //public variables
+        public bool IsPlaySection = false;
+        public bool IsPreviewBeforeRec = false;
 
         Bitmap m_monitorButtonImage;
         Bitmap m_recordButtonImage;
@@ -2869,7 +2871,7 @@ namespace Obi.ProjectView
                 if (mView.Selection == null || !(mView.Selection.Node is EmptyNode) || mView.Selection.Node != mCurrentPlaylist.CurrentPhrase) return;
             }
 
-            if ((mView.ObiForm.Settings.Recording_PreviewBeforeStarting || mPreviewBeforeRec) && mView.ObiForm.Settings.AllowOverwrite
+            if ((mView.ObiForm.Settings.Recording_PreviewBeforeStarting || IsPreviewBeforeRec) && mView.ObiForm.Settings.AllowOverwrite
                && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
             {
                 
@@ -2898,7 +2900,7 @@ namespace Obi.ProjectView
                     }
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerAsync();
-                mPreviewBeforeRec = false;
+                IsPreviewBeforeRec = false;
             }
             else
             {
@@ -3140,7 +3142,7 @@ SelectionChangedPlaybackEnabled = false;
         public bool IsActive { get { return Enabled && ( IsPlayerActive || IsRecorderActive ); } }
         public bool IsPlaying { get { return mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing; } }
         public bool IsPlayerActive { get { return IsPaused || IsPlaying; } }
-        private bool IsPaused { get { return mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused; } }
+        public bool IsPaused { get { return mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused; } }
         public bool IsRecorderActive { get { return IsListening || IsRecording; } }
         private bool IsMetadataSelected { get { return mView.Selection != null && mView.Selection.Control is MetadataView  ; } }
 
@@ -3294,7 +3296,7 @@ SelectionChangedPlaybackEnabled = false;
 
         }
 
-        private void PlayHeadingPhrase( SectionNode node     )
+        public void PlayHeadingPhrase( SectionNode node     )
         {
             if ( node != null  && node.PhraseChildCount > 0  )
             {
@@ -3670,7 +3672,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
 
         private void mPreviewBeforeRecToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mPreviewBeforeRec = true;
+            IsPreviewBeforeRec = true;
             StartRecordingDirectly();
         }
 

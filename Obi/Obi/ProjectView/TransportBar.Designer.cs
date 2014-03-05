@@ -58,10 +58,10 @@ namespace Obi.ProjectView
             this.m_PlayingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.m_PlaySectiontoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PlayAlltoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_playHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PreviewFromtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PreviewUptotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
-            this.m_playHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_RecordingOptionsContextMenuStrip.SuspendLayout();
             this.m_PlayingOptionsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -267,8 +267,8 @@ namespace Obi.ProjectView
             this.m_RecordingOptionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_MonitoringtoolStripMenuItem,
             this.m_RecordingtoolStripMenuItem,
-            this.mPreviewBeforeRecToolStripMenuItem,
-            this.m_DeletePhrasestoolStripMenuItem});
+            this.m_DeletePhrasestoolStripMenuItem,
+            this.mPreviewBeforeRecToolStripMenuItem});
             this.m_RecordingOptionsContextMenuStrip.Name = "m_RecordingOptionsContextMenuStrip";
             resources.ApplyResources(this.m_RecordingOptionsContextMenuStrip, "m_RecordingOptionsContextMenuStrip");
             this.m_RecordingOptionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.m_RecordingOptionsContextMenuStrip_Opening);
@@ -300,8 +300,8 @@ namespace Obi.ProjectView
             // m_PlayingOptionsContextMenuStrip
             // 
             this.m_PlayingOptionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.m_PlaySectiontoolStripMenuItem,
             this.m_PlayAlltoolStripMenuItem,
+            this.m_PlaySectiontoolStripMenuItem,
             this.m_playHeadingToolStripMenuItem,
             this.m_PreviewFromtoolStripMenuItem,
             this.m_PreviewUptotoolStripMenuItem});
@@ -320,6 +320,12 @@ namespace Obi.ProjectView
             this.m_PlayAlltoolStripMenuItem.Name = "m_PlayAlltoolStripMenuItem";
             resources.ApplyResources(this.m_PlayAlltoolStripMenuItem, "m_PlayAlltoolStripMenuItem");
             this.m_PlayAlltoolStripMenuItem.Click += new System.EventHandler(this.m_PlayAlltoolStripMenuItem_Click);
+            // 
+            // m_playHeadingToolStripMenuItem
+            // 
+            this.m_playHeadingToolStripMenuItem.Name = "m_playHeadingToolStripMenuItem";
+            resources.ApplyResources(this.m_playHeadingToolStripMenuItem, "m_playHeadingToolStripMenuItem");
+            this.m_playHeadingToolStripMenuItem.Click += new System.EventHandler(this.m_playHeadingToolStripMenuItem_Click);
             // 
             // m_PreviewFromtoolStripMenuItem
             // 
@@ -341,12 +347,6 @@ namespace Obi.ProjectView
             this.mVUMeterPanel.Name = "mVUMeterPanel";
             this.mVUMeterPanel.ShowMaxMinValues = false;
             this.mVUMeterPanel.VuMeter = null;
-            // 
-            // m_playHeadingToolStripMenuItem
-            // 
-            this.m_playHeadingToolStripMenuItem.Name = "m_playHeadingToolStripMenuItem";
-            resources.ApplyResources(this.m_playHeadingToolStripMenuItem, "m_playHeadingToolStripMenuItem");
-            this.m_playHeadingToolStripMenuItem.Click += new System.EventHandler(this.m_playHeadingToolStripMenuItem_Click);
             // 
             // TransportBar
             // 

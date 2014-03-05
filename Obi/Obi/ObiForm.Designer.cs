@@ -162,6 +162,8 @@ namespace Obi
             this.mPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlaySelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_PlaySectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_PlayHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mResumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -179,6 +181,7 @@ namespace Obi
             this.mStartRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStartRecordingDirectlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_DeletePhrasesWhileRecordingtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_PreviewBeforeRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAllowOverwriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mGenerateSpeechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectedPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1155,7 +1158,9 @@ namespace Obi
             // 
             this.mPlayToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mPlayAllToolStripMenuItem,
-            this.mPlaySelectionToolStripMenuItem});
+            this.mPlaySelectionToolStripMenuItem,
+            this.m_PlaySectionToolStripMenuItem,
+            this.m_PlayHeadingToolStripMenuItem});
             this.mPlayToolStripMenuItem.Name = "mPlayToolStripMenuItem";
             resources.ApplyResources(this.mPlayToolStripMenuItem, "mPlayToolStripMenuItem");
             // 
@@ -1170,6 +1175,18 @@ namespace Obi
             resources.ApplyResources(this.mPlaySelectionToolStripMenuItem, "mPlaySelectionToolStripMenuItem");
             this.mPlaySelectionToolStripMenuItem.Name = "mPlaySelectionToolStripMenuItem";
             this.mPlaySelectionToolStripMenuItem.Click += new System.EventHandler(this.mPlaySelectionToolStripMenuItem_Click);
+            // 
+            // m_PlaySectionToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_PlaySectionToolStripMenuItem, "m_PlaySectionToolStripMenuItem");
+            this.m_PlaySectionToolStripMenuItem.Name = "m_PlaySectionToolStripMenuItem";
+            this.m_PlaySectionToolStripMenuItem.Click += new System.EventHandler(this.m_PlaySectionToolStripMenuItem_Click);
+            // 
+            // m_PlayHeadingToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_PlayHeadingToolStripMenuItem, "m_PlayHeadingToolStripMenuItem");
+            this.m_PlayHeadingToolStripMenuItem.Name = "m_PlayHeadingToolStripMenuItem";
+            this.m_PlayHeadingToolStripMenuItem.Click += new System.EventHandler(this.m_PlayHeadingToolStripMenuItem_Click);
             // 
             // mPauseToolStripMenuItem
             // 
@@ -1257,6 +1274,7 @@ namespace Obi
             this.mStartRecordingToolStripMenuItem,
             this.mStartRecordingDirectlyToolStripMenuItem,
             this.m_DeletePhrasesWhileRecordingtoolStripMenuItem,
+            this.m_PreviewBeforeRecordingToolStripMenuItem,
             this.mAllowOverwriteToolStripMenuItem});
             this.mRecordToolStripMenuItem.Name = "mRecordToolStripMenuItem";
             resources.ApplyResources(this.mRecordToolStripMenuItem, "mRecordToolStripMenuItem");
@@ -1285,6 +1303,12 @@ namespace Obi
             this.m_DeletePhrasesWhileRecordingtoolStripMenuItem.Name = "m_DeletePhrasesWhileRecordingtoolStripMenuItem";
             resources.ApplyResources(this.m_DeletePhrasesWhileRecordingtoolStripMenuItem, "m_DeletePhrasesWhileRecordingtoolStripMenuItem");
             this.m_DeletePhrasesWhileRecordingtoolStripMenuItem.Click += new System.EventHandler(this.m_DeletePhrasesWhileRecordingtoolStripMenuItem_Click);
+            // 
+            // m_PreviewBeforeRecordingToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_PreviewBeforeRecordingToolStripMenuItem, "m_PreviewBeforeRecordingToolStripMenuItem");
+            this.m_PreviewBeforeRecordingToolStripMenuItem.Name = "m_PreviewBeforeRecordingToolStripMenuItem";
+            this.m_PreviewBeforeRecordingToolStripMenuItem.Click += new System.EventHandler(this.m_PreviewBeforeRecordingToolStripMenuItem_Click);
             // 
             // mAllowOverwriteToolStripMenuItem
             // 
@@ -1746,6 +1770,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_RenumberPagesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_ToolsLangPack;
+        private System.Windows.Forms.ToolStripMenuItem m_PreviewBeforeRecordingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_PlaySectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_PlayHeadingToolStripMenuItem;
     }
 }
 
