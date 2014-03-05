@@ -3611,8 +3611,6 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
 
         private void m_PlaySectiontoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //PhraseNode phrNode = mCurrentPlaylist.CurrentPhrase;
-            //ObiNode nodeSel = phrNode.ParentAs<SectionNode>();
             PhraseNode pharse=null;
             ObiNode nodeSelect = null;
             if (mView != null && mView.Selection != null)
@@ -3705,6 +3703,36 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                 }
             }
            
+        }
+        public bool ExpandPlayOptions()
+        {
+            if (m_btnPlayingOptions.Enabled)
+            {
+                Point pt = new Point(0, m_btnPlayingOptions.Height);
+                pt = m_btnPlayingOptions.PointToScreen(pt);
+                m_PlayingOptionsContextMenuStrip.Show(pt);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+        public bool ExpandRecordOptions()
+        {
+            if (m_btnRecordingOptions.Enabled)
+            {
+                Point pt = new Point(0, m_btnRecordingOptions.Height);
+                pt = m_btnRecordingOptions.PointToScreen(pt);
+                m_RecordingOptionsContextMenuStrip.Show(pt);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
     }

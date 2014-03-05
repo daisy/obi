@@ -45,6 +45,9 @@ namespace Obi
         public KeyboardShortcut ContentView_TransportBarPreviewFromSelection = new KeyboardShortcut(Keys.Shift | Keys.V, "KeyS_TransportBarPreviewFromSelection");
         public KeyboardShortcut ContentView_TransportBarPreviewUptoAudioCursor = new KeyboardShortcut(Keys.X, "KeyS_TransportBarPreviewUptoAudioCursor");
         public KeyboardShortcut ContentView_TransportBarPreviewUptoSelection = new KeyboardShortcut(Keys.Shift | Keys.X, "KeyS_TransportBarPreviewUptoSelection");
+        public KeyboardShortcut ContentView_TransportBarExpandPlayOptions = new KeyboardShortcut(Keys.Control | Keys.F7, "KeysS_TransportBarExpandPlayOptions");
+        public KeyboardShortcut ContentView_TransportBarExpandRecordOptions = new KeyboardShortcut(Keys.Control | Keys.F8, "KeysS_TransportBarExpandRecordOptions");
+
         public KeyboardShortcut ContentView_ZoomWaveformPanel = new KeyboardShortcut(Keys.Z, "KeyS_ZoomWaveformPanel");
 
         //Zoom Paenl Shortcuts        
@@ -292,6 +295,10 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarPreviewFromSelection.Description), ContentView_TransportBarPreviewFromSelection);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarPreviewUptoAudioCursor.Description), ContentView_TransportBarPreviewUptoAudioCursor);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarPreviewUptoSelection.Description), ContentView_TransportBarPreviewUptoSelection);
+
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarExpandPlayOptions.Description), ContentView_TransportBarExpandPlayOptions);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarExpandRecordOptions.Description), ContentView_TransportBarExpandRecordOptions);
+
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ZoomWaveformPanel.Description), ContentView_ZoomWaveformPanel);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarRecordSingleKey.Description), ContentView_TransportBarRecordSingleKey);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarStopSingleKey.Description), ContentView_TransportBarStopSingleKey);
