@@ -2598,4 +2598,10 @@ Error text: {1}</value>
   <data name="KeysS_TransportBarExpandRecordOptions" xml:space="preserve">
     <value>Expand Record Options Button</value>
   </data>
+  <data name="Transport_PlayingOptions" xml:space="preserve">
+    <value>Playing Options</value>
+  </data>
+  <data name="Transport_RecordingOptions" xml:space="preserve">
+    <value>Recording Options</value>
+  </data>
 </root>

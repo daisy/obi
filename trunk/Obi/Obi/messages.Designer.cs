@@ -6238,6 +6238,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Playing Options.
+        /// </summary>
+        internal static string Transport_PlayingOptions {
+            get {
+                return ResourceManager.GetString("Transport_PlayingOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preceding page.
         /// </summary>
         internal static string Transport_PreviousPage {
@@ -6288,6 +6297,15 @@ namespace Obi {
         internal static string Transport_PreviousSectionAcc {
             get {
                 return ResourceManager.GetString("Transport_PreviousSectionAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recording Options.
+        /// </summary>
+        internal static string Transport_RecordingOptions {
+            get {
+                return ResourceManager.GetString("Transport_RecordingOptions", resourceCulture);
             }
         }
         

@@ -3596,9 +3596,13 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
             {
                 mTransportBarTooltip.SetToolTip(mFastForwardButton, Localizer.Message("Transport_FastPlayForward") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mFastForwardToolStripMenuItem"].Value.ToString()) + ")");
                 mFastForwardButton.AccessibleName = Localizer.Message("Transport_FastPlayForwardAcc") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mFastForwardToolStripMenuItem"].Value.ToString());  
-            }           
-            
-                   
+            }
+
+            mTransportBarTooltip.SetToolTip(m_btnPlayingOptions, Localizer.Message("Transport_PlayingOptions") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandPlayOptions.Value.ToString()) + ")");
+            m_btnPlayingOptions.AccessibleName = Localizer.Message("Transport_PlayingOptions") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandPlayOptions.Value.ToString());
+
+            mTransportBarTooltip.SetToolTip(m_btnRecordingOptions, Localizer.Message("Transport_RecordingOptions") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value.ToString()) + ")");
+            m_btnRecordingOptions.AccessibleName = Localizer.Message("Transport_RecordingOptions") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value.ToString());        
         }
 
         private void m_btnPlayingOptions_Click(object sender, EventArgs e)
