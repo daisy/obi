@@ -53,11 +53,11 @@ namespace Obi.ProjectView
             this.m_RecordingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.m_MonitoringtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_RecordingtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mPreviewBeforeRecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_DeletePhrasestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPreviewBeforeRecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PlayingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.m_PlaySectiontoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PlayAlltoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_PlaySectiontoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_playHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PreviewFromtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PreviewUptotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -285,17 +285,17 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.m_RecordingtoolStripMenuItem, "m_RecordingtoolStripMenuItem");
             this.m_RecordingtoolStripMenuItem.Click += new System.EventHandler(this.m_RecordingtoolStripMenuItem_Click);
             // 
-            // mPreviewBeforeRecToolStripMenuItem
-            // 
-            this.mPreviewBeforeRecToolStripMenuItem.Name = "mPreviewBeforeRecToolStripMenuItem";
-            resources.ApplyResources(this.mPreviewBeforeRecToolStripMenuItem, "mPreviewBeforeRecToolStripMenuItem");
-            this.mPreviewBeforeRecToolStripMenuItem.Click += new System.EventHandler(this.mPreviewBeforeRecToolStripMenuItem_Click);
-            // 
             // m_DeletePhrasestoolStripMenuItem
             // 
             this.m_DeletePhrasestoolStripMenuItem.Name = "m_DeletePhrasestoolStripMenuItem";
             resources.ApplyResources(this.m_DeletePhrasestoolStripMenuItem, "m_DeletePhrasestoolStripMenuItem");
             this.m_DeletePhrasestoolStripMenuItem.Click += new System.EventHandler(this.RecordingOptions_RecordWithDeleteFollowing_Click);
+            // 
+            // mPreviewBeforeRecToolStripMenuItem
+            // 
+            this.mPreviewBeforeRecToolStripMenuItem.Name = "mPreviewBeforeRecToolStripMenuItem";
+            resources.ApplyResources(this.mPreviewBeforeRecToolStripMenuItem, "mPreviewBeforeRecToolStripMenuItem");
+            this.mPreviewBeforeRecToolStripMenuItem.Click += new System.EventHandler(this.mPreviewBeforeRecToolStripMenuItem_Click);
             // 
             // m_PlayingOptionsContextMenuStrip
             // 
@@ -309,17 +309,17 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.m_PlayingOptionsContextMenuStrip, "m_PlayingOptionsContextMenuStrip");
             this.m_PlayingOptionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.m_PlayingOptionsContextMenuStrip_Opening);
             // 
-            // m_PlaySectiontoolStripMenuItem
-            // 
-            this.m_PlaySectiontoolStripMenuItem.Name = "m_PlaySectiontoolStripMenuItem";
-            resources.ApplyResources(this.m_PlaySectiontoolStripMenuItem, "m_PlaySectiontoolStripMenuItem");
-            this.m_PlaySectiontoolStripMenuItem.Click += new System.EventHandler(this.m_PlaySectiontoolStripMenuItem_Click);
-            // 
             // m_PlayAlltoolStripMenuItem
             // 
             this.m_PlayAlltoolStripMenuItem.Name = "m_PlayAlltoolStripMenuItem";
             resources.ApplyResources(this.m_PlayAlltoolStripMenuItem, "m_PlayAlltoolStripMenuItem");
             this.m_PlayAlltoolStripMenuItem.Click += new System.EventHandler(this.m_PlayAlltoolStripMenuItem_Click);
+            // 
+            // m_PlaySectiontoolStripMenuItem
+            // 
+            this.m_PlaySectiontoolStripMenuItem.Name = "m_PlaySectiontoolStripMenuItem";
+            resources.ApplyResources(this.m_PlaySectiontoolStripMenuItem, "m_PlaySectiontoolStripMenuItem");
+            this.m_PlaySectiontoolStripMenuItem.Click += new System.EventHandler(this.m_PlaySectiontoolStripMenuItem_Click);
             // 
             // m_playHeadingToolStripMenuItem
             // 

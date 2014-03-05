@@ -1208,15 +1208,6 @@
   <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>569, 17</value>
   </metadata>
-  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 92</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
-    <value>m_RecordingOptionsContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
@@ -1229,29 +1220,38 @@
   <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
     <value>Start Recording</value>
   </data>
-  <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 22</value>
-  </data>
-  <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview Before Recording</value>
-  </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
     <value>Record over subsequent phrases</value>
   </data>
+  <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
+    <value>Preview Before Recording</value>
+  </data>
+  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 92</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_RecordingOptionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="m_PlayAlltoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>186, 22</value>
   </data>
   <data name="m_PlayAlltoolStripMenuItem.Text" xml:space="preserve">
     <value>Play All</value>
   </data>
   <data name="m_PlaySectiontoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>186, 22</value>
   </data>
   <data name="m_PlaySectiontoolStripMenuItem.Text" xml:space="preserve">
     <value>Play Section</value>
@@ -1263,13 +1263,13 @@
     <value>Play Section Heading</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>186, 22</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Text" xml:space="preserve">
     <value>Preview From</value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>186, 22</value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Text" xml:space="preserve">
     <value>Preview Upto</value>
@@ -1302,7 +1302,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.18517, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.33136, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1343,28 +1343,28 @@
   <data name="&gt;&gt;m_RecordingtoolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mPreviewBeforeRecToolStripMenuItem.Name" xml:space="preserve">
-    <value>mPreviewBeforeRecToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mPreviewBeforeRecToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;m_DeletePhrasestoolStripMenuItem.Name" xml:space="preserve">
     <value>m_DeletePhrasestoolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_DeletePhrasestoolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_PlaySectiontoolStripMenuItem.Name" xml:space="preserve">
-    <value>m_PlaySectiontoolStripMenuItem</value>
+  <data name="&gt;&gt;mPreviewBeforeRecToolStripMenuItem.Name" xml:space="preserve">
+    <value>mPreviewBeforeRecToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;m_PlaySectiontoolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPreviewBeforeRecToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_PlayAlltoolStripMenuItem.Name" xml:space="preserve">
     <value>m_PlayAlltoolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_PlayAlltoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_PlaySectiontoolStripMenuItem.Name" xml:space="preserve">
+    <value>m_PlaySectiontoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_PlaySectiontoolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_playHeadingToolStripMenuItem.Name" xml:space="preserve">
@@ -1390,25 +1390,5 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="media-monitor.png" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-
-      iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-      wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAK5SURBVFhH7VU5
-      S2NRFLZRwUpRQdx3RbAQFCsLUVxxQ9x3VMRdC3EDLSwEGwu1tLIQOwv9GRMTBjdwmnFi8u57iRInkUzz
-      zTnXvJDIVHlJMZDAIffec8/9vvOde+6LiYn+ogpEFfjfFLg9PYWlvR2m1FSY4uPxLS5OjnmNfRHN56as
-      DI/V1XDu7uLj/Bx/rq/hvbqC5+wMjq0tPFZVgfdEhIQ5JUUCey8v4To5gXNvD9rGBrT1dTh2duA6PIT3
-      4gLOzU3w3rCSMJPEdGCQqaurUFdWoC4vQywuQszNQSwswH10hPeDA/hijPP4XlPjB5Yg8/NBc3V2FurM
-      DMT0NMTkJJTxcUnAQft8sYZJSEAxNSUBpNE4aG1iAmJsDMrICMTgIJSBAXiOj3FbWmqsFHwgA71ub0MZ
-      GvoEGB2VJgnQvzo8LH0MLPr7Ye/ogJVU0/r6YKfOuCe/EQngJjlZVqWnB6K3V4Kw6XdC7e6GUl8PW2Ul
-      rIWFeM7IwM/0dFipG1xUBktWljECnv192BoaYG9uhtLSAtHYCKW2Fgq1I5N4yc3FS04OrNnZ0n5lZkoS
-      z7Tmpi65SUgwRuDr7Q9xHloVLJQRy8i1Z7OSnJytPS8PSn6+VEApKPg0mvO6VIP22crLZayPcGgEnuh2
-      67KztCwxS85gDKqrIYqK/CTYz/u0pqbAdyM0Ahx1Rwf+Xlry11rPXqULpxUXSxD+57mugs2njqHsdcoP
-      dXUQra14ozbzy0/Zc9Y6AdmSPhWYoK4Mx4aeekCkJTkZb1QOF78DDEQZSgW+kAi8oBwTFnD9EHNiIkRn
-      Jzxra3hta4NGfa+WlEBjo/EbPTrsU7u6YE5KCi+4TuKuogL3lL0gAu/04fHQl4+Nx7z2QD7eE9bM/3XY
-      D3p6LWlpMMXGSuPxE92RiANHAaIKRBWIhAJ/AaE4KsZnOH4bAAAAAElFTkSuQmCC
-
-    </value>
   </data>
 </root>
