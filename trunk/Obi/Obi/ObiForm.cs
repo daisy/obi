@@ -1851,7 +1851,7 @@ namespace Obi
                 mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Enabled =
                     mProjectView.CanMergeWithPhrasesBeforeInSection;
                 mDeleteFollowingPhrasesToolStripMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
-                mPhraseDetectionToolStripMenuItem.Enabled = mSession.HasProject;
+                mPhraseDetectionToolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mApplyPhraseDetectionInProjectToolStripMenuItem.Enabled = mSession.HasProject &&
                                                                           mProjectView.
                                                                               CanApplyPhraseDetectionInWholeProject;
@@ -1886,7 +1886,7 @@ namespace Obi
                     //@AssociateNode
                 m_GoToPageToolStrip.Enabled = mSession.Presentation != null &&
                                               !mProjectView.TransportBar.IsRecorderActive;
-                mSkippableNoteToolStripMenuItem.Enabled = mSession.Presentation != null && !mProjectView.IsZoomWaveformActive;
+                mSkippableNoteToolStripMenuItem.Enabled = mSession.Presentation != null && !mProjectView.IsZoomWaveformActive && !mProjectView.TransportBar.IsRecorderActive;
                 mSkippableBeginNoteToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote; //@AssociateNode
                 mSkippableEndNoteToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote; //@AssociateNode
                 mSkippableGotoToolStripMenuItem.Enabled = mProjectView.CanGotoSkippableNote; //@AssociateNode           
@@ -2291,8 +2291,8 @@ namespace Obi
 
             private void UpdateToolsMenu()
             {
-                mTools_ExportSelectedAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
-                mTools_ExportAsDAISYMenuItem.Enabled = mSession.HasProject;
+                mTools_ExportSelectedAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio && !mProjectView.TransportBar.IsRecorderActive;
+                mTools_ExportAsDAISYMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject &&
                                                                 !mProjectView.TransportBar.IsRecorderActive;
                 mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
