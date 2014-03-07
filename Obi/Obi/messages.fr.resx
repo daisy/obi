@@ -2167,7 +2167,7 @@ Texte de l'erreur: {1}</value>
     <value>Fusion projet {0} of {1}</value>
   </data>
   <data name="MergeProject_SectionProgress" xml:space="preserve">
-    <value>Fusion section</value>
+    <value>Fusion section:{0}</value>
   </data>
   <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
     <value>La couleur de fond pour les sections vides en vue de TOC</value>
@@ -2181,7 +2181,36 @@ Texte de l'erreur: {1}</value>
   <data name="MergeProject_Information" xml:space="preserve">
     <value>S'il vous plaît assurez que ce que les projets à fusionner ont le même format audio et sont créés sur Obi 3.0 Beta 2 ou une version ultérieure.</value>
   </data>
-
+  <data name="UserRegistration_Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="UserRegistration_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="UserRegistration_Org_Name" xml:space="preserve">
+    <value>Organisme</value>
+  </data>
+  <data name="UserRegistration_City" xml:space="preserve">
+    <value>Ville</value>
+  </data>
+  <data name="UserRegistration_Country" xml:space="preserve">
+    <value>Pays</value>
+  </data>
+  <data name="UserRegistration_WrongEmail" xml:space="preserve">
+    <value>Mauvaise adresse e-mail</value>
+  </data>
+  <data name="UserRegistration_NoMatchEmail" xml:space="preserve">
+    <value>Les e-mails saisies ne correspondent pas. S'il vous plaît retaper les e-mails.</value>
+  </data>
+  <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
+    <value>S'il vous plaît nous indiquer sur votre utilisation d'Obi en cochant l'une quelconque des bouton radio</value>
+  </data>
+  <data name="HardResetPermanentSettings_Question" xml:space="preserve">
+    <value>Réinitialiser enregistrement de l'utilisateur. Voulez-vous réinitialiser l'enregistrement de l'utilisateur aussi? Vous devrez vous inscrire à nouveau si vous continuez.</value>
+  </data>
+  <data name="RenumberPages" xml:space="preserve">
+    <value>Renuméroter Pages</value>
+  </data>
   <data name="Transport_PreviousPhrase" xml:space="preserve">
     <value>Aller à la phrase précédente</value>
   </data>
@@ -2203,9 +2232,6 @@ Texte de l'erreur: {1}</value>
   <data name="Transport_StartRecording" xml:space="preserve">
     <value>Démarrer le monitoring ou l'enregistrement</value>
   </data>
-  <data name="Transport_RecordingOptions" xml:space="preserve">
-    <value>options d'enregistrement</value>
-  </data>
   <data name="Transport_FastPlayForward" xml:space="preserve">
     <value>Lecture vers l'avant plus rapide</value>
   </data>
@@ -2221,7 +2247,6 @@ Texte de l'erreur: {1}</value>
   <data name="Transport_AddTodo" xml:space="preserve">
     <value>Ajouter une marque AFAIRE lors de l'enregistrement.</value>
   </data>
-
   <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
     <value>Phrase précédente</value>
   </data>
@@ -2248,5 +2273,68 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="Transport_AddTodoAcc" xml:space="preserve">
     <value>Marquer la phrase</value>
+  </data>
+  <data name="Language_Pack" xml:space="preserve">
+    <value>Vous avez choisi le mauvais fichier</value>
+  </data>
+  <data name="Language_Pack_Select" xml:space="preserve">
+    <value>S'il vous plaît sélectionner le fichier zip Language Pack</value>
+  </data>
+  <data name="Language_Pack_Complete" xml:space="preserve">
+    <value>Mise à jour du module linguistique est réussie. S'il vous plaît redémarrer Obi pour que les modifications prennent effet</value>
+  </data>
+  <data name="Language_Pack_Caption" xml:space="preserve">
+    <value>Mauvais fichier</value>
+  </data>
+  <data name="Language_Pack_Select_Caption" xml:space="preserve">
+    <value>Sélectionnez Fichier ZIP</value>
+  </data>
+  <data name="Language_Pack_Complete_Caption" xml:space="preserve">
+    <value>Mise à jour Successfull</value>
+  </data>
+  <data name="Preferences_Advance_Mode" xml:space="preserve">
+    <value>Cases suivantes seront vérifiés. Voulez-vous procéder?</value>
+  </data>
+  <data name="Preferences_Intermediate_recording_mode" xml:space="preserve">
+    <value>Mode d'enregistrement intermédiaire</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Basic" xml:space="preserve">
+    <value>de base</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Intermediate" xml:space="preserve">
+    <value>Intermédiaire</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Advance" xml:space="preserve">
+    <value>Avancer</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Custom" xml:space="preserve">
+    <value>Coutume</value>
+  </data>
+  <data name="Audio_RecordSubsequentPhrases" xml:space="preserve">
+    <value>Utilisez le bouton d'enregistrement pour enregistrer sur audio ultérieure</value>
+  </data>
+  <data name="Audio_EnforceSingleCursor" xml:space="preserve">
+    <value>Appliquer seul curseur audio</value>
+  </data>
+  <data name="VUMeter_Reset" xml:space="preserve">
+    <value>Remettre</value>
+  </data>
+  <data name="VUMeter_Right" xml:space="preserve">
+    <value>Droit</value>
+  </data>
+  <data name="VUMeter_Left" xml:space="preserve">
+    <value>Gauche</value>
+  </data>
+  <data name="KeysS_TransportBarExpandPlayOptions" xml:space="preserve">
+    <value>Développer Lecture Bouton Options</value>
+  </data>
+  <data name="KeysS_TransportBarExpandRecordOptions" xml:space="preserve">
+    <value>Agrandir Options d'enregistrement Bouton</value>
+  </data>
+  <data name="Transport_PlayingOptions" xml:space="preserve">
+    <value>Jouer options</value>
+  </data>
+  <data name="Transport_RecordingOptions" xml:space="preserve">
+    <value>options d'enregistrement</value>
   </data>
 </root>

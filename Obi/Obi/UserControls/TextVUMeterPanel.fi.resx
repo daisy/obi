@@ -120,6 +120,9 @@
   <metadata name="tmUpdateText.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="mVUMeterPaneltoolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>146, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -240,14 +243,27 @@
   <data name="&gt;&gt;mRightBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="mResetButton.AccessibleName" xml:space="preserve">
+    <value>&amp;Nollaus</value>
+  </data>
   <data name="mResetButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="mResetButton.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
-  </data>
   <data name="mResetButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
+  </data>
+  <data name="mResetButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8k
+        KDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCgUFBQ4FBQ4rGRMZKysrKysrKysrKysr
+        KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKyv/wAARCAAYABgDASIAAhEBAxEB/8QA
+        FwABAQEBAAAAAAAAAAAAAAAAAAcGBP/EACsQAAECBQIEBQUAAAAAAAAAAAECAwAEBRESBiExQVFxBxMU
+        FWEXUoPB8P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIR
+        AxEAPwCpay1RK6XpomXwHH3CUstXtkeZPwP2OsYViu+ItUZFRkJF1MooZJShtlAUPhK7rI7GOfxQpWop
+        3VNOUqUanJTLCVDSFYHfIpcurY24m4BA5b2q9ME2JBj3BUuqZxHmemSUt36JuSbf20BktDa7FdmVUuqM
+        iWqaLjGxTnbiMTulQ6b8D2hGX1V5f1mpPtlvOzY9Th91zlf8doQFK1PSF1yjTEg1OOSi3E2DiOHZQ5g8
+        xE6Yo3iRS2PbpN0uSyRilxuZbxA+MxmOwtCEBoNCaDVQ5xyr1h9MzVHAbYkqS1fjud1KPXv1vCEID//Z
+</value>
   </data>
   <data name="mResetButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 0</value>
@@ -256,13 +272,10 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mResetButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 28</value>
+    <value>32, 28</value>
   </data>
   <data name="mResetButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
-  </data>
-  <data name="mResetButton.Text" xml:space="preserve">
-    <value>&amp;Nollaus</value>
   </data>
   <data name="&gt;&gt;mResetButton.Name" xml:space="preserve">
     <value>mResetButton</value>
@@ -286,13 +299,19 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 28</value>
+    <value>208, 32</value>
   </data>
   <data name="&gt;&gt;tmUpdateText.Name" xml:space="preserve">
     <value>tmUpdateText</value>
   </data>
   <data name="&gt;&gt;tmUpdateText.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPaneltoolTip.Name" xml:space="preserve">
+    <value>mVUMeterPaneltoolTip</value>
+  </data>
+  <data name="&gt;&gt;mVUMeterPaneltoolTip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>TextVUMeterPanel</value>

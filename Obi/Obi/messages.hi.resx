@@ -2064,7 +2064,141 @@
   <data name="StatusForMergeSection" xml:space="preserve">
     <value>खंड{0} से {1}दिखा रहा है. मर्ज करने के लिए वर्गों का चयन करें.</value>
   </data>
-
+  <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
+    <value>ज़ूम तरंग पैनल दिखाएं</value>
+  </data>
+  <data name="KeyS_CloseZoomPanel" xml:space="preserve">
+    <value>बंद ज़ूम पैनल</value>
+  </data>
+  <data name="KeyS_ResetZoomPanel" xml:space="preserve">
+    <value>ज़ूम पैनल रीसेट</value>
+  </data>
+  <data name="KeyS_ZoomInWaveform" xml:space="preserve">
+    <value>तरंग में ज़ूम</value>
+  </data>
+  <data name="KeyS_ZoomOutWaveform" xml:space="preserve">
+    <value>तरंग ज़ूम आउट</value>
+  </data>
+  <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
+    <value>ज़ूम चयनित तरंग</value>
+  </data>
+  <data name="KeyS_NextPhrase" xml:space="preserve">
+    <value>अगले वाक्यांश दिखाएँ</value>
+  </data>
+  <data name="KeyS_PreviousPhrase" xml:space="preserve">
+    <value>पिछले वाक्यांश दिखाएँ</value>
+  </data>
+  <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
+    <value>तरंग सामग्री परिदृश्य में दिखाएँ </value>
+  </data>
+  <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
+    <value>हमेशा ध्यान न देना डेज़ी निर्यात फ़ाइलों के लिए</value>
+  </data>
+  <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
+    <value>अगले वाक्यांश दिखाएँ</value>
+  </data>
+  <data name="ZoomAudioTT_ShowPreviousPhrase" xml:space="preserve">
+    <value>पिछले वाक्यांश दिखाएँ</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomIn" xml:space="preserve">
+    <value>ज़ूम में</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomOut" xml:space="preserve">
+    <value>ज़ूम आउट</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomSelection" xml:space="preserve">
+    <value>ज़ूम चयन</value>
+  </data>
+  <data name="ZoomAudioTT_Close" xml:space="preserve">
+    <value>बंद करें</value>
+  </data>
+  <data name="ZoomAudioTT_Reset" xml:space="preserve">
+    <value>रीसेट करें</value>
+  </data>
+  <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
+    <value>भाषण सभी पृष्ठों के लिए उत्पन्न होता है</value>
+  </data>
+  <data name="EditAudioTT_Cut" xml:space="preserve">
+    <value>काटना</value>
+  </data>
+  <data name="EditAudioTT_Copy" xml:space="preserve">
+    <value>कापी</value>
+  </data>
+  <data name="EditAudioTT_Paste" xml:space="preserve">
+    <value>पैस्ट</value>
+  </data>
+  <data name="EditAudioTT_Delete" xml:space="preserve">
+    <value>मिटाना</value>
+  </data>
+  <data name="EditAudioTT_Merge" xml:space="preserve">
+    <value>अगले वाक्यांश के साथ विलय</value>
+  </data>
+  <data name="EditAudioTT_Split" xml:space="preserve">
+    <value>स्प्लिट वाक्यांश</value>
+  </data>
+  <data name="EditAudioTT_PhraseDetect" xml:space="preserve">
+    <value>वाक्यांश खोज</value>
+  </data>
+  <data name="Metadata_SetDefaults" xml:space="preserve">
+    <value>सेट डिफ़ॉल्ट मेटाडाटा</value>
+  </data>
+  <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
+    <value>रिकॉर्डिंग को रोकने के लिए अंतरिक्ष कुंजी का प्रयोग करें</value>
+  </data>
+  <data name="MergeProjectCommand" xml:space="preserve">
+    <value>परियोजना मर्ज</value>
+  </data>
+  <data name="MergeProject_NoSectionToMerge" xml:space="preserve">
+    <value>No section found in source project</value>
+  </data>
+  <data name="MergeProject_progress_dialog_title" xml:space="preserve">
+    <value>परियोजना विलय {0} का {1}</value>
+  </data>
+  <data name="MergeProject_SectionProgress" xml:space="preserve">
+    <value>खंड विलय:{0}</value>
+  </data>
+  <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
+    <value>टीओसी दृश्य में खाली वर्गों के लिए पृष्ठभूमि रंग</value>
+  </data>
+  <data name="Obi_ProjectMerge" xml:space="preserve">
+    <value>मर्ज करने के लिए परियोजना का चयन करें</value>
+  </data>
+  <data name="Obi_ProjectMergeFilter" xml:space="preserve">
+    <value>ओबी प्रोजेक्ट फाइल  (*.obi)|*.obi</value>
+  </data>
+  <data name="MergeProject_Information" xml:space="preserve">
+    <value>Please make sure that that the projects to be merged have the same audio format and are created on Obi 3.0 Beta 2 or later version.</value>
+  </data>
+  <data name="UserRegistration_Name" xml:space="preserve">
+    <value>नाम</value>
+  </data>
+  <data name="UserRegistration_Email" xml:space="preserve">
+    <value>ई-मेल</value>
+  </data>
+  <data name="UserRegistration_Org_Name" xml:space="preserve">
+    <value>संगठन का नाम</value>
+  </data>
+  <data name="UserRegistration_City" xml:space="preserve">
+    <value>शहर</value>
+  </data>
+  <data name="UserRegistration_Country" xml:space="preserve">
+    <value>देश</value>
+  </data>
+  <data name="UserRegistration_WrongEmail" xml:space="preserve">
+    <value>गलत ईमेल एड्रेस</value>
+  </data>
+  <data name="UserRegistration_NoMatchEmail" xml:space="preserve">
+    <value>दर्ज किया गया ईमेल से मेल नहीं खाते. ई मेल फिर से लिखें.</value>
+  </data>
+  <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
+    <value>रेडियो बटन में से किसी एक को चेक करके ओबी के अपने उपयोग के बारे में हमें कृपया बताएं</value>
+  </data>
+  <data name="HardResetPermanentSettings_Question" xml:space="preserve">
+    <value>उपयोगकर्ता पंजीकरण रीसेट. आप भी उपयोगकर्ता पंजीकरण पुनर्स्थापित करने के लिए पसंद करेंगे? आप आगे बढ़ते हैं तो फिर रजिस्टर करने की आवश्यकता होगी.</value>
+  </data>
+  <data name="RenumberPages" xml:space="preserve">
+    <value>पन्ने अंकित करना</value>
+  </data>
   <data name="Transport_PreviousPhrase" xml:space="preserve">
     <value>ठीक पहेले वाला वाक्यांश </value>
   </data>
@@ -2086,9 +2220,6 @@
   <data name="Transport_StartRecording" xml:space="preserve">
     <value>मोनिटरिंग या रिकॉर्डिंग शुरू करें</value>
   </data>
-  <data name="Transport_RecordingOptions" xml:space="preserve">
-    <value>Recording Options</value>
-  </data>
   <data name="Transport_FastPlayForward" xml:space="preserve">
     <value>आगे की ओर तीव्रतर गति से बजाएं</value>
   </data>
@@ -2104,7 +2235,6 @@
   <data name="Transport_AddTodo" xml:space="preserve">
     <value>रिकॉर्डिंग के समय टूडू चिन्ह जोड़े</value>
   </data>
-
   <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
     <value>पहेले वाला वाक्यांश </value>
   </data>
@@ -2131,5 +2261,68 @@
   </data>
   <data name="Transport_AddTodoAcc" xml:space="preserve">
     <value>वाक्यांश चिन्हित करें</value>
+  </data>
+  <data name="Language_Pack" xml:space="preserve">
+    <value>आप गलत फ़ाइल का चयन किया है</value>
+  </data>
+  <data name="Language_Pack_Select" xml:space="preserve">
+    <value>भाषा पैक ज़िप फ़ाइल का चयन करें</value>
+  </data>
+  <data name="Language_Pack_Complete" xml:space="preserve">
+    <value>भाषा पैक अद्यतन सफल है. परिवर्तनों को प्रभावी करने के लिए ओबी पुनः प्रारंभ करें</value>
+  </data>
+  <data name="Language_Pack_Caption" xml:space="preserve">
+    <value>गलत फ़ाइल</value>
+  </data>
+  <data name="Language_Pack_Select_Caption" xml:space="preserve">
+    <value>ज़िप फ़ाइल का चयन करें</value>
+  </data>
+  <data name="Language_Pack_Complete_Caption" xml:space="preserve">
+    <value>अपडेट सफल</value>
+  </data>
+  <data name="Preferences_Advance_Mode" xml:space="preserve">
+    <value>निम्न चेक बॉक्स की जाँच की जाएगी. क्या आप चाहते हैं</value>
+  </data>
+  <data name="Preferences_Intermediate_recording_mode" xml:space="preserve">
+    <value>इंटरमीडिएट रिकॉर्डिंग मोड</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Basic" xml:space="preserve">
+    <value>बुनियादी</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Intermediate" xml:space="preserve">
+    <value>मध्यवर्ती</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Advance" xml:space="preserve">
+    <value>उन्नत</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Custom" xml:space="preserve">
+    <value>रिवाज</value>
+  </data>
+  <data name="Audio_RecordSubsequentPhrases" xml:space="preserve">
+    <value>बाद में ऑडियो पर रिकॉर्ड करने के लिए रिकॉर्ड बटन का प्रयोग करें</value>
+  </data>
+  <data name="Audio_EnforceSingleCursor" xml:space="preserve">
+    <value>एक ऑडियो कर्सर लागू</value>
+  </data>
+  <data name="VUMeter_Reset" xml:space="preserve">
+    <value>रीसेट करें</value>
+  </data>
+  <data name="VUMeter_Right" xml:space="preserve">
+    <value>सही</value>
+  </data>
+  <data name="VUMeter_Left" xml:space="preserve">
+    <value>बाएं</value>
+  </data>
+  <data name="KeysS_TransportBarExpandPlayOptions" xml:space="preserve">
+    <value>खेलने के विकल्प बटन का विस्तार</value>
+  </data>
+  <data name="KeysS_TransportBarExpandRecordOptions" xml:space="preserve">
+    <value>रिकॉर्ड विकल्प बटन का विस्तार</value>
+  </data>
+  <data name="Transport_PlayingOptions" xml:space="preserve">
+    <value>विकल्प बजाना</value>
+  </data>
+  <data name="Transport_RecordingOptions" xml:space="preserve">
+    <value>Recording Options</value>
   </data>
 </root>
