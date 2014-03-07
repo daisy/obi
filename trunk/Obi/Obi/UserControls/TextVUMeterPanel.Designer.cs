@@ -78,6 +78,11 @@ namespace Obi.UserControls
             this.tmUpdateText.Interval = 400;
             this.tmUpdateText.Tick += new System.EventHandler(this.tmUpdateText_Tick);
             // 
+            // mVUMeterPaneltoolTip
+            // 
+            this.mVUMeterPaneltoolTip.IsBalloon = true;
+            this.mVUMeterPaneltoolTip.ToolTipTitle = "Transport Bar";
+            // 
             // TextVUMeterPanel
             // 
             resources.ApplyResources(this, "$this");

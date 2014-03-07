@@ -2356,7 +2356,7 @@ Error text: {1}</value>
     <value>Zoom Out Waveform</value>
   </data>
   <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
-    <value>Zoom Selected Waveform Select Waveform</value>
+    <value>Zoom Selected Waveform</value>
   </data>
   <data name="KeyS_NextPhrase" xml:space="preserve">
     <value>Show Next Phrase</value>

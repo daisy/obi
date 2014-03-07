@@ -2182,6 +2182,36 @@ Error text: {1}</value>
   <data name="MergeProject_Information" xml:space="preserve">
     <value>Varmista, että yhdistettävät projektit ovat samassa audio-muodossa ja ovat luotu Obi 3.0 Beta 2 tai uudemmalla versiolla.</value>
   </data>
+  <data name="UserRegistration_Name" xml:space="preserve">
+    <value>Nimi</value>
+  </data>
+  <data name="UserRegistration_Email" xml:space="preserve">
+    <value>Sähköposti</value>
+  </data>
+  <data name="UserRegistration_Org_Name" xml:space="preserve">
+    <value>Organisaatio</value>
+  </data>
+  <data name="UserRegistration_City" xml:space="preserve">
+    <value>Paikkakunta</value>
+  </data>
+  <data name="UserRegistration_Country" xml:space="preserve">
+    <value>Maa</value>
+  </data>
+  <data name="UserRegistration_WrongEmail" xml:space="preserve">
+    <value>Virheellinen sähköpostiosoite</value>
+  </data>
+  <data name="UserRegistration_NoMatchEmail" xml:space="preserve">
+    <value>Sähköpostit eivät täsmää. Ole hyvä ja kirjoita sähköposteja.</value>
+  </data>
+  <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
+    <value>Ilmoittakaa meille käyttö Obi tarkistamalla jokin valintanappi</value>
+  </data>
+  <data name="HardResetPermanentSettings_Question" xml:space="preserve">
+    <value>Nollaa käyttäjän rekisteröintiä. Pitäisitkö palauttaa käyttäjän rekisteröinti myös? Sinun täytyy rekisteröityä uudelleen, jos jatkat.</value>
+  </data>
+  <data name="RenumberPages" xml:space="preserve">
+    <value>Numeroida sivut</value>
+  </data>
   <data name="Transport_PreviousPhrase" xml:space="preserve">
     <value>Edeltävä lause</value>
   </data>
@@ -2203,9 +2233,6 @@ Error text: {1}</value>
   <data name="Transport_StartRecording" xml:space="preserve">
     <value>Aloita monitorointi tai äänitys</value>
   </data>
-  <data name="Transport_RecordingOptions" xml:space="preserve">
-    <value>Äänitysvalinnat</value>
-  </data>
   <data name="Transport_FastPlayForward" xml:space="preserve">
     <value>Toista eteenpäin suuremmalla nopeudella</value>
   </data>
@@ -2221,7 +2248,6 @@ Error text: {1}</value>
   <data name="Transport_AddTodo" xml:space="preserve">
     <value>Merkitse keskeneräinen -merkillä äänityksen aikana</value>
   </data>
-
   <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
     <value>Äskeinen lause</value>
   </data>
@@ -2248,5 +2274,68 @@ Error text: {1}</value>
   </data>
   <data name="Transport_AddTodoAcc" xml:space="preserve">
     <value>Merkitse lause</value>
+  </data>
+  <data name="Language_Pack" xml:space="preserve">
+    <value>Olet valinnut väärän tiedoston</value>
+  </data>
+  <data name="Language_Pack_Select" xml:space="preserve">
+    <value>Valitse Language Pack zip-tiedosto</value>
+  </data>
+  <data name="Language_Pack_Complete" xml:space="preserve">
+    <value>Language Pack-päivitys on onnistunut. Käynnistä Obi, jotta muutokset tulevat voimaan</value>
+  </data>
+  <data name="Language_Pack_Caption" xml:space="preserve">
+    <value>Väärän tiedoston</value>
+  </data>
+  <data name="Language_Pack_Select_Caption" xml:space="preserve">
+    <value>Valitse Zip-tiedosto</value>
+  </data>
+  <data name="Language_Pack_Complete_Caption" xml:space="preserve">
+    <value>Päivitys Onnistunut</value>
+  </data>
+  <data name="Preferences_Advance_Mode" xml:space="preserve">
+    <value>Seuraavat valintaruudut tarkistetaan. Haluatko jatkaa?</value>
+  </data>
+  <data name="Preferences_Intermediate_recording_mode" xml:space="preserve">
+    <value>Intermediate tallennustila</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Basic" xml:space="preserve">
+    <value>Perustiedot</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Intermediate" xml:space="preserve">
+    <value>Väli-</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Advance" xml:space="preserve">
+    <value>Edistää</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Custom" xml:space="preserve">
+    <value>Asiakassuhde</value>
+  </data>
+  <data name="Audio_RecordSubsequentPhrases" xml:space="preserve">
+    <value>Käytä Nauhoituspainike tallentaa seuraavina audio</value>
+  </data>
+  <data name="Audio_EnforceSingleCursor" xml:space="preserve">
+    <value>Täytäntöön yhden äänen kohdistin</value>
+  </data>
+  <data name="VUMeter_Reset" xml:space="preserve">
+    <value>Asettaa uudelleen</value>
+  </data>
+  <data name="VUMeter_Right" xml:space="preserve">
+    <value>Oikea</value>
+  </data>
+  <data name="VUMeter_Left" xml:space="preserve">
+    <value>Vasen</value>
+  </data>
+  <data name="KeysS_TransportBarExpandPlayOptions" xml:space="preserve">
+    <value>Laajenna Play Options Button</value>
+  </data>
+  <data name="KeysS_TransportBarExpandRecordOptions" xml:space="preserve">
+    <value>Laajenna Tallennusvalinnat Button</value>
+  </data>
+  <data name="Transport_PlayingOptions" xml:space="preserve">
+    <value>Pelissä vaihtoehtoja</value>
+  </data>
+  <data name="Transport_RecordingOptions" xml:space="preserve">
+    <value>Äänitysvalinnat</value>
   </data>
 </root>

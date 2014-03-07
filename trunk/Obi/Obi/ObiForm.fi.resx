@@ -1221,6 +1221,15 @@
   <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
     <value>Mu&amp;okkaa roolimäärittelyjä...</value>
   </data>
+  <data name="mPhrases_EditRolesMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="mPhrases_RenumberPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
+    <value>Numeroida seuraavilla sivuilla</value>
+  </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
   </data>
@@ -1395,6 +1404,24 @@
   <data name="mPlaySelectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Toista &amp;valinta</value>
   </data>
+  <data name="m_PlaySectionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Pelaa Osion</value>
+  </data>
+  <data name="m_PlaySectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="m_PlaySectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pelaa Osion</value>
+  </data>
+  <data name="m_PlayHeadingToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Pelaa Osion otsikko</value>
+  </data>
+  <data name="m_PlayHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="m_PlayHeadingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pelaa Osion otsikko</value>
+  </data>
   <data name="mPlayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
@@ -1562,6 +1589,15 @@
   </data>
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Text" xml:space="preserve">
     <value>Äänitä seuraavien lauseiden päälle</value>
+  </data>
+  <data name="m_PreviewBeforeRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Esikatselu ennen äänitys</value>
+  </data>
+  <data name="m_PreviewBeforeRecordingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="m_PreviewBeforeRecordingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Esikatselu ennen äänitys</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
@@ -1785,6 +1821,12 @@
   <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
     <value>T&amp;yhjennä viittaamattomat äänitiedostot</value>
   </data>
+  <data name="m_ToolsLangPack.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="m_ToolsLangPack.Text" xml:space="preserve">
+    <value>Päivitä Language Pack</value>
+  </data>
   <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 6</value>
   </data>
@@ -1924,7 +1966,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=2.7.6.21680, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.0.1.31656, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2869,6 +2911,12 @@
   <data name="&gt;&gt;mPhrases_EditRolesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_RenumberPagesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator19.Name" xml:space="preserve">
     <value>toolStripSeparator19</value>
   </data>
@@ -2983,6 +3031,18 @@
   <data name="&gt;&gt;mPlaySelectionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;m_PlaySectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_PlaySectionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_PlaySectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_PlayHeadingToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_PlayHeadingToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_PlayHeadingToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mPauseToolStripMenuItem.Name" xml:space="preserve">
     <value>mPauseToolStripMenuItem</value>
   </data>
@@ -3083,6 +3143,12 @@
     <value>m_DeletePhrasesWhileRecordingtoolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_DeletePhrasesWhileRecordingtoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewBeforeRecordingToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_PreviewBeforeRecordingToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewBeforeRecordingToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mAllowOverwriteToolStripMenuItem.Name" xml:space="preserve">
@@ -3223,6 +3289,12 @@
   <data name="&gt;&gt;mTools_CleanUnreferencedAudioMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;m_ToolsLangPack.Name" xml:space="preserve">
+    <value>m_ToolsLangPack</value>
+  </data>
+  <data name="&gt;&gt;m_ToolsLangPack.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator18.Name" xml:space="preserve">
     <value>toolStripSeparator18</value>
   </data>
@@ -3282,8 +3354,5 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
-    <value>Numeroida seuraavilla sivuilla</value>
   </data>
 </root>

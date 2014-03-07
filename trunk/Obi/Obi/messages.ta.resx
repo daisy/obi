@@ -119,801 +119,603 @@
   </resheader>
   <data name="clear_recent_caption" xml:space="preserve">
     <value>சமீப திட்டபணிகளின் பட்டியலை அழி</value>
-    <comment>Confirmation dialog</comment>
   </data>
   <data name="clear_recent_text" xml:space="preserve">
     <value>உங்களுக்கு சமீப திட்டபணியின் பட்டியலை அழிக்க வேண்டுமா? இந்த செயலை மீட்க முடியாது.</value>
-    <comment>Confirmation dialog</comment>
   </data>
   <data name="closed_project" xml:space="preserve">
     <value>மூடிய திட்டபணிகள் "{0}".</value>
-    <comment>Status message</comment>
   </data>
   <data name="closed_project_caption" xml:space="preserve">
     <value>மாற்றபட்ட திட்ட்பணியை மூடு</value>
-    <comment>Confirmation dialog</comment>
   </data>
   <data name="closed_project_text" xml:space="preserve">
     <value>சேமிக்க படாத மாற்றங்கள் உள்ள திட்டபணியை மூட இருக்கிறீர்கள். நீங்கள் திட்டபணியை மூடுவதற்கு முன் இந்த மாற்றத்தை சேமிக்க வேண்டுமா?</value>
-    <comment>Confirmation dialog</comment>
   </data>
   <data name="default_organization" xml:space="preserve">
     <value>பொருந்தாது</value>
-    <comment>PREFERENCES</comment>
   </data>
   <data name="default_section_label" xml:space="preserve">
     <value>தலைப்பு இல்லாத பகுதி</value>
-    <comment>PREFERENCES</comment>
   </data>
   <data name="obi" xml:space="preserve">
     <value>Obi</value>
-    <comment>Window title</comment>
   </data>
   <data name="open_project_error_caption" xml:space="preserve">
     <value>திட்டபணியின் கோப்பை திறக்கும்பொழுது பிழை</value>
-    <comment>ERROR DIALOG</comment>
   </data>
   <data name="open_project_error_text" xml:space="preserve">
     <value>XUK கோப்பையை திறக்க முடியவில்லை {0}.</value>
-    <comment>ERROR DIALOG</comment>
   </data>
   <data name="opened_project" xml:space="preserve">
     <value>திறந்த கோப்பை "{0}".</value>
-    <comment>STATUS MESSAGE</comment>
   </data>
   <data name="ready" xml:space="preserve">
     <value>தயார்.</value>
-    <comment>STATUS MESSAGE</comment>
   </data>
   <data name="redo_label" xml:space="preserve">
     <value>{0} {1}</value>
-    <comment>Command</comment>
   </data>
   <data name="save_settings_error_caption" xml:space="preserve">
     <value>அமைப்புகளை சேமிக்க முடியவில்லை</value>
-    <comment>ERROR DIALOG</comment>
   </data>
   <data name="save_settings_error_text" xml:space="preserve">
     <value>அமைப்புகளை சேமிக்க முயர்சிக்கையில் பின்வரும் பிழை ஏற்பட்டது: "{0}" இதன் விளைவாக இநத அமர்வின்போது மாற்றப்பட்ட அமைப்புகளை சேமிக்கவில்லை.. Oh well.</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="saved_project" xml:space="preserve">
     <value>கோப்பையுடன் சேமித்த திட்டபணி"{0}".</value>
-    <comment>STATUS MESSAGE</comment>
   </data>
   <data name="undo_label" xml:space="preserve">
     <value>{0} {1}</value>
-    <comment>Command</comment>
   </data>
   <data name="create_directory_text" xml:space="preserve">
     <value>கோப்பகம் {0} இல்லை. நீங்கள் அதை உருவாக்க விரும்பிகிறீர்களா?</value>
-    <comment>Confirmation dialog</comment>
   </data>
   <data name="redo" xml:space="preserve">
     <value>&amp;திரும்பச்செய்</value>
-    <comment>COMMAND</comment>
   </data>
   <data name="undo" xml:space="preserve">
     <value>&amp;செய்ததை தவிர்</value>
-    <comment>COMMAND</comment>
   </data>
   <data name="no_device_found_caption" xml:space="preserve">
     <value>எந்த ஒலி சாதனங்களும் காணப்படவில்லை</value>
-    <comment>ERROR DIALOG</comment>
   </data>
   <data name="no_device_found_text" xml:space="preserve">
     <value>எந்த ஒலி சாதனங்களும் காணப்படவில்லை. 9c, DirectX ஒழுங்காக நிறுவப்பட்டிருக்கா என்று சரிபார்க்கவும்.</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="no_output_device_caption" xml:space="preserve">
     <value>எந்த ஒலி வெளியீட்டு சாதனமும் காணப்படவில்லை.</value>
-    <comment>ERROR DIALOG</comment>
   </data>
   <data name="no_output_device_text" xml:space="preserve">
     <value>ஒரு ஓலி வெளியீட்டு சாதனமும் தேர்ந்தெடுக்க முடியவில்லை: எதுவும் கிடைக்கவில்லை.</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="create_directory_caption" xml:space="preserve">
     <value>கோப்பகம் உருவாக்க?</value>
-    <comment>CONFIRMATION DIALOG</comment>
   </data>
   <data name="mono" xml:space="preserve">
     <value>ஏக</value>
-    <comment>PREFERENCES</comment>
   </data>
   <data name="stereo" xml:space="preserve">
     <value>Stereo</value>
-    <comment>Preferences</comment>
   </data>
   <data name="no_input_device_caption" xml:space="preserve">
     <value>உள்ளீட்டு சாதனம் இல்லை</value>
-    <comment>ERROR DIALOG</comment>
   </data>
   <data name="no_input_device_text" xml:space="preserve">
     <value>ஒரு ஓலி உள்ளீட்டு சாதனமும் தேர்ந்தெடுக்க முடியவில்லை: எதுவும் கிடைக்கவில்லை.</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="record" xml:space="preserve">
     <value>&amp;பதிவுசெய்</value>
-    <comment>Button label (to be reviewed)</comment>
   </data>
   <data name="obi_filter" xml:space="preserve">
     <value>Obi திட்டபணி கோப்பை (*.obi)|*.obi|Any file|*.*</value>
-    <comment>FILE DIALOG</comment>
   </data>
   <data name="report_delete_error" xml:space="preserve">
     <value>கோப்பையை அழிக்கும்பொழுது பிழை ஏற்ப்பட்டது {0}. ({1})</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
     <value>அலை கோப்பை (*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*</value>
-    <comment>FILE DIALOG</comment>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>ஒலி உள்ளீட்டின் கண்காணிப்பு</value>
-    <comment>Status message</comment>
   </data>
   <data name="page_number" xml:space="preserve">
     <value>பக்கம் {0}</value>
-    <comment>Block label</comment>
   </data>
   <data name="normal_phrase" xml:space="preserve">
     <value>சொற்றொடர்</value>
-    <comment>Block label</comment>
   </data>
   <data name="saved_as_daisy_text" xml:space="preserve">
     <value>கோப்பகத்தில் திட்டபணியை டைசியில் ஏற்றுமதி {0}</value>
-    <comment>Information dialog</comment>
   </data>
   <data name="title_bar" xml:space="preserve">
     <value>{0}{1} ({2}) - {3}</value>
-    <comment>Title bar</comment>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
     <value>உங்கள் டெய்சி புத்தகத்தை சேமிக்க இங்கு கோப்புறையை தேர்ந்தெடுக்கவும்..</value>
-    <comment>Directory dialog</comment>
   </data>
   <data name="default_directory_browser" xml:space="preserve">
     <value>கீழே ஒரு இயல்பான திட்டபணி கோப்பகம் தேர்வு செய்யவும்.</value>
-    <comment>Directory dialog</comment>
   </data>
   <data name="export_directory_browser" xml:space="preserve">
     <value>கீழே ஒரு இயல்பான ஏற்றுமதி கோப்பகம் தேர்வு செய்யவும்</value>
-    <comment>Preferences</comment>
   </data>
   <data name="playback_rate" xml:space="preserve">
     <value>பின்னணி விகிதம் x{0} in {1}</value>
-    <comment>Status message</comment>
   </data>
   <data name="Recording" xml:space="preserve">
     <value>ஒலிப்பதிவு...</value>
-    <comment>Status message</comment>
   </data>
   <data name="cannot_create_file_caption" xml:space="preserve">
     <value>திட்டபணி கோப்பையை உருவாக்க முடியாது</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="cannot_create_file_text" xml:space="preserve">
     <value>திட்டபணி கோப்பையை உருவாக்க முடியாது "{0}": {1}.</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="cannot_create_directory_caption" xml:space="preserve">
     <value>கோப்பகத்தை உருவாக்க முடியாது</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="cannot_create_directory_text" xml:space="preserve">
     <value>கோப்பகத்தை உருவாக்க முடியாது {0}: {1}.</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="cannot_delete_caption" xml:space="preserve">
     <value>கோப்பு அழிக்க முடியாது</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="cannot_delete_text" xml:space="preserve">
     <value>கோப்பு {0} அழிக்க முடியாது. தொடர சரி அல்லது நிறுத்த இரத்து அமுக்கவும். (காரணம் தந்துள்ளன: {1})</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="empty_directory_caption" xml:space="preserve">
     <value>ஒரு காலியாக இல்லாத கோப்பகம் ஏற்றுமதியாகிறது</value>
-    <comment>Warning dialog</comment>
   </data>
   <data name="empty_directory_text" xml:space="preserve">
     <value>நீங்கள் டைய்சி திட்டபணியை ஏற்றுமதி செய்ய போகிறீர்கள் {0}. கோப்பகம் காலியாக இல்லை( ஒரு வேளை நீங்கள் முந்தைய பதிப்பு திட்டபணியை இந்த கோப்பகத்தில் ஏற்றுமதி செய்திருக்கலாம்). ஏற்றுமதி செய்யும் முன் இந்த கோப்பையை காலியாக்க விரும்புகிறீர்களா??</value>
-    <comment>Warning dialog</comment>
   </data>
   <data name="didnt_save_as_daisy_caption" xml:space="preserve">
     <value>டைய்சியில் ஏற்றுமதி செய்யும்பொழுது பிழை</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="didnt_save_as_daisy_text" xml:space="preserve">
     <value>கோப்பகத்தில் திட்டபணியை ஏற்றுமதி செய்ய இயலவில்லை {0}. காரணம் கொடுக்கப்பட்டுள்ளன: {1}</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="saved_as_daisy_caption" xml:space="preserve">
     <value>திட்டபணி டெய்சியில் ஏற்றுமதி ஆகிவிட்டது</value>
-    <comment>Information dialog</comment>
   </data>
   <data name="import_phrase_error_caption" xml:space="preserve">
     <value>ஒலியை இறக்குமதி செய்யும்பொழுது பிழை ஏற்ப்பட்டது</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="import_phrase_error_text" xml:space="preserve">
     <value>ஒலி கோப்பை "{0}" ஏற்றுமதி செய்ய முடியவில்லை, ஏனெனில் ஒலி அமைப்புகள் (channels, bit depth, sample rate) கோப்பையின் அமைப்புகளுடன் பொருந்தவில்லை.</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="dc_publisher_description" xml:space="preserve">
     <value>DTB கிடைக்க காரணமாக இருந்த நிறுவனம்.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_title_description" xml:space="preserve">
     <value>DTB-யின் தலைப்பும், அதன் உட்பிரிவுகளும்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="missing_description" xml:space="preserve">
     <value>இந்த தரவு விவரங்க்களை பற்றிய விளக்கங்கள் காணவில்லை.</value>
-    <comment>Metadata</comment>
   </data>
   <data name="help_file_name" xml:space="preserve">
     <value>help_en.html</value>
-    <comment>Path to file</comment>
   </data>
   <data name="error_metadata_name_caption" xml:space="preserve">
     <value>தரவு விவரங்க்களை உருவாக்க முடியவில்லை</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="error_metadata_name_message" xml:space="preserve">
     <value>இந்த பெயர் "{0}" உள்ள தரவு விவரங்க்களை உருவாக்க முடியாது : பெயர் “dtb” என்று துவங்க கூடாது</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="default_project_title" xml:space="preserve">
     <value>தலைப்பு இல்லாத Obi திட்டபணி</value>
-    <comment>Preferences</comment>
   </data>
   <data name="default_project_filename" xml:space="preserve">
     <value>project.obi</value>
-    <comment>Preferences</comment>
   </data>
   <data name="really_use_directory_caption" xml:space="preserve">
     <value>கோப்பகத்தை பயன்படுத்தும் முன் காலியாக்க வேண்டுமா?</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="really_use_directory_text" xml:space="preserve">
     <value>கோப்பகம் "{0}" காலியாக இல்லை. கோப்பகத்தை பயன்படுத்தும் முன் காலியாக்க வேண்டும் என்றால் "ஆம்" தேர்வு செய்யவும், இல்லை என்றால் "இல்லை" தேர்வு செய்யவும்</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="cannot_redo" xml:space="preserve">
     <value>திரும்ப செய்ய முடியாது</value>
-    <comment>Empty undo stack label</comment>
   </data>
   <data name="cannot_undo" xml:space="preserve">
     <value>செய்ததை தவிர்க்க முடியாது</value>
-    <comment>Empty redo stack label</comment>
   </data>
   <data name="rename_section" xml:space="preserve">
     <value>பகுதியின் பெயர் மாற்றம்</value>
-    <comment>Command</comment>
   </data>
   <data name="move_section_out" xml:space="preserve">
     <value>பகுதி நிலை குறைக்கவும்</value>
-    <comment>Command (was renamed)</comment>
   </data>
   <data name="move_section_in" xml:space="preserve">
     <value>பகுதி நிலை அதிகரிக்கவும்</value>
-    <comment>Command (was renamed)</comment>
   </data>
   <data name="delete_section" xml:space="preserve">
     <value>பகுதியை அழிக்கவும்(ஆழமாக)</value>
-    <comment>Command</comment>
   </data>
   <data name="copy_section" xml:space="preserve">
     <value>பகுதி நகல் (ஆழமாக)</value>
-    <comment>Command</comment>
   </data>
   <data name="cut_section" xml:space="preserve">
     <value>பகுதி வெட்டு(ஆழமாக)</value>
-    <comment>Command</comment>
   </data>
   <data name="paste_section" xml:space="preserve">
     <value>பகுதி ஒட்டு</value>
-    <comment>Command</comment>
   </data>
   <data name="import_phrases" xml:space="preserve">
     <value>ஒலி கோப்பை ஏற்றுமதி</value>
-    <comment>Command</comment>
   </data>
   <data name="importing_file" xml:space="preserve">
     <value>கோப்பை ஏற்றுமதி "{0}"</value>
-    <comment>Status message</comment>
   </data>
   <data name="init_error_text" xml:space="preserve">
     <value>துவக்கும்பொழுது பிழை ஏற்ப்பட்டது. தயவு செய்து பிழை வழு அறிக்கையும், இந்த {0} பிழை உரையின் உள்ளடக்கங்களையும் அனுப்பவும்: {1}</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="init_error_caption" xml:space="preserve">
     <value>துவக்கும்பொழுது பிழை</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="created_new_project" xml:space="preserve">
     <value>புதிய திட்டபணி "{0}" உருவாக்கப்பட்டது.</value>
-    <comment>Status message</comment>
   </data>
   <data name="delete_phrase" xml:space="preserve">
     <value>சொற்றொடரை அழி</value>
-    <comment>Command</comment>
   </data>
   <data name="delete_section_shallow" xml:space="preserve">
     <value>பகுதியை அழிக்கவும் (ஆழமில்லாத)</value>
-    <comment>Command</comment>
   </data>
   <data name="cut_section_shallow" xml:space="preserve">
     <value>பகுதி வெட்டு (ஆழமில்லாத)</value>
-    <comment>Command</comment>
   </data>
   <data name="split_section" xml:space="preserve">
     <value>பகுதியை பிரிக்கவும்</value>
-    <comment>Command</comment>
   </data>
   <data name="merge_sections" xml:space="preserve">
     <value>பகுதியை சேர்க்கவும்</value>
-    <comment>Command</comment>
   </data>
   <data name="cut_phrase" xml:space="preserve">
     <value>சொற்றொடரை வெட்டு</value>
-    <comment>Command</comment>
   </data>
   <data name="copy_phrase" xml:space="preserve">
     <value>சொற்றொடரை நகல் செய்</value>
-    <comment>Command</comment>
   </data>
   <data name="find_in_text_init" xml:space="preserve">
     <value>தேர்ந்தெடுத்த பகுதியில் தேடவேண்டிய உரையை டைப் செய்யவும்</value>
-    <comment>Status message</comment>
   </data>
   <data name="find_next_in_text" xml:space="preserve">
     <value>முன்பாக தேடுகிறது...</value>
-    <comment>Status message</comment>
   </data>
   <data name="find_prev_in_text" xml:space="preserve">
     <value>நேர்மாறாக தேடுகிறது...</value>
-    <comment>Status message</comment>
   </data>
   <data name="finished_searching_all" xml:space="preserve">
     <value>எல்லா உரையிலும் தேடியாச்சு</value>
-    <comment>Status message</comment>
   </data>
   <data name="found_in_text" xml:space="preserve">
     <value>"{0}" -. நிகழ்ச்சி காணப்பட்டன</value>
-    <comment>Status message</comment>
   </data>
   <data name="not_found_in_text" xml:space="preserve">
     <value>எந்த பொருந்தலும் கிடைக்கவில்லை</value>
-    <comment>Status message</comment>
   </data>
   <data name="nothing_to_search" xml:space="preserve">
     <value>தேடுவதர்க்கு ஒன்றும் இல்லை!</value>
-    <comment>Status message</comment>
   </data>
   <data name="searching" xml:space="preserve">
     <value>தேடுகிறது...</value>
-    <comment>Status message</comment>
   </data>
   <data name="please_enter_some_text" xml:space="preserve">
     <value>ஏதாவது உரையை டைப் செய்யவும்</value>
-    <comment>Status message</comment>
   </data>
   <data name="recording_command" xml:space="preserve">
     <value>ஒலிப்பதிவு</value>
-    <comment>Command</comment>
   </data>
   <data name="start_recording" xml:space="preserve">
     <value>ஒலிப்பதிவு துவங்கு</value>
-    <comment>Button label (to be reviewed)</comment>
   </data>
   <data name="split_phrase" xml:space="preserve">
     <value>சொற்றொடரை பிரிக்கவும்</value>
-    <comment>Command</comment>
   </data>
   <data name="merge_phrase_with_next" xml:space="preserve">
     <value>சொற்றொடரை அடுத்ததுடன் சேர்க்கவும்</value>
-    <comment>Command</comment>
   </data>
   <data name="paste_phrase" xml:space="preserve">
     <value>சொற்றொடரை ஒட்டவும்</value>
-    <comment>Command</comment>
   </data>
   <data name="add_role" xml:space="preserve">
     <value>(பொறுப்புகளை சேர்க்கவும்)</value>
-    <comment>For the custom types dropdown</comment>
   </data>
   <data name="assign_role" xml:space="preserve">
     <value>பொறுப்புகளை நியமிக்கவும்</value>
-    <comment>Command</comment>
   </data>
   <data name="mark_phrase_used" xml:space="preserve">
     <value>சொற்றொடரை {0} இப்படி குறிக்கவும்</value>
-    <comment>Command</comment>
   </data>
   <data name="set_page_number_" xml:space="preserve">
     <value>பக்க எண்களை சரி செய்</value>
-    <comment>Command</comment>
   </data>
   <data name="add_section" xml:space="preserve">
     <value>பகுதி சேர்க்கவும்</value>
-    <comment>Command</comment>
   </data>
   <data name="add_subsection" xml:space="preserve">
     <value>உட்பகுதி சேர்க்கவும்</value>
-    <comment>Command</comment>
   </data>
   <data name="mark_section_used" xml:space="preserve">
     <value>பகுதியை {0} இப்படி குறிக்கவும்</value>
-    <comment>Command</comment>
   </data>
   <data name="cut_audio" xml:space="preserve">
     <value>ஒலியை வெட்டு</value>
-    <comment>Command</comment>
   </data>
   <data name="delete_audio" xml:space="preserve">
     <value>ஒலியை அழி</value>
-    <comment>Command</comment>
   </data>
   <data name="default_custom_class_name" xml:space="preserve">
     <value>குறிக்கப்பட்ட</value>
-    <comment>Role stuff</comment>
   </data>
   <data name="no_preceding_silence_phrase" xml:space="preserve">
     <value>நீங்கள் தேர்வு செய்ததிற்கு முந்தி எந்த அமைதி சொற்றொடரும் இல்லை அதனால் இயற்கை நிலை மதிப்புகள் தான் பயன்படுத்த படும். இருந்தும் நீங்கள் இந்த இயற்கை நிலை அமைப்புகளை மாற்றலாம் அல்லது இரத்து செய்து அமைதி சொற்றொடரை தேர்ந்தெடுக்கலாம்.</value>
-    <comment>Warning for phrase detection</comment>
   </data>
   <data name="paste_audio" xml:space="preserve">
     <value>ஒலியை ஒட்டவும்</value>
-    <comment>Comand</comment>
   </data>
   <data name="copy_audio" xml:space="preserve">
     <value>ஒலியின் நகல்</value>
-    <comment>Command</comment>
   </data>
   <data name="phrase_detection" xml:space="preserve">
     <value>சொற்றொடரை கண்டுபிடித்தல்</value>
-    <comment>Command</comment>
   </data>
   <data name="create_new_project_from_import" xml:space="preserve">
     <value>ஏற்றுமதியின் மூலம் ஒரு புதிய திட்டபணியை உருவாக்கவும்</value>
-    <comment>File dialog caption</comment>
   </data>
   <data name="import_failed" xml:space="preserve">
     <value>ஏற்றுமதியின் மூலம் திட்டபணியை உருவாக்க முடியவில்லை: {0}</value>
-    <comment>Error message stub</comment>
   </data>
   <data name="filter" xml:space="preserve">
     <value>XHTML, Opf, XML file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|Any file|*.*</value>
-    <comment>File dialog</comment>
   </data>
   <data name="blank_phrase" xml:space="preserve">
     <value>காலி சொற்றொடர்</value>
-    <comment>Block label</comment>
   </data>
   <data name="kind_phrase" xml:space="preserve">
     <value>{0} சொற்றொடர்</value>
-    <comment>Block label</comment>
   </data>
   <data name="insert_section" xml:space="preserve">
     <value>பகுதியை செருகு</value>
-    <comment>Command</comment>
   </data>
   <data name="clean_failed_caption" xml:space="preserve">
     <value>திட்டபணியை சுத்தம் செய்ய தவறிவிட்டது</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="clean_failed_text" xml:space="preserve">
     <value>கீழே தரப்பட்ட தெளிவான காரணத்தினால் Obi தற்போதைய திட்டபணியை சுத்தம் செய்ய தவறிவிட்டது{0}</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="clean_up_ask_for_delete_project" xml:space="preserve">
     <value>பயன்படாத கோப்பைகள் அழி கோப்புறைக்கு மாற்றபட்டுள்ளன. இந்த பயன்படாத கோப்பைகளை அழிக்க விரும்புகிறீர்களா?</value>
-    <comment>Confirmation dialog</comment>
   </data>
   <data name="clean_save_caption" xml:space="preserve">
     <value>சுத்தம் செய்த பின் சேமிக்கவும்</value>
-    <comment>Confirmation dialog</comment>
   </data>
   <data name="delete_unused_data_caption" xml:space="preserve">
     <value>பயன்படாத உரவுகளை அழிக்கவும்?</value>
-    <comment>Confirmation dialog</comment>
   </data>
   <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
     <value>பயனில்லாத சொற்றொடரின் நீக்கம்.</value>
-    <comment>Command</comment>
   </data>
   <data name="clean_save_text" xml:space="preserve">
     <value>உங்கள் திட்டபணி சுத்தம் செய்த பிறகு சேமிக்கபடும். நீங்கள் தொடர விரும்புகிறீர்களா?</value>
-    <comment>Confirmation dialog</comment>
   </data>
   <data name="delete_unused" xml:space="preserve">
     <value>பயன்படாத உரவுகளை அழி</value>
-    <comment>Command</comment>
   </data>
   <data name="delete_metadata_entry" xml:space="preserve">
     <value>தரவு விவர நுழைவுகளை அழி</value>
-    <comment>Command</comment>
   </data>
   <data name="modify_metadata_content" xml:space="preserve">
     <value>தரவு விவர நுழைவு உள்ளடக்கத்தை புதிப்பி</value>
-    <comment>Metadata</comment>
   </data>
   <data name="modify_metadata_name" xml:space="preserve">
     <value>தரவு விவர நுழைவு பெயரை புதுப்பி</value>
-    <comment>Metadata</comment>
   </data>
   <data name="about_file_name" xml:space="preserve">
     <value>about_ta.html</value>
-    <comment>Location of the HTML document for the "About" dialog</comment>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
     <value>காலி பக்கங்களை சேர்</value>
-    <comment>Command</comment>
   </data>
   <data name="add_blank_phrase" xml:space="preserve">
     <value>காலி சொற்றொடரை சேர்</value>
-    <comment>Command</comment>
   </data>
   <data name="add_metadata_entry" xml:space="preserve">
     <value>தரவு விவர நுழைவு சேர்</value>
-    <comment>Command</comment>
   </data>
   <data name="choose_import_file" xml:space="preserve">
     <value>ஏற்றுமதி கோப்பையை தேர்ந்தெடுக்கவும்</value>
-    <comment>File dialog caption</comment>
   </data>
   <data name="copy_section_shallow" xml:space="preserve">
     <value>பகுதி நகல்(ஆழமில்லாத)</value>
-    <comment>Command</comment>
   </data>
   <data name="monitoring_short" xml:space="preserve">
     <value>கண்காணிப்பு</value>
-    <comment>Transport bar display</comment>
   </data>
   <data name="propose_directory_caption" xml:space="preserve">
     <value>புது திட்டபணிக்கு காலி இல்லாத கோப்பகம்</value>
-    <comment>Warning dialog</comment>
   </data>
   <data name="propose_directory_text" xml:space="preserve">
     <value>புது திட்டபணியை சேமிக்க நீங்க்கள் தேர்வு செய்த கோப்பகம் காலியாக இல்லை. கீழ் காணும் இடத்தில் உங்கள் திட்டபணியை சேமிக்க விரும்புகிறீர்களா? "{0}"?</value>
-    <comment>Warning dialog</comment>
   </data>
   <data name="start_monitoring" xml:space="preserve">
     <value>கண்காணிக்க தொடங்கு</value>
-    <comment>Button label</comment>
   </data>
   <data name="content_view" xml:space="preserve">
     <value>உள்ளடக்க பார்வை</value>
   </data>
   <data name="audio_block_label" xml:space="preserve">
     <value>{0} {1} of {2}{3}</value>
-    <comment>Audio block label of the form "audio block n of m(, unused)"</comment>
   </data>
   <data name="audio_block_label_unused" xml:space="preserve">
     <value>, பயன்படாத</value>
-    <comment>Audio block label additional information</comment>
   </data>
   <data name="Paused" xml:space="preserve">
     <value>இடை நிறுத்தப்பட்டது</value>
-    <comment>Status message</comment>
   </data>
   <data name="Playing" xml:space="preserve">
     <value>ஒலியை வாசி</value>
-    <comment>Status message</comment>
   </data>
   <data name="Stopped" xml:space="preserve">
     <value>நிறுத்தியாச்சு</value>
-    <comment>Status message</comment>
   </data>
   <data name="transport_bar" xml:space="preserve">
     <value>போக்குவரத்து பட்டை</value>
   </data>
   <data name="dc_contributor_description" xml:space="preserve">
     <value>DC உருவாக்குபவர் பட்டியலில் பெயரிடபட்டவரை விட இந்த குழுவின் பங்களிப்பு இரண்டாம் பக்ஷமாகும்..</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_coverage_description" xml:space="preserve">
     <value>ஆதார உள்ளடக்கத்தின் அளவு அல்லது நோக்கம். DTB கு பயன்படுத்தபடாது என்று எதிர்பார்க்கபடுகிறது.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_creator_description" xml:space="preserve">
     <value>முதன்மை ஆசிரியரின் அல்லது அறிவார்ந்த உள்ளடக்கத்தை உருவாக்கிய படைப்பாளியின் பெயர்கள்.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_date_description" xml:space="preserve">
     <value>DTB - இன் வேளியீட்டு தேதி. (மூல தேதியையும் உற்ப்பத்தி தேதியையும் ஒப்பிடு) இந்த வடிவமைப்பில் இருந்து [ISO8601]; இந்த அமைப்பில் YYYY[-MM[-DD]] கட்டாயமாக 4-எண்ணில் குறிப்பிடும் வருடமும், இஷ்ட்டத்திற்கு விடப்பட்ட 2-எண்ணில் குறிப்பிடும் மாதமும், மாதம் குறிப்பிட்டிருந்தால் 2-எண்ணில் நாட்களையும் குறிப்பிடலாம்..</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_description_description" xml:space="preserve">
     <value>வெளியீடு உள்ளடக்கத்தை விவரிக்கும் வெற்று உரை.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_format_description" xml:space="preserve">
     <value>இது DTB தாயாரிக்கப்பட்ட தரம் அல்லது விவரகுறிப்பு</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_identifier_description" xml:space="preserve">
     <value>இது DTB - ஐ அடையாளப்படுத்தும் ஒரு சரம் அல்லது எண்.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_language_description" xml:space="preserve">
     <value>வெளியீடு உள்ளடக்கத்தின் மொழி. மொழி குறியீடு [RFC 3066]. For Sweden: "sv" or "sv-SE"; for UK: "en" or "en-GB"; for US: "en" or "en-US"; etc.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_relation_description" xml:space="preserve">
     <value>ஒரு தொடர்புடைய ஆதாரத்தின் குறிப்பு.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_rights_description" xml:space="preserve">
     <value>DTB மீது நடைப்பெற்ற உரிமைகள் பற்றி தகவல். (ஒப்பிடு dtb:sourceRights.)</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_source_description" xml:space="preserve">
     <value>DTB-ஐ வருவித்த ஆதாரத்தின் குறிப்பு (e.g., a print original, ebook, etc.) . இதற்கு சிறந்த பயிற்ச்சி ISBN கிடைத்தால் அதை பயன்படுத்துவதாகும்.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_subject_description" xml:space="preserve">
     <value>வெளியீடு உள்ளடக்கததின் தலைப்பு</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dc_type_description" xml:space="preserve">
     <value>DTB உள்ளடக்கத்தின் இயற்க்கை (i.e., sound, text, image). இதற்கு சிறந்த பயிற்ச்சி Dublin Core's enumerated பட்டியலில் இருந்து எடுப்பதாகும். [DC-Type].</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_audio_format_description" xml:space="preserve">
     <value>DTB உள்ளடக்கத்தையும் சேர்த்து SMIL கோப்பையின் மொத்த வாசிப்பு நேரம். மதிப்பு SMIL2.0 -ல் உள்ள கடிகார நேரம் மற்றும் ஒருங்கிணைப்பு தொகுதி</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_multimedia_content_description" xml:space="preserve">
     <value>இந்த உள்ளடக்கத்தில் பயன்படுத்தப்படும் ஊடகங்களின் பொதுவகையான சுருக்கம். மதிப்பு, புள்ளியால் பிரிக்கப்பட்ட ஊடக வகைகளின் உயர்மட்ட பட்டியலில் உள்ளது[RFC2046]. இந்த தரமான தற்போதைய பதிப்பில், ஒலி, படம் மற்றும் உரை ஆகும்.NCX, வள கோப்பு அல்லது distinfo ஆல் குறிப்பிடப்படும் ஊடக வகைகள் இங்கே பட்டியலிடப்பட கூடாது.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_multimedia_type_description" xml:space="preserve">
     <value>ஆறு வகையில் ஒன்றான DTB-யில் கூறப்பட்டுள்ள அமைப்பு வழிகாட்டிகள். மதிப்புகள் -ஒலி மட்டும், ஒலி NCX, ஒலி கொஞ்சம் உரை, ஒலி முழு உரை, உரை கொஞ்சம் ஒலி, உரை NCX ஆகும்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_narrator_description" xml:space="preserve">
     <value>யாருடைய பதிப்பித்த குறல் DTB-யில் பொதிந்துள்ளதோ, அந்த நபரின் பெயர்.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_produced_date_description" xml:space="preserve">
     <value>முதல் தலைமுறை முழு DTB -இன் உற்பத்தி நிறைவு தேதி. ( ஒப்பிடு dc:Date.) DTB -ஐ உரிவாகிய அமைப்பு/உற்ப்பத்தி பிரிவின் பெயர். இந்த வடிவமைப்பில் இருந்து [ISO8601]; இந்த அமைப்பில் YYYY[-MM[-DD]] கட்டாயமாக 4-எண்ணில் குறிப்பிடும் வருடமும், இஷ்ட்டத்திற்கு விடப்பட்ட 2-எண்ணில் குறிப்பிடும் மாதமும், மாதம் குறிப்பிட்டிருந்தால் 2-எண்ணில் நாட்களையும் குறிப்பிடலாம்.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_producer_description" xml:space="preserve">
     <value>DTB -ஐ உருவாக்கிய அமைப்பு/உற்ப்பத்தி பிரிவின் பெயர். (ஒப்பிடு dc:பதிப்பாளர்)</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_revision_data_description" xml:space="preserve">
     <value>குறிப்பிட்ட தொடர்புடைய தேதி DTB:திருத்தம். இந்த வடிவமைப்பில் இருந்து [ISO8601]; இந்த அமைப்பில் YYYY[-MM[-DD]] கட்டாயமாக 4-எண்ணில் குறிப்பிடும் வருடமும், இஷ்ட்டத்திற்கு விடப்பட்ட 2-எண்ணில் குறிப்பிடும் மாதமும், மாதம் குறிப்பிட்டிருந்தால் 2-எண்ணில் நாட்களையும் குறிப்பிடலாம்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_revision_description" xml:space="preserve">
     <value>DTB -இன் குறிப்பிட்ட பதிப்பின் எதிர்மறை இல்லாத முழு எண்ணின் மதிப்பு. ஒவ்வொரு முறையும் DTB - திருத்தும்பொழுது அதிகரிக்கப்படும்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_revision_description_description" xml:space="preserve">
     <value>குறிப்பிட்ட DTB - திருத்தத்தில் அறிமுகப்படுத்தப்பட்ட மாற்றங்களை விவரிக்கும் சரம்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_source_date_description" xml:space="preserve">
     <value>DTB- ஐ வருவித்த ஆதார வெளியீட்டின் தேதி இந்த வடிவமைப்பில் இருந்து [ISO8601]; இந்த அமைப்பில் YYYY[-MM[-DD]] கட்டாயமாக 4-எண்ணில் குறிப்பிடும் வருடமும், இஷ்ட்டத்திற்கு விடப்பட்ட 2-எண்ணில் குறிப்பிடும் மாதமும், மாதம் குறிப்பிட்டிருந்தால் 2-எண்ணில் நாட்களையும் குறிப்பிடலாம்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_source_edition_description" xml:space="preserve">
     <value>ஆதார பதிப்பை விவரிக்கும் சரம் (உதாகரணத்திற்கு அசலான அச்சு, மின் புத்தகம் முதலியவை.) எதிலிரிந்து DTB- வருவித்ததோ.</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_source_publisher_description" xml:space="preserve">
     <value>DTB ஐ வரச்செய்த ஆதாரங்கள்(உதாகரணத்திற்கு அசலான அச்சு, மின் புத்தகம் முதலியவை ) கிடைக்க காரணமாக இருந்த பொறுப்பு நிறுவனம் (ஒப்பிடு dc: வெளியீட்டாளர்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_source_rights_description" xml:space="preserve">
     <value>DTB ஐ வரச்செய்த ஆதாரங்கள்(உதாகரணத்திற்கு அசலான அச்சு, மின் புத்தகம் முதலியவை ) கிடைக்க காரணமாக இருந்த பொறுப்பு நிறுவனம் (ஒப்பிடு dc: வெளியீட்டாளர்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_source_title_description" xml:space="preserve">
     <value>DTB ஐ வரச்செய்த ஆதாரத்தின் (உதாகரணத்திற்கு அசலான அச்சு, மின் புத்தகம் முதலியவை) தலைப்பு. இது dc:தலைப்பைவிட வித்தியாசமாக இருந்தால் மட்டும் பயன்படுத்தவும்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="dtb_total_time_description" xml:space="preserve">
     <value>DTB உள்ளடக்கங்களையும் சேர்த்து SMIL கொப்பைகளின் மொத்த வாசிப்பு நேரம். மதிப்புகள் SMIL நேரம் மற்றும் ஒத்திசைவு பாகத்தின் கடிகார மதிப்புகளாகும்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="generator_description" xml:space="preserve">
     <value>DTB ஐ உருவாக்கிய மென்பொருள்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="modify_metadata_entry" xml:space="preserve">
     <value>தரவு விவர நூழைவை மாற்று</value>
-    <comment>Command</comment>
   </data>
   <data name="obi_xuk_version_description" xml:space="preserve">
     <value>Obi/XUK ve பதிப்பு கண்டுபிடிப்பவர்</value>
-    <comment>Metadata description</comment>
   </data>
   <data name="metadata_name_error_caption" xml:space="preserve">
     <value>தரவு விவர பெயர் பிழை</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="metadata_name_error_text" xml:space="preserve">
     <value>இந்த தரவு விவர நுழைவின் பெயரை இப்படி "{0}" மாற்ற முடியாது</value>
-    <comment>Error dialog</comment>
   </data>
   <data name="metadata_custom" xml:space="preserve">
     <value>தனிப்பயன்</value>
-    <comment>Custom metadata name</comment>
   </data>
   <data name="empty" xml:space="preserve">
     <value>காலி</value>
-    <comment>ToString() for empty phrases</comment>
   </data>
   <data name="node_selection_to_string" xml:space="preserve">
     <value>தேர்ந்தெடுத்த {0} in {1}</value>
-    <comment>ToString()</comment>
   </data>
   <data name="phrase_extra_custom" xml:space="preserve">
     <value>, {0}</value>
-    <comment>ToString() for custom class</comment>
   </data>
   <data name="phrase_extra_Heading" xml:space="preserve">
     <value>, heading</value>
-    <comment>ToString()</comment>
   </data>
   <data name="phrase_extra_page" xml:space="preserve">
     <value>, பக்க எண் {0}</value>
-    <comment>ToString() for page numbers</comment>
   </data>
   <data name="phrase_extra_Plain" xml:space="preserve">
     <value />
-    <comment>ToString() (empty)</comment>
   </data>
   <data name="phrase_extra_Silence" xml:space="preserve">
     <value>, silence</value>
-    <comment>ToString()</comment>
   </data>
   <data name="phrase_extra_TODO" xml:space="preserve">
     <value>, செய்ய வேண்டிய</value>
-    <comment>ToString()</comment>
   </data>
   <data name="phrase_node_to_string" xml:space="preserve">
     <value>phrase ( நீளம்: {1})</value>
-    <comment>ToString()</comment>
   </data>
   <data name="phrase_short_custom" xml:space="preserve">
     <value>"{0}"</value>
-    <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_Heading" xml:space="preserve">
     <value>Heading</value>
-    <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_page" xml:space="preserve">
     <value>Page {0}</value>
-    <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_Plain" xml:space="preserve">
     <value>Phrase</value>
-    <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_Silence" xml:space="preserve">
     <value>Silence</value>
-    <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_to_string" xml:space="preserve">
     <value>{0}{1} ({2})</value>
-    <comment>ToStirng() short version for labels</comment>
   </data>
   <data name="phrase_short_TODO" xml:space="preserve">
     <value>* செய்ய வேண்டிய *</value>
-    <comment>ToString() short</comment>
   </data>
   <data name="phrase_to_string" xml:space="preserve">
     <value>{0}{1} சொற்றொடர் {2} of {3} ({4}){5}</value>
-    <comment>ToString(); e.g. [unused] phrase 3 of 5 (2.5s), page number 2</comment>
   </data>
   <data name="section_level_to_string" xml:space="preserve">
     <value>, ஆழம் {0}</value>
@@ -929,94 +731,72 @@
   </data>
   <data name="strips_view_to_string" xml:space="preserve">
     <value>உள்ளடக்க பார்வை</value>
-    <comment>ToString()</comment>
   </data>
   <data name="toc_view_to_string" xml:space="preserve">
     <value>உள்ளடக்கங்களின் பார்வை</value>
-    <comment>ToString()</comment>
   </data>
   <data name="unused" xml:space="preserve">
     <value>பயன்படுத்தபடாதது</value>
-    <comment>ToString()</comment>
   </data>
   <data name="audio_selection_to_string" xml:space="preserve">
     <value>தேர்ந்தெடுத்த ஒலி {0} இல் {1} இல் {2}</value>
-    <comment>ToString() audio selection</comment>
   </data>
   <data name="strip_cursor_selection_to_string" xml:space="preserve">
     <value>தேர்ந்தெடுத்த அகவரிசை {0} இல் {1} இல் {2}</value>
-    <comment>ToString() strip cursor selection</comment>
   </data>
   <data name="text_selection_to_string" xml:space="preserve">
     <value>தேர்ந்தெடுத்த உரையில் {0} இல் {1}: "{2}"</value>
-    <comment>ToString() text selection</comment>
   </data>
   <data name="obi_url" xml:space="preserve">
     <value>http://www.daisy.org/obi/</value>
-    <comment>Obi URL (may point to localized page.)</comment>
   </data>
   <data name="max_phrase_duration_invalid_input" xml:space="preserve">
     <value>அதிகப்பட சொற்றொடர் கால அளவின் தவறான உள்ளீடு. தயவு செய்து 0 -வை விட அதிகமான முழு எண் மதிப்பை குறிப்பிடவும்</value>
-    <comment>Error message</comment>
   </data>
   <data name="rendering_waveform" xml:space="preserve">
     <value>அலைவடிவங்களின் ஒழுங்கமைப்பு...</value>
-    <comment>Waveform display before bitmap is created</comment>
   </data>
   <data name="duration_h_mm_ss" xml:space="preserve">
     <value>{0}:{1:00}:{2:00}</value>
-    <comment>Format for duration</comment>
   </data>
   <data name="duration_mm_ss" xml:space="preserve">
     <value>{0:00}:{1:00}</value>
-    <comment>Format for duration</comment>
   </data>
   <data name="duration_s_ms" xml:space="preserve">
     <value>{0:0.00}s</value>
-    <comment>Format for duration</comment>
   </data>
   <data name="hour" xml:space="preserve">
     <value>மணி நேரம்</value>
-    <comment>Used for time formating (singular)</comment>
   </data>
   <data name="hours" xml:space="preserve">
     <value>மணீ நேரங்கள்</value>
-    <comment>Used for time formating (plural)</comment>
   </data>
   <data name="long_addl_time" xml:space="preserve">
     <value> {0} {1}</value>
-    <comment>Additional time (e.g. 1 minute, 23 seconds)</comment>
   </data>
   <data name="long_h_mm_ss" xml:space="preserve">
     <value>{0} {1}{2}{3}</value>
-    <comment>Longer time formating (e.g. 1 hour 23 minutes 45 seconds)</comment>
   </data>
   <data name="long_mm_ss" xml:space="preserve">
     <value>{0} {1}{2}</value>
-    <comment>Longer time formating (e.g. 1 minute 23 seconds)</comment>
   </data>
   <data name="long_s_ms" xml:space="preserve">
     <value>{0:0.00} {1}</value>
-    <comment>Longer time formating (e.g. 1.23 seconds)</comment>
   </data>
   <data name="minute" xml:space="preserve">
     <value>நிமிடம்</value>
-    <comment>Used for time formating (singular)</comment>
   </data>
   <data name="minutes" xml:space="preserve">
     <value>நிமிடங்கள்</value>
-    <comment>Used for time formating (plural)</comment>
   </data>
   <data name="node_position" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
   <data name="second" xml:space="preserve">
     <value>வினாடி</value>
-    <comment>Used for time formating (singular)</comment>
   </data>
   <data name="seconds" xml:space="preserve">
     <value>வினாடிகள்</value>
-    <comment>Used for time formating (plural)</comment>
   </data>
   <data name="section_level" xml:space="preserve">
     <value>"{0}" (level {1})</value>
@@ -1026,11 +806,9 @@
   </data>
   <data name="update_section" xml:space="preserve">
     <value>பகுதி புதுப்பி</value>
-    <comment>Command</comment>
   </data>
   <data name="update_phrase" xml:space="preserve">
     <value>சொற்றொடர் புதுப்பி</value>
-    <comment>Command</comment>
   </data>
   <data name="error_adding_page_number" xml:space="preserve">
     <value>பக்க எண் சேர்க்கும்பொழுது பிழை. மூல பகுதி கிடைக்கவில்லை</value>
@@ -1061,7 +839,6 @@
   </data>
   <data name="no_script" xml:space="preserve">
     <value>இதில் ஸ்கிரிப்ட் கோப்பை கிடைக்கவில்லை "{0}".</value>
-    <comment>Pipeline interface error message</comment>
   </data>
   <data name="pipeline_path_browser" xml:space="preserve">
     <value>கீழே இருந்து பைப்லைன் ஸ்கிரிப்ட் இடம் தேர்ந்தெடுக்கவும்.</value>
@@ -1071,7 +848,6 @@
   </data>
   <data name="CannotCreate_InputPath" xml:space="preserve">
     <value>இந்த மாதிரி வழி உருவாக்க முடியவில்லை : உள்ளீடு</value>
-    <comment>Pipeline</comment>
   </data>
   <data name="Caption_Error" xml:space="preserve">
     <value>பிழை</value>
@@ -1081,35 +857,27 @@
   </data>
   <data name="Choose_OtherDirectory" xml:space="preserve">
     <value>வேறொரு கோப்பகம் தேர்வு செய்யவும்</value>
-    <comment>Pipeline</comment>
   </data>
   <data name="IndexNotInRange" xml:space="preserve">
     <value>அகவரிசை முறை வரம்பில் இல்லை</value>
-    <comment>Pipeline</comment>
   </data>
   <data name="Invalid_ScriptParameters" xml:space="preserve">
     <value>ஒன்று அல்லது அதற்கு மேலான அளவுருக்கள் தவறாக உள்ளது</value>
-    <comment>Pipeline</comment>
   </data>
   <data name="No_Path" xml:space="preserve">
     <value>வழி இயங்கவில்லை</value>
-    <comment>Pipeline</comment>
   </data>
   <data name="NotAbleToCreateDirectory" xml:space="preserve">
     <value>கோப்பகம் உருவாக்க முடியவில்லை {0}</value>
-    <comment>Pipeline</comment>
   </data>
   <data name="NotAbleToSelectItem" xml:space="preserve">
     <value>உருப்படிகளை தேர்ந்தெடுக்க முடியவில்லை.</value>
-    <comment>Pipeline</comment>
   </data>
   <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
     <value>வெளியீட்டு கோப்பகம் கண்டுபிடிக்க முடியவில்லை. அதை உருவாக்க விரும்புகிறீர்களா?</value>
-    <comment>Pipeline</comment>
   </data>
   <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
     <value>வெளியீட்டு கோப்பகம் காலியாக இல்லை. அதை காலியாக்க விரும்புகிறீர்களா?</value>
-    <comment>Pipeline</comment>
   </data>
   <data name="Front_pages" xml:space="preserve">
     <value>முன் பக்கங்கள்</value>
@@ -1125,34 +893,27 @@
   </data>
   <data name="renumber_pages" xml:space="preserve">
     <value>மறுஎண்ணிக்கை {0}</value>
-    <comment>Command (renumber --- pages)</comment>
   </data>
   <data name="crop_audio" xml:space="preserve">
     <value>ஒலியை செதுக்கு</value>
-    <comment>Command</comment>
   </data>
   <data name="save_as_error_same_directory" xml:space="preserve">
     <value>அசல் திட்டபணி உள்ள அதே கோப்பகத்தில் சேமிக்க முடியாது. தயவு செய்து வேறு இடத்தை தேர்ந்தெடுக்கவும்</value>
-    <comment>Save as error</comment>
   </data>
   <data name="save_before_save_as" xml:space="preserve">
     <value>திட்டபணியை புதிய இடத்தில் சேமிக்க முன்னாடி மாற்றங்களை சேமிக்க விரும்புகிறீர்களா ? </value>
   </data>
   <data name="no_primary_export_directory" xml:space="preserve">
     <value>DAISY ஏற்றுமதி கோப்பகம் கிடைக்கவில்லை. ஏற்றுமதி வழியை தேர்ந்தெடுக்கவும் அல்லது திட்டபணியை DAISY கு ஏற்றுமதி செய்யவும்</value>
-    <comment>Pipeline interface error message</comment>
   </data>
   <data name="section_unexported" xml:space="preserve">
     <value>பகுதி "{0 ஒலி உள்ளடக்கம் ஒன்றும் இல்லை. அதனால் அது அல்லது அதன் உட் பகுதிகளோ ஏற்றுமதி ஆகாது, நீங்கள் தொடர விரும்புகிறீர்களா?</value>
-    <comment>Warning at export time</comment>
   </data>
   <data name="section_unexported_caption" xml:space="preserve">
     <value>பகுதி ஏற்றுமதி ஆகாது</value>
-    <comment>Warning at export time (caption)</comment>
   </data>
   <data name="default_export_dirname" xml:space="preserve">
     <value>{0}DAISY3 Export</value>
-    <comment>Default name for the export directory</comment>
   </data>
   <data name="ObiForm_PipelineNotFound" xml:space="preserve">
     <value>பைப்லைன் ஸ்கிரிப்ட் {0} கண்டுபிடிக்க இயலவில்லை. அதை சார்ந்துள்ள அம்சங்கள் வேலை செய்யாமல் இருக்கலாம்</value>
@@ -1165,31 +926,24 @@
   </data>
   <data name="duration_hh_mm_ss" xml:space="preserve">
     <value>{0:00}:{1:00}:{2:00}</value>
-    <comment>Format for duration (used for the transport bar display)</comment>
   </data>
   <data name="export_progress_dialog_title" xml:space="preserve">
     <value> திட்டபணி ஏற்றுமதியாகிறது...... தயவு செய்து கொஞ்ச நேரம் காத்திருக்கவும் ஏனெனில் இது முடிய பல நிமிடங்கள் ஆகலாம்</value>
-    <comment>Export progress dialog title</comment>
   </data>
   <data name="role_Custom" xml:space="preserve">
     <value>தனிப்பயன்</value>
-    <comment>Localized role name</comment>
   </data>
   <data name="role_Heading" xml:space="preserve">
     <value>Heading</value>
-    <comment>Localized role name</comment>
   </data>
   <data name="role_Page" xml:space="preserve">
     <value>Page</value>
-    <comment>Localized role name</comment>
   </data>
   <data name="role_Plain" xml:space="preserve">
     <value>Plain</value>
-    <comment>Localized role name</comment>
   </data>
   <data name="role_Silence" xml:space="preserve">
     <value>Silence</value>
-    <comment>Localized role name</comment>
   </data>
   <data name="could_not_clean_up" xml:space="preserve">
     <value> தவறான திட்டபணி அழிக்க முடியாது {0}. நீங்கள் தானாகவே நீக்க முயற்ச்சி செய்யவும். மன்னிக்கவும்.</value>
@@ -1199,22 +953,18 @@
   </data>
   <data name="import_progress_dialog_title" xml:space="preserve">
     <value>இறக்குமதியாகிறது...</value>
-    <comment>Progress dialog title</comment>
   </data>
   <data name="import_audio_progress_dialog_title" xml:space="preserve">
     <value>ஒலி இறக்குமதி ஆகிறது...</value>
   </data>
   <data name="cleaning_up" xml:space="preserve">
     <value>சுத்தம் செய்கிறது...</value>
-    <comment>Progress dialog title</comment>
   </data>
   <data name="remove_custom_class" xml:space="preserve">
     <value>தனிப்பயன் ரகங்களை நீக்கவும்</value>
-    <comment>Command</comment>
   </data>
   <data name="strip_cursor_accessible_name" xml:space="preserve">
     <value>சுட்டி இங்கே அகற்று{0}-{1}</value>
-    <comment>Accessible name for strip cursor</comment>
   </data>
   <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
     <value>மத்ப்புகள் இதற்கிடையே இருக்க வேண்டும் {0} and {1}</value>
@@ -1227,7 +977,6 @@
   </data>
   <data name="save_as_new_directory_name" xml:space="preserve">
     <value>{0} நகல்</value>
-    <comment>Default new name for copy</comment>
   </data>
   <data name="cannot_use_project_path" xml:space="preserve">
     <value>தேர்ந்தெடுத்த இடத்தை "{0}" சேமிக்க பயன்படுத்த முடியாது {1}</value>
@@ -1249,15 +998,12 @@
   </data>
   <data name="cannot_empty_directory" xml:space="preserve">
     <value>கோப்பகத்தை காலி செய்ய இயலாது "{0}": {1}</value>
-    <comment>Error dialog text</comment>
   </data>
   <data name="cannot_empty_directory_caption" xml:space="preserve">
     <value>கோப்பகத்தை காலி செய்ய இயலாது</value>
-    <comment>Error dialog caption</comment>
   </data>
   <data name="toggle_TODO" xml:space="preserve">
     <value>செய்ய வேண்டிய வின் இரு நிலை மாற்றம்</value>
-    <comment>Command</comment>
   </data>
   <data name="recording_resume_check_caption" xml:space="preserve">
     <value>இடை நிறுத்து நிலையிலிருந்து பதிவு செய்தலை மறுபடியும் ஆரம்பி?</value>
@@ -1270,41 +1016,33 @@
   </data>
   <data name="project_lock_error" xml:space="preserve">
     <value>திட்டபணிக்கான கோப்பை பூட்டு இங்கு உருவாக்க முடியவில்லை "{0}": {1}</value>
-    <comment>Lock error</comment>
   </data>
   <data name="project_locked" xml:space="preserve">
     <value>Project is இன்னொரு Obi- இன் அமர்வில் திறந்துள்ளன. Obi -இன் இன்னொரு அமர்வு இல்லை என்று நிச்சயமானால் இந்த கோப்பை பூட்டை நீங்கள் நீக்க முயற்ச்சிக்கலாம் "{0}", ஆனால் உங்கள் சொந்த விருப்பத்தில் தொடரவும்..</value>
-    <comment>Lock error</comment>
   </data>
   <data name="no_preceding_silence_phrase_caption" xml:space="preserve">
     <value>முன் கடந்த அமைதி சொற்றொடர் ஒன்றும் இல்லை</value>
-    <comment>Phrase detection warning</comment>
   </data>
   <data name="phrase_detection_progress_dialog_title" xml:space="preserve">
     <value>சொற்றொடர் கண்டுபிடித்தலை உபயோகி….</value>
-    <comment>Progress dialog title</comment>
   </data>
   <data name="MetadataView_CannotCommitEmptyContent" xml:space="preserve">
     <value> தரவு விவரங்கக்ளில் காலி மதிப்புகள் இருக்க முடியாது.</value>
   </data>
   <data name="location_error" xml:space="preserve">
     <value>கோப்பு இடம் பிழை</value>
-    <comment>Path error</comment>
   </data>
   <data name="path_not_recognized" xml:space="preserve">
     <value>அங்கீகரிக்கப்பட்ட "{0}" வழி கிடையாது</value>
-    <comment>Path error</comment>
   </data>
   <data name="path_not_rooted" xml:space="preserve">
     <value>உறுதியான பாதை இல்லை "{0}". வட்டு எழுத்தையும் சேர்த்து ஒரு முழு பாதையை தேர்ந்தெடுக்கவும்</value>
-    <comment>Path error</comment>
   </data>
   <data name="CHMhelp_file_name" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
   <data name="phrase_detection_progress" xml:space="preserve">
     <value>சொற்றொடர் கண்டுபிடித்தல் முன்னேற்றமாகி கொண்டிருக்கிறது...</value>
-    <comment>Progress dialog title</comment>
   </data>
   <data name="delete_silence_phrases" xml:space="preserve">
     <value>உங்கள் திட்டபணியில் அமைதி சொற்றொடர்கள் உள்ளன. இந்த அமைதி சொற்றொடர்களையும் வேறு பயன்படாத சொற்றொடர்கள் மற்றும் பகுதியை அழிக்க விரும்பினால் ஆம் தேர்வு செய்யவும். பயன்படாத சொற்றொடர்கள் மற்றும் பகுதியை மட்டும் அழித்து அமைதி சொற்றொடர்களை வைத்திருக்க விரும்பினால் இல்லை தேர்வு செய்யவும்.</value>
@@ -1497,11 +1235,9 @@
   </data>
   <data name="Delete_RangeOfPhrases" xml:space="preserve">
     <value>சொற்றொடர்களின் வரம்பை நீக்கு.</value>
-    <comment>command</comment>
   </data>
   <data name="Merge_RangeOfPhrases" xml:space="preserve">
     <value>சொற்றொடர்களின் வரம்பை அமிழ்த்து</value>
-    <comment>command</comment>
   </data>
   <data name="GotoPageOrPhrase_EnterNumeric" xml:space="preserve">
     <value>தவறான உள்ளீடு. ஒரு எண் மதிப்பை உள்ளிடவும்.</value>
@@ -2330,7 +2066,141 @@
   <data name="StatusForMergeSection" xml:space="preserve">
     <value>Showing section {0} to {1}. Please select sections to merge.</value>
   </data>
-
+  <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
+    <value>காண்பி ஜூம் குழு</value>
+  </data>
+  <data name="KeyS_CloseZoomPanel" xml:space="preserve">
+    <value>நெருக்கமாக பெரிதாக்கு குழு</value>
+  </data>
+  <data name="KeyS_ResetZoomPanel" xml:space="preserve">
+    <value>ஜூம் குழு மீட்டமை</value>
+  </data>
+  <data name="KeyS_ZoomInWaveform" xml:space="preserve">
+    <value>அலைவடிவம் பெரிதாக்க</value>
+  </data>
+  <data name="KeyS_ZoomOutWaveform" xml:space="preserve">
+    <value>அவுட் பெரிதாக்கவும் அலைவடிவம்</value>
+  </data>
+  <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
+    <value>ஜூம் தேர்ந்தெடுக்கப்பட்ட அலைவடிவம்</value>
+  </data>
+  <data name="KeyS_NextPhrase" xml:space="preserve">
+    <value>அடுத்த சொற்றொடர் காட்டு</value>
+  </data>
+  <data name="KeyS_PreviousPhrase" xml:space="preserve">
+    <value>காண்பி அடுத்து சொற்றொடர் </value>
+  </data>
+  <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
+    <value>உள்ளடக்கம் பார்க்கப்பட்ட காண்பி அலைவடிவங்கள்</value>
+  </data>
+  <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
+    <value>எப்போதும் வெளிராதவப்பூ ஏற்றுமதி கோப்புகளை உள்தள்ளலை புறக்கணிக்க</value>
+  </data>
+  <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
+    <value>அடுத்த சொற்றொடர் காட்டு</value>
+  </data>
+  <data name="ZoomAudioTT_ShowPreviousPhrase" xml:space="preserve">
+    <value>முந்தைய சொற்றொடர் காட்டு</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomIn" xml:space="preserve">
+    <value>பெரிதாக்கு</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomOut" xml:space="preserve">
+    <value>சிறிதாக்கு</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomSelection" xml:space="preserve">
+    <value>ஜூம் தேர்வு</value>
+  </data>
+  <data name="ZoomAudioTT_Close" xml:space="preserve">
+    <value>நெருக்கமாக</value>
+  </data>
+  <data name="ZoomAudioTT_Reset" xml:space="preserve">
+    <value>மீட்டமை</value>
+  </data>
+  <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
+    <value>பேச்சு அனைத்து பக்கங்களில் உருவாக்கப்படும்</value>
+  </data>
+  <data name="EditAudioTT_Cut" xml:space="preserve">
+    <value>வெட்டு</value>
+  </data>
+  <data name="EditAudioTT_Copy" xml:space="preserve">
+    <value>நகல்</value>
+  </data>
+  <data name="EditAudioTT_Paste" xml:space="preserve">
+    <value>பசை</value>
+  </data>
+  <data name="EditAudioTT_Delete" xml:space="preserve">
+    <value>நீக்கு விசை</value>
+  </data>
+  <data name="EditAudioTT_Merge" xml:space="preserve">
+    <value>அடுத்த சொற்றொடர் இணைவதற்கு</value>
+  </data>
+  <data name="EditAudioTT_Split" xml:space="preserve">
+    <value>பிரி சொற்றொடர்</value>
+  </data>
+  <data name="EditAudioTT_PhraseDetect" xml:space="preserve">
+    <value>சொற்றொடர் கண்டறிதல்</value>
+  </data>
+  <data name="Metadata_SetDefaults" xml:space="preserve">
+    <value>அமை மெட்டா</value>
+  </data>
+  <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
+    <value>பதிவு நிறுத்த விண்வெளி பயன்படுத்தவும்</value>
+  </data>
+  <data name="MergeProjectCommand" xml:space="preserve">
+    <value>திட்ட இணை</value>
+  </data>
+  <data name="MergeProject_NoSectionToMerge" xml:space="preserve">
+    <value>No section found in source project</value>
+  </data>
+  <data name="MergeProject_progress_dialog_title" xml:space="preserve">
+    <value>திட்டம் சேர்ப்பு {0} இருந்த {1}</value>
+  </data>
+  <data name="MergeProject_SectionProgress" xml:space="preserve">
+    <value>பகுதி இணைத்தல்: {0}</value>
+  </data>
+  <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
+    <value>எல்லையில் பார்வையில் காலியாக பிரிவுகள் பின்னணி வண்ணம்</value>
+  </data>
+  <data name="Obi_ProjectMerge" xml:space="preserve">
+    <value>ஒன்றாக்க திட்டம் தேர்வு செய்க</value>
+  </data>
+  <data name="Obi_ProjectMergeFilter" xml:space="preserve">
+    <value>Obi திட்டபணி கோப்பை (*.obi)|*.obi</value>
+  </data>
+  <data name="MergeProject_Information" xml:space="preserve">
+    <value>Please make sure that that the projects to be merged have the same audio format and are created on Obi 3.0 Beta 2 or later version.</value>
+  </data>
+  <data name="UserRegistration_Name" xml:space="preserve">
+    <value>பெயர்</value>
+  </data>
+  <data name="UserRegistration_Email" xml:space="preserve">
+    <value>மின்னஞ்சல்</value>
+  </data>
+  <data name="UserRegistration_Org_Name" xml:space="preserve">
+    <value>நிறுவனம் பெயர்</value>
+  </data>
+  <data name="UserRegistration_City" xml:space="preserve">
+    <value>நகரம்</value>
+  </data>
+  <data name="UserRegistration_Country" xml:space="preserve">
+    <value>நாடு</value>
+  </data>
+  <data name="UserRegistration_WrongEmail" xml:space="preserve">
+    <value>தவறான மின்னஞ்சல் முகவரி</value>
+  </data>
+  <data name="UserRegistration_NoMatchEmail" xml:space="preserve">
+    <value>உள்ளிட்ட மின்னஞ்சல்கள் பொருந்தவில்லை. மின்னஞ்சல்கள் மீண்டும் தட்டச்சு செய்க.</value>
+  </data>
+  <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
+    <value>ரேடியோ பொத்தான் எந்த ஒரு சோதனை மூலம் வன் உங்கள் பயன்பாடு பற்றி என்பதை தயவு செய்து</value>
+  </data>
+  <data name="HardResetPermanentSettings_Question" xml:space="preserve">
+    <value>பயனர் பதிவு மீட்டமை. நீங்கள் பயனர் பதிவு மீட்டமைக்க பிடிக்கும்? நீங்கள் தொடர மீண்டும் பதிவு செய்ய வேண்டும்.</value>
+  </data>
+  <data name="RenumberPages" xml:space="preserve">
+    <value>பக்கங்கள் இது விருப்ப</value>
+  </data>
   <data name="Transport_PreviousPhrase" xml:space="preserve">
     <value>முன் கடந்த சொற்றொடர்</value>
   </data>
@@ -2352,9 +2222,6 @@
   <data name="Transport_StartRecording" xml:space="preserve">
     <value>கண்காணிக்க அல்லது பதிவு செய்ய தொடங்கு</value>
   </data>
-  <data name="Transport_RecordingOptions" xml:space="preserve">
-    <value>Recording Options</value>
-  </data>
   <data name="Transport_FastPlayForward" xml:space="preserve">
     <value>முன்னுக்கு விரைவான வேகத்தில் வாசி</value>
   </data>
@@ -2370,7 +2237,6 @@
   <data name="Transport_AddTodo" xml:space="preserve">
     <value>பதிவு செய்யும் பொழுது செய்ய வேண்டிய என்ற குறிப்பை சேர்</value>
   </data>
-
   <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
     <value>முந்தைய சொற்றொடர்</value>
   </data>
@@ -2397,5 +2263,68 @@
   </data>
   <data name="Transport_AddTodoAcc" xml:space="preserve">
     <value>சொற்றொடரை குறி</value>
+  </data>
+  <data name="Language_Pack" xml:space="preserve">
+    <value>நீங்கள் தவறான கோப்பு தேர்வு</value>
+  </data>
+  <data name="Language_Pack_Select" xml:space="preserve">
+    <value>மொழி பேக் ZIP கோப்பை தேர்ந்தெடுக்கவும்</value>
+  </data>
+  <data name="Language_Pack_Complete" xml:space="preserve">
+    <value>மொழி பேக் மேம்படுத்தல் இலட்சியத்தையும் ஆகிறது. விளைவு எடுக்க மாற்றங்கள் வன் மறுதொடக்கம் செய்க</value>
+  </data>
+  <data name="Language_Pack_Caption" xml:space="preserve">
+    <value>தவறான கோப்பு</value>
+  </data>
+  <data name="Language_Pack_Select_Caption" xml:space="preserve">
+    <value>ZIP கோப்பை தேர்ந்தெடுக்கவும்</value>
+  </data>
+  <data name="Language_Pack_Complete_Caption" xml:space="preserve">
+    <value>புதுப்பி இலட்சியத்தையும்</value>
+  </data>
+  <data name="Preferences_Advance_Mode" xml:space="preserve">
+    <value>தொடர்ந்து பெட்டிகளையும் சோதிக்க வேண்டும். நீங்கள் செய்ய விரும்புகிறீர்களா</value>
+  </data>
+  <data name="Preferences_Intermediate_recording_mode" xml:space="preserve">
+    <value>இடைநிலை பதிவு முறை</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Basic" xml:space="preserve">
+    <value>அடிப்படையான</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Intermediate" xml:space="preserve">
+    <value>இடைநிலை</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Advance" xml:space="preserve">
+    <value>அட்வான்ஸ்</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Custom" xml:space="preserve">
+    <value>வழக்கம்</value>
+  </data>
+  <data name="Audio_RecordSubsequentPhrases" xml:space="preserve">
+    <value>பின்னர் ஆடியோ பதிவு பதிவு பொத்தானை பயன்படுத்தவும்</value>
+  </data>
+  <data name="Audio_EnforceSingleCursor" xml:space="preserve">
+    <value>ஒற்றை ஆடியோ கர்சர் செயல்படுத்த</value>
+  </data>
+  <data name="VUMeter_Reset" xml:space="preserve">
+    <value>மீட்டமை</value>
+  </data>
+  <data name="VUMeter_Right" xml:space="preserve">
+    <value>சரியான</value>
+  </data>
+  <data name="VUMeter_Left" xml:space="preserve">
+    <value>இடது</value>
+  </data>
+  <data name="KeysS_TransportBarExpandPlayOptions" xml:space="preserve">
+    <value>நாடகம் விருப்பங்கள் பட்டன் விரிவாக்கு</value>
+  </data>
+  <data name="KeysS_TransportBarExpandRecordOptions" xml:space="preserve">
+    <value>பதிவு விருப்பங்கள் பட்டன் விரிவாக்கு</value>
+  </data>
+  <data name="Transport_PlayingOptions" xml:space="preserve">
+    <value>விருப்பங்கள் வாசித்தல்</value>
+  </data>
+  <data name="Transport_RecordingOptions" xml:space="preserve">
+    <value>Recording Options</value>
   </data>
 </root>

@@ -117,16 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
-  </data>
+  </metadata>
+  <metadata name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 520</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="mFileToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>கோப்பை</value>
   </data>
   <data name="mFile_NewProjectMenuItem.AccessibleName" xml:space="preserve">
     <value>புதிய கோப்பைCtrl+N</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mFile_NewProjectMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -167,36 +173,6 @@
   <data name="mFile_OpenProjectMenuItem.Text" xml:space="preserve">
     <value>தி&amp;ட்டபணி திற</value>
   </data>
-  <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>பின் நகர்விலிருந்து மீட்பு</value>
-  </data>
-  <data name="m_RestoreFromBackupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 22</value>
-  </data>
-  <data name="m_RestoreFromBackupToolStripMenuItem.Text" xml:space="preserve">
-    <value>பின் நகர்விலிருந்து மீட்பு</value>
-  </data>
-  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>அசல் திட்டபணியிலிருந்து மீட்பு</value>
-  </data>
-  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 22</value>
-  </data>
-  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Text" xml:space="preserve">
-    <value>அசல் திட்டபணியிலிருந்து மீட்பு</value>
-  </data>
-  <data name="mFile_CloseProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>திட்டபணியை மூடுCtrl+W</value>
-  </data>
-  <data name="mFile_CloseProjectMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+W</value>
-  </data>
-  <data name="mFile_CloseProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 22</value>
-  </data>
-  <data name="mFile_CloseProjectMenuItem.Text" xml:space="preserve">
-    <value>திட்டபணியை &amp;மூடு</value>
-  </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
   </data>
@@ -228,6 +204,48 @@
     <value>திட்டபணியை இப்ப&amp;டி சேமி</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>278, 6</value>
+  </data>
+  <data name="mFile_MergeProjectMenuItem.AccessibleName" xml:space="preserve">
+    <value>Merge Project</value>
+  </data>
+  <data name="mFile_MergeProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="mFile_MergeProjectMenuItem.Text" xml:space="preserve">
+    <value>&amp;Merge Project</value>
+  </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>பின் நகர்விலிருந்து மீட்பு</value>
+  </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.Text" xml:space="preserve">
+    <value>பின் நகர்விலிருந்து மீட்பு</value>
+  </data>
+  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>அசல் திட்டபணியிலிருந்து மீட்பு</value>
+  </data>
+  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Text" xml:space="preserve">
+    <value>அசல் திட்டபணியிலிருந்து மீட்பு</value>
+  </data>
+  <data name="mFile_CloseProjectMenuItem.AccessibleName" xml:space="preserve">
+    <value>திட்டபணியை மூடுCtrl+W</value>
+  </data>
+  <data name="mFile_CloseProjectMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+W</value>
+  </data>
+  <data name="mFile_CloseProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="mFile_CloseProjectMenuItem.Text" xml:space="preserve">
+    <value>திட்டபணியை &amp;மூடு</value>
+  </data>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
   </data>
   <data name="openrecentSeparator.Size" type="System.Drawing.Size, System.Drawing">
@@ -886,7 +904,7 @@
     <value>Ctrl+B</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;காலி சொற்றொடரை சேர்</value>
@@ -898,7 +916,7 @@
     <value>Ctrl+Shift+B</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
     <value>காலி பக்கங்களை சேர்</value>
@@ -910,7 +928,7 @@
     <value>Ctrl+I</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.Text" xml:space="preserve">
     <value>ஒலி கோப்பைகளை இறக்குமதி செய்</value>
@@ -922,7 +940,7 @@
     <value>Ctrl+Q</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>சொற்றொடரை பிரி</value>
@@ -938,6 +956,18 @@
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.Text" xml:space="preserve">
     <value>அடுத்ததுடன் சொற்றொடரை அமிழ்த்து</value>
+  </data>
+  <data name="splitAndMergeWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="splitAndMergeWithNextToolStripMenuItem.Text" xml:space="preserve">
+    <value>ஸ்ப்லிட் ஒன்றாக்க உடன் அடுத்து</value>
+  </data>
+  <data name="splitAndMergeWithPreviousToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="splitAndMergeWithPreviousToolStripMenuItem.Text" xml:space="preserve">
+    <value>ஸ்ப்லிட் ஒன்றாக்க உடன் முந்தைய</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>கீழே காணப்படும் சொற்றொடருடன் அமிழ்த்து</value>
@@ -958,7 +988,7 @@
     <value>முந்தைய சொற்றொடர்களுடன் அமிழ்த்து</value>
   </data>
   <data name="mMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
     <value>அமி&amp;ழ்த்து</value>
@@ -970,7 +1000,7 @@
     <value>Ctrl+Alt+Q</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
     <value>ஒலியை செதுக்கு</value>
@@ -979,7 +1009,7 @@
     <value>F9</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.Text" xml:space="preserve">
     <value>செய்ய வேண்டிய என்று குறிக்கப்பட்ட சொற்றொடர்</value>
@@ -991,7 +1021,7 @@
     <value>Ctrl+K</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.Text" xml:space="preserve">
     <value>பயன்படுத்தப்பட்ட சொற்றொடர்</value>
@@ -1102,13 +1132,13 @@
     <value>குறிப்புகளிலிருந்து பொறுப்புகளை துடை</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>தவிற்க்ககூடிய குறிப்பு..</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
@@ -1168,7 +1198,7 @@
     <value>புதிய விருப்ப பொறுப்பு</value>
   </data>
   <data name="mPhrases_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
     <value>பொறுப்புகளை நியமிக்கவும்</value>
@@ -1180,19 +1210,28 @@
     <value>Ctrl+Shift+C</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.Text" xml:space="preserve">
     <value> பொறுப்புகளை துடை</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
     <value>விருப்ப பொறுப்புகளை திருத்து</value>
   </data>
+  <data name="mPhrases_EditRolesMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="mPhrases_RenumberPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
+    <value>பின்வரும் பக்கங்களில் இது விருப்ப</value>
+  </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
     <value>தேர்ந்தெடுத்த உருப்படிCtrl+Shift+P</value>
@@ -1222,7 +1261,7 @@
     <value>தேர்ந்தெடுத்த அமைதி சொற்றொடரின் அளவுரு</value>
   </data>
   <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
     <value>சொற்றொடர் கண்டுபிடித்தலை உபயோகி</value>
@@ -1258,7 +1297,7 @@
     <value>ஒலி தேர்வுகளை &amp;முடி</value>
   </data>
   <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
     <value>ஒலி தேர்&amp;வு</value>
@@ -1315,13 +1354,13 @@
     <value>விசே&amp;ஷ சொற்றொடரை சேகரி</value>
   </data>
   <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;போக</value>
   </data>
   <data name="mCheckForPhrasesWithImproperAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mCheckForPhrasesWithImproperAudioMenuItem.Text" xml:space="preserve">
     <value>பிழையுள்ள ஒலிகளுக்காக சரிபார்க்கவும்</value>
@@ -1330,7 +1369,7 @@
     <value>கீழே காணப்படும் சொற்றொடரை அழி</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>கீழே காணப்படும் சொற்றொடரை அழி</value>
@@ -1364,6 +1403,24 @@
   </data>
   <data name="mPlaySelectionToolStripMenuItem.Text" xml:space="preserve">
     <value>வாசிப்பும் தேர்வுகளும்</value>
+  </data>
+  <data name="m_PlaySectionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>பகுதி விளையாட</value>
+  </data>
+  <data name="m_PlaySectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="m_PlaySectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>பகுதி விளையாட</value>
+  </data>
+  <data name="m_PlayHeadingToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>பகுதி விளையாட தலைப்பு</value>
+  </data>
+  <data name="m_PlayHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="m_PlayHeadingToolStripMenuItem.Text" xml:space="preserve">
+    <value>பகுதி விளையாட தலைப்பு</value>
   </data>
   <data name="mPlayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1526,6 +1583,21 @@
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;நேரடி பதிவு செய்தலை ஆரம்பி</value>
+  </data>
+  <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Text" xml:space="preserve">
+    <value>Record over subsequent phrases</value>
+  </data>
+  <data name="m_PreviewBeforeRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>முன்னோட்டம் முன்னால் பதிவு</value>
+  </data>
+  <data name="m_PreviewBeforeRecordingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="m_PreviewBeforeRecordingToolStripMenuItem.Text" xml:space="preserve">
+    <value>முன்னோட்டம் முன்னால் பதிவு</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
@@ -1749,6 +1821,12 @@
   <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
     <value>தொடர்பில்லாத ஒலிகளை சுத்தம் செய்</value>
   </data>
+  <data name="m_ToolsLangPack.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="m_ToolsLangPack.Text" xml:space="preserve">
+    <value>புதுப்பி மொழி பேக்</value>
+  </data>
   <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 6</value>
   </data>
@@ -1830,9 +1908,6 @@
   <data name="&gt;&gt;mMenuStrip.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>0, 520</value>
-  </data>
   <data name="mStatusLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
@@ -1891,16 +1966,13 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=2.5.5.24551, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.0.1.31656, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mProjectView.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -2164,11 +2236,8 @@
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>v</value>
+    <value>Obi</value>
   </data>
   <data name="&gt;&gt;mFileToolStripMenuItem.Name" xml:space="preserve">
     <value>mFileToolStripMenuItem</value>
@@ -2194,24 +2263,6 @@
   <data name="&gt;&gt;mFile_OpenProjectMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_RestoreFromBackupToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_RestoreFromOriginalProjectToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mFile_CloseProjectMenuItem.Name" xml:space="preserve">
-    <value>mFile_CloseProjectMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mFile_CloseProjectMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;toolStripSeparator9.Name" xml:space="preserve">
     <value>toolStripSeparator9</value>
   </data>
@@ -2234,6 +2285,36 @@
     <value>toolStripSeparator2</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFile_MergeProjectMenuItem.Name" xml:space="preserve">
+    <value>mFile_MergeProjectMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mFile_MergeProjectMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_RestoreFromBackupToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_RestoreFromOriginalProjectToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFile_CloseProjectMenuItem.Name" xml:space="preserve">
+    <value>mFile_CloseProjectMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mFile_CloseProjectMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator8.Name" xml:space="preserve">
+    <value>toolStripSeparator8</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator8.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mFile_RecentProjectMenuItem.Name" xml:space="preserve">
@@ -2668,6 +2749,18 @@
   <data name="&gt;&gt;mMergePhraseWithNextToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;splitAndMergeWithNextToolStripMenuItem.Name" xml:space="preserve">
+    <value>splitAndMergeWithNextToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;splitAndMergeWithNextToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitAndMergeWithPreviousToolStripMenuItem.Name" xml:space="preserve">
+    <value>splitAndMergeWithPreviousToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;splitAndMergeWithPreviousToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mMergePhraseWithFollowingPhrasesToolStripMenuItem.Name" xml:space="preserve">
     <value>mMergePhraseWithFollowingPhrasesToolStripMenuItem</value>
   </data>
@@ -2818,6 +2911,12 @@
   <data name="&gt;&gt;mPhrases_EditRolesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_RenumberPagesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator19.Name" xml:space="preserve">
     <value>toolStripSeparator19</value>
   </data>
@@ -2932,6 +3031,18 @@
   <data name="&gt;&gt;mPlaySelectionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;m_PlaySectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_PlaySectionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_PlaySectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_PlayHeadingToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_PlayHeadingToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_PlayHeadingToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mPauseToolStripMenuItem.Name" xml:space="preserve">
     <value>mPauseToolStripMenuItem</value>
   </data>
@@ -3026,6 +3137,18 @@
     <value>mStartRecordingDirectlyToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mStartRecordingDirectlyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_DeletePhrasesWhileRecordingtoolStripMenuItem.Name" xml:space="preserve">
+    <value>m_DeletePhrasesWhileRecordingtoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_DeletePhrasesWhileRecordingtoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewBeforeRecordingToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_PreviewBeforeRecordingToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_PreviewBeforeRecordingToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mAllowOverwriteToolStripMenuItem.Name" xml:space="preserve">
@@ -3164,6 +3287,12 @@
     <value>mTools_CleanUnreferencedAudioMenuItem</value>
   </data>
   <data name="&gt;&gt;mTools_CleanUnreferencedAudioMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_ToolsLangPack.Name" xml:space="preserve">
+    <value>m_ToolsLangPack</value>
+  </data>
+  <data name="&gt;&gt;m_ToolsLangPack.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator18.Name" xml:space="preserve">

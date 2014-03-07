@@ -3009,7 +3009,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zoom Selected Waveform Select Waveform.
+        ///   Looks up a localized string similar to Zoom Selected Waveform.
         /// </summary>
         internal static string KeyS_ZoomSelectedWaveform {
             get {
