@@ -2114,7 +2114,7 @@ namespace Obi
                     mStartRecordingDirectlyToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
                 }
                 if (mProjectView != null && mProjectView.ObiForm != null && mProjectView.ObiForm.Settings != null && mProjectView.Selection != null && !mProjectView.TransportBar.IsListening
-&& mSettings.AllowOverwrite && ((mProjectView.TransportBar.IsPaused && !(mProjectView.Selection is AudioSelection)) || (mProjectView.Selection != null && mProjectView.Selection is AudioSelection && ((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)))
+&& mSettings.AllowOverwrite && ((mProjectView.TransportBar.IsPaused && !(mProjectView.Selection is AudioSelection)) || (mProjectView.Selection is AudioSelection && ((AudioSelection)mProjectView.Selection).AudioRange!=null && ((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)))
                 {
                     m_PreviewBeforeRecordingToolStripMenuItem.Enabled = true;
                 }

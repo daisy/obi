@@ -72,8 +72,10 @@ namespace Obi.ProjectView
 
         public void UpdateCursorTime (double time ) 
         {
-            if( m_AudioBlock != null ) m_AudioBlock.UpdateCursorTime (time) ;        
-             XVal = m_AudioBlock.UpdateCursorTime(time);
+            if (m_AudioBlock != null)
+            {
+               XVal = m_AudioBlock.UpdateCursorTime(time);
+            }
              if (m_ProjectView.TransportBar.CurrentPlaylist.CurrentPhrase != m_ProjectView.Selection.Node)
              {
                  m_ProjectView.TransportBar.Stop();
