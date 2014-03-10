@@ -151,7 +151,7 @@
     <value>mWaveform</value>
   </data>
   <data name="&gt;&gt;mWaveform.Type" xml:space="preserve">
-    <value>Obi.ProjectView.Waveform, Obi, Version=2.4.0.17996, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.Waveform, Obi, Version=3.0.1.31997, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mWaveform.Parent" xml:space="preserve">
     <value>$this</value>
@@ -162,11 +162,14 @@
   <data name="mRecordingLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="mRecordingLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MS Reference Sans Serif, 20.25pt, style=Bold</value>
+  </data>
   <data name="mRecordingLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 25</value>
   </data>
   <data name="mRecordingLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 16</value>
+    <value>192, 34</value>
   </data>
   <data name="mRecordingLabel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -199,6 +202,6 @@
     <value>AudioBlock</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>Obi.ProjectView.Block, Obi, Version=2.4.0.17996, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.Block, Obi, Version=3.0.1.31997, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>
