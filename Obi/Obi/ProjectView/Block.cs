@@ -145,6 +145,7 @@ namespace Obi.ProjectView
                 BackColor =
                     m_IsFineNavigationMode? settings.FineNavigationColor:
                     mHighlighted ? settings.BlockBackColor_Selected :
+                    Strip.RecordingNode != null && Strip.RecordingNode == mNode? settings.RecordingHighlightPhraseColor ://@ recording node color should be different
                     mNode.Role_ == EmptyNode.Role.Silence ? settings.BlockBackColor_Silence :
                     !mNode.Used ? settings.BlockBackColor_Unused :
                     mNode.TODO ? settings.BlockBackColor_TODO :

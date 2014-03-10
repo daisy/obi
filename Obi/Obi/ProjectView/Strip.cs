@@ -116,6 +116,10 @@ namespace Obi.ProjectView
         public ContentView ContentView { get { return mContentView; } }
 
         /// <summary>
+        /// <Empty node in which recording is going on
+        /// </summary>
+        public EmptyNode RecordingNode { get { return mContentView != null ? mContentView.RecordingNode: null; } }
+        /// <summary>
         /// Get the first block in the strip, or null if empty.
         /// </summary>
         public Block FirstBlock
