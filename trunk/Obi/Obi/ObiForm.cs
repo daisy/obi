@@ -2163,7 +2163,7 @@ namespace Obi
 
             private void mStartRecordingDirectlyToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.TransportBar.StartRecordingDirectly();
+                mProjectView.TransportBar.StartRecordingDirectly(this.Settings != null &&  this.Settings.Recording_PreviewBeforeStarting);
             }
 
 
