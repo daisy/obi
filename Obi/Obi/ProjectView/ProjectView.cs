@@ -3033,6 +3033,7 @@ for (int j = 0;
             }
 
         public void UpdateCursorPosition ( double time ) { mContentView.UpdateCursorPosition ( time ); }
+        public void ClearCursor () { mContentView.ClearCursor () ; } 
         public void SelectAtCurrentTime () { mContentView.SelectAtCurrentTime (); }
 
 

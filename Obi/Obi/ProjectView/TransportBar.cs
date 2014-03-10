@@ -617,7 +617,7 @@ namespace Obi.ProjectView
                     && ((AudioSelection)mView.Selection).AudioRange.HasCursor )
                     {
                         double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime  ;
-                        mView.UpdateCursorPosition (time) ;
+                        mView.ClearCursor();
                         mCurrentPlaylist.CurrentTimeInAsset = time;
                     }
 
