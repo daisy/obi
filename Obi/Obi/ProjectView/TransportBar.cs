@@ -41,7 +41,7 @@ namespace Obi.ProjectView
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null) TO BE REMOVED
         private bool m_IsPlaySectionInspiteOfPhraseSelection = false;
         //public variables
-        private bool IsPlaySection = false;
+        //private bool IsPlaySection = false;
         private bool IsPreviewBeforeRec = false;
 
         Bitmap m_monitorButtonImage;
@@ -1303,16 +1303,16 @@ namespace Obi.ProjectView
             {
                 if (!node.IsRooted) return;
                 bool neglectSelection;
-                if (IsPlaySection == false)
-                {
+                //if (IsPlaySection == false)
+                //{
                      neglectSelection = mView.Selection == null
                         || (node is EmptyNode && mView.Selection.Node != node);
-                }
-                else
-                {
-                    neglectSelection = true;
-                    IsPlaySection = false;
-                }
+                //}
+                //else
+                //{
+                    //neglectSelection = true;
+                    //IsPlaySection = false;
+                //}
                 
                 if (neglectSelection || m_IsPlaySectionInspiteOfPhraseSelection)
                 {
@@ -3630,7 +3630,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                 {
 
                     m_IsPlaySectionInspiteOfPhraseSelection = true;
-                    IsPlaySection = true;
+                    //IsPlaySection = true;
                     PlayOrResume(nodeSelect);
                 }
             }
