@@ -41,8 +41,8 @@ namespace Obi.ProjectView
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null) TO BE REMOVED
         private bool m_IsPlaySectionInspiteOfPhraseSelection = false;
         //public variables
-        public bool IsPlaySection = false;
-        public bool IsPreviewBeforeRec = false;
+        private bool IsPlaySection = false;
+        private bool IsPreviewBeforeRec = false;
 
         Bitmap m_monitorButtonImage;
         Bitmap m_recordButtonImage;
@@ -3133,9 +3133,9 @@ SelectionChangedPlaybackEnabled = false;
         }
 
         public bool IsActive { get { return Enabled && ( IsPlayerActive || IsRecorderActive ); } }
-        public bool IsPlaying { get { return mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing; } }
+        private bool IsPlaying { get { return mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing; } }
         public bool IsPlayerActive { get { return IsPaused || IsPlaying; } }
-        public bool IsPaused { get { return mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused; } }
+        private bool IsPaused { get { return mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused; } }
         public bool IsRecorderActive { get { return IsListening || IsRecording; } }
         private bool IsMetadataSelected { get { return mView.Selection != null && mView.Selection.Control is MetadataView  ; } }
 
@@ -3502,9 +3502,7 @@ SelectionChangedPlaybackEnabled = false;
 
         private void m_RecordingOptionsContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null && mView.Selection != null && CurrentState != State.Monitoring
-    && mView.ObiForm.Settings.AllowOverwrite && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange != null && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
-           
+            if (IsPreviewBefoeRecEnabled)           
             {
                 mPreviewBeforeRecToolStripMenuItem.Enabled = true;
             }
@@ -3608,8 +3606,12 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
 
         private void m_PlaySectiontoolStripMenuItem_Click(object sender, EventArgs e)
         {
+            PlaySection();           
             
-            PhraseNode pharse=null;
+        }
+        public void PlaySection()
+        {
+            PhraseNode pharse = null;
             ObiNode nodeSelect = null;
             if (mView != null && mView.Selection != null)
             {
@@ -3628,12 +3630,18 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                 {
 
                     m_IsPlaySectionInspiteOfPhraseSelection = true;
+                    IsPlaySection = true;
                     PlayOrResume(nodeSelect);
                 }
             }
         }
 
         private void m_PlayAlltoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlayAllSections();
+
+        }
+        public void PlayAllSections()
         {
             if (!mView.IsZoomWaveformActive)//@zoomwaveform: if zoom waveform is not active, start play all else start play selection
             {
@@ -3668,13 +3676,22 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
 
         private void mPreviewBeforeRecToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            PreviewBeforeRecording();
+        }
+        public void PreviewBeforeRecording()
+        {
             IsPreviewBeforeRec = true;
             StartRecordingDirectly();
         }
 
         private void m_playHeadingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PhraseNode pharse=null;
+            PlayHeading();        
+           
+        }
+        public void PlayHeading()
+        {
+            PhraseNode pharse = null;
             SectionNode nodeSelect = null;
             EmptyNode emptyNode = null;
             if (mView != null && mView.Selection != null)
@@ -3696,11 +3713,10 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                     nodeSelect = emptyNode.ParentAs<SectionNode>();
                 }
                 if (nodeSelect != null)
-                {                    
+                {
                     PlayHeadingPhrase(nodeSelect);
                 }
             }
-           
         }
         public bool ExpandPlayOptions()
         {
@@ -3731,6 +3747,23 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                 return false;
             }
 
+        }
+
+        public bool IsPreviewBefoeRecEnabled
+        {
+            get
+            {
+                if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null && mView.Selection != null && CurrentState != State.Monitoring
+&& mView.ObiForm.Settings.AllowOverwrite && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange != null && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
         }
 
     }
