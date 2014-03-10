@@ -42,7 +42,7 @@ namespace Obi.ProjectView
         private bool m_IsPlaySectionInspiteOfPhraseSelection = false;
         //public variables
         //private bool IsPlaySection = false;
-        private bool IsPreviewBeforeRec = false;
+        //private bool IsPreviewBeforeRec = false;
 
         Bitmap m_monitorButtonImage;
         Bitmap m_recordButtonImage;
@@ -1650,7 +1650,7 @@ namespace Obi.ProjectView
                 }
                 else
                 {
-                    StartRecordingDirectly();
+                    StartRecordingDirectly(mView.ObiForm.Settings.Recording_PreviewBeforeStarting);
                 }
             }
             else
@@ -2846,9 +2846,9 @@ namespace Obi.ProjectView
         /// <summary>
         /// Start recording directly without going through listening
         /// </summary>
-        public void StartRecordingDirectly()
+        public void StartRecordingDirectly(bool isPreviewBeforeRecording)
         {
-            if (mView.ObiForm.Settings.Recording_PreviewBeforeStarting && mView.ObiForm.Settings.AllowOverwrite
+            if (isPreviewBeforeRecording && mView.ObiForm.Settings.AllowOverwrite
                 && m_PreviewBeforeRecordingWorker != null && m_PreviewBeforeRecordingWorker.IsBusy)
             {
                 return;
@@ -2864,7 +2864,7 @@ namespace Obi.ProjectView
                 if (mView.Selection == null || !(mView.Selection.Node is EmptyNode) || mView.Selection.Node != mCurrentPlaylist.CurrentPhrase) return;
             }
 
-            if ((mView.ObiForm.Settings.Recording_PreviewBeforeStarting || IsPreviewBeforeRec) && mView.ObiForm.Settings.AllowOverwrite
+            if (isPreviewBeforeRecording && mView.ObiForm.Settings.AllowOverwrite
                && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
             {
                 
@@ -2893,7 +2893,7 @@ namespace Obi.ProjectView
                     }
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerAsync();
-                IsPreviewBeforeRec = false;
+                
             }
             else
             {
@@ -3680,8 +3680,8 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
         }
         public void PreviewBeforeRecording()
         {
-            IsPreviewBeforeRec = true;
-            StartRecordingDirectly();
+            
+            StartRecordingDirectly(true);
         }
 
         private void m_playHeadingToolStripMenuItem_Click(object sender, EventArgs e)
