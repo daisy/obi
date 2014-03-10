@@ -39,7 +39,7 @@ namespace Obi.ProjectView
         private Playlist mMasterPlaylist;            // master playlist (all phrases in the project)
         private Playlist mQAMasterPlaylist;          // QA master playlist (all used phrases in the project)
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null) TO BE REMOVED
- 
+        private bool m_IsPlaySectionInspiteOfPhraseSelection = false;
         //public variables
         public bool IsPlaySection = false;
         public bool IsPreviewBeforeRec = false;
@@ -1314,9 +1314,10 @@ namespace Obi.ProjectView
                     IsPlaySection = false;
                 }
                 
-                if (neglectSelection)
+                if (neglectSelection || m_IsPlaySectionInspiteOfPhraseSelection)
                 {
                     mLocalPlaylist = new Playlist(mPlayer,  node, mPlayQAPlaylist);
+                    m_IsPlaySectionInspiteOfPhraseSelection = false;
                 }
                 else
                 {
@@ -3607,6 +3608,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
 
         private void m_PlaySectiontoolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             PhraseNode pharse=null;
             ObiNode nodeSelect = null;
             if (mView != null && mView.Selection != null)
@@ -3625,7 +3627,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                 if (nodeSelect != null)
                 {
 
-                    IsPlaySection = true;
+                    m_IsPlaySectionInspiteOfPhraseSelection = true;
                     PlayOrResume(nodeSelect);
                 }
             }
