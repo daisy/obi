@@ -2113,8 +2113,7 @@ namespace Obi
                     mStartRecordingToolStripMenuItem.Visible = false;
                     mStartRecordingDirectlyToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
                 }
-                if (mProjectView != null && mProjectView.ObiForm != null && mProjectView.ObiForm.Settings != null && mProjectView.Selection != null && !mProjectView.TransportBar.IsListening
-&& mSettings.AllowOverwrite && ((mProjectView.TransportBar.IsPaused && !(mProjectView.Selection is AudioSelection)) || (mProjectView.Selection is AudioSelection && ((AudioSelection)mProjectView.Selection).AudioRange!=null && ((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)))
+                if (mProjectView.TransportBar.IsPreviewBefoeRecEnabled)
                 {
                     m_PreviewBeforeRecordingToolStripMenuItem.Enabled = true;
                 }
@@ -2129,14 +2128,7 @@ namespace Obi
 
             private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                if (!mProjectView.IsZoomWaveformActive)//@zoomwaveform: if zoom waveform is not active, start play all else start play selection
-                {
-                    mProjectView.TransportBar.PlayAll();
-                }
-                else
-                {
-                    mProjectView.TransportBar.PlayOrResume();
-                }
+                mProjectView.TransportBar.PlayAllSections();
             }
 
             private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2297,7 +2289,7 @@ namespace Obi
                                                                 !mProjectView.TransportBar.IsRecorderActive;
                 mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
                 PipelineMenuItemsEnabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
-                m_ToolsLangPack.Enabled = !mProjectView.TransportBar.IsRecorderActive && !mProjectView.TransportBar.IsPlaying;
+                m_ToolsLangPack.Enabled = !mProjectView.TransportBar.IsRecorderActive;
             }
 
             // Open the preferences dialog
@@ -4867,8 +4859,7 @@ namespace Obi
                     
                     mAllowOverwriteToolStripMenuItem.Checked = false;
                 }
-                if (mProjectView != null && mProjectView.ObiForm != null && mProjectView.ObiForm.Settings != null && mProjectView.Selection != null && !mProjectView.TransportBar.IsListening
-&& mSettings.AllowOverwrite && (( mProjectView.TransportBar.IsPaused && !(mProjectView.Selection is AudioSelection)) || (mProjectView.Selection != null && mProjectView.Selection is AudioSelection && ((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)))
+                if (mProjectView.TransportBar.IsPreviewBefoeRecEnabled)
                 {
                     m_PreviewBeforeRecordingToolStripMenuItem.Enabled = true;
                 }
@@ -4986,63 +4977,17 @@ namespace Obi
 
             private void m_PlaySectionToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                PhraseNode pharse = null;
-                ObiNode nodeSelect = null;
-                if (mProjectView != null && mProjectView.Selection != null)
-                {
-
-
-                    if (mProjectView.Selection.Node is PhraseNode)
-                    {
-                        pharse = (PhraseNode)mProjectView.Selection.Node;
-                        nodeSelect = pharse.ParentAs<SectionNode>();
-                    }
-                    else if (mProjectView.Selection.Node is SectionNode)
-                    {
-                        nodeSelect = mProjectView.Selection.Node;
-                    }
-                    if (nodeSelect != null)
-                    {
-                       mProjectView.TransportBar.IsPlaySection = true;        
-                       mProjectView.TransportBar.PlayOrResume(nodeSelect);
-                    }
-                }
+                mProjectView.TransportBar.PlaySection();
             }
 
             private void m_PlayHeadingToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                PhraseNode pharse = null;
-                SectionNode nodeSelect = null;
-                EmptyNode emptyNode = null;
-                if (mProjectView != null && mProjectView.Selection != null)
-                {
-
-
-                    if (mProjectView.Selection.Node is PhraseNode)
-                    {
-                        pharse = (PhraseNode)mProjectView.Selection.Node;
-                        nodeSelect = pharse.ParentAs<SectionNode>();
-                    }
-                    else if (mProjectView.Selection.Node is SectionNode)
-                    {
-                        nodeSelect = (SectionNode)mProjectView.Selection.Node;
-                    }
-                    else if (mProjectView.Selection.Node is EmptyNode)
-                    {
-                        emptyNode = (EmptyNode)mProjectView.Selection.Node;
-                        nodeSelect = emptyNode.ParentAs<SectionNode>();
-                    }
-                    if (nodeSelect != null)
-                    {
-                      mProjectView.TransportBar.PlayHeadingPhrase(nodeSelect);
-                    }
-                }
+                mProjectView.TransportBar.PlayHeading();
             }
 
             private void m_PreviewBeforeRecordingToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.TransportBar.IsPreviewBeforeRec = true;
-                mProjectView.TransportBar.StartRecordingDirectly();
+                mProjectView.TransportBar.PreviewBeforeRecording();
             }
 
 
