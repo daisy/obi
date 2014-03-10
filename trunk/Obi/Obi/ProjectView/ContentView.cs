@@ -558,6 +558,11 @@ namespace Obi.ProjectView
                 }
             }
 
+        public void ClearCursor()
+        {
+            if (mPlaybackBlock != null) mPlaybackBlock.ClearCursor();
+        }
+
         public PhraseNode PlaybackPhrase
             {
             get { return mPlaybackBlock == null ? null : mPlaybackBlock.Node as PhraseNode; }
