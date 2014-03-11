@@ -2604,4 +2604,7 @@ Error text: {1}</value>
   <data name="Transport_RecordingOptions" xml:space="preserve">
     <value>Recording Options</value>
   </data>
+  <data name="Audio_DeleteFollowingPhrasesOfSectionAfterRecording" xml:space="preserve">
+    <value>After recording delete the following phrases</value>
+  </data>
 </root>
