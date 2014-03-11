@@ -788,6 +788,9 @@ namespace Obi.ProjectView
                     if (CurrentState == State.Stopped)//@masternewbehaviour
                         {
                         mCurrentPlaylist = mMasterPlaylist;
+                        PhraseNode currentPhrase = FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node);
+                        if (currentPhrase != null) mCurrentPlaylist.CurrentPhrase = currentPhrase;
+                        UpdateButtons();
                     //System.Media.SystemSounds.Asterisk.Play();
                     }
                 }
@@ -1637,7 +1640,13 @@ namespace Obi.ProjectView
                 SelectionChangedPlaybackEnabled = false;
                 mCurrentPlaylist.Stop ();
                 mView.SetPlaybackPhraseAndTime ( null, 0.0 );
-                if(!(mCurrentPlaylist is PreviewPlaylist))  mCurrentPlaylist = mMasterPlaylist; //@masternewbehaviour
+                if (!(mCurrentPlaylist is PreviewPlaylist))
+                {
+                    mCurrentPlaylist = mMasterPlaylist; //@masternewbehaviour
+                    PhraseNode currentPhrase = FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node);
+                    if (currentPhrase != null) mCurrentPlaylist.CurrentPhrase = currentPhrase;
+                    UpdateButtons();
+                }
                 SelectionChangedPlaybackEnabled = PlaybackOnSelectionStatus;
                 }
             }
@@ -2190,8 +2199,10 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        mView.SelectPhraseInContentView(mCurrentPlaylist.PrevSection(
-                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
+                        PhraseNode destinationPhrase = mCurrentPlaylist.PrevSection(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
+                        mView.SelectPhraseInContentView(destinationPhrase);
+                        mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
                     }
                 }
                 else
@@ -2219,8 +2230,10 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        mView.SelectPhraseInContentView(mCurrentPlaylist.PrevPage(
-                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
+                        PhraseNode destinationPhrase = mCurrentPlaylist.PrevPage(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
+                        mView.SelectPhraseInContentView(destinationPhrase);
+                        mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
                     }
                 }
                 else
@@ -2248,8 +2261,10 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        mView.SelectPhraseInContentView(mCurrentPlaylist.PrevPhrase(
-                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
+                        PhraseNode destinationPhrase = mCurrentPlaylist.PrevPhrase(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
+                        mView.SelectPhraseInContentView(destinationPhrase);
+                        mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
                     }
                 }
                 else
@@ -2310,8 +2325,10 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        mView.SelectPhraseInContentView(mCurrentPlaylist.NextPhrase(
-                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
+                        PhraseNode destinationPhrase = mCurrentPlaylist.NextPhrase(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
+                        mView.SelectPhraseInContentView(destinationPhrase);
+                        mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
                     }
                 }
                 else
@@ -2356,8 +2373,10 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        mView.SelectPhraseInContentView(mCurrentPlaylist.NextPage(
-                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
+                        PhraseNode destinationPhrase = mCurrentPlaylist.NextPage(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
+                        mView.SelectPhraseInContentView(destinationPhrase);
+                        mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
                     }
                 }
 
@@ -2439,8 +2458,10 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        mView.SelectPhraseInContentView(mCurrentPlaylist.NextSection(
-                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
+                        PhraseNode destinationPhrase = mCurrentPlaylist.NextSection(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
+                        mView.SelectPhraseInContentView(destinationPhrase);
+                        mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
                     }
                 }
                 else
