@@ -779,9 +779,19 @@ namespace Obi.ProjectView
             else
             {
                 if (mCurrentPlaylist != null && mCurrentPlaylist is PreviewPlaylist)
+                {
                     mView.UpdateCursorPosition(mAfterPreviewRestoreTime);
+                }
                 else
-                    mView.SetPlaybackPhraseAndTime(null, 0.0); 
+                {
+                    mView.SetPlaybackPhraseAndTime(null, 0.0);
+                    if (CurrentState == State.Stopped)//@masternewbehaviour
+                        {
+                        mCurrentPlaylist = mMasterPlaylist;
+                    //System.Media.SystemSounds.Asterisk.Play();
+                    }
+                }
+
             }
         }
 
@@ -1627,6 +1637,7 @@ namespace Obi.ProjectView
                 SelectionChangedPlaybackEnabled = false;
                 mCurrentPlaylist.Stop ();
                 mView.SetPlaybackPhraseAndTime ( null, 0.0 );
+                if(!(mCurrentPlaylist is PreviewPlaylist))  mCurrentPlaylist = mMasterPlaylist; //@masternewbehaviour
                 SelectionChangedPlaybackEnabled = PlaybackOnSelectionStatus;
                 }
             }
