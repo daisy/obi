@@ -102,6 +102,7 @@ namespace Obi
         public int Audio_LevelComboBoxIndex;
         public bool Audio_UseRecordBtnToRecordOverSubsequentAudio;
         public bool Audio_EnforceSingleCursor;
+        public bool Audio_DeleteFollowingPhrasesOfSectionAfterRecording; // delete the following phrases in section when recording stops, it is attempt to minimize the delay while recording.
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -192,6 +193,7 @@ namespace Obi
             settings.Audio_LevelComboBoxIndex = 0;
             settings.Audio_UseRecordBtnToRecordOverSubsequentAudio = false;
             settings.Audio_EnforceSingleCursor = false;
+            settings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording = false;
         }
 
         /// <summary>
