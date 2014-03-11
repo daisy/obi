@@ -3043,6 +3043,21 @@ SelectionChangedPlaybackEnabled = false;
             if (listOfRecordedPhrases.Count > 0 && listOfRecordedPhrases[listOfRecordedPhrases.Count - 1]== mView.Presentation.LastSection.LastLeaf) 
                 isRecordingAtEnd = true;
             //Console.WriteLine("recording index :" + listOfRecordedPhrases[listOfRecordedPhrases.Count - 1].Index + " : " + (mRecordingSection.PhraseChildCount-1));
+
+            // delete the following phrases before going into more complex commands
+            if (mView.ObiForm.Settings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording && listOfRecordedPhrases.Count >0)
+            {
+                EmptyNode lastRecordedPhrase = listOfRecordedPhrases[listOfRecordedPhrases.Count - 1] ;
+                SectionNode section = lastRecordedPhrase.ParentAs<SectionNode> () ;
+                if ( lastRecordedPhrase.IsRooted && lastRecordedPhrase.Index < section.PhraseChildCount -1)
+                {
+                Command deleteFollowingCmd =  mView.GetDeleteRangeOfPhrasesInSectionCommand(
+                    section, section.PhraseChild(lastRecordedPhrase.Index+1), section.PhraseChild(section.PhraseChildCount - 1));
+                mView.Presentation.Do(deleteFollowingCmd);
+                }
+            }
+
+            // on the fly phrase detection
             if (mRecordingSession.PhraseMarksOnTheFly.Count > 0)
             {
                 if (IsPlaying) Pause();
@@ -3105,6 +3120,8 @@ SelectionChangedPlaybackEnabled = false;
                 mView.Presentation.Do(mView.GetPageRenumberCommand(firstRecordedPage, firstRecordedPage.PageNumber, Localizer.Message("RenumberPagesCaption").Replace("?", ""),true));
             }
             }
+
+            
             if (mView != null && mView.ObiForm.Settings.Project_SaveProjectWhenRecordingEnds) mView.ObiForm.Save();
         }
 
