@@ -172,7 +172,7 @@ namespace Obi.ProjectView
 
         public bool CanSetBlockUsedStatus { get { return IsBlockOrWaveformSelected && mSelection.Node.ParentAs<ObiNode> ().Used; } }
         public bool CanSetStripUsedStatus { get { return IsStripSelected && mSelection != null && mSelection.Node.IsRooted &&  mSelection.Node.ParentAs<ObiNode>().Used; } }
-        public EmptyNode RecordingNode { get { return mProjectView.TransportBar.RecordingPhrase; } }
+        public EmptyNode RecordingNode { get { return mProjectView.TransportBar.CurrentState == TransportBar.State.Recording? mProjectView.TransportBar.RecordingPhrase: null; } }
 
         public bool CanMergeBlockWithNext
             {
