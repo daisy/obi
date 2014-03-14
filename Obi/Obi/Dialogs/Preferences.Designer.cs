@@ -49,6 +49,7 @@ namespace Obi.Dialogs
             this.mPipelineBrowseButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.mAudioTab = new System.Windows.Forms.TabPage();
+            this.m_btnProfileDiscription = new System.Windows.Forms.Button();
             this.m_lblProfile = new System.Windows.Forms.Label();
             this.m_SelectLevelComboBox = new System.Windows.Forms.ComboBox();
             this.m_btn_speak = new System.Windows.Forms.Button();
@@ -278,6 +279,7 @@ namespace Obi.Dialogs
             // 
             // mAudioTab
             // 
+            this.mAudioTab.Controls.Add(this.m_btnProfileDiscription);
             this.mAudioTab.Controls.Add(this.m_lblProfile);
             this.mAudioTab.Controls.Add(this.m_SelectLevelComboBox);
             this.mAudioTab.Controls.Add(this.m_btn_speak);
@@ -302,6 +304,13 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.mAudioTab, "mAudioTab");
             this.mAudioTab.Name = "mAudioTab";
             this.mAudioTab.UseVisualStyleBackColor = true;
+            // 
+            // m_btnProfileDiscription
+            // 
+            resources.ApplyResources(this.m_btnProfileDiscription, "m_btnProfileDiscription");
+            this.m_btnProfileDiscription.Name = "m_btnProfileDiscription";
+            this.m_btnProfileDiscription.UseVisualStyleBackColor = true;
+            this.m_btnProfileDiscription.Click += new System.EventHandler(this.m_btnProfileDiscription_Click);
             // 
             // m_lblProfile
             // 
@@ -841,5 +850,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.ComboBox m_SelectLevelComboBox;
         private System.Windows.Forms.Label m_lblProfile;
+        private System.Windows.Forms.Button m_btnProfileDiscription;
     }
 }

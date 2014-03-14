@@ -65,7 +65,8 @@ namespace Obi.Dialogs
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Basic"));
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Intermediate"));
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Advance"));
-            m_SelectLevelComboBox.Items.Add("Profile 1");
+            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_1"));
+            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_2"));
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Custom"));
            }
 
@@ -317,7 +318,8 @@ namespace Obi.Dialogs
         // Update settings
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
+           // if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
+            if(this.mTab.SelectedTab == mAudioTab)
             {
                 ComboBoxSelection();
             }
@@ -769,8 +771,8 @@ namespace Obi.Dialogs
 
                 if (m_FlagComboBoxIndexChange == false)
                 {
-                    m_SelectLevelComboBox.SelectedIndex = 4;
-                    m_IndexOfLevelCombox = 4;
+                    m_SelectLevelComboBox.SelectedIndex = 5;
+                    m_IndexOfLevelCombox = 5;
                 }
 
                
@@ -1597,12 +1599,7 @@ namespace Obi.Dialogs
                 }
 
             }
-            else if (m_SelectLevelComboBox.SelectedIndex == 4)
-            {
-                m_FlagComboBoxIndexChange = false;
-                m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
-            }
-            else if (m_SelectLevelComboBox.SelectedIndex == 3)
+            else if (m_SelectLevelComboBox.SelectedIndex == 3 || m_SelectLevelComboBox.SelectedIndex == 4 || m_SelectLevelComboBox.SelectedIndex == 5)
             {
                 m_FlagComboBoxIndexChange = false;
                 m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
@@ -1611,11 +1608,11 @@ namespace Obi.Dialogs
 
         private void m_SelectLevelComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (m_IsComboBoxExpanded && (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex) && (this.mTab.SelectedTab == mAudioTab))
-            {
+            //if (m_IsComboBoxExpanded && (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex) && (this.mTab.SelectedTab == mAudioTab))
+            //{
                 
-                ComboBoxSelection();
-            }
+            //    ComboBoxSelection();
+            //}
         }
 
         private void m_SelectLevelComboBox_DropDownClosed(object sender, EventArgs e)
@@ -1633,10 +1630,10 @@ namespace Obi.Dialogs
         {
             if (m_LeaveOnEscape)
                 return;
-            if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
-            {
-                ComboBoxSelection();
-            }
+            //if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
+            //{
+            //    ComboBoxSelection();
+            //}
 
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -1646,6 +1643,13 @@ namespace Obi.Dialogs
                 m_LeaveOnEscape = true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void m_btnProfileDiscription_Click(object sender, EventArgs e)
+        {
+            ProfileDescription profileDesc = new ProfileDescription();
+            profileDesc.ProfileSelected = m_SelectLevelComboBox.SelectedIndex;
+            profileDesc.ShowDialog();
         }
 
     }
