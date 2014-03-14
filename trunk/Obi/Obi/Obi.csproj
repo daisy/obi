@@ -223,9 +223,11 @@
     </Compile>
     <Compile Include="Dialogs\ProfileDescription.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Dialogs\ProfileDescription.Designer.cs">
       <DependentUpon>ProfileDescription.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Dialogs\ReportDialog.cs">
       <SubType>Form</SubType>
@@ -1162,6 +1164,7 @@
     <EmbeddedResource Include="Dialogs\ProfileDescription.resx">
       <DependentUpon>ProfileDescription.cs</DependentUpon>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgressDialog.fi.resx">
       <SubType>Designer</SubType>
