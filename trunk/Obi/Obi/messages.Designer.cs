@@ -4750,6 +4750,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Audio Profile Description.
+        /// </summary>
+        internal static string Preferences_AudioProfileDesc {
+            get {
+                return ResourceManager.GetString("Preferences_AudioProfileDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Intermediate recording mode.
         /// </summary>
         internal static string Preferences_Intermediate_recording_mode {
@@ -4849,7 +4858,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PhraseDesc_en.html.
+        ///   Looks up a localized string similar to ProfileDesc_en.html.
         /// </summary>
         internal static string ProfileDesc_file_name {
             get {

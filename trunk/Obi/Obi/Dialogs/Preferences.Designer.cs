@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Preferences));
             this.label2 = new System.Windows.Forms.Label();
             this.mDirectoryTextbox = new System.Windows.Forms.TextBox();
@@ -106,6 +107,7 @@ namespace Obi.Dialogs
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -851,5 +853,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox m_SelectLevelComboBox;
         private System.Windows.Forms.Label m_lblProfile;
         private System.Windows.Forms.Button m_btnProfileDiscription;
+        private System.Windows.Forms.ToolTip m_Preference_ToolTip;
     }
 }
