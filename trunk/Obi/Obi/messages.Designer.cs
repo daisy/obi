@@ -4795,6 +4795,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profile 1.
+        /// </summary>
+        internal static string Preferences_Level_ComboBox_Profile_1 {
+            get {
+                return ResourceManager.GetString("Preferences_Level_ComboBox_Profile_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile 2.
+        /// </summary>
+        internal static string Preferences_Level_ComboBox_Profile_2 {
+            get {
+                return ResourceManager.GetString("Preferences_Level_ComboBox_Profile_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Pipeline scripts found in this location.
         /// </summary>
         internal static string Preferences_PipelineScriptNotFound {
@@ -4827,6 +4845,15 @@ namespace Obi {
         internal static string prodnote {
             get {
                 return ResourceManager.GetString("prodnote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PhraseDesc_en.html.
+        /// </summary>
+        internal static string ProfileDesc_file_name {
+            get {
+                return ResourceManager.GetString("ProfileDesc_file_name", resourceCulture);
             }
         }
         

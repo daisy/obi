@@ -6,7 +6,7 @@
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1553F3D3-A820-400E-9B98-BCCA970E1D58}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Obi</RootNamespace>
     <AssemblyName>Obi</AssemblyName>
@@ -221,6 +221,12 @@
     <Compile Include="Dialogs\MultipleOptionDialog.Designer.cs">
       <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ProfileDescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProfileDescription.Designer.cs">
+      <DependentUpon>ProfileDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ReportDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -383,6 +389,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="messages.fi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>messages.fi.resx</DependentUpon>
+    </Compile>
     <Compile Include="messages.fr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -392,6 +403,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>messages.hi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="messages.ta.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>messages.ta.resx</DependentUpon>
     </Compile>
     <Compile Include="Metadata.cs" />
     <Compile Include="ObiForm.cs">
@@ -541,6 +557,8 @@
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="EmptyProject.obi">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1162,6 +1180,10 @@
       <DependentUpon>Preferences.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProfileDescription.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProfileDescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgressDialog.fi.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ProgressDialog.cs</DependentUpon>
@@ -1372,6 +1394,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="messages.fi.resx">
       <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>messages.fi.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="messages.fr.resx">
       <SubType>Designer</SubType>
@@ -1380,6 +1404,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="messages.ta.resx">
       <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>messages.ta.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ObiForm.fi.resx">
       <DependentUpon>ObiForm.cs</DependentUpon>
@@ -1589,6 +1615,10 @@
       <DependentUpon>Waveform.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Waveform_Recording.fr.resx">
+      <DependentUpon>Waveform_Recording.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\Waveform_Recording.hi.resx">
       <DependentUpon>Waveform_Recording.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1663,6 +1693,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="obi.ico" />
+    <Content Include="PhraseDesc_en.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SelectionBegin.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1713,6 +1746,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.fi.resx">
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextVUMeterPanel.fr.resx">
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
