@@ -389,26 +389,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>messages.resx</DependentUpon>
     </Compile>
-    <Compile Include="messages.fi.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>messages.fi.resx</DependentUpon>
-    </Compile>
-    <Compile Include="messages.fr.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>messages.fr.resx</DependentUpon>
-    </Compile>
-    <Compile Include="messages.hi.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>messages.hi.resx</DependentUpon>
-    </Compile>
-    <Compile Include="messages.ta.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>messages.ta.resx</DependentUpon>
-    </Compile>
     <Compile Include="Metadata.cs" />
     <Compile Include="ObiForm.cs">
       <SubType>Form</SubType>
