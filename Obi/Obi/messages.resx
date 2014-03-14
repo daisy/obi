@@ -2608,7 +2608,7 @@ Error text: {1}</value>
     <value>After recording delete the following phrases</value>
   </data>
   <data name="ProfileDesc_file_name" xml:space="preserve">
-    <value>PhraseDesc_en.html</value>
+    <value>ProfileDesc_en.html</value>
     <comment>Location of the HTML document for the "Profile Description" dialog</comment>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
@@ -2616,5 +2616,8 @@ Error text: {1}</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_2" xml:space="preserve">
     <value>Profile 2</value>
+  </data>
+  <data name="Preferences_AudioProfileDesc" xml:space="preserve">
+    <value>Audio Profile Description</value>
   </data>
 </root>

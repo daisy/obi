@@ -14,6 +14,7 @@ namespace Obi.Dialogs
         public ProfileDescription()
         {
             InitializeComponent();
+            this.m_ProfileDescription_WebBrowser.Height = this.m_ProfileDescription_WebBrowser.Height - (this.m_btnClose.Height + (this.m_btnClose.Height / 2));
 
             m_ProfileDescription_WebBrowser.Url = new System.Uri(System.IO.Path.Combine(
     System.IO.Path.GetDirectoryName(GetType().Assembly.Location),

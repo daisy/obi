@@ -68,6 +68,7 @@ namespace Obi.Dialogs
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_1"));
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_2"));
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Custom"));
+            m_Preference_ToolTip.SetToolTip(m_btnProfileDiscription, Localizer.Message("Preferences_AudioProfileDesc"));            
            }
 
         public bool IsColorChanged
@@ -1650,6 +1651,7 @@ namespace Obi.Dialogs
             ProfileDescription profileDesc = new ProfileDescription();
             profileDesc.ProfileSelected = m_SelectLevelComboBox.SelectedIndex;
             profileDesc.ShowDialog();
+            profileDesc.Focus();
         }
 
     }
