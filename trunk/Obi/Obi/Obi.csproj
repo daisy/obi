@@ -1693,7 +1693,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="obi.ico" />
-    <Content Include="PhraseDesc_en.html">
+    <Content Include="ProfileDesc_en.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SelectionBegin.wav">
