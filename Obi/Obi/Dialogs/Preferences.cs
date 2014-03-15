@@ -38,9 +38,9 @@ namespace Obi.Dialogs
         private bool m_PrevShowContentViewVal = true;
         private bool m_KeepTrack = false;
         private bool m_FlagComboBoxIndexChange = false;
-        private int m_IndexOfLevelCombox = 0;
-        private bool m_IsComboBoxExpanded = false;
-        private bool m_LeaveOnEscape = false;
+      //  private int m_IndexOfLevelCombox = 0;
+      //  private bool m_IsComboBoxExpanded = false;
+      //  private bool m_LeaveOnEscape = false;
 
         /// <summary>
         /// Initialize the preferences with the user settings.
@@ -61,7 +61,7 @@ namespace Obi.Dialogs
             m_IsKeyboardShortcutChanged = false;
             this.m_CheckBoxListView.BringToFront();
             m_DefaultSettings = defaultSettings;
-            m_IndexOfLevelCombox = mSettings.Audio_LevelComboBoxIndex;
+          //  m_IndexOfLevelCombox = mSettings.Audio_LevelComboBoxIndex;
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Basic"));
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Intermediate"));
             m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Advance"));
@@ -773,7 +773,7 @@ namespace Obi.Dialogs
                 if (m_FlagComboBoxIndexChange == false)
                 {
                     m_SelectLevelComboBox.SelectedIndex = 5;
-                    m_IndexOfLevelCombox = 5;
+                 //   m_IndexOfLevelCombox = 5;
                 }
 
                
@@ -1510,7 +1510,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[13].Checked = false;
                 m_CheckBoxListView.Items[14].Checked = false;
                 m_FlagComboBoxIndexChange = false;
-                m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+              //  m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
 
             }
             if (m_SelectLevelComboBox.SelectedIndex == 1)
@@ -1529,7 +1529,7 @@ namespace Obi.Dialogs
                     if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Intermediate_recording_mode"), MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+                      //  m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
                         m_FlagComboBoxIndexChange = true;
                         m_CheckBoxListView.Items[0].Checked = false;
                         m_CheckBoxListView.Items[2].Checked = false;
@@ -1551,7 +1551,7 @@ namespace Obi.Dialogs
                     }
                     else
                     {
-                        m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
+                      //  m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
                     }
 
                 }
@@ -1569,12 +1569,13 @@ namespace Obi.Dialogs
                     Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") + "\n* " +
                     Localizer.Message("Audio_ShowLiveWaveformWhileRecording") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
                     Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection") + "\n* " +
-                    Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_RecordSubsequentPhrases") + "\n* " + Localizer.Message("Audio_EnforceSingleCursor");
+                    Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_RecordSubsequentPhrases") + "\n* " + Localizer.Message("Audio_EnforceSingleCursor")
+                    + "\n* " + Localizer.Message("Audio_DeleteFollowingPhrasesOfSectionAfterRecording");
 
                     if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+                       // m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
                         m_FlagComboBoxIndexChange = true;
                         m_CheckBoxListView.Items[0].Checked = true;
                         m_CheckBoxListView.Items[2].Checked = true;
@@ -1595,7 +1596,7 @@ namespace Obi.Dialogs
                     }
                     else
                     {
-                        m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
+                      //  m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
                     }
                 }
 
@@ -1603,7 +1604,7 @@ namespace Obi.Dialogs
             else if (m_SelectLevelComboBox.SelectedIndex == 3 || m_SelectLevelComboBox.SelectedIndex == 4 || m_SelectLevelComboBox.SelectedIndex == 5)
             {
                 m_FlagComboBoxIndexChange = false;
-                m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+              //  m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
             }
         }
 
@@ -1618,19 +1619,19 @@ namespace Obi.Dialogs
 
         private void m_SelectLevelComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            m_IsComboBoxExpanded = false;
+           // m_IsComboBoxExpanded = false;
         }
 
         private void m_SelectLevelComboBox_DropDown(object sender, EventArgs e)
         {
-            m_IsComboBoxExpanded = true;
+          //  m_IsComboBoxExpanded = true;
         }
 
 
         private void m_SelectLevelComboBox_Validating(object sender, CancelEventArgs e)
         {
-            if (m_LeaveOnEscape)
-                return;
+            //if (m_LeaveOnEscape)
+            //    return;
             //if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
             //{
             //    ComboBoxSelection();
@@ -1639,10 +1640,10 @@ namespace Obi.Dialogs
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == Keys.Escape)
-            {
-                m_LeaveOnEscape = true;
-            }
+            //if (keyData == Keys.Escape)
+            //{
+            //    m_LeaveOnEscape = true;
+            //}
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
