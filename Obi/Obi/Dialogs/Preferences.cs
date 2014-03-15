@@ -319,8 +319,7 @@ namespace Obi.Dialogs
         // Update settings
         private void mOKButton_Click(object sender, EventArgs e)
         {
-           // if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
-            if(this.mTab.SelectedTab == mAudioTab)
+            if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
             {
                 ComboBoxSelection();
             }
