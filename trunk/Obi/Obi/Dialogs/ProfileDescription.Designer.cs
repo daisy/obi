@@ -56,6 +56,7 @@ namespace Obi.Dialogs
             // 
             // ProfileDescription
             // 
+            this.AccessibleName = "Audio Profile Description";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnClose;
@@ -65,7 +66,7 @@ namespace Obi.Dialogs
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProfileDescription";
-            this.Text = "Phrase Description";
+            this.Text = "Audio Profile Description";
             this.ResumeLayout(false);
 
         }
