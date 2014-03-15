@@ -1614,6 +1614,7 @@ namespace Obi.Dialogs
                 
             //    ComboBoxSelection();
             //}
+         //   m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
         }
 
         private void m_SelectLevelComboBox_DropDownClosed(object sender, EventArgs e)
@@ -1649,7 +1650,7 @@ namespace Obi.Dialogs
         private void m_btnProfileDiscription_Click(object sender, EventArgs e)
         {
             ProfileDescription profileDesc = new ProfileDescription();
-            profileDesc.ProfileSelected = m_IndexOfLevelCombox;
+            profileDesc.ProfileSelected = m_SelectLevelComboBox.SelectedIndex;
             profileDesc.ShowDialog();
             profileDesc.Focus();
         }
