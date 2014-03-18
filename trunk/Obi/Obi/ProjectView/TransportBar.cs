@@ -2585,7 +2585,18 @@ namespace Obi.ProjectView
                 if (mView.Selection is AudioSelection)
                 {
                     double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
-                    time = time - elapseBackInterval >= 0 ? time - elapseBackInterval : 0;
+                    if (time < 1 && mView.Selection.Node.PrecedingNode is PhraseNode)
+                    {
+                        ObiNode preceedingNode = mView.Selection.Node.PrecedingNode;
+                        mView.Selection = new NodeSelection(preceedingNode, mView.Selection.Control);
+                        AudioRange range = new AudioRange(mView.Selection.Node.Duration);
+                        mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
+                        time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;                        
+                    }
+                    else
+                    {
+                        time = time - elapseBackInterval >= 0 ? time - elapseBackInterval : 0;
+                    }
                     mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                         new AudioRange(time));
                 }
