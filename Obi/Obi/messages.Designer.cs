@@ -259,6 +259,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable Deselection on stop.
+        /// </summary>
+        internal static string Audio_DisableDeselectionOnStop {
+            get {
+                return ResourceManager.GetString("Audio_DisableDeselectionOnStop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Renumber the following pages when recording ends.
         /// </summary>
         internal static string Audio_EnablePostRecordingPageRenumbering {
