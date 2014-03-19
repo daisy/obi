@@ -57,6 +57,7 @@ namespace Obi.ProjectView
         private string mPrevSectionAccessibleName;   // Normal accessible name for the previous section button ???
         private string mStopButtonAccessibleName;    // Normal accessible name for the stop button ???
         private KeyboardShortcuts_Settings keyboardShortcuts=null;
+        private double m_ElapseBackInterval;
 
         //private ContextMenuStrip m_RecordingOptionsContextMenuStrip;
         //private ToolStripMenuItem m_MoniteringtoolStripMenuItem;
@@ -2568,48 +2569,66 @@ namespace Obi.ProjectView
 
         public bool FastPlayNormaliseWithLapseBack()
         {
-            double elapseBackInterval = mView.ObiForm.Settings.ElapseBackTimeInMilliseconds;
+             m_ElapseBackInterval = mView.ObiForm.Settings.ElapseBackTimeInMilliseconds;
             // work around to handle special nudge condition of preview: this should be implemented universally after 2.0 release
             if (mCurrentPlaylist != null && mView.Selection is AudioSelection && mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused) Stop();
             if (IsPlayerActive)
             {
-                DetermineUseOfSoundTouch(1.0f);
-                mCurrentPlaylist.FastPlayNormaliseWithLapseBack(elapseBackInterval);
-                mFastPlayRateCombobox.SelectedIndex = 0;
-                UpdateTimeDisplay();
-                if (CurrentPlaylist != null) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
-                return true;
-            }
-            else if (CurrentState == State.Stopped &&  mView.Selection != null && mView.Selection.Node is PhraseNode)
-            {
-                if (mView.Selection is AudioSelection)
-                {
-                    double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
-                    if (time < 1 && mView.Selection.Node.PrecedingNode is PhraseNode)
-                    {
-                        ObiNode preceedingNode = mView.Selection.Node.PrecedingNode;
-                        mView.Selection = new NodeSelection(preceedingNode, mView.Selection.Control);
-                        AudioRange range = new AudioRange(mView.Selection.Node.Duration);
-                        mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
-                        time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;                        
-                    }
-                    //else
-                    
-                        time = time - elapseBackInterval >= 0 ? time - elapseBackInterval : 0;
-                    
-                    mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
-                        new AudioRange(time));
+                if (IsPaused)
+                {                   
+                    Stop();
+                    LapseBackCursor();
+                    return true;
                 }
                 else
                 {
-                    mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
-                        new AudioRange(((PhraseNode)mView.Selection.EmptyNodeForSelection).Duration - elapseBackInterval));
+                    DetermineUseOfSoundTouch(1.0f);
+                    mCurrentPlaylist.FastPlayNormaliseWithLapseBack(m_ElapseBackInterval);
+                    mFastPlayRateCombobox.SelectedIndex = 0;
+                    UpdateTimeDisplay();
+                    if (CurrentPlaylist != null) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
+                    return true;
                 }
+            }
+            else if (CurrentState == State.Stopped &&  mView.Selection != null && mView.Selection.Node is PhraseNode)
+            {
+                LapseBackCursor();
+
                 return true;
             }
             return false;
         }
+        private void LapseBackCursor()
+        {
+            if (mView.Selection is AudioSelection)
+            {
+                double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                if (time < 1 && ((mView.Selection.Node.PrecedingNode is PhraseNode) || (mView.Selection.Node.PrecedingNode is EmptyNode)))
+                {
+                    ObiNode preceedingNode = mView.Selection.Node.PrecedingNode;
+                    mView.Selection = new NodeSelection(preceedingNode, mView.Selection.Control);
+                    AudioRange range = new AudioRange(mView.Selection.Node.Duration);
+                    while (mView.Selection.Node is EmptyNode && !(mView.Selection.Node is PhraseNode))
+                    {
+                        preceedingNode = mView.Selection.Node.PrecedingNode;
+                        mView.Selection = new NodeSelection(preceedingNode, mView.Selection.Control);
+                        range = new AudioRange(mView.Selection.Node.Duration);
+                    }
+                    mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
+                    time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                }
 
+                time = time - m_ElapseBackInterval >= 0 ? time - m_ElapseBackInterval : 0;
+
+                mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                    new AudioRange(time));
+            }
+            else
+            {
+                mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                    new AudioRange(((PhraseNode)mView.Selection.EmptyNodeForSelection).Duration - m_ElapseBackInterval));
+            }
+        }
         /// <summary>
         /// sound touch is enabled if fast play is to be activated else it is restored to original DX
         /// </summary>
