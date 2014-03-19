@@ -2593,10 +2593,10 @@ namespace Obi.ProjectView
                         mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
                         time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;                        
                     }
-                    else
-                    {
+                    //else
+                    
                         time = time - elapseBackInterval >= 0 ? time - elapseBackInterval : 0;
-                    }
+                    
                     mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                         new AudioRange(time));
                 }
