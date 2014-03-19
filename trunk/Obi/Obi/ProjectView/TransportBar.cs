@@ -1614,7 +1614,7 @@ namespace Obi.ProjectView
                 else
                 {
                     // Stopping again deselects everything
-                    if (mState == State.Stopped)
+                    if (mState == State.Stopped && !mView.ObiForm.Settings.Audio_DisableDeselectionOnStop)
                     {
                     mView.SetPlaybackPhraseAndTime ( null, 0.0 );
                     if (mView.IsZoomWaveformActive == false)

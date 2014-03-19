@@ -211,6 +211,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[12].Checked = mSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio;
                 m_CheckBoxListView.Items[13].Checked = mSettings.Audio_EnforceSingleCursor;
                 m_CheckBoxListView.Items[14].Checked = mSettings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording;
+                m_CheckBoxListView.Items[15].Checked = mSettings.Audio_DisableDeselectionOnStop;
                 m_IsComplete = true;
 
             }
@@ -837,6 +838,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio = m_CheckBoxListView.Items[12].Checked;
                 mSettings.Audio_EnforceSingleCursor = m_CheckBoxListView.Items[13].Checked;
                 mSettings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording = m_CheckBoxListView.Items[14].Checked;
+                mSettings.Audio_DisableDeselectionOnStop = m_CheckBoxListView.Items[15].Checked;
                 mSettings.Audio_LevelComboBoxIndex = m_SelectLevelComboBox.SelectedIndex;
             }
         }
@@ -876,6 +878,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_RecordSubsequentPhrases"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_EnforceSingleCursor"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_DeleteFollowingPhrasesOfSectionAfterRecording"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_DisableDeselectionOnStop"));
                 m_grpBoxChkBoxListView.Size = new Size(352, 97);
                 m_grpBoxChkBoxListView.Location = new Point(85, 264);
 
@@ -909,6 +912,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[13].ToolTipText = Localizer.Message("Audio_EnforceSingleCursor");
                 m_CheckBoxListView.Items[14].Checked = mSettings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording;
                 m_CheckBoxListView.Items[14].ToolTipText = Localizer.Message("Audio_DeleteFollowingPhrasesOfSectionAfterRecording");
+                m_CheckBoxListView.Items[15].Checked = mSettings.Audio_DisableDeselectionOnStop;
+                m_CheckBoxListView.Items[15].ToolTipText = Localizer.Message("Audio_DisableDeselectionOnStop");
 
                 m_SelectLevelComboBox.SelectedIndex = mSettings.Audio_LevelComboBoxIndex;
             }
@@ -1508,6 +1513,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[12].Checked = false;
                 m_CheckBoxListView.Items[13].Checked = false;
                 m_CheckBoxListView.Items[14].Checked = false;
+                m_CheckBoxListView.Items[15].Checked = false;
                 m_FlagComboBoxIndexChange = false;
                 m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
 
@@ -1545,6 +1551,7 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[12].Checked = false;
                         m_CheckBoxListView.Items[13].Checked = false;
                         m_CheckBoxListView.Items[14].Checked = false;
+                        m_CheckBoxListView.Items[15].Checked = false;
                         m_FlagComboBoxIndexChange = false;
 
                     }
@@ -1591,6 +1598,7 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[12].Checked = true;
                         m_CheckBoxListView.Items[13].Checked = true;
                         m_CheckBoxListView.Items[14].Checked = true;
+                        m_CheckBoxListView.Items[15].Checked = true;
                         m_FlagComboBoxIndexChange = false;
                     }
                     else
