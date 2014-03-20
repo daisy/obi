@@ -36,6 +36,10 @@ namespace Obi.Dialogs
             {
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Advance").InnerHtml;
             }
+            else if (m_ProfileSelectedIndex == 4)
+            {
+                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Profile2").InnerHtml;
+            }
             else
             {
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Custom").InnerHtml;

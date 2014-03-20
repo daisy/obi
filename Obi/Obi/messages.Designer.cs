@@ -259,7 +259,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable Deselection on stop.
+        ///   Looks up a localized string similar to Disable deselection on stop.
         /// </summary>
         internal static string Audio_DisableDeselectionOnStop {
             get {

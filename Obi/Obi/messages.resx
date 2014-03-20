@@ -2621,6 +2621,6 @@ Error text: {1}</value>
     <value>Audio Profile Description</value>
   </data>
   <data name="Audio_DisableDeselectionOnStop" xml:space="preserve">
-    <value>Disable Deselection on stop</value>
+    <value>Disable deselection on stop</value>
   </data>
 </root>

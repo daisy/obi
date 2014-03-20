@@ -322,7 +322,11 @@ namespace Obi.Dialogs
         {
             if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
             {
-                ComboBoxSelection();
+                bool flag = ComboBoxSelection();
+                if (!flag)
+                {
+                    return;
+                }
             }
             UpdateBoolSettings();
             if (UpdateProjectSettings()
@@ -1493,7 +1497,7 @@ namespace Obi.Dialogs
             }
         }
 
-        private void ComboBoxSelection()
+        private bool ComboBoxSelection()
         {
             if (m_SelectLevelComboBox.SelectedIndex == 0)
             {
@@ -1516,7 +1520,6 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[15].Checked = false;
                 m_FlagComboBoxIndexChange = false;
                 m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
-
             }
             if (m_SelectLevelComboBox.SelectedIndex == 1)
             {
@@ -1558,6 +1561,7 @@ namespace Obi.Dialogs
                     else
                     {
                         m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
+                        return false;
                     }
 
                 }
@@ -1567,7 +1571,8 @@ namespace Obi.Dialogs
                 if (!(m_CheckBoxListView.Items[0].Checked && m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked
                      && m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[7].Checked && m_CheckBoxListView.Items[8].Checked
                      && m_CheckBoxListView.Items[10].Checked && m_CheckBoxListView.Items[1].Checked && m_CheckBoxListView.Items[6].Checked
-                     && m_CheckBoxListView.Items[9].Checked && m_CheckBoxListView.Items[11].Checked && m_CheckBoxListView.Items[12].Checked))
+                     && m_CheckBoxListView.Items[9].Checked && m_CheckBoxListView.Items[11].Checked && m_CheckBoxListView.Items[12].Checked && m_CheckBoxListView.Items[13].Checked
+                     && m_CheckBoxListView.Items[14].Checked && m_CheckBoxListView.Items[15].Checked))
                 {
                     string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " + Localizer.Message("AudioTab_AudioClues") + "\n* " +
                     Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_PreviewBeforeRecording") + "\n* " +
@@ -1576,7 +1581,7 @@ namespace Obi.Dialogs
                     Localizer.Message("Audio_ShowLiveWaveformWhileRecording") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
                     Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection") + "\n* " +
                     Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_RecordSubsequentPhrases") + "\n* " + Localizer.Message("Audio_EnforceSingleCursor")
-                    + "\n* " + Localizer.Message("Audio_DeleteFollowingPhrasesOfSectionAfterRecording");
+                    + "\n* " + Localizer.Message("Audio_DeleteFollowingPhrasesOfSectionAfterRecording") + "\n* " + Localizer.Message("Audio_DisableDeselectionOnStop");
 
                     if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
@@ -1604,15 +1609,64 @@ namespace Obi.Dialogs
                     else
                     {
                         m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
+                        return false;
                     }
                 }
 
             }
-            else if (m_SelectLevelComboBox.SelectedIndex == 3 || m_SelectLevelComboBox.SelectedIndex == 4 || m_SelectLevelComboBox.SelectedIndex == 5)
+            else if (m_SelectLevelComboBox.SelectedIndex == 4)
+            {
+                if (!(m_CheckBoxListView.Items[0].Checked && !m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && !m_CheckBoxListView.Items[4].Checked
+                     && !m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[7].Checked && !m_CheckBoxListView.Items[8].Checked
+                     && m_CheckBoxListView.Items[10].Checked && !m_CheckBoxListView.Items[1].Checked && !m_CheckBoxListView.Items[6].Checked
+                     && !m_CheckBoxListView.Items[9].Checked && !m_CheckBoxListView.Items[11].Checked && m_CheckBoxListView.Items[12].Checked && !m_CheckBoxListView.Items[13].Checked
+                     && !m_CheckBoxListView.Items[14].Checked && !m_CheckBoxListView.Items[15].Checked))
+                {
+                    string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " +
+                   Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_PreviewBeforeRecording") + "\n* " +
+                   Localizer.Message("AudioTab_AllowOverwrite") + "\n* " + Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* "
+                   + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
+                   Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " +Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* "  +
+                   Localizer.Message("Audio_EnforceSingleCursor")+ "\n* " + Localizer.Message("Audio_DeleteFollowingPhrasesOfSectionAfterRecording") + "\n* "
+                   + Localizer.Message("Audio_DisableDeselectionOnStop");
+
+                    if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+                        m_FlagComboBoxIndexChange = true;
+                        m_CheckBoxListView.Items[0].Checked = false;
+                        m_CheckBoxListView.Items[1].Checked = true;
+                        m_CheckBoxListView.Items[2].Checked = true;
+                        m_CheckBoxListView.Items[3].Checked = false;
+                        m_CheckBoxListView.Items[4].Checked = true;
+                        m_CheckBoxListView.Items[5].Checked = true;
+                        m_CheckBoxListView.Items[6].Checked = true;
+                        m_CheckBoxListView.Items[7].Checked = false;
+                        m_CheckBoxListView.Items[8].Checked = true;
+                        m_CheckBoxListView.Items[9].Checked = true;
+                        m_CheckBoxListView.Items[10].Checked = false;                  
+                        m_CheckBoxListView.Items[11].Checked = true;
+                        m_CheckBoxListView.Items[12].Checked = false;
+                        m_CheckBoxListView.Items[13].Checked = true;
+                        m_CheckBoxListView.Items[14].Checked = true;
+                        m_CheckBoxListView.Items[15].Checked = true;
+                        m_FlagComboBoxIndexChange = false;
+                    }
+                    else
+                    {
+                        m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
+                        return false;
+                    }
+                }
+
+            }
+            else if (m_SelectLevelComboBox.SelectedIndex == 3 || m_SelectLevelComboBox.SelectedIndex == 5)
             {
                 m_FlagComboBoxIndexChange = false;
                 m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
             }
+            return true;
         }
 
         private void m_SelectLevelComboBox_SelectionChangeCommitted(object sender, EventArgs e)
