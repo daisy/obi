@@ -1645,7 +1645,10 @@ namespace Obi.ProjectView
                 {
                     mCurrentPlaylist = mMasterPlaylist; //@masternewbehaviour
                     PhraseNode currentPhrase = FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node);
-                    if (currentPhrase != null) mCurrentPlaylist.CurrentPhrase = currentPhrase;
+                    if (currentPhrase != null)
+                    {
+                        mCurrentPlaylist.CurrentPhrase = currentPhrase;
+                    }
                     UpdateButtons();
                 }
                 SelectionChangedPlaybackEnabled = PlaybackOnSelectionStatus;
@@ -2603,7 +2606,7 @@ namespace Obi.ProjectView
             if (mView.Selection is AudioSelection)
             {
                 double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
-                if (time < 1 && ((mView.Selection.Node.PrecedingNode is PhraseNode) || (mView.Selection.Node.PrecedingNode is EmptyNode)))
+                if (time < 1 && !mView.IsZoomWaveformActive && ((mView.Selection.Node.PrecedingNode is PhraseNode) || (mView.Selection.Node.PrecedingNode is EmptyNode)))
                 {
                     ObiNode preceedingNode = mView.Selection.Node.PrecedingNode;
                     mView.Selection = new NodeSelection(preceedingNode, mView.Selection.Control);

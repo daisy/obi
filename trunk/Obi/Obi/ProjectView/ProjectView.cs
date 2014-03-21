@@ -37,6 +37,7 @@ namespace Obi.ProjectView
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
         public event ProgressChangedEventHandler ProgressChanged; //Updates the toolstrip progress bar on obi form
+        private KeyboardShortcuts_Settings keyboardShortcuts;
         
     
         /// <summary>
@@ -3385,7 +3386,7 @@ for (int j = 0;
             {
                 mContentView.InitializeShortcutKeys();
 
-                KeyboardShortcuts_Settings keyboardShortcuts = ObiForm.KeyboardShortcuts;
+            keyboardShortcuts = ObiForm.KeyboardShortcuts;
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey> ();
             mShortcutKeys[keyboardShortcuts.ProjectView_MoveToNextViewClockwise.Value] = delegate() { return SelectViewsInCycle(true); };
             mShortcutKeys[keyboardShortcuts.ProjectView_FocusOnTransportBarTimeDisplay.Value] = delegate() { return mTransportBar.FocusOnTimeDisplay(); };
@@ -3396,8 +3397,7 @@ for (int j = 0;
             mShortcutKeys[keyboardShortcuts.ProjectView_ToggleBetweenContentViewAndTOCView.Value] = delegate() { return ToggleFocusBTWTOCViewAndContentsView(); };
             mShortcutKeys[keyboardShortcuts.ProjectView_HardResetAllSettings.Value] = delegate() { return SettingsFileHardReset(); };
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandPlayOptions.Value] = delegate() { return TransportBar.ExpandPlayOptions(); };
-            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value] = delegate() { return TransportBar.ExpandRecordOptions(); };
-            mShortcutKeys[keyboardShortcuts.ContentView_FastPlayNormalizeWithElapseBack.Value] = delegate() { return TransportBar.FastPlayNormaliseWithLapseBack(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value] = delegate() { return TransportBar.ExpandRecordOptions(); };           
             mTransportBar.InitializeTooltipsForTransportpar();
 
           /*  mShortcutKeys[Keys.Control | Keys.Tab] = delegate () { return SelectViewsInCycle ( true ); };
@@ -3416,6 +3416,11 @@ for (int j = 0;
             {
             if (!CanUseKey ( key )) return false;
             SetF1Help(key);
+            if (key==keyboardShortcuts.ContentView_FastPlayNormalizeWithElapseBack.Value)
+            {
+                if(Selection!=null && Selection.Node!=null && Selection.Node is PhraseNode)
+                SelectPhraseInContentView((PhraseNode)Selection.Node);
+            }
             return (((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
                 CanUseKey ( key ) && mShortcutKeys.ContainsKey ( key ) && mShortcutKeys[key] ()) ||
                 base.ProcessCmdKey ( ref msg, key );
