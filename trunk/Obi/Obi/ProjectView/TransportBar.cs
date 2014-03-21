@@ -2577,9 +2577,8 @@ namespace Obi.ProjectView
             if (mCurrentPlaylist != null && mView.Selection is AudioSelection && mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused) Stop();
             if (IsPlayerActive)
             {
-                if (IsPaused)
-                {                   
-                    Stop();
+               if (IsPaused && mCurrentPlaylist.CurrentTimeInAsset<=10 && !mView.IsZoomWaveformActive)
+                {               
                     LapseBackCursor();
                     return true;
                 }
@@ -2606,6 +2605,11 @@ namespace Obi.ProjectView
             if (mView.Selection is AudioSelection)
             {
                 double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                if (IsPaused)
+                {
+                    time = mCurrentPlaylist.CurrentTimeInAsset;
+                    Stop();
+                }
                 if (time < 1 && !mView.IsZoomWaveformActive && ((mView.Selection.Node.PrecedingNode is PhraseNode) || (mView.Selection.Node.PrecedingNode is EmptyNode)))
                 {
                     ObiNode preceedingNode = mView.Selection.Node.PrecedingNode;
