@@ -58,6 +58,7 @@ namespace Obi.ProjectView
         private string mStopButtonAccessibleName;    // Normal accessible name for the stop button ???
         private KeyboardShortcuts_Settings keyboardShortcuts=null;
         private double m_ElapseBackInterval;
+        private double m_CursorTime=0.0;
 
         //private ContextMenuStrip m_RecordingOptionsContextMenuStrip;
         //private ToolStripMenuItem m_MoniteringtoolStripMenuItem;
@@ -2577,6 +2578,7 @@ namespace Obi.ProjectView
             if (mCurrentPlaylist != null && mView.Selection is AudioSelection && mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused) Stop();
             if (IsPlayerActive)
             {
+               
                 if (IsPaused && mCurrentPlaylist.CurrentTimeInAsset <= 10 && (mView.Selection.Node.PrecedingNode is PhraseNode || mView.Selection.Node.PrecedingNode is EmptyNode) && !mView.IsZoomWaveformActive)
                 {
                     LapseBackCursor();
@@ -2584,6 +2586,18 @@ namespace Obi.ProjectView
                 }
                 else
                 {
+                    if (mView.Selection is AudioSelection && mView.ObiForm.Settings.Audio_EnforceSingleCursor)
+                    {
+                        if (((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                        {
+                            if (m_CursorTime != ((AudioSelection)mView.Selection).AudioRange.CursorTime)
+                            {
+                                m_ElapseBackInterval = 0.0;
+                                m_CursorTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                            }
+                            
+                        }
+                    }
                     DetermineUseOfSoundTouch(1.0f);
                     mCurrentPlaylist.FastPlayNormaliseWithLapseBack(m_ElapseBackInterval);
                     mFastPlayRateCombobox.SelectedIndex = 0;
