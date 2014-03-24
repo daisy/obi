@@ -449,7 +449,7 @@ namespace Obi.ProjectView
         /// </summary>
         public int SetCursorTime(double time)
         {
-            mCursor.CursorTime = time;
+            if(mCursor != null) mCursor.CursorTime = time;
             Invalidate();
             return XFromTime(time);
         }
