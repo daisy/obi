@@ -2586,7 +2586,7 @@ namespace Obi.ProjectView
                 }
                 else
                 {
-                    if (mView.Selection is AudioSelection && mView.ObiForm.Settings.Audio_EnforceSingleCursor)
+                    if (mView.Selection is AudioSelection && mView.ObiForm.Settings.Audio_EnforceSingleCursor && IsPaused)
                     {
                         if (((AudioSelection)mView.Selection).AudioRange.HasCursor)
                         {
