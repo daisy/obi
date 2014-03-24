@@ -62,12 +62,12 @@ namespace Obi.Dialogs
             this.m_CheckBoxListView.BringToFront();
             m_DefaultSettings = defaultSettings;
             m_IndexOfLevelCombox = mSettings.Audio_LevelComboBoxIndex;
-            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Basic"));
-            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Intermediate"));
-            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Advance"));
-            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_1"));
-            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_2"));
-            m_SelectLevelComboBox.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Custom"));
+            m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Basic"));
+            m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Intermediate"));
+            m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Advance"));
+            m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_1"));
+            m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_2"));
+            m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Custom"));
             m_Preference_ToolTip.SetToolTip(m_btnProfileDiscription, Localizer.Message("Preferences_AudioProfileDesc"));            
            }
 
@@ -320,9 +320,9 @@ namespace Obi.Dialogs
         // Update settings
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
+            if (m_IndexOfLevelCombox != m_ComboSelectAudioProfile.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
             {
-                bool flag = ComboBoxSelection();
+                bool flag = UpdateAudioProfile();
                 if (!flag)
                 {
                     return;
@@ -776,7 +776,7 @@ namespace Obi.Dialogs
 
                 if (m_FlagComboBoxIndexChange == false)
                 {
-                    m_SelectLevelComboBox.SelectedIndex = 5;
+                    m_ComboSelectAudioProfile.SelectedIndex = 5;
                     m_IndexOfLevelCombox = 5;
                 }
 
@@ -843,7 +843,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_EnforceSingleCursor = m_CheckBoxListView.Items[13].Checked;
                 mSettings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording = m_CheckBoxListView.Items[14].Checked;
                 mSettings.Audio_DisableDeselectionOnStop = m_CheckBoxListView.Items[15].Checked;
-                mSettings.Audio_LevelComboBoxIndex = m_SelectLevelComboBox.SelectedIndex;
+                mSettings.Audio_LevelComboBoxIndex = m_ComboSelectAudioProfile.SelectedIndex;
             }
         }
 
@@ -919,7 +919,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[15].Checked = mSettings.Audio_DisableDeselectionOnStop;
                 m_CheckBoxListView.Items[15].ToolTipText = Localizer.Message("Audio_DisableDeselectionOnStop");
 
-                m_SelectLevelComboBox.SelectedIndex = mSettings.Audio_LevelComboBoxIndex;
+                m_ComboSelectAudioProfile.SelectedIndex = mSettings.Audio_LevelComboBoxIndex;
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
@@ -1099,7 +1099,7 @@ namespace Obi.Dialogs
         private void button1_Click(object sender, EventArgs e)
         {
             ResetPreferences();
-            m_SelectLevelComboBox.SelectedIndex = 0;
+            m_ComboSelectAudioProfile.SelectedIndex = 0;
         }
 
         private void m_txtShortcutKeys_Leave(object sender, EventArgs e)
@@ -1497,9 +1497,9 @@ namespace Obi.Dialogs
             }
         }
 
-        private bool ComboBoxSelection()
+        private bool UpdateAudioProfile()
         {
-            if (m_SelectLevelComboBox.SelectedIndex == 0)
+            if (m_ComboSelectAudioProfile.SelectedIndex == 0)
             {
                 m_FlagComboBoxIndexChange = true;
                 m_CheckBoxListView.Items[0].Checked = false;
@@ -1519,9 +1519,9 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[14].Checked = false;
                 m_CheckBoxListView.Items[15].Checked = false;
                 m_FlagComboBoxIndexChange = false;
-                m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+                m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
             }
-            if (m_SelectLevelComboBox.SelectedIndex == 1)
+            if (m_ComboSelectAudioProfile.SelectedIndex == 1)
             {
                 if (m_CheckBoxListView.Items[0].Checked || m_CheckBoxListView.Items[2].Checked || m_CheckBoxListView.Items[3].Checked ||
                     !m_CheckBoxListView.Items[4].Checked || !m_CheckBoxListView.Items[5].Checked || m_CheckBoxListView.Items[7].Checked
@@ -1537,7 +1537,7 @@ namespace Obi.Dialogs
                     if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Intermediate_recording_mode"), MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+                        m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
                         m_FlagComboBoxIndexChange = true;
                         m_CheckBoxListView.Items[0].Checked = false;
                         m_CheckBoxListView.Items[2].Checked = false;
@@ -1560,13 +1560,13 @@ namespace Obi.Dialogs
                     }
                     else
                     {
-                        m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
+                        m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
                         return false;
                     }
 
                 }
             }
-            else if (m_SelectLevelComboBox.SelectedIndex == 2)
+            else if (m_ComboSelectAudioProfile.SelectedIndex == 2)
             {
                 if (!(m_CheckBoxListView.Items[0].Checked && m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked
                      && m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[7].Checked && m_CheckBoxListView.Items[8].Checked
@@ -1586,7 +1586,7 @@ namespace Obi.Dialogs
                     if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+                        m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
                         m_FlagComboBoxIndexChange = true;
                         m_CheckBoxListView.Items[0].Checked = true;
                         m_CheckBoxListView.Items[2].Checked = true;
@@ -1608,13 +1608,13 @@ namespace Obi.Dialogs
                     }
                     else
                     {
-                        m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
+                        m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
                         return false;
                     }
                 }
 
             }
-            else if (m_SelectLevelComboBox.SelectedIndex == 4)
+            else if (m_ComboSelectAudioProfile.SelectedIndex == 4)
             {
                 if (!(m_CheckBoxListView.Items[0].Checked && !m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && !m_CheckBoxListView.Items[4].Checked
                      && !m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[7].Checked && !m_CheckBoxListView.Items[8].Checked
@@ -1633,7 +1633,7 @@ namespace Obi.Dialogs
                     if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Level_ComboBox_Profile_2"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+                        m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
                         m_FlagComboBoxIndexChange = true;
                         m_CheckBoxListView.Items[0].Checked = false;
                         m_CheckBoxListView.Items[1].Checked = true;
@@ -1655,13 +1655,13 @@ namespace Obi.Dialogs
                     }
                     else
                     {
-                        m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
+                        m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
                         return false;
                     }
                 }
 
             }
-            else if (m_SelectLevelComboBox.SelectedIndex == 3)
+            else if (m_ComboSelectAudioProfile.SelectedIndex == 3)
             {
                 if (!(m_CheckBoxListView.Items[0].Checked && !m_CheckBoxListView.Items[1].Checked && m_CheckBoxListView.Items[2].Checked && !m_CheckBoxListView.Items[3].Checked
                      && !m_CheckBoxListView.Items[4].Checked && !m_CheckBoxListView.Items[5].Checked && !m_CheckBoxListView.Items[6].Checked
@@ -1680,7 +1680,7 @@ namespace Obi.Dialogs
                     if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Level_ComboBox_Profile_1"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+                        m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
                         m_FlagComboBoxIndexChange = true;
                         m_CheckBoxListView.Items[0].Checked = false;
                         m_CheckBoxListView.Items[1].Checked = true;
@@ -1702,16 +1702,16 @@ namespace Obi.Dialogs
                     }
                     else
                     {
-                        m_SelectLevelComboBox.SelectedIndex = m_IndexOfLevelCombox;
+                        m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
                         return false;
                     }
                 }
 
             }
-            else if (m_SelectLevelComboBox.SelectedIndex == 5)
+            else if (m_ComboSelectAudioProfile.SelectedIndex == 5)
             {
                 m_FlagComboBoxIndexChange = false;
-                m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
+                m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
             }
             return true;
         }
@@ -1721,7 +1721,7 @@ namespace Obi.Dialogs
             //if (m_IsComboBoxExpanded && (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex) && (this.mTab.SelectedTab == mAudioTab))
             //{
                 
-            //    ComboBoxSelection();
+            //    UpdateAudioProfile();
             //}
          //   m_IndexOfLevelCombox = m_SelectLevelComboBox.SelectedIndex;
         }
@@ -1743,7 +1743,7 @@ namespace Obi.Dialogs
             //    return;
             //if (m_IndexOfLevelCombox != m_SelectLevelComboBox.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
             //{
-            //    ComboBoxSelection();
+            //    UpdateAudioProfile();
             //}
 
         }
@@ -1759,7 +1759,7 @@ namespace Obi.Dialogs
         private void m_btnProfileDiscription_Click(object sender, EventArgs e)
         {
             ProfileDescription profileDesc = new ProfileDescription();
-            profileDesc.ProfileSelected = m_SelectLevelComboBox.SelectedIndex;
+            profileDesc.ProfileSelected = m_ComboSelectAudioProfile.SelectedIndex;
             profileDesc.ShowDialog();
             profileDesc.Focus();
         }

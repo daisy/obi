@@ -717,28 +717,28 @@
   <data name="&gt;&gt;m_lblProfile.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_SelectLevelComboBox.AccessibleName" xml:space="preserve">
+  <data name="m_ComboSelectAudioProfile.AccessibleName" xml:space="preserve">
     <value>Profile</value>
   </data>
-  <data name="m_SelectLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_ComboSelectAudioProfile.Location" type="System.Drawing.Point, System.Drawing">
     <value>455, 253</value>
   </data>
-  <data name="m_SelectLevelComboBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_ComboSelectAudioProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
   </data>
-  <data name="m_SelectLevelComboBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_ComboSelectAudioProfile.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
   </data>
-  <data name="&gt;&gt;m_SelectLevelComboBox.Name" xml:space="preserve">
-    <value>m_SelectLevelComboBox</value>
+  <data name="&gt;&gt;m_ComboSelectAudioProfile.Name" xml:space="preserve">
+    <value>m_ComboSelectAudioProfile</value>
   </data>
-  <data name="&gt;&gt;m_SelectLevelComboBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_ComboSelectAudioProfile.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_SelectLevelComboBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_ComboSelectAudioProfile.Parent" xml:space="preserve">
     <value>mAudioTab</value>
   </data>
-  <data name="&gt;&gt;m_SelectLevelComboBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_ComboSelectAudioProfile.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="m_btn_speak.AccessibleName" xml:space="preserve">

@@ -52,7 +52,7 @@ namespace Obi.Dialogs
             this.mAudioTab = new System.Windows.Forms.TabPage();
             this.m_btnProfileDiscription = new System.Windows.Forms.Button();
             this.m_lblProfile = new System.Windows.Forms.Label();
-            this.m_SelectLevelComboBox = new System.Windows.Forms.ComboBox();
+            this.m_ComboSelectAudioProfile = new System.Windows.Forms.ComboBox();
             this.m_btn_speak = new System.Windows.Forms.Button();
             this.labelTTSvoice = new System.Windows.Forms.Label();
             this.mTTSvoiceCombo = new System.Windows.Forms.ComboBox();
@@ -283,7 +283,7 @@ namespace Obi.Dialogs
             // 
             this.mAudioTab.Controls.Add(this.m_btnProfileDiscription);
             this.mAudioTab.Controls.Add(this.m_lblProfile);
-            this.mAudioTab.Controls.Add(this.m_SelectLevelComboBox);
+            this.mAudioTab.Controls.Add(this.m_ComboSelectAudioProfile);
             this.mAudioTab.Controls.Add(this.m_btn_speak);
             this.mAudioTab.Controls.Add(this.labelTTSvoice);
             this.mAudioTab.Controls.Add(this.mTTSvoiceCombo);
@@ -319,15 +319,15 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_lblProfile, "m_lblProfile");
             this.m_lblProfile.Name = "m_lblProfile";
             // 
-            // m_SelectLevelComboBox
+            // m_ComboSelectAudioProfile
             // 
-            resources.ApplyResources(this.m_SelectLevelComboBox, "m_SelectLevelComboBox");
-            this.m_SelectLevelComboBox.FormattingEnabled = true;
-            this.m_SelectLevelComboBox.Name = "m_SelectLevelComboBox";
-            this.m_SelectLevelComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.m_SelectLevelComboBox_Validating);
-            this.m_SelectLevelComboBox.SelectionChangeCommitted += new System.EventHandler(this.m_SelectLevelComboBox_SelectionChangeCommitted);
-            this.m_SelectLevelComboBox.DropDownClosed += new System.EventHandler(this.m_SelectLevelComboBox_DropDownClosed);
-            this.m_SelectLevelComboBox.DropDown += new System.EventHandler(this.m_SelectLevelComboBox_DropDown);
+            resources.ApplyResources(this.m_ComboSelectAudioProfile, "m_ComboSelectAudioProfile");
+            this.m_ComboSelectAudioProfile.FormattingEnabled = true;
+            this.m_ComboSelectAudioProfile.Name = "m_ComboSelectAudioProfile";
+            this.m_ComboSelectAudioProfile.Validating += new System.ComponentModel.CancelEventHandler(this.m_SelectLevelComboBox_Validating);
+            this.m_ComboSelectAudioProfile.SelectionChangeCommitted += new System.EventHandler(this.m_SelectLevelComboBox_SelectionChangeCommitted);
+            this.m_ComboSelectAudioProfile.DropDownClosed += new System.EventHandler(this.m_SelectLevelComboBox_DropDownClosed);
+            this.m_ComboSelectAudioProfile.DropDown += new System.EventHandler(this.m_SelectLevelComboBox_DropDown);
             // 
             // m_btn_speak
             // 
@@ -850,7 +850,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox mTTSvoiceCombo;
         private System.Windows.Forms.Button m_btn_speak;
         private System.Windows.Forms.HelpProvider helpProvider1;
-        private System.Windows.Forms.ComboBox m_SelectLevelComboBox;
+        private System.Windows.Forms.ComboBox m_ComboSelectAudioProfile;
         private System.Windows.Forms.Label m_lblProfile;
         private System.Windows.Forms.Button m_btnProfileDiscription;
         private System.Windows.Forms.ToolTip m_Preference_ToolTip;
