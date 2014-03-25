@@ -2586,23 +2586,22 @@ namespace Obi.ProjectView
                 }
                 else
                 {
-                    if (mView.Selection is AudioSelection && mView.ObiForm.Settings.Audio_EnforceSingleCursor && IsPaused)
-                    {
-                        if (((AudioSelection)mView.Selection).AudioRange.HasCursor)
-                        {
-                            if (m_CursorTime != ((AudioSelection)mView.Selection).AudioRange.CursorTime)
-                            {
-                                m_ElapseBackInterval = 0.0;
-                                m_CursorTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
-                            }
-                            
-                        }
-                    }
                     DetermineUseOfSoundTouch(1.0f);
                     mCurrentPlaylist.FastPlayNormaliseWithLapseBack(m_ElapseBackInterval);
                     mFastPlayRateCombobox.SelectedIndex = 0;
                     UpdateTimeDisplay();
                     if (CurrentPlaylist != null) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
+                    if (mView.Selection is AudioSelection)
+                    {
+                        if (((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                        {
+                            if (((AudioSelection)mView.Selection).AudioRange.CursorTime != mCurrentPlaylist.CurrentTimeInAsset)
+                            {                               
+                                ((AudioSelection)mView.Selection).AudioRange.CursorTime = mCurrentPlaylist.CurrentTimeInAsset;
+                            }
+
+                        }
+                    }
                     return true;
                 }
             }
