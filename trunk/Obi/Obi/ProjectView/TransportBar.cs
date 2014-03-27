@@ -2794,9 +2794,9 @@ namespace Obi.ProjectView
                     new AudioRange(time));
             }
             else if (!IsPaused)
-            {
+            {             
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
-                    new AudioRange(((PhraseNode)mView.Selection.EmptyNodeForSelection).Duration + m_ElapseBackInterval));
+                    new AudioRange(((PhraseNode)mView.Selection.EmptyNodeForSelection).Duration));
             }
         }
         /// <summary>
