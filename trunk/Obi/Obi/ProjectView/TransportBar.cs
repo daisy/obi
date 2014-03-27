@@ -4028,9 +4028,10 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
             get { return m_MonitorContinuously; }
             set
             {
-                
-                if (value && mView.ObiForm != null && mView.ObiForm.Settings.RecordDirectly)
+                Console.WriteLine("value of monitor continuously" + value);
+                if (value && mView.ObiForm != null )
                 {
+                    System.Media.SystemSounds.Asterisk.Play();
                     m_MonitorContinuously = value;
                     StartMonitorContinuously();
                 }
