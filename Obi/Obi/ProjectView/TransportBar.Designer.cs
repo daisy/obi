@@ -55,6 +55,7 @@ namespace Obi.ProjectView
             this.m_RecordingtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_DeletePhrasestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviewBeforeRecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMonitorContinuouslyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PlayingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.m_PlayAlltoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PlaySectiontoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -268,7 +269,8 @@ namespace Obi.ProjectView
             this.m_MonitoringtoolStripMenuItem,
             this.m_RecordingtoolStripMenuItem,
             this.m_DeletePhrasestoolStripMenuItem,
-            this.mPreviewBeforeRecToolStripMenuItem});
+            this.mPreviewBeforeRecToolStripMenuItem,
+            this.mMonitorContinuouslyToolStripMenuItem});
             this.m_RecordingOptionsContextMenuStrip.Name = "m_RecordingOptionsContextMenuStrip";
             resources.ApplyResources(this.m_RecordingOptionsContextMenuStrip, "m_RecordingOptionsContextMenuStrip");
             this.m_RecordingOptionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.m_RecordingOptionsContextMenuStrip_Opening);
@@ -296,6 +298,15 @@ namespace Obi.ProjectView
             this.mPreviewBeforeRecToolStripMenuItem.Name = "mPreviewBeforeRecToolStripMenuItem";
             resources.ApplyResources(this.mPreviewBeforeRecToolStripMenuItem, "mPreviewBeforeRecToolStripMenuItem");
             this.mPreviewBeforeRecToolStripMenuItem.Click += new System.EventHandler(this.mPreviewBeforeRecToolStripMenuItem_Click);
+            // 
+            // mMonitorContinuouslyToolStripMenuItem
+            // 
+            this.mMonitorContinuouslyToolStripMenuItem.Checked = true;
+            this.mMonitorContinuouslyToolStripMenuItem.CheckOnClick = true;
+            this.mMonitorContinuouslyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mMonitorContinuouslyToolStripMenuItem.Name = "mMonitorContinuouslyToolStripMenuItem";
+            resources.ApplyResources(this.mMonitorContinuouslyToolStripMenuItem, "mMonitorContinuouslyToolStripMenuItem");
+            this.mMonitorContinuouslyToolStripMenuItem.Click += new System.EventHandler(this.mMonitorContinuouslyToolStripMenuItem_Click);
             // 
             // m_PlayingOptionsContextMenuStrip
             // 
@@ -417,5 +428,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem m_PreviewFromtoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_PreviewUptotoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_playHeadingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mMonitorContinuouslyToolStripMenuItem;
     }
 }

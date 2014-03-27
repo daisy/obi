@@ -1232,8 +1232,14 @@
   <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
     <value>Preview Before Recording</value>
   </data>
+  <data name="mMonitorContinuouslyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="mMonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Monitor Continuously</value>
+  </data>
   <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 92</value>
+    <value>245, 136</value>
   </data>
   <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
     <value>m_RecordingOptionsContextMenuStrip</value>
@@ -1302,7 +1308,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.33136, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.24069, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1353,6 +1359,12 @@
     <value>mPreviewBeforeRecToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mPreviewBeforeRecToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMonitorContinuouslyToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMonitorContinuouslyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mMonitorContinuouslyToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_PlayAlltoolStripMenuItem.Name" xml:space="preserve">

@@ -4083,5 +4083,17 @@ m_MonitorContinuouslyWorker.RunWorkerAsync();
                 
         }
 
+        private void mMonitorContinuouslyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mMonitorContinuouslyToolStripMenuItem.Checked)
+            {
+                MonitorContinuously = true;
+            }
+            else
+            {
+                MonitorContinuously = false;
+            }
+        }
+
     }
 }
