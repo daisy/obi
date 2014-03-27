@@ -1527,10 +1527,13 @@ namespace Obi.ProjectView
             mRecordingSession.Stop ();
             
             // update recorded phrases with audio assets
-            UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases, ref firstRecordedPage);
-            
-            //Workaround to force phrases to show if they become invisible on stopping recording
-            mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
+            if (mRecordingSection != null)
+            {
+                UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases, ref firstRecordedPage);
+
+                //Workaround to force phrases to show if they become invisible on stopping recording
+                mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
+            }
         }
         catch (System.Exception ex)
         {
@@ -3170,17 +3173,18 @@ namespace Obi.ProjectView
                 try
                     {
                     mRecordingSession.Stop ();
-                    
-                    
 
-                    // update phrases with audio assets
-                    UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases,ref firstRecordedPage);
 
-                    //Workaround to force phrases to show if they become invisible on stopping recording
-                    mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
-                    EmptyNode lastRecordedPhrase = mRecordingSection.PhraseChildCount >0? mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1):null;
-                    if (!wasMonitoring && lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar ( lastRecordedPhrase, null );
+                    if (mRecordingSection != null)
+                    {
+                        // update phrases with audio assets
+                        UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases, ref firstRecordedPage);
 
+                        //Workaround to force phrases to show if they become invisible on stopping recording
+                        mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
+                        EmptyNode lastRecordedPhrase = mRecordingSection.PhraseChildCount > 0 ? mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1) : null;
+                        if (!wasMonitoring && lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar(lastRecordedPhrase, null);
+                    }
                     
 
                     }
@@ -4031,7 +4035,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                 Console.WriteLine("value of monitor continuously" + value);
                 if (value && mView.ObiForm != null )
                 {
-                    System.Media.SystemSounds.Asterisk.Play();
+                    
                     m_MonitorContinuously = value;
                     StartMonitorContinuously();
                 }
