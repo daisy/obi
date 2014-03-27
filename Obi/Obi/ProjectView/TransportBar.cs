@@ -40,6 +40,7 @@ namespace Obi.ProjectView
         private Playlist mQAMasterPlaylist;          // QA master playlist (all used phrases in the project)
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null) TO BE REMOVED
         private bool m_IsPlaySectionInspiteOfPhraseSelection = false;
+        private bool m_MonitorContinuously = false;
         //public variables
         //private bool IsPlaySection = false;
         //private bool IsPreviewBeforeRec = false;
@@ -1571,6 +1572,11 @@ namespace Obi.ProjectView
 
             // makes phrase blocks invisible if these exceed max. visible blocks count during recording
             //mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit :@singleSection: legagy code commented
+            //@MonitorContinuously
+            if (MonitorContinuously)
+            {
+                StartMonitorContinuouslyWithDelay();
+            }
         }
 
 
@@ -1693,20 +1699,31 @@ namespace Obi.ProjectView
             if (mView.Selection is TextSelection || IsMetadataSelected || mView.IsZoomWaveformActive)
                 return;
 
+            if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) Pause();
+
             if (mView.Presentation != null&& mState != State.Playing
                         &&    !IsMetadataSelected && ( mView.Selection == null || !(mView.Selection is TextSelection)))
-
-                        if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) Pause();
             {
+                
+
             try
                 {
                 if (mState == State.Monitoring)
                     {
-                    mRecordingSession.Stop ();
-                    StartRecording ();
+                        if (!MonitorContinuously)
+                        {
+                            mRecordingSession.Stop();
+                            StartRecording();
+                        }
+                        else //@MonitorContinuously
+                        {
+                            StopMonitorContinuously();//@MonitorContinuously
+                            SetupRecording(Recording, false);
+                        }
                     }
                 else if (CanResumeRecording)
                     {
+                        if (MonitorContinuously) StopMonitorContinuously(); //@MonitorContinuously
                     SetupRecording ( Recording , false);
                     }
                 else if (!IsRecorderActive)
@@ -2425,6 +2442,7 @@ namespace Obi.ProjectView
 
                     try
                         {
+                            if (MonitorContinuously) StopMonitorContinuously(); //@MonitorContinuously
                         SetupRecording ( Recording , false);
                         }
                     catch (System.Exception ex)
@@ -2440,6 +2458,7 @@ namespace Obi.ProjectView
 
                     try
                         {
+                            if (MonitorContinuously) StopMonitorContinuously(); //@MonitorContinuously
                         SetupRecording ( Recording, mRecordingSection, false );
                         }
                     catch (System.Exception ex)
@@ -3122,6 +3141,7 @@ namespace Obi.ProjectView
                 {
                 try
                     {
+                        if (MonitorContinuously) StopMonitorContinuously(); //@MonitorContinuously
                     SetupRecording ( Recording, deleteFollowingPhrases );
                     }
                 catch (System.Exception ex)
@@ -3192,6 +3212,11 @@ SelectionChangedPlaybackEnabled = false;
             mRecordingSession = null;
             mResumeRecordingPhrase = null;
 
+            }
+
+            if (MonitorContinuously)
+            {
+                StartMonitorContinuouslyWithDelay();
             }
         }
 
@@ -3711,6 +3736,7 @@ SelectionChangedPlaybackEnabled = false;
         {
             if (CanResumePlayback || mState == State.Stopped)
             {
+                if (MonitorContinuously) StopMonitorContinuously(); //@MonitorContinuously
                 SetupRecording(Monitoring, false); 
             }
         }
@@ -3994,6 +4020,67 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                 }
 
             }
+        }
+
+        //@MonitorContinuously
+        public bool MonitorContinuously
+        {
+            get { return m_MonitorContinuously; }
+            set
+            {
+                
+                if (value && mView.ObiForm != null && mView.ObiForm.Settings.RecordDirectly)
+                {
+                    m_MonitorContinuously = value;
+                    StartMonitorContinuously();
+                }
+                else
+                {
+                    StopMonitorContinuously();
+                    m_MonitorContinuously = value;
+                }
+            }
+        }
+
+        //@MonitorContinuously
+        private void StartMonitorContinuously()
+        {
+            if (m_MonitorContinuously && CurrentState == State.Stopped)
+            {
+                mRecordingSession = new RecordingSession(mView.Presentation, mRecorder, mView.ObiForm.Settings);
+                mRecordingSession.StartMonitoring();
+            }
+        }
+
+        //@MonitorContinuously
+        private void StopMonitorContinuously()
+        {
+            if (m_MonitorContinuously && mRecordingSession != null && CurrentState == State.Monitoring)
+            {
+                mRecordingSession.Stop();
+                mRecordingSession = null;
+            }
+        }
+
+        //@MonitorContinuously
+        System.ComponentModel.BackgroundWorker m_MonitorContinuouslyWorker= null;
+        private void StartMonitorContinuouslyWithDelay()
+        {
+            m_MonitorContinuouslyWorker = new System.ComponentModel.BackgroundWorker();
+                m_MonitorContinuouslyWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
+                {
+                    Thread.Sleep(1500);
+                 });
+
+m_MonitorContinuouslyWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+                {
+                    if (m_MonitorContinuously && CurrentState == State.Stopped)
+                    {
+                        StartMonitorContinuously();
+                    }
+                });
+m_MonitorContinuouslyWorker.RunWorkerAsync();
+                
         }
 
     }
