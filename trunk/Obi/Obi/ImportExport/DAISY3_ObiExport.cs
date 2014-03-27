@@ -35,6 +35,14 @@ namespace Obi.ImportExport
         }
 
 
+        private bool m_AlwaysIgnoreIndentation = false;
+        public bool AlwaysIgnoreIndentation
+        {
+            get { return m_AlwaysIgnoreIndentation; }
+            set { m_AlwaysIgnoreIndentation = value; }
+        }
+
+
         protected override bool doesTreeNodeTriggerNewSmil(TreeNode node)
         {
             return node is SectionNode
@@ -841,8 +849,8 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "dur", FormatTimeString(durationOfCurrentSmil));
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "fill", "remove");
                     AddMetadata_Smil(smilDocument, FormatTimeString(smilElapseTime), currentSmilCustomTestList);
-
-                    XmlReaderWriterHelper.WriteXmlDocument(smilDocument, Path.Combine(m_OutputDirectory, smilFileName), null);
+                    
+                    XmlReaderWriterHelper.WriteXmlDocument(smilDocument, Path.Combine(m_OutputDirectory, smilFileName),AlwaysIgnoreIndentation? GetXmlWriterSettings (false): null);
 
                     smilElapseTime.Add(durationOfCurrentSmil);
                     m_FilesList_Smil.Add(smilFileName);
@@ -885,7 +893,8 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
             // rewrite the smil files that has anchor references
             foreach (XmlDocument sd in m_AnchorSmilDoc_SmileFileNameMap.Keys)
             {
-                XmlReaderWriterHelper.WriteXmlDocument(sd, Path.Combine(m_OutputDirectory, m_AnchorSmilDoc_SmileFileNameMap[sd] ), null);
+                XmlReaderWriterHelper.WriteXmlDocument(sd, Path.Combine(m_OutputDirectory, m_AnchorSmilDoc_SmileFileNameMap[sd]), 
+                    (AlwaysIgnoreIndentation ? GetXmlWriterSettings(false): null ));
             }
             m_AnchorSmilDoc_SmileFileNameMap = null;
             if (RequestCancellation)
@@ -905,7 +914,7 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
             // write ncs document to file
             m_TotalTime = new Time(smilElapseTime);
             AddMetadata_Ncx(ncxDocument, totalPageCount.ToString(), maxNormalPageNumber.ToString(), maxDepth.ToString(), ncxCustomTestList);
-            XmlReaderWriterHelper.WriteXmlDocument(ncxDocument, Path.Combine(m_OutputDirectory, m_Filename_Ncx),null);
+            XmlReaderWriterHelper.WriteXmlDocument(ncxDocument, Path.Combine(m_OutputDirectory, m_Filename_Ncx),AlwaysIgnoreIndentation? GetXmlWriterSettings(false): null);
         }
 
         private bool IsSkippable(EmptyNode node)
@@ -934,6 +943,23 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
             }
             return false;
         }
+
+        public XmlWriterSettings GetXmlWriterSettings (bool indentation)
+        {
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Encoding = Encoding.UTF8;
+            if (indentation)
+            {
+                settings.Indent = true;
+                settings.IndentChars = "\t";
+            }
+            else
+            {
+                settings.Indent = false;
+            }
+            return settings;            
+        }
+
 
 
     }

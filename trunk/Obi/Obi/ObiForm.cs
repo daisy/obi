@@ -2464,6 +2464,7 @@ namespace Obi
                                 DAISY3Export.AddSectionNameToAudioFile = ExportDialogDAISY3.AppendSectionNameToAudioFileName;
                                 DAISY3Export.AudioFileNameCharsLimit = ExportDialogDAISY3.AudioFileNameCharsLimit;
                                 if(ExportDialogDAISY3.EnabledAdvancedParameters)  DAISY3Export.SetAdditionalMp3EncodingParameters(ExportDialogDAISY3.Mp3ChannelMode, ExportDialogDAISY3.Mp3ReSample, ExportDialogDAISY3.Mp3RePlayGain);
+                                ((Obi.ImportExport.DAISY3_ObiExport)DAISY3Export).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                             }
                             if (ExportDialogDAISY202 != null)
                             {
