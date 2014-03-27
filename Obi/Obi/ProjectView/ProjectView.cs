@@ -3416,7 +3416,7 @@ for (int j = 0;
             {
             if (!CanUseKey ( key )) return false;
             SetF1Help(key);
-            if (key==keyboardShortcuts.ContentView_FastPlayNormalizeWithElapseBack.Value)
+            if (key==keyboardShortcuts.ContentView_FastPlayNormalizeWithElapseBack.Value || key==keyboardShortcuts.ContentView_FastPlayWithElapseForward.Value)
             {
                 if(Selection!=null && Selection.Node!=null && Selection.Node is PhraseNode)
                 SelectPhraseInContentView((PhraseNode)Selection.Node);
