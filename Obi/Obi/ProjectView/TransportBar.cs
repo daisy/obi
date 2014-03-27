@@ -1527,7 +1527,7 @@ namespace Obi.ProjectView
             mRecordingSession.Stop ();
             
             // update recorded phrases with audio assets
-            if (mRecordingSection != null)
+            if (mRecordingSection != null) ///@MonitorContinuously , if block inserted to bypass the procedure of assigning assets
             {
                 UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases, ref firstRecordedPage);
 
@@ -3175,7 +3175,7 @@ namespace Obi.ProjectView
                     mRecordingSession.Stop ();
 
 
-                    if (mRecordingSection != null)
+                    if (mRecordingSection != null) ///@MonitorContinuously , if block inserted to bypass the procedure of assigning assets
                     {
                         // update phrases with audio assets
                         UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases, ref firstRecordedPage);
