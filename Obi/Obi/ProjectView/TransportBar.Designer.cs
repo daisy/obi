@@ -301,9 +301,9 @@ namespace Obi.ProjectView
             // 
             // mMonitorContinuouslyToolStripMenuItem
             // 
-            this.mMonitorContinuouslyToolStripMenuItem.Checked = true;
+            this.mMonitorContinuouslyToolStripMenuItem.Checked = false;
             this.mMonitorContinuouslyToolStripMenuItem.CheckOnClick = true;
-            this.mMonitorContinuouslyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mMonitorContinuouslyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Unchecked;
             this.mMonitorContinuouslyToolStripMenuItem.Name = "mMonitorContinuouslyToolStripMenuItem";
             resources.ApplyResources(this.mMonitorContinuouslyToolStripMenuItem, "mMonitorContinuouslyToolStripMenuItem");
             this.mMonitorContinuouslyToolStripMenuItem.Click += new System.EventHandler(this.mMonitorContinuouslyToolStripMenuItem_Click);
