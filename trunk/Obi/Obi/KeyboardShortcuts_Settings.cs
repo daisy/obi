@@ -65,6 +65,7 @@ namespace Obi
         public KeyboardShortcut ContentView_FastPlayStepUp = new KeyboardShortcut( Keys.F, "KeyS_FastPlayStepUp");
         public KeyboardShortcut ContentView_FastPlayRateNormilize = new KeyboardShortcut(Keys.D, "KeyS_FastPlayRateNormilize");
         public KeyboardShortcut ContentView_FastPlayNormalizeWithElapseBack = new KeyboardShortcut(Keys.E, "KeyS_FastPlayNormalizeWithElapseBack");
+        public KeyboardShortcut ContentView_FastPlayWithElapseForward = new KeyboardShortcut(Keys.Y, "KeyS_FastPlayWithElapseForward");
         public KeyboardShortcut ContentView_MarkSelectionFromBeginningToTheCursor = new KeyboardShortcut(Keys.Shift | Keys.Home, "KeyS_MarkSelectionFromBeginningToTheCursor");
         public KeyboardShortcut ContentView_MarkSelectionFromCursorToTheEnd = new KeyboardShortcut(Keys.Shift | Keys.End, "KeyS_MarkSelectionFromCursorToTheEnd");
 
@@ -306,6 +307,7 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayStepUp.Description), ContentView_FastPlayStepUp);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayRateNormilize.Description), ContentView_FastPlayRateNormilize);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayNormalizeWithElapseBack.Description), ContentView_FastPlayNormalizeWithElapseBack);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_FastPlayWithElapseForward.Description), ContentView_FastPlayWithElapseForward);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_MarkSelectionFromBeginningToTheCursor.Description), ContentView_MarkSelectionFromBeginningToTheCursor);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_MarkSelectionFromCursorToTheEnd.Description), ContentView_MarkSelectionFromCursorToTheEnd);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectPrecedingPhrase.Description), ContentView_SelectPrecedingPhrase);

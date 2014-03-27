@@ -2573,12 +2573,12 @@ namespace Obi.ProjectView
 
         public bool FastPlayNormaliseWithLapseBack()
         {
-             m_ElapseBackInterval = mView.ObiForm.Settings.ElapseBackTimeInMilliseconds;
+            m_ElapseBackInterval = mView.ObiForm.Settings.ElapseBackTimeInMilliseconds;
             // work around to handle special nudge condition of preview: this should be implemented universally after 2.0 release
             if (mCurrentPlaylist != null && mView.Selection is AudioSelection && mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused) Stop();
             if (IsPlayerActive)
             {
-               
+
                 if (IsPaused && mCurrentPlaylist.CurrentTimeInAsset <= 10 && (mView.Selection.Node.PrecedingNode is PhraseNode || mView.Selection.Node.PrecedingNode is EmptyNode) && !mView.IsZoomWaveformActive)
                 {
                     LapseBackCursor();
@@ -2596,7 +2596,7 @@ namespace Obi.ProjectView
                         if (((AudioSelection)mView.Selection).AudioRange.HasCursor)
                         {
                             if (((AudioSelection)mView.Selection).AudioRange.CursorTime != mCurrentPlaylist.CurrentTimeInAsset)
-                            {                               
+                            {
                                 ((AudioSelection)mView.Selection).AudioRange.CursorTime = mCurrentPlaylist.CurrentTimeInAsset;
                             }
 
@@ -2608,6 +2608,48 @@ namespace Obi.ProjectView
             else if (CurrentState == State.Stopped && mView.Selection != null && mView.Selection.Node is PhraseNode)
             {
                 LapseBackCursor();
+
+                return true;
+            }
+            return false;
+        }
+        public bool FastPlayWithLapseForward()
+        {
+            m_ElapseBackInterval = mView.ObiForm.Settings.ElapseBackTimeInMilliseconds;
+            // work around to handle special nudge condition of preview: this should be implemented universally after 2.0 release
+            if (mCurrentPlaylist != null && mView.Selection is AudioSelection && mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused) Stop();
+            if (IsPlayerActive)
+            {
+
+                if (IsPaused && (mView.Selection.Node.FollowingNode is PhraseNode || mView.Selection.Node.FollowingNode is EmptyNode) && (mView.Selection.Node.Parent == mView.Selection.Node.FollowingNode.Parent) && (mCurrentPlaylist.CurrentTimeInAsset >= (mView.Selection.Node.Duration - m_ElapseBackInterval)) && !mView.IsZoomWaveformActive)
+                {
+                    LapseForwardCursor();
+                    return true;
+                }
+                else
+                {
+                    DetermineUseOfSoundTouch(1.0f);
+                    mCurrentPlaylist.FastPlayWithLapseForward(m_ElapseBackInterval);
+                    //  mFastPlayRateCombobox.SelectedIndex = 0;
+                    UpdateTimeDisplay();
+                    if (CurrentPlaylist != null) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
+                    if (mView.Selection is AudioSelection)
+                    {
+                        if (((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                        {
+                            if (((AudioSelection)mView.Selection).AudioRange.CursorTime != mCurrentPlaylist.CurrentTimeInAsset)
+                            {
+                                ((AudioSelection)mView.Selection).AudioRange.CursorTime = mCurrentPlaylist.CurrentTimeInAsset;
+                            }
+
+                        }
+                    }
+                    return true;
+                }
+            }
+            else if (CurrentState == State.Stopped && mView.Selection != null && mView.Selection.Node is PhraseNode)
+            {
+                LapseForwardCursor();
 
                 return true;
             }
@@ -2627,6 +2669,10 @@ namespace Obi.ProjectView
 
                     AudioRange range = new AudioRange(mView.Selection.Node.Duration);
                     mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
+                    if (mView.ObiForm.Settings.AudioClues)
+                    {
+                        System.Media.SystemSounds.Asterisk.Play();
+                    }
                 }
             }
             if (mView.Selection is AudioSelection)
@@ -2646,6 +2692,10 @@ namespace Obi.ProjectView
                     }
                     mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
                     time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                    if (mView.ObiForm.Settings.AudioClues)
+                    {
+                        System.Media.SystemSounds.Asterisk.Play();
+                    }
                 }
 
                 time = time - m_ElapseBackInterval >= 0 ? time - m_ElapseBackInterval : 0;
@@ -2657,6 +2707,77 @@ namespace Obi.ProjectView
             {
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                     new AudioRange(((PhraseNode)mView.Selection.EmptyNodeForSelection).Duration - m_ElapseBackInterval));
+            }
+        }
+        private void LapseForwardCursor()
+        {
+            bool flag = false;
+            if (IsPaused)
+            {
+                double time = mCurrentPlaylist.CurrentTimeInAsset;
+
+                if (mView.Selection.Node.FollowingNode != null && mView.Selection.Node.FollowingNode is PhraseNode)
+                {
+                    Stop();
+                    // mView.ClearCursor();
+                    double diff = mView.Selection.Node.Duration - time;
+                    diff = m_ElapseBackInterval - diff;
+                    mView.Selection = new NodeSelection(mView.Selection.Node.FollowingNode, mView.Selection.Control);
+
+                    AudioRange range = new AudioRange(diff);
+                    mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
+                    flag = true;
+                    if (mView.ObiForm.Settings.AudioClues)
+                    {
+                        System.Media.SystemSounds.Asterisk.Play();
+                    }
+                }
+            }
+            if (mView.Selection is AudioSelection)
+            {
+                double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+
+                if ((time + m_ElapseBackInterval) >= mView.Selection.Node.Duration && !mView.IsZoomWaveformActive && ((mView.Selection.Node.FollowingNode is PhraseNode) || (mView.Selection.Node.FollowingNode is EmptyNode)) && (mView.Selection.Node.Parent==mView.Selection.Node.FollowingNode.Parent))
+                {
+                    ObiNode followingNode = mView.Selection.Node.FollowingNode;
+                    double diff = mView.Selection.Node.Duration - time;
+                    diff = m_ElapseBackInterval - diff;
+                    mView.Selection = new NodeSelection(followingNode, mView.Selection.Control);
+                    AudioRange range = new AudioRange(diff);
+                    while (mView.Selection.Node is EmptyNode && !(mView.Selection.Node is PhraseNode))
+                    {
+                        followingNode = mView.Selection.Node.FollowingNode;
+                        mView.Selection = new NodeSelection(followingNode, mView.Selection.Control);
+                        range = new AudioRange(diff);
+                    }
+                    mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
+                    time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                    if (time > mView.Selection.Node.Duration)
+                    {
+                        time = mView.Selection.Node.Duration;
+                    }
+                    //mView.UpdateCursorPosition(time);
+                    if (mView.ObiForm.Settings.AudioClues)
+                    {
+                        System.Media.SystemSounds.Asterisk.Play();
+                    }
+                }
+                else if (((time + m_ElapseBackInterval) <= mView.Selection.Node.Duration) && !flag)
+                {
+                    time = time + m_ElapseBackInterval;
+                }
+                else if(!flag)
+                {
+                    time = mView.Selection.Node.Duration;
+                }
+
+                mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                    new AudioRange(time));
+            }
+            else if (!IsPaused)
+            {
+                mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                    new AudioRange(((PhraseNode)mView.Selection.EmptyNodeForSelection).Duration + m_ElapseBackInterval));
             }
         }
         /// <summary>

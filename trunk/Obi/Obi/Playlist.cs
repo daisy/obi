@@ -1270,6 +1270,41 @@ namespace Obi
                     StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(AudioPlayer.State.Paused));
             }
         }
+        public void FastPlayWithLapseForward(double LapseForwardTime)
+        {
+            double currentTimePosition = CurrentTimeInAsset;
+            //(double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) /
+            //Time.TIME_UNIT;
+
+            bool wasPaused = State == AudioPlayer.State.Paused;
+            //Console.WriteLine("paused time before " + mPlayer.CurrentTimePosition);
+            if (currentTimePosition > LapseForwardTime)
+            {
+                mPlayer.Pause();
+                // mPlayer.FastPlayFactor = 1;
+                CurrentTimeInAsset = currentTimePosition + LapseForwardTime;
+
+                // set revert time of preview playlist, to do: this should become part of CurrentTimeOfAsset finally.
+                if (this is PreviewPlaylist) ((PreviewPlaylist)this).RevertTime = currentTimePosition + LapseForwardTime;
+            }
+            else
+            {
+                mPlayer.Pause();
+                double diff=LapseForwardTime-currentTimePosition;
+                CurrentTimeInAsset += diff;
+                // set revert time of preview playlist, to do: this should become part of CurrentTimeOfAsset finally.
+                if (this is PreviewPlaylist) ((PreviewPlaylist)this).RevertTime = 10;
+              //  mPlayer.FastPlayFactor = 1;
+            }
+            //Console.WriteLine("paused time " + mPlayer.CurrentTimePosition);
+            if (!wasPaused)
+            {
+                mPlaylistState = AudioPlayer.State.Playing;
+                mPlayer.Resume();
+                if (StateChanged != null)
+                    StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(AudioPlayer.State.Paused));
+            }
+        }
 
         public void SanitizePlaylist()
         {
