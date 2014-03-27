@@ -3738,6 +3738,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[keyboardShortcuts.ContentView_FastPlayStepUp.Value] = FastPlayRateStepUp;
             mShortcutKeys[keyboardShortcuts.ContentView_FastPlayRateNormilize.Value] = FastPlayRateNormalise;
             mShortcutKeys[keyboardShortcuts.ContentView_FastPlayNormalizeWithElapseBack.Value] = FastPlayNormaliseWithLapseBack;
+            mShortcutKeys[keyboardShortcuts.ContentView_FastPlayWithElapseForward.Value] = delegate() { return mProjectView.TransportBar.FastPlayWithLapseForward(); };
             mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionFromBeginningToTheCursor.Value] = MarkSelectionFromBeginningToTheCursor;
             mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionFromCursorToTheEnd.Value] = MarkSelectionFromCursorToTheEnd;
             /*mShortcutKeys[Keys.S] = FastPlayRateStepDown;

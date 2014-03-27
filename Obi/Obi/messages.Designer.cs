@@ -2514,6 +2514,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Elapse Forward.
+        /// </summary>
+        internal static string KeyS_FastPlayWithElapseForward {
+            get {
+                return ResourceManager.GetString("KeyS_FastPlayWithElapseForward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Focus on time display.
         /// </summary>
         internal static string KeyS_FocusOnTransportBarTimeDisplay {
