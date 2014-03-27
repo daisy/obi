@@ -185,6 +185,7 @@ namespace Obi.ImportExport
         private string GetSmilReferenceString(XmlNode xNode)
         {
             XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xNode, true, "a", xNode.NamespaceURI);
+            if (anchorNode == null) return null;
             XmlNode attr = anchorNode.Attributes.GetNamedItem("href");
             return attr != null? attr.Value : null;
         }
@@ -192,6 +193,7 @@ namespace Obi.ImportExport
         // Add a page of the given kind; parse the content to get the page number.
         private void addPage(XmlNode node, PageKind kind)
         {
+            
             if (m_CurrentSection == null) throw new Exception(Localizer.Message("error_adding_page_number"));
             string pageNumberString = GetTextContent(node);
             PageNumber number = null;
@@ -218,6 +220,7 @@ namespace Obi.ImportExport
                 EmptyNode n = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
                 n.PageNumber = number;
                 m_CurrentSection.AppendChild(n);
+                
                 if (markToDo)
                 {
                     n.TODO = true;
@@ -284,6 +287,7 @@ private void AppendPhrasesFromSmil ()
     {
         if (RequestCancellation) return;
         string smilReferenceString = m_SectionNodesToSmilReferenceMap[section];
+        if (smilReferenceString == null) continue;
         string[] StringArray = smilReferenceString.Split('#');
         string smilFileName = StringArray[0];
         string strId = StringArray[1];
