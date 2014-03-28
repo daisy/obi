@@ -1298,7 +1298,7 @@ namespace Obi
                 }
                 else
                 {
-                    CurrentTimeInAsset = PhraseDuration;
+                    CurrentTimeInAsset = PhraseDuration-10;
                 }
                 // set revert time of preview playlist, to do: this should become part of CurrentTimeOfAsset finally.
                 if (this is PreviewPlaylist) ((PreviewPlaylist)this).RevertTime = 10;
