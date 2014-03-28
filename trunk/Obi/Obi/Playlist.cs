@@ -1270,7 +1270,7 @@ namespace Obi
                     StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(AudioPlayer.State.Paused));
             }
         }
-        public void FastPlayWithLapseForward(double LapseForwardTime)
+        public void FastPlayWithLapseForward(double LapseForwardTime,double PhraseDuration)
         {
             double currentTimePosition = CurrentTimeInAsset;
             //(double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) /
@@ -1278,7 +1278,7 @@ namespace Obi
 
             bool wasPaused = State == AudioPlayer.State.Paused;
             //Console.WriteLine("paused time before " + mPlayer.CurrentTimePosition);
-            if (currentTimePosition > LapseForwardTime)
+            if ((currentTimePosition+LapseForwardTime)<= PhraseDuration )
             {
                 mPlayer.Pause();
                 // mPlayer.FastPlayFactor = 1;
@@ -1290,8 +1290,16 @@ namespace Obi
             else
             {
                 mPlayer.Pause();
-                double diff=LapseForwardTime-currentTimePosition;
-                CurrentTimeInAsset += diff;
+               // double diff=LapseForwardTime-currentTimePosition;
+                if (wasPaused)
+                {
+                    double diff = PhraseDuration - currentTimePosition;
+                    CurrentTimeInAsset += diff;
+                }
+                else
+                {
+                    CurrentTimeInAsset = PhraseDuration;
+                }
                 // set revert time of preview playlist, to do: this should become part of CurrentTimeOfAsset finally.
                 if (this is PreviewPlaylist) ((PreviewPlaylist)this).RevertTime = 10;
               //  mPlayer.FastPlayFactor = 1;

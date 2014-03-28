@@ -2651,7 +2651,7 @@ namespace Obi.ProjectView
                 else
                 {
                     DetermineUseOfSoundTouch(1.0f);
-                    mCurrentPlaylist.FastPlayWithLapseForward(m_ElapseBackInterval);
+                    mCurrentPlaylist.FastPlayWithLapseForward(m_ElapseBackInterval,mView.Selection.Node.Duration);
                     //  mFastPlayRateCombobox.SelectedIndex = 0;
                     UpdateTimeDisplay();
                     if (CurrentPlaylist != null) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
