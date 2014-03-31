@@ -228,7 +228,8 @@ namespace Obi.ImportExport
                 }
                 //extract id
 
-                string strId = node.Attributes.GetNamedItem("id").Value;
+                XmlNode attrID = node.Attributes.GetNamedItem("id");
+                string strId = attrID!= null    ? attrID.Value: null;
                 if (strId != null) m_NccReferenceToPageMap.Add(strId, n);
             }
         }
