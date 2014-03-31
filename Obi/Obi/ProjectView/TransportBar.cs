@@ -388,7 +388,11 @@ namespace Obi.ProjectView
             get { return base.Enabled; }
             set
             {
-                if (base.Enabled && !value && IsActive) Stop();
+                if (base.Enabled && !value && IsActive)
+                {
+                    if (MonitorContinuously) MonitorContinuously = false; //@MonitorContinuously
+                    Stop();
+                }
                 base.Enabled = value;
             }
         }
