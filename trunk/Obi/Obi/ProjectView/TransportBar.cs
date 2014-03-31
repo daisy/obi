@@ -738,6 +738,7 @@ namespace Obi.ProjectView
                 {
                     mDisplayTimer.Start();
                     if (mState == State.Playing || mState == State.Paused) mView.SetPlaybackBlockIfRequired();
+                    if (mState == State.Playing && !(mCurrentPlaylist is PreviewPlaylist) && MonitorContinuously) MonitorContinuously = false; //@MonitorContinuously
                 }
                 else if (mState == State.Stopped)
                 {
@@ -4048,6 +4049,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                     StopMonitorContinuously();
                     m_MonitorContinuously = value;
                 }
+                if (m_MonitorContinuously != mMonitorContinuouslyToolStripMenuItem.Checked) mMonitorContinuouslyToolStripMenuItem.Checked = m_MonitorContinuously;
             }
         }
 
