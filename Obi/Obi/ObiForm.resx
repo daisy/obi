@@ -1593,6 +1593,12 @@
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.Text" xml:space="preserve">
     <value>Preview Before Recording</value>
   </data>
+  <data name="m_MonitorContinuouslyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 22</value>
+  </data>
+  <data name="m_MonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Monitor Continuously</value>
+  </data>
   <data name="mAllowOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
@@ -1963,7 +1969,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.0.1.31656, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.0.1.20606, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3149,6 +3155,12 @@
     <value>m_PreviewBeforeRecordingToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_PreviewBeforeRecordingToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_MonitorContinuouslyToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_MonitorContinuouslyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_MonitorContinuouslyToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mAllowOverwriteToolStripMenuItem.Name" xml:space="preserve">
