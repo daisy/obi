@@ -930,6 +930,14 @@ namespace Obi.ProjectView
                 {
                     m_btnPlayingOptions.Enabled = true;
                 }
+                if (IsPlayerActive)
+                {
+                    mMonitorContinuouslyToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    mMonitorContinuouslyToolStripMenuItem.Enabled = true;
+                }
 
                 bool recordDirectly = (mView.ObiForm  != null && mView.ObiForm.Settings.RecordDirectlyWithRecordButton) ? true : false;
 
