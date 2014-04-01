@@ -2122,8 +2122,7 @@ namespace Obi
                     m_PreviewBeforeRecordingToolStripMenuItem.Enabled = false;
                 }
                 m_PlayHeadingToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume;
-                m_PlaySectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume;
-
+                m_PlaySectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume;                
             }
 
             private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -4868,6 +4867,7 @@ namespace Obi
                 {
                     m_PreviewBeforeRecordingToolStripMenuItem.Enabled = false;
                 }
+                if (mProjectView.TransportBar.MonitorContinuously != m_MonitorContinuouslyToolStripMenuItem.Checked) m_MonitorContinuouslyToolStripMenuItem.Checked = mProjectView.TransportBar.MonitorContinuously;
 
             }
 
@@ -4990,6 +4990,20 @@ namespace Obi
             {
                 mProjectView.TransportBar.PreviewBeforeRecording();
             }
+
+            private void m_MonitorContinuouslyToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                if (m_MonitorContinuouslyToolStripMenuItem.Checked)
+                {
+                    mProjectView.TransportBar.MonitorContinuously = true;
+                }
+                else
+                {
+                    mProjectView.TransportBar.MonitorContinuously = false;
+                }
+            }
+
+
 
 
 

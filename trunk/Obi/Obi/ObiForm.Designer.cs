@@ -182,6 +182,7 @@ namespace Obi
             this.mStartRecordingDirectlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_DeletePhrasesWhileRecordingtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PreviewBeforeRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_MonitorContinuouslyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAllowOverwriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mGenerateSpeechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectedPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1275,6 +1276,7 @@ namespace Obi
             this.mStartRecordingDirectlyToolStripMenuItem,
             this.m_DeletePhrasesWhileRecordingtoolStripMenuItem,
             this.m_PreviewBeforeRecordingToolStripMenuItem,
+            this.m_MonitorContinuouslyToolStripMenuItem,
             this.mAllowOverwriteToolStripMenuItem});
             this.mRecordToolStripMenuItem.Name = "mRecordToolStripMenuItem";
             resources.ApplyResources(this.mRecordToolStripMenuItem, "mRecordToolStripMenuItem");
@@ -1309,6 +1311,13 @@ namespace Obi
             resources.ApplyResources(this.m_PreviewBeforeRecordingToolStripMenuItem, "m_PreviewBeforeRecordingToolStripMenuItem");
             this.m_PreviewBeforeRecordingToolStripMenuItem.Name = "m_PreviewBeforeRecordingToolStripMenuItem";
             this.m_PreviewBeforeRecordingToolStripMenuItem.Click += new System.EventHandler(this.m_PreviewBeforeRecordingToolStripMenuItem_Click);
+            // 
+            // m_MonitorContinuouslyToolStripMenuItem
+            // 
+            this.m_MonitorContinuouslyToolStripMenuItem.CheckOnClick = true;
+            this.m_MonitorContinuouslyToolStripMenuItem.Name = "m_MonitorContinuouslyToolStripMenuItem";
+            resources.ApplyResources(this.m_MonitorContinuouslyToolStripMenuItem, "m_MonitorContinuouslyToolStripMenuItem");
+            this.m_MonitorContinuouslyToolStripMenuItem.Click += new System.EventHandler(this.m_MonitorContinuouslyToolStripMenuItem_Click);
             // 
             // mAllowOverwriteToolStripMenuItem
             // 
@@ -1773,6 +1782,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_PreviewBeforeRecordingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_PlaySectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_PlayHeadingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_MonitorContinuouslyToolStripMenuItem;
     }
 }
 
