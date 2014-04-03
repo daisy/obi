@@ -4868,6 +4868,18 @@ namespace Obi
                     m_PreviewBeforeRecordingToolStripMenuItem.Enabled = false;
                 }
                 if (mProjectView.TransportBar.MonitorContinuously != m_MonitorContinuouslyToolStripMenuItem.Checked) m_MonitorContinuouslyToolStripMenuItem.Checked = mProjectView.TransportBar.MonitorContinuously;
+                if (!mRecordToolStripMenuItem.Enabled)
+                {
+                    m_MonitorContinuouslyToolStripMenuItem.Enabled = false;
+                    mStartMonitoringToolStripMenuItem.Enabled = false;
+                    mAllowOverwriteToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    m_MonitorContinuouslyToolStripMenuItem.Enabled = true;
+                    mStartMonitoringToolStripMenuItem.Enabled = true;
+                    mAllowOverwriteToolStripMenuItem.Enabled = true;
+                }
 
             }
 
