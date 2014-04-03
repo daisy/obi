@@ -4873,12 +4873,14 @@ namespace Obi
                     m_MonitorContinuouslyToolStripMenuItem.Enabled = false;
                     mStartMonitoringToolStripMenuItem.Enabled = false;
                     mAllowOverwriteToolStripMenuItem.Enabled = false;
+                    mStartRecordingDirectlyToolStripMenuItem.Enabled = false;
                 }
                 else
                 {
                     m_MonitorContinuouslyToolStripMenuItem.Enabled = true;
                     mStartMonitoringToolStripMenuItem.Enabled = true;
                     mAllowOverwriteToolStripMenuItem.Enabled = true;
+                    mStartRecordingDirectlyToolStripMenuItem.Enabled = true;
                 }
 
             }
