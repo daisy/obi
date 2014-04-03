@@ -2605,7 +2605,7 @@ Error text: {1}</value>
     <value>Recording Options</value>
   </data>
   <data name="Audio_DeleteFollowingPhrasesOfSectionAfterRecording" xml:space="preserve">
-    <value>After recording delete the following phrases</value>
+    <value>After recording delete subsequent phrases</value>
   </data>
   <data name="ProfileDesc_file_name" xml:space="preserve">
     <value>ProfileDesc_en.html</value>
@@ -2621,7 +2621,7 @@ Error text: {1}</value>
     <value>Audio Profile Description</value>
   </data>
   <data name="Audio_DisableDeselectionOnStop" xml:space="preserve">
-    <value>Disable deselection on stop</value>
+    <value>Do not deselect on pressing Stop twice</value>
   </data>
   <data name="KeyS_FastPlayWithElapseForward" xml:space="preserve">
     <value>Elapse Forward</value>

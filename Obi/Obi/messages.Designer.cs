@@ -241,7 +241,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to After recording delete the following phrases.
+        ///   Looks up a localized string similar to After recording delete subsequent phrases.
         /// </summary>
         internal static string Audio_DeleteFollowingPhrasesOfSectionAfterRecording {
             get {
@@ -259,7 +259,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable deselection on stop.
+        ///   Looks up a localized string similar to Do not deselect on pressing Stop twice.
         /// </summary>
         internal static string Audio_DisableDeselectionOnStop {
             get {
