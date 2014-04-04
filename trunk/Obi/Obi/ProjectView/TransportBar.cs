@@ -738,7 +738,7 @@ namespace Obi.ProjectView
                 {
                     mDisplayTimer.Start();
                     if (mState == State.Playing || mState == State.Paused) mView.SetPlaybackBlockIfRequired();
-                    if (mState == State.Playing && !(mCurrentPlaylist is PreviewPlaylist) && MonitorContinuously) MonitorContinuously = false; //@MonitorContinuously
+                    
                 }
                 else if (mState == State.Stopped)
                 {
@@ -751,6 +751,7 @@ namespace Obi.ProjectView
 
                 if (StateChanged != null) StateChanged(this, e);
 
+                if (IsPlayerActive && !(mCurrentPlaylist is PreviewPlaylist) && MonitorContinuously) MonitorContinuously = false; //@MonitorContinuously
                 if (m_IsPreviewing && mCurrentPlaylist is PreviewPlaylist)
                 {
                     if (mState == State.Paused) mView.UpdateCursorPosition(((PreviewPlaylist)mCurrentPlaylist).RevertTime);
@@ -4065,7 +4066,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
         //@MonitorContinuously
         private void StartMonitorContinuously()
         {
-            if (m_MonitorContinuously && CurrentState == State.Stopped)
+            if (m_MonitorContinuously && mPlayer.CurrentState == AudioLib.AudioPlayer.State.Stopped && mRecorder.CurrentState == AudioLib.AudioRecorder.State.Stopped)
             {
                 mRecordingSession = new RecordingSession(mView.Presentation, mRecorder, mView.ObiForm.Settings);
                 mRecordingSession.StartMonitoring();
