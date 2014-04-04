@@ -193,6 +193,8 @@ namespace Obi
             this.mPreviousPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mNextPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mBackwardElapseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mForwardElapseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mNextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mNextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
@@ -1360,6 +1362,8 @@ namespace Obi
             this.mPreviousPageToolStripMenuItem,
             this.mPreviousPhraseToolStripMenuItem,
             this.mNextPhraseToolStripMenuItem,
+            this.mBackwardElapseToolStripMenuItem,
+            this.mForwardElapseToolStripMenuItem,
             this.mNextPageToolStripMenuItem,
             this.mNextSectionToolStripMenuItem,
             this.toolStripSeparator14,
@@ -1391,6 +1395,18 @@ namespace Obi
             resources.ApplyResources(this.mNextPhraseToolStripMenuItem, "mNextPhraseToolStripMenuItem");
             this.mNextPhraseToolStripMenuItem.Name = "mNextPhraseToolStripMenuItem";
             this.mNextPhraseToolStripMenuItem.Click += new System.EventHandler(this.nextPhraseToolStripMenuItem_Click);
+            // 
+            // mBackwardElapseToolStripMenuItem
+            // 
+            this.mBackwardElapseToolStripMenuItem.Name = "mBackwardElapseToolStripMenuItem";
+            resources.ApplyResources(this.mBackwardElapseToolStripMenuItem, "mBackwardElapseToolStripMenuItem");
+            this.mBackwardElapseToolStripMenuItem.Click += new System.EventHandler(this.mBackwardElapseToolStripMenuItem_Click);
+            // 
+            // mForwardElapseToolStripMenuItem
+            // 
+            this.mForwardElapseToolStripMenuItem.Name = "mForwardElapseToolStripMenuItem";
+            resources.ApplyResources(this.mForwardElapseToolStripMenuItem, "mForwardElapseToolStripMenuItem");
+            this.mForwardElapseToolStripMenuItem.Click += new System.EventHandler(this.mForwardElapseToolStripMenuItem_Click);
             // 
             // mNextPageToolStripMenuItem
             // 
@@ -1783,6 +1799,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_PlaySectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_PlayHeadingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_MonitorContinuouslyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mForwardElapseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mBackwardElapseToolStripMenuItem;
     }
 }
 

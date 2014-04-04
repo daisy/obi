@@ -2122,7 +2122,12 @@ namespace Obi
                     m_PreviewBeforeRecordingToolStripMenuItem.Enabled = false;
                 }
                 m_PlayHeadingToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume;
-                m_PlaySectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume;                
+                m_PlaySectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume;
+                if (mProjectView.Selection != null && mProjectView.Selection.Node != null)
+                {
+                    mBackwardElapseToolStripMenuItem.Enabled = mProjectView.Selection.Node is PhraseNode;
+                    mForwardElapseToolStripMenuItem.Enabled = mProjectView.Selection.Node is PhraseNode;
+                }
             }
 
             private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -5015,6 +5020,16 @@ namespace Obi
                 {
                     mProjectView.TransportBar.MonitorContinuously = false;
                 }
+            }
+
+            private void mBackwardElapseToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.TransportBar.FastPlayNormaliseWithLapseBack();
+            }
+
+            private void mForwardElapseToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.TransportBar.FastPlayWithLapseForward();
             }
 
 
