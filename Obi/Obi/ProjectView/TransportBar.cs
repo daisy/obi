@@ -2649,7 +2649,7 @@ namespace Obi.ProjectView
             }
             return false;
         }
-        public bool FastPlayWithLapseForward()
+        public bool StepForward()
         {
             m_ElapseBackInterval = mView.ObiForm.Settings.ElapseBackTimeInMilliseconds;
             // work around to handle special nudge condition of preview: this should be implemented universally after 2.0 release
@@ -2659,14 +2659,14 @@ namespace Obi.ProjectView
 
                 if (IsPaused && (mView.Selection.Node.FollowingNode is PhraseNode || mView.Selection.Node.FollowingNode is EmptyNode) && (mView.Selection.Node.Parent == mView.Selection.Node.FollowingNode.Parent) && (mCurrentPlaylist.CurrentTimeInAsset >= (mView.Selection.Node.Duration - m_ElapseBackInterval)) && !mView.IsZoomWaveformActive)
                 {
-                    LapseForwardCursor();
+                    StepForwardCursor();
                     return true;
                 }
                 else
                 {
-                    DetermineUseOfSoundTouch(1.0f);
-                    mCurrentPlaylist.FastPlayWithLapseForward(m_ElapseBackInterval,mView.Selection.Node.Duration);
-                    //  mFastPlayRateCombobox.SelectedIndex = 0;
+                    //DetermineUseOfSoundTouch(1.0f);
+                    mCurrentPlaylist.StepForward(m_ElapseBackInterval,mView.Selection.Node.Duration);
+                    
                     UpdateTimeDisplay();
                     if (CurrentPlaylist != null) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
                     Console.WriteLine("Current time in Asset {0}", mCurrentPlaylist.CurrentTimeInAsset);
@@ -2686,12 +2686,13 @@ namespace Obi.ProjectView
             }
             else if (CurrentState == State.Stopped && mView.Selection != null && mView.Selection.Node is PhraseNode)
             {
-                LapseForwardCursor();
+                StepForwardCursor();
 
                 return true;
             }
             return false;
         }
+
         private void LapseBackCursor()
         {
             if (IsPaused)
@@ -2746,7 +2747,7 @@ namespace Obi.ProjectView
                     new AudioRange(((PhraseNode)mView.Selection.EmptyNodeForSelection).Duration - m_ElapseBackInterval));
             }
         }
-        private void LapseForwardCursor()
+        private void StepForwardCursor()
         {
             bool flag = false;
             if (IsPaused)
