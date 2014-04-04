@@ -192,9 +192,9 @@ namespace Obi
             this.mPreviousSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mNextPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mBackwardElapseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mForwardElapseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mNextPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mNextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mNextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
@@ -1390,12 +1390,6 @@ namespace Obi
             this.mPreviousPhraseToolStripMenuItem.Name = "mPreviousPhraseToolStripMenuItem";
             this.mPreviousPhraseToolStripMenuItem.Click += new System.EventHandler(this.previousPhraseToolStripMenuItem_Click);
             // 
-            // mNextPhraseToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mNextPhraseToolStripMenuItem, "mNextPhraseToolStripMenuItem");
-            this.mNextPhraseToolStripMenuItem.Name = "mNextPhraseToolStripMenuItem";
-            this.mNextPhraseToolStripMenuItem.Click += new System.EventHandler(this.nextPhraseToolStripMenuItem_Click);
-            // 
             // mBackwardElapseToolStripMenuItem
             // 
             this.mBackwardElapseToolStripMenuItem.Name = "mBackwardElapseToolStripMenuItem";
@@ -1407,6 +1401,12 @@ namespace Obi
             this.mForwardElapseToolStripMenuItem.Name = "mForwardElapseToolStripMenuItem";
             resources.ApplyResources(this.mForwardElapseToolStripMenuItem, "mForwardElapseToolStripMenuItem");
             this.mForwardElapseToolStripMenuItem.Click += new System.EventHandler(this.mForwardElapseToolStripMenuItem_Click);
+            // 
+            // mNextPhraseToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mNextPhraseToolStripMenuItem, "mNextPhraseToolStripMenuItem");
+            this.mNextPhraseToolStripMenuItem.Name = "mNextPhraseToolStripMenuItem";
+            this.mNextPhraseToolStripMenuItem.Click += new System.EventHandler(this.nextPhraseToolStripMenuItem_Click);
             // 
             // mNextPageToolStripMenuItem
             // 
