@@ -850,7 +850,11 @@ namespace Obi
 
                 if (!(FreezeChangesFromProjectRestore() ?? true)) return false;
                 if (!SaveProjectAndBookmarkOptionally()) return false;
-                if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
+                if (mProjectView.TransportBar.IsActive)
+                {
+                    mProjectView.TransportBar.Stop();
+                    if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false;//@Monitorcontinuously
+                }
                 /*  if (!mSession.CanClose)
                  {
                       if (m_ShouldBookmark)
@@ -3608,7 +3612,11 @@ namespace Obi
             /// <remarks>Warn when closing while playing?</remarks>
             private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
             {
-                if (mProjectView != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
+                if (mProjectView != null && mProjectView.TransportBar.IsActive)
+                {   
+                    mProjectView.TransportBar.Stop();
+                    if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
+                }
                 if (DidCloseProject())
                 {
                     mSettings.ShowGraphicalPeakMeterAtStartup = mPeakMeter != null;
