@@ -5029,7 +5029,7 @@ namespace Obi
 
             private void mForwardElapseToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.TransportBar.FastPlayWithLapseForward();
+                mProjectView.TransportBar.StepForward();
             }
 
 
