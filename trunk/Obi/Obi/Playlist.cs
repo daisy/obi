@@ -1270,7 +1270,7 @@ namespace Obi
                     StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(AudioPlayer.State.Paused));
             }
         }
-        public void FastPlayWithLapseForward(double LapseForwardTime,double PhraseDuration)
+        public void StepForward(double LapseForwardTime,double PhraseDuration)
         {
             double currentTimePosition = CurrentTimeInAsset;
             //(double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) /
@@ -1309,6 +1309,7 @@ namespace Obi
             {
                 mPlaylistState = AudioPlayer.State.Playing;
                 mPlayer.Resume();
+                
                 if (StateChanged != null)
                     StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(AudioPlayer.State.Paused));
             }
