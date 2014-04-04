@@ -4882,7 +4882,14 @@ namespace Obi
                 }
                 else
                 {
-                    m_MonitorContinuouslyToolStripMenuItem.Enabled = true;
+                    if (!mProjectView.TransportBar.IsPlayerActive)
+                    {
+                        m_MonitorContinuouslyToolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+                        m_MonitorContinuouslyToolStripMenuItem.Enabled = false;
+                    }
                     mStartMonitoringToolStripMenuItem.Enabled = true;
                     mAllowOverwriteToolStripMenuItem.Enabled = true;
                     mStartRecordingDirectlyToolStripMenuItem.Enabled = true;
