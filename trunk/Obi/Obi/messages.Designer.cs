@@ -2514,7 +2514,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Elapse Forward.
+        ///   Looks up a localized string similar to Forward Elapse.
         /// </summary>
         internal static string KeyS_FastPlayWithElapseForward {
             get {

@@ -2624,6 +2624,6 @@ Error text: {1}</value>
     <value>Do not deselect on pressing Stop twice</value>
   </data>
   <data name="KeyS_FastPlayWithElapseForward" xml:space="preserve">
-    <value>Elapse Forward</value>
+    <value>Forward Elapse</value>
   </data>
 </root>
