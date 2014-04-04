@@ -4076,7 +4076,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
         //@MonitorContinuously
         private void StopMonitorContinuously()
         {
-            if (m_MonitorContinuously && mRecordingSession != null && CurrentState == State.Monitoring)
+            if (m_MonitorContinuously && mRecordingSession != null && mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring)
             {
                 mRecordingSession.Stop();
                 mRecordingSession = null;
