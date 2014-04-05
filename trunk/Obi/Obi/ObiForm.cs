@@ -850,10 +850,13 @@ namespace Obi
 
                 if (!(FreezeChangesFromProjectRestore() ?? true)) return false;
                 if (!SaveProjectAndBookmarkOptionally()) return false;
+
+                /// if Monitor continuously is active, it should be surely disabled, no matter if transportbar is active or not
+                if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false;//@Monitorcontinuously
                 if (mProjectView.TransportBar.IsActive)
                 {
                     mProjectView.TransportBar.Stop();
-                    if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false;//@Monitorcontinuously
+                    
                 }
                 /*  if (!mSession.CanClose)
                  {
