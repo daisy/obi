@@ -1797,6 +1797,12 @@
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 6</value>
   </data>
+  <data name="m_ToolsLangPack.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="m_ToolsLangPack.Text" xml:space="preserve">
+    <value>Update Language Pack</value>
+  </data>
   <data name="mTools_ExportSelectedAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>Export Audio  Ctrl+Alt+E</value>
   </data>
@@ -1832,12 +1838,6 @@
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
     <value>C&amp;lean unreferenced audio</value>
-  </data>
-  <data name="m_ToolsLangPack.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="m_ToolsLangPack.Text" xml:space="preserve">
-    <value>Update Language Pack</value>
   </data>
   <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 6</value>
@@ -1981,7 +1981,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.0.1.31030, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.0.1.19035, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
