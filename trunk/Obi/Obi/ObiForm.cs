@@ -2117,7 +2117,7 @@ namespace Obi
                     mStartRecordingToolStripMenuItem.Visible = false;
                     mStartRecordingDirectlyToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
                 }
-                if (mProjectView.TransportBar.IsPreviewBefoeRecEnabled)
+                if (mProjectView.TransportBar.IsPreviewBeforeRecordingEnabled)
                 {
                     m_PreviewBeforeRecordingToolStripMenuItem.Enabled = true;
                 }
@@ -4872,7 +4872,7 @@ namespace Obi
                     
                     mAllowOverwriteToolStripMenuItem.Checked = false;
                 }
-                if (mProjectView.TransportBar.IsPreviewBefoeRecEnabled)
+                if (mProjectView.TransportBar.IsPreviewBeforeRecordingEnabled)
                 {
                     m_PreviewBeforeRecordingToolStripMenuItem.Enabled = true;
                 }

@@ -3778,7 +3778,7 @@ SelectionChangedPlaybackEnabled = false;
 
         private void m_RecordingOptionsContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IsPreviewBefoeRecEnabled)           
+            if (IsPreviewBeforeRecordingEnabled)           
             {
                 mPreviewBeforeRecToolStripMenuItem.Enabled = true;
             }
@@ -3795,6 +3795,7 @@ SelectionChangedPlaybackEnabled = false;
             {
                 m_DeletePhrasestoolStripMenuItem.Enabled = false;
             }
+            mMonitorContinuouslyToolStripMenuItem.Checked = MonitorContinuously;//@MonitorContinuously
         }
 
         public void InitializeTooltipsForTransportpar()
@@ -4025,7 +4026,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
 
         }
 
-        public bool IsPreviewBefoeRecEnabled
+        public bool IsPreviewBeforeRecordingEnabled
         {
             get
             {
@@ -4060,7 +4061,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                     StopMonitorContinuously();
                     m_MonitorContinuously = value;
                 }
-                if (m_MonitorContinuously != mMonitorContinuouslyToolStripMenuItem.Checked) mMonitorContinuouslyToolStripMenuItem.Checked = m_MonitorContinuously;
+                
             }
         }
 
