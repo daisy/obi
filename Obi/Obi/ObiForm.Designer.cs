@@ -1458,10 +1458,10 @@ namespace Obi
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mTools_PreferencesMenuItem,
             this.toolStripSeparator16,
+            this.m_ToolsLangPack,
             this.mTools_ExportSelectedAudioMenuItem,
             this.mTools_ExportAsDAISYMenuItem,
             this.mTools_CleanUnreferencedAudioMenuItem,
-            this.m_ToolsLangPack,
             this.toolStripSeparator18});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
             resources.ApplyResources(this.mToolsToolStripMenuItem, "mToolsToolStripMenuItem");
