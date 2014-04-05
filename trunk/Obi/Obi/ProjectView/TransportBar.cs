@@ -1592,7 +1592,9 @@ namespace Obi.ProjectView
             //@MonitorContinuously
             if (MonitorContinuously)
             {
-                StartMonitorContinuouslyWithDelay();
+                /// avoiding use of delay at this time to prevent possible bug. It will be restored after alpha.
+                //StartMonitorContinuouslyWithDelay();
+                StartMonitorContinuously();
             }
         }
 
@@ -3236,7 +3238,9 @@ SelectionChangedPlaybackEnabled = false;
 
             if (MonitorContinuously)
             {
-                StartMonitorContinuouslyWithDelay();
+                /// avoiding use of delay at this time to prevent possible bug. It will be restored after alpha.
+                //StartMonitorContinuouslyWithDelay();
+                StartMonitorContinuously();
             }
         }
 
