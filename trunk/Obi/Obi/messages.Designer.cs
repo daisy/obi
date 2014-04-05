@@ -3081,15 +3081,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have selected the wrong file.
-        /// </summary>
-        internal static string Language_Pack {
-            get {
-                return ResourceManager.GetString("Language_Pack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Wrong File.
         /// </summary>
         internal static string Language_Pack_Caption {
@@ -3131,6 +3122,15 @@ namespace Obi {
         internal static string Language_Pack_Select_Caption {
             get {
                 return ResourceManager.GetString("Language_Pack_Select_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have selected the wrong file.
+        /// </summary>
+        internal static string Language_Pack_WrongFile {
+            get {
+                return ResourceManager.GetString("Language_Pack_WrongFile", resourceCulture);
             }
         }
         

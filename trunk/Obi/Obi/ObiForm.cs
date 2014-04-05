@@ -4971,26 +4971,29 @@ namespace Obi
                     ZipStorer zip = ZipStorer.Open(fileName, FileAccess.Read);
                     List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();
 
-                    bool flag = false;
+                    bool isObiResourcesDll = false;
 
                     foreach (ZipStorer.ZipFileEntry entry in dir)
                     {
+                        
                         if (Path.GetFileName(entry.FilenameInZip) == "Obi.resources.dll")
                         {
-                            string tempStr = dir[0].ToString().Replace("/", string.Empty);
+                            string tempStr = Directory.GetParent(entry.ToString()).Name;
+                            Console.WriteLine("zip entry : " + entry.ToString() + " : " + tempStr);
+                            
                             zip.ExtractFile(entry, installationPath + @"\" + tempStr + @"\Obi.resources.dll");
-                            flag = true;
+                            isObiResourcesDll = true;
                         }
                         else if (Path.GetFileName(entry.FilenameInZip) == "PipelineInterface.resources.dll")
                         {
-                            string tempStr = dir[0].ToString().Replace("/", string.Empty);
+                            string tempStr = Directory.GetParent(entry.ToString()).Name;
                             zip.ExtractFile(entry, installationPath + @"\" + tempStr + @"\PipelineInterface.resources.dll");
                         }
 
                     }
-                    if (!flag)
+                    if (!isObiResourcesDll)
                     {
-                        MessageBox.Show(Localizer.Message("Language_Pack"), Localizer.Message("Language_Pack_Caption"));
+                        MessageBox.Show(Localizer.Message("Language_Pack_WrongFile"), Localizer.Message("Language_Pack_Caption"));
                         m_FlagLangUpdate = true;
                         m_ToolsLangPack_Click(sender, e);
                     }
