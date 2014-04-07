@@ -2347,13 +2347,22 @@ namespace Obi.ProjectView
                 else if (mState == State.Monitoring)
                 {
                     // start recording
-                    mRecordingSession.Stop();
-                    
-                    mVUMeterPanel.BeepEnable = false;
                     try
                     {
-                        mRecordingSession.Record();
-                        mDisplayTimer.Start();
+                        //@MonitorContinuously
+                        if (MonitorContinuously)
+                        {
+                            StopMonitorContinuously();
+                            Record_Button();
+                        }
+                        else
+                        {
+                            mRecordingSession.Stop();
+
+                            mVUMeterPanel.BeepEnable = false;
+                            mRecordingSession.Record();
+                            mDisplayTimer.Start();
+                        }
                     }
                     catch (System.Exception ex)
                     {
@@ -4080,6 +4089,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
             {
                 mRecordingSession = new RecordingSession(mView.Presentation, mRecorder, mView.ObiForm.Settings);
                 mRecordingSession.StartMonitoring();
+                mVUMeterPanel.BeepEnable = true;
             }
         }
 
@@ -4090,6 +4100,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
             {
                 mRecordingSession.Stop();
                 mRecordingSession = null;
+                mVUMeterPanel.BeepEnable = false;                 
             }
         }
 
