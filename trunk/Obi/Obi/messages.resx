@@ -2434,7 +2434,7 @@ Error text: {1}</value>
     <value>Merging section: {0}</value>
   </data>
   <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
-    <value>Background color for empty sections in TOC view</value>
+    <value>Highlight empty sections in TOC view</value>
   </data>
   <data name="Obi_ProjectMerge" xml:space="preserve">
     <value>Please select project to merge</value>
