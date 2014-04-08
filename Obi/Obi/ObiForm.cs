@@ -4903,14 +4903,7 @@ namespace Obi
                     }
                     mStartMonitoringToolStripMenuItem.Enabled = true;
                     mAllowOverwriteToolStripMenuItem.Enabled = true;
-                    if (!m_MonitorContinuouslyToolStripMenuItem.Checked)
-                    {
-                        mStartRecordingDirectlyToolStripMenuItem.Enabled = true;
-                    }
-                    else
-                    {
-                        mStartRecordingDirectlyToolStripMenuItem.Enabled = false;
-                    }
+                    mStartRecordingDirectlyToolStripMenuItem.Enabled = true;
                 }
 
             }
