@@ -4893,7 +4893,7 @@ namespace Obi
                 }
                 else
                 {
-                    if (!mProjectView.TransportBar.IsPlayerActive)
+                    if (!mProjectView.TransportBar.IsPlayerActive && mSettings.RecordDirectlyWithRecordButton)
                     {
                         m_MonitorContinuouslyToolStripMenuItem.Enabled = true;
                     }
@@ -4903,7 +4903,14 @@ namespace Obi
                     }
                     mStartMonitoringToolStripMenuItem.Enabled = true;
                     mAllowOverwriteToolStripMenuItem.Enabled = true;
-                    mStartRecordingDirectlyToolStripMenuItem.Enabled = true;
+                    if (!m_MonitorContinuouslyToolStripMenuItem.Checked)
+                    {
+                        mStartRecordingDirectlyToolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+                        mStartRecordingDirectlyToolStripMenuItem.Enabled = false;
+                    }
                 }
 
             }
