@@ -3146,13 +3146,20 @@ namespace Obi.ProjectView
                     NodeSelection currentSelection = mView.Selection;
                     if (selectedNode != null && selectedNode is   PhraseNode && selectedNode.Index < selectedNode.ParentAs<SectionNode>().PhraseChildCount - 1)
                     {
-                        double time = mCurrentPlaylist.CurrentTime;
+                        double time =IsPlayerActive? mCurrentPlaylist.CurrentTime:
+                            mView.Selection is AudioSelection?
+                            ( ((AudioSelection)mView.Selection).AudioRange.HasCursor? ((AudioSelection)mView.Selection).AudioRange.CursorTime: ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime):
+                            -1;
                         SectionNode section = selectedNode.ParentAs<SectionNode>();
                         Command deleteFollowingCmd = mView.GetDeleteRangeOfPhrasesInSectionCommand(
                             section, section.PhraseChild(selectedNode.Index + 1), section.PhraseChild(section.PhraseChildCount - 1));
                         mView.Presentation.Do(deleteFollowingCmd);
-                        mView.Selection = new AudioSelection((PhraseNode) selectedNode, currentSelection.Control, 
-                            new AudioRange(time));
+
+                        if (time >= 0)
+                        {
+                            mView.Selection = new AudioSelection((PhraseNode)selectedNode, currentSelection.Control,
+                               new AudioRange(time));
+                        }
                     }
                 }
                 catch (System.Exception ex)
