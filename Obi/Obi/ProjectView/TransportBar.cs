@@ -1569,7 +1569,7 @@ namespace Obi.ProjectView
                 AdditionalPostRecordingOperations(firstRecordedPage, listOfRecordedPhrases);
                 if (phraseChildCount != mRecordingSection.PhraseChildCount)
                 {
-                    if (phraseNextToResumePhrase != null && phraseNextToResumePhrase.PrecedingNode is PhraseNode)
+                    if (phraseNextToResumePhrase != null && phraseNextToResumePhrase.IsRooted  && phraseNextToResumePhrase.PrecedingNode is PhraseNode)
                         mResumeRecordingPhrase = (PhraseNode)phraseNextToResumePhrase.PrecedingNode;
                     else if (mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1) is PhraseNode)
                         mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
