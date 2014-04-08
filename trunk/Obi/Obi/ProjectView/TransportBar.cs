@@ -1697,6 +1697,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool Record_Button()
         {
+            if (MonitorContinuously) StopMonitorContinuously(); //@MonitorContinuously
             if (mView.ObiForm.Settings.RecordDirectlyWithRecordButton && CurrentState != State.Monitoring) //if monitoring go through the traditional way
             {
                 if (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio
