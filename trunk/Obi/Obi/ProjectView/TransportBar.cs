@@ -3170,7 +3170,7 @@ namespace Obi.ProjectView
                 m_PreviewBeforeRecordingWorker = new System.ComponentModel.BackgroundWorker();
                 m_PreviewBeforeRecordingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
                 {
-                    Preview(Upto, UseAudioCursor);
+                    Preview(Upto, IsPlayerActive ? UseAudioCursor : UseSelection);
                     int interval = 50;
                     for (int i = 0; i < (PreviewDuration * 2) / interval; i++)
                     {
