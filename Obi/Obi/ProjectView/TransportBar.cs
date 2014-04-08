@@ -180,10 +180,10 @@ namespace Obi.ProjectView
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording) ; } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped && !m_IsProjectEmpty && !mView.IsContentViewScrollActive; } }
-        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring  ||  (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing 
+        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring  ||  (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio&& CurrentState == State.Playing 
             && mCurrentPlaylist.PlaybackRate == 0)) &&  mView.IsPhraseCountWithinLimit && !mView.IsContentViewScrollActive && !mView.IsZoomWaveformActive; } } // @phraseLimit
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused   &&   !mView.IsContentViewScrollActive; } }
-        public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted    &&   (mState != State.Playing  ||   (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) )&& !mView.IsContentViewScrollActive; } }
+        public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted    &&   (mState != State.Playing  ||   (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio && CurrentState == State.Playing) )&& !mView.IsContentViewScrollActive; } }
         public bool CanRewind { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
         public bool CanStop { get { return Enabled && (mState != State.Stopped || mView.Selection != null); } }
 
@@ -1699,14 +1699,16 @@ namespace Obi.ProjectView
         {
             if (mView.ObiForm.Settings.RecordDirectlyWithRecordButton && CurrentState != State.Monitoring) //if monitoring go through the traditional way
             {
-                if (mView.ObiForm.Settings.Recording_PreviewBeforeStarting)
-                {
-                    StartRecordingDirectly(mView.ObiForm.Settings.Recording_PreviewBeforeStarting);
-                }
-                else
+                if (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio
+                    && !mView.ObiForm.Settings.Recording_PreviewBeforeStarting)
                 {
                     if (CurrentState == State.Playing) Pause();
                     RecordOverSubsequentPhrases();
+                }
+                else
+                {
+                    
+                    StartRecordingDirectly(mView.ObiForm.Settings.Recording_PreviewBeforeStarting);
                 }
                 
             }
@@ -1725,7 +1727,7 @@ namespace Obi.ProjectView
             if (mView.Selection is TextSelection || IsMetadataSelected || mView.IsZoomWaveformActive)
                 return;
 
-            if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) Pause();
+            if (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio && CurrentState == State.Playing) Pause();
 
             if (mView.Presentation != null&& mState != State.Playing
                         &&    !IsMetadataSelected && ( mView.Selection == null || !(mView.Selection is TextSelection)))
@@ -1950,7 +1952,7 @@ namespace Obi.ProjectView
                 mRecordingInitPhraseIndex = node.Index;
             }
             // if audio after cursor has to be replaced, delete following phrases command should be used
-            if ((mView.ObiForm.Settings.Recording_ReplaceAfterCursor || deleteFollowingPhrases)
+            if ((deleteFollowingPhrases)
                 && node is EmptyNode && ((EmptyNode)node).Index < ((EmptyNode)node).ParentAs<SectionNode>().PhraseChildCount-1)
             {
                 AddTheDeleteSubsequentPhrasesCommand(node, deleteFollowingPhrases, command);
@@ -1961,7 +1963,7 @@ namespace Obi.ProjectView
 
         private void AddTheDeleteSubsequentPhrasesCommand(ObiNode node, bool deleteFollowingPhrases, CompositeCommand command)
         {
-            if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor || deleteFollowingPhrases)
+            if (deleteFollowingPhrases)
             {
                 int phraseIndex =(node != null &&   node is EmptyNode)? ((EmptyNode)node).Index + 1:
                     (mView.Selection != null && mView.Selection is StripIndexSelection )? ((StripIndexSelection)mView.Selection).Index: -1 ;
