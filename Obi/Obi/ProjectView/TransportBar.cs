@@ -3020,7 +3020,7 @@ namespace Obi.ProjectView
                                         return false ;
 
                                     double time = (s.AudioRange.HasCursor || !useSelection ? s.AudioRange.CursorTime : s.AudioRange.SelectionBeginTime);
-                        
+                                    
 
 
                     if (mState == State.Playing || mState == State.Paused ) Stop ();
@@ -3028,7 +3028,9 @@ namespace Obi.ProjectView
 
                     time = from ? (s.AudioRange.HasCursor || !useSelection ? s.AudioRange.CursorTime : s.AudioRange.SelectionBeginTime) :
                         (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - PreviewDuration;
+                    
                     PlayPreview((PhraseNode)s.Node, time, PreviewDuration, from);
+                    
                     return true;
                 }
             }
@@ -3146,7 +3148,7 @@ namespace Obi.ProjectView
                     NodeSelection currentSelection = mView.Selection;
                     if (selectedNode != null && selectedNode is   PhraseNode && selectedNode.Index < selectedNode.ParentAs<SectionNode>().PhraseChildCount - 1)
                     {
-                        double time =IsPlayerActive? mCurrentPlaylist.CurrentTime:
+                        double time =IsPlayerActive? mCurrentPlaylist.CurrentTimeInAsset:
                             mView.Selection is AudioSelection?
                             ( ((AudioSelection)mView.Selection).AudioRange.HasCursor? ((AudioSelection)mView.Selection).AudioRange.CursorTime: ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime):
                             -1;
