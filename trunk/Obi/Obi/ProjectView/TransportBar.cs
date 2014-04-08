@@ -3240,7 +3240,7 @@ SelectionChangedPlaybackEnabled = false;
                 mRecordingSession = null;
                 mResumeRecordingPhrase = null;
                 // if a new unrooted section is created and is held in selection, clear the selection
-                if (mRecordingSection != null && !mRecordingSection.IsRooted && mView.Selection.Node == mRecordingSection) mView.Selection = null;
+                if (mRecordingSection != null && mView.Selection != null && !mRecordingSection.IsRooted && mView.Selection.Node == mRecordingSection) mView.Selection = null;
             }
         else if (mResumeRecordingPhrase != null)
             {
