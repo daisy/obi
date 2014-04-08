@@ -1626,8 +1626,7 @@ namespace Obi.Dialogs
                    Localizer.Message("AudioTab_AllowOverwrite") + "\n* " + Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* "
                    + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
                    Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " +Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* "  +
-                   Localizer.Message("Audio_EnforceSingleCursor")+ "\n* " + Localizer.Message("Audio_DeleteFollowingPhrasesOfSectionAfterRecording") + "\n* "
-                   + Localizer.Message("Audio_DisableDeselectionOnStop");
+                   Localizer.Message("Audio_EnforceSingleCursor")+ "\n* "+ Localizer.Message("Audio_DisableDeselectionOnStop");
 
                     if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Level_ComboBox_Profile_2"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
@@ -1648,7 +1647,7 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[11].Checked = true;
                         m_CheckBoxListView.Items[12].Checked = false;
                         m_CheckBoxListView.Items[13].Checked = true;
-                        m_CheckBoxListView.Items[14].Checked = true;
+                        m_CheckBoxListView.Items[14].Checked = false;
                         m_CheckBoxListView.Items[15].Checked = true;
                         m_FlagComboBoxIndexChange = false;
                     }
