@@ -922,7 +922,8 @@ namespace Obi.ProjectView
                 mPlayButton.Visible = !mPauseButton.Visible;
                 mPlayButton.Enabled = CanPlay || CanResumePlayback;
                 mFastPlayRateCombobox.Enabled = !IsRecorderActive;
-                mRecordButton.Enabled = CanRecord || CanResumeRecording;
+                mRecordButton.Enabled = CanRecord || CanResumeRecording
+                    || (CurrentState == State.Playing && (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio || mView.ObiForm.Settings.Recording_PreviewBeforeStarting));
                 if (IsPlaying || IsRecorderActive)
                 {
                     m_btnPlayingOptions.Enabled = false;
@@ -1698,14 +1699,16 @@ namespace Obi.ProjectView
         {
             if (mView.ObiForm.Settings.RecordDirectlyWithRecordButton && CurrentState != State.Monitoring) //if monitoring go through the traditional way
             {
-                if (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio)
-                {
-                    RecordOverSubsequentPhrases();
-                }
-                else
+                if (mView.ObiForm.Settings.Recording_PreviewBeforeStarting)
                 {
                     StartRecordingDirectly(mView.ObiForm.Settings.Recording_PreviewBeforeStarting);
                 }
+                else
+                {
+                    if (CurrentState == State.Playing) Pause();
+                    RecordOverSubsequentPhrases();
+                }
+                
             }
             else
             {
@@ -3124,7 +3127,7 @@ namespace Obi.ProjectView
                 return;
             }
 
-            if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing)
+            if (isPreviewBeforeRecording && CurrentState == State.Playing)
             {
                 Pause();
                 if (mView.Selection == null || !(mView.Selection.Node is EmptyNode) || mView.Selection.Node != mCurrentPlaylist.CurrentPhrase) return;
@@ -3805,7 +3808,10 @@ SelectionChangedPlaybackEnabled = false;
 
         public void RecordOverSubsequentPhrases()
         {
-            if (CanRecord) StartRecordingDirectly_Internal(true);
+            if (CanRecord )
+            {
+                StartRecordingDirectly_Internal(true);
+            }
         }
 
         private void m_RecordingtoolStripMenuItem_Click(object sender, EventArgs e)
