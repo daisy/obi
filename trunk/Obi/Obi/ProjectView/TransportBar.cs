@@ -3133,7 +3133,27 @@ namespace Obi.ProjectView
             if (isPreviewBeforeRecording && mView.ObiForm.Settings.AllowOverwrite
                && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
             {
-                
+                // first delete the subsequent phrases in the section
+                try
+                {
+                    EmptyNode selectedNode = mView.Selection != null && mView.Selection.Node is EmptyNode ? (EmptyNode)mView.Selection.Node : null;
+                    NodeSelection currentSelection = mView.Selection;
+                    if (selectedNode != null && selectedNode is   PhraseNode && selectedNode.Index < selectedNode.ParentAs<SectionNode>().PhraseChildCount - 1)
+                    {
+                        double time = mCurrentPlaylist.CurrentTime;
+                        SectionNode section = selectedNode.ParentAs<SectionNode>();
+                        Command deleteFollowingCmd = mView.GetDeleteRangeOfPhrasesInSectionCommand(
+                            section, section.PhraseChild(selectedNode.Index + 1), section.PhraseChild(section.PhraseChildCount - 1));
+                        mView.Presentation.Do(deleteFollowingCmd);
+                        mView.Selection = new AudioSelection((PhraseNode) selectedNode, currentSelection.Control, 
+                            new AudioRange(time));
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    mView.WriteToLogFile(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
                 m_PreviewBeforeRecordingWorker = new System.ComponentModel.BackgroundWorker();
                 m_PreviewBeforeRecordingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
                 {
@@ -3155,7 +3175,7 @@ namespace Obi.ProjectView
                     if (CurrentState == State.Paused)
                     {
                         if (mResumeRecordingPhrase != null) mResumeRecordingPhrase = null;
-                        StartRecordingDirectly_Internal(false);
+                        StartRecordingDirectly_Internal(true);
                     }
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerAsync();
