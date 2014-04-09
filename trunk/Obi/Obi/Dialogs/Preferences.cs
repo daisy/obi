@@ -1572,15 +1572,14 @@ namespace Obi.Dialogs
                      && m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[7].Checked && m_CheckBoxListView.Items[8].Checked
                      && m_CheckBoxListView.Items[10].Checked && m_CheckBoxListView.Items[1].Checked && m_CheckBoxListView.Items[6].Checked
                      && m_CheckBoxListView.Items[9].Checked && m_CheckBoxListView.Items[11].Checked && !m_CheckBoxListView.Items[12].Checked && m_CheckBoxListView.Items[13].Checked
-                     && m_CheckBoxListView.Items[14].Checked && !m_CheckBoxListView.Items[15].Checked))
+                     && !m_CheckBoxListView.Items[14].Checked && !m_CheckBoxListView.Items[15].Checked))
                 {
                     string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " +
                     Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_AllowOverwrite") + "\n* " +
                     Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") + "\n* " +
                     Localizer.Message("Audio_ShowLiveWaveformWhileRecording") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
                     Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection") + "\n* " +
-                    Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_RecordSubsequentPhrases") + "\n* " + Localizer.Message("Audio_EnforceSingleCursor")
-                    + "\n* " + Localizer.Message("Audio_DeleteFollowingPhrasesOfSectionAfterRecording");
+                    Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_RecordSubsequentPhrases") + "\n* " + Localizer.Message("Audio_EnforceSingleCursor");
 
                     if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
@@ -1601,7 +1600,7 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[11].Checked = true;
                         m_CheckBoxListView.Items[12].Checked = false;
                         m_CheckBoxListView.Items[13].Checked = true;
-                        m_CheckBoxListView.Items[14].Checked = true;
+                        m_CheckBoxListView.Items[14].Checked = false;
                         m_CheckBoxListView.Items[15].Checked = false;
                         m_FlagComboBoxIndexChange = false;
                     }
