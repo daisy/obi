@@ -150,9 +150,9 @@
   <data name="&gt;&gt;mTimeDisplayBox.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <metadata name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>398, 17</value>
-  </metadata>
+  </data>
   <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
@@ -1106,9 +1106,9 @@
   <data name="&gt;&gt;m_btnPlayingOptions.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <metadata name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>266, 17</value>
-  </metadata>
+  </data>
   <data name="mDisplayBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -1205,38 +1205,38 @@
   <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>569, 17</value>
-  </metadata>
+  </data>
   <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Start Monitoring</value>
+    <value>Star&amp;t Monitoring</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Start Recording</value>
+    <value>Sta&amp;rt Recording</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
-    <value>Record over subsequent phrases</value>
+    <value>Record &amp;over subsequent phrases</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview Before Recording</value>
+    <value>Preview &amp;Before Recording</value>
   </data>
   <data name="mMonitorContinuouslyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="mMonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Monitor Continuously</value>
+    <value>Monitor &amp;Continuously</value>
   </data>
   <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 136</value>
@@ -1247,38 +1247,38 @@
   <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
+  </data>
   <data name="m_PlayAlltoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PlayAlltoolStripMenuItem.Text" xml:space="preserve">
-    <value>Play All</value>
+    <value>Play &amp;All</value>
   </data>
   <data name="m_PlaySectiontoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PlaySectiontoolStripMenuItem.Text" xml:space="preserve">
-    <value>Play Section</value>
+    <value>Play &amp;Section</value>
   </data>
   <data name="m_playHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_playHeadingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Play Section Heading</value>
+    <value>Play Section &amp;Heading</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview From</value>
+    <value>Pre&amp;view From</value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview Upto</value>
+    <value>Preview Up&amp;to</value>
   </data>
   <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 114</value>
@@ -1316,9 +1316,9 @@
   <data name="&gt;&gt;mVUMeterPanel.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
