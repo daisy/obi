@@ -3133,6 +3133,10 @@ namespace Obi.ProjectView
                 return;
             }
 
+            if (isPreviewBeforeRecording && mCurrentPlaylist.Audioplayer.PlaybackFwdRwdRate != 0)
+            {
+                return;
+            }
             if (isPreviewBeforeRecording && CurrentState == State.Playing)
             {
                 Pause();
