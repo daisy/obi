@@ -1348,7 +1348,7 @@ namespace Obi.ProjectView
                 if (neglectSelection || m_IsPlaySectionInspiteOfPhraseSelection)
                 {
                     mLocalPlaylist = new Playlist(mPlayer,  node, mPlayQAPlaylist);
-                    m_IsPlaySectionInspiteOfPhraseSelection = false;
+                    
                 }
                 else
                 {
@@ -1364,6 +1364,7 @@ namespace Obi.ProjectView
                 {
                 PlayCurrentPlaylistFromSelection();
                 }
+                m_IsPlaySectionInspiteOfPhraseSelection = false;
             }
         }
 
@@ -1417,7 +1418,7 @@ namespace Obi.ProjectView
         {
             if (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange != null )
             {
-                if (!((AudioSelection)mView.Selection).AudioRange.HasCursor && mCurrentPlaylist != mMasterPlaylist)
+                if (!((AudioSelection)mView.Selection).AudioRange.HasCursor && mCurrentPlaylist != mMasterPlaylist && m_IsPlaySectionInspiteOfPhraseSelection == false)
                 {
                     // Play the audio selection (only for local playlist; play all ignores the end of the selection.)
                     mCurrentPlaylist.CurrentPhrase = (PhraseNode)mView.Selection.Node;
