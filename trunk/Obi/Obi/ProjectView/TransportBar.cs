@@ -4031,26 +4031,24 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
             PhraseNode pharse = null;
             SectionNode nodeSelect = null;
             EmptyNode emptyNode = null;
-            if (mView != null && mView.Selection != null)
+            if (mView != null )
             {
-
-
-                if (mView.Selection.Node is PhraseNode)
+                if (mView.Selection == null)
                 {
-                    pharse = (PhraseNode)mView.Selection.Node;
-                    nodeSelect = pharse.ParentAs<SectionNode>();
+                    nodeSelect = mView.Presentation.FirstSection;
+                }
+                if (mView.Selection.Node is EmptyNode)
+                {
+                    nodeSelect = mView.Selection.Node.ParentAs<SectionNode>();
                 }
                 else if (mView.Selection.Node is SectionNode)
                 {
                     nodeSelect = (SectionNode)mView.Selection.Node;
                 }
-                else if (mView.Selection.Node is EmptyNode)
-                {
-                    emptyNode = (EmptyNode)mView.Selection.Node;
-                    nodeSelect = emptyNode.ParentAs<SectionNode>();
-                }
+                
                 if (nodeSelect != null)
                 {
+                    if (IsPlayerActive) Stop();
                     PlayHeadingPhrase(nodeSelect);
                 }
             }
