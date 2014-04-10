@@ -2688,7 +2688,7 @@ namespace Obi.ProjectView
                 else
                 {
                     //DetermineUseOfSoundTouch(1.0f);
-                    mCurrentPlaylist.StepForward(m_ElapseBackInterval,mView.Selection.Node.Duration);
+                    mCurrentPlaylist.StepForward(m_ElapseBackInterval, mCurrentPlaylist.CurrentPhrase != null ? mCurrentPlaylist.CurrentPhrase.Duration : mView.Selection.Node.Duration);
                     
                     UpdateTimeDisplay();
                     if (CurrentPlaylist != null) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
