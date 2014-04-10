@@ -3969,6 +3969,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
 
                     m_IsPlaySectionInspiteOfPhraseSelection = true;
                     //IsPlaySection = true;
+                    if (IsPlayerActive) Stop();
                     PlayOrResume(nodeSelect);
                 }
             }
