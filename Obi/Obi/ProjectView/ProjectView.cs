@@ -5187,6 +5187,8 @@ public bool ShowOnlySelectedSection
         }
         public void MergeProject (Session session)
         {
+            if (TransportBar.MonitorContinuously) TransportBar.MonitorContinuously = false; //@MonitorContinuously
+            if (TransportBar.IsActive) TransportBar.Stop();
             if (MessageBox.Show(Localizer.Message("MergeProject_Information"),
                 Localizer.Message("Caption_Information"),
                 MessageBoxButtons.OKCancel) == DialogResult.Cancel)
