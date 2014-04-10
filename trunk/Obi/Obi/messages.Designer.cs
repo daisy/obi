@@ -421,7 +421,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preview before recording.
+        ///   Looks up a localized string similar to Use record button to preview before recording.
         /// </summary>
         internal static string AudioTab_PreviewBeforeRecording {
             get {

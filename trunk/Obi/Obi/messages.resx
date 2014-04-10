@@ -1987,7 +1987,7 @@ Error text: {1}</value>
     <value>Audio clues</value>
   </data>
   <data name="AudioTab_PreviewBeforeRecording" xml:space="preserve">
-    <value>Preview before recording</value>
+    <value>Use record button to preview before recording</value>
   </data>
   <data name="AudioTab_RecordDirectlyFromTransportBar" xml:space="preserve">
     <value>Always record directly from transport bar</value>
