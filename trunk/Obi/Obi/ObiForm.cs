@@ -288,7 +288,10 @@ namespace Obi
             {
                 m_IsStatusBarEnabled = true;
                 if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive)
+                {
+                    if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
                     mProjectView.TransportBar.Stop();
+                }
                 if (DidCloseProject())
                 {
                     Dialogs.NewProject dialog = new Dialogs.NewProject(
@@ -315,7 +318,10 @@ namespace Obi
             private void NewProjectFromImport()
             {
                 if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive)
+                {
+                    if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
                     mProjectView.TransportBar.Stop();
+                }
                 if (DidCloseProject())
                 {
                     OpenFileDialog dialog = new OpenFileDialog();
@@ -532,8 +538,11 @@ namespace Obi
             // Open a new project after showing a file open dialog.
             private void Open()
             {
+                if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
                 if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive)
+                {
                     mProjectView.TransportBar.Stop();
+                }
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Filter = Localizer.Message("obi_filter");
                 dialog.InitialDirectory = mSettings.DefaultPath;
@@ -640,8 +649,11 @@ namespace Obi
                     && !m_IsSaveActive)
                 {
                     m_IsSaveActive = true;
+                    if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
                     if (mProjectView.TransportBar.IsPlayerActive || mProjectView.TransportBar.IsRecorderActive)
+                    {
                         mProjectView.TransportBar.Stop();
+                    }
 
                     // Freeze restore should return only if the function do not return null
                     if (FreezeChangesFromProjectRestore() != null)
@@ -673,7 +685,10 @@ namespace Obi
                     mFile_SaveProjectMenuItem.Enabled = false;
                     mFile_SaveProjectAsMenuItem.Enabled = false;
 
-                    if (mProjectView.TransportBar.IsRecorderActive) mProjectView.TransportBar.Stop();
+                    if (mProjectView.TransportBar.IsRecorderActive)
+                    {
+                        mProjectView.TransportBar.Stop();
+                    }
                     DateTime currentDateTime= DateTime.Now ;
                     string postFix = currentDateTime.Year.ToString() + "-"
                         + (currentDateTime.Month.ToString().Length > 1 ? currentDateTime.Month.ToString() : "0" + currentDateTime.Month.ToString())  + "-"
@@ -709,6 +724,7 @@ namespace Obi
             // Save the current project under a different name; ask for a new path first.
             private void SaveAs()
             {
+                if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
                 mProjectView.TransportBar.Stop();
                 string path_original = mSession.Path;
                 SaveProjectAsDialog dialog = new SaveProjectAsDialog(path_original);
@@ -934,6 +950,7 @@ namespace Obi
             // Before continuing, the user is given the choice to save or cancel.
             private void CleanProject()
             {
+                if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
                 if (!string.IsNullOrEmpty(mSession.Path) && mSession.Path.Length > 220
                     && MessageBox.Show(Localizer.Message("CleanUp_LongFilePath"), Localizer.Message("Caption_Error"),
