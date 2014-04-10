@@ -205,10 +205,10 @@ namespace Obi
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_PreferencesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.m_ToolsLangPack = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportSelectedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportAsDAISYMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_ToolsLangPack = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_WhatsNewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1477,6 +1477,12 @@ namespace Obi
             this.toolStripSeparator16.Name = "toolStripSeparator16";
             resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
             // 
+            // m_ToolsLangPack
+            // 
+            this.m_ToolsLangPack.Name = "m_ToolsLangPack";
+            resources.ApplyResources(this.m_ToolsLangPack, "m_ToolsLangPack");
+            this.m_ToolsLangPack.Click += new System.EventHandler(this.m_ToolsLangPack_Click);
+            // 
             // mTools_ExportSelectedAudioMenuItem
             // 
             resources.ApplyResources(this.mTools_ExportSelectedAudioMenuItem, "mTools_ExportSelectedAudioMenuItem");
@@ -1494,12 +1500,6 @@ namespace Obi
             resources.ApplyResources(this.mTools_CleanUnreferencedAudioMenuItem, "mTools_CleanUnreferencedAudioMenuItem");
             this.mTools_CleanUnreferencedAudioMenuItem.Name = "mTools_CleanUnreferencedAudioMenuItem";
             this.mTools_CleanUnreferencedAudioMenuItem.Click += new System.EventHandler(this.mTools_CleanUnreferencedAudioMenuItem_Click);
-            // 
-            // m_ToolsLangPack
-            // 
-            this.m_ToolsLangPack.Name = "m_ToolsLangPack";
-            resources.ApplyResources(this.m_ToolsLangPack, "m_ToolsLangPack");
-            this.m_ToolsLangPack.Click += new System.EventHandler(this.m_ToolsLangPack_Click);
             // 
             // toolStripSeparator18
             // 

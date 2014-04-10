@@ -4893,7 +4893,7 @@ namespace Obi
                 }
                 else
                 {
-                    if (!mProjectView.TransportBar.IsPlayerActive && mSettings.RecordDirectlyWithRecordButton)
+                    if (!mProjectView.TransportBar.IsPlayerActive && mSettings.RecordDirectlyWithRecordButton && !mProjectView.IsZoomWaveformActive)
                     {
                         m_MonitorContinuouslyToolStripMenuItem.Enabled = true;
                     }
@@ -4901,9 +4901,19 @@ namespace Obi
                     {
                         m_MonitorContinuouslyToolStripMenuItem.Enabled = false;
                     }
-                    mStartMonitoringToolStripMenuItem.Enabled = true;
-                    mAllowOverwriteToolStripMenuItem.Enabled = true;
-                    mStartRecordingDirectlyToolStripMenuItem.Enabled = true;
+                    if (!mProjectView.IsZoomWaveformActive)
+                    {
+                        mStartMonitoringToolStripMenuItem.Enabled = true;
+                        mAllowOverwriteToolStripMenuItem.Enabled = true;
+                        mStartRecordingDirectlyToolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+
+                        mStartMonitoringToolStripMenuItem.Enabled = false;
+                        mAllowOverwriteToolStripMenuItem.Enabled = false;
+                        mStartRecordingDirectlyToolStripMenuItem.Enabled = false;
+                    }
                 }
 
             }
