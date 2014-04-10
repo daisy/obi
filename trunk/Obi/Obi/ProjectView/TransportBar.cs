@@ -180,10 +180,11 @@ namespace Obi.ProjectView
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording) ; } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped && !m_IsProjectEmpty && !mView.IsContentViewScrollActive; } }
-        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring  ||  (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio&& CurrentState == State.Playing 
-            && mCurrentPlaylist.PlaybackRate == 0)) &&  mView.IsPhraseCountWithinLimit && !mView.IsContentViewScrollActive && !mView.IsZoomWaveformActive; } } // @phraseLimit
+        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring  
+            ||  (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio&& CurrentState == State.Playing && mCurrentPlaylist.PlaybackRate == 0)) 
+            &&  mView.IsPhraseCountWithinLimit && !mView.IsContentViewScrollActive && !mView.IsZoomWaveformActive; } } // @phraseLimit
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused   &&   !mView.IsContentViewScrollActive; } }
-        public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted    &&   (mState != State.Playing  ||   (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio && CurrentState == State.Playing) )&& !mView.IsContentViewScrollActive; } }
+        public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted    &&   (mState != State.Playing  ||   (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio && CurrentState == State.Playing) )&& !mView.IsContentViewScrollActive && !mView.IsZoomWaveformActive; } }
         public bool CanRewind { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
         public bool CanStop { get { return Enabled && (mState != State.Stopped || mView.Selection != null); } }
 
@@ -922,8 +923,8 @@ namespace Obi.ProjectView
                 mPlayButton.Visible = !mPauseButton.Visible;
                 mPlayButton.Enabled = CanPlay || CanResumePlayback;
                 mFastPlayRateCombobox.Enabled = !IsRecorderActive;
-                mRecordButton.Enabled = CanRecord || CanResumeRecording
-                    || (CurrentState == State.Playing && (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio || mView.ObiForm.Settings.Recording_PreviewBeforeStarting));
+                mRecordButton.Enabled = (CanRecord || CanResumeRecording
+                    || (CurrentState == State.Playing && (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio || mView.ObiForm.Settings.Recording_PreviewBeforeStarting))) && !mView.IsZoomWaveformActive;
                 if (IsPlaying || IsRecorderActive)
                 {
                     m_btnPlayingOptions.Enabled = false;
