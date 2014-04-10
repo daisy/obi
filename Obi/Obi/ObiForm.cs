@@ -4546,6 +4546,7 @@ namespace Obi
                                      Localizer.Message("information_caption"), MessageBoxButtons.YesNo) ==
                      DialogResult.Yes))
                 {
+                    if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@monitorContinuously
                     if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
                     m_OriginalPath = mSession.Path;
                     string backupPath = mSession.BackUpPath;
@@ -4583,7 +4584,7 @@ namespace Obi
 
             private void RestoreProjectFromMainProject()
             {
-
+                if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@monitorContinuously
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
                 mSession.Close();
                 OpenProject_Safe(m_OriginalPath, Localizer.Message("Load_Original_Project"));
@@ -4600,6 +4601,7 @@ namespace Obi
 
             private bool? FreezeChangesFromProjectRestore()
             {
+                if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@monitorContinuously
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
 
                 if (!String.IsNullOrEmpty(m_RestoreProjectFilePath)
