@@ -4822,7 +4822,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profile 1(VA).
+        ///   Looks up a localized string similar to Profile 1 (VA).
         /// </summary>
         internal static string Preferences_Level_ComboBox_Profile_1 {
             get {
@@ -4831,7 +4831,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profile 2(SBS).
+        ///   Looks up a localized string similar to Profile 2 (SBS).
         /// </summary>
         internal static string Preferences_Level_ComboBox_Profile_2 {
             get {
