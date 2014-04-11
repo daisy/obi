@@ -2609,10 +2609,10 @@ Error text: {1}</value>
     <comment>Location of the HTML document for the "Profile Description" dialog</comment>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
-    <value>Profile 1</value>
+    <value>Profile 1(VA)</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_2" xml:space="preserve">
-    <value>Profile 2</value>
+    <value>Profile 2(SBS)</value>
   </data>
   <data name="Preferences_AudioProfileDesc" xml:space="preserve">
     <value>Audio Profile Description</value>
