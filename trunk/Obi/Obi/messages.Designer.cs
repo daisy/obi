@@ -3090,7 +3090,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language Pack update is successfull. Please restart Obi for the changes to take effect.
+        ///   Looks up a localized string similar to Language Pack update is successfully. Please restart Obi for the changes to take effect.
         /// </summary>
         internal static string Language_Pack_Complete {
             get {
@@ -3981,6 +3981,15 @@ namespace Obi {
         internal static string no_script {
             get {
                 return ResourceManager.GetString("no_script", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You donot have administrative rights to copy. Please either copy manually the contents of folder &quot;Obi_Language_Pack&quot; located in the Temp folder(which will open once you close this message box. If you want to open it manually then start &quot;Run&quot; and type &quot;%temp%&quot; in it) or run Obi with administrative privilege by selecting &quot;Run as administrator&quot; from the context menu which apprears on right click over the Obi icon.
+        /// </summary>
+        internal static string NoAdministrativePrivilege {
+            get {
+                return ResourceManager.GetString("NoAdministrativePrivilege", resourceCulture);
             }
         }
         

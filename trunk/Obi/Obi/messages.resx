@@ -2545,7 +2545,7 @@ Error text: {1}</value>
     <value>Please select Language Pack zip file</value>
   </data>
   <data name="Language_Pack_Complete" xml:space="preserve">
-    <value>Language Pack update is successfull. Please restart Obi for the changes to take effect</value>
+    <value>Language Pack update is successfully. Please restart Obi for the changes to take effect</value>
   </data>
   <data name="Language_Pack_Caption" xml:space="preserve">
     <value>Wrong File</value>
@@ -2622,5 +2622,8 @@ Error text: {1}</value>
   </data>
   <data name="KeyS_FastPlayWithElapseForward" xml:space="preserve">
     <value>Forward Elapse</value>
+  </data>
+  <data name="NoAdministrativePrivilege" xml:space="preserve">
+    <value>You donot have administrative rights to copy. Please either copy manually the contents of folder "Obi_Language_Pack" located in the Temp folder(which will open once you close this message box. If you want to open it manually then start "Run" and type "%temp%" in it) or run Obi with administrative privilege by selecting "Run as administrator" from the context menu which apprears on right click over the Obi icon</value>
   </data>
 </root>

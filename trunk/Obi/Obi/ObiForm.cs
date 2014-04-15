@@ -10,6 +10,7 @@ using urakawa.core;
 using urakawa.data;
 using PipelineInterface;
 using Jaime.Olivares;
+using System.Security;
 
 
 namespace Obi
@@ -4997,8 +4998,15 @@ namespace Obi
                 {
                     string fileName = select_File.FileName;
                     string nameOfFile = System.IO.Path.GetFileName(fileName);
-                    string installationPath = Application.StartupPath;
-
+                    string destinationPath = Application.StartupPath;
+                    string installationPath = System.IO.Path.GetTempPath();
+                    installationPath += "Obi_Language_Pack";
+                   // destinationPath = @"C:\Program Files\The Urakawa Project\Obi 3.5 alpha";
+                    bool isExists = System.IO.Directory.Exists(installationPath);
+                    if (!isExists)
+                    {
+                        System.IO.Directory.CreateDirectory(installationPath);
+                    }
 
                     ZipStorer zip = ZipStorer.Open(fileName, FileAccess.Read);
                     List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();
@@ -5029,14 +5037,42 @@ namespace Obi
                         m_FlagLangUpdate = true;
                         m_ToolsLangPack_Click(sender, e);
                     }
-                    else
-                    {
-                        MessageBox.Show(Localizer.Message("Language_Pack_Complete"), Localizer.Message("Language_Pack_Complete_Caption"));
-                    }
-
+                  
                     zip.Close();
 
-                    //  ZipStorer zip=ZipStorer.Open(
+                    
+                    try
+                    {
+                        foreach (string d in Directory.GetDirectories(installationPath))
+                        {
+                            string NameOfDirectory = Path.GetFileName(d);
+
+                            foreach (string f in Directory.GetFiles(d))
+                            {
+                                string source = System.IO.Path.Combine(installationPath, f);
+                                
+                                string NameOfTheFile = Path.GetFileName(f);
+                                string destination = System.IO.Path.Combine(destinationPath, NameOfDirectory);
+                                isExists = System.IO.Directory.Exists(destination);
+                                if (!isExists)
+                                {
+                                    System.IO.Directory.CreateDirectory(destination);
+                                }
+                                destination = System.IO.Path.Combine(destination, NameOfTheFile);
+                                File.Copy(source, destination,true);
+                                Console.WriteLine("Source {0}", source);
+                            }
+                        }
+
+                    //    foreach(File file
+                        MessageBox.Show(Localizer.Message("Language_Pack_Complete"), Localizer.Message("Language_Pack_Complete_Caption"));
+                       
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        MessageBox.Show(Localizer.Message("NoAdministrativePrivilege"));
+                        Process.Start("explorer.exe", "/select," + installationPath);
+                    }
 
                 }
                 else
