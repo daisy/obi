@@ -6,7 +6,7 @@
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1553F3D3-A820-400E-9B98-BCCA970E1D58}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Obi</RootNamespace>
     <AssemblyName>Obi</AssemblyName>
@@ -223,9 +223,11 @@
     </Compile>
     <Compile Include="Dialogs\ProfileDescription.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Dialogs\ProfileDescription.Designer.cs">
       <DependentUpon>ProfileDescription.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Dialogs\ReportDialog.cs">
       <SubType>Form</SubType>
@@ -537,8 +539,6 @@
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="EmptyProject.obi">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -833,6 +833,7 @@
     <Content Include="images\DAISY_Consortium_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\icons\bullet_arrow_down.png" />
     <Content Include="ImportExport\filter.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -868,10 +869,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Audio\PeakMeterForm.resx">
-      <DependentUpon>PeakMeterForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Audio\PeakMeterForm.ta.resx">
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1245,8 +1242,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProfileDescription.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>ProfileDescription.cs</DependentUpon>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgressDialog.fi.resx">
       <SubType>Designer</SubType>
@@ -1826,6 +1824,10 @@
       <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\RecordingToolBarForm.ja.resx">
+      <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\RecordingToolBarForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
@@ -1920,7 +1922,7 @@
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\TextVUMeterPanel.fr.resx">
+    <EmbeddedResource Include="UserControls\TextVUMeterPanel.ja.resx">
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
