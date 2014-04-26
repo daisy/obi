@@ -4925,7 +4925,14 @@ namespace Obi
                     {
                         mStartMonitoringToolStripMenuItem.Enabled = true;
                         mAllowOverwriteToolStripMenuItem.Enabled = true;
-                        mStartRecordingDirectlyToolStripMenuItem.Enabled = true;
+                        if (mProjectView.TransportBar.IsListening)
+                        {
+                            mStartRecordingDirectlyToolStripMenuItem.Enabled = false;
+                        }
+                        else
+                        {
+                            mStartRecordingDirectlyToolStripMenuItem.Enabled = true;
+                        }
                     }
                     else
                     {
@@ -4935,6 +4942,7 @@ namespace Obi
                         mStartRecordingDirectlyToolStripMenuItem.Enabled = false;
                     }
                 }
+
 
             }
 

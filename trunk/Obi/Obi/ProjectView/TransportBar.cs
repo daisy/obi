@@ -946,7 +946,8 @@ namespace Obi.ProjectView
 
                 if (recordDirectly)
                 {
-                    m_btnRecordingOptions.Enabled = CanRecord || CanResumeRecording;                   
+                    m_btnRecordingOptions.Enabled = CanRecord || CanResumeRecording;
+
                     if (this.IsListening)
                     {
                         m_MonitoringtoolStripMenuItem.Visible = false;
@@ -1007,6 +1008,15 @@ namespace Obi.ProjectView
                 mNextPageButton.Enabled = CanNavigateNextPage;
                 mNextSectionButton.Enabled = CanNavigateNextSection;
                 mToDo_CustomClassMarkButton.Enabled = mView.CanSetTODOStatus;
+                if (MonitorContinuously && mView.Selection == null)
+                {
+                    m_btnRecordingOptions.Enabled = mView.Selection == null;
+                    m_RecordingtoolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    m_RecordingtoolStripMenuItem.Enabled = true;
+                }
             }
         }
         
@@ -3856,6 +3866,7 @@ SelectionChangedPlaybackEnabled = false;
             {
                 m_DeletePhrasestoolStripMenuItem.Enabled = false;
             }
+
             mMonitorContinuouslyToolStripMenuItem.Checked = MonitorContinuously;//@MonitorContinuously
         }
 
