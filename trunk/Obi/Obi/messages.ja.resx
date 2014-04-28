@@ -518,7 +518,7 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>メタデータ入力の名を改める</value>
   </data>
   <data name="about_file_name" xml:space="preserve">
-    <value>about_en.html</value>
+    <value>about_ja.html</value>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
     <value>空ページを加える</value>
