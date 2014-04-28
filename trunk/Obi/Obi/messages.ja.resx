@@ -701,10 +701,10 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>"{0}"</value>
   </data>
   <data name="phrase_short_Heading" xml:space="preserve">
-    <value>[DAISY book structure term]見出し</value>
+    <value>見出し</value>
   </data>
   <data name="phrase_short_page" xml:space="preserve">
-    <value>[DAISY book structure term]{0}ページ</value>
+    <value>{0}ページ</value>
   </data>
   <data name="phrase_short_Plain" xml:space="preserve">
     <value>句</value>
@@ -938,10 +938,10 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>カスタム</value>
   </data>
   <data name="role_Heading" xml:space="preserve">
-    <value>[DAISY book structure term]見出し</value>
+    <value>見出し</value>
   </data>
   <data name="role_Page" xml:space="preserve">
-    <value>[DAISY book structure term]ページ</value>
+    <value>ページ</value>
   </data>
   <data name="role_Plain" xml:space="preserve">
     <value>プレーン</value>
@@ -1022,7 +1022,7 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>"{0}": {1}にロックファイルを作成することはできませんでした。</value>
   </data>
   <data name="project_locked" xml:space="preserve">
-    <value>Project is locked, probably because either previous session of this project was terminated improperly or there is another session of Obi with the same project open. If you are sure that there are no other sessions of Obi you can try to remove the lock file "{0}", but proceed at your own risk.</value>
+    <value>プロジェクトは閉ざされている、その理由は多分、先のセションは不適切に終了されたことまたは他のObiセションは同じプロジェクトとともにひらいていることです。もし、他のセションが開いていることはなければ、あなたはロックファイル"{0}"を削除しようとすることができるが、それは自己責任のことです。</value>
   </data>
   <data name="no_preceding_silence_phrase_caption" xml:space="preserve">
     <value>先行の無音句はありません。</value>
@@ -1976,7 +1976,7 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>オーディオの長さの不釣合いのでオーディオをかえることはできません：元来の相続は{0}です：新しい相続は{1}です。</value>
   </data>
   <data name="AudioPref_LivePhraseDetectionEnable" xml:space="preserve">
-    <value>Following values will be used for live phrase detection; Threshold: {0} ,Gap btw Phrases: {1} ,Leading Silence: {2}. These settings can be modified from operations combobox of audio preferences or can be extracted from a silence phrase.</value>
+    <value>生句検出のために利用される価値は；敷居:{0}, 句の間の空隙：{1}, 引率無音：{2}。これらの設定えをオーディオ環境設定のオペレーションコンボボックスから変更することができるまたは、無音の句から引き抜くこともできます。</value>
   </data>
   <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
     <value>遊休ディスクスペース発見をイネーブル</value>

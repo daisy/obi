@@ -967,7 +967,7 @@
     <value>242, 22</value>
   </data>
   <data name="splitAndMergeWithPreviousToolStripMenuItem.Text" xml:space="preserve">
-    <value>分けて、次のと</value>
+    <value>分けて、次のと合併 1</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>明くる句と合併</value>

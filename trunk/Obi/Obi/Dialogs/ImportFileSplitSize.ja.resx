@@ -142,7 +142,7 @@
     <value>20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Phrase si&amp;ze in minutes:</value>
+    <value>&amp;分で句の大きさ：</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -157,7 +157,7 @@
     <value>2</value>
   </data>
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
-    <value>Phrase size in minutes textbox</value>
+    <value>分で句の大きさテクストボックス</value>
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>162, 51</value>
@@ -199,7 +199,7 @@
     <value>22</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Ok</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -229,7 +229,7 @@
     <value>23</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;Cancel</value>
+    <value>&amp;キャンセル</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -244,7 +244,7 @@
     <value>3</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.AccessibleName" xml:space="preserve">
-    <value>create section for each audio file.</value>
+    <value>各自のオーディオファイルために節を作成</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -259,7 +259,7 @@
     <value>10</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
-    <value>&amp;Create section for each audio file</value>
+    <value>&amp;各自のオーディオファイルために節を作成</value>
   </data>
   <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Name" xml:space="preserve">
     <value>mCreateAudioFilePerSectionCheckBox</value>
@@ -274,7 +274,7 @@
     <value>3</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
-    <value>Audio files list box.</value>
+    <value>オーディオファイルリストボックス</value>
   </data>
   <data name="lstManualArrange.HorizontalScrollbar" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -313,7 +313,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>Move &amp;UP</value>
+    <value>&amp;上に移動</value>
   </data>
   <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
     <value>m_btnMoveUp</value>
