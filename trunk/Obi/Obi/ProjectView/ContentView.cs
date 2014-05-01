@@ -4863,7 +4863,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         /// </summary>
         public void UpdateContextMenu ()
             {
-            Context_AddSectionMenuItem.Enabled = mProjectView.CanAddSection && !IsZoomWaveformActive;
+            Context_AddSectionMenuItem.Enabled = mProjectView.CanAddSection && !IsZoomWaveformActive && !mProjectView.TransportBar.IsListening;
             Context_InsertSectionMenuItem.Enabled = mProjectView.CanInsertSection;
             Context_SplitSectionMenuItem.Enabled = CanSplitStrip && !mProjectView.TransportBar.IsRecorderActive && !IsZoomWaveformActive;
             Context_MergeSectionMenuItem.Enabled = mProjectView.CanMergeStripWithNext && !IsZoomWaveformActive;
