@@ -1788,8 +1788,8 @@ namespace Obi
 
             private void UpdateSectionsMenu()
             {
-                mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
-                mAddSubsectionToolStripMenuItem.Enabled = mProjectView.CanAddSubsection;
+                mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection && !mProjectView.TransportBar.IsListening;
+                mAddSubsectionToolStripMenuItem.Enabled = mProjectView.CanAddSubsection && !mProjectView.TransportBar.IsListening;
                 mInsertSectionToolStripMenuItem.Enabled = mProjectView.CanInsertSection;
                 mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
                 mDecreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanDecreaseLevel;
@@ -5124,6 +5124,11 @@ namespace Obi
             private void mForwardElapseToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 mProjectView.TransportBar.StepForward();
+            }
+
+            private void mSectionsToolStripMenuItem_DropDownOpened(object sender, EventArgs e)
+            {
+                UpdateSectionsMenu();
             }
 
 
