@@ -35,8 +35,6 @@ namespace Obi.Dialogs
         private double m_DefaultGap = 300.0;
         private double m_DefaultLeadingSilence = 50.0;
         private double m_DefaultThreshold = 280.0;
-        private bool m_PrevShowContentViewVal = true;
-        private bool m_KeepTrack = false;
         private bool m_FlagComboBoxIndexChange = false;
         private int m_IndexOfLevelCombox = 0;
       //  private bool m_IsComboBoxExpanded = false;
@@ -782,26 +780,6 @@ namespace Obi.Dialogs
 
                
             }
-            else if (mTab.SelectedTab == mProjectTab)
-            {
-
-                if (m_CheckBoxListView.Items[8].Checked && m_PrevShowContentViewVal)
-                {
-                    m_KeepTrack = false;
-                }
-                if (m_CheckBoxListView.Items[8].Checked && !m_PrevShowContentViewVal)
-                {
-                    m_CheckBoxListView.Items[2].Checked = true;
-                    m_PrevShowContentViewVal = true;
-                }
-                else if (!m_CheckBoxListView.Items[8].Checked && m_CheckBoxListView.Items[2].Checked && m_KeepTrack == false)
-                {
-                    m_CheckBoxListView.Items[2].Checked = false;
-
-                }
-
-
-            }
         }
         public void UpdateBoolSettings()
         {
@@ -811,15 +789,13 @@ namespace Obi.Dialogs
                 mSettings.OpenLastProject = m_CheckBoxListView.Items[0].Checked;
                // mSettings.AutoSave_RecordingEnd = m_CheckBoxListView.Items[1].Checked;
                 mSettings.OpenBookmarkNodeOnReopeningProject = m_CheckBoxListView.Items[1].Checked;
-                mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[8].Checked ? m_CheckBoxListView.Items[2].Checked: false ; // false if waveform is disabled
+                mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[8].Checked ? m_CheckBoxListView.Items[2].Checked : false; // false if waveform is disabled
                 //MessageBox.Show(mSettings.Project_ShowWaveformInContentView.ToString () + " : " +  mSettings.LeftAlignPhrasesInContentView.ToString()); 
                 mSettings.OptimizeMemory = m_CheckBoxListView.Items[3].Checked;
                 mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = m_CheckBoxListView.Items[4].Checked;
                 mSettings.Project_EnableFreeDiskSpaceCheck= m_CheckBoxListView.Items[5].Checked;
                 mSettings.Project_SaveProjectWhenRecordingEnds= m_CheckBoxListView.Items[6].Checked;
                 mSettings.Project_CheckForUpdates = m_CheckBoxListView.Items[7].Checked;
-
-                //m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
                 mSettings.Project_ShowWaveformInContentView = m_CheckBoxListView.Items[8].Checked;
                 mSettings.Export_AlwaysIgnoreIndentation= m_CheckBoxListView.Items[9].Checked;
                 mSettings.Project_BackgroundColorForEmptySection = m_CheckBoxListView.Items[10].Checked;
@@ -946,7 +922,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ShowWaveformsInContentView"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_AlwaysIgnoreIndentationForExportFiles"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_BackgroundColorForEmptySection"));
-
+             
+               
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
                 m_CheckBoxListView.Items[1].Checked = mSettings.OpenBookmarkNodeOnReopeningProject;
@@ -969,9 +946,6 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[9].ToolTipText = Localizer.Message("Project_AlwaysIgnoreIndentationForExportFiles");
                 m_CheckBoxListView.Items[10].Checked = mSettings.Project_BackgroundColorForEmptySection;
                 m_CheckBoxListView.Items[10].ToolTipText = Localizer.Message("Project_BackgroundColorForEmptySection");
-
-                m_PrevShowContentViewVal = mSettings.Project_ShowWaveformInContentView;
-                m_KeepTrack = true;
             }
             m_CheckBoxListView.View = View.Details;
             m_IsComplete = true;
