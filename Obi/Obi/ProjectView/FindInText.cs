@@ -142,6 +142,7 @@ namespace Obi.ProjectView
         {
                    mTimer.Stop();
            mProjectView.FindInTextVisible = false;
+           mProjectView.ObiForm.UpdateFindInTextMenuItems();
            PlayFindBarCollapse ();
         }
 
@@ -358,6 +359,7 @@ namespace Obi.ProjectView
             else if (e.KeyCode == Keys.Escape)
             {
                 mProjectView.FindInTextVisible = false;
+                mProjectView.ObiForm.UpdateFindInTextMenuItems();
                 if (mProjectView.CanFocusOnTOCView) mProjectView.FocusOnTOCView ();
                 else if (mProjectView.CanFocusOnContentView) mProjectView.FocusOnContentView ();
             }
@@ -652,6 +654,7 @@ namespace Obi.ProjectView
         private void mCloseButton_Click(object sender, EventArgs e)
         {
             mProjectView.FindInTextVisible = false;
+            mProjectView.ObiForm.UpdateFindInTextMenuItems();
             mProjectView.ObiForm.Status(mProjectView.Selection!= null ? mProjectView.Selection.ToString(): "");
         }
 

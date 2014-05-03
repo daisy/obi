@@ -1576,8 +1576,8 @@ namespace Obi
             /// </summary>
             public void UpdateFindInTextMenuItems()
             {
-                mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
-                mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
+                mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText && mProjectView.FindInTextVisible;
+                mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText && mProjectView.FindInTextVisible;
             }
 
             // Update the edit menu
@@ -1615,8 +1615,8 @@ namespace Obi
                                                          !mProjectView.TransportBar.IsRecorderActive;
                 mFindInTextToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.CanFindFirstTime &&
                                                        !mProjectView.TransportBar.IsRecorderActive;
-                mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
-                mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
+                mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText && mProjectView.FindInTextVisible;
+                mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText && mProjectView.FindInTextVisible;
                 mEdit_BookmarkToolStripMenuItem.Enabled = mProjectView.Presentation != null &&
                                                           !mProjectView.TransportBar.IsRecorderActive;
                 mEdit_AssignBookmarkToolStripMenuItem.Enabled = mProjectView.Selection != null;
