@@ -4048,7 +4048,10 @@ namespace Obi
                     mProjectView.TransportBar.Pause();
                 mView_NormalSizeMenuItem.Enabled = false;
                 float previousZoomFactor = ZoomFactor;
-                ZoomFactor = 1.0f;
+                if (previousZoomFactor != 1.0f)
+                {
+                    ZoomFactor = 1.0f;
+                }
                 mView_NormalSizeMenuItem.Enabled = mSession.HasProject;
 
                 if (previousZoomFactor > 1.0f && mProjectView.TransportBar.IsRecorderActive &&
