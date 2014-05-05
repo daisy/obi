@@ -4939,6 +4939,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to check &quot;Fix content view width&quot; also ?(Recommended).
+        /// </summary>
+        internal static string Project_MessageBoxToCheckFixContentView {
+            get {
+                return ResourceManager.GetString("Project_MessageBoxToCheckFixContentView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save project when recording ends.
         /// </summary>
         internal static string Project_SaveProjectWhenRecordingEnds {

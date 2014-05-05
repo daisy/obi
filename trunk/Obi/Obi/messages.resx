@@ -2626,4 +2626,7 @@ Error text: {1}</value>
   <data name="NoAdministrativePrivilege" xml:space="preserve">
     <value>You donot have administrative rights to copy. Please either copy manually the contents of folder "Obi_Language_Pack" located in the Temp folder(which will open once you close this message box. If you want to open it manually then start "Run" and type "%temp%" in it) or run Obi with administrative privilege by selecting "Run as administrator" from the context menu which apprears on right click over the Obi icon</value>
   </data>
+  <data name="Project_MessageBoxToCheckFixContentView" xml:space="preserve">
+    <value>Do you want to check "Fix content view width" also ?(Recommended)</value>
+  </data>
 </root>
