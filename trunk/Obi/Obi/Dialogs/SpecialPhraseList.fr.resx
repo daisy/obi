@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="m_grpSelectSpecialPhrases.AccessibleName" xml:space="preserve">
     <value>Select special phrases to show in list box</value>
   </data>
@@ -153,6 +147,9 @@
   <data name="m_cb_SpecialPhrases.Items8" xml:space="preserve">
     <value>Ancre</value>
   </data>
+  <data name="m_cb_SpecialPhrases.Items9" xml:space="preserve">
+    <value>Phrases inutilisées</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cb_SpecialPhrases.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 42</value>
@@ -165,7 +162,7 @@
     <value>0</value>
   </data>
   <data name="m_cb_SpecialPhrases.Text" xml:space="preserve">
-    <value>Cliquez pour sélectionner..</value>
+    <value>Cliquez pour sélectionner...</value>
   </data>
   <data name="&gt;&gt;m_cb_SpecialPhrases.Name" xml:space="preserve">
     <value>m_cb_SpecialPhrases</value>
@@ -453,9 +450,15 @@
   <data name="&gt;&gt;mgrp_PlayPhraseInListBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -463,7 +466,7 @@
     <value>423, 493</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>ListePhrasesSpéciales</value>
+    <value>SpecialPhraseList</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

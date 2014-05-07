@@ -117,21 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>398, 17</value>
-  </metadata>
-  <metadata name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>266, 17</value>
-  </metadata>
-  <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>569, 17</value>
-  </metadata>
-  <metadata name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mTimeDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 21.75pt</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="&gt;&gt;mTimeDisplayBox.ZOrder" xml:space="preserve">
     <value>11</value>
+  </data>
+  <data name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>398, 17</value>
   </data>
   <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -284,6 +287,7 @@
     <value>3</value>
   </data>
   <data name="mRewindButton.ToolTip" xml:space="preserve">
+
     <value>Lecture vers l'arrière plus rapide.</value>
   </data>
   <data name="&gt;&gt;mRewindButton.Name" xml:space="preserve">
@@ -354,6 +358,7 @@
     <value>13</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
+
     <value>Ajouter une marque AFAIRE lors de l'enregistrement. (F9)</value>
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
@@ -440,7 +445,7 @@
     <value>button</value>
   </data>
   <data name="mPlayButton.AccessibleName" xml:space="preserve">
-    <value>Play</value>
+    <value>Lecture</value>
   </data>
   <data name="mPlayButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -485,6 +490,7 @@
     <value>4</value>
   </data>
   <data name="mPlayButton.ToolTip" xml:space="preserve">
+
     <value>Démarrer ou reprendre la lecture (Espace)</value>
   </data>
   <data name="&gt;&gt;mPlayButton.Name" xml:space="preserve">
@@ -541,6 +547,7 @@
     <value>5</value>
   </data>
   <data name="mPauseButton.ToolTip" xml:space="preserve">
+
     <value>Pause de la lecture ou de l'enregistrement (Espace)</value>
   </data>
   <data name="&gt;&gt;mPauseButton.Name" xml:space="preserve">
@@ -599,6 +606,7 @@
     <value>6</value>
   </data>
   <data name="mStopButton.ToolTip" xml:space="preserve">
+
     <value>Arrêt de la lecture ou de l'enregistrement. (Ctrl+Espace)</value>
   </data>
   <data name="&gt;&gt;mStopButton.Name" xml:space="preserve">
@@ -1012,6 +1020,7 @@
     <value>9</value>
   </data>
   <data name="mFastForwardButton.ToolTip" xml:space="preserve">
+
     <value>Lecture vers l'avant plus rapide.</value>
   </data>
   <data name="&gt;&gt;mFastForwardButton.Name" xml:space="preserve">
@@ -1027,7 +1036,7 @@
     <value>9</value>
   </data>
   <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
-    <value>options d'enregistrement</value>
+    <value>Options d'enregistrement</value>
   </data>
   <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1058,7 +1067,7 @@
     <value>8</value>
   </data>
   <data name="m_btnRecordingOptions.ToolTip" xml:space="preserve">
-    <value>options d'enregistrement</value>
+    <value>Options d'enregistrement</value>
   </data>
   <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
     <value>m_btnRecordingOptions</value>
@@ -1073,7 +1082,7 @@
     <value>7</value>
   </data>
   <data name="m_btnPlayingOptions.AccessibleName" xml:space="preserve">
-    <value>Jouer options</value>
+    <value>Options de lecture</value>
   </data>
   <data name="m_btnPlayingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1104,7 +1113,7 @@
     <value>6</value>
   </data>
   <data name="m_btnPlayingOptions.ToolTip" xml:space="preserve">
-    <value>Jouer options</value>
+    <value>Options de lecture</value>
   </data>
   <data name="&gt;&gt;m_btnPlayingOptions.Name" xml:space="preserve">
     <value>m_btnPlayingOptions</value>
@@ -1118,6 +1127,9 @@
   <data name="&gt;&gt;m_btnPlayingOptions.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>266, 17</value>
+  </data>
   <data name="mDisplayBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -1125,16 +1137,16 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mDisplayBox.Items" xml:space="preserve">
-    <value>elapsed</value>
+    <value>passé</value>
   </data>
   <data name="mDisplayBox.Items1" xml:space="preserve">
-    <value>elapsed (total)</value>
+    <value>passé (total)</value>
   </data>
   <data name="mDisplayBox.Items2" xml:space="preserve">
-    <value>remaining</value>
+    <value>restant</value>
   </data>
   <data name="mDisplayBox.Items3" xml:space="preserve">
-    <value>remaining (total)</value>
+    <value>restant (total)</value>
   </data>
   <data name="mDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>585, 4</value>
@@ -1214,32 +1226,43 @@
   <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>569, 17</value>
+  </data>
   <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
-    <value>démarrer le contrôle</value>
+    <value>Démar&amp;rer le Monitoring</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>démarrer l'enregistrement</value>
+
+    <value>Déma&amp;rrer l'enregistrement</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
-    <value>Enregistrez plus de phrases suivantes</value>
+    <value>Enregistrer plus d&amp;e phrases suivantes</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
-    <value>Aperçu avant l'enregistrement</value>
+
+    <value>Ap&amp;erçu avant enregistrement</value>
+  </data>
+  <data name="mMonitorContinuouslyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="mMonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Monitoring &amp;Continu</value>
   </data>
   <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 92</value>
+    <value>245, 136</value>
   </data>
   <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
     <value>m_RecordingOptionsContextMenuStrip</value>
@@ -1247,35 +1270,38 @@
   <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>17, 17</value>
+  </data>
   <data name="m_PlayAlltoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PlayAlltoolStripMenuItem.Text" xml:space="preserve">
-    <value>Lire tout</value>
+    <value>Lire to&amp;ut</value>
   </data>
   <data name="m_PlaySectiontoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PlaySectiontoolStripMenuItem.Text" xml:space="preserve">
-    <value>Lire Section</value>
+    <value>Lire la &amp;Section</value>
   </data>
   <data name="m_playHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_playHeadingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lire Section Titre</value>
+    <value>Lire la Section &amp;Titre</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Aperçu de</value>
+    <value>Aperçu &amp;de</value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Text" xml:space="preserve">
-    <value>Aperçu jusqu'à</value>
+    <value>Aperçu &amp;jusqu'à</value>
   </data>
   <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 114</value>
@@ -1305,13 +1331,16 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.33136, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.24069, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.ZOrder" xml:space="preserve">
     <value>15</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -1355,6 +1384,12 @@
   <data name="&gt;&gt;mPreviewBeforeRecToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mMonitorContinuouslyToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMonitorContinuouslyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mMonitorContinuouslyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;m_PlayAlltoolStripMenuItem.Name" xml:space="preserve">
     <value>m_PlayAlltoolStripMenuItem</value>
   </data>
@@ -1390,5 +1425,25 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="media-monitor.png" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+
+      iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+      wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuODc7gF0AAAK5SURBVFhH7VU5
+      S2NRFLZRwUpRQdx3RbAQFCsLUVxxQ9x3VMRdC3EDLSwEGwu1tLIQOwv9GRMTBjdwmnFi8u57iRInkUzz
+      zTnXvJDIVHlJMZDAIffec8/9vvOde+6LiYn+ogpEFfjfFLg9PYWlvR2m1FSY4uPxLS5OjnmNfRHN56as
+      DI/V1XDu7uLj/Bx/rq/hvbqC5+wMjq0tPFZVgfdEhIQ5JUUCey8v4To5gXNvD9rGBrT1dTh2duA6PIT3
+      4gLOzU3w3rCSMJPEdGCQqaurUFdWoC4vQywuQszNQSwswH10hPeDA/hijPP4XlPjB5Yg8/NBc3V2FurM
+      DMT0NMTkJJTxcUnAQft8sYZJSEAxNSUBpNE4aG1iAmJsDMrICMTgIJSBAXiOj3FbWmqsFHwgA71ub0MZ
+      GvoEGB2VJgnQvzo8LH0MLPr7Ye/ogJVU0/r6YKfOuCe/EQngJjlZVqWnB6K3V4Kw6XdC7e6GUl8PW2Ul
+      rIWFeM7IwM/0dFipG1xUBktWljECnv192BoaYG9uhtLSAtHYCKW2Fgq1I5N4yc3FS04OrNnZ0n5lZkoS
+      z7Tmpi65SUgwRuDr7Q9xHloVLJQRy8i1Z7OSnJytPS8PSn6+VEApKPg0mvO6VIP22crLZayPcGgEnuh2
+      67KztCwxS85gDKqrIYqK/CTYz/u0pqbAdyM0Ahx1Rwf+Xlry11rPXqULpxUXSxD+57mugs2njqHsdcoP
+      dXUQra14ozbzy0/Zc9Y6AdmSPhWYoK4Mx4aeekCkJTkZb1QOF78DDEQZSgW+kAi8oBwTFnD9EHNiIkRn
+      Jzxra3hta4NGfa+WlEBjo/EbPTrsU7u6YE5KCi+4TuKuogL3lL0gAu/04fHQl4+Nx7z2QD7eE9bM/3XY
+      D3p6LWlpMMXGSuPxE92RiANHAaIKRBWIhAJ/AaE4KsZnOH4bAAAAAElFTkSuQmCC
+
+    </value>
   </data>
 </root>
