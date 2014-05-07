@@ -346,7 +346,7 @@
     <value>True</value>
   </data>
   <data name="labelOutputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 35</value>
+    <value>20, 35</value>
   </data>
   <data name="labelOutputDeviceName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -445,7 +445,7 @@
     <value>True</value>
   </data>
   <data name="m_lblImportTolerance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 141</value>
+    <value>27, 141</value>
   </data>
   <data name="m_lblImportTolerance.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 16</value>
@@ -607,7 +607,7 @@
     <value>True</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 64</value>
+    <value>28, 64</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 16</value>
@@ -778,7 +778,7 @@
     <value>True</value>
   </data>
   <data name="labelTTSvoice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 128</value>
+    <value>23, 128</value>
   </data>
   <data name="labelTTSvoice.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 16</value>
@@ -958,7 +958,7 @@
     <value>True</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 186</value>
+    <value>43, 186</value>
   </data>
   <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1114,7 +1114,7 @@
     <value>True</value>
   </data>
   <data name="labelChannels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 95</value>
+    <value>54, 95</value>
   </data>
   <data name="labelChannels.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1177,7 +1177,7 @@
     <value>True</value>
   </data>
   <data name="labelSampleRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>63, 66</value>
+    <value>43, 66</value>
   </data>
   <data name="labelSampleRate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1297,7 +1297,7 @@
     <value>True</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 74</value>
+    <value>33, 74</value>
   </data>
   <data name="label5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1411,7 +1411,7 @@
     <value>True</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 10</value>
+    <value>7, 10</value>
   </data>
   <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1776,7 +1776,7 @@
     <value>False</value>
   </data>
   <data name="m_lblChooseFont.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 245</value>
+    <value>148, 245</value>
   </data>
   <data name="m_lblChooseFont.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 16</value>
@@ -1965,7 +1965,7 @@
     <value>True</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 183</value>
+    <value>132, 183</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 16</value>
