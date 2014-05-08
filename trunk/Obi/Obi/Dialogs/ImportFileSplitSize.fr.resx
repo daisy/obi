@@ -505,10 +505,10 @@
     <value>False</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 43</value>
+    <value>231, 43</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>90, 22</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -532,10 +532,10 @@
     <value>False</value>
   </data>
   <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 99</value>
+    <value>231, 99</value>
   </data>
   <data name="m_txtPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>90, 22</value>
   </data>
   <data name="m_txtPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -559,10 +559,10 @@
     <value>False</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 71</value>
+    <value>231, 71</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 22</value>
+    <value>90, 22</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
