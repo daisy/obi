@@ -31,6 +31,7 @@ namespace Obi.ImportExport
     public class Epub3_ObiExport : DAISY3_ObiExport 
     {
         private List<string> m_FilesList_Html = null;
+        private List<string> m_SmilDurationForOpfMetadata = null;
 
         public Epub3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,ushort mp3BitRate ,
             SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel):
@@ -59,6 +60,7 @@ namespace Obi.ImportExport
             Dictionary<urakawa.core.TreeNode, XmlNode> treeNode_NavNodeMap = new Dictionary<urakawa.core.TreeNode, XmlNode>();
             m_FilesList_Smil = new List<string>();
             m_FilesList_Html = new List<string>();
+            m_SmilDurationForOpfMetadata = new List<string>();
             m_FilesList_SmilAudio = new List<string>();
             m_SmilFileNameCounter = 0;
             List<XmlNode> playOrderList_Sorted = new List<XmlNode>();
@@ -796,12 +798,14 @@ namespace Obi.ImportExport
                     XmlNode mainSeqNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilDocument, true, "body", null).FirstChild; //smilDocument.GetElementsByTagName("body")[0].FirstChild;
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "dur", FormatTimeString(durationOfCurrentSmil));
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "fill", "remove");
-                    AddMetadata_Smil(smilDocument, FormatTimeString(smilElapseTime), currentSmilCustomTestList);
+                    string strSmilDuration = FormatTimeString(smilElapseTime) ;
+                    AddMetadata_Smil(smilDocument, strSmilDuration, currentSmilCustomTestList);
 
                     XmlReaderWriterHelper.WriteXmlDocument(smilDocument, Path.Combine(m_OutputDirectory, smilFileName), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
 
                     smilElapseTime.Add(durationOfCurrentSmil);
                     m_FilesList_Smil.Add(smilFileName);
+                    m_SmilDurationForOpfMetadata.Add(strSmilDuration);
                     smilDocument = null;
 
                     m_FilesList_Html.Add(htmlFileName);
@@ -1233,10 +1237,12 @@ namespace Obi.ImportExport
             if (RequestCancellation) return;
 
             List<string> htmlIDListInPlayOrder = new List<string>();
+            XmlNode metadataNode = opfDocument.GetElementsByTagName ("metadata")[0] ;
 
             for (int i = 0; i < m_FilesList_Smil.Count; i++ )
             {
                 string smilFileName = m_FilesList_Smil[i];
+                string strSmilDuration = m_SmilDurationForOpfMetadata[i];
                 string htmlFileName = m_FilesList_Html[i];
 
                 string strSmilID = GetNextID(ID_OpfPrefix);
@@ -1246,7 +1252,19 @@ namespace Obi.ImportExport
                 XmlNode htmlNode = AddFilenameToManifest(opfDocument, manifestNode, htmlFileName , strHtmlID, DataProviderFactory.XHTML_MIME_TYPE);
                 XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, htmlNode, "media-overlays", strSmilID);
                 htmlIDListInPlayOrder.Add(strHtmlID);
+
+              // add media-overlays duration metadata
+                XmlNode metaNode = opfDocument.CreateElement("meta", metadataNode.NamespaceURI);
+                metadataNode.AppendChild(metaNode);
+                XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaNode, "property", "media:duration");
+                XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaNode, "refines","#" + strSmilID);
+                metaNode.AppendChild(opfDocument.CreateTextNode(strSmilDuration));
             }
+            XmlNode metaNode_MOActive = opfDocument.CreateElement("meta", metadataNode.NamespaceURI);
+            metadataNode.AppendChild(metaNode_MOActive);
+            XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaNode_MOActive, "property", "media:active-class");
+
+            metaNode_MOActive.AppendChild(opfDocument.CreateTextNode("epub - media - overlay - active"));
 
             if (RequestCancellation) return;
 
