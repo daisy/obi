@@ -18,10 +18,10 @@ namespace Obi.ImportExport
 {
     public class DAISY3_ObiExport : Daisy3_Export
     {
-        private int m_AudioFileSectionLevel;
-        private Dictionary<XmlNode, urakawa.core.TreeNode> m_AnchorXmlNodeToReferedNodeMap = new Dictionary<XmlNode, urakawa.core.TreeNode>();
-        private Dictionary<urakawa.core.TreeNode, string> m_Skippable_UpstreamIdMap = new Dictionary<TreeNode, string>();
-        private Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
+        protected int m_AudioFileSectionLevel;
+        protected Dictionary<XmlNode, urakawa.core.TreeNode> m_AnchorXmlNodeToReferedNodeMap = new Dictionary<XmlNode, urakawa.core.TreeNode>();
+        protected Dictionary<urakawa.core.TreeNode, string> m_Skippable_UpstreamIdMap = new Dictionary<TreeNode, string>();
+        protected Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
 
         public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,ushort mp3BitRate ,
             SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel)
@@ -49,7 +49,7 @@ namespace Obi.ImportExport
                 && IsSectionEmpty((SectionNode)node);
         }
 
-        private bool IsSectionEmpty(SectionNode section)
+        protected bool IsSectionEmpty(SectionNode section)
         {
             double duration = 0;
             for (int i = 0; i < section.PhraseChildCount; i++)
@@ -72,7 +72,7 @@ namespace Obi.ImportExport
             
         }
 
-        private void CreateListOfLevelsForAudioNCX()
+        protected void CreateListOfLevelsForAudioNCX()
         {
             m_ListOfLevels = new List<TreeNode>();
             TreeNode rNode = m_Presentation.RootNode;
@@ -917,7 +917,7 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
             XmlReaderWriterHelper.WriteXmlDocument(ncxDocument, Path.Combine(m_OutputDirectory, m_Filename_Ncx),AlwaysIgnoreIndentation? GetXmlWriterSettings(false): null);
         }
 
-        private bool IsSkippable(EmptyNode node)
+        public bool IsSkippable(EmptyNode node)
         {
 
             if (node.Role_ == EmptyNode.Role.Custom && (node.PrecedingNode == null || node.PrecedingNode is SectionNode || node.Role_ != ((EmptyNode)node.PrecedingNode).Role_ || node.CustomRole != ((EmptyNode)node.PrecedingNode).CustomRole)
@@ -933,7 +933,7 @@ if (urakawa.data.DataProviderFactory.CSS_EXTENSION.Equals(ext, StringComparison.
             return false;
         }
 
-        bool IsAnnoref(EmptyNode node)
+        protected bool IsAnnoref(EmptyNode node)
         {
             if (node.Role_ == EmptyNode.Role.Anchor
                 && node.AssociatedNode != null
