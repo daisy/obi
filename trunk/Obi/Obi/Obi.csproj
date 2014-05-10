@@ -377,6 +377,7 @@
     <Compile Include="ImportExport\DAISY202Import.cs" />
     <Compile Include="ImportExport\DAISY3_ObiExport.cs" />
     <Compile Include="ImportExport\DAISY3_ObiImport.cs" />
+    <Compile Include="ImportExport\Epub3_ObiExport.cs" />
     <Compile Include="ImportExport\ImportStructure.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -824,9 +825,7 @@
     <Content Include="about_hi.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="about_ja.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="about_ja.html" />
     <Content Include="about_ta.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
