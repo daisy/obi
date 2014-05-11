@@ -38,6 +38,12 @@ namespace Obi.ImportExport
             base (presentation, exportDirectory, navListElementNamesList, encodeToMp3,mp3BitRate ,
             sampleRate, stereo, skipACM, audioFileSectionLevel)
         {
+            string epubFilesPath = Path.Combine(m_OutputDirectory, presentation.Title.Substring (0, presentation.Title.Length > 8? 8: presentation.Title.Length )) ;
+            m_OutputDirectory = Path.Combine(epubFilesPath, "EPUB");
+            if (!Directory.Exists(m_OutputDirectory))
+            {
+                Directory.CreateDirectory(m_OutputDirectory);
+            }
         }
         public const string NS_URL_EPUB = "http://www.idpf.org/2007/ops";
         protected override void CreateNcxAndSmilDocuments()
