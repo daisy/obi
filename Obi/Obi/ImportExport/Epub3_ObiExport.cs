@@ -799,7 +799,7 @@ namespace Obi.ImportExport
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "dur", FormatTimeString(durationOfCurrentSmil));
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "fill", "remove");
                     string strSmilDuration = FormatTimeString(smilElapseTime) ;
-                    AddMetadata_Smil(smilDocument, strSmilDuration, currentSmilCustomTestList);
+                    AddMetadata_Smil(smilDocument, strSmilDuration, null);
 
                     XmlReaderWriterHelper.WriteXmlDocument(smilDocument, Path.Combine(m_OutputDirectory, smilFileName), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
 
@@ -870,7 +870,7 @@ namespace Obi.ImportExport
             }
             // write ncs document to file
             m_TotalTime = new Time(smilElapseTime);
-            AddMetadata_Ncx(navigationDocument, totalPageCount.ToString(), maxNormalPageNumber.ToString(), maxDepth.ToString(), ncxCustomTestList);
+            AddMetadata_Ncx(navigationDocument, totalPageCount.ToString(), maxNormalPageNumber.ToString(), maxDepth.ToString(), null);
             XmlReaderWriterHelper.WriteXmlDocument(navigationDocument, Path.Combine(m_OutputDirectory, "Navigation.html"), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
         }
 
