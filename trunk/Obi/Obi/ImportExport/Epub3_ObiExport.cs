@@ -34,6 +34,7 @@ namespace Obi.ImportExport
         private List<string> m_SmilDurationForOpfMetadata = null;
         private readonly string m_OutputDirectoryName = null;
         private string m_EpubParentDirectoryPath = null;
+        
         private readonly string m_Meta_infFileName = null;
         public const string NS_URL_EPUB = "http://www.idpf.org/2007/ops";
 
@@ -42,9 +43,9 @@ namespace Obi.ImportExport
             base (presentation, exportDirectory, navListElementNamesList, encodeToMp3,mp3BitRate ,
             sampleRate, stereo, skipACM, audioFileSectionLevel)
         {
-            m_EpubParentDirectoryPath = Path.Combine(m_OutputDirectory, presentation.Title.Substring (0, presentation.Title.Length > 8? 8: presentation.Title.Length )) ;
+            m_EpubParentDirectoryPath= Path.Combine(m_OutputDirectory, presentation.Title.Substring(0, presentation.Title.Length > 8 ? 8 : presentation.Title.Length));
             m_OutputDirectoryName = "EPUB";
-            m_OutputDirectory = Path.Combine(m_EpubParentDirectoryPath, m_OutputDirectoryName);
+            m_OutputDirectory = Path.Combine(m_EpubParentDirectoryPath , m_OutputDirectoryName);
             if (!Directory.Exists(m_OutputDirectory))
             {
                 Directory.CreateDirectory(m_OutputDirectory);
@@ -1436,7 +1437,7 @@ namespace Obi.ImportExport
 
             XmlReaderWriterHelper.WriteXmlDocument(opfDocument, OpfFilePath, null);
             CreateAdditionalFilesForEPUB();
-            //urakawa.daisy.export.Epub3_Export.ZipEpub(Directory.GetParent(m_EpubParentDirectoryPath).FullName, m_EpubParentDirectoryPath);
+            
         }
 
         private void CreateAdditionalFilesForEPUB()
@@ -1470,6 +1471,9 @@ string meta_InfPath = Path.Combine(m_EpubParentDirectoryPath, m_Meta_infFileName
                 
             }
             
+            string EPUBFilePath = m_EpubParentDirectoryPath+ ".epub";
+            
+            urakawa.daisy.export.Epub3_Export.ZipEpub(EPUBFilePath, m_EpubParentDirectoryPath);            
             
         }
         
