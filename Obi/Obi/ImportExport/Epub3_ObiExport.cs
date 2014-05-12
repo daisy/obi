@@ -32,20 +32,26 @@ namespace Obi.ImportExport
     {
         private List<string> m_FilesList_Html = null;
         private List<string> m_SmilDurationForOpfMetadata = null;
+        private readonly string m_OutputDirectoryName = null;
+        private string m_EpubParentDirectoryPath = null;
+        private readonly string m_Meta_infFileName = null;
+        public const string NS_URL_EPUB = "http://www.idpf.org/2007/ops";
 
         public Epub3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,ushort mp3BitRate ,
             SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel):
             base (presentation, exportDirectory, navListElementNamesList, encodeToMp3,mp3BitRate ,
             sampleRate, stereo, skipACM, audioFileSectionLevel)
         {
-            string epubFilesPath = Path.Combine(m_OutputDirectory, presentation.Title.Substring (0, presentation.Title.Length > 8? 8: presentation.Title.Length )) ;
-            m_OutputDirectory = Path.Combine(epubFilesPath, "EPUB");
+            m_EpubParentDirectoryPath = Path.Combine(m_OutputDirectory, presentation.Title.Substring (0, presentation.Title.Length > 8? 8: presentation.Title.Length )) ;
+            m_OutputDirectoryName = "EPUB";
+            m_OutputDirectory = Path.Combine(m_EpubParentDirectoryPath, m_OutputDirectoryName);
             if (!Directory.Exists(m_OutputDirectory))
             {
                 Directory.CreateDirectory(m_OutputDirectory);
             }
+              m_Meta_infFileName = "META-INF" ;  
         }
-        public const string NS_URL_EPUB = "http://www.idpf.org/2007/ops";
+        
         protected override void CreateNcxAndSmilDocuments()
         {
             
@@ -1429,7 +1435,44 @@ namespace Obi.ImportExport
             }
 
             XmlReaderWriterHelper.WriteXmlDocument(opfDocument, OpfFilePath, null);
+            CreateAdditionalFilesForEPUB();
+            //urakawa.daisy.export.Epub3_Export.ZipEpub(Directory.GetParent(m_EpubParentDirectoryPath).FullName, m_EpubParentDirectoryPath);
         }
+
+        private void CreateAdditionalFilesForEPUB()
+        {
+string meta_InfPath = Path.Combine(m_EpubParentDirectoryPath, m_Meta_infFileName);
+                if (!Directory.Exists(meta_InfPath))
+                {
+                    Directory.CreateDirectory(meta_InfPath);
+                }
+            StreamWriter sw_Container = null ;
+            StreamWriter sw_MimeType = null ;
+            try
+            {
+                string containerFilePath = Path.Combine(meta_InfPath, "container.xml");
+            string relativeOpfPath = m_OutputDirectoryName + Path.DirectorySeparatorChar + Path.GetFileName(OpfFilePath);
+            
+                string containerXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<container version=\"1.0\" xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\">\n<rootfiles>\n<rootfile full-path=\"" + relativeOpfPath + "\" media-type=\"application/oebps-package+xml\" />\n</rootfiles>\n</container>";
+            sw_Container = File.CreateText (containerFilePath ) ;
+            sw_Container.Write (containerXML ) ;
+
+                string mimeTypeFilePath = Path.Combine(m_EpubParentDirectoryPath, "mimetype");
+                sw_MimeType = File.CreateText (mimeTypeFilePath ) ;
+                sw_MimeType.Write ("application/epub+zip");
+                
+            }
+            finally
+            {
+            if (sw_Container != null ) sw_Container.Close () ;
+                if ( sw_MimeType != null ) sw_MimeType.Close () ;
+
+                
+            }
+            
+            
+        }
+        
 
             }
 }
