@@ -654,7 +654,7 @@ Texte de l'erreur: {1}</value>
     <comment>Metadata</comment>
   </data>
   <data name="about_file_name" xml:space="preserve">
-    <value>about_en.html</value>
+    <value>about_fr.html</value>
     <comment>Location of the HTML document for the "About" dialog</comment>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
