@@ -922,6 +922,34 @@ namespace Obi.ImportExport
             return navigationDocument;
         }
 
+
+        protected override XmlDocument CreateStub_SmilDocument()
+        {
+            XmlDocument smilDocument = new XmlDocument();
+            smilDocument.XmlResolver = null;
+
+            smilDocument.AppendChild(smilDocument.CreateXmlDeclaration("1.0", "utf-8", null));
+            //smilDocument.AppendChild(smilDocument.CreateDocumentType("smil",
+                //"-//NISO//DTD dtbsmil 2005-2//EN",
+                    //"http://www.daisy.org/z3986/2005/dtbsmil-2005-2.dtd",
+                //null));
+            XmlNode smilRootNode = smilDocument.CreateElement(null,
+                "smil", "http://http://www.w3.org/ns/SMIL");
+
+            smilDocument.AppendChild(smilRootNode);
+            XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, smilRootNode, "xmlns:epub", "http://www.idpf.org/2007/ops");
+            XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, smilRootNode, "version", "3.0");
+
+            XmlNode headNode = smilDocument.CreateElement(null, "head", smilRootNode.NamespaceURI);
+            smilRootNode.AppendChild(headNode);
+            XmlNode bodyNode = smilDocument.CreateElement(null, "body", smilRootNode.NamespaceURI);
+            smilRootNode.AppendChild(bodyNode);
+            XmlNode mainSeqNode = smilDocument.CreateElement(null, "seq", smilRootNode.NamespaceURI);
+            bodyNode.AppendChild(mainSeqNode);
+
+            return smilDocument;
+        }
+
         private  XmlDocument CreateStub_XhtmlContentDocument(string language, string strInternalDTD, List<ExternalFileData> list_ExternalStyleSheets)
         {
             XmlDocument xhtmlDocument = new XmlDocument();
