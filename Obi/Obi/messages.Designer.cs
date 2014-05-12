@@ -1288,6 +1288,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}Epub3 Export.
+        /// </summary>
+        internal static string default_EpubExport_dirname {
+            get {
+                return ResourceManager.GetString("default_EpubExport_dirname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}DAISY3 Export.
         /// </summary>
         internal static string default_export_dirname {

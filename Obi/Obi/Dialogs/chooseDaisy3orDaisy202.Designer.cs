@@ -35,6 +35,7 @@ namespace Obi.Dialogs
             this.m_BtnCancel = new System.Windows.Forms.Button();
             this.m_radBtnDaisy3_202 = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_radBtnEpub3 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // m_radBtnDaisy3
@@ -77,12 +78,20 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
+            // m_radBtnEpub3
+            // 
+            resources.ApplyResources(this.m_radBtnEpub3, "m_radBtnEpub3");
+            this.m_radBtnEpub3.Name = "m_radBtnEpub3";
+            this.m_radBtnEpub3.TabStop = true;
+            this.m_radBtnEpub3.UseVisualStyleBackColor = true;
+            // 
             // chooseDaisy3orDaisy202
             // 
             this.AcceptButton = this.m_OKBtn;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_BtnCancel;
+            this.Controls.Add(this.m_radBtnEpub3);
             this.Controls.Add(this.m_radBtnDaisy3_202);
             this.Controls.Add(this.m_BtnCancel);
             this.Controls.Add(this.m_OKBtn);
@@ -105,5 +114,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_BtnCancel;
         private System.Windows.Forms.RadioButton m_radBtnDaisy3_202;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.RadioButton m_radBtnEpub3;
     }
 }

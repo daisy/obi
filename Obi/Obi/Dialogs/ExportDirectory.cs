@@ -128,6 +128,13 @@ namespace Obi.Dialogs
             get { return m_chkBoxFilenameLengthLimit.Checked ? Convert.ToInt32(m_numericUpDownFilenameLengthLimit.Value) : -1; }
             set { m_numericUpDownFilenameLengthLimit.Value = value;  }
         }
+        public bool EpubExportSettings
+        {
+            set
+            {
+                m_checkBoxMP3Encoder.Enabled = value;
+            }
+        }
 
         public string AdditionalTextForTitle { set { if (!Text.Contains (value)) Text =Text +  "("+value+")" ;} }
 

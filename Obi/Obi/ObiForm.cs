@@ -2398,6 +2398,12 @@ namespace Obi
                                                            string.Format(
                                                                Localizer.Message("Default_DAISY2_02export_dirname"), "")));
                     }
+                    if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.EPUB3)
+                    {
+                        exportDirectoryEPUB3 = Path.Combine(Directory.GetParent(mSession.Path).FullName,
+                                                       Program.SafeName(
+                                                           string.Format(Localizer.Message("default_EpubExport_dirname"), "")));
+                    }
                 }
                 if ( string.IsNullOrEmpty(exportDirectoryDAISY3 ) && string.IsNullOrEmpty(exportDirectoryDAISY202) && string.IsNullOrEmpty(exportDirectoryEPUB3))
                 {
@@ -2435,9 +2441,9 @@ namespace Obi
                         ExportDialogDAISY3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
                                                              mSettings.Export_AppendSectionNameToAudioFile;
                         ExportDialogDAISY3.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit >= 0 ? Settings.Export_AudioFilesNamesLengthLimit : 8;
-                        if (ExportDialogDAISY3.ShowDialog() != DialogResult.OK) ExportDialogDAISY3  = null;
+                        if (ExportDialogDAISY3.ShowDialog() != DialogResult.OK) ExportDialogDAISY3 = null;
                     }
-                    
+
 
                     if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY2_02 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202)
                     {
@@ -2454,31 +2460,32 @@ namespace Obi
                     }
 
                     // following commented code has to be updated for EPUB 3
-                    //if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202)
-                    //{
-                        //ExportDialogEPUB3 =
-                            //new ExportDirectory(exportDirectoryEPUB3,
-                                                //mSession.Path, true, mSettings.Export_BitRateMP3,
-                                                //mSettings.Export_AppendSectionNameToAudioFile);
-                        // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
-                        //ExportDialogEPUB3.AdditionalTextForTitle = "DAISY 3";
-                        //ExportDialogEPUB3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
-                                                             //mSettings.Export_AppendSectionNameToAudioFile;
-                        //ExportDialogEPUB3.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit >= 0 ? Settings.Export_AudioFilesNamesLengthLimit : 8;
-                        //ExportDialogEPUB3(ExportDialogDAISY3.ShowDialog() != DialogResult.OK) ExportDialogEPUB3 = null;
-                    //}
-                    
-                    if (ExportDialogDAISY3 != null ||  ExportDialogDAISY202 != null )
+                    if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.EPUB3)
+                    {
+                        ExportDialogEPUB3 =
+                            new ExportDirectory(exportDirectoryEPUB3,
+                                                mSession.Path, true, mSettings.Export_BitRateMP3,
+                                                mSettings.Export_AppendSectionNameToAudioFile);
+                        //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                        ExportDialogEPUB3.AdditionalTextForTitle = "Epub 3";
+                        ExportDialogEPUB3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
+                                                             mSettings.Export_AppendSectionNameToAudioFile;
+                        ExportDialogEPUB3.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit >= 0 ? Settings.Export_AudioFilesNamesLengthLimit : 8;
+                        ExportDialogEPUB3.EpubExportSettings = false;
+                        if (ExportDialogEPUB3.ShowDialog() != DialogResult.OK) ExportDialogEPUB3 = null;
+                    }
+
+                    if (ExportDialogDAISY3 != null || ExportDialogDAISY202 != null || ExportDialogEPUB3 != null)
                     {
                         try
                         {
                             // Need the trailing slash, otherwise exported data ends up in a folder one level
                             // higher than our selection.
-                            string exportPathDAISY3 = ExportDialogDAISY3 != null?  ExportDialogDAISY3.DirectoryPath: null;
-                            string exportPathDAISY202 = ExportDialogDAISY202!= null?  ExportDialogDAISY202.DirectoryPath: null;
-                            string exportPathEPUB3 = ExportDialogEPUB3 != null?  ExportDialogEPUB3.DirectoryPath: null;
+                            string exportPathDAISY3 = ExportDialogDAISY3 != null ? ExportDialogDAISY3.DirectoryPath : null;
+                            string exportPathDAISY202 = ExportDialogDAISY202 != null ? ExportDialogDAISY202.DirectoryPath : null;
+                            string exportPathEPUB3 = ExportDialogEPUB3 != null ? ExportDialogEPUB3.DirectoryPath : null;
 
-                            Dialogs.ExportDirectory dialog = ExportDialogDAISY3 != null ? ExportDialogDAISY3 : ExportDialogDAISY202;
+                            Dialogs.ExportDirectory dialog = ExportDialogDAISY3 != null ? ExportDialogDAISY3 : ExportDialogDAISY202 != null ? ExportDialogDAISY202 : ExportDialogEPUB3;
                             mSettings.Export_EncodeToMP3 = dialog.EncodeToMP3;
                             mSettings.Export_BitRateMP3 = dialog.BitRate;
                             mSettings.Export_AppendSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName;
@@ -2486,50 +2493,50 @@ namespace Obi
                                                                      dialog.LimitLengthOfAudioFileNames;
                             mSettings.Export_AudioFilesNamesLengthLimit = dialog.AudioFileNameCharsLimit;
 
-                            if (!string.IsNullOrEmpty(exportPathDAISY3) &&  !exportPathDAISY3.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                            if (!string.IsNullOrEmpty(exportPathDAISY3) && !exportPathDAISY3.EndsWith(Path.DirectorySeparatorChar.ToString()))
                             {
                                 exportPathDAISY3 += Path.DirectorySeparatorChar;
                             }
 
-                            if (!string.IsNullOrEmpty(exportPathDAISY202) &&  !exportPathDAISY202.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                            if (!string.IsNullOrEmpty(exportPathDAISY202) && !exportPathDAISY202.EndsWith(Path.DirectorySeparatorChar.ToString()))
                             {
                                 exportPathDAISY202 += Path.DirectorySeparatorChar;
                             }
 
                             urakawa.daisy.export.Daisy3_Export DAISY3Export = null;
                             urakawa.daisy.export.Daisy3_Export DAISY202Export = null;
-                            urakawa.daisy.export.Daisy3_Export EPUB3_Export  = null;
+                            urakawa.daisy.export.Daisy3_Export EPUB3_Export = null;
 
                             if (ExportDialogDAISY3 != null)
                             {
                                 DAISY3Export = new Obi.ImportExport.DAISY3_ObiExport(
-                                    mSession.Presentation, exportPathDAISY3, null, ExportDialogDAISY3.EncodeToMP3, (ushort) ExportDialogDAISY3.BitRate,
+                                    mSession.Presentation, exportPathDAISY3, null, ExportDialogDAISY3.EncodeToMP3, (ushort)ExportDialogDAISY3.BitRate,
                                     AudioLib.SampleRate.Hz44100,
                                     mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
                                     false, ExportDialogDAISY3.LevelSelection);
 
                                 DAISY3Export.AddSectionNameToAudioFile = ExportDialogDAISY3.AppendSectionNameToAudioFileName;
                                 DAISY3Export.AudioFileNameCharsLimit = ExportDialogDAISY3.AudioFileNameCharsLimit;
-                                if(ExportDialogDAISY3.EnabledAdvancedParameters)  DAISY3Export.SetAdditionalMp3EncodingParameters(ExportDialogDAISY3.Mp3ChannelMode, ExportDialogDAISY3.Mp3ReSample, ExportDialogDAISY3.Mp3RePlayGain);
+                                if (ExportDialogDAISY3.EnabledAdvancedParameters) DAISY3Export.SetAdditionalMp3EncodingParameters(ExportDialogDAISY3.Mp3ChannelMode, ExportDialogDAISY3.Mp3ReSample, ExportDialogDAISY3.Mp3RePlayGain);
                                 ((Obi.ImportExport.DAISY3_ObiExport)DAISY3Export).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                             }
                             if (ExportDialogDAISY202 != null)
                             {
                                 DAISY202Export = new Obi.ImportExport.DAISY202Export(
-                                    mSession.Presentation, exportPathDAISY202, ExportDialogDAISY202.EncodeToMP3, (ushort) ExportDialogDAISY202.BitRate,
+                                    mSession.Presentation, exportPathDAISY202, ExportDialogDAISY202.EncodeToMP3, (ushort)ExportDialogDAISY202.BitRate,
                                     AudioLib.SampleRate.Hz44100, mSettings.AudioChannels == 2,
                                     ExportDialogDAISY202.LevelSelection);
 
                                 DAISY202Export.AddSectionNameToAudioFile = ExportDialogDAISY202.AppendSectionNameToAudioFileName;
                                 DAISY202Export.AudioFileNameCharsLimit = ExportDialogDAISY202.AudioFileNameCharsLimit;
-                                if(ExportDialogDAISY202.EnabledAdvancedParameters)  DAISY202Export.SetAdditionalMp3EncodingParameters(ExportDialogDAISY202.Mp3ChannelMode, ExportDialogDAISY202.Mp3ReSample, ExportDialogDAISY202.Mp3RePlayGain);
-                                ((Obi.ImportExport.DAISY202Export) DAISY202Export).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                                if (ExportDialogDAISY202.EnabledAdvancedParameters) DAISY202Export.SetAdditionalMp3EncodingParameters(ExportDialogDAISY202.Mp3ChannelMode, ExportDialogDAISY202.Mp3ReSample, ExportDialogDAISY202.Mp3RePlayGain);
+                                ((Obi.ImportExport.DAISY202Export)DAISY202Export).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                             }
 
-                            if (ExportDialogEPUB3!= null)
+                            if (ExportDialogEPUB3 != null)
                             {
                                 EPUB3_Export = new Obi.ImportExport.Epub3_ObiExport(
-                                    mSession.Presentation, exportPathEPUB3, null, ExportDialogEPUB3.EncodeToMP3, (ushort) ExportDialogEPUB3.BitRate,
+                                    mSession.Presentation, exportPathEPUB3, null, ExportDialogEPUB3.EncodeToMP3, (ushort)ExportDialogEPUB3.BitRate,
                                     AudioLib.SampleRate.Hz44100,
                                     mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
                                     false, ExportDialogEPUB3.LevelSelection);
@@ -2541,43 +2548,43 @@ namespace Obi
                             }
 
                             //DAISYExport.BitRate_Mp3 = dialog.BitRate;
-                            
 
-                            
+
+
                             //DAISYExport.EnableExplicitGarbageCollection = Settings.OptimizeMemory;
                             Status(String.Format(Localizer.Message("ObiFormStatusMsg_ExportingProject"), exportPathDAISY3));
 
                             ProgressDialog progress =
                                 new ProgressDialog(Localizer.Message("export_progress_dialog_title"),
                                                    delegate(ProgressDialog progress1)
-                                                       {
-                                                           
-                                                               if (DAISY3Export != null)
-                                                               {
-                                                                   
-                                                                   mSession.Presentation.ExportToZ(exportPathDAISY3, mSession.Path,
-                                                                                                   DAISY3Export);
-                                                               }
-                                                               if (DAISY202Export != null)
-                                                               {
-                                                                   mSession.Presentation.ExportToZ(exportPathDAISY202, mSession.Path,
-                                                                                               DAISY202Export);
-                                                               }
+                                                   {
 
-                                                           if (EPUB3_Export != null)
-                                                               {
-                                                                   
-                                                                   mSession.Presentation.ExportToZ(exportPathEPUB3, mSession.Path,
-                                                                                                   EPUB3_Export);
-                                                               }
-                                                       });
+                                                       if (DAISY3Export != null)
+                                                       {
+
+                                                           mSession.Presentation.ExportToZ(exportPathDAISY3, mSession.Path,
+                                                                                           DAISY3Export);
+                                                       }
+                                                       if (DAISY202Export != null)
+                                                       {
+                                                           mSession.Presentation.ExportToZ(exportPathDAISY202, mSession.Path,
+                                                                                       DAISY202Export);
+                                                       }
+
+                                                       if (EPUB3_Export != null)
+                                                       {
+
+                                                           mSession.Presentation.ExportToZ(exportPathEPUB3, mSession.Path,
+                                                                                           EPUB3_Export);
+                                                       }
+                                                   });
 
                             progress.OperationCancelled +=
                                 new Obi.Dialogs.OperationCancelledHandler(
                                     delegate(object sender, EventArgs e) { DAISY3Export.RequestCancellation = true; });
-                            if(DAISY3Export!= null)   DAISY3Export.ProgressChangedEvent +=
+                            if (DAISY3Export != null) DAISY3Export.ProgressChangedEvent +=
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
-                            if(DAISY202Export!= null)   DAISY202Export.ProgressChangedEvent +=
+                            if (DAISY202Export != null) DAISY202Export.ProgressChangedEvent +=
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                             progress.ShowDialog();
                             if (progress.Exception != null) throw progress.Exception;
@@ -2599,9 +2606,9 @@ namespace Obi
                                                                    Directory.GetParent(mSession.Path).FullName);
                             mSession.ForceSave();
 
-                            string displayPath = (exportPathDAISY3 != null && exportPathDAISY202 != null ) ? exportPathDAISY3 + "\n" + exportPathDAISY202:
-                                exportPathDAISY3 != null? exportPathDAISY3: exportPathDAISY202;
-                            MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"),displayPath),
+                            string displayPath = (exportPathDAISY3 != null && exportPathDAISY202 != null) ? exportPathDAISY3 + "\n" + exportPathDAISY202 :
+                                exportPathDAISY3 != null ? exportPathDAISY3 : exportPathDAISY202;
+                            MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), displayPath),
                                             Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK,
                                             MessageBoxIcon.Information);
                         }
