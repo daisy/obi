@@ -2629,4 +2629,7 @@ Error text: {1}</value>
   <data name="Project_MessageBoxToCheckFixContentView" xml:space="preserve">
     <value>Do you want to check "Fix content view width" also ?(Recommended)</value>
   </data>
+  <data name="default_EpubExport_dirname" xml:space="preserve">
+    <value>{0}Epub3 Export</value>
+  </data>
 </root>

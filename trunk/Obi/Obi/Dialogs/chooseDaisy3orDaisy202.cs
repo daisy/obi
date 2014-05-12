@@ -51,6 +51,11 @@ namespace Obi.Dialogs
                 m_ExportFormat = Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202;
                 Close();
             }
+            else if (m_radBtnEpub3.Checked)
+            {
+                m_ExportFormat = Obi.ImportExport.ExportFormat.EPUB3;
+                Close();
+            }
         }
 
         private void m_BtnCancel_Click(object sender, EventArgs e)
