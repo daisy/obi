@@ -2471,7 +2471,6 @@ namespace Obi
                         ExportDialogEPUB3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
                                                              mSettings.Export_AppendSectionNameToAudioFile;
                         ExportDialogEPUB3.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit >= 0 ? Settings.Export_AudioFilesNamesLengthLimit : 8;
-                        ExportDialogEPUB3.EpubExportSettings = false;
                         if (ExportDialogEPUB3.ShowDialog() != DialogResult.OK) ExportDialogEPUB3 = null;
                     }
 
