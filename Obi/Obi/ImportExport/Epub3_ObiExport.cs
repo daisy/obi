@@ -133,11 +133,13 @@ namespace Obi.ImportExport
                     //XmlNode htmlHeadNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(htmlDocument, true, "head", htmlDocument.DocumentElement.NamespaceURI).FirstChild;
                     XmlNode htmlHeadNode = htmlDocument.GetElementsByTagName("head")[0];
                     if (htmlHeadNode == null)
-                        System.Windows.Forms.MessageBox.Show("head node is null ");
+                    {
+                        //System.Windows.Forms.MessageBox.Show("head node is null ");
+                    }
                     else
                     {
                         XmlNode titleNode = htmlDocument.CreateElement("title", htmlHeadNode.NamespaceURI);
-                        titleNode.AppendChild(htmlDocument.CreateTextNode( ((SectionNode)urakawaNode).Label));
+                        titleNode.AppendChild(htmlDocument.CreateTextNode(((SectionNode)urakawaNode).Label));
                         htmlHeadNode.AppendChild(titleNode);
                     }
                     //htmlBodyNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(htmlDocument, true, "body", null).FirstChild;
@@ -992,11 +994,13 @@ namespace Obi.ImportExport
 
             XmlNode package = xmlDoc.CreateElement(null,
                 "package",
-                NS_URL_EPUB);
+                "http://www.idpf.org/2007/opf");
 
             xmlDoc.AppendChild(package);
 
             XmlDocumentHelper.CreateAppendXmlAttribute(xmlDoc, package, "version", "3.0");
+            XmlDocumentHelper.CreateAppendXmlAttribute(xmlDoc, package, "xmlns:dc", "http://purl.org/dc/elements/1.1/");
+            XmlDocumentHelper.CreateAppendXmlAttribute(xmlDoc, package, "unique-identifier", "uid");
 
             //if (isXukSpine)
             //{
@@ -1025,8 +1029,7 @@ namespace Obi.ImportExport
         protected override void AddMetadata_Opf(XmlDocument opfDocument)
         {
             XmlNode dc_metadataNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(opfDocument, true, "metadata", null); //opfDocument.GetElementsByTagName("dc-metadata")[0];
-            //XmlNode x_metadataNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(opfDocument, true, "x-metadata", null); //opfDocument.GetElementsByTagName("x-metadata")[0];
-
+            
             urakawa.metadata.Metadata mdId = AddMetadata_DtbUid(true, opfDocument, dc_metadataNode);
 
             //AddMetadata_Generator(opfDocument, x_metadataNode);
@@ -1113,7 +1116,8 @@ namespace Obi.ImportExport
 
                 if (contains)
                 {
-                    metadataNodeCreated = AddMetadataAsInnerText(opfDocument, dc_metadataNode, name, m.NameContentAttribute.Value);
+                    
+                    metadataNodeCreated = AddMetadataAsInnerText(opfDocument, dc_metadataNode, name.ToLower() , m.NameContentAttribute.Value);
                     // add other metadata attributes if any
                     foreach (urakawa.metadata.MetadataAttribute ma in m.OtherAttributes.ContentsAs_Enumerable)
                     {
@@ -1200,6 +1204,49 @@ namespace Obi.ImportExport
             
         }
 
+        protected override XmlNode AddMetadataAsInnerText(XmlDocument doc, XmlNode metadataParentNode, string name, string content)
+        {
+            //string name = name_.ToLower();
+            XmlNode node = null;
+
+            string prefix;
+            string localName;
+            urakawa.property.xml.XmlProperty.SplitLocalName(name, out prefix, out localName);
+
+            if (!string.IsNullOrEmpty(prefix))
+            {
+                // split the metadata name and make first alphabet upper, required for daisy 3.0
+
+                localName = localName.Substring(0, 1).ToLower() + localName.Remove(0, 1);
+
+                string nsUri = null;
+                if (metadataParentNode != null && metadataParentNode.Attributes != null)
+                {
+                    XmlNode attr = metadataParentNode.Attributes.GetNamedItem(XmlReaderWriterHelper.NS_PREFIX_XMLNS + ":dc");
+                    if (attr != null)
+                    {
+                        nsUri = attr.Value;
+                    }
+                }
+                if (nsUri == null)
+                {
+                    nsUri = DiagramContentModelHelper.NS_URL_DC;
+                }
+
+                node = doc.CreateElement(prefix, localName, nsUri);
+            }
+            else
+            {
+                node = doc.CreateElement(null, name, metadataParentNode.NamespaceURI);
+            }
+            metadataParentNode.AppendChild(node);
+            node.AppendChild(
+                doc.CreateTextNode(content));
+
+            return node;
+        }
+
+
         protected override void CreateOpfDocument()
         {
             //m_ProgressPercentage = 90;
@@ -1280,6 +1327,18 @@ namespace Obi.ImportExport
             List<string> htmlIDListInPlayOrder = new List<string>();
             XmlNode metadataNode = opfDocument.GetElementsByTagName ("metadata")[0] ;
 
+            XmlNode dcTermsXmlNode = opfDocument.CreateElement("meta", opfDocument.DocumentElement.NamespaceURI);
+            metadataNode.AppendChild(dcTermsXmlNode);
+
+            XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument , dcTermsXmlNode, "property", "dcterms:modified");
+
+            DateTime dateTime = DateTime.UtcNow;
+            String strDateTime = dateTime.Year + "-" 
+                + RefineString (dateTime.Month.ToString() ) + "-"
+                + RefineString (dateTime.Day.ToString()) 
+                + "T" + RefineString (dateTime.Hour.ToString()) + ":" + RefineString (dateTime.Minute.ToString() ) + ":" + RefineString (dateTime.Second.ToString ()) + "Z";
+            dcTermsXmlNode.AppendChild( opfDocument.CreateTextNode(strDateTime));
+            
             for (int i = 0; i < m_FilesList_Smil.Count; i++ )
             {
                 string smilFileName = m_FilesList_Smil[i];
@@ -1289,9 +1348,9 @@ namespace Obi.ImportExport
                 string strSmilID = GetNextID(ID_OpfPrefix);
                 string strHtmlID = GetNextID(ID_OpfPrefix);
 
-                AddFilenameToManifest(opfDocument, manifestNode, smilFileName, strSmilID, DataProviderFactory.SMIL_MIME_TYPE_);
+                AddFilenameToManifest(opfDocument, manifestNode, smilFileName, strSmilID, @"application/smil+xml");
                 XmlNode htmlNode = AddFilenameToManifest(opfDocument, manifestNode, htmlFileName , strHtmlID, DataProviderFactory.XHTML_MIME_TYPE);
-                XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, htmlNode, "media-overlays", strSmilID);
+                XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, htmlNode, "media-overlay", strSmilID);
                 htmlIDListInPlayOrder.Add(strHtmlID);
 
               // add media-overlays duration metadata
@@ -1480,7 +1539,7 @@ string meta_InfPath = Path.Combine(m_EpubParentDirectoryPath, m_Meta_infFileName
             try
             {
                 string containerFilePath = Path.Combine(meta_InfPath, "container.xml");
-            string relativeOpfPath = m_OutputDirectoryName + Path.DirectorySeparatorChar + Path.GetFileName(OpfFilePath);
+            string relativeOpfPath = m_OutputDirectoryName + @"/" + Path.GetFileName(OpfFilePath);
             
                 string containerXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<container version=\"1.0\" xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\">\n<rootfiles>\n<rootfile full-path=\"" + relativeOpfPath + "\" media-type=\"application/oebps-package+xml\" />\n</rootfiles>\n</container>";
             sw_Container = File.CreateText (containerFilePath ) ;
@@ -1504,7 +1563,20 @@ string meta_InfPath = Path.Combine(m_EpubParentDirectoryPath, m_Meta_infFileName
             urakawa.daisy.export.Epub3_Export.ZipEpub(EPUBFilePath, m_EpubParentDirectoryPath);            
             
         }
-        
+
+        private string RefineString(string str)
+        {
+            
+            if (str.Length == 1)
+            {
+                
+                str = "0" + str;
+                
+            }
+            
+            return str;
+        }
+
 
             }
 }
