@@ -221,6 +221,7 @@ namespace Obi.ImportExport
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeq, "id", GetNextID(ID_SmilPrefix));
                     smilFileName = GetNextSmilFileName;
                     htmlFileName = Path.GetFileNameWithoutExtension(smilFileName) + ".html";
+                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeq.ParentNode, "epub:textref", htmlFileName , NS_URL_EPUB);
                     //m_ProgressPercentage += Convert.ToInt32((m_SmilFileNameCounter / m_ListOfLevels.Count) * 100 * 0.7);
                     //reportProgress(m_ProgressPercentage, String.Format(UrakawaSDK_daisy_Lang.CreatingSmilFiles, m_SmilFileNameCounter, m_ListOfLevels.Count));
                 }
@@ -258,14 +259,19 @@ namespace Obi.ImportExport
                     }
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "id", strSeqID);
                     //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", special_UrakawaNode.GetXmlElementQName().LocalName);
-                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page) XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "pagenum");
-                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Custom && special_UrakawaNode == n)
+                    //@epub3, class is replaced by epub:type
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                     {
-                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", ((EmptyNode)n).CustomRole);
-                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", ((EmptyNode)n).CustomRole);
-                        if (!currentSmilCustomTestList.Contains(((EmptyNode)n).CustomRole)) currentSmilCustomTestList.Add(((EmptyNode)n).CustomRole);
-
+                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "epub:type", "pagebreak", NS_URL_EPUB);
                     }
+                    //if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page) XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "pagenum");
+                    //if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Custom && special_UrakawaNode == n)
+                    //{
+                        //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", ((EmptyNode)n).CustomRole);
+                        //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", ((EmptyNode)n).CustomRole);
+                        //if (!currentSmilCustomTestList.Contains(((EmptyNode)n).CustomRole)) currentSmilCustomTestList.Add(((EmptyNode)n).CustomRole);
+//
+                    //}
                     if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)n).AssociatedNode != null)
                     {
                         if (IsAnnoref((EmptyNode)n))
@@ -326,7 +332,8 @@ namespace Obi.ImportExport
                     if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                     {
                         //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", special_UrakawaNode.GetXmlElementQName().LocalName);
-                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "pagenum");
+                        //@epub3, custom test not required
+                        //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "pagenum");
 
 
 
@@ -428,9 +435,10 @@ namespace Obi.ImportExport
 
                 XmlNode SmilTextNode = null;
                 //not required in audio ncx book
-                /*
+                
                 if ((section.Heading == null && n == section.PhraseChild(0))
-                    || (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Heading))
+                    || (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Heading)
+                 || (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page) )
                 {
                     SmilTextNode = smilDocument.CreateElement(null, "text", mainSeq.NamespaceURI);
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "id", GetNextID(ID_SmilPrefix));
@@ -438,7 +446,7 @@ namespace Obi.ImportExport
                     //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", m_Filename_Content + "#" + dtbookID);
                     parNode.AppendChild(SmilTextNode);
                 }
-                 */
+                 
 
                 if (externalAudio != null)
                 {
@@ -548,9 +556,11 @@ namespace Obi.ImportExport
                     XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, anchorPageNode, "href", htmlFileName+ "#" + strContentDocPageId);
                 anchorPageNode.AppendChild(
                         navigationDocument.CreateTextNode(((EmptyNode)n).PageNumber.Unquoted));
+                
+                XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "epub:textref", htmlFileName + "#" + strContentDocPageId, NS_URL_EPUB);
                     ////System.Windows.Forms.MessageBox.Show("Page ");
                     // add reference to par in dtbook document
-
+                XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", htmlFileName + "#" + strContentDocPageId);
                 }
                 //obi: commented for now
                     /*
@@ -751,8 +761,9 @@ namespace Obi.ImportExport
                             contentAnchorNode.AppendChild(
                             navigationDocument.CreateTextNode(txtMedia));
 
-
-                            ////System.Windows.Forms.MessageBox.Show("Navpoint");
+                            XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeq, "epub:textref", htmlFileName + "#" + strSectionID, NS_URL_EPUB);
+                            //System.Windows.Forms.MessageBox.Show(strSectionID);
+                            if(SmilTextNode.Attributes.GetNamedItem("src") == null)  XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", htmlFileName + "#" + strSectionID);
                         }
                         ///int navPointDepth = GetDepthOfNavPointNode(navigationDocument, navPointNode);
                         int navPointDepth = 1;
@@ -810,11 +821,12 @@ namespace Obi.ImportExport
                 if (smilDocument != null)
                 {
                     // update duration in seq node
-                    XmlNode mainSeqNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilDocument, true, "body", null).FirstChild; //smilDocument.GetElementsByTagName("body")[0].FirstChild;
-                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "dur", FormatTimeString(durationOfCurrentSmil));
-                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "fill", "remove");
+                    //@epub3 dur attribute is not required
+                    //XmlNode mainSeqNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(smilDocument, true, "body", null).FirstChild; //smilDocument.GetElementsByTagName("body")[0].FirstChild;
+                    //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "dur", FormatTimeString(durationOfCurrentSmil));
+                    //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeqNode, "fill", "remove");
                     string strSmilDuration = FormatTimeString(smilElapseTime) ;
-                    AddMetadata_Smil(smilDocument, strSmilDuration, null);
+                    //AddMetadata_Smil(smilDocument, strSmilDuration, null);
 
                     XmlReaderWriterHelper.WriteXmlDocument(smilDocument, Path.Combine(m_OutputDirectory, smilFileName), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
 
