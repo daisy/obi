@@ -885,6 +885,7 @@ namespace Obi.ImportExport
             }
             // write ncs document to file
             m_TotalTime = new Time(smilElapseTime);
+            m_SmilDurationForOpfMetadata.Add(m_TotalTime.ToString ());
             AddMetadata_Ncx(navigationDocument, totalPageCount.ToString(), maxNormalPageNumber.ToString(), maxDepth.ToString(), null);
             XmlReaderWriterHelper.WriteXmlDocument(navigationDocument, Path.Combine(m_OutputDirectory, "Navigation.html"), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
         }
@@ -936,10 +937,11 @@ namespace Obi.ImportExport
                     //"http://www.daisy.org/z3986/2005/dtbsmil-2005-2.dtd",
                 //null));
             XmlNode smilRootNode = smilDocument.CreateElement(null,
-                "smil", "http://http://www.w3.org/ns/SMIL");
+                "smil", "http://www.w3.org/ns/SMIL");
 
             smilDocument.AppendChild(smilRootNode);
             XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, smilRootNode, "xmlns:epub", "http://www.idpf.org/2007/ops");
+            
             XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, smilRootNode, "version", "3.0");
 
             XmlNode headNode = smilDocument.CreateElement(null, "head", smilRootNode.NamespaceURI);
@@ -1360,6 +1362,14 @@ namespace Obi.ImportExport
                 XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaNode, "refines","#" + strSmilID);
                 metaNode.AppendChild(opfDocument.CreateTextNode(strSmilDuration));
             }
+
+            XmlNode metaNode_TotalDuration = opfDocument.CreateElement("meta", metadataNode.NamespaceURI);
+            metadataNode.AppendChild(metaNode_TotalDuration);
+            XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaNode_TotalDuration, "property", "media:duration");
+            
+
+            metaNode_TotalDuration.AppendChild(opfDocument.CreateTextNode(m_SmilDurationForOpfMetadata[m_SmilDurationForOpfMetadata.Count-1]));
+
             XmlNode metaNode_MOActive = opfDocument.CreateElement("meta", metadataNode.NamespaceURI);
             metadataNode.AppendChild(metaNode_MOActive);
             XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaNode_MOActive, "property", "media:active-class");
