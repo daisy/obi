@@ -117,6 +117,7 @@ namespace Obi.ImportExport
                 XmlNode htmlBodyNode = null;
                 XmlNode sectionXmlNode = null;
                 string strSectionID = null;
+                string strTextId = null;
 
                 bool isBranchingActive = false;
                 urakawa.core.TreeNode branchStartTreeNode = null;
@@ -273,62 +274,63 @@ namespace Obi.ImportExport
                         //if (!currentSmilCustomTestList.Contains(((EmptyNode)n).CustomRole)) currentSmilCustomTestList.Add(((EmptyNode)n).CustomRole);
 //
                     //}
-                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)n).AssociatedNode != null)
-                    {
-                        if (IsAnnoref((EmptyNode)n))
-                        {
-                            XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "annoref");
-                            if (!currentSmilCustomTestList.Contains("annoref")) currentSmilCustomTestList.Add("annoref");
-                            XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "annoref");
-                        }
-                        else
-                        {
-
-                            XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "noteref");
-                            if (!currentSmilCustomTestList.Contains("noteref")) currentSmilCustomTestList.Add("noteref");
-                            XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "noteref");
-                        }
-                    }
+                    //@epub3, commenting the folowing noterefs for now
+                    //if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)n).AssociatedNode != null)
+                    //{
+                        //if (IsAnnoref((EmptyNode)n))
+                        //{
+                            //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "annoref");
+                            //if (!currentSmilCustomTestList.Contains("annoref")) currentSmilCustomTestList.Add("annoref");
+                            //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "annoref");
+                        //}
+                        //else
+                        //{
+//
+                            //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "noteref");
+                            //if (!currentSmilCustomTestList.Contains("noteref")) currentSmilCustomTestList.Add("noteref");
+                            //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "customTest", "noteref");
+                        //}
+                    //}
                     
                     //if (IsSkippableNode(special_UrakawaNode))
-                    if (((EmptyNode)special_UrakawaNode).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)special_UrakawaNode).AssociatedNode != null)
-                    {
-                        m_AnchorXmlNodeToReferedNodeMap.Add(Seq_SpecialNode, ((EmptyNode)special_UrakawaNode).AssociatedNode);
-                        XmlNode anchorNode = smilDocument.CreateElement(null, "a", Seq_SpecialNode.NamespaceURI);
-                        Seq_SpecialNode.AppendChild(anchorNode);
-                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "external", "false");
-                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "");
-                        if (m_Skippable_UpstreamIdMap.Count > 0 && m_Skippable_UpstreamIdMap.ContainsKey(((EmptyNode)special_UrakawaNode).AssociatedNode))
-                        {
-                            anchorNode.Attributes.GetNamedItem("href").Value = m_Skippable_UpstreamIdMap[((EmptyNode)special_UrakawaNode).AssociatedNode];
-                        }
-                        if (!m_AnchorSmilDoc_SmileFileNameMap.ContainsKey(smilDocument)) m_AnchorSmilDoc_SmileFileNameMap.Add(smilDocument, smilFileName);
-                        //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "#" + ID_SmilPrefix + m_TreeNode_XmlNodeMap[n].Attributes.GetNamedItem("idref").Value.Replace("#", ""));
+                    //if (((EmptyNode)special_UrakawaNode).Role_ == EmptyNode.Role.Anchor && ((EmptyNode)special_UrakawaNode).AssociatedNode != null)
+                    //{
+                        //m_AnchorXmlNodeToReferedNodeMap.Add(Seq_SpecialNode, ((EmptyNode)special_UrakawaNode).AssociatedNode);
+                        //XmlNode anchorNode = smilDocument.CreateElement(null, "a", Seq_SpecialNode.NamespaceURI);
+                        //Seq_SpecialNode.AppendChild(anchorNode);
+                        //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "external", "false");
+                        //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "");
+                        //if (m_Skippable_UpstreamIdMap.Count > 0 && m_Skippable_UpstreamIdMap.ContainsKey(((EmptyNode)special_UrakawaNode).AssociatedNode))
+                        //{
+                            //anchorNode.Attributes.GetNamedItem("href").Value = m_Skippable_UpstreamIdMap[((EmptyNode)special_UrakawaNode).AssociatedNode];
+                        //}
+                        //if (!m_AnchorSmilDoc_SmileFileNameMap.ContainsKey(smilDocument)) m_AnchorSmilDoc_SmileFileNameMap.Add(smilDocument, smilFileName);
+                        ////XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, anchorNode, "href", "#" + ID_SmilPrefix + m_TreeNode_XmlNodeMap[n].Attributes.GetNamedItem("idref").Value.Replace("#", ""));
 
-                        //isBranchingActive = true;
+                        ////isBranchingActive = true;
 
-                        //branchStartTreeNode = GetReferedTreeNode(special_UrakawaNode);
+                        ////branchStartTreeNode = GetReferedTreeNode(special_UrakawaNode);
 
-                    }
-                    if (IsSkippable((EmptyNode)n))
-                    {
+                    //}
+                    //if (IsSkippable((EmptyNode)n))
+                    //{
 
-                        bool foundAnchor = false;
-                        foreach (XmlNode xn in m_AnchorXmlNodeToReferedNodeMap.Keys)
-                        {
-                            if (m_AnchorXmlNodeToReferedNodeMap[xn] == n)
-                            {
-
-                                XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xn, true, "a", xn.NamespaceURI);
-                                
-
-                                anchorNode.Attributes.GetNamedItem("href").Value = smilFileName + "#" + strSeqID;
-                                foundAnchor = true;
-                                //break;
-                            }
-                        }
-                        if (!foundAnchor) m_Skippable_UpstreamIdMap.Add(n, smilFileName + "#" + strSeqID);
-                    }
+                        //bool foundAnchor = false;
+                        //foreach (XmlNode xn in m_AnchorXmlNodeToReferedNodeMap.Keys)
+                        //{
+                            //if (m_AnchorXmlNodeToReferedNodeMap[xn] == n)
+                            //{
+//
+                                //XmlNode anchorNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xn, true, "a", xn.NamespaceURI);
+//                                
+//
+                                //anchorNode.Attributes.GetNamedItem("href").Value = smilFileName + "#" + strSeqID;
+                                //foundAnchor = true;
+                                ////break;
+                            //}
+                        //}
+                        //if (!foundAnchor) m_Skippable_UpstreamIdMap.Add(n, smilFileName + "#" + strSeqID);
+                    //}
 
                     if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                     {
@@ -437,16 +439,16 @@ namespace Obi.ImportExport
                 XmlNode SmilTextNode = null;
                 //not required in audio ncx book
                 
-                if ((section.Heading == null && n == section.PhraseChild(0))
-                    || (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Heading)
-                 || (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page) )
-                {
+                //if ((section.Heading == null && n == section.PhraseChild(0))
+                    //|| (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Heading)
+                 //|| (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page) )
+                //{
                     SmilTextNode = smilDocument.CreateElement(null, "text", mainSeq.NamespaceURI);
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "id", GetNextID(ID_SmilPrefix));
                     //string dtbookID = m_TreeNode_XmlNodeMap[n].Attributes != null ? m_TreeNode_XmlNodeMap[n].Attributes.GetNamedItem("id").Value : m_TreeNode_XmlNodeMap[n.Parent].Attributes.GetNamedItem("id").Value;
-                    //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", m_Filename_Content + "#" + dtbookID);
+                    /////XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", m_Filename_Content + "#" + dtbookID);
                     parNode.AppendChild(SmilTextNode);
-                }
+                //}
                  
 
                 if (externalAudio != null)
@@ -562,6 +564,10 @@ namespace Obi.ImportExport
                     ////System.Windows.Forms.MessageBox.Show("Page ");
                     // add reference to par in dtbook document
                 XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", htmlFileName + "#" + strContentDocPageId);
+                if (strTextId == null || strTextId != strContentDocPageId)
+                {
+                    strTextId = strContentDocPageId;
+                }
                 }
                 //obi: commented for now
                     /*
@@ -765,6 +771,7 @@ namespace Obi.ImportExport
                             XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, mainSeq, "epub:textref", htmlFileName + "#" + strSectionID, NS_URL_EPUB);
                             //System.Windows.Forms.MessageBox.Show(strSectionID);
                             if(SmilTextNode.Attributes.GetNamedItem("src") == null)  XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", htmlFileName + "#" + strSectionID);
+                            if (strTextId != null || strTextId != strSectionID) strTextId = strSectionID;
                         }
                         ///int navPointDepth = GetDepthOfNavPointNode(navigationDocument, navPointNode);
                         int navPointDepth = 1;
@@ -773,7 +780,17 @@ namespace Obi.ImportExport
                         IsNcxNativeNodeAdded = true;
                     }
                 }
+                if (Seq_SpecialNode != null && Seq_SpecialNode.Attributes.GetNamedItem("epub:textref") == null && strTextId != null)
+                {
+                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "epub:textref", htmlFileName + "#" + strTextId, NS_URL_EPUB);
+                }
 
+                if (SmilTextNode != null && SmilTextNode.Attributes.GetNamedItem("src") == null)
+                {
+                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", htmlFileName + "#" + strTextId);
+                }
+
+                
                 if (isBranchingActive)
                 {
                     //IsBranchAssigned = true;
