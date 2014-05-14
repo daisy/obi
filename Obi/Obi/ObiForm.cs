@@ -5179,6 +5179,62 @@ namespace Obi
                 UpdateSectionsMenu();
             }
 
+            private bool ValidateWithEpubCheck(string epub3Export, out string strMessage)
+            {
+                string strOutput = null;
+                try
+                {
+                    string pipelineDirectoryPath = Path.GetDirectoryName(mSettings.PipelineScriptsPath);
+                    string epubCheckPath = Path.Combine(pipelineDirectoryPath, "epubcheck\\epubcheck.jar");
+
+                    string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+                    string obiSettingsDir = System.IO.Path.Combine(appDataDir, "Obi");
+                    if (!System.IO.Directory.Exists(obiSettingsDir)) System.IO.Directory.CreateDirectory(obiSettingsDir);
+                    string epubCheckOutput = System.IO.Path.Combine(obiSettingsDir, "epubcheckoutput.txt" );
+
+                    Process epubCheckProcess = new Process();
+                    epubCheckProcess.StartInfo.CreateNoWindow = true;
+                    epubCheckProcess.StartInfo.ErrorDialog = true;
+                    epubCheckProcess.StartInfo.UseShellExecute = false;
+
+                    epubCheckProcess.StartInfo.FileName = epubCheckPath;
+                    epubCheckProcess.StartInfo.Arguments = "java -jar " + epubCheckPath + " " + epub3Export + " -mode exp -save > " + epubCheckOutput + " 2>&1";
+                    epubCheckProcess.StartInfo.WorkingDirectory = Directory.GetParent(epubCheckPath).FullName;
+
+                    epubCheckProcess.Start();
+                    epubCheckProcess.WaitForExit();
+
+                    if (File.Exists (epubCheckOutput ))
+                    {
+                        strOutput =  File.ReadAllText (epubCheckOutput ) ;
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
+                bool isSuccessful = false ;
+                if (strOutput == null )
+                {
+                    // operation failed, no results should be displayed
+                    strOutput = "failed" ;
+                    isSuccessful = false ;
+                }
+                else
+                {
+                    if (strOutput.Contains ("ERROR"))
+                    {
+                        isSuccessful = false ;
+                    }
+                    else 
+                    {
+                        isSuccessful = true ;
+                    }
+                }
+                strMessage = strOutput;
+                return isSuccessful;
+            }
 
 
 
