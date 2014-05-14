@@ -91,6 +91,7 @@ namespace Obi.ImportExport
             reportProgress(-1, UrakawaSDK_daisy_Lang.CreateSmilAndNcxFiles);
 
             ////System.Windows.Forms.MessageBox.Show(m_ListOfLevels.Count.ToString());
+            XmlNode olHeadingsNode = null;
             foreach (urakawa.core.TreeNode urakawaNode in m_ListOfLevels)
                         {
                 
@@ -99,7 +100,7 @@ namespace Obi.ImportExport
                 XmlDocument htmlDocument = null;
                 string smilFileName = null;
                 string htmlFileName = null;
-                XmlNode olHeadingsNode = null;
+                
                 urakawa.core.TreeNode currentHeadingTreeNode = null;
                 urakawa.core.TreeNode special_UrakawaNode = null;
                 Time durationOfCurrentSmil = new Time();
@@ -480,7 +481,7 @@ namespace Obi.ImportExport
                     }
 
                     //XmlNode pageListNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(navigationDocument, true, "pageList", null);
-                    XmlNode ulPageNode = null;
+                    XmlNode olPageNode = null;
                     if (navPageListNode == null)
                     {
                         navPageListNode = navigationDocument.CreateElement("nav", navigationDocRootNode.NamespaceURI);
@@ -494,10 +495,10 @@ namespace Obi.ImportExport
                         XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, pageHeading, "class", "pagelist");
                         pageHeading.AppendChild(navigationDocument.CreateTextNode("List of pages"));
 
-                        ulPageNode = navigationDocument.CreateElement("ul", navPageListNode.NamespaceURI);
-                        navPageListNode.AppendChild(ulPageNode);
+                        olPageNode = navigationDocument.CreateElement("ol", navPageListNode.NamespaceURI);
+                        navPageListNode.AppendChild(olPageNode);
                     }
-                    if (ulPageNode == null ) ulPageNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(navPageListNode, true, "ul", null);
+                    if (olPageNode == null ) olPageNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(navPageListNode, true, "ol", null);
 
                     //if (pageListNode == null)
                     //{
@@ -507,7 +508,7 @@ namespace Obi.ImportExport
                     //}
 
                     XmlNode pageTargetNodeLI = navigationDocument.CreateElement(null, "li", navPageListNode.NamespaceURI);
-                    ulPageNode.AppendChild(pageTargetNodeLI);
+                    olPageNode.AppendChild(pageTargetNodeLI);
 
                     XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, pageTargetNodeLI, "id", GetNextID(ID_NcxPrefix));
                     //XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocu       ment, pageTargetNodeLI, "class", "pagenum");
@@ -691,7 +692,7 @@ namespace Obi.ImportExport
                         externalAudio = GetExternalAudioMedia(n);
 
                         // first create navPoints
-                        olHeadingsNode = navigationDocument.CreateElement(null, "ol", navNode.NamespaceURI);
+                        if(olHeadingsNode  == null)  olHeadingsNode = navigationDocument.CreateElement(null, "ol", navNode.NamespaceURI);
                         
                         //if (currentHeadingTreeNode != null) XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, navPointNode, "class", "heading");
                         string strNavPointID = GetNextID(ID_NcxPrefix);
@@ -710,7 +711,16 @@ namespace Obi.ImportExport
                         }
                         else if (treeNode_NavNodeMap.ContainsKey(parentNode))
                         {
-                            treeNode_NavNodeMap[parentNode].AppendChild(olHeadingsNode);
+                            if (treeNode_NavNodeMap[parentNode] == olHeadingsNode)
+                            {
+                                //
+                            }
+                            else
+                            {
+                                olHeadingsNode = navigationDocument.CreateElement(null, "ol", navNode.NamespaceURI);
+                                treeNode_NavNodeMap[parentNode].AppendChild(olHeadingsNode);
+                                
+                            }
                         }
                         else // surch up for node
                         {
@@ -722,7 +732,15 @@ namespace Obi.ImportExport
                                 parentNode = parentNode.Parent;
                                 if (parentNode != null && treeNode_NavNodeMap.ContainsKey(parentNode))
                                 {
-                                    treeNode_NavNodeMap[parentNode].AppendChild(olHeadingsNode);
+                                    if (treeNode_NavNodeMap[parentNode] == olHeadingsNode)
+                                    {
+                                        //
+                                    }
+                                    else
+                                    {
+                                        olHeadingsNode = navigationDocument.CreateElement(null, "ol", navNode.NamespaceURI);
+                                        treeNode_NavNodeMap[parentNode].AppendChild(olHeadingsNode);
+                                    }
                                     break;
                                 }
                                 counter++;
@@ -730,6 +748,7 @@ namespace Obi.ImportExport
 
                             if (parentNode == null || counter > 7)
                             {
+                                olHeadingsNode = navigationDocument.CreateElement(null, "ol", navNode.NamespaceURI);
                                 navNode.AppendChild(olHeadingsNode);
                             }
                         }
