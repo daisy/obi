@@ -34,7 +34,7 @@ namespace Obi.ImportExport
         private List<string> m_SmilDurationForOpfMetadata = null;
         private readonly string m_OutputDirectoryName = null;
         private string m_EpubParentDirectoryPath = null;
-        
+        private readonly string m_Filename_NavigationHtml = null;        
         private readonly string m_Meta_infFileName = null;
         public const string NS_URL_EPUB = "http://www.idpf.org/2007/ops";
 
@@ -43,6 +43,7 @@ namespace Obi.ImportExport
             base (presentation, exportDirectory, navListElementNamesList, encodeToMp3,mp3BitRate ,
             sampleRate, stereo, skipACM, audioFileSectionLevel)
         {
+            m_Filename_NavigationHtml = "navigation.html";
             m_EpubParentDirectoryPath= Path.Combine(m_OutputDirectory, presentation.Title.Substring(0, presentation.Title.Length > 8 ? 8 : presentation.Title.Length));
             m_OutputDirectoryName = "EPUB";
             m_OutputDirectory = Path.Combine(m_EpubParentDirectoryPath , m_OutputDirectoryName);
@@ -98,7 +99,7 @@ namespace Obi.ImportExport
                 XmlDocument htmlDocument = null;
                 string smilFileName = null;
                 string htmlFileName = null;
-                XmlNode ulHeadingsNode = null;
+                XmlNode olHeadingsNode = null;
                 urakawa.core.TreeNode currentHeadingTreeNode = null;
                 urakawa.core.TreeNode special_UrakawaNode = null;
                 Time durationOfCurrentSmil = new Time();
@@ -684,11 +685,11 @@ namespace Obi.ImportExport
                         externalAudio = GetExternalAudioMedia(n);
 
                         // first create navPoints
-                        ulHeadingsNode = navigationDocument.CreateElement(null, "ul", navNode.NamespaceURI);
+                        olHeadingsNode = navigationDocument.CreateElement(null, "ol", navNode.NamespaceURI);
                         
                         //if (currentHeadingTreeNode != null) XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, navPointNode, "class", "heading");
                         string strNavPointID = GetNextID(ID_NcxPrefix);
-                        XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, ulHeadingsNode, "id", strNavPointID);
+                        XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, olHeadingsNode, "id", strNavPointID);
                         //XmlDocumentHelper.CreateAppendXmlAttribute(navigationDocument, navPointNode, "playOrder", "");
 
 
@@ -699,11 +700,11 @@ namespace Obi.ImportExport
 
                         if (parentNode == null || parentNode == m_Presentation.RootNode)
                         {
-                            navNode.AppendChild(ulHeadingsNode);
+                            navNode.AppendChild(olHeadingsNode);
                         }
                         else if (treeNode_NavNodeMap.ContainsKey(parentNode))
                         {
-                            treeNode_NavNodeMap[parentNode].AppendChild(ulHeadingsNode);
+                            treeNode_NavNodeMap[parentNode].AppendChild(olHeadingsNode);
                         }
                         else // surch up for node
                         {
@@ -715,7 +716,7 @@ namespace Obi.ImportExport
                                 parentNode = parentNode.Parent;
                                 if (parentNode != null && treeNode_NavNodeMap.ContainsKey(parentNode))
                                 {
-                                    treeNode_NavNodeMap[parentNode].AppendChild(ulHeadingsNode);
+                                    treeNode_NavNodeMap[parentNode].AppendChild(olHeadingsNode);
                                     break;
                                 }
                                 counter++;
@@ -723,16 +724,16 @@ namespace Obi.ImportExport
 
                             if (parentNode == null || counter > 7)
                             {
-                                navNode.AppendChild(ulHeadingsNode);
+                                navNode.AppendChild(olHeadingsNode);
                             }
                         }
 
 
-                        treeNode_NavNodeMap.Add(urakawaNode, ulHeadingsNode);
+                        treeNode_NavNodeMap.Add(urakawaNode, olHeadingsNode);
 
                         // create navLabel
-                        XmlNode liHeadingNode = navigationDocument.CreateElement(null, "li", ulHeadingsNode.NamespaceURI);
-                        ulHeadingsNode.AppendChild(liHeadingNode);
+                        XmlNode liHeadingNode = navigationDocument.CreateElement(null, "li", olHeadingsNode.NamespaceURI);
+                        olHeadingsNode.AppendChild(liHeadingNode);
 
                         // create text node
                         //XmlNode txtNode = navigationDocument.CreateElement(null, "text", navNode.NamespaceURI);
@@ -899,7 +900,7 @@ namespace Obi.ImportExport
             m_TotalTime = new Time(smilElapseTime);
             m_SmilDurationForOpfMetadata.Add(m_TotalTime.ToString ());
             AddMetadata_Ncx(navigationDocument, totalPageCount.ToString(), maxNormalPageNumber.ToString(), maxDepth.ToString(), null);
-            XmlReaderWriterHelper.WriteXmlDocument(navigationDocument, Path.Combine(m_OutputDirectory, "Navigation.html"), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
+            XmlReaderWriterHelper.WriteXmlDocument(navigationDocument, Path.Combine(m_OutputDirectory, m_Filename_NavigationHtml ), AlwaysIgnoreIndentation ? GetXmlWriterSettings(false) : null);
         }
 
         protected XmlDocument CreateStub_NavigationDocument()
@@ -908,10 +909,10 @@ namespace Obi.ImportExport
             navigationDocument.XmlResolver = null;
 
             navigationDocument.CreateXmlDeclaration("1.0", "utf-8", null);
-            navigationDocument.AppendChild(navigationDocument.CreateDocumentType("html",
-                "-//W3C//DTD XHTML 1.0 Transitional//EN",
-                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd",
-                null));
+            //navigationDocument.AppendChild(navigationDocument.CreateDocumentType("html",
+                //"-//W3C//DTD XHTML 1.0 Transitional//EN",
+                //"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd",
+                //null));
 
             XmlNode rootNode = navigationDocument.CreateElement(null,
                 "html",
@@ -1303,7 +1304,7 @@ namespace Obi.ImportExport
             m_DtbAllowedInXMetadata.Add(SupportedMetadata_Z39862005.DTB_TOTAL_TIME);
             m_DtbAllowedInXMetadata.Add(SupportedMetadata_Z39862005.DTB_AUDIO_FORMAT);
 
-            XmlNode navNode =  AddFilenameToManifest(opfDocument, manifestNode, m_Filename_Ncx, "ncx", DataProviderFactory.XHTML_MIME_TYPE);
+            XmlNode navNode =  AddFilenameToManifest(opfDocument, manifestNode, m_Filename_NavigationHtml , "ncx", DataProviderFactory.XHTML_MIME_TYPE);
             XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, navNode, "properties", "nav");
 
             if (m_Filename_Content != null)
