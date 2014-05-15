@@ -5285,12 +5285,18 @@ namespace Obi
                     epubValidator.ShowResultDialog = true;
                     
                     string str = "";
-                    ValidateWithEpubCheck(exportDirectoryEPUB3, out str);
+                    string epubDirectoryPath = epubValidator.InputEpubPath  ;
+                    if (epubDirectoryPath.EndsWith(".opf"))
+                    {
+                        epubDirectoryPath = Directory.GetParent( Directory.GetParent (epubDirectoryPath).FullName).FullName ;
+                        
+                    }
+                    ValidateWithEpubCheck(epubDirectoryPath , out str);
 
                     epubValidator.CompletionStatus = str ;
                     
-                    string text = File.ReadAllText(epubcheckFileFolder);
-                    epubValidator.EpubCheckOutputText = text;
+                    //string text = File.ReadAllText(epubcheckFileFolder);
+                    //epubValidator.EpubCheckOutputText = text;
                     epubValidator.ShowDialog();
                 }
 
