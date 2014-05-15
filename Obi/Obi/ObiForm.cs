@@ -2587,6 +2587,8 @@ namespace Obi
                             if (DAISY202Export != null) DAISY202Export.ProgressChangedEvent +=
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                             progress.ShowDialog();
+                            if (EPUB3_Export!= null) EPUB3_Export.ProgressChangedEvent +=
+                                new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                             if (progress.Exception != null) throw progress.Exception;
 
                             if ((DAISY3Export != null && DAISY3Export.RequestCancellation)
@@ -2616,6 +2618,7 @@ namespace Obi
                         {
                             string displayPath = (ExportDialogDAISY3 != null && ExportDialogDAISY202 != null) ? ExportDialogDAISY3.DirectoryPath + "\n" + ExportDialogDAISY202.DirectoryPath :
                                 ExportDialogDAISY3 != null ? ExportDialogDAISY3.DirectoryPath : ExportDialogDAISY202.DirectoryPath;
+                            if (string.IsNullOrEmpty(displayPath) && ExportDialogEPUB3 != null) displayPath = exportDirectoryEPUB3;
                             MessageBox.Show(
                                 String.Format(Localizer.Message("didnt_save_as_daisy_text"), displayPath,
                                               e.Message),
