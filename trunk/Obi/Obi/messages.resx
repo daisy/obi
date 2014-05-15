@@ -2635,4 +2635,7 @@ Error text: {1}</value>
   <data name="no_primary_export_directory" xml:space="preserve">
     <value>Epub export directory was not found. Please select an export path or export the project to Epub.</value>
   </data>
+  <data name="progress_EpubValidating" xml:space="preserve">
+    <value>Epub Validator is running. Please wait.</value>
+  </data>
 </root>

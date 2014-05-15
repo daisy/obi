@@ -4903,6 +4903,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Epub Validator is running. Please wait..
+        /// </summary>
+        internal static string progress_EpubValidating {
+            get {
+                return ResourceManager.GetString("progress_EpubValidating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Always ignore indentation for DAISY export files.
         /// </summary>
         internal static string Project_AlwaysIgnoreIndentationForExportFiles {

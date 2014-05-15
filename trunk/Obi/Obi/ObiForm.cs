@@ -5291,7 +5291,15 @@ namespace Obi
                         epubDirectoryPath = Directory.GetParent( Directory.GetParent (epubDirectoryPath).FullName).FullName ;
                         
                     }
-                    ValidateWithEpubCheck(epubDirectoryPath , out str);
+
+                    ProgressDialog progress = new ProgressDialog(Localizer.Message("progress_EpubValidating"),
+                                                                        delegate(ProgressDialog progress1)
+                                                                        {
+
+                                                                            ValidateWithEpubCheck(epubDirectoryPath, out str);
+                                                                        });
+
+                    progress.ShowDialog();            
 
                     epubValidator.CompletionStatus = str ;
                     
