@@ -210,6 +210,7 @@ namespace Obi
             this.mTools_ExportAsDAISYMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
+            this.m_EPUB3ValidatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_WhatsNewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ContentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1463,7 +1464,8 @@ namespace Obi
             this.mTools_ExportSelectedAudioMenuItem,
             this.mTools_ExportAsDAISYMenuItem,
             this.mTools_CleanUnreferencedAudioMenuItem,
-            this.toolStripSeparator18});
+            this.toolStripSeparator18,
+            this.m_EPUB3ValidatorToolStripMenuItem});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
             resources.ApplyResources(this.mToolsToolStripMenuItem, "mToolsToolStripMenuItem");
             // 
@@ -1506,6 +1508,12 @@ namespace Obi
             // 
             this.toolStripSeparator18.Name = "toolStripSeparator18";
             resources.ApplyResources(this.toolStripSeparator18, "toolStripSeparator18");
+            // 
+            // m_EPUB3ValidatorToolStripMenuItem
+            // 
+            this.m_EPUB3ValidatorToolStripMenuItem.Name = "m_EPUB3ValidatorToolStripMenuItem";
+            resources.ApplyResources(this.m_EPUB3ValidatorToolStripMenuItem, "m_EPUB3ValidatorToolStripMenuItem");
+            this.m_EPUB3ValidatorToolStripMenuItem.Click += new System.EventHandler(this.m_EPUB3ValidatorToolStripMenuItem_Click);
             // 
             // mHelpToolStripMenuItem
             // 
@@ -1802,6 +1810,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_MonitorContinuouslyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mForwardElapseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mBackwardElapseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_EPUB3ValidatorToolStripMenuItem;
     }
 }
 

@@ -5251,7 +5251,50 @@ namespace Obi
                 return isSuccessful;
             }
 
+            private void m_EPUB3ValidatorToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                Dialogs.Epub3Validator epubValidator = new Dialogs.Epub3Validator();
+                epubValidator.ShowEpubValidatorDialog = true;
+                epubValidator.ShowResultDialog = false;
+                string exportDirectoryEPUB3 = Path.Combine(Directory.GetParent(mSession.Path).FullName,
+             Program.SafeName(
+                 string.Format(Localizer.Message("default_EpubExport_dirname"), "")));
+                string epubcheckFileFolder="";
+                Console.WriteLine("ExportEpubPath {0}", exportDirectoryEPUB3);
+                if (Directory.Exists(exportDirectoryEPUB3))
+                {
+                    string[] file = System.IO.Directory.GetFiles(exportDirectoryEPUB3, "*.epub");
+                    exportDirectoryEPUB3 = file[0];
+                    epubValidator.InputEpubPath = exportDirectoryEPUB3;
+                    epubcheckFileFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Obi");
+                    if (!Directory.Exists(epubcheckFileFolder))
+                    {
+                        Directory.CreateDirectory(epubcheckFileFolder);
+                    }
+                    epubcheckFileFolder = Path.Combine(epubcheckFileFolder, "epubcheckoutput.txt");
+                    epubValidator.OutputValidatorReportFilePath = epubcheckFileFolder;
+                }
+                else
+                {
+                    MessageBox.Show(Localizer.Message("no_primary_export_directory"));
+                }
+                if (epubValidator.ShowDialog() == DialogResult.OK)
+                {
+                  
+                    epubValidator.ShowEpubValidatorDialog = false;
+                    epubValidator.ShowResultDialog = true;
+                    
+                    string str = "";
+                    ValidateWithEpubCheck(exportDirectoryEPUB3, out str);
 
+                    epubValidator.CompletionStatus = str ;
+                    
+                    string text = File.ReadAllText(epubcheckFileFolder);
+                    epubValidator.EpubCheckOutputText = text;
+                    epubValidator.ShowDialog();
+                }
+
+            }
 
 
 
