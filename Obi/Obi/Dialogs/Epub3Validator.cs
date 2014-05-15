@@ -27,6 +27,10 @@ namespace Obi.Dialogs
         }
         public string InputEpubPath
         {
+            get
+            {
+                return m_txtInputEPUB.Text;
+            }
             set
             {
                 m_txtInputEPUB.Text = value;
