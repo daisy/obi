@@ -2355,6 +2355,7 @@ namespace Obi
 
             private void mTools_ExportAsDAISYMenuItem_Click(object sender, EventArgs e)
             {
+                
                 if (mProjectView.IsZoomWaveformActive)
                 {
                     mProjectView.ZoomPanelClose();
@@ -5181,33 +5182,45 @@ namespace Obi
 
             private bool ValidateWithEpubCheck(string epub3Export, out string strMessage)
             {
+                //epub3Export = @"C:\Users\Avneesh\Documents\Chimpanzees\Epub3 Export\Chimpanz\";
+                
                 string strOutput = null;
                 try
                 {
                     string pipelineDirectoryPath = Path.GetDirectoryName(mSettings.PipelineScriptsPath);
                     string epubCheckPath = Path.Combine(pipelineDirectoryPath, "epubcheck\\epubcheck.jar");
-
+                    
                     string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
                     string obiSettingsDir = System.IO.Path.Combine(appDataDir, "Obi");
                     if (!System.IO.Directory.Exists(obiSettingsDir)) System.IO.Directory.CreateDirectory(obiSettingsDir);
                     string epubCheckOutput = System.IO.Path.Combine(obiSettingsDir, "epubcheckoutput.txt" );
-
+                    //epubCheckOutput = "epubcheckoutput.txt" ;
+                    
                     Process epubCheckProcess = new Process();
                     epubCheckProcess.StartInfo.CreateNoWindow = true;
                     epubCheckProcess.StartInfo.ErrorDialog = true;
                     epubCheckProcess.StartInfo.UseShellExecute = false;
 
-                    epubCheckProcess.StartInfo.FileName = epubCheckPath;
-                    epubCheckProcess.StartInfo.Arguments = "java -jar " + epubCheckPath + " " + epub3Export + " -mode exp -save > " + epubCheckOutput + " 2>&1";
-                    epubCheckProcess.StartInfo.WorkingDirectory = Directory.GetParent(epubCheckPath).FullName;
+                    epubCheckProcess.StartInfo.FileName = "java.exe";
+                    //
+                    string strArguments = "-jar \"" +
+                        epubCheckPath + "\" \"" +
+                        epub3Export + "\" -mode exp -v 3.0";
+                        //-save > \"" + epubCheckOutput + "\" 2>&1";
+                    epubCheckProcess.StartInfo.Arguments = strArguments;
+                    Console.WriteLine("process " + epubCheckProcess.StartInfo.FileName + " " + epubCheckProcess.StartInfo.Arguments);
+                    
+                    epubCheckProcess.StartInfo.RedirectStandardOutput = true;
+                    epubCheckProcess.StartInfo.RedirectStandardError = true;
+                    epubCheckProcess.StartInfo.WorkingDirectory =Directory.GetParent ( Directory.GetParent (Directory.GetParent(epubCheckPath).FullName).FullName).FullName;
+                    
 
                     epubCheckProcess.Start();
                     epubCheckProcess.WaitForExit();
-
-                    if (File.Exists (epubCheckOutput ))
-                    {
-                        strOutput =  File.ReadAllText (epubCheckOutput ) ;
-                    }
+                    strOutput =  epubCheckProcess.StandardError.ReadToEnd();
+                    
+                    //File.WriteAllText(epubCheckOutput, strArguments);
+                    
                 }
                 catch (System.Exception ex)
                 {
@@ -5233,6 +5246,8 @@ namespace Obi
                     }
                 }
                 strMessage = strOutput;
+                // messagebox for debugging
+                MessageBox.Show(isSuccessful + "\n" + strMessage);
                 return isSuccessful;
             }
 
