@@ -3976,7 +3976,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DAISY export directory was not found. Please select an export path or export the project to DAISY..
+        ///   Looks up a localized string similar to Epub export directory was not found. Please select an export path or export the project to Epub..
         /// </summary>
         internal static string no_primary_export_directory {
             get {

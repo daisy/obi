@@ -2632,4 +2632,7 @@ Error text: {1}</value>
   <data name="default_EpubExport_dirname" xml:space="preserve">
     <value>{0}Epub3 Export</value>
   </data>
+  <data name="no_primary_export_directory" xml:space="preserve">
+    <value>Epub export directory was not found. Please select an export path or export the project to Epub.</value>
+  </data>
 </root>
