@@ -3687,6 +3687,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obi specific data for saving EPUB 3 export path.
+        /// </summary>
+        internal static string METADATA_EPUB3_EXPORT_PATH_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_EPUB3_EXPORT_PATH_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Software that generated the book.
         /// </summary>
         internal static string METADATA_GENERATOR_HELP {
@@ -4134,6 +4143,15 @@ namespace Obi {
         internal static string obi_DAISY3ExportPath_Description {
             get {
                 return ResourceManager.GetString("obi_DAISY3ExportPath_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EPUB 3 export path.
+        /// </summary>
+        internal static string obi_EPUB3ExportPath_Description {
+            get {
+                return ResourceManager.GetString("obi_EPUB3ExportPath_Description", resourceCulture);
             }
         }
         

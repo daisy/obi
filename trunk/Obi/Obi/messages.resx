@@ -2634,4 +2634,10 @@ Error text: {1}</value>
   <data name="progress_EpubValidating" xml:space="preserve">
     <value>Epub Validator is running. Please wait.</value>
   </data>
+  <data name="METADATA_EPUB3_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Obi specific data for saving EPUB 3 export path</value>
+  </data>
+  <data name="obi_EPUB3ExportPath_Description" xml:space="preserve">
+    <value>EPUB 3 export path</value>
+  </data>
 </root>
