@@ -1580,7 +1580,7 @@ namespace Obi.ImportExport
                     }
                 }
             }
-
+            System.Windows.Forms.MessageBox.Show(m_FilesList_Image.Count.ToString());
             // create spine
             XmlNode spineNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(opfDocument, true, "spine", null); //opfDocument.GetElementsByTagName("spine")[0];
 
@@ -1657,6 +1657,10 @@ string meta_InfPath = Path.Combine(m_EpubParentDirectoryPath, m_Meta_infFileName
             return str;
         }
 
+        protected override void CreateExternalFiles()
+        {
+
+        }
 
             }
 }
