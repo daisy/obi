@@ -393,6 +393,11 @@ namespace Obi
                 MetadataOccurrence.Optional,
                 Localizer.Message ( "obi_DAISY2ExportPath_Description" ),
                 false, true);
+            DAISY_ENTRIES[Metadata.OBI_EPUB3ExportPath] = new MetadataEntryDescription(
+                Metadata.OBI_EPUB3ExportPath,
+                MetadataOccurrence.Optional,
+                Localizer.Message("obi_EPUB3ExportPath_Description"),
+                false, true);
         }
     }
 }
