@@ -2586,13 +2586,15 @@ namespace Obi
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                             if (DAISY202Export != null) DAISY202Export.ProgressChangedEvent +=
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
+                            if (EPUB3_Export != null) EPUB3_Export.ProgressChangedEvent +=
+                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                             progress.ShowDialog();
-                            if (EPUB3_Export!= null) EPUB3_Export.ProgressChangedEvent +=
-                                new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
+                            
                             if (progress.Exception != null) throw progress.Exception;
 
                             if ((DAISY3Export != null && DAISY3Export.RequestCancellation)
-                                || (DAISY202Export != null && DAISY202Export.RequestCancellation))
+                                || (DAISY202Export != null && DAISY202Export.RequestCancellation)
+                                || (EPUB3_Export != null && EPUB3_Export.RequestCancellation))
                             {
                                 mProjectView.TransportBar.Enabled = true;
                                 return;
