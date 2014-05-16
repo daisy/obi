@@ -5734,7 +5734,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exported project to DAISY in directory {0}.
+        ///   Looks up a localized string similar to Project exported in directory {0}.
         /// </summary>
         internal static string saved_as_daisy_text {
             get {
