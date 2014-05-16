@@ -1266,7 +1266,13 @@ namespace Obi.ImportExport
             // add uid to dc:identifier
             //XmlNodeList identifierList = opfDocument.GetElementsByTagName("dc:Identifier");
             //XmlNode identifierNode = null;
-            
+            if (((ObiPresentation)m_Presentation).GetFirstMetadataItem(Metadata.GENERATOR) != null)
+            {
+                XmlNode metaGenerator = opfDocument.CreateElement("meta", dc_metadataNode.NamespaceURI);
+                dc_metadataNode.AppendChild(metaGenerator);
+                XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaGenerator, "name", Metadata.GENERATOR);
+                XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaGenerator, "content", ((ObiPresentation)m_Presentation).GetFirstMetadataItem(Metadata.GENERATOR).NameContentAttribute.Value);
+            }
         }
 
         protected override XmlNode AddMetadataAsInnerText(XmlDocument doc, XmlNode metadataParentNode, string name, string content)
