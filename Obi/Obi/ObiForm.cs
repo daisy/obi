@@ -5273,23 +5273,25 @@ namespace Obi
                 Dialogs.Epub3Validator epubValidator = new Dialogs.Epub3Validator();
                 epubValidator.ShowEpubValidatorDialog = true;
                 epubValidator.ShowResultDialog = false;
-                string exportDirectoryEPUB3 = Path.Combine(Directory.GetParent(mSession.Path).FullName,
-             Program.SafeName(
-                 string.Format(Localizer.Message("default_EpubExport_dirname"), "")));
+
+                string exportDirectoryEPUB3 = mProjectView.GetDAISYExportPath(ImportExport.ExportFormat.EPUB3,Path.GetDirectoryName(mSession.Path));
                 string epubcheckFileFolder="";
                 Console.WriteLine("ExportEpubPath {0}", exportDirectoryEPUB3);
                 if (Directory.Exists(exportDirectoryEPUB3))
                 {
                     string[] file = System.IO.Directory.GetFiles(exportDirectoryEPUB3, "*.epub");
-                    exportDirectoryEPUB3 = file[0];
-                    epubValidator.InputEpubPath = exportDirectoryEPUB3;
-                    epubcheckFileFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Obi");
-                    if (!Directory.Exists(epubcheckFileFolder))
+                    if (File.Exists(file[0]))
                     {
-                        Directory.CreateDirectory(epubcheckFileFolder);
+                        exportDirectoryEPUB3 = file[0];
+                        epubValidator.InputEpubPath = exportDirectoryEPUB3;
+                        epubcheckFileFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Obi");
+                        if (!Directory.Exists(epubcheckFileFolder))
+                        {
+                            Directory.CreateDirectory(epubcheckFileFolder);
+                        }
+                        epubcheckFileFolder = Path.Combine(epubcheckFileFolder, "epubcheckoutput.txt");
+                        epubValidator.OutputValidatorReportFilePath = epubcheckFileFolder;
                     }
-                    epubcheckFileFolder = Path.Combine(epubcheckFileFolder, "epubcheckoutput.txt");
-                    epubValidator.OutputValidatorReportFilePath = epubcheckFileFolder;
                 }
                 else
                 {
@@ -5308,20 +5310,27 @@ namespace Obi
                         epubDirectoryPath = Directory.GetParent( Directory.GetParent (epubDirectoryPath).FullName).FullName ;
                         
                     }
-
+                    bool flag=false;
                     ProgressDialog progress = new ProgressDialog(Localizer.Message("progress_EpubValidating"),
                                                                         delegate(ProgressDialog progress1)
                                                                         {
 
-                                                                            ValidateWithEpubCheck(epubDirectoryPath, out str);
+                                                                           flag = ValidateWithEpubCheck(epubDirectoryPath, out str);
                                                                         });
 
-                    progress.ShowDialog();            
+                    progress.ShowDialog();
 
-                    epubValidator.CompletionStatus = str ;
+                    if (flag)
+                    {
+                        epubValidator.CompletionStatus = "Validation Successfull";
+                    }
+                    else
+                    {
+                        epubValidator.CompletionStatus = "Validation Failed";
+                    }
                     
                     //string text = File.ReadAllText(epubcheckFileFolder);
-                    //epubValidator.EpubCheckOutputText = text;
+                    epubValidator.EpubCheckOutputText = str;
                     epubValidator.ShowDialog();
                 }
 
