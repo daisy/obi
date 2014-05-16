@@ -46,6 +46,7 @@ namespace Obi
         public static readonly string OBI_XUK_VERSION = "obi:xukversion";
         public static readonly string OBI_DAISY3ExportPath = "obi:DAISY3.0ExportPath";
         public static readonly string OBI_DAISY2ExportPath = "obi:DAISY2.02ExportPath";
+        public static readonly string OBI_EPUB3ExportPath = "obi:EPUB3ExportPath";
 
         private static List<string> m_DAISY3MetadataNames ;
         public static List<string> DAISY3MetadataNames
@@ -89,6 +90,7 @@ namespace Obi
                     m_DAISY3MetadataNames.Add(OBI_XUK_VERSION);
                     m_DAISY3MetadataNames.Add(OBI_DAISY3ExportPath);
                     m_DAISY3MetadataNames.Add(OBI_DAISY2ExportPath);
+                    m_DAISY3MetadataNames.Add(OBI_EPUB3ExportPath);
                 }
                 return m_DAISY3MetadataNames;
             }
