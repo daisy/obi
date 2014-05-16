@@ -297,7 +297,10 @@ namespace Obi.ProjectView
                 {
                 exportMetadataName = Metadata.OBI_DAISY2ExportPath;
                 }
-
+                if (format == Obi.ImportExport.ExportFormat.EPUB3)
+                {
+                    exportMetadataName = Metadata.OBI_EPUB3ExportPath;
+                }
             // if export directory is inside project directory, save relative path
             if (exportPath.StartsWith ( projectDirectory ))
                 {
@@ -338,7 +341,10 @@ namespace Obi.ProjectView
                 {
                 m = mPresentation.GetFirstMetadataItem ( Metadata.OBI_DAISY2ExportPath );
                 }
-
+                else if (format == Obi.ImportExport.ExportFormat.EPUB3)
+                {
+                    m = mPresentation.GetFirstMetadataItem(Metadata.OBI_EPUB3ExportPath);
+                }
             string exportPath = m != null ?
                         m.NameContentAttribute.Value : null;
 

@@ -2606,10 +2606,20 @@ namespace Obi
                                 mProjectView.SetExportPathMetadata(ImportExport.ExportFormat.DAISY2_02,
                                                                    exportPathDAISY202,
                                                                    Directory.GetParent(mSession.Path).FullName);
+
+                            if (exportPathEPUB3 != null)
+                                mProjectView.SetExportPathMetadata(ImportExport.ExportFormat.EPUB3,
+                                                                   exportPathEPUB3,
+                                                                   Directory.GetParent(mSession.Path).FullName);
+
                             mSession.ForceSave();
 
                             string displayPath = (exportPathDAISY3 != null && exportPathDAISY202 != null) ? exportPathDAISY3 + "\n" + exportPathDAISY202 :
                                 exportPathDAISY3 != null ? exportPathDAISY3 : exportPathDAISY202;
+                            if (string.IsNullOrEmpty(displayPath) && exportPathEPUB3 != null)
+                            {
+                                displayPath = exportPathEPUB3;
+                            }
                             MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), displayPath),
                                             Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK,
                                             MessageBoxIcon.Information);
