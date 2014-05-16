@@ -154,7 +154,8 @@ namespace Obi.ImportExport
 
                 }
                 // create nodes in xhtml content document.
-                if (n is SectionNode)
+                // one file per level means that there should be one heading in one html file
+                if (n is SectionNode && n == urakawaNode)
                 {
                     //System.Windows.Forms.MessageBox.Show(htmlDocument.ToString() );//+ " : " + htmlBodyNode.ToString());
                     sectionXmlNode = htmlDocument.CreateElement("section", htmlBodyNode.NamespaceURI);
