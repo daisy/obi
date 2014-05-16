@@ -2629,8 +2629,9 @@ namespace Obi
                         catch (Exception e)
                         {
                             string displayPath = (ExportDialogDAISY3 != null && ExportDialogDAISY202 != null) ? ExportDialogDAISY3.DirectoryPath + "\n" + ExportDialogDAISY202.DirectoryPath :
-                                ExportDialogDAISY3 != null ? ExportDialogDAISY3.DirectoryPath : ExportDialogDAISY202.DirectoryPath;
-                            if (string.IsNullOrEmpty(displayPath) && ExportDialogEPUB3 != null) displayPath = exportDirectoryEPUB3;
+                                ExportDialogDAISY3 != null ? ExportDialogDAISY3.DirectoryPath : 
+                                ExportDialogDAISY202!= null? ExportDialogDAISY202.DirectoryPath: ExportDialogEPUB3.DirectoryPath;
+                            
                             MessageBox.Show(
                                 String.Format(Localizer.Message("didnt_save_as_daisy_text"), displayPath,
                                               e.Message),
