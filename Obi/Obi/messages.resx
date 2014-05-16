@@ -268,7 +268,7 @@ Oh well.</value>
     <comment>Block label</comment>
   </data>
   <data name="saved_as_daisy_text" xml:space="preserve">
-    <value>Exported project to DAISY in directory {0}</value>
+    <value>Project exported in directory {0}</value>
     <comment>Information dialog</comment>
   </data>
   <data name="title_bar" xml:space="preserve">
@@ -1147,8 +1147,7 @@ Error text: {1}</value>
     <value>Do you want to save changes before saving project to a new location? </value>
   </data>
   <data name="no_primary_export_directory" xml:space="preserve">
-    <value>DAISY export directory was not found. Please select an export path or export the project to DAISY.</value>
-    <comment>Pipeline interface error message</comment>
+    <value>Epub export directory was not found. Please select an export path or export the project to Epub.</value>
   </data>
   <data name="section_unexported" xml:space="preserve">
     <value>Section "{0}" has no audio content and will not be exported, nor will any of its subsections. Do you want to continue?</value>
@@ -2631,9 +2630,6 @@ Error text: {1}</value>
   </data>
   <data name="default_EpubExport_dirname" xml:space="preserve">
     <value>{0}Epub3 Export</value>
-  </data>
-  <data name="no_primary_export_directory" xml:space="preserve">
-    <value>Epub export directory was not found. Please select an export path or export the project to Epub.</value>
   </data>
   <data name="progress_EpubValidating" xml:space="preserve">
     <value>Epub Validator is running. Please wait.</value>
