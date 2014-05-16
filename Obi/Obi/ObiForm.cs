@@ -5215,12 +5215,13 @@ namespace Obi
                     epubCheckProcess.StartInfo.CreateNoWindow = true;
                     epubCheckProcess.StartInfo.ErrorDialog = true;
                     epubCheckProcess.StartInfo.UseShellExecute = false;
-
+                    
                     epubCheckProcess.StartInfo.FileName = "java.exe";
                     //
+                    string strMode =Path.GetExtension(epub3Export).ToLower() == ".epub"? "" : "\" -mode exp -v 3.0";
                     string strArguments = "-jar \"" +
                         epubCheckPath + "\" \"" +
-                        epub3Export + "\" -mode exp -v 3.0";
+                        epub3Export + strMode;
                         //-save > \"" + epubCheckOutput + "\" 2>&1";
                     epubCheckProcess.StartInfo.Arguments = strArguments;
                     Console.WriteLine("process " + epubCheckProcess.StartInfo.FileName + " " + epubCheckProcess.StartInfo.Arguments);
@@ -5262,7 +5263,7 @@ namespace Obi
                 }
                 strMessage = strOutput;
                 // messagebox for debugging
-                MessageBox.Show(isSuccessful + "\n" + strMessage);
+                
                 return isSuccessful;
             }
 
