@@ -305,6 +305,9 @@
   <data name="m_txtValidationReport.Location" type="System.Drawing.Point, System.Drawing">
     <value>137, 165</value>
   </data>
+  <data name="m_txtValidationReport.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="m_txtValidationReport.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 21</value>
   </data>
