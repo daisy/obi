@@ -117,6 +117,7 @@ namespace Obi.Dialogs
             // 
             // Epub3Validator
             // 
+            this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.m_epubCheckRichTextBox);
