@@ -36,13 +36,13 @@ namespace Obi.Dialogs
                 m_txtInputEPUB.Text = value;
             }
         }
-        public string OutputValidatorReportFilePath
-        {
-            set
-            {
-                m_txtValidationReport.Text = value;
-            }
-        }
+        //public string OutputValidatorReportFilePath
+        //{
+        //    set
+        //    {
+        //        m_txtValidationReport.Text = value;
+        //    }
+        //}
         public string CompletionStatus
         {
             set
@@ -65,10 +65,10 @@ namespace Obi.Dialogs
                 m_lblInputEPUB.Visible = value;
                 m_txtInputEPUB.Visible = value;
                 m_btnBrowseInputOPF.Visible = value;
-                m_lblSelectValidationFile.Visible = value;
-                m_lblValidationReport.Visible = value;
-                m_txtValidationReport.Visible = value;
-                m_btnBrowseReport.Visible = value;
+                //m_lblSelectValidationFile.Visible = value;
+                //m_lblValidationReport.Visible = value;
+                //m_txtValidationReport.Visible = value;
+                //m_btnBrowseReport.Visible = value;
              
             }
         }
