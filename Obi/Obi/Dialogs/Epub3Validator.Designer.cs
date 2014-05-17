@@ -36,8 +36,8 @@ namespace Obi.Dialogs
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnCancel = new System.Windows.Forms.Button();
             this.m_openFileDialogBrowse = new System.Windows.Forms.OpenFileDialog();
-            this.m_lblEpubCompletionStatus = new System.Windows.Forms.Label();
             this.m_epubCheckRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.m_lblEpubCompletionStatus = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // m_lblSelectInputFile
@@ -80,23 +80,24 @@ namespace Obi.Dialogs
             // 
             this.m_openFileDialogBrowse.FileName = "openFileDialog1";
             // 
-            // m_lblEpubCompletionStatus
-            // 
-            resources.ApplyResources(this.m_lblEpubCompletionStatus, "m_lblEpubCompletionStatus");
-            this.m_lblEpubCompletionStatus.Name = "m_lblEpubCompletionStatus";
-            // 
             // m_epubCheckRichTextBox
             // 
             resources.ApplyResources(this.m_epubCheckRichTextBox, "m_epubCheckRichTextBox");
             this.m_epubCheckRichTextBox.Name = "m_epubCheckRichTextBox";
+            // 
+            // m_lblEpubCompletionStatus
+            // 
+            resources.ApplyResources(this.m_lblEpubCompletionStatus, "m_lblEpubCompletionStatus");
+            this.m_lblEpubCompletionStatus.Name = "m_lblEpubCompletionStatus";
+            this.m_lblEpubCompletionStatus.ReadOnly = true;
             // 
             // Epub3Validator
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.m_epubCheckRichTextBox);
             this.Controls.Add(this.m_lblEpubCompletionStatus);
+            this.Controls.Add(this.m_epubCheckRichTextBox);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOk);
             this.Controls.Add(this.m_btnBrowseInputOPF);
@@ -118,8 +119,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnOk;
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.OpenFileDialog m_openFileDialogBrowse;
-        private System.Windows.Forms.Label m_lblEpubCompletionStatus;
         private System.Windows.Forms.RichTextBox m_epubCheckRichTextBox;
+        private System.Windows.Forms.TextBox m_lblEpubCompletionStatus;
 
     }
 }

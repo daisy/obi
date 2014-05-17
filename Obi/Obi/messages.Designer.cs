@@ -4156,6 +4156,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Validation Failed.
+        /// </summary>
+        internal static string obi_EPUB3ValidationFailed {
+            get {
+                return ResourceManager.GetString("obi_EPUB3ValidationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation Successfull.
+        /// </summary>
+        internal static string obi_EPUB3ValidationSuccessfull {
+            get {
+                return ResourceManager.GetString("obi_EPUB3ValidationSuccessfull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi project file (*.obi)|*.obi|Any file|*.*.
         /// </summary>
         internal static string obi_filter {
@@ -5743,7 +5761,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project exported to DAISY.
+        ///   Looks up a localized string similar to Project exported.
         /// </summary>
         internal static string saved_as_daisy_caption {
             get {
