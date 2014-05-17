@@ -336,7 +336,7 @@ Oh well.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="saved_as_daisy_caption" xml:space="preserve">
-    <value>Project exported to DAISY</value>
+    <value>Project exported</value>
     <comment>Information dialog</comment>
   </data>
   <data name="import_phrase_error_caption" xml:space="preserve">
@@ -2639,5 +2639,11 @@ Error text: {1}</value>
   </data>
   <data name="obi_EPUB3ExportPath_Description" xml:space="preserve">
     <value>EPUB 3 export path</value>
+  </data>
+  <data name="obi_EPUB3ValidationSuccessfull" xml:space="preserve">
+    <value>Validation Successfull</value>
+  </data>
+  <data name="obi_EPUB3ValidationFailed" xml:space="preserve">
+    <value>Validation Failed</value>
   </data>
 </root>

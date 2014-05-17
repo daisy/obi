@@ -282,33 +282,6 @@
   <metadata name="m_openFileDialogBrowse.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="m_lblEpubCompletionStatus.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lblEpubCompletionStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 10</value>
-  </data>
-  <data name="m_lblEpubCompletionStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 16</value>
-  </data>
-  <data name="m_lblEpubCompletionStatus.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="m_lblEpubCompletionStatus.Text" xml:space="preserve">
-    <value>Epub Completion Status</value>
-  </data>
-  <data name="&gt;&gt;m_lblEpubCompletionStatus.Name" xml:space="preserve">
-    <value>m_lblEpubCompletionStatus</value>
-  </data>
-  <data name="&gt;&gt;m_lblEpubCompletionStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblEpubCompletionStatus.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_lblEpubCompletionStatus.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="m_epubCheckRichTextBox.AccessibleName" xml:space="preserve">
     <value>Validation error log</value>
   </data>
@@ -334,6 +307,30 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_epubCheckRichTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_lblEpubCompletionStatus.AccessibleName" xml:space="preserve">
+    <value>Epub Completion Status</value>
+  </data>
+  <data name="m_lblEpubCompletionStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>27, 3</value>
+  </data>
+  <data name="m_lblEpubCompletionStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 22</value>
+  </data>
+  <data name="m_lblEpubCompletionStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;m_lblEpubCompletionStatus.Name" xml:space="preserve">
+    <value>m_lblEpubCompletionStatus</value>
+  </data>
+  <data name="&gt;&gt;m_lblEpubCompletionStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblEpubCompletionStatus.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblEpubCompletionStatus.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

@@ -5322,11 +5322,11 @@ namespace Obi
 
                     if (flag)
                     {
-                        epubValidator.CompletionStatus = "Validation Successfull";
+                        epubValidator.CompletionStatus = Localizer.Message("obi_EPUB3ValidationSuccessfull");
                     }
                     else
                     {
-                        epubValidator.CompletionStatus = "Validation Failed";
+                        epubValidator.CompletionStatus = Localizer.Message("obi_EPUB3ValidationFailed");
                     }
                     
                     //string text = File.ReadAllText(epubcheckFileFolder);
