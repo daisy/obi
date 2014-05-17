@@ -5207,8 +5207,8 @@ namespace Obi
                     string epubCheckPath = Path.Combine(pipelineDirectoryPath, "epubcheck\\epubcheck.jar");
                     if (!File.Exists(epubCheckPath))
                     {
-                        MessageBox.Show("EPUB check validator not installed");
-                        strMessage = "ERROR: EPUB check not found" ;
+                        MessageBox.Show(Localizer.Message("obi_EPUB3ValidatorNotInstalled"));
+                        strMessage = Localizer.Message("obi_EPUB3CheckNotFound");
                         return false ;
                     }
                     string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
@@ -5258,7 +5258,7 @@ namespace Obi
                 }
                 else
                 {
-                    if (strOutput.Contains ("ERROR"))
+                    if (strOutput.Contains ("Error"))
                     {
                         isSuccessful = false ;
                     }
