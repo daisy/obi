@@ -5276,12 +5276,9 @@ namespace Obi
 
                 string exportDirectoryEPUB3 = mProjectView.GetDAISYExportPath(ImportExport.ExportFormat.EPUB3,Path.GetDirectoryName(mSession.Path));
                 string epubcheckFileFolder="";
-                Console.WriteLine("ExportEpubPath {0}", exportDirectoryEPUB3);
-                if (Directory.Exists(exportDirectoryEPUB3))
-                {
-                    string[] file = System.IO.Directory.GetFiles(exportDirectoryEPUB3, "*.epub");
-                    if (File.Exists(file[0]))
-                    {
+                String[] file = System.IO.Directory.GetFiles(exportDirectoryEPUB3, "*.epub");
+                if (Directory.Exists(exportDirectoryEPUB3) && file.Length!=0)
+                {                      
                         exportDirectoryEPUB3 = file[0];
                         epubValidator.InputEpubPath = exportDirectoryEPUB3;
                         epubcheckFileFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Obi");
@@ -5291,7 +5288,7 @@ namespace Obi
                         }
                         //epubcheckFileFolder = Path.Combine(epubcheckFileFolder, "epubcheckoutput.txt");
                         //epubValidator.OutputValidatorReportFilePath = epubcheckFileFolder;
-                    }
+                    
                 }
                 else
                 {
