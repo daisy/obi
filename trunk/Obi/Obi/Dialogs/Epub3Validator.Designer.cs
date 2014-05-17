@@ -33,10 +33,6 @@ namespace Obi.Dialogs
             this.m_lblInputEPUB = new System.Windows.Forms.Label();
             this.m_txtInputEPUB = new System.Windows.Forms.TextBox();
             this.m_btnBrowseInputOPF = new System.Windows.Forms.Button();
-            this.m_lblSelectValidationFile = new System.Windows.Forms.Label();
-            this.m_lblValidationReport = new System.Windows.Forms.Label();
-            this.m_btnBrowseReport = new System.Windows.Forms.Button();
-            this.m_txtValidationReport = new System.Windows.Forms.TextBox();
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnCancel = new System.Windows.Forms.Button();
             this.m_openFileDialogBrowse = new System.Windows.Forms.OpenFileDialog();
@@ -65,27 +61,6 @@ namespace Obi.Dialogs
             this.m_btnBrowseInputOPF.Name = "m_btnBrowseInputOPF";
             this.m_btnBrowseInputOPF.UseVisualStyleBackColor = true;
             this.m_btnBrowseInputOPF.Click += new System.EventHandler(this.m_btnBrowseInputOPF_Click);
-            // 
-            // m_lblSelectValidationFile
-            // 
-            resources.ApplyResources(this.m_lblSelectValidationFile, "m_lblSelectValidationFile");
-            this.m_lblSelectValidationFile.Name = "m_lblSelectValidationFile";
-            // 
-            // m_lblValidationReport
-            // 
-            resources.ApplyResources(this.m_lblValidationReport, "m_lblValidationReport");
-            this.m_lblValidationReport.Name = "m_lblValidationReport";
-            // 
-            // m_btnBrowseReport
-            // 
-            resources.ApplyResources(this.m_btnBrowseReport, "m_btnBrowseReport");
-            this.m_btnBrowseReport.Name = "m_btnBrowseReport";
-            this.m_btnBrowseReport.UseVisualStyleBackColor = true;
-            // 
-            // m_txtValidationReport
-            // 
-            resources.ApplyResources(this.m_txtValidationReport, "m_txtValidationReport");
-            this.m_txtValidationReport.Name = "m_txtValidationReport";
             // 
             // m_btnOk
             // 
@@ -124,10 +99,6 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_lblEpubCompletionStatus);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOk);
-            this.Controls.Add(this.m_btnBrowseReport);
-            this.Controls.Add(this.m_txtValidationReport);
-            this.Controls.Add(this.m_lblValidationReport);
-            this.Controls.Add(this.m_lblSelectValidationFile);
             this.Controls.Add(this.m_btnBrowseInputOPF);
             this.Controls.Add(this.m_txtInputEPUB);
             this.Controls.Add(this.m_lblInputEPUB);
@@ -144,10 +115,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_lblInputEPUB;
         private System.Windows.Forms.TextBox m_txtInputEPUB;
         private System.Windows.Forms.Button m_btnBrowseInputOPF;
-        private System.Windows.Forms.Label m_lblSelectValidationFile;
-        private System.Windows.Forms.Label m_lblValidationReport;
-        private System.Windows.Forms.Button m_btnBrowseReport;
-        private System.Windows.Forms.TextBox m_txtValidationReport;
         private System.Windows.Forms.Button m_btnOk;
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.OpenFileDialog m_openFileDialogBrowse;

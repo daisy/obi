@@ -5289,8 +5289,8 @@ namespace Obi
                         {
                             Directory.CreateDirectory(epubcheckFileFolder);
                         }
-                        epubcheckFileFolder = Path.Combine(epubcheckFileFolder, "epubcheckoutput.txt");
-                        epubValidator.OutputValidatorReportFilePath = epubcheckFileFolder;
+                        //epubcheckFileFolder = Path.Combine(epubcheckFileFolder, "epubcheckoutput.txt");
+                        //epubValidator.OutputValidatorReportFilePath = epubcheckFileFolder;
                     }
                 }
                 else

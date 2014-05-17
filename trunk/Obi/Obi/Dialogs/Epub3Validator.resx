@@ -123,10 +123,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblSelectInputFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 38</value>
+    <value>1, 28</value>
   </data>
   <data name="m_lblSelectInputFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 15</value>
+    <value>145, 16</value>
   </data>
   <data name="m_lblSelectInputFile.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -144,16 +144,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblSelectInputFile.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>7</value>
   </data>
   <data name="m_lblInputEPUB.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblInputEPUB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 71</value>
+    <value>27, 57</value>
   </data>
   <data name="m_lblInputEPUB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 15</value>
+    <value>76, 16</value>
   </data>
   <data name="m_lblInputEPUB.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -171,16 +171,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblInputEPUB.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>6</value>
   </data>
   <data name="m_txtInputEPUB.AccessibleName" xml:space="preserve">
     <value>Input Epub</value>
   </data>
   <data name="m_txtInputEPUB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 71</value>
+    <value>114, 57</value>
   </data>
   <data name="m_txtInputEPUB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 21</value>
+    <value>294, 22</value>
   </data>
   <data name="m_txtInputEPUB.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -195,19 +195,23 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtInputEPUB.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>5</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_btnBrowseInputOPF.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="m_btnBrowseInputOPF.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 68</value>
+    <value>423, 51</value>
   </data>
   <data name="m_btnBrowseInputOPF.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 26</value>
+    <value>90, 28</value>
   </data>
   <data name="m_btnBrowseInputOPF.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="m_btnBrowseInputOPF.Text" xml:space="preserve">
-    <value>Browse</value>
+    <value>&amp;Browse</value>
   </data>
   <data name="&gt;&gt;m_btnBrowseInputOPF.Name" xml:space="preserve">
     <value>m_btnBrowseInputOPF</value>
@@ -219,128 +223,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btnBrowseInputOPF.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="m_lblSelectValidationFile.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lblSelectValidationFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 123</value>
-  </data>
-  <data name="m_lblSelectValidationFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 15</value>
-  </data>
-  <data name="m_lblSelectValidationFile.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="m_lblSelectValidationFile.Text" xml:space="preserve">
-    <value>Select a file to store a Validation report in</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectValidationFile.Name" xml:space="preserve">
-    <value>m_lblSelectValidationFile</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectValidationFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectValidationFile.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectValidationFile.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="m_lblValidationReport.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lblValidationReport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 165</value>
-  </data>
-  <data name="m_lblValidationReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 15</value>
-  </data>
-  <data name="m_lblValidationReport.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="m_lblValidationReport.Text" xml:space="preserve">
-    <value>Validation Report</value>
-  </data>
-  <data name="&gt;&gt;m_lblValidationReport.Name" xml:space="preserve">
-    <value>m_lblValidationReport</value>
-  </data>
-  <data name="&gt;&gt;m_lblValidationReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblValidationReport.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_lblValidationReport.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="m_btnBrowseReport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 162</value>
-  </data>
-  <data name="m_btnBrowseReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 26</value>
-  </data>
-  <data name="m_btnBrowseReport.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="m_btnBrowseReport.Text" xml:space="preserve">
-    <value>Browse</value>
-  </data>
-  <data name="&gt;&gt;m_btnBrowseReport.Name" xml:space="preserve">
-    <value>m_btnBrowseReport</value>
-  </data>
-  <data name="&gt;&gt;m_btnBrowseReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnBrowseReport.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_btnBrowseReport.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="m_txtValidationReport.AccessibleName" xml:space="preserve">
-    <value>Validation Report</value>
-  </data>
-  <data name="m_txtValidationReport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 165</value>
-  </data>
-  <data name="m_txtValidationReport.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_txtValidationReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 21</value>
-  </data>
-  <data name="m_txtValidationReport.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;m_txtValidationReport.Name" xml:space="preserve">
-    <value>m_txtValidationReport</value>
-  </data>
-  <data name="&gt;&gt;m_txtValidationReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_txtValidationReport.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_txtValidationReport.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btnOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 251</value>
+    <value>114, 180</value>
   </data>
   <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 30</value>
+    <value>110, 32</value>
   </data>
   <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>
@@ -358,16 +256,16 @@
     <value>Flat</value>
   </data>
   <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>271, 251</value>
+    <value>260, 180</value>
   </data>
   <data name="m_btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 30</value>
+    <value>110, 32</value>
   </data>
   <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>&amp;Cancel</value>
   </data>
   <data name="&gt;&gt;m_btnCancel.Name" xml:space="preserve">
     <value>m_btnCancel</value>
@@ -388,10 +286,10 @@
     <value>True</value>
   </data>
   <data name="m_lblEpubCompletionStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 38</value>
+    <value>24, 10</value>
   </data>
   <data name="m_lblEpubCompletionStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 15</value>
+    <value>151, 16</value>
   </data>
   <data name="m_lblEpubCompletionStatus.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -411,17 +309,20 @@
   <data name="&gt;&gt;m_lblEpubCompletionStatus.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="m_epubCheckRichTextBox.AccessibleName" xml:space="preserve">
+    <value>Validation error log</value>
+  </data>
   <data name="m_epubCheckRichTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 71</value>
+    <value>27, 29</value>
   </data>
   <data name="m_epubCheckRichTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>454, 177</value>
+    <value>462, 145</value>
   </data>
   <data name="m_epubCheckRichTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
   <data name="m_epubCheckRichTextBox.Text" xml:space="preserve">
-    <value>Epub Completion Text</value>
+    <value>Validation Error log</value>
   </data>
   <data name="&gt;&gt;m_epubCheckRichTextBox.Name" xml:space="preserve">
     <value>m_epubCheckRichTextBox</value>
@@ -439,13 +340,13 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
+    <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>546, 293</value>
+    <value>518, 217</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
+    <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Epub 3 Validator</value>

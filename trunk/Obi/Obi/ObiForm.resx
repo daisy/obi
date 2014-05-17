@@ -342,7 +342,7 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
-    <value>&amp;Export as DAISY</value>
+    <value>&amp;Export as DAISY/EPUB</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>Clean unreferenced audio ctrl+l</value>
@@ -1987,7 +1987,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.2.4.19903, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.2.4.34715, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
