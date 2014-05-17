@@ -5205,7 +5205,12 @@ namespace Obi
                 {
                     string pipelineDirectoryPath = Path.GetDirectoryName(mSettings.PipelineScriptsPath);
                     string epubCheckPath = Path.Combine(pipelineDirectoryPath, "epubcheck\\epubcheck.jar");
-                    
+                    if (!File.Exists(epubCheckPath))
+                    {
+                        MessageBox.Show("EPUB check validator not installed");
+                        strMessage = "ERROR: EPUB check not found" ;
+                        return false ;
+                    }
                     string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
                     string obiSettingsDir = System.IO.Path.Combine(appDataDir, "Obi");
                     if (!System.IO.Directory.Exists(obiSettingsDir)) System.IO.Directory.CreateDirectory(obiSettingsDir);
