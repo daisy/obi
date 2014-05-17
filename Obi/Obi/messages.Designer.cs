@@ -4147,6 +4147,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ERROR: EPUB check not found.
+        /// </summary>
+        internal static string obi_EPUB3CheckNotFound {
+            get {
+                return ResourceManager.GetString("obi_EPUB3CheckNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EPUB 3 export path.
         /// </summary>
         internal static string obi_EPUB3ExportPath_Description {
@@ -4170,6 +4179,15 @@ namespace Obi {
         internal static string obi_EPUB3ValidationSuccessfull {
             get {
                 return ResourceManager.GetString("obi_EPUB3ValidationSuccessfull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EPUB check validator not installed.
+        /// </summary>
+        internal static string obi_EPUB3ValidatorNotInstalled {
+            get {
+                return ResourceManager.GetString("obi_EPUB3ValidatorNotInstalled", resourceCulture);
             }
         }
         
@@ -4939,7 +4957,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Epub Validator is running. Please wait..
+        ///   Looks up a localized string similar to Epub Check Validator is running. Please wait.....
         /// </summary>
         internal static string progress_EpubValidating {
             get {

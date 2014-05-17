@@ -2632,7 +2632,7 @@ Error text: {1}</value>
     <value>{0}Epub3 Export</value>
   </data>
   <data name="progress_EpubValidating" xml:space="preserve">
-    <value>Epub Validator is running. Please wait.</value>
+    <value>Epub Check Validator is running. Please wait....</value>
   </data>
   <data name="METADATA_EPUB3_EXPORT_PATH_HELP" xml:space="preserve">
     <value>Obi specific data for saving EPUB 3 export path</value>
@@ -2645,5 +2645,11 @@ Error text: {1}</value>
   </data>
   <data name="obi_EPUB3ValidationFailed" xml:space="preserve">
     <value>Validation Failed</value>
+  </data>
+  <data name="obi_EPUB3ValidatorNotInstalled" xml:space="preserve">
+    <value>EPUB check validator not installed</value>
+  </data>
+  <data name="obi_EPUB3CheckNotFound" xml:space="preserve">
+    <value>ERROR: EPUB check not found</value>
   </data>
 </root>
