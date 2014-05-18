@@ -5198,23 +5198,23 @@ namespace Obi
 
             private bool ValidateWithEpubCheck(string epub3Export, out string strMessage)
             {
-                //epub3Export = @"C:\Users\Avneesh\Documents\Chimpanzees\Epub3 Export\Chimpanz\";
+                
                 
                 string strOutput = null;
                 try
                 {
                     string pipelineDirectoryPath = Path.GetDirectoryName(mSettings.PipelineScriptsPath);
-                    string epubCheckPath = Path.Combine(pipelineDirectoryPath, "epubcheck\\epubcheck.jar");
-                    if (!File.Exists(epubCheckPath))
+                    string epubCheckFullPath = Path.Combine(pipelineDirectoryPath, "epubcheck\\epubcheck.jar");
+                    if (!File.Exists(epubCheckFullPath))
                     {
                         MessageBox.Show(Localizer.Message("obi_EPUB3ValidatorNotInstalled"));
                         strMessage = Localizer.Message("obi_EPUB3CheckNotFound");
                         return false ;
                     }
-                    string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
-                    string obiSettingsDir = System.IO.Path.Combine(appDataDir, "Obi");
-                    if (!System.IO.Directory.Exists(obiSettingsDir)) System.IO.Directory.CreateDirectory(obiSettingsDir);
-                    string epubCheckOutput = System.IO.Path.Combine(obiSettingsDir, "epubcheckoutput.txt" );
+                    //string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+                    //string obiSettingsDir = System.IO.Path.Combine(appDataDir, "Obi");
+                    //if (!System.IO.Directory.Exists(obiSettingsDir)) System.IO.Directory.CreateDirectory(obiSettingsDir);
+                    //string epubCheckOutput = System.IO.Path.Combine(obiSettingsDir, "epubcheckoutput.txt" );
                     //epubCheckOutput = "epubcheckoutput.txt" ;
                     
                     Process epubCheckProcess = new Process();
@@ -5226,7 +5226,7 @@ namespace Obi
                     //
                     string strMode =Path.GetExtension(epub3Export).ToLower() == ".epub"? "" : "\" -mode exp -v 3.0";
                     string strArguments = "-jar \"" +
-                        epubCheckPath + "\" \"" +
+                        epubCheckFullPath + "\" \"" +
                         epub3Export + strMode;
                         //-save > \"" + epubCheckOutput + "\" 2>&1";
                     epubCheckProcess.StartInfo.Arguments = strArguments;
@@ -5234,7 +5234,7 @@ namespace Obi
                     
                     epubCheckProcess.StartInfo.RedirectStandardOutput = true;
                     epubCheckProcess.StartInfo.RedirectStandardError = true;
-                    epubCheckProcess.StartInfo.WorkingDirectory =Directory.GetParent ( Directory.GetParent (Directory.GetParent(epubCheckPath).FullName).FullName).FullName;
+                    epubCheckProcess.StartInfo.WorkingDirectory =Directory.GetParent ( Directory.GetParent (Directory.GetParent(epubCheckFullPath).FullName).FullName).FullName;
                     
 
                     epubCheckProcess.Start();
@@ -5265,6 +5265,7 @@ namespace Obi
                     else 
                     {
                         isSuccessful = true ;
+                        if (string.IsNullOrEmpty(strOutput)) strOutput = "No errors or warnings reported" ;
                     }
                 }
                 strMessage = strOutput;
@@ -5312,17 +5313,17 @@ namespace Obi
                         epubDirectoryPath = Directory.GetParent( Directory.GetParent (epubDirectoryPath).FullName).FullName ;
                         
                     }
-                    bool flag=false;
+                    bool isSuccessful=false;
                     ProgressDialog progress = new ProgressDialog(Localizer.Message("progress_EpubValidating"),
                                                                         delegate(ProgressDialog progress1)
                                                                         {
 
-                                                                           flag = ValidateWithEpubCheck(epubDirectoryPath, out str);
+                                                                           isSuccessful = ValidateWithEpubCheck(epubDirectoryPath, out str);
                                                                         });
 
                     progress.ShowDialog();
 
-                    if (flag)
+                    if (isSuccessful)
                     {
                         epubValidator.CompletionStatus = Localizer.Message("obi_EPUB3ValidationSuccessfull");
                     }
