@@ -5200,6 +5200,7 @@ namespace Obi
             {
                 
                 
+                string strErrors = null;
                 string strOutput = null;
                 try
                 {
@@ -5239,8 +5240,8 @@ namespace Obi
 
                     epubCheckProcess.Start();
                     epubCheckProcess.WaitForExit();
-                    strOutput =  epubCheckProcess.StandardError.ReadToEnd();
-                    
+                    strErrors =  epubCheckProcess.StandardError.ReadToEnd();
+                    strOutput = epubCheckProcess.StandardOutput.ReadToEnd();
                     //File.WriteAllText(epubCheckOutput, strArguments);
                     
                 }
@@ -5249,26 +5250,31 @@ namespace Obi
                     ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
                     MessageBox.Show(ex.ToString());
                 }
+                
                 bool isSuccessful = false ;
-                if (strOutput == null )
+                if (strOutput == null ||  strErrors == null )
                 {
                     // operation failed, no results should be displayed
-                    strOutput = "failed" ;
+                    strErrors = "failed" ;
                     isSuccessful = false ;
                 }
                 else
                 {
-                    if (strOutput.Contains ("Error"))
+                    if (strOutput.ToLower().Contains("no errors or warnings reported"))
+                    {
+                        isSuccessful = true;
+                    }
+                    else if (strErrors.ToLower().Contains ("error"))
                     {
                         isSuccessful = false ;
                     }
                     else 
                     {
                         isSuccessful = true ;
-                        if (string.IsNullOrEmpty(strOutput)) strOutput = "No errors or warnings reported" ;
+                        
                     }
                 }
-                strMessage = strOutput;
+                strMessage = strOutput + strErrors;
                 // messagebox for debugging
                 
                 return isSuccessful;
