@@ -79,6 +79,7 @@ namespace Obi
         public bool Export_LimitAudioFilesLength; // decides if the length of audio file names has to be limited
         public int Export_AudioFilesNamesLengthLimit; // truncates exported audio file name from right side to limit the maximum no. of characters.
         public bool Export_AlwaysIgnoreIndentation;  // if true, it ensures that exported files have no line breaks, tab breaks etc.
+        public int Export_EPUBFileNameLengthLimit; // truncates exported EPUB 3 file name from right side to limit the maximum no. of characters.
         public bool OpenBookmarkNodeOnReopeningProject;
         public int[] BookMarkNodeHierarchy;
         public bool RetainInitialSilenceInPhraseDetection;
@@ -172,6 +173,7 @@ namespace Obi
             settings.Export_LimitAudioFilesLength = false;
             settings.Export_AudioFilesNamesLengthLimit = 8;
             settings.Export_AlwaysIgnoreIndentation = false;
+            settings.Export_EPUBFileNameLengthLimit = 12;
             settings.OpenBookmarkNodeOnReopeningProject = false;
             settings.RetainInitialSilenceInPhraseDetection = true;
             settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection = false;

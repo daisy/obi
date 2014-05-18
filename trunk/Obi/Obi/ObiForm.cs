@@ -2539,7 +2539,7 @@ namespace Obi
                                     mSession.Presentation, exportPathEPUB3, null, ExportDialogEPUB3.EncodeToMP3, (ushort)ExportDialogEPUB3.BitRate,
                                     AudioLib.SampleRate.Hz44100,
                                     mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
-                                    false, ExportDialogEPUB3.LevelSelection);
+                                    false, ExportDialogEPUB3.LevelSelection, mSettings.Export_EPUBFileNameLengthLimit);
 
                                 EPUB3_Export.AddSectionNameToAudioFile = ExportDialogEPUB3.AppendSectionNameToAudioFileName;
                                 EPUB3_Export.AudioFileNameCharsLimit = ExportDialogEPUB3.AudioFileNameCharsLimit;
