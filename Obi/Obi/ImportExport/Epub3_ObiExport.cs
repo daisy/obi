@@ -39,12 +39,13 @@ namespace Obi.ImportExport
         public const string NS_URL_EPUB = "http://www.idpf.org/2007/ops";
 
         public Epub3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,ushort mp3BitRate ,
-            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel):
+            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, int EPUBFileNameLengthLimit):
             base (presentation, exportDirectory, navListElementNamesList, encodeToMp3,mp3BitRate ,
             sampleRate, stereo, skipACM, audioFileSectionLevel)
         {
+            m_EPUBFileNameLengthLimit = EPUBFileNameLengthLimit;
             m_Filename_NavigationHtml = "navigation.html";
-            m_EpubParentDirectoryPath= Path.Combine(m_OutputDirectory, presentation.Title.Substring(0, presentation.Title.Length > 8 ? 8 : presentation.Title.Length));
+            m_EpubParentDirectoryPath = Path.Combine(m_OutputDirectory, presentation.Title.Substring(0, presentation.Title.Length > EPUBFileNameLengthLimit ? EPUBFileNameLengthLimit : presentation.Title.Length));
             m_OutputDirectoryName = "EPUB";
             m_OutputDirectory = Path.Combine(m_EpubParentDirectoryPath , m_OutputDirectoryName);
             if (!Directory.Exists(m_OutputDirectory))
@@ -53,7 +54,11 @@ namespace Obi.ImportExport
             }
               m_Meta_infFileName = "META-INF" ;  
         }
-        
+
+
+        private int m_EPUBFileNameLengthLimit = 12;
+        public int EPUBFileNameLengthLimit { get { return m_EPUBFileNameLengthLimit; } }
+
         protected override void CreateNcxAndSmilDocuments()
         {
             
