@@ -169,7 +169,9 @@ namespace Obi.ImportExport
                     }
                     
                     XmlDocumentHelper.CreateAppendXmlAttribute(htmlDocument, sectionXmlNode, "id", GetNextID(ID_DTBPrefix)) ;
-                    XmlNode hNode = htmlDocument.CreateElement("h1", htmlBodyNode.NamespaceURI);
+                    int headingNodeLevel = GetLevelOfUrakawaTreeNode(n);
+                    if (headingNodeLevel > 6) headingNodeLevel = 6;
+                    XmlNode hNode = htmlDocument.CreateElement("h"+headingNodeLevel.ToString(), htmlBodyNode.NamespaceURI);
                     strSectionID = GetNextID(ID_DTBPrefix);
                     XmlDocumentHelper.CreateAppendXmlAttribute(htmlDocument, hNode , "id", strSectionID) ;
                     sectionXmlNode.AppendChild(hNode);
@@ -1660,6 +1662,21 @@ string meta_InfPath = Path.Combine(m_EpubParentDirectoryPath, m_Meta_infFileName
         protected override void CreateExternalFiles()
         {
 
+        }
+
+        private int GetLevelOfUrakawaTreeNode(urakawa.core.TreeNode treeNode)
+        {
+            int counter = 0;
+            urakawa.core.TreeNode parentNode = treeNode;
+            while (parentNode != null && parentNode != treeNode.Root)
+            {
+
+                parentNode = parentNode.Parent;
+
+                counter++;
+            }
+
+            return counter ;
         }
 
             }
