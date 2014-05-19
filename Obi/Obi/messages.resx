@@ -2652,4 +2652,10 @@ Error text: {1}</value>
   <data name="obi_EPUB3CheckNotFound" xml:space="preserve">
     <value>ERROR: EPUB check not found</value>
   </data>
+  <data name="obi_EPUB3ValidationSuccessfullWithWarnings" xml:space="preserve">
+    <value>Validation Successfull with Warnings</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>Operation failed</value>
+  </data>
 </root>

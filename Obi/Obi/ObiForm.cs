@@ -5201,12 +5201,13 @@ namespace Obi
                 UpdateSectionsMenu();
             }
 
-            private bool ValidateWithEpubCheck(string epub3Export, out string strMessage)
+            private bool ValidateWithEpubCheck(string epub3Export, out string strMessage_ErrorsWarnings, out string strMessage_Status)
             {
                 
                 
                 string strErrors = null;
                 string strOutput = null;
+                string strStatus = null;
                 try
                 {
                     string pipelineDirectoryPath = Path.GetDirectoryName(mSettings.PipelineScriptsPath);
@@ -5214,7 +5215,8 @@ namespace Obi
                     if (!File.Exists(epubCheckFullPath))
                     {
                         MessageBox.Show(Localizer.Message("obi_EPUB3ValidatorNotInstalled"));
-                        strMessage = Localizer.Message("obi_EPUB3CheckNotFound");
+                        strMessage_ErrorsWarnings = Localizer.Message("obi_EPUB3CheckNotFound");
+                        strMessage_Status = Localizer.Message("OperationFailed"); ;
                         return false ;
                     }
                     //string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
@@ -5265,21 +5267,30 @@ namespace Obi
                 }
                 else
                 {
-                    if (strOutput.ToLower().Contains("no errors or warnings reported"))
+                    if (strOutput.ToLower().Contains("no errors or warnings detected"))
                     {
                         isSuccessful = true;
+                        strStatus = Localizer.Message("obi_EPUB3ValidationSuccessfull");
                     }
-                    else if (strErrors.ToLower().Contains ("error"))
+                    else if (strErrors.ToLower().Contains ("error:"))
                     {
                         isSuccessful = false ;
+                        strStatus = Localizer.Message("obi_EPUB3ValidationFailed");
                     }
-                    else 
+                    else if (strErrors.ToLower().Contains("warning:"))
                     {
-                        isSuccessful = true ;
+                        isSuccessful = true;
+                        strStatus = Localizer.Message("obi_EPUB3ValidationSuccessfullWithWarnings");
+                    }
+                    else
+                    {
                         
+                        isSuccessful = false;
+                        strStatus = Localizer.Message("obi_EPUB3ValidationFailed");
                     }
                 }
-                strMessage = strOutput + strErrors;
+                strMessage_ErrorsWarnings = strOutput + strErrors;
+                strMessage_Status = strStatus;
                 // messagebox for debugging
                 
                 return isSuccessful;
@@ -5331,24 +5342,25 @@ namespace Obi
                         
                     }
                     bool isSuccessful=false;
+                    string strStatus = null;
                     ProgressDialog progress = new ProgressDialog(Localizer.Message("progress_EpubValidating"),
                                                                         delegate(ProgressDialog progress1)
                                                                         {
 
-                                                                           isSuccessful = ValidateWithEpubCheck(epubDirectoryPath, out str);
+                                                                           isSuccessful = ValidateWithEpubCheck(epubDirectoryPath, out str,out strStatus);
                                                                         });
 
                     progress.ShowDialog();
 
-                    if (isSuccessful)
-                    {
-                        epubValidator.CompletionStatus = Localizer.Message("obi_EPUB3ValidationSuccessfull");
-                    }
-                    else
-                    {
-                        epubValidator.CompletionStatus = Localizer.Message("obi_EPUB3ValidationFailed");
-                    }
-                    
+                    //if (isSuccessful)
+                    //{
+                        //epubValidator.CompletionStatus = Localizer.Message("obi_EPUB3ValidationSuccessfull");
+                    //}
+                    //else
+                    //{
+                        //epubValidator.CompletionStatus = Localizer.Message("obi_EPUB3ValidationFailed");
+                    //}
+                    epubValidator.CompletionStatus = strStatus;
                     //string text = File.ReadAllText(epubcheckFileFolder);
                     epubValidator.EpubCheckOutputText = str;
                     epubValidator.ShowDialog();

@@ -4183,6 +4183,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Validation Successfull with Warnings.
+        /// </summary>
+        internal static string obi_EPUB3ValidationSuccessfullWithWarnings {
+            get {
+                return ResourceManager.GetString("obi_EPUB3ValidationSuccessfullWithWarnings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EPUB check validator not installed.
         /// </summary>
         internal static string obi_EPUB3ValidatorNotInstalled {
@@ -4386,6 +4395,15 @@ namespace Obi {
         internal static string Operation_Cancelled {
             get {
                 return ResourceManager.GetString("Operation_Cancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation failed.
+        /// </summary>
+        internal static string OperationFailed {
+            get {
+                return ResourceManager.GetString("OperationFailed", resourceCulture);
             }
         }
         
