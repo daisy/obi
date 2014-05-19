@@ -645,6 +645,9 @@
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
+    <value>Numeric Up Down EPUB File name Length Limit</value>
+  </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -668,6 +671,9 @@
   </data>
   <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
+    <value>EPUB Filename Length Limit</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
