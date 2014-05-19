@@ -78,7 +78,7 @@ namespace Obi.Dialogs
             // 
             // m_openFileDialogBrowse
             // 
-            this.m_openFileDialogBrowse.FileName = "openFileDialog1";
+            this.m_openFileDialogBrowse.FileName = "";
             // 
             // m_epubCheckRichTextBox
             // 
