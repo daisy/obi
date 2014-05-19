@@ -5216,7 +5216,7 @@ namespace Obi
                     {
                         MessageBox.Show(Localizer.Message("obi_EPUB3ValidatorNotInstalled"));
                         strMessage_ErrorsWarnings = Localizer.Message("obi_EPUB3CheckNotFound");
-                        strMessage_Status = Localizer.Message("OperationFailed"); ;
+                        strMessage_Status = Localizer.Message("OperationFailed");
                         return false ;
                     }
                     //string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
