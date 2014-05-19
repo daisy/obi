@@ -229,7 +229,7 @@
     <value>100, 28</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -262,7 +262,7 @@
     <value>100, 28</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -655,7 +655,7 @@
     <value>120, 22</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Name" xml:space="preserve">
     <value>m_numericUpDownEpubFilenameLengthLimit</value>
@@ -682,7 +682,7 @@
     <value>196, 20</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Text" xml:space="preserve">
     <value>EPUB Filename Length Limit</value>
