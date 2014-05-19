@@ -115,6 +115,7 @@ namespace Obi.Dialogs
         }
         public bool EpubLengthCheckboxEnabled
         {
+            get { return m_chkBoxEpubFilenameLengthLimit.Checked; }
             set
             {
                 m_chkBoxEpubFilenameLengthLimit.Enabled = value;
@@ -122,11 +123,11 @@ namespace Obi.Dialogs
             }
             
         }
-        public decimal EPUBFileLength
+        public int EPUBFileLength
         {
             get
             {
-                return m_numericUpDownEpubFilenameLengthLimit.Value;
+                return Convert.ToInt32 (m_numericUpDownEpubFilenameLengthLimit.Value);
             }
             set
             {
