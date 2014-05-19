@@ -43,9 +43,13 @@ namespace Obi.ImportExport
             base (presentation, exportDirectory, navListElementNamesList, encodeToMp3,mp3BitRate ,
             sampleRate, stereo, skipACM, audioFileSectionLevel)
         {
+            
             m_EPUBFileNameLengthLimit = EPUBFileNameLengthLimit;
             m_Filename_NavigationHtml = "navigation.html";
-            m_EpubParentDirectoryPath = Path.Combine(m_OutputDirectory, presentation.Title.Substring(0, presentation.Title.Length > EPUBFileNameLengthLimit ? EPUBFileNameLengthLimit : presentation.Title.Length));
+            m_EpubParentDirectoryPath = 
+                Path.Combine(m_OutputDirectory, 
+                presentation.Title.Substring(0, 
+                EPUBFileNameLengthLimit > 0 && presentation.Title.Length > EPUBFileNameLengthLimit ? EPUBFileNameLengthLimit : presentation.Title.Length));
             m_OutputDirectoryName = "EPUB";
             m_OutputDirectory = Path.Combine(m_EpubParentDirectoryPath , m_OutputDirectoryName);
             if (!Directory.Exists(m_OutputDirectory))

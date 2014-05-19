@@ -2461,7 +2461,6 @@ namespace Obi
                         if (ExportDialogDAISY202.ShowDialog() != DialogResult.OK) ExportDialogDAISY202 = null;
                     }
 
-                    // following commented code has to be updated for EPUB 3
                     if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.EPUB3)
                     {
                         ExportDialogEPUB3 =
@@ -2475,14 +2474,7 @@ namespace Obi
                                                              mSettings.Export_AppendSectionNameToAudioFile;
                         ExportDialogEPUB3.EPUBFileLength = mSettings.Export_EPUBFileNameLengthLimit;
                         ExportDialogEPUB3.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit >= 0 ? Settings.Export_AudioFilesNamesLengthLimit : 8;
-                        if (ExportDialogEPUB3.ShowDialog() != DialogResult.OK)
-                        {
-                            ExportDialogEPUB3 = null;
-                        }
-                        else
-                        {
-                            mSettings.Export_EPUBFileNameLengthLimit = (int)ExportDialogEPUB3.EPUBFileLength;
-                        }
+                        if (ExportDialogEPUB3.ShowDialog() != DialogResult.OK) ExportDialogEPUB3 = null;
                         
                     }
 
@@ -2503,7 +2495,7 @@ namespace Obi
                             mSettings.Export_LimitAudioFilesLength = dialog.AppendSectionNameToAudioFileName &&
                                                                      dialog.LimitLengthOfAudioFileNames;
                             mSettings.Export_AudioFilesNamesLengthLimit = dialog.AudioFileNameCharsLimit;
-
+                            if (ExportDialogEPUB3 != null && ExportDialogEPUB3.EpubLengthCheckboxEnabled) mSettings.Export_EPUBFileNameLengthLimit = ExportDialogEPUB3.EPUBFileLength;
                             if (!string.IsNullOrEmpty(exportPathDAISY3) && !exportPathDAISY3.EndsWith(Path.DirectorySeparatorChar.ToString()))
                             {
                                 exportPathDAISY3 += Path.DirectorySeparatorChar;
@@ -2550,7 +2542,8 @@ namespace Obi
                                     mSession.Presentation, exportPathEPUB3, null, ExportDialogEPUB3.EncodeToMP3, (ushort)ExportDialogEPUB3.BitRate,
                                     AudioLib.SampleRate.Hz44100,
                                     mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
-                                    false, ExportDialogEPUB3.LevelSelection, mSettings.Export_EPUBFileNameLengthLimit);
+                                    false, ExportDialogEPUB3.LevelSelection, 
+                                    ExportDialogEPUB3.EpubLengthCheckboxEnabled?  mSettings.Export_EPUBFileNameLengthLimit:0);
 
                                 EPUB3_Export.AddSectionNameToAudioFile = ExportDialogEPUB3.AppendSectionNameToAudioFileName;
                                 EPUB3_Export.AudioFileNameCharsLimit = ExportDialogEPUB3.AudioFileNameCharsLimit;
