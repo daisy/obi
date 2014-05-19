@@ -2314,6 +2314,7 @@ namespace Obi
             {
                 mTools_ExportSelectedAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio && !mProjectView.TransportBar.IsRecorderActive;
                 mTools_ExportAsDAISYMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
+                m_EPUB3ValidatorToolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive; 
                 mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject &&
                                                                 !mProjectView.TransportBar.IsRecorderActive;
                 mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
@@ -2466,13 +2467,23 @@ namespace Obi
                         ExportDialogEPUB3 =
                             new ExportDirectory(exportDirectoryEPUB3,
                                                 mSession.Path, true, mSettings.Export_BitRateMP3,
-                                                mSettings.Export_AppendSectionNameToAudioFile);
+                                                mSettings.Export_AppendSectionNameToAudioFile);                       
                         //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                        ExportDialogEPUB3.EpubLengthCheckboxEnabled = true;
                         ExportDialogEPUB3.AdditionalTextForTitle = "Epub 3";
                         ExportDialogEPUB3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
                                                              mSettings.Export_AppendSectionNameToAudioFile;
+                        ExportDialogEPUB3.EPUBFileLength = mSettings.Export_EPUBFileNameLengthLimit;
                         ExportDialogEPUB3.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit >= 0 ? Settings.Export_AudioFilesNamesLengthLimit : 8;
-                        if (ExportDialogEPUB3.ShowDialog() != DialogResult.OK) ExportDialogEPUB3 = null;
+                        if (ExportDialogEPUB3.ShowDialog() != DialogResult.OK)
+                        {
+                            ExportDialogEPUB3 = null;
+                        }
+                        else
+                        {
+                            mSettings.Export_EPUBFileNameLengthLimit = (int)ExportDialogEPUB3.EPUBFileLength;
+                        }
+                        
                     }
 
                     if (ExportDialogDAISY3 != null || ExportDialogDAISY202 != null || ExportDialogEPUB3 != null)
@@ -2543,6 +2554,7 @@ namespace Obi
 
                                 EPUB3_Export.AddSectionNameToAudioFile = ExportDialogEPUB3.AppendSectionNameToAudioFileName;
                                 EPUB3_Export.AudioFileNameCharsLimit = ExportDialogEPUB3.AudioFileNameCharsLimit;
+                                
                                 if (ExportDialogEPUB3.EnabledAdvancedParameters) EPUB3_Export.SetAdditionalMp3EncodingParameters(ExportDialogEPUB3.Mp3ChannelMode, ExportDialogEPUB3.Mp3ReSample, ExportDialogEPUB3.Mp3RePlayGain);
                                 ((Obi.ImportExport.Epub3_ObiExport)EPUB3_Export).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                             }
@@ -5282,14 +5294,20 @@ namespace Obi
 
             private void m_EPUB3ValidatorToolStripMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    mProjectView.TransportBar.Stop();
+                }
                 Dialogs.Epub3Validator epubValidator = new Dialogs.Epub3Validator();
                 epubValidator.ShowEpubValidatorDialog = true;
                 epubValidator.ShowResultDialog = false;
 
                 string exportDirectoryEPUB3 = mProjectView.GetDAISYExportPath(ImportExport.ExportFormat.EPUB3,Path.GetDirectoryName(mSession.Path));
                 string epubcheckFileFolder="";
-                String[] file = System.IO.Directory.GetFiles(exportDirectoryEPUB3, "*.epub");
-                if (Directory.Exists(exportDirectoryEPUB3) && file.Length!=0)
+                String[] file=null;
+                if(exportDirectoryEPUB3!=null && Directory.Exists(exportDirectoryEPUB3))
+                file = System.IO.Directory.GetFiles(exportDirectoryEPUB3, "*.epub");
+                if (Directory.Exists(exportDirectoryEPUB3) && file!=null && file.Length!=0)
                 {                      
                         exportDirectoryEPUB3 = file[0];
                         epubValidator.InputEpubPath = exportDirectoryEPUB3;
