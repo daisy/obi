@@ -113,6 +113,26 @@ namespace Obi.Dialogs
             get { return m_chkBoxFilenameLengthLimit.Checked; }
             set { m_chkBoxFilenameLengthLimit.Checked = value; }
         }
+        public bool EpubLengthCheckboxEnabled
+        {
+            set
+            {
+                m_chkBoxEpubFilenameLengthLimit.Enabled = value;
+                m_EpubFileNamegroupBox.Enabled = value;
+            }
+            
+        }
+        public decimal EPUBFileLength
+        {
+            get
+            {
+                return m_numericUpDownEpubFilenameLengthLimit.Value;
+            }
+            set
+            {
+                m_numericUpDownEpubFilenameLengthLimit.Value = value;
+            }
+        }
         private void mSelectButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
@@ -179,6 +199,18 @@ namespace Obi.Dialogs
             m_ExportAdvance.Show();
             
 
+        }
+
+        private void m_chkBoxEpubFilenameLengthLimit_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_chkBoxEpubFilenameLengthLimit.Checked)
+            {
+                m_numericUpDownEpubFilenameLengthLimit.Enabled = true;
+            }
+            else
+            {
+                m_numericUpDownEpubFilenameLengthLimit.Enabled = false;
+            }
         }              
     }
 }
