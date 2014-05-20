@@ -5303,7 +5303,7 @@ namespace Obi
                 {
                     mProjectView.TransportBar.Stop();
                 }
-                Dialogs.Epub3Validator epubValidator = new Dialogs.Epub3Validator();
+                Dialogs.Epub3Validator epubValidator = new Dialogs.Epub3Validator(Directory.GetParent(mSession.Path).FullName);
                 epubValidator.ShowEpubValidatorDialog = true;
                 epubValidator.ShowResultDialog = false;
 

@@ -57,6 +57,7 @@ namespace Obi.Dialogs
             // 
             // m_btnBrowseInputOPF
             // 
+            this.m_btnBrowseInputOPF.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.m_btnBrowseInputOPF, "m_btnBrowseInputOPF");
             this.m_btnBrowseInputOPF.Name = "m_btnBrowseInputOPF";
             this.m_btnBrowseInputOPF.UseVisualStyleBackColor = true;
@@ -76,10 +77,6 @@ namespace Obi.Dialogs
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
             // 
-            // m_openFileDialogBrowse
-            // 
-            this.m_openFileDialogBrowse.FileName = "";
-            // 
             // m_epubCheckRichTextBox
             // 
             resources.ApplyResources(this.m_epubCheckRichTextBox, "m_epubCheckRichTextBox");
@@ -96,6 +93,7 @@ namespace Obi.Dialogs
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btnCancel;
             this.Controls.Add(this.m_lblEpubCompletionStatus);
             this.Controls.Add(this.m_epubCheckRichTextBox);
             this.Controls.Add(this.m_btnCancel);
