@@ -17,13 +17,11 @@ namespace Obi.Dialogs
 
         private void m_btnBrowseInputOPF_Click(object sender, EventArgs e)
         {
+            m_openFileDialogBrowse.Filter = "(*.epub;*.opf)|*.epub;*.opf";
             DialogResult result = m_openFileDialogBrowse.ShowDialog();
-            //string exportEpubPath = mProjectView.GetDAISYExportPath(Obi.ImportExport.ExportFormat.EPUB3,
-            //                                                               Path.GetDirectoryName(mSession.Path));
-
-            {
+    
                 m_txtInputEPUB.Text = m_openFileDialogBrowse.FileName;
-            }
+            
         }
         public string InputEpubPath
         {
