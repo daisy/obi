@@ -17,6 +17,7 @@ namespace Obi.Dialogs
             InitializeComponent();
             m_ExportFormat = Obi.ImportExport.ExportFormat.DAISY3_0;
             m_radBtnDaisy3_202.Enabled = false;
+            m_radBtnEpub3.Enabled = false;
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");                  
@@ -31,6 +32,19 @@ namespace Obi.Dialogs
             }
 
         }
+
+        public bool EnableEPUBOption
+        {
+            get
+            {
+                return m_radBtnEpub3.Enabled;
+            }
+            set
+            {
+                m_radBtnEpub3.Enabled = value;
+            }
+        }
+
         public Obi.ImportExport.ExportFormat chooseOption { get { return m_ExportFormat; } }       
 
         private void m_OKBtn_Click(object sender, EventArgs e)
