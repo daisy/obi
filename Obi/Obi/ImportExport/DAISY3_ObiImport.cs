@@ -117,10 +117,13 @@ namespace Obi.ImportExport
 
             //TextMedia textMedia = parentNode.Presentation.MediaFactory.CreateTextMedia();
             //textMedia.Text = textNode.InnerText;
-            treeNode.Label = textNode.InnerText; ;
+            //treeNode.Label = textNode.InnerText;
+            string strLabel = textNode.InnerText;
+            if (strLabel.Contains("\n")) strLabel = strLabel.Replace("\n", "");
+            treeNode.Label = strLabel;
             //ChannelsProperty cProp = parentNode.Presentation.PropertyFactory.CreateChannelsProperty();
             //cProp.SetMedia(m_textChannel, textMedia);
-
+            
             //TreeNode txtWrapperNode = parentNode.Presentation.TreeNodeFactory.Create();
             //txtWrapperNode.AddProperty(cProp);
             //treeNode.AppendChild(txtWrapperNode);

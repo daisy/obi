@@ -240,7 +240,9 @@ namespace Obi.ImportExport
             int level = int.Parse(node.LocalName.Substring(1));
             SectionNode parent = getAvailableParent(level);
             SectionNode section = m_Presentation.CreateSectionNode();
-            section.Label = GetTextContent(node);
+            string strLabel = GetTextContent(node);
+                        if (strLabel.Contains ("\n")) strLabel = strLabel.Replace("\n", "");
+                        section.Label = strLabel;
             //if no parent was found, then we must be an h1 sibling or first node
             if (parent == null)
             {
