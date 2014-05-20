@@ -1331,7 +1331,15 @@ namespace Obi.ProjectView
                         mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, add);
                     }
 
-                    if (mergeSectionCommand.ChildCommands.Count > 0) mPresentation.Do(mergeSectionCommand);
+                    try
+                    {
+                        if (mergeSectionCommand.ChildCommands.Count > 0) mPresentation.Do(mergeSectionCommand);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        WriteToLogFile(ex.ToString());
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
 
             }
