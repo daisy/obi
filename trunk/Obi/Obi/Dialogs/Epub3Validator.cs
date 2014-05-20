@@ -10,14 +10,24 @@ namespace Obi.Dialogs
 {
     public partial class Epub3Validator : Form
     {
-        public Epub3Validator()
+
+        private string m_ProjectDirectoryPath = null ;
+
+        private Epub3Validator()
         {
             InitializeComponent();
+        }
+
+        public Epub3Validator(string projectdirectoryPath)
+            : this()
+        {
+            m_ProjectDirectoryPath = projectdirectoryPath;
         }
 
         private void m_btnBrowseInputOPF_Click(object sender, EventArgs e)
         {
             m_openFileDialogBrowse.Filter = "(*.epub;*.opf)|*.epub;*.opf";
+            m_openFileDialogBrowse.InitialDirectory= m_ProjectDirectoryPath;
             DialogResult result = m_openFileDialogBrowse.ShowDialog();
     
                 m_txtInputEPUB.Text = m_openFileDialogBrowse.FileName;
