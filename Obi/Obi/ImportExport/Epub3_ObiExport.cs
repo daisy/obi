@@ -46,10 +46,12 @@ namespace Obi.ImportExport
             
             m_EPUBFileNameLengthLimit = EPUBFileNameLengthLimit;
             m_Filename_NavigationHtml = "navigation.html";
+            string parentDirectoryName = Program.SafeName(presentation.Title);
             m_EpubParentDirectoryPath = 
-                Path.Combine(m_OutputDirectory, 
-                presentation.Title.Substring(0, 
-                EPUBFileNameLengthLimit > 0 && presentation.Title.Length > EPUBFileNameLengthLimit ? EPUBFileNameLengthLimit : presentation.Title.Length));
+                Path.Combine(m_OutputDirectory,
+                parentDirectoryName.Substring(0,
+                EPUBFileNameLengthLimit > 0 && parentDirectoryName.Length > EPUBFileNameLengthLimit ? EPUBFileNameLengthLimit : 
+                parentDirectoryName.Length));
             m_OutputDirectoryName = "EPUB";
             m_OutputDirectory = Path.Combine(m_EpubParentDirectoryPath , m_OutputDirectoryName);
             if (!Directory.Exists(m_OutputDirectory))
