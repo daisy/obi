@@ -69,6 +69,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_btnOk, "m_btnOk");
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.UseVisualStyleBackColor = true;
+            this.m_btnOk.Click += new System.EventHandler(this.m_btnOk_Click);
             // 
             // m_btnCancel
             // 

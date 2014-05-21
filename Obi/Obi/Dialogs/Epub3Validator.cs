@@ -26,13 +26,18 @@ namespace Obi.Dialogs
 
         private void m_btnBrowseInputOPF_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.None;
             m_openFileDialogBrowse.Filter = "(*.epub;*.opf)|*.epub;*.opf";
             m_openFileDialogBrowse.InitialDirectory= m_ProjectDirectoryPath;
-            DialogResult result = m_openFileDialogBrowse.ShowDialog();
-    
+            if (m_openFileDialogBrowse.ShowDialog() == DialogResult.OK)
+            {
+
                 m_txtInputEPUB.Text = m_openFileDialogBrowse.FileName;
+
+            }
             
         }
+
         public string InputEpubPath
         {
             get
@@ -87,6 +92,11 @@ namespace Obi.Dialogs
                 m_lblEpubCompletionStatus.Visible = value;
                 m_epubCheckRichTextBox.Visible = value;
             }
+        }
+
+        private void m_btnOk_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
         }
 
        
