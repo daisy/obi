@@ -5119,7 +5119,7 @@ namespace Obi
                   
                     zip.Close();
 
-                    
+                    bool isUnauthorizedException = false;
                     try
                     {
                         foreach (string d in Directory.GetDirectories(installationPath))
@@ -5150,9 +5150,14 @@ namespace Obi
                     catch (UnauthorizedAccessException)
                     {
                         MessageBox.Show(Localizer.Message("NoAdministrativePrivilege"));
-                        Process.Start("explorer.exe", "/select," + installationPath);
+                        isUnauthorizedException = true;
                     }
 
+                    if (isUnauthorizedException)
+                    {
+                        
+                        Process.Start("explorer.exe", installationPath);
+                    }
                 }
                 else
                 {
