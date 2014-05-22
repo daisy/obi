@@ -226,7 +226,7 @@
     <value>強制的なジョイントステレオ</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items4" xml:space="preserve">
-    <value>二重チャネル</value>
+    <value>二重チャンネル</value>
   </data>
   <data name="m_ComboBoxStereoMode.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 97</value>
@@ -352,7 +352,7 @@
     <value>255, 198</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>前進輸出</value>
+    <value>アドバンスエクスポート</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ExportAdvance</value>

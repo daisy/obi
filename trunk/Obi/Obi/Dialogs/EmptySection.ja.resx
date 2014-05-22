@@ -142,7 +142,7 @@
     <value>2</value>
   </data>
   <data name="mContinueButton.Text" xml:space="preserve">
-    <value>&amp;続きます</value>
+    <value>続ける(&amp;o)</value>
   </data>
   <data name="&gt;&gt;mContinueButton.Name" xml:space="preserve">
     <value>mContinueButton</value>
@@ -169,7 +169,7 @@
     <value>0</value>
   </data>
   <data name="mMessageLabel.Text" xml:space="preserve">
-    <value> "{0}"節にオーディオコンテンツは存在しないので、</value>
+    <value> 見出し"{0}"とその子見出しには音声がないのでエクスポートされません。続けますか？</value>
   </data>
   <data name="&gt;&gt;mMessageLabel.Name" xml:space="preserve">
     <value>mMessageLabel</value>
@@ -199,7 +199,7 @@
     <value>3</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -229,7 +229,7 @@
     <value>1</value>
   </data>
   <data name="mKeepWarningCheckbox.Text" xml:space="preserve">
-    <value>このプロジェクトの空節について私を警告し続ける。</value>
+    <value>このプロジェクトの空の見出しに関する注意をいつも表示する</value>
   </data>
   <data name="&gt;&gt;mKeepWarningCheckbox.Name" xml:space="preserve">
     <value>mKeepWarningCheckbox</value>
@@ -259,7 +259,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>節は輸出されません</value>
+    <value>見出しはエクスポートされません</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

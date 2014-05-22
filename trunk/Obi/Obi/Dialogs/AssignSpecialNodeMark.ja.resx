@@ -127,16 +127,16 @@
     <value>注記</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items1" xml:space="preserve">
-    <value>エンドノート</value>
+    <value>巻末注</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items2" xml:space="preserve">
-    <value>フットノート</value>
+    <value>脚注</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items3" xml:space="preserve">
-    <value>ノートを割り当てる／ページをレナンバ</value>
+    <value>注</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items4" xml:space="preserve">
-    <value>突きノート</value>
+    <value>制作者注</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Items5" xml:space="preserve">
     <value>サイドバー</value>
@@ -232,7 +232,7 @@
     <value>3</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.Text" xml:space="preserve">
-    <value>スキップ可能のノート</value>
+    <value>読み飛ばし注</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.Name" xml:space="preserve">
     <value>m_rdb_btn_SpecialPhrase</value>
@@ -259,7 +259,7 @@
     <value>4</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Text" xml:space="preserve">
-    <value>ページをレナンバ</value>
+    <value>ページ番号振りなおし</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_RenumberPages.Name" xml:space="preserve">
     <value>m_rdb_btn_RenumberPages</value>
@@ -283,7 +283,7 @@
     <value>360, 124</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>ノートを割り当てる／ページをレナンバ</value>
+    <value>注の割り当て/ページ番号振りなおし</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

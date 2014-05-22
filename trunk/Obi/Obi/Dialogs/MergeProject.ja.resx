@@ -145,7 +145,7 @@
     <value>9</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>&amp;降順</value>
+    <value>降順(&amp;e)</value>
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
     <value>mbtnDesendingOrder</value>
@@ -160,7 +160,7 @@
     <value>0</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
-    <value>プロジェクトファイルリストボックス</value>
+    <value>プロジェクトファイル・リストボックス</value>
   </data>
   <data name="lstManualArrange.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -217,7 +217,7 @@
     <value>8</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>&amp;昇順</value>
+    <value>昇順(&amp;s)</value>
   </data>
   <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
     <value>mbtnAscendingOrder</value>
@@ -265,7 +265,7 @@
     <value>1</value>
   </data>
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
-    <value>ファイルを整理と追加ためのグループボックス</value>
+    <value>ファイルの追加と整理のためのグループボックス</value>
   </data>
   <data name="m_btnRemove.AccessibleName" xml:space="preserve">
     <value>削除</value>
@@ -289,7 +289,7 @@
     <value>6</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
-    <value>＆削除</value>
+    <value>削除(&amp;R)</value>
   </data>
   <data name="&gt;&gt;m_btnRemove.Name" xml:space="preserve">
     <value>m_btnRemove</value>
@@ -325,7 +325,7 @@
     <value>5</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
-    <value>&amp;追加</value>
+    <value>追加(&amp;A)</value>
   </data>
   <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
     <value>m_btnAdd</value>
@@ -361,7 +361,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>&amp;上に移動</value>
+    <value>上に移動(&amp;U)</value>
   </data>
   <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
     <value>m_btnMoveUp</value>
@@ -397,7 +397,7 @@
     <value>4</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
-    <value>&amp;下に移動</value>
+    <value>下に移動(&amp;D)</value>
   </data>
   <data name="&gt;&gt;m_btnMoveDown.Name" xml:space="preserve">
     <value>m_btnMoveDown</value>
@@ -460,7 +460,7 @@
     <value>11</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -496,7 +496,7 @@
     <value>10</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;Ok</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -511,7 +511,7 @@
     <value>1</value>
   </data>
   <data name="$this.AccessibleName" xml:space="preserve">
-    <value>プロジェクトを合併</value>
+    <value>プロジェクトを結合</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
@@ -526,7 +526,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>プロジェクトを合併</value>
+    <value>プロジェクトを結合</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

@@ -135,7 +135,7 @@
     <value>2</value>
   </data>
   <data name="m_RdOpenWebPage.Text" xml:space="preserve">
-    <value>&amp;ウェブページに移動します；詳細を知りたいですか。</value>
+    <value>ウェブページに移動します；詳細はこちら　(&amp;G)</value>
   </data>
   <data name="&gt;&gt;m_RdOpenWebPage.Name" xml:space="preserve">
     <value>m_RdOpenWebPage</value>
@@ -162,7 +162,7 @@
     <value>3</value>
   </data>
   <data name="m_RdRemindLater.Text" xml:space="preserve">
-    <value>&amp;跡で、もう一度思い出させる</value>
+    <value>再表示する(&amp;l)</value>
   </data>
   <data name="&gt;&gt;m_RdRemindLater.Name" xml:space="preserve">
     <value>m_RdRemindLater</value>
@@ -189,7 +189,7 @@
     <value>4</value>
   </data>
   <data name="m_RdRemindForNextVersion.Text" xml:space="preserve">
-    <value>次のバージョンについてのお知らせます；このバージョンを無視</value>
+    <value>次のバージョンの情報を知らせる; これを無視する(&amp;n)</value>
   </data>
   <data name="&gt;&gt;m_RdRemindForNextVersion.Name" xml:space="preserve">
     <value>m_RdRemindForNextVersion</value>
@@ -216,7 +216,7 @@
     <value>5</value>
   </data>
   <data name="m_RdDisableCheckUpdates.Text" xml:space="preserve">
-    <value>新しいバージョンの通知を無効にする</value>
+    <value>新しいバージョンの通知を無効にする(&amp;D)</value>
   </data>
   <data name="&gt;&gt;m_RdDisableCheckUpdates.Name" xml:space="preserve">
     <value>m_RdDisableCheckUpdates</value>
@@ -343,7 +343,7 @@
     <value>0</value>
   </data>
   <data name="$this.AccessibleName" xml:space="preserve">
-    <value>アップデートをチェックする</value>
+    <value>アップデートを確認する</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -352,7 +352,7 @@
     <value>397, 242</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>アップデートをチェックする</value>
+    <value>アップデートを確認する</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>CheckUpdates</value>

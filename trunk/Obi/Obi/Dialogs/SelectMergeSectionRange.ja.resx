@@ -169,7 +169,7 @@
     <value>1</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
-    <value>&amp;Ok</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
     <value>m_btn_OK</value>
@@ -199,7 +199,7 @@
     <value>2</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;l)</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.Name" xml:space="preserve">
     <value>m_btn_Cancel</value>
@@ -226,7 +226,7 @@
     <value>3</value>
   </data>
   <data name="m_statusStripForMergeSection.Text" xml:space="preserve">
-    <value>MergeSectionStatusStrip</value>
+    <value>見出し結合ステータス</value>
   </data>
   <data name="&gt;&gt;m_statusStripForMergeSection.Name" xml:space="preserve">
     <value>m_statusStripForMergeSection</value>
@@ -307,7 +307,7 @@
     <value>6</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>合併ための節のリスト</value>
+    <value>結合する見出しのリスト</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -334,7 +334,7 @@
     <value>6</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>説明：</value>
+    <value>詳細：</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -379,7 +379,7 @@
     <value>776, 281</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>合併ための節を選択</value>
+    <value>結合する見出しを選択</value>
   </data>
   <data name="&gt;&gt;m_StatusLabelForMergeSection.Name" xml:space="preserve">
     <value>m_StatusLabelForMergeSection</value>

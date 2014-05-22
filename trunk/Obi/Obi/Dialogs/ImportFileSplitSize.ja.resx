@@ -142,7 +142,7 @@
     <value>20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>&amp;分で句の大きさ：</value>
+    <value>フレーズサイズ(分）：(&amp;z)</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -157,7 +157,7 @@
     <value>2</value>
   </data>
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
-    <value>分で句の大きさテクストボックス</value>
+    <value>フレーズサイズ(分）テキストボックス</value>
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>162, 51</value>
@@ -199,7 +199,7 @@
     <value>22</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;Ok</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -229,7 +229,7 @@
     <value>23</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -244,7 +244,7 @@
     <value>3</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.AccessibleName" xml:space="preserve">
-    <value>各自のオーディオファイルために節を作成</value>
+    <value>各音声ファイルごとに見出しを生成</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -259,7 +259,7 @@
     <value>10</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
-    <value>&amp;各自のオーディオファイルために節を作成</value>
+    <value>各音声ファイルごとに見出しを生成(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Name" xml:space="preserve">
     <value>mCreateAudioFilePerSectionCheckBox</value>
@@ -274,7 +274,7 @@
     <value>3</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
-    <value>オーディオファイルリストボックス</value>
+    <value>音声ファイルリストボックス</value>
   </data>
   <data name="lstManualArrange.HorizontalScrollbar" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -313,7 +313,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>&amp;上に移動</value>
+    <value>上に移動(&amp;U)</value>
   </data>
   <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
     <value>m_btnMoveUp</value>
@@ -337,7 +337,7 @@
     <value>4</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
-    <value>&amp;下に移動</value>
+    <value>下に移動(&amp;D)</value>
   </data>
   <data name="&gt;&gt;m_btnMoveDown.Name" xml:space="preserve">
     <value>m_btnMoveDown</value>
@@ -361,7 +361,7 @@
     <value>5</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
-    <value>&amp;追加</value>
+    <value>追加(&amp;A)</value>
   </data>
   <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
     <value>m_btnAdd</value>
@@ -376,7 +376,7 @@
     <value>3</value>
   </data>
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
-    <value>ファイルを配置と追加ためのグループボックス</value>
+    <value>ファイルの追加と整理のためのグループボックス</value>
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 101</value>
@@ -388,7 +388,7 @@
     <value>6</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
-    <value>&amp;取り去る</value>
+    <value>削除(&amp;R)</value>
   </data>
   <data name="&gt;&gt;m_btnRemove.Name" xml:space="preserve">
     <value>m_btnRemove</value>
@@ -403,7 +403,7 @@
     <value>0</value>
   </data>
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
-    <value>オーディオファイルグループボックスを配置</value>
+    <value>音声ファイル整理グループボックス</value>
   </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
     <value>168, 34</value>
@@ -415,7 +415,7 @@
     <value>8</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>&amp;降順</value>
+    <value>降順(&amp;e)</value>
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
     <value>mbtnDesendingOrder</value>
@@ -439,7 +439,7 @@
     <value>7</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>&amp;昇順</value>
+    <value>昇順(&amp;A)</value>
   </data>
   <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
     <value>mbtnAscendingOrder</value>
@@ -463,7 +463,7 @@
     <value>7</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
-    <value>オーディオファイルを配置：</value>
+    <value>音声ファイル整理：</value>
   </data>
   <data name="&gt;&gt;m_grpArrangeAudioFiles.Name" xml:space="preserve">
     <value>m_grpArrangeAudioFiles</value>
@@ -499,7 +499,7 @@
     <value>2</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
-    <value>スペースと交換</value>
+    <value>スペースと差し替え</value>
   </data>
   <data name="m_txtCharToReplaceWithSpace.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -526,7 +526,7 @@
     <value>4</value>
   </data>
   <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
-    <value>ページ同定</value>
+    <value>ページID</value>
   </data>
   <data name="m_txtPageIdentificationString.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -553,7 +553,7 @@
     <value>6</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
-    <value>刈り込むための頭文字の数</value>
+    <value>調整のための頭文字の数</value>
   </data>
   <data name="m_numCharCountToTruncateFromStart.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -580,10 +580,10 @@
     <value>5</value>
   </data>
   <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
-    <value>各オーディオファイルのために節を作成するのグループボックス</value>
+    <value>各音声ファイルごとに見出しを生成するためのグループボックス</value>
   </data>
   <data name="mchktPageIdentificationString.AccessibleName" xml:space="preserve">
-    <value>ページ同定</value>
+    <value>ページID</value>
   </data>
   <data name="mchktPageIdentificationString.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -598,7 +598,7 @@
     <value>15</value>
   </data>
   <data name="mchktPageIdentificationString.Text" xml:space="preserve">
-    <value>&amp;ページ同定</value>
+    <value>ページID(&amp;I)</value>
   </data>
   <data name="&gt;&gt;mchktPageIdentificationString.Name" xml:space="preserve">
     <value>mchktPageIdentificationString</value>
@@ -613,7 +613,7 @@
     <value>0</value>
   </data>
   <data name="mchkCountToTruncateFromStart.AccessibleName" xml:space="preserve">
-    <value>刈り込むための頭文字の数</value>
+    <value>調整のための頭文字の数</value>
   </data>
   <data name="mchkCountToTruncateFromStart.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -628,7 +628,7 @@
     <value>13</value>
   </data>
   <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
-    <value>刈り込むための頭文字の数</value>
+    <value>調整のための頭文字の数(&amp;c)</value>
   </data>
   <data name="&gt;&gt;mchkCountToTruncateFromStart.Name" xml:space="preserve">
     <value>mchkCountToTruncateFromStart</value>
@@ -643,7 +643,7 @@
     <value>1</value>
   </data>
   <data name="mchkToReplaceWithSpace.AccessibleName" xml:space="preserve">
-    <value>スペースと交換</value>
+    <value>スペースと差し替え</value>
   </data>
   <data name="mchkToReplaceWithSpace.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -658,7 +658,7 @@
     <value>11</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
-    <value>&amp;スペースと交換</value>
+    <value>スペースと差し替え(&amp;T)</value>
   </data>
   <data name="&gt;&gt;mchkToReplaceWithSpace.Name" xml:space="preserve">
     <value>mchkToReplaceWithSpace</value>
@@ -706,7 +706,7 @@
     <value>18</value>
   </data>
   <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
-    <value>&amp;輸入されたファイルについて句検出</value>
+    <value>ファイルインポート時のフレーズ検知(&amp;P)</value>
   </data>
   <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.Name" xml:space="preserve">
     <value>m_rdbPhraseDetectionOnImportedFiles</value>
@@ -733,7 +733,7 @@
     <value>19</value>
   </data>
   <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
-    <value>輸入する時、句を分割</value>
+    <value>インポート時にフレーズを分割(&amp;S)</value>
   </data>
   <data name="&gt;&gt;m_rdbSplitPhrasesOnImport.Name" xml:space="preserve">
     <value>m_rdbSplitPhrasesOnImport</value>
@@ -784,7 +784,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>オーディオファイルの設定を輸入</value>
+    <value>音声ファイルインポート設定</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

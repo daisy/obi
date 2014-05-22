@@ -166,7 +166,7 @@
     <value>1</value>
   </data>
   <data name="m_btn_YesToAll.Text" xml:space="preserve">
-    <value>全部に"はい"</value>
+    <value>全て、はい</value>
   </data>
   <data name="&gt;&gt;m_btn_YesToAll.Name" xml:space="preserve">
     <value>m_btn_YesToAll</value>
@@ -220,7 +220,7 @@
     <value>5</value>
   </data>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>特別ノードチャンクにカスタム句はもうあります。それらを今のカスタムロールに変わりたいですか。</value>
+    <value>この特殊ノードにはすでにカスタムフレーズがあります。全て現在のカスタムロールに変換しますか？</value>
   </data>
   <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
     <value>textBox1</value>

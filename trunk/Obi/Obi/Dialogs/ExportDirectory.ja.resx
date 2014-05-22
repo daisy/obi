@@ -142,7 +142,7 @@
     <value>0</value>
   </data>
   <data name="m_lblDirectoryPath.Text" xml:space="preserve">
-    <value>&amp;輸出ディレクトリ：</value>
+    <value>出力ディレクトリ：(&amp;E)</value>
   </data>
   <data name="&gt;&gt;m_lblDirectoryPath.Name" xml:space="preserve">
     <value>m_lblDirectoryPath</value>
@@ -157,7 +157,7 @@
     <value>8</value>
   </data>
   <data name="mPathTextBox.AccessibleName" xml:space="preserve">
-    <value>輸出ディレクトリ</value>
+    <value>出力ディレクトリ</value>
   </data>
   <data name="mPathTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -205,7 +205,7 @@
     <value>2</value>
   </data>
   <data name="mSelectButton.Text" xml:space="preserve">
-    <value>&amp;選択</value>
+    <value>選択(&amp;S)</value>
   </data>
   <data name="&gt;&gt;mSelectButton.Name" xml:space="preserve">
     <value>mSelectButton</value>
@@ -238,7 +238,7 @@
     <value>12</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;Ok </value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -271,7 +271,7 @@
     <value>13</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -298,7 +298,7 @@
     <value>3</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Text" xml:space="preserve">
-    <value>&amp;セクションごとに一つのオーディオファイルを作成</value>
+    <value>見出しごとに一つの音声ファイルを作成(&amp;o):</value>
   </data>
   <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.Name" xml:space="preserve">
     <value>m_lblSelectLevelForAudioFiles</value>
@@ -313,7 +313,7 @@
     <value>3</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.AccessibleName" xml:space="preserve">
-    <value>セクションごとに一つのオーディオファイルを作成</value>
+    <value>見出しごとに一つの音声ファイルを作成:</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
     <value>289, 52</value>
@@ -352,7 +352,7 @@
     <value>6</value>
   </data>
   <data name="m_checkBoxMP3Encoder.Text" xml:space="preserve">
-    <value>&amp;MP3 チェックボックスにエンコード</value>
+    <value>MP3にエンコード(&amp;M)</value>
   </data>
   <data name="&gt;&gt;m_checkBoxMP3Encoder.Name" xml:space="preserve">
     <value>m_checkBoxMP3Encoder</value>
@@ -382,7 +382,7 @@
     <value>7</value>
   </data>
   <data name="m_Bitrate.Text" xml:space="preserve">
-    <value>&amp;ビットレート：</value>
+    <value>ビットレート：(&amp;r)</value>
   </data>
   <data name="&gt;&gt;m_Bitrate.Name" xml:space="preserve">
     <value>m_Bitrate</value>
@@ -445,7 +445,7 @@
     <value>2</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.AccessibleName" xml:space="preserve">
-    <value>節名をオーディオファイル名に付け加える。</value>
+    <value>見出し名を音声ファイル名に採用</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -460,7 +460,7 @@
     <value>9</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Text" xml:space="preserve">
-    <value>&amp;節名をオーディオファイル名に付け加える</value>
+    <value>見出し名を音声ファイル名に採用(&amp;A)</value>
   </data>
   <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.Name" xml:space="preserve">
     <value>m_checkBoxAddSectionNameToAudioFileName</value>
@@ -475,7 +475,7 @@
     <value>2</value>
   </data>
   <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
-    <value>前進</value>
+    <value>アドバンス</value>
   </data>
   <data name="m_btnAdvance.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -490,7 +490,7 @@
     <value>8</value>
   </data>
   <data name="m_btnAdvance.Text" xml:space="preserve">
-    <value>&amp;前進</value>
+    <value>アドバンス(&amp;d)</value>
   </data>
   <data name="&gt;&gt;m_btnAdvance.Name" xml:space="preserve">
     <value>m_btnAdvance</value>
@@ -526,7 +526,7 @@
     <value>1</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>ファイル名の長さの制限</value>
+    <value>ファイル名の長さ制限</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -544,7 +544,7 @@
     <value>10</value>
   </data>
   <data name="m_chkBoxFilenameLengthLimit.Text" xml:space="preserve">
-    <value>&amp;ファイル名の長さの制限：</value>
+    <value>ファイル名の長さ制限：(&amp;F)</value>
   </data>
   <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Name" xml:space="preserve">
     <value>m_chkBoxFilenameLengthLimit</value>
@@ -559,7 +559,7 @@
     <value>0</value>
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>ファイル名の長さの制限</value>
+    <value>数字上下　ファイル名の長さ制限</value>
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -595,7 +595,7 @@
     <value>8</value>
   </data>
   <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
-    <value>節名オペレーション</value>
+    <value>見出し名処理：</value>
   </data>
   <data name="&gt;&gt;m_grpBoxSectionNameOperation.Name" xml:space="preserve">
     <value>m_grpBoxSectionNameOperation</value>
@@ -625,7 +625,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>輸出ディレクトリを選択</value>
+    <value>出力ディレクトリを選択</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

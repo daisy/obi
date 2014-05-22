@@ -163,7 +163,7 @@
     <value>9</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>OK(&amp;K)</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
     <value>m_btn_OK</value>
@@ -190,7 +190,7 @@
     <value>10</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;e)</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.Name" xml:space="preserve">
     <value>m_btn_Cancel</value>
@@ -241,7 +241,7 @@
     <value>7</value>
   </data>
   <data name="m_btn_Associate.Text" xml:space="preserve">
-    <value>&amp;交わる</value>
+    <value>関連付ける(&amp;t)</value>
   </data>
   <data name="&gt;&gt;m_btn_Associate.Name" xml:space="preserve">
     <value>m_btn_Associate</value>
@@ -271,7 +271,7 @@
     <value>8</value>
   </data>
   <data name="m_btn_Deassociate.Text" xml:space="preserve">
-    <value>&amp;解離する</value>
+    <value>分離する(&amp;o)</value>
   </data>
   <data name="&gt;&gt;m_btn_Deassociate.Name" xml:space="preserve">
     <value>m_btn_Deassociate</value>
@@ -325,7 +325,7 @@
     <value>5</value>
   </data>
   <data name="m_btn_ShowAll.Text" xml:space="preserve">
-    <value>&amp;全てを示す</value>
+    <value>すべて表示(&amp;w)</value>
   </data>
   <data name="&gt;&gt;m_btn_ShowAll.Name" xml:space="preserve">
     <value>m_btn_ShowAll</value>
@@ -370,7 +370,7 @@
     <value>3</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>スキップ可能ノートのリスト</value>
+    <value>読み飛ばし注リスト(&amp;p)</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
@@ -409,7 +409,7 @@
     <value>Obi Help.chm</value>
   </data>
   <data name="$this.AccessibleName" xml:space="preserve">
-    <value>特別ノードを交わる</value>
+    <value>関連する特殊ノード</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -418,7 +418,7 @@
     <value>745, 252</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>参考を追加する/削除　（交わる/解離する）</value>
+    <value>参照を追加/削除　（関連付ける/分離する）</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>
