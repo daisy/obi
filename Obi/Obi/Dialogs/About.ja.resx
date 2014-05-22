@@ -160,7 +160,7 @@
     <value>2</value>
   </data>
   <data name="mbtnClose.Text" xml:space="preserve">
-    <value>&amp;終了</value>
+    <value>終了(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mbtnClose.Name" xml:space="preserve">
     <value>mbtnClose</value>

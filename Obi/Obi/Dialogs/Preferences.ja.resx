@@ -145,7 +145,7 @@
     <value>1</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>&amp;ディフォルトプロジェクトディレクトリ：</value>
+    <value>既定のプロジェクトディレクトリ(&amp;d)</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -160,7 +160,7 @@
     <value>8</value>
   </data>
   <data name="mDirectoryTextbox.AccessibleName" xml:space="preserve">
-    <value>ディフォルトプロジェクトディレクトリ</value>
+    <value>既定のプロジェクトディレクトリ</value>
   </data>
   <data name="mDirectoryTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -208,7 +208,7 @@
     <value>3</value>
   </data>
   <data name="mBrowseButton.Text" xml:space="preserve">
-    <value>&amp;ブラウズ</value>
+    <value>参照(&amp;B)</value>
   </data>
   <data name="&gt;&gt;mBrowseButton.Name" xml:space="preserve">
     <value>mBrowseButton</value>
@@ -241,7 +241,7 @@
     <value>12</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;Ok</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -274,7 +274,7 @@
     <value>13</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -304,7 +304,7 @@
     <value>13</value>
   </data>
   <data name="labelInputDeviceName.Text" xml:space="preserve">
-    <value>&amp;入力装置の名：</value>
+    <value>入力デバイス名(&amp;I)</value>
   </data>
   <data name="&gt;&gt;labelInputDeviceName.Name" xml:space="preserve">
     <value>labelInputDeviceName</value>
@@ -319,7 +319,7 @@
     <value>21</value>
   </data>
   <data name="mInputDeviceCombo.AccessibleName" xml:space="preserve">
-    <value>入力装置の名：</value>
+    <value>入力デバイス名</value>
   </data>
   <data name="mInputDeviceCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -367,7 +367,7 @@
     <value>15</value>
   </data>
   <data name="labelOutputDeviceName.Text" xml:space="preserve">
-    <value>&amp;出力装置の名：</value>
+    <value>出力デバイス名(&amp;u)</value>
   </data>
   <data name="&gt;&gt;labelOutputDeviceName.Name" xml:space="preserve">
     <value>labelOutputDeviceName</value>
@@ -382,7 +382,7 @@
     <value>20</value>
   </data>
   <data name="mOutputDeviceCombo.AccessibleName" xml:space="preserve">
-    <value>出力装置の名：</value>
+    <value>出力デバイス名</value>
   </data>
   <data name="mOutputDeviceCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -445,10 +445,10 @@
     <value>0</value>
   </data>
   <data name="m_lblImportTolerance.AccessibleDescription" xml:space="preserve">
-    <value>輸入寛容</value>
+    <value>入力許容誤差</value>
   </data>
   <data name="m_lblImportTolerance.AccessibleName" xml:space="preserve">
-    <value>輸入寛容</value>
+    <value>入力許容誤差</value>
   </data>
   <data name="m_lblImportTolerance.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -463,7 +463,7 @@
     <value>10</value>
   </data>
   <data name="m_lblImportTolerance.Text" xml:space="preserve">
-    <value>&amp;輸入寛容：</value>
+    <value>入力許容誤差(&amp;l)</value>
   </data>
   <data name="&gt;&gt;m_lblImportTolerance.Name" xml:space="preserve">
     <value>m_lblImportTolerance</value>
@@ -511,7 +511,7 @@
     <value>8</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Text" xml:space="preserve">
-    <value>間隔を分でオートセーブ</value>
+    <value>自動保存の間隔(分)(&amp;i)</value>
   </data>
   <data name="&gt;&gt;m_ChkAutoSaveInterval.Name" xml:space="preserve">
     <value>m_ChkAutoSaveInterval</value>
@@ -526,7 +526,7 @@
     <value>3</value>
   </data>
   <data name="MnumAutoSaveInterval.AccessibleName" xml:space="preserve">
-    <value>分で間隔</value>
+    <value>間隔（分）</value>
   </data>
   <data name="MnumAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
     <value>372, 105</value>
@@ -550,7 +550,7 @@
     <value>4</value>
   </data>
   <data name="mPipelineTextbox.AccessibleName" xml:space="preserve">
-    <value>パイプラインスクリプトのディレクトリ</value>
+    <value>Pipelineスクリプトディレクトリ</value>
   </data>
   <data name="mPipelineTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -598,7 +598,7 @@
     <value>6</value>
   </data>
   <data name="mPipelineBrowseButton.Text" xml:space="preserve">
-    <value>&amp;ブラウズ</value>
+    <value>参照(&amp;B)</value>
   </data>
   <data name="&gt;&gt;mPipelineBrowseButton.Name" xml:space="preserve">
     <value>mPipelineBrowseButton</value>
@@ -625,7 +625,7 @@
     <value>4</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>&amp;パイプラインスクリプトのディレクトリ：</value>
+    <value>Pipelineスクリプトディレクトリ(&amp;P)</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -751,7 +751,7 @@
     <value>2</value>
   </data>
   <data name="m_btn_speak.AccessibleName" xml:space="preserve">
-    <value>TTSの音声を確かめるために口走るボタン</value>
+    <value>TTS音声確認</value>
   </data>
   <data name="m_btn_speak.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -766,7 +766,7 @@
     <value>23</value>
   </data>
   <data name="m_btn_speak.Text" xml:space="preserve">
-    <value>口走る</value>
+    <value>確認</value>
   </data>
   <data name="&gt;&gt;m_btn_speak.Name" xml:space="preserve">
     <value>m_btn_speak</value>
@@ -781,7 +781,7 @@
     <value>3</value>
   </data>
   <data name="labelTTSvoice.AccessibleName" xml:space="preserve">
-    <value>合成の音を設定</value>
+    <value>TTS音声設定</value>
   </data>
   <data name="labelTTSvoice.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -796,7 +796,7 @@
     <value>21</value>
   </data>
   <data name="labelTTSvoice.Text" xml:space="preserve">
-    <value>合成の音を設定：</value>
+    <value>TTS音声設定：</value>
   </data>
   <data name="&gt;&gt;labelTTSvoice.Name" xml:space="preserve">
     <value>labelTTSvoice</value>
@@ -835,7 +835,7 @@
     <value>5</value>
   </data>
   <data name="m_OperationDurationUpDown.AccessibleName" xml:space="preserve">
-    <value>ミリ秒で持続時間</value>
+    <value>長さ(ミリ秒）</value>
   </data>
   <data name="m_OperationDurationUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>335, 153</value>
@@ -859,22 +859,22 @@
     <value>6</value>
   </data>
   <data name="m_cbOperation.Items" xml:space="preserve">
-    <value>小突くの長さ</value>
+    <value>長さを調整する</value>
   </data>
   <data name="m_cbOperation.Items1" xml:space="preserve">
-    <value>プレビューの長さ</value>
+    <value>長さプレビュー</value>
   </data>
   <data name="m_cbOperation.Items2" xml:space="preserve">
-    <value>経過の長さ</value>
+    <value>長さ巻き戻し</value>
   </data>
   <data name="m_cbOperation.Items3" xml:space="preserve">
-    <value>引率無音（句検出）</value>
+    <value>直前の無音(フレーズ検知）</value>
   </data>
   <data name="m_cbOperation.Items4" xml:space="preserve">
-    <value>敷居（句検出）</value>
+    <value>スレッシュホールド（フレーズ検知）</value>
   </data>
   <data name="m_cbOperation.Items5" xml:space="preserve">
-    <value>空隙（句検出）</value>
+    <value>間隔（フレーズ検知）</value>
   </data>
   <data name="m_cbOperation.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 153</value>
@@ -910,7 +910,7 @@
     <value>24</value>
   </data>
   <data name="mlbOperation.Text" xml:space="preserve">
-    <value>オペレーション：</value>
+    <value>処理：</value>
   </data>
   <data name="&gt;&gt;mlbOperation.Name" xml:space="preserve">
     <value>mlbOperation</value>
@@ -925,19 +925,19 @@
     <value>8</value>
   </data>
   <data name="mNoiseLevelComboBox.AccessibleName" xml:space="preserve">
-    <value>音のレベル</value>
+    <value>ノイズレベル</value>
   </data>
   <data name="mNoiseLevelComboBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="mNoiseLevelComboBox.Items" xml:space="preserve">
-    <value>低い</value>
+    <value>低</value>
   </data>
   <data name="mNoiseLevelComboBox.Items1" xml:space="preserve">
     <value>中</value>
   </data>
   <data name="mNoiseLevelComboBox.Items2" xml:space="preserve">
-    <value>高い</value>
+    <value>高</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 185</value>
@@ -979,7 +979,7 @@
     <value>27</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>&amp;音のレベル：</value>
+    <value>ノイズレベル：(&amp;N)</value>
   </data>
   <data name="&gt;&gt;label8.Name" xml:space="preserve">
     <value>label8</value>
@@ -1006,7 +1006,7 @@
     <value>0</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>ミリ秒(ms)</value>
+    <value>ミリセカンド(ms)</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -1021,7 +1021,7 @@
     <value>11</value>
   </data>
   <data name="mChannelsTextbox.AccessibleName" xml:space="preserve">
-    <value>プロジェクトチャネル：</value>
+    <value>プロジェクトチャンネル：</value>
   </data>
   <data name="mChannelsTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1054,7 +1054,7 @@
     <value>12</value>
   </data>
   <data name="mSampleRateTextbox.AccessibleName" xml:space="preserve">
-    <value>プロジェクトのサンプルレート：</value>
+    <value>プロジェクトサンプルレート：</value>
   </data>
   <data name="mSampleRateTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1087,7 +1087,7 @@
     <value>13</value>
   </data>
   <data name="mChannelsCombo.AccessibleName" xml:space="preserve">
-    <value>ディフォルトチャネル：</value>
+    <value>既定のチャンネル：</value>
   </data>
   <data name="mChannelsCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1135,7 +1135,7 @@
     <value>19</value>
   </data>
   <data name="labelChannels.Text" xml:space="preserve">
-    <value>&amp;オーディオチャネル：</value>
+    <value>音声チャンネル：(&amp;c)</value>
   </data>
   <data name="&gt;&gt;labelChannels.Name" xml:space="preserve">
     <value>labelChannels</value>
@@ -1150,7 +1150,7 @@
     <value>15</value>
   </data>
   <data name="mSampleRateCombo.AccessibleName" xml:space="preserve">
-    <value>ディフォルトサンプルレート；</value>
+    <value>既定のサンプルレート：</value>
   </data>
   <data name="mSampleRateCombo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1198,7 +1198,7 @@
     <value>17</value>
   </data>
   <data name="labelSampleRate.Text" xml:space="preserve">
-    <value>&amp;サンプルレート：</value>
+    <value>サンプルレート：(&amp;S)</value>
   </data>
   <data name="&gt;&gt;labelSampleRate.Name" xml:space="preserve">
     <value>labelSampleRate</value>
@@ -1228,7 +1228,7 @@
     <value>1</value>
   </data>
   <data name="mAudioTab.Text" xml:space="preserve">
-    <value>オーディオ</value>
+    <value>音声</value>
   </data>
   <data name="&gt;&gt;mAudioTab.Name" xml:space="preserve">
     <value>mAudioTab</value>
@@ -1270,7 +1270,7 @@
     <value>0</value>
   </data>
   <data name="mCultureBox.AccessibleName" xml:space="preserve">
-    <value>言語</value>
+    <value>言語：</value>
   </data>
   <data name="mCultureBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1318,7 +1318,7 @@
     <value>32</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>&amp;言語：</value>
+    <value>言語(&amp;L)</value>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -1375,7 +1375,7 @@
     <value>30</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>&amp;組織名 :</value>
+    <value>団体(&amp;O)</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -1432,7 +1432,7 @@
     <value>28</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>&amp;姓名：</value>
+    <value>氏名(&amp;n)</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -1462,7 +1462,7 @@
     <value>2</value>
   </data>
   <data name="mUserProfileTab.Text" xml:space="preserve">
-    <value>ユーザープロファイル</value>
+    <value>ユーザー情報</value>
   </data>
   <data name="&gt;&gt;mUserProfileTab.Name" xml:space="preserve">
     <value>mUserProfileTab</value>
@@ -1489,7 +1489,7 @@
     <value>34</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>キーのリストを選択</value>
+    <value>キーリストの選択：</value>
   </data>
   <data name="&gt;&gt;label12.Name" xml:space="preserve">
     <value>label12</value>
@@ -1573,7 +1573,7 @@
     <value>42</value>
   </data>
   <data name="m_RestoreDefaults.Text" xml:space="preserve">
-    <value>デフォルト設定に戻す</value>
+    <value>デフォルト設定に戻す(&amp;D)</value>
   </data>
   <data name="m_RestoreDefaults.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1603,7 +1603,7 @@
     <value>41</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
-    <value>ショートカットを削除</value>
+    <value>ショートカットを削除(&amp;R)</value>
   </data>
   <data name="&gt;&gt;m_btnRemove.Name" xml:space="preserve">
     <value>m_btnRemove</value>
@@ -1630,7 +1630,7 @@
     <value>40</value>
   </data>
   <data name="m_btnAssign.Text" xml:space="preserve">
-    <value>&amp;割り当てる</value>
+    <value>割り当てる(&amp;A)</value>
   </data>
   <data name="&gt;&gt;m_btnAssign.Name" xml:space="preserve">
     <value>m_btnAssign</value>
@@ -1679,7 +1679,7 @@
   </data>
   <data name="m_lblShortcutKeys.Text" xml:space="preserve">
     <value>ショートカットキー：
-（キーコンビネーションを押す）
+（キーの組み合わせを押す）
 </value>
   </data>
   <data name="&gt;&gt;m_lblShortcutKeys.Name" xml:space="preserve">
@@ -1695,10 +1695,10 @@
     <value>6</value>
   </data>
   <data name="m_cbShortcutKeys.AccessibleName" xml:space="preserve">
-    <value>示すためにショートカットを選択</value>
+    <value>表示するショートカットを選択</value>
   </data>
   <data name="m_cbShortcutKeys.Items" xml:space="preserve">
-    <value>内容/ TOC表示ショートカットキー</value>
+    <value>コンテンツ/ 見出しビュー　ショートカットキー</value>
   </data>
   <data name="m_cbShortcutKeys.Items1" xml:space="preserve">
     <value>メニュー項目ショートカットキー</value>
@@ -1830,7 +1830,7 @@
     <value>2</value>
   </data>
   <data name="m_lv_ColorPref.AccessibleName" xml:space="preserve">
-    <value>色彩リスト</value>
+    <value>色リスト</value>
   </data>
   <data name="columnHeader3.Text" xml:space="preserve">
     <value>コントロール名</value>
@@ -1839,13 +1839,13 @@
     <value>190</value>
   </data>
   <data name="columnHeader4.Text" xml:space="preserve">
-    <value>既存の平常色</value>
+    <value>通常色</value>
   </data>
   <data name="columnHeader4.Width" type="System.Int32, mscorlib">
     <value>136</value>
   </data>
   <data name="columnHeader5.Text" xml:space="preserve">
-    <value>既存のハイコントラスト色</value>
+    <value>ハイコントラスト</value>
   </data>
   <data name="columnHeader5.Width" type="System.Int32, mscorlib">
     <value>153</value>
@@ -1881,7 +1881,7 @@
     <value>0</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>色彩リスト</value>
+    <value>色リスト</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -1929,7 +1929,7 @@
     <value>5</value>
   </data>
   <data name="m_btn_Apply.Text" xml:space="preserve">
-    <value>&amp;適用</value>
+    <value>適用(&amp;l)</value>
   </data>
   <data name="&gt;&gt;m_btn_Apply.Name" xml:space="preserve">
     <value>m_btn_Apply</value>
@@ -1956,7 +1956,7 @@
     <value>3</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>&amp;ハイコントラスト色を割り当てる :</value>
+    <value>ハイコントラストを適用(&amp;i)</value>
   </data>
   <data name="&gt;&gt;label11.Name" xml:space="preserve">
     <value>label11</value>
@@ -1983,7 +1983,7 @@
     <value>1</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>&amp;色を割り当てる :</value>
+    <value>色を適用(&amp;g)</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
@@ -2058,7 +2058,7 @@
     <value>4</value>
   </data>
   <data name="mColorPreferencesTab.Text" xml:space="preserve">
-    <value>色彩環境設定</value>
+    <value>色の環境設定</value>
   </data>
   <data name="&gt;&gt;mColorPreferencesTab.Name" xml:space="preserve">
     <value>mColorPreferencesTab</value>
@@ -2097,7 +2097,7 @@
     <value>3</value>
   </data>
   <data name="m_CheckBoxListView.AccessibleName" xml:space="preserve">
-    <value>リストボックス、チェックボックスの中を動くには、アップキーとダウンキーを使う</value>
+    <value>リストボックス、チェックボックスを移動するには上下矢印を使う</value>
   </data>
   <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>195, 256</value>
@@ -2163,7 +2163,7 @@
     <value>14</value>
   </data>
   <data name="m_ResetButton.Text" xml:space="preserve">
-    <value>&amp;リセット</value>
+    <value>リセット(&amp;R)</value>
   </data>
   <data name="&gt;&gt;m_ResetButton.Name" xml:space="preserve">
     <value>m_ResetButton</value>

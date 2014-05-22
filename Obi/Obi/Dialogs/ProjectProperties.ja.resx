@@ -142,7 +142,7 @@
     <value>4</value>
   </data>
   <data name="m_lblDuration.Text" xml:space="preserve">
-    <value>全持続時間：</value>
+    <value>再生時間合計：(&amp;d)</value>
   </data>
   <data name="&gt;&gt;m_lblDuration.Name" xml:space="preserve">
     <value>m_lblDuration</value>
@@ -157,7 +157,7 @@
     <value>11</value>
   </data>
   <data name="m_txtDuration.AccessibleName" xml:space="preserve">
-    <value>&amp;全持続時間：</value>
+    <value>再生時間合計：</value>
   </data>
   <data name="m_txtDuration.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -202,7 +202,7 @@
     <value>6</value>
   </data>
   <data name="m_lblSectionCount.Text" xml:space="preserve">
-    <value>合計のセクション：</value>
+    <value>見出しの総数：(&amp;s)</value>
   </data>
   <data name="&gt;&gt;m_lblSectionCount.Name" xml:space="preserve">
     <value>m_lblSectionCount</value>
@@ -217,7 +217,7 @@
     <value>9</value>
   </data>
   <data name="m_txtSectionsCount.AccessibleName" xml:space="preserve">
-    <value>&amp;合計のセクション：</value>
+    <value>見出しの総数：</value>
   </data>
   <data name="m_txtSectionsCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -262,7 +262,7 @@
     <value>8</value>
   </data>
   <data name="m_lblPhraseCount.Text" xml:space="preserve">
-    <value>合計の句：</value>
+    <value>フレーズの総数：(&amp;h)</value>
   </data>
   <data name="&gt;&gt;m_lblPhraseCount.Name" xml:space="preserve">
     <value>m_lblPhraseCount</value>
@@ -277,7 +277,7 @@
     <value>7</value>
   </data>
   <data name="m_txtPhraseCount.AccessibleName" xml:space="preserve">
-    <value>&amp;合計の句：</value>
+    <value>フレーズの総数</value>
   </data>
   <data name="m_txtPhraseCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -322,7 +322,7 @@
     <value>10</value>
   </data>
   <data name="m_lblPageCount.Text" xml:space="preserve">
-    <value>合計のページ：</value>
+    <value>ページの総数：(&amp;g)</value>
   </data>
   <data name="&gt;&gt;m_lblPageCount.Name" xml:space="preserve">
     <value>m_lblPageCount</value>
@@ -337,7 +337,7 @@
     <value>5</value>
   </data>
   <data name="m_txtPageCount.AccessibleName" xml:space="preserve">
-    <value>&amp;合計のページ：</value>
+    <value>ページの総数：</value>
   </data>
   <data name="m_txtPageCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -385,7 +385,7 @@
     <value>0</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>&amp;Ok</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>
@@ -418,7 +418,7 @@
     <value>2</value>
   </data>
   <data name="m_lblTitle.Text" xml:space="preserve">
-    <value>&amp;プロジェクトの題名：</value>
+    <value>プロジェクトの題名：(&amp;t)</value>
   </data>
   <data name="&gt;&gt;m_lblTitle.Name" xml:space="preserve">
     <value>m_lblTitle</value>
@@ -481,7 +481,7 @@
     <value>1</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>

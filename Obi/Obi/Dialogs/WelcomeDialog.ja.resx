@@ -142,7 +142,7 @@
     <value>1</value>
   </data>
   <data name="mNewProjectButton.Text" xml:space="preserve">
-    <value>&amp;新しいプロジェクトを作成</value>
+    <value>新規作成(&amp;n)</value>
   </data>
   <data name="&gt;&gt;mNewProjectButton.Name" xml:space="preserve">
     <value>mNewProjectButton</value>
@@ -172,7 +172,7 @@
     <value>3</value>
   </data>
   <data name="mOpenProjectButton.Text" xml:space="preserve">
-    <value>&amp;既存のプロジェクトを開く</value>
+    <value>ファイルから開く(&amp;O)</value>
   </data>
   <data name="&gt;&gt;mOpenProjectButton.Name" xml:space="preserve">
     <value>mOpenProjectButton</value>
@@ -202,7 +202,7 @@
     <value>4</value>
   </data>
   <data name="mOpenLastProjectButton.Text" xml:space="preserve">
-    <value>&amp;先のプロジェクトを開く</value>
+    <value>前回のプロジェクトを開く(&amp;l)</value>
   </data>
   <data name="&gt;&gt;mOpenLastProjectButton.Name" xml:space="preserve">
     <value>mOpenLastProjectButton</value>
@@ -232,7 +232,7 @@
     <value>5</value>
   </data>
   <data name="mOpenEmptyButton.Text" xml:space="preserve">
-    <value>&amp;Obiをプロジェクト無し開く</value>
+    <value>Obiをプロジェクト無しで開く(&amp;e)</value>
   </data>
   <data name="&gt;&gt;mOpenEmptyButton.Name" xml:space="preserve">
     <value>mOpenEmptyButton</value>
@@ -262,7 +262,7 @@
     <value>2</value>
   </data>
   <data name="mImportButton.Text" xml:space="preserve">
-    <value>輸入から新しいプロジェクトを作成</value>
+    <value>インポートして新規作成(&amp;i)</value>
   </data>
   <data name="&gt;&gt;mImportButton.Name" xml:space="preserve">
     <value>mImportButton</value>
@@ -292,7 +292,7 @@
     <value>6</value>
   </data>
   <data name="mViewManualButton.Text" xml:space="preserve">
-    <value>&amp;マニュアルを示す</value>
+    <value>マニュアルを表示(&amp;m)</value>
   </data>
   <data name="&gt;&gt;mViewManualButton.Name" xml:space="preserve">
     <value>mViewManualButton</value>

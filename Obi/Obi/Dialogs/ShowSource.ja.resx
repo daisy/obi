@@ -428,7 +428,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>ソース表示</value>
+    <value>ソースビュー</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

@@ -142,7 +142,7 @@
     <value>18</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>&amp;登録</value>
+    <value>登録(&amp;g)</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>
@@ -172,7 +172,7 @@
     <value>19</value>
   </data>
   <data name="m_btnRemindMeLater.Text" xml:space="preserve">
-    <value>&amp;後で通知する</value>
+    <value>後で通知する(&amp;R)</value>
   </data>
   <data name="&gt;&gt;m_btnRemindMeLater.Name" xml:space="preserve">
     <value>m_btnRemindMeLater</value>
@@ -223,7 +223,7 @@
     <value>6</value>
   </data>
   <data name="m_lblRetypeEmail.Text" xml:space="preserve">
-    <value>&amp;電子メールを再入力：</value>
+    <value>メールを再入力：(&amp;R)</value>
   </data>
   <data name="&gt;&gt;m_lblRetypeEmail.Name" xml:space="preserve">
     <value>m_lblRetypeEmail</value>
@@ -271,7 +271,7 @@
     <value>14</value>
   </data>
   <data name="m_lblWinVer.Text" xml:space="preserve">
-    <value>Windowsの版：</value>
+    <value>Windowsのバージョン：</value>
   </data>
   <data name="&gt;&gt;m_lblWinVer.Name" xml:space="preserve">
     <value>m_lblWinVer</value>
@@ -403,7 +403,7 @@
     <value>12</value>
   </data>
   <data name="m_lblCountry.Text" xml:space="preserve">
-    <value>&amp;国：</value>
+    <value>国：(&amp;y)</value>
   </data>
   <data name="&gt;&gt;m_lblCountry.Name" xml:space="preserve">
     <value>m_lblCountry</value>
@@ -430,7 +430,7 @@
     <value>10</value>
   </data>
   <data name="m_lblCity.Text" xml:space="preserve">
-    <value>&amp;町/州/県 :</value>
+    <value>町/州/県 :(&amp;C)</value>
   </data>
   <data name="&gt;&gt;m_lblCity.Name" xml:space="preserve">
     <value>m_lblCity</value>
@@ -457,8 +457,8 @@
     <value>8</value>
   </data>
   <data name="m_lblOrgName.Text" xml:space="preserve">
-    <value>&amp;組織の名：r
-プライベートユーザーについて"Home"を使ってください。</value>
+    <value>団体名：r
+個人利用の方は"Home"を使ってください。</value>
   </data>
   <data name="&gt;&gt;m_lblOrgName.Name" xml:space="preserve">
     <value>m_lblOrgName</value>
@@ -485,7 +485,7 @@
     <value>4</value>
   </data>
   <data name="m_lblEmail.Text" xml:space="preserve">
-    <value>&amp;電子メール：</value>
+    <value>メール：(&amp;E)</value>
   </data>
   <data name="&gt;&gt;m_lblEmail.Name" xml:space="preserve">
     <value>m_lblEmail</value>
@@ -512,7 +512,7 @@
     <value>2</value>
   </data>
   <data name="m_lblName.Text" xml:space="preserve">
-    <value>&amp;名：</value>
+    <value>氏名：(&amp;N)</value>
   </data>
   <data name="&gt;&gt;m_lblName.Name" xml:space="preserve">
     <value>m_lblName</value>
@@ -560,7 +560,7 @@
     <value>17</value>
   </data>
   <data name="m_rdbTryingObi.Text" xml:space="preserve">
-    <value>&amp;私はObiを試みています</value>
+    <value>Obiを試し、テストしています(&amp;t)</value>
   </data>
   <data name="&gt;&gt;m_rdbTryingObi.Name" xml:space="preserve">
     <value>m_rdbTryingObi</value>
@@ -587,7 +587,7 @@
     <value>16</value>
   </data>
   <data name="m_rdbDaisyProduction.Text" xml:space="preserve">
-    <value>&amp;私はもうObiをDAISYブックを作るために使用しています。</value>
+    <value>DAISY図書の製作にすでにObiを活用しています(&amp;D)</value>
   </data>
   <data name="&gt;&gt;m_rdbDaisyProduction.Name" xml:space="preserve">
     <value>m_rdbDaisyProduction</value>
@@ -614,7 +614,7 @@
     <value>15</value>
   </data>
   <data name="m_lblSelectRadioButton.Text" xml:space="preserve">
-    <value>いずれかの後続を選択してください。</value>
+    <value>次のいずれかを選択してください。</value>
   </data>
   <data name="&gt;&gt;m_lblSelectRadioButton.Name" xml:space="preserve">
     <value>m_lblSelectRadioButton</value>
@@ -650,7 +650,7 @@
     <value>1</value>
   </data>
   <data name="m_txtBoxObiInformation.AccessibleName" xml:space="preserve">
-    <value>読むために矢印キーを利用</value>
+    <value>読むのに矢印キーを利用</value>
   </data>
   <data name="m_txtBoxObiInformation.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 7</value>

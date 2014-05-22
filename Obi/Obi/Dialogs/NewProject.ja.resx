@@ -142,7 +142,7 @@
     <value>0</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>&amp;題名</value>
+    <value>題名(&amp;T)</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -202,7 +202,7 @@
     <value>6</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>&amp;所</value>
+    <value>場所(&amp;L)</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -217,7 +217,7 @@
     <value>8</value>
   </data>
   <data name="mFileBox.AccessibleName" xml:space="preserve">
-    <value>所</value>
+    <value>場所</value>
   </data>
   <data name="mFileBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -265,7 +265,7 @@
     <value>8</value>
   </data>
   <data name="mSelectButton.Text" xml:space="preserve">
-    <value>&amp;選択</value>
+    <value>選択(&amp;S)</value>
   </data>
   <data name="&gt;&gt;mSelectButton.Name" xml:space="preserve">
     <value>mSelectButton</value>
@@ -298,7 +298,7 @@
     <value>9</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;Ok</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -331,7 +331,7 @@
     <value>10</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -364,7 +364,7 @@
     <value>2</value>
   </data>
   <data name="mAutoTitleCheckBox.Text" xml:space="preserve">
-    <value>&amp;この題名で自動的にタイトル節を作成</value>
+    <value>この題名で自動的に見出しを生成(&amp;A)</value>
   </data>
   <data name="&gt;&gt;mAutoTitleCheckBox.Name" xml:space="preserve">
     <value>mAutoTitleCheckBox</value>
@@ -457,7 +457,7 @@
     <value>5</value>
   </data>
   <data name="mGenerateIDButton.Text" xml:space="preserve">
-    <value>&amp;生成する</value>
+    <value>生成する(&amp;G)</value>
   </data>
   <data name="&gt;&gt;mGenerateIDButton.Name" xml:space="preserve">
     <value>mGenerateIDButton</value>

@@ -145,7 +145,7 @@
     <value>0</value>
   </data>
   <data name="m_lblParentSection.Text" xml:space="preserve">
-    <value>&amp;親節の題名：</value>
+    <value>題名(&amp;s):</value>
   </data>
   <data name="&gt;&gt;m_lblParentSection.Name" xml:space="preserve">
     <value>m_lblParentSection</value>
@@ -160,7 +160,7 @@
     <value>18</value>
   </data>
   <data name="m_txtParentSection.AccessibleName" xml:space="preserve">
-    <value>親節</value>
+    <value>題名</value>
   </data>
   <data name="m_txtParentSection.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -205,7 +205,7 @@
     <value>2</value>
   </data>
   <data name="m_lblLocationInsideSection.Text" xml:space="preserve">
-    <value>&amp;位置：</value>
+    <value>場所(&amp;P):</value>
   </data>
   <data name="&gt;&gt;m_lblLocationInsideSection.Name" xml:space="preserve">
     <value>m_lblLocationInsideSection</value>
@@ -220,7 +220,7 @@
     <value>16</value>
   </data>
   <data name="m_txtLocationInsideSection.AccessibleName" xml:space="preserve">
-    <value>位置：</value>
+    <value>場所：</value>
   </data>
   <data name="m_txtLocationInsideSection.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -268,7 +268,7 @@
     <value>8</value>
   </data>
   <data name="m_lblPhraseRole.Text" xml:space="preserve">
-    <value>&amp;句の役割：</value>
+    <value>フレーズの役割：(&amp;r)</value>
   </data>
   <data name="&gt;&gt;m_lblPhraseRole.Name" xml:space="preserve">
     <value>m_lblPhraseRole</value>
@@ -283,7 +283,7 @@
     <value>14</value>
   </data>
   <data name="m_comboPhraseRole.AccessibleName" xml:space="preserve">
-    <value>句の役割：</value>
+    <value>フレーズの役割：</value>
   </data>
   <data name="m_comboPhraseRole.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -340,7 +340,7 @@
     <value>10</value>
   </data>
   <data name="m_lblCustomClassName.Text" xml:space="preserve">
-    <value>&amp;カスタムクラスの名</value>
+    <value>カスタムクラス名(&amp;u)</value>
   </data>
   <data name="&gt;&gt;m_lblCustomClassName.Name" xml:space="preserve">
     <value>m_lblCustomClassName</value>
@@ -376,7 +376,7 @@
     <value>13</value>
   </data>
   <data name="m_chkUsed.Text" xml:space="preserve">
-    <value>&amp;利用された</value>
+    <value>使用された(&amp;U)</value>
   </data>
   <data name="&gt;&gt;m_chkUsed.Name" xml:space="preserve">
     <value>m_chkUsed</value>
@@ -478,7 +478,7 @@
     <value>16</value>
   </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;m_btnCancel.Name" xml:space="preserve">
     <value>m_btnCancel</value>
@@ -511,7 +511,7 @@
     <value>6</value>
   </data>
   <data name="m_lblTimeLength.Text" xml:space="preserve">
-    <value>＆存続：</value>
+    <value>長さ：(&amp;D)</value>
   </data>
   <data name="&gt;&gt;m_lblTimeLength.Name" xml:space="preserve">
     <value>m_lblTimeLength</value>
@@ -526,7 +526,7 @@
     <value>7</value>
   </data>
   <data name="m_txtTimeLength.AccessibleName" xml:space="preserve">
-    <value>存続:</value>
+    <value>長さ:</value>
   </data>
   <data name="m_txtTimeLength.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -556,7 +556,7 @@
     <value>6</value>
   </data>
   <data name="m_comboCustomClassName.AccessibleName" xml:space="preserve">
-    <value>カスタムクラスの名：</value>
+    <value>カスタムクラス名：</value>
   </data>
   <data name="m_comboCustomClassName.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -583,7 +583,7 @@
     <value>5</value>
   </data>
   <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>祖先のセクション：</value>
+    <value>親見出し：</value>
   </data>
   <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -625,7 +625,7 @@
     <value>4</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>&amp;祖先のセクション：</value>
+    <value>親見出し：(&amp;A)</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -652,7 +652,7 @@
     <value>10</value>
   </data>
   <data name="m_lblPageNumberDetails.Text" xml:space="preserve">
-    <value>ページ番号の細部：</value>
+    <value>ページ番号の詳細：</value>
   </data>
   <data name="m_lblPageNumberDetails.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -670,7 +670,7 @@
     <value>3</value>
   </data>
   <data name="m_txtPageNumberDetails.AccessibleName" xml:space="preserve">
-    <value>ページ番号の細部：</value>
+    <value>ページ番号の詳細：</value>
   </data>
   <data name="m_txtPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
     <value>149, 299</value>
@@ -712,7 +712,7 @@
     <value>12</value>
   </data>
   <data name="m_chkChangePageNumber.Text" xml:space="preserve">
-    <value>&amp;ページ番号を変更する</value>
+    <value>ページ番号を変更(&amp;g)</value>
   </data>
   <data name="m_chkChangePageNumber.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -742,7 +742,7 @@
     <value>17</value>
   </data>
   <data name="m_lbl_ReferredNote.Text" xml:space="preserve">
-    <value>参考されたノート</value>
+    <value>参照された注</value>
   </data>
   <data name="m_lbl_ReferredNote.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -775,7 +775,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>句の設定</value>
+    <value>フレーズのプロパティ</value>
   </data>
   <data name="&gt;&gt;backgroundWorker1.Name" xml:space="preserve">
     <value>backgroundWorker1</value>

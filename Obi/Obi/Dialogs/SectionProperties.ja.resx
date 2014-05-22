@@ -142,7 +142,7 @@
     <value>0</value>
   </data>
   <data name="m_lblName.Text" xml:space="preserve">
-    <value>&amp;節題名：</value>
+    <value>題名：(&amp;t)</value>
   </data>
   <data name="&gt;&gt;m_lblName.Name" xml:space="preserve">
     <value>m_lblName</value>
@@ -157,7 +157,7 @@
     <value>11</value>
   </data>
   <data name="m_txtName.AccessibleName" xml:space="preserve">
-    <value>節題名:</value>
+    <value>題名:</value>
   </data>
   <data name="m_txtName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -202,7 +202,7 @@
     <value>2</value>
   </data>
   <data name="m_lblLevel.Text" xml:space="preserve">
-    <value>&amp;レベル（深さ）：</value>
+    <value>レベル（深さ）：(&amp;L)</value>
   </data>
   <data name="&gt;&gt;m_lblLevel.Name" xml:space="preserve">
     <value>m_lblLevel</value>
@@ -268,7 +268,7 @@
     <value>6</value>
   </data>
   <data name="m_lblTimeLength.Text" xml:space="preserve">
-    <value>&amp;存続:</value>
+    <value>長さ(&amp;D)</value>
   </data>
   <data name="&gt;&gt;m_lblTimeLength.Name" xml:space="preserve">
     <value>m_lblTimeLength</value>
@@ -283,7 +283,7 @@
     <value>7</value>
   </data>
   <data name="m_txtTimeLength.AccessibleName" xml:space="preserve">
-    <value>存続：</value>
+    <value>長さ</value>
   </data>
   <data name="m_txtTimeLength.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -334,7 +334,7 @@
     <value>8</value>
   </data>
   <data name="m_lblPhraseCount.Text" xml:space="preserve">
-    <value>&amp;句の数：</value>
+    <value>フレーズ数：(&amp;N)</value>
   </data>
   <data name="&gt;&gt;m_lblPhraseCount.Name" xml:space="preserve">
     <value>m_lblPhraseCount</value>
@@ -349,7 +349,7 @@
     <value>5</value>
   </data>
   <data name="m_txtPhraseCount.AccessibleName" xml:space="preserve">
-    <value>句の数：</value>
+    <value>フレーズ数：</value>
   </data>
   <data name="m_txtPhraseCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -433,7 +433,7 @@
     <value>12</value>
   </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;m_btnCancel.Name" xml:space="preserve">
     <value>m_btnCancel</value>
@@ -469,7 +469,7 @@
     <value>10</value>
   </data>
   <data name="m_chkUsed.Text" xml:space="preserve">
-    <value>&amp;利用された</value>
+    <value>使用済み(&amp;U)</value>
   </data>
   <data name="&gt;&gt;m_chkUsed.Name" xml:space="preserve">
     <value>m_chkUsed</value>
@@ -505,7 +505,7 @@
     <value>4</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>&amp;祖先の節：</value>
+    <value>親見出し：(&amp;A)</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -520,7 +520,7 @@
     <value>0</value>
   </data>
   <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>祖先の節：</value>
+    <value>親見出し：</value>
   </data>
   <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -556,7 +556,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>節設定</value>
+    <value>見出しのプロパティ</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

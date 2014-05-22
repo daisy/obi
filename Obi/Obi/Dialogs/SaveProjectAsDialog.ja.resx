@@ -145,7 +145,7 @@
     <value>2</value>
   </data>
   <data name="mSelectButton.Text" xml:space="preserve">
-    <value>&amp;選択</value>
+    <value>選択(&amp;S)</value>
   </data>
   <data name="&gt;&gt;mSelectButton.Name" xml:space="preserve">
     <value>mSelectButton</value>
@@ -160,7 +160,7 @@
     <value>7</value>
   </data>
   <data name="m_lblParentDirectoryPath.AccessibleName" xml:space="preserve">
-    <value>所</value>
+    <value>場所</value>
   </data>
   <data name="m_lblParentDirectoryPath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -178,7 +178,7 @@
     <value>0</value>
   </data>
   <data name="m_lblParentDirectoryPath.Text" xml:space="preserve">
-    <value>&amp;所:</value>
+    <value>場所(&amp;L)</value>
   </data>
   <data name="&gt;&gt;m_lblParentDirectoryPath.Name" xml:space="preserve">
     <value>m_lblParentDirectoryPath</value>
@@ -238,7 +238,7 @@
     <value>6</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;Ok</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -271,7 +271,7 @@
     <value>7</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -304,7 +304,7 @@
     <value>5</value>
   </data>
   <data name="mSwitchToNewCheckBox.Text" xml:space="preserve">
-    <value>新しいコピーに切り替える</value>
+    <value>新しいコピーに切り替える(&amp;w)</value>
   </data>
   <data name="&gt;&gt;mSwitchToNewCheckBox.Name" xml:space="preserve">
     <value>mSwitchToNewCheckBox</value>
@@ -355,7 +355,7 @@
     <value>3</value>
   </data>
   <data name="m_lbl_ProjectName.Text" xml:space="preserve">
-    <value>プロジェクトファイルの題名：</value>
+    <value>プロジェクトファイルの題名：(&amp;j)</value>
   </data>
   <data name="&gt;&gt;m_lbl_ProjectName.Name" xml:space="preserve">
     <value>m_lbl_ProjectName</value>
@@ -385,7 +385,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>….としてプロジェクトを保管</value>
+    <value>名前を付けて保存</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

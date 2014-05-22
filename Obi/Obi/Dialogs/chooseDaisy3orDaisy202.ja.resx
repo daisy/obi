@@ -250,7 +250,7 @@
     <value>2</value>
   </data>
   <data name="m_radBtnDaisy3_202.Text" xml:space="preserve">
-    <value>&amp;DAISY 3 と DAISY 2.02両方</value>
+    <value>DAISY 3 と DAISY 2.02両方(&amp;&amp;)</value>
   </data>
   <data name="&gt;&gt;m_radBtnDaisy3_202.Name" xml:space="preserve">
     <value>m_radBtnDaisy3_202</value>
@@ -274,7 +274,7 @@
     <value>372, 78</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>DAISY標準の選択</value>
+    <value>DAISY規格の選択</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

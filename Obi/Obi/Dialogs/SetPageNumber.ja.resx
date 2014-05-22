@@ -142,7 +142,7 @@
     <value>0</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>&amp;ページ番号：</value>
+    <value>ページ番号：(&amp;P)</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -205,7 +205,7 @@
     <value>7</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;Ok </value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -238,7 +238,7 @@
     <value>8</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -271,7 +271,7 @@
     <value>6</value>
   </data>
   <data name="mRenumber.Text" xml:space="preserve">
-    <value>&amp;後続のページをレナンバ</value>
+    <value>後続のページを振りなおす(&amp;R)</value>
   </data>
   <data name="&gt;&gt;mRenumber.Name" xml:space="preserve">
     <value>mRenumber</value>
@@ -331,7 +331,7 @@
     <value>2</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>&amp;ページの数 :</value>
+    <value>ページの数(&amp;N)</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -355,10 +355,10 @@
     <value>フロントページ</value>
   </data>
   <data name="mPageKindComboBox.Items1" xml:space="preserve">
-    <value>平常のページ</value>
+    <value>ノーマルページ</value>
   </data>
   <data name="mPageKindComboBox.Items2" xml:space="preserve">
-    <value>特別ページ</value>
+    <value>特殊ページ</value>
   </data>
   <data name="mPageKindComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>189, 72</value>
@@ -400,7 +400,7 @@
     <value>4</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>&amp;ページの種類：</value>
+    <value>ページの種類：(&amp;k)</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -430,7 +430,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>ページ番号を置く</value>
+    <value>ページ番号設定</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

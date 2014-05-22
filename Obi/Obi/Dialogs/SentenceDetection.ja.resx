@@ -145,7 +145,7 @@
     <value>0</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;Ok</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -178,7 +178,7 @@
     <value>1</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -208,7 +208,7 @@
     <value>2</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>&amp;無音しきい値:</value>
+    <value>無音スレッシュホールド(&amp;S)：</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -238,7 +238,7 @@
     <value>4</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>&amp;文章の間に間隙：</value>
+    <value>センテンスの間隔(&amp;G)：</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -268,7 +268,7 @@
     <value>6</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>&amp;大手の無音：</value>
+    <value>直前の無音(&amp;L)：</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -283,7 +283,7 @@
     <value>3</value>
   </data>
   <data name="mThresholdNumericBox.AccessibleName" xml:space="preserve">
-    <value>無音しきい値：</value>
+    <value>無音スレッシュホールド：</value>
   </data>
   <data name="mThresholdNumericBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>177, 12</value>
@@ -307,7 +307,7 @@
     <value>2</value>
   </data>
   <data name="mGapNumericBox.AccessibleName" xml:space="preserve">
-    <value>文章の間に間隙：</value>
+    <value>センテンスの間隔：</value>
   </data>
   <data name="mGapNumericBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>177, 40</value>
@@ -331,7 +331,7 @@
     <value>1</value>
   </data>
   <data name="mLeadingNumericBox.AccessibleName" xml:space="preserve">
-    <value>大手の無音：</value>
+    <value>直前の無音：</value>
   </data>
   <data name="mLeadingNumericBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>177, 68</value>
@@ -626,7 +626,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>句を検出の設定</value>
+    <value>フレーズ検知設定</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

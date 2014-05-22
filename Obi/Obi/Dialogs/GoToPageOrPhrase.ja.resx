@@ -337,7 +337,7 @@
     <value>1</value>
   </data>
   <data name="m_radPhrase.Text" xml:space="preserve">
-    <value>句インデックス</value>
+    <value>フレーズ・インデックス</value>
   </data>
   <data name="&gt;&gt;m_radPhrase.Name" xml:space="preserve">
     <value>m_radPhrase</value>
@@ -388,7 +388,7 @@
     <value>0</value>
   </data>
   <data name="m_grpSearchPagePhrase.Text" xml:space="preserve">
-    <value>Go To</value>
+    <value>移動</value>
   </data>
   <data name="&gt;&gt;m_grpSearchPagePhrase.Name" xml:space="preserve">
     <value>m_grpSearchPagePhrase</value>
@@ -427,10 +427,10 @@
     <value>12</value>
   </data>
   <data name="m_cb_TimeInPhraseOrSection.Items" xml:space="preserve">
-    <value>句</value>
+    <value>フレーズ</value>
   </data>
   <data name="m_cb_TimeInPhraseOrSection.Items1" xml:space="preserve">
-    <value>節</value>
+    <value>見出し</value>
   </data>
   <data name="m_cb_TimeInPhraseOrSection.Items2" xml:space="preserve">
     <value>プロジェクト</value>
@@ -544,7 +544,7 @@
     <value>389, 222</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Go to...</value>
+    <value>移動…</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

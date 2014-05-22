@@ -165,7 +165,7 @@
     <value>1</value>
   </data>
   <data name="m_rdb_SaveBookmarkAndProject.Text" xml:space="preserve">
-    <value>プロジェクトを選択された項目をブックマークとして保管</value>
+    <value>プロジェクトと選択したアイテムをブックマークとして保存(&amp;b)</value>
   </data>
   <data name="&gt;&gt;m_rdb_SaveBookmarkAndProject.Name" xml:space="preserve">
     <value>m_rdb_SaveBookmarkAndProject</value>
@@ -192,7 +192,7 @@
     <value>3</value>
   </data>
   <data name="m_rdb_SaveProjectOnly.Text" xml:space="preserve">
-    <value>プロジェクトだけを選択</value>
+    <value>プロジェクトのみを保存</value>
   </data>
   <data name="&gt;&gt;m_rdb_SaveProjectOnly.Name" xml:space="preserve">
     <value>m_rdb_SaveProjectOnly</value>
@@ -219,7 +219,7 @@
     <value>4</value>
   </data>
   <data name="m_rdb_DiscardBoth.Text" xml:space="preserve">
-    <value>&amp;両方を破棄</value>
+    <value>両方を破棄(&amp;D)</value>
   </data>
   <data name="&gt;&gt;m_rdb_DiscardBoth.Name" xml:space="preserve">
     <value>m_rdb_DiscardBoth</value>
