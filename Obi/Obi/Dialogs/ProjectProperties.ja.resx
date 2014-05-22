@@ -129,7 +129,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblDuration.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 41</value>
+    <value>05, 41</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDuration.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -190,7 +190,7 @@
     <value>True</value>
   </data>
   <data name="m_lblSectionCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 72</value>
+    <value>05, 72</value>
   </data>
   <data name="m_lblSectionCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -250,7 +250,7 @@
     <value>True</value>
   </data>
   <data name="m_lblPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 102</value>
+    <value>05, 102</value>
   </data>
   <data name="m_lblPhraseCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -310,7 +310,7 @@
     <value>True</value>
   </data>
   <data name="m_lblPageCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 132</value>
+    <value>05, 132</value>
   </data>
   <data name="m_lblPageCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -406,7 +406,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="m_lblTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 11</value>
+    <value>00, 11</value>
   </data>
   <data name="m_lblTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
