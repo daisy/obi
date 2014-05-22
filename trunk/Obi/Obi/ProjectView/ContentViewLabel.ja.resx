@@ -142,7 +142,7 @@
     <value>0</value>
   </data>
   <data name="m_lblStaticLabel.Text" xml:space="preserve">
-    <value>節:            の内容を示す</value>
+    <value>見出しの内容を表示：</value>
   </data>
   <data name="&gt;&gt;m_lblStaticLabel.Name" xml:space="preserve">
     <value>m_lblStaticLabel</value>
@@ -175,7 +175,7 @@
     <value>1</value>
   </data>
   <data name="m_lblSectionName.Text" xml:space="preserve">
-    <value>節は一つも選択されません</value>
+    <value>見出しが選択されていません。</value>
   </data>
   <data name="&gt;&gt;m_lblSectionName.Name" xml:space="preserve">
     <value>m_lblSectionName</value>

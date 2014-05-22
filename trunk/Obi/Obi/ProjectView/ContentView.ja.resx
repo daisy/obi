@@ -134,31 +134,31 @@
     <value>208, 22</value>
   </data>
   <data name="Context_ZoomPhrase.Text" xml:space="preserve">
-    <value>句をズーム</value>
+    <value>フレーズ拡大</value>
   </data>
   <data name="Context_AddSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_AddSectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を追加</value>
+    <value>見出し追加(&amp;s)</value>
   </data>
   <data name="Context_InsertSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_InsertSectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を挿入</value>
+    <value>見出し挿入(&amp;I)</value>
   </data>
   <data name="Context_SplitSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_SplitSectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を分ける</value>
+    <value>見出し分割(&amp;l)</value>
   </data>
   <data name="Context_MergeSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_MergeSectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を合併</value>
+    <value>見出し結合(&amp;g)</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
@@ -167,61 +167,61 @@
     <value>208, 22</value>
   </data>
   <data name="Context_AddBlankPhraseMenuItem.Text" xml:space="preserve">
-    <value>&amp;空白句を追加</value>
+    <value>空のフレーズを追加(&amp;A) </value>
   </data>
   <data name="Context_AddEmptyPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_AddEmptyPagesMenuItem.Text" xml:space="preserve">
-    <value>&amp;空句を追加</value>
+    <value>空のページを追加(&amp;e)</value>
   </data>
   <data name="Context_GenerateSpeechForPageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_GenerateSpeechForPageMenuItem.Text" xml:space="preserve">
-    <value>&amp;ページのためにスピーチを生成</value>
+    <value>ページの音声を生成(&amp;t)</value>
   </data>
   <data name="Context_ImportAudioFilesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_ImportAudioFilesMenuItem.Text" xml:space="preserve">
-    <value>&amp;オーディオファイルを輸入</value>
+    <value>音声ファイルをインポート(&amp;m)</value>
   </data>
   <data name="Context_FineNavigationMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_FineNavigationMenuItem.Text" xml:space="preserve">
-    <value>&amp;ファイルナビゲーション</value>
+    <value>ファインナビゲーション(&amp;v)</value>
   </data>
   <data name="Context_SplitPhraseMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_SplitPhraseMenuItem.Text" xml:space="preserve">
-    <value>&amp;句を分ける</value>
+    <value>フレーズ分割(&amp;h)</value>
   </data>
   <data name="Context_MergeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_MergeMenuItem.Text" xml:space="preserve">
-    <value>&amp;句を合併</value>
+    <value>フレーズ結合(&amp;d)</value>
   </data>
   <data name="Context_CropAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_CropAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;オーディオを切り調える</value>
+    <value>音声クロップ(&amp;d)</value>
   </data>
   <data name="Context_PhraseIsTODOMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>&amp;句はTODO</value>
+    <value>TODOフレーズ(&amp;O)</value>
   </data>
   <data name="Context_PhraseIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PhraseIsUsedMenuItem.Text" xml:space="preserve">
-    <value>&amp;句は利用されています。</value>
+    <value>使用されているフレーズ(&amp;e)</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
@@ -230,34 +230,34 @@
     <value>208, 22</value>
   </data>
   <data name="Context_AssignRoleMenuItem.Text" xml:space="preserve">
-    <value>ロールを割り当てる</value>
+    <value>役割を割り当てる(&amp;l)</value>
   </data>
   <data name="Context_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_ClearRoleMenuItem.Text" xml:space="preserve">
-    <value>ロールを削除</value>
+    <value>役割を削除する</value>
   </data>
   <data name="Context_PhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>句検出を適用する</value>
+    <value>フレーズ検知を実行(&amp;h)</value>
   </data>
   <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
-    <value>スキップ可能ノート</value>
+    <value>読み飛ばし注</value>
   </data>
   <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>&amp;スキップ可能ノート</value>
+    <value>読み飛ばし注(&amp;b)</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;オーディオ選択</value>
+    <value>音声選択(&amp;o)</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
@@ -266,25 +266,25 @@
     <value>208, 22</value>
   </data>
   <data name="Context_CutMenuItem.Text" xml:space="preserve">
-    <value>&amp;切り取り</value>
+    <value>切り取り(&amp;C)</value>
   </data>
   <data name="Context_CopyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_CopyMenuItem.Text" xml:space="preserve">
-    <value>&amp;コピー</value>
+    <value>コピー(&amp;y)</value>
   </data>
   <data name="Context_PasteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PasteMenuItem.Text" xml:space="preserve">
-    <value>&amp;貼り付け</value>
+    <value>貼り付け(&amp;P)</value>
   </data>
   <data name="Context_PasteBeforeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PasteBeforeMenuItem.Text" xml:space="preserve">
-    <value>&amp;前に貼り付け</value>
+    <value>前に貼り付け(&amp;b)</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Context_PasteBeforeMenuItem.Visible" type="System.Boolean, mscorlib">
@@ -294,7 +294,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_PasteInsideMenuItem.Text" xml:space="preserve">
-    <value>&amp;中に貼り付け</value>
+    <value>現在位置に貼り付け(&amp;i)</value>
   </data>
   <data name="Context_PasteInsideMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -303,16 +303,16 @@
     <value>208, 22</value>
   </data>
   <data name="Context_DeleteMenuItem.Text" xml:space="preserve">
-    <value>&amp;削除</value>
+    <value>削除(&amp;D)</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>オーディオを輸出または交換する</value>
+    <value>音声のエクスポートまたは置き換え</value>
   </data>
   <data name="Context_ExportAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>オーディオを輸出ctrl+Alt+E</value>
+    <value>音声のエクスポート　ctrl+Alt+E</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Context_ExportAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
@@ -322,28 +322,28 @@
     <value>205, 22</value>
   </data>
   <data name="Context_ExportAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;オーディオを輸出</value>
+    <value>音声エクスポート(&amp;x)</value>
   </data>
   <data name="Context_ReplaceAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>オーディオを交換する</value>
+    <value>音声の置き換え</value>
   </data>
   <data name="Context_ReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 22</value>
   </data>
   <data name="Context_ReplaceAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;オーディオを交換する</value>
+    <value>音声の置き換え(&amp;R)</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;オーディオを輸出または交換する</value>
+    <value>音声のエクスポートまたは置き換え(&amp;E)</value>
   </data>
   <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
-    <value>&amp;設定</value>
+    <value>設定(&amp;o)</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>209, 666</value>
@@ -355,82 +355,82 @@
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Context_MergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>節を次のと合併</value>
+    <value>次の見出しと結合</value>
   </data>
   <data name="Context_MergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 22</value>
   </data>
   <data name="Context_MergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を次のと合併</value>
+    <value>次の見出しと結合(&amp;x)</value>
   </data>
   <data name="Context_MergeMultipleSectionsToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>複数節を合併</value>
+    <value>複数の見出しを結合</value>
   </data>
   <data name="Context_MergeMultipleSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 22</value>
   </data>
   <data name="Context_MergeMultipleSectionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;複数節を合併</value>
+    <value>複数の見出しを結合（＆ｃ）</value>
   </data>
   <data name="Context_MergePhraseWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_MergePhraseWithNextMenuItem.Text" xml:space="preserve">
-    <value>&amp;次の句と合併</value>
+    <value>次のフレーズと結合</value>
   </data>
   <data name="Context_SplitMergeWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_SplitMergeWithNextMenuItem.Text" xml:space="preserve">
-    <value>&amp;分割し、次のと合併</value>
+    <value>分割して次と結合</value>
   </data>
   <data name="Context_SplitMergeWithPreviousMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_SplitMergeWithPreviousMenuItem.Text" xml:space="preserve">
-    <value>&amp;分割し、前のと合併</value>
+    <value>分割して前と結合</value>
   </data>
   <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>&amp;後続の句と合併</value>
+    <value>次のフレーズと結合(&amp;l)</value>
   </data>
   <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>&amp;前の句と合併</value>
+    <value>前のフレーズと結合(&amp;s)</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>&amp;平易</value>
+    <value>プレーン(&amp;l)</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
-    <value>&amp;見出し</value>
+    <value>見出し(&amp;H)</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Text" xml:space="preserve">
-    <value>&amp;ページ</value>
+    <value>ページ(&amp;P)</value>
   </data>
   <data name="Context_AssignRole_SilenceMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
-    <value>&amp;無音</value>
+    <value>無音(&amp;S)</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>&amp;アンカー</value>
+    <value>アンカー(&amp;o)</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 6</value>
@@ -439,118 +439,118 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
-    <value>（新しいカスタムロール）</value>
+    <value>（新しいカスタムの役割...）</value>
   </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;選択された項目</value>
+    <value>選択された項目(&amp;t)</value>
   </data>
   <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
   <data name="Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text" xml:space="preserve">
-    <value>&amp;複数節　</value>
+    <value>複数の見出し(&amp;l)</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>選択された無音の句からのパラメータ</value>
+    <value>選択された無音のフレーズのパラメータ(&amp;s)</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ノートを始める</value>
+    <value>注開始</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;ノートを始める</value>
+    <value>注開始(&amp;g)</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ノートを終了</value>
+    <value>注終了</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;ノートを終了</value>
+    <value>注終了(&amp;d)</value>
   </data>
   <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>参考を追加</value>
+    <value>参照を追加</value>
   </data>
   <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;参考を追加</value>
+    <value>参照を追加(&amp;f)</value>
   </data>
   <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>参考されたノートへ行く</value>
+    <value>注の参照先へ移動</value>
   </data>
   <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;参考されたノートへ行く</value>
+    <value>注の参照先へ移動(&amp;r)</value>
   </data>
   <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>参考を削除</value>
+    <value>参照を削除</value>
   </data>
   <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;参考を削除</value>
+    <value>参照を削除(&amp;n)</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>先頭ノートへ移動</value>
+    <value>先頭の注へ移動</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_MoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;先頭ノートへ移動</value>
+    <value>先頭の注へ移動(&amp;t)</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>最後先頭ノートへ移動</value>
+    <value>末尾の注へ移動</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_MoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;最後先頭ノートへ移動</value>
+    <value>末尾の注へ移動(&amp;v)</value>
   </data>
   <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;ノートからロールを削除</value>
+    <value>注から役割を削除(&amp;C)</value>
   </data>
   <data name="Context_AudioSelection_BeginMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
   </data>
   <data name="Context_AudioSelection_BeginMenuItem.Text" xml:space="preserve">
-    <value>&amp;オーディオ選択を始める</value>
+    <value>音声の選択開始(&amp;B)</value>
   </data>
   <data name="Context_AudioSelection_EndMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
   </data>
   <data name="Context_AudioSelection_EndMenuItem.Text" xml:space="preserve">
-    <value>&amp;オーディオ選択を終了</value>
+    <value>音声の選択終了(&amp;E)</value>
   </data>
   <data name="Context_Delete_deleteSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 22</value>
   </data>
   <data name="Context_Delete_deleteSelectionMenuItem.Text" xml:space="preserve">
-    <value>選択を削除</value>
+    <value>選択を削除(&amp;s)</value>
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 22</value>
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>後続の句を削除</value>
+    <value>次のフレーズを削除(&amp;t)</value>
   </data>
   <data name="mStripsPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>

@@ -272,7 +272,7 @@
     <value>3</value>
   </data>
   <data name="mRewindButton.ToolTip" xml:space="preserve">
-    <value>速いスピードで逆再生する</value>
+    <value>速いスピードで巻き戻しする</value>
   </data>
   <data name="&gt;&gt;mRewindButton.Name" xml:space="preserve">
     <value>mRewindButton</value>
@@ -290,7 +290,7 @@
     <value>button</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleName" xml:space="preserve">
-    <value>句をマーク</value>
+    <value>フレーズをマーク</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -342,7 +342,7 @@
     <value>13</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
-    <value>録音する時、TODOマークを追加する</value>
+    <value>録音中にTODOマークを追加(F9)</value>
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
     <value>mToDo_CustomClassMarkButton</value>
@@ -473,7 +473,7 @@
     <value>4</value>
   </data>
   <data name="mPlayButton.ToolTip" xml:space="preserve">
-    <value>オーディオ再生を始めたり再開したりする</value>
+    <value>音声の再生を開始または再開（スペース）</value>
   </data>
   <data name="&gt;&gt;mPlayButton.Name" xml:space="preserve">
     <value>mPlayButton</value>
@@ -529,7 +529,7 @@
     <value>5</value>
   </data>
   <data name="mPauseButton.ToolTip" xml:space="preserve">
-    <value>オーディオ再生または録音を一時停止(Space)</value>
+    <value>音声の再生または録音を一時停止(スペース）</value>
   </data>
   <data name="&gt;&gt;mPauseButton.Name" xml:space="preserve">
     <value>mPauseButton</value>
@@ -587,7 +587,7 @@
     <value>6</value>
   </data>
   <data name="mStopButton.ToolTip" xml:space="preserve">
-    <value>オーディオ再生または録音を停止(Ctrl+Space)</value>
+    <value>音声の再生または録音を停止 (Ctrl+Space)</value>
   </data>
   <data name="&gt;&gt;mStopButton.Name" xml:space="preserve">
     <value>mStopButton</value>
@@ -605,7 +605,7 @@
     <value>button</value>
   </data>
   <data name="mNextPhrase.AccessibleName" xml:space="preserve">
-    <value>次の句</value>
+    <value>次のフレーズ</value>
   </data>
   <data name="mNextPhrase.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -658,7 +658,7 @@
     <value>10</value>
   </data>
   <data name="mNextPhrase.ToolTip" xml:space="preserve">
-    <value>次の句。(K)</value>
+    <value>次のフレーズ(K)</value>
   </data>
   <data name="&gt;&gt;mNextPhrase.Name" xml:space="preserve">
     <value>mNextPhrase</value>
@@ -676,7 +676,7 @@
     <value>button</value>
   </data>
   <data name="mPrevPhraseButton.AccessibleName" xml:space="preserve">
-    <value>前の句</value>
+    <value>前のフレーズ</value>
   </data>
   <data name="mPrevPhraseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -729,7 +729,7 @@
     <value>2</value>
   </data>
   <data name="mPrevPhraseButton.ToolTip" xml:space="preserve">
-    <value>前の句。(K)</value>
+    <value>前のフレーズ。(J)</value>
   </data>
   <data name="&gt;&gt;mPrevPhraseButton.Name" xml:space="preserve">
     <value>mPrevPhraseButton</value>
@@ -747,7 +747,7 @@
     <value>button</value>
   </data>
   <data name="mNextSectionButton.AccessibleName" xml:space="preserve">
-    <value>次の節。(H)</value>
+    <value>次の見出し</value>
   </data>
   <data name="mNextSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -798,7 +798,7 @@
     <value>12</value>
   </data>
   <data name="mNextSectionButton.ToolTip" xml:space="preserve">
-    <value>次の節(H)</value>
+    <value>次の見出し。(H)</value>
   </data>
   <data name="&gt;&gt;mNextSectionButton.Name" xml:space="preserve">
     <value>mNextSectionButton</value>
@@ -816,7 +816,7 @@
     <value>button</value>
   </data>
   <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
-    <value>前の節</value>
+    <value>前の見出し</value>
   </data>
   <data name="mPrevSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -867,7 +867,7 @@
     <value>0</value>
   </data>
   <data name="mPrevSectionButton.ToolTip" xml:space="preserve">
-    <value>前節(Shift+H)</value>
+    <value>前の見出し。(Shift+H)</value>
   </data>
   <data name="&gt;&gt;mPrevSectionButton.Name" xml:space="preserve">
     <value>mPrevSectionButton</value>
@@ -935,7 +935,7 @@
     <value>7</value>
   </data>
   <data name="mRecordButton.ToolTip" xml:space="preserve">
-    <value>監視を開始または録音する(Ctrl+R)</value>
+    <value>モニタリングまたは録音を開始。(Ctrl+R)</value>
   </data>
   <data name="&gt;&gt;mRecordButton.Name" xml:space="preserve">
     <value>mRecordButton</value>
@@ -1000,7 +1000,7 @@
     <value>9</value>
   </data>
   <data name="mFastForwardButton.ToolTip" xml:space="preserve">
-    <value>速いスピードで順方向に再生</value>
+    <value>速いスピードで再生する</value>
   </data>
   <data name="&gt;&gt;mFastForwardButton.Name" xml:space="preserve">
     <value>mFastForwardButton</value>
@@ -1015,7 +1015,7 @@
     <value>9</value>
   </data>
   <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
-    <value>録音のオプション</value>
+    <value>録音オプション</value>
   </data>
   <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1046,7 +1046,7 @@
     <value>8</value>
   </data>
   <data name="m_btnRecordingOptions.ToolTip" xml:space="preserve">
-    <value>録音のオプション</value>
+    <value>録音オプション</value>
   </data>
   <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
     <value>m_btnRecordingOptions</value>
@@ -1116,16 +1116,16 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mDisplayBox.Items" xml:space="preserve">
-    <value>経過</value>
+    <value>経過時間</value>
   </data>
   <data name="mDisplayBox.Items1" xml:space="preserve">
-    <value>経過（全部）</value>
+    <value>経過時間（全体）</value>
   </data>
   <data name="mDisplayBox.Items2" xml:space="preserve">
-    <value>残り</value>
+    <value>残り時間</value>
   </data>
   <data name="mDisplayBox.Items3" xml:space="preserve">
-    <value>残り（全部）</value>
+    <value>残り時間（全体）</value>
   </data>
   <data name="mDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>585, 4</value>
@@ -1212,19 +1212,19 @@
     <value>244, 22</value>
   </data>
   <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
-    <value>監視を始める</value>
+    <value>モニタリング開始</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>録音を始める</value>
+    <value>録音開始</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
-    <value>その後の句を上に録音</value>
+    <value>後のフレーズを上書き</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>

@@ -547,7 +547,7 @@
     <value>1</value>
   </data>
   <data name="mNoProjectLabel.Text" xml:space="preserve">
-    <value>プロジェクトは一つもありません</value>
+    <value>プロジェクトがありません</value>
   </data>
   <data name="&gt;&gt;mNoProjectLabel.Name" xml:space="preserve">
     <value>mNoProjectLabel</value>

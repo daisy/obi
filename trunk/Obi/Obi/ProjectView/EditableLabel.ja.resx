@@ -241,7 +241,7 @@
     <value>3</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;キャンセル</value>
+    <value>キャンセル(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
