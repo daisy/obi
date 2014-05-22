@@ -211,7 +211,7 @@
     <value>1</value>
   </data>
   <data name="toolStripZoomPanel.AccessibleName" xml:space="preserve">
-    <value>ナビゲーションとズームツールバー</value>
+    <value>ナビゲーションと拡大ツールバー</value>
   </data>
   <data name="toolStripZoomPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
@@ -401,7 +401,7 @@
     <value>89, 25</value>
   </data>
   <data name="btnNextPhrasetoolStrip.Text" xml:space="preserve">
-    <value>次の句</value>
+    <value>次のフレーズ</value>
   </data>
   <data name="btnPreviousPhrasetoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -425,7 +425,7 @@
     <value>110, 25</value>
   </data>
   <data name="btnPreviousPhrasetoolStrip.Text" xml:space="preserve">
-    <value>前の句</value>
+    <value>前のフレーズ</value>
   </data>
   <data name="btnZoomIntoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -454,7 +454,7 @@
     <value>72, 25</value>
   </data>
   <data name="btnZoomIntoolStrip.Text" xml:space="preserve">
-    <value>ズームイン</value>
+    <value>拡大</value>
   </data>
   <data name="btnZoomOuttoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -490,7 +490,7 @@
     <value>82, 25</value>
   </data>
   <data name="btnZoomOuttoolStrip.Text" xml:space="preserve">
-    <value>ズームアウト</value>
+    <value>縮小</value>
   </data>
   <data name="btnResettoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -573,7 +573,7 @@
     <value>110, 25</value>
   </data>
   <data name="btnZoomSelectiontoolStrip.Text" xml:space="preserve">
-    <value>ズーム選択</value>
+    <value>拡大/縮小</value>
   </data>
   <data name="toolStripZoomPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>

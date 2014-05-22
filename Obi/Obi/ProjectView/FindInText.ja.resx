@@ -169,7 +169,7 @@
     <value>2</value>
   </data>
   <data name="mPreviousButton.Text" xml:space="preserve">
-    <value>&amp;前</value>
+    <value>前(&amp;u)</value>
   </data>
   <data name="&gt;&gt;mPreviousButton.Name" xml:space="preserve">
     <value>mPreviousButton</value>
@@ -202,7 +202,7 @@
     <value>3</value>
   </data>
   <data name="mNextButton.Text" xml:space="preserve">
-    <value>&amp;次</value>
+    <value>次(&amp;N)</value>
   </data>
   <data name="&gt;&gt;mNextButton.Name" xml:space="preserve">
     <value>mNextButton</value>
@@ -238,7 +238,7 @@
     <value>4</value>
   </data>
   <data name="mCloseButton.Text" xml:space="preserve">
-    <value>&amp;終了</value>
+    <value>終了(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mCloseButton.Name" xml:space="preserve">
     <value>mCloseButton</value>
@@ -265,7 +265,7 @@
     <value>5</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>&amp;検索：</value>
+    <value>検索:(&amp;d)</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>

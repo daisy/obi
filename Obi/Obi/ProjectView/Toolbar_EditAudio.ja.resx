@@ -124,7 +124,7 @@
     <value>True</value>
   </metadata>
   <data name="toolStrip1.AccessibleName" xml:space="preserve">
-    <value>オーディオを編集</value>
+    <value>音声編集</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="toolStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -156,7 +156,7 @@
     <value>47, 22</value>
   </data>
   <data name="mbtnSplittoolStrip.Text" xml:space="preserve">
-    <value>分ける</value>
+    <value>分割</value>
   </data>
   <data name="mbtnMergetoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -199,7 +199,7 @@
     <value>143, 22</value>
   </data>
   <data name="mbtnMergetoolStrip.Text" xml:space="preserve">
-    <value>次の句と合併</value>
+    <value>次のフレーズと結合</value>
   </data>
   <data name="mbtnCuttoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -776,7 +776,7 @@
     <value>109, 22</value>
   </data>
   <data name="mbtnPraseDetectiontoolStrip.Text" xml:space="preserve">
-    <value>句検出</value>
+    <value>フレーズ検知</value>
   </data>
   <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>

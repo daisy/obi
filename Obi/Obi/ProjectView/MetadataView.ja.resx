@@ -134,7 +134,7 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="mNameColumn.Text" xml:space="preserve">
-    <value>名</value>
+    <value>メタデータ名</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mNameColumn.Width" type="System.Int32, mscorlib">
@@ -172,7 +172,7 @@
     <value>4</value>
   </data>
   <data name="mContentTextbox.AccessibleName" xml:space="preserve">
-    <value>メタデータ内容：</value>
+    <value>メタデータの内容：</value>
   </data>
   <data name="mContentTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -226,7 +226,7 @@
     <value>5</value>
   </data>
   <data name="mUpdateButton.Text" xml:space="preserve">
-    <value>&amp;アップデート</value>
+    <value>アップデート(&amp;U)</value>
   </data>
   <data name="&gt;&gt;mUpdateButton.Name" xml:space="preserve">
     <value>mUpdateButton</value>
@@ -286,7 +286,7 @@
     <value>7</value>
   </data>
   <data name="mNameLabel.Text" xml:space="preserve">
-    <value>&amp;名：</value>
+    <value>メタデータ名:(&amp;N)</value>
   </data>
   <data name="&gt;&gt;mNameLabel.Name" xml:space="preserve">
     <value>mNameLabel</value>
@@ -319,7 +319,7 @@
     <value>8</value>
   </data>
   <data name="mContentLabel.Text" xml:space="preserve">
-    <value>&amp;内容：</value>
+    <value>内容：(&amp;C)</value>
   </data>
   <data name="&gt;&gt;mContentLabel.Name" xml:space="preserve">
     <value>mContentLabel</value>
@@ -334,7 +334,7 @@
     <value>2</value>
   </data>
   <data name="m_BtnContextMenu.AccessibleName" xml:space="preserve">
-    <value>もっと多くのオプションサブメニュー</value>
+    <value>その他のオプションサブメニュー</value>
   </data>
   <data name="m_BtnContextMenu.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -383,19 +383,19 @@
     <value>244, 22</value>
   </data>
   <data name="SetDefaultMetadataStripMenuItem.Text" xml:space="preserve">
-    <value>デフォルトメタデータを挿入する</value>
+    <value>既定のメタデータを挿入</value>
   </data>
   <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Text" xml:space="preserve">
-    <value>デフォルトメタデータで上書き</value>
+    <value>既定のメタデータで上書き</value>
   </data>
   <data name="SaveAsDefaultMetadataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="SaveAsDefaultMetadataToolStripMenuItem.Text" xml:space="preserve">
-    <value>デフォルトメタデータとして新規保管</value>
+    <value>既定のメタデータとして保存</value>
   </data>
   <data name="mMetadataContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 92</value>

@@ -127,86 +127,86 @@
     <value>False</value>
   </metadata>
   <data name="Context_ShowContentsMenuItem.AccessibleDescription" xml:space="preserve">
-    <value>節の内容を示す</value>
+    <value>見出しの内容を表示</value>
   </data>
   <data name="Context_ShowContentsMenuItem.AccessibleName" xml:space="preserve">
-    <value>内容を示す</value>
+    <value>内容を表示</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Context_ShowContentsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_ShowContentsMenuItem.Text" xml:space="preserve">
-    <value>&amp;内容を示す</value>
+    <value>内容を表示(&amp;w)</value>
   </data>
   <data name="Context_AddSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_AddSectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を追加</value>
+    <value>見出しを追加(&amp;A)</value>
   </data>
   <data name="Context_AddSubsectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_AddSubsectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;副節を追加</value>
+    <value>子見出しを追加(&amp;u)</value>
   </data>
   <data name="Context_InsertSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_InsertSectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を挿入</value>
+    <value>見出しを挿入(&amp;I)</value>
   </data>
   <data name="Context_MergeSectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>節を合併</value>
+    <value>見出しを結合</value>
   </data>
   <data name="Context_MergeSectionWithNextMenuItem.AccessibleName" xml:space="preserve">
-    <value>節を次のと合併</value>
+    <value>次の見出しと結合</value>
   </data>
   <data name="Context_MergeSectionWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 22</value>
   </data>
   <data name="Context_MergeSectionWithNextMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を次のと合併</value>
+    <value>次の見出しと結合(&amp;r)</value>
   </data>
   <data name="Context_MergeMultipleSectionsMenuItem.AccessibleName" xml:space="preserve">
-    <value>複数の節を合併</value>
+    <value>複数の見出しを結合</value>
   </data>
   <data name="Context_MergeMultipleSectionsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 22</value>
   </data>
   <data name="Context_MergeMultipleSectionsMenuItem.Text" xml:space="preserve">
-    <value>&amp;複数の節を合併</value>
+    <value>複数の見出しを結合(&amp;u)</value>
   </data>
   <data name="Context_MergeSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_MergeSectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を合併</value>
+    <value>見出しを結合(&amp;g)</value>
   </data>
   <data name="Context_RenameSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_RenameSectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;節をリネーム</value>
+    <value>見出しの名前を変更(&amp;R)</value>
   </data>
   <data name="Context_DecreaseSectionLevelMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_DecreaseSectionLevelMenuItem.Text" xml:space="preserve">
-    <value>&amp;節のレベルを減却</value>
+    <value>見出しレベルを下げる(&amp;e)</value>
   </data>
   <data name="Context_IncreaseSectionLevelMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_IncreaseSectionLevelMenuItem.Text" xml:space="preserve">
-    <value>&amp;節のレベルを増加</value>
+    <value>見出しレベルを上げる(&amp;n)</value>
   </data>
   <data name="Context_SectionIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_SectionIsUsedMenuItem.Text" xml:space="preserve">
-    <value>&amp;節は利用されています</value>
+    <value>見出しは使用されています(&amp;t)</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 6</value>
@@ -215,37 +215,37 @@
     <value>189, 22</value>
   </data>
   <data name="Context_CutMenuItem.Text" xml:space="preserve">
-    <value>&amp;切り取り</value>
+    <value>切り取り(&amp;C)</value>
   </data>
   <data name="Context_CopyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_CopyMenuItem.Text" xml:space="preserve">
-    <value>&amp;コピー</value>
+    <value>コピー(&amp;y)</value>
   </data>
   <data name="Context_PasteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_PasteMenuItem.Text" xml:space="preserve">
-    <value>&amp;貼り付け</value>
+    <value>貼り付け(&amp;P)</value>
   </data>
   <data name="Context_PasteBeforeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_PasteBeforeMenuItem.Text" xml:space="preserve">
-    <value>&amp;前に貼り付け</value>
+    <value>前に貼り付け(&amp;b)</value>
   </data>
   <data name="Context_PasteInsideMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_PasteInsideMenuItem.Text" xml:space="preserve">
-    <value>&amp;中に貼り付け</value>
+    <value>現在位置に貼り付け(&amp;i)</value>
   </data>
   <data name="Context_DeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
   </data>
   <data name="Context_DeleteMenuItem.Text" xml:space="preserve">
-    <value>&amp;削除</value>
+    <value>削除(&amp;D)</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 6</value>
@@ -254,7 +254,7 @@
     <value>189, 22</value>
   </data>
   <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
-    <value>&amp;設定</value>
+    <value>設定(&amp;o)</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 368</value>
