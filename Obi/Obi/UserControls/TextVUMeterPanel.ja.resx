@@ -145,7 +145,7 @@
     <value>0</value>
   </data>
   <data name="lblLeft.Text" xml:space="preserve">
-    <value>&amp;左：</value>
+    <value>&amp;L:</value>
   </data>
   <data name="&gt;&gt;lblLeft.Name" xml:space="preserve">
     <value>lblLeft</value>
@@ -202,7 +202,7 @@
     <value>2</value>
   </data>
   <data name="lblRight.Text" xml:space="preserve">
-    <value>&amp;右：</value>
+    <value>&amp;R:</value>
   </data>
   <data name="&gt;&gt;lblRight.Name" xml:space="preserve">
     <value>lblRight</value>

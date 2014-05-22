@@ -180,7 +180,7 @@
     <value>32, 32</value>
   </data>
   <data name="m_recordingToolBarPlayBtn.Text" xml:space="preserve">
-    <value>&amp;再生/一時停止</value>
+    <value>再生/一時停止(&amp;P)</value>
   </data>
   <data name="m_recordingToolBarStopBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -217,13 +217,13 @@
     <value>32, 32</value>
   </data>
   <data name="m_recordingToolBarStopBtn.Text" xml:space="preserve">
-    <value>&amp;停止</value>
+    <value>停止(&amp;t)</value>
   </data>
   <data name="m_recordingToolBarRecordingBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
   <data name="m_recordingToolBarRecordingBtn.AccessibleName" xml:space="preserve">
-    <value>傍受している/録音している</value>
+    <value>モニタリング/録音</value>
   </data>
   <data name="m_recordingToolBarRecordingBtn.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -264,13 +264,13 @@
     <value>34, 34</value>
   </data>
   <data name="m_recordingToolBarRecordingBtn.Text" xml:space="preserve">
-    <value>＆録音</value>
+    <value>録音(&amp;d)</value>
   </data>
   <data name="m_recordingToolBarPrePhraseBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
   <data name="m_recordingToolBarPrePhraseBtn.AccessibleName" xml:space="preserve">
-    <value>前の句</value>
+    <value>前のフレーズ</value>
   </data>
   <data name="m_recordingToolBarPrePhraseBtn.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -314,13 +314,13 @@
     <value>34, 32</value>
   </data>
   <data name="m_recordingToolBarPrePhraseBtn.Text" xml:space="preserve">
-    <value>＆前の句へ行く</value>
+    <value>前のフレーズへ移動(&amp;G)</value>
   </data>
   <data name="m_recordingGoToNextPhraseBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
   <data name="m_recordingGoToNextPhraseBtn.AccessibleName" xml:space="preserve">
-    <value>次の句</value>
+    <value>次のフレーズ</value>
   </data>
   <data name="m_recordingGoToNextPhraseBtn.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -363,7 +363,7 @@
     <value>34, 32</value>
   </data>
   <data name="m_recordingGoToNextPhraseBtn.Text" xml:space="preserve">
-    <value>＆次の句へ行く</value>
+    <value>次のフレーズへ移動(&amp;o)</value>
   </data>
   <data name="m_recordingToolBarNextPageBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -413,13 +413,13 @@
     <value>34, 36</value>
   </data>
   <data name="m_recordingToolBarNextPageBtn.Text" xml:space="preserve">
-    <value>＆次のページへ行く</value>
+    <value>次のページへ移動(&amp;N)</value>
   </data>
   <data name="m_recordingToolBarNextSectionBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
   <data name="m_recordingToolBarNextSectionBtn.AccessibleName" xml:space="preserve">
-    <value>次の節へ行く</value>
+    <value>次の見出し</value>
   </data>
   <data name="m_recordingToolBarNextSectionBtn.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -461,16 +461,16 @@
     <value>32, 32</value>
   </data>
   <data name="m_recordingToolBarNextSectionBtn.Text" xml:space="preserve">
-    <value>＆次の節へ行く</value>
+    <value>次の見出しへ移動(&amp;e)</value>
   </data>
   <data name="m_recordingToolBarNextSectionBtn.ToolTipText" xml:space="preserve">
-    <value>次の節へ行く</value>
+    <value>次の見出しへ移動</value>
   </data>
   <data name="m_TODOBtn.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
   <data name="m_TODOBtn.AccessibleName" xml:space="preserve">
-    <value>句をマーク</value>
+    <value>フレーズをマーク</value>
   </data>
   <data name="m_TODOBtn.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -516,7 +516,7 @@
     <value>40, 40</value>
   </data>
   <data name="m_TODOBtn.Text" xml:space="preserve">
-    <value>行なう</value>
+    <value>TODO</value>
   </data>
   <data name="recordingToolBarToolStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -573,7 +573,7 @@
     <value>2</value>
   </data>
   <data name="m_Enlarge.AccessibleName" xml:space="preserve">
-    <value>増大する</value>
+    <value>増やす</value>
   </data>
   <data name="m_Enlarge.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 60</value>
@@ -585,7 +585,7 @@
     <value>2</value>
   </data>
   <data name="m_Enlarge.Text" xml:space="preserve">
-    <value>増大する</value>
+    <value>増やす</value>
   </data>
   <data name="&gt;&gt;m_Enlarge.Name" xml:space="preserve">
     <value>m_Enlarge</value>
@@ -600,7 +600,7 @@
     <value>1</value>
   </data>
   <data name="m_Reduce.AccessibleName" xml:space="preserve">
-    <value>縮小する</value>
+    <value>減らす</value>
   </data>
   <data name="m_Reduce.Location" type="System.Drawing.Point, System.Drawing">
     <value>155, 60</value>
@@ -612,7 +612,7 @@
     <value>3</value>
   </data>
   <data name="m_Reduce.Text" xml:space="preserve">
-    <value>縮小する</value>
+    <value>減らす</value>
   </data>
   <data name="&gt;&gt;m_Reduce.Name" xml:space="preserve">
     <value>m_Reduce</value>
@@ -630,7 +630,7 @@
     <value>321, 111</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Obiレコーダバル</value>
+    <value>Obi レコーダーバー</value>
   </data>
   <data name="&gt;&gt;m_recordingToolBarPlayBtn.Name" xml:space="preserve">
     <value>m_recordingToolBarPlayBtn</value>

@@ -130,7 +130,7 @@
     <value>ファイル</value>
   </data>
   <data name="mFile_NewProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>新しいプルジェクトCtrl+N</value>
+    <value>新規プロジェクト　Ctrl+N</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mFile_NewProjectMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -144,10 +144,10 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_NewProjectMenuItem.Text" xml:space="preserve">
-    <value>＆新しいプルジェクトCtrl+N</value>
+    <value>新規プロジェクト（&amp;N）</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.AccessibleName" xml:space="preserve">
-    <value>輸入から新しいプルジェクトを開くCtrl+Shift+N</value>
+    <value>インポートから新規プロジェクト　Ctrl+Shift+N</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+N</value>
@@ -156,10 +156,10 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_NewProjectFromImportMenuItem.Text" xml:space="preserve">
-    <value>＆輸入から新しいプルジェクトを開く</value>
+    <value>インポートから新規プロジェクト(&amp;i)</value>
   </data>
   <data name="mFile_OpenProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>プルジェクトを開く</value>
+    <value>プロジェクトを開く (Ctrl+O)</value>
   </data>
   <data name="mFile_OpenProjectMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -171,13 +171,13 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_OpenProjectMenuItem.Text" xml:space="preserve">
-    <value>＆プルジェクトを開く</value>
+    <value>プロジェクトを開く(&amp;O)</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
   </data>
   <data name="mFile_SaveProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>上書き保存Ctrl+S</value>
+    <value>上書き保存　Ctrl+S</value>
   </data>
   <data name="mFile_SaveProjectMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -189,10 +189,10 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_SaveProjectMenuItem.Text" xml:space="preserve">
-    <value>＆上書き保存</value>
+    <value>上書き保存(&amp;S)</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.AccessibleName" xml:space="preserve">
-    <value>新規保管Ctrl+Shift+S</value>
+    <value>名前を付けて保存　Ctrl+Shift+S</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+S</value>
@@ -201,40 +201,40 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_SaveProjectAsMenuItem.Text" xml:space="preserve">
-    <value>＆新規保管</value>
+    <value>名前を付けて保存(&amp;a)</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
   </data>
   <data name="mFile_MergeProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>プルジェクトを合併</value>
+    <value>プロジェクトを結合</value>
   </data>
   <data name="mFile_MergeProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
   </data>
   <data name="mFile_MergeProjectMenuItem.Text" xml:space="preserve">
-    <value>＆プルジェクトを合併</value>
+    <value>プロジェクトを結合(&amp;M)</value>
   </data>
   <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>バックアップから引戻す</value>
+    <value>バックアップに戻す</value>
   </data>
   <data name="m_RestoreFromBackupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
   </data>
   <data name="m_RestoreFromBackupToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆バックアップから引戻す</value>
+    <value>バックアップに戻す(&amp;b)</value>
   </data>
   <data name="m_RestoreFromOriginalProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>実物プロジェクトから引戻す</value>
+    <value>初期状態に戻す</value>
   </data>
   <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
   </data>
   <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆実物プロジェクトから引戻す</value>
+    <value>初期状態に戻す(&amp;g)</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>閉じるCtrl+W</value>
+    <value>閉じる Ctrl+W</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+W</value>
@@ -243,31 +243,22 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.Text" xml:space="preserve">
-    <value>＆閉じる</value>
+    <value>閉じる(&amp;C)</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
-  </data>
-  <data name="openrecentSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 6</value>
-  </data>
-  <data name="mFile_ClearListMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 22</value>
-  </data>
-  <data name="mFile_ClearListMenuItem.Text" xml:space="preserve">
-    <value>＆リストを削除</value>
   </data>
   <data name="mFile_RecentProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
   </data>
   <data name="mFile_RecentProjectMenuItem.Text" xml:space="preserve">
-    <value>＆最近のプロジェクト</value>
+    <value>履歴(&amp;R)</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
   </data>
   <data name="mFile_ExitMenuItem.AccessibleName" xml:space="preserve">
-    <value>終了Alt+F4</value>
+    <value>終了　Alt+F4</value>
   </data>
   <data name="mFile_ExitMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+F4</value>
@@ -276,16 +267,158 @@
     <value>281, 22</value>
   </data>
   <data name="mFile_ExitMenuItem.Text" xml:space="preserve">
-    <value>＆終了</value>
+    <value>終了(&amp;x)</value>
   </data>
   <data name="mFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
   </data>
   <data name="mFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆ファイル</value>
+    <value>ファイル(&amp;F)</value>
+  </data>
+  <data name="mEditToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 20</value>
+  </data>
+  <data name="mEditToolStripMenuItem1.Text" xml:space="preserve">
+    <value>編集(&amp;E)</value>
+  </data>
+  <data name="mViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="mViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>表示(&amp;V)</value>
+  </data>
+  <data name="mSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 20</value>
+  </data>
+  <data name="mSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>見出し(&amp;S)</value>
+  </data>
+  <data name="mPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 20</value>
+  </data>
+  <data name="mPhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>フレーズ(&amp;P)</value>
+  </data>
+  <data name="transportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="transportToolStripMenuItem.Text" xml:space="preserve">
+    <value>ナビゲーション(&amp;a)</value>
+  </data>
+  <data name="mTools_PreferencesMenuItem.AccessibleName" xml:space="preserve">
+    <value>設定　Ctrl+Alt+F</value>
+  </data>
+  <data name="mTools_PreferencesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+F</value>
+  </data>
+  <data name="mTools_PreferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="mTools_PreferencesMenuItem.Text" xml:space="preserve">
+    <value>設定(&amp;P)</value>
+  </data>
+  <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 6</value>
+  </data>
+  <data name="m_ToolsLangPack.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="m_ToolsLangPack.Text" xml:space="preserve">
+    <value>&amp;Update Language Pack</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value>音声エクスポート　 Ctrl+Alt+E</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+E</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.Text" xml:space="preserve">
+    <value>音声エクスポート(&amp;u)</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.AccessibleName" xml:space="preserve">
+    <value>DAISYエクスポート　Ctrl+E</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+E</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
+    <value>DAISYエクスポート(&amp;E)</value>
+  </data>
+  <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value>参照がない音声を削除　ctrl+l</value>
+  </data>
+  <data name="mTools_CleanUnreferencedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+L</value>
+  </data>
+  <data name="mTools_CleanUnreferencedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
+    <value>参照がない音声を削除(&amp;l)</value>
+  </data>
+  <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 6</value>
+  </data>
+  <data name="m_EPUB3ValidatorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="m_EPUB3ValidatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>EPUB 3 Validator</value>
+  </data>
+  <data name="mToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="mToolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>ツール(&amp;T)</value>
+  </data>
+  <data name="mHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="mHelpToolStripMenuItem.Text" xml:space="preserve">
+    <value>ヘルプ(&amp;H)</value>
+  </data>
+  <data name="mMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>876, 24</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mMenuStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="mMenuStrip.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;mMenuStrip.Name" xml:space="preserve">
+    <value>mMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;mMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMenuStrip.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mMenuStrip.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="openrecentSeparator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 6</value>
+  </data>
+  <data name="mFile_ClearListMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 22</value>
+  </data>
+  <data name="mFile_ClearListMenuItem.Text" xml:space="preserve">
+    <value>リストを削除(&amp;C)</value>
   </data>
   <data name="mUndoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>元に戻すCtrl＋Z</value>
+    <value>元に戻す　Ctrl＋Z</value>
   </data>
   <data name="mUndoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Z</value>
@@ -294,10 +427,10 @@
     <value>247, 22</value>
   </data>
   <data name="mUndoToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆元に戻す</value>
+    <value>元に戻す(&amp;U)</value>
   </data>
   <data name="mRedoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>やり直しCtrl+Y</value>
+    <value>やり直す　Ctrl+Y</value>
   </data>
   <data name="mRedoToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Y</value>
@@ -306,13 +439,13 @@
     <value>247, 22</value>
   </data>
   <data name="mRedoToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆やり直し</value>
+    <value>やり直す(&amp;R)</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 6</value>
   </data>
   <data name="mCutToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>切り取りCtrl+X</value>
+    <value>切り取り　Ctrl+X</value>
   </data>
   <data name="mCutToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+X</value>
@@ -321,10 +454,10 @@
     <value>247, 22</value>
   </data>
   <data name="mCutToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆切り取り</value>
+    <value>切り取り(&amp;C)</value>
   </data>
   <data name="mCopyToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>コピーCtrl+C</value>
+    <value>コピー　Ctrl+C</value>
   </data>
   <data name="mCopyToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+C</value>
@@ -333,10 +466,10 @@
     <value>247, 22</value>
   </data>
   <data name="mCopyToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆コピー</value>
+    <value>コピー(&amp;C)</value>
   </data>
   <data name="mPasteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>貼り付けCtrl+V</value>
+    <value>貼り付け　Ctrl+V</value>
   </data>
   <data name="mPasteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+V</value>
@@ -345,10 +478,10 @@
     <value>247, 22</value>
   </data>
   <data name="mPasteToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆貼り付け</value>
+    <value>貼り付け(&amp;P)</value>
   </data>
   <data name="mPasteBeforeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>前に貼り付けCtrl+Alt+V</value>
+    <value>前に貼り付け　Ctrl+Alt+V</value>
   </data>
   <data name="mPasteBeforeToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+V</value>
@@ -357,10 +490,10 @@
     <value>247, 22</value>
   </data>
   <data name="mPasteBeforeToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆前に貼り付け</value>
+    <value>前に貼り付け(&amp;P)</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>中に貼り付けCtrl+Shift+V</value>
+    <value>現在位置に貼り付け　Ctrl+Shift+V</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+V</value>
@@ -369,10 +502,10 @@
     <value>247, 22</value>
   </data>
   <data name="mPasteInsideToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆中に貼り付け</value>
+    <value>現在位置に貼り付け(&amp;P)</value>
   </data>
   <data name="mDeleteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>削除Del</value>
+    <value>削除　Del</value>
   </data>
   <data name="mDeleteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Del</value>
@@ -381,13 +514,13 @@
     <value>247, 22</value>
   </data>
   <data name="mDeleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆削除</value>
+    <value>削除(&amp;D)</value>
   </data>
   <data name="mSelectNothingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
   </data>
   <data name="mSelectNothingToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆何にも選択しない</value>
+    <value>選択解除(&amp;S)</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 6</value>
@@ -399,13 +532,13 @@
     <value>247, 22</value>
   </data>
   <data name="mEdit_DeleteUnusedDataMenuItem.Text" xml:space="preserve">
-    <value>＆遊休データを削除</value>
+    <value>使用していないデータを削除(&amp;D)</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 6</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>簡易検索</value>
+    <value>検索　Ctrl+F</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F</value>
@@ -414,10 +547,10 @@
     <value>247, 22</value>
   </data>
   <data name="mFindInTextToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆簡易検索</value>
+    <value>検索(&amp;F)</value>
   </data>
   <data name="mFindNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>次のを検索　F3</value>
+    <value>次を検索　F3</value>
   </data>
   <data name="mFindNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F3</value>
@@ -426,10 +559,10 @@
     <value>247, 22</value>
   </data>
   <data name="mFindNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆次のを検索　</value>
+    <value>次を検索(&amp;n)</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>前のを検索　Shift+F3</value>
+    <value>前を検索　Shift+F3</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Shift+F3</value>
@@ -438,10 +571,16 @@
     <value>247, 22</value>
   </data>
   <data name="mFindPreviousToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆前のを検索</value>
+    <value>前を検索(&amp;v)</value>
   </data>
   <data name="mEdit_BookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>ブックマーク</value>
+  </data>
+  <data name="mEdit_BookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="mEdit_BookmarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>ブックマーク(&amp;m)</value>
   </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>ブックマークとして設定</value>
@@ -450,31 +589,19 @@
     <value>161, 22</value>
   </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆ブックマークとして設定</value>
+    <value>ブックマークとして設定(&amp;b)</value>
   </data>
   <data name="mEdit_GotoBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ブックマークへ出向く</value>
+    <value>ブックマークへ移動</value>
   </data>
   <data name="mEdit_GotoBookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
   <data name="mEdit_GotoBookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆ブックマークへ出向く</value>
-  </data>
-  <data name="mEdit_BookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 22</value>
-  </data>
-  <data name="mEdit_BookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆ブックマーク</value>
-  </data>
-  <data name="mEditToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 20</value>
-  </data>
-  <data name="mEditToolStripMenuItem1.Text" xml:space="preserve">
-    <value>＆編集</value>
+    <value>ブックマークへ移動(&amp;k)</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>TOC ビューワを表示Ctrl+Alt+T</value>
+    <value>見出しビューを表示　Ctrl+Alt+T</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+T</value>
@@ -483,10 +610,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆TOC ビューワを表示</value>
+    <value>見出しビューを表示(&amp;T)</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>メタデータビューワを表示Ctrl+Alt+M</value>
+    <value>メタデータビューを表示　Ctrl+Alt+M</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+M</value>
@@ -495,10 +622,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆メタデータビューワを表示</value>
+    <value>メタデータビューを表示(&amp;m)</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>トランスポートバーを示すCtrl+Alt+B</value>
+    <value>ナビゲーションバーを表示　Ctrl+Alt+B</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+B</value>
@@ -507,10 +634,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆トランスポートバーを示す</value>
+    <value>ナビゲーションバーを表示(&amp;b)</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ステータスバーを示すCtrl+Alt+U</value>
+    <value>ステータスバーを表示　Ctrl+Alt+U</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+U</value>
@@ -519,13 +646,13 @@
     <value>274, 22</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆ステータスバーを示す</value>
+    <value>ステータスバーを表示　(&amp;u)</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>TOC ビューワ/内容表示をフォーカスF6</value>
+    <value>見出しビュー/コンテンツビューをフォーカス　F6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F6</value>
@@ -534,10 +661,10 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆TOC ビューワ/内容表示をフォーカス</value>
+    <value>見出しビュー/コンテンツビューをフォーカス(&amp;C)</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>内容表示をフォーカスF6</value>
+    <value>コンテンツビューをフォーカス　F6</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F6</value>
@@ -546,14 +673,13 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆内容表示をフォーカス</value>
+    <value>コンテンツビューをフォーカス(&amp;n)</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mFocusOnStripsViewToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>トランスポートバーをフォーカスCtrl+F6</value>
+    <value>ナビゲーションバーをフォーカス　Ctrl+F6</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F6</value>
@@ -562,10 +688,10 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;トランスポートバーをフォーカス</value>
+    <value>ナビゲーションバーをフォーカス(&amp;a)</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>表示を同期するCtrl+Alt+Y</value>
+    <value>表示を同期　Ctrl+Alt+Y</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Y</value>
@@ -574,7 +700,7 @@
     <value>274, 22</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;表示を同期する</value>
+    <value>表示を同期(&amp;y)</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -583,7 +709,7 @@
     <value>271, 6</value>
   </data>
   <data name="mShowPeakMeterMenuItem.AccessibleName" xml:space="preserve">
-    <value>ピークメーターを示すCtrl+Alt+P</value>
+    <value>ピークメーターを表示　Ctrl+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+P</value>
@@ -592,10 +718,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
-    <value>＆ピークメーターを示す</value>
+    <value>ピークメーターを表示(&amp;p)</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>源項表示を示すCtrl+Alt+O</value>
+    <value>ソースビューを表示　Ctrl+Alt+O</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+O</value>
@@ -604,7 +730,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆源項表示を示す。</value>
+    <value>ソースビューを表示(&amp;r)</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+R</value>
@@ -613,13 +739,13 @@
     <value>274, 22</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.Text" xml:space="preserve">
-    <value>＆録音ツールバーを示す。</value>
+    <value>録音ツールバーを表示(&amp;S)</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 6</value>
   </data>
   <data name="mView_ZoomInMenuItem.AccessibleName" xml:space="preserve">
-    <value>ズームインCtrl+Alt+Plus</value>
+    <value>拡大　Ctrl+Alt+Plus</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt++</value>
@@ -631,10 +757,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ZoomInMenuItem.Text" xml:space="preserve">
-    <value>＆ズームイン</value>
+    <value>拡大(&amp;i)</value>
   </data>
   <data name="mView_ZoomOutMenuItem.AccessibleName" xml:space="preserve">
-    <value>ズームアウトCtrl+Alt+Minus</value>
+    <value>縮小　Ctrl+Alt+-</value>
   </data>
   <data name="mView_ZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+-</value>
@@ -646,10 +772,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Text" xml:space="preserve">
-    <value>＆ズームアウト</value>
+    <value>縮小(&amp;o)</value>
   </data>
   <data name="mView_NormalSizeMenuItem.AccessibleName" xml:space="preserve">
-    <value>平常大きさCtrl+Alt+0</value>
+    <value>標準サイズ　Ctrl+Alt+0</value>
   </data>
   <data name="mView_NormalSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+0</value>
@@ -658,10 +784,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Text" xml:space="preserve">
-    <value>＆平常大きさ</value>
+    <value>標準サイズ(&amp;z)</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.AccessibleName" xml:space="preserve">
-    <value>オーディオをズームCtrl+Alt+Shift+Plus</value>
+    <value>音声表示拡大　Ctrl+Alt+Shift+Plus</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+Shift++</value>
@@ -673,10 +799,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Text" xml:space="preserve">
-    <value>＆オーディオをズーム</value>
+    <value>音声表示拡大(&amp;d)</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.AccessibleName" xml:space="preserve">
-    <value>オーディオをズームアウトCtrl+Alt+Shift+Minus</value>
+    <value>音声表示縮小　Ctrl+Alt+Shift+Minus</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+Shift+-</value>
@@ -688,10 +814,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
-    <value>オーディオをズームアウト(&amp;q)</value>
+    <value>音声表示縮小(&amp;q)</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.AccessibleName" xml:space="preserve">
-    <value>オーディオサイズをリセットするCtrl+Alt+Shift+0</value>
+    <value>音声表示リセット　Ctrl+Alt+Shift+0</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+0</value>
@@ -700,10 +826,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.Text" xml:space="preserve">
-    <value>オーディオサイズをリセット(&amp;h)</value>
+    <value>音声表示リセット(&amp;h)</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.AccessibleName" xml:space="preserve">
-    <value>内容表示をリフレッシュ</value>
+    <value>コンテンツビューを再読み込み(Debug)</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F5</value>
@@ -712,7 +838,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.Text" xml:space="preserve">
-    <value>内容表示をリフレッシュ</value>
+    <value>コンテンツビューを再読み込み(Debug)</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -721,7 +847,7 @@
     <value>271, 6</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.AccessibleName" xml:space="preserve">
-    <value>句のプロパティAlt+Enter</value>
+    <value>フレーズのプロパティ　Alt+Enter</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Enter</value>
@@ -730,10 +856,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.Text" xml:space="preserve">
-    <value>＆句のプロパティ</value>
+    <value>フレーズのプロパティ(&amp;e)</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.AccessibleName" xml:space="preserve">
-    <value>節のプロパティAlt+Enter</value>
+    <value>見出しプロパティ　Alt+Enter</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Enter</value>
@@ -742,7 +868,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.Text" xml:space="preserve">
-    <value>＆節のプロパティ</value>
+    <value>見出しのプロパティ(&amp;e)</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.AccessibleName" xml:space="preserve">
     <value>プロジェクトのプロパティ</value>
@@ -751,16 +877,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Text" xml:space="preserve">
-    <value>＆プロジェクトのプロパティ</value>
-  </data>
-  <data name="mViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="mViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆表示</value>
+    <value>プロジェクトのプロパティ(&amp;j)</value>
   </data>
   <data name="mAddSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>節を連ねるCtrl+H</value>
+    <value>見出し作成　Ctrl+H</value>
   </data>
   <data name="mAddSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+H</value>
@@ -769,10 +889,10 @@
     <value>279, 22</value>
   </data>
   <data name="mAddSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を連ねる</value>
+    <value>見出し作成(&amp;A)</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>下位の節を足すCtrl+Shift+H</value>
+    <value>子見出し追加　Ctrl+Shift+H</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+H</value>
@@ -781,10 +901,10 @@
     <value>279, 22</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;下位の節を足す</value>
+    <value>子見出し追加(&amp;s)</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>節を組み込むCtrl+Alt+H</value>
+    <value>見出し挿入　Ctrl+Alt+H</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+H</value>
@@ -793,10 +913,10 @@
     <value>279, 22</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を組み込む</value>
+    <value>見出し挿入(&amp;I)</value>
   </data>
   <data name="mRenameSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>節をリネーム　F2</value>
+    <value>見出し名編集　F2</value>
   </data>
   <data name="mRenameSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F2</value>
@@ -805,13 +925,13 @@
     <value>279, 22</value>
   </data>
   <data name="mRenameSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆節をリネーム</value>
+    <value>見出し名編集(&amp;m)</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 6</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>節レベルを減少Ctrl+Shift+Left</value>
+    <value>見出しレベルを下げる　Ctrl+Shift+Left</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Left</value>
@@ -820,10 +940,10 @@
     <value>279, 22</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆節レベルを減少</value>
+    <value>見出しレベルを下げる(&amp;D)</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>節レベルを増大Ctrl+Shift+Riight</value>
+    <value>見出レベルを上げる　Ctrl+Shift+Riight</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Right</value>
@@ -832,10 +952,10 @@
     <value>279, 22</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆節レベルを増大</value>
+    <value>見出レベルを上げる(&amp;n)</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>節を分けるCtrl+Shift+Q</value>
+    <value>見出しを分割　Ctrl+Shift+Q</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Q</value>
@@ -844,28 +964,10 @@
     <value>279, 22</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆節を分ける</value>
+    <value>見出しを分割(&amp;p)</value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>節を合併</value>
-  </data>
-  <data name="mergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>節を次のと合併</value>
-  </data>
-  <data name="mergeSectionWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+M</value>
-  </data>
-  <data name="mergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
-  </data>
-  <data name="mergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を次のと合併</value>
-  </data>
-  <data name="mergeMultipleSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
-  </data>
-  <data name="mergeMultipleSectionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>多重の節を合併</value>
+    <value>見出しを結合</value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+M</value>
@@ -874,13 +976,31 @@
     <value>279, 22</value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;節を合併</value>
+    <value>見出しを結合(&amp;g)</value>
+  </data>
+  <data name="mergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>次の見出しと結合</value>
+  </data>
+  <data name="mergeSectionWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+M</value>
+  </data>
+  <data name="mergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="mergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
+    <value>次の見出しと結合(&amp;x)</value>
+  </data>
+  <data name="mergeMultipleSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 22</value>
+  </data>
+  <data name="mergeMultipleSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>複数の見出しを結合</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 6</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>節は利用されましたCtrl+k</value>
+    <value>見出しは使用されました　Ctrl+k</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+K</value>
@@ -889,16 +1009,10 @@
     <value>279, 22</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;利用された節</value>
-  </data>
-  <data name="mSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 20</value>
-  </data>
-  <data name="mSectionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆節</value>
+    <value>見出しは使用されました(&amp;u)</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>空句を足すCtrl+B</value>
+    <value>フレーズを追加　Ctrl+B</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+B</value>
@@ -907,10 +1021,10 @@
     <value>240, 22</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;空句を足す</value>
+    <value>フレーズを追加 (&amp;b)</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>空のページを足すCtrl+Shift+B</value>
+    <value>ページを追加　Ctrl+Shift+B</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+B</value>
@@ -919,10 +1033,10 @@
     <value>240, 22</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;空のページを足す</value>
+    <value>ページを追加(&amp;p)</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>オーディオファイルを輸入するCtrl+I</value>
+    <value>音声ファイルインポート　Ctrl+I</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+I</value>
@@ -931,10 +1045,10 @@
     <value>240, 22</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆オーディオファイルを輸入する</value>
+    <value>音声ファイルインポート(&amp;I)</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>句を分けるCtrl+Q</value>
+    <value>フレーズ分割　Ctrl+Q</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Q</value>
@@ -943,10 +1057,16 @@
     <value>240, 22</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆句を分ける</value>
+    <value>フレーズ分割 (&amp;S)</value>
+  </data>
+  <data name="mMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
+    <value>結合(&amp;M)</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>次の句と合併Ctrl+M</value>
+    <value>次のフレーズと結合　Ctrl+M</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+M</value>
@@ -955,46 +1075,40 @@
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆次の句と合併</value>
+    <value>次のフレーズと結合(&amp;M)</value>
   </data>
   <data name="splitAndMergeWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="splitAndMergeWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>分けて、次のと合併</value>
+    <value>分割して、次のフレーズと結合(&amp;t)</value>
   </data>
   <data name="splitAndMergeWithPreviousToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="splitAndMergeWithPreviousToolStripMenuItem.Text" xml:space="preserve">
-    <value>分けて、次のと合併 1</value>
+    <value>分割して、前のフレーズと結合(&amp;u)</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>明くる句と合併</value>
+    <value>次のフレーズと結合</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆明くるる句と合併</value>
+    <value>次のフレーズと結合(&amp;f)</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>前句と合併</value>
+    <value>前のフレーズと結合</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆前句と合併</value>
-  </data>
-  <data name="mMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆合併</value>
+    <value>前のフレーズと結合（&amp;p)</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>オーディオをクロップCtrl+Alt+Q</value>
+    <value>音声をクロップ　Ctrl+Alt+Q</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Q</value>
@@ -1003,7 +1117,7 @@
     <value>240, 22</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
-    <value>＆オーディオをクロップ</value>
+    <value>音声をクロップ(&amp;r)</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F9</value>
@@ -1012,10 +1126,10 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>&amp;句はTODO</value>
+    <value>TODOフレーズ(&amp;T)</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>句は利用されましたCtrl+K</value>
+    <value>フレーズは使用されました　Ctrl+K</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+K</value>
@@ -1024,13 +1138,19 @@
     <value>240, 22</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;句は利用されました</value>
+    <value>フレーズは使用されました(&amp;u)</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>スキップすることができるノート</value>
+    <value>読み飛ばし注</value>
+  </data>
+  <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>読み飛ばし注(&amp;l)</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ノートを始める</value>
+    <value>注開始</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+[</value>
@@ -1042,10 +1162,10 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆ノートを始める</value>
+    <value>注開始(&amp;B)</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ノートを終了</value>
+    <value>注終了</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+]</value>
@@ -1057,10 +1177,10 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆ノートを終了</value>
+    <value>注終了(&amp;E)</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>参考を連ねる</value>
+    <value>参照追加</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+A</value>
@@ -1072,19 +1192,19 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆参考を連ねる</value>
+    <value>参照追加(&amp;d)</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>参考されたノートへ行く</value>
+    <value>参照先へ移動</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;参考されたノートへ行く</value>
+    <value>参照先へ移動(&amp;r)</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>参考を除く</value>
+    <value>参照を削除</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+D</value>
@@ -1096,28 +1216,28 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;参考を除く</value>
+    <value>参照を削除(&amp;f)</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Move toスタートノート</value>
+    <value>注の開始位置へ移動</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Move toスタートノート</value>
+    <value>注の開始位置へ移動(&amp;a)</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Move toエンドノート</value>
+    <value>注の終了位置へ移動</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Move toエンドノート</value>
+    <value>注の終了位置へ移動(&amp;v)</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>ノートから役割を除く</value>
+    <value>注から役割を削除</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+C</value>
@@ -1129,25 +1249,25 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;ノートから役割を除く</value>
-  </data>
-  <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Skippableノート</value>
+    <value>注から役割を削除(&amp;C)</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
+  </data>
+  <data name="mPhrases_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
+    <value>役割を割り当てる(&amp;A)</value>
   </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>&amp;無地</value>
+    <value>プレーン(&amp;l)</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.AccessibleName" xml:space="preserve">
-    <value>見出しCtrl+Shift+D</value>
+    <value>見出し　Ctrl+Shift+D</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+D</value>
@@ -1156,10 +1276,10 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
-    <value>&amp;見出し</value>
+    <value>見出し(&amp;H)</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.AccessibleName" xml:space="preserve">
-    <value>ページCtrl＋Shift+G</value>
+    <value>ページ　Ctrl＋Shift+G</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+G</value>
@@ -1168,10 +1288,10 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.Text" xml:space="preserve">
-    <value>&amp;ページ</value>
+    <value>ページ(&amp;P)</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.AccessibleName" xml:space="preserve">
-    <value>無音Ctrl+Shift+E</value>
+    <value>無音　Ctrl+Shift+E</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+E</value>
@@ -1180,13 +1300,13 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
-    <value>＆無音</value>
+    <value>無音(&amp;S)</value>
   </data>
   <data name="mPhrases_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>＆アンカー</value>
+    <value>アンカー(&amp;c)</value>
   </data>
   <data name="mCustomRoleToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 6</value>
@@ -1195,16 +1315,10 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
-    <value>(&amp;新しい特注な役柄…)</value>
-  </data>
-  <data name="mPhrases_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
-    <value>役柄を割り当てる</value>
+    <value>(役割の追加...(&amp;N))</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.AccessibleName" xml:space="preserve">
-    <value>役柄を取片付けるCtrl+Shift+C</value>
+    <value>役柄を削除　Ctrl+Shift+C</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+C</value>
@@ -1213,13 +1327,13 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.Text" xml:space="preserve">
-    <value>＆役柄を取片付ける</value>
+    <value>役柄を削除 (&amp;C)</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
-    <value>特注な役柄を編集</value>
+    <value>役柄を編集(&amp;C)</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1228,13 +1342,19 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
-    <value>&amp;後続のページをレナンバ</value>
+    <value>後続のページを振りなおす(&amp;e)</value>
   </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
   </data>
+  <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>フレーズ検地(&amp;d)</value>
+  </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>選択した項目</value>
+    <value>選択した項目 　Ctrl+Shift+P</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+P</value>
@@ -1243,31 +1363,31 @@
     <value>285, 22</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>＆選択した項目</value>
+    <value>選択した項目(&amp;t)</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>複数の章節</value>
+    <value>複数の見出し</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;複数の章節</value>
+    <value>複数の見出し(&amp;l)</value>
   </data>
   <data name="settingsFromSilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
   <data name="settingsFromSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;選択された無音句からのパラメタ</value>
+    <value>選択された無音フレーズのパラメーター(&amp;s)</value>
   </data>
-  <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
-  <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>句検出を当てはまる</value>
+  <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
+    <value>音声選択(&amp;o)</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>オーディオ選択を始めるCtrl+[</value>
+    <value>音声選択開始　Ctrl+[</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+[</value>
@@ -1279,10 +1399,10 @@
     <value>225, 22</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;オーディオ選択を始める</value>
+    <value>音声選択開始(&amp;B)</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>オーディオ選択を閉じるCtrl+]</value>
+    <value>音声選択終了　 Ctrl+]</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+]</value>
@@ -1294,16 +1414,16 @@
     <value>225, 22</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;オーディオ選択を閉じる</value>
+    <value>音声選択開始(&amp;E)</value>
   </data>
-  <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
-  <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>&amp;オーディオ選択</value>
+  <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
+    <value>移動(&amp;G)</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>次のTODO句Ctrl+F9</value>
+    <value>次のTODOフレーズ　Ctrl+F9</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F9</value>
@@ -1312,10 +1432,10 @@
     <value>271, 22</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;次のTODO句</value>
+    <value>次のTODOフレーズ(&amp;N)</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>前のTODO句Ctrl+Shift+F9</value>
+    <value>前のTODOフレーズ　Ctrl+Shift+F9</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+F9</value>
@@ -1324,10 +1444,10 @@
     <value>271, 22</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;前のTODO句</value>
+    <value>前のTODOフレーズ(&amp;P)</value>
   </data>
   <data name="m_GoToPageToolStrip.AccessibleName" xml:space="preserve">
-    <value>ページ/句Ctrl+G</value>
+    <value>ページ/フレーズ　Ctrl+G</value>
   </data>
   <data name="m_GoToPageToolStrip.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+G</value>
@@ -1336,10 +1456,10 @@
     <value>271, 22</value>
   </data>
   <data name="m_GoToPageToolStrip.Text" xml:space="preserve">
-    <value>&amp;ページ/句/時</value>
+    <value>ページ/フレーズ/時間(&amp;g)</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>特別句を集める</value>
+    <value>特殊フレーズを集める</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+F3</value>
@@ -1351,37 +1471,31 @@
     <value>271, 22</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;特別句を集める</value>
-  </data>
-  <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;…へ行く</value>
+    <value>特殊フレーズを集める(&amp;S)</value>
   </data>
   <data name="mCheckForPhrasesWithImproperAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mCheckForPhrasesWithImproperAudioMenuItem.Text" xml:space="preserve">
-    <value>汚染オーディオを漁る</value>
+    <value>破損音声のチェック(&amp;k)</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>後続の句を削除</value>
+    <value>次のフレーズを削除</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;後続の句を削除</value>
+    <value>次のフレーズを削除(&amp;f)</value>
   </data>
-  <data name="mPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
+  <data name="mPlayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
   </data>
-  <data name="mPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;句</value>
+  <data name="mPlayToolStripMenuItem.Text" xml:space="preserve">
+    <value>再生(&amp;P)</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>全てを再生Ctrl+Shift+Space</value>
+    <value>連続再生　Ctrl+Shift+Space</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Space</value>
@@ -1390,10 +1504,10 @@
     <value>208, 22</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆全てを再生</value>
+    <value>連続再生(&amp;a)</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>選択を再生Space</value>
+    <value>選択を再生　Space</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Space</value>
@@ -1402,7 +1516,7 @@
     <value>208, 22</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆選択を再生</value>
+    <value>選択を再生(&amp;s)</value>
   </data>
   <data name="m_PlaySectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Play Section</value>
@@ -1422,14 +1536,8 @@
   <data name="m_PlayHeadingToolStripMenuItem.Text" xml:space="preserve">
     <value>Play Section Heading</value>
   </data>
-  <data name="mPlayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
-  </data>
-  <data name="mPlayToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆再生</value>
-  </data>
   <data name="mPauseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>一時停止Space</value>
+    <value>一時停止　Space</value>
   </data>
   <data name="mPauseToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Space</value>
@@ -1438,10 +1546,10 @@
     <value>176, 22</value>
   </data>
   <data name="mPauseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;一時停止</value>
+    <value>一時停止(&amp;u)</value>
   </data>
   <data name="mResumeToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>レジュームSpace</value>
+    <value>再開　Space</value>
   </data>
   <data name="mResumeToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Space</value>
@@ -1450,10 +1558,10 @@
     <value>176, 22</value>
   </data>
   <data name="mResumeToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆レジューム</value>
+    <value>再開(&amp;u)</value>
   </data>
   <data name="mStopToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>停止Ctrl+Space</value>
+    <value>停止　Ctrl+Space</value>
   </data>
   <data name="mStopToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Space</value>
@@ -1462,10 +1570,16 @@
     <value>176, 22</value>
   </data>
   <data name="mStopToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;停止</value>
+    <value>停止(&amp;S)</value>
+  </data>
+  <data name="mFastPlaytoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="mFastPlaytoolStripMenuItem.Text" xml:space="preserve">
+    <value>早送り(&amp;l)</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>平常速さCtrl+0</value>
+    <value>通常のスピード　Ctrl+0</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+0</value>
@@ -1474,16 +1588,16 @@
     <value>238, 22</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;平常速さ</value>
+    <value>通常のスピード(&amp;N)</value>
   </data>
   <data name="mElapseBacktoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="mElapseBacktoolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;経過バックとともに平常速度</value>
+    <value>通常スピードで聞きなおす(&amp;e)</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>スピードアップCtrl++</value>
+    <value>速くする　Ctrl++</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl++</value>
@@ -1495,10 +1609,10 @@
     <value>238, 22</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;スピードアップ</value>
+    <value>速くする(&amp;u)</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>緩めるCtrl+-</value>
+    <value>遅くする　Ctrl+-</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+-</value>
@@ -1510,16 +1624,16 @@
     <value>238, 22</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;緩める</value>
+    <value>遅くする(&amp;d)</value>
   </data>
-  <data name="mFastPlaytoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mPreviewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
-  <data name="mFastPlaytoolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;早送り</value>
+  <data name="mPreviewToolStripMenuItem.Text" xml:space="preserve">
+    <value>プレビュー(&amp;v)</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>…からプレビューCtrl+P</value>
+    <value>プレビュー開始位置　Ctrl+P</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+P</value>
@@ -1528,28 +1642,28 @@
     <value>194, 22</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆…からプレビュー</value>
+    <value>プレビュー開始位置(&amp;f)</value>
   </data>
   <data name="mPreviewUpToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 22</value>
   </data>
   <data name="mPreviewUpToToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆…までプレビュー</value>
+    <value>プレビュー終了位置(&amp;U)</value>
   </data>
   <data name="mPreviewSelectedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 22</value>
   </data>
   <data name="mPreviewSelectedToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆選択したプレビュー</value>
+    <value>選択範囲をプレビュー(&amp;s)</value>
   </data>
-  <data name="mPreviewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mRecordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
-  <data name="mPreviewToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆プレビュー</value>
+  <data name="mRecordToolStripMenuItem.Text" xml:space="preserve">
+    <value>録音(&amp;R)</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>監視を開始Ctrl+R</value>
+    <value>モニタリング開始　Ctrl+R</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
@@ -1558,10 +1672,10 @@
     <value>267, 22</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;監視を開始</value>
+    <value>モニタリング開始(&amp;S)</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>録音を始めるCtrl+R</value>
+    <value>録音開始　Ctrl+R</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
@@ -1570,10 +1684,10 @@
     <value>267, 22</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆録音を始める</value>
+    <value>録音開始(&amp;S)</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>直ちに録音を始めるCtrl+Shift+R</value>
+    <value>すぐに録音開始　Ctrl+Shift+R</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+R</value>
@@ -1582,13 +1696,13 @@
     <value>267, 22</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆直ちに録音を始める</value>
+    <value>すぐに録音開始(&amp;ｒ)</value>
   </data>
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>その後句上に録音する。</value>
+    <value>後続のフレーズにも録音</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Preview Before Recording</value>
@@ -1609,46 +1723,46 @@
     <value>267, 22</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;上書きを許可。</value>
-  </data>
-  <data name="mRecordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
-  </data>
-  <data name="mRecordToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆録音する。</value>
+    <value>上書きを許可する(&amp;o)</value>
   </data>
   <data name="mGenerateSpeechToolStripMenuItem.AccessibleDescription" xml:space="preserve">
-    <value>発言を生じる</value>
-  </data>
-  <data name="selectedPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>選択されているページのために発言を生じる</value>
-  </data>
-  <data name="selectedPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
-  </data>
-  <data name="selectedPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>選択されたページ</value>
-  </data>
-  <data name="allEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>全ての空ページのために発言を生じる</value>
-  </data>
-  <data name="allEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
-  </data>
-  <data name="allEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;全ての空ページ。</value>
+    <value>合成音声付加</value>
   </data>
   <data name="mGenerateSpeechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
   <data name="mGenerateSpeechToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;発言を生じる</value>
+    <value>合成音声生成(&amp;G)</value>
+  </data>
+  <data name="selectedPageToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>選択したページに音声付加</value>
+  </data>
+  <data name="selectedPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="selectedPageToolStripMenuItem.Text" xml:space="preserve">
+    <value>選択したページ(&amp;t)</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>全ての空ページに音声付加</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="allEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
+    <value>全ての空ページ(&amp;A)</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 6</value>
   </data>
+  <data name="navigationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="navigationToolStripMenuItem.Text" xml:space="preserve">
+    <value>＆ナビゲーション</value>
+  </data>
   <data name="mPreviousSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>前の節Alt+Up</value>
+    <value>前の見出し　Alt+Up</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Up</value>
@@ -1657,10 +1771,10 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆前の節</value>
+    <value>前の見出し(&amp;s)</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>前のページAlt+PageUp</value>
+    <value>前のページ Alt+PageUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+PgUp</value>
@@ -1669,10 +1783,10 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆前のページ</value>
+    <value>前のページ(&amp;p)</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>前の句Alt+Left</value>
+    <value>前のフレーズ　Alt+Left</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Left</value>
@@ -1681,7 +1795,7 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;前の句</value>
+    <value>前のフレーズ(&amp;h)</value>
   </data>
   <data name="mBackwardElapseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
@@ -1696,7 +1810,7 @@
     <value>Step &amp;Forward</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>次の句Alt+Right</value>
+    <value>次のフレーズ　Alt+Right</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Right</value>
@@ -1705,10 +1819,10 @@
     <value>207, 22</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆次の句</value>
+    <value>次のフレーズ(&amp;N)</value>
   </data>
   <data name="mNextPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>次のページAlt+PageDown</value>
+    <value>次のページ　Alt+PageDown</value>
   </data>
   <data name="mNextPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+PgDn</value>
@@ -1717,10 +1831,10 @@
     <value>207, 22</value>
   </data>
   <data name="mNextPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;次のページ</value>
+    <value>次のページ(&amp;N)</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>次の節Alt+Down</value>
+    <value>次の見出し　Alt+Down</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Down</value>
@@ -1729,7 +1843,7 @@
     <value>207, 22</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;次の節</value>
+    <value>次の見出し(&amp;N)</value>
   </data>
   <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 6</value>
@@ -1738,22 +1852,16 @@
     <value>207, 22</value>
   </data>
   <data name="mPlayOnNavigateToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;navigateで作成</value>
+    <value>移動したとき再生開始する(&amp;P)</value>
   </data>
   <data name="mFineNavigationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="mFineNavigationToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆ファイヌナビゲーション</value>
-  </data>
-  <data name="navigationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
-  </data>
-  <data name="navigationToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆ナビゲーション</value>
+    <value>フレーズ内ナビゲーションモード(&amp;v)</value>
   </data>
   <data name="mRewindToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>巻戻すCtrl+comma</value>
+    <value>巻戻す　Ctrl+comma</value>
   </data>
   <data name="mRewindToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+,</value>
@@ -1765,10 +1873,10 @@
     <value>176, 22</value>
   </data>
   <data name="mRewindToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆巻戻す</value>
+    <value>巻戻す(&amp;w)</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>早送りするCtrl+period</value>
+    <value>早送りする　Ctrl+period</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+.</value>
@@ -1780,166 +1888,49 @@
     <value>176, 22</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆早送りする</value>
-  </data>
-  <data name="transportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
-  </data>
-  <data name="transportToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆輸送</value>
-  </data>
-  <data name="mTools_PreferencesMenuItem.AccessibleName" xml:space="preserve">
-    <value>設定Ctrl+Alt+F</value>
-  </data>
-  <data name="mTools_PreferencesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+F</value>
-  </data>
-  <data name="mTools_PreferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="mTools_PreferencesMenuItem.Text" xml:space="preserve">
-    <value>＆設定</value>
-  </data>
-  <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 6</value>
-  </data>
-  <data name="m_ToolsLangPack.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="m_ToolsLangPack.Text" xml:space="preserve">
-    <value>&amp;Update Language Pack</value>
-  </data>
-  <data name="mTools_ExportSelectedAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>オーディオを輸出</value>
-  </data>
-  <data name="mTools_ExportSelectedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+E</value>
-  </data>
-  <data name="mTools_ExportSelectedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="mTools_ExportSelectedAudioMenuItem.Text" xml:space="preserve">
-    <value>＆オーディオを輸出</value>
-  </data>
-  <data name="mTools_ExportAsDAISYMenuItem.AccessibleName" xml:space="preserve">
-    <value>DAISYとして輸出Ctrl+E</value>
-  </data>
-  <data name="mTools_ExportAsDAISYMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+E</value>
-  </data>
-  <data name="mTools_ExportAsDAISYMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
-    <value>＆DAISYとして輸出</value>
-  </data>
-  <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>参照がないオーディオを削除</value>
-  </data>
-  <data name="mTools_CleanUnreferencedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+L</value>
-  </data>
-  <data name="mTools_CleanUnreferencedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
-    <value>＆参照がないオーディオを削除</value>
-  </data>
-  <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 6</value>
-  </data>
-  <data name="mToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
-  </data>
-  <data name="mToolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆具</value>
+    <value>早送りする(&amp;F)</value>
   </data>
   <data name="mHelp_WhatsNewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="mHelp_WhatsNewMenuItem.Text" xml:space="preserve">
-    <value>＆新着情報（オンライン）</value>
+    <value>新着情報（オンライン）(&amp;n)</value>
   </data>
   <data name="mHelp_WhatsNewMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="mHelp_ContentsMenuItem.AccessibleName" xml:space="preserve">
-    <value>目次</value>
+    <value>ヘルプ</value>
   </data>
   <data name="mHelp_ContentsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="mHelp_ContentsMenuItem.Text" xml:space="preserve">
-    <value>＆目次</value>
+    <value>ヘルプ(&amp;C)</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.AccessibleName" xml:space="preserve">
-    <value>オンライン資源/問題トラッカー Ctrl+Alt+R</value>
+    <value>オンライン資料/既知の問題 Ctrl+Alt+R</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.Text" xml:space="preserve">
-    <value>&amp;オンライン資源/問題トラッカー</value>
+    <value>オンライン資料/既知の問題(&amp;r)</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;obiについて</value>
+    <value>Obiについて(&amp;A)</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>アプデートの有無をチェック</value>
+    <value>アップデートの確認</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;アプデートの有無をチェック</value>
-  </data>
-  <data name="mHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="mHelpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;ヘルプ</value>
-  </data>
-  <data name="mMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="mMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>876, 24</value>
-  </data>
-  <data name="mMenuStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="mMenuStrip.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;mMenuStrip.Name" xml:space="preserve">
-    <value>mMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;mMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mMenuStrip.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mMenuStrip.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="mStatusLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="mStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>861, 17</value>
-  </data>
-  <data name="mStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="mStatusProgressBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 16</value>
-  </data>
-  <data name="mStatusProgressBar.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+    <value>アップデートの確認(&amp;u)</value>
   </data>
   <data name="mStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 520</value>
@@ -1965,6 +1956,21 @@
   <data name="&gt;&gt;mStatusStrip.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="mStatusLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>861, 17</value>
+  </data>
+  <data name="mStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="mStatusProgressBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 16</value>
+  </data>
+  <data name="mStatusProgressBar.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="mProjectView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -1984,7 +1990,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.0.1.19679, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.2.4.34715, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3307,6 +3313,12 @@
   <data name="&gt;&gt;toolStripSeparator16.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;m_ToolsLangPack.Name" xml:space="preserve">
+    <value>m_ToolsLangPack</value>
+  </data>
+  <data name="&gt;&gt;m_ToolsLangPack.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mTools_ExportSelectedAudioMenuItem.Name" xml:space="preserve">
     <value>mTools_ExportSelectedAudioMenuItem</value>
   </data>
@@ -3325,17 +3337,17 @@
   <data name="&gt;&gt;mTools_CleanUnreferencedAudioMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_ToolsLangPack.Name" xml:space="preserve">
-    <value>m_ToolsLangPack</value>
-  </data>
-  <data name="&gt;&gt;m_ToolsLangPack.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;toolStripSeparator18.Name" xml:space="preserve">
     <value>toolStripSeparator18</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator18.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_EPUB3ValidatorToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_EPUB3ValidatorToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_EPUB3ValidatorToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mHelpToolStripMenuItem.Name" xml:space="preserve">
     <value>mHelpToolStripMenuItem</value>
