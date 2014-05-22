@@ -118,100 +118,100 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CannotCreate_InputPath" xml:space="preserve">
-    <value>入力パスを作成することはできません</value>
+    <value>パスを作成できません：入力</value>
   </data>
   <data name="Caption_Error" xml:space="preserve">
-    <value>エラ</value>
+    <value>エラー</value>
   </data>
   <data name="Caption_Warning" xml:space="preserve">
-    <value>ワーニング</value>
+    <value>注意！</value>
   </data>
   <data name="Choose_OtherDirectory" xml:space="preserve">
     <value>他のディレクトリを選択する。</value>
   </data>
   <data name="IndexNotInRange" xml:space="preserve">
-    <value>インデックスは圏外です。</value>
+    <value>インデックスは範囲外です。</value>
   </data>
   <data name="No_Path" xml:space="preserve">
-    <value>パスはありません。</value>
+    <value>パスが見つかりませんでした。</value>
   </data>
   <data name="no_primary_export_directory" xml:space="preserve">
-    <value>DAISY輸出ディレクトリは見つかりませんでした。DAISYにプロジェクトを輸出する、それとも輸出パスを選択してください。</value>
+    <value>DAISY出力ディレクトリが見つかりませんでした。出力パスを選択しなおしてください。</value>
   </data>
   <data name="no_script" xml:space="preserve">
-    <value>"{0}"にファイルが見つからなかった。</value>
+    <value>"{0}"にファイルが見つかりませんでした。</value>
   </data>
   <data name="NotAbleToCreateDirectory" xml:space="preserve">
-    <value>ディレクトリ{0}を作成することはできません。</value>
+    <value>ディレクトリ{0}を作成することができませんでした。</value>
   </data>
   <data name="NotAbleToSelectItem" xml:space="preserve">
-    <value>アイテムを選択することはできません。</value>
+    <value>アイテムを選択できませんでした。</value>
   </data>
   <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
-    <value>出力ディレクトリを見つけることはできません。ディレクトリを作成したいですか。</value>
+    <value>出力ディレクトリを見つけられませんでした。\n　ディレクトリを作成しますか。</value>
   </data>
   <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
-    <value>出力ディレクトリは空ではありません。ディレクトリを空けたいですか。</value>
+    <value>出力ディレクトリは空ではありません。ディレクトリの内容を削除しますか。</value>
   </data>
   <data name="Pipeline_DuplicateScript" xml:space="preserve">
-    <value>複写パイプラインスクリプト{0}が見つかりました。これは、載せ込みません。続くに、"Ok"をクリックしてください。</value>
+    <value>重複するパイプラインスクリプト{0}が見つかりました。ロードしません。続けるにはOKボタンを押してください。</value>
   </data>
   <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
-    <value>値は{0}と{1}の間にあるほうがいい。</value>
+    <value>値は{0}と{1}の間で設定してください。</value>
   </data>
   <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
-    <value>一つまたはそれ以上のパラメタが正しくありません。価値を正しくしてください。</value>
+    <value>一つ以上のパラメーターが正しくありません。正しい値を入力してください。</value>
   </data>
   <data name="Pipeline_InvalidString" xml:space="preserve">
-    <value>入力は無効です。</value>
+    <value>入力された値は間違っています。</value>
   </data>
   <data name="Pipeline_OutOfRange" xml:space="preserve">
-    <value>値は初期の領域にはありません。</value>
+    <value>入力された値が範囲外です。</value>
   </data>
   <data name="really_use_directory_caption" xml:space="preserve">
-    <value>ディレクトリを使う前に空けるほうがよろしいですか。</value>
+    <value>ディレクトリの内容を削除してから使用しますか？</value>
   </data>
   <data name="really_use_directory_text" xml:space="preserve">
-    <value>ディレクトリ"{0}"は空ではありません。ディレクトリを使う前に空けるに、”はい”をクリックしてください。そのまま使うように”いいえ”をクリックしてください。</value>
+    <value>ディレクトリ"{0}"は空ではありません。ディレクトリ内のすべてのファイルを削除するには”はい”をクリックしてください。そのまま使う場合は”いいえ”をクリックしてください。</value>
   </data>
   <data name="Z3986DTBValidator" xml:space="preserve">
-    <value>Daisy 3バリ</value>
+    <value>DAISY3バリデーター</value>
   </data>
   <data name="Daisy202DTBValidator" xml:space="preserve">
-    <value>Daisy 2.02 ライトバリ</value>
+    <value>DAISY2.02バリデーター</value>
   </data>
   <data name="DTBAudioEncoder" xml:space="preserve">
-    <value>オーディオをMP3 に変える</value>
+    <value>音声をMP3に変換</value>
   </data>
   <data name="FilesetRenamer" xml:space="preserve">
-    <value>ファイルセットRenamer</value>
+    <value>ファイル名変換</value>
   </data>
   <data name="PrettyPrinter" xml:space="preserve">
-    <value>Prettyプリンタ</value>
+    <value>プログラム整形</value>
   </data>
   <data name="Input_NCC" xml:space="preserve">
-    <value>NCC入力</value>
+    <value>入力NCC</value>
   </data>
   <data name="Select_the_input_NCC_document" xml:space="preserve">
-    <value>NCC入力ドキュメントを選択</value>
+    <value>NCCファイルを選択</value>
   </data>
   <data name="Validation_Report" xml:space="preserve">
-    <value>有効化報告</value>
+    <value>バリデーションレポート</value>
   </data>
   <data name="Select_a_file_to_store_a_Validation_XML_report_in" xml:space="preserve">
-    <value>有効化XML報告を保管するためのファイル選択してください。</value>
+    <value>バリデーションXMLレポートの保存先</value>
   </data>
   <data name="Time_Tolerance" xml:space="preserve">
-    <value>時耐</value>
+    <value>時間差許容値</value>
   </data>
   <data name="Set_the_time_tolerance_threshold_in_milliseconds" xml:space="preserve">
-    <value>トレランス敷居をミリセカンドからいって</value>
+    <value>時間差許容値をミリ秒単位で設定</value>
   </data>
   <data name="Input_OPF" xml:space="preserve">
-    <value>入力　OPF</value>
+    <value>入力OPF</value>
   </data>
   <data name="Select_the_input_Package_file_(OPF)_document" xml:space="preserve">
-    <value>入力パッケージファイル(OPF)を選択する。</value>
+    <value>パッケージファイル(OPF)を選択</value>
   </data>
   <data name="Output_directory" xml:space="preserve">
     <value>出力ディレクトリ</value>
@@ -223,36 +223,36 @@
     <value>ビットレート</value>
   </data>
   <data name="Select_the_bitrate_of_the_encoded_files" xml:space="preserve">
-    <value>符号化されたファイルのビットレートを選択。</value>
+    <value>エンコードされたファイルのビットレートを選択</value>
   </data>
   <data name="Input_file" xml:space="preserve">
-    <value>入力＿ファイル</value>
+    <value>入力_ファイル</value>
   </data>
   <data name="Select_the_input_manifest_file_(NCC,_OPF,_etc)" xml:space="preserve">
-    <value>入力現れファイルを選択してください(NCC, OPFなど)</value>
+    <value>入力マニフェストファイルを選択してください(NCC、OPFなど)</value>
   </data>
   <data name="Base_Name" xml:space="preserve">
-    <value>ベースネーム。</value>
+    <value>ベースネーム</value>
   </data>
   <data name="The_base_name_used_for_renaming" xml:space="preserve">
-    <value>リネームするために使われたベースネーム。</value>
+    <value>ファイル名変換のためのベースネーム</value>
   </data>
   <data name="File_types_to_exclude" xml:space="preserve">
-    <value>除外するためのファイル型。</value>
+    <value>除外するファイル</value>
   </data>
   <data name="comma_separated_list_of_file_types_to_exclude_from_renaming" xml:space="preserve">
-    <value>読点から分かれたファイル型のリストを残したファイルから除外する。</value>
+    <value>ファイル名を変換したくないファイルの種類を、コンマ区切りでリスト</value>
   </data>
   <data name="Use_only_the_characters_A-Z,a-z,0-9,_hyphen_and_underscore_in_output_filenames" xml:space="preserve">
-    <value>出力ファイルネームとしてA-Z、a-z、0-9、ハイフン、アンダースコア、このキャラクタリストだけを使ってください。</value>
+    <value>出力ファイル名には、A-Z、a-z、0-9、ハイフン、アンダースコアのみを使用してください。</value>
   </data>
   <data name="Use_filesystem_safe_names" xml:space="preserve">
-    <value>ファイルシステムが安全なファイルネームを理用してください。</value>
+    <value>ファイルシステムに安全なファイル名を使用してください</value>
   </data>
   <data name="Max_filename_length" xml:space="preserve">
-    <value>最大ファイルネーム長さ。</value>
+    <value>ファイル名の最大の長さ</value>
   </data>
   <data name="Max._number_of_characters_in_output_filename,_excluding_extension._Default_is_60" xml:space="preserve">
-    <value>最大、拡張子を除外して出力ファイルネームにある文字数。デフォルトは６０です。</value>
+    <value>拡張子を除いた、出力ファイル名に使える文字数の最大の既定値は６０です。</value>
   </data>
 </root>

@@ -118,78 +118,82 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="clear_recent_caption" xml:space="preserve">
-    <value>最近のプロジェクトを削除しますか</value>
+    <value>履歴リストを削除しますか</value>
   </data>
   <data name="clear_recent_text" xml:space="preserve">
-    <value>最近のプロジェクトを削除する方がよろしいですかはい/キャンセルそれをして元に戻すことはできません</value>
+    <value>履歴リストを削除してよろしいですか。
+　削除後に元に戻すことはできません。.</value>
   </data>
   <data name="closed_project" xml:space="preserve">
-    <value>プロジェクトを閉まる</value>
+    <value>プロジェクトを終了しました "{0}".</value>
   </data>
   <data name="closed_project_caption" xml:space="preserve">
-    <value>修飾されたプロジェクトを閉めています</value>
+    <value>編集したプロジェクトを終了しています</value>
   </data>
   <data name="closed_project_text" xml:space="preserve">
-    <value>あなたは保存されていない変更のファイルを終了しようとしている。はい/キャンセルプロジェクトを終了する前に保存したいですか</value>
+    <value>編集したプロジェクトを終了します。
+　閉じる前に変更を保存しますか。</value>
   </data>
   <data name="default_organization" xml:space="preserve">
     <value>該当なし</value>
   </data>
   <data name="default_section_label" xml:space="preserve">
-    <value>無題セクション。</value>
+    <value>新しい見出し</value>
   </data>
   <data name="obi" xml:space="preserve">
     <value>Obi</value>
   </data>
   <data name="open_project_error_caption" xml:space="preserve">
-    <value>ファイルを開く際にとエラーが発生します。</value>
+    <value>プロジェクトファイルを開く際にエラーが発生しました</value>
   </data>
   <data name="open_project_error_text" xml:space="preserve">
     <value>XUKファイル{0}が読めません。</value>
   </data>
   <data name="opened_project" xml:space="preserve">
-    <value>ファイル"{0}"が開いた。</value>
+    <value>ファイル"{0}"を開きました。</value>
   </data>
   <data name="ready" xml:space="preserve">
-    <value>レディー</value>
+    <value>準備完了。</value>
   </data>
   <data name="redo_label" xml:space="preserve">
     <value>{0} {1}</value>
   </data>
   <data name="save_settings_error_caption" xml:space="preserve">
-    <value>設定を保管することができません</value>
+    <value>設定を保存できません</value>
   </data>
   <data name="save_settings_error_text" xml:space="preserve">
-    <value>このエラが設定を保管する時出て来ました：
+    <value>設定を保存する際に次のエラーが発生しました:
 "{0}"
-結果として、</value>
+　このセッションでの変更は保存されません
+</value>
   </data>
   <data name="saved_project" xml:space="preserve">
-    <value>プロジェクトがファイル"{0}"に保管しました。</value>
+    <value>ファイル"{0}"にプロジェクトを保存しました</value>
   </data>
   <data name="undo_label" xml:space="preserve">
     <value>{0} {1}</value>
   </data>
   <data name="create_directory_text" xml:space="preserve">
-    <value>ディレクトリ{0}はありません。</value>
+    <value>ディレクトリ{0}がありません。作成しますか？</value>
   </data>
   <data name="redo" xml:space="preserve">
-    <value>＆やり直し</value>
+    <value>やり直す(&amp;R)</value>
   </data>
   <data name="undo" xml:space="preserve">
-    <value>＆元に戻す</value>
+    <value>元に戻す(&amp;U)</value>
   </data>
   <data name="no_device_found_caption" xml:space="preserve">
-    <value>オーディオデバイスが見つかれません。</value>
+    <value>音声デバイスが見つかりません。</value>
   </data>
   <data name="no_device_found_text" xml:space="preserve">
-    <value>オーディオ入力と出力デバイスが選択することはできませんでした。Direct X が正しくインストールされているのを確かめる。</value>
+    <value>音声入力/出力デバイスが見つかりません。.
+  DirectX 9cが適切にインストールされているか確認してください。</value>
   </data>
   <data name="no_output_device_caption" xml:space="preserve">
-    <value>オーディオ出力が見つかれませんでした。</value>
+    <value>音声出力デバイスが見つかりませんでした</value>
   </data>
   <data name="no_output_device_text" xml:space="preserve">
-    <value>オーディオ出力を選択することはできませんでした：</value>
+    <value>音声出力デバイスを選択できませんでした：見つかりませんでした</value>
   </data>
   <data name="create_directory_caption" xml:space="preserve">
     <value>ディレクトリを作成しますか。</value>
@@ -201,471 +205,471 @@
     <value>ステレオ</value>
   </data>
   <data name="no_input_device_caption" xml:space="preserve">
-    <value>入力デバイスが見つかれませんでした。</value>
+    <value>入力デバイスが見つかりませんでした。</value>
   </data>
   <data name="no_input_device_text" xml:space="preserve">
-    <value>&amp; 録音する</value>
+    <value>音声入力デバイスを選択できませんでした：見つかりませんでした</value>
   </data>
   <data name="record" xml:space="preserve">
-    <value>&amp;録音する</value>
+    <value>録音(&amp;R)</value>
   </data>
   <data name="obi_filter" xml:space="preserve">
-    <value>Obiプロジェクトファイル(*.obi)|*.obi</value>
+    <value>Obiプロジェクトファイル (*.obi)|*.obi|すべてのファイル|*.*</value>
   </data>
   <data name="report_delete_error" xml:space="preserve">
-    <value>ファイルを削除することはできません、エラが出る {0}. ({1})</value>
+    <value>エラー：ファイルを削除できません {0}. ({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>WAVEファイル(*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*</value>
+    <value>WAVEファイル(*.wav;*.mp3)|*.wav;*.mp3|すべてのファイル|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
-    <value>オーディオ入力を傍受している</value>
+    <value>音声入力をモニタリング…</value>
   </data>
   <data name="page_number" xml:space="preserve">
     <value>ページ{0}</value>
   </data>
   <data name="normal_phrase" xml:space="preserve">
-    <value>句</value>
+    <value>フレーズ</value>
   </data>
   <data name="saved_as_daisy_text" xml:space="preserve">
-    <value>プロジェクトをディレクトリ{0}にあるDAISYへ輸出した。</value>
+    <value>プロジェクトをDAISYに変換して、{0}に保存。</value>
   </data>
   <data name="title_bar" xml:space="preserve">
     <value>{0}{1} ({2}) - {3}</value>
   </data>
   <data name="export_choose_folder" xml:space="preserve">
-    <value>DAISY Bookを保管するためのフォルダを選択してください。</value>
+    <value>DAISY図書を保存するフォルダを選択してください。</value>
   </data>
   <data name="default_directory_browser" xml:space="preserve">
-    <value>以下に省略時のプロジェクトディレクトリを選択してください。</value>
+    <value>既定のプロジェクトフォルダを選択</value>
   </data>
   <data name="export_directory_browser" xml:space="preserve">
-    <value>以下に省略時の輸出ディレクトリを選択してください。</value>
+    <value>既定の出力先フォルダを選択</value>
   </data>
   <data name="playback_rate" xml:space="preserve">
-    <value>再生速度x{0} in {1}</value>
+    <value>再生速度　x{0} in {1}</value>
   </data>
   <data name="Recording" xml:space="preserve">
-    <value>録音している</value>
+    <value>録音中..</value>
   </data>
   <data name="cannot_create_file_caption" xml:space="preserve">
-    <value>プロジェクトファイルを作成することはできません</value>
+    <value>プロジェクトファイルを作成できません</value>
   </data>
   <data name="cannot_create_file_text" xml:space="preserve">
-    <value>プロジェクトファイルを作成することはできません{0}:{1}</value>
+    <value>プロジェクトファイル"{0}": {1}を作成できません</value>
   </data>
   <data name="cannot_create_directory_caption" xml:space="preserve">
-    <value>ディレクトリを作成することはできません</value>
+    <value>ディレクトリを作成できません</value>
   </data>
   <data name="cannot_create_directory_text" xml:space="preserve">
-    <value>ディレクトリ{0}:{1}を作成することはできません</value>
+    <value>ディレクトリ{0}: {1}を作成できません</value>
   </data>
   <data name="cannot_delete_caption" xml:space="preserve">
-    <value>ファイルを削除することはできません</value>
+    <value>ファイルを削除できません</value>
   </data>
   <data name="cannot_delete_text" xml:space="preserve">
-    <value>ファイル{0}を削除することはできません。続くには"Ok"または、アポートするには"キャンセル"をクリックしてください。</value>
+    <value>ファイル{0}を削除できません。続けるには"Ok"をクリックしてください。中止するには"キャンセル"をクリックしてください。 (理由: {1})</value>
   </data>
   <data name="empty_directory_caption" xml:space="preserve">
-    <value>空ではないファイルに輸出しています。</value>
+    <value>空ではないディレクトリに出力しています</value>
   </data>
   <data name="empty_directory_text" xml:space="preserve">
-    <value>あなたが自分のDAISYプロジェクトを{0}へ輸出しようとしています。ディレクトリは空ではありません（多分旧バージョンを輸出しました）。輸出する前にディレクトリを空にしたいですか。</value>
+    <value>DAISYプロジェクトを{0}に出力しようとしています。ディレクトリは空ではありません（以前プロジェクトを出力した可能性があります）。出力する前にディレクトリを空にしますか？</value>
   </data>
   <data name="didnt_save_as_daisy_caption" xml:space="preserve">
-    <value>DAISYへ輸出することはできません。エラが出る。</value>
+    <value>DAISYへの変換でエラー</value>
   </data>
   <data name="didnt_save_as_daisy_text" xml:space="preserve">
-    <value>ディレクトリ{0}にあるDAISYへプロジェクトを輸出することはできません。もらい受けた理由：{1}</value>
+    <value>ディレクトリ{0}にDAISYを出力できません。理由：{1}</value>
   </data>
   <data name="saved_as_daisy_caption" xml:space="preserve">
-    <value>プロジェクトはDAISYへ輸出しました。</value>
+    <value>プロジェクトはDAISYに変換されました</value>
   </data>
   <data name="import_phrase_error_caption" xml:space="preserve">
-    <value>オーディオを輸入することはできませんでした。エラーがでてきました。</value>
+    <value>音声インポートでエラー</value>
   </data>
   <data name="import_phrase_error_text" xml:space="preserve">
-    <value>オーディオ設定はプロジェクトと合わせないのでオーディオファイル"{0}"輸入することはできません。</value>
+    <value>音声ファイル "{0}" はインポートできませんでした。音声設定（チャンネル、bit depth、サンプルレート)がプロジェクトの既存の音声設定と一致していません。</value>
   </data>
   <data name="dc_publisher_description" xml:space="preserve">
-    <value>DTBを市販するのに引き受ける代理店</value>
+    <value>DAISYを提供する団体</value>
   </data>
   <data name="dc_title_description" xml:space="preserve">
-    <value>任意のサブタイトルを含むDTBの題名。</value>
+    <value>DAISY図書の題名(副題を含む）</value>
   </data>
   <data name="missing_description" xml:space="preserve">
-    <value>このメタデータ記述はありません。</value>
+    <value>メタデータを入力してください</value>
   </data>
   <data name="help_file_name" xml:space="preserve">
     <value>help_en.html</value>
   </data>
   <data name="error_metadata_name_caption" xml:space="preserve">
-    <value>メタデータ項目を作成することはできません。</value>
+    <value>メタデータ項目を作成できません</value>
   </data>
   <data name="error_metadata_name_message" xml:space="preserve">
-    <value>"{0}"名のメタデータ項目を作成することはできません：名は"dtb:"から始めないほうがよろしいです。</value>
+    <value>メタデータ項目"{0}"を作成できません："dtb:"から始まる名前では作成できません。</value>
   </data>
   <data name="default_project_title" xml:space="preserve">
     <value>無題のObiプロジェクト</value>
   </data>
   <data name="default_project_filename" xml:space="preserve">
-    <value>プロジェクト.obi</value>
+    <value>project.obi</value>
   </data>
   <data name="really_use_directory_caption" xml:space="preserve">
-    <value>使う前にディレクトリを空にしますか。</value>
+    <value>ディレクトリを空にしますか?</value>
   </data>
   <data name="really_use_directory_text" xml:space="preserve">
-    <value>ディレクトリ"{0}"は空ではありません。使う前にディレクトリを空にするには、"はい"をクリックしてください。そのまま使いたければ、"いいえ"をクリックしてください。</value>
+    <value>ディレクトリ"{0}"は空ではありません。使う前にディレクトリを空にするには"はい"をクリックしてください。そのまま使う場合は"いいえ"をクリックしてください。</value>
   </data>
   <data name="cannot_redo" xml:space="preserve">
-    <value>やり直しことはできません</value>
+    <value>やり直せません</value>
   </data>
   <data name="cannot_undo" xml:space="preserve">
-    <value>元に戻すことはできません</value>
+    <value>元に戻せません</value>
   </data>
   <data name="rename_section" xml:space="preserve">
-    <value>節をリネーム</value>
+    <value>見出し名を編集</value>
   </data>
   <data name="move_section_out" xml:space="preserve">
-    <value>節レベルを減る</value>
+    <value>見出しレベルを下げる</value>
   </data>
   <data name="move_section_in" xml:space="preserve">
-    <value>節レベルを増加する</value>
+    <value>見出しレベルを上げる</value>
   </data>
   <data name="delete_section" xml:space="preserve">
-    <value>節を削除（深い）</value>
+    <value>見出し削除（深い）</value>
   </data>
   <data name="copy_section" xml:space="preserve">
-    <value>節をコピー（深い）</value>
+    <value>見出しコピー（深い）</value>
   </data>
   <data name="cut_section" xml:space="preserve">
-    <value>節を切取り（深い）</value>
+    <value>見出し切取り（深い）</value>
   </data>
   <data name="paste_section" xml:space="preserve">
-    <value>節を貼り付け</value>
+    <value>見出し貼り付け</value>
   </data>
   <data name="import_phrases" xml:space="preserve">
-    <value>オーディオを輸入する</value>
+    <value>音声ファイルインポート</value>
   </data>
   <data name="importing_file" xml:space="preserve">
-    <value>ファイル"{0}"を輸入している</value>
+    <value>ファイル"{0}"をインポートしています</value>
   </data>
   <data name="init_error_text" xml:space="preserve">
-    <value>Obiをイニシアライズする時、エラ-が起こった。r
-{0}
-Error text: {1}の内容を含むバグレポートを提出してください。</value>
+    <value>Obiの初期化でエラーが発生しました。.
+　次の内容を含むエラー報告をしてください。 {0}
+エラーテキスト: {1}</value>
   </data>
   <data name="init_error_caption" xml:space="preserve">
-    <value>Obi初期化エラ</value>
+    <value>Obi初期化エラー</value>
   </data>
   <data name="created_new_project" xml:space="preserve">
-    <value>新意プロジェクト"{0}"を作成した</value>
+    <value>新規プロジェクト作成"{0}"</value>
   </data>
   <data name="delete_phrase" xml:space="preserve">
-    <value>句を削除</value>
+    <value>フレーズ削除</value>
   </data>
   <data name="delete_section_shallow" xml:space="preserve">
-    <value>節を削除（浅い）</value>
+    <value>見出し削除（浅い）</value>
   </data>
   <data name="cut_section_shallow" xml:space="preserve">
-    <value>節を切る（浅い）</value>
+    <value>見出し切り取り（浅い）</value>
   </data>
   <data name="split_section" xml:space="preserve">
-    <value>節を分ける</value>
+    <value>見出し分割</value>
   </data>
   <data name="merge_sections" xml:space="preserve">
-    <value>節を合併</value>
+    <value>見出し結合</value>
   </data>
   <data name="cut_phrase" xml:space="preserve">
-    <value>句を切る</value>
+    <value>フレーズ切り取り</value>
   </data>
   <data name="copy_phrase" xml:space="preserve">
-    <value>句をコピー</value>
+    <value>フレーズコピー</value>
   </data>
   <data name="find_in_text_init" xml:space="preserve">
-    <value>選択した節に探索するためにテキストを打つ。</value>
+    <value>選択した見出し内で検索するテキストを入力してください</value>
   </data>
   <data name="find_next_in_text" xml:space="preserve">
-    <value>以上に探索しています</value>
+    <value>次を検索…</value>
   </data>
   <data name="find_prev_in_text" xml:space="preserve">
-    <value>以下に探索しています</value>
+    <value>前を検索…</value>
   </data>
   <data name="finished_searching_all" xml:space="preserve">
-    <value>全てのテキストを探索しました。</value>
+    <value>すべてのテキストを検索しました</value>
   </data>
   <data name="found_in_text" xml:space="preserve">
-    <value>"{0}"の発生が見つかりました。</value>
+    <value>"{0}"見つかりました。</value>
   </data>
   <data name="not_found_in_text" xml:space="preserve">
-    <value>一つも比類は見つかりませんでした</value>
+    <value>見つかりませんでした。</value>
   </data>
   <data name="nothing_to_search" xml:space="preserve">
-    <value>探索するためになにもありません。</value>
+    <value>検索するものがありません！</value>
   </data>
   <data name="searching" xml:space="preserve">
-    <value>探索しています。</value>
+    <value>検索中…</value>
   </data>
   <data name="please_enter_some_text" xml:space="preserve">
-    <value>テキストを打ち込んでください。</value>
+    <value>テキストを入力してください。</value>
   </data>
   <data name="recording_command" xml:space="preserve">
-    <value>録音しています</value>
+    <value>録音</value>
   </data>
   <data name="start_recording" xml:space="preserve">
-    <value>録音を始める</value>
+    <value>録音開始</value>
   </data>
   <data name="split_phrase" xml:space="preserve">
-    <value>句を分ける</value>
+    <value>フレーズを分割</value>
   </data>
   <data name="merge_phrase_with_next" xml:space="preserve">
-    <value>句を次のと合う</value>
+    <value>次のフレーズと結合</value>
   </data>
   <data name="paste_phrase" xml:space="preserve">
-    <value>句を貼り付け</value>
+    <value>フレーズを貼り付け</value>
   </data>
   <data name="add_role" xml:space="preserve">
-    <value>（役を加える）</value>
+    <value>（役割を追加）</value>
   </data>
   <data name="assign_role" xml:space="preserve">
-    <value>役を割り当てる</value>
+    <value>役割を割り当てる</value>
   </data>
   <data name="mark_phrase_used" xml:space="preserve">
-    <value>句を{0}としてマークする</value>
+    <value>フレーズをマークする{0}</value>
   </data>
   <data name="set_page_number_" xml:space="preserve">
-    <value>ページ番号を代入</value>
+    <value>ページ番号を設定</value>
   </data>
   <data name="add_section" xml:space="preserve">
-    <value>節を加える</value>
+    <value>見出しを追加</value>
   </data>
   <data name="add_subsection" xml:space="preserve">
-    <value>副節を加える</value>
+    <value>子見出しを追加</value>
   </data>
   <data name="mark_section_used" xml:space="preserve">
-    <value>節を{0}としてマークする</value>
+    <value>見出しをマークする{0}</value>
   </data>
   <data name="cut_audio" xml:space="preserve">
-    <value>オーディオを切り取り</value>
+    <value>音声切り取り</value>
   </data>
   <data name="delete_audio" xml:space="preserve">
-    <value>オーディオを削除</value>
+    <value>音声削除</value>
   </data>
   <data name="default_custom_class_name" xml:space="preserve">
     <value>マークされました</value>
   </data>
   <data name="no_preceding_silence_phrase" xml:space="preserve">
-    <value>選択を進む無音の句はないから、省略時値は使われる。もうこの設定を改めることができるまたは、キャンセルして無音の句を選択。</value>
+    <value>見出し内に無音のフレーズは見つかりませんでした。既定値が使用されます。既定値はいつでも変更できます。無音フレーズを選びなおす場合は、キャンセルしてください。</value>
   </data>
   <data name="paste_audio" xml:space="preserve">
-    <value>オーディオを貼り付け</value>
+    <value>音声貼り付け</value>
   </data>
   <data name="copy_audio" xml:space="preserve">
-    <value>オーディオをコピー</value>
+    <value>音声コピー</value>
   </data>
   <data name="phrase_detection" xml:space="preserve">
-    <value>句発覚</value>
+    <value>フレーズ検知</value>
   </data>
   <data name="create_new_project_from_import" xml:space="preserve">
-    <value>輸入から新しいプロジェクトを作成</value>
+    <value>インポートから新規プロジェクト作成</value>
   </data>
   <data name="import_failed" xml:space="preserve">
-    <value>輸入{0}でプロジェクトを作成することはできませんでした。</value>
+    <value>インポートから新規プロジェクトを作成できませんでした：{0}</value>
   </data>
   <data name="filter" xml:space="preserve">
     <value>XHTML, Opf, XML file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|Any file|*.*</value>
   </data>
   <data name="blank_phrase" xml:space="preserve">
-    <value>空の句</value>
+    <value>空のフレーズ</value>
   </data>
   <data name="kind_phrase" xml:space="preserve">
-    <value>句{0}</value>
+    <value>フレーズ　{0}</value>
   </data>
   <data name="insert_section" xml:space="preserve">
-    <value>節をインサート</value>
+    <value>見出しを挿入</value>
   </data>
   <data name="clean_failed_caption" xml:space="preserve">
-    <value>プロジェクトを取り片付けることはできませんでした。</value>
+    <value>プロジェクトのクリーンアップに失敗しました</value>
   </data>
   <data name="clean_failed_text" xml:space="preserve">
-    <value>表面上、後続の理由{0}のため、Obiは先のプロジェクトが取り片付けられませんでした。</value>
+    <value>Obiはプロジェクトのクリーンアップに失敗しました。理由は次の通りです： {0}</value>
   </data>
   <data name="clean_up_ask_for_delete_project" xml:space="preserve">
-    <value>遊休のファイルは削除フォルダーに動かされました。そのファイルを削除したいですか。</value>
+    <value>使用していないファイルは削除フォルダに移動されました。使用していないファイルを削除しますか？</value>
   </data>
   <data name="clean_save_caption" xml:space="preserve">
-    <value>取り片付けて、保管する。</value>
+    <value>クリーンアップして保存</value>
   </data>
   <data name="delete_unused_data_caption" xml:space="preserve">
-    <value>遊休のデータを削除しますか。</value>
+    <value>使用していないファイルを削除しますか？</value>
   </data>
   <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
-    <value>遊休の句の削除。</value>
+    <value>使用していないフレーズの検知</value>
   </data>
   <data name="clean_save_text" xml:space="preserve">
-    <value>プロジェクトは取り片付けて、保管されます。続きたいですか。</value>
+    <value>プロジェクトはクリーンアップ後に保存されます。続けますか？</value>
   </data>
   <data name="delete_unused" xml:space="preserve">
-    <value>遊休のデータを削除</value>
+    <value>使用していないデータを削除</value>
   </data>
   <data name="delete_metadata_entry" xml:space="preserve">
-    <value>メタデータ入力を削除</value>
+    <value>メタデータの内容を削除</value>
   </data>
   <data name="modify_metadata_content" xml:space="preserve">
-    <value>メタデータ入力を改める</value>
+    <value>メタデータの内容を編集</value>
   </data>
   <data name="modify_metadata_name" xml:space="preserve">
-    <value>メタデータ入力の名を改める</value>
+    <value>メタデータの項目名を編集</value>
   </data>
   <data name="about_file_name" xml:space="preserve">
     <value>about_ja.html</value>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
-    <value>空ページを加える</value>
+    <value>空ページを追加</value>
   </data>
   <data name="add_blank_phrase" xml:space="preserve">
-    <value>空句を加える</value>
+    <value>空フレーズを追加</value>
   </data>
   <data name="add_metadata_entry" xml:space="preserve">
-    <value>メタデータ入力を加える</value>
+    <value>メタデータ項目を追加</value>
   </data>
   <data name="choose_import_file" xml:space="preserve">
-    <value>輸入ファイルを選択</value>
+    <value>インポートするファイルを選択</value>
   </data>
   <data name="copy_section_shallow" xml:space="preserve">
-    <value>節をコピー(Shallow)</value>
+    <value>見出しコピー(Shallow)</value>
   </data>
   <data name="monitoring_short" xml:space="preserve">
-    <value>見守っています</value>
+    <value>モニタリング</value>
   </data>
   <data name="propose_directory_caption" xml:space="preserve">
-    <value>新しいプロジェクトのために空ではないディレクトリ。</value>
+    <value>新しいプロジェクトのためのディレクトリが空ではありません</value>
   </data>
   <data name="propose_directory_text" xml:space="preserve">
-    <value>プロジェクトを保管するために選択されたディレクトリは空ではありません。新しいプロジェクトを保管するために次の所を選択したいですか: "{0}"。</value>
+    <value>新しいプロジェクトの保存先が空ではありません。代わりに次の場所に保存しますか？"{0}"</value>
   </data>
   <data name="start_monitoring" xml:space="preserve">
-    <value>見守るを始める</value>
+    <value>モニタリング開始</value>
   </data>
   <data name="content_view" xml:space="preserve">
-    <value>内容表示</value>
+    <value>コンテンツビュー</value>
   </data>
   <data name="audio_block_label" xml:space="preserve">
     <value>{0} {1} of {2}{3}</value>
   </data>
   <data name="audio_block_label_unused" xml:space="preserve">
-    <value>、遊休</value>
+    <value>、使用されていません</value>
   </data>
   <data name="Paused" xml:space="preserve">
     <value>一時停止</value>
   </data>
   <data name="Playing" xml:space="preserve">
-    <value>オーディオを再生しています。</value>
+    <value>音声を再生しています</value>
   </data>
   <data name="Stopped" xml:space="preserve">
     <value>停止されました</value>
   </data>
   <data name="transport_bar" xml:space="preserve">
-    <value>トランスポートバー</value>
+    <value>ナビゲーションバー</value>
   </data>
   <data name="dc_contributor_description" xml:space="preserve">
-    <value>dc:creator参考されたパーティーに比べて二貢献のパーティー。</value>
+    <value>dc:creator以外に出版物に貢献した関係者</value>
   </data>
   <data name="dc_coverage_description" xml:space="preserve">
-    <value>リソースの内容の限り。DTBに対して使用は望まれません。</value>
+    <value>DTBではなく、原本の領域</value>
   </data>
   <data name="dc_creator_description" xml:space="preserve">
-    <value>知的な内容の主な筆者または創造主の名。</value>
+    <value>原本の著者または製作者名</value>
   </data>
   <data name="dc_date_description" xml:space="preserve">
-    <value>DTBの発表の年月日。(Compare dtb:sourceDate and dtb:producedDate.)フォーマットは「ISO8601]です；シンタックスはの形はYYYY-MM-DDのようです</value>
+    <value>DTBの出版年月日(dtb:sourceDate と dtb:producedDateとは異なる)。フォーマットは「ISO8601]；YYYY[-MM[-DD]] 　年は数字４文字で必須。月と日付は数字２文字でオプションです。</value>
   </data>
   <data name="dc_description_description" xml:space="preserve">
-    <value>出版の内容を写すプレーンテキスト。</value>
+    <value>出版物の概要</value>
   </data>
   <data name="dc_format_description" xml:space="preserve">
-    <value>DTB生産の標準</value>
+    <value>DTBの採用した規格</value>
   </data>
   <data name="dc_identifier_description" xml:space="preserve">
-    <value>DTBを判明する番号やストリング。</value>
+    <value>DTBを特定するための文字列</value>
   </data>
   <data name="dc_language_description" xml:space="preserve">
-    <value>出版の内容の言語。[RFC 3066] 言語Code. スウェーデンのために: "sv" or "sv-SE"; for UK: "en" or "en-GB"; for US: "en" or "en-US"; etc.</value>
+    <value>出版物の言語。 [RFC 3066] 言語コード。スウェーデン: "sv" または "sv-SE";イギリス: "en" または "en-GB"; アメリカ: "en" または "en-US"; 等</value>
   </data>
   <data name="dc_relation_description" xml:space="preserve">
-    <value>関係のリソースの引用。</value>
+    <value>関係資料の参照</value>
   </data>
   <data name="dc_rights_description" xml:space="preserve">
-    <value>DTBに保たれた利権の情報。 (Compare dtb:sourceRights.)</value>
+    <value>DTBに関する著作権 (dtb:sourceRights　とは異なる.)</value>
   </data>
   <data name="dc_source_description" xml:space="preserve">
-    <value>DTBが作られるリソースの引用（本や電子書籍など…）。ISBNを利用する方がいいです</value>
+    <value>DTBの原本への参照（印刷された出版物やebbok等…）。ISBNがある場合はISBNを記載</value>
   </data>
   <data name="dc_subject_description" xml:space="preserve">
-    <value>刊行の内容の話題</value>
+    <value>出版物の主題</value>
   </data>
   <data name="dc_type_description" xml:space="preserve">
-    <value>DTBの内容の物理(オーディオや本文や映像など…)。Dublin Coreのリストから引く方がいいです「DC-TYPE」</value>
+    <value>DTBのコンテンツタイプ（音声、テキスト、画像等）。ダブリンコアのリストを引用することを推奨します [DC-Type].</value>
   </data>
   <data name="dtb_audio_format_description" xml:space="preserve">
-    <value>DTBの内容を含むSMILファイルの全額プレイバック時間。値はSMIL 2.0タイミングと同期化モジュールのクロック値です。</value>
+    <value>DTBの再生時間(全SMILの合計再生時間）。SMIL 2.0 Timing と同期モジュールの時間の値。</value>
   </data>
   <data name="dtb_multimedia_content_description" xml:space="preserve">
-    <value>このDTBの内容に利用された大体種類のメディアの概要です。値は[RFC2046]にあるトップレベルメディアの種類の点から区切られたリストです。現在のバージョンには、当てはまるのはテキストやオーディオやイメージだけです。</value>
+    <value>DTBに含まれるメディアの種類。 [RFC2046]に定義されているトップレベルのメディアの種類を、コンマで区切ってリストしてください。現在の規格では、音声、テキスト、または画像のみが該当します。NCX、リソースファイル、または distInfoのみから参照されているメディアの種類はここには記載しないでください。</value>
   </data>
   <data name="dtb_multimedia_type_description" xml:space="preserve">
-    <value>構造手引きに説かれたDTBの六つの種類の一つ。価値は、オーディオだけ, オーディオNCX, オーディオPartText, オーディオFullText, textPartオーディオ, textNCXです。</value>
+    <value>構造ガイドラインにある、６種類のDTBタイプの中から該当するものを選択：音声のみ、音声とNCX、音声と一部のテキスト、音声と全テキスト、テキストと一部の音声、テキストのみ。</value>
   </data>
   <data name="dtb_narrator_description" xml:space="preserve">
-    <value>DTBにある録音した声の人の名。</value>
+    <value>DTBの音声を録音した人の名前</value>
   </data>
   <data name="dtb_produced_date_description" xml:space="preserve">
-    <value>初代の全面的なDTBの年月日。フォーマットは「ISO8601]です；シンタックスはの形はYYYY-MM-DDのようです。</value>
+    <value>DTBの完成年月日。製作が完了した日付(dc:Dateに匹敵）。 [ISO8601];のフォーマットで入力。YYYY[-MM[-DD]] 　年は４文字の数字で必須。月は２文字でオプション。日付は、月が入力された場合に２文字でオプション。</value>
   </data>
   <data name="dtb_producer_description" xml:space="preserve">
-    <value>DTBを生じる団体/生産ユニットの名。(Compare dc:Publisher.)</value>
+    <value>DTBを製作した団体/製作ユニットの名前（dc:Publisherに匹敵）</value>
   </data>
   <data name="dtb_revision_data_description" xml:space="preserve">
-    <value>特定dtb:revisionに関連年月日。フォーマットは「ISO8601]です；シンタックスはの形はYYYY-MM-DDのようです。</value>
+    <value>特定のdtb:revisionに関する日付。[ISO8601];のフォーマットで入力。YYYY[-MM[-DD]] 　年は４文字の数字で必須。月は２文字でオプション。日付は、月が入力された場合に２文字でオプション。</value>
   </data>
   <data name="dtb_revision_description" xml:space="preserve">
-    <value>特定DTBバージョンno負の符号ではない整数価値。毎度DTBを練り直すと、その値は増加される。</value>
+    <value>特定のDTBのバージョン番号（負でない整数）。DTBの更新ごとに増える。</value>
   </data>
   <data name="dtb_revision_description_description" xml:space="preserve">
-    <value>特定dtb:revisionに取り込まれた変わりを描くストリング。</value>
+    <value>特定のdtb:revisionの変更内容を示す文字列</value>
   </data>
   <data name="dtb_source_date_description" xml:space="preserve">
-    <value>DTBが導かれたリソースの出版年月日。フォーマットは「ISO8601]です；シンタックスはの形はYYYY-MM-DDのようです。</value>
+    <value>DTBのもととなった原本の出版年月日(印刷物、ebook等）。[ISO8601];のフォーマットで入力。YYYY[-MM[-DD]] 　年は４文字の数字で必須。月は２文字でオプション。日付は、月が入力された場合に２文字でオプション。</value>
   </data>
   <data name="dtb_source_edition_description" xml:space="preserve">
-    <value>DTBが導かれたリソースのエディションを描くストリング。</value>
+    <value>ＤＴＢのもととなった原本（印刷物、ebook等）の版</value>
   </data>
   <data name="dtb_source_publisher_description" xml:space="preserve">
-    <value>DTBが由来するソース(例えば オリジナルプリントや 電子書籍など)を利用可能にするようになる機関 (Compare dc:Publisher.)</value>
+    <value>DTBのもととなった原本（印刷物、ebook等）を提供する責任のある団体(dc:Publisherに匹敵）</value>
   </data>
   <data name="dtb_source_rights_description" xml:space="preserve">
-    <value>DTBが由来するソース(例えば オリジナルプリントや 電子書籍など)を利用可能にするようになる機関 (Compare dc:Publisher.)</value>
+    <value>DTBのもととなった原本（印刷物、ebook等）を提供する責任のある団体(dc:Publisherに匹敵）</value>
   </data>
   <data name="dtb_source_title_description" xml:space="preserve">
-    <value>DTBが導かれた　リソースの題名</value>
+    <value>DTBのもととなった原本（印刷物、ebook等）の題名。ただし、dc:Title.と異なる場合のみ記載。</value>
   </data>
   <data name="dtb_total_time_description" xml:space="preserve">
-    <value>DTBの内容を含むSMILファイルの全部再生時間。値はSMIL 2.0 Timing と Synchronization Moduleからのクロック値です。</value>
+    <value>DTBの再生時間(全SMILの合計再生時間）。SMIL 2.0 Timing と同期モジュールの時間の値。</value>
   </data>
   <data name="generator_description" xml:space="preserve">
-    <value>このDTBのためのジェネレータソフトウェア</value>
+    <value>DTBの製作ツール</value>
   </data>
   <data name="modify_metadata_entry" xml:space="preserve">
-    <value>メータデータ入力を修正する</value>
+    <value>メータデータ項目を編集</value>
   </data>
   <data name="obi_xuk_version_description" xml:space="preserve">
-    <value>Obi/XUKバージョン識別名</value>
+    <value>Obi/XUKバージョン識別子</value>
   </data>
   <data name="metadata_name_error_caption" xml:space="preserve">
-    <value>メタデータネームエラ</value>
+    <value>メタデータ名エラー</value>
   </data>
   <data name="metadata_name_error_text" xml:space="preserve">
-    <value>このメータデータ入力の名を"{0}"に変わることはできません</value>
+    <value>メータデータの項目名を"{0}"に変更することはできません。</value>
   </data>
   <data name="metadata_custom" xml:space="preserve">
     <value>カスタム</value>
@@ -674,7 +678,7 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>空</value>
   </data>
   <data name="node_selection_to_string" xml:space="preserve">
-    <value>{1}に{0}を選択しました</value>
+    <value>{1}で{0}を選択</value>
   </data>
   <data name="phrase_extra_custom" xml:space="preserve">
     <value>, {0}</value>
@@ -683,7 +687,7 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>、見出し</value>
   </data>
   <data name="phrase_extra_page" xml:space="preserve">
-    <value>、ページ番号</value>
+    <value>、ページ番号 {0}</value>
   </data>
   <data name="phrase_extra_Plain" xml:space="preserve">
     <value />
@@ -692,10 +696,10 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>、無音</value>
   </data>
   <data name="phrase_extra_TODO" xml:space="preserve">
-    <value>、行なう</value>
+    <value>、TODO</value>
   </data>
   <data name="phrase_node_to_string" xml:space="preserve">
-    <value>、句（長さ：{1}）</value>
+    <value>フレーズ（長さ: {1}）</value>
   </data>
   <data name="phrase_short_custom" xml:space="preserve">
     <value>"{0}"</value>
@@ -704,61 +708,61 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>見出し</value>
   </data>
   <data name="phrase_short_page" xml:space="preserve">
-    <value>{0}ページ</value>
+    <value>ページ {0}</value>
   </data>
   <data name="phrase_short_Plain" xml:space="preserve">
-    <value>句</value>
+    <value>フレーズ</value>
   </data>
   <data name="phrase_short_Silence" xml:space="preserve">
-    <value>ミュート</value>
+    <value>無音</value>
   </data>
   <data name="phrase_short_to_string" xml:space="preserve">
     <value>{0}{1} ({2})</value>
   </data>
   <data name="phrase_short_TODO" xml:space="preserve">
-    <value>*行なう*</value>
+    <value>*TODO*</value>
   </data>
   <data name="phrase_to_string" xml:space="preserve">
-    <value>{0}{1}句 {2} の {3} ({4}){5}</value>
+    <value>{0}{1}フレーズ {2} of {3} ({4}){5}</value>
   </data>
   <data name="section_level_to_string" xml:space="preserve">
-    <value>、深さ{0}</value>
+    <value>、階層{0}</value>
   </data>
   <data name="section_one_phrase_to_string" xml:space="preserve">
-    <value>、句１</value>
+    <value>、1フレーズ</value>
   </data>
   <data name="section_phrases_to_string" xml:space="preserve">
-    <value>、{0}句</value>
+    <value>、{0}フレーズ</value>
   </data>
   <data name="section_to_string" xml:space="preserve">
-    <value>{0}節 "{1}" ({2}{3}{4})</value>
+    <value>{0}見出し "{1}" ({2}{3}{4})</value>
   </data>
   <data name="strips_view_to_string" xml:space="preserve">
-    <value>内容表示</value>
+    <value>コンテンツビュー</value>
   </data>
   <data name="toc_view_to_string" xml:space="preserve">
-    <value>TOC表示</value>
+    <value>見出しビュー</value>
   </data>
   <data name="unused" xml:space="preserve">
     <value>利用されませんでした</value>
   </data>
   <data name="audio_selection_to_string" xml:space="preserve">
-    <value>選択したオーディオは{2}の{1}の{0}にあります。</value>
+    <value>選択した音声 {0} in {1} in {2}</value>
   </data>
   <data name="strip_cursor_selection_to_string" xml:space="preserve">
-    <value>選択のインデックスは{2}の{1}の{0}にあります。</value>
+    <value>選択したインデックス {0} in {1} in {2}</value>
   </data>
   <data name="text_selection_to_string" xml:space="preserve">
-    <value>選択したテクストは{2}の{1}の{0}にあります。</value>
+    <value>選択したテキスト {0} in {1}: "{2}"</value>
   </data>
   <data name="obi_url" xml:space="preserve">
     <value>http://www.daisy.org/obi/</value>
   </data>
   <data name="max_phrase_duration_invalid_input" xml:space="preserve">
-    <value>句の最大限存続ための正しくない入力。0より大きいミニッツの積分数を指す。</value>
+    <value>フレーズの最大数が間違っています。０より多い整数を入力してください。</value>
   </data>
   <data name="rendering_waveform" xml:space="preserve">
-    <value>波形を翻訳している…</value>
+    <value>波形を処理しています…</value>
   </data>
   <data name="duration_h_mm_ss" xml:space="preserve">
     <value>{0}:{1:00}:{2:00}</value>
@@ -770,7 +774,7 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>{0:0.00}s</value>
   </data>
   <data name="hour" xml:space="preserve">
-    <value>ー時間</value>
+    <value>時間</value>
   </data>
   <data name="hours" xml:space="preserve">
     <value>時間</value>
@@ -803,136 +807,136 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>秒</value>
   </data>
   <data name="section_level" xml:space="preserve">
-    <value>"{0}"（レベル"{1}"）</value>
+    <value>"{0}"（レベル {1}）</value>
   </data>
   <data name="top_level_section" xml:space="preserve">
-    <value>これはトップ-レベルの句節です</value>
+    <value>最上レベルの見出し</value>
   </data>
   <data name="update_section" xml:space="preserve">
-    <value>節をアップデイトする</value>
+    <value>見出しを更新</value>
   </data>
   <data name="update_phrase" xml:space="preserve">
-    <value>句をアップデイトする</value>
+    <value>フレーズを更新</value>
   </data>
   <data name="error_adding_page_number" xml:space="preserve">
-    <value>ページ番号を足すにはエラが出る：親節はありません</value>
+    <value>ページ番号の追加でエラー。親見出しが見つかりません。</value>
   </data>
   <data name="import_failed_caption" xml:space="preserve">
-    <value>輸入が欠かした</value>
+    <value>インポート失敗</value>
   </data>
   <data name="no_headings_found" xml:space="preserve">
-    <value>XHTMLドキュメンタに(h1,h2 など)見出しはありません</value>
+    <value>XHTML文書に見出し (h1, h2,等.) が見つかりませんでした。</value>
   </data>
   <data name="wrong_heading_order" xml:space="preserve">
-    <value>見出し要素は体制が不可です</value>
+    <value>見出し要素の順序が正しくありません。</value>
   </data>
   <data name="dtb_encode_error" xml:space="preserve">
-    <value>{0}: DTB encodingする時エラが出る</value>
+    <value>DTBのエンコードでエラー: {0}</value>
   </data>
   <data name="dtb_encode_error_caption" xml:space="preserve">
-    <value>DTB encodingエラ</value>
+    <value>DTBエンコードエラー</value>
   </data>
   <data name="dtb_filter" xml:space="preserve">
-    <value>DTB包みファイル(*.opf)|*.opf|Any file|*.*</value>
+    <value>DTB パッケージファイル (*.opf)|*.opf|すべてのファイルe|*.*</value>
   </data>
   <data name="dtb_validate_error" xml:space="preserve">
-    <value>DTBを有効化する時エラーが出る: {0}</value>
+    <value>DTBバリデーションでエラー: {0}</value>
   </data>
   <data name="dtb_validate_error_caption" xml:space="preserve">
-    <value>DTB有効化エラー</value>
+    <value>DTBバリデーションエラー</value>
   </data>
   <data name="no_script" xml:space="preserve">
     <value>"{0}"の中には、スクリプトファイルが見つかりませんでした。</value>
   </data>
   <data name="pipeline_path_browser" xml:space="preserve">
-    <value>以下にパイプラインスクリプトのロケーションを選択。</value>
+    <value>Pipeilneスクリプトの場所を選択してください。</value>
   </data>
   <data name="xml_filter" xml:space="preserve">
     <value>XML ファイル|*.xml</value>
   </data>
   <data name="CannotCreate_InputPath" xml:space="preserve">
-    <value>入力種類のパスを作成することはできません</value>
+    <value>パスを作成できません：入力</value>
   </data>
   <data name="Caption_Error" xml:space="preserve">
     <value>エラー</value>
   </data>
   <data name="save_before_save_as_caption" xml:space="preserve">
-    <value>新規保管する前に保管しますか</value>
+    <value>名前を付けて保存する前に、現在のファイルを上書き保存しますか？</value>
   </data>
   <data name="Choose_OtherDirectory" xml:space="preserve">
-    <value>他のディレクトリを選択する。</value>
+    <value>他のディレクトリを選択してください</value>
   </data>
   <data name="IndexNotInRange" xml:space="preserve">
-    <value>インデックスは範囲にありません。</value>
+    <value>インデックスが範囲外です</value>
   </data>
   <data name="Invalid_ScriptParameters" xml:space="preserve">
-    <value>一つまたはそれ以上のパラメターは正しくありません。</value>
+    <value>一つまたはそれ以上のパラメターが正しくありません。</value>
   </data>
   <data name="No_Path" xml:space="preserve">
-    <value>パスはありません</value>
+    <value>パスが見つかりません</value>
   </data>
   <data name="NotAbleToCreateDirectory" xml:space="preserve">
-    <value>ディレクトリ{0}を作成することはできません。</value>
+    <value>ディレクトリ{0}を作成できません</value>
   </data>
   <data name="NotAbleToSelectItem" xml:space="preserve">
-    <value>項目を選択することはできません。</value>
+    <value>項目を選択できません</value>
   </data>
   <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
-    <value>輸出ディレクトリを検索することはできません。それを作成したいですか。</value>
+    <value>出力ディレクトリが見つかりませんでした。\n　作成しますか？</value>
   </data>
   <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
-    <value>輸出ディレクトリは空ではありません。空にしたいですか</value>
+    <value>出力ディレクトリが空ではありません。ファイルを削除しますか？</value>
   </data>
   <data name="Front_pages" xml:space="preserve">
-    <value>正面ページ</value>
+    <value>フロントページ</value>
   </data>
   <data name="Normal_pages" xml:space="preserve">
-    <value>平常なページ</value>
+    <value>ノーマルページ</value>
   </data>
   <data name="renumber_before_export" xml:space="preserve">
-    <value>少なくとも{0}番号された二枚のページがあるので、このプロジェクトを輸出することはできません。輸出を続くためにページを独りでにレナンバしたいですか、それとも輸出はキャンセルされます。</value>
+    <value>同じページ番号が「 {0}」が２度以上使用されているため、このプロジェクトを出力できません。自動的にページ番号を振りなおして出力を続けますか？そうでなければ出力はキャンセルされます。</value>
   </data>
   <data name="renumber_before_export_caption" xml:space="preserve">
-    <value>プロジェクトに複写ページ番号がある</value>
+    <value>プロジェクト内に重複しているページ番号があります。</value>
   </data>
   <data name="renumber_pages" xml:space="preserve">
-    <value>レナンバ{0}</value>
+    <value>ページ番号を振りなおす{0}</value>
   </data>
   <data name="crop_audio" xml:space="preserve">
-    <value>オーディオをクロップ</value>
+    <value>壊れた音声</value>
   </data>
   <data name="save_as_error_same_directory" xml:space="preserve">
-    <value>本プロジェクトのディレクトリに保管することはできません。保管するために他のロケーションを選択してください。</value>
+    <value>オリジナルのプロジェクトと同じ場所には保存できません。別の場所を指定してください。</value>
   </data>
   <data name="save_before_save_as" xml:space="preserve">
-    <value>新しいロケーションに保管する前に変化を保管したいですか。</value>
+    <value>新しい場所にプロジェクトを保存する前に、現在のプロジェクトを上書き保存しますか？</value>
   </data>
   <data name="no_primary_export_directory" xml:space="preserve">
-    <value>DAISY輸出ディレクトリは見つかりませんでした。DAISYへプロジェクトを輸出ために輸出パスを選択してください。</value>
+    <value>DAISY出力ディレクトリが見つかりませんでした。エクスポートするパスを指定するか、DAISYにプロジェクトを出力してください。</value>
   </data>
   <data name="section_unexported" xml:space="preserve">
-    <value>節”{0}”ではオーディオ内容がないし、輸入されません、そしてその副の輸入もされません。続きたいですか？</value>
+    <value>見出し”{0}”とその子見出しには音声がありませんので、出力されません。続けますか？</value>
   </data>
   <data name="section_unexported_caption" xml:space="preserve">
-    <value>この節は輸出されません。</value>
+    <value>見出しは出力されません</value>
   </data>
   <data name="default_export_dirname" xml:space="preserve">
-    <value>{0}DAISY3 輸出</value>
+    <value>{0}DAISY3 出力</value>
   </data>
   <data name="ObiForm_PipelineNotFound" xml:space="preserve">
-    <value>{0}にパイプラインスクリプトを検索することはできません。頼るものが勤まらないかもしれません。</value>
+    <value>{0}にPipelineスクリプトが見つかりません。関係する機能が動かない可能性があります</value>
   </data>
   <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
-    <value>一つまたはそれ以上のパラメータは正しくありません。正しい価値を打ち込んでください。</value>
+    <value>一つまたはそれ以上のパラメータが正しくありません。正しい値を入力してください</value>
   </data>
   <data name="recording_resume_check" xml:space="preserve">
-    <value>録音は一時停止の動静から続いています。一時停止の動静から続くにはYESをクリックするまたは現在の選択からレジュームするにはNoをクリックする。</value>
+    <value>一時停止から録音が再開されました。一時停止した位置から録音を再開するには「はい」を選択してください。現在位置から録音を再開するには「いいえ」を選択してください。</value>
   </data>
   <data name="duration_hh_mm_ss" xml:space="preserve">
     <value>{0:00}:{1:00}:{2:00}</value>
   </data>
   <data name="export_progress_dialog_title" xml:space="preserve">
-    <value>輸出しています。。。数分かかりますからちょっと待ってください。</value>
+    <value>出力しています…数分お待ちください</value>
   </data>
   <data name="role_Custom" xml:space="preserve">
     <value>カスタム</value>
@@ -950,31 +954,32 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>無音</value>
   </data>
   <data name="could_not_clean_up" xml:space="preserve">
-    <value>無効なプロジェクトを削除することはできませんでした。ファイルを自分で取り除こうして見る。</value>
+    <value>無効なプロジェクトを削除できません。{0}ご自身でファイルを削除してください。申し訳ありません。
+</value>
   </data>
   <data name="could_not_clean_up_caption" xml:space="preserve">
-    <value>無効なプロジェクトを削除することはできませんでした。</value>
+    <value>無効なプロジェクトを削除できません</value>
   </data>
   <data name="import_progress_dialog_title" xml:space="preserve">
-    <value>輸入しています…</value>
+    <value>インポートしています…</value>
   </data>
   <data name="import_audio_progress_dialog_title" xml:space="preserve">
-    <value>オーディオを輸入しています…</value>
+    <value>音声をインポートしています…</value>
   </data>
   <data name="cleaning_up" xml:space="preserve">
-    <value>始末しています…</value>
+    <value>クリーンアップしています…</value>
   </data>
   <data name="remove_custom_class" xml:space="preserve">
-    <value>カスタムクラスを取り除く</value>
+    <value>カスタムクラスを削除</value>
   </data>
   <data name="strip_cursor_accessible_name" xml:space="preserve">
     <value>ストリップカーソルは{0}-{1}の間にあります。</value>
   </data>
   <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
-    <value>値は{0}と{1}の間にあればよろしいです。</value>
+    <value>{0}と{1}の間の値にしてください</value>
   </data>
   <data name="Pipeline_OutOfRange" xml:space="preserve">
-    <value>値は範囲の所期にはありません。</value>
+    <value>値が範囲外になっています</value>
   </data>
   <data name="Pipeline_InvalidString" xml:space="preserve">
     <value>入力は正しくありません。</value>
@@ -983,166 +988,166 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>{0}コピー</value>
   </data>
   <data name="cannot_use_project_path" xml:space="preserve">
-    <value>保管するために選択された所"{0}"を利用することはできません。</value>
+    <value>選択された場所"{0}"に保存できません：{1}</value>
   </data>
   <data name="cannot_use_project_path_caption" xml:space="preserve">
-    <value>選択された所を利用することはできません。</value>
+    <value>選択された場所は使用できません</value>
   </data>
   <data name="extension_warning" xml:space="preserve">
-    <value>あなたがプロジェクトを{0}に保管しようとします。.obi file extensionを利用するほうがよろしいです。このExtensionを保ちたいですか。</value>
+    <value> {0}にプロジェクトファイルを保存しようとしています。.obiの拡張子を使用することを推奨します。選択した拡張子で保存してよろしいですか？</value>
   </data>
   <data name="extension_warning_caption" xml:space="preserve">
-    <value>ファイル拡張子の警報メッセージ</value>
+    <value>拡張子に関する注意</value>
   </data>
   <data name="save_as_failed" xml:space="preserve">
-    <value>"{0}": {1}所に保管することはできませんでした。</value>
+    <value>"{0}": {1}へ保存できませんでした</value>
   </data>
   <data name="save_as_failed_caption" xml:space="preserve">
-    <value>保管することはできませんでした。</value>
+    <value>保存に失敗</value>
   </data>
   <data name="cannot_empty_directory" xml:space="preserve">
-    <value>ディレクトリ"{0}": {1}を空にすることはできません。</value>
+    <value>ディレクトリ"{0}": {1}を空にできません</value>
   </data>
   <data name="cannot_empty_directory_caption" xml:space="preserve">
-    <value>ディレクトリを空にすることはできません。</value>
+    <value>ディレクトリを空にできません</value>
   </data>
   <data name="toggle_TODO" xml:space="preserve">
-    <value>トッグル　TODO</value>
+    <value>TODOトグル</value>
   </data>
   <data name="recording_resume_check_caption" xml:space="preserve">
-    <value>一時停止所から録音をレジュームします</value>
+    <value>一時停止位置から録音を再開しますか？</value>
   </data>
   <data name="save_as_progress_dialog_title" xml:space="preserve">
-    <value>新しい所にプロジェクトを保管しています。</value>
+    <value>新しい場所にプロジェクトを保存しています…</value>
   </data>
   <data name="InvalidPaths" xml:space="preserve">
-    <value>一つまたはそれ以上のパスは正しくありません！</value>
+    <value>一つまたはそれ以上のパスが無効です！</value>
   </data>
   <data name="project_lock_error" xml:space="preserve">
-    <value>"{0}": {1}にロックファイルを作成することはできませんでした。</value>
+    <value>"{0}": {1}にロックファイルを作成できませんでした。</value>
   </data>
   <data name="project_locked" xml:space="preserve">
-    <value>プロジェクトは閉ざされている、その理由は多分、先のセションは不適切に終了されたことまたは他のObiセションは同じプロジェクトとともにひらいていることです。もし、他のセションが開いていることはなければ、あなたはロックファイル"{0}"を削除しようとすることができるが、それは自己責任のことです。</value>
+    <value>プロジェクトはロックされています。前回開いたときに適切に終了されなかったか、別のObiで開かれている可能性があります。もし、他にObiが開いていないことが確認でき、ロックファイル"{0}"を削除される場合は、ご自身の責任で行ってください。</value>
   </data>
   <data name="no_preceding_silence_phrase_caption" xml:space="preserve">
-    <value>先行の無音句はありません。</value>
+    <value>無音のフレーズが前にありません</value>
   </data>
   <data name="phrase_detection_progress_dialog_title" xml:space="preserve">
-    <value>句検出を反映を当てはめています。</value>
+    <value>フレーズ検知を実行しています…</value>
   </data>
   <data name="MetadataView_CannotCommitEmptyContent" xml:space="preserve">
-    <value>メタデータは空値ができません。</value>
+    <value>メタデータの値を空にすることはできません</value>
   </data>
   <data name="location_error" xml:space="preserve">
-    <value>ファイルロケーションエラー</value>
+    <value>ファイルの場所のエラー</value>
   </data>
   <data name="path_not_recognized" xml:space="preserve">
-    <value>パスは"{0}"は認識されませんでした({1})</value>
+    <value>パス"{0}"は認識されませんでした({1})</value>
   </data>
   <data name="path_not_rooted" xml:space="preserve">
-    <value>パス"{0}"が根付いていません。ドライブレターとともの完全のパスを選択</value>
+    <value>パス"{0}"が見つかりません。ドライブ名を含む完全なパスを選択してください。</value>
   </data>
   <data name="CHMhelp_file_name" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
   <data name="phrase_detection_progress" xml:space="preserve">
-    <value>句検出は進行中</value>
+    <value>フレーズ検知進行中…</value>
   </data>
   <data name="delete_silence_phrases" xml:space="preserve">
-    <value>あなたの句に無音句があります。</value>
+    <value>無音のフレーズがあります。無音のフレーズと、使用されていない見出しとフレーズを削除するには、「はい」を選択してください。無音のフレーズを残して、使用されていない見出しとフレーズのみを削除するには「いいえ」を選択してください。</value>
   </data>
   <data name="delete_silence_phrases_caption" xml:space="preserve">
-    <value>無音句を削除しますか。</value>
+    <value>無音フレーズを削除しますか？</value>
   </data>
   <data name="CannotDeleteAtRoot" xml:space="preserve">
-    <value>ディスクパーティションには、削除はできませんでした。</value>
+    <value>このドライブパーティションでは、削除作業ができませんでした。</value>
   </data>
   <data name="PageDialog_InvalidInput" xml:space="preserve">
     <value>One or more fields have invalid entries. Please re-enter values.</value>
   </data>
   <data name="Status_ProjectSaved" xml:space="preserve">
-    <value>プロジェクトが保管されました。続いてください</value>
+    <value>プロジェクトは保存されました。続けてください…</value>
   </data>
   <data name="TransportBar_PlayerExceptionMsg" xml:space="preserve">
-    <value>プレイバックが始められませんでした。続くには、Okをクリックする.... {0} {1}。</value>
+    <value>再生開始できませんでした。続けるには「OK」をクリックしてください...{0} {1}</value>
   </data>
   <data name="Preference_InvalidKeyExceptionMsg" xml:space="preserve">
-    <value>正しくないキーが割り当てられました。他のキーコンビネーションを選択してください.... {0} {1}。</value>
+    <value>正しくないキーが割り当てられました。他のキーの組み合わせを選択してください.... {0} {1}。</value>
   </data>
   <data name="Player_TryAgain" xml:space="preserve">
-    <value>再試みてください... {0} {1}。</value>
+    <value>再度選択してください... {0} {1}。</value>
   </data>
   <data name="Metadata_InvalidDateFormat" xml:space="preserve">
-    <value>年月日の書式は正しくありません。推奨銘柄書式はYYYY-MM-DDまたはYYYYです。</value>
+    <value>年月日の書式が正しくありません。推奨フォーマットはYYYY-MM-DDまたはYYYYです。</value>
   </data>
   <data name="String1" xml:space="preserve">
-    <value>録音を止めるにはエラーが出る。続くにはOkクリックしてください。</value>
+    <value>録音停止でエラー。続けるにはOKを押してください…</value>
   </data>
   <data name="TransportBar_ErrorInStartingRecording" xml:space="preserve">
-    <value>録音を始めるにはエラーが出る。録音を飛ばして続くにはOkクリックしてください。</value>
+    <value>録音開始でエラー。録音をスキップして、続けるにはOKを押してください…</value>
   </data>
   <data name="RecordingSession_SplitError" xml:space="preserve">
-    <value>句のタイミングで問題が検出された。続くに葉、Okをクリックしてください。</value>
+    <value>フレーズの時間に問題が見つかりました。続けるにはOKを押してください</value>
   </data>
   <data name="Block_AccessibleLabel" xml:space="preserve">
-    <value>{0}{1}句 ({2}){3}</value>
+    <value>{0}{1}フレーズ　({2}){3}</value>
   </data>
   <data name="Selected_RecordingPhrase" xml:space="preserve">
-    <value>：句を録音しています</value>
+    <value>：フレーズを録音しています</value>
   </data>
   <data name="Obi_Wiki_Url" xml:space="preserve">
     <value>http://daisy.trac.cvsdude.com/obi</value>
   </data>
   <data name="ErrorInSaving" xml:space="preserve">
-    <value>保管する時、エラーが出てきました。</value>
+    <value>保存する際にエラーが発生しました。</value>
   </data>
   <data name="OpenError_UseCleanUp" xml:space="preserve">
-    <value>プロジェクトが開く早々、クリーン参考されていないオーディオを利用する。</value>
+    <value>プロジェクトが開き次第、参照のない音声のクリーンアップを行ってください。</value>
   </data>
   <data name="ContentHidden_SectionHasOverlimitPhrases" xml:space="preserve">
-    <value>{0}節に多くの句がある、初期の句{1}は見えるだです。全部の節を見るために節を分割。</value>
+    <value>見出し{0}にたたくさんのフレーズがあります。最初の{1}フレーズだけが表示されます。スクリーン上ですべてのフレーズを見るには、見出しを分割してください。</value>
   </data>
   <data name="ContentsHidden_PhrasesExceedMaxLimitPerSection" xml:space="preserve">
-    <value>節の句は{0}の各節制限を過ぎています。</value>
+    <value>フレーズ数が、一つの見出し内のフレーズの最大数{0}を超えています。</value>
   </data>
   <data name="ContentsHidden_StatusMessage" xml:space="preserve">
-    <value>（隠された内容、示すためにF5を使ってください）</value>
+    <value>（非表示の内容を表示するにはF5を押してください）</value>
   </data>
   <data name="Operation_Cancelled" xml:space="preserve">
-    <value>オペレーションを完了することができません</value>
+    <value>作業を完了できません</value>
   </data>
   <data name="footnote" xml:space="preserve">
-    <value>フットノート</value>
+    <value>脚注</value>
   </data>
   <data name="sidebar" xml:space="preserve">
     <value>サイドバー</value>
   </data>
   <data name="prodnote" xml:space="preserve">
-    <value>突きノート</value>
+    <value>制作者注</value>
   </data>
   <data name="note" xml:space="preserve">
-    <value>ノート</value>
+    <value>注</value>
   </data>
   <data name="endnote" xml:space="preserve">
-    <value>仕上げノート</value>
+    <value>巻末注</value>
   </data>
   <data name="annotation" xml:space="preserve">
     <value>注記</value>
   </data>
   <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
-    <value>節の隠れ内容にとってこのコマンドを実行することはできません。節の内容が表示されていることを確認して再試行してください</value>
+    <value>内容が非表示の見出しではこのコマンドは実行できません。見出し内の内容を表示して再度実行してください。</value>
   </data>
   <data name="ContentsHidden_HideNewPhrases" xml:space="preserve">
-    <value>オペレーションが完了された、節の内容が隠されているので、新しい追加された句もそのようにあります。再表示するには、F5を押し付ける</value>
+    <value>作業が完了しました。この見出しの内容は非表示になっていますので、新しく追加されたフレーズも非表示になっています。表示するにはF5を押してください。</value>
   </data>
   <data name="ExportError_EmptyProject" xml:space="preserve">
-    <value>輸出することはできません。プロジェクトは空です！</value>
+    <value>出力できません：プロジェクトは空です！</value>
   </data>
   <data name="ExportAudioOfSelectedNode_Completed" xml:space="preserve">
-    <value>ファイルが輸出された所は：</value>
+    <value>ファイルが出力されました：</value>
   </data>
   <data name="ObiFormStatusMsg_ExportingProject" xml:space="preserve">
-    <value>プロジェクトを{0}へ輸出しています。</value>
+    <value>プロジェクトを{0}に出力しています</value>
   </data>
   <data name="EachLevel" xml:space="preserve">
     <value>各レベル</value>
@@ -1169,100 +1174,100 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>正しいページ番号を入力してください。</value>
   </data>
   <data name="PhraseProperties_ChangePage" xml:space="preserve">
-    <value>ページ番号を変わる</value>
+    <value>ページ番号を変更する</value>
   </data>
   <data name="Peferences_GUIDonotSupportCulture" xml:space="preserve">
-    <value>Obiは言語{0}をまだ支援しません。この言語についてユーザーインターフェースをアップデイトすることはできませんでした。</value>
+    <value>Obiは言語{0}をまだサポートしていません。この言語のユーザーインターフェースはアップデートできませんでした。</value>
   </data>
   <data name="Preferences_RestartForCultureChange" xml:space="preserve">
-    <value>言語の変更を反映させるにはObiを再起動する必要です。制作を保管して再起動。</value>
+    <value>言語の変更を反映させるにはObiを再起動する必要があります。制作を保存してObiを再起動してください。</value>
   </data>
   <data name="Caption_Warning" xml:space="preserve">
-    <value>警報!</value>
+    <value>注意！</value>
   </data>
   <data name="Pipeline_DuplicateScript" xml:space="preserve">
-    <value>{0}名の複製のパイプラインスクリプトが見つかりました。それが乗せ込まれません。続くには、Okをクリックしてください。</value>
+    <value>重複するPipelineスクリプト{0}が見つかりました。読み込まれません。続けるにはOKボタンを押してください。</value>
   </data>
   <data name="GoToPageOrPhrase_MoreThanPhraseCount" xml:space="preserve">
-    <value>フレーズインデックス{0}は節の全ての句の以上です。最後のフレーズインデックスへ行きたければ:節に{1},"Yes"をクリック。</value>
+    <value>フレーズインデックス{0}が見出し内の合計フレーズ数より大きいです。最後のフレーズインデックス{1}に移動するには"はい"をクリックしてください。</value>
   </data>
   <data name="InvalidInput" xml:space="preserve">
     <value>入力は正しくありません。正しい値を入力してください。</value>
   </data>
   <data name="GoToPageOrPhrase_PageNumberLabel" xml:space="preserve">
-    <value>&amp;ページ番号</value>
+    <value>ページ番号(&amp;P):</value>
   </data>
   <data name="GoToPageOrPhrase_PhraseIndexLabel" xml:space="preserve">
-    <value>&amp;句インデックス</value>
+    <value>フレーズインデックス(&amp;P)：</value>
   </data>
   <data name="obi_DAISY2ExportPath_Description" xml:space="preserve">
-    <value>Daisy 2.02 輸出パス。</value>
+    <value>DAISY 2.02 出力パス</value>
   </data>
   <data name="obi_DAISY3ExportPath_Description" xml:space="preserve">
-    <value>Daisy 3 輸出パス。</value>
+    <value>DAISY 3 出力パス</value>
   </data>
   <data name="AutoSave_Error" xml:space="preserve">
-    <value>バックアップファイルを保管するにはエラーが出ました！このメッセージが再三来れば、オートセーブを無効にするほうがよろしいです。そして、このバグを報告</value>
+    <value>バックアップファイルの保存でエラー！このメッセージが何度も出るようであれば、設定で自動保存を無効にして、バグを報告してください。</value>
   </data>
   <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
-    <value>{0}Daisy 2.02 輸出</value>
+    <value>{0}DAISY 2.02 出力</value>
   </data>
   <data name="GoToPageOrPhrase_Title" xml:space="preserve">
-    <value>…へ行く</value>
+    <value>…へ移動</value>
   </data>
   <data name="TextVuMeter_LowIndicator" xml:space="preserve">
-    <value>深い：</value>
+    <value>Low：</value>
   </data>
   <data name="TextVuMeter_OverloadIndicator" xml:space="preserve">
     <value>OL</value>
   </data>
   <data name="DisableAdvancedRecording" xml:space="preserve">
-    <value>高度な録音をディスエーブル</value>
+    <value>アドバンス録音を無効にする</value>
   </data>
   <data name="EnableAdvancedRecording" xml:space="preserve">
-    <value>高度な録音をイネーブル</value>
+    <value>アドバンス録音を有効にする</value>
   </data>
   <data name="ContentViewLabel_NoSection" xml:space="preserve">
-    <value>No section displayed</value>
+    <value>見出しが表示されていません</value>
   </data>
   <data name="Caption_Information" xml:space="preserve">
     <value>情報</value>
   </data>
   <data name="RecordingResumePhrasesDeleted" xml:space="preserve">
-    <value>一時停止された句を検索することができない！既存の選択から録音を始める</value>
+    <value>一時停止されたフレーズが見つかりません！現在の見出しから録音を開始する。</value>
   </data>
   <data name="Find_ReachedInitialPoint" xml:space="preserve">
-    <value>検索の達した開始ポイントを検索</value>
+    <value>検索開始位置に達しました…</value>
   </data>
   <data name="RecordingRestriction_CannotCreateStrip" xml:space="preserve">
-    <value>録音は積極！録音されている節の他の節の内容を示すことはできません。</value>
+    <value>録音中！録音している見出し以外の見出しの内容を表示することはできません。</value>
   </data>
   <data name="Delete_RangeOfPhrases" xml:space="preserve">
-    <value>句の範囲を削除</value>
+    <value>選択範囲のフレーズを削除</value>
   </data>
   <data name="Merge_RangeOfPhrases" xml:space="preserve">
-    <value>句の範囲を合併</value>
+    <value>選択範囲のフレーズを結合</value>
   </data>
   <data name="GotoPageOrPhrase_EnterNumeric" xml:space="preserve">
-    <value>入力は正しくありません。数字の値を入力してください。</value>
+    <value>入力は正しくありません。数字を入力してください。</value>
   </data>
   <data name="GotoPage_MissingVal" xml:space="preserve">
-    <value>値が抜ける</value>
+    <value>値が未入力です</value>
   </data>
   <data name="SelectPhraseDetection_EndOrStartValMoreThanSectionCount" xml:space="preserve">
-    <value>ソタットまたはエンドの値は全ての節より大きいです。</value>
+    <value>開始または終了の数値が見出しの総数より大きいです</value>
   </data>
   <data name="SelectPhraseDetection_EndValIsSmallerThanStart" xml:space="preserve">
-    <value>エンドの値はソタートの値より小さいです。</value>
+    <value>終了の数値が開始の数値より小さいです</value>
   </data>
   <data name="SelectPhraseDetection_MissingStartOrEndVal" xml:space="preserve">
-    <value>スタートまたはエンドの値は抜ける。</value>
+    <value>開始または終了の数値が未入力です</value>
   </data>
   <data name="Preferences_PipelineScriptNotFound" xml:space="preserve">
-    <value>この所で、パイプラインスクリプトが何物見つかりませんでした。</value>
+    <value>Pipelineスクリプトがこの場所に見つかりませんでした</value>
   </data>
   <data name="StatusBar_NothingSelected" xml:space="preserve">
-    <value>何にも選択しました</value>
+    <value>何も選択されていません</value>
   </data>
   <data name="Executing {0}" xml:space="preserve">
     <value />
@@ -1274,178 +1279,178 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>{0}録音しています</value>
   </data>
   <data name="MergePhrases_SizeLimitMessage" xml:space="preserve">
-    <value>合併された句の期間は{0}分より大きくすることはできません</value>
+    <value>結合したフレーズの長さを {0}分以下にしてください。結合するフレーズ数を減らしてください。</value>
   </data>
   <data name="Metadata_CreatorNameForInitializing" xml:space="preserve">
-    <value>クリエーターネーム</value>
+    <value>制作者名</value>
   </data>
   <data name="Scroll_LoadingScreen" xml:space="preserve">
-    <value>画面を読み替えている</value>
+    <value>画面を読み込んでいます…</value>
   </data>
   <data name="DeleteFollowing_SectionSelection" xml:space="preserve">
-    <value>これは選択した節の語句を削除する。続行したいと思いますか</value>
+    <value>選択した見出し内のすべてのフレーズを削除します。実行して良いですか？</value>
   </data>
   <data name="NewProject_EmptyTitle" xml:space="preserve">
-    <value>空題名のプロジェクトはできません。</value>
+    <value>題名が空のプロジェクトは作成できません。</value>
   </data>
   <data name="METADATA_DC_CONTRIBUTOR_HELP" xml:space="preserve">
-    <value>DTBに所載された一団に比べて銃的に貢献した一団。</value>
+    <value>dc:creator以外に出版物に貢献した関係者</value>
   </data>
   <data name="METADATA_DC_COVERAGE_HELP" xml:space="preserve">
-    <value>リソースの内容の限り。</value>
+    <value>原本の領域</value>
   </data>
   <data name="METADATA_DC_CREATOR_HELP" xml:space="preserve">
-    <value>知的な内容の主な筆者または創造主の名。</value>
+    <value>出版物の原著者</value>
   </data>
   <data name="METADATA_DC_DATE_HELP" xml:space="preserve">
-    <value>DTBの発表の年月日。シンタックスはの形はYYYY-MM-DDのようです。</value>
+    <value>DTBの出版年月日。入力の書式はYYYY[-MM[-DD]]</value>
   </data>
   <data name="METADATA_DC_DESCRIPTION_HELP" xml:space="preserve">
-    <value>刊行の内容を記述する簡単テキスト。
+    <value>出版物の内容の説明。
 </value>
   </data>
   <data name="METADATA_DC_IDENTIFIER_HELP" xml:space="preserve">
-    <value>特異にDTBをアイデンティファイするための英数文字ストリング。</value>
+    <value>DTBを特定するための文字列</value>
   </data>
   <data name="METADATA_DC_LANGUAGE_HELP" xml:space="preserve">
-    <value>DTBの内容の言語。</value>
+    <value>DTBの内容の言語</value>
   </data>
   <data name="METADATA_DC_PUBLISHER_HELP" xml:space="preserve">
-    <value>DTBを市販するのに引き受ける代理店。</value>
+    <value>DTBの提供に責任を持つ団体</value>
   </data>
   <data name="METADATA_DC_RELATION_HELP" xml:space="preserve">
-    <value>関係のリソースの引用。</value>
+    <value>関係資料の参照</value>
   </data>
   <data name="METADATA_DC_RIGHTS_HELP" xml:space="preserve">
-    <value>DTBの特許権の情報。</value>
+    <value>DTBに関する著作権 </value>
   </data>
   <data name="METADATA_DC_SOURCE_HELP" xml:space="preserve">
-    <value>DTBが導かれたリソースの引用。</value>
+    <value>DTBの原本への参照</value>
   </data>
   <data name="METADATA_DC_SUBJECT_HELP" xml:space="preserve">
-    <value>内容のトピック</value>
+    <value>内容の主題</value>
   </data>
   <data name="METADATA_DC_TITLE_HELP" xml:space="preserve">
-    <value>任意のサブタイトルを含むDTBの題名</value>
+    <value>DTBの副題を含む題名</value>
   </data>
   <data name="METADATA_DC_TYPE_HELP" xml:space="preserve">
-    <value>DTBの内容の性質</value>
+    <value>DTBのコンテンツタイプ</value>
   </data>
   <data name="METADATA_DTB_NARRATOR_HELP" xml:space="preserve">
-    <value>この本を語った人の名。</value>
+    <value>録音者名</value>
   </data>
   <data name="METADATA_DTB_PRODUCED_DATE_HELP" xml:space="preserve">
-    <value>本が出た年月日。シンタックスは YYYY[-MM[-DD]]</value>
+    <value>本が製作された年月日。入力の書式は YYYY[-MM[-DD]]</value>
   </data>
   <data name="METADATA_DTB_PRODUCER_HELP" xml:space="preserve">
-    <value>DTBを出版された団体または書庫の名。</value>
+    <value>DTBを出版した団体または図書館名</value>
   </data>
   <data name="METADATA_DTB_REVISION_DATE_HELP" xml:space="preserve">
-    <value>本が改められた年月日。シンタックスは YYYY[-MM[-DD]]</value>
+    <value>本が改訂された年月日。入力の書式は YYYY[-MM[-DD]]</value>
   </data>
   <data name="METADATA_DTB_REVISION_DESC_HELP" xml:space="preserve">
-    <value>変更の手短な記述を入力。
+    <value>変更の概要を入力。
 </value>
   </data>
   <data name="METADATA_DTB_REVISION_HELP" xml:space="preserve">
-    <value>改正されば、本の改正を示す番号。
+    <value>本が改訂されている場合は、版を記載。
 </value>
   </data>
   <data name="METADATA_DTB_SOURCE_DATE_HELP" xml:space="preserve">
-    <value>出版の日付は物的な本に記載されている。構文は年月日です</value>
+    <value>原本に記載された出版年月日。入力の書式は YYYY[-MM[-DD]]</value>
   </data>
   <data name="METADATA_DTB_SOURCE_EDITION_HELP" xml:space="preserve">
-    <value>物的な本の版</value>
+    <value>原本の版</value>
   </data>
   <data name="METADATA_DTB_SOURCE_PUBLISHER_HELP" xml:space="preserve">
-    <value>物的な本の出版社</value>
+    <value>原本の出版社</value>
   </data>
   <data name="METADATA_DTB_SOURCE_RIGHTS_HELP" xml:space="preserve">
-    <value>物的な本の利権を持っている団体の名目</value>
+    <value>原本の著作権を持つ団体名</value>
   </data>
   <data name="METADATA_DTB_SOURCE_TITLE_HELP" xml:space="preserve">
-    <value>物的な本の名目</value>
+    <value>原本の題名</value>
   </data>
   <data name="METADATA_GENERATOR_HELP" xml:space="preserve">
-    <value>本が生まれたソフトウェア</value>
+    <value>製作ソフト名</value>
   </data>
   <data name="METADATA_OBI_XUK_VERSION_HELP" xml:space="preserve">
-    <value>XUKファイルのバージョン</value>
+    <value>xukファイルのバージョン</value>
   </data>
   <data name="METADATA_CUSTOM_HELP" xml:space="preserve">
-    <value>このデータユーザー定義です。メタデータ名とそれの値を打ち込んでください。</value>
+    <value>ユーザー定義のデータです。メタデータ名と値を入力してください。</value>
   </data>
   <data name="Recording_CreateSectionContentsInformation" xml:space="preserve">
-    <value>録音する節の中身：{0}内容表示の中で見せられない。節の内容を見せ、したがって録音をはじめるためにエンターキーを押し付けてください。</value>
+    <value>見出し: {0} の録音内容は、コンテンツビューに表示されていません。見出しの内容を表示するにはenter キーを押して、録音を続けてください。</value>
   </data>
   <data name="METADATA_DAISY202_EXPORT_PATH_HELP" xml:space="preserve">
-    <value>Daisy 2.02 輸出パスを保管するためのObi定義データ。</value>
+    <value>Daisy 2.02 出力パス保存のためのObi用のデータ</value>
   </data>
   <data name="METADATA_DAISY3_EXPORT_PATH_HELP" xml:space="preserve">
-    <value>Daisy 3 輸出パースを保管するためのObi定義データ。</value>
+    <value>DAISY 3 出力パス保存のためのObi用のデータ</value>
   </data>
   <data name="MergePhrases_CountLimitMessage" xml:space="preserve">
-    <value>合併ための句の数は{0}以上はずではありません。合併ためにそれ以下の数を選択。</value>
+    <value>結合のためのフレーズ数は、{0}以下でなければなりません。フレーズ数を減らしてください。</value>
   </data>
   <data name="Import_Phrase_SizeLimit" xml:space="preserve">
-    <value>ファイルは{0}分以上です。このファイルは分けられる。</value>
+    <value>ファイルは{0}分以上です。分割されます。</value>
   </data>
   <data name="Import_AudioFormat_RenameFile" xml:space="preserve">
-    <value>名前付きファイル{0}がもうあるので、このファイルは{0}としてリネームされました。</value>
+    <value>同じ名前のファイルがプロジェクトディレクトリにあったため、ファイル名 {0} は {1} に変更されました。</value>
   </data>
   <data name="ImportAudio_ConvertingFormat" xml:space="preserve">
-    <value>輸入するまえにファイルを捌いています。</value>
+    <value>インポートする前にファイルを処理しています</value>
   </data>
   <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
-    <value>（性能のために有限の句が見せられた。もっと見せるために前の句をクリックしてください。）</value>
+    <value>{0}（パフォーマンス向上のために、限定されたフレーズが表示されています。更にフレーズを表示するには、最後のフレーズをクリックしてください）</value>
   </data>
   <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
-    <value>使わなかった句はプロジェクトから削除される。</value>
+    <value>使用していないフレーズはプロジェクトから削除されました。</value>
   </data>
   <data name="GoToPageorPhrase_PageDonotExist" xml:space="preserve">
-    <value>ページはありません。</value>
+    <value>ページがありません</value>
   </data>
   <data name="PerformanceCheck_RAMNearOverflowMsg" xml:space="preserve">
-    <value>システムは高負荷で演算しています。しばらくすると、この演算を試してください。キャンセルするには、「No」をクリックしてください。</value>
+    <value>システムは高負荷で作業しています。しばらくしてから実行しなおすことを推奨します。作業をキャンセルするには「いいえ」を選択してください。</value>
   </data>
   <data name="SelectPhraseOrSection_ShowSection" xml:space="preserve">
-    <value>カレントセッションには、必須の句はありません。</value>
+    <value>要求されたフレーズは、現在の見出しにありません。フレーズのある見出しを表示しますか？</value>
   </data>
   <data name="KeyS_FastPlayNormalizeWithElapseBack" xml:space="preserve">
-    <value>経過バックで高速再生を正常</value>
+    <value>少し戻って再生</value>
   </data>
   <data name="KeyS_FastPlayRateNormilize" xml:space="preserve">
-    <value>高速再生率を正常化</value>
+    <value>早送りスピード通常</value>
   </data>
   <data name="KeyS_FastPlayStepDown" xml:space="preserve">
-    <value>高速再生がステップダウン</value>
+    <value>早送りスピードダウン</value>
   </data>
   <data name="KeyS_FastPlayStepUp" xml:space="preserve">
-    <value>高速再生がステップアップ</value>
+    <value>早送りスピードアップ</value>
   </data>
   <data name="KeyS_FocusOnTransportBarTimeDisplay" xml:space="preserve">
     <value>時間表示にフォーカス</value>
   </data>
   <data name="KeyS_MarkSelectionBeginTime" xml:space="preserve">
-    <value>選択の開始時間をマークする</value>
+    <value>選択開始時間をマークする</value>
   </data>
   <data name="KeyS_MarkSelectionEndTime" xml:space="preserve">
-    <value>選択の終了時間をマークする</value>
+    <value>選択終了時間をマークする</value>
   </data>
   <data name="KeyS_MarkSelectionFromBeginningToTheCursor" xml:space="preserve">
-    <value>選択を先頭からカーソルまでまーくする</value>
+    <value>先頭からカーソル位置までマークする</value>
   </data>
   <data name="KeyS_MarkSelectionFromCursorToTheEnd" xml:space="preserve">
-    <value>選択をカーソルから最後までマークする</value>
+    <value>カーソル位置から最後までマークする</value>
   </data>
   <data name="KeyS_MoveToNextViewClockwise" xml:space="preserve">
-    <value>次のビューに移動</value>
+    <value>次のビューに移動（時計回り）</value>
   </data>
   <data name="KeyS_MoveToPreviousViewAnticlockwise" xml:space="preserve">
-    <value>以前のビューに移動</value>
+    <value>前のビューに移動(反時計回り）</value>
   </data>
   <data name="KeyS_PlayPauseUsingAudioCursor_Default" xml:space="preserve">
-    <value>オーディオカーソルを利用して再生/一時停止</value>
+    <value>音声カーソルを利用して再生/一時停止</value>
   </data>
   <data name="KeyS_PlayPauseUsingSelection" xml:space="preserve">
     <value>選択を利用して再生/一時停止</value>
@@ -1454,160 +1459,160 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>選択された波形を再生</value>
   </data>
   <data name="KeyS_ScrollDown_LargeIncrementWithSelection" xml:space="preserve">
-    <value>一画面ダウン</value>
+    <value>一画面下へ</value>
   </data>
   <data name="KeyS_ScrollDown_SmallIncrementWithSelection" xml:space="preserve">
-    <value>一行ダウン</value>
+    <value>一行下へ</value>
   </data>
   <data name="KeyS_ScrollUp_LargeIncrementWithSelection" xml:space="preserve">
-    <value>一画面アップ</value>
+    <value>一画面上へ</value>
   </data>
   <data name="KeyS_ScrollUp_SmallIncrementWithSelection" xml:space="preserve">
-    <value>一行アップ</value>
+    <value>一行上へ</value>
   </data>
   <data name="KeyS_SelectCompleteWaveform" xml:space="preserve">
-    <value>句の完全波形を選択</value>
+    <value>フレーズの波形をすべて選択</value>
   </data>
   <data name="KeyS_SelectFirstPhraseInStrip" xml:space="preserve">
-    <value>節の一番句を選択</value>
+    <value>見出し内の最初のフレーズを選択</value>
   </data>
   <data name="KeyS_SelectFirstStrip" xml:space="preserve">
-    <value>内容表示の一番節を選択</value>
+    <value>コンテンツビューの最初の見出しを選択</value>
   </data>
   <data name="KeyS_SelectFollowingPhrase" xml:space="preserve">
-    <value>後続の句を選択</value>
+    <value>次のフレーズを選択</value>
   </data>
   <data name="KeyS_SelectFollowingStrip" xml:space="preserve">
-    <value>内容表示に後続の節を選択</value>
+    <value>コンテンツビューの次の見出しを選択</value>
   </data>
   <data name="KeyS_SelectFollowingStripCursor" xml:space="preserve">
     <value>ストリップカーソルを前方に移動</value>
   </data>
   <data name="KeyS_SelectLastPhraseInStrip" xml:space="preserve">
-    <value>節に前の句を選択</value>
+    <value>見出し内の最後のフレーズを選択</value>
   </data>
   <data name="KeyS_SelectLastStrip" xml:space="preserve">
-    <value>内容表示にある前の節を選択</value>
+    <value>コンテンツビューの最後の見出しを選択</value>
   </data>
   <data name="KeyS_SelectNextEmptyPhrase" xml:space="preserve">
-    <value>次の空の句を選択</value>
+    <value>次の空フレーズを選択</value>
   </data>
   <data name="KeyS_SelectNextPagePhrase" xml:space="preserve">
-    <value>次のページ句を選択</value>
+    <value>次のページフレーズを選択</value>
   </data>
   <data name="KeyS_SelectNextSpecialRolePhrase" xml:space="preserve">
-    <value>次の特別ロールの句を選択</value>
+    <value>次の特殊フレーズを選択</value>
   </data>
   <data name="KeyS_SelectPrecedingPagePhrase" xml:space="preserve">
-    <value>先のページ句を選択</value>
+    <value>前のページフレーズを選択</value>
   </data>
   <data name="KeyS_SelectPrecedingPhrase" xml:space="preserve">
-    <value>先の句を選択</value>
+    <value>前のフレーズを選択</value>
   </data>
   <data name="KeyS_SelectPrecedingSpecialRolePhrase" xml:space="preserve">
-    <value>先の特別ロールの句を選択</value>
+    <value>前の特殊フレーズを選択</value>
   </data>
   <data name="KeyS_SelectPrecedingStrip" xml:space="preserve">
-    <value>内容表示に先の節を選択</value>
+    <value>コンテンツビューの前の見出しを選択</value>
   </data>
   <data name="KeyS_SelectPrecedingStripCursor" xml:space="preserve">
     <value>ストリップカーソルを後方に移動</value>
   </data>
   <data name="KeyS_SelectUp" xml:space="preserve">
-    <value>上向きに選択</value>
+    <value>上を選択</value>
   </data>
   <data name="KeyS_ShowPropertiesOfSelectedNode" xml:space="preserve">
-    <value>選択されたノードの設定を示す</value>
+    <value>選択ノードのプロパティを表示</value>
   </data>
   <data name="KeyS_ToggleBetweenContentViewAndTOCView" xml:space="preserve">
-    <value>内容表示とTOC表示に切り替える</value>
+    <value>コンテンツビューと見出ビューをトグル</value>
   </data>
   <data name="KeyS_TransportBarNextPage" xml:space="preserve">
-    <value>プレイリスト内の次のページ</value>
+    <value>再生リストの次のページ</value>
   </data>
   <data name="KeyS_TransportBarNextPhrase" xml:space="preserve">
-    <value>プレイリスト内の次の句</value>
+    <value>再生リストの次のフレーズ</value>
   </data>
   <data name="KeyS_TransportBarNextSection" xml:space="preserve">
-    <value>プレイリスト内の次のセクション</value>
+    <value>再生リストの次の見出し</value>
   </data>
   <data name="KeyS_TransportBarNudgeBackward" xml:space="preserve">
-    <value>後方に少しずつ動かす</value>
+    <value>後方に少し動かす</value>
   </data>
   <data name="KeyS_TransportBarNudgeForward" xml:space="preserve">
-    <value>前方に少しずつ動かす</value>
+    <value>前方に少し動かす</value>
   </data>
   <data name="KeyS_TransportBarPreviewFromAudioCursor" xml:space="preserve">
-    <value>オーディオカーソルからプレビュー</value>
+    <value>音声カーソルからプレビュー</value>
   </data>
   <data name="KeyS_TransportBarPreviewFromSelection" xml:space="preserve">
     <value>選択からプレビュー</value>
   </data>
   <data name="KeyS_TransportBarPreviewUptoAudioCursor" xml:space="preserve">
-    <value>オーディオカーソルまでプレビュー</value>
+    <value>音声カーソルまでプレビュー</value>
   </data>
   <data name="KeyS_TransportBarPreviewUptoSelection" xml:space="preserve">
     <value>選択までプレビュー</value>
   </data>
   <data name="KeyS_TransportBarPreviousPage" xml:space="preserve">
-    <value>前のページはプレイリストにあります。</value>
+    <value>再生リストの前のページ</value>
   </data>
   <data name="KeyS_TransportBarPreviousPhrase" xml:space="preserve">
-    <value>前の句はプレイリストにあります</value>
+    <value>再生リストの前のフレーズ</value>
   </data>
   <data name="KeyS_TransportBarPreviousSection" xml:space="preserve">
-    <value>前の節はプレイリストにあります</value>
+    <value>再生リストの前の見出し</value>
   </data>
   <data name="KeyboardShortcut_DuplicateMessage" xml:space="preserve">
-    <value>キーボードショートカットはもうあります。他のキーそれとも、キー組合せを割り当ててください。</value>
+    <value>キーボードショートカットはすでに使用されています。他のキーかキーの組合せを割り当ててください。</value>
   </data>
   <data name="KeyboardShortcuts_ErrorInLoadingConfiguredKeys" xml:space="preserve">
-    <value>コンフィグされたキーボードショートカットを乗せ込む時エラが出て来た。デフォルトせっていを乗せ込んでいます。</value>
+    <value>定義されたキーボードショートカットの読み込みにエラーが発生しました。既定のものを読み込みます。</value>
   </data>
   <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
-    <value>オーディオファイルを輸出しています</value>
+    <value>音声ファイルを出力しています…</value>
   </data>
   <data name="OpenProject_progress_dialog_title" xml:space="preserve">
-    <value>プロジェクトを開いています….ちょっと待ってください。</value>
+    <value>プロジェクトを開いています…お待ちください</value>
   </data>
   <data name="RecordingToolBar_StatusPlaying" xml:space="preserve">
-    <value>再生している{0} {1} </value>
+    <value>再生中{0} {1} </value>
   </data>
   <data name="import_output_path" xml:space="preserve">
-    <value> {0}at {1}　DAISY book は首尾よく輸入しました</value>
+    <value>DAISY 図書のインポートに成功しました　 {0}at {1}　</value>
   </data>
   <data name="RecToolbar_MarkedTODO" xml:space="preserve">
-    <value>画しましたTODO</value>
+    <value>TODOをマークしました</value>
   </data>
   <data name="RecToolbar_NewPage" xml:space="preserve">
     <value>新しいページ</value>
   </data>
   <data name="RecToolbar_NewPhrase" xml:space="preserve">
-    <value>新しい句</value>
+    <value>新しいフレーズ</value>
   </data>
   <data name="RecToolbar_NewSection" xml:space="preserve">
-    <value>新しい節</value>
+    <value>新しい見出し</value>
   </data>
   <data name="RecToolbar_Recording" xml:space="preserve">
-    <value>録音している{0} {1}</value>
+    <value>録音中{0} {1}</value>
   </data>
   <data name="RecToolbar_Title" xml:space="preserve">
     <value>Obi録音バー：{0}</value>
   </data>
   <data name="bookmark_closed_project_caption" xml:space="preserve">
-    <value>プロジェクトを閉じています。</value>
+    <value>プロジェクトを終了しています</value>
   </data>
   <data name="SaveSelectedNodeAsBookmark" xml:space="preserve">
-    <value>今選択されたノードはブックマークに選択されたノードと同じくありません。このノードをブックマークとして選択したいですか？これで、プロジェクトも選択されます。</value>
+    <value>現在選択されているノードは、保存されたブックマークノードと違います。このノードをブックマークとして保存しますか？このプロジェクトは保存されます。</value>
   </data>
   <data name="UseDefaultValues" xml:space="preserve">
-    <value>デフォルト値を使う</value>
+    <value>既定値を使う</value>
   </data>
   <data name="SelectDeselectAllSections" xml:space="preserve">
-    <value>全ての節を選択/選択を解除</value>
+    <value>全ての見出しを選択/解除</value>
   </data>
   <data name="upgrade_obi_to_new_version" xml:space="preserve">
-    <value>プロジェクトはObiの旧バージョンに作成されました。最終バージョンにグレードアップされます。続くには、"Ok"クリックしてください。</value>
+    <value>プロジェクトはObiの旧バージョンで作成されています。最新バージョンにグレードアップされます。続けるには"はい"をクリックしてください。</value>
   </data>
   <data name="upgrading_obi" xml:space="preserve">
     <value>プロジェクトをグレードアップしています。</value>
@@ -1616,148 +1621,148 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>http://daisy.trac.cvsdude.com/obi/wiki/documentation/Obi2.0_FeaturesExplanation</value>
   </data>
   <data name="Cleanup_WaveformLoadingWarning" xml:space="preserve">
-    <value>波形をロードしている…いくつかのオーディオファイルが開いているかもしれません。待つために"No"クリックしてください。</value>
+    <value>波形を読み込んでいます…いくつかの音声ファイルが開いている可能性があります。後ほどやり直すことを推奨します。待つ場合は"いいえ"ボタンを押してください。</value>
   </data>
   <data name="ImportProject_OverwriteProjectMsg" xml:space="preserve">
-    <value>指された所にプロジェクトファイルはもうあります。それを書き換えたいですか。</value>
+    <value>指定された場所にはすでにプロジェクトファイルがあります。既存のプロジェクトを上書きしますか？</value>
   </data>
   <data name="no_audio" xml:space="preserve">
-    <value>選択された項目には、オーディオはありません。</value>
+    <value>選択された項目には、音声はありません</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_error_no_audio" xml:space="preserve">
-    <value>句にオーディオはありません。</value>
+    <value>フレーズに音声がありません</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_expected_clip_end" xml:space="preserve">
-    <value>拡張されたクリップエンド：</value>
+    <value>想定されたクリップエンド：</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_imported_clip_end" xml:space="preserve">
-    <value>輸入されたクリッパエンド：</value>
+    <value>インポートされたクリッパエンド：</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_in_section" xml:space="preserve">
-    <value>in section: </value>
+    <value>見出し：</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_truncated_audio" xml:space="preserve">
-    <value>切り捨てられたオーディオ。</value>
+    <value>不完全な音声</value>
   </data>
   <data name="DAISY3_ObiImport_ErrorsList_truncated_audio_in_phrase" xml:space="preserve">
-    <value>句に切り捨てられたオーディオがある。</value>
+    <value>フレーズ内の不完全な音声</value>
   </data>
   <data name="import_cancelled" xml:space="preserve">
-    <value>輸入がキャンセルされました。</value>
+    <value>インポートがキャンセルされました</value>
   </data>
   <data name="Report_for_import" xml:space="preserve">
-    <value>輸入について報告</value>
+    <value>インポートの報告</value>
   </data>
   <data name="AudioFileImport_ProcessingFiles" xml:space="preserve">
-    <value>輸入ためにオーディオファイルを捌いています。</value>
+    <value>インポートのために音声ファイルを処理しています</value>
   </data>
   <data name="SaveAs_cannot_save_in_root" xml:space="preserve">
-    <value>ファイルを所：{0}に保管することはできません。それ他のところを選択してください。</value>
+    <value>ファイルを：{0}に保存できませんでした。別の場所を選択してください。</value>
   </data>
   <data name="backup_file_missing" xml:space="preserve">
-    <value>返すことはできません。　　：にバックアップファイルはありません。</value>
+    <value>もとに戻すことができません。バックアップファイルがこの場所に見つかりませんでした：</value>
   </data>
   <data name="information_caption" xml:space="preserve">
     <value>情報</value>
   </data>
   <data name="Save_current_state_caption" xml:space="preserve">
-    <value>状態を保管しますか。</value>
+    <value>現在の状態を保存しますか？</value>
   </data>
   <data name="restored_project_name" xml:space="preserve">
-    <value>Restored Project.obi</value>
+    <value> Project.obiをもとに戻す</value>
   </data>
   <data name="save_current_state" xml:space="preserve">
-    <value>このオペレーションはプロジェクトの現在の状態を保管する。以後、プロジェクトを元に戻せません。続きたいですか。</value>
+    <value>プロジェクトの保存を実行すると、オリジナルの状態にもどすことはできなくなります。続けますか？</value>
   </data>
   <data name="open_from_backup_file" xml:space="preserve">
-    <value>プロジェクトはバックアップファイルから開く。続きたいですか。</value>
+    <value>バックアップファイルからプロジェクトを開きます。続けますか？</value>
   </data>
   <data name="AudioFormatConverter_Error_FileExtentionNodSupported" xml:space="preserve">
-    <value>オーディオ形式は認識されませんでした。サポートされている形式は .wavと.mp3だけです。{0}の輸入をキャンセルしています。</value>
+    <value>音声フォーマットが認識できません。.wav と.mp3のみがサポートされています。 {0}のインポートをスキップします。</value>
   </data>
   <data name="Load_Original_Project" xml:space="preserve">
-    <value>本のプロジェクトを読み替えています。</value>
+    <value>オリジナルプロジェクトを読み込んでいます</value>
   </data>
   <data name="Open_Backup_file" xml:space="preserve">
-    <value>バックアップファイルから開いています。</value>
+    <value>バックアップファイルから開いています</value>
   </data>
   <data name="Save_Restore_Project" xml:space="preserve">
-    <value>レストアされたプロジェクトを保管しています。</value>
+    <value>回復したプロジェクトを保存しています</value>
   </data>
   <data name="error_in_opening" xml:space="preserve">
-    <value>開くすることはできませんでした。エラが出る。</value>
+    <value>開く際にエラーが発生しました</value>
   </data>
   <data name="opening_project" xml:space="preserve">
-    <value>プロジェクト{0}開いています。</value>
+    <value>プロジェクト{0}を開いています。</value>
   </data>
   <data name="waveform_is_truncated" xml:space="preserve">
-    <value>波形は{0}秒に切り捨てられています。</value>
+    <value>波形は{0}秒のところで切れています</value>
   </data>
   <data name="GoToPageOrPhrase_Time" xml:space="preserve">
     <value>時間：</value>
   </data>
   <data name="no_phrases_in_section" xml:space="preserve">
-    <value>この節には、一つの句もありません。</value>
+    <value>この見出しには、フレーズが一つもありません。</value>
   </data>
   <data name="select_phrase" xml:space="preserve">
-    <value>句を選択してください</value>
+    <value>フレーズを選択してください</value>
   </data>
   <data name="select_phrase_or_section" xml:space="preserve">
-    <value>少ない句や節を選択してください</value>
+    <value>いくつかのフレーズや見出しを選択してください</value>
   </data>
   <data name="time_exceeds_duration_phrase" xml:space="preserve">
-    <value>時間は句の存続を過ぎる。</value>
+    <value>指定された時間はフレーズの全長を上回っています</value>
   </data>
   <data name="time_exceeds_duration_section" xml:space="preserve">
-    <value>時間は節の存続を過ぎる。</value>
+    <value>指定された時間は見出しの全長を上回っています</value>
   </data>
   <data name="AudioTab_AllowOverwrite" xml:space="preserve">
-    <value>録音する時、上書きを許す</value>
+    <value>録音中に上書きを許可する</value>
   </data>
   <data name="AudioTab_AudioClues" xml:space="preserve">
-    <value>オーディオ手掛かり</value>
+    <value>音声クルー</value>
   </data>
   <data name="AudioTab_PreviewBeforeRecording" xml:space="preserve">
-    <value>録音する前にプレビューする</value>
+    <value>録音前にプレビューする</value>
   </data>
   <data name="AudioTab_RecordDirectlyFromTransportBar" xml:space="preserve">
-    <value>いつも、直ちにトランスポートバーから録音する。</value>
+    <value>ナビゲーションバーから直接録音する</value>
   </data>
   <data name="AudioTab_RetainInitialSilence" xml:space="preserve">
-    <value>句を発見する時、初期無音を保つ。</value>
+    <value>フレーズ検知の際に無音を保持する</value>
   </data>
   <data name="AudioTab_StartRecordingFromCursor" xml:space="preserve">
-    <value>カーソルが後続のオーディオを消去するポイントから録音を始める</value>
+    <value>カーソル位置から上書きしながら録音をする</value>
   </data>
   <data name="ProjectTab_AutoSaveWhenRecordingEnds" xml:space="preserve">
-    <value>両端を録音する時バックアップにオートセーブする</value>
+    <value>録音終了時にバックアップのために自動的に保存する</value>
   </data>
   <data name="ProjectTab_FixContentViewWidth" xml:space="preserve">
-    <value>内容表示の幅を定める。</value>
+    <value>コンテンツビューの幅を固定</value>
   </data>
   <data name="ProjectTab_OpenLastProject" xml:space="preserve">
-    <value>最後のプロジェクトを開く</value>
+    <value>前回のプロジェクトを開く</value>
   </data>
   <data name="ProjectTab_SelectBookmark" xml:space="preserve">
-    <value>プロジェクトは再開する時には、ブックマークを選択してください。</value>
+    <value>プロジェクトを再度開くときにブックマークを選択する</value>
   </data>
   <data name="ProjectTab_OptimizeMemory" xml:space="preserve">
-    <value>メモリ利用をオプティマイズ</value>
+    <value>メモリ利用を最適化</value>
   </data>
   <data name="ProjectTab_DeleteUnusedFilesAfterCleanUp" xml:space="preserve">
-    <value>取片付けて使われなかったファイルを削除</value>
+    <value>クリーンアップ後に使用していないファイルを削除</value>
   </data>
   <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
-    <value>現行のプロジェクトの音声ファイルフォーマットを更新することはできません。</value>
+    <value>現在のプロジェクトの音声フォーマットをアップデートできませんでした</value>
   </data>
   <data name="AudioTab_Limit max phrase duration to 50 minutes" xml:space="preserve">
-    <value>句の最大存続を50 minutesまで限る</value>
+    <value>フレーズの最長時間は50分までです</value>
   </data>
   <data name="Audio_ShowLiveWaveformWhileRecording" xml:space="preserve">
-    <value>録音する時には、ライブ波形を示す。</value>
+    <value>録音中に波形を表示</value>
   </data>
   <data name="KeyboardShortcuts_TextboxAccessibleName" xml:space="preserve">
-    <value>{0} ショートカットキー: (Press Key Combination)</value>
+    <value>{0} ショートカットキー: (キーの組み合わせを押してください)</value>
   </data>
   <data name="phrase_extra_Anchor" xml:space="preserve">
     <value>、アンカー</value>
@@ -1769,16 +1774,16 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>アンカー</value>
   </data>
   <data name="Associate_next_phrase" xml:space="preserve">
-    <value>参考にされたスキップ可能の句は削除される。次の句は参考の句になります。これで、続きたいですか。</value>
+    <value>参照している読み飛ばしフレーズは削除されます。次のフレーズが参照フレーズとなります。実行しますか？</value>
   </data>
   <data name="Associate_node_with_anchor_node" xml:space="preserve">
-    <value>このアンカーノードと付き合った特別節は一つもありません。あるノードをこのアンカーノードと付き合いてください</value>
+    <value>このアンカーノードに対応する特殊フレーズはありません。アンカーノードに対応するノードを選択してください。</value>
   </data>
   <data name="Associate_show_all" xml:space="preserve">
-    <value>&amp;全てを示す</value>
+    <value>すべて表示(&amp;w)</value>
   </data>
   <data name="Associate_show_selected" xml:space="preserve">
-    <value>&amp;選択したものを示す</value>
+    <value>選択を表示(&amp;l)</value>
   </data>
   <data name="List_of_anchor_nodes" xml:space="preserve">
     <value>アンカーノードのリスト</value>
@@ -1787,250 +1792,250 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>選択されたノード</value>
   </data>
   <data name="Node_between_chunk" xml:space="preserve">
-    <value>選択された特別句はチャンクの間にあります。これを削除したいですか。</value>
+    <value>選択された特殊フレーズの間に切れ目があります。削除しますか？</value>
   </data>
   <data name="Start_node_different_from_end_node" xml:space="preserve">
-    <value>ソタートノードはエンドノードと同じくないほうがよろしいです。それで、別個のノードを選択してください。</value>
+    <value>開始ノードと終了ノードは同じにはできません。別の終了ノードを選択してください。</value>
   </data>
   <data name="Start_node_index_greater_than_end" xml:space="preserve">
-    <value>初めのノードはエンドノードより大きいです。再選択してください。</value>
+    <value>開始ノードインデックスが、終了ノードインデックスよりも大きくなっています。選びなおしてください。</value>
   </data>
   <data name="Export_AnchorErrors" xml:space="preserve">
-    <value>節の名：{0},句：{1}</value>
+    <value>見出し名：{0},フレーズ：{1}</value>
   </data>
   <data name="Export_SkippableWithEmptyNode" xml:space="preserve">
-    <value>後続のアンカーは、輸出ではないためにある空の句のスキップ可能な要素に指す。とにかく続くには"ok"をクリックするまたは、エラー修正するには"キャンセル"をクリックしてください。</value>
+    <value>次のアンカーは、空フレーズの読み飛ばし要素を参照していますが、これらはエクスポートされません。エラーを修正するには「いいえ」を選択してください。修正せずに続けるには「はい」を選択してください。</value>
   </data>
   <data name="Anchor_node_error" xml:space="preserve">
-    <value>空または空ノードに参考するアンカーノードがあります。</value>
+    <value>空のアンカーノードまたは、空のノードを参照しているアンカーノードがあります。</value>
   </data>
   <data name="Anchor_node_not_associated" xml:space="preserve">
-    <value>アンカーノードに参考されたノードはありません。このアンカーノードにノードを参考する。</value>
+    <value>このアンカーノードと関連づけられているノードがありません。ノードを関連付けてください。</value>
   </data>
   <data name="Associate" xml:space="preserve">
-    <value>ノードを紐付ける</value>
+    <value>ノードを関連付けてください</value>
   </data>
   <data name="Node_already_associated" xml:space="preserve">
-    <value>このノードはもう他のあるノードと紐付けられている。続きたいですか。</value>
+    <value>このノードはもう他のあるノードと関連付けられています。続けますか？</value>
   </data>
   <data name="Page_not_found" xml:space="preserve">
-    <value>チャンクには句は一つもありません。</value>
+    <value>ページが見つかりませんでした</value>
   </data>
   <data name="Report_for_export" xml:space="preserve">
-    <value>輸出にとって報告する</value>
+    <value>出力報告</value>
   </data>
   <data name="Show_details" xml:space="preserve">
-    <value>細部を見せる</value>
+    <value>詳細表示</value>
   </data>
   <data name="Hide_details" xml:space="preserve">
-    <value>細部を隠す</value>
+    <value>詳細を隠す</value>
   </data>
   <data name="MetadataView_InvalidMetadata" xml:space="preserve">
-    <value>メタデータは無効です。</value>
+    <value>無効なメタデータ</value>
   </data>
   <data name="ObiFormMsg_PipelineExtractionFail" xml:space="preserve">
-    <value>パイプラインを抽出することはできませんでした。</value>
+    <value>Pipelineが展開できませんでした。</value>
   </data>
   <data name="ObiFormMsg_RedoFail" xml:space="preserve">
-    <value>リドゥができませんでした</value>
+    <value>やり直しができませんでした。</value>
   </data>
   <data name="ObiFormMsg_UndoFail" xml:space="preserve">
-    <value>元に戻すことはできません。</value>
+    <value>元に戻すことができませんでした。</value>
   </data>
   <data name="ProjectViewFormMsg_AddingReferenceFail" xml:space="preserve">
-    <value>引用を追加することはできませんでした。</value>
+    <value>参照追加ができませんでした。</value>
   </data>
   <data name="ProjectViewFormMsg_AssigningSkippableFail" xml:space="preserve">
-    <value>スキップ可能を割り当てることはできませんでした。</value>
+    <value>読み飛ばし設定ができませんでした。</value>
   </data>
   <data name="ProjectViewFormMsg_CutOperationFail" xml:space="preserve">
-    <value>切取りオペレーションができませんでした</value>
+    <value>切取りができませんでした</value>
   </data>
   <data name="ProjectViewFormMsg_DeassociatingSkippableFail" xml:space="preserve">
-    <value>スキップ可能ノードに引用を取り外すことはできませんでした。</value>
+    <value>読み飛ばしノードへの参照をはずすことができませんでした。</value>
   </data>
   <data name="ProjectViewFormMsg_DeleteOperationFail" xml:space="preserve">
-    <value>削除オペレーションができませんでした</value>
+    <value>削除できませんでした</value>
   </data>
   <data name="ProjectViewFormMsg_ExportingAudioFail" xml:space="preserve">
-    <value>オーディオ輸出ができませんでした。</value>
+    <value>音声出力できませんでした</value>
   </data>
   <data name="ProjectViewFormMsg_MergeOperationFail" xml:space="preserve">
-    <value>合併はできませんでした</value>
+    <value>結合できませんでした</value>
   </data>
   <data name="ProjectViewFormMsg_PasteOperationFail" xml:space="preserve">
-    <value>貼り付けオペレーションができませんでした</value>
+    <value>貼り付けできませんでした。</value>
   </data>
   <data name="ProjectViewFormMsg_PhraseDetectionFail" xml:space="preserve">
-    <value>句発見はできませんでした</value>
+    <value>フレーズ検知できませんでした</value>
   </data>
   <data name="ProjectViewFormMsg_SplitOperationFail" xml:space="preserve">
-    <value>分けるオペレーションができませんでした</value>
+    <value>分割できませんでした。</value>
   </data>
   <data name="KeyS_SelectFirstSkippableNode" xml:space="preserve">
-    <value>現在のスキップ可能ノートの最初の句を選択</value>
+    <value>読み飛ばしノートの最初のフレーズを選択</value>
   </data>
   <data name="KeyS_SelectLastSkippableNode" xml:space="preserve">
-    <value>現在のスキップ可能ノートの最後の句を選択</value>
+    <value>読み飛ばしノートの最後のフレーズを選択</value>
   </data>
   <data name="KeyS_TransportBarFineNavigationOn" xml:space="preserve">
-    <value>ファインナビゲーションモードOn</value>
+    <value>ファインナビゲーションモード　オン</value>
   </data>
   <data name="KeyS_TransportBarFineNavigationOff" xml:space="preserve">
-    <value>ファインナビゲーションOff</value>
+    <value>ファインナビゲーション　オフ</value>
   </data>
   <data name="StatusMsg_FineNavigation" xml:space="preserve">
     <value>ファインナビゲーション：</value>
   </data>
   <data name="Error_Message" xml:space="preserve">
-    <value>こうぞくのオーディオファイルに該当アイディーは無くなっています。</value>
+    <value>次のIDに対応する音声ファイルが見つかりませんでした：</value>
   </data>
   <data name="Warning" xml:space="preserve">
-    <value>警報！</value>
+    <value>注意！</value>
   </data>
   <data name="ContentView_wrap" xml:space="preserve">
-    <value>包むために節または句を選択しなければなりません！</value>
+    <value>見出しまたはフレーズを選択してください</value>
   </data>
   <data name="limited_sections_merge" xml:space="preserve">
-    <value>全ての節のために、句のかずが７０００以上です。{0}までの節までは合併。</value>
+    <value>全見出しのフレーズの合計数が7000を超えています。見出し{0}までが結合されます。</value>
   </data>
   <data name="merged_sections" xml:space="preserve">
-    <value>合併される節は{0}から{1}までです。</value>
+    <value>結合された見出しは{0}から{1}までです。</value>
   </data>
   <data name="not_enough_sections_to_merge" xml:space="preserve">
-    <value>合併のためにある節は足りないです。合併ためするには、二つまたはそれ以上の継続的な節を選択しなければなりません。</value>
+    <value>結合するには２つ以上の見出しを選択してください。</value>
   </data>
   <data name="phrase_count_more_than_7000" xml:space="preserve">
-    <value>選択された句の合計数は7000以上です。それ以下選択してください。</value>
+    <value>フレーズの合計数が7000を超えています。選択する見出しの数を減らしてください。</value>
   </data>
   <data name="Preferences_advanced_recording_mode" xml:space="preserve">
-    <value>先進録音モード</value>
+    <value>アドバンス録音モード</value>
   </data>
   <data name="Preferences_Allow_overwrite" xml:space="preserve">
-    <value>上書きを許して、直ちに録音をはじめるし、トランスポートバーから録音する時句発覚を行なう。これで続きたいですか。</value>
+    <value>録音中に次のことができるようにナビゲーションバーのチェックボックスにチェックをいれます。上書きを許可する。直接録音する。フレーズ検知を実行する。実行してよろしいですか？</value>
   </data>
   <data name="select_one_more_section" xml:space="preserve">
-    <value>{0}選択されました。合併するために、一つまたはそれ以上の節を選択。</value>
+    <value>{0}選択されました。結合するには、更に一つ以上の見出しを選択してください。</value>
   </data>
   <data name="ProjectViewMsg_LogFileCreatedOnDesktop" xml:space="preserve">
-    <value>先に、Obiはよろしく終了しませんでした。ObiSession.logと言うログファイルが生まれた、デスクトップで見つけることができます。</value>
+    <value>Obiが中断されました。デスクトップにObiSession.logが作成されました。</value>
   </data>
   <data name="AssociateNode_Section" xml:space="preserve">
-    <value>節</value>
+    <value>見出し</value>
   </data>
   <data name="AssociateNode_SelectedSection" xml:space="preserve">
-    <value>=&gt;&gt;説</value>
+    <value>=&gt;&gt;見出し</value>
   </data>
   <data name="LimitedDiskSpaceWarning" xml:space="preserve">
-    <value>残したディスクの空き領域は{0}MB以下です。続きたいですか。</value>
+    <value>ディスクの空き容量は{0} Mbです。続けますか？</value>
   </data>
   <data name="Memory_Warning" xml:space="preserve">
-    <value>ディスク空き領域の情報。</value>
+    <value>ディスク空き領域の情報</value>
   </data>
   <data name="KeyS_ContractAudioSelectionAtLeft" xml:space="preserve">
-    <value>左のオーディオ選択を狭める</value>
+    <value>左側の選択音声を縮小</value>
   </data>
   <data name="KeyS_ExpandAudioSelectionAtLeft" xml:space="preserve">
-    <value>左のオーディオ選択を広げる</value>
+    <value>左側の選択音声を拡大</value>
   </data>
   <data name="Recording_RecordInNextExistingEmptyPage" xml:space="preserve">
-    <value>次の現有の空ページに録音する。</value>
+    <value>次の空のページに録音する</value>
   </data>
   <data name="ProjectView_ClearAnchor" xml:space="preserve">
-    <value>跳躍のノートを回付するアンカーノードを取り除きたいですか。</value>
+    <value>読み飛ばしノートを参照しているアンカーノードタグを削除しますか？</value>
   </data>
   <data name="Elapsed" xml:space="preserve">
     <value>経過時間</value>
   </data>
   <data name="ElapsedInSection" xml:space="preserve">
-    <value>節に経過時間</value>
+    <value>見出し内経過時間</value>
   </data>
   <data name="ElapsedInProject" xml:space="preserve">
-    <value>プロジェクトに経過時間</value>
+    <value>プロジェクト内経過時間</value>
   </data>
   <data name="ElapsedInPhrase" xml:space="preserve">
-    <value>句に経過時間</value>
+    <value>フレーズ内経過時間</value>
   </data>
   <data name="RemainingInPhrase" xml:space="preserve">
-    <value>句に残存</value>
+    <value>フレーズ内残り時間</value>
   </data>
   <data name="RemainingInSelection" xml:space="preserve">
-    <value>選択に残存</value>
+    <value>選択範囲における残り時間</value>
   </data>
   <data name="RenumberPagesCaption" xml:space="preserve">
-    <value>後続ページをレナンバしますか。</value>
+    <value>後続ページの番号を振りなおしますか？</value>
   </data>
   <data name="TransportBar_RenumberPagesAfterRecording" xml:space="preserve">
-    <value>録音されたページを後続するパージがレナンバを要するかもしれません。これで、レナンバしたいですか。</value>
+    <value>録音したページの後続ページは番号を振りなおす必要がある可能性があります。番号を振りなおしますか？</value>
   </data>
   <data name="ProjectView_NoEmptyPageFoundForSpeechGeneration" xml:space="preserve">
-    <value>スピーチを生じるためにページを空にすることはできません。</value>
+    <value>合成音声生成のための空のページが見つかりませんでした</value>
   </data>
   <data name="SpeechGenerationProgress" xml:space="preserve">
-    <value>スピーチを生じています</value>
+    <value>合成音声生成中…</value>
   </data>
   <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
-    <value>録音する時に句発見を行なう</value>
+    <value>録音中にフレーズ検知を実施する</value>
   </data>
   <data name="ProjectView_ErrorReplacingAudioDueToTimingMissmatch" xml:space="preserve">
-    <value>オーディオの長さの不釣合いのでオーディオをかえることはできません：元来の相続は{0}です：新しい相続は{1}です。</value>
+    <value>音声の長さが違うため、音声を差し替えることができません: 元の長さ {0} : 新しいファイルの長さ {1}</value>
   </data>
   <data name="AudioPref_LivePhraseDetectionEnable" xml:space="preserve">
-    <value>生句検出のために利用される価値は；敷居:{0}, 句の間の空隙：{1}, 引率無音：{2}。これらの設定えをオーディオ環境設定のオペレーションコンボボックスから変更することができるまたは、無音の句から引き抜くこともできます。</value>
+    <value>フレーズ検知には次の値が使われます：スレッシュホールド: {0} ,フレーズ間隔: {1} ,無音: {2}. これらの設定は、音声設定のコンボボックスから編集できます。または無音フレーズから出すことができます。</value>
   </data>
   <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
-    <value>遊休ディスクスペース発見をイネーブル</value>
+    <value>ディスク空き容量チェックを有効にする</value>
   </data>
   <data name="Audio_EnablePostRecordingPageRenumbering" xml:space="preserve">
-    <value>エンドを録音する時、後続のページをレナンバ</value>
+    <value>録音終了時に後続のページ番号を振りなおす</value>
   </data>
   <data name="KeyS_TransportBarRecordSingleKey" xml:space="preserve">
-    <value>録音：Single key shortcut</value>
+    <value>録音：シングルキーショートカット</value>
   </data>
   <data name="Audio_MonitorAlways" xml:space="preserve">
-    <value>始終傍受をします</value>
+    <value>モニタリングを継続</value>
   </data>
   <data name="Audio_MergeFirstTwoPhrasesInPhraseDetection" xml:space="preserve">
-    <value>句発見に発見された第一の二つの句を合併</value>
+    <value>フレーズ検知で見つかった最初の２つのフレーズを結合する</value>
   </data>
   <data name="KeyS_TransportBarStopSingleKey" xml:space="preserve">
-    <value>停止：Single key shortcut</value>
+    <value>停止：シングルキーショートカット</value>
   </data>
   <data name="DAISY2_ObiImport_ErrorsList_FrontPageCorrection" xml:space="preserve">
-    <value>数字ではないフロントページ番号{0}は{1}として足された</value>
+    <value>数字でないフロントページ番号{0}は{1}として追加された</value>
   </data>
   <data name="Audio_FastPlayWithoutPitchChange" xml:space="preserve">
-    <value>調子変動をしんくて、早く再生する</value>
+    <value>ピッチを変更せずに早送り</value>
   </data>
   <data name="Project_SaveProjectWhenRecordingEnds" xml:space="preserve">
-    <value>録音が終わって、直ちにプロジェクトを保管する</value>
+    <value>録音終了時にプロジェクトを保存</value>
   </data>
   <data name="Project_CheckForUpdates" xml:space="preserve">
-    <value>アップデイトに調べる</value>
+    <value>アップデートの確認</value>
   </data>
   <data name="DeleteUnused_NoUnusedPhraseFoundToDelete" xml:space="preserve">
-    <value>削除するために使わなかった句はありません。</value>
+    <value>使用されていないフレーズは見つかりませんでした</value>
   </data>
   <data name="ImportErrorCorrectionText" xml:space="preserve">
-    <value>エラ訂正とともに</value>
+    <value>エラー訂正とともに</value>
   </data>
   <data name="CheckUpdate_Title" xml:space="preserve">
-    <value>新しいリリース{0}がある</value>
+    <value>新しい{0}がリリースされました</value>
   </data>
   <data name="CheckUpdate_LabelText" xml:space="preserve">
-    <value>{0}。後続の選択肢から選択してください</value>
+    <value>{0}。次の選択肢から選択してください</value>
   </data>
   <data name="CheckUpdate_UpdateProcessActive" xml:space="preserve">
-    <value>アップデイトチェックはもう能動。</value>
+    <value>アップデートの確認をすでに実行しています</value>
   </data>
   <data name="HardReset_Caption" xml:space="preserve">
     <value>設定をハードリセット</value>
   </data>
   <data name="HardResetSettings_ConfirmAgain" xml:space="preserve">
-    <value>また糺してください</value>
+    <value>再度確認してください。</value>
   </data>
   <data name="HardResetSettings_Question" xml:space="preserve">
-    <value>このオペレーションはKeyboard shorcutsを含めて、全ての環境設定をハードリセットします。続きたいですか。</value>
+    <value>この操作は、ショートカットキーを含め、全ての環境設定をハードリセットします。続けたいですか。</value>
   </data>
   <data name="String2" xml:space="preserve">
     <value>全ての環境設定をハードリセット</value>
@@ -2039,82 +2044,82 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>全ての設定をハードリセット</value>
   </data>
   <data name="ReplaceCorruptPhrasesWithEmptyNode_Question" xml:space="preserve">
-    <value>句の全部数は{0}で、その中からわずかなオーディオまたは行方不明のオーディオ参考の句は{1}です。これで、続きたいですか。</value>
+    <value>フレーズの合計数は{0}で、音声が短すぎたり、見つからなかったフレーズは、{1}です。TODOマークのついた無音のフレーズと置き換えることを推奨します。実行しますか？</value>
   </data>
   <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
-    <value>Corruptオーディオの句を空句と代える</value>
+    <value>壊れた音声と同期しているフレーズを、無音のフレーズに置き換える</value>
   </data>
   <data name="ReplaceCorruptPhrasesWithEmptyNode_NothingFound" xml:space="preserve">
-    <value>Corruptオーディオの句は見つかりませんでした。</value>
+    <value>壊れた音声と同期しているフレーズは見つかりませんでした。</value>
   </data>
   <data name="Obi_UserInformationText" xml:space="preserve">
-    <value>Obiの利用者になるために次のForm書き込んでください(free/open source DAISY production tool)。登記をして、メールで最新ニュースとアップデイトをもらうことができるようになります。それに、あなたはプロダクトに将来の方向性を提供する際に重要なロールを果たしていることができるようになるし、私たちもそれについてあなたの必要条件をよく理解するようになることができます。登録時、コンピュータがインターネットに接続されている事を確認してください。既存のユーザーは、再度登録してください、この登録は、Obiの次のバージョンで永久に保存されます。</value>
+    <value>obi（無償でオープンソースのDAISY製作ツール)のユーザー登録のため、次のフォームに入力してください。最新ニュース、製品のアップデート情報などをメールでご連絡いたします。要望をよりよい形で理解し、製品の将来の方向性を決めるためにも活用させていただきます。コンピュータがインターネットに接続していることを確認してから、入力してください。今回の登録は、次のバージョンのObiへも引き継がれる予定なので、すでにObiを使用している方も再度登録をしてください。</value>
   </data>
   <data name="CleanUp_LongFilePath" xml:space="preserve">
-    <value>プロジェクトディレクトリはファイルパースが長いので、CLEANUPの時データ損失という問題ができる。Clean up をするまえにプロジェクトディレクトリをパーティションの近くに動かすほうがよろしいです。警報なのに、続きたいですか。</value>
+    <value>プロジェクトディレクトリのパス名が長いため、クリーンアップの際に重要なデータを失う恐れがあります。クリーンアップを開始する前に、別の場所に移動することを強く推奨します。この注意を無視して続けますか？</value>
   </data>
   <data name="UserRegistration_SendEmailMsg" xml:space="preserve">
-    <value>{0}試みで利用者の登記情報が乗せ込めませんでした。登記するには、obi.feedback@gmail.comにイーメールをお送りください。</value>
+    <value>ユーザー登録情報を{0}にアップロードできませんでした。登録するにはobi.feedback@gmail.comにメールを送ってください。</value>
   </data>
   <data name="UserRegistrationBtn_DoNotRemind" xml:space="preserve">
-    <value>思い浮かびません</value>
+    <value>再表示しない</value>
   </data>
   <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
-    <value>先のアップデイトチェックはバージョン{0}のためにでした。以後、ニューバージョンが出て来ませんでした。</value>
+    <value>最後のアップデート確認はバージョン{0}でした。その後のアップデートはありません。</value>
   </data>
   <data name="CheckUpdates_GoToDownloadPage" xml:space="preserve">
-    <value>&amp;Downloadページへ行く</value>
+    <value>ダウンロードページへ移動(&amp;G)</value>
   </data>
   <data name="Confirm_Setting" xml:space="preserve">
-    <value>オペレーションは効果的に仕上げられました。デフォルトせっていを読み替えるためにObiを再起動してください。</value>
+    <value>作業完了。既存の設定を読み込むためにObiを再起動してください。</value>
   </data>
   <data name="StatusForMergeSection" xml:space="preserve">
-    <value>{0} から {1}の節を示している。</value>
+    <value>{0} から {1}の見出しを表示。結合する見出しを選択してください。</value>
   </data>
   <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
-    <value>波形をズームパネルを示す</value>
+    <value>波形拡大パネルを表示</value>
   </data>
   <data name="KeyS_CloseZoomPanel" xml:space="preserve">
-    <value>ズームパネルを終了</value>
+    <value>拡大パネルを終了</value>
   </data>
   <data name="KeyS_ResetZoomPanel" xml:space="preserve">
-    <value>ズームパネルをリセット</value>
+    <value>拡大パネルをリセット</value>
   </data>
   <data name="KeyS_ZoomInWaveform" xml:space="preserve">
-    <value>波形をズームアウト</value>
+    <value>波形を拡大</value>
   </data>
   <data name="KeyS_ZoomOutWaveform" xml:space="preserve">
-    <value>波形をズームイン</value>
+    <value>波形を縮小</value>
   </data>
   <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
-    <value>選択された波形をズーム</value>
+    <value>選択された波形を拡大</value>
   </data>
   <data name="KeyS_NextPhrase" xml:space="preserve">
-    <value>次の句を翻訳する</value>
+    <value>次のフレーズを処理</value>
   </data>
   <data name="KeyS_PreviousPhrase" xml:space="preserve">
-    <value>前の句を翻訳する</value>
+    <value>前のフレーズを処理</value>
   </data>
   <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
-    <value>内容表示に波形を示す</value>
+    <value>コンテンツビューで波形を表示</value>
   </data>
   <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
-    <value>いつもDAISY輸出ファイルのIdentationを軽視</value>
+    <value>DAISY出力ファイルのインデントをいつも無視する</value>
   </data>
   <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
-    <value>次の句を表示</value>
+    <value>次のフレーズを表示</value>
   </data>
   <data name="ZoomAudioTT_ShowPreviousPhrase" xml:space="preserve">
-    <value>昨の句を表示</value>
+    <value>前のフレーズを表示</value>
   </data>
   <data name="ZoomAudioTT_ZoomIn" xml:space="preserve">
-    <value>ズームイン</value>
+    <value>拡大</value>
   </data>
   <data name="ZoomAudioTT_ZoomOut" xml:space="preserve">
-    <value>ズームアウト</value>
+    <value>縮小</value>
   </data>
   <data name="ZoomAudioTT_ZoomSelection" xml:space="preserve">
-    <value>選択をズームする</value>
+    <value>選択を拡大</value>
   </data>
   <data name="ZoomAudioTT_Close" xml:space="preserve">
     <value>終了</value>
@@ -2123,7 +2128,7 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>リセット</value>
   </data>
   <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
-    <value>全てのページのためのスピーチが造られました</value>
+    <value>すべてのページの音声が生成されました</value>
   </data>
   <data name="EditAudioTT_Cut" xml:space="preserve">
     <value>切り取り</value>
@@ -2138,52 +2143,52 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>削除</value>
   </data>
   <data name="EditAudioTT_Merge" xml:space="preserve">
-    <value>次の句と合う</value>
+    <value>次のフレーズと結合</value>
   </data>
   <data name="EditAudioTT_Split" xml:space="preserve">
-    <value>句を分ける</value>
+    <value>フレーズを分割</value>
   </data>
   <data name="EditAudioTT_PhraseDetect" xml:space="preserve">
     <value>Phrase Detection</value>
   </data>
   <data name="Metadata_SetDefaults" xml:space="preserve">
-    <value>ディフォルトメタデータを決める</value>
+    <value>既定メタデータを設定</value>
   </data>
   <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
-    <value>録音を停止するには、スペースキーを使う。</value>
+    <value>録音停止にスペースキーを使う。</value>
   </data>
   <data name="MergeProjectCommand" xml:space="preserve">
-    <value>プロジェクトを合う。</value>
+    <value>プロジェクト結合</value>
   </data>
   <data name="MergeProject_NoSectionToMerge" xml:space="preserve">
-    <value>元プロジェクトに節を見つけることはできません</value>
+    <value>元プロジェクトに見出しが見つかりませんでした</value>
   </data>
   <data name="MergeProject_progress_dialog_title" xml:space="preserve">
-    <value>プロジェクト {0} の {1}を合併しています...</value>
+    <value>プロジェクト {0} の {1}を結合しています..</value>
   </data>
   <data name="MergeProject_SectionProgress" xml:space="preserve">
-    <value>セクション節: {0}を合いている</value>
+    <value>見出しを結合中: {0}</value>
   </data>
   <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
-    <value>空っぽな節のバックグラウンド色はTOCビューワにある</value>
+    <value>見出しビューにおける空の見出しの背景色</value>
   </data>
   <data name="Obi_ProjectMerge" xml:space="preserve">
-    <value>合併するためのプロジェクトを選択してください。</value>
+    <value>結合するプロジェクトを選択してください</value>
   </data>
   <data name="Obi_ProjectMergeFilter" xml:space="preserve">
     <value>Obiプロジェクトファイル(*.obi)|*.obi</value>
   </data>
   <data name="MergeProject_Information" xml:space="preserve">
-    <value>合併されたプロジェクトはObi 3.0 ベータバージョン２や次ので作成したことと音声ファイルフォーマットが同様のを見定めてください</value>
+    <value>結合するプロジェクトが同じ音声フォーマットであることやどちらもObi 3.0 ベータ２または最新版のObiで製作されたことを確認してください。</value>
   </data>
   <data name="UserRegistration_Name" xml:space="preserve">
     <value>名前</value>
   </data>
   <data name="UserRegistration_Email" xml:space="preserve">
-    <value>イーメイル</value>
+    <value>メール</value>
   </data>
   <data name="UserRegistration_Org_Name" xml:space="preserve">
-    <value>組織名</value>
+    <value>団体名</value>
   </data>
   <data name="UserRegistration_City" xml:space="preserve">
     <value>町</value>
@@ -2192,19 +2197,19 @@ Error text: {1}の内容を含むバグレポートを提出してください�
     <value>国</value>
   </data>
   <data name="UserRegistration_WrongEmail" xml:space="preserve">
-    <value>正しくないメールアドレス。</value>
+    <value>メールアドレスが正しくありません</value>
   </data>
   <data name="UserRegistration_NoMatchEmail" xml:space="preserve">
-    <value>入力されたメールアドレスは正しくない。メールアドレスを再入力してください。</value>
+    <value>入力されたメールアドレスが一致していません。入力しなおしてください。</value>
   </data>
   <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
-    <value>あるラジオボタンからどれでもをクリックしてObiにとってあなたの利用法の情報を当方にお送り下さい。</value>
+    <value>Obiの使用目的を、次の選択肢から選んでラジオボタンにチェックを入れてください。</value>
   </data>
   <data name="HardResetPermanentSettings_Question" xml:space="preserve">
-    <value>登記を元に戻す。登記も元に戻したいですか、</value>
+    <value>ユーザー登録をリセット。ユーザー登録をリセットすると、再度登録をする必要があります。</value>
   </data>
   <data name="RenumberPages" xml:space="preserve">
-    <value>ページをレナンバ</value>
+    <value>ページの振りなおし</value>
   </data>
   <data name="Transport_PreviousPhrase" xml:space="preserve">
     <value>Preceding phrase</value>
@@ -2355,5 +2360,38 @@ Error text: {1}の内容を含むバグレポートを提出してください�
   </data>
   <data name="NoAdministrativePrivilege" xml:space="preserve">
     <value>You donot have administrative rights to copy. Please either copy manually the contents of folder "Obi_Language_Pack" located in the Temp folder(which will open once you close this message box. If you want to open it manually then start "Run" and type "%temp%" in it) or run Obi with administrative privilege by selecting "Run as administrator" from the context menu which apprears on right click over the Obi icon</value>
+  </data>
+  <data name="Project_MessageBoxToCheckFixContentView" xml:space="preserve">
+    <value>Do you want to check "Fix content view width" also ?(Recommended)</value>
+  </data>
+  <data name="default_EpubExport_dirname" xml:space="preserve">
+    <value>{0}Epub3 Export</value>
+  </data>
+  <data name="progress_EpubValidating" xml:space="preserve">
+    <value>Epub Check Validator is running. Please wait....</value>
+  </data>
+  <data name="METADATA_EPUB3_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Obi specific data for saving EPUB 3 export path</value>
+  </data>
+  <data name="obi_EPUB3ExportPath_Description" xml:space="preserve">
+    <value>EPUB 3 export path</value>
+  </data>
+  <data name="obi_EPUB3ValidationSuccessfull" xml:space="preserve">
+    <value>Validation Successfull</value>
+  </data>
+  <data name="obi_EPUB3ValidationFailed" xml:space="preserve">
+    <value>Validation Failed</value>
+  </data>
+  <data name="obi_EPUB3ValidatorNotInstalled" xml:space="preserve">
+    <value>EPUB check validator not installed</value>
+  </data>
+  <data name="obi_EPUB3CheckNotFound" xml:space="preserve">
+    <value>ERROR: EPUB check not found</value>
+  </data>
+  <data name="obi_EPUB3ValidationSuccessfullWithWarnings" xml:space="preserve">
+    <value>Validation Successfull with Warnings</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>Operation failed</value>
   </data>
 </root>
