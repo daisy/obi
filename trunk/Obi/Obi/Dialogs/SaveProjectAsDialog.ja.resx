@@ -166,7 +166,7 @@
     <value>True</value>
   </data>
   <data name="m_lblParentDirectoryPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 24</value>
+    <value>70, 24</value>
   </data>
   <data name="m_lblParentDirectoryPath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -319,7 +319,7 @@
     <value>2</value>
   </data>
   <data name="m_ProjectNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>180, 57</value>
+    <value>200, 57</value>
   </data>
   <data name="m_ProjectNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 22</value>
