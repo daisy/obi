@@ -292,7 +292,7 @@
     <value>True</value>
   </data>
   <data name="labelInputDeviceName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 11</value>
+    <value>30, 11</value>
   </data>
   <data name="labelInputDeviceName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -616,7 +616,7 @@
     <value>True</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 64</value>
+    <value>15, 64</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 16</value>
@@ -1186,7 +1186,7 @@
     <value>True</value>
   </data>
   <data name="labelSampleRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43, 66</value>
+    <value>46, 66</value>
   </data>
   <data name="labelSampleRate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>

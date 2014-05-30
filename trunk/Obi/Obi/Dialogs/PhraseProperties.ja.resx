@@ -132,7 +132,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblParentSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 17</value>
+    <value>83, 17</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblParentSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -205,7 +205,7 @@
     <value>2</value>
   </data>
   <data name="m_lblLocationInsideSection.Text" xml:space="preserve">
-    <value>場所(&amp;P):</value>
+    <value>位置(&amp;P):</value>
   </data>
   <data name="&gt;&gt;m_lblLocationInsideSection.Name" xml:space="preserve">
     <value>m_lblLocationInsideSection</value>
@@ -220,7 +220,7 @@
     <value>16</value>
   </data>
   <data name="m_txtLocationInsideSection.AccessibleName" xml:space="preserve">
-    <value>場所：</value>
+    <value>位置：</value>
   </data>
   <data name="m_txtLocationInsideSection.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -328,7 +328,7 @@
     <value>True</value>
   </data>
   <data name="m_lblCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>33, 272</value>
+    <value>23, 272</value>
   </data>
   <data name="m_lblCustomClassName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -340,7 +340,7 @@
     <value>10</value>
   </data>
   <data name="m_lblCustomClassName.Text" xml:space="preserve">
-    <value>カスタムクラス名(&amp;u)</value>
+    <value>カスタムクラス名:(&amp;u)</value>
   </data>
   <data name="&gt;&gt;m_lblCustomClassName.Name" xml:space="preserve">
     <value>m_lblCustomClassName</value>
@@ -376,7 +376,7 @@
     <value>13</value>
   </data>
   <data name="m_chkUsed.Text" xml:space="preserve">
-    <value>使用された(&amp;U)</value>
+    <value>使用済み(&amp;U)</value>
   </data>
   <data name="&gt;&gt;m_chkUsed.Name" xml:space="preserve">
     <value>m_chkUsed</value>
@@ -412,7 +412,7 @@
     <value>14</value>
   </data>
   <data name="m_chkToDo.Text" xml:space="preserve">
-    <value>&amp;To Do</value>
+    <value>&amp;TODO</value>
   </data>
   <data name="&gt;&gt;m_chkToDo.Name" xml:space="preserve">
     <value>m_chkToDo</value>
@@ -445,7 +445,7 @@
     <value>15</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>&amp;Ok</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>
@@ -676,7 +676,7 @@
     <value>149, 299</value>
   </data>
   <data name="m_txtPageNumberDetails.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>223, 22</value>
   </data>
   <data name="m_txtPageNumberDetails.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -703,7 +703,7 @@
     <value>True</value>
   </data>
   <data name="m_chkChangePageNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>398, 301</value>
+    <value>378, 301</value>
   </data>
   <data name="m_chkChangePageNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 20</value>

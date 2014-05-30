@@ -160,7 +160,7 @@
     <value>7</value>
   </data>
   <data name="m_lblParentDirectoryPath.AccessibleName" xml:space="preserve">
-    <value>場所</value>
+    <value>保存先</value>
   </data>
   <data name="m_lblParentDirectoryPath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -178,7 +178,7 @@
     <value>0</value>
   </data>
   <data name="m_lblParentDirectoryPath.Text" xml:space="preserve">
-    <value>場所(&amp;L)</value>
+    <value>保存先(&amp;L)</value>
   </data>
   <data name="&gt;&gt;m_lblParentDirectoryPath.Name" xml:space="preserve">
     <value>m_lblParentDirectoryPath</value>
@@ -355,7 +355,7 @@
     <value>3</value>
   </data>
   <data name="m_lbl_ProjectName.Text" xml:space="preserve">
-    <value>プロジェクトファイルの題名：(&amp;j)</value>
+    <value>プロジェクトファイル名：(&amp;j)</value>
   </data>
   <data name="&gt;&gt;m_lbl_ProjectName.Name" xml:space="preserve">
     <value>m_lbl_ProjectName</value>

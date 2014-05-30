@@ -187,7 +187,7 @@
     <value>3</value>
   </data>
   <data name="m_lbWaitForCancellation.Text" xml:space="preserve">
-    <value>オペレーションがキャンセルされました…現在の処理を完了しています</value>
+    <value>作業がキャンセルされました…現在の処理を完了しています</value>
   </data>
   <data name="m_lbWaitForCancellation.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
