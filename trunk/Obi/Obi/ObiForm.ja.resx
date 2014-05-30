@@ -787,7 +787,7 @@
     <value>標準サイズ(&amp;z)</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.AccessibleName" xml:space="preserve">
-    <value>音声表示拡大　Ctrl+Alt+Shift+Plus</value>
+    <value>波形拡大　Ctrl+Alt+Shift+Plus</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+Shift++</value>
@@ -799,10 +799,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Text" xml:space="preserve">
-    <value>音声表示拡大(&amp;d)</value>
+    <value>波形拡大(&amp;d)</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.AccessibleName" xml:space="preserve">
-    <value>音声表示縮小　Ctrl+Alt+Shift+Minus</value>
+    <value>波形縮小　Ctrl+Alt+Shift+Minus</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+Shift+-</value>
@@ -814,10 +814,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
-    <value>音声表示縮小(&amp;q)</value>
+    <value>波形縮小(&amp;q)</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.AccessibleName" xml:space="preserve">
-    <value>音声表示リセット　Ctrl+Alt+Shift+0</value>
+    <value>波形サイズリセット　Ctrl+Alt+Shift+0</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+0</value>
@@ -826,7 +826,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.Text" xml:space="preserve">
-    <value>音声表示リセット(&amp;h)</value>
+    <value>波形サイズリセット(&amp;h)</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.AccessibleName" xml:space="preserve">
     <value>コンテンツビューを再読み込み(Debug)</value>
@@ -892,7 +892,7 @@
     <value>見出し作成(&amp;A)</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>子見出し追加　Ctrl+Shift+H</value>
+    <value>子見出し作成　Ctrl+Shift+H</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+H</value>
@@ -901,7 +901,7 @@
     <value>279, 22</value>
   </data>
   <data name="mAddSubsectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>子見出し追加(&amp;s)</value>
+    <value>子見出し作成(&amp;s)</value>
   </data>
   <data name="mInsertSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>見出し挿入　Ctrl+Alt+H</value>
@@ -1000,7 +1000,7 @@
     <value>276, 6</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>見出しは使用されました　Ctrl+k</value>
+    <value>使用済みの見出し　Ctrl+k</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+K</value>
@@ -1009,7 +1009,7 @@
     <value>279, 22</value>
   </data>
   <data name="mSectionIsUsedToolStripMenuItem.Text" xml:space="preserve">
-    <value>見出しは使用されました(&amp;u)</value>
+    <value>使用済みの見出し(&amp;u)</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>フレーズを追加　Ctrl+B</value>
@@ -1129,7 +1129,7 @@
     <value>TODOフレーズ(&amp;T)</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>フレーズは使用されました　Ctrl+K</value>
+    <value>使用済みのフレーズ　Ctrl+K</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+K</value>
@@ -1138,7 +1138,7 @@
     <value>240, 22</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.Text" xml:space="preserve">
-    <value>フレーズは使用されました(&amp;u)</value>
+    <value>巣用済みのフレーズ(&amp;u)</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>読み飛ばし注</value>
@@ -1351,7 +1351,7 @@
     <value>240, 22</value>
   </data>
   <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>フレーズ検地(&amp;d)</value>
+    <value>フレーズ検知(&amp;d)</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
     <value>選択した項目 　Ctrl+Shift+P</value>
@@ -1759,7 +1759,7 @@
     <value>176, 22</value>
   </data>
   <data name="navigationToolStripMenuItem.Text" xml:space="preserve">
-    <value>＆ナビゲーション</value>
+    <value>ナビゲーション(&amp;N)</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>前の見出し　Alt+Up</value>

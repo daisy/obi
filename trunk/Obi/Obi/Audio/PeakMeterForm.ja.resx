@@ -156,7 +156,7 @@
     <value>1</value>
   </data>
   <data name="chkOnTop.Text" xml:space="preserve">
-    <value>上に固定</value>
+    <value>前面に固定</value>
   </data>
   <data name="&gt;&gt;chkOnTop.Name" xml:space="preserve">
     <value>chkOnTop</value>
