@@ -1221,6 +1221,8 @@ namespace Obi.Dialogs
                         break;
                     case 42: mSettings.ColorSettings.FineNavigationColor = (Color) mNormalColorCombo.SelectedItem;
                         break;
+                    case 44: mSettings.ColorSettings.EmptySectionBackgroundColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
                     default: break;
                 }
 
@@ -1317,6 +1319,8 @@ namespace Obi.Dialogs
                     case 40: mSettings.ColorSettingsHC.WaveformHighlightedBackColor = (Color)mHighContrastCombo.SelectedItem;
                         break;
                     case 41: mSettings.ColorSettingsHC.FineNavigationColor = (Color) mHighContrastCombo.SelectedItem;
+                        break;
+                    case 44: mSettings.ColorSettingsHC.EmptySectionBackgroundColor = (Color)mHighContrastCombo.SelectedItem;
                         break;
                     default: break;
                 }
