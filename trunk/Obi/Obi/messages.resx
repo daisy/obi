@@ -2658,4 +2658,7 @@ Error text: {1}</value>
   <data name="OperationFailed" xml:space="preserve">
     <value>Operation failed</value>
   </data>
+  <data name="AssociateNode_SelectedNodeGroupBox" xml:space="preserve">
+    <value>Selected node</value>
+  </data>
 </root>
