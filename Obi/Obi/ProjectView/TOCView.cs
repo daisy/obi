@@ -557,7 +557,7 @@ namespace Obi.ProjectView
             else if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && e is urakawa.events.media.data.audio.AudioDataInsertedEventArgs)
             {
                 TreeNode TreeNode = FindTreeNodeWithoutLabel((SectionNode)m_HighlightedSectionNodeWithoutSelection);
-                if (TreeNode.BackColor == Color.LightPink)
+                if (TreeNode.BackColor == mProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor)
                 {
                     TreeNode.BackColor = Color.Empty;
                     TreeNode.ForeColor = SystemColors.ControlText;
@@ -702,7 +702,14 @@ namespace Obi.ProjectView
             if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
             {
                 {
-                    treeNodeToSelect.BackColor = Color.LightPink;
+                    if (!SystemInformation.HighContrast)
+                    {
+                        treeNodeToSelect.BackColor = mProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor;
+                    }
+                    else
+                    {
+                        treeNodeToSelect.BackColor = mProjectView.ObiForm.Settings.ColorSettingsHC.EmptySectionBackgroundColor;
+                    }
                     treeNodeToSelect.ForeColor = SystemColors.ControlText;
                 }
             }
@@ -730,7 +737,14 @@ namespace Obi.ProjectView
             if (mProjectView.ObiForm.Settings.Project_BackgroundColorForEmptySection && node.Duration == 0.0)
             {
                 TreeNode treeNode = FindTreeNodeWithoutLabel((SectionNode)node);
-                treeNode.BackColor = Color.LightPink;
+                if (!SystemInformation.HighContrast)
+                {
+                    treeNode.BackColor = mProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor;
+                }
+                else
+                {
+                    treeNode.BackColor = mProjectView.ObiForm.Settings.ColorSettingsHC.EmptySectionBackgroundColor; ;
+                }
                 treeNode.ForeColor = SystemColors.ControlText;
                 System.Media.SystemSounds.Asterisk.Play();
             }

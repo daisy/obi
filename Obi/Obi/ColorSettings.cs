@@ -60,6 +60,7 @@ namespace Obi
         private Color mWaveformSelectionColor;
         public Color FineNavigationColor;
         public Color RecordingHighlightPhraseColor;
+        public Color EmptySectionBackgroundColor;
 
         [NonSerialized()] public SolidBrush BlockLayoutSelectedBrush;
         [NonSerialized()] public Pen WaveformBaseLinePen;
@@ -152,6 +153,7 @@ namespace Obi
             settings.mWaveformCursorColor = Color.Red;
             settings.FineNavigationColor = Color.Aqua;
             settings.RecordingHighlightPhraseColor = Color.DarkSeaGreen;
+            settings.EmptySectionBackgroundColor = Color.LightPink;
             return settings;
         }
 
@@ -232,6 +234,7 @@ namespace Obi
             ColorSetting.Add("WaveformHighlightedBackColor", WaveformHighlightedBackColor);
             ColorSetting.Add("FineNavigationColor", FineNavigationColor);
             ColorSetting.Add("RecordingHighlightPhrase", RecordingHighlightPhraseColor);
+            ColorSetting.Add("EmptySectionBackground", EmptySectionBackgroundColor);
         }
           
     }
