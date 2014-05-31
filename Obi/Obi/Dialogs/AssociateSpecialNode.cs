@@ -32,7 +32,7 @@ namespace Obi.Dialogs
                     m_txtBox_SectionName.Text = selectedNode.ToString() + " = " + GetReferedNode(selectedNode);
                 else
                     m_txtBox_SectionName.Text = selectedNode.ToString();
-                groupBox1.Text = "Selected node";
+                groupBox1.Text = Localizer.Message("AssociateNode_SelectedNodeGroupBox");
 
                 AddToListBox();
             }
