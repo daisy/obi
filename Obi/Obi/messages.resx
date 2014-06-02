@@ -2661,4 +2661,7 @@ Error text: {1}</value>
   <data name="AssociateNode_SelectedNodeGroupBox" xml:space="preserve">
     <value>Selected node</value>
   </data>
+  <data name="Project_SaveObiLocation" xml:space="preserve">
+    <value>Save location of Obi</value>
+  </data>
 </root>

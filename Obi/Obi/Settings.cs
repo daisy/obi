@@ -105,7 +105,8 @@ namespace Obi
         public bool Audio_EnforceSingleCursor;
         public bool Audio_DeleteFollowingPhrasesOfSectionAfterRecording; // delete the following phrases in section when recording stops, it is attempt to minimize the delay while recording.
         public bool Audio_DisableDeselectionOnStop;
-
+        public bool Project_SaveObiLocation;
+        public Point ObiLastLocation;
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
         private static void InitializeDefaultSettings(Settings settings)
@@ -198,6 +199,8 @@ namespace Obi
             settings.Audio_EnforceSingleCursor = false;
             settings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording = false;
             settings.Audio_DisableDeselectionOnStop = false;
+            settings.Project_SaveObiLocation = false;
+            settings.ObiLastLocation = new Point(0, 0);
         }
 
         /// <summary>
