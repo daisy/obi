@@ -214,6 +214,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected node.
+        /// </summary>
+        internal static string AssociateNode_SelectedNodeGroupBox {
+            get {
+                return ResourceManager.GetString("AssociateNode_SelectedNodeGroupBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to =&gt;&gt; Section .
         /// </summary>
         internal static string AssociateNode_SelectedSection {
@@ -5034,6 +5043,15 @@ namespace Obi {
         internal static string Project_MessageBoxToCheckFixContentView {
             get {
                 return ResourceManager.GetString("Project_MessageBoxToCheckFixContentView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save location of Obi.
+        /// </summary>
+        internal static string Project_SaveObiLocation {
+            get {
+                return ResourceManager.GetString("Project_SaveObiLocation", resourceCulture);
             }
         }
         

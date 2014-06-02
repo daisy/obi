@@ -2953,6 +2953,12 @@ namespace Obi
                                                           mSettings.PipelineScriptsPath));
                     }
                     Ready();
+                    if (mSettings.Project_SaveObiLocation)
+                    {
+                        this.StartPosition = FormStartPosition.Manual;
+                        this.Location = mSettings.ObiLastLocation;
+                    }
+                    
                     //CheckSystemSupportForMemoryOptimization();
                 }
                 catch (Exception e)
@@ -3701,6 +3707,7 @@ namespace Obi
             /// <remarks>Warn when closing while playing?</remarks>
             private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
             {
+                mSettings.ObiLastLocation = this.Location;
                 if (mProjectView != null && mProjectView.TransportBar.IsActive)
                 {   
                     mProjectView.TransportBar.Stop();

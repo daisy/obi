@@ -811,6 +811,7 @@ namespace Obi.Dialogs
                 }
                 mSettings.Export_AlwaysIgnoreIndentation= m_CheckBoxListView.Items[9].Checked;
                 mSettings.Project_BackgroundColorForEmptySection = m_CheckBoxListView.Items[10].Checked;
+                mSettings.Project_SaveObiLocation = m_CheckBoxListView.Items[11].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -934,6 +935,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ShowWaveformsInContentView"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_AlwaysIgnoreIndentationForExportFiles"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_BackgroundColorForEmptySection"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveObiLocation"));
              
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
@@ -958,6 +960,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[9].ToolTipText = Localizer.Message("Project_AlwaysIgnoreIndentationForExportFiles");
                 m_CheckBoxListView.Items[10].Checked = mSettings.Project_BackgroundColorForEmptySection;
                 m_CheckBoxListView.Items[10].ToolTipText = Localizer.Message("Project_BackgroundColorForEmptySection");
+                m_CheckBoxListView.Items[11].Checked = mSettings.Project_SaveObiLocation;
+                m_CheckBoxListView.Items[11].ToolTipText = Localizer.Message("Project_SaveObiLocation");
             }
             m_CheckBoxListView.View = View.Details;
             m_IsComplete = true;
@@ -1024,6 +1028,7 @@ namespace Obi.Dialogs
                 mSettings.Project_ShowWaveformInContentView = m_DefaultSettings.Project_ShowWaveformInContentView;
                 mSettings.Export_AlwaysIgnoreIndentation = m_DefaultSettings.Export_AlwaysIgnoreIndentation;
                 mSettings.Project_BackgroundColorForEmptySection = m_DefaultSettings.Project_BackgroundColorForEmptySection;
+                mSettings.Project_SaveObiLocation = m_DefaultSettings.Project_SaveObiLocation;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
