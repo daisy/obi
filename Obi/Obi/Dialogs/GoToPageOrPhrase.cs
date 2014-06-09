@@ -240,10 +240,10 @@ namespace Obi.Dialogs
             label4.Visible = true;
             base.label1.Visible = false;
             label4.Text = Localizer.Message("GoToPageOrPhrase_Time");
-           // base.label1.Text = Localizer.Message("GoToPageOrPhrase_Time");
+            base.label1.Text = Localizer.Message("GoToPageOrPhrase_Time");
             //label4.Location = new Point(90, 93);
           //  m_lbl_Time.Location = new Point(100, 120);
-            base.mNumberBox.AccessibleName = label4.Text.Replace("&", "");            
+            base.mNumberBox.AccessibleName = base.label1.Text.Replace("&", "");            
             base.label3.Visible = false;
             base.mPageKindComboBox.Visible = false;
             mNumberBox.Visible = false;
