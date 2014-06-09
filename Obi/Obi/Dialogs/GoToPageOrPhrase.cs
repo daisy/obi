@@ -175,13 +175,13 @@ namespace Obi.Dialogs
             {
             if (m_radPage.Checked)
                 {
-                    label1.Visible = true;
+                    base.label1.Visible = true;
                     label4.Visible = false;
                     //base.label4.Location = new Point(50, 96);
-                    label1.Text = Localizer.Message("GoToPageOrPhrase_PageNumberLabel");
+                base.label1.Text = Localizer.Message("GoToPageOrPhrase_PageNumberLabel");
                 base.mNumberBox.AccessibleName = base.label1.Text.Replace ("&", "") ;
                 base.label3.Visible = true;
-                mNumberBox.Visible = true;
+                base.mNumberBox.Visible = true;
                 mPhraseIndexComboBox.Visible = false;
                 base.mPageKindComboBox.Visible = true;
                 m_cb_TimeInPhraseOrSection.Visible = false;
@@ -195,14 +195,14 @@ namespace Obi.Dialogs
             {
             if (m_radPhrase.Checked)
                 {
-                    label1.Visible = true;
+                    base.label1.Visible = true;
                     label4.Visible = false;
                    // base.label4.Location = new Point(50, 96);
-                    label1.Text = Localizer.Message("GoToPageOrPhrase_PhraseIndexLabel");
-                base.mNumberBox.AccessibleName = base.label1.Text.Replace ("&", "") ;
+                    base.label1.Text = Localizer.Message("GoToPageOrPhrase_PhraseIndexLabel");
+                    mPhraseIndexComboBox.AccessibleName = base.label1.Text.Replace("&", "");
                 base.label3.Visible = false;
                 base.mPageKindComboBox.Visible = false;
-                mNumberBox.Visible = false;
+                base.mNumberBox.Visible = false;
                 mPhraseIndexComboBox.Visible = true;
                 m_cb_TimeInPhraseOrSection.Visible = false;
                 m_lbl_Seconds.Visible = false;
@@ -238,11 +238,12 @@ namespace Obi.Dialogs
         {
             m_lbl_Time.Visible = true;
             label4.Visible = true;
-            label1.Visible = false;
+            base.label1.Visible = false;
             label4.Text = Localizer.Message("GoToPageOrPhrase_Time");
+           // base.label1.Text = Localizer.Message("GoToPageOrPhrase_Time");
             //label4.Location = new Point(90, 93);
           //  m_lbl_Time.Location = new Point(100, 120);
-            base.mNumberBox.AccessibleName = label4.Text.Replace("&", "");
+            base.mNumberBox.AccessibleName = label4.Text.Replace("&", "");            
             base.label3.Visible = false;
             base.mPageKindComboBox.Visible = false;
             mNumberBox.Visible = false;
