@@ -123,6 +123,10 @@
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 96</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -137,7 +141,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
+  </data>
+  <data name="mNumberBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 93</value>
   </data>
   <data name="mNumberBox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -152,9 +159,8 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNumberBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>90, 181</value>
   </data>
@@ -171,10 +177,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>198, 181</value>
+    <value>200, 190</value>
+  </data>
+  <data name="mCancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -189,7 +198,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="mRenumber.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -204,7 +213,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mRenumber.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="mNumberOfPagesBox.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -219,7 +228,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNumberOfPagesBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -235,6 +244,9 @@
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="mPageKindComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 120</value>
   </data>
   <data name="mPageKindComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 24</value>
@@ -252,7 +264,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPageKindComboBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>7</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 125</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -274,7 +289,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 167</value>
+    <value>70, 150</value>
   </data>
   <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 28</value>
@@ -295,13 +310,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btnOk.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="m_radPage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_radPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 13</value>
+    <value>10, 38</value>
   </data>
   <data name="m_radPage.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 20</value>
@@ -328,7 +343,7 @@
     <value>True</value>
   </data>
   <data name="m_radPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 11</value>
+    <value>10, 18</value>
   </data>
   <data name="m_radPhrase.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 20</value>
@@ -355,7 +370,7 @@
     <value>True</value>
   </data>
   <data name="m_radTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>42, 40</value>
+    <value>10, 58</value>
   </data>
   <data name="m_radTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 20</value>
@@ -400,10 +415,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_grpSearchPagePhrase.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="mPhraseIndexComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>189, 130</value>
+    <value>150, 93</value>
   </data>
   <data name="mPhraseIndexComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 24</value>
@@ -424,7 +439,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPhraseIndexComboBox.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="m_cb_TimeInPhraseOrSection.Items" xml:space="preserve">
     <value>वाक्यांश</value>
@@ -436,7 +451,7 @@
     <value>प्रोजेक्ट</value>
   </data>
   <data name="m_cb_TimeInPhraseOrSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 99</value>
+    <value>150, 91</value>
   </data>
   <data name="m_cb_TimeInPhraseOrSection.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
@@ -454,13 +469,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cb_TimeInPhraseOrSection.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="m_txtBox_TimeInSeconds.AccessibleName" xml:space="preserve">
     <value>सेकेंडों में समय</value>
   </data>
   <data name="m_txtBox_TimeInSeconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 131</value>
+    <value>150, 120</value>
   </data>
   <data name="m_txtBox_TimeInSeconds.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 22</value>
@@ -478,13 +493,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtBox_TimeInSeconds.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="m_lbl_Seconds.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lbl_Seconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 139</value>
+    <value>255, 123</value>
   </data>
   <data name="m_lbl_Seconds.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 16</value>
@@ -505,7 +520,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lbl_Seconds.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_lbl_Time.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -532,83 +547,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lbl_Time.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>389, 222</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>जाएँ</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
-    <value>helpProvider1</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>GoToPageOrPhrase</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>Obi.Dialogs.SetPageNumber, Obi, Version=2.5.0.25599, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 125</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 96</value>
-  </data>
-  <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 150</value>
-  </data>
-  <data name="m_radPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 18</value>
-  </data>
-  <data name="m_radPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 38</value>
-  </data>
-  <data name="m_radTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 58</value>
-  </data>
-  <data name="m_cb_TimeInPhraseOrSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 91</value>
-  </data>
-  <data name="m_txtBox_TimeInSeconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 120</value>
-  </data>
-  <data name="m_lbl_Seconds.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 123</value>
-  </data>
-  <data name="mNumberBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 93</value>
-  </data>
-  <data name="mPhraseIndexComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 93</value>
-  </data>
-  <data name="mPageKindComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 120</value>
-  </data>
-  <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 190</value>
-  </data>
-
-
-
-
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 93</value>
+    <value>109, 93</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 16</value>
@@ -630,5 +578,29 @@
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>389, 222</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>जाएँ</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
+    <value>helpProvider1</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>GoToPageOrPhrase</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>Obi.Dialogs.SetPageNumber, Obi, Version=3.3.4.32085, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>
