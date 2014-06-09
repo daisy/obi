@@ -511,7 +511,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Time.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 124</value>
+    <value>90, 124</value>
   </data>
   <data name="m_lbl_Time.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 16</value>
@@ -557,5 +557,71 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>Obi.Dialogs.SetPageNumber, Obi, Version=2.5.0.25599, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 125</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 96</value>
+  </data>
+  <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>70, 150</value>
+  </data>
+  <data name="m_radPhrase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 18</value>
+  </data>
+  <data name="m_radPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 38</value>
+  </data>
+  <data name="m_radTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 58</value>
+  </data>
+  <data name="m_cb_TimeInPhraseOrSection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 91</value>
+  </data>
+  <data name="m_txtBox_TimeInSeconds.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 120</value>
+  </data>
+  <data name="m_lbl_Seconds.Location" type="System.Drawing.Point, System.Drawing">
+    <value>255, 123</value>
+  </data>
+  <data name="mNumberBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 93</value>
+  </data>
+  <data name="mPhraseIndexComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 93</value>
+  </data>
+  <data name="mPageKindComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 120</value>
+  </data>
+  <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 190</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 93</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 16</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
 </root>
