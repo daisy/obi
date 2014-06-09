@@ -40,6 +40,7 @@ namespace Obi.Dialogs
                 this.m_lbl_Seconds = new System.Windows.Forms.Label();
                 this.m_lbl_Time = new System.Windows.Forms.Label();
                 this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+                this.label4 = new System.Windows.Forms.Label();
                 this.m_grpSearchPagePhrase.SuspendLayout();
                 this.SuspendLayout();
                 // 
@@ -154,11 +155,17 @@ namespace Obi.Dialogs
                 // 
                 resources.ApplyResources(this.helpProvider1, "helpProvider1");
                 // 
+                // label4
+                // 
+                resources.ApplyResources(this.label4, "label4");
+                this.label4.Name = "label4";
+                // 
                 // GoToPageOrPhrase
                 // 
                 this.AcceptButton = this.m_btnOk;
                 resources.ApplyResources(this, "$this");
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                this.Controls.Add(this.label4);
                 this.Controls.Add(this.m_lbl_Seconds);
                 this.Controls.Add(this.m_txtBox_TimeInSeconds);
                 this.Controls.Add(this.m_btnOk);
@@ -167,22 +174,23 @@ namespace Obi.Dialogs
                 this.Controls.Add(this.m_lbl_Time);
                 this.Controls.Add(this.m_grpSearchPagePhrase);
                 this.Name = "GoToPageOrPhrase";
+                this.Controls.SetChildIndex(this.mPageKindComboBox, 0);
                 this.Controls.SetChildIndex(this.m_grpSearchPagePhrase, 0);
                 this.Controls.SetChildIndex(this.m_lbl_Time, 0);
                 this.Controls.SetChildIndex(this.m_cb_TimeInPhraseOrSection, 0);
                 this.Controls.SetChildIndex(this.mPhraseIndexComboBox, 0);
-                this.Controls.SetChildIndex(this.mPageKindComboBox, 0);
                 this.Controls.SetChildIndex(this.m_btnOk, 0);
+                this.Controls.SetChildIndex(this.mRenumber, 0);
+                this.Controls.SetChildIndex(this.mNumberBox, 0);
+                this.Controls.SetChildIndex(this.label1, 0);
                 this.Controls.SetChildIndex(this.m_txtBox_TimeInSeconds, 0);
                 this.Controls.SetChildIndex(this.m_lbl_Seconds, 0);
-                this.Controls.SetChildIndex(this.label1, 0);
-                this.Controls.SetChildIndex(this.mNumberBox, 0);
+                this.Controls.SetChildIndex(this.label3, 0);
+                this.Controls.SetChildIndex(this.label4, 0);
+                this.Controls.SetChildIndex(this.mNumberOfPagesBox, 0);
                 this.Controls.SetChildIndex(this.mOKButton, 0);
                 this.Controls.SetChildIndex(this.mCancelButton, 0);
-                this.Controls.SetChildIndex(this.mRenumber, 0);
-                this.Controls.SetChildIndex(this.mNumberOfPagesBox, 0);
                 this.Controls.SetChildIndex(this.label2, 0);
-                this.Controls.SetChildIndex(this.label3, 0);
                 this.m_grpSearchPagePhrase.ResumeLayout(false);
                 this.m_grpSearchPagePhrase.PerformLayout();
                 this.ResumeLayout(false);
@@ -203,5 +211,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_lbl_Seconds;
         private System.Windows.Forms.Label m_lbl_Time;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.Label label4;
         }
     }
