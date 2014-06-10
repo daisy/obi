@@ -184,6 +184,7 @@ namespace Obi
             settings.mWaveformChannel2Color = Color.Green;
             settings.mWaveformMonoColor = Color.Green;
             settings.mWaveformCursorColor = Color.Yellow;
+            settings.EmptySectionBackgroundColor = Color.Yellow;
             return settings;
         }
 
