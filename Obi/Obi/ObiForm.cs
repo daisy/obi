@@ -2341,7 +2341,7 @@ namespace Obi
                 Ready();
                 mProjectView.TransportBar.UpdateButtons();
                 mProjectView.ZoomPanelToolTipInit();
-                if (mProjectView.Presentation != null && mProjectView.Presentation.FirstSection != null && enableEmptySectionColorInTOC != mSettings.Project_BackgroundColorForEmptySection)// @emptysectioncolor
+                if (mProjectView.Presentation != null && mProjectView.Presentation.FirstSection != null && ((enableEmptySectionColorInTOC != mSettings.Project_BackgroundColorForEmptySection) || (prefs.UpdateBackgroundColorRequired)))// @emptysectioncolor
                 {
                     mProjectView.UpdateTOCBackColorForEmptySection((SectionNode)mProjectView.Presentation.FirstSection);// @emptysectioncolor
                 }

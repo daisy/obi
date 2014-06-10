@@ -37,6 +37,7 @@ namespace Obi.Dialogs
         private double m_DefaultThreshold = 280.0;
         private bool m_FlagComboBoxIndexChange = false;
         private int m_IndexOfLevelCombox = 0;
+        private bool m_UpdateBackgroundColorRequired = false;
       //  private bool m_IsComboBoxExpanded = false;
       //  private bool m_LeaveOnEscape = false;
 
@@ -1353,9 +1354,29 @@ namespace Obi.Dialogs
             }
         }
 
+        public bool UpdateBackgroundColorRequired
+        {
+            set
+            {
+                m_UpdateBackgroundColorRequired = value;
+            }
+            get
+            {
+                return m_UpdateBackgroundColorRequired;
+            }
+        }
         private void m_btn_Apply_Click(object sender, EventArgs e)
         {
+            Color tempEmptyBackgroundColor = mSettings.ColorSettings.EmptySectionBackgroundColor;
             UpdateColorSettings();
+            if (tempEmptyBackgroundColor != mSettings.ColorSettings.EmptySectionBackgroundColor)
+            {
+                UpdateBackgroundColorRequired = true;
+            }
+            else
+            {
+                UpdateBackgroundColorRequired = false;
+            }
             m_IsColorChanged = true;
         }
         private void ResetColors()
