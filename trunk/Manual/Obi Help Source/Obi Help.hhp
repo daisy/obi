@@ -1,211 +1,48 @@
 [OPTIONS]
-Auto Index=Yes
 Compatibility=1.1 or later
 Compiled file=Obi Help.chm
 Contents file=toc.hhc
-Default Window=Obi window
-Default topic=HTML Files\Obi.htm
+Default topic=HTML Files\Introducing Obi\Introducing Obi.htm
 Display compile progress=No
-Full-text search=Yes
-Index file=Obi Index.hhk
+Index file=Obi Help.hhk
 Language=0x409 English (United States)
-
-[WINDOWS]
-Obi window="Obi Help","toc.hhc","Obi Index.hhk","HTML Files\Obi.htm",,,,,,0x22520,,0x3006,,,,,,,,0
+Title=Obi Help
 
 
 [FILES]
-HTML Files\Obi.htm
-HTML Files\Getting Started\Getting Started.htm
-HTML Files\Getting Started\Installation.htm
-HTML Files\Getting Started\Installation\System Requirements.htm
-HTML Files\Getting Started\Installation\Step by step Installation.htm
-HTML Files\Getting Started\Elements of Obi.htm
-HTML Files\Getting Started\Screen Layout.htm
-HTML Files\Getting Started\Preferences.htm
-HTML Files\Getting Started\Preferences\Project Preferences.htm
-HTML Files\Getting Started\Preferences\Audio Preferences.htm
-HTML Files\Getting Started\Preferences\User Profile Preferences.htm
-HTML Files\Getting Started\Information beyond this Manual.htm
-HTML Files\Creating a DTB\Creating a DTB.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Creating and Working with Projects.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Creating a new project.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Creating a project by importing an xhtml file.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Opening a Project.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Saving the project.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Saving Project in a different Location.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Reversing the Work Done.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Closing the Project.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Project Statistics.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Project Clean-up.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Cleaning Unreferenced Audio.htm
-HTML Files\Creating a DTB\Creating and Working with Projects\Deleting Unused Data.htm
-HTML Files\Creating a DTB\Working with Views\Working with Views.htm
-HTML Files\Creating a DTB\Working with Views\TOC View.htm
-HTML Files\Creating a DTB\Working with Views\Content View.htm
-HTML Files\Creating a DTB\Working with Views\Navigating among phrases and sections.htm
-HTML Files\Creating a DTB\Working with Views\Finding an Item.htm
-HTML Files\Creating a DTB\Working with Views\Metadata View.htm
-HTML Files\Creating a DTB\Working with Views\List of Metadata Entries.htm
-HTML Files\Creating a DTB\Working with Views\The Edit Area.htm
-HTML Files\Creating a DTB\Working with Views\Modifying or Creating Metadata Entry.htm
-HTML Files\Creating a DTB\Working with Views\Transport Bar.htm
-HTML Files\Creating a DTB\Working with Views\Transport Bar States.htm
-HTML Files\Creating a DTB\Working with Views\Transport Bar Controls.htm
-HTML Files\Creating a DTB\Working with Views\Graphical Peak Meter.htm
-HTML Files\Creating a DTB\Working with Views\Other Views.htm
-HTML Files\Creating a DTB\Working with Views\Navigating among views.htm
-HTML Files\Creating a DTB\Working with Views\Synchronizing Views.htm
-HTML Files\Creating a DTB\Working with Sections\Working with Sections.htm
-HTML Files\Creating a DTB\Working with Sections\Adding a Section.htm
-HTML Files\Creating a DTB\Working with Sections\Inserting a Section.htm
-HTML Files\Creating a DTB\Working with Sections\Adding a Subsection.htm
-HTML Files\Creating a DTB\Working with Sections\Cutting, Copying, and Pasting the Sections.htm
-HTML Files\Creating a DTB\Working with Sections\Splitting and Merging the Sections.htm
-HTML Files\Creating a DTB\Working with Sections\Changing the level or used status.htm
-HTML Files\Creating a DTB\Working with Sections\Renaming a Section.htm
-HTML Files\Creating a DTB\Working with Sections\Deleting a Section.htm
-HTML Files\Creating a DTB\Working with Sections\Section Properties.htm
-HTML Files\Creating a DTB\Working with Phrases\Working with Phrases.htm
-HTML Files\Creating a DTB\Working with Phrases\Adding a Blank Phrase.htm
-HTML Files\Creating a DTB\Working with Phrases\Cutting, Copying, and Pasting the Phrases.htm
-HTML Files\Creating a DTB\Working with Phrases\Splitting and Merging the Phrases.htm
-HTML Files\Creating a DTB\Working with Phrases\Auto-splitting using Phrase Detection.htm
-HTML Files\Creating a DTB\Working with Phrases\Cropping the audio from a phrase.htm
-HTML Files\Creating a DTB\Working with Phrases\Pages and Special Roles.htm
-HTML Files\Creating a DTB\Working with Phrases\Assigning and Clearing Roles.htm
-HTML Files\Creating a DTB\Working with Phrases\Adding Empty Pages.htm
-HTML Files\Creating a DTB\Working with Phrases\Changing the Todo or Used Status.htm
-HTML Files\Creating a DTB\Working with Phrases\Quick Reference to Todo phrases.htm
-HTML Files\Creating a DTB\Working with Phrases\Deleting a phrase.htm
-HTML Files\Creating a DTB\Working with Phrases\Phrase Properties.htm
-HTML Files\Creating a DTB\Working with Audio\Working with Audio.htm
-HTML Files\Creating a DTB\Working with Audio\Audio Representation.htm
-HTML Files\Creating a DTB\Working with Audio\Audio Selection.htm
-HTML Files\Creating a DTB\Working with Audio\Live Recording.htm
-HTML Files\Creating a DTB\Working with Audio\Pre-recording Tasks.htm
-HTML Files\Creating a DTB\Working with Audio\Audio monitoring for optimum quality.htm
-HTML Files\Creating a DTB\Working with Audio\Recording into a Phrase.htm
-HTML Files\Creating a DTB\Working with Audio\Creating Structure while Recording.htm
-HTML Files\Creating a DTB\Working with Audio\Importing Audio Files.htm
-HTML Files\Creating a DTB\Working with Audio\Playback.htm
-HTML Files\Creating a DTB\Working with Audio\Play All.htm
-HTML Files\Creating a DTB\Working with Audio\Play Selection.htm
-HTML Files\Creating a DTB\Working with Audio\Effect of Content View Navigation during Playback.htm
-HTML Files\Creating a DTB\Working with Audio\Editing the Audio.htm
-HTML Files\Creating a DTB\Working with Audio\Previewing the Audio.htm
-HTML Files\Creating a DTB\Exporting and Validating DTB\Exporting and Validating DTB.htm
-HTML Files\Creating a DTB\Exporting and Validating DTB\Exporting as DAISY DTB.htm
-HTML Files\Creating a DTB\Exporting and Validating DTB\Validating the Exported DTB.htm
-HTML Files\Creating a DTB\Exporting and Validating DTB\Encoding DTB audio to MP3.htm
-HTML Files\Quick Reference\Quick Reference.htm
-HTML Files\Quick Reference\Audio Clues.htm
-HTML Files\Quick Reference\Playback Modes.htm
-HTML Files\Quick Reference\Import or Record the Audio.htm
-HTML Files\Quick Reference\Create a skeleton of the book.htm
-HTML Files\Quick Reference\The Menu Bar\The Menu Bar.htm
-HTML Files\Quick Reference\The Menu Bar\File Menu\File Menu.htm
-HTML Files\Quick Reference\The Menu Bar\File Menu\New project.htm
-HTML Files\Quick Reference\The Menu Bar\File Menu\New project from Import.htm
-HTML Files\Quick Reference\The Menu Bar\File Menu\Open project.htm
-HTML Files\Quick Reference\The Menu Bar\File Menu\Close project.htm
-HTML Files\Quick Reference\The Menu Bar\File Menu\Save project.htm
-HTML Files\Quick Reference\The Menu Bar\File Menu\Save project as....htm
-HTML Files\Quick Reference\The Menu Bar\File Menu\Recent project.htm
-HTML Files\Quick Reference\The Menu Bar\File Menu\Exit.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Edit Menu.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Undo.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Redo.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Cut.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Copy.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Paste.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Paste Before.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Paste Inside.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Delete.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Select nothing.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Delete unused data.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Find.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Find next.htm
-HTML Files\Quick Reference\The Menu Bar\Edit Menu\Find previous.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\View Menu.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Show TOC view.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Show Metadata View.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Show Transport Bar.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Show Status Bar.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Focus on TOC View.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Focus on Content View.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Focus on Transport Bar.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Synchronize views.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Wrapping in Content View.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Show Peak Meter.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Show Source View.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Zoom In.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Zoom Out.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Normal Size.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Audio Zoom In.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Audio Zoom Out.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Reset Audio Size.htm
-HTML Files\Quick Reference\The Menu Bar\View Menu\Project statistics.htm
-HTML Files\Quick Reference\The Menu Bar\Sections Menu\Sections Menu.htm
-HTML Files\Quick Reference\The Menu Bar\Sections Menu\Add section.htm
-HTML Files\Quick Reference\The Menu Bar\Sections Menu\Add subsection.htm
-HTML Files\Quick Reference\The Menu Bar\Sections Menu\Insert section.htm
-HTML Files\Quick Reference\The Menu Bar\Sections Menu\Rename section.htm
-HTML Files\Quick Reference\The Menu Bar\Sections Menu\Decrease section level.htm
-HTML Files\Quick Reference\The Menu Bar\Sections Menu\Increase section level.htm
-HTML Files\Quick Reference\The Menu Bar\Sections Menu\Split section.htm
-HTML Files\Quick Reference\The Menu Bar\Sections Menu\Merge with next section.htm
-HTML Files\Quick Reference\The Menu Bar\Sections Menu\Section is used.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Phrases Menu.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Add blank phrase.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Add empty pages.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Import audio files.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Split phrase.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Merge phrase with next.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Crop audio.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Phrase is todo.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Phrase is used.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Assign Role.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Edit custom role.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Clear role.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Apply phrase detection.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Audio selection.htm
-HTML Files\Quick Reference\The Menu Bar\Phrases Menu\Go to....htm
-HTML Files\Quick Reference\The Menu Bar\Transport Menu\Transport Menu.htm
-HTML Files\Quick Reference\The Menu Bar\Transport Menu\Play.htm
-HTML Files\Quick Reference\The Menu Bar\Transport Menu\PauseResume.htm
-HTML Files\Quick Reference\The Menu Bar\Transport Menu\Stop.htm
-HTML Files\Quick Reference\The Menu Bar\Transport Menu\Fast play.htm
-HTML Files\Quick Reference\The Menu Bar\Transport Menu\Preview.htm
-HTML Files\Quick Reference\The Menu Bar\Transport Menu\Record.htm
-HTML Files\Quick Reference\The Menu Bar\Transport Menu\Navigation.htm
-HTML Files\Quick Reference\The Menu Bar\Transport Menu\Rewind.htm
-HTML Files\Quick Reference\The Menu Bar\Transport Menu\Fast forward.htm
-HTML Files\Quick Reference\The Menu Bar\Tools Menu\Tools Menu.htm
-HTML Files\Quick Reference\The Menu Bar\Tools Menu\Preferences.htm
-HTML Files\Quick Reference\The Menu Bar\Tools Menu\Export as Daisy.htm
-HTML Files\Quick Reference\The Menu Bar\Tools Menu\Clean unreferenced audio.htm
-HTML Files\Quick Reference\The Menu Bar\Tools Menu\DTB audio encoder.htm
-HTML Files\Quick Reference\The Menu Bar\Tools Menu\Z3986 DTB Validator.htm
-HTML Files\Quick Reference\The Menu Bar\Help Menu\Help Menu.htm
-HTML Files\Quick Reference\The Menu Bar\Help Menu\Contents.htm
-HTML Files\Quick Reference\The Menu Bar\Help Menu\Report bug.htm
-HTML Files\Quick Reference\The Menu Bar\Help Menu\About Obi.htm
-HTML Files\Quick Reference\Keyboard Shortcuts\Keyboard Shortcuts.htm
-HTML Files\Quick Reference\Keyboard Shortcuts\Project Operations.htm
-HTML Files\Quick Reference\Keyboard Shortcuts\Edit Operations.htm
-HTML Files\Quick Reference\Keyboard Shortcuts\View Operations.htm
-HTML Files\Quick Reference\Keyboard Shortcuts\Navigation in TOC View.htm
-HTML Files\Quick Reference\Keyboard Shortcuts\Navigation in Content View.htm
-HTML Files\Quick Reference\Keyboard Shortcuts\Section Manipulation.htm
-HTML Files\Quick Reference\Keyboard Shortcuts\Phrase Manipulation.htm
-HTML Files\Quick Reference\Keyboard Shortcuts\Audio Manipulation.htm
-HTML Files\Quick Reference\Keyboard Shortcuts\Miscellaneous.htm
-HTML Files\Quick Reference\Keyboard Shortcuts\Transport Bar Controls.htm
-HTML Files\Step by Step Guidelines for Creating DTBs\Step by Step Guidelines for creating DTBs.htm
-HTML Files\Frequently Asked Questions.htm
-HTML Files\Terminology.htm
-HTML Files\Getting Started\Starting Obi.htm
+HTML Files\Introducing Obi\Whats new.htm
+HTML Files\Introducing Obi\About using Help.htm
+HTML Files\Introducing Obi\Introducing Obi.htm
+HTML Files\Introducing Obi\Online Resources.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Zooming the Waveform.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Audio and navigation controls.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Content View.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Finding and Navigating.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Go to Page or Phrase dialog.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Graphical Peak Meter.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\List of Metadata Entries.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Metadata View.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Modifying or Creating Metadata Entry.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Navigating among items.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Navigating among views.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Obi Views and Transport Bar.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Recording Toolbar audio controls.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Recording Toolbar navigation controls.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Recording Toolbar.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Search by Page number.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Search by Phrase index.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Search by Text.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Search by Time.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Source View.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Synchronizing Views.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Textual peak meter.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\The Edit Area.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Time Display.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\TOC View.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Transport Bar States.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Transport Bar.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Vertical scroll panel.htm
+HTML Files\Exploring the GUI\Obi Views and Transport Bar\Zooming the Text and Graphics.htm
 
 [INFOTYPES]
 

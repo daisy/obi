@@ -11,12 +11,14 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <meta name=Originator content="Microsoft Word 11">
 <link rel=File-List href="Editing%20the%20Audio_files/filelist.xml">
 <o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
- name="State"/>
-<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
  name="place"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="State"/>
 <!--[if gte mso 9]><xml>
  <w:WordDocument>
   <w:Zoom>110</w:Zoom>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
   <w:ValidateAgainstSchemas/>
   <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
   <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
@@ -47,9 +49,10 @@ st1\:*{behavior:url(#ieooui) }
 	panose-1:2 2 6 9 4 2 5 8 3 4;
 	mso-font-alt:"\FF2D\FF33 \660E\671D";
 	mso-font-charset:128;
-	mso-generic-font-family:modern;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
 	mso-font-pitch:fixed;
-	mso-font-signature:-1610612033 1757936891 16 0 131231 0;}
+	mso-font-signature:1 134676480 16 0 131072 0;}
 @font-face
 	{font-family:"Albany AMT";
 	mso-font-alt:"Times New Roman";
@@ -59,7 +62,6 @@ st1\:*{behavior:url(#ieooui) }
 	mso-font-signature:0 0 0 0 0 0;}
 @font-face
 	{font-family:"\@MS Mincho";
-	panose-1:2 2 6 9 4 2 5 8 3 4;
 	mso-font-charset:128;
 	mso-generic-font-family:modern;
 	mso-font-pitch:fixed;
@@ -755,6 +757,65 @@ span.heading1char
 	mso-paper-source:0;}
 div.Section1
 	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1321546447;
+	mso-list-template-ids:-7285656;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1
+	{mso-list-id:1340498875;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2028371198 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
 -->
 </style>
 <!--[if gte mso 10]>
@@ -777,7 +838,7 @@ div.Section1
 	mso-bidi-language:#0400;}
 </style>
 <![endif]--><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext="edit" spidmax="6146"/>
+ <o:shapedefaults v:ext="edit" spidmax="20482"/>
 </xml><![endif]--><!--[if gte mso 9]><xml>
  <o:shapelayout v:ext="edit">
   <o:idmap v:ext="edit" data="1"/>
@@ -789,72 +850,36 @@ div.Section1
 <div class=Section1>
 
 <h1><a name="_Toc208725350"></a><a name="_Toc207460260"></a><a
-name="_Editing_the_Audio"></a>Editing the Audio</h1>
+name="_Editing_the_Audio"></a><a name="_Editing_Audio"></a>Editing Audio</h1>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal>For cutting or copying the audio, you first have to make an <a
-href="Audio%20Selection.htm">audio selection</a>.</p>
+<p class=MsoNormal>Obi provides various commands for editing audio that can
+either be applied on a <a
+href="../Working%20with%20Phrases/Working%20with%20Phrases.htm">phrase</a> or an
+<a href="Audio%20Selection.htm">audio selection</a>. This topic will explain
+how to cut, copy, paste or delete an audio selection. Follow the links below to
+learn more about editing commands:</p>
 
-<p class=MsoNormal>Cut the audio you selected by pressing <b>Ctrl+X</b> or by
-clicking <b>Edit-&gt;Cut</b> on the menu.</p>
+<p class=MsoNormal><a href="#_Cut/Copy">Cutting or copying an audio selection</a></p>
 
-<p class=MsoNormal>Copy the audio you selected by pressing <b>Ctrl+C</b> or by
-clicking <b>Edit-&gt;Copy</b> on the menu.</p>
+<p class=MsoNormal><a href="#_Paste">Pasting an audio selection</a></p>
 
-<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal><a href="#_Deleting_the_selected_audio">Deleting an audio
+selection</a></p>
 
-<p class=MsoNormal>Obi stores the audio you just cut or copied in the
-clipboard.</p>
+<p class=MsoNormal><a name="OLE_LINK2"></a><a name="OLE_LINK1"><span
+style='mso-bookmark:OLE_LINK2'></span></a><a
+href="../Working%20with%20Phrases/Splitting%20a%20Phrase.htm"><span
+style='mso-bookmark:OLE_LINK1'><span style='mso-bookmark:OLE_LINK2'>Splitting a
+phrase</span></span><span style='mso-bookmark:OLE_LINK1'><span
+style='mso-bookmark:OLE_LINK2'></span></span></a><span style='mso-bookmark:
+OLE_LINK1'><span style='mso-bookmark:OLE_LINK2'></span></span></p>
 
-<p class=MsoNormal>&nbsp;</p>
-
-<p class=MsoNormal>You can paste the audio from the clipboard by pressing <b>Ctrl+V</b>
-or by clicking <b>Edit-&gt;Paste</b> on the menu.</p>
-
-<p class=MsoNormal>How the audio will be pasted depends on the item selected by
-you:</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>If you mark a select point on the audio of a phrase by setting the audio
-cursor, the audio from the clipboard will be pasted there.</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>If you make an audio selection, the selection will be replaced by the
-audio from the clipboard.</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>If you select a phrase, the audio will be appended to the phrase.</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>If you select a phrase separator, a new phrase will be created in its
-position and audio will be filled in it.</p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>If you select a section, Obi will create a new phrase at the end of the
-strip and fill in the audio from the clipboard into it.</p>
-
-<p class=MsoNormal><b>&nbsp;</b></p>
-
-<h2><span style='font-size:12.0pt;mso-bidi-font-weight:normal;font-style:normal;
-mso-bidi-font-style:italic'>Deleting the selected audio</span><span
-style='font-size:12.0pt;font-style:normal;mso-bidi-font-style:italic'><o:p></o:p></span></h2>
-
-<p class=MsoNormal>An audio selection can be deleted by clicking <b>Edit-&gt;Delete</b>
-on the menu or pressing <st1:place w:st="on"><st1:State w:st="on"><b>Del</b>.</st1:State></st1:place></p>
-
-<p class=MsoNormal>&nbsp;</p>
-
-<p class=MsoNormal><b>You can also edit the audio of the phrase by: </b></p>
+<span style='mso-bookmark:OLE_LINK2'></span><span style='mso-bookmark:OLE_LINK1'></span>
 
 <p class=MsoNormal><a
-href="../Working%20with%20Phrases/Splitting%20and%20Merging%20the%20Phrases.htm">Splitting
-or merging phrases</a></p>
+href="../Working%20with%20Phrases/Merging%20the%20Phrases.htm">Merging phrases</a></p>
 
 <p class=MsoNormal><a
 href="../Working%20with%20Phrases/Cropping%20the%20audio%20from%20a%20phrase.htm">Cropping
@@ -864,13 +889,79 @@ Audio from phrase</a></p>
 href="../Working%20with%20Phrases/Auto-splitting%20using%20Phrase%20Detection.htm">Auto-splitting
 the phrase</a></p>
 
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<h2><a name="_Cut/Copy"></a><span style='font-size:12.0pt;font-style:normal;
+mso-bidi-font-style:italic'>Cut/Copy<o:p></o:p></span></h2>
+
+<p class=MsoNormal>For cutting or copying the audio, you first have to make an <a
+href="Audio%20Selection.htm">audio selection</a>.</p>
+
+<p class=MsoNormal>Then, you may cut the selected audio by pressing <b>Ctrl+X</b>
+or by clicking <b>Edit-&gt;Cut</b> on the menu.</p>
+
+<p class=MsoNormal>Or, copy the selected audio by pressing <b>Ctrl+C</b> or by
+clicking <b>Edit-&gt;Copy</b> on the menu.</p>
+
 <p class=MsoNormal>&nbsp;</p>
 
+<p class=MsoNormal>Obi stores the audio you just cut or copied in the
+clipboard.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<h2><a name="_Paste"></a><span style='font-size:12.0pt;font-style:normal;
+mso-bidi-font-style:italic'>Paste&nbsp;<o:p></o:p></span></h2>
+
+<p class=MsoNormal>You can paste the audio from the clipboard by pressing <b>Ctrl+V</b>
+or by clicking <b>Edit-&gt;Paste</b> on the menu.</p>
+
+<p class=MsoNormal>The audio will be pasted according to the following rules:</p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo3;tab-stops:list .5in'>If you
+     set the audio cursor on the waveform of the phrase, the audio from the
+     clipboard will be pasted there.</li>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo3;tab-stops:list .5in'>If you
+     make an audio selection, the selection will be replaced by the audio from
+     the clipboard.</li>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo3;tab-stops:list .5in'>If you
+     select a phrase, the audio will be appended to the phrase.</li>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo3;tab-stops:list .5in'>If you
+     select a phrase separator, a new phrase will be created in its position
+     and audio will be filled in it.</li>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo3;tab-stops:list .5in'>If you
+     select a section, Obi will create a new phrase at the end of the section
+     and fill in the audio from the clipboard into it.</li>
+</ul>
+
+<p class=MsoNormal><b>&nbsp;</b></p>
+
+<h2><a name="_Deleting_the_selected_audio"></a><span style='font-size:12.0pt;
+mso-bidi-font-weight:normal;font-style:normal;mso-bidi-font-style:italic'>Deleting
+the selected audio</span><span style='font-size:12.0pt;font-style:normal;
+mso-bidi-font-style:italic'><o:p></o:p></span></h2>
+
+<p class=MsoNormal>An audio selection can be deleted by clicking <b>Edit-&gt;Delete</b>
+on the menu or pressing <st1:place w:st="on"><st1:State w:st="on"><b>Del</b>.</st1:State></st1:place></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<h2><span style='font-size:12.0pt;font-style:normal;mso-bidi-font-style:italic'>Related
+Topics<o:p></o:p></span></h2>
+
+<p class=MsoNormal><a href="Previewing%20the%20Audio.htm">Previewing the Audio</a></p>
+
+<p class=MsoNormal><a href="Working%20with%20Audio.htm">Working with Audio</a></p>
+
 <p class=MsoNormal><a
-href="Effect%20of%20Content%20View%20Navigation%20during%20Playback.htm">Previous
-Topic</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
-href="#_Editing_the_Audio">Top of the Topic</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="Previewing%20the%20Audio.htm">Next Topic</a></p>
+href="../Working%20with%20Phrases/Working%20with%20Phrases.htm">Working with Phrases</a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><a href="Previewing%20the%20Audio.htm">Previous Topic</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#_Editing_Audio">Top of the Topic</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="Exporting%20audio%20to%20external%20file.htm">Next Topic</a></p>
 
 <p class=MsoNormal>&nbsp;</p>
 
