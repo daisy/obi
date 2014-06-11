@@ -37,9 +37,10 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	panose-1:2 2 6 9 4 2 5 8 3 4;
 	mso-font-alt:"\FF2D\FF33 \660E\671D";
 	mso-font-charset:128;
-	mso-generic-font-family:modern;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
 	mso-font-pitch:fixed;
-	mso-font-signature:-1610612033 1757936891 16 0 131231 0;}
+	mso-font-signature:1 134676480 16 0 131072 0;}
 @font-face
 	{font-family:"Albany AMT";
 	mso-font-alt:"Times New Roman";
@@ -49,7 +50,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-font-signature:0 0 0 0 0 0;}
 @font-face
 	{font-family:"\@MS Mincho";
-	panose-1:2 2 6 9 4 2 5 8 3 4;
 	mso-font-charset:128;
 	mso-generic-font-family:modern;
 	mso-font-pitch:fixed;
@@ -745,6 +745,65 @@ span.heading1char
 	mso-paper-source:0;}
 div.Section1
 	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:660239480;
+	mso-list-template-ids:-190432470;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1
+	{mso-list-id:1107889438;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1085892958 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
 -->
 </style>
 <!--[if gte mso 10]>
@@ -767,7 +826,7 @@ div.Section1
 	mso-bidi-language:#0400;}
 </style>
 <![endif]--><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext="edit" spidmax="11266"/>
+ <o:shapedefaults v:ext="edit" spidmax="16386"/>
 </xml><![endif]--><!--[if gte mso 9]><xml>
  <o:shapelayout v:ext="edit">
   <o:idmap v:ext="edit" data="1"/>
@@ -784,7 +843,9 @@ div.Section1
 
 <p class=MsoNormal>Plays audio of the book as it will be played in the exported
 DTB. This means that audio of all the Used phrases will be played in the order
-they are displayed in the Content View.</p>
+they are displayed in the <a
+href="../../Exploring%20the%20GUI/Obi%20Views%20and%20Transport%20Bar/Content%20View.htm">Content
+View</a>.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
@@ -793,48 +854,33 @@ they are displayed in the Content View.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal>Obi will start playing the audio of the book to the end.
-However, the position from where playback starts will vary depending on the
-selection made by you.</p>
+<p class=MsoNormal>Obi will start playing the audio of the book to the end. However,
+the position from where playback starts will vary depending on the selection
+made by you.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>If nothing is selected, the whole book will be played.</p>
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo3;tab-stops:list .5in'>If
+     nothing is selected, the whole book will be played.</li>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo3;tab-stops:list .5in'>If a
+     Used phrase is selected, the book will be played starting from that
+     phrase, to the end.</li>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo3;tab-stops:list .5in'>If an
+     Unused phrase is selected, playback will start from the next Used phrase.</li>
+ <li class=MsoNormal style='mso-list:l1 level1 lfo3;tab-stops:list .5in'>If a
+     section is selected, playback will start from the first Used phrase of the
+     section.</li>
+</ul>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>If a Used phrase is selected, the book will be played starting from that
-phrase, to the end.</p>
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>If an Unused phrase is selected, playback will start from the next Used
-phrase.</p>
+<p class=MsoNormal>In this mode, the play-list will contain all the used
+phrases of the book in the same order as they appear in the book. However, the
+playback will start from the first used phrase after the point of selection.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
-style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>If a section is selected, playback will start from the first phrase of
-the section.</p>
-
-<p class=MsoNormal>&nbsp;</p>
-
-<p class=MsoNormal>In this mode, the playlist will contain all the phrases
-starting from the point of selection as described above, to the end. For
-example, if you had selected a Used phrase in the second to last section of the
-book, it will become the first phrase in the playlist. Obi will append all the
-subsequent phrases according to their position in the section. Then, it will
-append the phrases of the last section in a similar way.</p>
-
-<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
 <p class=MsoNormal>Note: If nothing is selected, <b>Play All</b> may also be
 started by pressing <b>Space</b>.</p>
-
-<p class=MsoNormal>&nbsp;</p>
-
-<p class=MsoNormal>Playback can be paused by pressing <b>Space,</b> and resumed
-by pressing <b>Space</b> or by pressing <b style='mso-bidi-font-weight:normal'>Ctrl+Shift+Space</b>.
-It can be stopped by pressing <b>Ctrl+Space</b>.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
@@ -842,9 +888,9 @@ It can be stopped by pressing <b>Ctrl+Space</b>.</p>
 mso-bidi-font-style:italic'>Using navigation controls in Play All mode</span><span
 style='font-size:12.0pt;font-style:normal;mso-bidi-font-style:italic'><o:p></o:p></span></h2>
 
-<p class=MsoNormal>Before starting playback, Obi creates a playlist according
-to your selection.&nbsp; If the navigation Controls take you out of this
-playlist, playback stops. </p>
+<p class=MsoNormal>Before starting playback, Obi creates a play-list according
+to your selection.&nbsp; If the navigation controls take you out of this
+play-list, playback stops. </p>
 
 <p class=MsoNormal>The following table illustrates how Obi reacts to different
 navigation controls during playback in this mode: </p>
@@ -881,9 +927,9 @@ navigation controls during playback in this mode: </p>
   <p class=MsoNormal>Alt+Left Arrow</p>
   </td>
   <td valign=top style='padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Playback of previous phrase will be started. If audio has
-  been played past a certain threshold, starts from the beginning of the
-  current phrase.</p>
+  <p class=MsoNormal>Playback of previous phrase will be started. If audio has been
+  played past a certain threshold, starts from the beginning of the current
+  phrase.</p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:3'>
@@ -917,7 +963,7 @@ navigation controls during playback in this mode: </p>
   <p class=MsoNormal>Alt+Page Down</p>
   </td>
   <td valign=top style='padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Obi will jump to the next page phrase in the playlist and
+  <p class=MsoNormal>Obi will jump to the next page phrase in the play-list and
   start playback from there. </p>
   </td>
  </tr>
@@ -929,13 +975,28 @@ navigation controls during playback in this mode: </p>
   <p class=MsoNormal>Alt+Page Up</p>
   </td>
   <td valign=top style='padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Obi will jump to the previous page phrase in the playlist
+  <p class=MsoNormal>Obi will jump to the previous page phrase in the play-list
   and start playback from there.</p>
   </td>
  </tr>
 </table>
 
 <p class=MsoNormal>&nbsp;</p>
+
+<h2><span style='font-size:12.0pt;font-style:normal;mso-bidi-font-style:italic'>Related
+Topics<o:p></o:p></span></h2>
+
+<p class=MsoNormal><a href="Play%20Selection.htm">Play Selection</a></p>
+
+<p class=MsoNormal><a href="Pause%20and%20Resume.htm">Pause/Resume</a></p>
+
+<p class=MsoNormal><a href="Stop.htm">Stop</a></p>
+
+<p class=MsoNormal><a href="Playback.htm">Playback</a></p>
+
+<p class=MsoNormal><a href="Working%20with%20Audio.htm">Working with Audio</a></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
 <p class=MsoNormal><a href="Playback.htm">Previous Topic</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#_Play_All">Top of the Topic</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

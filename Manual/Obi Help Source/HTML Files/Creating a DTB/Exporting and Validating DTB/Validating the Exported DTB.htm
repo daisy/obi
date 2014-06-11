@@ -19,6 +19,22 @@ w\:* {behavior:url(#default#VML);}
 .shape {behavior:url(#default#VML);}
 </style>
 <![endif]--><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Jasdeep Kaur</o:Author>
+  <o:LastAuthor>Jasdeep Kaur</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>3</o:TotalTime>
+  <o:Created>2011-05-23T10:52:00Z</o:Created>
+  <o:LastSaved>2011-10-16T12:31:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>342</o:Words>
+  <o:Characters>1950</o:Characters>
+  <o:Lines>16</o:Lines>
+  <o:Paragraphs>4</o:Paragraphs>
+  <o:CharactersWithSpaces>2288</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
  <w:WordDocument>
   <w:Zoom>110</w:Zoom>
   <w:ValidateAgainstSchemas/>
@@ -46,9 +62,10 @@ w\:* {behavior:url(#default#VML);}
 	panose-1:2 2 6 9 4 2 5 8 3 4;
 	mso-font-alt:"\FF2D\FF33 \660E\671D";
 	mso-font-charset:128;
-	mso-generic-font-family:modern;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
 	mso-font-pitch:fixed;
-	mso-font-signature:-1610612033 1757936891 16 0 131231 0;}
+	mso-font-signature:1 134676480 16 0 131072 0;}
 @font-face
 	{font-family:"Albany AMT";
 	mso-font-alt:"Times New Roman";
@@ -58,7 +75,6 @@ w\:* {behavior:url(#default#VML);}
 	mso-font-signature:0 0 0 0 0 0;}
 @font-face
 	{font-family:"\@MS Mincho";
-	panose-1:2 2 6 9 4 2 5 8 3 4;
 	mso-font-charset:128;
 	mso-generic-font-family:modern;
 	mso-font-pitch:fixed;
@@ -776,7 +792,7 @@ div.Section1
 	mso-bidi-language:#0400;}
 </style>
 <![endif]--><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext="edit" spidmax="5122"/>
+ <o:shapedefaults v:ext="edit" spidmax="17410"/>
 </xml><![endif]--><!--[if gte mso 9]><xml>
  <o:shapelayout v:ext="edit">
   <o:idmap v:ext="edit" data="1"/>
@@ -801,7 +817,10 @@ compliance with DAISY standards.</p>
 
 <p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'>1.<span
 style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Click <b>Tools-&gt;DAISY
-3 validator</b> on the menu. A dialog box opens as shown in the figure below:</p>
+3 Validator</b> on the menu to validate the exported DTB according to the DAISY
+3 standard, or <b>Tools-&gt;DAISY 2.02 Light Validator</b> to validate
+according to the DAISY 2.02 standard. A dialog box opens as shown in the figure
+below (in case you choose DAISY 3 Validator):</p>
 
 <p class=MsoNormal>&nbsp;&nbsp;</p>
 
@@ -832,14 +851,15 @@ following fields:</p>
  </tr>
  <tr style='mso-yfti-irow:1'>
   <td width=194 valign=top style='width:145.3pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Select the input package file</p>
+  <p class=MsoNormal>Select the input package file / input NCC document</p>
   </td>
   <td width=194 valign=top style='width:145.6pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal>Edit Box</p>
   </td>
   <td width=194 valign=top style='width:145.6pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Enter the full path of&nbsp; opf file of exported DTB. To
-  browse for the file, click on the <b>browse</b> button next to it.</p>
+  <p class=MsoNormal>Enter the full path of&nbsp;OPF file of exported DTB (in
+  case of DAISY 3 Validator), or NCC document (in case of DAISY2.02 Light Validator).
+  To browse for the file, click on the <b>browse</b> button.</p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:2'>
@@ -850,11 +870,10 @@ following fields:</p>
   <p class=MsoNormal>Edit Box</p>
   </td>
   <td width=194 valign=top style='width:145.6pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>If you want to store error log in xml format, enter full
-  path of the file. To browse for the file, click on the <b>browse</b> button
-  next to it.</p>
+  <p class=MsoNormal>If you want to store error log in XML format, enter full
+  path of the file. To browse for the file, click on the <b>browse</b> button.</p>
   <p class=MsoNormal>Note: If you leave this field blank, errors will not be
-  copied, but only show on the screen</p>
+  copied, but only show on the screen.</p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes'>
@@ -866,7 +885,7 @@ following fields:</p>
   </td>
   <td width=194 valign=top style='width:145.6pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal>Sets the threshold for time tolerance to be used for
-  validating smil files.</p>
+  validating SMIL files.</p>
   </td>
  </tr>
 </table>
@@ -879,9 +898,9 @@ button.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal>Obi’s DTB Validator will start checking for errors in the exported
-DTB and report the errors, if any, when finished. Errors can be viewed by
-clicking the <b>Details&gt;&gt;</b> button. </p>
+<p class=MsoNormal>Obi’s DTB Validator will start checking for errors in the
+exported DTB and report the errors, if any. Errors can be viewed by clicking
+the <b>Details&gt;&gt;</b> button. </p>
 
 <p class=MsoNormal>&nbsp;</p>
 
@@ -894,11 +913,25 @@ saved into a file in that location.</p>
 continue the process of validating and exporting till all the errors have been
 removed.</p>
 
-<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<h2><span style='font-size:12.0pt;font-style:normal;mso-bidi-font-style:italic'>Related
+Topics<o:p></o:p></span></h2>
+
+<p class=MsoNormal><a href="Exporting%20as%20DAISY%20DTB.htm">Exporting as
+DAISY DTB</a></p>
+
+<p class=MsoNormal><a
+href="../../Customizing%20the%20DTB/Customizing%20the%20DTB.htm">Customizing
+and Audio Encoding</a></p>
+
+<p class=MsoNormal><a href="../Creating%20a%20DTB.htm">Creating a DTB&nbsp;</a></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
 <p class=MsoNormal><a href="Exporting%20as%20DAISY%20DTB.htm">Previous Topic</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#_Validating_the_Exported_DTB">Top of the Topic</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="Encoding%20DTB%20audio%20to%20MP3.htm">Next Topic</a></p>
+<a href="../../Customizing%20the%20DTB/Customizing%20the%20DTB.htm">Next Topic</a></p>
 
 <p class=MsoNormal>&nbsp;</p>
 

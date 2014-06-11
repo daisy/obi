@@ -37,9 +37,10 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	panose-1:2 2 6 9 4 2 5 8 3 4;
 	mso-font-alt:"\FF2D\FF33 \660E\671D";
 	mso-font-charset:128;
-	mso-generic-font-family:modern;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
 	mso-font-pitch:fixed;
-	mso-font-signature:-1610612033 1757936891 16 0 131231 0;}
+	mso-font-signature:1 134676480 16 0 131072 0;}
 @font-face
 	{font-family:"Albany AMT";
 	mso-font-alt:"Times New Roman";
@@ -49,7 +50,6 @@ xmlns="http://www.w3.org/TR/REC-html40">
 	mso-font-signature:0 0 0 0 0 0;}
 @font-face
 	{font-family:"\@MS Mincho";
-	panose-1:2 2 6 9 4 2 5 8 3 4;
 	mso-font-charset:128;
 	mso-generic-font-family:modern;
 	mso-font-pitch:fixed;
@@ -745,63 +745,6 @@ span.heading1char
 	mso-paper-source:0;}
 div.Section1
 	{page:Section1;}
- /* List Definitions */
- @list l0
-	{mso-list-id:1834098454;
-	mso-list-template-ids:1962941166;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.25in;
-	mso-level-number-position:left;
-	margin-left:.25in;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-tab-stop:.75in;
-	mso-level-number-position:left;
-	margin-left:.75in;
-	text-indent:-.25in;}
-@list l0:level3
-	{mso-level-tab-stop:1.25in;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;}
-@list l0:level4
-	{mso-level-tab-stop:1.75in;
-	mso-level-number-position:left;
-	margin-left:1.75in;
-	text-indent:-.25in;}
-@list l0:level5
-	{mso-level-tab-stop:2.25in;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;}
-@list l0:level6
-	{mso-level-tab-stop:2.75in;
-	mso-level-number-position:left;
-	margin-left:2.75in;
-	text-indent:-.25in;}
-@list l0:level7
-	{mso-level-tab-stop:3.25in;
-	mso-level-number-position:left;
-	margin-left:3.25in;
-	text-indent:-.25in;}
-@list l0:level8
-	{mso-level-tab-stop:3.75in;
-	mso-level-number-position:left;
-	margin-left:3.75in;
-	text-indent:-.25in;}
-@list l0:level9
-	{mso-level-tab-stop:4.25in;
-	mso-level-number-position:left;
-	margin-left:4.25in;
-	text-indent:-.25in;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
 -->
 </style>
 <!--[if gte mso 10]>
@@ -824,7 +767,7 @@ ul
 	mso-bidi-language:#0400;}
 </style>
 <![endif]--><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext="edit" spidmax="11266"/>
+ <o:shapedefaults v:ext="edit" spidmax="26626"/>
 </xml><![endif]--><!--[if gte mso 9]><xml>
  <o:shapelayout v:ext="edit">
   <o:idmap v:ext="edit" data="1"/>
@@ -842,8 +785,8 @@ name="_Working_with_Sections"></a>Working with Sections</h1>
 
 <p class=MsoNormal>A section can be described as a container holding one or
 more audio clips, termed as phrases. Each section in an Obi project corresponds
-to a section in the exported DTB, and the phrases are combined to , form the
-contents of the section.</p>
+to a section in the exported DTB, and the phrases are combined to form the contents
+of the section.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
@@ -867,7 +810,7 @@ Content View. </p>
 <p class=MsoNormal><b>Representation in TOC View</b></p>
 
 <p class=MsoNormal>A section is mapped to a single node of the tree structure
-in TOC View, and its subsections become the subtree of that node. The depth of
+in TOC View, and its subsections become the sub-tree of that node. The depth of
 the node indicates its level. </p>
 
 <p class=MsoNormal>All the operations on sections are deep in this view. This
@@ -878,97 +821,70 @@ various operations.</p>
 
 <p class=MsoNormal><b>Representation in Content View</b></p>
 
-<p class=MsoNormal>A section is represented as a strip of phrases enclosing
-audio content. A single strip has two horizontal divisions:</p>
+<p class=MsoNormal>A section is represented as horizontal lists of phrases
+containing audio content. The section name is displayed above these lists.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'>1.<span
-style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Name of the
-section, total duration of audio content, and depth of section. </p>
-
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'>2.<span
-style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>A horizontal list
-of phrases. Each phrase label contains phrase number with respect to total
-number of phrases of that section, along with the duration of audio content. </p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+<p class=MsoNormal><u><o:p><span style='text-decoration:none'>&nbsp;</span></o:p></u></p>
 
 <p class=MsoNormal>The operations in this view will be shallow. This means the
-operations will be performed on the strip corresponding to that section only.</p>
+operations will be performed on the visible section only.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
 <p class=MsoNormal>You can perform the following operations on sections:</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo2;
-tab-stops:list .25in'><![if !supportLists]><span style='font-size:10.0pt;
-mso-bidi-font-size:12.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><a href="Adding%20a%20Section.htm"><span
-style='color:windowtext'>Add a section</span></a></p>
+<p class=MsoNormal><span style='color:blue'><a href="Adding%20a%20Section.htm">Add
+a section</a><o:p></o:p></span></p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo2;
-tab-stops:list .25in'><![if !supportLists]><span style='font-size:10.0pt;
-mso-bidi-font-size:12.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><a href="Inserting%20a%20Section.htm"><span
-style='color:windowtext'>Insert a Section</span></a></p>
+<p class=MsoNormal><span style='color:blue'><a
+href="Inserting%20a%20Section.htm">Insert a Section</a><o:p></o:p></span></p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo2;
-tab-stops:list .25in'><![if !supportLists]><span style='font-size:10.0pt;
-mso-bidi-font-size:12.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><a href="Adding%20a%20Subsection.htm"><span
-style='color:windowtext'>Add a subsection</span></a></p>
+<p class=MsoNormal><span style='color:blue'><a
+href="Adding%20a%20Subsection.htm">Add a subsection</a><o:p></o:p></span></p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo2;
-tab-stops:list .25in'><![if !supportLists]><span style='font-size:10.0pt;
-mso-bidi-font-size:12.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><a
-href="Cutting,%20Copying,%20and%20Pasting%20the%20Sections.htm"><span
-style='color:windowtext'>Cut, Copy or paste a section</span></a></p>
+<p class=MsoNormal><span style='color:blue'><a
+href="Cutting,%20Copying,%20and%20Pasting%20the%20Sections.htm">Cut, Copy or
+paste a section</a><o:p></o:p></span></p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo2;
-tab-stops:list .25in'><![if !supportLists]><span style='font-size:10.0pt;
-mso-bidi-font-size:12.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><a
-href="Splitting%20and%20Merging%20the%20Sections.htm"><span style='color:windowtext'>Split
-or merge a section</span></a></p>
+<p class=MsoNormal><a name="OLE_LINK2"></a><a name="OLE_LINK1"><span
+style='mso-bookmark:OLE_LINK2'></span></a><a href="Merging%20the%20Sections.htm"><span
+style='mso-bookmark:OLE_LINK1'><span style='mso-bookmark:OLE_LINK2'>Merge
+section with next</span></span><span style='mso-bookmark:OLE_LINK1'><span
+style='mso-bookmark:OLE_LINK2'></span></span></a><span style='mso-bookmark:
+OLE_LINK1'><span style='mso-bookmark:OLE_LINK2'></span></span></p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo2;
-tab-stops:list .25in'><![if !supportLists]><span style='font-size:10.0pt;
-mso-bidi-font-size:12.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><a
-href="Changing%20the%20level%20or%20used%20status.htm"><span style='color:windowtext'>Change
-the level or Used status of the section</span></a></p>
+<p class=MsoNormal><span style='mso-bookmark:OLE_LINK1'><span style='mso-bookmark:
+OLE_LINK2'></span></span><a href="Merging%20multiple%20sections.htm"><span
+style='mso-bookmark:OLE_LINK1'><span style='mso-bookmark:OLE_LINK2'>Merge multiple
+sections</span></span><span style='mso-bookmark:OLE_LINK1'><span
+style='mso-bookmark:OLE_LINK2'></span></span></a><span style='mso-bookmark:
+OLE_LINK1'><span style='mso-bookmark:OLE_LINK2'></span></span></p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo2;
-tab-stops:list .25in'><![if !supportLists]><span style='font-size:10.0pt;
-mso-bidi-font-size:12.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><a href="Renaming%20a%20Section.htm"><span
-style='color:windowtext'>Rename a section</span></a></p>
+<span style='mso-bookmark:OLE_LINK2'></span><span style='mso-bookmark:OLE_LINK1'></span>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l0 level1 lfo2;
-tab-stops:list .25in'><![if !supportLists]><span style='font-size:10.0pt;
-mso-bidi-font-size:12.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>·<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><a href="Deleting%20a%20Section.htm"><span
-style='color:windowtext'>Delete a section</span></a></p>
+<p class=MsoNormal><a href="Splitting%20a%20Section.htm">Split a section</a><span
+style='color:blue'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='color:blue'><a
+href="Changing%20the%20level%20of%20a%20section.htm">Change the level of a
+section</a><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='color:blue'><a
+href="Altering%20the%20used%20status.htm">Alter the Used status</a><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='color:blue'><a href="Renaming%20a%20Section.htm">Rename
+a section</a><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='color:blue'><a href="Deleting%20a%20Section.htm">Delete
+a section</a><o:p></o:p></span></p>
+
+<p class=MsoNormal><a href="Section%20Properties.htm">View or modify section’s
+properties</a></p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal><a href="../Working%20with%20Views/Synchronizing%20Views.htm">Previous
+<p class=MsoNormal><a
+href="../Creating%20and%20Working%20with%20Projects/Backup%20and%20Recovery.htm">Previous
 Topic</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
 href="#_Working_with_Sections">Top of the Topic</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="Adding%20a%20Section.htm">Next Topic</a></p>

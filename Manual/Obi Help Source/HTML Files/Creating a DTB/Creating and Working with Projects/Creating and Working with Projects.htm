@@ -11,6 +11,22 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List
 href="Creating%20and%20Working%20with%20Projects_files/filelist.xml">
 <!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Jasdeep Kaur</o:Author>
+  <o:LastAuthor>HP</o:LastAuthor>
+  <o:Revision>3</o:Revision>
+  <o:TotalTime>2</o:TotalTime>
+  <o:Created>2011-05-21T06:38:00Z</o:Created>
+  <o:LastSaved>2011-06-06T11:37:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>379</o:Words>
+  <o:Characters>2162</o:Characters>
+  <o:Lines>18</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>2536</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
  <w:WordDocument>
   <w:Zoom>110</w:Zoom>
   <w:ValidateAgainstSchemas/>
@@ -38,9 +54,10 @@ href="Creating%20and%20Working%20with%20Projects_files/filelist.xml">
 	panose-1:2 2 6 9 4 2 5 8 3 4;
 	mso-font-alt:"\FF2D\FF33 \660E\671D";
 	mso-font-charset:128;
-	mso-generic-font-family:modern;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
 	mso-font-pitch:fixed;
-	mso-font-signature:-1610612033 1757936891 16 0 131231 0;}
+	mso-font-signature:1 134676480 16 0 131072 0;}
 @font-face
 	{font-family:"Albany AMT";
 	mso-font-alt:"Times New Roman";
@@ -50,7 +67,6 @@ href="Creating%20and%20Working%20with%20Projects_files/filelist.xml">
 	mso-font-signature:0 0 0 0 0 0;}
 @font-face
 	{font-family:"\@MS Mincho";
-	panose-1:2 2 6 9 4 2 5 8 3 4;
 	mso-font-charset:128;
 	mso-generic-font-family:modern;
 	mso-font-pitch:fixed;
@@ -768,7 +784,7 @@ div.Section1
 	mso-bidi-language:#0400;}
 </style>
 <![endif]--><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext="edit" spidmax="7170"/>
+ <o:shapedefaults v:ext="edit" spidmax="21506"/>
 </xml><![endif]--><!--[if gte mso 9]><xml>
  <o:shapelayout v:ext="edit">
   <o:idmap v:ext="edit" data="1"/>
@@ -785,13 +801,13 @@ Projects</h1>
 
 <p class=MsoNormal>An Obi project is a collection of structured elements
 containing audio clips. These structured elements are mapped to the sections of
-the DTB.</p>
+a DTB.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal>Each project has a title that describes the subject of the
-book and becomes the title of the DTB. When a project is opened in Obi, the
-title bar shows this title. The project also has metadata that holds vital
+<p class=MsoNormal>Each project has a title that describes the subject of the book
+and becomes the title of the DTB. When a project is opened in Obi, the title
+bar shows this title. The project also has metadata that holds vital
 information about the DTB.</p>
 
 <p class=MsoNormal>&nbsp;</p>
@@ -802,7 +818,9 @@ library. </p>
 
 <p class=MsoNormal>&nbsp;</p>
 
-<p class=MsoNormal><b>Contents of Project Directory</b></p>
+<h2><span style='font-size:12.0pt;mso-bidi-font-weight:normal;font-style:normal;
+mso-bidi-font-style:italic'>Contents of Project Directory</span><span
+style='font-size:12.0pt;font-style:normal;mso-bidi-font-style:italic'><o:p></o:p></span></h2>
 
 <p class=MsoNormal>An Obi project file (with an .obi extension) is saved in a
 directory along with its audio data. By default, this directory will have the same
@@ -812,30 +830,21 @@ named <i>Data</i>.</p>
 <p class=MsoNormal>&nbsp;</p>
 
 <p class=MsoNormal>When you export a project to a DAISY DTB, the exported files
-are stored in the subdirectory of the project directory, named <i>DAISY3
-Export. </i>This directory contains the files pertaining to the exported DTB
-only, and as a result, the contents of the directory are ready for
-distribution. </p>
+are stored in the subdirectory of the project directory<i>. </i>This directory
+contains the files pertaining to the exported DTB only, and as a result, the
+contents of the directory are ready for distribution. </p>
 
-<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal>The exported DTB can be played in any of the DAISY 3.0
-players. But, if you don't have one, it can be played in any other player that
-supports wav/mp3 file formats. The naming conventions used for exported files
-enable you to sort the audio files and play them one by one. They will be
-played in the same order as they appear in the physical book.</p>
+<p class=MsoNormal>Obi creates a backup of the project file and stores it in
+the subdirectory of the project directory named <i style='mso-bidi-font-style:
+normal'>Backup</i>. If a problem occurs, the backup file can be used to revert
+to a previous state.</p>
 
-<p class=MsoNormal>&nbsp;</p>
-
-<p class=MsoNormal>However, you may not be able to enjoy the most striking
-feature of the DAISY format: Navigation. For enjoying the full capabilities of
-DAISY DTB, you must download a <a
-href="http://daisy.org/tools/tools.shtml?Cat=playback#8">DAISY 3.0 player</a>.</p>
-
-<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
 <p class=MsoNormal>Note: You must store files belonging to a single project in
-one directory; otherwise, it may lead to inconsistencies.</p>
+one directory to avoid inconsistencies.</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
@@ -848,6 +857,10 @@ project</a> </p>
 href="Creating%20a%20project%20by%20importing%20an%20xhtml%20file.htm">Create a
 project by importing an xhtml file</a> </p>
 
+<p class=MsoNormal><a
+href="Creating%20a%20project%20by%20importing%20DAISY%20book.htm">Create a
+project by importing DAISY book</a></p>
+
 <p class=MsoNormal><a href="Opening%20a%20Project.htm">Open a project</a> </p>
 
 <p class=MsoNormal><a href="Saving%20the%20project.htm">Save the project</a> </p>
@@ -859,11 +872,16 @@ different location</a> </p>
 <p class=MsoNormal><a href="Reversing%20the%20Work%20Done.htm">Reverse the work
 done</a> </p>
 
+<p class=MsoNormal><a href="Bookmark.htm">Set bookmark</a></p>
+
 <p class=MsoNormal><a href="Closing%20the%20Project.htm">Close the project</a> </p>
 
-<p class=MsoNormal>Project Properties</p>
+<p class=MsoNormal><a href="Project%20Properties.htm">Project Properties</a></p>
 
 <p class=MsoNormal><a href="Project%20Clean-up.htm">Project Clean-up</a> </p>
+
+<p class=MsoNormal><a href="Backup%20and%20Recovery.htm">Backup and Recovery</a>
+</p>
 
 <p class=MsoNormal>&nbsp;</p>
 
