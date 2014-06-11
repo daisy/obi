@@ -15,16 +15,16 @@ href="Audio%20and%20navigation%20controls_files/filelist.xml">
  <o:DocumentProperties>
   <o:Author>Jasdeep Kaur</o:Author>
   <o:LastAuthor>Admin</o:LastAuthor>
-  <o:Revision>22</o:Revision>
-  <o:TotalTime>30</o:TotalTime>
+  <o:Revision>30</o:Revision>
+  <o:TotalTime>72</o:TotalTime>
   <o:Created>2011-05-20T13:11:00Z</o:Created>
-  <o:LastSaved>2013-11-28T15:20:00Z</o:LastSaved>
+  <o:LastSaved>2014-04-09T05:12:00Z</o:LastSaved>
   <o:Pages>2</o:Pages>
-  <o:Words>620</o:Words>
-  <o:Characters>3540</o:Characters>
-  <o:Lines>29</o:Lines>
-  <o:Paragraphs>8</o:Paragraphs>
-  <o:CharactersWithSpaces>4152</o:CharactersWithSpaces>
+  <o:Words>742</o:Words>
+  <o:Characters>4233</o:Characters>
+  <o:Lines>35</o:Lines>
+  <o:Paragraphs>9</o:Paragraphs>
+  <o:CharactersWithSpaces>4966</o:CharactersWithSpaces>
   <o:Version>12.00</o:Version>
  </o:DocumentProperties>
 </xml><![endif]-->
@@ -1306,6 +1306,49 @@ div.Section1
 	{mso-level-tab-stop:4.5in;
 	mso-level-number-position:left;
 	text-indent:-.25in;}
+@list l1
+	{mso-list-id:1446539472;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1750090618 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
 ol
 	{margin-bottom:0in;}
 ul
@@ -1331,7 +1374,7 @@ ul
 	font-family:"Times New Roman","serif";}
 </style>
 <![endif]--><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext="edit" spidmax="34818"/>
+ <o:shapedefaults v:ext="edit" spidmax="38914"/>
 </xml><![endif]--><!--[if gte mso 9]><xml>
  <o:shapelayout v:ext="edit">
   <o:idmap v:ext="edit" data="1"/>
@@ -1382,7 +1425,7 @@ control is used for audio playback / recording (A), both audio and navigation
   <p class=MsoNormal style='layout-grid-mode:char'>A</p>
   </td>
   <td width=103 valign=top style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal style='layout-grid-mode:char'>Play</p>
+  <p class=MsoNormal style='layout-grid-mode:char'>Play/Pause</p>
   </td>
   <td width=69 valign=top style='width:51.4pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='layout-grid-mode:char'>Button</p>
@@ -1391,10 +1434,11 @@ control is used for audio playback / recording (A), both audio and navigation
   <p class=MsoNormal style='layout-grid-mode:char'>Space</p>
   </td>
   <td width=272 valign=top style='width:204.3pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal style='layout-grid-mode:char'>Starts or resumes playback
-  of the selection. If nothing is selected, the whole book is played.</p>
+  <p class=MsoNormal style='layout-grid-mode:char'>Starts, pauses, or resumes
+  playback of the selection. If nothing is selected, the whole book is played.</p>
   <p class=MsoNormal>It acts as <b>Play</b> button, if Transport Bar is in
-  stopped state; <b>Resume</b> button, if Transport Bar is in paused state.</p>
+  stopped or paused state; <b>Pause</b> button, if Transport Bar is in playing
+  state.</p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:2'>
@@ -1402,17 +1446,47 @@ control is used for audio playback / recording (A), both audio and navigation
   <p class=MsoNormal style='layout-grid-mode:char'>A</p>
   </td>
   <td width=103 valign=top style='width:77.4pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal style='layout-grid-mode:char'>Pause</p>
+  <p class=MsoNormal style='layout-grid-mode:char'>Playing Options</p>
   </td>
   <td width=69 valign=top style='width:51.4pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='layout-grid-mode:char'>Button</p>
   </td>
   <td width=111 valign=top style='width:83.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal style='layout-grid-mode:char'>Space</p>
+  <p class=MsoNormal style='layout-grid-mode:char'>Ctrl+F7</p>
   </td>
   <td width=272 valign=top style='width:204.3pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal style='layout-grid-mode:char'>Pauses or resumes the
-  playback or recording. </p>
+  <p class=MsoNormal style='layout-grid-mode:char'>Lists the following options
+  for playback:</p>
+  <p class=MsoListParagraphCxSpFirst style='text-indent:-.25in;mso-list:l1 level1 lfo2;
+  layout-grid-mode:char'><![if !supportLists]><span style='font-family:Symbol;
+  mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+  style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]>Play All: Plays entire book</p>
+  <p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l1 level1 lfo2;
+  layout-grid-mode:char'><![if !supportLists]><span style='font-family:Symbol;
+  mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+  style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]>Play Section: Plays the audio content of the
+  section</p>
+  <p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l1 level1 lfo2;
+  layout-grid-mode:char'><![if !supportLists]><span style='font-family:Symbol;
+  mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+  style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]>Play Section Heading: Plays the contents of
+  the heading phrase of the section. Please note that if not marked explicitly,
+  the first phrase of the section is considered to be the heading phrase.</p>
+  <p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l1 level1 lfo2;
+  layout-grid-mode:char'><![if !supportLists]><span style='font-family:Symbol;
+  mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+  style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]>Preview From: Plays a small portion of audio
+  from the cursor position.</p>
+  <p class=MsoListParagraphCxSpLast style='text-indent:-.25in;mso-list:l1 level1 lfo2;
+  layout-grid-mode:char'><![if !supportLists]><span style='font-family:Symbol;
+  mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+  style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]>Preview Upto: Plays a small portion of audio
+  up to the cursor position.</p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:3'>
@@ -1453,9 +1527,9 @@ control is used for audio playback / recording (A), both audio and navigation
   <p class=MsoNormal style='layout-grid-mode:char'>Starts monitoring, when
   pressed for the first time.</p>
   <p class=MsoNormal>Starts recording, when you press again. Please note that
-  if the <a
-  href="../../Creating%20a%20DTB/Working%20with%20Audio/Live%20Recording.htm">advanced
-  recording mode is enabled</a>, each click on the button will result in
+  if Intermediate or Advanced profile of <a
+  href="../The%20Preferences%20Dialog/Audio%20Preferences.htm">audio
+  preferences</a> is selected, each click on the button will result in
   initiation of recording.</p>
   <p class=MsoNormal>&nbsp;</p>
   </td>
@@ -1470,23 +1544,39 @@ control is used for audio playback / recording (A), both audio and navigation
   <td width=69 valign=top style='width:51.4pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='layout-grid-mode:char'>Button</p>
   </td>
-  <td width=111 valign=top style='width:83.0pt;padding:0in 5.4pt 0in 5.4pt'></td>
+  <td width=111 valign=top style='width:83.0pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>Ctrl+F8<o:p></o:p></span></p>
+  </td>
   <td width=272 valign=top style='width:204.3pt;padding:0in 5.4pt 0in 5.4pt'>
   <p class=MsoNormal style='layout-grid-mode:char'>This button gets enabled
-  only if <a
-  href="../../Creating%20a%20DTB/Working%20with%20Audio/Live%20Recording.htm">advanced
-  recording mode</a> is enabled. It provides the following options:</p>
-  <p class=MsoListParagraphCxSpFirst style='text-indent:-.25in;mso-list:l0 level1 lfo2;
+  only if intermediate or advanced profile of <a
+  href="../The%20Preferences%20Dialog/Audio%20Preferences.htm">audio
+  preferences</a> is selected. It provides the following options:</p>
+  <p class=MsoListParagraphCxSpFirst style='text-indent:-.25in;mso-list:l0 level1 lfo4;
   layout-grid-mode:char'><![if !supportLists]><span style='font-family:Symbol;
   mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
   style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span></span></span><![endif]>Start monitoring</p>
-  <p class=MsoListParagraphCxSpLast style='text-indent:-.25in;mso-list:l0 level1 lfo2;
+  </span></span></span><![endif]>Start Monitoring: Monitors the audio input
+  instead of recording.</p>
+  <p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l0 level1 lfo4;
   layout-grid-mode:char'><![if !supportLists]><span style='font-family:Symbol;
   mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
   style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span></span></span><![endif]>Record over subsequent phrases (of the
-  section)</p>
+  </span></span></span><![endif]>Record over subsequent phrases: Erases audio
+  subsequent to the current position in the section and starts recording in a
+  new phrase.</p>
+  <p class=MsoListParagraphCxSpMiddle style='text-indent:-.25in;mso-list:l0 level1 lfo4;
+  layout-grid-mode:char'><![if !supportLists]><span style='font-family:Symbol;
+  mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+  style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]>Preview before recording: Previews a small
+  portion of audio up to the cursor position before recording.</p>
+  <p class=MsoListParagraphCxSpLast style='text-indent:-.25in;mso-list:l0 level1 lfo4;
+  layout-grid-mode:char'><![if !supportLists]><span style='font-family:Symbol;
+  mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
+  style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><![endif]>Monitor continuously: Continually monitors the
+  audio input when the user is not recording.</p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:6'>
@@ -1562,8 +1652,8 @@ control is used for audio playback / recording (A), both audio and navigation
   <p class=MsoNormal style='layout-grid-mode:char'>Alt+Right Arrow</p>
   </td>
   <td width=272 valign=top style='width:204.3pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal style='layout-grid-mode:char'>Moves to the next phrase of
-  the current section. </p>
+  <p class=MsoNormal style='layout-grid-mode:char'>Moves to the next phrase of the
+  current section. </p>
   <p class=MsoNormal>If Transport Bar is in playing state, jumps to the next
   phrase in the play list. </p>
   <p class=MsoNormal>If Transport Bar is in recording state, Obi creates a new
