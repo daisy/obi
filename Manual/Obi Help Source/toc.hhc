@@ -101,6 +101,10 @@
 					<param name="Local" value="HTML Files\Introducing Obi\Accessibility features in Obi\Keyboard Shortcuts\Audio Manipulation.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Shortcuts specific to Content View">
+					<param name="Local" value="HTML Files\Introducing Obi\Accessibility features in Obi\Keyboard Shortcuts\Shortcuts specific to Content view.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Miscellaneous">
 					<param name="Local" value="HTML Files\Introducing Obi\Accessibility features in Obi\Keyboard Shortcuts\Miscellaneous.htm">
 					</OBJECT>
@@ -139,10 +143,18 @@
 					<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Vertical scroll panel.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Configuring Content view">
+					<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Configuring Content View.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Navigating among Items">
 					<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Navigating among items.htm">
 					</OBJECT>
 			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Zoomed Waveform view">
+				<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Zoomed Waveform view.htm">
+				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Metadata View">
 				<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Metadata View.htm">
@@ -231,12 +243,16 @@
 					<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Search by Page number.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
-					<param name="Name" value="Search by Time">
-					<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Search by Time.htm">
+					<param name="Name" value="Navigate using Time">
+					<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Navigate using Time.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Go to... dialog">
 					<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Go to Page or Phrase dialog.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Collect Special Phrases and Navigate">
+					<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Collect special phrases and navigate.htm">
 					</OBJECT>
 			</UL>
 			<LI> <OBJECT type="text/sitemap">
@@ -271,20 +287,24 @@
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\File Menu\Open project.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
-					<param name="Name" value="Restore from backup">
-					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\File Menu\Restore from backup.htm">
-					</OBJECT>
-				<LI> <OBJECT type="text/sitemap">
-					<param name="Name" value="Close project">
-					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\File Menu\Close project.htm">
-					</OBJECT>
-				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Save project">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\File Menu\Save project.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Save project as…">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\File Menu\Save project as....htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Merge Project">
+					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\File Menu\Merge project.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Restore from backup">
+					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\File Menu\Restore from backup.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Close project">
+					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\File Menu\Close project.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Recent project">
@@ -511,6 +531,10 @@
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu\Phrase is used.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Skippable note...">
+					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu\Skippable note.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Assign role">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu\Assign Role.htm">
 					</OBJECT>
@@ -523,6 +547,10 @@
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu\Edit custom role.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Renumber following pages">
+					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu\Renumber following pages.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Apply phrase detection...">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu\Apply phrase detection.htm">
 					</OBJECT>
@@ -533,6 +561,10 @@
 				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Go to…">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu\Go to....htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Check for corrupted audio">
+					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu\Check for corrupted audio.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Delete following phrases">
@@ -567,6 +599,10 @@
 				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Record">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Transport Menu\Record.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Generate speech">
+					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Transport Menu\Generate speech.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Navigation">
@@ -636,6 +672,10 @@
 					<param name="Name" value="About Obi">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Help Menu\About Obi.htm">
 					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Check for updates">
+					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Help Menu\Check for updates.htm">
+					</OBJECT>
 			</UL>
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
@@ -659,6 +699,10 @@
 				<param name="Name" value="Keyboard Shortcut Preferences">
 				<param name="Local" value="HTML Files\Exploring the GUI\The Preferences Dialog\Keyboard shortcut preferences.htm">
 				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Color preferences">
+				<param name="Local" value="HTML Files\Exploring the GUI\The Preferences Dialog\Color preferences.htm">
+				</OBJECT>
 		</UL>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">
@@ -676,12 +720,16 @@
 				<param name="Local" value="HTML Files/Creating a DTB/Creating and Working with Projects/Creating a new project.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Creating a Project by Importing an XHTML file">
+				<param name="Name" value="Creating a Project by Importing an XHTML File">
 				<param name="Local" value="HTML Files/Creating a DTB/Creating and Working with Projects/Creating a project by importing an xhtml file.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Creating a project by importing DAISY book">
+				<param name="Name" value="Creating a project by importing DAISY Book">
 				<param name="Local" value="HTML Files\Creating a DTB\Creating and Working with Projects\Creating a project by importing DAISY book.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Audio Settings for the Project">
+				<param name="Local" value="HTML Files\Creating a DTB\Creating and Working with Projects\Audio settings for the project.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Opening a Project">
@@ -728,6 +776,10 @@
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Backup and Recovery">
 				<param name="Local" value="HTML Files\Creating a DTB\Creating and Working with Projects\Backup and Recovery.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Merging Projects">
+				<param name="Local" value="HTML Files\Creating a DTB\Creating and Working with Projects\Merging projects.htm">
 				</OBJECT>
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
@@ -798,6 +850,10 @@
 				<param name="Local" value="HTML Files/Creating a DTB/Working with Phrases/Cutting, Copying, and Pasting the Phrases.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Adjusting the Boundaries of a Phrase">
+				<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Adjusting boundaries of phrase.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Merging Phrases">
 				<param name="Local" value="HTML Files/Creating a DTB/Working with Phrases/Merging the Phrases.htm">
 				</OBJECT>
@@ -832,7 +888,7 @@
 					</OBJECT>
 			</UL>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Cropping the Audio from a Phrase">
+				<param name="Name" value="Cropping Audio from a Phrase">
 				<param name="Local" value="HTML Files/Creating a DTB/Working with Phrases/Cropping the audio from a phrase.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
@@ -858,6 +914,10 @@
 						<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Assigning a page role.htm">
 						</OBJECT>
 					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Renumbering Following Pages">
+						<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Renumbering following pages.htm">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
 						<param name="Name" value="Adding Empty Pages">
 						<param name="Local" value="HTML Files/Creating a DTB/Working with Phrases/Adding Empty Pages.htm">
 						</OBJECT>
@@ -876,6 +936,36 @@
 						<param name="Local" value="HTML Files/Creating a DTB/Working with Phrases/Editing Custom Roles.htm">
 						</OBJECT>
 				</UL>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Skippable Notes">
+				<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Skippable notes.htm">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Creating a Skippable Note">
+					<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Creating a skippable note.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Associating Skippable Note with Anchor">
+					<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Associating Skippable Note with Anchor.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Navigating to or within a Skippable Note">
+					<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Navigating to or within a Skippable note.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Removing Association">
+					<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Removing association.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Editing Multiple Associations">
+					<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Editing multiple associations.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Clearing the role of Skippable Note">
+					<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Clearing role of skippable note.htm">
+					</OBJECT>
 			</UL>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Changing the Todo or Used Status">
@@ -934,10 +1024,22 @@
 					<param name="Name" value="Creating Structure while Recording">
 					<param name="Local" value="HTML Files/Creating a DTB/Working with Audio/Creating Structure while Recording.htm">
 					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Live Waveform Creation">
+					<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Live waveform creation.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="On-the-fly Phrase Detection">
+					<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\On-the-fly Phrase Detection.htm">
+					</OBJECT>
 			</UL>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Importing Audio Files">
 				<param name="Local" value="HTML Files/Creating a DTB/Working with Audio/Importing Audio Files.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Generating Audio with TTS">
+				<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Generating audio with TTS.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Playback">
@@ -965,10 +1067,6 @@
 					<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Fast Play.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
-					<param name="Name" value="Nudging the Audio Cursor">
-					<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Nudging the audio cursor.htm">
-					</OBJECT>
-				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Rewind and Fast Forward">
 					<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Rewind and Fast Forward.htm">
 					</OBJECT>
@@ -982,13 +1080,23 @@
 					</OBJECT>
 			</UL>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Previewing Audio">
-				<param name="Local" value="HTML Files/Creating a DTB/Working with Audio/Previewing the Audio.htm">
-				</OBJECT>
-			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Editing Audio">
 				<param name="Local" value="HTML Files/Creating a DTB/Working with Audio/Editing the Audio.htm">
 				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Previewing Audio">
+					<param name="Local" value="HTML Files/Creating a DTB/Working with Audio/Previewing the Audio.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Nudge command and Fine Navigation">
+					<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Nudge command and Fine navigation.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Replacing Selection with External Audio">
+					<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Replacing selection with external audio.htm">
+					</OBJECT>
+			</UL>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Exporting audio to an External file">
 				<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Exporting audio to external file.htm">
@@ -1048,6 +1156,10 @@
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Walkthrough 4: Import audio and mark structure during editing">
 				<param name="Local" value="HTML Files\Walkthroughs and FAQs\Walkthroughs\Walkthrough 4.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Walkthrough 5: Generate a DAISY book from pre-recorded audio by an automated process">
+				<param name="Local" value="HTML Files\Walkthroughs and FAQs\Walkthroughs\Walkthrough 5.htm">
 				</OBJECT>
 		</UL>
 		<LI> <OBJECT type="text/sitemap">
