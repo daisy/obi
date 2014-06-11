@@ -543,10 +543,6 @@
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu\Clear role.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
-					<param name="Name" value="Edit custom role">
-					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu\Edit custom role.htm">
-					</OBJECT>
-				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Renumber following pages">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Phrases Menu\Renumber following pages.htm">
 					</OBJECT>
@@ -627,16 +623,24 @@
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Tools Menu\Preferences.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Update Language Pack">
+					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Tools Menu\Update language pack.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Export audio">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Tools Menu\Export audio.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
-					<param name="Name" value="Export as DAISY">
+					<param name="Name" value="Export as DAISY/EPUB">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Tools Menu\Export as Daisy.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Clean unreferenced audio">
 					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Tools Menu\Clean unreferenced audio.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="EPUB 3 Validator">
+					<param name="Local" value="HTML Files\Exploring the GUI\The Menu Bar\Tools Menu\EPUB 3 Validator.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="DAISY 2.02 Light Validator">
@@ -1089,6 +1093,10 @@
 					<param name="Local" value="HTML Files/Creating a DTB/Working with Audio/Previewing the Audio.htm">
 					</OBJECT>
 				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Step Back and Step Forward">
+					<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Step Back and Step Forward.htm">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
 					<param name="Name" value="Nudge command and Fine Navigation">
 					<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Nudge command and Fine navigation.htm">
 					</OBJECT>
@@ -1108,12 +1116,16 @@
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Exporting as DAISY DTB">
+				<param name="Name" value="Exporting the Project">
 				<param name="Local" value="HTML Files/Creating a DTB/Exporting and Validating DTB/Exporting as DAISY DTB.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Validating the Exported DTB">
+				<param name="Name" value="Validating DAISY DTB">
 				<param name="Local" value="HTML Files/Creating a DTB/Exporting and Validating DTB/Validating the Exported DTB.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Validating EPUB Book">
+				<param name="Local" value="HTML Files\Creating a DTB\Exporting and Validating DTB\Validating EPUB book.htm">
 				</OBJECT>
 		</UL>
 	</UL>
