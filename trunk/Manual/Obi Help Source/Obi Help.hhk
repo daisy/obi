@@ -150,6 +150,8 @@
 		<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Play on Navigaye.htm">
 		<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Effect of Content View Navigation during Playback.htm">
 		<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Quick Reference to Todo phrases.htm">
+		<param name="URL" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Collect special phrases and navigate.htm">
+		<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Finding and Navigating.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="synchronize">
@@ -157,9 +159,17 @@
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="find">
-		<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Finding an Item.htm">
-		<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Finding a page or phrase.htm">
+		<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Finding and Navigating.htm">
+		<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Search by Page number.htm">
 		<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Quick Reference to Todo phrases.htm">
+		<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Search by Phrase index.htm">
+		<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Search by Text.htm">
+		<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Navigate using Time.htm">
+		<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Collect special phrases and navigate.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="collect special phrases">
+		<param name="Local" value="HTML Files\Exploring the GUI\Obi Views and Transport Bar\Collect special phrases and navigate.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="zoom">
@@ -185,6 +195,12 @@
 		<param name="Local" value="HTML Files\Exploring the GUI\The Preferences Dialog\Project Preferences.htm">
 		<param name="Local" value="HTML Files\Exploring the GUI\The Preferences Dialog\Audio Preferences.htm">
 		<param name="Local" value="HTML Files\Exploring the GUI\The Preferences Dialog\User Profile Preferences.htm">
+		<param name="Local" value="HTML Files\Exploring the GUI\The Preferences Dialog\Keyboard shortcut preferences.htm">
+		<param name="Local" value="HTML Files\Exploring the GUI\The Preferences Dialog\Color preferences.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="color">
+		<param name="Local" value="HTML Files\Exploring the GUI\The Preferences Dialog\Color preferences.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="create">
@@ -325,10 +341,12 @@
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="increase">
 		<param name="Local" value="HTML Files\Creating a DTB\Working with Sections\Changing the level of a section.htm">
+		<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Nudge command and Fine navigation.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="decrease">
 		<param name="Local" value="HTML Files\Creating a DTB\Working with Sections\Changing the level of a section.htm">
+		<param name="Local" value="HTML Files\Creating a DTB\Working with Audio\Nudge command and Fine navigation.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="used">
@@ -429,6 +447,16 @@
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="clear">
 		<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Assigning and Clearing Roles.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="skippable note">
+		<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Skippable notes.htm">
+		<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Creating a skippable note.htm">
+		<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Associating Skippable Note with Anchor.htm">
+		<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Navigating to or within a Skippable note.htm">
+		<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Removing association.htm">
+		<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Editing multiple associations.htm">
+		<param name="Local" value="HTML Files\Creating a DTB\Working with Phrases\Clearing role of skippable note.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="todo">
