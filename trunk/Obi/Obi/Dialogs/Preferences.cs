@@ -1368,8 +1368,10 @@ namespace Obi.Dialogs
         private void m_btn_Apply_Click(object sender, EventArgs e)
         {
             Color tempEmptyBackgroundColor = mSettings.ColorSettings.EmptySectionBackgroundColor;
+            Color tempEmptyBackgroundColorHC = mSettings.ColorSettingsHC.EmptySectionBackgroundColor;
             UpdateColorSettings();
-            if (tempEmptyBackgroundColor != mSettings.ColorSettings.EmptySectionBackgroundColor)
+            if (((tempEmptyBackgroundColor != mSettings.ColorSettings.EmptySectionBackgroundColor) && !SystemInformation.HighContrast) ||
+                 ((tempEmptyBackgroundColorHC != mSettings.ColorSettingsHC.EmptySectionBackgroundColor) && SystemInformation.HighContrast))
             {
                 UpdateBackgroundColorRequired = true;
             }
