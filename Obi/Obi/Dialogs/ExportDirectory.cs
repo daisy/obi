@@ -123,6 +123,17 @@ namespace Obi.Dialogs
             }
             
         }
+        public bool CreateDummyTextCheckboxEnabled
+        {
+            get { return m_chkBoxDummyTextHTMLfiles.Checked; }
+            set
+            {
+                m_chkBoxDummyTextHTMLfiles.Enabled = value;               
+            }
+
+        }
+
+
         public int EPUBFileLength
         {
             get

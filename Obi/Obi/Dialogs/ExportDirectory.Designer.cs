@@ -46,6 +46,7 @@ namespace Obi.Dialogs
             this.m_chkBoxFilenameLengthLimit = new System.Windows.Forms.CheckBox();
             this.m_numericUpDownFilenameLengthLimit = new System.Windows.Forms.NumericUpDown();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_chkBoxDummyTextHTMLfiles = new System.Windows.Forms.CheckBox();
             this.m_EpubFileNamegroupBox = new System.Windows.Forms.GroupBox();
             this.m_numericUpDownEpubFilenameLengthLimit = new System.Windows.Forms.NumericUpDown();
             this.m_chkBoxEpubFilenameLengthLimit = new System.Windows.Forms.CheckBox();
@@ -177,6 +178,13 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
+            // m_chkBoxDummyTextHTMLfiles
+            // 
+            resources.ApplyResources(this.m_chkBoxDummyTextHTMLfiles, "m_chkBoxDummyTextHTMLfiles");
+            this.m_chkBoxDummyTextHTMLfiles.Name = "m_chkBoxDummyTextHTMLfiles";
+            this.helpProvider1.SetShowHelp(this.m_chkBoxDummyTextHTMLfiles, ((bool)(resources.GetObject("m_chkBoxDummyTextHTMLfiles.ShowHelp"))));
+            this.m_chkBoxDummyTextHTMLfiles.UseVisualStyleBackColor = true;
+            // 
             // m_EpubFileNamegroupBox
             // 
             this.m_EpubFileNamegroupBox.Controls.Add(this.m_numericUpDownEpubFilenameLengthLimit);
@@ -203,6 +211,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_chkBoxDummyTextHTMLfiles);
             this.Controls.Add(this.m_EpubFileNamegroupBox);
             this.Controls.Add(this.m_grpBoxSectionNameOperation);
             this.Controls.Add(this.m_grpBoxMP3Encoding);
@@ -255,5 +264,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.GroupBox m_EpubFileNamegroupBox;
         private System.Windows.Forms.NumericUpDown m_numericUpDownEpubFilenameLengthLimit;
         private System.Windows.Forms.CheckBox m_chkBoxEpubFilenameLengthLimit;
+        private System.Windows.Forms.CheckBox m_chkBoxDummyTextHTMLfiles;
     }
 }
