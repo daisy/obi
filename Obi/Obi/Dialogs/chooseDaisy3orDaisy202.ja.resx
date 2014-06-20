@@ -280,7 +280,7 @@
     <value>3</value>
   </data>
   <data name="m_radBtnEpub3.Text" xml:space="preserve">
-    <value>EPUB 3 Audio Book</value>
+    <value>EPUB 3 オーディオブック</value>
   </data>
   <data name="&gt;&gt;m_radBtnEpub3.Name" xml:space="preserve">
     <value>m_radBtnEpub3</value>

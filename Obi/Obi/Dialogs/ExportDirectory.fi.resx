@@ -154,7 +154,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblDirectoryPath.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="mPathTextBox.AccessibleName" xml:space="preserve">
     <value>Hakemisto vientitoiminnolle</value>
@@ -163,13 +163,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 17</value>
+    <value>125, 17</value>
   </data>
   <data name="mPathTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mPathTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>328, 22</value>
   </data>
   <data name="mPathTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -184,7 +184,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPathTextBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="mSelectButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -217,7 +217,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mSelectButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="mOKButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -226,7 +226,7 @@
     <value>Flat</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 232</value>
+    <value>125, 307</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -235,7 +235,7 @@
     <value>100, 28</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -250,7 +250,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -259,7 +259,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 232</value>
+    <value>276, 307</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -268,7 +268,7 @@
     <value>100, 28</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Peruuta</value>
@@ -283,7 +283,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -310,13 +310,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.AccessibleName" xml:space="preserve">
     <value>Luo yksi äänitiedosto kappaletta kohden laajuudessa:</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>339, 52</value>
+    <value>340, 52</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
@@ -334,7 +334,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_checkBoxMP3Encoder.AccessibleDescription" xml:space="preserve">
     <value>Tallenna MP3 muotoon valintaruutu</value>
@@ -474,24 +474,6 @@
   <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
-    <value>Lisäasetus</value>
-  </data>
-  <data name="m_btnAdvance.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_btnAdvance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>368, 19</value>
-  </data>
-  <data name="m_btnAdvance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="m_btnAdvance.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="m_btnAdvance.Text" xml:space="preserve">
-    <value>Lisä&amp;asetus</value>
-  </data>
   <data name="&gt;&gt;m_btnAdvance.Name" xml:space="preserve">
     <value>m_btnAdvance</value>
   </data>
@@ -523,28 +505,25 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_grpBoxMP3Encoding.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
-  <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>Tiedostonimen pituusraja</value>
+  <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
+    <value>Lisäasetus</value>
   </data>
-  <data name="m_chkBoxFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_btnAdvance.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="m_chkBoxFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="m_btnAdvance.Location" type="System.Drawing.Point, System.Drawing">
+    <value>368, 19</value>
   </data>
-  <data name="m_chkBoxFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 48</value>
+  <data name="m_btnAdvance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
   </data>
-  <data name="m_chkBoxFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 20</value>
+  <data name="m_btnAdvance.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="m_chkBoxFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="m_chkBoxFilenameLengthLimit.Text" xml:space="preserve">
-    <value>&amp;Tiedostonimen pituusraja :</value>
+  <data name="m_btnAdvance.Text" xml:space="preserve">
+    <value>Lisä&amp;asetus</value>
   </data>
   <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Name" xml:space="preserve">
     <value>m_chkBoxFilenameLengthLimit</value>
@@ -557,21 +536,6 @@
   </data>
   <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="m_numericUpDownFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>Tiedostonimen pituusrajan numeerinen astus</value>
-  </data>
-  <data name="m_numericUpDownFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_numericUpDownFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 47</value>
-  </data>
-  <data name="m_numericUpDownFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
-  </data>
-  <data name="m_numericUpDownFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
   </data>
   <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Name" xml:space="preserve">
     <value>m_numericUpDownFilenameLengthLimit</value>
@@ -607,16 +571,139 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_grpBoxSectionNameOperation.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
+    <value>Tiedostonimen pituusraja</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 48</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 20</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="m_chkBoxFilenameLengthLimit.Text" xml:space="preserve">
+    <value>&amp;Tiedostonimen pituusraja :</value>
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.AccessibleName" xml:space="preserve">
+    <value>Tiedostonimen pituusrajan numeerinen astus</value>
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>227, 47</value>
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
+  </data>
+  <data name="m_numericUpDownFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
+  </data>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
+    <value>EPUB Tiedostonimen pituusrajan numeerinen astus</value>
+  </data>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>223, 29</value>
+  </data>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
+  </data>
+  <data name="m_numericUpDownEpubFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Name" xml:space="preserve">
+    <value>m_numericUpDownEpubFilenameLengthLimit</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Parent" xml:space="preserve">
+    <value>m_EpubFileNamegroupBox</value>
+  </data>
+  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
+    <value>EPUB Tiedostonimen pituusraja</value>
+  </data>
+  <data name="m_chkBoxEpubFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_chkBoxEpubFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_chkBoxEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 31</value>
+  </data>
+  <data name="m_chkBoxEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 20</value>
+  </data>
+  <data name="m_chkBoxEpubFilenameLengthLimit.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="m_chkBoxEpubFilenameLengthLimit.Text" xml:space="preserve">
+    <value>EPUB Tiedostonimen pituusraja :</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Name" xml:space="preserve">
+    <value>m_chkBoxEpubFilenameLengthLimit</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Parent" xml:space="preserve">
+    <value>m_EpubFileNamegroupBox</value>
+  </data>
+  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 228</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>487, 57</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
+    <value>EPUB Tiedostonimen pituusraja:</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
+    <value>m_EpubFileNamegroupBox</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>574, 285</value>
+    <value>574, 360</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
