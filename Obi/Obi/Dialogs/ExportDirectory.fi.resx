@@ -193,7 +193,7 @@
     <value>Flat</value>
   </data>
   <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>461, 13</value>
+    <value>471, 13</value>
   </data>
   <data name="mSelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
