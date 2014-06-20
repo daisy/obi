@@ -163,13 +163,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 17</value>
+    <value>125, 17</value>
   </data>
   <data name="mPathTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mPathTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 22</value>
+    <value>328, 22</value>
   </data>
   <data name="mPathTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -316,7 +316,7 @@
     <value>見出しごとに一つの音声ファイルを作成:</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 52</value>
+    <value>239, 52</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
@@ -424,10 +424,10 @@
     <value>256</value>
   </data>
   <data name="m_ComboBoxBitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 19</value>
+    <value>223, 19</value>
   </data>
   <data name="m_ComboBoxBitrate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 24</value>
+    <value>121, 24</value>
   </data>
   <data name="m_ComboBoxBitrate.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -514,7 +514,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btnAdvance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>378, 19</value>
+    <value>368, 19</value>
   </data>
   <data name="m_btnAdvance.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -613,7 +613,7 @@
     <value>Obi Help.chm</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>Numeric Up Down EPUB File name Length Limit</value>
+    <value>EPUB 数字上下　ファイル名の長さ制限</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -640,7 +640,7 @@
     <value>0</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>EPUB Filename Length Limit</value>
+    <value>EPUB ファイル名の長さ制限</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -658,7 +658,7 @@
     <value>12</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Text" xml:space="preserve">
-    <value>EPUB Filename Length Limit</value>
+    <value>EPUB ファイル名の長さ制限：</value>
   </data>
   <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Name" xml:space="preserve">
     <value>m_chkBoxEpubFilenameLengthLimit</value>
@@ -685,7 +685,7 @@
     <value>14</value>
   </data>
   <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
-    <value>EPUB Filename Length :</value>
+    <value>EPUB ファイル名の長さ制限:</value>
   </data>
   <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
     <value>m_EpubFileNamegroupBox</value>

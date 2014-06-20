@@ -150,7 +150,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_radBtnDaisy3.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_radBtnDaisy202.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -177,20 +177,20 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_radBtnDaisy202.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_OKBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_OKBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>93, 48</value>
+    <value>127, 43</value>
   </data>
   <data name="m_OKBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
   <data name="m_OKBtn.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_OKBtn.Text" xml:space="preserve">
     <value>OK</value>
@@ -205,19 +205,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_OKBtn.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_BtnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 48</value>
+    <value>242, 43</value>
   </data>
   <data name="m_BtnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
   <data name="m_BtnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_BtnCancel.Text" xml:space="preserve">
     <value>Peruuta</value>
@@ -232,7 +232,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_BtnCancel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_radBtnDaisy3_202.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -241,7 +241,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_radBtnDaisy3_202.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 12</value>
+    <value>209, 12</value>
   </data>
   <data name="m_radBtnDaisy3_202.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 17</value>
@@ -262,16 +262,43 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_radBtnDaisy3_202.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
+  </data>
+  <data name="m_radBtnEpub3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_radBtnEpub3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>386, 12</value>
+  </data>
+  <data name="m_radBtnEpub3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 17</value>
+  </data>
+  <data name="m_radBtnEpub3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_radBtnEpub3.Text" xml:space="preserve">
+    <value>EPUB 3 äänikirja</value>
+  </data>
+  <data name="&gt;&gt;m_radBtnEpub3.Name" xml:space="preserve">
+    <value>m_radBtnEpub3</value>
+  </data>
+  <data name="&gt;&gt;m_radBtnEpub3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_radBtnEpub3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_radBtnEpub3.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>372, 78</value>
+    <value>515, 78</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>DAISY Standard Selection</value>
