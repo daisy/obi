@@ -163,13 +163,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 17</value>
+    <value>185, 17</value>
   </data>
   <data name="mPathTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mPathTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 22</value>
+    <value>280, 22</value>
   </data>
   <data name="mPathTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
