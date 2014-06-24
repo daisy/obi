@@ -2368,7 +2368,7 @@ Texte de l'erreur: {1}</value>
     <value>Afficher les spectres audio dans la vue du contenu</value>
   </data>
   <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
-    <value>Toujours ignorer l'indentation pour les fichiers DAISY exportés</value>
+    <value>Toujours ignorer le découpage pour les fichiers DAISY exportés</value>
   </data>
   <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
     <value>Afficher la phrase suivante</value>

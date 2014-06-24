@@ -1246,14 +1246,14 @@
     <value>244, 22</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
-    <value>Enregistrer plus d&amp;e phrases suivantes</value>
+    <value>Enregistrer sur les phrases suivantes</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
 
-    <value>Ap&amp;erçu avant enregistrement</value>
+    <value> Aperçu avant enregistrement</value>
   </data>
   <data name="mMonitorContinuouslyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
