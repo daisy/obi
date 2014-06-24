@@ -251,7 +251,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>&amp;Fin note</value>
+    <value>&amp;Note facultative</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
