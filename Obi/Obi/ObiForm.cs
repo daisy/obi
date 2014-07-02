@@ -2545,7 +2545,8 @@ namespace Obi
                                     AudioLib.SampleRate.Hz44100,
                                     mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
                                     false, ExportDialogEPUB3.LevelSelection, 
-                                    ExportDialogEPUB3.EpubLengthCheckboxEnabled?  mSettings.Export_EPUBFileNameLengthLimit:0);
+                                    ExportDialogEPUB3.EpubLengthCheckboxEnabled?  mSettings.Export_EPUBFileNameLengthLimit:0,
+                                    ExportDialogEPUB3.CreateDummyTextCheckboxEnabled);
 
                                 EPUB3_Export.AddSectionNameToAudioFile = ExportDialogEPUB3.AppendSectionNameToAudioFileName;
                                 EPUB3_Export.AudioFileNameCharsLimit = ExportDialogEPUB3.AudioFileNameCharsLimit;
