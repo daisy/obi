@@ -340,7 +340,7 @@
     <value>10</value>
   </data>
   <data name="m_lblCustomClassName.Text" xml:space="preserve">
-    <value>カスタムクラス名:(&amp;u)</value>
+    <value>カスタムクラス名(&amp;u)</value>
   </data>
   <data name="&gt;&gt;m_lblCustomClassName.Name" xml:space="preserve">
     <value>m_lblCustomClassName</value>

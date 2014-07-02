@@ -145,7 +145,7 @@
     <value>1</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>既定のプロジェクトディレクトリ(&amp;d)</value>
+    <value>既定のプロジェクト保存先(&amp;d)</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -160,7 +160,7 @@
     <value>8</value>
   </data>
   <data name="mDirectoryTextbox.AccessibleName" xml:space="preserve">
-    <value>既定のプロジェクトディレクトリ</value>
+    <value>既定のプロジェクト保存先</value>
   </data>
   <data name="mDirectoryTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -550,7 +550,7 @@
     <value>4</value>
   </data>
   <data name="mPipelineTextbox.AccessibleName" xml:space="preserve">
-    <value>Pipelineスクリプトディレクトリ</value>
+    <value>Pipelineスクリプト保存先</value>
   </data>
   <data name="mPipelineTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -625,7 +625,7 @@
     <value>4</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Pipelineスクリプトディレクトリ(&amp;P)</value>
+    <value>Pipelineスクリプト保存先(&amp;P)</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -859,13 +859,13 @@
     <value>6</value>
   </data>
   <data name="m_cbOperation.Items" xml:space="preserve">
-    <value>長さを調整する</value>
+    <value>Nudge</value>
   </data>
   <data name="m_cbOperation.Items1" xml:space="preserve">
-    <value>長さプレビュー</value>
+    <value>プレビュー</value>
   </data>
   <data name="m_cbOperation.Items2" xml:space="preserve">
-    <value>長さ巻き戻し</value>
+    <value>巻き戻し</value>
   </data>
   <data name="m_cbOperation.Items3" xml:space="preserve">
     <value>直前の無音(フレーズ検知）</value>
@@ -1603,7 +1603,7 @@
     <value>41</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
-    <value>ショートカットを削除(&amp;R)</value>
+    <value>ショートカット削除(&amp;R)</value>
   </data>
   <data name="&gt;&gt;m_btnRemove.Name" xml:space="preserve">
     <value>m_btnRemove</value>
