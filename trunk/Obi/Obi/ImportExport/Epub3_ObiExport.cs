@@ -32,6 +32,7 @@ namespace Obi.ImportExport
     {
         private List<string> m_FilesList_Html = null;
         private List<string> m_SmilDurationForOpfMetadata = null;
+        private bool m_CreateDummyText = false; //@dummytext
         private readonly string m_OutputDirectoryName = null;
         private string m_EpubParentDirectoryPath = null;
         private readonly string m_Filename_NavigationHtml = null;        
@@ -39,7 +40,7 @@ namespace Obi.ImportExport
         public const string NS_URL_EPUB = "http://www.idpf.org/2007/ops";
 
         public Epub3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,ushort mp3BitRate ,
-            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, int EPUBFileNameLengthLimit):
+            SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, int EPUBFileNameLengthLimit, bool createDummyText):
             base (presentation, exportDirectory, navListElementNamesList, encodeToMp3,mp3BitRate ,
             sampleRate, stereo, skipACM, audioFileSectionLevel)
         {
@@ -58,7 +59,8 @@ namespace Obi.ImportExport
             {
                 Directory.CreateDirectory(m_OutputDirectory);
             }
-              m_Meta_infFileName = "META-INF" ;  
+              m_Meta_infFileName = "META-INF" ;
+              m_CreateDummyText = createDummyText; //@dummytext
         }
 
 
@@ -132,6 +134,7 @@ namespace Obi.ImportExport
                 XmlNode sectionXmlNode = null;
                 string strSectionID = null;
                 string strTextId = null;
+                XmlNode htmlCurrentDivNode = null; //@dummytext
 
                 bool isBranchingActive = false;
                 urakawa.core.TreeNode branchStartTreeNode = null;
@@ -189,6 +192,14 @@ namespace Obi.ImportExport
                     hNode.AppendChild(
                         htmlDocument.CreateTextNode(((SectionNode)n).Label )) ;
                     headingNodeToXmlNodeMap.Add(n, sectionXmlNode);
+
+                    if (m_CreateDummyText) //@dummytext
+                    {
+                        htmlCurrentDivNode = htmlDocument.CreateElement("div", htmlBodyNode.NamespaceURI);
+                        sectionXmlNode.AppendChild(htmlCurrentDivNode);
+                        string strDivID = GetNextID(ID_DTBPrefix);
+                        XmlDocumentHelper.CreateAppendXmlAttribute(htmlDocument, htmlCurrentDivNode, "id", strDivID);
+                    }
                 }
                 
 
@@ -585,6 +596,13 @@ namespace Obi.ImportExport
                 {
                     strTextId = strContentDocPageId;
                 }
+                if (m_CreateDummyText) //@dummytext
+                {
+                    htmlCurrentDivNode = htmlDocument.CreateElement("div", htmlBodyNode.NamespaceURI);
+                    sectionXmlNode.AppendChild(htmlCurrentDivNode);
+                    string strDivID = GetNextID(ID_DTBPrefix);
+                    XmlDocumentHelper.CreateAppendXmlAttribute(htmlDocument, htmlCurrentDivNode, "id", strDivID);
+                }
                 }
                 //obi: commented for now
                     /*
@@ -834,7 +852,19 @@ namespace Obi.ImportExport
 
                 if (SmilTextNode != null && SmilTextNode.Attributes.GetNamedItem("src") == null)
                 {
-                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", htmlFileName + "#" + strTextId);
+                    if (m_CreateDummyText && htmlCurrentDivNode != null) //@dummytext
+                    {
+                        XmlNode dummySpanNode = htmlDocument.CreateElement("span", htmlCurrentDivNode.NamespaceURI);
+                        htmlCurrentDivNode.AppendChild(dummySpanNode);
+                        string strSpanID = GetNextID(ID_DTBPrefix);
+                        XmlDocumentHelper.CreateAppendXmlAttribute(htmlDocument, dummySpanNode, "id", strSpanID);
+
+                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", htmlFileName + "#" + strSpanID);
+                    }
+                    else
+                    {
+                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", htmlFileName + "#" + strTextId);
+                    }
                 }
 
                 
