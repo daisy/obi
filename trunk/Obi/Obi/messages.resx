@@ -2664,4 +2664,7 @@ Error text: {1}</value>
   <data name="Project_SaveObiLocation" xml:space="preserve">
     <value>Save location of Obi</value>
   </data>
+  <data name="Project_ObiFormSaveSize" xml:space="preserve">
+    <value>Save Obi Form size and change peakmeter location alongwith Obi Form</value>
+  </data>
 </root>

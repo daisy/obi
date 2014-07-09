@@ -5047,6 +5047,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Obi Form size and change peakmeter location alongwith Obi Form.
+        /// </summary>
+        internal static string Project_ObiFormSaveSize {
+            get {
+                return ResourceManager.GetString("Project_ObiFormSaveSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save location of Obi.
         /// </summary>
         internal static string Project_SaveObiLocation {

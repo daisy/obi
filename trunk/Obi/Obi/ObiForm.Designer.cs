@@ -1607,6 +1607,7 @@ namespace Obi
             this.Load += new System.EventHandler(this.ObiForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ObiForm_FormClosing);
             this.Resize += new System.EventHandler(this.ObiForm_Resize);
+            this.LocationChanged += new System.EventHandler(this.ObiForm_LocationChanged);
             this.ResizeEnd += new System.EventHandler(this.ObiForm_ResizeEnd);
             this.mMenuStrip.ResumeLayout(false);
             this.mMenuStrip.PerformLayout();
