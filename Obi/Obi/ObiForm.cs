@@ -1463,7 +1463,7 @@ namespace Obi
             // Remember the form size in the settings.
             private void ObiForm_ResizeEnd(object sender, EventArgs e)
             {
-                if (mPeakMeter != null && !m_ShowingPeakMeter) 
+                if ((mPeakMeter != null && !m_ShowingPeakMeter)|| mSettings.Project_ObiFormSaveSize)
                 {
                     mSettings.ObiFormSize = Size;
                     
@@ -3794,7 +3794,7 @@ namespace Obi
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 
-                if (mSettings.ObiFormSize.Width == 0 || mSettings.ObiFormSize.Height == 0)
+                if (mSettings.ObiFormSize.Width == 0 || mSettings.ObiFormSize.Height == 0 || !mSettings.Project_ObiFormSaveSize)
                 {
                     mSettings.ObiFormSize = Size;
                 }
@@ -5381,6 +5381,15 @@ namespace Obi
                     epubValidator.ShowDialog();
                 }
 
+            }
+
+            private void ObiForm_LocationChanged(object sender, EventArgs e)
+            {
+                if (mPeakMeter != null && mSettings.Project_ObiFormSaveSize)
+                {
+                    mPeakMeter.Top = this.Top;
+                    mPeakMeter.Left = this.Right;
+                }
             }
 
 
