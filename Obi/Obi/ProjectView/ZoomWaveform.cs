@@ -131,17 +131,17 @@ namespace Obi.ProjectView
                     {
                        if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection is AudioSelection && m_NudgeAtRight)
                         {
-                            double endTime = ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionEndTime;
-                            int Val = m_AudioBlock.UpdateCursorTime(endTime);
+                            double endTime = ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionEndTime != 0 ? ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionEndTime : ((AudioSelection)m_ProjectView.Selection).AudioRange.CursorTime;
+                            int Val = m_AudioBlock.UpdateSelectionTime(endTime);
                             if ((Val >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (Val < Math.Abs(m_AudioBlock.Location.X)))
                             {
                                 panelZooomWaveform.AutoScrollPosition = new Point(Val, panelZooomWaveform.AutoScrollPosition.Y);
                             }
-                        }
+                         }
                         if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection is AudioSelection && m_NudgeAtLeft)
                         {
-                            double endTime = ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionEndTime;
-                            int Val = m_AudioBlock.UpdateCursorTime(endTime);
+                            double endTime = ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionEndTime != 0 ? ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionEndTime : ((AudioSelection)m_ProjectView.Selection).AudioRange.CursorTime;
+                            int Val = m_AudioBlock.UpdateSelectionTime(endTime);
                             int tempVar = m_ContentView.Width - Val + Math.Abs(m_AudioBlock.Location.X);
                             if ((tempVar < 0) || (Val < Math.Abs(m_AudioBlock.Location.X)))
                             {
@@ -151,7 +151,7 @@ namespace Obi.ProjectView
                         if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection is AudioSelection && m_NudgeAtRightFromLeft)
                         {
                             double endTime = ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionBeginTime;
-                            int Val = m_AudioBlock.UpdateCursorTime(endTime);
+                            int Val = m_AudioBlock.UpdateSelectionTime(endTime);
                             if ((Val >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (Val < Math.Abs(m_AudioBlock.Location.X)))
                             {
                                 panelZooomWaveform.AutoScrollPosition = new Point(Val, panelZooomWaveform.AutoScrollPosition.Y);
@@ -161,7 +161,7 @@ namespace Obi.ProjectView
                         {
                          
                                 double endTime = ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionBeginTime;
-                                int Val = m_AudioBlock.UpdateCursorTime(endTime);
+                                int Val = m_AudioBlock.UpdateSelectionTime(endTime);
                                 if ((Val >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (Val < Math.Abs(m_AudioBlock.Location.X)))
                                 {
                                     panelZooomWaveform.AutoScrollPosition = new Point(Val, panelZooomWaveform.AutoScrollPosition.Y);
@@ -621,6 +621,20 @@ namespace Obi.ProjectView
                  m_NudgeAtRight = false;
                  return true;
              }
+             else if (keyData == keyboardShortcuts.ContentView_TransportBarNudgeBackward.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+             {
+                 m_NudgeAtLeft = true;
+                 m_ContentView.NudgeInFineNavigation(false);
+                 m_NudgeAtLeft = false;
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ContentView_TransportBarNudgeForward.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+             {
+                 m_NudgeAtRight = true;
+                 m_ContentView.NudgeInFineNavigation(true);
+                 m_NudgeAtRight = false;
+                 return true;
+             }
              else if (keyData == keyboardShortcuts.ContentView_ExpandAudioSelectionAtLeft.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
              {
                  m_NudgeAtRightFromLeft = true;
@@ -631,10 +645,8 @@ namespace Obi.ProjectView
              else if (keyData == keyboardShortcuts.ContentView_ContractAudioSelectionAtLeft.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
              {
                  m_NudgeAtLeftFromLeft = true;
-               //  m_NudgeAtLeftFromLeftFlag = true;
                  m_ProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ContractAtLeft);
                  m_NudgeAtLeftFromLeft = false;
-               //  m_NudgeAtLeftFromLeftFlag = false;
                  return true;
              }
              else if (keyData == keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value)
