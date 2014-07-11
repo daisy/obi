@@ -455,6 +455,13 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Set the Selection time and return the position inside the waveform.
+        /// </summary>
+        public int SetSelectionTime(double time)
+        {
+            return XFromTime(time);
+        }
+        /// <summary>
         /// Clear the current selection in the waveform.
         /// </summary>
         public void Deselect()

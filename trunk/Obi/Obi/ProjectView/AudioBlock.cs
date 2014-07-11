@@ -113,6 +113,10 @@ public void SetWaveformForZoom(PhraseNode node)
         /// Update the playback cursor time, and return its (horizontal) position in the waveform.
         /// </summary>
         public int UpdateCursorTime(double time) { return mWaveform != null ? mWaveform.SetCursorTime(time): 0; }
+        /// <summary>
+        /// Update the Selection time, and return its (horizontal) position in the waveform.
+        /// </summary>
+        public int UpdateSelectionTime(double time) { return mWaveform != null ? mWaveform.SetSelectionTime(time) : 0; }
 
         /// <summary>
         /// True if selection in the waveform is enabled.
