@@ -561,61 +561,71 @@ namespace Obi.ProjectView
                  ZoomSelection();
                  return true;
              }
-            if (keyData == keyboardShortcuts.ContentView_SelectPrecedingPhrase.Value && this.ActiveControl!=toolStripZoomPanel && this.ActiveControl!=m_Edit)
-            {
-                m_ContentView.NudgeInFineNavigation(false);
-                return true; 
-            }
-            else if (keyData == keyboardShortcuts.ContentView_SelectFollowingPhrase.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
-            {
-                m_ContentView.NudgeInFineNavigation(true);
-                return true; 
-            }
-            else if (keyData == keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value )
-            {
-                m_ContentView.NudgeIntervalIncrement(false);
-                return true;
-            }
-            else if (keyData == keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value )
-            {
-                m_ContentView.NudgeIntervalIncrement(true);
-                return true;
-            }
-            else if (keyData == Keys.Tab
-        && this.ActiveControl != null)
-            {
-                Control c = this.ActiveControl;
-                this.SelectNextControl(c, true, true, false, true);
-                //Console.WriteLine(c.ToString());
-                //Console.WriteLine(m_ProjectView.Selection);
-                if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
-                    System.Media.SystemSounds.Beep.Play();
-            
-                return true;
-            }
-            else if (keyData == (Keys)(Keys.Shift | Keys.Tab)
-                 && this.ActiveControl != null)
-            {
-                Control c = this.ActiveControl;
-                this.SelectNextControl(c, false, true, false, true);
-                if (this.ActiveControl != null && c.TabIndex < this.ActiveControl.TabIndex)
-                    System.Media.SystemSounds.Beep.Play();
+             else if (keyData == keyboardShortcuts.ContentView_SelectPrecedingPhrase.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+             {
+                 m_ContentView.NudgeInFineNavigation(false);
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ContentView_SelectFollowingPhrase.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+             {
+                 m_ContentView.NudgeInFineNavigation(true);
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ContentView_ExpandAudioSelectionAtLeft.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+             {
+                 m_ProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ExpandAtLeft);
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ContentView_ContractAudioSelectionAtLeft.Value && this.ActiveControl != toolStripZoomPanel && this.ActiveControl != m_Edit)
+             {
+                 m_ProjectView.TransportBar.NudgeSelectedAudio(TransportBar.NudgeSelection.ContractAtLeft);
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value)
+             {
+                 m_ContentView.NudgeIntervalIncrement(false);
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value)
+             {
+                 m_ContentView.NudgeIntervalIncrement(true);
+                 return true;
+             }
+             else if (keyData == Keys.Tab
+         && this.ActiveControl != null)
+             {
+                 Control c = this.ActiveControl;
+                 this.SelectNextControl(c, true, true, false, true);
+                 //Console.WriteLine(c.ToString());
+                 //Console.WriteLine(m_ProjectView.Selection);
+                 if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
+                     System.Media.SystemSounds.Beep.Play();
 
-                return true;
-            }
-            else if (keyData == keyboardShortcuts.ContentView_SelectUp.Value)
-            {
-                if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection.Control != null && m_ProjectView.Selection is Obi.AudioSelection)
-                {
-                    IControlWithSelection tempControl;
-                    tempControl = m_ProjectView.Selection.Control;
-                    m_ProjectView.Selection = new NodeSelection((ObiNode)m_Node, tempControl);
-                }
-            }
-            else if (keyData == Keys.Right || keyData == Keys.Left)
-            {
-                return false;
-            }
+                 return true;
+             }
+             else if (keyData == (Keys)(Keys.Shift | Keys.Tab)
+                  && this.ActiveControl != null)
+             {
+                 Control c = this.ActiveControl;
+                 this.SelectNextControl(c, false, true, false, true);
+                 if (this.ActiveControl != null && c.TabIndex < this.ActiveControl.TabIndex)
+                     System.Media.SystemSounds.Beep.Play();
+
+                 return true;
+             }
+             else if (keyData == keyboardShortcuts.ContentView_SelectUp.Value)
+             {
+                 if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection.Control != null && m_ProjectView.Selection is Obi.AudioSelection)
+                 {
+                     IControlWithSelection tempControl;
+                     tempControl = m_ProjectView.Selection.Control;
+                     m_ProjectView.Selection = new NodeSelection((ObiNode)m_Node, tempControl);
+                 }
+             }
+             else if (keyData == Keys.Right || keyData == Keys.Left)
+             {
+                 return false;
+             }
             if (keyData == keyboardShortcuts.ContentView_ScrollDown_LargeIncrementWithSelection.Value || keyData == keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value
                 || keyData == keyboardShortcuts.ContentView_SelectFollowingStripCursor.Value || keyData == keyboardShortcuts.ContentView_SelectPrecedingStripCursor.Value
                 || keyData == keyboardShortcuts.ContentView_SelectFollowingStrip.Value || keyData == keyboardShortcuts.ContentView_SelectPrecedingStrip.Value
