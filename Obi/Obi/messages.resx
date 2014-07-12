@@ -2661,10 +2661,10 @@ Error text: {1}</value>
   <data name="AssociateNode_SelectedNodeGroupBox" xml:space="preserve">
     <value>Selected node</value>
   </data>
-  <data name="Project_SaveObiLocation" xml:space="preserve">
-    <value>Save location of Obi</value>
+  <data name="Project_SaveObiLocationAndSize" xml:space="preserve">
+    <value>Save location and size of Obi</value>
   </data>
-  <data name="Project_ObiFormSaveSize" xml:space="preserve">
-    <value>Save Obi Form size and change peakmeter location alongwith Obi Form</value>
+  <data name="Project_PeakMeterChangeLocation" xml:space="preserve">
+    <value>Change peakmeter location w.r.t Obi Form</value>
   </data>
 </root>

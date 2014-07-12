@@ -812,8 +812,8 @@ namespace Obi.Dialogs
                 }
                 mSettings.Export_AlwaysIgnoreIndentation= m_CheckBoxListView.Items[9].Checked;
                 mSettings.Project_BackgroundColorForEmptySection = m_CheckBoxListView.Items[10].Checked;
-                mSettings.Project_SaveObiLocation = m_CheckBoxListView.Items[11].Checked;
-                mSettings.Project_ObiFormSaveSize = m_CheckBoxListView.Items[12].Checked;
+                mSettings.Project_SaveObiLocationAndSize = m_CheckBoxListView.Items[11].Checked;
+                mSettings.Project_PeakMeterChangeLocation = m_CheckBoxListView.Items[12].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -937,8 +937,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_ShowWaveformsInContentView"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_AlwaysIgnoreIndentationForExportFiles"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_BackgroundColorForEmptySection"));
-                m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveObiLocation"));
-                m_CheckBoxListView.Items.Add(Localizer.Message("Project_ObiFormSaveSize"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveObiLocationAndSize"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_PeakMeterChangeLocation"));
              
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
@@ -963,10 +963,10 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[9].ToolTipText = Localizer.Message("Project_AlwaysIgnoreIndentationForExportFiles");
                 m_CheckBoxListView.Items[10].Checked = mSettings.Project_BackgroundColorForEmptySection;
                 m_CheckBoxListView.Items[10].ToolTipText = Localizer.Message("Project_BackgroundColorForEmptySection");
-                m_CheckBoxListView.Items[11].Checked = mSettings.Project_SaveObiLocation;
-                m_CheckBoxListView.Items[11].ToolTipText = Localizer.Message("Project_SaveObiLocation");
-                m_CheckBoxListView.Items[12].Checked = mSettings.Project_ObiFormSaveSize;
-                m_CheckBoxListView.Items[12].ToolTipText = Localizer.Message("Project_ObiFormSaveSize");
+                m_CheckBoxListView.Items[11].Checked = mSettings.Project_SaveObiLocationAndSize;
+                m_CheckBoxListView.Items[11].ToolTipText = Localizer.Message("Project_SaveObiLocationAndSize");
+                m_CheckBoxListView.Items[12].Checked = mSettings.Project_PeakMeterChangeLocation;
+                m_CheckBoxListView.Items[12].ToolTipText = Localizer.Message("Project_PeakMeterChangeLocation");
             }
             m_CheckBoxListView.View = View.Details;
             m_IsComplete = true;
@@ -1033,8 +1033,8 @@ namespace Obi.Dialogs
                 mSettings.Project_ShowWaveformInContentView = m_DefaultSettings.Project_ShowWaveformInContentView;
                 mSettings.Export_AlwaysIgnoreIndentation = m_DefaultSettings.Export_AlwaysIgnoreIndentation;
                 mSettings.Project_BackgroundColorForEmptySection = m_DefaultSettings.Project_BackgroundColorForEmptySection;
-                mSettings.Project_SaveObiLocation = m_DefaultSettings.Project_SaveObiLocation;
-                mSettings.Project_ObiFormSaveSize = m_DefaultSettings.Project_ObiFormSaveSize;
+                mSettings.Project_SaveObiLocationAndSize = m_DefaultSettings.Project_SaveObiLocationAndSize;
+                mSettings.Project_PeakMeterChangeLocation = m_DefaultSettings.Project_PeakMeterChangeLocation;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab

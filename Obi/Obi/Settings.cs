@@ -105,9 +105,9 @@ namespace Obi
         public bool Audio_EnforceSingleCursor;
         public bool Audio_DeleteFollowingPhrasesOfSectionAfterRecording; // delete the following phrases in section when recording stops, it is attempt to minimize the delay while recording.
         public bool Audio_DisableDeselectionOnStop;
-        public bool Project_SaveObiLocation;
+        public bool Project_SaveObiLocationAndSize;// Saves Obi last location and Size
         public Point ObiLastLocation;
-        public bool Project_ObiFormSaveSize;
+        public bool Project_PeakMeterChangeLocation; // Changes Peak meter location wrt Obi Form
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
         
 
@@ -201,9 +201,9 @@ namespace Obi
             settings.Audio_EnforceSingleCursor = false;
             settings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording = false;
             settings.Audio_DisableDeselectionOnStop = false;
-            settings.Project_SaveObiLocation = false;
+            settings.Project_SaveObiLocationAndSize = false;
             settings.ObiLastLocation = new Point(0, 0);
-            settings.Project_ObiFormSaveSize = false;
+            settings.Project_PeakMeterChangeLocation = false;
         }
 
         /// <summary>
