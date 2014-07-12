@@ -1463,10 +1463,14 @@ namespace Obi
             // Remember the form size in the settings.
             private void ObiForm_ResizeEnd(object sender, EventArgs e)
             {
-                if ((mPeakMeter != null && !m_ShowingPeakMeter)|| mSettings.Project_ObiFormSaveSize)
+                if ((mPeakMeter != null && !m_ShowingPeakMeter)|| mSettings.Project_SaveObiLocationAndSize)
                 {
-                    mSettings.ObiFormSize = Size;
-                    
+                    mSettings.ObiFormSize = Size;                    
+                }
+                if (mSettings.Project_PeakMeterChangeLocation && mPeakMeter != null)
+                {
+                    mPeakMeter.Top = this.Top;
+                    mPeakMeter.Left = this.Right;
                 }
                 m_ShowingPeakMeter = false;
             }
@@ -2955,14 +2959,14 @@ namespace Obi
                                                           mSettings.PipelineScriptsPath));
                     }
                     Ready();
-                    if (mSettings.Project_SaveObiLocation)
+                    if (mSettings.Project_SaveObiLocationAndSize)
                     {
                         this.StartPosition = FormStartPosition.Manual;
                         this.Location = mSettings.ObiLastLocation;
                     }
                     
                     //CheckSystemSupportForMemoryOptimization();
-                }
+                 }
                 catch (Exception e)
                 {
                     if (mProjectView != null)
@@ -3794,7 +3798,7 @@ namespace Obi
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 
-                if (mSettings.ObiFormSize.Width == 0 || mSettings.ObiFormSize.Height == 0 || !mSettings.Project_ObiFormSaveSize)
+                if (mSettings.ObiFormSize.Width == 0 || mSettings.ObiFormSize.Height == 0 || !mSettings.Project_SaveObiLocationAndSize)
                 {
                     mSettings.ObiFormSize = Size;
                 }
@@ -5383,17 +5387,6 @@ namespace Obi
 
             }
 
-            private void ObiForm_LocationChanged(object sender, EventArgs e)
-            {
-                if (mPeakMeter != null && mSettings.Project_ObiFormSaveSize)
-                {
-                    mPeakMeter.Top = this.Top;
-                    mPeakMeter.Left = this.Right;
-                }
-            }
-
-
-
-
+ 
         }
     }
