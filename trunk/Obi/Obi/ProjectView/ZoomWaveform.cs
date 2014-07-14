@@ -206,6 +206,7 @@ namespace Obi.ProjectView
             else if(m_ContentView.ZoomFactor<=1)
             {
                 this.Height = m_ContentView.Height;
+
             }
             if (m_ZoomfactorFlag == false || m_ContentView.ZoomFactor > 1.1)
             {
@@ -223,6 +224,21 @@ namespace Obi.ProjectView
             
             m_ResizeIsDone = true;
             this.Width = m_ContentView.Width;
+            if (m_AudioBlock != null && m_AudioBlock.Waveform != null)
+            {
+                // Below commented code can be used if we want to increase the hight of the Zoom panel in case of resizing.
+
+                //panelZooomWaveform.Height = this.Height - (toolStripZoomPanel.Height + btntxtZoomSelected.Height + m_Edit.Height);
+                //m_AudioBlock.SetZoomFactorAndHeight(m_ZoomFactor, panelZooomWaveform.Height);
+                //btntxtZoomSelected.Location = new Point(0, panelZooomWaveform.Height + btntxtZoomSelected.Height + m_Edit.Height);
+                //int tempVerticalPosition = btntxtZoomSelected.Location.Y;
+                //toolStripZoomPanel.Location = new Point(0, btntxtZoomSelected.Location.Y - (btntxtZoomSelected.Height)); //new Point(0, this.Height - btntxtZoomSelected.Height - 100);
+                //m_Edit.Location = new Point(0, toolStripZoomPanel.Location.Y - m_Edit.Height);
+               // m_AudioBlock.SetZoomFactorAndHeight(m_ZoomFactor, panelZooomWaveform.Height);
+
+                // Below code increases width of the Audio Block.                
+                panelZooomWaveform.Width = this.Width-30;                
+             }
             btntxtZoomSelected.Width = this.Width - 40;            
          
         }
