@@ -133,7 +133,14 @@ namespace Obi.Dialogs
                         
         }
 
-        public bool EPUB_CreateDummyTextInHtml { get { return m_chkBoxDummyTextHTMLfiles.Enabled && m_chkBoxDummyTextHTMLfiles.Checked; } }
+        public bool EPUB_CreateDummyTextInHtml 
+        { 
+            get { return m_chkBoxDummyTextHTMLfiles.Enabled && m_chkBoxDummyTextHTMLfiles.Checked; }
+            set
+            {
+                m_chkBoxDummyTextHTMLfiles.Checked = value;
+            }
+        }
 
         public int EPUBFileLength
         {

@@ -2475,6 +2475,7 @@ namespace Obi
                         //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                         ExportDialogEPUB3.EpubLengthCheckboxEnabled = true;
                         ExportDialogEPUB3.CreateDummyTextCheckboxEnabled = true;
+                        ExportDialogEPUB3.EPUB_CreateDummyTextInHtml = mSettings.Export_EPUBCreateDummyText;
                         ExportDialogEPUB3.AdditionalTextForTitle = "Epub 3";
                         ExportDialogEPUB3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
                                                              mSettings.Export_AppendSectionNameToAudioFile;
@@ -2502,6 +2503,7 @@ namespace Obi
                                                                      dialog.LimitLengthOfAudioFileNames;
                             mSettings.Export_AudioFilesNamesLengthLimit = dialog.AudioFileNameCharsLimit;
                             if (ExportDialogEPUB3 != null && ExportDialogEPUB3.EpubLengthCheckboxEnabled) mSettings.Export_EPUBFileNameLengthLimit = ExportDialogEPUB3.EPUBFileLength;
+                            if (ExportDialogEPUB3 != null ) mSettings.Export_EPUBCreateDummyText = ExportDialogEPUB3.EPUB_CreateDummyTextInHtml;
                             if (!string.IsNullOrEmpty(exportPathDAISY3) && !exportPathDAISY3.EndsWith(Path.DirectorySeparatorChar.ToString()))
                             {
                                 exportPathDAISY3 += Path.DirectorySeparatorChar;
