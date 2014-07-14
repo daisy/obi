@@ -578,6 +578,7 @@ namespace Obi.ImportExport
                     }
                     string strContentDocPageId = GetNextID(ID_DTBPrefix) ;
                     XmlNode spanNode = htmlDocument.CreateElement ("span", sectionXmlNode.NamespaceURI ) ;
+                    sectionXmlNode.AppendChild(htmlDocument.CreateElement("br",sectionXmlNode.NamespaceURI)); // line break before page
                     sectionXmlNode.AppendChild(spanNode) ;
                     XmlDocumentHelper.CreateAppendXmlAttribute (htmlDocument, spanNode, "epub:type", "pagebreak", NS_URL_EPUB) ;
                     XmlDocumentHelper.CreateAppendXmlAttribute (htmlDocument, spanNode, "id", strContentDocPageId) ;
