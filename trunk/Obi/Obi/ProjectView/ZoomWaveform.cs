@@ -870,6 +870,7 @@ namespace Obi.ProjectView
                     }
                 }
             }
+            this.UpdateCursorTime(0);
         }
 
           private void btnPreviousPhrasetoolStrip_Click(object sender, EventArgs e)
@@ -921,6 +922,7 @@ namespace Obi.ProjectView
                     }
                 }
             }
+            this.UpdateCursorTime(0);
         }
 
           private void btnZoomIntoolStrip_Click(object sender, EventArgs e)
