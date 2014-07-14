@@ -106,6 +106,15 @@ namespace Obi.ImportExport
             ////System.Windows.Forms.MessageBox.Show(m_ListOfLevels.Count.ToString());
             XmlNode olHeadingsNode = null;
             List<XmlNode> listOfOlHeadings = new List<XmlNode>();
+            string strCssFileName = null;
+
+            if (m_CreateDummyText)
+            {
+                string cssPath = CreateCSSFile();
+                strCssFileName = Path.GetFileName(cssPath);
+                m_FilesList_ExternalFiles.Add(strCssFileName);
+            }
+
 
             foreach (urakawa.core.TreeNode urakawaNode in m_ListOfLevels)
                         {
@@ -166,6 +175,15 @@ namespace Obi.ImportExport
                     headingNodeToXmlNodeMap = new Dictionary<TreeNode, XmlNode>();
                     
 
+                    // adding css if required
+                    if (m_CreateDummyText) //@dummytext
+                    {
+                        XmlNode linkNode = htmlDocument.CreateElement("link", htmlHeadNode.NamespaceURI);
+                        XmlDocumentHelper.CreateAppendXmlAttribute(htmlDocument, linkNode, "rel", "stylesheet");
+                        XmlDocumentHelper.CreateAppendXmlAttribute(htmlDocument, linkNode, "type", "text/css");
+                        XmlDocumentHelper.CreateAppendXmlAttribute(htmlDocument, linkNode, "href", strCssFileName);
+                        htmlHeadNode.AppendChild(linkNode);
+                    }
                 }
                 // create nodes in xhtml content document.
                 // one file per level means that there should be one heading in one html file
@@ -1686,6 +1704,18 @@ string meta_InfPath = Path.Combine(m_EpubParentDirectoryPath, m_Meta_infFileName
             urakawa.daisy.export.Epub3_Export.ZipEpub(EPUBFilePath, m_EpubParentDirectoryPath);            
             
         }
+
+        private string CreateCSSFile()
+        {
+            string cssPath = Path.Combine (m_OutputDirectory,"invisible.css") ;
+            FileStream fs = File.Create(cssPath);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("div{display:none}");
+            sw.Close();
+            sw = null;
+            return cssPath;
+        }
+
 
         private string RefineString(string str)
         {
