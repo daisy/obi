@@ -39,6 +39,7 @@ namespace Obi.ProjectView
         private bool m_NudgeAtLeft = false;
         private bool m_NudgeAtRightFromLeft = false;
         private bool m_NudgeAtLeftFromLeft = false;
+        private int m_InitialPanelHeight = 0;
             
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -239,7 +240,15 @@ namespace Obi.ProjectView
                 // Below code increases width of the Audio Block.                
                 panelZooomWaveform.Width = this.Width-30;                
              }
-            btntxtZoomSelected.Width = this.Width - 40;            
+            btntxtZoomSelected.Width = this.Width - 40;
+            if (m_InitialPanelHeight > this.Height)
+            {
+                this.AutoScroll = true;
+            }
+            else
+            {
+                this.AutoScroll = false;
+            }
          
         }
          public void ZoomAudioFocus()
@@ -423,8 +432,8 @@ namespace Obi.ProjectView
                         panelZooomWaveform.Height = this.Height - (toolStripZoomPanel.Height + btntxtZoomSelected.Height + m_Edit.Height + 15);
                         this.AutoScrollMinSize = new Size(this.Width, this.Height + 15);
                     }
-                   
-                             
+
+                    m_InitialPanelHeight = this.Height;         
                     panelZooomWaveform.Width = this.Width - 30;
                     panelZooomWaveform.Location = new Point(0, 0);
                    
