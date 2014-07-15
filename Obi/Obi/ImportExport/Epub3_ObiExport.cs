@@ -215,6 +215,7 @@ namespace Obi.ImportExport
                     {
                         htmlCurrentDivNode = htmlDocument.CreateElement("div", htmlBodyNode.NamespaceURI);
                         sectionXmlNode.AppendChild(htmlCurrentDivNode);
+                        sectionXmlNode.AppendChild(htmlCurrentDivNode);
                         string strDivID = GetNextID(ID_DTBPrefix);
                         XmlDocumentHelper.CreateAppendXmlAttribute(htmlDocument, htmlCurrentDivNode, "id", strDivID);
                     }
@@ -618,6 +619,7 @@ namespace Obi.ImportExport
                 if (m_CreateDummyText) //@dummytext
                 {
                     htmlCurrentDivNode = htmlDocument.CreateElement("div", htmlBodyNode.NamespaceURI);
+                    sectionXmlNode.AppendChild(htmlDocument.CreateElement("br", sectionXmlNode.NamespaceURI));
                     sectionXmlNode.AppendChild(htmlCurrentDivNode);
                     string strDivID = GetNextID(ID_DTBPrefix);
                     XmlDocumentHelper.CreateAppendXmlAttribute(htmlDocument, htmlCurrentDivNode, "id", strDivID);
