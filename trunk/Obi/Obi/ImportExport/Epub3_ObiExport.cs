@@ -618,6 +618,7 @@ namespace Obi.ImportExport
                 }
                 if (m_CreateDummyText) //@dummytext
                 {
+                    if (htmlCurrentDivNode != null && !htmlCurrentDivNode.HasChildNodes) htmlCurrentDivNode.ParentNode.RemoveChild(htmlCurrentDivNode);
                     htmlCurrentDivNode = htmlDocument.CreateElement("div", htmlBodyNode.NamespaceURI);
                     sectionXmlNode.AppendChild(htmlDocument.CreateElement("br", sectionXmlNode.NamespaceURI));
                     sectionXmlNode.AppendChild(htmlCurrentDivNode);
