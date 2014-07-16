@@ -5887,7 +5887,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to secondes.
+        ///   Looks up a localized string similar to seconds.
         /// </summary>
         internal static string seconds {
             get {

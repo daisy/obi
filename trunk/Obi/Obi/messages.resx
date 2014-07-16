@@ -1023,7 +1023,7 @@ Error text: {1}</value>
     <comment>Used for time formating (singular)</comment>
   </data>
   <data name="seconds" xml:space="preserve">
-    <value>secondes</value>
+    <value>seconds</value>
     <comment>Used for time formating (plural)</comment>
   </data>
   <data name="section_level" xml:space="preserve">

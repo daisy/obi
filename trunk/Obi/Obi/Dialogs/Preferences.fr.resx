@@ -826,7 +826,7 @@
     <value>5</value>
   </data>
   <data name="m_OperationDurationUpDown.AccessibleName" xml:space="preserve">
-    <value>Durée en millisecondes</value>
+    <value>Durée en milliseconds</value>
   </data>
   <data name="m_OperationDurationUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>335, 153</value>
