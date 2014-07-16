@@ -493,7 +493,7 @@
     <value>6</value>
   </data>
   <data name="m_lbl_Seconds.Text" xml:space="preserve">
-    <value>secondes</value>
+    <value>seconds</value>
   </data>
   <data name="&gt;&gt;m_lbl_Seconds.Name" xml:space="preserve">
     <value>m_lbl_Seconds</value>
