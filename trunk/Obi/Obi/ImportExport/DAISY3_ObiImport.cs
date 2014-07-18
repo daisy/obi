@@ -25,11 +25,13 @@ namespace Obi.ImportExport
         private Settings m_Settings;
         private urakawa.metadata.Metadata m_TitleMetadata;
         private urakawa.metadata.Metadata m_IdentifierMetadata;
-        private List<EmptyNode> m_PhrasesWithTruncatedAudio;
+        protected List<PhraseNode> m_PhrasesWithTruncatedAudio;
         private List<string> m_ErrorsList;
         private urakawa.property.channel.TextChannel m_textChannel;
         private urakawa.property.channel.AudioChannel m_audioChannel;
         protected Dictionary<string, SectionNode> m_XmlIdToSectionNodeMap = new Dictionary<string, SectionNode>();
+        protected Dictionary<string, EmptyNode> m_XmlIdToPageNodeMap = new Dictionary<string, EmptyNode>();
+        
 
         public DAISY3_ObiImport(Session session, Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate, bool stereo)
             : base(bookfile, outDir, skipACM, audioProjectSampleRate, stereo, false, true)
@@ -40,7 +42,7 @@ namespace Obi.ImportExport
             if (System.IO.Path.GetExtension(bookfile).ToLower() == ".opf") this.AudioNCXImport = true;
 
             PopulateMetadatasToRemoveList();
-            m_PhrasesWithTruncatedAudio = new List<EmptyNode>();
+            m_PhrasesWithTruncatedAudio = new List<PhraseNode>();
             m_ErrorsList = new List<string>();
             base.IsRenameOfProjectFileAndDirsAllowedAfterImport= false;
         }
@@ -87,6 +89,8 @@ namespace Obi.ImportExport
             m_TitleMetadata = m_Presentation.GetFirstMetadataItem(Metadata.DC_TITLE);
             m_IdentifierMetadata = m_Presentation.GetFirstMetadataItem(Metadata.DC_IDENTIFIER);
             m_XmlIdToSectionNodeMap = new Dictionary<string, SectionNode>();
+            m_XmlIdToPageNodeMap = new Dictionary<string, EmptyNode>();
+            
         }
 
         protected override TreeNode CreateTreeNodeForNavPoint(TreeNode parentNode, XmlNode navPoint)
@@ -452,6 +456,11 @@ namespace Obi.ImportExport
                         if (parentTreeNode != null)
                         {
                             treeNode = CreateAndAddTreeNodeForContentDocument(parentTreeNode, xmlNode);
+                            if (treeNode != null && treeNode is EmptyNode && ((EmptyNode)treeNode).PageNumber != null)
+                            {
+                                string strfRefID = Path.GetFileName(filePath) + "#" + xmlNode.Attributes.GetNamedItem("id").Value;
+                                m_XmlIdToPageNodeMap.Add(strfRefID, (EmptyNode)treeNode);
+                            }
                             //parentTreeNode.AppendChild(treeNode);
                         }
                         if (xmlNode.ParentNode != null && xmlNode.ParentNode.NodeType == XmlNodeType.Document)
@@ -497,7 +506,7 @@ namespace Obi.ImportExport
                         {
                             ((SectionNode)parentTreeNode).Label = xmlNode.InnerText;
                             string strfRefID = Path.GetFileName(filePath) + "#" + xmlNode.Attributes.GetNamedItem("id").Value;
-                            m_XmlIdToSectionNodeMap.Add(strfRefID, (SectionNode)parentTreeNode);
+                             m_XmlIdToSectionNodeMap.Add(strfRefID, (SectionNode)parentTreeNode);
                         }
                         if (treeNode != null && treeNode is SectionNode && xmlNode.LocalName == "doctitle")
                         {
@@ -636,12 +645,18 @@ namespace Obi.ImportExport
                     ((SectionNode)parentNode).AppendChild(treeNode);
                 }
             }
-            else if (node.LocalName == "pagenum" && parentNode is SectionNode)
+            else if ( parentNode is SectionNode
+                && (node.LocalName == "pagenum" || 
+                (node.LocalName == "span" && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops")!= null
+                && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops").Value == "pagebreak" )))
             {
                 EmptyNode treeNode = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
                 createdNode = treeNode;
                 ((SectionNode)parentNode).AppendChild(treeNode);
 
+                PageNumber number = null;
+                if (node.LocalName == "pagenum")
+                {//1
                 string strKind = node.Attributes.GetNamedItem("page").Value;
                 string pageNumberString = node.InnerText;
 
@@ -649,24 +664,36 @@ namespace Obi.ImportExport
                 strKind == "normal" ? PageKind.Normal :
                 PageKind.Special;
 
-                PageNumber number = null;
+                
                 if (kind == PageKind.Special && pageNumberString != null && pageNumberString != "")
-                {
+                {//2
                     number = new PageNumber(pageNumberString);
-                }
+                }//-2
                 else if (kind == PageKind.Front || kind == PageKind.Normal)
-                {
+                {//2
                     int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
                     if (pageNumber > 0)
-                    {
+                    {//3
                         number = new PageNumber(pageNumber, kind);
-                    }
+                    }//-3
+                }//-2
+                }//-1
+                else if (node.LocalName == "span" && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops") != null
+           && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops").Value == "pagebreak")
+                {
+                    XmlNode pageTitle = node.Attributes.GetNamedItem("title");
+                    string pageNumberString = pageTitle != null ? pageTitle.Value :
+                        node.InnerText;
+                    int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
+                    number = new PageNumber(pageNumber, PageKind.Normal);
+                    
+                }
                     if (number != null)
                     {
                         ((EmptyNode)treeNode).PageNumber = number;
 
                     }
-                }
+                
             }
             return createdNode;
         }
@@ -813,16 +840,20 @@ namespace Obi.ImportExport
 
         public void CorrectExternalAudioMedia()
         {
-            if (TreenodesWithoutManagedAudioMediaData == null || TreenodesWithoutManagedAudioMediaData.Count == 0) return;
-            for (int i = 0; i < TreenodesWithoutManagedAudioMediaData.Count; i++)
+            if (TreenodesWithoutManagedAudioMediaData != null && TreenodesWithoutManagedAudioMediaData.Count > 0)
             {
-                if (TreenodesWithoutManagedAudioMediaData[i] is PhraseNode)
+                for (int i = 0; i < TreenodesWithoutManagedAudioMediaData.Count; i++)
                 {
-                    PhraseNode phrase = (PhraseNode)TreenodesWithoutManagedAudioMediaData[i];
-                    ReplaceExternalAudioMediaPhraseWithEmptyNode(phrase);
+                    if (TreenodesWithoutManagedAudioMediaData[i] is PhraseNode)
+                    {
+                        PhraseNode phrase = (PhraseNode)TreenodesWithoutManagedAudioMediaData[i];
+                        ReplaceExternalAudioMediaPhraseWithEmptyNode(phrase);
+                    }
                 }
             }
+
         }
+            
 
     }
 }
