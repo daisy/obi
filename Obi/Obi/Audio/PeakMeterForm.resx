@@ -132,7 +132,7 @@
     <value>mGraphicalPeakMeter</value>
   </data>
   <data name="&gt;&gt;mGraphicalPeakMeter.Type" xml:space="preserve">
-    <value>Obi.UserControls.GraphicalPeakMeter, Obi, Version=2.6.1.40374, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.GraphicalPeakMeter, Obi, Version=3.3.4.23482, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mGraphicalPeakMeter.Parent" xml:space="preserve">
     <value>$this</value>

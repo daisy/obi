@@ -58,6 +58,7 @@ namespace Obi.Audio
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chkOnTop);
             this.Controls.Add(this.mGraphicalPeakMeter);
+            this.MaximizeBox = false;
             this.Name = "PeakMeterForm";
             this.ResizeBegin += new System.EventHandler(this.PeakMeterForm_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.PeakMeterForm_ResizeEnd);
