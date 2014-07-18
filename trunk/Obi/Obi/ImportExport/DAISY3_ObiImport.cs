@@ -20,7 +20,7 @@ namespace Obi.ImportExport
 {
     public class DAISY3_ObiImport : urakawa.daisy.import.Daisy3_Import
     {
-        private ObiPresentation m_Presentation;
+        protected ObiPresentation m_Presentation;
         private Session m_Session;
         private Settings m_Settings;
         private urakawa.metadata.Metadata m_TitleMetadata;
@@ -29,6 +29,7 @@ namespace Obi.ImportExport
         private List<string> m_ErrorsList;
         private urakawa.property.channel.TextChannel m_textChannel;
         private urakawa.property.channel.AudioChannel m_audioChannel;
+        protected Dictionary<string, SectionNode> m_XmlIdToSectionNodeMap = new Dictionary<string, SectionNode>();
 
         public DAISY3_ObiImport(Session session, Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate, bool stereo)
             : base(bookfile, outDir, skipACM, audioProjectSampleRate, stereo, false, true)
@@ -85,6 +86,7 @@ namespace Obi.ImportExport
 
             m_TitleMetadata = m_Presentation.GetFirstMetadataItem(Metadata.DC_TITLE);
             m_IdentifierMetadata = m_Presentation.GetFirstMetadataItem(Metadata.DC_IDENTIFIER);
+            m_XmlIdToSectionNodeMap = new Dictionary<string, SectionNode>();
         }
 
         protected override TreeNode CreateTreeNodeForNavPoint(TreeNode parentNode, XmlNode navPoint)
@@ -418,15 +420,7 @@ namespace Obi.ImportExport
                     }
                 case XmlNodeType.Document:
                     {
-                        /*
-                        XmlDocument xmlDoc = ((XmlDocument)xmlNode);
-                        XmlNodeList styleSheetNodeList = xmlDoc.SelectNodes
-                                                      ("/processing-instruction(\"xml-stylesheet\")");
-                        if (styleSheetNodeList != null && styleSheetNodeList.Count > 0)
-                        {
-                            AddStyleSheetsToXuk(styleSheetNodeList);
-                        }
-                        */
+                        
                         XmlNode bodyElement = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlNode, true, "body", null);
 
                         if (bodyElement == null)
@@ -438,17 +432,7 @@ namespace Obi.ImportExport
                         {
                             Presentation presentation = m_Project.Presentations.Get(0);
                             presentation.PropertyFactory.DefaultXmlNamespaceUri = bodyElement.NamespaceURI;
-                            /*
-                            // preserve internal DTD if it exists in dtbook 
-                            string strInternalDTD = ExtractInternalDTD(((XmlDocument)xmlNode).DocumentType);
-                            if (strInternalDTD != null)
-                            {
-                                byte[] bytesArray = System.Text.Encoding.UTF8.GetBytes(strInternalDTD);
-                                MemoryStream ms = new MemoryStream(bytesArray);
-ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Create<ExternalFiles.DTDExternalFileData>();
-                                dtdEfd.InitializeWithData(ms, "DTBookLocalDTD.dtd", false);
-                            }
-                            */
+                            
                             parseContentDocument(filePath, project, bodyElement, parentTreeNode, null, docMarkupType);
                         }
                         //parseContentDocument(((XmlDocument)xmlNode).DocumentElement, parentTreeNode);
@@ -462,8 +446,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
 
                         if (parentTreeNode == null)
                         {
-                            //treeNode = presentation.TreeNodeFactory.Create();
-                            //presentation.RootNode = treeNode;
+                            
                             parentTreeNode = presentation.RootNode;
                         }
                         if (parentTreeNode != null)
@@ -506,117 +489,15 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                             // => xmlProp.GetNamespaceUri() == xmlNode.NamespaceURI
                         }
 
-                        /*
-                        string updatedSRC = null;
-                        if (xmlNode.LocalName == "img")
-                        {
-                            XmlNode getSRC = xmlNode.Attributes.GetNamedItem("src");
-                            if (getSRC != null)
-                            {
-                                string relativePath = xmlNode.Attributes.GetNamedItem("src").Value;
-                                if (!relativePath.StartsWith("http://"))
-                                {
-                                    
-                                    string parentPath = Directory.GetParent(filePath).FullName;
-                                    string imgSourceFullpath = Path.Combine(parentPath, relativePath);
-
-                                    if (File.Exists(imgSourceFullpath))
-                                    {
-                                        updatedSRC = Path.GetFullPath(imgSourceFullpath).Replace(
-                                            Path.GetDirectoryName(m_Book_FilePath), "");
-                                        if (updatedSRC.StartsWith("" + Path.DirectorySeparatorChar))
-                                        {
-                                            updatedSRC = updatedSRC.Remove(0, 1);
-                                        }
-
-
-                                        //ChannelsProperty chProp = presentation.PropertyFactory.CreateChannelsProperty();
-                                        //treeNode.AddProperty(chProp);
-                                        ChannelsProperty chProp = treeNode.GetOrCreateChannelsProperty();
-
-                                        urakawa.media.data.image.ImageMediaData imageData =
-                                            CreateImageMediaData(presentation, Path.GetExtension(imgSourceFullpath));
-                                        imageData.InitializeImage(imgSourceFullpath, updatedSRC);
-                                        media.data.image.ManagedImageMedia managedImage =
-                                            presentation.MediaFactory.CreateManagedImageMedia();
-                                        managedImage.MediaData = imageData;
-                                        chProp.SetMedia(m_ImageChannel, managedImage);
-                                    }
-                                    else
-                                    {
-                                        ExternalImageMedia externalImage = presentation.MediaFactory.CreateExternalImageMedia();
-                                        externalImage.Src = relativePath;
-
-                                        ChannelsProperty chProp = treeNode.GetOrCreateChannelsProperty();
-                                        chProp.SetMedia(m_ImageChannel, externalImage);
-                                    }
-                                     
-                                }
-                         
-                            }
-                         
-                        }
-                        */
-
-                        /*
-                        XmlAttributeCollection attributeCol = xmlNode.Attributes;
-
-                        if (attributeCol != null)
-                        {
-                            for (int i = 0; i < attributeCol.Count; i++)
-                            {
-                                XmlNode attr = attributeCol.Item(i);
-                                if (attr.LocalName != "smilref"
-                                    && attr.LocalName != "imgref") // && attr.Name != "xmlns:xsi" && attr.Name != "xml:space"
-                                {
-                                    if (attr.Name.Contains(":"))
-                                    {
-                                        string[] splitArray = attr.Name.Split(':');
-
-                                        if (splitArray[0] == "xmlns")
-                                        {
-                                            if (xmlNode.LocalName == "book" || treeNode.Parent == null)
-                                            {
-                                                xmlProp.SetAttribute(attr.Name, attr.NamespaceURI, attr.Value);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            xmlProp.SetAttribute(attr.Name, attr.NamespaceURI, attr.Value);
-                                        }
-                                    }
-                                    else if (updatedSRC != null && attr.LocalName == "src")
-                                    {
-                                        xmlProp.SetAttribute(attr.LocalName, "", updatedSRC);
-                                    }
-                                    else
-                                    {
-                                        if (attr.LocalName == "xmlns")
-                                        {
-                                            if (attr.Value != presentation.PropertyFactory.DefaultXmlNamespaceUri)
-                                            {
-                                                xmlProp.SetAttribute(attr.LocalName, "", attr.Value);
-                                            }
-                                        }
-                                        else if (string.IsNullOrEmpty(attr.NamespaceURI)
-                                            || attr.NamespaceURI == presentation.PropertyFactory.DefaultXmlNamespaceUri)
-                                        {
-                                            xmlProp.SetAttribute(attr.LocalName, "", attr.Value);
-                                        }
-                                        else
-                                        {
-                                            xmlProp.SetAttribute(attr.Name, attr.NamespaceURI, attr.Value);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        */
+                        
+                        
                         if (parentTreeNode is SectionNode
                             && (xmlNode.LocalName == "h1" || xmlNode.LocalName == "h2" || xmlNode.LocalName == "h3"
                             || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" || xmlNode.LocalName == "HD"))
                         {
                             ((SectionNode)parentTreeNode).Label = xmlNode.InnerText;
+                            string strfRefID = Path.GetFileName(filePath) + "#" + xmlNode.Attributes.GetNamedItem("id").Value;
+                            m_XmlIdToSectionNodeMap.Add(strfRefID, (SectionNode)parentTreeNode);
                         }
                         if (treeNode != null && treeNode is SectionNode && xmlNode.LocalName == "doctitle")
                         {
@@ -741,7 +622,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
         {
             TreeNode createdNode = null;
             //Console.WriteLine(node.LocalName);
-            if (node.LocalName.StartsWith("level") || node.LocalName == "doctitle")
+            if (node.LocalName.StartsWith("level") || node.LocalName == "doctitle" || node.LocalName == "section")
             {
                 //Console.WriteLine("creating section ");
                 SectionNode treeNode = m_Presentation.CreateSectionNode();
