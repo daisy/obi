@@ -36,6 +36,7 @@ namespace Obi.ImportExport
                 return;
             }
 
+            
             Presentation spinePresentation = m_Project.Presentations.Get(0);
 
             //spinePresentation.RootNode.GetOrCreateXmlProperty().SetQName("spine", "");
@@ -328,6 +329,7 @@ namespace Obi.ImportExport
 
                             TreeNode textTreeNode = null;
                             XmlNode audioNode = null ;
+                            PageNumber pgNumber = null;
                             //XmlNodeList children = audioNode.ParentNode.ChildNodes;
                             XmlNodeList children = textNode.ParentNode.ChildNodes;
                             foreach (XmlNode child in children)
@@ -391,7 +393,7 @@ namespace Obi.ImportExport
                                     if (textTreeNode != null)
                                     {
                                         section = (SectionNode)textTreeNode;
-                                        System.Windows.Forms.MessageBox.Show(((SectionNode)textTreeNode).Label);
+                                        //System.Windows.Forms.MessageBox.Show(((SectionNode)textTreeNode).Label);
                                     }
                                 }
                                 else
@@ -412,15 +414,26 @@ namespace Obi.ImportExport
 
                                     textTreeNode = spineItemPresentation.RootNode;
                                 }
+                                if (m_XmlIdToPageNodeMap.ContainsKey(urlDecoded))
+                                {
+                                    EmptyNode pgNode =  m_XmlIdToPageNodeMap[urlDecoded];
+                                    pgNumber = pgNode.PageNumber;
+                                    
+                                    if(pgNode.IsRooted)  pgNode.Detach();
+                                }
                             }
-
+                            
                             if (section != null  && audioNode != null)
                             {
                             PhraseNode audioWrapperNode = m_Presentation.CreatePhraseNode();
                             
                                 section.AppendChild(audioWrapperNode);
                                 addAudio(audioWrapperNode , audioNode, false, fullOverlayPath);
-                            
+                                if (pgNumber != null)
+                                {
+                                    audioWrapperNode.PageNumber = pgNumber;
+                                    pgNumber = null;
+                                }
                             }
 
                             audioNode = null;
@@ -542,6 +555,8 @@ namespace Obi.ImportExport
                 //}
  */                   
             }
+            
+
         }
 
     }
