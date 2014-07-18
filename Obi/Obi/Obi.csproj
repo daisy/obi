@@ -384,6 +384,7 @@
     <Compile Include="ImportExport\DAISY3_ObiExport.cs" />
     <Compile Include="ImportExport\DAISY3_ObiImport.cs" />
     <Compile Include="ImportExport\Epub3_ObiExport.cs" />
+    <Compile Include="ImportExport\EPUB3_ObiImport.cs" />
     <Compile Include="ImportExport\ImportStructure.cs">
       <SubType>Code</SubType>
     </Compile>
