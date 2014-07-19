@@ -646,7 +646,7 @@ namespace Obi.ImportExport
         
             TreeNode createdNode = null;
             //Console.WriteLine(node.LocalName);
-            if (node.LocalName.StartsWith("level") || node.LocalName == "doctitle" || node.LocalName == "section")
+            if (node.LocalName.StartsWith("level") || node.LocalName == "doctitle" )
             {
                 //Console.WriteLine("creating section ");
                 SectionNode treeNode = m_Presentation.CreateSectionNode();
