@@ -450,12 +450,12 @@ namespace Obi.ImportExport
 
                         if (parentTreeNode == null)
                         {
-                            
-                            parentTreeNode = presentation.RootNode;
+                            parentTreeNode = GetFirstTreeNodeForXmlDocument (presentation, xmlNode) ;
+                            //parentTreeNode = presentation.RootNode;
                         }
                         if (parentTreeNode != null)
                         {
-                            treeNode = CreateAndAddTreeNodeForContentDocument(parentTreeNode, xmlNode);
+                            treeNode = CreateAndAddTreeNodeForContentDocument(parentTreeNode, xmlNode,false );
                             if (treeNode != null && treeNode is EmptyNode && ((EmptyNode)treeNode).PageNumber != null)
                             {
                                 string strfRefID = Path.GetFileName(filePath) + "#" + xmlNode.Attributes.GetNamedItem("id").Value;
@@ -627,8 +627,14 @@ namespace Obi.ImportExport
             }
         }
 
-        private TreeNode CreateAndAddTreeNodeForContentDocument(TreeNode parentNode, XmlNode node)
+        protected virtual TreeNode GetFirstTreeNodeForXmlDocument (Presentation presentation, XmlNode xmlNode)
         {
+            return presentation.RootNode;
+        }
+
+        protected virtual TreeNode CreateAndAddTreeNodeForContentDocument(TreeNode parentNode, XmlNode node, bool isFirstSectionOfDoc)
+        {
+        
             TreeNode createdNode = null;
             //Console.WriteLine(node.LocalName);
             if (node.LocalName.StartsWith("level") || node.LocalName == "doctitle" || node.LocalName == "section")
@@ -646,17 +652,14 @@ namespace Obi.ImportExport
                 }
             }
             else if ( parentNode is SectionNode
-                && (node.LocalName == "pagenum" || 
-                (node.LocalName == "span" && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops")!= null
-                && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops").Value == "pagebreak" )))
+                && node.LocalName == "pagenum" )
             {
                 EmptyNode treeNode = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
                 createdNode = treeNode;
                 ((SectionNode)parentNode).AppendChild(treeNode);
 
                 PageNumber number = null;
-                if (node.LocalName == "pagenum")
-                {//1
+                
                 string strKind = node.Attributes.GetNamedItem("page").Value;
                 string pageNumberString = node.InnerText;
 
@@ -677,17 +680,7 @@ namespace Obi.ImportExport
                         number = new PageNumber(pageNumber, kind);
                     }//-3
                 }//-2
-                }//-1
-                else if (node.LocalName == "span" && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops") != null
-           && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops").Value == "pagebreak")
-                {
-                    XmlNode pageTitle = node.Attributes.GetNamedItem("title");
-                    string pageNumberString = pageTitle != null ? pageTitle.Value :
-                        node.InnerText;
-                    int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
-                    number = new PageNumber(pageNumber, PageKind.Normal);
-                    
-                }
+                
                     if (number != null)
                     {
                         ((EmptyNode)treeNode).PageNumber = number;
