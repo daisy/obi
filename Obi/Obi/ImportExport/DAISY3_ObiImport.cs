@@ -459,7 +459,9 @@ namespace Obi.ImportExport
                         }
                         if (parentTreeNode != null)
                         {
-                            treeNode = CreateAndAddTreeNodeForContentDocument(parentTreeNode, xmlNode,false );
+                            treeNode = CreateAndAddTreeNodeForContentDocument(parentTreeNode, 
+                                xmlNode,
+                                Path.GetFileName(filePath));
                             if (treeNode != null && treeNode is EmptyNode && ((EmptyNode)treeNode).PageNumber != null)
                             {
                                 string strfRefID = Path.GetFileName(filePath) + "#" + xmlNode.Attributes.GetNamedItem("id").Value;
@@ -510,7 +512,10 @@ namespace Obi.ImportExport
                         {
                             ((SectionNode)parentTreeNode).Label = xmlNode.InnerText;
                             string strfRefID = Path.GetFileName(filePath) + "#" + xmlNode.Attributes.GetNamedItem("id").Value;
-                             m_XmlIdToSectionNodeMap.Add(strfRefID, (SectionNode)parentTreeNode);
+                            if (!m_XmlIdToSectionNodeMap.ContainsKey(strfRefID))
+                            {
+                                m_XmlIdToSectionNodeMap.Add(strfRefID, (SectionNode)parentTreeNode);
+                            }
                         }
                         if (treeNode != null && treeNode is SectionNode && xmlNode.LocalName == "doctitle")
                         {
@@ -636,7 +641,7 @@ namespace Obi.ImportExport
             return presentation.RootNode;
         }
 
-        protected virtual TreeNode CreateAndAddTreeNodeForContentDocument(TreeNode parentNode, XmlNode node, bool isFirstSectionOfDoc)
+        protected virtual TreeNode CreateAndAddTreeNodeForContentDocument(TreeNode parentNode, XmlNode node, string contentFileName)
         {
         
             TreeNode createdNode = null;

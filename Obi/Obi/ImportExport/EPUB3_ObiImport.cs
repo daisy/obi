@@ -20,10 +20,13 @@ namespace Obi.ImportExport
     /// </summary>
     public class EPUB3_ObiImport : DAISY3_ObiImport
     {
+        private bool m_IsTOCFromNavDoc;
+
         public EPUB3_ObiImport(Session session, Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate, bool stereo)
             : base(session, settings, bookfile, outDir, skipACM, audioProjectSampleRate, stereo)
         {
-            AudioNCXImport = false;            
+            AudioNCXImport = false;
+            m_IsTOCFromNavDoc = false;
         }
 
         protected override void parseContentDocuments(List<string> spineOfContentDocuments,
@@ -39,6 +42,15 @@ namespace Obi.ImportExport
             
             Presentation spinePresentation = m_Project.Presentations.Get(0);
 
+            m_IsTOCFromNavDoc = false;
+            if (navDocPath != null)
+            {
+                string fullNavPath = Path.Combine(Path.GetDirectoryName(m_Book_FilePath), navDocPath);
+                
+                XmlDocument navDoc = urakawa.xuk.XmlReaderWriterHelper.ParseXmlDocument(fullNavPath, true, true);
+                ParseNCXDocument(navDoc);
+                m_IsTOCFromNavDoc = true;
+            }
             //spinePresentation.RootNode.GetOrCreateXmlProperty().SetQName("spine", "");
 
             //if (!string.IsNullOrEmpty(m_OPF_ContainerRelativePath))
@@ -69,7 +81,7 @@ namespace Obi.ImportExport
                 index++;
 
                 reportProgress(-1, String.Format(UrakawaSDK_daisy_Lang.ReadXMLDoc, docPath));
-                System.Windows.Forms.MessageBox.Show(docPath);
+                //System.Windows.Forms.MessageBox.Show(docPath);
                 //DirectoryInfo opfParentDir = Directory.GetParent(m_Book_FilePath);
                 //string dirPath = opfParentDir.ToString();
                 string fullDocPath = Path.Combine(Path.GetDirectoryName(m_Book_FilePath), docPath);
@@ -617,23 +629,41 @@ namespace Obi.ImportExport
             
         }
 
-        protected override TreeNode CreateAndAddTreeNodeForContentDocument(TreeNode parentNode, XmlNode node, bool isFirstSectionOfDoc)
+        protected override TreeNode CreateAndAddTreeNodeForContentDocument(TreeNode parentNode, XmlNode node, string contentFileName)
         {
             TreeNode createdNode = null;
             //Console.WriteLine(node.LocalName);
             if (node.LocalName == "doctitle" || node.LocalName == "section")
             {
                 //Console.WriteLine("creating section ");
-                SectionNode treeNode = m_Presentation.CreateSectionNode();
-                createdNode = treeNode;
-                if (parentNode is ObiRootNode)
-                {
-                    ((ObiNode)parentNode).AppendChild(treeNode);
-                }
+                if (m_IsTOCFromNavDoc)
+                {//1
+                    Console.WriteLine("TOC from nav");
+                    XmlNode htmlNode = ParseToFineHtmlHeadingNode(node);
+                    if (htmlNode != null)
+                    {
+                        string strReference = contentFileName + "#" +  htmlNode.Attributes.GetNamedItem("id").Value;
+                        Console.WriteLine(strReference);
+                        if (m_XmlIdToSectionNodeMap.ContainsKey(strReference))
+                        {
+                            //System.Windows.Forms.MessageBox.Show(m_XmlIdToSectionNodeMap[strReference].Label);
+                            return m_XmlIdToSectionNodeMap[strReference];
+                        }
+                    }
+                }//-1
                 else
-                {
-                    ((SectionNode)parentNode).AppendChild(treeNode);
-                }
+                {//1
+                    SectionNode treeNode = m_Presentation.CreateSectionNode();
+                    createdNode = treeNode;
+                    if (parentNode is ObiRootNode)
+                    {//2
+                        ((ObiNode)parentNode).AppendChild(treeNode);
+                    }//-2
+                    else
+                    {//2
+                        ((SectionNode)parentNode).AppendChild(treeNode);
+                    }//-2
+                }//-1
             }
             else if (parentNode is SectionNode
                 && (node.LocalName == "span" && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops") != null
@@ -644,15 +674,15 @@ namespace Obi.ImportExport
                 ((SectionNode)parentNode).AppendChild(treeNode);
 
                 PageNumber number = null;
-                
-                
-                    XmlNode pageTitle = node.Attributes.GetNamedItem("title");
-                    string pageNumberString = pageTitle != null ? pageTitle.Value :
-                        node.InnerText;
-                    int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
-                    number = new PageNumber(pageNumber, PageKind.Normal);
 
-                
+
+                XmlNode pageTitle = node.Attributes.GetNamedItem("title");
+                string pageNumberString = pageTitle != null ? pageTitle.Value :
+                    node.InnerText;
+                int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
+                number = new PageNumber(pageNumber, PageKind.Normal);
+
+
                 if (number != null)
                 {
                     ((EmptyNode)treeNode).PageNumber = number;
@@ -661,6 +691,71 @@ namespace Obi.ImportExport
 
             }
             return createdNode;
+        }
+
+        public override void ParseNCXDocument(XmlDocument ncxDocument)
+        {
+            XmlNodeList navNodesList = ncxDocument.GetElementsByTagName("nav");
+            XmlNode TOCNode = null;
+            string ns_EPUB = "http://www.idpf.org/2007/ops";
+            foreach (XmlNode n in navNodesList)
+            {
+                System.Xml.XmlNode attr = n.Attributes.GetNamedItem("type", ns_EPUB);
+
+                if (attr != null
+                    && attr.Value == "toc")
+                {
+                    TOCNode = n;
+
+                    break;
+                }
+            }
+
+            ParseTOC(TOCNode, (ObiRootNode)m_Presentation.RootNode);
+            //System.Windows.Forms.MessageBox.Show("nav doc parsing complete");
+        }
+
+
+        private void ParseTOC(XmlNode xNode, ObiNode parentNode)
+        {
+            if (xNode.Name == "li")
+            {
+                SectionNode section = m_Presentation.CreateSectionNode();
+                parentNode.AppendChild(section);
+                parentNode = section;
+
+
+            }
+            else if (xNode is XmlText)
+            {
+                if (parentNode is SectionNode) 
+                {
+                    SectionNode parentSection = (SectionNode)parentNode ;
+                    parentSection.Label = xNode.InnerText;
+                    
+            }
+            }
+            else if (xNode.Name == "a")
+            {
+                if (parentNode is SectionNode)
+                {
+                    XmlNode hrefNode = xNode.Attributes.GetNamedItem("href");
+                    string headingReference = hrefNode.Value;
+                    if (!m_XmlIdToSectionNodeMap.ContainsKey(headingReference))
+                    {
+                        m_XmlIdToSectionNodeMap.Add(headingReference, (SectionNode)parentNode);
+                    }
+                    
+                }
+            }
+            if (xNode.ChildNodes.Count == 0)
+            {
+                return;
+            }
+            foreach (XmlNode n in xNode.ChildNodes)
+            {
+                ParseTOC(n, parentNode);
+            }
         }
 
 
