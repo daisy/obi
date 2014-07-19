@@ -354,17 +354,21 @@ namespace Obi.ImportExport
             XmlNode packageNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(opfFileDoc.DocumentElement, true, "package", null);
             string uidAttribute = packageNode.Attributes.GetNamedItem("unique-identifier").Value;
             XmlNodeList listOfChildrenOfDCMetadata = opfFileDoc.GetElementsByTagName("dc-metadata");
+            if (listOfChildrenOfDCMetadata == null || listOfChildrenOfDCMetadata.Count == 0)
+            {
+                listOfChildrenOfDCMetadata = opfFileDoc.GetElementsByTagName("metadata");
+            }
             foreach (XmlNode xnode in listOfChildrenOfDCMetadata)
             {
                 foreach (XmlNode node in xnode.ChildNodes)
                 {
 
-                    if (node.Name == "dc:Title" && string.IsNullOrEmpty(opfTitle))
+                    if (node.Name.ToLower () == "dc:title" && string.IsNullOrEmpty(opfTitle))
                     {
                         opfTitle = node.InnerText;
 
                     }
-                    if (node.Name == "dc:Identifier" && string.IsNullOrEmpty(identifier)
+                    if (node.Name.ToLower () == "dc:identifier" && string.IsNullOrEmpty(identifier)
                         && node.Attributes.GetNamedItem("id") != null && node.Attributes.GetNamedItem("id").Value == uidAttribute)
                     {
                         identifier = node.InnerText;
@@ -399,7 +403,7 @@ namespace Obi.ImportExport
                 if (attrName != null && !String.IsNullOrEmpty(attrName.Value) && attrContent != null && !String.IsNullOrEmpty(attrContent.Value))
                 {
                     Console.WriteLine(attrName.Value + " " + attrContent.Value);
-                    if (attrName.Value == "dc:Title")
+                    if (attrName.Value.ToLower() == "dc:title")
                     {
                         dtbBookTitle = attrContent.Value;
                         break;
