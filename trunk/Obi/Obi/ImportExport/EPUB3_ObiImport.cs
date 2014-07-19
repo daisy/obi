@@ -559,5 +559,103 @@ namespace Obi.ImportExport
 
         }
 
+        protected override TreeNode GetFirstTreeNodeForXmlDocument ( Presentation presentation, XmlNode xmlNode)
+        {
+            XmlNode xNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlNode, true, "section", null);
+            int level = ParseToFineHtmlHeadingLevel(xNode);
+            
+            if (level <= 1)
+            {
+                return presentation.RootNode;
+            }
+            else
+            {
+                List<SectionNode> sectionsList = new List<SectionNode>(m_XmlIdToSectionNodeMap.Values);
+
+                for (int i = sectionsList.Count-1 ; i >= 0; i--)
+                {
+                    if (sectionsList[i].Level < level)
+                    {
+                        
+                        return sectionsList[i];
+                    }
+                }
+                return presentation.RootNode;
+            }
+        }
+
+        private int ParseToFineHtmlHeadingLevel(XmlNode xNode)
+        {
+            //Console.WriteLine("xml node name :" + xNode.LocalName);
+            if (xNode.LocalName.StartsWith ("h")
+                && (xNode.LocalName == "h1" || xNode.LocalName == "h2" || xNode.LocalName == "h3" 
+                || xNode.LocalName == "h4" || xNode.LocalName == "h5" || xNode.LocalName == "h6" ))
+            {
+                string strLevel = xNode.LocalName.Replace("h", "");
+                //Console.WriteLine("str level " + strLevel);
+                return int.Parse( strLevel) ;
+            }
+            else if (xNode.ChildNodes.Count > 0 )
+            {
+                //Console.WriteLine("child nodes" ); 
+                foreach ( XmlNode n in xNode.ChildNodes )
+                {
+                    //Console.WriteLine ("parsing child node: " + n.LocalName);
+                    if (n is XmlElement)  return ParseToFineHtmlHeadingLevel(n);
+                }
+            }
+                
+                    return - 1 ;
+                
+            
+        }
+
+        protected override TreeNode CreateAndAddTreeNodeForContentDocument(TreeNode parentNode, XmlNode node, bool isFirstSectionOfDoc)
+        {
+            TreeNode createdNode = null;
+            //Console.WriteLine(node.LocalName);
+            if (node.LocalName == "doctitle" || node.LocalName == "section")
+            {
+                //Console.WriteLine("creating section ");
+                SectionNode treeNode = m_Presentation.CreateSectionNode();
+                createdNode = treeNode;
+                if (parentNode is ObiRootNode)
+                {
+                    ((ObiNode)parentNode).AppendChild(treeNode);
+                }
+                else
+                {
+                    ((SectionNode)parentNode).AppendChild(treeNode);
+                }
+            }
+            else if (parentNode is SectionNode
+                && (node.LocalName == "span" && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops") != null
+                && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops").Value == "pagebreak"))
+            {
+                EmptyNode treeNode = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
+                createdNode = treeNode;
+                ((SectionNode)parentNode).AppendChild(treeNode);
+
+                PageNumber number = null;
+                
+                
+                    XmlNode pageTitle = node.Attributes.GetNamedItem("title");
+                    string pageNumberString = pageTitle != null ? pageTitle.Value :
+                        node.InnerText;
+                    int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
+                    number = new PageNumber(pageNumber, PageKind.Normal);
+
+                
+                if (number != null)
+                {
+                    ((EmptyNode)treeNode).PageNumber = number;
+
+                }
+
+            }
+            return createdNode;
+        }
+
+
     }
 }
