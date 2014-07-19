@@ -562,7 +562,16 @@ namespace Obi.ImportExport
         protected override TreeNode GetFirstTreeNodeForXmlDocument ( Presentation presentation, XmlNode xmlNode)
         {
             XmlNode xNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlNode, true, "section", null);
-            int level = ParseToFineHtmlHeadingLevel(xNode);
+            XmlNode headingNode =  ParseToFineHtmlHeadingNode(xNode);
+            int level = -1;
+
+            if ( headingNode != null )
+            {
+            string strLevel = headingNode.LocalName.Replace("h", "");
+            //Console.WriteLine("str level " + strLevel);
+            level = int.Parse(strLevel);
+            }
+
             
             if (level <= 1)
             {
@@ -584,16 +593,14 @@ namespace Obi.ImportExport
             }
         }
 
-        private int ParseToFineHtmlHeadingLevel(XmlNode xNode)
+        private XmlNode ParseToFineHtmlHeadingNode(XmlNode xNode)
         {
             //Console.WriteLine("xml node name :" + xNode.LocalName);
             if (xNode.LocalName.StartsWith ("h")
                 && (xNode.LocalName == "h1" || xNode.LocalName == "h2" || xNode.LocalName == "h3" 
                 || xNode.LocalName == "h4" || xNode.LocalName == "h5" || xNode.LocalName == "h6" ))
             {
-                string strLevel = xNode.LocalName.Replace("h", "");
-                //Console.WriteLine("str level " + strLevel);
-                return int.Parse( strLevel) ;
+                return xNode;
             }
             else if (xNode.ChildNodes.Count > 0 )
             {
@@ -601,11 +608,11 @@ namespace Obi.ImportExport
                 foreach ( XmlNode n in xNode.ChildNodes )
                 {
                     //Console.WriteLine ("parsing child node: " + n.LocalName);
-                    if (n is XmlElement)  return ParseToFineHtmlHeadingLevel(n);
+                    if (n is XmlElement)  return ParseToFineHtmlHeadingNode(n);
                 }
             }
                 
-                    return - 1 ;
+                    return null;
                 
             
         }
