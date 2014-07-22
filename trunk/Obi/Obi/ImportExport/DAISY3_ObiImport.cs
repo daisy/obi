@@ -536,11 +536,16 @@ namespace Obi.ImportExport
                             || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" || xmlNode.LocalName == "HD"))
                         {
                             ((SectionNode)parentTreeNode).Label = xmlNode.InnerText;
-                            string strfRefID = Path.GetFileName(filePath) + "#" + xmlNode.Attributes.GetNamedItem("id").Value;
-                            if (!m_XmlIdToSectionNodeMap.ContainsKey(strfRefID))
+                            Console.WriteLine(xmlNode.InnerText);
+                            if (xmlNode.Attributes.GetNamedItem("id") != null)
                             {
-                                m_XmlIdToSectionNodeMap.Add(strfRefID, (SectionNode)parentTreeNode);
+                                string strfRefID = Path.GetFileName(filePath) + "#" + xmlNode.Attributes.GetNamedItem("id").Value;
+                                if (!m_XmlIdToSectionNodeMap.ContainsKey(strfRefID))
+                                {
+                                    m_XmlIdToSectionNodeMap.Add(strfRefID, (SectionNode)parentTreeNode);
+                                }
                             }
+
                         }
                         if (treeNode != null && treeNode is SectionNode && xmlNode.LocalName == "doctitle")
                         {

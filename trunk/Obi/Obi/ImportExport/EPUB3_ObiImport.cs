@@ -646,12 +646,15 @@ namespace Obi.ImportExport
                     XmlNode htmlNode = ParseToFineHtmlHeadingNode(node);
                     if (htmlNode != null)
                     {
-                        string strReference = contentFileName + "#" +  htmlNode.Attributes.GetNamedItem("id").Value;
-                        Console.WriteLine(strReference);
-                        if (m_XmlIdToSectionNodeMap.ContainsKey(strReference))
+                        if (htmlNode.Attributes.GetNamedItem("id") != null)
                         {
-                            //System.Windows.Forms.MessageBox.Show(m_XmlIdToSectionNodeMap[strReference].Label);
-                            return m_XmlIdToSectionNodeMap[strReference];
+                            string strReference = contentFileName + "#" + htmlNode.Attributes.GetNamedItem("id").Value;
+                            Console.WriteLine(strReference);
+                            if (m_XmlIdToSectionNodeMap.ContainsKey(strReference))
+                            {
+                                //System.Windows.Forms.MessageBox.Show(m_XmlIdToSectionNodeMap[strReference].Label);
+                                return m_XmlIdToSectionNodeMap[strReference];
+                            }
                         }
                     }
                 }//-1
