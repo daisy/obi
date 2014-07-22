@@ -398,9 +398,9 @@ namespace Obi
                         ImportExport.DAISY3_ObiImport import = null;
                         bool isProjectCreated = false;
 
-                        if (strExtension == ".opf" || strExtension == ".xml")
+                        if (strExtension == ".opf" || strExtension == ".xml" || strExtension == ".epub")
                         {
-                            isProjectCreated = ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path, dialog.AudioChannels, dialog.AudioSampleRate);
+                            isProjectCreated = ImportProjectFromDTBOrEPUB(dialog.Path, dialog.Title, false, dialog.ID, path, dialog.AudioChannels, dialog.AudioSampleRate);
                         }
                         else
                         {
@@ -424,7 +424,7 @@ namespace Obi
                 }
             }
 
-            private bool ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id,
+            private bool ImportProjectFromDTBOrEPUB(string outputPath, string title, bool createTitleSection, string id,
                                               string importDTBPath, int audioChannels, int audioSampleRate)
             {
 
@@ -432,14 +432,30 @@ namespace Obi
 
                 importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
                 mSession.CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, mSettings, true, audioChannels,audioSampleRate);
-                ImportExport.DAISY3_ObiImport import = new Obi.ImportExport.DAISY3_ObiImport(mSession, mSettings,
-                                                                                             importDTBPath,
-                                                                                             System.IO.Path.
-                                                                                                 GetDirectoryName(
-                                                                                                     outputPath), false,
-                                                                                                     audioSampleRate == 44100? AudioLib.SampleRate.Hz44100: audioSampleRate == 22050?AudioLib.SampleRate.Hz22050: AudioLib.SampleRate.Hz11025 ,
-                                                                                             audioChannels==
-                                                                                             2);
+
+                ImportExport.DAISY3_ObiImport import = null;
+                if (ImportExport.DAISY3_ObiImport.IsEPUBPublication(importDTBPath))
+                {
+                    import = new Obi.ImportExport.EPUB3_ObiImport(mSession, mSettings,
+                                                                             importDTBPath,
+                                                                             System.IO.Path.
+                                                                                 GetDirectoryName(
+                                                                                     outputPath), false,
+                                                                                     audioSampleRate == 44100 ? AudioLib.SampleRate.Hz44100 : audioSampleRate == 22050 ? AudioLib.SampleRate.Hz22050 : AudioLib.SampleRate.Hz11025,
+                                                                             audioChannels ==
+                                                                             2);
+                }
+                else
+                {
+                    import = new Obi.ImportExport.DAISY3_ObiImport(mSession, mSettings,
+                                                                                                 importDTBPath,
+                                                                                                 System.IO.Path.
+                                                                                                     GetDirectoryName(
+                                                                                                         outputPath), false,
+                                                                                                         audioSampleRate == 44100 ? AudioLib.SampleRate.Hz44100 : audioSampleRate == 22050 ? AudioLib.SampleRate.Hz22050 : AudioLib.SampleRate.Hz11025,
+                                                                                                 audioChannels ==
+                                                                                                 2);
+                }
                 ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
                                                              delegate(ProgressDialog progress1)
                                                                  {

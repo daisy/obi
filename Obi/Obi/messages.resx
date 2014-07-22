@@ -594,7 +594,7 @@ Error text: {1}</value>
     <comment>Error message stub</comment>
   </data>
   <data name="filter" xml:space="preserve">
-    <value>XHTML, Opf, XML file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|Any file|*.*</value>
+    <value>XHTML, Opf, XML file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub|Any file|*.*</value>
     <comment>File dialog</comment>
   </data>
   <data name="blank_phrase" xml:space="preserve">
