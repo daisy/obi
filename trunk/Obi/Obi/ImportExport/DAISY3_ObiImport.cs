@@ -413,6 +413,31 @@ namespace Obi.ImportExport
             return dtbBookTitle;
         }
 
+        public static bool IsEPUBPublication(string filePath)
+        {
+            if (Path.GetExtension(filePath).ToLower() == ".epub")
+            {
+                return true;
+            }
+            else
+            {
+            
+            XmlDocument fileDoc = urakawa.xuk.XmlReaderWriterHelper.ParseXmlDocument(filePath, false, false);
+
+            XmlNodeList listOfChildren = fileDoc.GetElementsByTagName("package");
+            foreach (XmlNode node in listOfChildren)
+            {
+                XmlNode EPUBNamespace = node.Attributes.GetNamedItem("xmlns") ;
+                if (EPUBNamespace != null
+                    && EPUBNamespace.Value == "http://www.idpf.org/2007/opf")
+                {
+                    return true ;
+                }
+            }      
+            return false ;
+            }
+        }
+
 
         protected override void parseContentDocument(string filePath, Project project, XmlNode xmlNode, TreeNode parentTreeNode, string dtdUniqueResourceId, DocumentMarkupType docMarkupType)
         {
