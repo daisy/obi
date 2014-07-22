@@ -369,6 +369,10 @@ namespace Obi
                         title = ImportExport.ImportStructure.GrabTitle(new Uri(path));
                     else if (strExtension == ".xml")
                         title = ImportExport.DAISY3_ObiImport.getTitleFromDtBookFile(path);
+                    if (string.IsNullOrEmpty(title))
+                    {
+                        title = Localizer.Message("default_project_title");
+                    }
 
                     dialog = new Dialogs.NewProject(
                         mSettings.DefaultPath,
