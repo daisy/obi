@@ -573,17 +573,21 @@ namespace Obi.ImportExport
 
         protected override TreeNode GetFirstTreeNodeForXmlDocument ( Presentation presentation, XmlNode xmlNode)
         {
-            XmlNode xNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlNode, true, "section", null);
-            XmlNode headingNode =  ParseToFineHtmlHeadingNode(xNode);
             int level = -1;
+            XmlNode xNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlNode, true, "section", null);
 
-            if ( headingNode != null )
+            if (xNode != null)
             {
-            string strLevel = headingNode.LocalName.Replace("h", "");
-            //Console.WriteLine("str level " + strLevel);
-            level = int.Parse(strLevel);
-            }
+                XmlNode headingNode = ParseToFineHtmlHeadingNode(xNode);
 
+
+                if (headingNode != null)
+                {
+                    string strLevel = headingNode.LocalName.Replace("h", "");
+                    //Console.WriteLine("str level " + strLevel);
+                    level = int.Parse(strLevel);
+                }
+            }
             
             if (level <= 1)
             {
