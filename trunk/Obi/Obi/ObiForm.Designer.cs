@@ -221,6 +221,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mTools_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1459,6 +1460,7 @@ namespace Obi
             // 
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mTools_PreferencesMenuItem,
+            this.mTools_AudioProcessing,
             this.toolStripSeparator16,
             this.m_ToolsLangPack,
             this.mTools_ExportSelectedAudioMenuItem,
@@ -1591,6 +1593,12 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            // 
+            // mTools_AudioProcessing
+            // 
+            this.mTools_AudioProcessing.Name = "mTools_AudioProcessing";
+            resources.ApplyResources(this.mTools_AudioProcessing, "mTools_AudioProcessing");
+            this.mTools_AudioProcessing.Click += new System.EventHandler(this.mTools_AudioProcessing_Click);
             // 
             // ObiForm
             // 
@@ -1811,6 +1819,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mForwardElapseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mBackwardElapseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_EPUB3ValidatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mTools_AudioProcessing;
     }
 }
 
