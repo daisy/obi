@@ -201,7 +201,7 @@ namespace Obi.Audio
         /// <param name="sourcePath"></param>
         /// <param name="processingFactor"></param>
         /// <returns></returns>
-        public static void ProcessAudio(AudioProcessingKind processingKind, Presentation presentation, string sourcePath, float processingFactor)
+        public static AudioLib.DualCancellableProgressReporter ProcessAudio(AudioProcessingKind processingKind, string sourcePath, float processingFactor)
         {
 
             AudioLib.DualCancellableProgressReporter audioProcess = null;
@@ -219,10 +219,9 @@ namespace Obi.Audio
             {
                 audioProcess = new WavSoundTouch(sourcePath, processingFactor);
             }
-            if (audioProcess != null)
-            {
-            audioProcess.DoWork();            
-            }
+            
+                return audioProcess;
+            
         }
 
     }
