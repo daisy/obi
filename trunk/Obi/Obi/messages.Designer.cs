@@ -403,6 +403,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Processing audio....
+        /// </summary>
+        internal static string AudioProcessing_progress_dialog_title {
+            get {
+                return ResourceManager.GetString("AudioProcessing_progress_dialog_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow overwrite while recording.
         /// </summary>
         internal static string AudioTab_AllowOverwrite {

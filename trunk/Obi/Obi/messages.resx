@@ -2667,4 +2667,7 @@ Error text: {1}</value>
   <data name="Project_PeakMeterChangeLocation" xml:space="preserve">
     <value>Change peakmeter location w.r.t Obi Form</value>
   </data>
+  <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
+    <value>Processing audio...</value>
+  </data>
 </root>
