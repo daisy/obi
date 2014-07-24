@@ -4883,10 +4883,10 @@ for (int j = 0;
         
         public void ReplaceAudioOfSelectedNode()
         {
-            ReplaceAudioOfSelectedNode(null);
+            ReplaceAudioOfSelectedNode(null, false);
         }
 
-        public void ReplaceAudioOfSelectedNode(string sourceFilePath)
+        public void ReplaceAudioOfSelectedNode(string sourceFilePath, bool adjustAssetDuration)
         {
             if (CanExportSelectedNodeAudio)
             {
@@ -4936,13 +4936,18 @@ for (int j = 0;
                         dataProv.InitByCopyingExistingFile(sourceFilePath);
                         media.AudioMediaData.AppendPcmData(dataProv);
 
-                        if (media.Duration.AsMilliseconds < originalTimings[originalTimings.Count - 1] - 100)
+                        if (!adjustAssetDuration &&  media.Duration.AsMilliseconds < originalTimings[originalTimings.Count - 1] - 100)
                         {
                             MessageBox.Show(string.Format(Localizer.Message("ProjectView_ErrorReplacingAudioDueToTimingMissmatch"), originalTimings[originalTimings.Count - 1], media.Duration.AsMilliseconds));
                             media = null;
                             return;
                         }
-
+                        float multiplicationFactor = 1.0f;
+                        if (adjustAssetDuration)
+                        {
+                            multiplicationFactor =(float)( media.Duration.AsMilliseconds / originalTimings[originalTimings.Count - 1]);
+                        }
+                        Console.WriteLine("Replace audio factor : " + multiplicationFactor);
                         CompositeCommand updateAudioCommand = mPresentation.CreateCompositeCommand("Update audio for phrases");
                         if (originalPhrases.Count == 1)
                         {
@@ -4957,9 +4962,9 @@ for (int j = 0;
 
                             for (int i = originalTimings.Count - 2; i >= 0; --i)
                             {
-                                if (originalTimings[i] < media.Duration.AsMilliseconds)
+                                if ((originalTimings[i] * multiplicationFactor) < media.Duration.AsMilliseconds)
                                 {
-                                    urakawa.media.data.audio.ManagedAudioMedia split = media.Split(new urakawa.media.timing.Time(Convert.ToInt64(originalTimings[i] * urakawa.media.timing.Time.TIME_UNIT)));
+                                    urakawa.media.data.audio.ManagedAudioMedia split = media.Split(new urakawa.media.timing.Time(Convert.ToInt64(originalTimings[i] * multiplicationFactor* urakawa.media.timing.Time.TIME_UNIT)));
                                     mediaDataList.Insert(0, split);
                                 }
                             }// split loop ends
@@ -4992,31 +4997,49 @@ for (int j = 0;
             }//CanReplace check
         }
 
-        public void ProcessAudio(Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind)
+        public void ProcessAudio(Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind, float val)
         {
-if (Selection != null
-    && (Selection.Node is PhraseNode || Selection.Node is SectionNode))
+if (CanExportSelectedNodeAudio)
 {
-    string tempDirectoryName = "AudioProcessing";
-    string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
-        tempDirectoryName);
-    if (System.IO.Directory.Exists(directoryFullPath)) System.IO.Directory.Delete(directoryFullPath, true);
-    System.IO.Directory.CreateDirectory(directoryFullPath);
-
-    ObiNode nodeToSelect = Selection.Node ;
-    string audioFileFullPath =  CreateAudioFileFromNode(nodeToSelect, directoryFullPath);
-    if (audioFileFullPath != null)
+    try
     {
-        Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, mPresentation, audioFileFullPath, 2.0f);
-        if (System.IO.File.Exists(audioFileFullPath))
-        {
-            ReplaceAudioOfSelectedNode(audioFileFullPath);
-            if (System.IO.Directory.Exists(directoryFullPath))
-            {
-                System.IO.Directory.Delete(directoryFullPath, true);
-            }
-        }
+        string tempDirectoryName = "AudioProcessing";
+        string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
+            tempDirectoryName);
+        if (System.IO.Directory.Exists(directoryFullPath)) System.IO.Directory.Delete(directoryFullPath, true);
+        System.IO.Directory.CreateDirectory(directoryFullPath);
 
+        ObiNode nodeToSelect = Selection.Node;
+        string audioFileFullPath = null;
+        Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioProcessing_progress_dialog_title"),
+                                delegate(Dialogs.ProgressDialog progress1)
+                                {
+                                    audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath);
+                                });
+        //progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { visitor.RequestCancellation = true; });
+        //visitor.ProgressChangedEvent += new ProgressChangedEventHandler(progress.UpdateProgressBar);
+        progress.ShowDialog();
+        if (progress.Exception != null) throw progress.Exception;
+
+
+        if (audioFileFullPath != null)
+        {
+            Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, mPresentation, audioFileFullPath, val);
+            if (System.IO.File.Exists(audioFileFullPath))
+            {
+                ReplaceAudioOfSelectedNode(audioFileFullPath, true);
+                if (System.IO.Directory.Exists(directoryFullPath))
+                {
+                    System.IO.Directory.Delete(directoryFullPath, true);
+                }
+            }
+
+        }
+    }
+    catch (System.Exception ex)
+    {
+        WriteToLogFile(ex.ToString());
+        MessageBox.Show(ex.ToString()) ;
     }
 }
         }
