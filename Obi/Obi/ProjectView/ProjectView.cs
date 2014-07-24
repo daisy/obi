@@ -4785,6 +4785,7 @@ for (int j = 0;
 
         public void ExportAudioOfSelectedNode()
         {
+            
             if (!CanExportSelectedNodeAudio) return;
             string audioFileExportDirectory = ObiForm.ExportAudioDirectory;
             ObiNode nodeSelected = this.Selection.Node;
@@ -4882,6 +4883,11 @@ for (int j = 0;
         
         public void ReplaceAudioOfSelectedNode()
         {
+            ReplaceAudioOfSelectedNode(null);
+        }
+
+        public void ReplaceAudioOfSelectedNode(string sourceFilePath)
+        {
             if (CanExportSelectedNodeAudio)
             {
                 try
@@ -4907,19 +4913,27 @@ for (int j = 0;
                     }
 
                     if (originalPhrases.Count == 0) return;
-                    //select audio file
-                    OpenFileDialog openAudioFileDialog = new OpenFileDialog();
-                    openAudioFileDialog.Filter = "*.wav|*.WAV";
-                    openAudioFileDialog.Multiselect = false;
-                    if (openAudioFileDialog.ShowDialog() == DialogResult.OK && System.IO.File.Exists(openAudioFileDialog.FileName))
+                    //select audio file if it is not in the parameter
+                    if (sourceFilePath == null
+                        || !System.IO.File.Exists(sourceFilePath))
                     {
+                        OpenFileDialog openAudioFileDialog = new OpenFileDialog();
+                        openAudioFileDialog.Filter = "*.wav|*.WAV";
+                        openAudioFileDialog.Multiselect = false;
+                        if (openAudioFileDialog.ShowDialog() == DialogResult.OK && System.IO.File.Exists(openAudioFileDialog.FileName))
+                        {
+                            sourceFilePath = openAudioFileDialog.FileName;
+                        }
+                    }
+                        if (System.IO.File.Exists(sourceFilePath))
+                        {
                         urakawa.media.data.audio.AudioMediaData asset =
                             (urakawa.media.data.audio.AudioMediaData)mPresentation.MediaDataFactory.Create<urakawa.media.data.audio.codec.WavAudioMediaData>();
                         urakawa.media.data.audio.ManagedAudioMedia media = (urakawa.media.data.audio.ManagedAudioMedia)mPresentation.MediaFactory.CreateManagedAudioMedia();
                         media.MediaData = asset;
 
                         urakawa.data.FileDataProvider dataProv = (urakawa.data.FileDataProvider)media.Presentation.DataProviderFactory.Create(urakawa.data.DataProviderFactory.AUDIO_WAV_MIME_TYPE);
-                        dataProv.InitByCopyingExistingFile(openAudioFileDialog.FileName);
+                        dataProv.InitByCopyingExistingFile(sourceFilePath);
                         media.AudioMediaData.AppendPcmData(dataProv);
 
                         if (media.Duration.AsMilliseconds < originalTimings[originalTimings.Count - 1] - 100)
@@ -4976,6 +4990,35 @@ for (int j = 0;
                     MessageBox.Show(ex.ToString());
                 }
             }//CanReplace check
+        }
+
+        public void ProcessAudio(Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind)
+        {
+if (Selection != null
+    && (Selection.Node is PhraseNode || Selection.Node is SectionNode))
+{
+    string tempDirectoryName = "AudioProcessing";
+    string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
+        tempDirectoryName);
+    if (System.IO.Directory.Exists(directoryFullPath)) System.IO.Directory.Delete(directoryFullPath, true);
+    System.IO.Directory.CreateDirectory(directoryFullPath);
+
+    ObiNode nodeToSelect = Selection.Node ;
+    string audioFileFullPath =  CreateAudioFileFromNode(nodeToSelect, directoryFullPath);
+    if (audioFileFullPath != null)
+    {
+        Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, mPresentation, audioFileFullPath, 2.0f);
+        if (System.IO.File.Exists(audioFileFullPath))
+        {
+            ReplaceAudioOfSelectedNode(audioFileFullPath);
+            if (System.IO.Directory.Exists(directoryFullPath))
+            {
+                System.IO.Directory.Delete(directoryFullPath, true);
+            }
+        }
+
+    }
+}
         }
 
         public bool IsWaveformRendering { get { return mContentView.IsWaveformRendering; } }
