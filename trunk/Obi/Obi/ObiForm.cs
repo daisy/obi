@@ -2344,6 +2344,7 @@ namespace Obi
                 mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
                 PipelineMenuItemsEnabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 m_ToolsLangPack.Enabled = !mProjectView.TransportBar.IsRecorderActive;
+                mTools_AudioProcessing.Enabled = mProjectView.CanExportSelectedNodeAudio;
             }
 
             // Open the preferences dialog
@@ -5411,7 +5412,14 @@ namespace Obi
 
             private void mTools_AudioProcessing_Click(object sender, EventArgs e)
             {
-
+                if (mProjectView.CanExportSelectedNodeAudio)
+                {
+                    Dialogs.AudioProcessingDialog dialog = new AudioProcessingDialog();
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        mProjectView.ProcessAudio(dialog.AudioProcess, dialog.AudioProcessingParameter);
+                    }
+                }
             }
 
  

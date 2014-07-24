@@ -118,29 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="numericUpDown1.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="m_numericUpDown1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
-  <data name="numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 76</value>
   </data>
-  <data name="numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 21</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="numericUpDown1.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_numericUpDown1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;numericUpDown1.Name" xml:space="preserve">
-    <value>numericUpDown1</value>
+  <data name="&gt;&gt;m_numericUpDown1.Name" xml:space="preserve">
+    <value>m_numericUpDown1</value>
   </data>
-  <data name="&gt;&gt;numericUpDown1.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_numericUpDown1.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;numericUpDown1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_numericUpDown1.Parent" xml:space="preserve">
     <value>m_gpbox_Process</value>
   </data>
-  <data name="&gt;&gt;numericUpDown1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_numericUpDown1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="m_lbl_Parameters.AutoSize" type="System.Boolean, mscorlib">
@@ -322,7 +322,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Experimental</value>
+    <value>Audio processing (Experimental)</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AudioProcessingDialog</value>

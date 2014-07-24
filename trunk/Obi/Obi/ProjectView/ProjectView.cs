@@ -5010,21 +5010,24 @@ if (CanExportSelectedNodeAudio)
         System.IO.Directory.CreateDirectory(directoryFullPath);
 
         ObiNode nodeToSelect = Selection.Node;
-        string audioFileFullPath = null;
+        string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath);
+
+        if (audioFileFullPath != null)
+        {
+             AudioLib.DualCancellableProgressReporter audioProcess =  Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, audioFileFullPath, val);
+
         Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioProcessing_progress_dialog_title"),
                                 delegate(Dialogs.ProgressDialog progress1)
                                 {
-                                    audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath);
+                                    audioProcess.DoWork();
                                 });
-        //progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { visitor.RequestCancellation = true; });
-        //visitor.ProgressChangedEvent += new ProgressChangedEventHandler(progress.UpdateProgressBar);
+        progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { audioProcess.RequestCancellation = true; });
+        audioProcess.ProgressChangedEvent += new ProgressChangedEventHandler(progress.UpdateProgressBar);
         progress.ShowDialog();
         if (progress.Exception != null) throw progress.Exception;
 
 
-        if (audioFileFullPath != null)
-        {
-            Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, mPresentation, audioFileFullPath, val);
+        
             if (System.IO.File.Exists(audioFileFullPath))
             {
                 ReplaceAudioOfSelectedNode(audioFileFullPath, true);

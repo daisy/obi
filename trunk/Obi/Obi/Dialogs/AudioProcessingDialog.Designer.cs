@@ -30,19 +30,19 @@ namespace Obi.Dialogs
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AudioProcessingDialog));
             this.m_gpbox_Process = new System.Windows.Forms.GroupBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.m_numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.m_lbl_Parameters = new System.Windows.Forms.Label();
             this.m_cb_Process = new System.Windows.Forms.ComboBox();
             this.m_lbl_Process = new System.Windows.Forms.Label();
             this.m_btn_OK = new System.Windows.Forms.Button();
             this.m_btn_Cancel = new System.Windows.Forms.Button();
             this.m_gpbox_Process.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // m_gpbox_Process
             // 
-            this.m_gpbox_Process.Controls.Add(this.numericUpDown1);
+            this.m_gpbox_Process.Controls.Add(this.m_numericUpDown1);
             this.m_gpbox_Process.Controls.Add(this.m_lbl_Parameters);
             this.m_gpbox_Process.Controls.Add(this.m_cb_Process);
             this.m_gpbox_Process.Controls.Add(this.m_lbl_Process);
@@ -50,28 +50,28 @@ namespace Obi.Dialogs
             this.m_gpbox_Process.Name = "m_gpbox_Process";
             this.m_gpbox_Process.TabStop = false;
             // 
-            // numericUpDown1
+            // m_numericUpDown1
             // 
-            this.numericUpDown1.DecimalPlaces = 1;
-            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.m_numericUpDown1.DecimalPlaces = 1;
+            resources.ApplyResources(this.m_numericUpDown1, "m_numericUpDown1");
+            this.m_numericUpDown1.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.m_numericUpDown1.Maximum = new decimal(new int[] {
             40,
             0,
             0,
             65536});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.m_numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
+            this.m_numericUpDown1.Name = "m_numericUpDown1";
+            this.m_numericUpDown1.Value = new decimal(new int[] {
+            10,
             0,
             0,
             65536});
@@ -124,7 +124,7 @@ namespace Obi.Dialogs
             this.Name = "AudioProcessingDialog";
             this.m_gpbox_Process.ResumeLayout(false);
             this.m_gpbox_Process.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -134,7 +134,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.GroupBox m_gpbox_Process;
         private System.Windows.Forms.ComboBox m_cb_Process;
         private System.Windows.Forms.Label m_lbl_Process;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown m_numericUpDown1;
         private System.Windows.Forms.Label m_lbl_Parameters;
         private System.Windows.Forms.Button m_btn_OK;
         private System.Windows.Forms.Button m_btn_Cancel;

@@ -154,6 +154,12 @@
     <Compile Include="Dialogs\AssignSpecialNodeMark.Designer.cs">
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AudioProcessingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AudioProcessingDialog.designer.cs">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AudioSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -941,6 +947,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AssociateSpecialNode.ta.resx">
       <DependentUpon>AssociateSpecialNode.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingDialog.resx">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioSettings.fi.resx">
