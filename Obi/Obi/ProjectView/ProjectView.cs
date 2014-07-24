@@ -4798,11 +4798,25 @@ for (int j = 0;
                 MessageBox.Show(Localizer.Message("no_audio"));
                 return;
             }
+            
             if (!audioFileExportDirectory.EndsWith("\\")) audioFileExportDirectory = audioFileExportDirectory + "\\";
+            
+
+            string newAudioFilePath = CreateAudioFileFromNode(nodeSelected, audioFileExportDirectory);
+
+            if (newAudioFilePath != null)
+    {
+            MessageBox.Show(Localizer.Message("ExportAudioOfSelectedNode_Completed") + newAudioFilePath, Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);                   
+    }
+        }
+
+        private string CreateAudioFileFromNode(ObiNode nodeSelected, string audioFileExportDirectory)
+        {
+            string newAudioFilePath = null;
             try
             {
-                
-                if (!System.IO.Directory.Exists(audioFileExportDirectory)) System.IO.Directory.CreateDirectory(audioFileExportDirectory);
+                if (!System.IO.Directory.Exists(audioFileExportDirectory)) System.IO.Directory.CreateDirectory(audioFileExportDirectory);    
+
                 TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode; };
                 TreeNodeTestDelegate nodeIsOtherSection = delegate(urakawa.core.TreeNode node) { return (nodeSelected is SectionNode &&  node is SectionNode && node != nodeSelected ) ; };
 
@@ -4851,10 +4865,10 @@ for (int j = 0;
                         nodeSelected is PhraseNode ? ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Label + ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Position + "-" + ((EmptyNode)nodeSelected).ToString() + ".wav":
                         null;
                     newName = Obi.Program.SafeName(newName);
-                        string newAudioFilePath = System.IO.Path.Combine(audioFileExportDirectory, newName);
+                        newAudioFilePath = System.IO.Path.Combine(audioFileExportDirectory, newName);
                         if (System.IO.File.Exists(newAudioFilePath)) System.IO.File.Delete(newAudioFilePath);
                         System.IO.File.Move(audioFilePath, newAudioFilePath);
-                        MessageBox.Show(Localizer.Message("ExportAudioOfSelectedNode_Completed") + newAudioFilePath, Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);                   
+                        
                 }
             }
             catch (System.Exception ex)
@@ -4862,6 +4876,7 @@ for (int j = 0;
                 this.WriteToLogFile(ex.ToString());
                 MessageBox.Show(Localizer.Message("ProjectViewMsg_ExportingAudioFail") + "\n\n" + ex.ToString());   //@Messagecorrected
             }
+            return newAudioFilePath;
         }
 
         
