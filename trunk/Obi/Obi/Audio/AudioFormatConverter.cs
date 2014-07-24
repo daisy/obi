@@ -192,5 +192,38 @@ namespace Obi.Audio
             m_Tts.SpeakString(voice, text,null);
         }
 
+        public enum AudioProcessingKind { Amplify, Normalize, SoundTouch } ;
+        /// <summary>
+        /// Create a copy of original audio file, process it and return the path of the copy
+        /// </summary>
+        /// <param name="processingKind"></param>
+        /// <param name="presentation"></param>
+        /// <param name="sourcePath"></param>
+        /// <param name="processingFactor"></param>
+        /// <returns></returns>
+        public static void ProcessAudio(AudioProcessingKind processingKind, Presentation presentation, string sourcePath, float processingFactor)
+        {
+
+            AudioLib.DualCancellableProgressReporter audioProcess = null;
+            if (processingKind == AudioProcessingKind.Amplify)
+            {
+                double amp = Convert.ToDouble(processingFactor);
+                audioProcess = new WavAmplify(sourcePath, amp);
+                
+            }
+            else if (processingKind == AudioProcessingKind.Normalize)
+            {
+                audioProcess = new WavNormalize(sourcePath, processingFactor);
+            }
+            else if (processingKind == AudioProcessingKind.SoundTouch)
+            {
+                audioProcess = new WavSoundTouch(sourcePath, processingFactor);
+            }
+            if (audioProcess != null)
+            {
+            audioProcess.DoWork();            
+            }
+        }
+
     }
 }
