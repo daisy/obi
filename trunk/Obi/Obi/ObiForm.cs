@@ -366,7 +366,7 @@ namespace Obi
                         Obi.ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(path, ref title, ref dtbUid);
                     }
                     if (strExtension == ".xhtml" || strExtension == ".html" || strExtension == ".htm")
-                        title = ImportExport.ImportStructure.GrabTitle(new Uri(path));
+                        title = ImportExport.ImportStructureFromXhtml.GrabTitle(new Uri(path));
                     else if (strExtension == ".xml")
                         title = ImportExport.DAISY3_ObiImport.getTitleFromDtBookFile(path);
                     if (string.IsNullOrEmpty(title))
@@ -509,10 +509,19 @@ namespace Obi
                 ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
                                                              delegate(ProgressDialog progress1)
                                                                  {
-                                                                     import.DoWork();
-                                                                     import.CorrectExternalAudioMedia();
+                                                                     if (Path.GetExtension(xhtmlPath).ToLower() == ".csv")
+                                                                     {
+                                                                         ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
+                                                                         csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation);
+                                                                     }
+                                                                     else
+                                                                     {
+                                                                         import.DoWork();
+                                                                         import.CorrectExternalAudioMedia();
+                                                                         
+                                                                     }
                                                                      ImportStructureFromXHtml_ThreadSafe(path, title, id,
-                                                                                                         xhtmlPath, audioChannels,audioSampleRate);
+                                                                                                             xhtmlPath, audioChannels, audioSampleRate);
                                                                  });
                 progress.OperationCancelled += new OperationCancelledHandler(delegate(object sender, EventArgs e)
                                                                                  {

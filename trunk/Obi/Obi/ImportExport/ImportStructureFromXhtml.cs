@@ -8,7 +8,7 @@ namespace Obi.ImportExport
     /// <summary>
     /// Import an external file (XHTML) and use it to fill in the sections in a newly-created project.
     /// </summary>
-    public class ImportStructure
+    public class ImportStructureFromXhtml
     {
         private ObiPresentation mPresentation;            // target presentation
         private SectionNode mCurrentSection;               // section currently populated
@@ -18,7 +18,7 @@ namespace Obi.ImportExport
         /// <summary>
         /// Simple constructor.
         /// </summary>
-        public ImportStructure() {}
+        public ImportStructureFromXhtml() {}
 
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Obi.ImportExport
         /// <summary>
         /// Populate the presentation from an XHTML file.
         /// </summary>
-        public void ImportFromXHTML(string xhtml_path, ObiPresentation presentation)
+        public void ImportFromXHTMLFile(string xhtml_path, ObiPresentation presentation)
         {
             mOpenSectionNodes = new System.Collections.Generic.Stack<Obi.SectionNode>();
             mPresentation = presentation;
