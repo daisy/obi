@@ -42,7 +42,15 @@ namespace Obi.ImportExport
                 bool isValid = true;
                 Console.WriteLine();
                 Console.WriteLine(line);
-                string[] cellsInLineArray = line.Split('\t');
+                string[] cellsInLineArray = null;
+                if (Path.GetExtension(CSVFullPath).ToLower() == ".csv")
+                {
+                    cellsInLineArray = line.Split(',');
+                }
+                else
+                {
+                    cellsInLineArray = line.Split('\t');
+                }
                 for (int i = 0; i < cellsInLineArray.Length; i++)
                 {
                     if (i == 0)

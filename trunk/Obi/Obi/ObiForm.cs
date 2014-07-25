@@ -509,7 +509,8 @@ namespace Obi
                 ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
                                                              delegate(ProgressDialog progress1)
                                                                  {
-                                                                     if (Path.GetExtension(xhtmlPath).ToLower() == ".csv")
+                                                                     if (Path.GetExtension(xhtmlPath).ToLower() == ".csv"
+                                                                         || Path.GetExtension(xhtmlPath).ToLower() == ".txt")
                                                                      {
                                                                          ImportExport.ImportStructureFromCSV csvImport = new Obi.ImportExport.ImportStructureFromCSV();
                                                                          csvImport.ImportFromCSVFile(xhtmlPath, mSession.Presentation);
