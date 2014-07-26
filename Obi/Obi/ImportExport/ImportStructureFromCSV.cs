@@ -105,7 +105,8 @@ namespace Obi.ImportExport
 
         private void CreateStructure(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection)
         {
-            List<SectionNode> listOfSectionNodes = new List<SectionNode>();
+            List<ObiNode> listOfSectionNodes = new List<ObiNode>();
+            listOfSectionNodes.Add((ObiNode)m_Presentation.RootNode);
             int pageNumber = 0;
             SectionNode currentSection = null;
             Console.WriteLine("level list  count" + levelsList.Count);
@@ -123,7 +124,7 @@ namespace Obi.ImportExport
                 // iterate back in list of sections to find the parent
                     for (int j = listOfSectionNodes.Count - 1; j >= 0; j--)
                     {
-                        SectionNode iterationSection = listOfSectionNodes[j];
+                        ObiNode iterationSection = listOfSectionNodes[j];
                         if (iterationSection.Level < levelsList[i])
                         {
                             iterationSection.AppendChild(section);
