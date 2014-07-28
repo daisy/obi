@@ -332,8 +332,21 @@ private void AppendPhrasesFromSmil ()
                     {
                         string src = txtNode.Attributes.GetNamedItem("src").Value;
                         string nccID = src.Split('#')[1];
-                        
-                        if (m_NccReferenceToPageMap.ContainsKey(nccID)) originalPageNode = m_NccReferenceToPageMap[nccID];
+
+                        if (m_NccReferenceToPageMap.ContainsKey(nccID))
+                        {
+                            originalPageNode = m_NccReferenceToPageMap[nccID];
+                            // if text ID has no audio or seq sibling it means that its page with no audio
+                            if (txtNode.ParentNode.ChildNodes.Count == 1)
+                            {
+                                Console.WriteLine("Page text node in smil has no sibling: no audio, no seq");
+                                EmptyNode newNode = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
+                                section.AppendChild(newNode);
+                                if (page == null) page = newNode;
+                                UpdatePageNumber(originalPageNode, page);
+                            }
+
+                        }
                     }
                     XmlNode seqNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(n, true, "seq", n.NamespaceURI);
                     if (seqNode != null)
