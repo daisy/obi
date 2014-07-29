@@ -304,7 +304,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WAVE file (*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*.
+        ///   Looks up a localized string similar to Audio files (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|Any file|*.*.
         /// </summary>
         internal static string audio_file_filter {
             get {
@@ -385,7 +385,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to audio format not recognized. Only .wav and .mp3 files are supported. Skipping import of {0}.
+        ///   Looks up a localized string similar to audio format not recognized. Only .wav, .mp3 and .mp4 files are supported. Skipping import of {0}.
         /// </summary>
         internal static string AudioFormatConverter_Error_FileExtentionNodSupported {
             get {
