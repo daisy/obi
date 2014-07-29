@@ -73,6 +73,12 @@ namespace Obi.Audio
                     AudioLibPCMFormat originalPCMFormat = null;
                     convertedFile = audioConverter.UnCompressMp3File(filePath, directoryPath, pcmFormat, out originalPCMFormat);
                 }
+                else if (Path.GetExtension(filePath).ToLower() == ".mp4")
+                {
+                    AudioLibPCMFormat pcmFormat = new AudioLibPCMFormat((ushort)channels, (uint)samplingRate, (ushort)bitDepth);
+                    AudioLibPCMFormat originalPCMFormat = null;
+                    convertedFile = audioConverter.UnCompressMp4_AACFile(filePath, directoryPath, pcmFormat, out originalPCMFormat);
+                }
                 else
                 {
                     MessageBox.Show(string.Format(Localizer.Message("AudioFormatConverter_Error_FileExtentionNodSupported"), filePath), Localizer.Message("Caption_Error"));

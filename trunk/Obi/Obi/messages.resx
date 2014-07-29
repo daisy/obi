@@ -252,7 +252,7 @@ Oh well.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>WAVE file (*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*</value>
+    <value>Audio files (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|Any file|*.*</value>
     <comment>File dialog</comment>
   </data>
   <data name="Monitoring" xml:space="preserve">
@@ -1941,7 +1941,7 @@ Error text: {1}</value>
     <value>The project will open from backup file. Do you wish to continue?</value>
   </data>
   <data name="AudioFormatConverter_Error_FileExtentionNodSupported" xml:space="preserve">
-    <value>audio format not recognized. Only .wav and .mp3 files are supported. Skipping import of {0}</value>
+    <value>audio format not recognized. Only .wav, .mp3 and .mp4 files are supported. Skipping import of {0}</value>
   </data>
   <data name="Load_Original_Project" xml:space="preserve">
     <value>Loading original project</value>
