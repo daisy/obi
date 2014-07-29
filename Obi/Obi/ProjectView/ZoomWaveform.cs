@@ -79,17 +79,18 @@ namespace Obi.ProjectView
         {
             if (m_AudioBlock != null)
             {
-               XVal = m_AudioBlock.UpdateCursorTime(time);
-            }
-             if (m_ProjectView.TransportBar.CurrentPlaylist.CurrentPhrase != m_ProjectView.Selection.Node)
-             {
-                 m_ProjectView.TransportBar.Stop();
-             }
-             if ((XVal >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (XVal < Math.Abs(m_AudioBlock.Location.X)))
-             {
-                 panelZooomWaveform.AutoScrollPosition = new Point(XVal, panelZooomWaveform.AutoScrollPosition.Y);
+                XVal = m_AudioBlock.UpdateCursorTime(time);
 
-             }
+                if (m_ProjectView.TransportBar.CurrentPlaylist.CurrentPhrase != m_ProjectView.Selection.Node)
+                {
+                    m_ProjectView.TransportBar.Stop();
+                }
+                if ((XVal >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (XVal < Math.Abs(m_AudioBlock.Location.X)))
+                {
+                    panelZooomWaveform.AutoScrollPosition = new Point(XVal, panelZooomWaveform.AutoScrollPosition.Y);
+
+                }
+            }
             
         }
 
