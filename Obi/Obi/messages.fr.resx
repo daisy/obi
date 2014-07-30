@@ -252,7 +252,7 @@ En conséquence, les modifications apportées aux réglages effectués lors de c
     <comment>Error dialog</comment>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>fichier WAVE (*.wav;*.mp3)|*.wav;*.mp3|tous les fichiers|*.*</value>
+    <value>fichier WAVE (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|tous les fichiers|*.*</value>
     <comment>File dialog</comment>
   </data>
   <data name="Monitoring" xml:space="preserve">
@@ -594,7 +594,7 @@ Texte de l'erreur: {1}</value>
     <comment>Error message stub</comment>
   </data>
   <data name="filter" xml:space="preserve">
-    <value>fichier XHTML, Opf, XML (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|tous les fichiers|*.*</value>
+    <value>XHTML, Opf, XML, Csv, Txt, Epub file (*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Any file|*.*</value>
     <comment>File dialog</comment>
   </data>
   <data name="blank_phrase" xml:space="preserve">

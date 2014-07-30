@@ -220,7 +220,7 @@
     <value>エラー：ファイルを削除できません {0}. ({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>WAVEファイル(*.wav;*.mp3)|*.wav;*.mp3|すべてのファイル|*.*</value>
+    <value>WAVEファイル(*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|すべてのファイル|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>音声入力をモニタリング…</value>
@@ -477,7 +477,7 @@
     <value>インポートから新規プロジェクトを作成できませんでした：{0}</value>
   </data>
   <data name="filter" xml:space="preserve">
-    <value>XHTML, Opf, XML file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|Any file|*.*</value>
+    <value>XHTML, Opf, XML, Csv, Txt, Epub file (*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Any file|*.*</value>
   </data>
   <data name="blank_phrase" xml:space="preserve">
     <value>空のフレーズ</value>
