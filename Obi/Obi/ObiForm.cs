@@ -374,6 +374,7 @@ namespace Obi
                         title = Localizer.Message("default_project_title");
                     }
 
+                    this.Activate(); //place focus back to Obi form to ensure that keyboard focus from here on is not lost
                     dialog = new Dialogs.NewProject(
                         mSettings.DefaultPath,
                         Localizer.Message("default_project_filename"),
@@ -385,6 +386,7 @@ namespace Obi
                     dialog.DisableAutoTitleCheckbox();
                     dialog.Text = Localizer.Message("create_new_project_from_import");
                     if (!string.IsNullOrEmpty(dtbUid)) dialog.ID = dtbUid;
+                     
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         if (File.Exists(dialog.Path)
