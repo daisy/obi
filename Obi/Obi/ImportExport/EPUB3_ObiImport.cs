@@ -401,7 +401,14 @@ namespace Obi.ImportExport
                                     //textTreeNode = spineItemPresentation.RootNode.GetFirstDescendantWithXmlID(txtId);
                                     // replacing it
                                     //System.Windows.Forms.MessageBox.Show("retrieving: " + urlDecoded);
-                                    if(m_XmlIdToSectionNodeMap.ContainsKey (urlDecoded))  textTreeNode = m_XmlIdToSectionNodeMap[urlDecoded];
+                                    if (m_XmlIdToSectionNodeMap.ContainsKey(urlDecoded))
+                                    {
+                                        textTreeNode = m_XmlIdToSectionNodeMap[urlDecoded];
+                                    }
+                                    else if (m_XmlIdToSectionNodeMap.ContainsKey(srcParts[0]))
+                                    {
+                                        textTreeNode = m_XmlIdToSectionNodeMap[srcParts[0]];
+                                    }
                                     if (textTreeNode != null)
                                     {
                                         section = (SectionNode)textTreeNode;
