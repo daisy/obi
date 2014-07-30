@@ -3903,6 +3903,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The value 1.0 means there will be no change in the audio..
+        /// </summary>
+        internal static string no_audio_change {
+            get {
+                return ResourceManager.GetString("no_audio_change", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No audio devices found.
         /// </summary>
         internal static string no_device_found_caption {

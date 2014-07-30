@@ -2670,4 +2670,7 @@ Error text: {1}</value>
   <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
     <value>Processing audio...</value>
   </data>
+  <data name="no_audio_change" xml:space="preserve">
+    <value>The value 1.0 means there will be no change in the audio.</value>
+  </data>
 </root>
