@@ -113,7 +113,7 @@ namespace Obi.ImportExport
             for (int i = 0; i < levelsList.Count; i++)
             {
                 SectionNode section = m_Presentation.CreateSectionNode();
-                section.Label = sectionNamesList[i];
+                section.Label = sectionNamesList[i].Trim();
                 Console.WriteLine("section " + section.Label + ", level: " + levelsList[i]);
                 if (currentSection == null)
                 {   
