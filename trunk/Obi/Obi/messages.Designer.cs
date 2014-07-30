@@ -2008,7 +2008,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XHTML, Opf, XML, Csv, txt file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Any file|*.*.
+        ///   Looks up a localized string similar to XHTML, Opf, XML, Csv, Txt, Epub file (*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Any file|*.*.
         /// </summary>
         internal static string filter {
             get {

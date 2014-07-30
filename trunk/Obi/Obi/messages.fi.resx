@@ -221,7 +221,7 @@ Seurauksena, että nyt tehdyt asetusmuutokset eivät tallentuneet.
     <value>Virhe poistettaessa tiedostoa {0}. ({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>WAVE tiedosto  (*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*</value>
+    <value>WAVE tiedosto  (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>Monitoroidaan äänen sisäänmenoa...</value>
@@ -478,7 +478,7 @@ Error text: {1}</value>
     <value>Projektia ei voitu luoda import-toiminnolla  "{0}"</value>
   </data>
   <data name="filter" xml:space="preserve">
-    <value>XHTML, Opf, XML file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|Any file|*.*</value>
+    <value>XHTML, Opf, XML, Csv, Txt, Epub file (*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Any file|*.*</value>
   </data>
   <data name="blank_phrase" xml:space="preserve">
     <value>Tyhjä lause</value>

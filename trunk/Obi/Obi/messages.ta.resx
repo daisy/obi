@@ -214,7 +214,7 @@
     <value>கோப்பையை அழிக்கும்பொழுது பிழை ஏற்ப்பட்டது {0}. ({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>அலை கோப்பை (*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*</value>
+    <value>அலை கோப்பை (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|Any file|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>ஒலி உள்ளீட்டின் கண்காணிப்பு</value>
@@ -469,7 +469,7 @@
     <value>ஏற்றுமதியின் மூலம் திட்டபணியை உருவாக்க முடியவில்லை: {0}</value>
   </data>
   <data name="filter" xml:space="preserve">
-    <value>XHTML, Opf, XML file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|Any file|*.*</value>
+    <value>XHTML, Opf, XML, Csv, Txt, Epub file (*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Any file|*.*</value>
   </data>
   <data name="blank_phrase" xml:space="preserve">
     <value>காலி சொற்றொடர்</value>
