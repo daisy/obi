@@ -14,6 +14,7 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             m_cb_Process.SelectedIndex = 0;
+           // m_txt_info.Text = String.Format(Localizer.Equals("no_audio_change"),);
         }
 
         public Obi.Audio.AudioFormatConverter.AudioProcessingKind AudioProcess

@@ -36,12 +36,14 @@ namespace Obi.Dialogs
             this.m_lbl_Process = new System.Windows.Forms.Label();
             this.m_btn_OK = new System.Windows.Forms.Button();
             this.m_btn_Cancel = new System.Windows.Forms.Button();
+            this.m_txt_info = new System.Windows.Forms.TextBox();
             this.m_gpbox_Process.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // m_gpbox_Process
             // 
+            this.m_gpbox_Process.Controls.Add(this.m_txt_info);
             this.m_gpbox_Process.Controls.Add(this.m_numericUpDown1);
             this.m_gpbox_Process.Controls.Add(this.m_lbl_Parameters);
             this.m_gpbox_Process.Controls.Add(this.m_cb_Process);
@@ -111,6 +113,12 @@ namespace Obi.Dialogs
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             this.m_btn_Cancel.Click += new System.EventHandler(this.m_btn_Cancel_Click);
             // 
+            // m_txt_info
+            // 
+            resources.ApplyResources(this.m_txt_info, "m_txt_info");
+            this.m_txt_info.Name = "m_txt_info";
+            this.m_txt_info.ReadOnly = true;
+            // 
             // AudioProcessingDialog
             // 
             this.AcceptButton = this.m_btn_OK;
@@ -138,5 +146,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_lbl_Parameters;
         private System.Windows.Forms.Button m_btn_OK;
         private System.Windows.Forms.Button m_btn_Cancel;
+        private System.Windows.Forms.TextBox m_txt_info;
     }
 }
