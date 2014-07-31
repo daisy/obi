@@ -403,6 +403,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value 1.0 means that audio will remain unchanged..
+        /// </summary>
+        internal static string AudioProcessing_InfoText {
+            get {
+                return ResourceManager.GetString("AudioProcessing_InfoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Processing audio....
         /// </summary>
         internal static string AudioProcessing_progress_dialog_title {
@@ -3903,15 +3912,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value 1.0 means there will be no change in the audio..
-        /// </summary>
-        internal static string no_audio_change {
-            get {
-                return ResourceManager.GetString("no_audio_change", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No audio devices found.
         /// </summary>
         internal static string no_device_found_caption {
@@ -5065,7 +5065,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change peakmeter location w.r.t Obi Form.
+        ///   Looks up a localized string similar to Keep the peak meter aligned to left edge of Obi window.
         /// </summary>
         internal static string Project_PeakMeterChangeLocation {
             get {
