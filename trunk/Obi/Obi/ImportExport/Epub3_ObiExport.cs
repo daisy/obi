@@ -1506,11 +1506,11 @@ namespace Obi.ImportExport
 
             metaNode_TotalDuration.AppendChild(opfDocument.CreateTextNode(m_SmilDurationForOpfMetadata[m_SmilDurationForOpfMetadata.Count-1]));
 
+            // commented for now. Will activate when we will have more info about heading/page highlight of EPUB 3 audio only books.
             XmlNode metaNode_MOActive = opfDocument.CreateElement("meta", metadataNode.NamespaceURI);
-            metadataNode.AppendChild(metaNode_MOActive);
-            XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaNode_MOActive, "property", "media:active-class");
-
-            metaNode_MOActive.AppendChild(opfDocument.CreateTextNode("epub - media - overlay - active"));
+            //metadataNode.AppendChild(metaNode_MOActive);
+            //XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metaNode_MOActive, "property", "media:active-class");
+            //metaNode_MOActive.AppendChild(opfDocument.CreateTextNode("epub - media - overlay - active"));
 
             if (RequestCancellation) return;
 
