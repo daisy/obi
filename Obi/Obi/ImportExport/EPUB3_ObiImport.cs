@@ -12,6 +12,8 @@ using urakawa.xuk;
 using urakawa.daisy;
 using urakawa.daisy.import;
 using AudioLib;
+//using ICSharpCode.SharpZipLib.Zip;
+using Jaime.Olivares;
 
 namespace Obi.ImportExport
 {
@@ -770,6 +772,99 @@ namespace Obi.ImportExport
             {
                 ParseTOC(n, parentNode);
             }
+        }
+
+
+        public static string unzipEPubAndGetOpfPath(string EPUBFullPath)
+        {
+            //if (RequestCancellation) return;
+            string parentDirectoryFullPath = Directory.GetParent(EPUBFullPath).ToString();
+
+            string unzipDirectory = Path.Combine(
+                parentDirectoryFullPath,
+            Path.GetFileNameWithoutExtension(EPUBFullPath) + "_ZIP"
+            );
+
+            FileDataProvider.TryDeleteDirectory(unzipDirectory, true);
+
+            ZipStorer zip = ZipStorer.Open(File.OpenRead(EPUBFullPath), FileAccess.Read);
+
+            List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();
+            foreach (ZipStorer.ZipFileEntry entry in dir)
+            {
+                //if (RequestCancellation) return;
+                //reportProgress_Throttle(-1, String.Format(UrakawaSDK_daisy_Lang.Unzipping, entry.FilenameInZip));
+
+                string unzippedFilePath = unzipDirectory + Path.DirectorySeparatorChar + entry.FilenameInZip;
+                if (Path.GetExtension(unzippedFilePath).ToLower() == ".opf"
+                    || Path.GetExtension(unzippedFilePath).ToLower() == ".xml")
+                {
+                    string unzippedFileDir = Path.GetDirectoryName(unzippedFilePath);
+                    if (!Directory.Exists(unzippedFileDir))
+                    {
+                        FileDataProvider.CreateDirectory(unzippedFileDir);
+                    }
+
+                    zip.ExtractFile(entry, unzippedFilePath);
+                }
+            }
+            
+            zip.Dispose();
+
+
+            string containerPath = Path.Combine(unzipDirectory,
+                                                @"META-INF" + Path.DirectorySeparatorChar + @"container.xml");
+
+            string opfFullPath = null;
+            if (!File.Exists(containerPath))
+            {
+#if DEBUG
+                Debugger.Break();
+#endif
+                DirectoryInfo dirInfo = new DirectoryInfo(unzipDirectory);
+                
+                FileInfo[] opfFiles = dirInfo.GetFiles("*.opf", SearchOption.AllDirectories);
+
+                foreach (FileInfo fileInfo in opfFiles)
+                {
+                    
+                    opfFullPath = Path.Combine(unzipDirectory, fileInfo.FullName);
+
+                    //m_OPF_ContainerRelativePath = null;
+
+                    
+                    break;
+                }
+            }
+            else
+            {
+                //parseContainerXML(containerPath);
+                XmlDocument containerDoc = XmlReaderWriterHelper.ParseXmlDocument(containerPath, false, false);
+                XmlNode rootFileNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(containerDoc, true, @"rootfile",
+                                                                     containerDoc.DocumentElement.NamespaceURI);
+
+#if DEBUG
+            XmlNode mediaTypeAttr = rootFileNode.Attributes.GetNamedItem(@"media-type");
+            DebugFix.Assert(mediaTypeAttr != null && mediaTypeAttr.Value == @"application/oebps-package+xml");
+#endif
+
+                XmlNode fullPathAttr = rootFileNode.Attributes.GetNamedItem(@"full-path");
+
+                string rootDirectory = Path.GetDirectoryName(containerPath);
+                rootDirectory = rootDirectory.Substring(0, rootDirectory.IndexOf(@"META-INF"));
+
+                string OPF_ContainerRelativePath = FileDataProvider.UriDecode(fullPathAttr.Value);
+
+                if (OPF_ContainerRelativePath.StartsWith(@"./"))
+                {
+                    OPF_ContainerRelativePath = OPF_ContainerRelativePath.Substring(2);
+                }
+
+                opfFullPath = Path.Combine(rootDirectory, OPF_ContainerRelativePath.Replace('/', '\\'));
+
+
+            }
+            return opfFullPath;
         }
 
 
