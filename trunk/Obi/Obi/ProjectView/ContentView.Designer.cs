@@ -101,6 +101,7 @@ namespace Obi.ProjectView
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
+            this.Context_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,6 +138,7 @@ namespace Obi.ProjectView
             this.Context_PasteInsideMenuItem,
             this.Context_DeleteMenuItem,
             this.toolStripSeparator5,
+            this.Context_AudioProcessing,
             this.Context_ExportReplaceAudioMenuItem,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
@@ -544,8 +546,9 @@ namespace Obi.ProjectView
             // 
             // Context_ReplaceAudioMenuItem
             // 
-            resources.ApplyResources(this.Context_ReplaceAudioMenuItem, "Context_ReplaceAudioMenuItem");
+            this.Context_ReplaceAudioMenuItem.AccessibleName = global::Obi.messages_ta.phrase_extra_Plain;
             this.Context_ReplaceAudioMenuItem.Name = "Context_ReplaceAudioMenuItem";
+            resources.ApplyResources(this.Context_ReplaceAudioMenuItem, "Context_ReplaceAudioMenuItem");
             this.Context_ReplaceAudioMenuItem.Click += new System.EventHandler(this.Context_ReplaceAudioMenuItem_Click);
             // 
             // Context_PropertiesMenuItem
@@ -602,6 +605,12 @@ namespace Obi.ProjectView
             this.contentViewLabel1.Name_SectionDisplayed = "No section selected.";
             this.contentViewLabel1.sectionSelected = false;
             this.contentViewLabel1.zoomFactor = 1F;
+            // 
+            // Context_AudioProcessing
+            // 
+            this.Context_AudioProcessing.Name = "Context_AudioProcessing";
+            resources.ApplyResources(this.Context_AudioProcessing, "Context_AudioProcessing");
+            this.Context_AudioProcessing.Click += new System.EventHandler(this.Context_AudioProcessing_Click);
             // 
             // ContentView
             // 
@@ -696,5 +705,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_Delete_deleteFollowingPhrasesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ExportAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ReplaceAudioMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_AudioProcessing;
     }
 }
