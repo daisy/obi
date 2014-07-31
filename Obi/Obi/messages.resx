@@ -2665,12 +2665,12 @@ Error text: {1}</value>
     <value>Save location and size of Obi</value>
   </data>
   <data name="Project_PeakMeterChangeLocation" xml:space="preserve">
-    <value>Change peakmeter location w.r.t Obi Form</value>
+    <value>Keep the peak meter aligned to left edge of Obi window</value>
   </data>
   <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
     <value>Processing audio...</value>
   </data>
-  <data name="no_audio_change" xml:space="preserve">
-    <value>The value 1.0 means there will be no change in the audio.</value>
+  <data name="AudioProcessing_InfoText" xml:space="preserve">
+    <value>Value 1.0 means that audio will remain unchanged.</value>
   </data>
 </root>

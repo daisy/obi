@@ -5424,6 +5424,11 @@ namespace Obi
 
             private void mTools_AudioProcessing_Click(object sender, EventArgs e)
             {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                {
+                    if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                    mProjectView.TransportBar.Stop();
+                }
                 if (mProjectView.CanExportSelectedNodeAudio)
                 {
                     Dialogs.AudioProcessingDialog dialog = new AudioProcessingDialog();
