@@ -5450,11 +5450,7 @@ namespace Obi
                 }
                 if (mProjectView.CanExportSelectedNodeAudio)
                 {
-                    Dialogs.AudioProcessingDialog dialog = new AudioProcessingDialog();
-                    if (dialog.ShowDialog() == DialogResult.OK)
-                    {
-                        mProjectView.ProcessAudio(dialog.AudioProcess, dialog.AudioProcessingParameter);
-                    }
+                    mProjectView.ProcessAudio();
                 }
             }
 
