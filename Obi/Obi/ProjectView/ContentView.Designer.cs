@@ -546,7 +546,7 @@ namespace Obi.ProjectView
             // 
             // Context_ReplaceAudioMenuItem
             // 
-            this.Context_ReplaceAudioMenuItem.AccessibleName = global::Obi.messages_ta.phrase_extra_Plain;
+            
             this.Context_ReplaceAudioMenuItem.Name = "Context_ReplaceAudioMenuItem";
             resources.ApplyResources(this.Context_ReplaceAudioMenuItem, "Context_ReplaceAudioMenuItem");
             this.Context_ReplaceAudioMenuItem.Click += new System.EventHandler(this.Context_ReplaceAudioMenuItem_Click);
