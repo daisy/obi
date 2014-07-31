@@ -4923,6 +4923,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_GenerateSpeechForPageMenuItem.Enabled = mProjectView.CanGenerateSpeechForPage;
             Context_SettingsFromsilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
             Context_ReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
+            Context_AudioProcessing.Enabled = mProjectView.CanExportSelectedNodeAudio;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5669,6 +5670,23 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void Context_ReplaceAudioMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.ReplaceAudioOfSelectedNode();
+        }
+
+        private void Context_AudioProcessing_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.IsPlayerActive)
+            {
+                if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause();
+                mProjectView.TransportBar.Stop();
+            }
+            if (mProjectView.CanExportSelectedNodeAudio)
+            {
+                Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    mProjectView.ProcessAudio(dialog.AudioProcess, dialog.AudioProcessingParameter);
+                }
+            }
         }
 
      
