@@ -369,6 +369,12 @@ namespace Obi
                         title = ImportExport.ImportStructureFromXhtml.GrabTitle(new Uri(path));
                     else if (strExtension == ".xml")
                         title = ImportExport.DAISY3_ObiImport.getTitleFromDtBookFile(path);
+                    else if (strExtension == ".epub")
+                    {
+                        string opfFullPath =  unzipEPubAndGetOpfPath(path);
+                        if (opfFullPath != null && File.Exists(opfFullPath)) ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(opfFullPath, ref title, ref dtbUid);
+                    }
+
                     if (string.IsNullOrEmpty(title))
                     {
                         title = Localizer.Message("default_project_title");
@@ -428,6 +434,19 @@ namespace Obi
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
+            }
+
+            private string unzipEPubAndGetOpfPath(string path)
+            {
+                try
+                {
+                    return ImportExport.EPUB3_ObiImport.unzipEPubAndGetOpfPath(path);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                return null;
             }
 
             private bool ImportProjectFromDTBOrEPUB(string outputPath, string title, bool createTitleSection, string id,
