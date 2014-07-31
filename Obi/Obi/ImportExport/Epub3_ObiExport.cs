@@ -862,6 +862,7 @@ namespace Obi.ImportExport
                         }
                         ///int navPointDepth = GetDepthOfNavPointNode(navigationDocument, navPointNode);
                         int navPointDepth = 1;
+                        if (urakawaNode is SectionNode) navPointDepth = ((SectionNode)urakawaNode).Level;
                         if (maxDepth < navPointDepth) maxDepth = navPointDepth;
 
                         IsNcxNativeNodeAdded = true;
