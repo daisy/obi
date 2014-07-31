@@ -1256,7 +1256,7 @@ namespace Obi.ImportExport
                         {
                             continue;
                         }
-                        XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metadataNodeCreated, ma.Name, ma.Value);
+                        if(metadataNodeCreated  != null )    XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metadataNodeCreated, ma.Name, ma.Value);
                     }
                 }
                 //else
@@ -1279,7 +1279,7 @@ namespace Obi.ImportExport
                         {
                             continue;
                         }
-                        XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metadataNodeCreated, ma.Name, ma.Value);
+                        if(metadataNodeCreated  != null )  XmlDocumentHelper.CreateAppendXmlAttribute(opfDocument, metadataNodeCreated, ma.Name, ma.Value);
                     }
                 }
 
