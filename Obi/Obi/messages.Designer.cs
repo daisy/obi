@@ -5182,7 +5182,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speech is generated for all the pages.
+        ///   Looks up a localized string similar to Speech is generated for the pages.
         /// </summary>
         internal static string ProjectView_GenarteSpeechForAllPages {
             get {

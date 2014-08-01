@@ -2391,7 +2391,7 @@ Error text: {1}</value>
     <value>Reset</value>
   </data>
   <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
-    <value>Speech is generated for all the pages</value>
+    <value>Speech is generated for the pages</value>
   </data>
   <data name="EditAudioTT_Cut" xml:space="preserve">
     <value>Cut</value>
