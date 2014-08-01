@@ -2620,11 +2620,14 @@ for (int j = 0;
                         {
                             cmd.ChildCommands.Insert( cmd.ChildCommands.Count, new Commands.UpdateSelection (this, new NodeSelection(Selection.Node,Selection.Control)) );
                         }
+                        bool cancelOperation = false;
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "SpeechGenerationProgress" ),
                         delegate(Dialogs.ProgressDialog progress1)
                             {
+                                
                 for (int i = 0; i < listOfEmptyPages.Count; i++)
                 {
+                    if (cancelOperation) return;
                     PageNumber number = listOfEmptyPages[i].PageNumber;
                     string text = "Page" + (number.Kind == PageKind.Front ? " front, " + number.Number.ToString() : number.Kind == PageKind.Normal ? ", " + number.Number.ToString() : ", " + number.Unquoted);
                     string filePath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath, mPresentation.DataProviderManager.GetNewDataFileRelPath(".wav"));
@@ -2653,7 +2656,7 @@ for (int j = 0;
                 }
                 }
             });
-                    progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
+                    progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { cancelOperation = true; });
                     //this.ProgressChanged += new ProgressChangedEventHandler(progress.UpdateProgressBar);
                     progress.ShowDialog();
                     if (progress.Exception != null) throw (progress.Exception);
