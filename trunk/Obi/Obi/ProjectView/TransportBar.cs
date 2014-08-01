@@ -2397,8 +2397,16 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        PhraseNode destinationPhrase = mCurrentPlaylist.NextPhrase(
-                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
+                        PhraseNode startPhrase = FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node);
+                        PhraseNode destinationPhrase = null ;
+                        if (mView.Selection != null && mView.Selection.Node is EmptyNode && !(mView.Selection.Node is PhraseNode))
+                        {
+                            destinationPhrase = startPhrase ;
+                        }
+                        else
+                        {
+                        destinationPhrase =mCurrentPlaylist.NextPhrase(startPhrase);
+                        }
                         mView.SelectPhraseInContentView(destinationPhrase);
                         mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
                     }
