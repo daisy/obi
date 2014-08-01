@@ -3205,6 +3205,7 @@ for (int j = 0;
                 ObiNode node = null;
                 if (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount> 0 )
                     {
+                        if (DurationOfNodeSelected(Selection.Node) == 0) return;
                     node = ((SectionNode)Selection.Node).PhraseChild(0) ;
                     }
 
