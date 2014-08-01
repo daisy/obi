@@ -73,7 +73,7 @@ namespace Obi.ImportExport
             // Audio files may be shared between chapters of a book!
             
             m_OriginalAudioFile_FileDataProviderMap.Clear();
-
+            TreenodesWithoutManagedAudioMediaData = new List<TreeNode>();
             Presentation spineItemPresentation = null;
 
             int index = -1;
@@ -235,7 +235,7 @@ namespace Obi.ImportExport
 
                 //AddSubCancellable(m_AudioConversionSession);
 
-                TreenodesWithoutManagedAudioMediaData = new List<TreeNode>();
+                
 
 
                 if (RequestCancellation) return;
@@ -450,6 +450,10 @@ namespace Obi.ImportExport
                             
                                 section.AppendChild(audioWrapperNode);
                                 addAudio(audioWrapperNode , audioNode, false, fullOverlayPath);
+                                if (audioWrapperNode.Duration == 0 && !TreenodesWithoutManagedAudioMediaData.Contains(audioWrapperNode))
+                                {   
+                                    TreenodesWithoutManagedAudioMediaData.Add(audioWrapperNode);
+                                }
                                 if (pgNumber != null)
                                 {
                                     audioWrapperNode.PageNumber = pgNumber;
