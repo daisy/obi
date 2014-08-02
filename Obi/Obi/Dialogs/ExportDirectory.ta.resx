@@ -316,7 +316,7 @@
     <value>ஒரு நொடிக்கு ஒரு ஒலி கோப்பை உருவாக்கவும் இது வரைக்கும்:l:</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 52</value>
+    <value>360, 52</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
@@ -424,7 +424,7 @@
     <value>256</value>
   </data>
   <data name="m_ComboBoxBitrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 19</value>
+    <value>233, 19</value>
   </data>
   <data name="m_ComboBoxBitrate.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
