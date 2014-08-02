@@ -2977,6 +2977,7 @@ namespace Obi
                 try
                 {
                     InitializeComponent();
+                   
                     m_IsStatusBarEnabled = true;
                     mProjectView.ObiForm = this;
                     mProjectView.SelectionChanged += new EventHandler(ProjectView_SelectionChanged);
@@ -2989,9 +2990,15 @@ namespace Obi
                     mSession.ProjectSaved += new EventHandler(Session_ProjectSaved);
                     mSourceView = null;
                     InitializeSettings();
+                    if (mSettings.Project_SaveObiLocationAndSize)
+                    {
+                        this.StartPosition = FormStartPosition.Manual;
+                        this.Location = mSettings.ObiLastLocation;
+                    }
                     InitializeKeyboardShortcuts(true);
                     InitializeEventHandlers();
                     UpdateMenus();
+ 
                     // these should be stored in settings
                     mShowTOCViewToolStripMenuItem.Checked = mProjectView.TOCViewVisible = true;
                     mShowMetadataViewToolStripMenuItem.Checked = mProjectView.MetadataViewVisible = false;
@@ -3013,11 +3020,7 @@ namespace Obi
                                                           mSettings.PipelineScriptsPath));
                     }
                     Ready();
-                    if (mSettings.Project_SaveObiLocationAndSize)
-                    {
-                        this.StartPosition = FormStartPosition.Manual;
-                        this.Location = mSettings.ObiLastLocation;
-                    }
+
                     
                     //CheckSystemSupportForMemoryOptimization();
                  }
@@ -3767,7 +3770,11 @@ namespace Obi
             /// <remarks>Warn when closing while playing?</remarks>
             private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
             {
-                mSettings.ObiLastLocation = this.Location;
+                if (mSettings.Project_SaveObiLocationAndSize)
+                {
+
+                    mSettings.ObiLastLocation = this.Location;
+                }
                 if (mProjectView != null && mProjectView.TransportBar.IsActive)
                 {   
                     mProjectView.TransportBar.Stop();
