@@ -3968,16 +3968,16 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
         }
         public void PlaySection()
         {
-            PhraseNode pharse = null;
+            EmptyNode phrase = null;
             ObiNode nodeSelect = null;
             if (mView != null && mView.Selection != null)
             {
 
 
-                if (mView.Selection.Node is PhraseNode)
+                if (mView.Selection.Node is EmptyNode)
                 {
-                    pharse = (PhraseNode)mView.Selection.Node;
-                    nodeSelect = pharse.ParentAs<SectionNode>();
+                    phrase = (EmptyNode)mView.Selection.Node;
+                    nodeSelect = phrase.ParentAs<SectionNode>();
                 }
                 else if (mView.Selection.Node is SectionNode)
                 {
