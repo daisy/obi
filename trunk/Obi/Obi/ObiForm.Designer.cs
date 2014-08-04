@@ -204,6 +204,7 @@ namespace Obi
             this.mFastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_PreferencesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mTools_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.m_ToolsLangPack = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportSelectedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -221,7 +222,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mTools_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1460,12 +1460,12 @@ namespace Obi
             // 
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mTools_PreferencesMenuItem,
-            this.mTools_AudioProcessing,
-            this.toolStripSeparator16,
             this.m_ToolsLangPack,
+            this.toolStripSeparator16,
+            this.mTools_AudioProcessing,
             this.mTools_ExportSelectedAudioMenuItem,
-            this.mTools_ExportAsDAISYMenuItem,
             this.mTools_CleanUnreferencedAudioMenuItem,
+            this.mTools_ExportAsDAISYMenuItem,
             this.toolStripSeparator18,
             this.m_EPUB3ValidatorToolStripMenuItem});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
@@ -1476,6 +1476,12 @@ namespace Obi
             resources.ApplyResources(this.mTools_PreferencesMenuItem, "mTools_PreferencesMenuItem");
             this.mTools_PreferencesMenuItem.Name = "mTools_PreferencesMenuItem";
             this.mTools_PreferencesMenuItem.Click += new System.EventHandler(this.mTools_PreferencesMenuItem_Click);
+            // 
+            // mTools_AudioProcessing
+            // 
+            this.mTools_AudioProcessing.Name = "mTools_AudioProcessing";
+            resources.ApplyResources(this.mTools_AudioProcessing, "mTools_AudioProcessing");
+            this.mTools_AudioProcessing.Click += new System.EventHandler(this.mTools_AudioProcessing_Click);
             // 
             // toolStripSeparator16
             // 
@@ -1593,12 +1599,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // mTools_AudioProcessing
-            // 
-            this.mTools_AudioProcessing.Name = "mTools_AudioProcessing";
-            resources.ApplyResources(this.mTools_AudioProcessing, "mTools_AudioProcessing");
-            this.mTools_AudioProcessing.Click += new System.EventHandler(this.mTools_AudioProcessing_Click);
             // 
             // ObiForm
             // 
