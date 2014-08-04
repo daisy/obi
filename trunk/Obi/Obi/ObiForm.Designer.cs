@@ -205,8 +205,10 @@ namespace Obi
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_PreferencesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.m_ToolsLangPack = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportSelectedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportAsDAISYMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.m_EPUB3ValidatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -220,8 +222,6 @@ namespace Obi
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mTools_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_ToolsLangPack = new System.Windows.Forms.ToolStripMenuItem();
-            this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1460,12 +1460,12 @@ namespace Obi
             // 
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mTools_PreferencesMenuItem,
-            this.m_ToolsLangPack,
-            this.toolStripSeparator16,
             this.mTools_AudioProcessing,
+            this.toolStripSeparator16,
+            this.m_ToolsLangPack,
             this.mTools_ExportSelectedAudioMenuItem,
-            this.mTools_CleanUnreferencedAudioMenuItem,
             this.mTools_ExportAsDAISYMenuItem,
+            this.mTools_CleanUnreferencedAudioMenuItem,
             this.toolStripSeparator18,
             this.m_EPUB3ValidatorToolStripMenuItem});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
@@ -1482,6 +1482,12 @@ namespace Obi
             this.toolStripSeparator16.Name = "toolStripSeparator16";
             resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
             // 
+            // m_ToolsLangPack
+            // 
+            this.m_ToolsLangPack.Name = "m_ToolsLangPack";
+            resources.ApplyResources(this.m_ToolsLangPack, "m_ToolsLangPack");
+            this.m_ToolsLangPack.Click += new System.EventHandler(this.m_ToolsLangPack_Click);
+            // 
             // mTools_ExportSelectedAudioMenuItem
             // 
             resources.ApplyResources(this.mTools_ExportSelectedAudioMenuItem, "mTools_ExportSelectedAudioMenuItem");
@@ -1493,6 +1499,12 @@ namespace Obi
             resources.ApplyResources(this.mTools_ExportAsDAISYMenuItem, "mTools_ExportAsDAISYMenuItem");
             this.mTools_ExportAsDAISYMenuItem.Name = "mTools_ExportAsDAISYMenuItem";
             this.mTools_ExportAsDAISYMenuItem.Click += new System.EventHandler(this.mTools_ExportAsDAISYMenuItem_Click);
+            // 
+            // mTools_CleanUnreferencedAudioMenuItem
+            // 
+            resources.ApplyResources(this.mTools_CleanUnreferencedAudioMenuItem, "mTools_CleanUnreferencedAudioMenuItem");
+            this.mTools_CleanUnreferencedAudioMenuItem.Name = "mTools_CleanUnreferencedAudioMenuItem";
+            this.mTools_CleanUnreferencedAudioMenuItem.Click += new System.EventHandler(this.mTools_CleanUnreferencedAudioMenuItem_Click);
             // 
             // toolStripSeparator18
             // 
@@ -1586,16 +1598,7 @@ namespace Obi
             // 
             this.mTools_AudioProcessing.Name = "mTools_AudioProcessing";
             resources.ApplyResources(this.mTools_AudioProcessing, "mTools_AudioProcessing");
-            // 
-            // m_ToolsLangPack
-            // 
-            this.m_ToolsLangPack.Name = "m_ToolsLangPack";
-            resources.ApplyResources(this.m_ToolsLangPack, "m_ToolsLangPack");
-            // 
-            // mTools_CleanUnreferencedAudioMenuItem
-            // 
-            resources.ApplyResources(this.mTools_CleanUnreferencedAudioMenuItem, "mTools_CleanUnreferencedAudioMenuItem");
-            this.mTools_CleanUnreferencedAudioMenuItem.Name = "mTools_CleanUnreferencedAudioMenuItem";
+            this.mTools_AudioProcessing.Click += new System.EventHandler(this.mTools_AudioProcessing_Click);
             // 
             // ObiForm
             // 
@@ -1755,6 +1758,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem mEdit_DeleteUnusedDataMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mTools_CleanUnreferencedAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_ResetAudioSizeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_PhraseIsTODOMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_PhrasePropertiesMenuItem;
@@ -1807,6 +1811,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mFile_MergeProjectMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_RenumberPagesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_ToolsLangPack;
         private System.Windows.Forms.ToolStripMenuItem m_PreviewBeforeRecordingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_PlaySectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_PlayHeadingToolStripMenuItem;
@@ -1814,9 +1819,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mForwardElapseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mBackwardElapseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_EPUB3ValidatorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem m_ToolsLangPack;
         private System.Windows.Forms.ToolStripMenuItem mTools_AudioProcessing;
-        private System.Windows.Forms.ToolStripMenuItem mTools_CleanUnreferencedAudioMenuItem;
     }
 }
 
