@@ -4593,10 +4593,10 @@ namespace Obi
             private void mtools_ExportSelectedAudioMenuItem_Click(object sender, EventArgs e)
             {
                 //String directoryPath = Path.GetDirectoryName(mSession.Path);
-                if (mProjectView.IsZoomWaveformActive)
-                {
-                    mProjectView.ZoomPanelClose();
-                }
+                //if (mProjectView.IsZoomWaveformActive)
+                //{
+                    //mProjectView.ZoomPanelClose();
+                //}
                 mProjectView.ExportAudioOfSelectedNode();
             }
 
