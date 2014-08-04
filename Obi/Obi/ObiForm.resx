@@ -311,20 +311,20 @@
   <data name="mTools_PreferencesMenuItem.Text" xml:space="preserve">
     <value>&amp;Preferences</value>
   </data>
-  <data name="mTools_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="mTools_AudioProcessing.Text" xml:space="preserve">
-    <value>&amp;Audio Processing</value>
-  </data>
-  <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 6</value>
-  </data>
   <data name="m_ToolsLangPack.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 22</value>
   </data>
   <data name="m_ToolsLangPack.Text" xml:space="preserve">
     <value>&amp;Update Language Pack</value>
+  </data>
+  <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 6</value>
+  </data>
+  <data name="mTools_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="mTools_AudioProcessing.Text" xml:space="preserve">
+    <value>&amp;Audio Processing</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>Export Audio  Ctrl+Alt+E</value>
@@ -338,18 +338,6 @@
   <data name="mTools_ExportSelectedAudioMenuItem.Text" xml:space="preserve">
     <value>Export A&amp;udio</value>
   </data>
-  <data name="mTools_ExportAsDAISYMenuItem.AccessibleName" xml:space="preserve">
-    <value>Export as DAISY Ctrl+E</value>
-  </data>
-  <data name="mTools_ExportAsDAISYMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+E</value>
-  </data>
-  <data name="mTools_ExportAsDAISYMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
-  </data>
-  <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
-    <value>&amp;Export as DAISY/EPUB</value>
-  </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>Clean unreferenced audio ctrl+l</value>
   </data>
@@ -361,6 +349,18 @@
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
     <value>C&amp;lean unreferenced audio</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.AccessibleName" xml:space="preserve">
+    <value>Export as DAISY Ctrl+E</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+E</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
+    <value>&amp;Export as DAISY/EPUB</value>
   </data>
   <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 6</value>
@@ -1993,7 +1993,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.3.4.19560, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.3.4.29114, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -3313,6 +3313,12 @@
   <data name="&gt;&gt;mTools_PreferencesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mTools_AudioProcessing.Name" xml:space="preserve">
+    <value>mTools_AudioProcessing</value>
+  </data>
+  <data name="&gt;&gt;mTools_AudioProcessing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator16.Name" xml:space="preserve">
     <value>toolStripSeparator16</value>
   </data>
@@ -3402,12 +3408,6 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mTools_AudioProcessing.Name" xml:space="preserve">
-    <value>mTools_AudioProcessing</value>
-  </data>
-  <data name="&gt;&gt;mTools_AudioProcessing.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>
