@@ -2673,4 +2673,10 @@ Error text: {1}</value>
   <data name="AudioProcessing_InfoText" xml:space="preserve">
     <value>Value 1.0 means that audio will remain unchanged.</value>
   </data>
+  <data name="ValidatorTimeOutMsg" xml:space="preserve">
+    <value>Validator time out</value>
+  </data>
+  <data name="Project_EPUBCheckTimeOutEnabled" xml:space="preserve">
+    <value>Timeout EPUB Check process after 3 mins</value>
+  </data>
 </root>
