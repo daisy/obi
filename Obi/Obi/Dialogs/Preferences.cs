@@ -967,6 +967,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[11].Checked = mSettings.Project_SaveObiLocationAndSize;
                 m_CheckBoxListView.Items[11].ToolTipText = Localizer.Message("Project_SaveObiLocationAndSize");
                 m_CheckBoxListView.Items[12].Checked = mSettings.Project_PeakMeterChangeLocation;
+                m_CheckBoxListView.Items[12].ToolTipText = Localizer.Message("Project_PeakMeterChangeLocation");
                 m_CheckBoxListView.Items[13].Checked = mSettings.Project_EPUBCheckTimeOutEnabled;
                 m_CheckBoxListView.Items[13].ToolTipText = Localizer.Message("Project_EPUBCheckTimeOutEnabled");
 
