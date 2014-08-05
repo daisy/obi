@@ -5327,24 +5327,32 @@ namespace Obi
                     
 
                     epubCheckProcess.Start();
-
+                    Stopwatch stopWatch = new Stopwatch();
+                    stopWatch.Start();
                     if (mSettings.Project_EPUBCheckTimeOutEnabled)
                     {
                         epubCheckProcess.WaitForExit(180000);
                         if (!epubCheckProcess.HasExited)
                         {
                             epubCheckProcess.CloseMainWindow();
-                            MessageBox.Show(Localizer.Message( "ValidatorTimeOutMsg"));
+                            stopWatch.Stop();
+                            MessageBox.Show(Localizer.Message("ValidatorTimeOutMsg"));
+                        }
+                        else
+                        {
+                            strErrors = epubCheckProcess.StandardError.ReadToEnd();
+                            strOutput = epubCheckProcess.StandardOutput.ReadToEnd();
+                            stopWatch.Stop();
                         }
                     }
                     else
                     {
                         epubCheckProcess.WaitForExit();
+                        strErrors = epubCheckProcess.StandardError.ReadToEnd();
+                        strOutput = epubCheckProcess.StandardOutput.ReadToEnd();
+                        stopWatch.Stop();
                     }
-                    
-
-                    strErrors =  epubCheckProcess.StandardError.ReadToEnd();
-                    strOutput = epubCheckProcess.StandardOutput.ReadToEnd();
+                    if(stopWatch != null )  Console.WriteLine("EPUB Check execution time: " + stopWatch.ElapsedMilliseconds);
                     //File.WriteAllText(epubCheckOutput, strArguments);
                     
                 }
