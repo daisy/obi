@@ -5038,6 +5038,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Timeout EPUB Check process after 3 mins.
+        /// </summary>
+        internal static string Project_EPUBCheckTimeOutEnabled {
+            get {
+                return ResourceManager.GetString("Project_EPUBCheckTimeOutEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not create lock file for project at &quot;{0}&quot;: {1}.
         /// </summary>
         internal static string project_lock_error {
@@ -6783,6 +6792,15 @@ namespace Obi {
         internal static string UserRegistrationBtn_DoNotRemind {
             get {
                 return ResourceManager.GetString("UserRegistrationBtn_DoNotRemind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validator time out.
+        /// </summary>
+        internal static string ValidatorTimeOutMsg {
+            get {
+                return ResourceManager.GetString("ValidatorTimeOutMsg", resourceCulture);
             }
         }
         
