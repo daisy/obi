@@ -235,7 +235,8 @@ namespace Obi
                     m_RestoreFromBackupToolStripMenuItem.Enabled = false;
                 }
 
-                m_RestoreFromBackupToolStripMenuItem.Enabled = mSession.HasProject;
+                m_RestoreFromBackupToolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
+                m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive ;
                 mFile_SaveProjectMenuItem.Enabled = mSession.CanSave;
                 mFile_SaveProjectAsMenuItem.Enabled = mSession.HasProject;
                 mFile_RecentProjectMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
