@@ -30,13 +30,14 @@ namespace Obi.Dialogs
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AudioProcessingDialog));
             this.m_gpbox_Process = new System.Windows.Forms.GroupBox();
+            this.m_txt_info = new System.Windows.Forms.TextBox();
             this.m_numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.m_lbl_Parameters = new System.Windows.Forms.Label();
             this.m_cb_Process = new System.Windows.Forms.ComboBox();
             this.m_lbl_Process = new System.Windows.Forms.Label();
             this.m_btn_OK = new System.Windows.Forms.Button();
             this.m_btn_Cancel = new System.Windows.Forms.Button();
-            this.m_txt_info = new System.Windows.Forms.TextBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_gpbox_Process.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -51,6 +52,12 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_gpbox_Process, "m_gpbox_Process");
             this.m_gpbox_Process.Name = "m_gpbox_Process";
             this.m_gpbox_Process.TabStop = false;
+            // 
+            // m_txt_info
+            // 
+            resources.ApplyResources(this.m_txt_info, "m_txt_info");
+            this.m_txt_info.Name = "m_txt_info";
+            this.m_txt_info.ReadOnly = true;
             // 
             // m_numericUpDown1
             // 
@@ -113,12 +120,6 @@ namespace Obi.Dialogs
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             this.m_btn_Cancel.Click += new System.EventHandler(this.m_btn_Cancel_Click);
             // 
-            // m_txt_info
-            // 
-            resources.ApplyResources(this.m_txt_info, "m_txt_info");
-            this.m_txt_info.Name = "m_txt_info";
-            this.m_txt_info.ReadOnly = true;
-            // 
             // AudioProcessingDialog
             // 
             this.AcceptButton = this.m_btn_OK;
@@ -147,5 +148,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btn_OK;
         private System.Windows.Forms.Button m_btn_Cancel;
         private System.Windows.Forms.TextBox m_txt_info;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
