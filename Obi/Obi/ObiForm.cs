@@ -5337,6 +5337,7 @@ namespace Obi
                             epubCheckProcess.CloseMainWindow();
                             stopWatch.Stop();
                             MessageBox.Show(Localizer.Message("ValidatorTimeOutMsg"));
+                            strStatus = Localizer.Message("obi_EPUB3ValidationFailed");
                         }
                         else
                         {
