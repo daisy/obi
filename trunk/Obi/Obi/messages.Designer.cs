@@ -5074,7 +5074,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keep the peak meter aligned to left edge of Obi.
+        ///   Looks up a localized string similar to Keep the peak meter aligned to right edge of Obi.
         /// </summary>
         internal static string Project_PeakMeterChangeLocation {
             get {
