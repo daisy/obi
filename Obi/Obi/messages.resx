@@ -2665,7 +2665,7 @@ Error text: {1}</value>
     <value>Save location and size of Obi</value>
   </data>
   <data name="Project_PeakMeterChangeLocation" xml:space="preserve">
-    <value>Keep the peak meter aligned to left edge of Obi</value>
+    <value>Keep the peak meter aligned to right edge of Obi</value>
   </data>
   <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
     <value>Processing audio...</value>
