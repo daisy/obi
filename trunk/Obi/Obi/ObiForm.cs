@@ -2695,13 +2695,17 @@ namespace Obi
                         }
                         catch (Exception e)
                         {
+                            
                             string displayPath = (ExportDialogDAISY3 != null && ExportDialogDAISY202 != null) ? ExportDialogDAISY3.DirectoryPath + "\n" + ExportDialogDAISY202.DirectoryPath :
                                 ExportDialogDAISY3 != null ? ExportDialogDAISY3.DirectoryPath : 
                                 ExportDialogDAISY202!= null? ExportDialogDAISY202.DirectoryPath: ExportDialogEPUB3.DirectoryPath;
-                            
+
+                            string errorMsg = " ";
+                            if (e != null) errorMsg = e.Message;
+
                             MessageBox.Show(
                                 String.Format(Localizer.Message("didnt_save_as_daisy_text"), displayPath,
-                                              e.Message),
+                                              errorMsg),
                                 Localizer.Message("didnt_save_as_daisy_caption"), MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                             Status(Localizer.Message("didnt_save_as_daisy_caption"));
