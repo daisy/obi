@@ -15,6 +15,10 @@ namespace Obi.Dialogs
             InitializeComponent();
             m_cb_Process.SelectedIndex = 0;
             m_txt_info.Text = Localizer.Message("AudioProcessing_InfoText");
+
+            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Audio/Audio processing.htm");
         }
 
         public Obi.Audio.AudioFormatConverter.AudioProcessingKind AudioProcess
