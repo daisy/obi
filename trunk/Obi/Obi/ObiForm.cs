@@ -2648,7 +2648,12 @@ namespace Obi
 
                             progress.OperationCancelled +=
                                 new Obi.Dialogs.OperationCancelledHandler(
-                                    delegate(object sender, EventArgs e) { DAISY3Export.RequestCancellation = true; });
+                                    delegate(object sender, EventArgs e) 
+                                    { 
+                                        if(DAISY3Export != null )  DAISY3Export.RequestCancellation = true;
+                                        if (DAISY202Export != null) DAISY202Export.RequestCancellation = true;
+                                        if (EPUB3_Export != null) EPUB3_Export.RequestCancellation = true;
+                                    });
                             if (DAISY3Export != null) DAISY3Export.ProgressChangedEvent +=
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                             if (DAISY202Export != null) DAISY202Export.ProgressChangedEvent +=
