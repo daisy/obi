@@ -1,0 +1,672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="m_statusStripForMergeSection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 385</value>
+  </metadata>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>218, 252</value>
+  </metadata>
+  <metadata name="SectionNameColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="SectionLevelColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>54</value>
+  </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_btn_OK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_btn_OK.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>508, 315</value>
+  </data>
+  <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 28</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="m_btn_OK.Text" xml:space="preserve">
+    <value>مواف&amp;ق</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
+    <value>m_btn_OK</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btn_OK.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="m_btn_Cancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_Cancel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>615, 314</value>
+  </data>
+  <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 28</value>
+  </data>
+  <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="m_btn_Cancel.Text" xml:space="preserve">
+    <value>إلغا&amp;ء</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.Name" xml:space="preserve">
+    <value>m_btn_Cancel</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Cancel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="m_StatusLabelForMergeSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="m_statusStripForMergeSection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 385</value>
+  </data>
+  <data name="m_statusStripForMergeSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>735, 5</value>
+  </data>
+  <data name="m_statusStripForMergeSection.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_statusStripForMergeSection.Text" xml:space="preserve">
+    <value>شريط حالة الأقسام المدمجة</value>
+  </data>
+  <data name="&gt;&gt;m_statusStripForMergeSection.Name" xml:space="preserve">
+    <value>m_statusStripForMergeSection</value>
+  </data>
+  <data name="&gt;&gt;m_statusStripForMergeSection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_statusStripForMergeSection.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_statusStripForMergeSection.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="m_tb_SelectedSection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 13</value>
+  </data>
+  <data name="m_tb_SelectedSection.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_tb_SelectedSection.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="m_tb_SelectedSection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 20</value>
+  </data>
+  <data name="m_tb_SelectedSection.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_tb_SelectedSection.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_tb_SelectedSection.Name" xml:space="preserve">
+    <value>m_tb_SelectedSection</value>
+  </data>
+  <data name="&gt;&gt;m_tb_SelectedSection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_tb_SelectedSection.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;m_tb_SelectedSection.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_btn_SelectAll.AccessibleName" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="m_btn_SelectAll.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="m_btn_SelectAll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>136, 19</value>
+  </data>
+  <data name="m_btn_SelectAll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 44</value>
+  </data>
+  <data name="m_btn_SelectAll.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="m_btn_SelectAll.Text" xml:space="preserve">
+    <value>اختر الكل</value>
+  </data>
+  <data name="&gt;&gt;m_btn_SelectAll.Name" xml:space="preserve">
+    <value>m_btn_SelectAll</value>
+  </data>
+  <data name="&gt;&gt;m_btn_SelectAll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_SelectAll.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;m_btn_SelectAll.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_btnMerge.AccessibleName" xml:space="preserve">
+    <value>Merge Section</value>
+  </data>
+  <data name="m_btnMerge.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 19</value>
+  </data>
+  <data name="m_btnMerge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 44</value>
+  </data>
+  <data name="m_btnMerge.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_btnMerge.Text" xml:space="preserve">
+    <value>Merge</value>
+  </data>
+  <data name="&gt;&gt;m_btnMerge.Name" xml:space="preserve">
+    <value>m_btnMerge</value>
+  </data>
+  <data name="&gt;&gt;m_btnMerge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnMerge.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;m_btnMerge.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>الوصف:</value>
+  </data>
+  <data name="label1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>409, 237</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 72</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
+  <data name="m_btn_Apply.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_Apply.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
+  <data name="m_btn_Apply.Location" type="System.Drawing.Point, System.Drawing">
+    <value>390, 315</value>
+  </data>
+  <data name="m_btn_Apply.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 28</value>
+  </data>
+  <data name="m_btn_Apply.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="m_btn_Apply.Text" xml:space="preserve">
+    <value>&amp;Apply</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.Name" xml:space="preserve">
+    <value>m_btn_Apply</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="SectionNameColumn.HeaderText" xml:space="preserve">
+    <value>Section Names</value>
+  </data>
+  <data name="SectionNameColumn.Width" type="System.Int32, mscorlib">
+    <value>500</value>
+  </data>
+  <data name="SectionLevelColumn.HeaderText" xml:space="preserve">
+    <value>Section Level</value>
+  </data>
+  <data name="SectionLevelColumn.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="m_dataGridView_SectionNames.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 11</value>
+  </data>
+  <data name="m_dataGridView_SectionNames.Size" type="System.Drawing.Size, System.Drawing">
+    <value>695, 215</value>
+  </data>
+  <data name="m_dataGridView_SectionNames.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="m_dataGridView_SectionNames.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_dataGridView_SectionNames.Name" xml:space="preserve">
+    <value>m_dataGridView_SectionNames</value>
+  </data>
+  <data name="&gt;&gt;m_dataGridView_SectionNames.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_dataGridView_SectionNames.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_dataGridView_SectionNames.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.AccessibleName" xml:space="preserve">
+    <value>Decrease Section Level</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 15</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 52</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Name" xml:space="preserve">
+    <value>m_btn_DecreaseSectionLevel</value>
+  </data>
+  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Parent" xml:space="preserve">
+    <value>m_grp_SectionLevelOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.AccessibleName" xml:space="preserve">
+    <value>Increase Section Level</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 15</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 52</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Name" xml:space="preserve">
+    <value>m_btn_IncreaseSectionLevel</value>
+  </data>
+  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Parent" xml:space="preserve">
+    <value>m_grp_SectionLevelOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 237</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 72</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.Name" xml:space="preserve">
+    <value>m_grp_SectionLevelOperation</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_btnPause.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="m_btnPause.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 45</value>
+  </data>
+  <data name="m_btnPause.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="m_btnPause.Text" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="m_btnPause.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;m_btnPause.Name" xml:space="preserve">
+    <value>m_btnPause</value>
+  </data>
+  <data name="&gt;&gt;m_btnPause.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnPause.Parent" xml:space="preserve">
+    <value>m_grp_SectionAudioOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btnPause.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_btn_Stop.AccessibleName" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="m_btn_Stop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>101, 18</value>
+  </data>
+  <data name="m_btn_Stop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 45</value>
+  </data>
+  <data name="m_btn_Stop.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="m_btn_Stop.Text" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Stop.Name" xml:space="preserve">
+    <value>m_btn_Stop</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Stop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Stop.Parent" xml:space="preserve">
+    <value>m_grp_SectionAudioOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Stop.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_btn_Play.AccessibleName" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="m_btn_Play.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="m_btn_Play.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 45</value>
+  </data>
+  <data name="m_btn_Play.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_btn_Play.Text" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Play.Name" xml:space="preserve">
+    <value>m_btn_Play</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Play.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Play.Parent" xml:space="preserve">
+    <value>m_grp_SectionAudioOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Play.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_grp_SectionAudioOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 237</value>
+  </data>
+  <data name="m_grp_SectionAudioOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 72</value>
+  </data>
+  <data name="m_grp_SectionAudioOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionAudioOperation.Name" xml:space="preserve">
+    <value>m_grp_SectionAudioOperation</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionAudioOperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionAudioOperation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionAudioOperation.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_lb_listofSectionsToMerge.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 12</value>
+  </data>
+  <data name="m_lb_listofSectionsToMerge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>703, 212</value>
+  </data>
+  <data name="m_lb_listofSectionsToMerge.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;m_lb_listofSectionsToMerge.Name" xml:space="preserve">
+    <value>m_lb_listofSectionsToMerge</value>
+  </data>
+  <data name="&gt;&gt;m_lb_listofSectionsToMerge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lb_listofSectionsToMerge.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lb_listofSectionsToMerge.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>735, 390</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>اختر القسم المطلوب دمجه</value>
+  </data>
+  <data name="&gt;&gt;m_StatusLabelForMergeSection.Name" xml:space="preserve">
+    <value>m_StatusLabelForMergeSection</value>
+  </data>
+  <data name="&gt;&gt;m_StatusLabelForMergeSection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
+    <value>helpProvider1</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SectionNameColumn.Name" xml:space="preserve">
+    <value>SectionNameColumn</value>
+  </data>
+  <data name="&gt;&gt;SectionNameColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SectionLevelColumn.Name" xml:space="preserve">
+    <value>SectionLevelColumn</value>
+  </data>
+  <data name="&gt;&gt;SectionLevelColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>SelectMergeSectionRange</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>
