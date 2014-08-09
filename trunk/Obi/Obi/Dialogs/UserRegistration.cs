@@ -180,8 +180,8 @@ namespace Obi.Dialogs
               //  || ((m_txtEmail.Text.Contains(" ")) && m_txtEmail.Text.Trim().Length == 0) 
               //  || ((m_txtOrganizationName.Text.Contains(" ")) && m_txtOrganizationName.Text.Trim().Length == 0)
               //   || ((m_txtCity.Text.Contains(" ")) && m_txtCity.Text.Trim().Length == 0))
-            bool flag = false;            
-                string str="Please Enter the Following correctly :";
+            bool flag = false;
+            string str = Localizer.Message("UserRegistration_EnterFollowing");
                 if (m_txtName.Text == "" || ((m_txtName.Text.Contains(" ")) && m_txtName.Text.Trim().Length==0 ) || (m_txtName.Text.StartsWith(".") && m_txtName.Text.EndsWith(".")))
                 {
                     str += "\n" + Localizer.Message("UserRegistration_Name");

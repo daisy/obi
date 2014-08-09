@@ -2679,4 +2679,7 @@ Error text: {1}</value>
   <data name="Project_EPUBCheckTimeOutEnabled" xml:space="preserve">
     <value>Timeout EPUB Check process after 3 mins</value>
   </data>
+  <data name="UserRegistration_EnterFollowing" xml:space="preserve">
+    <value>Please Enter the Following correctly :</value>
+  </data>
 </root>

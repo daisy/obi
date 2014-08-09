@@ -6733,6 +6733,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Enter the Following correctly :.
+        /// </summary>
+        internal static string UserRegistration_EnterFollowing {
+            get {
+                return ResourceManager.GetString("UserRegistration_EnterFollowing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please indicate us about your usage of Obi by checking any one of the radio button.
         /// </summary>
         internal static string UserRegistration_IndiacateUsage {
