@@ -2020,6 +2020,7 @@ namespace Obi
 
             private void mPhrases_PhraseIsTODOMenuItem_CheckedChanged(object sender, EventArgs e)
             {
+                IsStatusBarEnabled = false;
                 mProjectView.ToggleTODOForPhrase();
             }
 
