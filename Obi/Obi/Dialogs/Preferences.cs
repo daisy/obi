@@ -163,18 +163,26 @@ namespace Obi.Dialogs
             mChannelsCombo.Visible = mCanChangeAudioSettings;
             mChannelsTextbox.Text = Localizer.Message ( audioChannels == 1 ? "mono" : "stereo" );
             mChannelsTextbox.Visible = !mCanChangeAudioSettings;
-            if (AudioFormatConverter.InstalledTTSVoices.Count == 0) AudioFormatConverter.InitializeTTS(mSettings,mPresentation !=null? mPresentation.MediaDataManager.DefaultPCMFormat.Data: new AudioLibPCMFormat((ushort)mSettings.AudioChannels,(uint) mSettings.AudioSampleRate,(ushort) mSettings.AudioBitDepth));
-            mTTSvoiceCombo.Items.AddRange (Audio.AudioFormatConverter.InstalledTTSVoices.ToArray()) ;
-            if (string.IsNullOrEmpty(mSettings.Audio_TTSVoice))
+
+            try
             {
-                if (mTTSvoiceCombo.Items.Count > 0) mTTSvoiceCombo.SelectedIndex = 0;
+                if (AudioFormatConverter.InstalledTTSVoices.Count == 0) AudioFormatConverter.InitializeTTS(mSettings, mPresentation != null ? mPresentation.MediaDataManager.DefaultPCMFormat.Data : new AudioLibPCMFormat((ushort)mSettings.AudioChannels, (uint)mSettings.AudioSampleRate, (ushort)mSettings.AudioBitDepth));
+                mTTSvoiceCombo.Items.AddRange(Audio.AudioFormatConverter.InstalledTTSVoices.ToArray());
+                if (string.IsNullOrEmpty(mSettings.Audio_TTSVoice))
+                {
+                    if (mTTSvoiceCombo.Items.Count > 0) mTTSvoiceCombo.SelectedIndex = 0;
+                }
+                else
+                {
+                    int ttsIndex = AudioFormatConverter.InstalledTTSVoices.IndexOf(mSettings.Audio_TTSVoice);
+                    if (ttsIndex >= 0) mTTSvoiceCombo.SelectedIndex = ttsIndex;
+                }
             }
-            else
+            catch (System.Exception ex)
             {
-                int ttsIndex = AudioFormatConverter.InstalledTTSVoices.IndexOf(mSettings.Audio_TTSVoice) ;
-                if(ttsIndex >= 0 )  mTTSvoiceCombo.SelectedIndex =ttsIndex ;
+                MessageBox.Show(ex.ToString());
             }
-            
+
             if(m_cbOperation.SelectedIndex == 0)
                 m_OperationDurationUpDown.Value = (decimal)(mSettings.NudgeTimeMs);
             if(m_cbOperation.SelectedIndex == 1)
