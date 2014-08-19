@@ -166,17 +166,27 @@ namespace Obi.Dialogs
 
             try
             {
-                if (AudioFormatConverter.InstalledTTSVoices.Count == 0) AudioFormatConverter.InitializeTTS(mSettings, mPresentation != null ? mPresentation.MediaDataManager.DefaultPCMFormat.Data : new AudioLibPCMFormat((ushort)mSettings.AudioChannels, (uint)mSettings.AudioSampleRate, (ushort)mSettings.AudioBitDepth));
-                mTTSvoiceCombo.Items.AddRange(Audio.AudioFormatConverter.InstalledTTSVoices.ToArray());
-                if (string.IsNullOrEmpty(mSettings.Audio_TTSVoice))
+                List<string> installedTTSVoices = AudioFormatConverter.InstalledTTSVoices;
+                
+                if (installedTTSVoices == null || installedTTSVoices.Count == 0)
                 {
-                    if (mTTSvoiceCombo.Items.Count > 0) mTTSvoiceCombo.SelectedIndex = 0;
+                    AudioFormatConverter.InitializeTTS(mSettings, mPresentation != null ? mPresentation.MediaDataManager.DefaultPCMFormat.Data : new AudioLibPCMFormat((ushort)mSettings.AudioChannels, (uint)mSettings.AudioSampleRate, (ushort)mSettings.AudioBitDepth));
                 }
-                else
+                installedTTSVoices = AudioFormatConverter.InstalledTTSVoices;
+                if (installedTTSVoices != null && installedTTSVoices.Count > 0)
                 {
-                    int ttsIndex = AudioFormatConverter.InstalledTTSVoices.IndexOf(mSettings.Audio_TTSVoice);
-                    if (ttsIndex >= 0) mTTSvoiceCombo.SelectedIndex = ttsIndex;
+                    mTTSvoiceCombo.Items.AddRange(installedTTSVoices.ToArray());
+                    if (string.IsNullOrEmpty(mSettings.Audio_TTSVoice))
+                    {
+                        if (mTTSvoiceCombo.Items.Count > 0) mTTSvoiceCombo.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        int ttsIndex = installedTTSVoices.IndexOf(mSettings.Audio_TTSVoice);
+                        if (ttsIndex >= 0) mTTSvoiceCombo.SelectedIndex = ttsIndex;
+                    }
                 }
+                
             }
             catch (System.Exception ex)
             {
