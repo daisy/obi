@@ -435,12 +435,15 @@ namespace Obi.ImportExport
 
                                     textTreeNode = spineItemPresentation.RootNode;
                                 }
-                                if (m_XmlIdToPageNodeMap.ContainsKey(urlDecoded))
+                                if (m_XmlIdToPageNodeMap.ContainsKey(urlDecoded)
+                                    && m_XmlIdToPageNodeMap[urlDecoded]!= null )
                                 {
                                     EmptyNode pgNode =  m_XmlIdToPageNodeMap[urlDecoded];
                                     pgNumber = pgNode.PageNumber;
                                     
                                     if(pgNode.IsRooted)  pgNode.Detach();
+                                    // the phrases following the page phrase in smil will refer to same content doc ID. so to avoid reassigning page, the page node in dictionary is assigned to null.
+                                    m_XmlIdToPageNodeMap[urlDecoded] = null;
                                 }
                             }
                             
