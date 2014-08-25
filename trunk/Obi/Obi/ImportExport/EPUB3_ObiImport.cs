@@ -508,86 +508,39 @@ namespace Obi.ImportExport
                     }
                          */
                 }
-                /*
-                spineItemProject.PrettyFormat = m_XukPrettyFormat;
-
-                SaveXukAction action = new SaveXukAction(spineItemProject, spineItemProject, new Uri(xuk_FilePath), true);
-                action.ShortDescription = UrakawaSDK_daisy_Lang.SavingXUKFile;
-                action.LongDescription = UrakawaSDK_daisy_Lang.SerializeDOMIntoXUKFile;
-
-                action.Progress += new EventHandler<ProgressEventArgs>(
-                    delegate(object sender, ProgressEventArgs e)
-                    {
-
-                        double val = e.Current;
-                        double max = e.Total;
-
-                        int percent = -1;
-                        if (val != max)
-                        {
-                            percent = (int)((val / max) * 100);
-                        }
-
-                        reportProgress_Throttle(percent, val + "/" + max);
-                        //reportProgress(-1, action.LongDescription);
-                        
-                        if (RequestCancellation)
-                        {
-                            e.Cancel();
-                        }
-                    }
-                    );
-                    
-
-                action.Finished += new EventHandler<FinishedEventArgs>(
-                    delegate(object sender, FinishedEventArgs e)
-                    {
-                        reportProgress(100, UrakawaSDK_daisy_Lang.XUKSaved);
-                    }
-                    );
-                action.Cancelled += new EventHandler<CancelledEventArgs>(
-                    delegate(object sender, CancelledEventArgs e)
-                    {
-                        reportProgress(0, UrakawaSDK_daisy_Lang.CancelledXUKSaving);
-                    }
-                    );
-
-                action.DoWork();
-
-
-
-
-
-
-
-
-
-
-                //if (first)
-                //{
-                //    Presentation presentation = m_Project.Presentations.Get(0);
-                //    XmlProperty xmlProp = presentation.PropertyFactory.CreateXmlProperty();
-                //    xmlProp.LocalName = "book";
-                //    presentation.PropertyFactory.DefaultXmlNamespaceUri = bodyElement.NamespaceURI;
-                //    xmlProp.NamespaceUri = presentation.PropertyFactory.DefaultXmlNamespaceUri;
-                //    TreeNode treeNode = presentation.TreeNodeFactory.Create();
-                //    treeNode.AddProperty(xmlProp);
-                //    presentation.RootNode = treeNode;
-
-                //    first = false;
-                //}
-
-                //foreach (XmlNode childOfBody in bodyElement.ChildNodes)
-                //{
-                //    parseContentDocument(childOfBody, m_Project.Presentations.Get(0).RootNode, fullDocPath);
-                //}
- */                   
-            }
-            
-
+                            }
+                            
         }
 
-        protected override TreeNode GetFirstTreeNodeForXmlDocument ( Presentation presentation, XmlNode xmlNode)
+        protected override void RemoveMetadataItemsToBeExcluded(Project project)
+        {
+            base.RemoveMetadataItemsToBeExcluded(project);
+            AdaptMetadataAccordingToDAISYMetadata();
+        }
+
+        private void AdaptMetadataAccordingToDAISYMetadata()
+        {
+            Dictionary<string,string> metadataNamesMap = new Dictionary<string,string> () ;
+
+            foreach (string name in Metadata.DAISY3MetadataNames)
+            {
+                metadataNamesMap.Add(name.ToLower(), name);
+            }
+
+            for (int i = 0; i < m_Presentation.Metadatas.Count; i++)
+            {
+                urakawa.metadata.Metadata md = m_Presentation.Metadatas.Get(i);
+                if (md != null && md.NameContentAttribute != null
+                    && metadataNamesMap.ContainsKey(md.NameContentAttribute.Name))
+                {
+                    md.NameContentAttribute.Name = metadataNamesMap[md.NameContentAttribute.Name];
+                    Console.WriteLine(md.NameContentAttribute.Name);
+                }
+
+            }
+        }
+
+        protected override TreeNode GetFirstTreeNodeForXmlDocument(Presentation presentation, XmlNode xmlNode)
         {
             int level = -1;
             XmlNode xNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlNode, true, "section", null);
