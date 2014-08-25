@@ -1420,7 +1420,7 @@ namespace Obi.ProjectView
         //@singleSection
         private void CreateSelectedStripAndPhraseBlocks ( NodeSelection selectionValue )
             {
-            if (selectionValue == null || !selectionValue.Node.IsRooted) return;
+            if (selectionValue == null || selectionValue.Node == null || !selectionValue.Node.IsRooted) return;
 
             // if selection restore phrase lie in next phrase lot but phrase is alreaty created with lot before, no need to refresh screen in this case
             // the calling code should check if the phrase is created or not
