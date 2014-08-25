@@ -40,11 +40,12 @@ namespace Obi
                                 Uri uri = new Uri(m_SourceProjectPath, UriKind.Absolute);
                                 bool pretty = m_session.Presentation.Project.PrettyFormat;
                                 Project subproject = new Project();
-                                subproject.PrettyFormat = pretty;
+                                
                                 OpenXukAction action = new OpenXukAction(subproject, uri);
                                 action.ShortDescription = "...";
                                 action.LongDescription = "...";
                                 action.Execute();
+                                subproject.PrettyFormat = pretty;
 
                                 Presentation subpresentation = subproject.Presentations.Get(0);
                 // compare audio formats
