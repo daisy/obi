@@ -736,8 +736,9 @@ namespace Obi.ImportExport
                         //}
                     }
 
-                    if ((urakawaNode is SectionNode && section.Heading == null && n is EmptyNode) ||
-                        (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Heading))
+                    // heading role should only be considered if dummy text is being created. Else it is not practical.
+                    if ((urakawaNode is SectionNode && n is EmptyNode && (section.Heading == null || !m_CreateDummyText)) 
+                        || (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Heading && m_CreateDummyText))
                     {
                         /*
 
