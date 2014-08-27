@@ -22,11 +22,13 @@ namespace Obi.ImportExport
     /// </summary>
     public class EPUB3_ObiImport : DAISY3_ObiImport
     {
+        Session m_session = null;
         private bool m_IsTOCFromNavDoc;
 
         public EPUB3_ObiImport(Session session, Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate, bool stereo)
             : base(session, settings, bookfile, outDir, skipACM, audioProjectSampleRate, stereo)
         {
+            m_session = session;
             AudioNCXImport = false;
             m_IsTOCFromNavDoc = false;
         }
@@ -40,7 +42,9 @@ namespace Obi.ImportExport
             {
                 return;
             }
-
+            // assign obi project file path to xuk path to prevent creation of xukspine file.
+            XukPath = m_session.Path;
+            //Console.WriteLine(XukPath);
             
             Presentation spinePresentation = m_Project.Presentations.Get(0);
 
@@ -534,7 +538,7 @@ namespace Obi.ImportExport
                     && metadataNamesMap.ContainsKey(md.NameContentAttribute.Name))
                 {
                     md.NameContentAttribute.Name = metadataNamesMap[md.NameContentAttribute.Name];
-                    Console.WriteLine(md.NameContentAttribute.Name);
+                    //Console.WriteLine(md.NameContentAttribute.Name);
                 }
 
             }
