@@ -395,8 +395,12 @@
     <Compile Include="ImportExport\ImportStructureFromXhtml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ImportExport\XslResolver.cs" />
-    <Compile Include="ImportExport\Z.cs" />
+    <Compile Include="ImportExport\XslResolver.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImportExport\Z.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="KeyboardShortcuts_Settings.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -855,21 +859,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="images\icons\bullet_arrow_down.png" />
-    <Content Include="ImportExport\filter.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ImportExport\ncx.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ImportExport\package.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ImportExport\smil.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ImportExport\Z.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="FindBarCollapse.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
