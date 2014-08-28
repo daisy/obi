@@ -94,75 +94,82 @@ namespace Obi.Dialogs
         // Initialize audio tab
         private void InitializeAudioTab ()
             {
-            AudioRecorder recorder = mTransportBar.Recorder;
-            string defaultInputName = "";
-            string defaultOutputName = "";
-            mInputDeviceCombo.Items.Clear();
-            mOutputDeviceCombo.Items.Clear();
-           // mInputDeviceCombo.DataSource = recorder.InputDevices; 
-           // mInputDeviceCombo.SelectedIndex = recorder.InputDevices.IndexOf ( recorder.InputDevice ); 
-            foreach (InputDevice input in recorder.InputDevices)
-            {
-                mInputDeviceCombo.Items.Add(input.Name);
-                if (recorder.InputDevice.Name == input.Name)
-                    defaultInputName = input.Name;            
-            }
-            if (mSettings.LastInputDevice == "")
-                mInputDeviceCombo.SelectedIndex = 0;
-            //  mInputDeviceCombo.SelectedItem = defaultInputName;
-            else
-                mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.LastInputDevice);
-            
-
-            AudioPlayer player = mTransportBar.AudioPlayer;
-           // mOutputDeviceCombo.DataSource = player.OutputDevices; avn
-           // mOutputDeviceCombo.SelectedIndex = player.OutputDevices.IndexOf ( player.OutputDevice ); avn
-
-            foreach (OutputDevice output in player.OutputDevices)
-            {
-                mOutputDeviceCombo.Items.Add(output.Name);
-                if(player.OutputDevice.Name == output.Name)
-                    defaultOutputName = output.Name;
-            }
-            if (mSettings.LastOutputDevice == "")
-                mOutputDeviceCombo.SelectedIndex = 0;
-                //mOutputDeviceCombo.SelectedItem = defaultOutputName;
-            else
-            mOutputDeviceCombo.SelectedIndex = mOutputDeviceCombo.Items.IndexOf(mSettings.LastOutputDevice);
-
-            int sampleRate;
-            int audioChannels;
-            if (mPresentation != null)
+                try
                 {
-                sampleRate = (int)mPresentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
-                audioChannels = mPresentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels;
-                mCanChangeAudioSettings = mPresentation.MediaDataManager.ManagedObjects.Count == 0;
+                    AudioRecorder recorder = mTransportBar.Recorder;
+                    string defaultInputName = "";
+                    string defaultOutputName = "";
+                    mInputDeviceCombo.Items.Clear();
+                    mOutputDeviceCombo.Items.Clear();
+                    // mInputDeviceCombo.DataSource = recorder.InputDevices; 
+                    // mInputDeviceCombo.SelectedIndex = recorder.InputDevices.IndexOf ( recorder.InputDevice ); 
+                    foreach (InputDevice input in recorder.InputDevices)
+                    {
+                        mInputDeviceCombo.Items.Add(input.Name);
+                        if (recorder.InputDevice.Name == input.Name)
+                            defaultInputName = input.Name;
+                    }
+                    if (mSettings.LastInputDevice == "")
+                        mInputDeviceCombo.SelectedIndex = 0;
+                    //  mInputDeviceCombo.SelectedItem = defaultInputName;
+                    else
+                        mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.LastInputDevice);
+
+
+                    AudioPlayer player = mTransportBar.AudioPlayer;
+                    // mOutputDeviceCombo.DataSource = player.OutputDevices; avn
+                    // mOutputDeviceCombo.SelectedIndex = player.OutputDevices.IndexOf ( player.OutputDevice ); avn
+
+                    foreach (OutputDevice output in player.OutputDevices)
+                    {
+                        mOutputDeviceCombo.Items.Add(output.Name);
+                        if (player.OutputDevice.Name == output.Name)
+                            defaultOutputName = output.Name;
+                    }
+                    if (mSettings.LastOutputDevice == "")
+                        mOutputDeviceCombo.SelectedIndex = 0;
+                    //mOutputDeviceCombo.SelectedItem = defaultOutputName;
+                    else
+                        mOutputDeviceCombo.SelectedIndex = mOutputDeviceCombo.Items.IndexOf(mSettings.LastOutputDevice);
+                    
+                    int sampleRate;
+                    int audioChannels;
+                    if (mPresentation != null)
+                    {
+                        sampleRate = (int)mPresentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
+                        audioChannels = mPresentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels;
+                        mCanChangeAudioSettings = mPresentation.MediaDataManager.ManagedObjects.Count == 0;
+                    }
+                    else
+                    {
+                        sampleRate = mSettings.AudioSampleRate;
+                        audioChannels = mSettings.AudioChannels;
+                        mCanChangeAudioSettings = true;
+                    }
+                    ArrayList sampleRates = new ArrayList();
+                    // TODO: replace this with a list obtained from the player or the device
+                    sampleRates.Add("11025");
+                    sampleRates.Add("22050");
+                    sampleRates.Add("44100");
+                    sampleRates.Add("48000");
+                    mSampleRateCombo.DataSource = sampleRates;
+                    mSampleRateCombo.SelectedIndex = sampleRates.IndexOf(sampleRate.ToString());
+                    mSampleRateCombo.Visible = mCanChangeAudioSettings;
+                    mSampleRateTextbox.Text = sampleRate.ToString();
+                    mSampleRateTextbox.Visible = !mCanChangeAudioSettings;
+                    ArrayList channels = new ArrayList();
+                    channels.Add(Localizer.Message("mono"));
+                    channels.Add(Localizer.Message("stereo"));
+                    mChannelsCombo.DataSource = channels;
+                    mChannelsCombo.SelectedIndex = channels.IndexOf(Localizer.Message(audioChannels == 1 ? "mono" : "stereo"));
+                    mChannelsCombo.Visible = mCanChangeAudioSettings;
+                    mChannelsTextbox.Text = Localizer.Message(audioChannels == 1 ? "mono" : "stereo");
+                    mChannelsTextbox.Visible = !mCanChangeAudioSettings;
                 }
-            else
+                catch (System.Exception ex)
                 {
-                sampleRate = mSettings.AudioSampleRate;
-                audioChannels = mSettings.AudioChannels;
-                mCanChangeAudioSettings = true;
+                    MessageBox.Show(ex.ToString());
                 }
-            ArrayList sampleRates = new ArrayList ();
-            // TODO: replace this with a list obtained from the player or the device
-            sampleRates.Add ( "11025" );
-            sampleRates.Add ( "22050" );
-            sampleRates.Add ( "44100" );
-            sampleRates.Add ( "48000" );
-            mSampleRateCombo.DataSource = sampleRates;
-            mSampleRateCombo.SelectedIndex = sampleRates.IndexOf ( sampleRate.ToString () );
-            mSampleRateCombo.Visible = mCanChangeAudioSettings;
-            mSampleRateTextbox.Text = sampleRate.ToString ();
-            mSampleRateTextbox.Visible = !mCanChangeAudioSettings;
-            ArrayList channels = new ArrayList ();
-            channels.Add ( Localizer.Message ( "mono" ) );
-            channels.Add ( Localizer.Message ( "stereo" ) );
-            mChannelsCombo.DataSource = channels;
-            mChannelsCombo.SelectedIndex = channels.IndexOf ( Localizer.Message ( audioChannels == 1 ? "mono" : "stereo" ) );
-            mChannelsCombo.Visible = mCanChangeAudioSettings;
-            mChannelsTextbox.Text = Localizer.Message ( audioChannels == 1 ? "mono" : "stereo" );
-            mChannelsTextbox.Visible = !mCanChangeAudioSettings;
 
             try
             {
