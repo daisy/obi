@@ -1477,7 +1477,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error exporting to DAISY.
+        ///   Looks up a localized string similar to Error exporting to DAISY/EPUB.
         /// </summary>
         internal static string didnt_save_as_daisy_caption {
             get {
@@ -1486,7 +1486,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not export project to DAISY in directory {0}. Reason given: {1}.
+        ///   Looks up a localized string similar to Could not export project to DAISY/EPUB in directory {0}. Reason given: {1}.
         /// </summary>
         internal static string didnt_save_as_daisy_text {
             get {
