@@ -328,11 +328,11 @@ Oh well.</value>
     <comment>Warning dialog</comment>
   </data>
   <data name="didnt_save_as_daisy_caption" xml:space="preserve">
-    <value>Error exporting to DAISY</value>
+    <value>Error exporting to DAISY/EPUB</value>
     <comment>Error dialog</comment>
   </data>
   <data name="didnt_save_as_daisy_text" xml:space="preserve">
-    <value>Could not export project to DAISY in directory {0}. Reason given: {1}</value>
+    <value>Could not export project to DAISY/EPUB in directory {0}. Reason given: {1}</value>
     <comment>Error dialog</comment>
   </data>
   <data name="saved_as_daisy_caption" xml:space="preserve">
