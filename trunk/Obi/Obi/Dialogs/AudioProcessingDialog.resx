@@ -349,7 +349,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Audio processing (Experimental)</value>
+    <value>Audio processing (Basic functionality)</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>
