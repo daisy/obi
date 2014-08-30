@@ -1838,7 +1838,12 @@ namespace Obi.ProjectView
                                 }
             //@singleSection: if phrases till recording phrases are hidden, remove existing phrases to enable content view start from phrases near to recording phrase
             mView.RecreateContentsWhileInitializingRecording ( mResumeRecordingPhrase);
-            
+            if (deleteFollowingPhrases && CurrentState == State.Paused && PlaybackPhrase != null
+                && mView.Selection != null && mView.Selection.Control is TOCView)
+            {
+                mView.SelectFromTransportBar(PlaybackPhrase, null);
+            }
+
             // save the selection before starting recording
             ObiNode selectionNode = mResumeRecordingPhrase != null ? mResumeRecordingPhrase :
                 mView.GetSelectedPhraseSection != null ? (mView.Selection is StripIndexSelection && ( (StripIndexSelection)mView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mView.Selection).EmptyNodeForSelection :mView.Selection.Node ): null;
