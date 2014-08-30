@@ -179,7 +179,7 @@ namespace Obi
             settings.Export_AudioFilesNamesLengthLimit = 8;
             settings.Export_AlwaysIgnoreIndentation = false;
             settings.Export_EPUBFileNameLengthLimit = 12;
-            settings.Export_EPUBCreateDummyText = false;
+            settings.Export_EPUBCreateDummyText = true;
             settings.OpenBookmarkNodeOnReopeningProject = false;
             settings.RetainInitialSilenceInPhraseDetection = true;
             settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection = false;
