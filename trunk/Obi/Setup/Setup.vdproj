@@ -159,6 +159,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_555586BE6B2E4565BE66BC8D22364943"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_55D953567D9322E78EDC31EC3D375793"
         "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
@@ -507,12 +513,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E2F0D3CD3C59433AAA74F5CE347DD854"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E454569270AF4C4ABB2F2C8EA21A30AB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -622,25 +622,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8CC111DFE2714A7FA2782A536B43971C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_24C0C69642EC493692D71A80E6AA8597"
+        "OwnerKey" = "8:_555586BE6B2E4565BE66BC8D22364943"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F50F70D3670443F1B322D13DE13167AC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E2F0D3CD3C59433AAA74F5CE347DD854"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -677,6 +665,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9756CC4034584C5C8FF7E061127F117C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8CC111DFE2714A7FA2782A536B43971C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -725,6 +719,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_53FE3D21AC644915B10A350F58C68197"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_24C0C69642EC493692D71A80E6AA8597"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -920,31 +920,45 @@
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:/sourcePath=\"[SOURCEDIR]\\\""
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_3D1358FED19E4B8EA83DE777CB6E7839"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_3093A787BB4649A189D926C429CD906E"
             {
-            "Name" = "8:InstallerFileOperations16.dll"
-            "Condition" = "8:"
-            "Object" = "8:_E2F0D3CD3C59433AAA74F5CE347DD854"
-            "FileType" = "3:1"
-            "InstallAction" = "3:3"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_B13C5476_BC55_4063_846B_9AD4C9BA3C16"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/sourPath=\"[SOURCEDIR] \""
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_CB440C56EF944F07932D5C31818E7E26"
-            {
-            "Name" = "8:InstallerFileOperations16.dll"
+            "Name" = "8:InstallerFileOperations17.dll"
             "Condition" = "8:Not Installed"
-            "Object" = "8:_E2F0D3CD3C59433AAA74F5CE347DD854"
+            "Object" = "8:_555586BE6B2E4565BE66BC8D22364943"
             "FileType" = "3:1"
             "InstallAction" = "3:1"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:2"
-            "Identifier" = "8:_EC93C1E9_0273_4E01_A620_3BA1B64F4E2F"
+            "Identifier" = "8:_419A5E99_1125_4B50_B529_10EB8B8E4352"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:/sourPath=\"[SOURCEDIR] \""
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_4B70EDFCBC8C4942B5499730F6ACB78A"
+            {
+            "Name" = "8:InstallerFileOperations17.dll"
+            "Condition" = "8:"
+            "Object" = "8:_555586BE6B2E4565BE66BC8D22364943"
+            "FileType" = "3:1"
+            "InstallAction" = "3:3"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_93117963_943F_41FA_ACA0_7DDE75CFB174"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:/sourPath=\"[SOURCEDIR] \""
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_50E03E2E568A40F794B8EFB71FF40EB5"
+            {
+            "Name" = "8:InstallerFileOperations17.dll"
+            "Condition" = "8:"
+            "Object" = "8:_555586BE6B2E4565BE66BC8D22364943"
+            "FileType" = "3:1"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_321B4036_1546_45ED_A711_454CB4A9D2A6"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:/sourPath=\"[SOURCEDIR] \""
             }
@@ -961,20 +975,6 @@
             "Identifier" = "8:_BA72C304_83A1_457F_8FA0_AB1CE1557561"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:/sourcePath=\"[SOURCEDIR]\\\""
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_FA94C409EDD64CA6BF77E0FB705D1B35"
-            {
-            "Name" = "8:InstallerFileOperations16.dll"
-            "Condition" = "8:"
-            "Object" = "8:_E2F0D3CD3C59433AAA74F5CE347DD854"
-            "FileType" = "3:1"
-            "InstallAction" = "3:4"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_AE9A7D84_6641_483E_8AAA_47DD844BCAE0"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/sourPath=\"[SOURCEDIR] \""
             }
         }
         "DefaultFeature"
@@ -1396,6 +1396,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_555586BE6B2E4565BE66BC8D22364943"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_555586BE6B2E4565BE66BC8D22364943"
+                    {
+                    "Name" = "8:InstallerFileOperations17.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CustomActions\\InstallerFileOperations\\bin\\Release\\InstallerFileOperations17.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_55D953567D9322E78EDC31EC3D375793"
             {
             "AssemblyRegister" = "3:1"
@@ -1584,7 +1615,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.4.6.14791, Culture=fr, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.5.0.31217, Culture=fr, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_70370FB39F0442789BD93F85452E2341"
@@ -1635,7 +1666,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.4.6.14791, Culture=ta, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.5.0.31217, Culture=ta, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_77D6C14B820045D9BB3A81F345542694"
@@ -1737,7 +1768,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.4.6.14791, Culture=fi, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.5.0.31217, Culture=fi, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_7DF90530D5E14B07883BEC5E1CFCE7E5"
@@ -1870,7 +1901,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.4.6.14791, Culture=ar, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.5.0.31217, Culture=ar, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_8CC111DFE2714A7FA2782A536B43971C"
@@ -1983,7 +2014,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.4.6.14791, Culture=hi, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.5.0.31217, Culture=hi, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_9756CC4034584C5C8FF7E061127F117C"
@@ -2136,7 +2167,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CheckDX, Version=3.4.6.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CheckDX, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_AC765BB998E34797BC4B930FC4135042"
@@ -2300,7 +2331,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.4.6.14791, Culture=ja, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=3.5.0.31217, Culture=ja, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_BE3ADF6CF9B942F49C32A273D1D33937"
@@ -2442,37 +2473,6 @@
             {
             "SourcePath" = "8:..\\utilities\\MergeUtility\\MergeUtilityUI\\bin\\Debug\\DTB Merger-Help.htm"
             "TargetName" = "8:DTB Merger-Help.htm"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E2F0D3CD3C59433AAA74F5CE347DD854"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=3.4.6.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_E2F0D3CD3C59433AAA74F5CE347DD854"
-                    {
-                    "Name" = "8:InstallerFileOperations16.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:CustomActions\\InstallerFileOperations\\bin\\Release\\InstallerFileOperations16.dll"
-            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
@@ -2913,19 +2913,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 3.5 beta"
-        "ProductCode" = "8:{17C9FD26-A64B-41AA-83D4-5EDF8D317075}"
-        "PackageCode" = "8:{F55F66FB-52E8-46A2-853F-DD6296C3BEB3}"
+        "ProductName" = "8:Obi 3.5"
+        "ProductCode" = "8:{64ECE98E-AF61-42D8-8E04-448047684C53}"
+        "PackageCode" = "8:{49A5CA7D-172A-4940-A7C8-98F4DFF4A368}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:3.4.6"
+        "ProductVersion" = "8:3.5.0"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.daisy.org/forums/obi"
-        "Title" = "8:Obi 3.5 beta"
+        "Title" = "8:Obi 3.5"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Obi development Team"
         "Keywords" = "8:"
@@ -3036,7 +3036,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 3.5 beta"
+            "Name" = "8:Obi 3.5"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -3064,7 +3064,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 3.5 beta"
+            "Name" = "8:Obi 3.5"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
