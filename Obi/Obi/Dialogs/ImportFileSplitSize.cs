@@ -217,7 +217,7 @@ namespace Obi.Dialogs
         private void m_btnAdd_Click(object sender, EventArgs e)
         {            
             OpenFileDialog select_File = new OpenFileDialog();
-            select_File.Filter = "Audio Files (*.wav;*.mp3)|*.wav;*.mp3";
+            select_File.Filter = Localizer.Message("audio_file_filter");
             int index = m_filePaths.Count;
             select_File.RestoreDirectory = true;
             select_File.Multiselect = true;
