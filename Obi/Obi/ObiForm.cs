@@ -5023,6 +5023,7 @@ namespace Obi
 
             private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause();
                 CheckForNewRelease(false);
             }
 
