@@ -1636,6 +1636,10 @@ namespace Obi
                 mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText && mProjectView.FindInTextVisible;
             }
 
+            private void UpdateHelpMenu()
+            {
+                checkForUpdatesToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
+            }
             // Update the edit menu
             private void UpdateEditMenu()
             {
@@ -3678,6 +3682,7 @@ namespace Obi
                 UpdatePhrasesMenu();
                 UpdateTransportMenu();
                 UpdateToolsMenu();
+                UpdateHelpMenu();
                 mProjectView.UpdateContextMenus();
             }
 
@@ -5023,7 +5028,6 @@ namespace Obi
 
             private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause();
                 CheckForNewRelease(false);
             }
 
