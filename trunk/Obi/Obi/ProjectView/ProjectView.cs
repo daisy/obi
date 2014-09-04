@@ -2219,11 +2219,13 @@ namespace Obi.ProjectView
                             if (progress_AudioConverter.Exception != null) throw progress_AudioConverter.Exception;
 
                             List<string> paths = new List<string>();
-                            for (int i = 0; i < filesPathArray.Length; i++)
+                            if (filesPathArray != null)
                             {
-                                if (!string.IsNullOrEmpty(filesPathArray[i]) && System.IO.File.Exists(filesPathArray[i])) paths.Add(filesPathArray[i]);
+                                for (int i = 0; i < filesPathArray.Length; i++)
+                                {
+                                    if (!string.IsNullOrEmpty(filesPathArray[i]) && System.IO.File.Exists(filesPathArray[i])) paths.Add(filesPathArray[i]);
+                                }
                             }
-
                         ObiForm.Settings.MaxPhraseDurationMinutes = dialog.MaxPhraseDurationMinutes;
                         ObiForm.Settings.SplitPhrasesOnImport = dialog.SplitPhrases;
                         bool createSectionForEachPhrase = dialog.createSectionForEachPhrase;
