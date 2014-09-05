@@ -2177,7 +2177,9 @@ namespace Obi
                 mFastPlaytoolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mRecordToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.TransportBar.CanRecord;
                 mStartRecordingDirectlyToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
-                m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening ;
+                m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite 
+                    && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening 
+                    && (mProjectView.Selection.Node.Parent == mProjectView.Selection.Node.FollowingNode.Parent);
                 if (mProjectView.TransportBar.IsListening)
                 {
                     mStartMonitoringToolStripMenuItem.Visible = false;
@@ -2207,8 +2209,17 @@ namespace Obi
                 {
                     m_PreviewBeforeRecordingToolStripMenuItem.Enabled = false;
                 }
-                m_PlayHeadingToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume;
-                m_PlaySectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume;
+                if (mProjectView.Selection != null &&  mProjectView.Selection.Section != null &&  mProjectView.Selection.Section.Duration == 0.0)
+                {
+                    m_PlayHeadingToolStripMenuItem.Enabled = false;
+                    m_PlaySectionToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    m_PlayHeadingToolStripMenuItem.Enabled = (mProjectView.CanPlaySelection || mProjectView.CanResume);
+                    m_PlaySectionToolStripMenuItem.Enabled = (mProjectView.CanPlaySelection || mProjectView.CanResume);
+                }
+               
                 if (mProjectView.Selection != null && mProjectView.Selection.Node != null)
                 {
                     mBackwardElapseToolStripMenuItem.Enabled = mProjectView.Selection.Node is PhraseNode;
@@ -5045,7 +5056,9 @@ namespace Obi
 
             private void mRecordToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
             {
-                m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening;
+                m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite
+                    && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening
+                    && (mProjectView.Selection.Node.Parent == mProjectView.Selection.Node.FollowingNode.Parent);
                 if (mSettings.AllowOverwrite)
                 {
                     
