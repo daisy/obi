@@ -962,7 +962,15 @@ namespace Obi.ProjectView
                     }                    
                     if (mView.ObiForm.Settings.AllowOverwrite)
                     {
-                        m_DeletePhrasestoolStripMenuItem.Enabled = !this.IsListening;
+
+                        if (mView.Selection!=null && (mView.Selection.Node.Parent != mView.Selection.Node.FollowingNode.Parent))
+                        {
+                            m_DeletePhrasestoolStripMenuItem.Enabled = false;
+                        }
+                        else
+                        {
+                            m_DeletePhrasestoolStripMenuItem.Enabled = !this.IsListening;
+                        }
                     }
                     else
                     {
@@ -3873,7 +3881,14 @@ SelectionChangedPlaybackEnabled = false;
 
             if (mView.ObiForm.Settings.AllowOverwrite)
             {
-                m_DeletePhrasestoolStripMenuItem.Enabled = !IsListening;
+                if (mView.Selection != null && (mView.Selection.Node.Parent != mView.Selection.Node.FollowingNode.Parent))
+                {
+                    m_DeletePhrasestoolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    m_DeletePhrasestoolStripMenuItem.Enabled = !IsListening;
+                }
             }
             else
             {
@@ -4029,8 +4044,16 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
         private void m_PlayingOptionsContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             m_PlayAlltoolStripMenuItem.Enabled = mView.CanPlay || mView.CanResume;
-            m_PlaySectiontoolStripMenuItem.Enabled = mView.CanPlaySelection || mView.CanResume;
-            m_playHeadingToolStripMenuItem.Enabled = mView.CanPlaySelection || mView.CanResume;
+            if (mView.Selection != null && mView.Selection.Section != null && mView.Selection.Section.Duration == 0.0)
+            {
+                m_PlaySectiontoolStripMenuItem.Enabled = false;
+                m_playHeadingToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                m_PlaySectiontoolStripMenuItem.Enabled = (mView.CanPlaySelection || mView.CanResume); 
+                m_playHeadingToolStripMenuItem.Enabled = (mView.CanPlaySelection || mView.CanResume);
+            }
 
             m_PreviewFromtoolStripMenuItem.Enabled = mView.CanPreview || mView.CanPreviewAudioSelection;
             m_PreviewUptotoolStripMenuItem.Enabled = mView.CanPreview || mView.CanPreviewAudioSelection;
