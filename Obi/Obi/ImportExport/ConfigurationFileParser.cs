@@ -15,6 +15,12 @@ namespace Obi.ImportExport
             m_ConfigurationFilePath = filePath;
         }
 
+        private AudioLib.SampleRate m_ImportSampleRate;
+        public AudioLib.SampleRate ImportSampleRate { get { return m_ImportSampleRate; } }
+
+        private int m_ImportChannels;
+        public int ImportChannels { get { return m_ImportChannels; } }
+
         private string m_ExportDirectory;
         public string ExportDirectory { get { return m_ExportDirectory; } }
 
@@ -30,6 +36,25 @@ namespace Obi.ImportExport
         public void ParseXml()
         {
             XmlDocument xmlDoc = XmlReaderWriterHelper.ParseXmlDocument(m_ConfigurationFilePath, false, false);
+            XmlNode importNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlDoc.DocumentElement, true, "import", xmlDoc.DocumentElement.NamespaceURI);
+            foreach (XmlNode n in importNode.ChildNodes)
+            {
+                string innerText = n.InnerText;
+
+                if (n.LocalName == "audiosamplerate")
+                {
+                    string strSampleRate = innerText.Trim();
+                    m_ImportSampleRate = strSampleRate == "44100" ? AudioLib.SampleRate.Hz44100 :
+                        strSampleRate == "22050" ? AudioLib.SampleRate.Hz22050
+                        : AudioLib.SampleRate.Hz11025;
+                }
+                else if (n.LocalName == "audiochannels")
+                {
+                    string strChannels= innerText.Trim();
+                    m_ImportChannels = int.Parse(strChannels.Trim());
+                }
+            }
+
             XmlNode exportNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlDoc.DocumentElement, true, "export", xmlDoc.DocumentElement.NamespaceURI);
 
             foreach (XmlNode n in exportNode.ChildNodes)
