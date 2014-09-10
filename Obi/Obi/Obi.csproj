@@ -385,6 +385,7 @@
     <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
     <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
+    <Compile Include="ImportExport\ConfigurationFileParser.cs" />
     <Compile Include="ImportExport\ImportStructureFromCSV.cs" />
     <Compile Include="ImportExport\DAISY202Export.cs" />
     <Compile Include="ImportExport\DAISY202Import.cs" />
