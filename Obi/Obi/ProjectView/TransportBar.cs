@@ -1469,9 +1469,12 @@ namespace Obi.ProjectView
                 // Play from the first phrase in the playlist following the strip cursor,
                 // or the beginning of the strip.
                 StripIndexSelection s = (StripIndexSelection)mView.Selection;
-                mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(s.Index < s.Section.PhraseChildCount ?
-                    (ObiNode)s.Section.PhraseChild(s.Index) : (ObiNode)s.Section);
-                if (mCurrentPlaylist.State != AudioLib.AudioPlayer.State.Playing) mCurrentPlaylist.Play ();
+                if (s.Index < s.Section.PhraseChildCount) // if the focus is on last index then play has nothing to play
+                {
+                    mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(s.Index < s.Section.PhraseChildCount ?
+                        (ObiNode)s.Section.PhraseChild(s.Index) : (ObiNode)s.Section);
+                    if (mCurrentPlaylist.State != AudioLib.AudioPlayer.State.Playing) mCurrentPlaylist.Play();
+                }
             }
             else if (mView.Selection is NodeSelection)
             {
