@@ -29,11 +29,16 @@ namespace Obi.ImportExport
             return null;
         }
 
+        public string ConfigurationFilePath { get { return m_ConfigurationFilePath; } }
+
         private string m_ObiProjectDirectoryPath;
         public string ObiProjectDirectoryPath { get { return m_ObiProjectDirectoryPath; } }
 
-        private AudioLib.SampleRate m_ImportSampleRate;
-        public AudioLib.SampleRate ImportSampleRate { get { return m_ImportSampleRate; } }
+        private int m_ImportSampleRate;
+        public int ImportSampleRate { get { return m_ImportSampleRate; } }
+
+        private AudioLib.SampleRate m_ImportSampleRateEnum;
+        public AudioLib.SampleRate ImportSampleRateEnum { get { return m_ImportSampleRateEnum; } }
 
         private int m_ImportChannels;
         public int ImportChannels { get { return m_ImportChannels; } }
@@ -65,7 +70,8 @@ namespace Obi.ImportExport
                 else if (n.LocalName == "audiosamplerate")
                 {
                     string strSampleRate = innerText.Trim();
-                    m_ImportSampleRate = strSampleRate == "44100" ? AudioLib.SampleRate.Hz44100 :
+                    m_ImportSampleRate = int.Parse(strSampleRate);
+                    m_ImportSampleRateEnum = strSampleRate == "44100" ? AudioLib.SampleRate.Hz44100 :
                         strSampleRate == "22050" ? AudioLib.SampleRate.Hz22050
                         : AudioLib.SampleRate.Hz11025;
                 }
