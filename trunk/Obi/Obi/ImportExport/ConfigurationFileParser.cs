@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using System.IO;
+
 using urakawa.xuk;
 using urakawa.daisy;
 
@@ -10,10 +12,25 @@ namespace Obi.ImportExport
     public class ConfigurationFileParser
     {
         private string m_ConfigurationFilePath;
+
         public ConfigurationFileParser(string filePath)
         {
             m_ConfigurationFilePath = filePath;
         }
+
+        public static ConfigurationFileParser GetConfigurationFileInstance(string filePath)
+        {
+            if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
+            {
+                ConfigurationFileParser configurationFileInstance = new ConfigurationFileParser(filePath);
+                configurationFileInstance.ParseXml();
+                return configurationFileInstance;
+            }
+            return null;
+        }
+
+        private string m_ObiProjectDirectoryPath;
+        public string ObiProjectDirectoryPath { get { return m_ObiProjectDirectoryPath; } }
 
         private AudioLib.SampleRate m_ImportSampleRate;
         public AudioLib.SampleRate ImportSampleRate { get { return m_ImportSampleRate; } }
@@ -41,7 +58,11 @@ namespace Obi.ImportExport
             {
                 string innerText = n.InnerText;
 
-                if (n.LocalName == "audiosamplerate")
+                if (n.LocalName == "obiprojectdirectory")
+                {
+                    m_ObiProjectDirectoryPath = innerText.Trim();
+                }
+                else if (n.LocalName == "audiosamplerate")
                 {
                     string strSampleRate = innerText.Trim();
                     m_ImportSampleRate = strSampleRate == "44100" ? AudioLib.SampleRate.Hz44100 :
