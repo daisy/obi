@@ -355,6 +355,7 @@ namespace Obi
             private bool NewProjectFromImport(string path)
             {
                 Dialogs.NewProject dialog = null;
+                ImportExport.ConfigurationFileParser configurationInstance = GetObiConfigurationFileInstance(path);
                 try
                 {
                     string title = "";
@@ -382,21 +383,28 @@ namespace Obi
                     }
 
                     this.Activate(); //place focus back to Obi form to ensure that keyboard focus from here on is not lost
-                    dialog = new Dialogs.NewProject(
-                        mSettings.DefaultPath,
-                        Localizer.Message("default_project_filename"),
-                        Localizer.Message("obi_filter"),
-                        title,
-                        mSettings.NewProjectDialogSize,
-                        mSettings.AudioChannels,
-                        mSettings.AudioSampleRate);
-                    dialog.DisableAutoTitleCheckbox();
-                    dialog.Text = Localizer.Message("create_new_project_from_import");
-                    if (!string.IsNullOrEmpty(dtbUid)) dialog.ID = dtbUid;
-                     
-                    if (dialog.ShowDialog() == DialogResult.OK)
+                    if (configurationInstance == null)
                     {
-                        if (File.Exists(dialog.Path)
+                        dialog = new Dialogs.NewProject(
+                            mSettings.DefaultPath,
+                            Localizer.Message("default_project_filename"),
+                            Localizer.Message("obi_filter"),
+                            title,
+                            mSettings.NewProjectDialogSize,
+                            mSettings.AudioChannels,
+                            mSettings.AudioSampleRate);
+                        dialog.DisableAutoTitleCheckbox();
+                        dialog.Text = Localizer.Message("create_new_project_from_import");
+                        if (!string.IsNullOrEmpty(dtbUid)) dialog.ID = dtbUid;
+                    }
+
+                    if (configurationInstance != null
+                        || dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string obiProjectPath = configurationInstance != null ? Path.Combine(configurationInstance.ObiProjectDirectoryPath, "project.obi") :
+                            dialog.Path;
+
+                        if (File.Exists(obiProjectPath)
                             &&
                             MessageBox.Show(Localizer.Message("ImportProject_OverwriteProjectMsg"),
                                             Localizer.Message("Caption_Warning"),
@@ -406,30 +414,46 @@ namespace Obi
                             return false;
                         }
 
-                        mSettings.NewProjectDialogSize = dialog.Size;
+                        if(dialog != null) mSettings.NewProjectDialogSize = dialog.Size;
                         //CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
                         ImportExport.DAISY3_ObiImport import = null;
                         bool isProjectCreated = false;
 
+                        if (dialog != null) title = dialog.Title;
+                        Console.WriteLine("title : " + title);
+                        string uniqueIdentifier = dialog != null? dialog.ID:
+                            Guid.NewGuid().ToString();
+                        Console.WriteLine("UID : " + uniqueIdentifier);
+                        int audioChannels = configurationInstance != null ? configurationInstance.ImportChannels :
+                            dialog.AudioChannels;
+                        Console.WriteLine("channels : " + audioChannels);
+                        int audioSampleRate = configurationInstance != null ? configurationInstance.ImportSampleRate :
+                            dialog.AudioSampleRate;
+                        Console.WriteLine("Samle rate : " + audioSampleRate);
                         if (strExtension == ".opf" || strExtension == ".xml" || strExtension == ".epub")
                         {
-                            isProjectCreated = ImportProjectFromDTBOrEPUB(dialog.Path, dialog.Title, false, dialog.ID, path, dialog.AudioChannels, dialog.AudioSampleRate);
+                            isProjectCreated = ImportProjectFromDTBOrEPUB(obiProjectPath , title , false, uniqueIdentifier , path, audioChannels , audioSampleRate);
                         }
                         else
                         {
                             //CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
                             //(new Obi.ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
-                            isProjectCreated = ImportStructureFromXHtml(dialog.Path, dialog.Title, dialog.ID, path, dialog.AudioChannels, dialog.AudioSampleRate);
+                            isProjectCreated = ImportStructureFromXHtml(obiProjectPath, title , uniqueIdentifier, path, audioChannels, audioSampleRate);
                         }
                         if (!isProjectCreated) return false;
 
                         mSession.ForceSave();
                         AddRecentProject(mSession.Path);
+
+                        //copy the configuration file in Obi project directory
+                        string preservedConfigFilePath = Path.Combine(Path.GetDirectoryName(obiProjectPath), mSettings.Project_ObiConfigFileName);
+                        File.Copy(configurationInstance.ConfigurationFilePath, preservedConfigFilePath, true);
                     }
                     return true;
                 }
                 catch (Exception e)
                 {
+                    
                     MessageBox.Show(string.Format(Localizer.Message("import_failed"), e.Message),
                                     Localizer.Message("import_failed_caption"),
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -448,6 +472,23 @@ namespace Obi
                     MessageBox.Show(ex.ToString());
                 }
                 return null;
+            }
+
+            private ImportExport.ConfigurationFileParser GetObiConfigurationFileInstance(string importFile)
+            {
+                ImportExport.ConfigurationFileParser configInstance = null ;
+                try
+                {
+                    string configFilePath = Path.Combine(Path.GetDirectoryName(importFile),
+                        mSettings.Project_ObiConfigFileName);
+                    configInstance = ImportExport.ConfigurationFileParser.GetConfigurationFileInstance(configFilePath);
+
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                return configInstance;
             }
 
             private bool ImportProjectFromDTBOrEPUB(string outputPath, string title, bool createTitleSection, string id,

@@ -108,6 +108,7 @@ namespace Obi
         public bool Audio_DisableDeselectionOnStop;
         public bool Project_SaveObiLocationAndSize;// Saves Obi last location and Size
         public bool Project_EPUBCheckTimeOutEnabled ;
+        public string Project_ObiConfigFileName;
         public Point ObiLastLocation;
         public bool Project_PeakMeterChangeLocation; // Changes Peak meter location wrt Obi Form
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
@@ -206,6 +207,7 @@ namespace Obi
             settings.Audio_DisableDeselectionOnStop = false;
             settings.Project_SaveObiLocationAndSize = false;
             settings.Project_EPUBCheckTimeOutEnabled = true;
+            settings.Project_ObiConfigFileName = "obiconfig.xml";
             settings.ObiLastLocation = new Point(0, 0);
             settings.Project_PeakMeterChangeLocation = false;
         }
