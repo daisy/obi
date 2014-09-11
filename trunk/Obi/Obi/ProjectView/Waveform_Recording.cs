@@ -88,6 +88,8 @@ namespace Obi.ProjectView
         private bool m_DeletedPartEnclosed = false;
         private int tempXLocation=0;
         private List<int> m_MouseMoveList = new List<int>();
+        private bool m_FlagRepaint = false;
+       // private int countExp = 0;
         
         public Waveform_Recording()
         {
@@ -152,7 +154,7 @@ namespace Obi.ProjectView
                     m_ProjectView.ObiForm.ResizeBegin += new EventHandler(ObiForm_ResizeBegin);
                     m_ProjectView.ObiForm.Activated += new EventHandler(ObiForm_Activated);
                     m_ProjectView.ObiForm.Deactivate += new EventHandler(ObiForm_Deactivate);
-                    m_ContentView.Resize += new EventHandler(m_ContentView_Resize);
+                    m_ContentView.Resize += new EventHandler(m_ContentView_Resize);                    
                     m_ColorSettings = m_ProjectView.ObiForm.Settings.ColorSettings;
                     m_ColorSettingsHC = m_ProjectView.ObiForm.Settings.ColorSettingsHC;
                     this.BackColor = m_ColorSettings.WaveformBackColor;
@@ -534,7 +536,15 @@ namespace Obi.ProjectView
             if (m_IsResizing)
                 return;
             //m_CounterWaveform = listOfCurrentMinChannel1.Count;
-            RepaintWaveform();
+            if (m_ProjectView.ObiForm.WindowState == FormWindowState.Minimized)
+            {
+                m_FlagRepaint = true;
+            }
+            if (m_FlagRepaint && (m_ProjectView.ObiForm.WindowState!= FormWindowState.Minimized))
+            {                
+                RepaintWaveform();
+                m_FlagRepaint = false;
+            }            
             m_IsResizing = false;
         }
 
@@ -587,12 +597,19 @@ namespace Obi.ProjectView
                 return;
             //            m_CounterWaveform = listOfCurrentMinChannel1.Count;
 
-            RepaintWaveform();
+            if (m_IsToBeRepainted)
+            {
+                RepaintWaveform();
+            }
+          //  m_FlagRepaint = false;
+            m_IsToBeRepainted = false;
             m_IsResizing = false;
         }
 
         private void RepaintWaveform()
         {
+            //countExp++;
+            //Console.WriteLine("Repaint is called {0}",countExp);
             Font myFont = new Font("Microsoft Sans Serif", 7);
 
             int xSize = SystemInformation.PrimaryMonitorSize.Width;
@@ -809,7 +826,7 @@ namespace Obi.ProjectView
                 }
 
                 m_IsMaximized = false;
-                timer1.Start();
+               timer1.Start();
             }
         }
         /*
@@ -841,7 +858,9 @@ namespace Obi.ProjectView
         {
             base.OnPaint(e);
             if (m_IsToBeRepainted)
+            {
                 RepaintWaveform();
+            }
 
             m_IsToBeRepainted = true;
             m_IsMaximized = false;
@@ -958,6 +977,18 @@ namespace Obi.ProjectView
         private void Waveform_Recording_MouseDown(object sender, MouseEventArgs e)
         {
             m_DeletedPartEnclosed = false;
+            int pixels = e.X;
+            double time = m_InitialStaticTime + (pixels - m_StaticRecordingLocation) * 100;
+            double temp = m_InitialStaticTime - m_StaticRecordingLocation;
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine("Difference is ........................{0}", temp);
+            //Console.WriteLine("time is  ........................{0}", time);
+            //Console.WriteLine("m_InitialStaticTime is  ........................{0}", m_InitialStaticTime);
+            //Console.WriteLine("pixels is  ........................{0}", pixels);
+            //Console.WriteLine("m_StaticRecordingLocation is  ........................{0}", m_StaticRecordingLocation);
+            //Console.WriteLine("(pixels - m_StaticRecordingLocation) is  ........................{0}", (pixels - m_StaticRecordingLocation));
+            //Console.WriteLine("Ratio (m_InitialStaticTime / m_StaticRecordingLocation) is  ........................{0}", (m_InitialStaticTime / m_StaticRecordingLocation));
             if (!IsPhraseMarkAllowed(ConvertPixelsToTime(e.X)))
             {
                 if (m_MouseButtonDownLoc != m_MouseButtonUpLoc)
@@ -1497,6 +1528,7 @@ namespace Obi.ProjectView
             m_TempMouseMoveLoc = 0;
             m_IsDeleted = true;
             RepaintWaveform();
+            m_IsToBeRepainted = false;            
             double RecorderTime = m_ProjectView.TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(m_ProjectView.TransportBar.Recorder.CurrentDurationBytePosition)) /
 Time.TIME_UNIT;
             if ((RecorderTime - ConvertPixelsToTime((m_X))) > 100)
