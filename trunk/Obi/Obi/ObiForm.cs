@@ -364,16 +364,19 @@ namespace Obi
                     string strExtension = System.IO.Path.GetExtension(path).ToLower();
                     if (strExtension == ".opf")
                     {
-
                         Obi.ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(path, ref title, ref dtbUid);
                     }
                     if (strExtension == ".xhtml" || strExtension == ".html" || strExtension == ".htm")
+                    {
                         title = ImportExport.ImportStructureFromXhtml.GrabTitle(new Uri(path));
+                    }
                     else if (strExtension == ".xml")
-                        title = ImportExport.DAISY3_ObiImport.getTitleFromDtBookFile(path);
+                    {
+                        ImportExport.DAISY3_ObiImport.getTitleFromDtBookFile(path, ref title, ref dtbUid);
+                    }
                     else if (strExtension == ".epub")
                     {
-                        string opfFullPath =  unzipEPubAndGetOpfPath(path);
+                        string opfFullPath = unzipEPubAndGetOpfPath(path);
                         if (opfFullPath != null && File.Exists(opfFullPath)) ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(opfFullPath, ref title, ref dtbUid);
                     }
 
@@ -422,6 +425,7 @@ namespace Obi
                         if (dialog != null) title = dialog.Title;
                         Console.WriteLine("title : " + title);
                         string uniqueIdentifier = dialog != null? dialog.ID:
+                            !string.IsNullOrEmpty(dtbUid)? dtbUid:
                             Guid.NewGuid().ToString();
                         Console.WriteLine("UID : " + uniqueIdentifier);
                         int audioChannels = configurationInstance != null ? configurationInstance.ImportChannels :

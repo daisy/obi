@@ -382,9 +382,10 @@ namespace Obi.ImportExport
             if (!string.IsNullOrEmpty(identifier)) dc_Identifier = identifier;
         }
 
-        public static string getTitleFromDtBookFile(string dtBookFilePath)
+        public static void getTitleFromDtBookFile(string dtBookFilePath, ref string dc_Title, ref string dc_Identifier)
         {
             string dtbBookTitle = "";
+            string identifier = "";
             XmlDocument dtbookFileDoc = urakawa.xuk.XmlReaderWriterHelper.ParseXmlDocument(dtBookFilePath, false, false);
 
             XmlNodeList listOfChildren = dtbookFileDoc.GetElementsByTagName("meta");
@@ -394,7 +395,7 @@ namespace Obi.ImportExport
 
                 if (metaAttr == null || metaAttr.Count <= 0)
                 {
-                    return "";
+                    return ;
                 }
 
                 XmlNode attrName = metaAttr.GetNamedItem("name");
@@ -403,14 +404,20 @@ namespace Obi.ImportExport
                 if (attrName != null && !String.IsNullOrEmpty(attrName.Value) && attrContent != null && !String.IsNullOrEmpty(attrContent.Value))
                 {
                     Console.WriteLine(attrName.Value + " " + attrContent.Value);
-                    if (attrName.Value.ToLower() == "dc:title")
+                    if (attrName.Value.ToLower() == "dc:title" && string.IsNullOrEmpty(dtbBookTitle ))
                     {
                         dtbBookTitle = attrContent.Value;
-                        break;
                     }
+                    if (attrName.Value.ToLower() == "dc:identifier" && string.IsNullOrEmpty(identifier))
+                    {
+                        identifier = attrContent.Value;
+                    }
+                    if (!string.IsNullOrEmpty(dtbBookTitle) && !string.IsNullOrEmpty(identifier)) break;
                 }
             }
-            return dtbBookTitle;
+            Console.WriteLine("title : " + dtbBookTitle + ", identifier:" + identifier);
+            if (!string.IsNullOrEmpty(dtbBookTitle)) dc_Title = dtbBookTitle;
+            if (!string.IsNullOrEmpty(identifier)) dc_Identifier = identifier;
         }
 
         public static bool IsEPUBPublication(string filePath)
