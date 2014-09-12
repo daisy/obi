@@ -452,6 +452,7 @@ namespace Obi
                         //copy the configuration file in Obi project directory
                         if (configurationInstance != null && File.Exists(configurationInstance.ConfigurationFilePath))
                         {
+                            mSession.Presentation.ConfigurationsImportExport = configurationInstance;
                             string preservedConfigFilePath = Path.Combine(Path.GetDirectoryName(obiProjectPath), mSettings.Project_ObiConfigFileName);
                             File.Copy(configurationInstance.ConfigurationFilePath, preservedConfigFilePath, true);
                         }
