@@ -417,15 +417,15 @@ namespace Obi
                             return false;
                         }
 
-                        if(dialog != null) mSettings.NewProjectDialogSize = dialog.Size;
+                        if (dialog != null) mSettings.NewProjectDialogSize = dialog.Size;
                         //CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
                         ImportExport.DAISY3_ObiImport import = null;
                         bool isProjectCreated = false;
 
                         if (dialog != null) title = dialog.Title;
                         Console.WriteLine("title : " + title);
-                        string uniqueIdentifier = dialog != null? dialog.ID:
-                            !string.IsNullOrEmpty(dtbUid)? dtbUid:
+                        string uniqueIdentifier = dialog != null ? dialog.ID :
+                            !string.IsNullOrEmpty(dtbUid) ? dtbUid :
                             Guid.NewGuid().ToString();
                         Console.WriteLine("UID : " + uniqueIdentifier);
                         int audioChannels = configurationInstance != null ? configurationInstance.ImportChannels :
@@ -436,13 +436,13 @@ namespace Obi
                         Console.WriteLine("Samle rate : " + audioSampleRate);
                         if (strExtension == ".opf" || strExtension == ".xml" || strExtension == ".epub")
                         {
-                            isProjectCreated = ImportProjectFromDTBOrEPUB(obiProjectPath , title , false, uniqueIdentifier , path, audioChannels , audioSampleRate);
+                            isProjectCreated = ImportProjectFromDTBOrEPUB(obiProjectPath, title, false, uniqueIdentifier, path, audioChannels, audioSampleRate);
                         }
                         else
                         {
                             //CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
                             //(new Obi.ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
-                            isProjectCreated = ImportStructureFromXHtml(obiProjectPath, title , uniqueIdentifier, path, audioChannels, audioSampleRate);
+                            isProjectCreated = ImportStructureFromXHtml(obiProjectPath, title, uniqueIdentifier, path, audioChannels, audioSampleRate);
                         }
                         if (!isProjectCreated) return false;
 
@@ -450,8 +450,11 @@ namespace Obi
                         AddRecentProject(mSession.Path);
 
                         //copy the configuration file in Obi project directory
-                        string preservedConfigFilePath = Path.Combine(Path.GetDirectoryName(obiProjectPath), mSettings.Project_ObiConfigFileName);
-                        File.Copy(configurationInstance.ConfigurationFilePath, preservedConfigFilePath, true);
+                        if (configurationInstance != null && File.Exists(configurationInstance.ConfigurationFilePath))
+                        {
+                            string preservedConfigFilePath = Path.Combine(Path.GetDirectoryName(obiProjectPath), mSettings.Project_ObiConfigFileName);
+                            File.Copy(configurationInstance.ConfigurationFilePath, preservedConfigFilePath, true);
+                        }
                     }
                     return true;
                 }
