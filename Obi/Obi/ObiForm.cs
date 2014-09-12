@@ -478,12 +478,12 @@ namespace Obi
                 return null;
             }
 
-            private ImportExport.ConfigurationFileParser GetObiConfigurationFileInstance(string importFile)
+            private ImportExport.ConfigurationFileParser GetObiConfigurationFileInstance(string sourceProjectFile)
             {
                 ImportExport.ConfigurationFileParser configInstance = null ;
                 try
                 {
-                    string configFilePath = Path.Combine(Path.GetDirectoryName(importFile),
+                    string configFilePath = Path.Combine(Path.GetDirectoryName(sourceProjectFile),
                         mSettings.Project_ObiConfigFileName);
                     configInstance = ImportExport.ConfigurationFileParser.GetConfigurationFileInstance(configFilePath);
 
@@ -3316,7 +3316,8 @@ namespace Obi
                                                                                              mSession.Open(path);
                                                                                              if (mSession.ErrorsInOpeningProject) mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode) mProjectView.Presentation.RootNode,false);
                                                                                              DeleteExtraBackupFiles(false);
-
+                                                                                             if (mSession.Presentation != null) mSession.Presentation.ConfigurationsImportExport = GetObiConfigurationFileInstance(mSession.Path);
+                                                                                             
                                                                                          });
                 progress.ShowDialog();
                 if (progress.Exception != null)

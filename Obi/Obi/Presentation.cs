@@ -610,6 +610,13 @@ namespace Obi
             ((PhraseNode)phrase).Audio = media;
         }
 
+        private ImportExport.ConfigurationFileParser m_ConfigurationsImportExport = null ;
+        public ImportExport.ConfigurationFileParser ConfigurationsImportExport
+        {
+            get { return m_ConfigurationsImportExport; }
+            set { m_ConfigurationsImportExport = value; }
+        }
+
         /// <summary>
         /// Export the project as DAISY to an export directory.
         /// </summary>
