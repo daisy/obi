@@ -49,11 +49,17 @@ namespace Obi.ImportExport
         private ExportFormat m_ExportStandards;
         public ExportFormat ExportStandards { get { return m_ExportStandards ; }}
 
+        private bool m_ExportIsMp3 = false;
+        public bool Export_IsMp3 { get { return m_ExportIsMp3; } }
+
         private AudioLib.SampleRate m_ExportSampleRate;
         public AudioLib.SampleRate ExportSampleRate { get { return m_ExportSampleRate; } }
 
         private int m_ExportChannels;
         public int ExportChannels { get { return m_ExportChannels; } }
+
+        private int m_ExportMp3Bitrate;
+        public int ExportMp3Bitrate { get { return m_ExportMp3Bitrate; } }
 
         public void ParseXml()
         {
@@ -96,6 +102,16 @@ namespace Obi.ImportExport
                     m_ExportStandards = strStandard == "daisy2.02" ? ExportFormat.DAISY2_02 :
                         strStandard == "daisy3" ? ExportFormat.DAISY3_0 :
                         ExportFormat.EPUB3;
+                }
+                else if (n.LocalName == "audioencoding")
+                {
+                    string strEncoding = n.InnerText.Trim();
+                    m_ExportIsMp3 = strEncoding.ToLower() == "mp3";
+                }
+                else if (n.LocalName == "bitrate")
+                {
+                    string strBitrate = n.InnerText.Trim();
+                    m_ExportMp3Bitrate = int.Parse(strBitrate);
                 }
                 else if (n.LocalName == "audiosamplerate")
                 {
