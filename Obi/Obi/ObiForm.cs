@@ -2516,16 +2516,32 @@ namespace Obi
                             
                         try
                         {
-                            if (ConfigureExportWithUserInterface(ref DAISY3ExportInstance,
+                            if (mSession.Presentation.ConfigurationsImportExport != null)
+                            {
+                                if (ConfigureExportWithProjectConfigurationFile(ref DAISY3ExportInstance,
                                 ref exportPathDAISY3,
                                 ref DAISY202ExportInstance,
                                 ref exportPathDAISY202,
                                 ref EPUB3_ExportInstance,
                                 ref exportPathEPUB3) == false)
-                            {
-                                return;
+                                {
+                                    return;
+                                }
                             }
-                            
+                            else
+                            {
+                                if (ConfigureExportWithUserInterface(ref DAISY3ExportInstance,
+                                    ref exportPathDAISY3,
+                                    ref DAISY202ExportInstance,
+                                    ref exportPathDAISY202,
+                                    ref EPUB3_ExportInstance,
+                                    ref exportPathEPUB3) == false)
+                                {
+                                    return;
+                                }
+                            }
+
+
                             mProjectView.TransportBar.Enabled = false;
 
                             ProgressDialog progress =
@@ -2791,13 +2807,74 @@ ref string exportDirectoryEPUB3)
                     exportDirectoryDAISY202 = exportPathDAISY202;
                     exportDirectoryDAISY3 = exportPathDAISY3;
                     exportDirectoryEPUB3 = exportPathEPUB3;
+                    return true;
                 }
-                            //DAISYExport.BitRate_Mp3 = dialog.BitRate;
-
-                
-                return true;
+                else
+                {
+                    return false;
+                }
             }
 
+            private bool ConfigureExportWithProjectConfigurationFile (ref urakawa.daisy.export.Daisy3_Export DAISY3ExportInstance,
+ref string exportDirectoryDAISY3,
+                ref urakawa.daisy.export.Daisy3_Export DAISY202ExportInstance,
+ref string exportDirectoryDAISY202,
+                ref urakawa.daisy.export.Daisy3_Export EPUB3_ExportInstance,
+ref string exportDirectoryEPUB3)
+            {
+                if (mSession.Presentation == null || mSession.Presentation.ConfigurationsImportExport == null) return false;
+
+                ImportExport.ConfigurationFileParser configInstance = mSession.Presentation.ConfigurationsImportExport;
+
+                if (configInstance.ExportStandards == Obi.ImportExport.ExportFormat.DAISY3_0)
+                {
+                    DAISY3ExportInstance = new Obi.ImportExport.DAISY3_ObiExport(
+                            mSession.Presentation, configInstance.ExportDirectory , null, false, 64,
+                            configInstance.ExportSampleRate ,
+                            configInstance.ExportChannels == 2,
+                            false, 100);
+
+                    DAISY3ExportInstance.AddSectionNameToAudioFile = false;
+                    DAISY3ExportInstance.AudioFileNameCharsLimit = 100;
+                    
+                    ((Obi.ImportExport.DAISY3_ObiExport)DAISY3ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                    exportDirectoryDAISY3 = configInstance.ExportDirectory;
+                    exportDirectoryEPUB3 = exportDirectoryDAISY202 = null;
+                }
+                else if (configInstance.ExportStandards == Obi.ImportExport.ExportFormat.DAISY2_02)
+                {
+                    DAISY202ExportInstance = new Obi.ImportExport.DAISY202Export(
+                        mSession.Presentation, configInstance.ExportDirectory, false, 64,
+                        configInstance.ExportSampleRate , configInstance.ExportChannels == 2,
+                        100);
+
+                    DAISY202ExportInstance.AddSectionNameToAudioFile = false;
+                    DAISY202ExportInstance.AudioFileNameCharsLimit = 100;
+                    
+                    ((Obi.ImportExport.DAISY202Export)DAISY202ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                    exportDirectoryDAISY202 = configInstance.ExportDirectory;
+                    exportDirectoryDAISY3 = exportDirectoryEPUB3 = null;
+                }
+                else if (configInstance.ExportStandards == Obi.ImportExport.ExportFormat.EPUB3)
+                {
+                    EPUB3_ExportInstance = new Obi.ImportExport.Epub3_ObiExport(
+                            mSession.Presentation, configInstance.ExportDirectory, null, true, 64,
+                            configInstance.ExportSampleRate,
+                            configInstance.ExportChannels == 2,
+                            false, 100,
+                            0,
+                            true);
+
+                    EPUB3_ExportInstance.AddSectionNameToAudioFile = false;
+                    EPUB3_ExportInstance.AudioFileNameCharsLimit = 100;
+
+                    ((Obi.ImportExport.Epub3_ObiExport)EPUB3_ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                    exportDirectoryEPUB3 = configInstance.ExportDirectory;
+                    exportDirectoryDAISY202 = exportDirectoryDAISY3 = null;
+                }
+
+                return true;
+            }
 
             private void mTools_CleanUnreferencedAudioMenuItem_Click(object sender, EventArgs e)
             {
