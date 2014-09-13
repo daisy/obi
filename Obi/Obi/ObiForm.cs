@@ -421,7 +421,11 @@ namespace Obi
                         //CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
                         ImportExport.DAISY3_ObiImport import = null;
                         bool isProjectCreated = false;
-
+                        // create directory from config file if it does not exist
+                        if (configurationInstance != null && !Directory.Exists(configurationInstance.ObiProjectDirectoryPath))
+                        {
+                            Directory.CreateDirectory(configurationInstance.ObiProjectDirectoryPath);
+                        }
                         if (dialog != null) title = dialog.Title;
                         Console.WriteLine("title : " + title);
                         string uniqueIdentifier = dialog != null ? dialog.ID :
