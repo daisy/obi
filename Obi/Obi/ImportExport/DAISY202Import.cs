@@ -80,6 +80,29 @@ namespace Obi.ImportExport
             return title;
         }
 
+        public static string GrabIdentifier(string xhtmlPath)
+        {
+            string uId = null;
+            XmlDocument xmlDoc = XmlReaderWriterHelper.ParseXmlDocument(xhtmlPath, false, false);
+            XmlNode headNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlDoc.DocumentElement, true, "head", xmlDoc.DocumentElement.NamespaceURI);
+            if (headNode != null)
+            {
+                foreach (XmlNode metaNode in XmlDocumentHelper.GetChildrenElementsOrSelfWithName(headNode, true, "meta", headNode.NamespaceURI, false))
+                {
+                    string name = metaNode.Attributes.GetNamedItem("name") != null ? metaNode.Attributes.GetNamedItem("name").Value : null;
+                    string content = metaNode.Attributes.GetNamedItem("content") != null ? metaNode.Attributes.GetNamedItem("content").Value : null;
+                    if (name == null) continue;
+
+                    if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(content)
+                        && name.ToLower() == "dc:identifier")
+                    {
+                        return content;
+                    }
+                }
+            }
+            return uId;
+        }
+
         private static XmlTextReader GetXmlReader(Uri uri)
         {
             XmlTextReader reader = new XmlTextReader(uri.ToString());
