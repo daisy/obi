@@ -369,6 +369,7 @@ namespace Obi
                     if (strExtension == ".xhtml" || strExtension == ".html" || strExtension == ".htm")
                     {
                         title = ImportExport.ImportStructureFromXhtml.GrabTitle(new Uri(path));
+                        dtbUid = ImportExport.DAISY202Import.GrabIdentifier(path);
                     }
                     else if (strExtension == ".xml")
                     {
