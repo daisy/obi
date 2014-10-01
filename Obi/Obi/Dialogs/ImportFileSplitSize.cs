@@ -281,26 +281,13 @@ namespace Obi.Dialogs
         {
             List<string> filenames = new List<string>();
             m_filePaths.Sort();
-            List<string> tempFilePaths = new List<string>(); 
             foreach (string str in m_filePaths)
             {
                 filenames.Add(System.IO.Path.GetFileName(str));
-                tempFilePaths.Add(str);
             }
             filenames.Sort();
             int tempLength = m_filePaths.Count;
-             m_filePaths.Clear();
-            
-            foreach (string str in filenames)
-            {
-                for (int i = 0; i <= tempLength - 1; i++)
-                {
-                    if (tempFilePaths[i].Contains(str))
-                    {
-                        m_filePaths.Add(tempFilePaths[i]);
-                    }
-                }
-            }
+
             lstManualArrange.Items.Clear();
             foreach (string str in m_filePaths)
             {
@@ -319,26 +306,12 @@ namespace Obi.Dialogs
 
             List<string> filenames = new List<string>();
             m_filePaths.Sort();
-            List<string> tempFilePaths = new List<string>();
             foreach (string str in m_filePaths)
             {
                 filenames.Add(System.IO.Path.GetFileName(str));
-                tempFilePaths.Add(str);
             }
             filenames.Sort();
             int totLength = m_filePaths.Count;
-            m_filePaths.Clear();
-
-            foreach (string str in filenames)
-            {
-                for (int i = 0; i <= totLength - 1; i++)
-                {
-                    if (tempFilePaths[i].Contains(str))
-                    {
-                        m_filePaths.Add(tempFilePaths[i]);
-                    }
-                }
-            }
             
             List<string> tempDescending=new List<string>();
 
