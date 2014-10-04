@@ -33,8 +33,8 @@ namespace Obi.ImportExport
 
         private void ReadListsFromCSVFile(List<int> levelsList, List<string> sectionNamesList, List<int> pagesPerSection, string CSVFullPath)
         {
-            string[] linesInFiles = File.ReadAllLines(CSVFullPath);
-            
+            string[] linesInFiles = File.ReadAllLines(CSVFullPath,System.Text.Encoding.UTF7);
+                    
             string tempString = "";
 
             foreach (string line in linesInFiles)
