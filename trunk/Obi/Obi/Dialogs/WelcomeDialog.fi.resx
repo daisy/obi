@@ -262,7 +262,7 @@
     <value>2</value>
   </data>
   <data name="mImportButton.Text" xml:space="preserve">
-    <value>Luo projekti &amp;import-toiminnolla</value>
+    <value>Luo uusi projekti &amp;import-toiminnon avulla</value>
   </data>
   <data name="&gt;&gt;mImportButton.Name" xml:space="preserve">
     <value>mImportButton</value>

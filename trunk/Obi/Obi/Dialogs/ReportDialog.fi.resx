@@ -205,7 +205,7 @@
     <value>2</value>
   </data>
   <data name="m_btnDetails.Text" xml:space="preserve">
-    <value>Näytä &amp;yksityiskohdat</value>
+    <value>Näytä &amp;yksityikohdat</value>
   </data>
   <data name="&gt;&gt;m_btnDetails.Name" xml:space="preserve">
     <value>m_btnDetails</value>
@@ -259,7 +259,7 @@
     <value>3</value>
   </data>
   <data name="m_grpBox_lb_ErrorsList.Text" xml:space="preserve">
-    <value>&amp;Virhelista</value>
+    <value>Virhe l&amp;ista</value>
   </data>
   <data name="&gt;&gt;m_grpBox_lb_ErrorsList.Name" xml:space="preserve">
     <value>m_grpBox_lb_ErrorsList</value>

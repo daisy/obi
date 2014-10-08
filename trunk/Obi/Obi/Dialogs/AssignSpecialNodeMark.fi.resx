@@ -205,7 +205,7 @@
     <value>2</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Peruuta</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.Name" xml:space="preserve">
     <value>m_btn_Cancel</value>
@@ -232,7 +232,7 @@
     <value>3</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.Text" xml:space="preserve">
-    <value>Skippable notes</value>
+    <value>Ohitettava kommentti</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.Name" xml:space="preserve">
     <value>m_rdb_btn_SpecialPhrase</value>

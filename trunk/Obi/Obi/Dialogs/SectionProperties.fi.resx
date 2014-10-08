@@ -202,7 +202,7 @@
     <value>2</value>
   </data>
   <data name="m_lblLevel.Text" xml:space="preserve">
-    <value>&amp;Taso (kerros)</value>
+    <value>&amp;Taso (syvyys)</value>
   </data>
   <data name="&gt;&gt;m_lblLevel.Name" xml:space="preserve">
     <value>m_lblLevel</value>
@@ -217,7 +217,7 @@
     <value>9</value>
   </data>
   <data name="m_comboLevel.AccessibleName" xml:space="preserve">
-    <value>Taso/Kerros</value>
+    <value>Taso/Syvyys</value>
   </data>
   <data name="m_comboLevel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -505,7 +505,7 @@
     <value>4</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>&amp;Yläpuoliset kappale(et):</value>
+    <value>Yläpuoliset kappaleet</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -520,7 +520,7 @@
     <value>0</value>
   </data>
   <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>Yläpuoliset kappaleet</value>
+    <value>&amp;Yläpuoliset kappale(et):</value>
   </data>
   <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>

@@ -437,7 +437,7 @@
     <value>5</value>
   </data>
   <data name="mPlayButton.AccessibleDescription" xml:space="preserve">
-    <value>button</value>
+    <value>painike</value>
   </data>
   <data name="mPlayButton.AccessibleName" xml:space="preserve">
     <value>Toista</value>
@@ -485,7 +485,7 @@
     <value>4</value>
   </data>
   <data name="mPlayButton.ToolTip" xml:space="preserve">
-    <value>Käynnistä tai jatka äänen toistoa (Space)</value>
+    <value>Käynnistä tai jatka äänen toistoa (Välilyönti)</value>
   </data>
   <data name="&gt;&gt;mPlayButton.Name" xml:space="preserve">
     <value>mPlayButton</value>
@@ -503,7 +503,7 @@
     <value>button</value>
   </data>
   <data name="mPauseButton.AccessibleName" xml:space="preserve">
-    <value>Tauko</value>
+    <value>Keskytä</value>
   </data>
   <data name="mPauseButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -559,7 +559,7 @@
     <value>button</value>
   </data>
   <data name="mStopButton.AccessibleName" xml:space="preserve">
-    <value>Lopetus</value>
+    <value>Lopeta</value>
   </data>
   <data name="mStopButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -670,7 +670,7 @@
     <value>10</value>
   </data>
   <data name="mNextPhrase.ToolTip" xml:space="preserve">
-    <value>Seuraava lause (K)</value>
+    <value>Seuraava lause. (K)</value>
   </data>
   <data name="&gt;&gt;mNextPhrase.Name" xml:space="preserve">
     <value>mNextPhrase</value>
@@ -741,7 +741,7 @@
     <value>2</value>
   </data>
   <data name="mPrevPhraseButton.ToolTip" xml:space="preserve">
-    <value>Edeltävä lause (J)</value>
+    <value>Edeltävä lause. (J)</value>
   </data>
   <data name="&gt;&gt;mPrevPhraseButton.Name" xml:space="preserve">
     <value>mPrevPhraseButton</value>
@@ -810,7 +810,7 @@
     <value>12</value>
   </data>
   <data name="mNextSectionButton.ToolTip" xml:space="preserve">
-    <value>Seuraava kappale</value>
+    <value>Seuraava kappale. (H)</value>
   </data>
   <data name="&gt;&gt;mNextSectionButton.Name" xml:space="preserve">
     <value>mNextSectionButton</value>
@@ -828,7 +828,7 @@
     <value>button</value>
   </data>
   <data name="mPrevSectionButton.AccessibleName" xml:space="preserve">
-    <value>Äskeinen kappale</value>
+    <value>Edeltävä kappale</value>
   </data>
   <data name="mPrevSectionButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Center</value>
@@ -879,7 +879,7 @@
     <value>0</value>
   </data>
   <data name="mPrevSectionButton.ToolTip" xml:space="preserve">
-    <value>Edeltävä kappale</value>
+    <value>Edeltävä kappale. (Shift+H)</value>
   </data>
   <data name="&gt;&gt;mPrevSectionButton.Name" xml:space="preserve">
     <value>mPrevSectionButton</value>
@@ -1073,7 +1073,7 @@
     <value>7</value>
   </data>
   <data name="m_btnPlayingOptions.AccessibleName" xml:space="preserve">
-    <value>Pelissä vaihtoehtoja</value>
+    <value>Toistovalinnat</value>
   </data>
   <data name="m_btnPlayingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1104,7 +1104,7 @@
     <value>6</value>
   </data>
   <data name="m_btnPlayingOptions.ToolTip" xml:space="preserve">
-    <value>Pelissä vaihtoehtoja</value>
+    <value>Toistovalinnat</value>
   </data>
   <data name="&gt;&gt;m_btnPlayingOptions.Name" xml:space="preserve">
     <value>m_btnPlayingOptions</value>
@@ -1125,16 +1125,16 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mDisplayBox.Items" xml:space="preserve">
-    <value>elapsed</value>
+    <value>kulunut</value>
   </data>
   <data name="mDisplayBox.Items1" xml:space="preserve">
-    <value>elapsed (total)</value>
+    <value>kulunut (kokonaisuudessa)</value>
   </data>
   <data name="mDisplayBox.Items2" xml:space="preserve">
-    <value>remaining</value>
+    <value>jäljellä</value>
   </data>
   <data name="mDisplayBox.Items3" xml:space="preserve">
-    <value>remaining (total)</value>
+    <value>jäljellä (kokonaisuudessa)</value>
   </data>
   <data name="mDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>585, 4</value>
@@ -1158,7 +1158,7 @@
     <value>13</value>
   </data>
   <data name="mFastPlayRateCombobox.AccessibleName" xml:space="preserve">
-    <value>Pikatoiston nopeus</value>
+    <value>Nopean toistot kerroin</value>
   </data>
   <data name="mFastPlayRateCombobox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1218,25 +1218,25 @@
     <value>244, 22</value>
   </data>
   <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Aloita monitorointi</value>
+    <value>Aloita &amp;monitorointi</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Aloita äänitys</value>
+    <value>Aloita &amp;äänitys</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
-    <value>Äänitä seuraavien lauseiden päälle</value>
+    <value>Äänitä &amp;seuraavien lauseiden päälle</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
-    <value>Esikatsele ennen äänitystä</value>
+    <value>&amp;Esikatsele ennen äänitystä</value>
   </data>
   <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 92</value>
@@ -1251,31 +1251,31 @@
     <value>186, 22</value>
   </data>
   <data name="m_PlayAlltoolStripMenuItem.Text" xml:space="preserve">
-    <value>Toista kaikki</value>
+    <value>Toista k&amp;aikki</value>
   </data>
   <data name="m_PlaySectiontoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PlaySectiontoolStripMenuItem.Text" xml:space="preserve">
-    <value>Toista kappale</value>
+    <value>Toista &amp;kappale</value>
   </data>
   <data name="m_playHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_playHeadingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Toista kappale Otsikko</value>
+    <value>Toista kappaleen otsikko</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Esikatsele alkaen</value>
+    <value>Esikatsele &amp;alkaen</value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Text" xml:space="preserve">
-    <value>Esikatsele päättyen</value>
+    <value>Esikatsele &amp;päättyen</value>
   </data>
   <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 114</value>
@@ -1390,5 +1390,8 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mMonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Jatkuva monitorointi</value>
   </data>
 </root>

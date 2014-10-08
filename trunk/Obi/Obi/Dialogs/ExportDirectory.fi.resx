@@ -142,7 +142,7 @@
     <value>0</value>
   </data>
   <data name="m_lblDirectoryPath.Text" xml:space="preserve">
-    <value>&amp;Hakemisto vientitoiminnolle:</value>
+    <value>&amp;Hakemisto vientitoiminnolle</value>
   </data>
   <data name="&gt;&gt;m_lblDirectoryPath.Name" xml:space="preserve">
     <value>m_lblDirectoryPath</value>
@@ -337,7 +337,7 @@
     <value>4</value>
   </data>
   <data name="m_checkBoxMP3Encoder.AccessibleDescription" xml:space="preserve">
-    <value>Tallenna MP3 muotoon valintaruutu</value>
+    <value>Tallenna muotoon MP3 valintaruutu</value>
   </data>
   <data name="m_checkBoxMP3Encoder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -595,7 +595,7 @@
     <value>&amp;Tiedostonimen pituusraja :</value>
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>Tiedostonimen pituusrajan numeerinen astus</value>
+    <value>Tiedostonimen pituusrajan numeerinen asetus</value>
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -634,7 +634,7 @@
     <value>15</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Text" xml:space="preserve">
-    <value>Create dummy text in HTML files</value>
+    <value>Luo harjoitusteksti HTML tiedostoihin</value>
   </data>
   <data name="&gt;&gt;m_chkBoxDummyTextHTMLfiles.Name" xml:space="preserve">
     <value>m_chkBoxDummyTextHTMLfiles</value>
@@ -685,7 +685,7 @@
     <value>14</value>
   </data>
   <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
-    <value>EPUB Tiedostonimen pituusraja:</value>
+    <value>EPUB tiedostonimen pituus :</value>
   </data>
   <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
     <value>m_EpubFileNamegroupBox</value>
@@ -700,7 +700,7 @@
     <value>1</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>EPUB Tiedostonimen pituusrajan numeerinen astus</value>
+    <value>EPUB tiedostonimen pituusrajan numeerinen asetus</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -715,7 +715,7 @@
     <value>13</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>EPUB Tiedostonimen pituusraja</value>
+    <value>EPUB tiedostonimen pituusraja</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -733,7 +733,7 @@
     <value>12</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Text" xml:space="preserve">
-    <value>EPUB Tiedostonimen pituusraja :</value>
+    <value>EPUB tiedostonimen pituusraja</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>

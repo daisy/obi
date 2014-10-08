@@ -158,7 +158,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_MergeSectionMenuItem.Text" xml:space="preserve">
-    <value>Y&amp;hdistä kappale</value>
+    <value>Yhdi&amp;stä kappale</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
@@ -203,7 +203,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_MergeMenuItem.Text" xml:space="preserve">
-    <value>&amp;Yhdistä lauseet</value>
+    <value>Yhdistä laus&amp;eet</value>
   </data>
   <data name="Context_CropAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -245,13 +245,13 @@
     <value>Sovella &amp;lauseentunnistusta</value>
   </data>
   <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Ylihypättävät lauseet</value>
+    <value>Ohitettavat lauseet</value>
   </data>
   <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>Skippa&amp;ble notes</value>
+    <value>Ohitettavat lauseet</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -337,7 +337,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;Vie tai korvaa äänitiedosto</value>
+    <value>Vie tai korvaa äänitiedosto</value>
   </data>
   <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -406,19 +406,19 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>Tava&amp;llinen</value>
+    <value>&amp;Yksinkertainen</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
-    <value>&amp;Heading</value>
+    <value>Otsikko</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_PageMenuItem.Text" xml:space="preserve">
-    <value>&amp;Page</value>
+    <value>Sivu</value>
   </data>
   <data name="Context_AssignRole_SilenceMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
@@ -430,7 +430,7 @@
     <value>181, 22</value>
   </data>
   <data name="Context_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>&amp;Linkki</value>
+    <value>Ankkuri</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 6</value>
@@ -1109,5 +1109,8 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Context_AudioProcessing.Text" xml:space="preserve">
+    <value>Äänen käsittely</value>
   </data>
 </root>

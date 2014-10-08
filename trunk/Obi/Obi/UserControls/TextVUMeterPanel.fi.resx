@@ -244,7 +244,7 @@
     <value>1</value>
   </data>
   <data name="mResetButton.AccessibleName" xml:space="preserve">
-    <value>&amp;Nollaus</value>
+    <value>&amp;Nollauspainike</value>
   </data>
   <data name="mResetButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

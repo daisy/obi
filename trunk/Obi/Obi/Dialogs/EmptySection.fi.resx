@@ -169,7 +169,7 @@
     <value>0</value>
   </data>
   <data name="mMessageLabel.Text" xml:space="preserve">
-    <value>Kappale "{0}" ei sisällä ääntä eikä sitä, eikä sen alakappaleita viedä ohjelmasta. Haluatko jatkaa?</value>
+    <value>Kappale "{0}" ei sisällä ääntä eikä sitä, eikä sen alakappaleita tallenneta ohjelmasta. Haluatko jatkaa?</value>
   </data>
   <data name="&gt;&gt;mMessageLabel.Name" xml:space="preserve">
     <value>mMessageLabel</value>
@@ -259,7 +259,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Kappaletta ei viedä ohjelmasta</value>
+    <value>Kappaletta ei tallenneta ohjelmasta</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

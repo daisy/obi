@@ -304,7 +304,7 @@
     <value>5</value>
   </data>
   <data name="mSwitchToNewCheckBox.Text" xml:space="preserve">
-    <value>Vaihda &amp;uuteen käsikirjoitukseen</value>
+    <value>Vaihda &amp;uuteen kopioon</value>
   </data>
   <data name="&gt;&gt;mSwitchToNewCheckBox.Name" xml:space="preserve">
     <value>mSwitchToNewCheckBox</value>
@@ -328,7 +328,7 @@
     <value>4</value>
   </data>
   <data name="m_ProjectNameTextBox.Text" xml:space="preserve">
-    <value>project.obi</value>
+    <value>projekti.obi</value>
   </data>
   <data name="&gt;&gt;m_ProjectNameTextBox.Name" xml:space="preserve">
     <value>m_ProjectNameTextBox</value>

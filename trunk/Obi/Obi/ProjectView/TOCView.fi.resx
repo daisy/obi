@@ -127,7 +127,7 @@
     <value>False</value>
   </metadata>
   <data name="Context_ShowContentsMenuItem.AccessibleDescription" xml:space="preserve">
-    <value>Show Contents of Section</value>
+    <value>Näytä kappaleen sisältö</value>
   </data>
   <data name="Context_ShowContentsMenuItem.AccessibleName" xml:space="preserve">
     <value>Näytä sisältö</value>

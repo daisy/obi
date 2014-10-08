@@ -223,7 +223,7 @@
     <value>6</value>
   </data>
   <data name="m_lblRetypeEmail.Text" xml:space="preserve">
-    <value>Vahvista Sähköposti :</value>
+    <value>Sähköpostiosoite &amp;uudelleen</value>
   </data>
   <data name="&gt;&gt;m_lblRetypeEmail.Name" xml:space="preserve">
     <value>m_lblRetypeEmail</value>
@@ -560,7 +560,7 @@
     <value>17</value>
   </data>
   <data name="m_rdbTryingObi.Text" xml:space="preserve">
-    <value>Kokeilen ja testaan Obi-ohjelmaa</value>
+    <value>Kokeilen ja &amp;testaan Obi-ohjelmaa</value>
   </data>
   <data name="&gt;&gt;m_rdbTryingObi.Name" xml:space="preserve">
     <value>m_rdbTryingObi</value>
