@@ -616,7 +616,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Näytä TOC-näkymä Ctrl+Alt+T</value>
+    <value>Näytä TOC-näkymä</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Näytä &amp;TOC-näkymä</value>
@@ -628,7 +628,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Näytä metadata-näyttö Ctrl+Alt+M</value>
+    <value>Näytä metadata-näyttö</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Näytä &amp;metadata-näyttö</value>
@@ -640,7 +640,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Näytä siirtopalkki Ctrl+Alt+B</value>
+    <value>Näytä siirtopalkki</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Näytä siirto&amp;palkki</value>
@@ -652,7 +652,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Näytä tilarivi Ctrl+Alt+R</value>
+    <value>Näytä tilarivi</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 6</value>
@@ -667,7 +667,7 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>valinta TOC näyttöön / Sisällysluetteloon F6</value>
+    <value>valinta TOC näyttöön / Sisällysluetteloon</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>valinta TO&amp;C näyttöön / Sisällysluetteloon</value>
@@ -679,7 +679,7 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Valinta sisällysluetteloon F6</value>
+    <value>Valinta sisällysluetteloon</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -694,7 +694,7 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Valinta siirtopalkkiin Ctrl+F6</value>
+    <value>Valinta siirtopalkkiin</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Valinta siirt&amp;opalkkiin</value>
@@ -706,7 +706,7 @@
     <value>274, 22</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Synkronoi näytöt Ctrl+Alt+Y</value>
+    <value>Synkronoi näytöt</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -724,7 +724,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
-    <value>Näytä huippuarvomittari Ctrl+Alt+P</value>
+    <value>Näytä huippuarvomittari</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Näytä hui&amp;ppuarvomittari</value>
@@ -736,7 +736,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Text" xml:space="preserve">
-    <value>Näytä lähdenäyttö Ctrl+Alt+D</value>
+    <value>Näytä lähdenäyttö </value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+R</value>
@@ -1174,7 +1174,7 @@
     <value>Päätä kommentti</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>&amp;Päätä kommentti</value>
+    <value>Ctrl+Alt+]</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Oem6</value>
