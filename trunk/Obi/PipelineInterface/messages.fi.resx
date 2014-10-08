@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CannotCreate_InputPath" xml:space="preserve">
-    <value>Polkua ei voi luoda tyypille:input</value>
+    <value>Polkua ei voi luoda tyypille: input</value>
   </data>
   <data name="Caption_Error" xml:space="preserve">
     <value>VIRHE</value>
