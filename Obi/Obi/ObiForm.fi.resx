@@ -754,7 +754,7 @@
     <value>Näytä &amp;äänitystyökalupalkki</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Zoomaa suuremmaksi Ctrl+Alt+plus</value>
+    <value>Ctrl+Alt++</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Oemplus</value>
@@ -1270,7 +1270,7 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>Tava%llinen</value>
+    <value>Tavallinen</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.AccessibleName" xml:space="preserve">
     <value>Otsikko Ctrl+Shift+D</value>
@@ -1306,7 +1306,7 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
-    <value>&amp;Äänetön Ctrl+Shift+E</value>
+    <value>&amp;Äänetön</value>
   </data>
   <data name="mPhrases_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
