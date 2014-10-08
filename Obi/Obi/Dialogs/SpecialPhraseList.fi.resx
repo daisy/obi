@@ -136,7 +136,7 @@
     <value>Heading</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items3" xml:space="preserve">
-    <value>Äänetön</value>
+    <value>Hiljaisuus</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items4" xml:space="preserve">
     <value>Kaikki sivut</value>
@@ -476,5 +476,8 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="m_cb_SpecialPhrases.Items9" xml:space="preserve">
+    <value>Käyttämättömät lauseet</value>
   </data>
 </root>

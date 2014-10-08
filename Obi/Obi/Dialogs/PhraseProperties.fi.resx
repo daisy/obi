@@ -583,7 +583,7 @@
     <value>5</value>
   </data>
   <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>Periytyvät kappaleet:</value>
+    <value>P&amp;eriytyvät kappale(et):</value>
   </data>
   <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -625,7 +625,7 @@
     <value>4</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>P&amp;eriytyvät kappale(et):</value>
+    <value>Periytyvät kappaleet:</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>

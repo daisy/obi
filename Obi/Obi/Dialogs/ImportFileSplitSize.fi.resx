@@ -313,7 +313,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>Siirrä &amp;ylös</value>
+    <value>Siirrä&amp;ylös</value>
   </data>
   <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
     <value>m_btnMoveUp</value>

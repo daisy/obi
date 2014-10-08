@@ -157,7 +157,7 @@
     <value>0</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
-    <value>Projektitiedostot valintalista.</value>
+    <value>Projektitiedostot luetteloruutu</value>
   </data>
   <data name="lstManualArrange.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -193,7 +193,7 @@
     <value>2</value>
   </data>
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
-    <value>Järjestele tidostot</value>
+    <value>Järjestele tiedostot</value>
   </data>
   <data name="mbtnAscendingOrder.AccessibleName" xml:space="preserve">
     <value>Nouseva järjestys</value>
@@ -247,7 +247,7 @@
     <value>7</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
-    <value>Järjestele tidostot:</value>
+    <value>Järjestele tiedostot</value>
   </data>
   <data name="&gt;&gt;m_grpArrangeAudioFiles.Name" xml:space="preserve">
     <value>m_grpArrangeAudioFiles</value>
@@ -262,7 +262,7 @@
     <value>1</value>
   </data>
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
-    <value>Ryhmäkehys tiedostojen lisäykseen ja järjestelyyn</value>
+    <value>Ryhmäkehys tiedostojen lisäykseen ja järjestelyyn.</value>
   </data>
   <data name="m_btnRemove.AccessibleName" xml:space="preserve">
     <value>Poista</value>
@@ -322,7 +322,7 @@
     <value>5</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
-    <value>Lisää</value>
+    <value>L&amp;isää</value>
   </data>
   <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
     <value>m_btnAdd</value>

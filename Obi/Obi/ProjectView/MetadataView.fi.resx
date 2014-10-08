@@ -334,7 +334,7 @@
     <value>2</value>
   </data>
   <data name="m_BtnContextMenu.AccessibleName" xml:space="preserve">
-    <value>Lisävalintojen alivalikko</value>
+    <value>Lisävalinnat alamenu</value>
   </data>
   <data name="m_BtnContextMenu.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -383,19 +383,19 @@
     <value>244, 22</value>
   </data>
   <data name="SetDefaultMetadataStripMenuItem.Text" xml:space="preserve">
-    <value>Lisää oletetus metadata</value>
+    <value>Liitä metadatan oletussarvot</value>
   </data>
   <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="SetDefaultMetadataOverwriteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Korvaa metadata oletusarvoilla</value>
+    <value>Korvaa oletusarvoilla</value>
   </data>
   <data name="SaveAsDefaultMetadataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="SaveAsDefaultMetadataToolStripMenuItem.Text" xml:space="preserve">
-    <value>Tallenna metadata oletusarvoiksi</value>
+    <value>Talenna metadata oletusarvoiksi</value>
   </data>
   <data name="mMetadataContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 92</value>
