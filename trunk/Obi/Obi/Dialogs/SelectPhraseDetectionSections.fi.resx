@@ -480,7 +480,7 @@
     <value>8</value>
   </data>
   <data name="m_lbl_SelectSilencePhrase.Text" xml:space="preserve">
-    <value>&amp;Äänetön lause</value>
+    <value>&amp;Hiljaisuus lause</value>
   </data>
   <data name="&gt;&gt;m_lbl_SelectSilencePhrase.Name" xml:space="preserve">
     <value>m_lbl_SelectSilencePhrase</value>
@@ -495,7 +495,7 @@
     <value>1</value>
   </data>
   <data name="m_cb_SilencePhrase.AccessibleName" xml:space="preserve">
-    <value>Valitse äänetön lausae</value>
+    <value>Valitse hiljaisuus lause</value>
   </data>
   <data name="m_cb_SilencePhrase.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 19</value>
