@@ -1262,6 +1262,7 @@ namespace Obi.ProjectView
                 }
             return command;
             }
+      
 
         public void MergeMultipleSections()
         {
@@ -1273,73 +1274,131 @@ namespace Obi.ProjectView
                 int selectedSectionIndex = listOfSections.IndexOf(GetSelectedPhraseSection);
                 if (selectedSectionIndex > 0) listOfSections.RemoveRange(0, selectedSectionIndex);
                 //foreach (SectionNode s in listOfSections) MessageBox.Show(s.Label + " " + s.Level.ToString ());
-                Obi.Dialogs.SelectMergeSectionRange selectionDialog = new Obi.Dialogs.SelectMergeSectionRange(listOfSections, selectedSectionIndex);
-                if (selectionDialog.ShowDialog () == DialogResult.OK
-                    && selectionDialog.SelectedSections != null && selectionDialog.SelectedSections.Count > 1)
+                Obi.Dialogs.SelectMergeSectionRange selectionDialog = new Obi.Dialogs.SelectMergeSectionRange(listOfSections, selectedSectionIndex, this, this.mContentView);
+                List<SectionNode> selectedSections = selectionDialog.SelectedSections;
+
+                selectionDialog.MergeSectionEvent += new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
                 {
-                    List<SectionNode> selectedSections = selectionDialog.SelectedSections;
-                    if (selectedSections.Count <= 1) return;
-                    urakawa.command.CompositeCommand mergeSectionCommand = mPresentation.CreateCompositeCommand("MergeMultipleSections");
-
-                    SectionNode firstSection = selectedSections[0];
-                    selectedSections.Remove(firstSection);
-                    //first arrange the children whose parents will be deleted
-                    int lastSelectedSectionIndex = listOfSections.IndexOf(selectedSections[selectedSections.Count - 1]);
-
-                    if (lastSelectedSectionIndex < listOfSections.Count - 1)
+                    if (selectionDialog.SelectedSections.Count != 0)
                     {
-                        for (int i =listOfSections.Count-1; i > lastSelectedSectionIndex; i--)
+                        selectedSections = selectionDialog.SelectedSections;
+                        if (selectedSections.Count <= 1) return;
+                        urakawa.command.CompositeCommand mergeSectionCommand = mPresentation.CreateCompositeCommand("MergeMultipleSections");
+
+                        SectionNode firstSection = selectedSections[0];
+                        selectedSections.Remove(firstSection);
+                        //first arrange the children whose parents will be deleted
+                        int lastSelectedSectionIndex = listOfSections.IndexOf(selectedSections[selectedSections.Count - 1]);
+
+                        if (lastSelectedSectionIndex < listOfSections.Count - 1)
                         {
-                            if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
+                            for (int i = listOfSections.Count - 1; i > lastSelectedSectionIndex; i--)
                             {
-                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
-                                int insertIndex = firstSection.SectionChildCount > 0 ? firstSection.SectionChild(0).Index : 0;
-                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, insertIndex, false));
+                                if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
+                                {
+                                    mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
+                                    int insertIndex = firstSection.SectionChildCount > 0 ? firstSection.SectionChild(0).Index : 0;
+                                    mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, insertIndex, false));
+                                }
                             }
-                        }
-                    
-                        //for (int i = lastSelectedSectionIndex + 1; i < listOfSections.Count; i++)
-                        //{
+
+                            //for (int i = lastSelectedSectionIndex + 1; i < listOfSections.Count; i++)
+                            //{
                             //if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
                             //{
-                                //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
-                                //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, firstSection.SectionChildCount, false));
+                            //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
+                            //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, firstSection.SectionChildCount, false));
                             //}
-                        //}
-                    }
+                            //}
+                        }
 
-                    List<EmptyNode> phraseList = new List<EmptyNode>();
+                        List<EmptyNode> phraseList = new List<EmptyNode>();
 
-                    //for (int i = 0; i < selectedSections.Count; i++)
-                    for (int i = selectedSections.Count-1 ; i >= 0; i--)
-                    {
-                        for (int j = selectedSections[i].PhraseChildCount-1 ; j >= 0 ; j--)
+                        //for (int i = 0; i < selectedSections.Count; i++)
+                        for (int i = selectedSections.Count - 1; i >= 0; i--)
                         {
-                            phraseList.Insert (0,selectedSections[i].PhraseChild(j));
-                            mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i].PhraseChild(j)));
+                            for (int j = selectedSections[i].PhraseChildCount - 1; j >= 0; j--)
+                            {
+                                phraseList.Insert(0, selectedSections[i].PhraseChild(j));
+                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i].PhraseChild(j)));
+                            }
+                        }
+                        for (int i = selectedSections.Count - 1; i >= 0; i--)
+                        {
+                            if (!selectedSections.Contains(selectedSections[i].ParentAs<SectionNode>()))
+                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i]));
+                        }
+
+                        for (int i = 0; i < phraseList.Count; i++)
+                        {
+                            Commands.Command add = new Commands.Node.AddNode(this, phraseList[i], firstSection, firstSection.PhraseChildCount + i, false);
+                            mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, add);
+                        }
+
+                        try
+                        {
+                            if (mergeSectionCommand.ChildCommands.Count > 0) mPresentation.Do(mergeSectionCommand);
+                        }
+                        catch (System.Exception ex)
+                        {
+                            WriteToLogFile(ex.ToString());
+                            MessageBox.Show(ex.ToString());
                         }
                     }
-                    for (int i = selectedSections.Count - 1; i >= 0; i--)
+                }
+                
+                    );
+                selectionDialog.LevelIncrementEvent+= new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
+                {
+                    if (selectionDialog.SelectedSectionsForIncreaseLevel != null && selectionDialog.SelectedSectionsForIncreaseLevel.Count >= 1)
                     {
-                        if (!selectedSections.Contains(selectedSections[i].ParentAs<SectionNode>()))
-                            mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i]));
+                        List<SectionNode> selectedSectionsForIncreaseLevel = selectionDialog.SelectedSectionsForIncreaseLevel;
+                        if (selectedSectionsForIncreaseLevel.Count != 0)
+                        {
+                            selectedSections = selectionDialog.SelectedSections;
+                            foreach (SectionNode node in selectedSectionsForIncreaseLevel)
+                            {
+                                mTOCView.Selection = new NodeSelection(node, mContentView);
+                                IncreaseSelectedSectionLevel();
+                            }
+                        }
                     }
+ 
+                }
+                    
+                    );
+                selectionDialog.LevelDecrementEvent+= new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
+                {
+                    if (selectionDialog.SelectedSectionsForDecreaseLevel != null && selectionDialog.SelectedSectionsForDecreaseLevel.Count >= 1)
+                    {
+                        List<SectionNode> selectedSectionsForDecreaseLevel = selectionDialog.SelectedSectionsForDecreaseLevel;
+                        if (selectedSectionsForDecreaseLevel.Count != 0)
+                        {
+                            selectedSections = selectionDialog.SelectedSections;
+                            selectedSectionsForDecreaseLevel.Reverse();
+                            foreach (SectionNode node in selectedSectionsForDecreaseLevel)
+                            {
+                                mTOCView.Selection = new NodeSelection(node, mContentView);
+                                DecreaseSelectedSectionLevel();
+                            }
+                        }
+                    }
+                }
+                    
+                );
+                selectionDialog.ShowDialog();
+                //  if (selectedSections.Count <= 1)
+                {
+                    Console.WriteLine();
+                    // SectionNode nodes = GetSelectedPhraseSection;
+                    // List<SectionNode> selectedSections = selectionDialog.SelectedSections;
+                    //foreach (SectionNode node in selectedSections)
+                    //{
+                    //    mTOCView.Selection = new NodeSelection(node, mContentView);
+                    //    DecreaseSelectedSectionLevel();
+                    //}
 
-                    for (int i = 0; i < phraseList.Count; i++)
-                    {
-                        Commands.Command add = new Commands.Node.AddNode(this, phraseList[i], firstSection, firstSection.PhraseChildCount + i, false);
-                        mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, add);
-                    }
-
-                    try
-                    {
-                        if (mergeSectionCommand.ChildCommands.Count > 0) mPresentation.Do(mergeSectionCommand);
-                    }
-                    catch (System.Exception ex)
-                    {
-                        WriteToLogFile(ex.ToString());
-                        MessageBox.Show(ex.ToString());
-                    }
+                    //   return;
                 }
 
             }
