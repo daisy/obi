@@ -30,6 +30,7 @@ namespace Obi.Dialogs
         private List<SectionNode> m_SelectedSectionListForIncreaseLevel = new List<SectionNode>();
      //   private List<int> m_IndexOfSelectedSectionToIncreaseLevel = new List<int>();
      //   private List<int> m_IndexOfSelectedSectionToDecreaseLevel = new List<int>();
+        private List<int> m_IndexOfSectionSelected = new List<int>();
         private List<SectionNode> m_SelectedSectionListToMerge = new List<SectionNode>();
 
         public event SectionsManipulationDelegate LevelIncrementEvent;
@@ -172,9 +173,13 @@ namespace Obi.Dialogs
             {
                     m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
                     m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
+                    if (m_IndexOfSectionSelected.Contains(i))
+                    {
+                        m_lb_listofSectionsToMerge.SelectedIndex = i;
+                    }
                 
             }
-
+            
 
         }
 
@@ -425,21 +430,7 @@ namespace Obi.Dialogs
                     if (k == j)
                     {
                         listOfSelectedSections.Add((SectionNode)m_SectionList[j]);
-                        //if (m_IncreaseLevel)
-                        //{
-                        //    if (!m_IndexOfSelectedSectionToIncreaseLevel.Contains(j))
-                        //    {
-                        //        m_IndexOfSelectedSectionToIncreaseLevel.Add(j);
-                        //    }
-                        //}
-                        //else if (m_DecreaseLevel)
-                        //{
-                        //    if (!m_IndexOfSelectedSectionToDecreaseLevel.Contains(j))
-                        //    {
-                        //        m_IndexOfSelectedSectionToDecreaseLevel.Add(j);
-                        //    }
-                        //}
-
+                        m_IndexOfSectionSelected.Add(j);
                     }
                 }
             }
