@@ -12,6 +12,7 @@ namespace Obi.Dialogs
     public partial class SelectMergeSectionRange : Form
     {
         List<SectionNode> m_SectionList = null;
+        List<SectionNode> m_SectionListAfterLevelChange = new List<SectionNode>();
         List<SectionNode> m_SelectedSectionList = new List<SectionNode>();
         List<List<int>> m_ListOfContinuousItems = new List<List<int>>();
         List<SectionNode> listOfLargestNumberOfSections = new List<SectionNode>();
@@ -129,7 +130,8 @@ namespace Obi.Dialogs
                 if (m_SectionList[i].Level >= firstSection.Level)
                 {
                     m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
-                    m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);                    
+                    m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
+                    m_SectionListAfterLevelChange.Add(m_SectionList[i]);
                 }
                 else
                     return;
@@ -171,15 +173,16 @@ namespace Obi.Dialogs
 
             for (int i = 0; i <= (m_SectionList.Count - 1); i++)
             {
+               if (m_SectionListAfterLevelChange.Contains(m_SectionList[i]))
+                {
                     m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
                     m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
                     if (m_IndexOfSectionSelected.Contains(i))
                     {
                         m_lb_listofSectionsToMerge.SelectedIndex = i;
                     }
-                
-            }
-            
+                }
+            }            
 
         }
 
