@@ -29,8 +29,6 @@ namespace Obi.Dialogs
         private SectionNode m_tempSectionNode;
         private List<SectionNode> m_SelectedSectionListForDecreaseLevel = new List<SectionNode>();
         private List<SectionNode> m_SelectedSectionListForIncreaseLevel = new List<SectionNode>();
-     //   private List<int> m_IndexOfSelectedSectionToIncreaseLevel = new List<int>();
-     //   private List<int> m_IndexOfSelectedSectionToDecreaseLevel = new List<int>();
         private List<int> m_IndexOfSectionSelected = new List<int>();
         private List<SectionNode> m_SelectedSectionListToMerge = new List<SectionNode>();
 
@@ -138,28 +136,7 @@ namespace Obi.Dialogs
             }
         }
       
-        //private void populateListboxForSectionsToDecreaseSectionLevel()
-        //{
-        //    //int j = 0;
-            
-           
-        //    m_lb_listofSectionsToMerge.Items.Clear();
-        //    SectionNode firstSection = m_SectionList[0];
-        //    m_lb_listofSectionsToMerge.Refresh();
-        //    m_IndexOfSelectedSectionToDecreaseLevel.Sort();
 
-        //    for (int i = 0; i <= (m_SectionList.Count - 1); i++)
-        //    {
-        //       // if (m_SectionList[i].Level >= firstSection.Level)
-        //        {
-        //            m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
-        //            m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
-        //        }
-        //        //else
-        //        //    return;
-        //    }
-
-        //}
         private void populateListboxForSectionsAfterLevelchange()
         {
             int j = 0;
@@ -169,7 +146,7 @@ namespace Obi.Dialogs
             SectionNode firstSection = m_SectionList[0];
             bool flag = false;
             m_lb_listofSectionsToMerge.Refresh();
-        //    m_IndexOfSelectedSectionToIncreaseLevel.Sort();
+        
 
             for (int i = 0; i <= (m_SectionList.Count - 1); i++)
             {
@@ -182,41 +159,15 @@ namespace Obi.Dialogs
                         m_lb_listofSectionsToMerge.SelectedIndex = i;
                     }
                 }
-            }            
+            }
+            m_IndexOfSectionSelected.Clear();
 
         }
 
         private void m_lb_listofSectionsToMerge_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!m_IsDeselected)
-            {
-                //if (m_IndexOfSelectedSectionToIncreaseLevel.Count != 0)
-                //{
-                //    if (m_IndexOfSelectedSectionToIncreaseLevel.Contains(m_lb_listofSectionsToMerge.SelectedIndex) || m_IndexOfSelectedSectionToIncreaseLevel.Contains(m_lb_listofSectionsToMerge.SelectedIndex - 1) || m_IndexOfSelectedSectionToIncreaseLevel.Contains(m_lb_listofSectionsToMerge.SelectedIndex + 1))
-                //    {
-                //        m_btn_IncreaseSectionLevel.Enabled = true;
-                //        m_btn_DecreaseSectionLevel.Enabled = false;
-                //    }
-                //    else
-                //    {
-                //        m_btn_IncreaseSectionLevel.Enabled = false;
-                //        m_btn_DecreaseSectionLevel.Enabled = false;
-                //    }
-
-                //}
-                //else  if (m_IndexOfSelectedSectionToDecreaseLevel.Count != 0)
-                //{
-                //    if (m_IndexOfSelectedSectionToDecreaseLevel.Contains(m_lb_listofSectionsToMerge.SelectedIndex) || m_IndexOfSelectedSectionToDecreaseLevel.Contains(m_lb_listofSectionsToMerge.SelectedIndex - 1) || m_IndexOfSelectedSectionToDecreaseLevel.Contains(m_lb_listofSectionsToMerge.SelectedIndex + 1))
-                //    {
-                //        m_btn_IncreaseSectionLevel.Enabled = false;
-                //        m_btn_DecreaseSectionLevel.Enabled = true;
-                //    }
-                //    else
-                //    {
-                //        m_btn_DecreaseSectionLevel.Enabled = false;
-                //        m_btn_DecreaseSectionLevel.Enabled = false;
-                //    }
-                //}
+            {               
                 List<SectionNode> tempList = new List<SectionNode>();
                 tempList = listBoxSelectionIsContinuous();
                 //if(
@@ -421,10 +372,6 @@ namespace Obi.Dialogs
         {
             int totalPhraseCount = 0;            
             List<SectionNode> listOfSelectedSections = new List<SectionNode>();
-          //  m_IndexOfSelectedSectionToIncreaseLevel.Clear();
-           // m_IndexOfSelectedSectionToDecreaseLevel.Clear();
-
-         //   m_IndexOfSelectedSectionToIncreaseLevel.Clear();
             for (int i = 0; i < m_lb_listofSectionsToMerge.SelectedItems.Count; i++)
             {
                 int k = m_lb_listofSectionsToMerge.SelectedIndices[i];
