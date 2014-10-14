@@ -149,7 +149,7 @@ namespace Obi.ProjectView
                     }
                     if (value != null && !this.ContainsFocus) this.Focus();
                     mSelection = value;
-                    TreeNode n = value == null ? null : FindTreeNode((SectionNode)mSelection.Node);
+                    TreeNode n = value == null ? null : mSelection.Node.IsRooted ? FindTreeNode((SectionNode)mSelection.Node) : null;
                     // Ignore the select event, since we were asked to change the selection;
                     // but allow the selection not coming from the user.
                     AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);

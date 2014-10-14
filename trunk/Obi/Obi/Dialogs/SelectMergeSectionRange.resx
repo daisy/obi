@@ -129,10 +129,10 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>508, 330</value>
+    <value>244, 327</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 28</value>
+    <value>101, 35</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
@@ -151,7 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>7</value>
   </data>
   <data name="m_btn_Cancel.AccessibleName" xml:space="preserve">
     <value>Cancel</value>
@@ -163,10 +163,10 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>615, 330</value>
+    <value>351, 327</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+    <value>100, 35</value>
   </data>
   <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -184,7 +184,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
   <metadata name="m_statusStripForMergeSection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 385</value>
@@ -214,7 +214,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_statusStripForMergeSection.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="m_tb_SelectedSection.Location" type="System.Drawing.Point, System.Drawing">
     <value>75, 13</value>
@@ -256,13 +256,13 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btn_SelectAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 23</value>
+    <value>6, 16</value>
   </data>
   <data name="m_btn_SelectAll.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 44</value>
   </data>
   <data name="m_btn_SelectAll.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="m_btn_SelectAll.Text" xml:space="preserve">
     <value>&amp;Select All</value>
@@ -289,7 +289,7 @@
     <value>63, 13</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>10</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Description:</value>
@@ -310,13 +310,13 @@
     <value>0</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>476, 237</value>
+    <value>593, 237</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 72</value>
+    <value>122, 72</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
@@ -328,13 +328,175 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>218, 252</value>
   </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.AccessibleName" xml:space="preserve">
+    <value>Increase Section Level</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 15</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 52</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_btn_IncreaseSectionLevel.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Name" xml:space="preserve">
+    <value>m_btn_IncreaseSectionLevel</value>
+  </data>
+  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Parent" xml:space="preserve">
+    <value>m_grp_SectionLevelOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.AccessibleName" xml:space="preserve">
+    <value>Decrease Section Level</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>95, 16</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 52</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_btn_DecreaseSectionLevel.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Name" xml:space="preserve">
+    <value>m_btn_DecreaseSectionLevel</value>
+  </data>
+  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Parent" xml:space="preserve">
+    <value>m_grp_SectionLevelOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_btn_Merge.AccessibleName" xml:space="preserve">
+    <value>Merge</value>
+  </data>
+  <data name="m_btn_Merge.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_Merge.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btn_Merge.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 16</value>
+  </data>
+  <data name="m_btn_Merge.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_btn_Merge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 52</value>
+  </data>
+  <data name="m_btn_Merge.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_btn_Merge.Text" xml:space="preserve">
+    <value>Merge</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Merge.Name" xml:space="preserve">
+    <value>m_btn_Merge</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Merge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Merge.Parent" xml:space="preserve">
+    <value>m_grp_SectionLevelOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Merge.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_btn_Undo.AccessibleName" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="m_btn_Undo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btn_Undo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>171, 15</value>
+  </data>
+  <data name="m_btn_Undo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 52</value>
+  </data>
+  <data name="m_btn_Undo.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_btn_Undo.Text" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Undo.Name" xml:space="preserve">
+    <value>m_btn_Undo</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Undo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Undo.Parent" xml:space="preserve">
+    <value>m_grp_SectionLevelOperation</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Undo.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 237</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>339, 72</value>
+  </data>
+  <data name="m_grp_SectionLevelOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.Name" xml:space="preserve">
+    <value>m_grp_SectionLevelOperation</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grp_SectionLevelOperation.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="SectionNameColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -376,7 +538,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_dataGridView_SectionNames.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="m_btnPause.AccessibleName" xml:space="preserve">
     <value>Pause</value>
@@ -391,7 +553,7 @@
     <value>89, 45</value>
   </data>
   <data name="m_btnPause.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="m_btnPause.Text" xml:space="preserve">
     <value>Pause</value>
@@ -424,7 +586,7 @@
     <value>88, 45</value>
   </data>
   <data name="m_btn_Stop.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="m_btn_Stop.Text" xml:space="preserve">
     <value>Stop</value>
@@ -454,7 +616,7 @@
     <value>89, 45</value>
   </data>
   <data name="m_btn_Play.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="m_btn_Play.Text" xml:space="preserve">
     <value>Play</value>
@@ -472,13 +634,13 @@
     <value>2</value>
   </data>
   <data name="m_grp_SectionAudioOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 237</value>
+    <value>378, 237</value>
   </data>
   <data name="m_grp_SectionAudioOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 72</value>
+    <value>197, 72</value>
   </data>
   <data name="m_grp_SectionAudioOperation.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;m_grp_SectionAudioOperation.Name" xml:space="preserve">
     <value>m_grp_SectionAudioOperation</value>
@@ -490,7 +652,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_grp_SectionAudioOperation.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="m_lb_listofSectionsToMerge.AccessibleName" xml:space="preserve">
     <value>List of sections</value>
@@ -514,163 +676,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lb_listofSectionsToMerge.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="m_rbMerge.AccessibleName" xml:space="preserve">
-    <value>Merge Sections</value>
-  </data>
-  <data name="m_rbMerge.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_rbMerge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 337</value>
-  </data>
-  <data name="m_rbMerge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 17</value>
-  </data>
-  <data name="m_rbMerge.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="m_rbMerge.Text" xml:space="preserve">
-    <value>Merge Sections</value>
-  </data>
-  <data name="&gt;&gt;m_rbMerge.Name" xml:space="preserve">
-    <value>m_rbMerge</value>
-  </data>
-  <data name="&gt;&gt;m_rbMerge.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_rbMerge.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_rbMerge.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_rbChangeLevel.AccessibleName" xml:space="preserve">
-    <value>Change Section Level</value>
-  </data>
-  <data name="m_rbChangeLevel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_rbChangeLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 337</value>
-  </data>
-  <data name="m_rbChangeLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 17</value>
-  </data>
-  <data name="m_rbChangeLevel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="m_rbChangeLevel.Text" xml:space="preserve">
-    <value>Change Section Level</value>
-  </data>
-  <data name="&gt;&gt;m_rbChangeLevel.Name" xml:space="preserve">
-    <value>m_rbChangeLevel</value>
-  </data>
-  <data name="&gt;&gt;m_rbChangeLevel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_rbChangeLevel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_rbChangeLevel.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="m_btn_IncreaseSectionLevel.AccessibleName" xml:space="preserve">
-    <value>Increase Section Level</value>
-  </data>
-  <data name="m_btn_IncreaseSectionLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_btn_IncreaseSectionLevel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_btn_IncreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 15</value>
-  </data>
-  <data name="m_btn_IncreaseSectionLevel.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_btn_IncreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 52</value>
-  </data>
-  <data name="m_btn_IncreaseSectionLevel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="m_btn_IncreaseSectionLevel.Text" xml:space="preserve">
-    <value>Up</value>
-  </data>
-  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Name" xml:space="preserve">
-    <value>m_btn_IncreaseSectionLevel</value>
-  </data>
-  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Parent" xml:space="preserve">
-    <value>m_grp_SectionLevelOperation</value>
-  </data>
-  <data name="&gt;&gt;m_btn_IncreaseSectionLevel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.AccessibleName" xml:space="preserve">
-    <value>Decrease Section Level</value>
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 16</value>
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 52</value>
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="m_btn_DecreaseSectionLevel.Text" xml:space="preserve">
-    <value>Down</value>
-  </data>
-  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Name" xml:space="preserve">
-    <value>m_btn_DecreaseSectionLevel</value>
-  </data>
-  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Parent" xml:space="preserve">
-    <value>m_grp_SectionLevelOperation</value>
-  </data>
-  <data name="&gt;&gt;m_btn_DecreaseSectionLevel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="m_grp_SectionLevelOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 237</value>
-  </data>
-  <data name="m_grp_SectionLevelOperation.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_grp_SectionLevelOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 72</value>
-  </data>
-  <data name="m_grp_SectionLevelOperation.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionLevelOperation.Name" xml:space="preserve">
-    <value>m_grp_SectionLevelOperation</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionLevelOperation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionLevelOperation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grp_SectionLevelOperation.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

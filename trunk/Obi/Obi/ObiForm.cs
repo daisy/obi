@@ -3763,7 +3763,7 @@ ref string exportDirectoryEPUB3)
             }
 
             // Undo
-            private void Undo()
+            public void Undo()
             {
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
                 bool PlayOnSelectionStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
