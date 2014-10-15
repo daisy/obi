@@ -1353,6 +1353,7 @@ namespace Obi.ProjectView
 
                         try
                         {
+                            mTOCView.Selection = null;
                             if (mergeSectionCommand.ChildCommands.Count > 0) mPresentation.Do(mergeSectionCommand);
                         }
                         catch (System.Exception ex)
