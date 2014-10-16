@@ -255,7 +255,7 @@ namespace Obi.Dialogs
         }
 
         private void m_lb_listofSectionsToMerge_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {    
             if (!m_IsDeselected)
             {               
                 List<SectionNode> tempList = new List<SectionNode>();
@@ -301,6 +301,7 @@ namespace Obi.Dialogs
             if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
                 m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();
             m_IsDeselected = false;
+
         }
 
         private List<SectionNode> listBoxSelectionIsContinuous()
@@ -556,6 +557,10 @@ namespace Obi.Dialogs
         {
             if (UndoChangeEvent != null) UndoChangeEvent(this, new EventArgs());
             populateListboxForSectionsOnUndo();
+            if (m_lb_listofSectionsToMerge.SelectedIndex == -1)
+            {
+                m_StatusLabelForMergeSection.Text = "";
+            }
         }
 
         private void m_btn_Merge_Click(object sender, EventArgs e)
@@ -565,6 +570,10 @@ namespace Obi.Dialogs
             if (MergeSectionEvent != null) MergeSectionEvent(this, new EventArgs());
             int count = 0;
             populateListboxForSectionsAfterMerge();
+            if (m_lb_listofSectionsToMerge.SelectedIndex == -1)
+            {
+                m_StatusLabelForMergeSection.Text = "";
+            }
         }
     }
 }
