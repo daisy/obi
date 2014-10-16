@@ -162,7 +162,9 @@
     <value>Asetuksia ei voitu tallentaa</value>
   </data>
   <data name="save_settings_error_text" xml:space="preserve">
-    <value>Seuraava virhe tapahtui yritettäessä tallentaa asetuksia:"{0}"
+    <value>Seuraava virhe tapahtui yritettäessä tallentaa asetuksia:
+
+"{0}"
 Seurauksena, että nyt tehdyt asetusmuutokset eivät tallentuneet.
  No hyvä on.</value>
   </data>
@@ -2340,7 +2342,7 @@ Error text: {1}</value>
     <value>Äänityksen jälkeen poista seuraavat lauseet</value>
   </data>
   <data name="ProfileDesc_file_name" xml:space="preserve">
-    <value>ProfileDesc_en.html</value>
+    <value>ProfileDesc_fi.html</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
     <value>Profiili 1 (VA)</value>
