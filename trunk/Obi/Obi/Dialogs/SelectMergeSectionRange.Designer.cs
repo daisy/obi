@@ -29,8 +29,6 @@ namespace Obi.Dialogs
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectMergeSectionRange));
-            this.m_btn_OK = new System.Windows.Forms.Button();
-            this.m_btn_Cancel = new System.Windows.Forms.Button();
             this.m_statusStripForMergeSection = new System.Windows.Forms.StatusStrip();
             this.m_StatusLabelForMergeSection = new System.Windows.Forms.ToolStripStatusLabel();
             this.m_tb_SelectedSection = new System.Windows.Forms.TextBox();
@@ -51,27 +49,14 @@ namespace Obi.Dialogs
             this.m_btn_Stop = new System.Windows.Forms.Button();
             this.m_btn_Play = new System.Windows.Forms.Button();
             this.m_lb_listofSectionsToMerge = new System.Windows.Forms.ListBox();
+            this.m_btn_Close = new System.Windows.Forms.Button();
+            this.m_tb_SectionsSelected = new System.Windows.Forms.TextBox();
             this.m_statusStripForMergeSection.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.m_grp_SectionLevelOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_dataGridView_SectionNames)).BeginInit();
             this.m_grp_SectionAudioOperation.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // m_btn_OK
-            // 
-            resources.ApplyResources(this.m_btn_OK, "m_btn_OK");
-            this.m_btn_OK.Name = "m_btn_OK";
-            this.m_btn_OK.UseVisualStyleBackColor = true;
-            this.m_btn_OK.Click += new System.EventHandler(this.m_btn_OK_Click);
-            // 
-            // m_btn_Cancel
-            // 
-            resources.ApplyResources(this.m_btn_Cancel, "m_btn_Cancel");
-            this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btn_Cancel.Name = "m_btn_Cancel";
-            this.m_btn_Cancel.UseVisualStyleBackColor = true;
-            this.m_btn_Cancel.Click += new System.EventHandler(this.m_btn_Cancel_Click);
             // 
             // m_statusStripForMergeSection
             // 
@@ -220,20 +205,33 @@ namespace Obi.Dialogs
             this.m_lb_listofSectionsToMerge.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.m_lb_listofSectionsToMerge.SelectedIndexChanged += new System.EventHandler(this.m_lb_listofSectionsToMerge_SelectedIndexChanged);
             // 
+            // m_btn_Close
+            // 
+            resources.ApplyResources(this.m_btn_Close, "m_btn_Close");
+            this.m_btn_Close.Name = "m_btn_Close";
+            this.helpProvider1.SetShowHelp(this.m_btn_Close, ((bool)(resources.GetObject("m_btn_Close.ShowHelp"))));
+            this.m_btn_Close.UseVisualStyleBackColor = true;
+            this.m_btn_Close.Click += new System.EventHandler(this.m_btn_Close_Click);
+            // 
+            // m_tb_SectionsSelected
+            // 
+            resources.ApplyResources(this.m_tb_SectionsSelected, "m_tb_SectionsSelected");
+            this.m_tb_SectionsSelected.Name = "m_tb_SectionsSelected";
+            this.m_tb_SectionsSelected.ReadOnly = true;
+            // 
             // SelectMergeSectionRange
             // 
-            this.AcceptButton = this.m_btn_OK;
+            this.AcceptButton = this.m_btn_Close;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.m_btn_Cancel;
+            this.Controls.Add(this.m_tb_SectionsSelected);
             this.Controls.Add(this.m_lb_listofSectionsToMerge);
             this.Controls.Add(this.m_grp_SectionAudioOperation);
             this.Controls.Add(this.m_grp_SectionLevelOperation);
             this.Controls.Add(this.m_dataGridView_SectionNames);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.m_statusStripForMergeSection);
-            this.Controls.Add(this.m_btn_Cancel);
-            this.Controls.Add(this.m_btn_OK);
+            this.Controls.Add(this.m_btn_Close);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -252,8 +250,6 @@ namespace Obi.Dialogs
 
         #endregion
 
-        private System.Windows.Forms.Button m_btn_OK;
-        private System.Windows.Forms.Button m_btn_Cancel;
         private System.Windows.Forms.StatusStrip m_statusStripForMergeSection;
         private System.Windows.Forms.ToolStripStatusLabel m_StatusLabelForMergeSection;
         private System.Windows.Forms.TextBox m_tb_SelectedSection;
@@ -274,5 +270,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.GroupBox m_grp_SectionLevelOperation;
         private System.Windows.Forms.Button m_btn_Undo;
         private System.Windows.Forms.Button m_btn_Merge;
+        private System.Windows.Forms.Button m_btn_Close;
+        private System.Windows.Forms.TextBox m_tb_SectionsSelected;
     }
 }
