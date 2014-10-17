@@ -2163,7 +2163,7 @@ Error text: {1}</value>
     <value>Total phrase count for all the sections is more than 7000. Only sections till section {0} will be merged.</value>
   </data>
   <data name="merged_sections" xml:space="preserve">
-    <value>Merged sections will be from {0} to {1}</value>
+    <value>Selected sections are from {0} to {1}</value>
   </data>
   <data name="not_enough_sections_to_merge" xml:space="preserve">
     <value>There are not enough section to merge. Select at least two continuous sections</value>
@@ -2178,7 +2178,7 @@ Error text: {1}</value>
     <value>Allow overwrite,Record directly and Perform phrase detection while recording from transport bar checkboxes will be checked. Do you want to proceed?</value>
   </data>
   <data name="select_one_more_section" xml:space="preserve">
-    <value>Selected {0}. Select at least one more section to merge</value>
+    <value>Selected {0}. Select at least one more section if you want to merge</value>
   </data>
   <data name="ProjectViewMsg_LogFileCreatedOnDesktop" xml:space="preserve">
     <value>The previous session of Obi was terminated abruptly. The log file ObiSession.log is created on the desktop</value>
@@ -2337,7 +2337,7 @@ Error text: {1}</value>
     <value>Operation successful. Please restart Obi to load the default settings</value>
   </data>
   <data name="StatusForMergeSection" xml:space="preserve">
-    <value>Showing section {0} to {1}. Please select sections to merge.</value>
+    <value>Showing section {0} to {1}. Please select sections to merge or change level.</value>
   </data>
   <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
     <value>Show zoom waveform panel</value>
