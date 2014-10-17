@@ -229,12 +229,13 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_grp_SectionLevelOperation);
             this.Controls.Add(this.m_dataGridView_SectionNames);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.m_statusStripForMergeSection);
             this.Controls.Add(this.m_btn_Close);
+            this.Controls.Add(this.m_statusStripForMergeSection);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SelectMergeSectionRange";
+            this.helpProvider1.SetShowHelp(this, ((bool)(resources.GetObject("$this.ShowHelp"))));
             this.m_statusStripForMergeSection.ResumeLayout(false);
             this.m_statusStripForMergeSection.PerformLayout();
             this.groupBox2.ResumeLayout(false);
