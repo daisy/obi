@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mTransportBarSplitter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mTransportBarSplitter.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mTransportBarSplitter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mTransportBarSplitter.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="mFindInTextSplitter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="mFindInTextSplitter.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mFindInTextSplitter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mFindInTextSplitter.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="mTOCSplitter.AccessibleName" xml:space="preserve">
+    <value>مقسم اللوحة</value>
+  </data>
+  <data name="mTOCSplitter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="mTOCSplitter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mMetadataSplitter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="mMetadataSplitter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mMetadataSplitter.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="mTOCView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="mTOCView.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mTOCView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mTOCView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 349</value>
+  </data>
+  <data name="mTOCView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mTOCView.Name" xml:space="preserve">
+    <value>mTOCView</value>
+  </data>
+  <data name="&gt;&gt;mTOCView.Type" xml:space="preserve">
+    <value>Obi.ProjectView.TOCView, Obi, Version=0.12.0.6478, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mTOCView.Parent" xml:space="preserve">
+    <value>mMetadataSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;mTOCView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.Panel1.Name" xml:space="preserve">
+    <value>mMetadataSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.Panel1.Parent" xml:space="preserve">
+    <value>mMetadataSplitter</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mMetadataView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="mMetadataView.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mMetadataView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mMetadataView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="mMetadataView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 274</value>
+  </data>
+  <data name="mMetadataView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mMetadataView.Name" xml:space="preserve">
+    <value>mMetadataView</value>
+  </data>
+  <data name="&gt;&gt;mMetadataView.Type" xml:space="preserve">
+    <value>Obi.ProjectView.MetadataView, Obi, Version=0.12.0.6478, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mMetadataView.Parent" xml:space="preserve">
+    <value>mMetadataSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;mMetadataView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.Panel2.Name" xml:space="preserve">
+    <value>mMetadataSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.Panel2.Parent" xml:space="preserve">
+    <value>mMetadataSplitter</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mMetadataSplitter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 627</value>
+  </data>
+  <data name="mMetadataSplitter.SplitterDistance" type="System.Int32, mscorlib">
+    <value>349</value>
+  </data>
+  <data name="mMetadataSplitter.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.Name" xml:space="preserve">
+    <value>mMetadataSplitter</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.Parent" xml:space="preserve">
+    <value>mTOCSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;mMetadataSplitter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mPanelInfoLabelButton.AccessibleName" xml:space="preserve">
+    <value>مقسم اللوحة</value>
+  </data>
+  <data name="mPanelInfoLabelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="mPanelInfoLabelButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mPanelInfoLabelButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="mPanelInfoLabelButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mPanelInfoLabelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-132, -1</value>
+  </data>
+  <data name="mPanelInfoLabelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="mPanelInfoLabelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;mPanelInfoLabelButton.Name" xml:space="preserve">
+    <value>mPanelInfoLabelButton</value>
+  </data>
+  <data name="&gt;&gt;mPanelInfoLabelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPanelInfoLabelButton.Parent" xml:space="preserve">
+    <value>mTOCSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;mPanelInfoLabelButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.Panel1.Name" xml:space="preserve">
+    <value>mTOCSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.Panel1.Parent" xml:space="preserve">
+    <value>mTOCSplitter</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mContentView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="mContentView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mContentView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>690, 627</value>
+  </data>
+  <data name="mContentView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mContentView.Name" xml:space="preserve">
+    <value>mContentView</value>
+  </data>
+  <data name="&gt;&gt;mContentView.Type" xml:space="preserve">
+    <value>Obi.ProjectView.ContentView, Obi, Version=0.12.0.6478, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mContentView.Parent" xml:space="preserve">
+    <value>mTOCSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;mContentView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.Panel2.Name" xml:space="preserve">
+    <value>mTOCSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.Panel2.Parent" xml:space="preserve">
+    <value>mTOCSplitter</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mTOCSplitter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 627</value>
+  </data>
+  <data name="mTOCSplitter.SplitterDistance" type="System.Int32, mscorlib">
+    <value>302</value>
+  </data>
+  <data name="mTOCSplitter.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.Name" xml:space="preserve">
+    <value>mTOCSplitter</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.Parent" xml:space="preserve">
+    <value>mFindInTextSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;mTOCSplitter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.Panel1.Name" xml:space="preserve">
+    <value>mFindInTextSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.Panel1.Parent" xml:space="preserve">
+    <value>mFindInTextSplitter</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mFindInText.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="mFindInText.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="mFindInText.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mFindInText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mFindInText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mFindInText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 29</value>
+  </data>
+  <data name="mFindInText.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mFindInText.Name" xml:space="preserve">
+    <value>mFindInText</value>
+  </data>
+  <data name="&gt;&gt;mFindInText.Type" xml:space="preserve">
+    <value>Obi.ProjectView.FindInText, Obi, Version=0.12.0.6478, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mFindInText.Parent" xml:space="preserve">
+    <value>mFindInTextSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;mFindInText.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.Panel2.Name" xml:space="preserve">
+    <value>mFindInTextSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.Panel2.Parent" xml:space="preserve">
+    <value>mFindInTextSplitter</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mFindInTextSplitter.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="mFindInTextSplitter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 660</value>
+  </data>
+  <data name="mFindInTextSplitter.SplitterDistance" type="System.Int32, mscorlib">
+    <value>627</value>
+  </data>
+  <data name="mFindInTextSplitter.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.Name" xml:space="preserve">
+    <value>mFindInTextSplitter</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.Parent" xml:space="preserve">
+    <value>mTransportBarSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;mFindInTextSplitter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.Panel1.Name" xml:space="preserve">
+    <value>mTransportBarSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.Panel1.Parent" xml:space="preserve">
+    <value>mTransportBarSplitter</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mTransportBar.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mTransportBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mTransportBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1060, 35</value>
+  </data>
+  <data name="mTransportBar.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mTransportBar.Name" xml:space="preserve">
+    <value>mTransportBar</value>
+  </data>
+  <data name="&gt;&gt;mTransportBar.Type" xml:space="preserve">
+    <value>Obi.ProjectView.TransportBar, Obi, Version=0.12.0.6478, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mTransportBar.Parent" xml:space="preserve">
+    <value>mTransportBarSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;mTransportBar.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.Panel2.Name" xml:space="preserve">
+    <value>mTransportBarSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.Panel2.Parent" xml:space="preserve">
+    <value>mTransportBarSplitter</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mTransportBarSplitter.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="mTransportBarSplitter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 700</value>
+  </data>
+  <data name="mTransportBarSplitter.SplitterDistance" type="System.Int32, mscorlib">
+    <value>660</value>
+  </data>
+  <data name="mTransportBarSplitter.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.Name" xml:space="preserve">
+    <value>mTransportBarSplitter</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mTransportBarSplitter.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mNoProjectLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="mNoProjectLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mNoProjectLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="mNoProjectLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mNoProjectLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>458, 340</value>
+  </data>
+  <data name="mNoProjectLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 20</value>
+  </data>
+  <data name="mNoProjectLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="mNoProjectLabel.Text" xml:space="preserve">
+    <value>لا يوجد مشروع</value>
+  </data>
+  <data name="&gt;&gt;mNoProjectLabel.Name" xml:space="preserve">
+    <value>mNoProjectLabel</value>
+  </data>
+  <data name="&gt;&gt;mNoProjectLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNoProjectLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mNoProjectLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 700</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ProjectView</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>
