@@ -405,8 +405,8 @@ namespace Obi.Dialogs
                 }
             }
 
-            if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
-                m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();
+            //if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
+            //    m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();
             return listOfLargestNumberOfSections;
         }
 

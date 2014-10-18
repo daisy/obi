@@ -31,10 +31,8 @@ namespace Obi.Dialogs
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectMergeSectionRange));
             this.m_statusStripForMergeSection = new System.Windows.Forms.StatusStrip();
             this.m_StatusLabelForMergeSection = new System.Windows.Forms.ToolStripStatusLabel();
-            this.m_tb_SelectedSection = new System.Windows.Forms.TextBox();
             this.m_btn_SelectAll = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_btn_IncreaseSectionLevel = new System.Windows.Forms.Button();
             this.m_btn_DecreaseSectionLevel = new System.Windows.Forms.Button();
@@ -42,9 +40,6 @@ namespace Obi.Dialogs
             this.m_btn_Merge = new System.Windows.Forms.Button();
             this.m_btn_Undo = new System.Windows.Forms.Button();
             this.m_btn_Close = new System.Windows.Forms.Button();
-            this.m_dataGridView_SectionNames = new System.Windows.Forms.DataGridView();
-            this.SectionNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SectionLevelColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.m_grp_SectionAudioOperation = new System.Windows.Forms.GroupBox();
             this.m_btnPause = new System.Windows.Forms.Button();
             this.m_btn_Stop = new System.Windows.Forms.Button();
@@ -54,7 +49,6 @@ namespace Obi.Dialogs
             this.m_statusStripForMergeSection.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.m_grp_SectionLevelOperation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.m_dataGridView_SectionNames)).BeginInit();
             this.m_grp_SectionAudioOperation.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,12 +67,6 @@ namespace Obi.Dialogs
             this.m_StatusLabelForMergeSection.Name = "m_StatusLabelForMergeSection";
             resources.ApplyResources(this.m_StatusLabelForMergeSection, "m_StatusLabelForMergeSection");
             // 
-            // m_tb_SelectedSection
-            // 
-            resources.ApplyResources(this.m_tb_SelectedSection, "m_tb_SelectedSection");
-            this.m_tb_SelectedSection.Name = "m_tb_SelectedSection";
-            this.m_tb_SelectedSection.ReadOnly = true;
-            // 
             // m_btn_SelectAll
             // 
             resources.ApplyResources(this.m_btn_SelectAll, "m_btn_SelectAll");
@@ -88,17 +76,10 @@ namespace Obi.Dialogs
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.m_tb_SelectedSection);
             this.groupBox2.Controls.Add(this.m_btn_SelectAll);
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
             // 
             // helpProvider1
             // 
@@ -154,27 +135,6 @@ namespace Obi.Dialogs
             this.m_btn_Close.UseVisualStyleBackColor = true;
             this.m_btn_Close.Click += new System.EventHandler(this.m_btn_Close_Click);
             // 
-            // m_dataGridView_SectionNames
-            // 
-            this.m_dataGridView_SectionNames.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.m_dataGridView_SectionNames.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SectionNameColumn,
-            this.SectionLevelColumn});
-            resources.ApplyResources(this.m_dataGridView_SectionNames, "m_dataGridView_SectionNames");
-            this.m_dataGridView_SectionNames.Name = "m_dataGridView_SectionNames";
-            // 
-            // SectionNameColumn
-            // 
-            resources.ApplyResources(this.SectionNameColumn, "SectionNameColumn");
-            this.SectionNameColumn.Name = "SectionNameColumn";
-            this.SectionNameColumn.ReadOnly = true;
-            // 
-            // SectionLevelColumn
-            // 
-            resources.ApplyResources(this.SectionLevelColumn, "SectionLevelColumn");
-            this.SectionLevelColumn.Name = "SectionLevelColumn";
-            this.SectionLevelColumn.ReadOnly = true;
-            // 
             // m_grp_SectionAudioOperation
             // 
             this.m_grp_SectionAudioOperation.Controls.Add(this.m_btnPause);
@@ -227,7 +187,6 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_lb_listofSectionsToMerge);
             this.Controls.Add(this.m_grp_SectionAudioOperation);
             this.Controls.Add(this.m_grp_SectionLevelOperation);
-            this.Controls.Add(this.m_dataGridView_SectionNames);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.m_statusStripForMergeSection);
             this.Controls.Add(this.m_btn_Close);
@@ -238,9 +197,7 @@ namespace Obi.Dialogs
             this.m_statusStripForMergeSection.ResumeLayout(false);
             this.m_statusStripForMergeSection.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.m_grp_SectionLevelOperation.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.m_dataGridView_SectionNames)).EndInit();
             this.m_grp_SectionAudioOperation.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -251,17 +208,12 @@ namespace Obi.Dialogs
 
         private System.Windows.Forms.StatusStrip m_statusStripForMergeSection;
         private System.Windows.Forms.ToolStripStatusLabel m_StatusLabelForMergeSection;
-        private System.Windows.Forms.TextBox m_tb_SelectedSection;
         private System.Windows.Forms.Button m_btn_SelectAll;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.HelpProvider helpProvider1;
-        private System.Windows.Forms.DataGridView m_dataGridView_SectionNames;
         private System.Windows.Forms.GroupBox m_grp_SectionAudioOperation;
         private System.Windows.Forms.Button m_btn_Stop;
         private System.Windows.Forms.Button m_btn_Play;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SectionNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SectionLevelColumn;
         private System.Windows.Forms.ListBox m_lb_listofSectionsToMerge;
         private System.Windows.Forms.Button m_btnPause;
         private System.Windows.Forms.Button m_btn_IncreaseSectionLevel;
