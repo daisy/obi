@@ -38,6 +38,7 @@ namespace Obi.Dialogs
         private bool m_FlagComboBoxIndexChange = false;
         private int m_IndexOfLevelCombox = 0;
         private bool m_UpdateBackgroundColorRequired = false;
+        private int m_Audio_CleanupMaxFileSizeInMB = 100;
       //  private bool m_IsComboBoxExpanded = false;
       //  private bool m_LeaveOnEscape = false;
 
@@ -217,6 +218,7 @@ namespace Obi.Dialogs
                 mSettings.NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
         //    mAudioCluesCheckBox.Checked = mSettings.AudioClues;
             m_cbOperation.SelectedIndex = 0;
+            m_CleanUpFileSizeNumericUpDown.Value = (decimal)mSettings.Audio_CleanupMaxFileSizeInMB;
             if (this.mTab.SelectedTab == mAudioTab)
             {
                 m_IsComplete = false;
@@ -495,6 +497,7 @@ namespace Obi.Dialogs
                   mSettings.DefaultLeadingSilence = (decimal)m_DefaultLeadingSilence;
                   mSettings.DefaultThreshold = (decimal)m_DefaultThreshold;
                   mSettings.DefaultGap = (decimal)m_DefaultGap;
+                  mSettings.Audio_CleanupMaxFileSizeInMB = m_Audio_CleanupMaxFileSizeInMB;
                  }
             catch (System.Exception ex)
                 {
@@ -882,7 +885,8 @@ namespace Obi.Dialogs
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
                 m_CheckBoxListView.Size = new Size(338, 69);
-                m_CheckBoxListView.Location = new Point(93, 284);
+                //m_CheckBoxListView.Location = new Point(93, 284);
+                m_CheckBoxListView.Location = new Point(93, 320);
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_AudioClues"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_RetainInitialSilence"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_PreviewBeforeRecording"));
@@ -901,7 +905,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_DeleteFollowingPhrasesOfSectionAfterRecording"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_DisableDeselectionOnStop"));
                 m_grpBoxChkBoxListView.Size = new Size(352, 97);
-                m_grpBoxChkBoxListView.Location = new Point(85, 264);
+              //  m_grpBoxChkBoxListView.Location = new Point(85, 264);
+                m_grpBoxChkBoxListView.Location = new Point(85, 300);
 
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_AudioClues");                
@@ -1096,6 +1101,7 @@ namespace Obi.Dialogs
                 mSettings.DefaultGap = m_DefaultSettings.DefaultGap;
                 mSettings.ImportToleranceForAudioInMs = m_DefaultSettings.ImportToleranceForAudioInMs;
                 mSettings.Audio_LevelComboBoxIndex = m_DefaultSettings.Audio_LevelComboBoxIndex;
+                mSettings.Audio_CleanupMaxFileSizeInMB = m_DefaultSettings.Audio_CleanupMaxFileSizeInMB;
 
                 InitializeAudioTab();
                 m_cbOperation.SelectedIndex = 0;
@@ -1812,6 +1818,11 @@ namespace Obi.Dialogs
             profileDesc.ProfileSelected = m_ComboSelectAudioProfile.SelectedIndex;
             profileDesc.ShowDialog();
             profileDesc.Focus();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            m_Audio_CleanupMaxFileSizeInMB = (int)m_CleanUpFileSizeNumericUpDown.Value;
         }
 
     }
