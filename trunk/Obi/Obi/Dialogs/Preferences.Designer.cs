@@ -314,12 +314,12 @@ namespace Obi.Dialogs
             // 
             // m_CleanUpFileSizeNumericUpDown
             // 
+            resources.ApplyResources(this.m_CleanUpFileSizeNumericUpDown, "m_CleanUpFileSizeNumericUpDown");
             this.m_CleanUpFileSizeNumericUpDown.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            resources.ApplyResources(this.m_CleanUpFileSizeNumericUpDown, "m_CleanUpFileSizeNumericUpDown");
             this.m_CleanUpFileSizeNumericUpDown.Maximum = new decimal(new int[] {
             200,
             0,

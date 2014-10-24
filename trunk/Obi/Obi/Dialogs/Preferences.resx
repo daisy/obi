@@ -534,6 +534,9 @@
   <data name="&gt;&gt;mProjectTab.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="m_CleanUpFileSizeNumericUpDown.AccessibleName" xml:space="preserve">
+    <value>Audio cleanup max file size</value>
+  </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>293, 179</value>
   </data>
