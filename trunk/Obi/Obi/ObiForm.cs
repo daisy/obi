@@ -1094,7 +1094,7 @@ namespace Obi
                             Directory.CreateDirectory(deletedDataFolderPath);
                         }
 
-                        Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath);
+                        Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath, 100);
                         Dialogs.ProgressDialog progress = new ProgressDialog(Localizer.Message("cleaning_up"),
                                                                              delegate()
                                                                                  {
