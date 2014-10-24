@@ -50,6 +50,8 @@ namespace Obi.Dialogs
             this.mPipelineBrowseButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.mAudioTab = new System.Windows.Forms.TabPage();
+            this.m_CleanUpFileSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.mlblCleanupFileSize = new System.Windows.Forms.Label();
             this.m_btnProfileDiscription = new System.Windows.Forms.Button();
             this.m_lblProfile = new System.Windows.Forms.Label();
             this.m_ComboSelectAudioProfile = new System.Windows.Forms.ComboBox();
@@ -113,6 +115,7 @@ namespace Obi.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
             this.mAudioTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_CleanUpFileSizeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_OperationDurationUpDown)).BeginInit();
             this.mUserProfileTab.SuspendLayout();
             this.mKeyboardShortcutTab.SuspendLayout();
@@ -281,6 +284,8 @@ namespace Obi.Dialogs
             // 
             // mAudioTab
             // 
+            this.mAudioTab.Controls.Add(this.m_CleanUpFileSizeNumericUpDown);
+            this.mAudioTab.Controls.Add(this.mlblCleanupFileSize);
             this.mAudioTab.Controls.Add(this.m_btnProfileDiscription);
             this.mAudioTab.Controls.Add(this.m_lblProfile);
             this.mAudioTab.Controls.Add(this.m_ComboSelectAudioProfile);
@@ -306,6 +311,32 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.mAudioTab, "mAudioTab");
             this.mAudioTab.Name = "mAudioTab";
             this.mAudioTab.UseVisualStyleBackColor = true;
+            // 
+            // m_CleanUpFileSizeNumericUpDown
+            // 
+            this.m_CleanUpFileSizeNumericUpDown.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.m_CleanUpFileSizeNumericUpDown, "m_CleanUpFileSizeNumericUpDown");
+            this.m_CleanUpFileSizeNumericUpDown.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.m_CleanUpFileSizeNumericUpDown.Name = "m_CleanUpFileSizeNumericUpDown";
+            this.m_CleanUpFileSizeNumericUpDown.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.m_CleanUpFileSizeNumericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // mlblCleanupFileSize
+            // 
+            resources.ApplyResources(this.mlblCleanupFileSize, "mlblCleanupFileSize");
+            this.mlblCleanupFileSize.Name = "mlblCleanupFileSize";
             // 
             // m_btnProfileDiscription
             // 
@@ -752,6 +783,7 @@ namespace Obi.Dialogs
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Preferences";
+            this.helpProvider1.SetShowHelp(this, ((bool)(resources.GetObject("$this.ShowHelp"))));
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.mTab.ResumeLayout(false);
@@ -761,6 +793,7 @@ namespace Obi.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).EndInit();
             this.mAudioTab.ResumeLayout(false);
             this.mAudioTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_CleanUpFileSizeNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_OperationDurationUpDown)).EndInit();
             this.mUserProfileTab.ResumeLayout(false);
             this.mUserProfileTab.PerformLayout();
@@ -854,5 +887,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_lblProfile;
         private System.Windows.Forms.Button m_btnProfileDiscription;
         private System.Windows.Forms.ToolTip m_Preference_ToolTip;
+        private System.Windows.Forms.Label mlblCleanupFileSize;
+        private System.Windows.Forms.NumericUpDown m_CleanUpFileSizeNumericUpDown;
     }
 }
