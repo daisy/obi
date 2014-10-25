@@ -538,7 +538,7 @@
     <value>Audio cleanup max file size</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>293, 179</value>
+    <value>177, 184</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 22</value>
@@ -562,16 +562,16 @@
     <value>True</value>
   </data>
   <data name="mlblCleanupFileSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 181</value>
+    <value>-1, 186</value>
   </data>
   <data name="mlblCleanupFileSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 16</value>
+    <value>172, 16</value>
   </data>
   <data name="mlblCleanupFileSize.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
   </data>
   <data name="mlblCleanupFileSize.Text" xml:space="preserve">
-    <value>Audio cleanup max file size</value>
+    <value>Audio cleanup max file size:</value>
   </data>
   <data name="&gt;&gt;mlblCleanupFileSize.Name" xml:space="preserve">
     <value>mlblCleanupFileSize</value>
@@ -856,7 +856,7 @@
     <value>High</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>155, 207</value>
+    <value>155, 215</value>
   </data>
   <data name="mNoiseLevelComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -883,7 +883,7 @@
     <value>True</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>63, 208</value>
+    <value>63, 218</value>
   </data>
   <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
