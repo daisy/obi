@@ -27,7 +27,7 @@ namespace Obi.Dialogs
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Auto-splitting Phrases of Multiple Sections.htm");
         }
 
-        public SelectPhraseDetectionSections ( List<SectionNode> sectionsList, List<PhraseNode> silencePhraseList,SectionNode selectedSection):this     ()
+        public SelectPhraseDetectionSections ( List<SectionNode> sectionsList, List<PhraseNode> silencePhraseList,SectionNode selectedSection,Settings settings):this     ()
         {
             m_OriginalSectionList = sectionsList;
             m_SilencePhrases = silencePhraseList;
@@ -65,6 +65,11 @@ namespace Obi.Dialogs
                 }
             m_cb_SilencePhrase.SelectedIndex = 0;
             m_lv_ListOfSelectedSectionsForPhraseDetection.Items.Add(Localizer.Message("SelectDeselectAllSections"));
+
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
             }
 
         public List<SectionNode> SelectedSections 

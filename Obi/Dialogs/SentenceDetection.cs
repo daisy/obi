@@ -40,7 +40,7 @@ namespace Obi.Dialogs
         /// Instantiate the dialog.
         /// </summary>
         /// <param name="silence">The silence phrase.</param>
-        public SentenceDetection(PhraseNode silence):this    ()
+        public SentenceDetection(PhraseNode silence,Settings settings):this    ()
         {
             
             if (silence != null)
@@ -61,6 +61,10 @@ namespace Obi.Dialogs
             }
             mGapNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_GAP);
             mLeadingNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_LEADING_SILENCE);
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new System.Drawing.Font(settings.ObiFont, this.Font.Size, System.Drawing.FontStyle.Regular);//@fontconfig
+            }
         }
 
         public SentenceDetection(long threshold, double gap, double leadingSilence ):this    ()

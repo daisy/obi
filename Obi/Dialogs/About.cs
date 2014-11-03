@@ -7,15 +7,23 @@ namespace Obi.Dialogs
     /// </summary>
     public partial class About : Form
     {
+        private Settings mSettings;
+        private bool m_flagFontChange = false;
         /// <summary>
         /// Create a new About form.
         /// </summary>
-        public About()
+        public About(Settings settings)
         {
             InitializeComponent();
+            mSettings = settings;
             mWebBrowser.Url = new System.Uri(System.IO.Path.Combine(
                 System.IO.Path.GetDirectoryName(GetType().Assembly.Location),
                 Localizer.Message("about_file_name")));
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new System.Drawing.Font(settings.ObiFont, this.Font.Size, System.Drawing.FontStyle.Regular);//@fontconfig  
+                m_flagFontChange = true;
+            }
         }
 
         // Catch links going outside to open in a different browser
@@ -30,6 +38,12 @@ namespace Obi.Dialogs
 
         private void mWebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+            if (m_flagFontChange)
+            {
+                mWebBrowser.Document.ExecCommand("SelectAll", false, "null");
+                mWebBrowser.Document.ExecCommand("FontName", false, mSettings.ObiFont);
+                mWebBrowser.Document.ExecCommand("Unselect", false, "null");
+            }
             mWebBrowser.Document.GetElementById("info-version").InnerText = System.String.Format("{0} v{1}",
                 Application.ProductName, Application.ProductVersion);
             mWebBrowser.Document.GetElementById("real-version").InnerText =

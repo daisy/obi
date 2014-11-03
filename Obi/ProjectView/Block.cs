@@ -301,6 +301,11 @@ namespace Obi.ProjectView
                 
             }
         }
+        public void SetFont() //@fontconfig
+        {
+            this.Font = new Font(ContentView.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            mLabel.Font = new Font(ContentView.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+        }
 
     }
 }

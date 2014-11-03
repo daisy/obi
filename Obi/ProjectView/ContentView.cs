@@ -5686,6 +5686,14 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 
             }
         }
+        public void SetFont() //@fontconfig
+        {
+            // this.Font = new Font(this.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            mContextMenuStrip.Font = new Font(this.Settings.ObiFont, mContextMenuStrip.Font.Size, FontStyle.Regular);
+
+            contentViewLabel1.SetFont();
+
+        }
 
      
 

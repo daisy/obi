@@ -59,6 +59,13 @@ namespace Obi.Dialogs
             m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("StatusForMergeSection"), m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);
             m_ProjectView.TransportBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
 
+            if (projectView.ObiForm.Settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(projectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+                m_btn_Close.Font = m_btn_SelectAll.Font = new Font(projectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+ 
+            }
+
         }
         public void State_Changed_Player(object sender, AudioLib.AudioPlayer.StateChangedEventArgs e)
         {

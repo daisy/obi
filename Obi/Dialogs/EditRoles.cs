@@ -29,6 +29,10 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Editing Custom Roles.htm");
+            if (mProjectView.ObiForm.Settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(mProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
          }
 
         private void AddNewRole(string role)

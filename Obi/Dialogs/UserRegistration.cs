@@ -36,11 +36,15 @@ namespace Obi.Dialogs
             m_txtBoxObiInformation.Select(0, 0);
         }
 
-        public UserRegistration(Settings_Permanent settings)
+        public UserRegistration(Settings_Permanent settings,Settings set)
             : this()
         {
             m_Settings = settings;
             if(settings.UploadAttemptsCount == MaxUploadAttemptsAllowed )  m_btnRemindMeLater.Text = Localizer.Message("UserRegistrationBtn_DoNotRemind");
+            if (set.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(set.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         public static string GenerateFileName ()

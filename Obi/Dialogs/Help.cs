@@ -18,9 +18,14 @@ namespace Obi.Dialogs
         /// <summary>
         /// Create the help dialog.
         /// </summary>
-        public Help()
+        public Help(Settings settings)
         {
             InitializeComponent();
+
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new System.Drawing.Font(settings.ObiFont, this.Font.Size, System.Drawing.FontStyle.Regular);//@fontconfig
+            }
         }
 
         /// <summary>

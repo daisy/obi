@@ -341,6 +341,10 @@ namespace Obi.ProjectView
             m_Strip = strip;
             m_Node = node;
             ZoomPanelToolTipInit();
+            if (m_ProjectView.ObiForm.Settings.ObiFont != this.Font.Name) //@fontconfig
+            {
+                SetFont(); //@fontconfig
+            }
 
             //this.btnClosetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_Close") + "(" +keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Close.Value.ToString()) + ")";
             //this.btnNextPhrasetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ShowNextPhrase")+"(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_NextPhrase.Value.ToString()) + ")";
@@ -1058,6 +1062,10 @@ namespace Obi.ProjectView
             {
                 m_Edit.EditAudioPanelToolTipInit();
             }
+        }
+        private void SetFont() //@fontconfig
+        {
+            this.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
         }
 
       

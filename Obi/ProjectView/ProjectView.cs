@@ -69,6 +69,7 @@ namespace Obi.ProjectView
             VerifyLogFileExistenceWhileStartup();
             helpProvider1 = new HelpProvider();
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
+           // SetFont();
             }
 
 
@@ -95,7 +96,7 @@ namespace Obi.ProjectView
                 {
                 if (TransportBar.IsActive) TransportBar.Stop ();
 
-                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber ( NextPageNumber, true, true );
+                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(NextPageNumber, true, true, ObiForm.Settings); //@fontconfig
                 if (dialog.ShowDialog () == DialogResult.OK) AddPageRange ( dialog.Number, dialog.NumberOfPages, dialog.Renumber );
                 }
             }
@@ -1764,7 +1765,7 @@ namespace Obi.ProjectView
                 {
                 if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause ();
                 if (mTransportBar.IsRecorderActive) mTransportBar.Stop();
-                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber ( CurrentOrNextPageNumber, true, false );
+                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(CurrentOrNextPageNumber, true, false, ObiForm.Settings);//@fontconfig
                 if (dialog.ShowDialog () == DialogResult.OK) SetPageNumberOnSelectedBock ( dialog.Number, dialog.Renumber );
                 }
             }
@@ -2355,7 +2356,7 @@ namespace Obi.ProjectView
                                                 }
                                             }
                                         }
-                                    } );
+                                    }, ObiForm.Settings);//@fontconfig
                         progress.ShowDialog ();
                         if (phraseNodes.Count > 0)
                             {
@@ -2708,7 +2709,7 @@ for (int j = 0;
                     if (cancelOperation) return;
                     PageNumber number = listOfEmptyPages[i].PageNumber;
                     string text = "Page" + (number.Kind == PageKind.Front ? " front, " + number.Number.ToString() : number.Kind == PageKind.Normal ? ", " + number.Number.ToString() : ", " + number.Unquoted);
-                    string filePath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath, mPresentation.DataProviderManager.GetNewDataFileRelPath(".wav"));
+                    string filePath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath, mPresentation.DataProviderManager.GetNewDataFileRelPath(".wav", ""));
                     Audio.AudioFormatConverter.InitializeTTS(ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
                     Audio.AudioFormatConverter.Speak(text, filePath, ObiForm.Settings, mPresentation.MediaDataManager.DefaultPCMFormat.Data);
                     //if (ProgressChanged != null)
@@ -3263,7 +3264,7 @@ for (int j = 0;
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
 
                 PhraseNode node = SelectedNodeAs<PhraseNode>();
-                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( node as PhraseNode );
+                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection(node as PhraseNode, ObiForm.Settings);//@fontconfig
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     ObiForm.Settings.DefaultGap=(decimal) dialog.Gap;
@@ -3293,7 +3294,7 @@ for (int j = 0;
                 for (node =node != null?node:  SelectedNodeAs<EmptyNode> ();
                     node != null && !(node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence);
                     node = node.PrecedingNode) { }
-                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( node as PhraseNode );
+                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection(node as PhraseNode, ObiForm.Settings);//@fontconfig
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                         Audio.PhraseDetection.RetainSilenceInBeginningOfPhrase = ObiForm.Settings.RetainInitialSilenceInPhraseDetection;
@@ -3349,7 +3350,7 @@ for (int j = 0;
                         },
                     delegate ( urakawa.core.TreeNode n ) { } );
 
-                Dialogs.SelectPhraseDetectionSections sectionsSelectionDialog = new Obi.Dialogs.SelectPhraseDetectionSections ( listOfAllSections, listOfAllSilencePhrases,this.GetSelectedPhraseSection);
+                Dialogs.SelectPhraseDetectionSections sectionsSelectionDialog = new Obi.Dialogs.SelectPhraseDetectionSections ( listOfAllSections, listOfAllSilencePhrases,this.GetSelectedPhraseSection,ObiForm.Settings);
                 sectionsSelectionDialog.ShowDialog () ;
                 if (sectionsSelectionDialog.DialogResult == DialogResult.Cancel) return;
 
@@ -3370,8 +3371,8 @@ for (int j = 0;
                         }
                     }
                 */
-                
-                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( silencePhrase );
+
+                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection(silencePhrase, ObiForm.Settings);//@fontconfig
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     bool playbackOnSelectionChangedStatus = TransportBar.SelectionChangedPlaybackEnabled;
@@ -3970,7 +3971,7 @@ for (int j = 0;
 
                 if (dialog.Role == EmptyNode.Role.Page && dialog.PageChange)
                     {
-                    Dialogs.SetPageNumber PageDialog = new Dialogs.SetPageNumber ( this.CurrentOrNextPageNumber, false, false );
+                        Dialogs.SetPageNumber PageDialog = new Dialogs.SetPageNumber(this.CurrentOrNextPageNumber, false, false, ObiForm.Settings);//@fontconfig
                     if (PageDialog.ShowDialog () == DialogResult.OK && CanSetPageNumber)
                         {
                         urakawa.command.Command PageCmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), PageDialog.Number );
@@ -4259,7 +4260,7 @@ for (int j = 0;
         {
             if (mPresentation.FirstSection == null) return;
             if (mTransportBar.IsPlayerActive) mTransportBar.Pause();
-            Dialogs.GoToPageOrPhrase GoToDialog = new Obi.Dialogs.GoToPageOrPhrase(GetSelectedPhraseSection != null ? GetSelectedPhraseSection.PhraseChildCount : mPresentation.FirstSection.PhraseChildCount);
+            Dialogs.GoToPageOrPhrase GoToDialog = new Obi.Dialogs.GoToPageOrPhrase(GetSelectedPhraseSection != null ? GetSelectedPhraseSection.PhraseChildCount : mPresentation.FirstSection.PhraseChildCount,ObiForm.Settings);//@fontconfig
             
             if (GoToDialog.ShowDialog() == DialogResult.OK)
             {
@@ -4540,9 +4541,9 @@ for (int j = 0;
            // if (mSelection.Node is EmptyNode)
             {
                 if(mSelection != null && mSelection.Node is EmptyNode)
-                AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), ((EmptyNode)mSelection.Node));
+                    AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), ((EmptyNode)mSelection.Node), ObiForm.Settings);
                 else
-                AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), null);
+                    AssociateSpecialNode = new Obi.Dialogs.AssociateSpecialNode(((ObiRootNode)mPresentation.RootNode), null, ObiForm.Settings);
                 if (AssociateSpecialNode.ShowDialog() == DialogResult.OK)
                 {
                     foreach (KeyValuePair<EmptyNode, EmptyNode> pair in AssociateSpecialNode.DictionaryToMapValues)
@@ -4618,7 +4619,7 @@ for (int j = 0;
                     MessageBox.Show(Localizer.Message( "Start_node_index_greater_than_end"));
                     return;
                 }
-            Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();
+                Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark(ObiForm.Settings); //@fontconfig
             AssignSpecialNodeDialog.ShowDialog();
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
@@ -4637,7 +4638,7 @@ for (int j = 0;
                             {
                                 if (!IsSpecialNodeAdded)
                                 {
-                                    Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate();
+                                    Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate(ObiForm.Settings);//@fontconfig  
 
                                     if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
                                         IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
@@ -4657,7 +4658,7 @@ for (int j = 0;
                             {
                                 // if (!IsSpecialNodeAdded)
                                 {
-                                    Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate();
+                                    Dialogs.ExtendedMessageToAssociate assignSpecialNodeToChunk = new Obi.Dialogs.ExtendedMessageToAssociate(ObiForm.Settings);//@fontconfig  
 
                                     if (assignSpecialNodeToChunk.ShowDialog() == DialogResult.Yes)
                                         IsSpecialNodeAdded = assignSpecialNodeToChunk.Is_AssignRole;
@@ -4718,7 +4719,7 @@ for (int j = 0;
                 MessageBox.Show(Localizer.Message("Page_not_found"));
                 return;
             }
-            Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false);
+            Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false, ObiForm.Settings);//@fontconfig
             dialog.IsRenumberChecked = true;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -5098,7 +5099,7 @@ if (CanExportSelectedNodeAudio)
     }
     bool SelectionChangedPlaybackEnabled = mTransportBar.SelectionChangedPlaybackEnabled;
     mTransportBar.SelectionChangedPlaybackEnabled = false;
-    Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog();
+    Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog(ObiForm.Settings); //@fontconfig
     if (dialog.ShowDialog() == DialogResult.OK)
     {
         Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind = dialog.AudioProcess;
@@ -5402,7 +5403,7 @@ public bool ShowOnlySelectedSection
             if (projectFile != null)
             {
                 Dialogs.MergeProject dialog =
-                           new Dialogs.MergeProject(projectFile);
+                           new Dialogs.MergeProject(projectFile,ObiForm.Settings); //@fontconfig
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {   
@@ -5566,6 +5567,16 @@ public bool ShowOnlySelectedSection
                 }
             }
 
+        }
+
+        public void SetFont() //@fontconfig
+        {
+            //     this.Font = new Font(this.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            mContentView.SetFont();
+            mTOCView.SetFont();
+            mMetadataView.SetFont();
+            mTransportBar.SetFont();
+            mFindInText.SetFont();
         }
 
         }

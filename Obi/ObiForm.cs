@@ -303,7 +303,7 @@ namespace Obi
                         Localizer.Message("default_project_title"),
                         mSettings.NewProjectDialogSize,
                         mSettings.AudioChannels,
-                        mSettings.AudioSampleRate);
+                        mSettings.AudioSampleRate, mSettings); //@fontconfig
                     dialog.CreateTitleSection = mSettings.CreateTitleSection;
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
@@ -396,7 +396,7 @@ namespace Obi
                             title,
                             mSettings.NewProjectDialogSize,
                             mSettings.AudioChannels,
-                            mSettings.AudioSampleRate);
+                            mSettings.AudioSampleRate, mSettings); //@fontconfig
                         dialog.DisableAutoTitleCheckbox();
                         dialog.Text = Localizer.Message("create_new_project_from_import");
                         if (!string.IsNullOrEmpty(dtbUid)) dialog.ID = dtbUid;
@@ -834,7 +834,7 @@ namespace Obi
                 if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
                 mProjectView.TransportBar.Stop();
                 string path_original = mSession.Path;
-                SaveProjectAsDialog dialog = new SaveProjectAsDialog(path_original);
+                SaveProjectAsDialog dialog = new SaveProjectAsDialog(path_original, mSettings); //@fontconfig
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     m_IsSaveActive = true;
@@ -932,7 +932,7 @@ namespace Obi
                                                                                      File.Delete(copiedProjectFilePath +
                                                                                                  ".lock");
                                                                              }
-                                                                         });
+                                                                         }, mSettings); //@fontconfig
                         progress.ShowDialog();
                         if (progress.Exception != null) throw progress.Exception;
                         this.Cursor = Cursors.WaitCursor;
@@ -1028,7 +1028,7 @@ namespace Obi
                         Dialogs.MultipleOptionDialog resultBookmark =
                             new MultipleOptionDialog(
                                 !((((ObiRootNode) mProjectView.Presentation.RootNode).BookmarkNode) ==
-                                  mProjectView.Selection.Node), !mSession.CanClose);
+                                  mProjectView.Selection.Node), !mSession.CanClose,mSettings);  //@fontconfig
                         resultBookmark.ShowDialog();
                         if (resultBookmark.DialogResult == DialogResult.Cancel)
                         {
@@ -1094,7 +1094,7 @@ namespace Obi
                             Directory.CreateDirectory(deletedDataFolderPath);
                         }
 
-                        Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath);
+                        Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath, 100);
                         Dialogs.ProgressDialog progress = new ProgressDialog(Localizer.Message("cleaning_up"),
                                                                              delegate()
                                                                                  {
@@ -1230,7 +1230,7 @@ namespace Obi
                                                                                      }
 
 
-                                                                                 });
+                                                                                 }, mSettings); //@fontconfig
                         if (cleaner != null)
                             cleaner.ProgressChangedEvent +=
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
@@ -1343,7 +1343,7 @@ namespace Obi
             {
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause();
 
-                (new Dialogs.About()).ShowDialog();
+                (new Dialogs.About(mSettings)).ShowDialog(); //@fontconfig
             }
 
             #endregion
@@ -1482,7 +1482,7 @@ namespace Obi
                     //Console.WriteLine(mSettings.UsersInfoToUpload);
                     if (string.IsNullOrEmpty(m_Settings_Permanent.UsersInfoToUpload) || m_Settings_Permanent.UsersInfoToUpload == Dialogs.UserRegistration.NoInfo)
                     {
-                        Dialogs.UserRegistration registrationDialog = new UserRegistration(m_Settings_Permanent);
+                        Dialogs.UserRegistration registrationDialog = new UserRegistration(m_Settings_Permanent, mSettings);//@fontconfig
                         registrationDialog.ShowDialog();
                     }
                     //Console.WriteLine("bypassed dialog");
@@ -1544,7 +1544,7 @@ namespace Obi
             // Show the welcome dialog
             private void ShowWelcomeDialog()
             {
-                Dialogs.WelcomeDialog ObiWelcome = new WelcomeDialog(mSettings.LastOpenProject != "");
+                Dialogs.WelcomeDialog ObiWelcome = new WelcomeDialog(mSettings.LastOpenProject != "", mSettings);//@fontconfig
                 ObiWelcome.ShowDialog();
                 switch (ObiWelcome.Result)
                 {
@@ -2180,7 +2180,7 @@ namespace Obi
             {
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause();
                 if (mProjectView.TransportBar.IsRecorderActive) mProjectView.TransportBar.Stop();
-                EditRoles dialog = new EditRoles(mSession.Presentation, mProjectView);
+                EditRoles dialog = new EditRoles(mSession.Presentation, mProjectView); 
                 dialog.ShowDialog();
             }
 
@@ -2662,7 +2662,7 @@ ref string exportDirectoryDAISY202,
                 ref urakawa.daisy.export.Daisy3_Export EPUB3_ExportInstance,
 ref string exportDirectoryEPUB3)
             {
-                Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202();
+                Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202(this.mSettings); //@fontconfig
                 chooseDialog.bothOptionEnabled = true;
                 chooseDialog.EnableEPUBOption = true;
                 if (chooseDialog.ShowDialog() == DialogResult.OK)
@@ -2701,7 +2701,7 @@ ref string exportDirectoryEPUB3)
                     ExportDialogDAISY3 =
                         new ExportDirectory(exportDirectoryDAISY3,
                                             mSession.Path, mSettings.Export_EncodeToMP3, mSettings.Export_BitRateMP3,
-                                            mSettings.Export_AppendSectionNameToAudioFile);
+                                            mSettings.Export_AppendSectionNameToAudioFile, this.mSettings); //@fontconfig
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY3.AdditionalTextForTitle = "DAISY 3";
                     ExportDialogDAISY3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2716,7 +2716,7 @@ ref string exportDirectoryEPUB3)
                     ExportDialogDAISY202 =
                         new ExportDirectory(exportDirectoryDAISY202,
                                             mSession.Path, mSettings.Export_EncodeToMP3, mSettings.Export_BitRateMP3,
-                                            mSettings.Export_AppendSectionNameToAudioFile);
+                                            mSettings.Export_AppendSectionNameToAudioFile, this.mSettings);//@fontconfig
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY202.AdditionalTextForTitle = "DAISY 2.02";
                     ExportDialogDAISY202.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2730,7 +2730,7 @@ ref string exportDirectoryEPUB3)
                     ExportDialogEPUB3 =
                         new ExportDirectory(exportDirectoryEPUB3,
                                             mSession.Path, true, mSettings.Export_BitRateMP3,
-                                            mSettings.Export_AppendSectionNameToAudioFile);
+                                            mSettings.Export_AppendSectionNameToAudioFile,this.mSettings);//@fontconfig
                     //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogEPUB3.EpubLengthCheckboxEnabled = true;
                     ExportDialogEPUB3.CreateDummyTextCheckboxEnabled = true;
@@ -2982,7 +2982,7 @@ ref string exportDirectoryEPUB3)
                                 SectionNode s = n as SectionNode;
                                 if (s != null && s.Used && s.FirstUsedPhrase == null && keepWarning)
                                 {
-                                    Dialogs.EmptySection dialog = new Dialogs.EmptySection(s.Label);
+                                    Dialogs.EmptySection dialog = new Dialogs.EmptySection(s.Label, mSettings); //@fontconfig
                                     cont = cont && dialog.ShowDialog() == DialogResult.OK;
                                     keepWarning = dialog.KeepWarning;
                                     return false;
@@ -3195,7 +3195,19 @@ ref string exportDirectoryEPUB3)
                     }
                     Ready();
 
-                    
+
+                    if (mSettings.ObiFont != this.Font.Name)
+                    {
+                        mProjectView.SetFont();
+                        mMenuStrip.Font = new Font(mSettings.ObiFont, this.mMenuStrip.Font.Size, FontStyle.Regular);//@fontconfig    
+                    }
+
+               //     this.Font = new Font(mSettings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+
+
+                                   
+                    //CheckSystemSupportForMemoryOptimization();
+                   
                     //CheckSystemSupportForMemoryOptimization();
                  }
                 catch (Exception e)
@@ -3430,8 +3442,8 @@ ref string exportDirectoryEPUB3)
                                                                                              if (mSession.ErrorsInOpeningProject) mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode) mProjectView.Presentation.RootNode,false);
                                                                                              DeleteExtraBackupFiles(false);
                                                                                              if (mSession.Presentation != null) mSession.Presentation.ConfigurationsImportExport = GetObiConfigurationFileInstance(mSession.Path);
-                                                                                             
-                                                                                         });
+
+                                                                                         }, mSettings); //@fontconfig
                 progress.ShowDialog();
                 if (progress.Exception != null)
                 {
@@ -4053,6 +4065,11 @@ ref string exportDirectoryEPUB3)
                 // Colors
                 mSettings.ColorSettings.CreateBrushesAndPens();
                 mProjectView.TransportBar.UpdateButtons();
+                //if (mSettings.ObiFont != m_DefaultSettings.ObiFont)
+                //{
+                //    mProjectView.SetFont();
+                //}
+
             }
 
             internal void InitializeKeyboardShortcuts(bool isFirstTime)
@@ -4490,7 +4507,7 @@ ref string exportDirectoryEPUB3)
                 string exportDaisy3Path = mProjectView.GetDAISYExportPath(Obi.ImportExport.ExportFormat.DAISY3_0,
                                                                           Path.GetDirectoryName(mSession.Path));
                 string newDirPath = null;
-                Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202();
+                Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202(this.mSettings); //@fontconfig
                 if (toolStripText == "DTBAudioEncoder" || toolStripText == "FilesetRenamer")
                 {
                     if (rdfrm.ShowDialog() == DialogResult.OK)
@@ -4583,7 +4600,7 @@ ref string exportDirectoryEPUB3)
                             exportFilePath,
                             Directory.GetParent(mSession.Path).FullName);
                     ProgressDialog progress = new ProgressDialog(((ToolStripMenuItem) sender).Text,
-                                                                 delegate() { pipeline.RunScript(); });
+                                                                 delegate() { pipeline.RunScript(); }, mSettings);//@fontconfig
 
                     if (pipeline.ShowDialog() == DialogResult.OK) progress.Show();
                     if (progress.Exception != null) throw progress.Exception;
@@ -5295,7 +5312,7 @@ ref string exportDirectoryEPUB3)
                                 break;
                             }
                         }
-                        Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false);
+                        Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false, mSettings);//@fontconfig
                         dialog.IsRenumberChecked = true;
                         dialog.EnableRenumberCheckBox = false;
                         dialog.Text = Localizer.Message("RenumberPages");
@@ -5582,7 +5599,7 @@ ref string exportDirectoryEPUB3)
                 {
                     mProjectView.TransportBar.Stop();
                 }
-                Dialogs.Epub3Validator epubValidator = new Dialogs.Epub3Validator(Directory.GetParent(mSession.Path).FullName);
+                Dialogs.Epub3Validator epubValidator = new Dialogs.Epub3Validator(Directory.GetParent(mSession.Path).FullName, this.mSettings); //@fontconfig
                 epubValidator.ShowEpubValidatorDialog = true;
                 epubValidator.ShowResultDialog = false;
 

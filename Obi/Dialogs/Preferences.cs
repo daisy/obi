@@ -67,7 +67,13 @@ namespace Obi.Dialogs
             m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_1"));
             m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_2"));
             m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Custom"));
-            m_Preference_ToolTip.SetToolTip(m_btnProfileDiscription, Localizer.Message("Preferences_AudioProfileDesc"));            
+            m_Preference_ToolTip.SetToolTip(m_btnProfileDiscription, Localizer.Message("Preferences_AudioProfileDesc"));
+         //   Obi.Properties.Settings.Default.WindowsFont = new Font(mSettings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            if (mSettings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(mSettings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
+          //  this.Text = "Edit preferences";
            }
 
         public bool IsColorChanged
@@ -276,7 +282,11 @@ namespace Obi.Dialogs
         private void InitializeColorPreferenceTab()
         {
             //mNormalColorCombo.Items.AddRange(new object[] (GetType (System.Drawing.Color ) ;
-            
+
+            //@fontconfig
+            mChooseFontCombo.Enabled = true;
+            m_lblChooseFont.Enabled = true;
+
             System.Reflection.PropertyInfo[] colorProperties = typeof(System.Drawing.Color).GetProperties(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Public);
     
              System.Reflection.PropertyInfo[] systemColorProperties = typeof(System.Drawing.SystemColors).GetProperties();
@@ -318,6 +328,7 @@ namespace Obi.Dialogs
             mHighContrastCombo.SelectedIndex = 0;
             mSettings.ColorSettings.PopulateColorSettingsDictionary();
             LoadListViewWithColors();
+            mChooseFontCombo.SelectedIndex = mSettings.ObiFontIndex;
         }        
 
         /// <summary>
@@ -1119,7 +1130,11 @@ namespace Obi.Dialogs
             else if (mTab.SelectedTab == mColorPreferencesTab)
             {
                 ResetColors();
+                mSettings.ObiFont = m_DefaultSettings.ObiFont;
+                mChooseFontCombo.SelectedIndex = -1;
+                mSettings.ObiFontIndex = -1;
                 m_IsColorChanged = true;
+                
             }
         }
 
@@ -1369,6 +1384,11 @@ namespace Obi.Dialogs
                 string desc = selectedItem.Text;
                 selectedItem.SubItems[2].Text = ((Color)mHighContrastCombo.SelectedItem).Name;
             }
+            if (mChooseFontCombo.SelectedItem != null)
+            {
+                mSettings.ObiFont = mChooseFontCombo.SelectedItem.ToString();
+            }
+            mSettings.ObiFontIndex = mChooseFontCombo.SelectedIndex;
         }
 
         private void mNormalColorCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -1808,7 +1828,7 @@ namespace Obi.Dialogs
 
         private void m_btnProfileDiscription_Click(object sender, EventArgs e)
         {
-            ProfileDescription profileDesc = new ProfileDescription();
+            ProfileDescription profileDesc = new ProfileDescription(mSettings); //@fontconfig
             profileDesc.ProfileSelected = m_ComboSelectAudioProfile.SelectedIndex;
             profileDesc.ShowDialog();
             profileDesc.Focus();
