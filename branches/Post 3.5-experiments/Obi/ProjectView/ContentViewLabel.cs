@@ -23,7 +23,7 @@ namespace Obi.ProjectView
             InitializeComponent();
             m_ZoomFactor = 1.0f;
             m_contentViewLabelHeight = Convert.ToInt32(23 * zoomFactor);
-            Name_SectionDisplayed = Localizer.Message ( "ContentViewLabel_NoSection" );
+            Name_SectionDisplayed = Localizer.Message ( "ContentViewLabel_NoSection" );     
         }
         public ContentView contentView
         {
@@ -178,5 +178,12 @@ namespace Obi.ProjectView
                 }*/
                 Invalidate();
         }
+        public void SetFont() //@fontconfig
+        {
+           // this.Font = new Font(contentView.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            m_lblStaticLabel.Font = new Font(contentView.Settings.ObiFont, m_lblStaticLabel.Font.Size, FontStyle.Regular);
+            m_lblSectionName.Font = new Font(contentView.Settings.ObiFont, m_lblSectionName.Font.Size, FontStyle.Regular);
+        }
+
     }
 }

@@ -13,7 +13,7 @@ namespace Obi.Dialogs
         private int m_PhraseCount ;
         
        
-        public GoToPageOrPhrase ( int sectionPhraseCount)
+        public GoToPageOrPhrase ( int sectionPhraseCount,Settings settings)
             : base ()
             {
             InitializeComponent ();
@@ -57,6 +57,11 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/Obi Views and Transport Bar/Go to Page or Phrase dialog.htm");
+
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
             }
 
         public override PageNumber Number

@@ -16,7 +16,7 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
         }
-        public MergeProject(string filepath)
+        public MergeProject(string filepath,Settings settings)
         {
             InitializeComponent();
             m_filePaths = new List<string>();
@@ -26,6 +26,12 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Merging projects.htm");
+
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
+
         }
 
         public string[] FilesPaths

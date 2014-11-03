@@ -17,7 +17,15 @@ namespace Obi.Dialogs
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");          
         }
-        public EmptySection(string title) : this() { mMessageLabel.Text = string.Format(mMessageLabel.Text, title); }
+        public EmptySection(string title,Settings settings) : this()
+        {
+            mMessageLabel.Text = string.Format(mMessageLabel.Text, title);
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
+
+        }
 
         public bool KeepWarning
         {

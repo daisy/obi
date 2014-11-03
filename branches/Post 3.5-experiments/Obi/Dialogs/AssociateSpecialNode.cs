@@ -18,7 +18,7 @@ namespace Obi.Dialogs
         Dictionary<EmptyNode, EmptyNode> m_Nodes_phraseMap = new Dictionary<EmptyNode, EmptyNode>(); // used for importing sections
         private List<EmptyNode> listOfAnchorNodesCopy = new List<EmptyNode>();
        
-        public AssociateSpecialNode(ObiRootNode obiNode, EmptyNode selectedNode)
+        public AssociateSpecialNode(ObiRootNode obiNode, EmptyNode selectedNode,Settings settings)
         {
             m_ObiNode = obiNode;
             m_SelectedNode = selectedNode;
@@ -47,7 +47,11 @@ namespace Obi.Dialogs
             }
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Associating Skippable Note with Anchor.htm");                  
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Associating Skippable Note with Anchor.htm");
+            if (this.Font.Name != settings.ObiFont)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         public Dictionary<EmptyNode,EmptyNode> DictionaryToMapValues

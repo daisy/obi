@@ -18,10 +18,14 @@ namespace Obi.Dialogs
             InitializeComponent();
         }
 
-        public Epub3Validator(string projectdirectoryPath)
+        public Epub3Validator(string projectdirectoryPath,Settings settings)
             : this()
         {
             m_ProjectDirectoryPath = projectdirectoryPath;
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         private void m_btnBrowseInputOPF_Click(object sender, EventArgs e)

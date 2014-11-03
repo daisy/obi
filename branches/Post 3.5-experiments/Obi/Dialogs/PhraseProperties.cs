@@ -30,6 +30,10 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Phrase Properties.htm");
+            if (mView.ObiForm.Settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(view.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
 

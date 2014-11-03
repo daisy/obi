@@ -164,9 +164,8 @@ namespace Obi.ProjectView
             
             ResourceManager resourceManager = new ResourceManager("Obi.ProjectView.TransportBar", GetType().Assembly);
             m_monitorButtonImage = (Bitmap)resourceManager.GetObject("media-monitor.png");
-            m_recordButtonImage = (Bitmap)resourceManager.GetObject("mRecordButton.Image");               
-
-         
+            m_recordButtonImage = (Bitmap)resourceManager.GetObject("mRecordButton.Image");
+        
         }
 
         /// <summary>
@@ -3955,6 +3954,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
             }
 
             mTransportBarTooltip.SetToolTip(m_btnPlayingOptions, Localizer.Message("Transport_PlayingOptions") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandPlayOptions.Value.ToString()) + ")");
+            m_btnPlayingOptions.Font = new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
             m_btnPlayingOptions.AccessibleName = Localizer.Message("Transport_PlayingOptions") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandPlayOptions.Value.ToString());
 
             mTransportBarTooltip.SetToolTip(m_btnRecordingOptions, Localizer.Message("Transport_RecordingOptions") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value.ToString()) + ")");
@@ -4205,6 +4205,29 @@ m_MonitorContinuouslyWorker.RunWorkerAsync();
             {
                 MonitorContinuously = false;
             }
+        }
+        public void SetFont()//@fontconfig
+        {
+            mTransportBarTooltip.OwnerDraw = true;
+            mTransportBarTooltip.IsBalloon = false;
+            this.Font = new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            m_PlayingOptionsContextMenuStrip.Font = m_RecordingOptionsContextMenuStrip.Font = new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);                       
+        }
+
+        private void mTransportBarTooltip_Draw(object sender, DrawToolTipEventArgs e)//@fontconfig
+        {
+            Font tooltipFont = new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size);
+            Font tooltipTitleFont = new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Bold);
+            e.Graphics.Clear(Color.White);
+
+            e.Graphics.DrawString(mTransportBarTooltip.ToolTipTitle, tooltipTitleFont, Brushes.Blue, new PointF(0, 0));
+            e.Graphics.DrawString(" \n" + e.ToolTipText, tooltipFont, Brushes.Black, new PointF(0, 0));
+               
+        }
+
+        private void mTransportBarTooltip_Popup(object sender, PopupEventArgs e)//@fontconfig
+        {
+            e.ToolTipSize = TextRenderer.MeasureText(mTransportBarTooltip.ToolTipTitle + "\n" +  mTransportBarTooltip.GetToolTip(e.AssociatedControl), new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size));
         }
 
     }

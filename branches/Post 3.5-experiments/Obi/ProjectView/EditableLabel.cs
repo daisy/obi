@@ -181,5 +181,18 @@ namespace Obi.ProjectView
 
         private void mLabel_Enter(object sender, EventArgs e) { OnEnter(e); }
         private void mLabel_Click(object sender, EventArgs e) { OnClick(e); }
+        public void SetFont(Settings Settings) //@fontconfig
+        {
+            // this.Font = new Font(Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            mCancelButton.Font = new Font(Settings.ObiFont, mCancelButton.Font.Size, FontStyle.Regular);
+            mOKButton.Font = new Font(Settings.ObiFont, mOKButton.Font.Size, FontStyle.Regular);
+            mTextBox.Font = new Font(Settings.ObiFont, mTextBox.Font.Size, FontStyle.Regular);
+
+           mLabel.Font = new Font(Settings.ObiFont, this.mLabel.Font.Size, FontStyle.Regular);
+           if (this.Width < this.mLabel.Width)
+           {
+               this.Width = this.mLabel.Width;
+           }
+        }
     }
 }

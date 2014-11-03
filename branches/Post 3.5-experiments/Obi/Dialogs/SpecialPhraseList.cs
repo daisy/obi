@@ -46,6 +46,11 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Exploring the GUI/Obi Views and Transport Bar/Collect special phrases and navigate.htm");
+
+            if (mView.ObiForm.Settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         public void State_Changed_Player(object sender, AudioLib.AudioPlayer.StateChangedEventArgs e)

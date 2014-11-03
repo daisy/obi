@@ -22,12 +22,17 @@ namespace Obi.Dialogs
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Closing the Project.htm");
         }
-        public MultipleOptionDialog(bool IsBookmarkDifferent, bool IsprojectUnsaved)
+        public MultipleOptionDialog(bool IsBookmarkDifferent, bool IsprojectUnsaved,Settings settings)
             : this()
         {
             m_rdb_DiscardBoth.Enabled = IsprojectUnsaved || IsBookmarkDifferent;
             m_rdb_SaveBookmarkAndProject.Enabled = IsBookmarkDifferent && IsprojectUnsaved;
-            m_rdb_SaveProjectOnly.Enabled = IsprojectUnsaved;            
+            m_rdb_SaveProjectOnly.Enabled = IsprojectUnsaved;
+
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         public bool IsSaveBothChecked

@@ -11,21 +11,36 @@ namespace Obi.Dialogs
     public partial class ProfileDescription : Form
     {
         private int m_ProfileSelectedIndex;
-        public ProfileDescription()
+        private Settings mSettings;
+        private bool m_flagFontChange = false;
+        public ProfileDescription(Settings settings)
         {
             InitializeComponent();
+            mSettings = settings;
             this.m_ProfileDescription_WebBrowser.Height = this.m_ProfileDescription_WebBrowser.Height - (this.m_btnClose.Height + (this.m_btnClose.Height / 2));
 
             m_ProfileDescription_WebBrowser.Url = new System.Uri(System.IO.Path.Combine(
     System.IO.Path.GetDirectoryName(GetType().Assembly.Location),
     Localizer.Message("ProfileDesc_file_name")));
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+                m_flagFontChange = true;
+            }
 
         }
 
         private void m_ProfileDescription_WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            if (m_ProfileSelectedIndex == 0)
+            if (m_flagFontChange)
             {
+                m_ProfileDescription_WebBrowser.Document.ExecCommand("SelectAll", false, "null");
+                m_ProfileDescription_WebBrowser.Document.ExecCommand("FontName", false, mSettings.ObiFont);
+                m_ProfileDescription_WebBrowser.Document.ExecCommand("Unselect", false, "null");
+            }
+
+            if (m_ProfileSelectedIndex == 0)
+            {               
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Basic").InnerHtml;
             }
             else  if (m_ProfileSelectedIndex == 1)
@@ -48,6 +63,7 @@ namespace Obi.Dialogs
             {
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Custom").InnerHtml;
             }
+            
         }
 
         public int ProfileSelected

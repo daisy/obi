@@ -79,6 +79,8 @@ namespace Obi.ProjectView
             // 
             this.mTransportBarTooltip.IsBalloon = true;
             this.mTransportBarTooltip.ToolTipTitle = "Transport bar";
+            this.mTransportBarTooltip.Popup += new System.Windows.Forms.PopupEventHandler(this.mTransportBarTooltip_Popup);
+            this.mTransportBarTooltip.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.mTransportBarTooltip_Draw);
             // 
             // mPreviousPageButton
             // 
@@ -301,9 +303,7 @@ namespace Obi.ProjectView
             // 
             // mMonitorContinuouslyToolStripMenuItem
             // 
-            this.mMonitorContinuouslyToolStripMenuItem.Checked = false;
             this.mMonitorContinuouslyToolStripMenuItem.CheckOnClick = true;
-            this.mMonitorContinuouslyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Unchecked;
             this.mMonitorContinuouslyToolStripMenuItem.Name = "mMonitorContinuouslyToolStripMenuItem";
             resources.ApplyResources(this.mMonitorContinuouslyToolStripMenuItem, "mMonitorContinuouslyToolStripMenuItem");
             this.mMonitorContinuouslyToolStripMenuItem.Click += new System.EventHandler(this.mMonitorContinuouslyToolStripMenuItem_Click);

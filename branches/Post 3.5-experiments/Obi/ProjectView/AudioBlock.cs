@@ -34,6 +34,10 @@ namespace Obi.ProjectView
             SetWaveform(Node as PhraseNode);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
             mShiftKeyPressed = false;
+            if (ContentView.Settings.ObiFont != this.Font.Name)//@fontconfig
+            {
+                SetFont();//@fontconfig
+            }
         }
 
         //@zoomwaveform
@@ -404,6 +408,17 @@ public void SetWaveformForZoom(PhraseNode node)
                 mWaveform.SelectionPointPosition = waveformX;
                 
            
+            }
+        }
+        public void SetFont() //@fontconfig
+        {
+            if (ContentView != null && ContentView.Settings != null)
+            {
+             //   this.Font = new Font(ContentView.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+
+                mRecordingLabel.Font = new Font(ContentView.Settings.ObiFont, mRecordingLabel.Font.Size, FontStyle.Regular);
+                mLabel.Font = new Font(ContentView.Settings.ObiFont, mLabel.Font.Size, FontStyle.Regular);
+                base.SetFont();
             }
         }
         

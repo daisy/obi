@@ -19,6 +19,10 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Project Properties.htm");
+            if (mView.ObiForm.Settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(View.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         public string ProjectTitle { get { return m_txtTitle.Text; } }

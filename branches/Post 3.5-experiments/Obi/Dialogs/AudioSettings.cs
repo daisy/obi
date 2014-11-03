@@ -18,7 +18,7 @@ namespace Obi.Dialogs
             helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Creating and Working with Projects\\Audio settings for the project.htm");          
         }
 
-        public AudioSettings(int audioChannels, int audioSampleRate)
+        public AudioSettings(int audioChannels, int audioSampleRate, Settings settings)
             : this()
         {
             for (int i = 0; i < mcbSampleRate.Items.Count; i++ )
@@ -28,7 +28,10 @@ namespace Obi.Dialogs
             }
             mcbAudioChannel.SelectedIndex = AudioChannels== 1? 0:
                 AudioChannels == 2? 1: 0;
-
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         

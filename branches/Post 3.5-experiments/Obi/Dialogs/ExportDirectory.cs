@@ -18,13 +18,15 @@ namespace Obi.Dialogs
         private bool m_SectionNameToAudioFileNameCheck;
         private bool m_FilenameLengthLimit;
         private ExportAdvance m_ExportAdvance;
+        private Settings mSettings;
 
-        public ExportDirectory(string path, string xukPath, bool encodeToMP3, int bitRate, bool appendSectionNameToAudioFile)
+        public ExportDirectory(string path, string xukPath, bool encodeToMP3, int bitRate, bool appendSectionNameToAudioFile, Settings settings)
         {
             InitializeComponent();
             mPathTextBox.Text = path;
             mXukPath = xukPath;
             mCanClose = true;
+            mSettings = settings;
             
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message("EachLevel"));
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message ("Level1") );
@@ -53,6 +55,10 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Exporting and Validating DTB/Exporting as DAISY DTB.htm");
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         /// <summary>
@@ -214,7 +220,7 @@ namespace Obi.Dialogs
 
         private void mbtnAdvance_Click(object sender, EventArgs e)
         {
-            m_ExportAdvance = new ExportAdvance();
+            m_ExportAdvance = new ExportAdvance(mSettings);
             // this.Controls.Add(mExportAdvance);    
             m_ExportAdvance.Show();
             
