@@ -38,8 +38,7 @@ namespace Obi.Dialogs
         private bool m_FlagComboBoxIndexChange = false;
         private int m_IndexOfLevelCombox = 0;
         private bool m_UpdateBackgroundColorRequired = false;
-        private string m_FontSelected; //@fontconfig
-      //  private bool m_IsComboBoxExpanded = false;
+       //  private bool m_IsComboBoxExpanded = false;
       //  private bool m_LeaveOnEscape = false;
 
         /// <summary>
@@ -1135,8 +1134,9 @@ namespace Obi.Dialogs
             else if (mTab.SelectedTab == mColorPreferencesTab)
             {
                 ResetColors();
-                m_FontSelected = m_DefaultSettings.ObiFont; //@fontconfig
+                mForm.ObiFontName = m_DefaultSettings.ObiFont; //@fontconfig
                 mChooseFontCombo.SelectedIndex = -1; //@fontconfig
+                m_txtBox_Font.Text = " ";
                 mSettings.ObiFontIndex = -1; //@fontconfig
                 m_IsColorChanged = true;
                 
@@ -1188,25 +1188,7 @@ namespace Obi.Dialogs
                     desc;
             }
         }
-        public string ObiFontSelected //@fontconfig
-        {
-            get
-            {
-                if (m_FontSelected != null)
-                {
-                    return m_FontSelected;
-                }
-                else if (mSettings.ObiFont == m_DefaultSettings.ObiFont)
-                {
-                    return m_DefaultSettings.ObiFont;
-                }
-                else
-                {
-                    return mSettings.ObiFont;
-                }
-            }
-        }
-
+     
         public void UpdateColorSettings()
         {
             if (m_lv_ColorPref.SelectedIndices.Count > 0 && mNormalColorCombo.SelectedItem != null)
@@ -1407,15 +1389,16 @@ namespace Obi.Dialogs
                 string desc = selectedItem.Text;
                 selectedItem.SubItems[2].Text = ((Color)mHighContrastCombo.SelectedItem).Name;
             }
+
+            mSettings.ObiFontIndex = mChooseFontCombo.SelectedIndex;//@fontconfig
             if (mChooseFontCombo.SelectedItem != null)//@fontconfig
             {
-                m_FontSelected = mChooseFontCombo.SelectedItem.ToString(); //@fontconfig
+                mForm.ObiFontName = mChooseFontCombo.SelectedItem.ToString(); //@fontconfig
             }
             else
             {
-                m_FontSelected = m_DefaultSettings.ObiFont; //@fontconfig
+                mForm.ObiFontName = m_DefaultSettings.ObiFont; //@fontconfig
             }
-            mSettings.ObiFontIndex = mChooseFontCombo.SelectedIndex;//@fontconfig
         }
 
         private void mNormalColorCombo_SelectedIndexChanged(object sender, EventArgs e)

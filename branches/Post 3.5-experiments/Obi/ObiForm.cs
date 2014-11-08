@@ -59,7 +59,7 @@ namespace Obi
             private int m_DiffPeakMeterGraphicalPeakMeter=0; // stores the difference between the hight of the peak meter and graphical peak  
             private bool m_NormalAfterMax = false;    //Used to revert back to the window of the original size from max obi window
             private bool m_FlagLangUpdate = false;
-            private Preferences m_Preferences;
+            private string m_ObiFont;//@fontconfig
 
 
             /// <summary>
@@ -97,6 +97,18 @@ namespace Obi
                 {
                     mAllowOverwriteToolStripMenuItem.Checked = value;
                     mSettings.AllowOverwrite = value;
+                }
+            }
+
+            public string ObiFontName //@fontconfig
+            {
+                set
+                {
+                   m_ObiFont = value;
+                }
+                get
+                {
+                    return m_ObiFont;
                 }
             }
 
@@ -2453,7 +2465,6 @@ namespace Obi
                 bool enableEmptySectionColorInTOC = mSettings.Project_BackgroundColorForEmptySection;
                 Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation,
                                                                     mProjectView.TransportBar, m_DefaultSettings);
-                m_Preferences = prefs; //@fontconfig
                 prefs.ShowDialog();
                 if (prefs.IsColorChanged)
                     UpdateColors();
@@ -3961,9 +3972,9 @@ ref string exportDirectoryEPUB3)
             /// <remarks>Warn when closing while playing?</remarks>
             private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
             {
-                if (m_Preferences != null) //@fontconfig
+                if (ObiFontName != null) //@fontconfig
                 {
-                    mSettings.ObiFont = m_Preferences.ObiFontSelected; //@fontconfig
+                    mSettings.ObiFont = ObiFontName; //@fontconfig
                 }
                 if (mSettings.Project_SaveObiLocationAndSize)
                 {

@@ -111,8 +111,8 @@ namespace Obi
         public string Project_ObiConfigFileName;
         public Point ObiLastLocation;
         public bool Project_PeakMeterChangeLocation; // Changes Peak meter location wrt Obi Form
-        public string ObiFont;
-        public int ObiFontIndex;
+        public string ObiFont; //@fontconfig
+        public int ObiFontIndex; //@fontconfig
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
         
@@ -213,8 +213,8 @@ namespace Obi
             settings.Project_ObiConfigFileName = "obiconfig.xml";
             settings.ObiLastLocation = new Point(0, 0);
             settings.Project_PeakMeterChangeLocation = false;
-            settings.ObiFont = "Microsoft Sans Serif";
-            settings.ObiFontIndex = -1;
+            settings.ObiFont = "Microsoft Sans Serif"; //@fontconfig
+            settings.ObiFontIndex = -1; //@fontconfig
         }
 
         /// <summary>

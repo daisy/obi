@@ -743,6 +743,7 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_txtBox_Font, "m_txtBox_Font");
             this.m_txtBox_Font.Name = "m_txtBox_Font";
+            this.m_txtBox_Font.ReadOnly = true;
             // 
             // Preferences
             // 
