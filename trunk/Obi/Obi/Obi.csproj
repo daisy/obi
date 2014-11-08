@@ -838,9 +838,6 @@
     <Content Include="about_en.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="about_es.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="about_fi.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -891,10 +888,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Audio\PeakMeterForm.resx">
-      <DependentUpon>PeakMeterForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Audio\PeakMeterForm.ta.resx">
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -987,10 +980,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingDialog.es.resx">
-      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\AudioProcessingDialog.fi.resx">
       <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1147,10 +1136,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Epub3Validator.es.resx">
-      <DependentUpon>Epub3Validator.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\Epub3Validator.fi.resx">
       <DependentUpon>Epub3Validator.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1339,10 +1324,6 @@
       <DependentUpon>MergeProject.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\MergeProject.fr.resx">
-      <DependentUpon>MergeProject.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MergeProject.ja.resx">
       <DependentUpon>MergeProject.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1433,7 +1414,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Preferences.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>Preferences.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Preferences.es.resx">
       <DependentUpon>Preferences.cs</DependentUpon>
@@ -1457,7 +1437,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProfileDescription.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ProfileDescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProfileDescription.es.resx">
       <DependentUpon>ProfileDescription.cs</DependentUpon>
@@ -1474,7 +1453,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgressDialog.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProgressDialog.es.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
@@ -1502,7 +1480,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProjectProperties.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ProjectProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProjectProperties.es.resx">
       <DependentUpon>ProjectProperties.cs</DependentUpon>
@@ -1526,7 +1503,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ReportDialog.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ReportDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ReportDialog.es.resx">
       <DependentUpon>ReportDialog.cs</DependentUpon>
@@ -1558,7 +1534,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SaveProjectAsDialog.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SaveProjectAsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SaveProjectAsDialog.es.resx">
       <DependentUpon>SaveProjectAsDialog.cs</DependentUpon>
@@ -1586,7 +1561,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SectionProperties.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SectionProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SectionProperties.es.resx">
       <DependentUpon>SectionProperties.cs</DependentUpon>
@@ -1610,7 +1584,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectMergeSectionRange.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SelectMergeSectionRange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectMergeSectionRange.es.resx">
       <DependentUpon>SelectMergeSectionRange.cs</DependentUpon>
@@ -1642,7 +1615,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectPhraseDetectionSections.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectPhraseDetectionSections.es.resx">
       <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
@@ -1674,7 +1646,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SentenceDetection.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SentenceDetection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SentenceDetection.es.resx">
       <DependentUpon>SentenceDetection.cs</DependentUpon>
@@ -1698,7 +1669,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SetPageNumber.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SetPageNumber.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SetPageNumber.es.resx">
       <DependentUpon>SetPageNumber.cs</DependentUpon>
@@ -1722,7 +1692,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ShowSource.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ShowSource.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ShowSource.es.resx">
       <DependentUpon>ShowSource.cs</DependentUpon>
@@ -1746,11 +1715,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SpecialPhraseList.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SpecialPhraseList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SpecialPhraseList.es.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>SpecialPhraseList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SpecialPhraseList.fi.resx">
       <SubType>Designer</SubType>
@@ -1778,7 +1746,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UserRegistration.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>UserRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UserRegistration.es.resx">
       <DependentUpon>UserRegistration.cs</DependentUpon>
@@ -1810,7 +1777,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\WelcomeDialog.ar.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\WelcomeDialog.es.resx">
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
@@ -1837,9 +1803,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="messages.ar.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="messages.es.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="messages.fi.resx">
@@ -2252,14 +2215,6 @@
       <DependentUpon>ZoomWaveform.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\RecordingToolBarForm.ar.resx">
-      <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\RecordingToolBarForm.es.resx">
-      <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\RecordingToolBarForm.fi.resx">
       <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -2318,7 +2273,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ProfileDesc_fi.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SelectionBegin.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2369,19 +2324,7 @@
       <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\TextVUMeterPanel.ar.resx">
-      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\TextVUMeterPanel.es.resx">
-      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.fi.resx">
-      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\TextVUMeterPanel.fr.resx">
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
