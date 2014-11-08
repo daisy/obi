@@ -108,6 +108,7 @@ namespace Obi.Dialogs
             this.m_ResetButton = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.m_txtBox_Font = new System.Windows.Forms.TextBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -605,6 +606,7 @@ namespace Obi.Dialogs
             // 
             // mColorPreferencesTab
             // 
+            this.mColorPreferencesTab.Controls.Add(this.m_txtBox_Font);
             this.mColorPreferencesTab.Controls.Add(this.mChooseFontCombo);
             this.mColorPreferencesTab.Controls.Add(this.m_lblChooseFont);
             this.mColorPreferencesTab.Controls.Add(this.m_txtBox_HighContrast);
@@ -624,6 +626,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.mChooseFontCombo, "mChooseFontCombo");
             this.mChooseFontCombo.FormattingEnabled = true;
             this.mChooseFontCombo.Name = "mChooseFontCombo";
+            this.mChooseFontCombo.SelectedIndexChanged += new System.EventHandler(this.mChooseFontCombo_SelectedIndexChanged);
             // 
             // m_lblChooseFont
             // 
@@ -735,6 +738,11 @@ namespace Obi.Dialogs
             // helpProvider1
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
+            // 
+            // m_txtBox_Font
+            // 
+            resources.ApplyResources(this.m_txtBox_Font, "m_txtBox_Font");
+            this.m_txtBox_Font.Name = "m_txtBox_Font";
             // 
             // Preferences
             // 
@@ -854,5 +862,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label m_lblProfile;
         private System.Windows.Forms.Button m_btnProfileDiscription;
         private System.Windows.Forms.ToolTip m_Preference_ToolTip;
+        private System.Windows.Forms.TextBox m_txtBox_Font;
     }
 }
