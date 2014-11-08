@@ -59,6 +59,7 @@ namespace Obi
             private int m_DiffPeakMeterGraphicalPeakMeter=0; // stores the difference between the hight of the peak meter and graphical peak  
             private bool m_NormalAfterMax = false;    //Used to revert back to the window of the original size from max obi window
             private bool m_FlagLangUpdate = false;
+            private Preferences m_Preferences;
 
 
             /// <summary>
@@ -2452,6 +2453,7 @@ namespace Obi
                 bool enableEmptySectionColorInTOC = mSettings.Project_BackgroundColorForEmptySection;
                 Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation,
                                                                     mProjectView.TransportBar, m_DefaultSettings);
+                m_Preferences = prefs; //@fontconfig
                 prefs.ShowDialog();
                 if (prefs.IsColorChanged)
                     UpdateColors();
@@ -3200,6 +3202,7 @@ ref string exportDirectoryEPUB3)
                     {
                         mProjectView.SetFont();
                         mMenuStrip.Font = new Font(mSettings.ObiFont, this.mMenuStrip.Font.Size, FontStyle.Regular);//@fontconfig    
+                        mStatusLabel.Font = new Font(mSettings.ObiFont, this.mStatusLabel.Font.Size, FontStyle.Regular);//@fontconfig    
                     }
 
                //     this.Font = new Font(mSettings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
@@ -3958,6 +3961,10 @@ ref string exportDirectoryEPUB3)
             /// <remarks>Warn when closing while playing?</remarks>
             private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
             {
+                if (m_Preferences != null) //@fontconfig
+                {
+                    mSettings.ObiFont = m_Preferences.ObiFontSelected; //@fontconfig
+                }
                 if (mSettings.Project_SaveObiLocationAndSize)
                 {
 

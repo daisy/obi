@@ -222,6 +222,7 @@ namespace Obi.ProjectView
         private void SetFont() //@fontconfig
         {
             this.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            toolStrip1.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
         }
         
     }

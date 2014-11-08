@@ -38,6 +38,7 @@ namespace Obi.Dialogs
         private bool m_FlagComboBoxIndexChange = false;
         private int m_IndexOfLevelCombox = 0;
         private bool m_UpdateBackgroundColorRequired = false;
+        private string m_FontSelected; //@fontconfig
       //  private bool m_IsComboBoxExpanded = false;
       //  private bool m_LeaveOnEscape = false;
 
@@ -308,7 +309,7 @@ namespace Obi.Dialogs
              System.Drawing.Text.InstalledFontCollection fonts = new System.Drawing.Text.InstalledFontCollection();
              foreach (FontFamily family in fonts.Families)
              {
-                 mChooseFontCombo.Items.Add(family.Name);
+                mChooseFontCombo.Items.Add(family.Name);
              }
              mChooseFontCombo.SelectedIndex = 0;
             //mNormalColorCombo.Items.AddRange(new object[] { Color.Orange, Color.LightSkyBlue, Color.LightGreen, Color.LightSalmon,
@@ -329,6 +330,10 @@ namespace Obi.Dialogs
             mSettings.ColorSettings.PopulateColorSettingsDictionary();
             LoadListViewWithColors();
             mChooseFontCombo.SelectedIndex = mSettings.ObiFontIndex;
+            if (mSettings.ObiFontIndex == -1)
+            {
+                m_txtBox_Font.Text = "";
+            }
         }        
 
         /// <summary>
@@ -1130,9 +1135,9 @@ namespace Obi.Dialogs
             else if (mTab.SelectedTab == mColorPreferencesTab)
             {
                 ResetColors();
-                mSettings.ObiFont = m_DefaultSettings.ObiFont;
-                mChooseFontCombo.SelectedIndex = -1;
-                mSettings.ObiFontIndex = -1;
+                m_FontSelected = m_DefaultSettings.ObiFont; //@fontconfig
+                mChooseFontCombo.SelectedIndex = -1; //@fontconfig
+                mSettings.ObiFontIndex = -1; //@fontconfig
                 m_IsColorChanged = true;
                 
             }
@@ -1181,6 +1186,24 @@ namespace Obi.Dialogs
                 e.Item.ToolTipText = m_KeyboardShortcutReadableNamesMap.ContainsKey(desc) ?
                     m_KeyboardShortcutReadableNamesMap[desc] :
                     desc;
+            }
+        }
+        public string ObiFontSelected //@fontconfig
+        {
+            get
+            {
+                if (m_FontSelected != null)
+                {
+                    return m_FontSelected;
+                }
+                else if (mSettings.ObiFont == m_DefaultSettings.ObiFont)
+                {
+                    return m_DefaultSettings.ObiFont;
+                }
+                else
+                {
+                    return mSettings.ObiFont;
+                }
             }
         }
 
@@ -1384,11 +1407,15 @@ namespace Obi.Dialogs
                 string desc = selectedItem.Text;
                 selectedItem.SubItems[2].Text = ((Color)mHighContrastCombo.SelectedItem).Name;
             }
-            if (mChooseFontCombo.SelectedItem != null)
+            if (mChooseFontCombo.SelectedItem != null)//@fontconfig
             {
-                mSettings.ObiFont = mChooseFontCombo.SelectedItem.ToString();
+                m_FontSelected = mChooseFontCombo.SelectedItem.ToString(); //@fontconfig
             }
-            mSettings.ObiFontIndex = mChooseFontCombo.SelectedIndex;
+            else
+            {
+                m_FontSelected = m_DefaultSettings.ObiFont; //@fontconfig
+            }
+            mSettings.ObiFontIndex = mChooseFontCombo.SelectedIndex;//@fontconfig
         }
 
         private void mNormalColorCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -1833,6 +1860,17 @@ namespace Obi.Dialogs
             profileDesc.ShowDialog();
             profileDesc.Focus();
         }
+
+        private void mChooseFontCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_txtBox_Font.Text = "Obi";
+            if (mChooseFontCombo.SelectedItem != null)
+            {
+
+                m_txtBox_Font.Font = new Font(mChooseFontCombo.SelectedItem.ToString(), this.Font.Size,FontStyle.Regular | FontStyle.Bold | FontStyle.Italic );//@fontconfig
+
+            }
+        }  
 
     }
     }   
