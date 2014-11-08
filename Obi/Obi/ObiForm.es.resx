@@ -754,7 +754,7 @@
     <value>Ampliar Ctrl + Alt + +</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Zoom y en</value>
+    <value>Ctrl+Alt++</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Oemplus</value>
@@ -769,7 +769,7 @@
     <value>Reducir Ctrl + Alt + -</value>
   </data>
   <data name="mView_ZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Zoom y fuera</value>
+    <value>Ctrl+Alt+-</value>
   </data>
   <data name="mView_ZoomOutMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+OemMinus</value>
@@ -796,7 +796,7 @@
     <value>Ampliar onda  de audio Ctrl + Alt + Mayús + +</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Au &amp; zoom dio en</value>
+    <value>Ctrl+Alt+Shift++</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+Oemplus</value>
@@ -811,7 +811,7 @@
     <value>Reducir onda de audio Ctrl + Alt + Mayús + -</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Zoom Salida de audio (y q)</value>
+    <value>Ctrl+Alt+Shift+-</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+OemMinus</value>
@@ -1870,7 +1870,7 @@
     <value>Retroceder Ctrl + coma</value>
   </data>
   <data name="mRewindToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Contenido</value>
+    <value>Ctrl+,</value>
   </data>
   <data name="mRewindToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Oemcomma</value>
@@ -1885,7 +1885,7 @@
     <value>Avance rápido Ctrl+punto</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Online &amp; resources / seguimiento de incidencias</value>
+    <value>Ctrl+.</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+OemPeriod</value>
