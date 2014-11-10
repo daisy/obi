@@ -245,13 +245,13 @@
     <value>Aplicar &amp;detección de frases</value>
   </data>
   <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Skippable notes</value>
+    <value>Nota omisible</value>
   </data>
   <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>Skippa&amp;ble notes</value>
+    <value>Nota Omis&amp;ible</value>
   </data>
   <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
