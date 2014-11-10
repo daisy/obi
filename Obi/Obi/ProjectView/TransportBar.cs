@@ -3958,7 +3958,10 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
             m_btnPlayingOptions.AccessibleName = Localizer.Message("Transport_PlayingOptions") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandPlayOptions.Value.ToString());
 
             mTransportBarTooltip.SetToolTip(m_btnRecordingOptions, Localizer.Message("Transport_RecordingOptions") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value.ToString()) + ")");
-            m_btnRecordingOptions.AccessibleName = Localizer.Message("Transport_RecordingOptions") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value.ToString());        
+            m_btnRecordingOptions.AccessibleName = Localizer.Message("Transport_RecordingOptions") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value.ToString());
+
+            mTransportBarTooltip.SetToolTip(mDisplayBox, mDisplayBox.SelectedItem.ToString());
+           
         }
 
         private void m_btnPlayingOptions_Click(object sender, EventArgs e)
