@@ -1373,10 +1373,16 @@ namespace Obi.ProjectView
                         if (selectedSectionsForIncreaseLevel.Count != 0)
                         {
                             selectedSections = selectionDialog.SelectedSections;
-                            foreach (SectionNode node in selectedSectionsForIncreaseLevel)
+                            SectionNode node = selectedSectionsForIncreaseLevel[0];
+                            mTOCView.Selection = new NodeSelection(node, mContentView);
+                            for( int i=0 ; i<selectedSectionsForIncreaseLevel.Count;i++)
                             {
-                                mTOCView.Selection = new NodeSelection(node, mContentView);
-                                IncreaseSelectedSectionLevel();
+                                node = selectedSectionsForIncreaseLevel[i];
+                                if (selectedSectionsForIncreaseLevel.Contains(node.ParentAs<SectionNode>())) continue;
+                                if (Commands.TOC.MoveSectionIn.CanMoveNode(node) )
+                                {
+                                    mPresentation.Do(new Commands.TOC.MoveSectionIn(this, node));
+                                }
                             }
                         }
                     }
@@ -1393,11 +1399,18 @@ namespace Obi.ProjectView
                         {
                             selectedSections = selectionDialog.SelectedSections;
                             selectedSectionsForDecreaseLevel.Reverse();
-                            foreach (SectionNode node in selectedSectionsForDecreaseLevel)
+                            SectionNode node = selectedSectionsForDecreaseLevel[0];
+                            mTOCView.Selection = new NodeSelection(node, mContentView);
+                            for( int i=0 ; i<selectedSectionsForDecreaseLevel.Count;i++)
                             {
-                                mTOCView.Selection = new NodeSelection(node, mContentView);
-                                DecreaseSelectedSectionLevel();
+                                node = selectedSectionsForDecreaseLevel[i];
+                                
+                                if (Commands.TOC.MoveSectionOut.CanMoveNode(node) )
+                                {
+                                    mPresentation.Do ( new Commands.TOC.MoveSectionOut ( this,node ) );
+                                }
                             }
+                        
                         }
                     }
                 }
