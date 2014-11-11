@@ -1044,7 +1044,7 @@ Texto de error: {1}</value>
     <value>La ruta "{0}" no está establecida. Por favor, elija una ruta completa, incluyendo la letra de unidad.</value>
   </data>
   <data name="CHMhelp_file_name" xml:space="preserve">
-    <value>Detección Frase en curso ...</value>
+    <value>Obi Help.chm</value>
   </data>
   <data name="phrase_detection_progress" xml:space="preserve">
     <value>Detección de frases en curso…</value>
