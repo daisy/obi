@@ -1516,7 +1516,7 @@
     <value>Reproducir selección Espacio</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Velocidad normal con y transcurrir de nuevo</value>
+    <value>Space</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
