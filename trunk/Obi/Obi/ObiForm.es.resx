@@ -1159,7 +1159,7 @@
     <value>Inicio de nota</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Y empezar Nota</value>
+    <value>Ctrl+Alt+[</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+OemOpenBrackets</value>
@@ -1174,7 +1174,7 @@
     <value>Final de nota</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Añadir una referencia</value>
+    <value>Ctrl+Alt+]</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Oem6</value>
@@ -1189,7 +1189,7 @@
     <value>Añadir referencia</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Goto y se refiere la nota</value>
+    <value>Ctrl+Alt+A</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+A</value>
@@ -1213,7 +1213,7 @@
     <value>Eliminar referencia</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Mover a la nota final</value>
+    <value>Ctrl+Alt+D</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+D</value>
@@ -1246,7 +1246,7 @@
     <value>Limpiar rol de nota</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Y rumbo</value>
+    <value>Ctrl+Alt+C</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+C</value>
