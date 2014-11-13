@@ -965,9 +965,13 @@ namespace Obi.Dialogs
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
                 m_CheckBoxListView.Size = new Size(355, 95);
+                m_CheckBoxListView.MaximumSize = new Size(355, 95);
+                m_CheckBoxListView.MinimumSize = new Size(355, 95);
                 m_CheckBoxListView.Location = new Point(85, 240);
                 m_CheckBoxListView.Location = new Point(85, m_NumImportTolerance.Location.Y + 100);
                 m_grpBoxChkBoxListView.Size = new Size(375, 126);
+                m_grpBoxChkBoxListView.MaximumSize = new Size(375, 126);
+                m_grpBoxChkBoxListView.MinimumSize = new Size(375, 126);
               //  m_grpBoxChkBoxListView.Location = new Point(75, 220);
                 m_grpBoxChkBoxListView.Location = new Point(75, m_NumImportTolerance.Location.Y+80);
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_OpenLastProject"));

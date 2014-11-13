@@ -89,6 +89,7 @@ namespace Obi.Dialogs
             this.m_lblShortcutKeys = new System.Windows.Forms.Label();
             this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
             this.mColorPreferencesTab = new System.Windows.Forms.TabPage();
+            this.m_txtBox_Font = new System.Windows.Forms.TextBox();
             this.mChooseFontCombo = new System.Windows.Forms.ComboBox();
             this.m_lblChooseFont = new System.Windows.Forms.Label();
             this.m_txtBox_HighContrast = new System.Windows.Forms.TextBox();
@@ -108,7 +109,6 @@ namespace Obi.Dialogs
             this.m_ResetButton = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.m_txtBox_Font = new System.Windows.Forms.TextBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -621,6 +621,12 @@ namespace Obi.Dialogs
             this.mColorPreferencesTab.Name = "mColorPreferencesTab";
             this.mColorPreferencesTab.UseVisualStyleBackColor = true;
             // 
+            // m_txtBox_Font
+            // 
+            resources.ApplyResources(this.m_txtBox_Font, "m_txtBox_Font");
+            this.m_txtBox_Font.Name = "m_txtBox_Font";
+            this.m_txtBox_Font.ReadOnly = true;
+            // 
             // mChooseFontCombo
             // 
             resources.ApplyResources(this.mChooseFontCombo, "mChooseFontCombo");
@@ -739,12 +745,6 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
-            // m_txtBox_Font
-            // 
-            resources.ApplyResources(this.m_txtBox_Font, "m_txtBox_Font");
-            this.m_txtBox_Font.Name = "m_txtBox_Font";
-            this.m_txtBox_Font.ReadOnly = true;
-            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -761,6 +761,7 @@ namespace Obi.Dialogs
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Preferences";
+            this.helpProvider1.SetShowHelp(this, ((bool)(resources.GetObject("$this.ShowHelp"))));
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.mTab.ResumeLayout(false);
