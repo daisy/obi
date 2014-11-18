@@ -105,8 +105,6 @@ namespace Obi.Dialogs
             // m_checkBoxEncoder
             // 
             resources.ApplyResources(this.m_checkBoxEncoder, "m_checkBoxEncoder");
-            this.m_checkBoxEncoder.Checked = true;
-            this.m_checkBoxEncoder.CheckState = System.Windows.Forms.CheckState.Checked;
             this.m_checkBoxEncoder.Name = "m_checkBoxEncoder";
             this.m_checkBoxEncoder.UseVisualStyleBackColor = true;
             this.m_checkBoxEncoder.CheckedChanged += new System.EventHandler(this.m_checkBoxMP3Encoder_CheckedChanged);
