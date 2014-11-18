@@ -14,7 +14,7 @@ namespace Obi.Dialogs
         private string mXukPath;  // path to XUK project (for relative paths)
         private bool mCanClose;   // can prevent from closing on problem
         private int m_BitRate;
-        private bool m_IsMP3Check;
+        private bool m_IsEncoderCheck;
         private bool m_SectionNameToAudioFileNameCheck;
         private bool m_FilenameLengthLimit;
         private ExportAdvance m_ExportAdvance;
@@ -47,7 +47,7 @@ namespace Obi.Dialogs
                     }
                 }
             }
-            m_checkBoxMP3Encoder.Checked = encodeToMP3;
+            m_checkBoxEncoder.Checked = encodeToMP3;
             m_btnAdvance.Enabled = encodeToMP3;
             m_checkBoxAddSectionNameToAudioFileName.Checked = appendSectionNameToAudioFile;
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
@@ -89,7 +89,7 @@ namespace Obi.Dialogs
             }
         public bool EncodeToMP3
         {
-            get { return m_IsMP3Check; }
+            get { return m_IsEncoderCheck; }
         }
 
         public int BitRate
@@ -187,9 +187,15 @@ namespace Obi.Dialogs
 
         private void m_checkBoxMP3Encoder_CheckedChanged(object sender, EventArgs e)
         {
-            m_IsMP3Check = m_checkBoxMP3Encoder.Checked;
-            m_ComboBoxBitrate.Enabled = m_checkBoxMP3Encoder.Checked;
-            m_btnAdvance.Enabled = m_checkBoxMP3Encoder.Checked;            
+            m_IsEncoderCheck = m_checkBoxEncoder.Checked;
+            m_comboBoxEncodingType.Enabled = m_checkBoxEncoder.Checked;
+           if (m_comboBoxEncodingType.SelectedIndex == 0)
+            {
+                m_ComboBoxBitrate.Enabled = true;
+                m_btnAdvance.Enabled = true;
+            }
+            
+           // m_btnAdvance.Enabled = m_checkBoxEncoder.Checked;            
         }
 
         
