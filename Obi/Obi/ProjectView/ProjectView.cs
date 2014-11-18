@@ -4936,7 +4936,7 @@ for (int j = 0;
                 visitor.SourceChannel = mPresentation.ChannelsManager.GetOrCreateAudioChannel();
                 visitor.DestinationDirectory = new Uri(audioFileExportDirectory);
 
-                visitor.EncodePublishedAudioFilesToMp3 = false;
+                visitor.EncodePublishedAudioFiles = false;
                 visitor.EncodePublishedAudioFilesStereo = mPresentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2;
                 uint sampleRate = mPresentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
                 if (sampleRate == 44100) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz44100;
