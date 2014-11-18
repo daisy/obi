@@ -36,11 +36,12 @@ namespace Obi.Dialogs
             this.mCancelButton = new System.Windows.Forms.Button();
             this.m_lblSelectLevelForAudioFiles = new System.Windows.Forms.Label();
             this.m_ComboSelectLevelForAudioFiles = new System.Windows.Forms.ComboBox();
-            this.m_checkBoxMP3Encoder = new System.Windows.Forms.CheckBox();
+            this.m_checkBoxEncoder = new System.Windows.Forms.CheckBox();
             this.m_Bitrate = new System.Windows.Forms.Label();
             this.m_ComboBoxBitrate = new System.Windows.Forms.ComboBox();
             this.m_checkBoxAddSectionNameToAudioFileName = new System.Windows.Forms.CheckBox();
             this.m_grpBoxMP3Encoding = new System.Windows.Forms.GroupBox();
+            this.m_comboBoxEncodingType = new System.Windows.Forms.ComboBox();
             this.m_btnAdvance = new System.Windows.Forms.Button();
             this.m_grpBoxSectionNameOperation = new System.Windows.Forms.GroupBox();
             this.m_chkBoxFilenameLengthLimit = new System.Windows.Forms.CheckBox();
@@ -101,12 +102,14 @@ namespace Obi.Dialogs
             this.m_ComboSelectLevelForAudioFiles.FormattingEnabled = true;
             this.m_ComboSelectLevelForAudioFiles.Name = "m_ComboSelectLevelForAudioFiles";
             // 
-            // m_checkBoxMP3Encoder
+            // m_checkBoxEncoder
             // 
-            resources.ApplyResources(this.m_checkBoxMP3Encoder, "m_checkBoxMP3Encoder");
-            this.m_checkBoxMP3Encoder.Name = "m_checkBoxMP3Encoder";
-            this.m_checkBoxMP3Encoder.UseVisualStyleBackColor = true;
-            this.m_checkBoxMP3Encoder.CheckedChanged += new System.EventHandler(this.m_checkBoxMP3Encoder_CheckedChanged);
+            resources.ApplyResources(this.m_checkBoxEncoder, "m_checkBoxEncoder");
+            this.m_checkBoxEncoder.Checked = true;
+            this.m_checkBoxEncoder.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.m_checkBoxEncoder.Name = "m_checkBoxEncoder";
+            this.m_checkBoxEncoder.UseVisualStyleBackColor = true;
+            this.m_checkBoxEncoder.CheckedChanged += new System.EventHandler(this.m_checkBoxMP3Encoder_CheckedChanged);
             // 
             // m_Bitrate
             // 
@@ -138,13 +141,25 @@ namespace Obi.Dialogs
             // 
             // m_grpBoxMP3Encoding
             // 
+            this.m_grpBoxMP3Encoding.Controls.Add(this.m_comboBoxEncodingType);
             this.m_grpBoxMP3Encoding.Controls.Add(this.m_btnAdvance);
             this.m_grpBoxMP3Encoding.Controls.Add(this.m_Bitrate);
             this.m_grpBoxMP3Encoding.Controls.Add(this.m_ComboBoxBitrate);
-            this.m_grpBoxMP3Encoding.Controls.Add(this.m_checkBoxMP3Encoder);
+            this.m_grpBoxMP3Encoding.Controls.Add(this.m_checkBoxEncoder);
             resources.ApplyResources(this.m_grpBoxMP3Encoding, "m_grpBoxMP3Encoding");
             this.m_grpBoxMP3Encoding.Name = "m_grpBoxMP3Encoding";
             this.m_grpBoxMP3Encoding.TabStop = false;
+            // 
+            // m_comboBoxEncodingType
+            // 
+            resources.ApplyResources(this.m_comboBoxEncodingType, "m_comboBoxEncodingType");
+            this.m_comboBoxEncodingType.FormattingEnabled = true;
+            this.m_comboBoxEncodingType.Items.AddRange(new object[] {
+            resources.GetString("m_comboBoxEncodingType.Items"),
+            resources.GetString("m_comboBoxEncodingType.Items1"),
+            resources.GetString("m_comboBoxEncodingType.Items2"),
+            resources.GetString("m_comboBoxEncodingType.Items3")});
+            this.m_comboBoxEncodingType.Name = "m_comboBoxEncodingType";
             // 
             // m_btnAdvance
             // 
@@ -251,7 +266,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mCancelButton;
         private System.Windows.Forms.Label m_lblSelectLevelForAudioFiles;
         private System.Windows.Forms.ComboBox m_ComboSelectLevelForAudioFiles;
-        private System.Windows.Forms.CheckBox m_checkBoxMP3Encoder;
+        private System.Windows.Forms.CheckBox m_checkBoxEncoder;
         private System.Windows.Forms.Label m_Bitrate;
         private System.Windows.Forms.ComboBox m_ComboBoxBitrate;
         private System.Windows.Forms.CheckBox m_checkBoxAddSectionNameToAudioFileName;
@@ -265,5 +280,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.NumericUpDown m_numericUpDownEpubFilenameLengthLimit;
         private System.Windows.Forms.CheckBox m_chkBoxEpubFilenameLengthLimit;
         private System.Windows.Forms.CheckBox m_chkBoxDummyTextHTMLfiles;
+        private System.Windows.Forms.ComboBox m_comboBoxEncodingType;
     }
 }
