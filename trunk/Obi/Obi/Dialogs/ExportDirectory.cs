@@ -294,7 +294,28 @@ namespace Obi.Dialogs
 
         private void m_comboBoxEncodingType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_encodingType = m_comboBoxEncodingType.SelectedIndex;
+             m_encodingType = m_comboBoxEncodingType.SelectedIndex;
+             if (m_encodingType == 1 || m_encodingType == 2 || m_encodingType == 3)
+             {
+                 string ffmpegWorkingDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                 string ffmpegPath = Path.Combine(ffmpegWorkingDir, "ffmpeg.exe");
+                 if (!File.Exists(ffmpegPath))
+                 {
+                     DownloadFile download = new DownloadFile();
+                     DialogResult result = download.ShowDialog();
+                     mOKButton.Enabled = false;
+                 }
+                 else
+                 {
+                     mOKButton.Enabled = true;
+                 }
+             }
+             else
+             {
+                 mOKButton.Enabled = true;
+             }
+
+           
             m_ComboBoxBitrate.Items.Clear();
             if (m_encodingType == 0 || m_encodingType == 1)
             {
@@ -302,6 +323,7 @@ namespace Obi.Dialogs
                 {
                     m_ComboBoxBitrate.Items.Add(bitrateval);
                 }
+                m_ComboBoxBitrate.SelectedIndex = 4;
             }
             if (m_encodingType == 2)
             {
@@ -309,6 +331,7 @@ namespace Obi.Dialogs
                 {
                     m_ComboBoxBitrate.Items.Add(bitrateval);
                 }
+                m_ComboBoxBitrate.SelectedIndex = m_ComboBoxBitrate.Items.Count - 1;
             }
             if (m_encodingType == 3)
             {
@@ -316,8 +339,8 @@ namespace Obi.Dialogs
                 {
                     m_ComboBoxBitrate.Items.Add(bitrateval);
                 }
+                m_ComboBoxBitrate.SelectedIndex = m_ComboBoxBitrate.Items.Count - 1;
             }
-            m_ComboBoxBitrate.SelectedIndex = 0;
         }              
     }
 }
