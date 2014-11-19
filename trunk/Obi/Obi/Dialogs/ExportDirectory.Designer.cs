@@ -116,7 +116,6 @@ namespace Obi.Dialogs
             // 
             // m_ComboBoxBitrate
             // 
-            resources.ApplyResources(this.m_ComboBoxBitrate, "m_ComboBoxBitrate");
             this.m_ComboBoxBitrate.FormattingEnabled = true;
             this.m_ComboBoxBitrate.Items.AddRange(new object[] {
             resources.GetString("m_ComboBoxBitrate.Items"),
@@ -127,6 +126,7 @@ namespace Obi.Dialogs
             resources.GetString("m_ComboBoxBitrate.Items5"),
             resources.GetString("m_ComboBoxBitrate.Items6"),
             resources.GetString("m_ComboBoxBitrate.Items7")});
+            resources.ApplyResources(this.m_ComboBoxBitrate, "m_ComboBoxBitrate");
             this.m_ComboBoxBitrate.Name = "m_ComboBoxBitrate";
             this.m_ComboBoxBitrate.SelectedIndexChanged += new System.EventHandler(this.m_ComboBoxBitrate_SelectedIndexChanged);
             // 
@@ -158,6 +158,7 @@ namespace Obi.Dialogs
             resources.GetString("m_comboBoxEncodingType.Items2"),
             resources.GetString("m_comboBoxEncodingType.Items3")});
             this.m_comboBoxEncodingType.Name = "m_comboBoxEncodingType";
+            this.m_comboBoxEncodingType.SelectedIndexChanged += new System.EventHandler(this.m_comboBoxEncodingType_SelectedIndexChanged);
             // 
             // m_btnAdvance
             // 

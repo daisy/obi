@@ -390,9 +390,6 @@
   <data name="&gt;&gt;m_Bitrate.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="m_ComboBoxBitrate.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="m_ComboBoxBitrate.Items" xml:space="preserve">
     <value>32</value>
   </data>
@@ -558,54 +555,6 @@
   <data name="&gt;&gt;m_grpBoxMP3Encoding.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_chkBoxFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_numericUpDownFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 163</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 74</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
-    <value>Section Name Operation :</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Name" xml:space="preserve">
-    <value>m_grpBoxSectionNameOperation</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grpBoxSectionNameOperation.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="m_chkBoxFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Filename Length Limit</value>
   </data>
@@ -666,6 +615,30 @@
   <data name="&gt;&gt;m_numericUpDownFilenameLengthLimit.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="m_grpBoxSectionNameOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 163</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>475, 74</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_grpBoxSectionNameOperation.Text" xml:space="preserve">
+    <value>Section Name Operation :</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Name" xml:space="preserve">
+    <value>m_grpBoxSectionNameOperation</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpBoxSectionNameOperation.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
@@ -707,57 +680,6 @@
   </data>
   <data name="&gt;&gt;m_chkBoxDummyTextHTMLfiles.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_numericUpDownEpubFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_EpubFileNamegroupBox</value>
-  </data>
-  <data name="&gt;&gt;m_numericUpDownEpubFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Name" xml:space="preserve">
-    <value>m_chkBoxEpubFilenameLengthLimit</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Parent" xml:space="preserve">
-    <value>m_EpubFileNamegroupBox</value>
-  </data>
-  <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 243</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 57</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
-    <value>EPUB Filename Length :</value>
-  </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
-    <value>m_EpubFileNamegroupBox</value>
-  </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_EpubFileNamegroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
     <value>Numeric Up Down EPUB File name Length Limit</value>
@@ -817,6 +739,33 @@
     <value>m_EpubFileNamegroupBox</value>
   </data>
   <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 243</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 57</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
+    <value>EPUB Filename Length :</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
+    <value>m_EpubFileNamegroupBox</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_EpubFileNamegroupBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
