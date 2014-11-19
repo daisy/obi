@@ -59,6 +59,7 @@ namespace Obi.Dialogs
             // 
             // m_btnClose
             // 
+            this.m_btnClose.AccessibleName = "Close";
             this.m_btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnClose.Location = new System.Drawing.Point(280, 213);
             this.m_btnClose.Name = "m_btnClose";
