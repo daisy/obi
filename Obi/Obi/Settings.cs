@@ -74,7 +74,7 @@ namespace Obi
         public string UsersInfoToUpload; //users info is temporarily stored till it is uploaded or timed out
         public int UploadAttemptsCount; // number of times user info upload attempted
         public bool Export_EncodeToMP3;
-        public int Export_BitRateMP3;
+        public double Export_BitRateMP3;
         public bool Export_AppendSectionNameToAudioFile;
         public bool Export_LimitAudioFilesLength; // decides if the length of audio file names has to be limited
         public int Export_AudioFilesNamesLengthLimit; // truncates exported audio file name from right side to limit the maximum no. of characters.
@@ -112,6 +112,7 @@ namespace Obi
         public Point ObiLastLocation;
         public bool Project_PeakMeterChangeLocation; // Changes Peak meter location wrt Obi Form
         public double Audio_CleanupMaxFileSizeInMB;
+        public int Encoding_SelectedIndex;
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
         
 
@@ -212,6 +213,7 @@ namespace Obi
             settings.ObiLastLocation = new Point(0, 0);
             settings.Project_PeakMeterChangeLocation = false;
             settings.Audio_CleanupMaxFileSizeInMB = 100;
+            settings.Encoding_SelectedIndex = 0;
         }
 
         /// <summary>
