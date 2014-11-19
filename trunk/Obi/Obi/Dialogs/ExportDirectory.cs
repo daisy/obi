@@ -21,7 +21,8 @@ namespace Obi.Dialogs
         private int m_encodingType = 0;
         private List<double> m_Mp3Mp4Bitrates;
         private List<double> m_AmrBitrates; 
-        private List<double> m_3gpBitrates; 
+        private List<double> m_3gpBitrates;
+        private List<string> m_EncodingOptions;
       
         public ExportDirectory(string path, string xukPath, bool encodeToMP3, int bitRate, bool appendSectionNameToAudioFile,int encodingType)
         {
@@ -42,6 +43,24 @@ namespace Obi.Dialogs
             m_Mp3Mp4Bitrates = new List<double>(new double[] { 32, 40, 48, 56, 64, 128, 196, 256 });
             m_AmrBitrates = new List<double>(new double[] { 4.75, 5.15, 5.90, 6.70, 7.40, 7.95, 10.20, 12.20 });
             m_3gpBitrates = new List<double>(new double[] { 4.75, 5.15, 5.90, 6.70, 7.40, 7.95, 10.20, 12.20, 14.25, 15.85, 18.25, 19.85, 23.05, 23.85 });
+            m_EncodingOptions = new List<string>(new string[] { "MP3", "MP4 (M4A)", "AMR", "3GP" });
+            m_comboBoxEncodingType.Items.Clear();
+            string ffmpegWorkingDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string ffmpegPath = Path.Combine(ffmpegWorkingDir, "ffmpeg.exe");
+            if (!File.Exists(ffmpegPath))
+            {
+                m_comboBoxEncodingType.Items.Add(m_EncodingOptions[0]);
+                m_btnEncodingOptions.Visible = true;
+            }
+            else
+            {
+                foreach (string encode in m_EncodingOptions)
+                {
+                    m_comboBoxEncodingType.Items.Add(encode);
+                }
+                m_btnEncodingOptions.Visible = false;
+            }
+
 
 
             m_ComboSelectLevelForAudioFiles.SelectedIndex = 0 ;
@@ -294,28 +313,7 @@ namespace Obi.Dialogs
 
         private void m_comboBoxEncodingType_SelectedIndexChanged(object sender, EventArgs e)
         {
-             m_encodingType = m_comboBoxEncodingType.SelectedIndex;
-             if (m_encodingType == 1 || m_encodingType == 2 || m_encodingType == 3)
-             {
-                 string ffmpegWorkingDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                 string ffmpegPath = Path.Combine(ffmpegWorkingDir, "ffmpeg.exe");
-                 if (!File.Exists(ffmpegPath))
-                 {
-                     DownloadFile download = new DownloadFile();
-                     DialogResult result = download.ShowDialog();
-                     mOKButton.Enabled = false;
-                 }
-                 else
-                 {
-                     mOKButton.Enabled = true;
-                 }
-             }
-             else
-             {
-                 mOKButton.Enabled = true;
-             }
-
-           
+            m_encodingType = m_comboBoxEncodingType.SelectedIndex; ;          
             m_ComboBoxBitrate.Items.Clear();
             if (m_encodingType == 0 || m_encodingType == 1)
             {
@@ -341,6 +339,12 @@ namespace Obi.Dialogs
                 }
                 m_ComboBoxBitrate.SelectedIndex = m_ComboBoxBitrate.Items.Count - 1;
             }
+        }
+
+        private void m_btnEncodingOptions_Click(object sender, EventArgs e)
+        {          
+                DownloadFile download = new DownloadFile();
+                download.ShowDialog();
         }              
     }
 }

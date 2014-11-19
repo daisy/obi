@@ -51,6 +51,7 @@ namespace Obi.Dialogs
             this.m_EpubFileNamegroupBox = new System.Windows.Forms.GroupBox();
             this.m_numericUpDownEpubFilenameLengthLimit = new System.Windows.Forms.NumericUpDown();
             this.m_chkBoxEpubFilenameLengthLimit = new System.Windows.Forms.CheckBox();
+            this.m_btnEncodingOptions = new System.Windows.Forms.Button();
             this.m_grpBoxMP3Encoding.SuspendLayout();
             this.m_grpBoxSectionNameOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDownFilenameLengthLimit)).BeginInit();
@@ -139,6 +140,7 @@ namespace Obi.Dialogs
             // 
             // m_grpBoxMP3Encoding
             // 
+            this.m_grpBoxMP3Encoding.Controls.Add(this.m_btnEncodingOptions);
             this.m_grpBoxMP3Encoding.Controls.Add(this.m_comboBoxEncodingType);
             this.m_grpBoxMP3Encoding.Controls.Add(this.m_btnAdvance);
             this.m_grpBoxMP3Encoding.Controls.Add(this.m_Bitrate);
@@ -146,17 +148,13 @@ namespace Obi.Dialogs
             this.m_grpBoxMP3Encoding.Controls.Add(this.m_checkBoxEncoder);
             resources.ApplyResources(this.m_grpBoxMP3Encoding, "m_grpBoxMP3Encoding");
             this.m_grpBoxMP3Encoding.Name = "m_grpBoxMP3Encoding";
+            this.helpProvider1.SetShowHelp(this.m_grpBoxMP3Encoding, ((bool)(resources.GetObject("m_grpBoxMP3Encoding.ShowHelp"))));
             this.m_grpBoxMP3Encoding.TabStop = false;
             // 
             // m_comboBoxEncodingType
             // 
             resources.ApplyResources(this.m_comboBoxEncodingType, "m_comboBoxEncodingType");
             this.m_comboBoxEncodingType.FormattingEnabled = true;
-            this.m_comboBoxEncodingType.Items.AddRange(new object[] {
-            resources.GetString("m_comboBoxEncodingType.Items"),
-            resources.GetString("m_comboBoxEncodingType.Items1"),
-            resources.GetString("m_comboBoxEncodingType.Items2"),
-            resources.GetString("m_comboBoxEncodingType.Items3")});
             this.m_comboBoxEncodingType.Name = "m_comboBoxEncodingType";
             this.m_comboBoxEncodingType.SelectedIndexChanged += new System.EventHandler(this.m_comboBoxEncodingType_SelectedIndexChanged);
             // 
@@ -174,6 +172,7 @@ namespace Obi.Dialogs
             this.m_grpBoxSectionNameOperation.Controls.Add(this.m_checkBoxAddSectionNameToAudioFileName);
             resources.ApplyResources(this.m_grpBoxSectionNameOperation, "m_grpBoxSectionNameOperation");
             this.m_grpBoxSectionNameOperation.Name = "m_grpBoxSectionNameOperation";
+            this.helpProvider1.SetShowHelp(this.m_grpBoxSectionNameOperation, ((bool)(resources.GetObject("m_grpBoxSectionNameOperation.ShowHelp"))));
             this.m_grpBoxSectionNameOperation.TabStop = false;
             // 
             // m_chkBoxFilenameLengthLimit
@@ -205,6 +204,7 @@ namespace Obi.Dialogs
             this.m_EpubFileNamegroupBox.Controls.Add(this.m_chkBoxEpubFilenameLengthLimit);
             resources.ApplyResources(this.m_EpubFileNamegroupBox, "m_EpubFileNamegroupBox");
             this.m_EpubFileNamegroupBox.Name = "m_EpubFileNamegroupBox";
+            this.helpProvider1.SetShowHelp(this.m_EpubFileNamegroupBox, ((bool)(resources.GetObject("m_EpubFileNamegroupBox.ShowHelp"))));
             this.m_EpubFileNamegroupBox.TabStop = false;
             // 
             // m_numericUpDownEpubFilenameLengthLimit
@@ -218,6 +218,13 @@ namespace Obi.Dialogs
             this.m_chkBoxEpubFilenameLengthLimit.Name = "m_chkBoxEpubFilenameLengthLimit";
             this.m_chkBoxEpubFilenameLengthLimit.UseVisualStyleBackColor = true;
             this.m_chkBoxEpubFilenameLengthLimit.CheckedChanged += new System.EventHandler(this.m_chkBoxEpubFilenameLengthLimit_CheckedChanged);
+            // 
+            // m_btnEncodingOptions
+            // 
+            resources.ApplyResources(this.m_btnEncodingOptions, "m_btnEncodingOptions");
+            this.m_btnEncodingOptions.Name = "m_btnEncodingOptions";
+            this.m_btnEncodingOptions.UseVisualStyleBackColor = true;
+            this.m_btnEncodingOptions.Click += new System.EventHandler(this.m_btnEncodingOptions_Click);
             // 
             // ExportDirectory
             // 
@@ -280,5 +287,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_chkBoxEpubFilenameLengthLimit;
         private System.Windows.Forms.CheckBox m_chkBoxDummyTextHTMLfiles;
         private System.Windows.Forms.ComboBox m_comboBoxEncodingType;
+        private System.Windows.Forms.Button m_btnEncodingOptions;
     }
 }
