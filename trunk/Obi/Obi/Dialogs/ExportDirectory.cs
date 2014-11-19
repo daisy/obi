@@ -127,7 +127,7 @@ namespace Obi.Dialogs
                 return m_ComboSelectLevelForAudioFiles.SelectedIndex == 0? 100 : m_ComboSelectLevelForAudioFiles.SelectedIndex;
                 }
             }
-        public bool EncodeToMP3
+        public bool EncodeAudioFiles
         {
             get { return m_IsEncoderCheck; }
         }
@@ -136,9 +136,15 @@ namespace Obi.Dialogs
         {
             get { return m_BitRate; }
         }
-        public int EncodingType
+        public AudioLib.AudioFileFormats EncodingFileFormat
         {
-            get { return 0; }
+            get
+            {
+                return m_comboBoxEncodingType.SelectedIndex == 0 ? AudioLib.AudioFileFormats.MP3 :
+                m_comboBoxEncodingType.SelectedIndex == 1 ? AudioLib.AudioFileFormats.MP4 :
+                m_comboBoxEncodingType.SelectedIndex == 2 ? AudioLib.AudioFileFormats.AMR:
+                AudioLib.AudioFileFormats.GP3;
+            }
         }
 
         public bool EnabledAdvancedParameters { get { return m_ExportAdvance != null && m_ExportAdvance.EnableAdvancedParameters; } }
