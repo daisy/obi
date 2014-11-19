@@ -2753,9 +2753,9 @@ ref string exportDirectoryEPUB3)
                     string exportPathEPUB3 = ExportDialogEPUB3 != null ? ExportDialogEPUB3.DirectoryPath : null;
 
                     Dialogs.ExportDirectory dialog = ExportDialogDAISY3 != null ? ExportDialogDAISY3 : ExportDialogDAISY202 != null ? ExportDialogDAISY202 : ExportDialogEPUB3;
-                    mSettings.Export_EncodeToMP3 = dialog.EncodeToMP3;
+                    mSettings.Export_EncodeToMP3 = dialog.EncodeAudioFiles;
                     mSettings.Export_BitRateMP3 = dialog.BitRate;
-                    mSettings.Encoding_SelectedIndex = dialog.EncodingType;
+                    //mSettings.Encoding_SelectedIndex = dialog.EncodingFileFormat;
                     mSettings.Export_AppendSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName;
                     mSettings.Export_LimitAudioFilesLength = dialog.AppendSectionNameToAudioFileName &&
                                                              dialog.LimitLengthOfAudioFileNames;
@@ -2775,7 +2775,7 @@ ref string exportDirectoryEPUB3)
                     if (ExportDialogDAISY3 != null)
                     {
                         DAISY3ExportInstance = new Obi.ImportExport.DAISY3_ObiExport(
-                            mSession.Presentation, exportPathDAISY3, null, ExportDialogDAISY3.EncodeToMP3, (ushort)ExportDialogDAISY3.BitRate,
+                            mSession.Presentation, exportPathDAISY3, null, ExportDialogDAISY3.EncodeAudioFiles, Convert.ToUInt16(ExportDialogDAISY3.BitRate),
                             AudioLib.SampleRate.Hz44100,
                             mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
                             false, ExportDialogDAISY3.LevelSelection);
@@ -2784,11 +2784,12 @@ ref string exportDirectoryEPUB3)
                         DAISY3ExportInstance.AudioFileNameCharsLimit = ExportDialogDAISY3.AudioFileNameCharsLimit;
                         if (ExportDialogDAISY3.EnabledAdvancedParameters) DAISY3ExportInstance.SetAdditionalMp3EncodingParameters(ExportDialogDAISY3.Mp3ChannelMode, ExportDialogDAISY3.Mp3ReSample, ExportDialogDAISY3.Mp3RePlayGain);
                         ((Obi.ImportExport.DAISY3_ObiExport)DAISY3ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                        DAISY3ExportInstance.EncodingFileFormat = ExportDialogDAISY3.EncodingFileFormat;
                     }
                     if (ExportDialogDAISY202 != null)
                     {
                         DAISY202ExportInstance = new Obi.ImportExport.DAISY202Export(
-                            mSession.Presentation, exportPathDAISY202, ExportDialogDAISY202.EncodeToMP3, (ushort)ExportDialogDAISY202.BitRate,
+                            mSession.Presentation, exportPathDAISY202, ExportDialogDAISY202.EncodeAudioFiles, Convert.ToUInt16(ExportDialogDAISY202.BitRate),
                             AudioLib.SampleRate.Hz44100, mSettings.AudioChannels == 2,
                             ExportDialogDAISY202.LevelSelection);
 
@@ -2796,12 +2797,13 @@ ref string exportDirectoryEPUB3)
                         DAISY202ExportInstance.AudioFileNameCharsLimit = ExportDialogDAISY202.AudioFileNameCharsLimit;
                         if (ExportDialogDAISY202.EnabledAdvancedParameters) DAISY202ExportInstance.SetAdditionalMp3EncodingParameters(ExportDialogDAISY202.Mp3ChannelMode, ExportDialogDAISY202.Mp3ReSample, ExportDialogDAISY202.Mp3RePlayGain);
                         ((Obi.ImportExport.DAISY202Export)DAISY202ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                        DAISY202ExportInstance.EncodingFileFormat = ExportDialogDAISY202.EncodingFileFormat;
                     }
 
                     if (ExportDialogEPUB3 != null)
                     {
                         EPUB3_ExportInstance = new Obi.ImportExport.Epub3_ObiExport(
-                            mSession.Presentation, exportPathEPUB3, null, ExportDialogEPUB3.EncodeToMP3, (ushort)ExportDialogEPUB3.BitRate,
+                            mSession.Presentation, exportPathEPUB3, null, ExportDialogEPUB3.EncodeAudioFiles, Convert.ToUInt16(ExportDialogEPUB3.BitRate),
                             AudioLib.SampleRate.Hz44100,
                             mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
                             false, ExportDialogEPUB3.LevelSelection,
@@ -2813,6 +2815,7 @@ ref string exportDirectoryEPUB3)
 
                         if (ExportDialogEPUB3.EnabledAdvancedParameters) EPUB3_ExportInstance.SetAdditionalMp3EncodingParameters(ExportDialogEPUB3.Mp3ChannelMode, ExportDialogEPUB3.Mp3ReSample, ExportDialogEPUB3.Mp3RePlayGain);
                         ((Obi.ImportExport.Epub3_ObiExport)EPUB3_ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                        EPUB3_ExportInstance.EncodingFileFormat = ExportDialogEPUB3.EncodingFileFormat;
                     }
                     exportDirectoryDAISY202 = exportPathDAISY202;
                     exportDirectoryDAISY3 = exportPathDAISY3;
