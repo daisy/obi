@@ -159,7 +159,7 @@ namespace Obi.Dialogs
         {
             get
             {
-                return m_comboBoxEncodingType.SelectedIndex == 0 ? AudioLib.AudioFileFormats.MP3 :
+                return m_comboBoxEncodingType.SelectedIndex <= 0 ? AudioLib.AudioFileFormats.MP3 :
                 m_comboBoxEncodingType.SelectedIndex == 1 ? AudioLib.AudioFileFormats.MP4 :
                 m_comboBoxEncodingType.SelectedIndex == 2 ? AudioLib.AudioFileFormats.AMR:
                 AudioLib.AudioFileFormats.GP3;

@@ -162,6 +162,8 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_comboBoxEncodingType, "m_comboBoxEncodingType");
             this.m_comboBoxEncodingType.FormattingEnabled = true;
+            this.m_comboBoxEncodingType.Items.AddRange(new object[] {
+            resources.GetString("m_comboBoxEncodingType.Items")});
             this.m_comboBoxEncodingType.Name = "m_comboBoxEncodingType";
             this.m_comboBoxEncodingType.SelectedIndexChanged += new System.EventHandler(this.m_comboBoxEncodingType_SelectedIndexChanged);
             // 
