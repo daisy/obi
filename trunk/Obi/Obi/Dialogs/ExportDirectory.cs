@@ -317,11 +317,22 @@ namespace Obi.Dialogs
             m_ComboBoxBitrate.Items.Clear();
             if (m_encodingType == 0 || m_encodingType == 1)
             {
+
                 foreach (double bitrateval in m_Mp3Mp4Bitrates)
                 {
                     m_ComboBoxBitrate.Items.Add(bitrateval);
                 }
-                m_ComboBoxBitrate.SelectedIndex = 4;
+                if (m_encodingType == 0)
+                {
+                    m_ComboBoxBitrate.SelectedIndex = 4;
+                    m_btnAdvance.Enabled = true;
+                }
+                else
+                {
+                    m_ComboBoxBitrate.SelectedIndex = 2;
+                    m_btnAdvance.Enabled = false;
+                }
+               
             }
             if (m_encodingType == 2)
             {
@@ -330,6 +341,7 @@ namespace Obi.Dialogs
                     m_ComboBoxBitrate.Items.Add(bitrateval);
                 }
                 m_ComboBoxBitrate.SelectedIndex = m_ComboBoxBitrate.Items.Count - 1;
+                m_btnAdvance.Enabled = false;
             }
             if (m_encodingType == 3)
             {
@@ -338,6 +350,7 @@ namespace Obi.Dialogs
                     m_ComboBoxBitrate.Items.Add(bitrateval);
                 }
                 m_ComboBoxBitrate.SelectedIndex = m_ComboBoxBitrate.Items.Count - 1;
+                m_btnAdvance.Enabled = false;
             }
         }
 
