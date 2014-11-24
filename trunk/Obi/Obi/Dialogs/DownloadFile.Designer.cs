@@ -39,7 +39,7 @@ namespace Obi.Dialogs
             this.m_linkToDownload.AccessibleName = "Download ffmpeg";
             this.m_linkToDownload.AutoSize = true;
             this.m_linkToDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_linkToDownload.Location = new System.Drawing.Point(97, 206);
+            this.m_linkToDownload.Location = new System.Drawing.Point(50, 214);
             this.m_linkToDownload.Name = "m_linkToDownload";
             this.m_linkToDownload.Size = new System.Drawing.Size(149, 20);
             this.m_linkToDownload.TabIndex = 1;
