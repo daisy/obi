@@ -24,14 +24,12 @@ namespace Obi.Dialogs
         private List<double> m_3gpBitrates;
         private List<string> m_EncodingOptions;
       
-        public ExportDirectory(string path, string xukPath, bool encodeToMP3, int bitRate, bool appendSectionNameToAudioFile,int encodingType)
+        public ExportDirectory(string path, string xukPath, bool encodeToMP3, double bitRate, bool appendSectionNameToAudioFile,string encodingType)
         {
             InitializeComponent();
             mPathTextBox.Text = path;
             mXukPath = xukPath;
             mCanClose = true;
-            m_encodingType = 0;//encodingType;
-
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message("EachLevel"));
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message ("Level1"));
             m_ComboSelectLevelForAudioFiles.Items.Add(Localizer.Message("Level2"));
@@ -61,48 +59,75 @@ namespace Obi.Dialogs
                 m_btnEncodingOptions.Visible = false;
             }
 
-
-
+            m_encodingType = 0;//encodingType;
+            if (encodingType ==AudioLib.AudioFileFormats.MP3.ToString())
+            {
+                m_encodingType = 0;
+            }
+            else if (encodingType == AudioLib.AudioFileFormats.MP4.ToString())
+            {
+                m_encodingType = 1;
+            }
+            else if (encodingType == AudioLib.AudioFileFormats.AMR.ToString())
+            {
+                m_encodingType = 2;
+            }
+            else if (encodingType == AudioLib.AudioFileFormats.GP3.ToString())
+            {
+                m_encodingType = 3;
+            }
             m_ComboSelectLevelForAudioFiles.SelectedIndex = 0 ;
             m_ComboBoxBitrate.Items.Clear();
-            if (encodingType == 0 || encodingType==1)
+            if (m_encodingType == 0 || m_encodingType == 1)
             {
                 foreach(double bitrateval in m_Mp3Mp4Bitrates)
                 {
                     m_ComboBoxBitrate.Items.Add(bitrateval);
                 }
-                m_ComboBoxBitrate.SelectedIndex = 4;
+               m_ComboBoxBitrate.SelectedIndex = 4;
+                if (m_encodingType == 1)
+                {
+                    m_comboBoxEncodingType.SelectedIndex = 1;
+                }
+                else
+                {
+                    m_comboBoxEncodingType.SelectedIndex = 0;
+                }
             }
-            if (encodingType == 2)
+            if (m_encodingType == 2)
             {
                 foreach(double bitrateval in m_AmrBitrates)
                 {
                     m_ComboBoxBitrate.Items.Add(bitrateval);
                 }
-                m_ComboBoxBitrate.SelectedIndex = 5;
+              m_ComboBoxBitrate.SelectedIndex = 5;
+                m_comboBoxEncodingType.SelectedIndex = 2;
             }
-            if (encodingType == 3)
+            if (m_encodingType == 3)
             {
                 foreach (double bitrateval in m_3gpBitrates)
                 {
                     m_ComboBoxBitrate.Items.Add(bitrateval);
                 }
-                m_ComboBoxBitrate.SelectedIndex = 8;
+            m_ComboBoxBitrate.SelectedIndex = 8;
+                m_comboBoxEncodingType.SelectedIndex = 3;
             }
            // Array Mp4Bitrate ={16,32,64,128,196,256,384};
+
             if (bitRate != 0)
             {
-              //  m_ComboBoxBitrate.SelectedIndex = ;
+                //  m_ComboBoxBitrate.SelectedIndex = ;
                 //m_ComboBoxBitrate.SelectedIndex = bitRate == 32 ? 0 : bitRate == 48 ? 1 : bitRate == 64 ? 2 : 3;
-                for (int i=0; i < m_ComboBoxBitrate.Items.Count;i++)  
+                for (int i = 0; i < m_ComboBoxBitrate.Items.Count; i++)
                 {
-                    if( int.Parse( m_ComboBoxBitrate.Items[i].ToString ()) == bitRate )
+                    if (double.Parse(m_ComboBoxBitrate.Items[i].ToString()) == bitRate)
                     {
                         m_ComboBoxBitrate.SelectedIndex = i;
                         break;
                     }
                 }
             }            
+
             m_checkBoxEncoder.Checked = encodeToMP3;
             m_comboBoxEncodingType.Enabled = m_checkBoxEncoder.Checked;
             m_ComboBoxBitrate.Enabled = m_checkBoxEncoder.Checked;

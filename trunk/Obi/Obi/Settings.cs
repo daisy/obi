@@ -112,7 +112,7 @@ namespace Obi
         public Point ObiLastLocation;
         public bool Project_PeakMeterChangeLocation; // Changes Peak meter location wrt Obi Form
         public double Audio_CleanupMaxFileSizeInMB;
-        public int Encoding_SelectedIndex;
+        public string EncodingFileFormat;
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
         
 
@@ -213,7 +213,7 @@ namespace Obi
             settings.ObiLastLocation = new Point(0, 0);
             settings.Project_PeakMeterChangeLocation = false;
             settings.Audio_CleanupMaxFileSizeInMB = 100;
-            settings.Encoding_SelectedIndex = 0;
+            settings.EncodingFileFormat = "MP3";
         }
 
         /// <summary>
