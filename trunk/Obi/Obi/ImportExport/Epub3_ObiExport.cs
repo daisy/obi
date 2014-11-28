@@ -39,9 +39,9 @@ namespace Obi.ImportExport
         private readonly string m_Meta_infFileName = null;
         public const string NS_URL_EPUB = "http://www.idpf.org/2007/ops";
 
-        public Epub3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,ushort mp3BitRate ,
+        public Epub3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,double bitRate_Encoding ,
             SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel, int EPUBFileNameLengthLimit, bool createDummyText):
-            base (presentation, exportDirectory, navListElementNamesList, encodeToMp3,mp3BitRate ,
+            base (presentation, exportDirectory, navListElementNamesList, encodeToMp3,bitRate_Encoding ,
             sampleRate, stereo, skipACM, audioFileSectionLevel)
         {
             
