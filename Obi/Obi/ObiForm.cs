@@ -2556,11 +2556,9 @@ namespace Obi
                             ProgressDialog progress =
                                 new ProgressDialog(Localizer.Message("export_progress_dialog_title"),
                                                    delegate(ProgressDialog progress1)
-                                                   {
-
+                                                   {                                                       
                                                        if (DAISY3ExportInstance != null)
                                                        {
-
                                                            mSession.Presentation.ExportToZ(exportPathDAISY3, mSession.Path,
                                                                                            DAISY3ExportInstance);
                                                        }
@@ -2700,8 +2698,8 @@ ref string exportDirectoryEPUB3)
                 {
                     ExportDialogDAISY3 =
                         new ExportDirectory(exportDirectoryDAISY3,
-                                            mSession.Path, mSettings.Export_EncodeToMP3, Convert.ToInt32(mSettings.Export_BitRateMP3),
-                                            mSettings.Export_AppendSectionNameToAudioFile,mSettings.Encoding_SelectedIndex);
+                                            mSession.Path, mSettings.Export_EncodeToMP3, (mSettings.Export_BitRateMP3),
+                                            mSettings.Export_AppendSectionNameToAudioFile,mSettings.EncodingFileFormat);
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY3.AdditionalTextForTitle = "DAISY 3";
                     ExportDialogDAISY3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2715,8 +2713,8 @@ ref string exportDirectoryEPUB3)
                 {
                     ExportDialogDAISY202 =
                         new ExportDirectory(exportDirectoryDAISY202,
-                                            mSession.Path, mSettings.Export_EncodeToMP3,Convert.ToInt32(mSettings.Export_BitRateMP3),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.Encoding_SelectedIndex);
+                                            mSession.Path, mSettings.Export_EncodeToMP3,(mSettings.Export_BitRateMP3),
+                                            mSettings.Export_AppendSectionNameToAudioFile,mSettings.EncodingFileFormat);
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY202.AdditionalTextForTitle = "DAISY 2.02";
                     ExportDialogDAISY202.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2729,8 +2727,8 @@ ref string exportDirectoryEPUB3)
                 {
                     ExportDialogEPUB3 =
                         new ExportDirectory(exportDirectoryEPUB3,
-                                            mSession.Path, true, Convert.ToInt32(mSettings.Export_BitRateMP3),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.Encoding_SelectedIndex);
+                                            mSession.Path, true, (mSettings.Export_BitRateMP3),
+                                            mSettings.Export_AppendSectionNameToAudioFile,mSettings.EncodingFileFormat);
                     //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogEPUB3.EpubLengthCheckboxEnabled = true;
                     ExportDialogEPUB3.CreateDummyTextCheckboxEnabled = true;
@@ -2755,6 +2753,7 @@ ref string exportDirectoryEPUB3)
                     Dialogs.ExportDirectory dialog = ExportDialogDAISY3 != null ? ExportDialogDAISY3 : ExportDialogDAISY202 != null ? ExportDialogDAISY202 : ExportDialogEPUB3;
                     mSettings.Export_EncodeToMP3 = dialog.EncodeAudioFiles;
                     mSettings.Export_BitRateMP3 = dialog.BitRate;
+                    mSettings.EncodingFileFormat = dialog.EncodingFileFormat.ToString();
                     //mSettings.Encoding_SelectedIndex = dialog.EncodingFileFormat;
                     mSettings.Export_AppendSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName;
                     mSettings.Export_LimitAudioFilesLength = dialog.AppendSectionNameToAudioFileName &&
