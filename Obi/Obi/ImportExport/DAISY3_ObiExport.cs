@@ -23,7 +23,7 @@ namespace Obi.ImportExport
         protected Dictionary<urakawa.core.TreeNode, string> m_Skippable_UpstreamIdMap = new Dictionary<TreeNode, string>();
         protected Dictionary<XmlDocument, string> m_AnchorSmilDoc_SmileFileNameMap = new Dictionary<XmlDocument, string>();
 
-        public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,ushort mp3BitRate ,
+        public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3,double mp3BitRate ,
             SampleRate sampleRate, bool stereo, bool skipACM, int audioFileSectionLevel)
             : base(presentation, exportDirectory, navListElementNamesList, encodeToMp3, mp3BitRate,
             sampleRate, stereo,

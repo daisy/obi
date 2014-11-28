@@ -2775,7 +2775,7 @@ ref string exportDirectoryEPUB3)
                     if (ExportDialogDAISY3 != null)
                     {
                         DAISY3ExportInstance = new Obi.ImportExport.DAISY3_ObiExport(
-                            mSession.Presentation, exportPathDAISY3, null, ExportDialogDAISY3.EncodeAudioFiles, Convert.ToUInt16(ExportDialogDAISY3.BitRate),
+                            mSession.Presentation, exportPathDAISY3, null, ExportDialogDAISY3.EncodeAudioFiles, ExportDialogDAISY3.BitRate,
                             AudioLib.SampleRate.Hz44100,
                             mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
                             false, ExportDialogDAISY3.LevelSelection);
@@ -2789,7 +2789,7 @@ ref string exportDirectoryEPUB3)
                     if (ExportDialogDAISY202 != null)
                     {
                         DAISY202ExportInstance = new Obi.ImportExport.DAISY202Export(
-                            mSession.Presentation, exportPathDAISY202, ExportDialogDAISY202.EncodeAudioFiles, Convert.ToUInt16(ExportDialogDAISY202.BitRate),
+                            mSession.Presentation, exportPathDAISY202, ExportDialogDAISY202.EncodeAudioFiles, ExportDialogDAISY202.BitRate,
                             AudioLib.SampleRate.Hz44100, mSettings.AudioChannels == 2,
                             ExportDialogDAISY202.LevelSelection);
 
@@ -2803,7 +2803,7 @@ ref string exportDirectoryEPUB3)
                     if (ExportDialogEPUB3 != null)
                     {
                         EPUB3_ExportInstance = new Obi.ImportExport.Epub3_ObiExport(
-                            mSession.Presentation, exportPathEPUB3, null, ExportDialogEPUB3.EncodeAudioFiles, Convert.ToUInt16(ExportDialogEPUB3.BitRate),
+                            mSession.Presentation, exportPathEPUB3, null, ExportDialogEPUB3.EncodeAudioFiles, ExportDialogEPUB3.BitRate,
                             AudioLib.SampleRate.Hz44100,
                             mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels == 2,
                             false, ExportDialogEPUB3.LevelSelection,
