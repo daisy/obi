@@ -1964,7 +1964,7 @@ namespace Obi.ProjectView
             int progressPercent = 0;
             for (int i = endIndex; i >= startIndex; i--)
                 {
-                    Console.WriteLine(preservePhrasesWithSpecificRole + " : " + roleToPreserve.ToString());
+                    //Console.WriteLine(preservePhrasesWithSpecificRole + " : " + roleToPreserve.ToString());
                     if (preservePhrasesWithSpecificRole && section.PhraseChild(i).Role_ == roleToPreserve) continue;
 
                 Commands.Node.Delete deleteCommand = new Obi.Commands.Node.Delete ( this, section.PhraseChild ( i ), false );
