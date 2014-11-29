@@ -1931,7 +1931,12 @@ namespace Obi.ProjectView
             }
 
         //@singleSection
-        public urakawa.command.Command GetDeleteRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode )
+        public urakawa.command.Command GetDeleteRangeOfPhrasesInSectionCommand(SectionNode section, EmptyNode startNode, EmptyNode endNode)
+        {
+            return GetDeleteRangeOfPhrasesInSectionCommand ( section, startNode, endNode, false, PhraseNode.Role.Page);
+        }
+
+            public urakawa.command.Command GetDeleteRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode, bool preservePhrasesWithSpecificRole, PhraseNode.Role roleToPreserve )
             {
             CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "Delete_RangeOfPhrases" ) );
             command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection ( this,Selection ) );
@@ -1959,6 +1964,9 @@ namespace Obi.ProjectView
             int progressPercent = 0;
             for (int i = endIndex; i >= startIndex; i--)
                 {
+                    Console.WriteLine(preservePhrasesWithSpecificRole + " : " + roleToPreserve.ToString());
+                    if (preservePhrasesWithSpecificRole && section.PhraseChild(i).Role_ == roleToPreserve) continue;
+
                 Commands.Node.Delete deleteCommand = new Obi.Commands.Node.Delete ( this, section.PhraseChild ( i ), false );
                 if (i == startIndex || progressPercent > 98) progressPercent = 98;
                 if ((i - startIndex) % progressInterval == 0) deleteCommand.ProgressPercentage = progressPercent += 2;

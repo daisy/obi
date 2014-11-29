@@ -1994,7 +1994,8 @@ namespace Obi.ProjectView
                 if (section == null || phraseIndex < 0 || phraseIndex >= section.PhraseChildCount) return;
 
                 command.ChildCommands.Insert(command.ChildCommands.Count, 
-                    mView.GetDeleteRangeOfPhrasesInSectionCommand(section, section.PhraseChild(phraseIndex), section.PhraseChild(section.PhraseChildCount - 1)));
+                    mView.GetDeleteRangeOfPhrasesInSectionCommand(section, section.PhraseChild(phraseIndex), section.PhraseChild(section.PhraseChildCount - 1),
+                    mView.ObiForm.Settings.Audio_PreservePagesWhileRecordOverSubsequentAudio, PhraseNode.Role.Page));
             }
         }
 
@@ -3362,7 +3363,9 @@ SelectionChangedPlaybackEnabled = false;
                 if ( lastRecordedPhrase.IsRooted && lastRecordedPhrase.Index < section.PhraseChildCount -1)
                 {
                 Command deleteFollowingCmd =  mView.GetDeleteRangeOfPhrasesInSectionCommand(
-                    section, section.PhraseChild(lastRecordedPhrase.Index+1), section.PhraseChild(section.PhraseChildCount - 1));
+                    section, section.PhraseChild(lastRecordedPhrase.Index+1), section.PhraseChild(section.PhraseChildCount - 1),
+                    mView.ObiForm.Settings.Audio_PreservePagesWhileRecordOverSubsequentAudio, PhraseNode.Role.Page);
+                
                 mView.Presentation.Do(deleteFollowingCmd);
                 }
             }
