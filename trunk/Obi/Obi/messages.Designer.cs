@@ -331,6 +331,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preserve pages while record over subsequent phrases.
+        /// </summary>
+        internal static string Audio_PreservePage {
+            get {
+                return ResourceManager.GetString("Audio_PreservePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use Record Button to record over subsequent audio.
         /// </summary>
         internal static string Audio_RecordSubsequentPhrases {

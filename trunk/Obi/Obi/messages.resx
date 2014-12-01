@@ -2682,4 +2682,7 @@ Error text: {1}</value>
   <data name="UserRegistration_EnterFollowing" xml:space="preserve">
     <value>Please Enter the Following correctly :</value>
   </data>
+  <data name="Audio_PreservePage" xml:space="preserve">
+    <value>Preserve pages while record over subsequent phrases</value>
+  </data>
 </root>
