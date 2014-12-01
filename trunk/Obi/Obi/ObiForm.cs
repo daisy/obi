@@ -1910,7 +1910,8 @@ namespace Obi
                 mDecreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanDecreaseLevel;
                 mIncreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanIncreaseLevel;
                 mSplitSectionToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
-                mMergeSectionWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+               // mMergeSectionWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+                mMergeWithNextSectionToolStripMenuItem.Enabled = mMultiSectionOperations.Enabled = mProjectView.CanMergeStripWithNext;
                 mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
                 mSectionIsUsedToolStripMenuItem.CheckedChanged -=
                     new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
@@ -5662,6 +5663,16 @@ ref string exportDirectoryEPUB3)
                 {
                     mProjectView.ProcessAudio();
                 }
+            }
+
+            private void mMergeWithNextSectionToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.MergeStrips();
+            }
+
+            private void mMultiSectionOperations_Click(object sender, EventArgs e)
+            {
+                mProjectView.MergeMultipleSections();
             }
 
  

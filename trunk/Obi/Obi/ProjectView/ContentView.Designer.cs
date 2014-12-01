@@ -35,9 +35,7 @@ namespace Obi.ProjectView
             this.Context_AddSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_InsertSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SplitSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_MergeSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_MergeSectionWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_MergeMultipleSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_MergeWithNextSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_AddBlankPhraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AddEmptyPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,6 +88,7 @@ namespace Obi.ProjectView
             this.Context_Delete_deleteSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_Delete_deleteFollowingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.Context_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ExportReplaceAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ExportAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ReplaceAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,9 +98,9 @@ namespace Obi.ProjectView
             this.mVScrollBar = new System.Windows.Forms.VScrollBar();
             this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Context_MultiSectionOperations = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
-            this.Context_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,7 +111,8 @@ namespace Obi.ProjectView
             this.Context_AddSectionMenuItem,
             this.Context_InsertSectionMenuItem,
             this.Context_SplitSectionMenuItem,
-            this.Context_MergeSectionMenuItem,
+            this.Context_MergeWithNextSectionMenuItem,
+            this.Context_MultiSectionOperations,
             this.toolStripSeparator1,
             this.Context_AddBlankPhraseMenuItem,
             this.Context_AddEmptyPagesMenuItem,
@@ -169,25 +169,11 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.Context_SplitSectionMenuItem, "Context_SplitSectionMenuItem");
             this.Context_SplitSectionMenuItem.Click += new System.EventHandler(this.Context_SplitSectionMenuItem_Click);
             // 
-            // Context_MergeSectionMenuItem
+            // Context_MergeWithNextSectionMenuItem
             // 
-            this.Context_MergeSectionMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Context_MergeSectionWithNextToolStripMenuItem,
-            this.Context_MergeMultipleSectionsToolStripMenuItem});
-            this.Context_MergeSectionMenuItem.Name = "Context_MergeSectionMenuItem";
-            resources.ApplyResources(this.Context_MergeSectionMenuItem, "Context_MergeSectionMenuItem");
-            // 
-            // Context_MergeSectionWithNextToolStripMenuItem
-            // 
-            resources.ApplyResources(this.Context_MergeSectionWithNextToolStripMenuItem, "Context_MergeSectionWithNextToolStripMenuItem");
-            this.Context_MergeSectionWithNextToolStripMenuItem.Name = "Context_MergeSectionWithNextToolStripMenuItem";
-            this.Context_MergeSectionWithNextToolStripMenuItem.Click += new System.EventHandler(this.Context_MergeSectionWithNextToolStripMenuItem_Click);
-            // 
-            // Context_MergeMultipleSectionsToolStripMenuItem
-            // 
-            resources.ApplyResources(this.Context_MergeMultipleSectionsToolStripMenuItem, "Context_MergeMultipleSectionsToolStripMenuItem");
-            this.Context_MergeMultipleSectionsToolStripMenuItem.Name = "Context_MergeMultipleSectionsToolStripMenuItem";
-            this.Context_MergeMultipleSectionsToolStripMenuItem.Click += new System.EventHandler(this.Context_MergeMultipleSectionsToolStripMenuItem_Click);
+            resources.ApplyResources(this.Context_MergeWithNextSectionMenuItem, "Context_MergeWithNextSectionMenuItem");
+            this.Context_MergeWithNextSectionMenuItem.Name = "Context_MergeWithNextSectionMenuItem";
+            this.Context_MergeWithNextSectionMenuItem.Click += new System.EventHandler(this.Context_MergeWithNextSectionMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -529,6 +515,12 @@ namespace Obi.ProjectView
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             // 
+            // Context_AudioProcessing
+            // 
+            this.Context_AudioProcessing.Name = "Context_AudioProcessing";
+            resources.ApplyResources(this.Context_AudioProcessing, "Context_AudioProcessing");
+            this.Context_AudioProcessing.Click += new System.EventHandler(this.Context_AudioProcessing_Click);
+            // 
             // Context_ExportReplaceAudioMenuItem
             // 
             resources.ApplyResources(this.Context_ExportReplaceAudioMenuItem, "Context_ExportReplaceAudioMenuItem");
@@ -546,7 +538,6 @@ namespace Obi.ProjectView
             // 
             // Context_ReplaceAudioMenuItem
             // 
-            
             this.Context_ReplaceAudioMenuItem.Name = "Context_ReplaceAudioMenuItem";
             resources.ApplyResources(this.Context_ReplaceAudioMenuItem, "Context_ReplaceAudioMenuItem");
             this.Context_ReplaceAudioMenuItem.Click += new System.EventHandler(this.Context_ReplaceAudioMenuItem_Click);
@@ -586,6 +577,12 @@ namespace Obi.ProjectView
             // 
             this.timer1.Interval = 1000;
             // 
+            // Context_MultiSectionOperations
+            // 
+            resources.ApplyResources(this.Context_MultiSectionOperations, "Context_MultiSectionOperations");
+            this.Context_MultiSectionOperations.Name = "Context_MultiSectionOperations";
+            this.Context_MultiSectionOperations.Click += new System.EventHandler(this.Context_MultiSectionOperations_Click);
+            // 
             // verticalScrollToolStripContainer1
             // 
             resources.ApplyResources(this.verticalScrollToolStripContainer1, "verticalScrollToolStripContainer1");
@@ -605,12 +602,6 @@ namespace Obi.ProjectView
             this.contentViewLabel1.Name_SectionDisplayed = "No section selected.";
             this.contentViewLabel1.sectionSelected = false;
             this.contentViewLabel1.zoomFactor = 1F;
-            // 
-            // Context_AudioProcessing
-            // 
-            this.Context_AudioProcessing.Name = "Context_AudioProcessing";
-            resources.ApplyResources(this.Context_AudioProcessing, "Context_AudioProcessing");
-            this.Context_AudioProcessing.Click += new System.EventHandler(this.Context_AudioProcessing_Click);
             // 
             // ContentView
             // 
@@ -641,7 +632,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem Context_InsertSectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_SplitSectionMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_MergeSectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ImportAudioFilesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_SplitPhraseMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_CropAudioMenuItem;
@@ -683,8 +673,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem;
         private VerticalScrollToolStripContainer verticalScrollToolStripContainer1;
         private System.Windows.Forms.ToolStripMenuItem Context_ExportReplaceAudioMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_MergeSectionWithNextToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_MergeMultipleSectionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_AssignRole_AnchorMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_SkippablesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem;
@@ -706,5 +694,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_ExportAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ReplaceAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_AudioProcessing;
+        private System.Windows.Forms.ToolStripMenuItem Context_MergeWithNextSectionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_MultiSectionOperations;
     }
 }
