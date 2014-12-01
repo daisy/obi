@@ -3187,7 +3187,8 @@ namespace Obi.ProjectView
                             -1;
                         SectionNode section = selectedNode.ParentAs<SectionNode>();
                         Command deleteFollowingCmd = mView.GetDeleteRangeOfPhrasesInSectionCommand(
-                            section, section.PhraseChild(selectedNode.Index + 1), section.PhraseChild(section.PhraseChildCount - 1));
+                            section, section.PhraseChild(selectedNode.Index + 1), section.PhraseChild(section.PhraseChildCount - 1),
+                            mView.ObiForm.Settings.Audio_PreservePagesWhileRecordOverSubsequentAudio, PhraseNode.Role.Page);
                         mView.Presentation.Do(deleteFollowingCmd);
 
                         if (time >= 0)
