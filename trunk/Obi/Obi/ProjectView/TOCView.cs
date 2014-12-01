@@ -25,6 +25,8 @@ namespace Obi.ProjectView
             mBaseFontSize = Font.SizeInPoints;
             mSelection = null;
             mProjectView = null;
+            this.Context_MergeWithNextMenuItem.Click += new System.EventHandler(this.Context_MergeWithNextMenuItem_Click);
+            this.Context_MultipleOperationsMenuItem.Click +=new EventHandler(Context_MultipleOperationsMenuItem_Click);
         }
 
 
@@ -300,7 +302,8 @@ namespace Obi.ProjectView
             Context_PasteInsideMenuItem.Enabled = CanPasteInside(mProjectView.Clipboard);
             Context_DeleteMenuItem.Enabled = mProjectView.CanRemoveSection;
             Context_PropertiesMenuItem.Enabled = mProjectView.CanShowSectionPropertiesDialog;
-            Context_MergeSectionMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+           // Context_MergeSectionMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+            Context_MergeWithNextMenuItem.Enabled = Context_MultipleOperationsMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
             Context_ShowContentsMenuItem.Enabled = mProjectView.Selection != null && !(mProjectView.Selection is TextSelection);
         }
 
@@ -534,7 +537,13 @@ namespace Obi.ProjectView
         // Properties context menu item
         private void Context_PropertiesMenuItem_Click(object sender, EventArgs e) { mProjectView.ShowSectionPropertiesDialog(); }
 
-        private void Context_MergeSectionMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
+       private void Context_MergeSectionMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
+
+       private void Context_MergeWithNextMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
+
+       private void Context_MultipleOperationsMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeMultipleSections(); }
+        
+        
 
         private void Context_MergeSectionWithNextMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
 

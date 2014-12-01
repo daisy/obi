@@ -35,9 +35,8 @@ namespace Obi.ProjectView
             this.Context_AddSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AddSubsectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_InsertSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_MergeSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_MergeSectionWithNextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_MergeMultipleSectionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_MergeWithNextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_MultipleOperationsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_RenameSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_DecreaseSectionLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_IncreaseSectionLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +61,8 @@ namespace Obi.ProjectView
             this.Context_AddSectionMenuItem,
             this.Context_AddSubsectionMenuItem,
             this.Context_InsertSectionMenuItem,
-            this.Context_MergeSectionMenuItem,
+            this.Context_MergeWithNextMenuItem,
+            this.Context_MultipleOperationsMenuItem,
             this.Context_RenameSectionMenuItem,
             this.Context_DecreaseSectionLevelMenuItem,
             this.Context_IncreaseSectionLevelMenuItem,
@@ -103,25 +103,15 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.Context_InsertSectionMenuItem, "Context_InsertSectionMenuItem");
             this.Context_InsertSectionMenuItem.Click += new System.EventHandler(this.Context_InsertSectionMenuItem_Click);
             // 
-            // Context_MergeSectionMenuItem
+            // Context_MergeWithNextMenuItem
             // 
-            resources.ApplyResources(this.Context_MergeSectionMenuItem, "Context_MergeSectionMenuItem");
-            this.Context_MergeSectionMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Context_MergeSectionWithNextMenuItem,
-            this.Context_MergeMultipleSectionsMenuItem});
-            this.Context_MergeSectionMenuItem.Name = "Context_MergeSectionMenuItem";
+            resources.ApplyResources(this.Context_MergeWithNextMenuItem, "Context_MergeWithNextMenuItem");
+            this.Context_MergeWithNextMenuItem.Name = "Context_MergeWithNextMenuItem";
             // 
-            // Context_MergeSectionWithNextMenuItem
+            // Context_MultipleOperationsMenuItem
             // 
-            resources.ApplyResources(this.Context_MergeSectionWithNextMenuItem, "Context_MergeSectionWithNextMenuItem");
-            this.Context_MergeSectionWithNextMenuItem.Name = "Context_MergeSectionWithNextMenuItem";
-            this.Context_MergeSectionWithNextMenuItem.Click += new System.EventHandler(this.Context_MergeSectionWithNextMenuItem_Click);
-            // 
-            // Context_MergeMultipleSectionsMenuItem
-            // 
-            resources.ApplyResources(this.Context_MergeMultipleSectionsMenuItem, "Context_MergeMultipleSectionsMenuItem");
-            this.Context_MergeMultipleSectionsMenuItem.Name = "Context_MergeMultipleSectionsMenuItem";
-            this.Context_MergeMultipleSectionsMenuItem.Click += new System.EventHandler(this.Context_MergeMultipleSectionsMenuItem_Click);
+            resources.ApplyResources(this.Context_MultipleOperationsMenuItem, "Context_MultipleOperationsMenuItem");
+            this.Context_MultipleOperationsMenuItem.Name = "Context_MultipleOperationsMenuItem";
             // 
             // Context_RenameSectionMenuItem
             // 
@@ -243,8 +233,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_DeleteMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem Context_PropertiesMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_MergeSectionMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_MergeSectionWithNextMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_MergeMultipleSectionsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_MultipleOperationsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_MergeWithNextMenuItem;
     }
 }
