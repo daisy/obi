@@ -1,0 +1,2423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="clear_recent_caption" xml:space="preserve">
+    <value>清除最近專項清單</value>
+  </data>
+  <data name="clear_recent_text" xml:space="preserve">
+    <value>你確定要清除最近專項的清單嗎？</value>
+  </data>
+  <data name="closed_project" xml:space="preserve">
+    <value>已關閉專項 "{0}"。</value>
+  </data>
+  <data name="closed_project_caption" xml:space="preserve">
+    <value>正在關閉已修改的專項</value>
+  </data>
+  <data name="closed_project_text" xml:space="preserve">
+    <value>你將要關閉並儲存專項
+要在關閉專項前儲存這些變更嗎？</value>
+  </data>
+  <data name="default_organization" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="default_section_label" xml:space="preserve">
+    <value>未命名分節</value>
+  </data>
+  <data name="obi" xml:space="preserve">
+    <value>Obi</value>
+  </data>
+  <data name="open_project_error_caption" xml:space="preserve">
+    <value>開啟專項檔案時發生錯誤</value>
+  </data>
+  <data name="open_project_error_text" xml:space="preserve">
+    <value>未能讀取XUK檔案 file {0}。</value>
+  </data>
+  <data name="opened_project" xml:space="preserve">
+    <value>已開啟檔案 "{0}"。</value>
+  </data>
+  <data name="ready" xml:space="preserve">
+    <value>就緒</value>
+  </data>
+  <data name="redo_label" xml:space="preserve">
+    <value>{0} {1}</value>
+  </data>
+  <data name="save_settings_error_caption" xml:space="preserve">
+    <value>未能儲存設定</value>
+  </data>
+  <data name="save_settings_error_text" xml:space="preserve">
+    <value>在儲存設定時發生以下錯誤:
+"{0}"
+故此次進行的設定未能儲存.
+</value>
+  </data>
+  <data name="saved_project" xml:space="preserve">
+    <value>已儲存專項到檔案 "{0}".</value>
+  </data>
+  <data name="undo_label" xml:space="preserve">
+    <value>{0} {1}</value>
+  </data>
+  <data name="create_directory_text" xml:space="preserve">
+    <value>資料夾 {0} 並不存在。要建立該資料夾嗎？</value>
+  </data>
+  <data name="redo" xml:space="preserve">
+    <value>取消復原(&amp;R#</value>
+  </data>
+  <data name="undo" xml:space="preserve">
+    <value>復原(&amp;U)</value>
+  </data>
+  <data name="no_device_found_caption" xml:space="preserve">
+    <value>找不到音效裝置</value>
+  </data>
+  <data name="no_device_found_text" xml:space="preserve">
+    <value>未能選擇聲音輸出及輸出裝置。
+    請檢查DirectX 9c是否已安裝。</value>
+  </data>
+  <data name="no_output_device_caption" xml:space="preserve">
+    <value>找不到音效輸出裝置</value>
+  </data>
+  <data name="no_output_device_text" xml:space="preserve">
+    <value>未能選擇音效裝置: 找不到任何裝置。</value>
+  </data>
+  <data name="create_directory_caption" xml:space="preserve">
+    <value>要建立資料夾？</value>
+  </data>
+  <data name="mono" xml:space="preserve">
+    <value>單聲道</value>
+  </data>
+  <data name="stereo" xml:space="preserve">
+    <value>立體聲</value>
+  </data>
+  <data name="no_input_device_caption" xml:space="preserve">
+    <value>找不到輸入裝置</value>
+  </data>
+  <data name="no_input_device_text" xml:space="preserve">
+    <value>找不到聲音輸入裝置: 找不到任何裝置</value>
+  </data>
+  <data name="record" xml:space="preserve">
+    <value>錄音(&amp;R)</value>
+  </data>
+  <data name="obi_filter" xml:space="preserve">
+    <value>Obi 專項檔案 (*.obi)|*.obi|所有檔案|*.*</value>
+  </data>
+  <data name="report_delete_error" xml:space="preserve">
+    <value>未能刪除檔案 {0}. ({1})</value>
+  </data>
+  <data name="audio_file_filter" xml:space="preserve">
+    <value>聲音檔案 (*.wav;*.mp3)|*.wav;*.mp3|所有檔案|*.*</value>
+  </data>
+  <data name="Monitoring" xml:space="preserve">
+    <value>正在監聽聲音輸入</value>
+  </data>
+  <data name="page_number" xml:space="preserve">
+    <value>頁 {0}</value>
+  </data>
+  <data name="normal_phrase" xml:space="preserve">
+    <value>句</value>
+  </data>
+  <data name="saved_as_daisy_text" xml:space="preserve">
+    <value>已在 {0} 輸出成DAISY</value>
+  </data>
+  <data name="title_bar" xml:space="preserve">
+    <value>{0}{1} ({2}) - {3}</value>
+  </data>
+  <data name="export_choose_folder" xml:space="preserve">
+    <value>請選擇要在那個資料夾儲存DAISY書。</value>
+  </data>
+  <data name="default_directory_browser" xml:space="preserve">
+    <value>請在下面選擇專項的預設資料夾</value>
+  </data>
+  <data name="export_directory_browser" xml:space="preserve">
+    <value>請在下面選擇會出的預設資料夾</value>
+  </data>
+  <data name="playback_rate" xml:space="preserve">
+    <value>播放速度x{0} 中的 {1}</value>
+  </data>
+  <data name="Recording" xml:space="preserve">
+    <value>正在錄音(&amp;R)...</value>
+  </data>
+  <data name="cannot_create_file_caption" xml:space="preserve">
+    <value>未能建立專項檔案</value>
+  </data>
+  <data name="cannot_create_file_text" xml:space="preserve">
+    <value>未能建立專項檔案"{0}": {1}.</value>
+  </data>
+  <data name="cannot_create_directory_caption" xml:space="preserve">
+    <value>未能建立資料夾{0}</value>
+  </data>
+  <data name="cannot_create_directory_text" xml:space="preserve">
+    <value>未能建立資料夾{0} {0}: {1}</value>
+  </data>
+  <data name="cannot_delete_caption" xml:space="preserve">
+    <value>未能刪除檔案 {0}. ({1})</value>
+  </data>
+  <data name="cannot_delete_text" xml:space="preserve">
+    <value>未能刪除檔案{0}。按OK繼續，Cancel停止。</value>
+  </data>
+  <data name="empty_directory_caption" xml:space="preserve">
+    <value>正在會出到一空白資料夾</value>
+  </data>
+  <data name="empty_directory_text" xml:space="preserve">
+    <value>你將要會出DAISY專項到{0}。這個資料夾並非為directory.) Do you want to empty this directory before exporting?空。要繼續嗎？</value>
+  </data>
+  <data name="didnt_save_as_daisy_caption" xml:space="preserve">
+    <value>會出成DAISY時發生錯誤</value>
+  </data>
+  <data name="didnt_save_as_daisy_text" xml:space="preserve">
+    <value>未能將DAISY專項會出到資料夾{0}。原因: {1}</value>
+  </data>
+  <data name="saved_as_daisy_caption" xml:space="preserve">
+    <value>專項已會出成DAISY</value>
+  </data>
+  <data name="import_phrase_error_caption" xml:space="preserve">
+    <value>匯入音訊錯誤</value>
+  </data>
+  <data name="import_phrase_error_text" xml:space="preserve">
+    <value>音訊檔案“{0}”無法匯入，由於音訊設定（通道，位深度，採樣率）不匹配。</value>
+  </data>
+  <data name="dc_publisher_description" xml:space="preserve">
+    <value>提供DTB的機構</value>
+  </data>
+  <data name="dc_title_description" xml:space="preserve">
+    <value>DTB的標題，包括副標題</value>
+  </data>
+  <data name="missing_description" xml:space="preserve">
+    <value>缺乏這個metadata項目的描述</value>
+  </data>
+  <data name="help_file_name" xml:space="preserve">
+    <value>help_en.html</value>
+  </data>
+  <data name="error_metadata_name_caption" xml:space="preserve">
+    <value>未能建立metadata項目</value>
+  </data>
+  <data name="error_metadata_name_message" xml:space="preserve">
+    <value>未能建立名為"{0}"的metadata項目: 名字不能以"dtb:"為開頭。</value>
+  </data>
+  <data name="default_project_title" xml:space="preserve">
+    <value>未命名Obi專項</value>
+  </data>
+  <data name="default_project_filename" xml:space="preserve">
+    <value>project.obi</value>
+  </data>
+  <data name="really_use_directory_caption" xml:space="preserve">
+    <value>在使用此資料夾前清空？</value>
+  </data>
+  <data name="really_use_directory_text" xml:space="preserve">
+    <value>資料夾"{0}"並非為空。 按yes進行清空，按No不清空。directory as is, choose "No."</value>
+  </data>
+  <data name="cannot_redo" xml:space="preserve">
+    <value>無法取消復原</value>
+  </data>
+  <data name="cannot_undo" xml:space="preserve">
+    <value>無法復原</value>
+  </data>
+  <data name="rename_section" xml:space="preserve">
+    <value>重命名分節</value>
+  </data>
+  <data name="move_section_out" xml:space="preserve">
+    <value>減少分節層級</value>
+  </data>
+  <data name="move_section_in" xml:space="preserve">
+    <value>增加分節層級</value>
+  </data>
+  <data name="delete_section" xml:space="preserve">
+    <value>刪除分節 (深)</value>
+  </data>
+  <data name="copy_section" xml:space="preserve">
+    <value>複製分節 (深)</value>
+  </data>
+  <data name="cut_section" xml:space="preserve">
+    <value>剪下分節 (深)</value>
+  </data>
+  <data name="paste_section" xml:space="preserve">
+    <value>貼上分節</value>
+  </data>
+  <data name="import_phrases" xml:space="preserve">
+    <value>匯入音訊檔案</value>
+  </data>
+  <data name="importing_file" xml:space="preserve">
+    <value>正在匯入檔案"{0}"</value>
+  </data>
+  <data name="init_error_text" xml:space="preserve">
+    <value>初始化Obi時發生錯誤
+請提交錯誤報告，連同此內容 {0}
+錯誤文字: {1}</value>
+  </data>
+  <data name="init_error_caption" xml:space="preserve">
+    <value>Obi初始化錯誤</value>
+  </data>
+  <data name="created_new_project" xml:space="preserve">
+    <value>已建立新專項"{0}".</value>
+  </data>
+  <data name="delete_phrase" xml:space="preserve">
+    <value>刪除分節</value>
+  </data>
+  <data name="delete_section_shallow" xml:space="preserve">
+    <value>刪除分節 (淺)</value>
+  </data>
+  <data name="cut_section_shallow" xml:space="preserve">
+    <value>剪下分節 (淺)</value>
+  </data>
+  <data name="split_section" xml:space="preserve">
+    <value>分割分節</value>
+  </data>
+  <data name="merge_sections" xml:space="preserve">
+    <value>合併分節</value>
+  </data>
+  <data name="cut_phrase" xml:space="preserve">
+    <value>剪下句</value>
+  </data>
+  <data name="copy_phrase" xml:space="preserve">
+    <value>複製句</value>
+  </data>
+  <data name="find_in_text_init" xml:space="preserve">
+    <value>鍵入要在選定分節中搜尋的文字</value>
+  </data>
+  <data name="find_next_in_text" xml:space="preserve">
+    <value>往前搜尋</value>
+  </data>
+  <data name="find_prev_in_text" xml:space="preserve">
+    <value>往回搜尋</value>
+  </data>
+  <data name="finished_searching_all" xml:space="preserve">
+    <value>搜尋所有文字</value>
+  </data>
+  <data name="found_in_text" xml:space="preserve">
+    <value>找到"{0}".</value>
+  </data>
+  <data name="not_found_in_text" xml:space="preserve">
+    <value>沒有找到相符專項</value>
+  </data>
+  <data name="nothing_to_search" xml:space="preserve">
+    <value>沒有東西可搜尋</value>
+  </data>
+  <data name="searching" xml:space="preserve">
+    <value>正在搜尋</value>
+  </data>
+  <data name="please_enter_some_text" xml:space="preserve">
+    <value>請輸入文字</value>
+  </data>
+  <data name="recording_command" xml:space="preserve">
+    <value>錄音</value>
+  </data>
+  <data name="start_recording" xml:space="preserve">
+    <value>停止錄音</value>
+  </data>
+  <data name="split_phrase" xml:space="preserve">
+    <value>分割句</value>
+  </data>
+  <data name="merge_phrase_with_next" xml:space="preserve">
+    <value>與下一句合併</value>
+  </data>
+  <data name="paste_phrase" xml:space="preserve">
+    <value>貼上句</value>
+  </data>
+  <data name="add_role" xml:space="preserve">
+    <value>新增角色</value>
+  </data>
+  <data name="assign_role" xml:space="preserve">
+    <value>定義角色</value>
+  </data>
+  <data name="mark_phrase_used" xml:space="preserve">
+    <value>標記句成{0}</value>
+  </data>
+  <data name="set_page_number_" xml:space="preserve">
+    <value>設定頁數</value>
+  </data>
+  <data name="add_section" xml:space="preserve">
+    <value>新增分節</value>
+  </data>
+  <data name="add_subsection" xml:space="preserve">
+    <value>新增子分節</value>
+  </data>
+  <data name="mark_section_used" xml:space="preserve">
+    <value>標記分節成{0}</value>
+  </data>
+  <data name="cut_audio" xml:space="preserve">
+    <value>剪下音訊</value>
+  </data>
+  <data name="delete_audio" xml:space="preserve">
+    <value>刪除音訊</value>
+  </data>
+  <data name="default_custom_class_name" xml:space="preserve">
+    <value>已標記TODO</value>
+  </data>
+  <data name="no_preceding_silence_phrase" xml:space="preserve">
+    <value>在選取前沒有靜聲句，默認值將被使用。您仍然可以修改這些默認設置，或取消選取靜音句。</value>
+  </data>
+  <data name="paste_audio" xml:space="preserve">
+    <value>貼上音訊</value>
+  </data>
+  <data name="copy_audio" xml:space="preserve">
+    <value>複製音訊</value>
+  </data>
+  <data name="phrase_detection" xml:space="preserve">
+    <value>句偵測時保留最初的靜聲</value>
+  </data>
+  <data name="create_new_project_from_import" xml:space="preserve">
+    <value>從匯入建立新專項</value>
+  </data>
+  <data name="import_failed" xml:space="preserve">
+    <value>未能從匯入建立新專項: {0}</value>
+  </data>
+  <data name="filter" xml:space="preserve">
+    <value>XHTML, Opf, XML, Csv, Txt, Epub file (*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Any file|*.*</value>
+  </data>
+  <data name="blank_phrase" xml:space="preserve">
+    <value>空白句</value>
+  </data>
+  <data name="kind_phrase" xml:space="preserve">
+    <value>{0} 句</value>
+  </data>
+  <data name="insert_section" xml:space="preserve">
+    <value>插入分節</value>
+  </data>
+  <data name="clean_failed_caption" xml:space="preserve">
+    <value>清潔專項失敗</value>
+  </data>
+  <data name="clean_failed_text" xml:space="preserve">
+    <value>Obi未能清潔現時專項，由於以下原因: {0}</value>
+  </data>
+  <data name="clean_up_ask_for_delete_project" xml:space="preserve">
+    <value>未使用的檔案已移動到刪除資料夾。要刪除這些檔案嗎？</value>
+  </data>
+  <data name="clean_save_caption" xml:space="preserve">
+    <value>在清潔後儲存</value>
+  </data>
+  <data name="delete_unused_data_caption" xml:space="preserve">
+    <value>刪除未使用數據</value>
+  </data>
+  <data name="UnusedPhrasesDeletedCaption" xml:space="preserve">
+    <value>未使用句刪除</value>
+  </data>
+  <data name="clean_save_text" xml:space="preserve">
+    <value>你的專項會在清潔後儲存。要繼續嗎？</value>
+  </data>
+  <data name="delete_unused" xml:space="preserve">
+    <value>刪除未使使用數據</value>
+  </data>
+  <data name="delete_metadata_entry" xml:space="preserve">
+    <value>刪除metadata專項</value>
+  </data>
+  <data name="modify_metadata_content" xml:space="preserve">
+    <value>編輯metadata專項</value>
+  </data>
+  <data name="modify_metadata_name" xml:space="preserve">
+    <value>編輯metadata專項名</value>
+  </data>
+  <data name="about_file_name" xml:space="preserve">
+    <value>about_en.html</value>
+  </data>
+  <data name="add_blank_pages" xml:space="preserve">
+    <value>新增空白頁</value>
+  </data>
+  <data name="add_blank_phrase" xml:space="preserve">
+    <value>新增空白句</value>
+  </data>
+  <data name="add_metadata_entry" xml:space="preserve">
+    <value>新增metadata專項</value>
+  </data>
+  <data name="choose_import_file" xml:space="preserve">
+    <value>選擇匯入檔案</value>
+  </data>
+  <data name="copy_section_shallow" xml:space="preserve">
+    <value>複製分節 (淺)</value>
+  </data>
+  <data name="monitoring_short" xml:space="preserve">
+    <value>正在監聽</value>
+  </data>
+  <data name="propose_directory_caption" xml:space="preserve">
+    <value>並非為空的資料夾</value>
+  </data>
+  <data name="propose_directory_text" xml:space="preserve">
+    <value>你選擇用來儲存新專項的資料夾並非為空。要使用以下這個資料夾嗎{0}？</value>
+  </data>
+  <data name="start_monitoring" xml:space="preserve">
+    <value>開始監聽</value>
+  </data>
+  <data name="content_view" xml:space="preserve">
+    <value>內容檢視</value>
+  </data>
+  <data name="audio_block_label" xml:space="preserve">
+    <value>{0} {1} of {2}{3}</value>
+  </data>
+  <data name="audio_block_label_unused" xml:space="preserve">
+    <value>未使用</value>
+  </data>
+  <data name="Paused" xml:space="preserve">
+    <value>暫停</value>
+  </data>
+  <data name="Playing" xml:space="preserve">
+    <value>正在播放 {0} {1} </value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>停止錄音</value>
+  </data>
+  <data name="transport_bar" xml:space="preserve">
+    <value>運輸列</value>
+  </data>
+  <data name="dc_contributor_description" xml:space="preserve">
+    <value>出版物的主要貢獻者是在dc:Creator的metadata輸入</value>
+  </data>
+  <data name="dc_coverage_description" xml:space="preserve">
+    <value>預計不會用於DTB的內容的程度或範圍</value>
+  </data>
+  <data name="dc_creator_description" xml:space="preserve">
+    <value>主要作者或創作者名</value>
+  </data>
+  <data name="dc_date_description" xml:space="preserve">
+    <value>DTB的出版日期</value>
+  </data>
+  <data name="dc_description_description" xml:space="preserve">
+    <value>出版物的描述文字</value>
+  </data>
+  <data name="dc_format_description" xml:space="preserve">
+    <value>DTB使用的標準</value>
+  </data>
+  <data name="dc_identifier_description" xml:space="preserve">
+    <value>用來識別DTB的字串</value>
+  </data>
+  <data name="dc_language_description" xml:space="preserve">
+    <value>出版物的語言。[使用RFC 3066的語言代號] 例如英式英文: "en" 或 "en-GB"</value>
+  </data>
+  <data name="dc_relation_description" xml:space="preserve">
+    <value>參考的相關資源</value>
+  </data>
+  <data name="dc_rights_description" xml:space="preserve">
+    <value>有關DTV的權利資訊</value>
+  </data>
+  <data name="dc_source_description" xml:space="preserve">
+    <value>參考的資源，例如原印刷書。</value>
+  </data>
+  <data name="dc_subject_description" xml:space="preserve">
+    <value>出版物所屬的主題</value>
+  </data>
+  <data name="dc_type_description" xml:space="preserve">
+    <value>DTB的類別，例如聲音、文字、圖像。</value>
+  </data>
+  <data name="dtb_audio_format_description" xml:space="preserve">
+    <value>共計播放時間</value>
+  </data>
+  <data name="dtb_multimedia_content_description" xml:space="preserve">
+    <value>內容播放時間</value>
+  </data>
+  <data name="dtb_multimedia_type_description" xml:space="preserve">
+    <value>DTB6種類別的1種。Values are: audioOnly, audioNCX, audioPartText, audioFullText, textPartAudio, textNCX.</value>
+  </data>
+  <data name="dtb_narrator_description" xml:space="preserve">
+    <value>DTB的朗讀人</value>
+  </data>
+  <data name="dtb_produced_date_description" xml:space="preserve">
+    <value>DTB的第一版日期</value>
+  </data>
+  <data name="dtb_producer_description" xml:space="preserve">
+    <value>製作此DTB的機構名</value>
+  </data>
+  <data name="dtb_revision_data_description" xml:space="preserve">
+    <value>[ISO8601]; the syntax is YYYY[-MM[-DD]] with a mandatory 4-digit year, an optional 2-digit month, and, if the month is present, an optional 2-digit day of month.</value>
+  </data>
+  <data name="dtb_revision_description" xml:space="preserve">
+    <value>非負數的數值</value>
+  </data>
+  <data name="dtb_revision_description_description" xml:space="preserve">
+    <value>描述此次變更的文字</value>
+  </data>
+  <data name="dtb_source_date_description" xml:space="preserve">
+    <value>出版物的</value>
+  </data>
+  <data name="dtb_source_edition_description" xml:space="preserve">
+    <value>描述額外資源的文字</value>
+  </data>
+  <data name="dtb_source_publisher_description" xml:space="preserve">
+    <value>提供該額外資源式機構名</value>
+  </data>
+  <data name="dtb_source_rights_description" xml:space="preserve">
+    <value>提供該額外資源式機構名</value>
+  </data>
+  <data name="dtb_source_title_description" xml:space="preserve">
+    <value>資源的標題</value>
+  </data>
+  <data name="dtb_total_time_description" xml:space="preserve">
+    <value>共計播放時間</value>
+  </data>
+  <data name="generator_description" xml:space="preserve">
+    <value>制作軟件名</value>
+  </data>
+  <data name="modify_metadata_entry" xml:space="preserve">
+    <value>編輯metadata專項</value>
+  </data>
+  <data name="obi_xuk_version_description" xml:space="preserve">
+    <value>Obi/XUK 版本ID</value>
+  </data>
+  <data name="metadata_name_error_caption" xml:space="preserve">
+    <value>metadata名字錯誤</value>
+  </data>
+  <data name="metadata_name_error_text" xml:space="preserve">
+    <value>未能變更這個metadata的名字成{0}"</value>
+  </data>
+  <data name="metadata_custom" xml:space="preserve">
+    <value>自定</value>
+  </data>
+  <data name="empty" xml:space="preserve">
+    <value>空白</value>
+  </data>
+  <data name="node_selection_to_string" xml:space="preserve">
+    <value>已選取{0} 之 {1}</value>
+  </data>
+  <data name="phrase_extra_custom" xml:space="preserve">
+    <value>, {0}</value>
+  </data>
+  <data name="phrase_extra_Heading" xml:space="preserve">
+    <value>標題</value>
+  </data>
+  <data name="phrase_extra_page" xml:space="preserve">
+    <value>, 頁 {0}</value>
+  </data>
+  <data name="phrase_extra_Plain" xml:space="preserve">
+    <value />
+  </data>
+  <data name="phrase_extra_Silence" xml:space="preserve">
+    <value>靜音</value>
+  </data>
+  <data name="phrase_extra_TODO" xml:space="preserve">
+    <value>, TODO</value>
+  </data>
+  <data name="phrase_node_to_string" xml:space="preserve">
+    <value>句 (長: {1})</value>
+  </data>
+  <data name="phrase_short_custom" xml:space="preserve">
+    <value>"{0}"</value>
+  </data>
+  <data name="phrase_short_Heading" xml:space="preserve">
+    <value>標題</value>
+  </data>
+  <data name="phrase_short_page" xml:space="preserve">
+    <value>頁 {0}</value>
+  </data>
+  <data name="phrase_short_Plain" xml:space="preserve">
+    <value>句</value>
+  </data>
+  <data name="phrase_short_Silence" xml:space="preserve">
+    <value>靜音</value>
+  </data>
+  <data name="phrase_short_to_string" xml:space="preserve">
+    <value>{0}{1} ({2})</value>
+  </data>
+  <data name="phrase_short_TODO" xml:space="preserve">
+    <value>*TODO* </value>
+  </data>
+  <data name="phrase_to_string" xml:space="preserve">
+    <value>{0}{1}句 {2} 中的 {3} ({4}){5}</value>
+  </data>
+  <data name="section_level_to_string" xml:space="preserve">
+    <value>, 深 {0}</value>
+  </data>
+  <data name="section_one_phrase_to_string" xml:space="preserve">
+    <value>, 1 句</value>
+  </data>
+  <data name="section_phrases_to_string" xml:space="preserve">
+    <value>, {0} 句</value>
+  </data>
+  <data name="section_to_string" xml:space="preserve">
+    <value>{0}分節 "{1}" ({2}{3}{4})</value>
+  </data>
+  <data name="strips_view_to_string" xml:space="preserve">
+    <value>內容檢視</value>
+  </data>
+  <data name="toc_view_to_string" xml:space="preserve">
+    <value>目錄檢視</value>
+  </data>
+  <data name="unused" xml:space="preserve">
+    <value>未使用</value>
+  </data>
+  <data name="audio_selection_to_string" xml:space="preserve">
+    <value>已選取音訊於{0} 中 {1} 中 {2}</value>
+  </data>
+  <data name="strip_cursor_selection_to_string" xml:space="preserve">
+    <value>選取索引{0} 中 {1} 中 {2}</value>
+  </data>
+  <data name="text_selection_to_string" xml:space="preserve">
+    <value>已選取文字 {0} 中 {1}: "{2}"</value>
+  </data>
+  <data name="obi_url" xml:space="preserve">
+    <value>http://www.daisy.org/obi/</value>
+  </data>
+  <data name="max_phrase_duration_invalid_input" xml:space="preserve">
+    <value>Invalid input for maximum phrase duration. Please specify an integral number of minutes higher than 0.</value>
+  </data>
+  <data name="rendering_waveform" xml:space="preserve">
+    <value>正在繪製波形圖</value>
+  </data>
+  <data name="duration_h_mm_ss" xml:space="preserve">
+    <value>{0}:{1:00}:{2:00}</value>
+  </data>
+  <data name="duration_mm_ss" xml:space="preserve">
+    <value>{0:00}:{1:00}</value>
+  </data>
+  <data name="duration_s_ms" xml:space="preserve">
+    <value>{0:0.00}s</value>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>時</value>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>時</value>
+  </data>
+  <data name="long_addl_time" xml:space="preserve">
+    <value> {0} {1}</value>
+  </data>
+  <data name="long_h_mm_ss" xml:space="preserve">
+    <value>{0} {1}{2}{3}</value>
+  </data>
+  <data name="long_mm_ss" xml:space="preserve">
+    <value>{0} {1}{2}</value>
+  </data>
+  <data name="long_s_ms" xml:space="preserve">
+    <value>{0:0.00} {1}</value>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="node_position" xml:space="preserve">
+    <value>{0} 之 {1}</value>
+  </data>
+  <data name="second" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="section_level" xml:space="preserve">
+    <value>"{0}" (層級 {1})</value>
+  </data>
+  <data name="top_level_section" xml:space="preserve">
+    <value>這是最高層級的分節</value>
+  </data>
+  <data name="update_section" xml:space="preserve">
+    <value>更新分節</value>
+  </data>
+  <data name="update_phrase" xml:space="preserve">
+    <value>更新句</value>
+  </data>
+  <data name="error_adding_page_number" xml:space="preserve">
+    <value>未能新增頁數，找不到母分節</value>
+  </data>
+  <data name="import_failed_caption" xml:space="preserve">
+    <value>匯入失敗</value>
+  </data>
+  <data name="no_headings_found" xml:space="preserve">
+    <value>在XHTML文件中找不到標題(h1, h2, etc.) were found in the XHTML document.</value>
+  </data>
+  <data name="wrong_heading_order" xml:space="preserve">
+    <value>標題層級的順序錯誤。</value>
+  </data>
+  <data name="dtb_encode_error" xml:space="preserve">
+    <value>在DTB編碼時發生錯誤: {0}</value>
+  </data>
+  <data name="dtb_encode_error_caption" xml:space="preserve">
+    <value>DTB編碼錯誤</value>
+  </data>
+  <data name="dtb_filter" xml:space="preserve">
+    <value>DTB檔案 (*.opf)|*.opf|所有檔案|*.*</value>
+  </data>
+  <data name="dtb_validate_error" xml:space="preserve">
+    <value>在驗證DTB時發生錯誤 : {0}</value>
+  </data>
+  <data name="dtb_validate_error_caption" xml:space="preserve">
+    <value>DTB驗證錯誤</value>
+  </data>
+  <data name="no_script" xml:space="preserve">
+    <value>在 "{0}" 找不到腳本檔案。</value>
+  </data>
+  <data name="pipeline_path_browser" xml:space="preserve">
+    <value>請在下方選擇 pipeline 腳本。</value>
+  </data>
+  <data name="xml_filter" xml:space="preserve">
+    <value>XML 檔案|*.xml</value>
+  </data>
+  <data name="CannotCreate_InputPath" xml:space="preserve">
+    <value>未能建立路徑: 輸入</value>
+  </data>
+  <data name="Caption_Error" xml:space="preserve">
+    <value>錯誤</value>
+  </data>
+  <data name="save_before_save_as_caption" xml:space="preserve">
+    <value>在另存之前儲存？</value>
+  </data>
+  <data name="Choose_OtherDirectory" xml:space="preserve">
+    <value>選擇別的資料夾</value>
+  </data>
+  <data name="IndexNotInRange" xml:space="preserve">
+    <value>索引不在範圍內</value>
+  </data>
+  <data name="Invalid_ScriptParameters" xml:space="preserve">
+    <value>一或多個參數錯誤</value>
+  </data>
+  <data name="No_Path" xml:space="preserve">
+    <value>路徑不存在</value>
+  </data>
+  <data name="NotAbleToCreateDirectory" xml:space="preserve">
+    <value>未能建立資料夾{0}</value>
+  </data>
+  <data name="NotAbleToSelectItem" xml:space="preserve">
+    <value>未能選擇項目</value>
+  </data>
+  <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
+    <value>找不到輸出資料夾。 \n 要建立嗎？</value>
+  </data>
+  <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
+    <value>輸出資料夾並為空。要清空嗎？</value>
+  </data>
+  <data name="Front_pages" xml:space="preserve">
+    <value>前頁</value>
+  </data>
+  <data name="Normal_pages" xml:space="preserve">
+    <value>普通頁</value>
+  </data>
+  <data name="renumber_before_export" xml:space="preserve">
+    <value>未能會出這個專項，這是由於有最少兩頁的頁數同為{0}。 要自動重新編排這些頁數嗎？</value>
+  </data>
+  <data name="renumber_before_export_caption" xml:space="preserve">
+    <value>專項含有重複的頁數</value>
+  </data>
+  <data name="renumber_pages" xml:space="preserve">
+    <value>重新編排{0}</value>
+  </data>
+  <data name="crop_audio" xml:space="preserve">
+    <value>框選音訊</value>
+  </data>
+  <data name="save_as_error_same_directory" xml:space="preserve">
+    <value>未能儲存在與現時專項同一路徑中。請選擇別的路徑。</value>
+  </data>
+  <data name="save_before_save_as" xml:space="preserve">
+    <value>要先儲存現時專項才進行另存嗎？</value>
+  </data>
+  <data name="no_primary_export_directory" xml:space="preserve">
+    <value>找不到DAISY會出資料夾。請指定會出的資料夾或進行會出操作。</value>
+  </data>
+  <data name="section_unexported" xml:space="preserve">
+    <value>分節"{0}"沒有音訊，這分節及其子分節均不會被會出。要繼續嗎？</value>
+  </data>
+  <data name="section_unexported_caption" xml:space="preserve">
+    <value>分節不會被會出</value>
+  </data>
+  <data name="default_export_dirname" xml:space="preserve">
+    <value>{0}DAISY3 會出</value>
+  </data>
+  <data name="ObiForm_PipelineNotFound" xml:space="preserve">
+    <value>未能找到pipeline 腳本位於 {0}。依靠這些腳本的功能可能無法進行。</value>
+  </data>
+  <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
+    <value>一個或以上參數不正確。請輸入正確數值。</value>
+  </data>
+  <data name="recording_resume_check" xml:space="preserve">
+    <value>正在在暫停處繼續錄音。選Yes繼續在暫停處錄音，選No則在現時選取處開始錄音。</value>
+  </data>
+  <data name="duration_hh_mm_ss" xml:space="preserve">
+    <value>{0:00}:{1:00}:{2:00}</value>
+  </data>
+  <data name="export_progress_dialog_title" xml:space="preserve">
+    <value>正在會出專項</value>
+  </data>
+  <data name="role_Custom" xml:space="preserve">
+    <value>自定</value>
+  </data>
+  <data name="role_Heading" xml:space="preserve">
+    <value>Heading</value>
+  </data>
+  <data name="role_Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="role_Plain" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="role_Silence" xml:space="preserve">
+    <value>靜音</value>
+  </data>
+  <data name="could_not_clean_up" xml:space="preserve">
+    <value>未能刪除錯誤的專項{0} 你可以手動刪除。
+</value>
+  </data>
+  <data name="could_not_clean_up_caption" xml:space="preserve">
+    <value>未能刪除錯誤的專項。</value>
+  </data>
+  <data name="import_progress_dialog_title" xml:space="preserve">
+    <value>正在匯入檔案"{0}"</value>
+  </data>
+  <data name="import_audio_progress_dialog_title" xml:space="preserve">
+    <value>正在匯入音訊</value>
+  </data>
+  <data name="cleaning_up" xml:space="preserve">
+    <value>正在清潔</value>
+  </data>
+  <data name="remove_custom_class" xml:space="preserve">
+    <value>移除自定類</value>
+  </data>
+  <data name="strip_cursor_accessible_name" xml:space="preserve">
+    <value>游標條在{0}-{1}</value>
+  </data>
+  <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
+    <value>數值必須在0至1之間</value>
+  </data>
+  <data name="Pipeline_OutOfRange" xml:space="preserve">
+    <value>數值並不在許可範圍</value>
+  </data>
+  <data name="Pipeline_InvalidString" xml:space="preserve">
+    <value>輸入錯誤</value>
+  </data>
+  <data name="save_as_new_directory_name" xml:space="preserve">
+    <value>{0} 複製</value>
+  </data>
+  <data name="cannot_use_project_path" xml:space="preserve">
+    <value>未能使用路徑"{0}" 來儲存: {1}</value>
+  </data>
+  <data name="cannot_use_project_path_caption" xml:space="preserve">
+    <value>未能使用選取的路徑</value>
+  </data>
+  <data name="extension_warning" xml:space="preserve">
+    <value>你將要儲存專項檔案到{0}。建議你使用.obi作為副檔名。你確定要使用你選取的副檔名嗎？</value>
+  </data>
+  <data name="extension_warning_caption" xml:space="preserve">
+    <value>副檔名警告</value>
+  </data>
+  <data name="save_as_failed" xml:space="preserve">
+    <value>未能儲存到"{0}": {1}</value>
+  </data>
+  <data name="save_as_failed_caption" xml:space="preserve">
+    <value>未能儲存</value>
+  </data>
+  <data name="cannot_empty_directory" xml:space="preserve">
+    <value>未能清空資料夾"{0}": {1}</value>
+  </data>
+  <data name="cannot_empty_directory_caption" xml:space="preserve">
+    <value>未能清空資料夾</value>
+  </data>
+  <data name="toggle_TODO" xml:space="preserve">
+    <value>切換TODO</value>
+  </data>
+  <data name="recording_resume_check_caption" xml:space="preserve">
+    <value>在暫停位置繼續錄音</value>
+  </data>
+  <data name="save_as_progress_dialog_title" xml:space="preserve">
+    <value>正在儲存專項到新路徑</value>
+  </data>
+  <data name="InvalidPaths" xml:space="preserve">
+    <value>一個或以上路徑不正確</value>
+  </data>
+  <data name="project_lock_error" xml:space="preserve">
+    <value>未能為在"{0}的專項建立記錄檔": {1}</value>
+  </data>
+  <data name="project_locked" xml:space="preserve">
+    <value>專項已被所上。這可能由於上一次操作被終斷或這個專項正開啟。你可以手動刪除位於"{0}"的專項.lock檔案，但請自行承擔風險。</value>
+  </data>
+  <data name="no_preceding_silence_phrase_caption" xml:space="preserve">
+    <value>前方沒有靜句</value>
+  </data>
+  <data name="phrase_detection_progress_dialog_title" xml:space="preserve">
+    <value>正在應用句偵測</value>
+  </data>
+  <data name="MetadataView_CannotCommitEmptyContent" xml:space="preserve">
+    <value>metadata不能有空白的數值</value>
+  </data>
+  <data name="location_error" xml:space="preserve">
+    <value>檔案路徑錯誤</value>
+  </data>
+  <data name="path_not_recognized" xml:space="preserve">
+    <value>sf未能辨認路徑"{0}" ({1})。</value>
+  </data>
+  <data name="path_not_rooted" xml:space="preserve">
+    <value>"{0}"並不完整。請選擇完整路徑，連同磁碟機代號。</value>
+  </data>
+  <data name="CHMhelp_file_name" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
+  <data name="phrase_detection_progress" xml:space="preserve">
+    <value>正在進行句偵測</value>
+  </data>
+  <data name="delete_silence_phrases" xml:space="preserve">
+    <value>你的專項包含靜音句。按yes來刪除並同時刪除未使用的句和分節。按No只刪除未使用的句和分節。</value>
+  </data>
+  <data name="delete_silence_phrases_caption" xml:space="preserve">
+    <value>刪除靜音句</value>
+  </data>
+  <data name="CannotDeleteAtRoot" xml:space="preserve">
+    <value>未能進行刪除動作</value>
+  </data>
+  <data name="PageDialog_InvalidInput" xml:space="preserve">
+    <value>一個或以上項目輸入錯誤。請再次輸入。</value>
+  </data>
+  <data name="Status_ProjectSaved" xml:space="preserve">
+    <value>專項已儲存。請繼續。</value>
+  </data>
+  <data name="TransportBar_PlayerExceptionMsg" xml:space="preserve">
+    <value>未能開始播放。按OK繼續… {0} {1}</value>
+  </data>
+  <data name="Preference_InvalidKeyExceptionMsg" xml:space="preserve">
+    <value>快捷鍵錯誤，請設定別的快捷鍵...{0} {1}</value>
+  </data>
+  <data name="Player_TryAgain" xml:space="preserve">
+    <value>請重試 {0} {1}</value>
+  </data>
+  <data name="Metadata_InvalidDateFormat" xml:space="preserve">
+    <value>錯誤的日期格式。建議使用YYYY-MM-DD 或 YYYY。</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>停止錄音時發生錯誤</value>
+  </data>
+  <data name="TransportBar_ErrorInStartingRecording" xml:space="preserve">
+    <value>在開始錄音時發生錯誤。請按OK來跳過錄音並繼續。</value>
+  </data>
+  <data name="RecordingSession_SplitError" xml:space="preserve">
+    <value>偵測到句時長問題。請按OK繼續。</value>
+  </data>
+  <data name="Block_AccessibleLabel" xml:space="preserve">
+    <value>{0}{1} 句 ({2}){3}</value>
+  </data>
+  <data name="Selected_RecordingPhrase" xml:space="preserve">
+    <value>正在錄製句</value>
+  </data>
+  <data name="Obi_Wiki_Url" xml:space="preserve">
+    <value>http://daisy.trac.cvsdude.com/obi</value>
+  </data>
+  <data name="ErrorInSaving" xml:space="preserve">
+    <value>儲存時發生錯誤</value>
+  </data>
+  <data name="OpenError_UseCleanUp" xml:space="preserve">
+    <value>請在專案開啟後使用清潔未使用音訊功能</value>
+  </data>
+  <data name="ContentHidden_SectionHasOverlimitPhrases" xml:space="preserve">
+    <value>分節{0}有大量句，只有最初的{1}被顯示。請分割分節來在畫面中顯示全部句。</value>
+  </data>
+  <data name="ContentsHidden_PhrasesExceedMaxLimitPerSection" xml:space="preserve">
+    <value>在{0}分節中的句超出最大數量限制。</value>
+  </data>
+  <data name="ContentsHidden_StatusMessage" xml:space="preserve">
+    <value>內容隱藏了，按F5來取消隱藏</value>
+  </data>
+  <data name="Operation_Cancelled" xml:space="preserve">
+    <value>未能完成操作</value>
+  </data>
+  <data name="footnote" xml:space="preserve">
+    <value>footnote </value>
+  </data>
+  <data name="sidebar" xml:space="preserve">
+    <value>sidebar </value>
+  </data>
+  <data name="prodnote" xml:space="preserve">
+    <value> prodnote</value>
+  </data>
+  <data name="note" xml:space="preserve">
+    <value>note</value>
+  </data>
+  <data name="endnote" xml:space="preserve">
+    <value> endnote</value>
+  </data>
+  <data name="annotation" xml:space="preserve">
+    <value> annotation</value>
+  </data>
+  <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
+    <value>這個命令不能在分節內容隱藏時進行。請取消隱藏內容。</value>
+  </data>
+  <data name="ContentsHidden_HideNewPhrases" xml:space="preserve">
+    <value>操作完成。這個分節的內容被隱藏，故新增的句也會被隱藏。按F5來取消隱藏。</value>
+  </data>
+  <data name="ExportError_EmptyProject" xml:space="preserve">
+    <value>未能會出。專項是空的。</value>
+  </data>
+  <data name="ExportAudioOfSelectedNode_Completed" xml:space="preserve">
+    <value>檔案已會出到:</value>
+  </data>
+  <data name="ObiFormStatusMsg_ExportingProject" xml:space="preserve">
+    <value>正在匯出專項到{0}</value>
+  </data>
+  <data name="EachLevel" xml:space="preserve">
+    <value>每個層級</value>
+  </data>
+  <data name="Level1" xml:space="preserve">
+    <value>層級1</value>
+  </data>
+  <data name="Level2" xml:space="preserve">
+    <value>層級2</value>
+  </data>
+  <data name="Level3" xml:space="preserve">
+    <value>層級3</value>
+  </data>
+  <data name="Level4" xml:space="preserve">
+    <value>層級4</value>
+  </data>
+  <data name="Level5" xml:space="preserve">
+    <value>層級5</value>
+  </data>
+  <data name="Level6" xml:space="preserve">
+    <value>層級6</value>
+  </data>
+  <data name="PageNumber_ReEnterValidNumber" xml:space="preserve">
+    <value>請輸入正確的頁數</value>
+  </data>
+  <data name="PhraseProperties_ChangePage" xml:space="preserve">
+    <value>變更頁數</value>
+  </data>
+  <data name="Peferences_GUIDonotSupportCulture" xml:space="preserve">
+    <value>Obi不能載入{0}的語言支援。</value>
+  </data>
+  <data name="Preferences_RestartForCultureChange" xml:space="preserve">
+    <value>Obi需要重新開啟來轉換語言。請儲存你的工作並重新啟動Obi。</value>
+  </data>
+  <data name="Caption_Warning" xml:space="preserve">
+    <value>警告！</value>
+  </data>
+  <data name="Pipeline_DuplicateScript" xml:space="preserve">
+    <value>找到重複的pipeline腳本{0}。這不會被載入。</value>
+  </data>
+  <data name="GoToPageOrPhrase_MoreThanPhraseCount" xml:space="preserve">
+    <value>句索引{0}大於分節所有的句數。如果你希望到最後一句{1}請按Yes。</value>
+  </data>
+  <data name="InvalidInput" xml:space="preserve">
+    <value>錯誤輸入</value>
+  </data>
+  <data name="GoToPageOrPhrase_PageNumberLabel" xml:space="preserve">
+    <value>句編號(&amp;P):</value>
+  </data>
+  <data name="GoToPageOrPhrase_PhraseIndexLabel" xml:space="preserve">
+    <value>句索引(&amp;P):</value>
+  </data>
+  <data name="obi_DAISY2ExportPath_Description" xml:space="preserve">
+    <value>DAISY 2.02 會出路徑</value>
+  </data>
+  <data name="obi_DAISY3ExportPath_Description" xml:space="preserve">
+    <value>DAISY 3.0 會出路徑</value>
+  </data>
+  <data name="AutoSave_Error" xml:space="preserve">
+    <value>未能自動儲存。</value>
+  </data>
+  <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
+    <value>{0}DAISY 2.02 會出</value>
+  </data>
+  <data name="GoToPageOrPhrase_Title" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="TextVuMeter_LowIndicator" xml:space="preserve">
+    <value>低:</value>
+  </data>
+  <data name="TextVuMeter_OverloadIndicator" xml:space="preserve">
+    <value>OL </value>
+  </data>
+  <data name="DisableAdvancedRecording" xml:space="preserve">
+    <value>停用晉階錄音</value>
+  </data>
+  <data name="EnableAdvancedRecording" xml:space="preserve">
+    <value>啟用晉階錄音</value>
+  </data>
+  <data name="ContentViewLabel_NoSection" xml:space="preserve">
+    <value>沒有分節顯示</value>
+  </data>
+  <data name="Caption_Information" xml:space="preserve">
+    <value>資訊</value>
+  </data>
+  <data name="RecordingResumePhrasesDeleted" xml:space="preserve">
+    <value>未能找到之前的句，在此位置開始錄音。</value>
+  </data>
+  <data name="Find_ReachedInitialPoint" xml:space="preserve">
+    <value>找到開始位置</value>
+  </data>
+  <data name="RecordingRestriction_CannotCreateStrip" xml:space="preserve">
+    <value>正在進行錄音，不能顯示其他分節。</value>
+  </data>
+  <data name="Delete_RangeOfPhrases" xml:space="preserve">
+    <value>刪除範圍內句</value>
+  </data>
+  <data name="Merge_RangeOfPhrases" xml:space="preserve">
+    <value>合併的句範圍</value>
+  </data>
+  <data name="GotoPageOrPhrase_EnterNumeric" xml:space="preserve">
+    <value>輸入錯誤。請輸入數字。</value>
+  </data>
+  <data name="GotoPage_MissingVal" xml:space="preserve">
+    <value>缺乏數值</value>
+  </data>
+  <data name="SelectPhraseDetection_EndOrStartValMoreThanSectionCount" xml:space="preserve">
+    <value>開始或結束數值大於共有的分節數。</value>
+  </data>
+  <data name="SelectPhraseDetection_EndValIsSmallerThanStart" xml:space="preserve">
+    <value>結束數值不能大於開始數值</value>
+  </data>
+  <data name="SelectPhraseDetection_MissingStartOrEndVal" xml:space="preserve">
+    <value>缺乏開始或結束數值</value>
+  </data>
+  <data name="Preferences_PipelineScriptNotFound" xml:space="preserve">
+    <value>在此路徑找不到Pipeline腳本。</value>
+  </data>
+  <data name="StatusBar_NothingSelected" xml:space="preserve">
+    <value>沒有東西被選取</value>
+  </data>
+  <data name="Executing {0}" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StatusBar_CommandExecuting" xml:space="preserve">
+    <value>正在執行{0}</value>
+  </data>
+  <data name="StatusBar_RecordingInPhrase" xml:space="preserve">
+    <value> 錄音中 {0}</value>
+  </data>
+  <data name="MergePhrases_SizeLimitMessage" xml:space="preserve">
+    <value>合併的句長不能大於{0}分鐘。請選取較小的句進行合併。</value>
+  </data>
+  <data name="Metadata_CreatorNameForInitializing" xml:space="preserve">
+    <value>製作者名字</value>
+  </data>
+  <data name="Scroll_LoadingScreen" xml:space="preserve">
+    <value>正在載入畫面…</value>
+  </data>
+  <data name="DeleteFollowing_SectionSelection" xml:space="preserve">
+    <value>這會刪除此分節的所有句。要繼續嗎？</value>
+  </data>
+  <data name="NewProject_EmptyTitle" xml:space="preserve">
+    <value>專項不能沒有標題</value>
+  </data>
+  <data name="METADATA_DC_CONTRIBUTOR_HELP" xml:space="preserve">
+    <value>次要出版物貢獻者 dc:Creator</value>
+  </data>
+  <data name="METADATA_DC_COVERAGE_HELP" xml:space="preserve">
+    <value>內容的程度或範圍</value>
+  </data>
+  <data name="METADATA_DC_CREATOR_HELP" xml:space="preserve">
+    <value>基礎作者或創作者名</value>
+  </data>
+  <data name="METADATA_DC_DATE_HELP" xml:space="preserve">
+    <value>DTB出版日。YYYY[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DC_DESCRIPTION_HELP" xml:space="preserve">
+    <value>描述此出版物的文字
+</value>
+  </data>
+  <data name="METADATA_DC_IDENTIFIER_HELP" xml:space="preserve">
+    <value>的字母數字字符串唯一標識</value>
+  </data>
+  <data name="METADATA_DC_LANGUAGE_HELP" xml:space="preserve">
+    <value>出版的語言</value>
+  </data>
+  <data name="METADATA_DC_PUBLISHER_HELP" xml:space="preserve">
+    <value>提供此DTB的機構</value>
+  </data>
+  <data name="METADATA_DC_RELATION_HELP" xml:space="preserve">
+    <value>參照相關的資源</value>
+  </data>
+  <data name="METADATA_DC_RIGHTS_HELP" xml:space="preserve">
+    <value>權利訊息</value>
+  </data>
+  <data name="METADATA_DC_SOURCE_HELP" xml:space="preserve">
+    <value>該DT參照的資源</value>
+  </data>
+  <data name="METADATA_DC_SUBJECT_HELP" xml:space="preserve">
+    <value>內容主題</value>
+  </data>
+  <data name="METADATA_DC_TITLE_HELP" xml:space="preserve">
+    <value>DTB的喵提，包含副標題</value>
+  </data>
+  <data name="METADATA_DC_TYPE_HELP" xml:space="preserve">
+    <value>此DTB的內容性質</value>
+  </data>
+  <data name="METADATA_DTB_NARRATOR_HELP" xml:space="preserve">
+    <value>此書朗讀者名</value>
+  </data>
+  <data name="METADATA_DTB_PRODUCED_DATE_HELP" xml:space="preserve">
+    <value>此書製作日期。YYYY[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DTB_PRODUCER_HELP" xml:space="preserve">
+    <value>出品此DTB的機構名</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_DATE_HELP" xml:space="preserve">
+    <value>書本修改日期。 YYYY[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_DESC_HELP" xml:space="preserve">
+    <value>輸入修改的簡短描述
+</value>
+  </data>
+  <data name="METADATA_DTB_REVISION_HELP" xml:space="preserve">
+    <value>印刷書的修改次數
+</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_DATE_HELP" xml:space="preserve">
+    <value>印刷書的出版日期。YYYY[-MM[-DD]]</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_EDITION_HELP" xml:space="preserve">
+    <value>印刷書的版本</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_PUBLISHER_HELP" xml:space="preserve">
+    <value>印刷書的出版社</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_RIGHTS_HELP" xml:space="preserve">
+    <value>印刷書的擁有機構</value>
+  </data>
+  <data name="METADATA_DTB_SOURCE_TITLE_HELP" xml:space="preserve">
+    <value>印刷書的標題</value>
+  </data>
+  <data name="METADATA_GENERATOR_HELP" xml:space="preserve">
+    <value>產生此書的軟件</value>
+  </data>
+  <data name="METADATA_OBI_XUK_VERSION_HELP" xml:space="preserve">
+    <value>xuk的版本</value>
+  </data>
+  <data name="METADATA_CUSTOM_HELP" xml:space="preserve">
+    <value>這是用戶自定的數據。請輸入名字和數值。</value>
+  </data>
+  <data name="Recording_CreateSectionContentsInformation" xml:space="preserve">
+    <value>正在錄音分節{0}的內容並未在內容檢視中顯示。按輸入鍵來顯示分節的內容並開始錄音。</value>
+  </data>
+  <data name="METADATA_DAISY202_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Obi為儲存DAISY 的專屬檔案會出路徑</value>
+  </data>
+  <data name="METADATA_DAISY3_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Obi為儲存DAISY 3的專屬檔案會出路徑</value>
+  </data>
+  <data name="MergePhrases_CountLimitMessage" xml:space="preserve">
+    <value>合併的句不能多於{0}。請選擇較少的句進行合併。</value>
+  </data>
+  <data name="Import_Phrase_SizeLimit" xml:space="preserve">
+    <value>檔案長於{0}分鐘。這將會被分割。</value>
+  </data>
+  <data name="Import_AudioFormat_RenameFile" xml:space="preserve">
+    <value>由於資料夾已存在同名檔案，檔案名{0} 已重命名為{1}</value>
+  </data>
+  <data name="ImportAudio_ConvertingFormat" xml:space="preserve">
+    <value>正進行匯入前的檔案處理</value>
+  </data>
+  <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
+    <value>{0} (由於性能的考慮只顯示限制的句。 點擊最後一句來顯示更多)</value>
+  </data>
+  <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
+    <value>已從專項中刪除未使用的句</value>
+  </data>
+  <data name="GoToPageorPhrase_PageDonotExist" xml:space="preserve">
+    <value>頁不存在</value>
+  </data>
+  <data name="PerformanceCheck_RAMNearOverflowMsg" xml:space="preserve">
+    <value>系統繁忙，建議你遲些進行此操作。按No取消此操作。</value>
+  </data>
+  <data name="SelectPhraseOrSection_ShowSection" xml:space="preserve">
+    <value>需要的句不在現時分節</value>
+  </data>
+  <data name="KeyS_FastPlayNormalizeWithElapseBack" xml:space="preserve">
+    <value>正常速度快速回放</value>
+  </data>
+  <data name="KeyS_FastPlayRateNormilize" xml:space="preserve">
+    <value>快速播放回正常速度</value>
+  </data>
+  <data name="KeyS_FastPlayStepDown" xml:space="preserve">
+    <value>快速播放減速</value>
+  </data>
+  <data name="KeyS_FastPlayStepUp" xml:space="preserve">
+    <value>快速播放加速</value>
+  </data>
+  <data name="KeyS_FocusOnTransportBarTimeDisplay" xml:space="preserve">
+    <value>焦點移到時間顯示</value>
+  </data>
+  <data name="KeyS_MarkSelectionBeginTime" xml:space="preserve">
+    <value>標示選取開始時間</value>
+  </data>
+  <data name="KeyS_MarkSelectionEndTime" xml:space="preserve">
+    <value>標示選取結束時間</value>
+  </data>
+  <data name="KeyS_MarkSelectionFromBeginningToTheCursor" xml:space="preserve">
+    <value>標示選取從開頭至游標</value>
+  </data>
+  <data name="KeyS_MarkSelectionFromCursorToTheEnd" xml:space="preserve">
+    <value>標示選取從游標至末端</value>
+  </data>
+  <data name="KeyS_MoveToNextViewClockwise" xml:space="preserve">
+    <value>順時針方向移到下一檢視</value>
+  </data>
+  <data name="KeyS_MoveToPreviousViewAnticlockwise" xml:space="preserve">
+    <value>逆時針方向移到上一檢視</value>
+  </data>
+  <data name="KeyS_PlayPauseUsingAudioCursor_Default" xml:space="preserve">
+    <value>播放/暫停音訊游標</value>
+  </data>
+  <data name="KeyS_PlayPauseUsingSelection" xml:space="preserve">
+    <value>播放/暫停已選取項</value>
+  </data>
+  <data name="KeyS_PlaySelectedWaveform" xml:space="preserve">
+    <value>播放選取的波形</value>
+  </data>
+  <data name="KeyS_ScrollDown_LargeIncrementWithSelection" xml:space="preserve">
+    <value>往下一畫面</value>
+  </data>
+  <data name="KeyS_ScrollDown_SmallIncrementWithSelection" xml:space="preserve">
+    <value>往下一行</value>
+  </data>
+  <data name="KeyS_ScrollUp_LargeIncrementWithSelection" xml:space="preserve">
+    <value>往上一畫面</value>
+  </data>
+  <data name="KeyS_ScrollUp_SmallIncrementWithSelection" xml:space="preserve">
+    <value>往上一行</value>
+  </data>
+  <data name="KeyS_SelectCompleteWaveform" xml:space="preserve">
+    <value>選擇此句的完整波形</value>
+  </data>
+  <data name="KeyS_SelectFirstPhraseInStrip" xml:space="preserve">
+    <value>選擇分節中第一句</value>
+  </data>
+  <data name="KeyS_SelectFirstStrip" xml:space="preserve">
+    <value>選擇內容檢視中第一分節</value>
+  </data>
+  <data name="KeyS_SelectFollowingPhrase" xml:space="preserve">
+    <value>選擇下一句</value>
+  </data>
+  <data name="KeyS_SelectFollowingStrip" xml:space="preserve">
+    <value>選擇內容檢視中下一分節</value>
+  </data>
+  <data name="KeyS_SelectFollowingStripCursor" xml:space="preserve">
+    <value>往前移動游標條</value>
+  </data>
+  <data name="KeyS_SelectLastPhraseInStrip" xml:space="preserve">
+    <value>選擇內容檢視中最後一句</value>
+  </data>
+  <data name="KeyS_SelectLastStrip" xml:space="preserve">
+    <value>選擇內容檢視中最後一分節</value>
+  </data>
+  <data name="KeyS_SelectNextEmptyPhrase" xml:space="preserve">
+    <value>選擇下一空白句</value>
+  </data>
+  <data name="KeyS_SelectNextPagePhrase" xml:space="preserve">
+    <value>選擇下一頁句</value>
+  </data>
+  <data name="KeyS_SelectNextSpecialRolePhrase" xml:space="preserve">
+    <value>選擇下一特殊角色的句</value>
+  </data>
+  <data name="KeyS_SelectPrecedingPagePhrase" xml:space="preserve">
+    <value>選擇上一頁句</value>
+  </data>
+  <data name="KeyS_SelectPrecedingPhrase" xml:space="preserve">
+    <value>選擇上一句</value>
+  </data>
+  <data name="KeyS_SelectPrecedingSpecialRolePhrase" xml:space="preserve">
+    <value>選擇上一特殊角色的句</value>
+  </data>
+  <data name="KeyS_SelectPrecedingStrip" xml:space="preserve">
+    <value>選擇內容顯示中的上一分節</value>
+  </data>
+  <data name="KeyS_SelectPrecedingStripCursor" xml:space="preserve">
+    <value>往回移游標條</value>
+  </data>
+  <data name="KeyS_SelectUp" xml:space="preserve">
+    <value>往上選取</value>
+  </data>
+  <data name="KeyS_ShowPropertiesOfSelectedNode" xml:space="preserve">
+    <value>顯示已選註釋的內容</value>
+  </data>
+  <data name="KeyS_ToggleBetweenContentViewAndTOCView" xml:space="preserve">
+    <value>在內容檢視和目錄檢視之間切換</value>
+  </data>
+  <data name="KeyS_TransportBarNextPage" xml:space="preserve">
+    <value>在播放清單中的下一頁</value>
+  </data>
+  <data name="KeyS_TransportBarNextPhrase" xml:space="preserve">
+    <value>在播放清單中的下一句</value>
+  </data>
+  <data name="KeyS_TransportBarNextSection" xml:space="preserve">
+    <value>在播放清單中的下一分節</value>
+  </data>
+  <data name="KeyS_TransportBarNudgeBackward" xml:space="preserve">
+    <value>回推</value>
+  </data>
+  <data name="KeyS_TransportBarNudgeForward" xml:space="preserve">
+    <value>前推</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewFromAudioCursor" xml:space="preserve">
+    <value>從音訊游標開始御覽</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewFromSelection" xml:space="preserve">
+    <value>從已選取位置開始御覽</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewUptoAudioCursor" xml:space="preserve">
+    <value>御覽至音訊游標</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewUptoSelection" xml:space="preserve">
+    <value>御覽至已選取位置</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousPage" xml:space="preserve">
+    <value>播放清單中的上一頁</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousPhrase" xml:space="preserve">
+    <value>播放清單中的上一句</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousSection" xml:space="preserve">
+    <value>播放清單中的上一分節</value>
+  </data>
+  <data name="KeyboardShortcut_DuplicateMessage" xml:space="preserve">
+    <value>鍵盤快捷鍵已存在，請設定另一快捷鍵。</value>
+  </data>
+  <data name="KeyboardShortcuts_ErrorInLoadingConfiguredKeys" xml:space="preserve">
+    <value>載入設定的鍵盤快捷鍵時發生錯誤。現在載入預設設定。</value>
+  </data>
+  <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
+    <value>正在會出音訊檔案</value>
+  </data>
+  <data name="OpenProject_progress_dialog_title" xml:space="preserve">
+    <value>正在開啟專項...請稍後</value>
+  </data>
+  <data name="RecordingToolBar_StatusPlaying" xml:space="preserve">
+    <value>正在播放 {0} {1} </value>
+  </data>
+  <data name="import_output_path" xml:space="preserve">
+    <value>DAISY書已成功匯入{0}於{1}</value>
+  </data>
+  <data name="RecToolbar_MarkedTODO" xml:space="preserve">
+    <value>已標記TODO</value>
+  </data>
+  <data name="RecToolbar_NewPage" xml:space="preserve">
+    <value>新頁</value>
+  </data>
+  <data name="RecToolbar_NewPhrase" xml:space="preserve">
+    <value>新句</value>
+  </data>
+  <data name="RecToolbar_NewSection" xml:space="preserve">
+    <value>新分節</value>
+  </data>
+  <data name="RecToolbar_Recording" xml:space="preserve">
+    <value>錄音 {0} {1}</value>
+  </data>
+  <data name="RecToolbar_Title" xml:space="preserve">
+    <value>Obi 錄音列: {0}</value>
+  </data>
+  <data name="bookmark_closed_project_caption" xml:space="preserve">
+    <value>正在關閉專項</value>
+  </data>
+  <data name="SaveSelectedNodeAsBookmark" xml:space="preserve">
+    <value>現時選擇的註釋與儲存的書籤註釋不同。要將這個註釋儲存成書籤嗎？這將同時儲存此專項。</value>
+  </data>
+  <data name="UseDefaultValues" xml:space="preserve">
+    <value>使用預設數值</value>
+  </data>
+  <data name="SelectDeselectAllSections" xml:space="preserve">
+    <value>選取/取消選取所有分節</value>
+  </data>
+  <data name="upgrade_obi_to_new_version" xml:space="preserve">
+    <value>這個專項是用較舊版本的Obi建立，現在將對這專項進行升級。點擊OK按鈕繼續。</value>
+  </data>
+  <data name="upgrading_obi" xml:space="preserve">
+    <value>正在升級專項</value>
+  </data>
+  <data name="Obi_NewFeaturesWebpage" xml:space="preserve">
+    <value>http://daisy.trac.cvsdude.com/obi/wiki/documentation/Obi2.0_FeaturesExplanation</value>
+  </data>
+  <data name="Cleanup_WaveformLoadingWarning" xml:space="preserve">
+    <value>正在載入波形圖…一些音訊可能已開啟。強烈建議你遲些再試。按No按鈕繼續等待。</value>
+  </data>
+  <data name="ImportProject_OverwriteProjectMsg" xml:space="preserve">
+    <value>專項檔案已經在你指定的路徑存在。要覆蓋這個檔案嗎？</value>
+  </data>
+  <data name="no_audio" xml:space="preserve">
+    <value>選取的項目沒有音訊</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_error_no_audio" xml:space="preserve">
+    <value>在句中沒有音訊</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_expected_clip_end" xml:space="preserve">
+    <value> 預期音信結束:</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_imported_clip_end" xml:space="preserve">
+    <value> 匯入音訊結束於:</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_in_section" xml:space="preserve">
+    <value>在分節:</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_truncated_audio" xml:space="preserve">
+    <value>折斷的音訊</value>
+  </data>
+  <data name="DAISY3_ObiImport_ErrorsList_truncated_audio_in_phrase" xml:space="preserve">
+    <value>在句中出現折斷的音訊</value>
+  </data>
+  <data name="import_cancelled" xml:space="preserve">
+    <value>匯入取消</value>
+  </data>
+  <data name="Report_for_import" xml:space="preserve">
+    <value>匯入報告</value>
+  </data>
+  <data name="AudioFileImport_ProcessingFiles" xml:space="preserve">
+    <value>正在處理匯入音訊檔</value>
+  </data>
+  <data name="SaveAs_cannot_save_in_root" xml:space="preserve">
+    <value>未能儲存檔案到: {0}. 請選擇別的路徑。</value>
+  </data>
+  <data name="backup_file_missing" xml:space="preserve">
+    <value>未能復員，沒找到備份檔:</value>
+  </data>
+  <data name="information_caption" xml:space="preserve">
+    <value>訊息</value>
+  </data>
+  <data name="Save_current_state_caption" xml:space="preserve">
+    <value>儲存現時狀態</value>
+  </data>
+  <data name="restored_project_name" xml:space="preserve">
+    <value>已復員Project.obi</value>
+  </data>
+  <data name="save_current_state" xml:space="preserve">
+    <value>這個動作會儲存現時專項的狀態，你將不能還原到之前的專項狀態。要繼續嗎？</value>
+  </data>
+  <data name="open_from_backup_file" xml:space="preserve">
+    <value>專項會從被陣備份中開啟，要繼續嗎？</value>
+  </data>
+  <data name="AudioFormatConverter_Error_FileExtentionNodSupported" xml:space="preserve">
+    <value>未能識別音訊格式。只支援.wav 和 .mp3檔案。 掠過匯入 {0}</value>
+  </data>
+  <data name="Load_Original_Project" xml:space="preserve">
+    <value>正在載入原來專項</value>
+  </data>
+  <data name="Open_Backup_file" xml:space="preserve">
+    <value>正在從備份中開啟</value>
+  </data>
+  <data name="Save_Restore_Project" xml:space="preserve">
+    <value>正在儲存復員的專項</value>
+  </data>
+  <data name="error_in_opening" xml:space="preserve">
+    <value>開啟錯誤</value>
+  </data>
+  <data name="opening_project" xml:space="preserve">
+    <value>正在開啟專項{0}</value>
+  </data>
+  <data name="waveform_is_truncated" xml:space="preserve">
+    <value>波形圖被折斷在{0}s</value>
+  </data>
+  <data name="GoToPageOrPhrase_Time" xml:space="preserve">
+    <value>時間:</value>
+  </data>
+  <data name="no_phrases_in_section" xml:space="preserve">
+    <value>在分節中沒有句</value>
+  </data>
+  <data name="select_phrase" xml:space="preserve">
+    <value>請選擇一句</value>
+  </data>
+  <data name="select_phrase_or_section" xml:space="preserve">
+    <value>請選擇句或分節</value>
+  </data>
+  <data name="time_exceeds_duration_phrase" xml:space="preserve">
+    <value>時間超過現時句的時長</value>
+  </data>
+  <data name="time_exceeds_duration_section" xml:space="preserve">
+    <value>時間超過現時分節的時長</value>
+  </data>
+  <data name="AudioTab_AllowOverwrite" xml:space="preserve">
+    <value>錄音時允許複製</value>
+  </data>
+  <data name="AudioTab_AudioClues" xml:space="preserve">
+    <value>語音提示</value>
+  </data>
+  <data name="AudioTab_PreviewBeforeRecording" xml:space="preserve">
+    <value>在錄音前御覽</value>
+  </data>
+  <data name="AudioTab_RecordDirectlyFromTransportBar" xml:space="preserve">
+    <value>永遠在運輸列直接錄音</value>
+  </data>
+  <data name="AudioTab_RetainInitialSilence" xml:space="preserve">
+    <value>句偵測時保留最初的靜聲</value>
+  </data>
+  <data name="AudioTab_StartRecordingFromCursor" xml:space="preserve">
+    <value>在游標處開始錄音並刪除其後的音訊</value>
+  </data>
+  <data name="ProjectTab_AutoSaveWhenRecordingEnds" xml:space="preserve">
+    <value>在錄音結束後自動儲存到備份</value>
+  </data>
+  <data name="ProjectTab_FixContentViewWidth" xml:space="preserve">
+    <value>固定內容檢視寬度</value>
+  </data>
+  <data name="ProjectTab_OpenLastProject" xml:space="preserve">
+    <value>開啟最近的專項</value>
+  </data>
+  <data name="ProjectTab_SelectBookmark" xml:space="preserve">
+    <value>當專項開啟後跳到書籤</value>
+  </data>
+  <data name="ProjectTab_OptimizeMemory" xml:space="preserve">
+    <value>優化記憶體使用</value>
+  </data>
+  <data name="ProjectTab_DeleteUnusedFilesAfterCleanUp" xml:space="preserve">
+    <value>在清潔後刪除未使用的音訊檔</value>
+  </data>
+  <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
+    <value>未能更新現時專項的音訊格式</value>
+  </data>
+  <data name="AudioTab_Limit max phrase duration to 50 minutes" xml:space="preserve">
+    <value>限制最大句長為50分鐘</value>
+  </data>
+  <data name="Audio_ShowLiveWaveformWhileRecording" xml:space="preserve">
+    <value>在錄音時顯示實時波形圖</value>
+  </data>
+  <data name="KeyboardShortcuts_TextboxAccessibleName" xml:space="preserve">
+    <value>{0}快捷鍵組合: (按下快捷鍵組合)</value>
+  </data>
+  <data name="phrase_extra_Anchor" xml:space="preserve">
+    <value>，錨定</value>
+  </data>
+  <data name="phrase_short_Anchor" xml:space="preserve">
+    <value>錨定</value>
+  </data>
+  <data name="role_Anchor" xml:space="preserve">
+    <value>錨定</value>
+  </data>
+  <data name="Associate_next_phrase" xml:space="preserve">
+    <value>參照的可跳過句將會被刪除，而下一句將成為被參照的句。要繼續嗎？</value>
+  </data>
+  <data name="Associate_node_with_anchor_node" xml:space="preserve">
+    <value>沒有特殊句與此錨定註釋關聯，請關聯一個註釋。</value>
+  </data>
+  <data name="Associate_show_all" xml:space="preserve">
+    <value>顯示全部(&amp;w)</value>
+  </data>
+  <data name="Associate_show_selected" xml:space="preserve">
+    <value>顯示已選(&amp;l)</value>
+  </data>
+  <data name="List_of_anchor_nodes" xml:space="preserve">
+    <value>錨定清單</value>
+  </data>
+  <data name="Selected_node" xml:space="preserve">
+    <value>已選註釋</value>
+  </data>
+  <data name="Node_between_chunk" xml:space="preserve">
+    <value>選擇的特殊據是在方塊以內。要刪除它嗎？</value>
+  </data>
+  <data name="Start_node_different_from_end_node" xml:space="preserve">
+    <value>開始註釋不能與結束註釋相同。請重新選擇。</value>
+  </data>
+  <data name="Start_node_index_greater_than_end" xml:space="preserve">
+    <value>開始註釋的索引大於結束註釋的索引。請重新選擇。</value>
+  </data>
+  <data name="Export_AnchorErrors" xml:space="preserve">
+    <value>分節名: {0}，據: {1}</value>
+  </data>
+  <data name="Export_SkippableWithEmptyNode" xml:space="preserve">
+    <value>以下參照到空白註釋的錨定不會被會出。按OK繼續，或按Cancel修正這些錯誤。</value>
+  </data>
+  <data name="Anchor_node_error" xml:space="preserve">
+    <value>這兒有空白的錨固定或錨定參照到空白的註釋。</value>
+  </data>
+  <data name="Anchor_node_not_associated" xml:space="preserve">
+    <value>沒有與此錨定關聯的註釋，請將此男定關聯到一個註釋。</value>
+  </data>
+  <data name="Associate" xml:space="preserve">
+    <value>關聯註釋</value>
+  </data>
+  <data name="Node_already_associated" xml:space="preserve">
+    <value>這個註釋已與別的註釋相關聯，要繼續？</value>
+  </data>
+  <data name="Page_not_found" xml:space="preserve">
+    <value>找不到頁</value>
+  </data>
+  <data name="Report_for_export" xml:space="preserve">
+    <value>會出報告</value>
+  </data>
+  <data name="Show_details" xml:space="preserve">
+    <value>顯示詳細資料</value>
+  </data>
+  <data name="Hide_details" xml:space="preserve">
+    <value>隱藏詳細資料</value>
+  </data>
+  <data name="MetadataView_InvalidMetadata" xml:space="preserve">
+    <value>錯誤的metadata</value>
+  </data>
+  <data name="ObiFormMsg_PipelineExtractionFail" xml:space="preserve">
+    <value>未能解壓Pipeline</value>
+  </data>
+  <data name="ObiFormMsg_RedoFail" xml:space="preserve">
+    <value>取消復員未能完成</value>
+  </data>
+  <data name="ObiFormMsg_UndoFail" xml:space="preserve">
+    <value>復員未能完成</value>
+  </data>
+  <data name="ProjectViewFormMsg_AddingReferenceFail" xml:space="preserve">
+    <value>新增參照失敗</value>
+  </data>
+  <data name="ProjectViewFormMsg_AssigningSkippableFail" xml:space="preserve">
+    <value>定義可跳過註釋失敗</value>
+  </data>
+  <data name="ProjectViewFormMsg_CutOperationFail" xml:space="preserve">
+    <value>剪下操作失敗</value>
+  </data>
+  <data name="ProjectViewFormMsg_DeassociatingSkippableFail" xml:space="preserve">
+    <value>取消參照到可跳過註釋失敗</value>
+  </data>
+  <data name="ProjectViewFormMsg_DeleteOperationFail" xml:space="preserve">
+    <value>刪除操作失敗</value>
+  </data>
+  <data name="ProjectViewFormMsg_ExportingAudioFail" xml:space="preserve">
+    <value>會出音訊失敗</value>
+  </data>
+  <data name="ProjectViewFormMsg_MergeOperationFail" xml:space="preserve">
+    <value>合并失敗</value>
+  </data>
+  <data name="ProjectViewFormMsg_PasteOperationFail" xml:space="preserve">
+    <value>貼上操作失敗</value>
+  </data>
+  <data name="ProjectViewFormMsg_PhraseDetectionFail" xml:space="preserve">
+    <value>句子偵測失敗</value>
+  </data>
+  <data name="ProjectViewFormMsg_SplitOperationFail" xml:space="preserve">
+    <value>分割操作失敗</value>
+  </data>
+  <data name="KeyS_SelectFirstSkippableNode" xml:space="preserve">
+    <value>為現時可跳過的註釋選擇開始句</value>
+  </data>
+  <data name="KeyS_SelectLastSkippableNode" xml:space="preserve">
+    <value>為現時可跳過的註釋選擇結尾句</value>
+  </data>
+  <data name="KeyS_TransportBarFineNavigationOn" xml:space="preserve">
+    <value>晉階瀏覽開</value>
+  </data>
+  <data name="KeyS_TransportBarFineNavigationOff" xml:space="preserve">
+    <value>晉階瀏覽關</value>
+  </data>
+  <data name="StatusMsg_FineNavigation" xml:space="preserve">
+    <value>晉階瀏覽：</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>屬於以下id的音訊檔遺失：</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>警告！</value>
+  </data>
+  <data name="ContentView_wrap" xml:space="preserve">
+    <value>必須選擇分節或句</value>
+  </data>
+  <data name="limited_sections_merge" xml:space="preserve">
+    <value>所有分節共計多於7000句。 只有直至 {0} 的分節會被合并。</value>
+  </data>
+  <data name="merged_sections" xml:space="preserve">
+    <value>將合并分節從 {0} 到 {1}</value>
+  </data>
+  <data name="not_enough_sections_to_merge" xml:space="preserve">
+    <value>沒有足夠的分節進行合并。最少選擇連續兩個的分節進行合并。</value>
+  </data>
+  <data name="phrase_count_more_than_7000" xml:space="preserve">
+    <value>共計多於7000句。 選擇少一些分節。</value>
+  </data>
+  <data name="Preferences_advanced_recording_mode" xml:space="preserve">
+    <value>晉階錄音模式</value>
+  </data>
+  <data name="Preferences_Allow_overwrite" xml:space="preserve">
+    <value>允許覆蓋, 直接在運輸列錄音 和 在錄音時進行句偵測 的選項會被勾選。 要繼續嗎？</value>
+  </data>
+  <data name="select_one_more_section" xml:space="preserve">
+    <value>已選擇{0}。 最少選擇1分節進行合併。</value>
+  </data>
+  <data name="ProjectViewMsg_LogFileCreatedOnDesktop" xml:space="preserve">
+    <value>在上一次操作中Obi被突然終止。記錄檔ObiSession.log已儲存在桌面。 </value>
+  </data>
+  <data name="AssociateNode_Section" xml:space="preserve">
+    <value>分節</value>
+  </data>
+  <data name="AssociateNode_SelectedSection" xml:space="preserve">
+    <value>=&gt;&gt; 分節</value>
+  </data>
+  <data name="LimitedDiskSpaceWarning" xml:space="preserve">
+    <value>你的系統只有小於{0}Mb的剩餘磁碟空間。 要繼續？</value>
+  </data>
+  <data name="Memory_Warning" xml:space="preserve">
+    <value>磁碟空間資訊</value>
+  </data>
+  <data name="KeyS_ContractAudioSelectionAtLeft" xml:space="preserve">
+    <value>收縮音訊選擇的左方</value>
+  </data>
+  <data name="KeyS_ExpandAudioSelectionAtLeft" xml:space="preserve">
+    <value>申言音訊選擇的左方</value>
+  </data>
+  <data name="Recording_RecordInNextExistingEmptyPage" xml:space="preserve">
+    <value>在下一已存在的空白頁錄音</value>
+  </data>
+  <data name="ProjectView_ClearAnchor" xml:space="preserve">
+    <value>要清除參照到可跳過註釋的錨定嗎？</value>
+  </data>
+  <data name="Elapsed" xml:space="preserve">
+    <value>已播放</value>
+  </data>
+  <data name="ElapsedInSection" xml:space="preserve">
+    <value>已播放分節</value>
+  </data>
+  <data name="ElapsedInProject" xml:space="preserve">
+    <value>已播放專項</value>
+  </data>
+  <data name="ElapsedInPhrase" xml:space="preserve">
+    <value>已播放句</value>
+  </data>
+  <data name="RemainingInPhrase" xml:space="preserve">
+    <value>句子剩餘</value>
+  </data>
+  <data name="RemainingInSelection" xml:space="preserve">
+    <value>所選剩餘</value>
+  </data>
+  <data name="RenumberPagesCaption" xml:space="preserve">
+    <value>重新編排之後頁</value>
+  </data>
+  <data name="TransportBar_RenumberPagesAfterRecording" xml:space="preserve">
+    <value>接續之前錄音頁的句可能需要重新編排頁數，要這樣做嗎？</value>
+  </data>
+  <data name="ProjectView_NoEmptyPageFoundForSpeechGeneration" xml:space="preserve">
+    <value>未能找到空白頁來生成語音</value>
+  </data>
+  <data name="SpeechGenerationProgress" xml:space="preserve">
+    <value>正在生成語音…</value>
+  </data>
+  <data name="Audio_DetectPhrasesWhileRecording" xml:space="preserve">
+    <value>在錄音時進行句偵測</value>
+  </data>
+  <data name="ProjectView_ErrorReplacingAudioDueToTimingMissmatch" xml:space="preserve">
+    <value>由於音訊長度不符而未能覆蓋音訊: 原長度是 {0} : 新檔案長度是 {1}</value>
+  </data>
+  <data name="AudioPref_LivePhraseDetectionEnable" xml:space="preserve">
+    <value>以下數值會用於實時句偵測; Threshold: {0} ,Gap btw Phrases: {1} ,Leading Silence: {2}。 這些設定可在偏好設定的下拉方塊修改或從一靜音句中取得。</value>
+  </data>
+  <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
+    <value>Enable free disk space check</value>
+  </data>
+  <data name="Audio_EnablePostRecordingPageRenumbering" xml:space="preserve">
+    <value>在錄音結束時重新編排其後頁數</value>
+  </data>
+  <data name="KeyS_TransportBarRecordSingleKey" xml:space="preserve">
+    <value>錄音: 單鍵快捷鍵</value>
+  </data>
+  <data name="Audio_MonitorAlways" xml:space="preserve">
+    <value>持續監聽</value>
+  </data>
+  <data name="Audio_MergeFirstTwoPhrasesInPhraseDetection" xml:space="preserve">
+    <value>合并句偵測功能所偵測得的首兩句</value>
+  </data>
+  <data name="KeyS_TransportBarStopSingleKey" xml:space="preserve">
+    <value>停止: 單鍵快捷鍵</value>
+  </data>
+  <data name="DAISY2_ObiImport_ErrorsList_FrontPageCorrection" xml:space="preserve">
+    <value>非數值的前頁數已新增為 {1}</value>
+  </data>
+  <data name="Audio_FastPlayWithoutPitchChange" xml:space="preserve">
+    <value>快速播放而保持音調</value>
+  </data>
+  <data name="Project_SaveProjectWhenRecordingEnds" xml:space="preserve">
+    <value>在錄音完成後儲存專項</value>
+  </data>
+  <data name="Project_CheckForUpdates" xml:space="preserve">
+    <value>檢查更新</value>
+  </data>
+  <data name="DeleteUnused_NoUnusedPhraseFoundToDelete" xml:space="preserve">
+    <value>未找到未使用據</value>
+  </data>
+  <data name="ImportErrorCorrectionText" xml:space="preserve">
+    <value>連同一些錯誤修正</value>
+  </data>
+  <data name="CheckUpdate_Title" xml:space="preserve">
+    <value>有 {0} 個新項</value>
+  </data>
+  <data name="CheckUpdate_LabelText" xml:space="preserve">
+    <value>{0}. 請在以下選項中選擇。</value>
+  </data>
+  <data name="CheckUpdate_UpdateProcessActive" xml:space="preserve">
+    <value>更新進程已在進行中</value>
+  </data>
+  <data name="HardReset_Caption" xml:space="preserve">
+    <value>重設偏好設定</value>
+  </data>
+  <data name="HardResetSettings_ConfirmAgain" xml:space="preserve">
+    <value>請再次確認。</value>
+  </data>
+  <data name="HardResetSettings_Question" xml:space="preserve">
+    <value>這操作會重設所有偏好設定包括鍵盤快捷鍵。要繼續？</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>重設所有偏好設定</value>
+  </data>
+  <data name="KeyS_HardResetAllSettings" xml:space="preserve">
+    <value>重設所有設定</value>
+  </data>
+  <data name="ReplaceCorruptPhrasesWithEmptyNode_Question" xml:space="preserve">
+    <value>共有 {0}, 其中有問題或缺少音訊的句有 {1}。 建議用空白句取代這些問題句並標記成Todo。 要繼續？</value>
+  </data>
+  <data name="ReplacePhrasesWithEmptyNode" xml:space="preserve">
+    <value>用空白句取代音訊損毀的句</value>
+  </data>
+  <data name="ReplaceCorruptPhrasesWithEmptyNode_NothingFound" xml:space="preserve">
+    <value>沒找到有損毀音訊的句。</value>
+  </data>
+  <data name="Obi_UserInformationText" xml:space="preserve">
+    <value>請填妥以下表格進行登記。</value>
+  </data>
+  <data name="CleanUp_LongFilePath" xml:space="preserve">
+    <value>這專項儲存在較長的資料夾路徑中，這可能導致清潔專項時造成重要資料的遺失。建議你將專項儲存在較接近根目錄的位置。要繼續並忽略這個警告嗎？</value>
+  </data>
+  <data name="UserRegistration_SendEmailMsg" xml:space="preserve">
+    <value>在 {0} 嘗試後仍無法尚存登記資料。 請發電郵到 obi.feedback@gmail.com 進行登記。</value>
+  </data>
+  <data name="UserRegistrationBtn_DoNotRemind" xml:space="preserve">
+    <value>不要提醒</value>
+  </data>
+  <data name="CheckUpdates_NewVersionNotAvailable" xml:space="preserve">
+    <value>最後更新版本是 {0}。 在此以後並無更新。</value>
+  </data>
+  <data name="CheckUpdates_GoToDownloadPage" xml:space="preserve">
+    <value>到下載頁(&amp;G)</value>
+  </data>
+  <data name="Confirm_Setting" xml:space="preserve">
+    <value>操作成功，請重新開啟Obi以載入預設設定。</value>
+  </data>
+  <data name="StatusForMergeSection" xml:space="preserve">
+    <value>正顯示分節 {0} 至 {1}。 請選擇要合併的分節。</value>
+  </data>
+  <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
+    <value>顯示放大面板</value>
+  </data>
+  <data name="KeyS_CloseZoomPanel" xml:space="preserve">
+    <value>關閉放大面板</value>
+  </data>
+  <data name="KeyS_ResetZoomPanel" xml:space="preserve">
+    <value>重設放大面板</value>
+  </data>
+  <data name="KeyS_ZoomInWaveform" xml:space="preserve">
+    <value>放大波形圖</value>
+  </data>
+  <data name="KeyS_ZoomOutWaveform" xml:space="preserve">
+    <value>縮小波形圖</value>
+  </data>
+  <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
+    <value>放大已選波形圖</value>
+  </data>
+  <data name="KeyS_NextPhrase" xml:space="preserve">
+    <value>顯示下句</value>
+  </data>
+  <data name="KeyS_PreviousPhrase" xml:space="preserve">
+    <value>顯示上句</value>
+  </data>
+  <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
+    <value>在內容檢視中顯示波形圖</value>
+  </data>
+  <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
+    <value>在會出DAISY檔案中永遠忽略縮排</value>
+  </data>
+  <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
+    <value>顯示下句</value>
+  </data>
+  <data name="ZoomAudioTT_ShowPreviousPhrase" xml:space="preserve">
+    <value>顯示上句</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomIn" xml:space="preserve">
+    <value>放大已選項</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomOut" xml:space="preserve">
+    <value>縮小</value>
+  </data>
+  <data name="ZoomAudioTT_ZoomSelection" xml:space="preserve">
+    <value>放大已選項</value>
+  </data>
+  <data name="ZoomAudioTT_Close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="ZoomAudioTT_Reset" xml:space="preserve">
+    <value>重設用戶登記</value>
+  </data>
+  <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
+    <value>已為這些頁產生語音</value>
+  </data>
+  <data name="EditAudioTT_Cut" xml:space="preserve">
+    <value>剪下</value>
+  </data>
+  <data name="EditAudioTT_Copy" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="EditAudioTT_Paste" xml:space="preserve">
+    <value>貼上</value>
+  </data>
+  <data name="EditAudioTT_Delete" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="EditAudioTT_Merge" xml:space="preserve">
+    <value>與下句合併</value>
+  </data>
+  <data name="EditAudioTT_Split" xml:space="preserve">
+    <value>分割句</value>
+  </data>
+  <data name="EditAudioTT_PhraseDetect" xml:space="preserve">
+    <value>句偵測時保留最初的靜聲</value>
+  </data>
+  <data name="Metadata_SetDefaults" xml:space="preserve">
+    <value>設定預設metadata</value>
+  </data>
+  <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
+    <value>使用空格鍵來停止錄音</value>
+  </data>
+  <data name="MergeProjectCommand" xml:space="preserve">
+    <value>合併專項</value>
+  </data>
+  <data name="MergeProject_NoSectionToMerge" xml:space="preserve">
+    <value>在來源專項中找不到分節</value>
+  </data>
+  <data name="MergeProject_progress_dialog_title" xml:space="preserve">
+    <value>正在合併專項 {0} 之 {1}...</value>
+  </data>
+  <data name="MergeProject_SectionProgress" xml:space="preserve">
+    <value>正在合併分節: {0}</value>
+  </data>
+  <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
+    <value>在目錄檢視中突出顯示空白的分節</value>
+  </data>
+  <data name="Obi_ProjectMerge" xml:space="preserve">
+    <value>請選擇合併的專項</value>
+  </data>
+  <data name="Obi_ProjectMergeFilter" xml:space="preserve">
+    <value>Obi 專項檔案 (*.obi)|*.obi</value>
+  </data>
+  <data name="MergeProject_Information" xml:space="preserve">
+    <value>請確保合併的專項有同樣的音訊格式設定</value>
+  </data>
+  <data name="UserRegistration_Name" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="UserRegistration_Email" xml:space="preserve">
+    <value>電郵地址</value>
+  </data>
+  <data name="UserRegistration_Org_Name" xml:space="preserve">
+    <value>機構名</value>
+  </data>
+  <data name="UserRegistration_City" xml:space="preserve">
+    <value>城市</value>
+  </data>
+  <data name="UserRegistration_Country" xml:space="preserve">
+    <value>國家</value>
+  </data>
+  <data name="UserRegistration_WrongEmail" xml:space="preserve">
+    <value>錯誤的電郵地址</value>
+  </data>
+  <data name="UserRegistration_NoMatchEmail" xml:space="preserve">
+    <value>輸入的電郵地址不符，請重新輸入</value>
+  </data>
+  <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
+    <value>請說明一下你使用Obi的情況，選取單選按鈕中的任何一個</value>
+  </data>
+  <data name="HardResetPermanentSettings_Question" xml:space="preserve">
+    <value>重設用戶登記</value>
+  </data>
+  <data name="RenumberPages" xml:space="preserve">
+    <value>重新編排頁數</value>
+  </data>
+  <data name="Transport_PreviousPhrase" xml:space="preserve">
+    <value>隨後句</value>
+  </data>
+  <data name="Transport_PreviousSection" xml:space="preserve">
+    <value>隨後分節</value>
+  </data>
+  <data name="Transport_PreviousPage" xml:space="preserve">
+    <value>隨後頁</value>
+  </data>
+  <data name="Transport_FastPlayBackward" xml:space="preserve">
+    <value>用較快速度回放</value>
+  </data>
+  <data name="Transport_StartPlayback" xml:space="preserve">
+    <value>開始或重新播放</value>
+  </data>
+  <data name="Transport_StopPlayback" xml:space="preserve">
+    <value>停止播放或錄音</value>
+  </data>
+  <data name="Transport_StartRecording" xml:space="preserve">
+    <value>開始監聽或錄音</value>
+  </data>
+  <data name="Transport_FastPlayForward" xml:space="preserve">
+    <value>用較快速度往前播放</value>
+  </data>
+  <data name="Transport_NextPhrase" xml:space="preserve">
+    <value>下句</value>
+  </data>
+  <data name="Transport_NextPage" xml:space="preserve">
+    <value>下頁</value>
+  </data>
+  <data name="Transport_NextSection" xml:space="preserve">
+    <value>下分節</value>
+  </data>
+  <data name="Transport_AddTodo" xml:space="preserve">
+    <value>在錄音進行時新增TODO標記</value>
+  </data>
+  <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
+    <value>上句</value>
+  </data>
+  <data name="Transport_PreviousSectionAcc" xml:space="preserve">
+    <value>上分節</value>
+  </data>
+  <data name="Transport_PreviousPageAcc" xml:space="preserve">
+    <value>上頁</value>
+  </data>
+  <data name="Transport_FastPlayBackwardAcc" xml:space="preserve">
+    <value>快退</value>
+  </data>
+  <data name="Transport_StartPlaybackAcc" xml:space="preserve">
+    <value>播放選項</value>
+  </data>
+  <data name="Transport_StartPausebackAcc" xml:space="preserve">
+    <value>暫停</value>
+  </data>
+  <data name="Transport_StopPlaybackAcc" xml:space="preserve">
+    <value>停止EPUB檢查程序當超過3分鐘</value>
+  </data>
+  <data name="Transport_FastPlayForwardAcc" xml:space="preserve">
+    <value>快進</value>
+  </data>
+  <data name="Transport_AddTodoAcc" xml:space="preserve">
+    <value>標記句</value>
+  </data>
+  <data name="Language_Pack_WrongFile" xml:space="preserve">
+    <value>你選擇了錯誤的檔案</value>
+  </data>
+  <data name="Language_Pack_Select" xml:space="preserve">
+    <value>請選擇語言包壓縮檔</value>
+  </data>
+  <data name="Language_Pack_Complete" xml:space="preserve">
+    <value>語言包更新成功，請重新啟動Obi</value>
+  </data>
+  <data name="Language_Pack_Caption" xml:space="preserve">
+    <value>檔案錯誤</value>
+  </data>
+  <data name="Language_Pack_Select_Caption" xml:space="preserve">
+    <value>選擇壓縮檔</value>
+  </data>
+  <data name="Language_Pack_Complete_Caption" xml:space="preserve">
+    <value>更新成功</value>
+  </data>
+  <data name="Preferences_Advance_Mode" xml:space="preserve">
+    <value>以下鉤選框將會被選取，要繼續?</value>
+  </data>
+  <data name="Preferences_Intermediate_recording_mode" xml:space="preserve">
+    <value>中級錄音模式</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Basic" xml:space="preserve">
+    <value>基本</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Intermediate" xml:space="preserve">
+    <value>中級</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Advance" xml:space="preserve">
+    <value>晉階</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Custom" xml:space="preserve">
+    <value>自定</value>
+  </data>
+  <data name="Audio_RecordSubsequentPhrases" xml:space="preserve">
+    <value>使用錄音按鈕覆蓋其其後音訊</value>
+  </data>
+  <data name="Audio_EnforceSingleCursor" xml:space="preserve">
+    <value>使用單一音訊游標</value>
+  </data>
+  <data name="VUMeter_Reset" xml:space="preserve">
+    <value>重設</value>
+  </data>
+  <data name="VUMeter_Right" xml:space="preserve">
+    <value>右</value>
+  </data>
+  <data name="VUMeter_Left" xml:space="preserve">
+    <value>左</value>
+  </data>
+  <data name="KeysS_TransportBarExpandPlayOptions" xml:space="preserve">
+    <value>伸展播放選項按鈕</value>
+  </data>
+  <data name="KeysS_TransportBarExpandRecordOptions" xml:space="preserve">
+    <value>伸展錄音選項按鈕</value>
+  </data>
+  <data name="Transport_PlayingOptions" xml:space="preserve">
+    <value>播放選項</value>
+  </data>
+  <data name="Transport_RecordingOptions" xml:space="preserve">
+    <value>錄音選項</value>
+  </data>
+  <data name="Audio_DeleteFollowingPhrasesOfSectionAfterRecording" xml:space="preserve">
+    <value>在錄音後刪除其後的句</value>
+  </data>
+  <data name="ProfileDesc_file_name" xml:space="preserve">
+    <value>ProfileDesc_en.html</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
+    <value>設定檔1 (VA)</value>
+  </data>
+  <data name="Preferences_Level_ComboBox_Profile_2" xml:space="preserve">
+    <value>設定檔2 (SBS)</value>
+  </data>
+  <data name="Preferences_AudioProfileDesc" xml:space="preserve">
+    <value>音訊設定檔描述</value>
+  </data>
+  <data name="Audio_DisableDeselectionOnStop" xml:space="preserve">
+    <value>按停止兩次時不要取消選取</value>
+  </data>
+  <data name="KeyS_FastPlayWithElapseForward" xml:space="preserve">
+    <value>已往前時間</value>
+  </data>
+  <data name="NoAdministrativePrivilege" xml:space="preserve">
+    <value>你沒有管理員權限進行複製。 請手動複製位於暫存資料夾中的 "Obi_Language_Pack" 資料夾的內容(這會在你關閉此訊息後打開。 如果你希望手動打開這個資料夾，那麼在「執行」中輸入"%temp%") 或用管理員權限執行，在Obi圖標上單擊滑鼠右鍵選擇“以管理員身份運行”</value>
+  </data>
+  <data name="Project_MessageBoxToCheckFixContentView" xml:space="preserve">
+    <value>你要同時鉤選 "固定內容檢視寬度" 嗎? (建議)</value>
+  </data>
+  <data name="default_EpubExport_dirname" xml:space="preserve">
+    <value>{0}Epub3 會出</value>
+  </data>
+  <data name="progress_EpubValidating" xml:space="preserve">
+    <value>Epub 驗證器正在執行，請稍後…</value>
+  </data>
+  <data name="METADATA_EPUB3_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Obi專屬數據用於儲存EPUB 3 會出路徑</value>
+  </data>
+  <data name="obi_EPUB3ExportPath_Description" xml:space="preserve">
+    <value>EPUB 3 會出路徑</value>
+  </data>
+  <data name="obi_EPUB3ValidationSuccessfull" xml:space="preserve">
+    <value>驗證成功而附帶警告</value>
+  </data>
+  <data name="obi_EPUB3ValidationFailed" xml:space="preserve">
+    <value>驗證失敗</value>
+  </data>
+  <data name="obi_EPUB3ValidatorNotInstalled" xml:space="preserve">
+    <value>EPUB驗證器沒安裝</value>
+  </data>
+  <data name="obi_EPUB3CheckNotFound" xml:space="preserve">
+    <value>錯誤:找不到EPUB驗證</value>
+  </data>
+  <data name="obi_EPUB3ValidationSuccessfullWithWarnings" xml:space="preserve">
+    <value>驗證成功而附帶警告</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>操作失敗</value>
+  </data>
+  <data name="AssociateNode_SelectedNodeGroupBox" xml:space="preserve">
+    <value>已選筆記</value>
+  </data>
+  <data name="Project_SaveObiLocationAndSize" xml:space="preserve">
+    <value>儲存Obi的位置與大小</value>
+  </data>
+  <data name="Project_PeakMeterChangeLocation" xml:space="preserve">
+    <value>保持峰值表對準Obi的右邊緣 (Bǎochí fēngzhí biǎo d...</value>
+  </data>
+  <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
+    <value>正在處理音訊…</value>
+  </data>
+  <data name="AudioProcessing_InfoText" xml:space="preserve">
+    <value>數值 1.0 會保持不變</value>
+  </data>
+  <data name="ValidatorTimeOutMsg" xml:space="preserve">
+    <value>驗證器超時</value>
+  </data>
+  <data name="Project_EPUBCheckTimeOutEnabled" xml:space="preserve">
+    <value>停止EPUB檢查程序當超過3分鐘</value>
+  </data>
+  <data name="UserRegistration_EnterFollowing" xml:space="preserve">
+    <value>請正確輸入以下項目：</value>
+  </data>
+  <data name="Audio_PreservePage" xml:space="preserve">
+    <value>Preserve pages while record over subsequent phrases</value>
+  </data>
+</root>
