@@ -544,7 +544,15 @@ namespace Obi.Dialogs
 
         private bool IsResourceForLanguageExist(string cultureName)
         {
-            string cultureDirName = cultureName.Split('-')[0];
+            string cultureDirName = "";
+            if (cultureName != "zh-CN")
+            {
+                cultureDirName = cultureName.Split('-')[0];
+            }
+            else
+            {
+                cultureDirName = "zh-CN";
+            }
             
             string[] dirList = System.IO.Directory.GetDirectories(System.AppDomain.CurrentDomain.BaseDirectory, cultureDirName, System.IO.SearchOption.TopDirectoryOnly);
             return dirList != null && dirList.Length > 0;
