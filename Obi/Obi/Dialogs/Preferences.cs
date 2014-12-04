@@ -538,14 +538,22 @@ namespace Obi.Dialogs
                 MessageBox.Show ( string.Format ( Localizer.Message ( "Peferences_GUIDonotSupportCulture" ),
                     mCultureBox.SelectedItem.ToString () ) );
                 }
-            mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
+                if (mCultureBox.SelectedItem.ToString() != "zh-CHT" && mCultureBox.SelectedItem.ToString() != "zh-CHS")
+                {
+                    mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
+                }
+                else
+                {
+                    CultureInfo temp = new CultureInfo("zh-CN");
+                    mSettings.UserProfile.Culture = temp;
+                }
             return true;
             }
 
         private bool IsResourceForLanguageExist(string cultureName)
         {
             string cultureDirName = "";
-            if (cultureName != "zh-CN")
+            if (cultureName != "zh-CN" && cultureName != "zh-CHT" && cultureName != "zh-CHS")
             {
                 cultureDirName = cultureName.Split('-')[0];
             }
