@@ -1966,8 +1966,7 @@ namespace Obi.ProjectView
                 {
                     //Console.WriteLine(preservePhrasesWithSpecificRole + " : " + roleToPreserve.ToString());
                     if (preservePhrasesWithSpecificRole
-                        && section.PhraseChild(i).Role_ == roleToPreserve
-                        && i > startIndex)
+                        && section.PhraseChild(i).Role_ == roleToPreserve)
                     {
                         continue;
                     }
