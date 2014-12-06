@@ -344,16 +344,16 @@
     <value>應用句偵測(&amp;h)</value>
   </data>
   <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Skippable notes</value>
+    <value>可跳過的註釋</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Begin note</value>
+    <value>註釋開始</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Begin note(&amp;g)</value>
+    <value>註釋開始(&amp;g)</value>
   </data>
   <data name="Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>新增註釋</value>
@@ -419,7 +419,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>Skippable notes(&amp;b)</value>
+    <value>可跳過的註釋 (&amp;b)</value>
   </data>
   <data name="Context_AudioSelection_BeginMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>

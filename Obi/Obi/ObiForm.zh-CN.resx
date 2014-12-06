@@ -248,6 +248,15 @@
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 6</value>
   </data>
+  <data name="openrecentSeparator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 6</value>
+  </data>
+  <data name="mFile_ClearListMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 22</value>
+  </data>
+  <data name="mFile_ClearListMenuItem.Text" xml:space="preserve">
+    <value>清澄清單(&amp;C)</value>
+  </data>
   <data name="mFile_RecentProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
   </data>
@@ -274,205 +283,6 @@
   </data>
   <data name="mFileToolStripMenuItem.Text" xml:space="preserve">
     <value>檔案(&amp;F)</value>
-  </data>
-  <data name="mEditToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 20</value>
-  </data>
-  <data name="mEditToolStripMenuItem1.Text" xml:space="preserve">
-    <value>編輯(&amp;E)</value>
-  </data>
-  <data name="mViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="mViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>檢視(&amp;V)</value>
-  </data>
-  <data name="mAddSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>專項內容(&amp;j)</value>
-  </data>
-  <data name="mAddSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+H</value>
-  </data>
-  <data name="mAddSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="mAddSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>新增分節 Ctrl+H</value>
-  </data>
-  <data name="mAddSubsectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>新增分節(&amp;A)</value>
-  </data>
-  <data name="mAddSubsectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+H</value>
-  </data>
-  <data name="mAddSubsectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="mAddSubsectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>新增子分節 Ctrl+Shift+H</value>
-  </data>
-  <data name="mInsertSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>新增子分節(&amp;s)</value>
-  </data>
-  <data name="mInsertSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+H</value>
-  </data>
-  <data name="mInsertSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="mInsertSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>插入分節 Ctrl+Alt+H</value>
-  </data>
-  <data name="mRenameSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>插入分節(&amp;I)</value>
-  </data>
-  <data name="mRenameSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>F2</value>
-  </data>
-  <data name="mRenameSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="mRenameSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>重命名分節 F2</value>
-  </data>
-  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 6</value>
-  </data>
-  <data name="mDecreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>重命名分節(&amp;m)</value>
-  </data>
-  <data name="mDecreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+Left</value>
-  </data>
-  <data name="mDecreaseSectionLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="mDecreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>降低分節層級 Ctrl+Shift+Left</value>
-  </data>
-  <data name="mIncreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>降低分節層級(&amp;D)</value>
-  </data>
-  <data name="mIncreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+Right</value>
-  </data>
-  <data name="mIncreaseSectionLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="mIncreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>提昇分節層 Ctrl+Shift+Right</value>
-  </data>
-  <data name="mSplitSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>提昇分節層級(n)</value>
-  </data>
-  <data name="mSplitSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+Q</value>
-  </data>
-  <data name="mSplitSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="mSplitSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>分割分節 Ctrl+Shift+Q</value>
-  </data>
-  <data name="mMergeWithNextSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge with next</value>
-  </data>
-  <data name="mMergeWithNextSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+M</value>
-  </data>
-  <data name="mMergeWithNextSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="mMergeWithNextSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Merge with next</value>
-  </data>
-  <data name="mMultiSectionOperations.AccessibleName" xml:space="preserve">
-    <value>Multi-Section Operations</value>
-  </data>
-  <data name="mMultiSectionOperations.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="mMultiSectionOperations.Text" xml:space="preserve">
-    <value>Multi-Se&amp;ction Operations</value>
-  </data>
-  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 6</value>
-  </data>
-  <data name="mSectionIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>合併多個分節(&amp;c)</value>
-  </data>
-  <data name="mSectionIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+K</value>
-  </data>
-  <data name="mSectionIsUsedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 22</value>
-  </data>
-  <data name="mSectionIsUsedToolStripMenuItem.Text" xml:space="preserve">
-    <value>分節是使用狀態 Ctrl+K</value>
-  </data>
-  <data name="mSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 20</value>
-  </data>
-  <data name="mSectionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>分節(&amp;S)</value>
-  </data>
-  <data name="mPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
-  </data>
-  <data name="mPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>句(&amp;P)</value>
-  </data>
-  <data name="transportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
-  </data>
-  <data name="transportToolStripMenuItem.Text" xml:space="preserve">
-    <value>運輸(&amp;a)</value>
-  </data>
-  <data name="mToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
-  </data>
-  <data name="mToolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>工具(&amp;T)</value>
-  </data>
-  <data name="mHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="mHelpToolStripMenuItem.Text" xml:space="preserve">
-    <value>說明(&amp;H)</value>
-  </data>
-  <data name="mMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="mMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>876, 24</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mMenuStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="mMenuStrip.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;mMenuStrip.Name" xml:space="preserve">
-    <value>mMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;mMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mMenuStrip.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mMenuStrip.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="openrecentSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 6</value>
-  </data>
-  <data name="mFile_ClearListMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 22</value>
-  </data>
-  <data name="mFile_ClearListMenuItem.Text" xml:space="preserve">
-    <value>清澄清單(&amp;C)</value>
   </data>
   <data name="mUndoToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>復原 Ctrl+Z</value>
@@ -633,12 +443,6 @@
   <data name="mEdit_BookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>書籤</value>
   </data>
-  <data name="mEdit_BookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 22</value>
-  </data>
-  <data name="mEdit_BookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>書籤(&amp;m)</value>
-  </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>設成書籤</value>
   </data>
@@ -657,6 +461,18 @@
   <data name="mEdit_GotoBookmarkToolStripMenuItem.Text" xml:space="preserve">
     <value>移到書籤(&amp;k)</value>
   </data>
+  <data name="mEdit_BookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="mEdit_BookmarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>書籤(&amp;m)</value>
+  </data>
+  <data name="mEditToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 20</value>
+  </data>
+  <data name="mEditToolStripMenuItem1.Text" xml:space="preserve">
+    <value>編輯(&amp;E)</value>
+  </data>
   <data name="mShowTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>顯示目錄檢視 Ctrl+Alt+T</value>
   </data>
@@ -667,10 +483,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Show &amp;TOC view</value>
+    <value>顯示目錄檢視 (&amp;T)</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>顯示目錄檢視(&amp;T)</value>
+    <value>顯示metadata檢視 Ctrl+Alt+M</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+M</value>
@@ -679,10 +495,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>顯示metadata檢視 Ctrl+Alt+M</value>
+    <value>顯示metadata檢視(&amp;m)</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>顯示metadata檢視(&amp;m)</value>
+    <value>顯示運輸列 Ctrl+Alt+B</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+B</value>
@@ -691,10 +507,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>顯示運輸列 Ctrl+Alt+B</value>
+    <value>顯示運輸列(&amp;b)</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>顯示運輸列(&amp;b)</value>
+    <value>顯示狀態列 Ctrl+Alt+U</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+U</value>
@@ -703,13 +519,13 @@
     <value>274, 22</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>顯示狀態列 Ctrl+Alt+U</value>
+    <value>顯示狀態列(&amp;u)</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>顯示狀態列(&amp;u)</value>
+    <value>焦點移到目錄/內容檢視 F6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F6</value>
@@ -718,10 +534,10 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>焦點移到目錄/內容檢視 F6</value>
+    <value>焦點移到目錄/內容檢視(&amp;C) / Content view</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>焦點移到目錄/內容檢視(&amp;C) / Content view</value>
+    <value>焦點移到內容檢視 F6</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F6</value>
@@ -730,13 +546,14 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>焦點移到內容檢視 F6</value>
+    <value>焦點移到內容檢視(&amp;n)</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mFocusOnStripsViewToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>焦點移到內容檢視(&amp;n)</value>
+    <value>焦點移到運輸列 Ctrl+F6</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F6</value>
@@ -745,10 +562,10 @@
     <value>274, 22</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Text" xml:space="preserve">
-    <value>焦點移到運輸列 Ctrl+F6</value>
+    <value>焦點移到運輸列(&amp;a)</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>焦點移到運輸列(&amp;a)</value>
+    <value>同步檢視 Ctrl+Alt+Y</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Y</value>
@@ -757,7 +574,7 @@
     <value>274, 22</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Text" xml:space="preserve">
-    <value>同步檢視 Ctrl+Alt+Y</value>
+    <value>同步檢視(&amp;y)</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -766,7 +583,7 @@
     <value>271, 6</value>
   </data>
   <data name="mShowPeakMeterMenuItem.AccessibleName" xml:space="preserve">
-    <value>同步檢視(&amp;y)</value>
+    <value>顯示音量標 Ctrl+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+P</value>
@@ -775,10 +592,10 @@
     <value>274, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
-    <value>顯示音量標 Ctrl+Alt+P</value>
+    <value>顯示音量標(&amp;p)</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>顯示音量標(&amp;p)</value>
+    <value>顯示來源檢視 Ctrl+Alt+O</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+O</value>
@@ -787,7 +604,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Text" xml:space="preserve">
-    <value>顯示來源檢視 Ctrl+Alt+O</value>
+    <value>顯示來源檢視(&amp;r)</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+R</value>
@@ -796,16 +613,16 @@
     <value>274, 22</value>
   </data>
   <data name="mView_RecordingToolBarMenuItem.Text" xml:space="preserve">
-    <value>顯示來源檢視(&amp;r)</value>
+    <value>顯示錄音列(&amp;S)</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 6</value>
   </data>
   <data name="mView_ZoomInMenuItem.AccessibleName" xml:space="preserve">
-    <value>顯示錄音列(&amp;S)</value>
+    <value>放大 Ctrl+Alt+plus</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>放大 Ctrl+Alt+plus</value>
+    <value>Ctrl+Alt++</value>
   </data>
   <data name="mView_ZoomInMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Oemplus</value>
@@ -814,13 +631,13 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ZoomInMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+Alt++</value>
-  </data>
-  <data name="mView_ZoomOutMenuItem.AccessibleName" xml:space="preserve">
     <value>放大(&amp;i)</value>
   </data>
+  <data name="mView_ZoomOutMenuItem.AccessibleName" xml:space="preserve">
+    <value>縮小 ctrl+Alt+ -</value>
+  </data>
   <data name="mView_ZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>專項內容(&amp;j)</value>
+    <value>Ctrl+Alt+-</value>
   </data>
   <data name="mView_ZoomOutMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+OemMinus</value>
@@ -829,10 +646,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+Alt+-</value>
+    <value>縮小(&amp;o)</value>
   </data>
   <data name="mView_NormalSizeMenuItem.AccessibleName" xml:space="preserve">
-    <value>縮小(&amp;o)</value>
+    <value>標準大小 ctrl+Alt+0</value>
   </data>
   <data name="mView_NormalSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+0</value>
@@ -841,10 +658,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Text" xml:space="preserve">
-    <value>標準大小 ctrl+Alt+0</value>
+    <value>標準大小(&amp;z)</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.AccessibleName" xml:space="preserve">
-    <value>標準大小(&amp;z)</value>
+    <value>放大音訊 Ctrl+Alt+Shift+plus</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+Alt+Shift++</value>
@@ -856,13 +673,13 @@
     <value>274, 22</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+Alt+Shift++</value>
-  </data>
-  <data name="mView_AudioZoomOutMenuItem.AccessibleName" xml:space="preserve">
     <value>放大音訊(&amp;d)</value>
   </data>
-  <data name="mView_AudioZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+  <data name="mView_AudioZoomOutMenuItem.AccessibleName" xml:space="preserve">
     <value>縮小音訊 Ctrl+Alt+Shift+ -</value>
+  </data>
+  <data name="mView_AudioZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Alt+Shift+-</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+OemMinus</value>
@@ -871,10 +688,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+Alt+Shift+-</value>
+    <value>縮小音訊(&amp;q)</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.AccessibleName" xml:space="preserve">
-    <value>縮小音訊(&amp;q)</value>
+    <value>重設音訊大小 Ctrl+Alt+Shift+0</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+0</value>
@@ -883,10 +700,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.Text" xml:space="preserve">
-    <value>重設音訊大小 Ctrl+Alt+Shift+0</value>
+    <value>重設音訊大小(&amp;h)</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.AccessibleName" xml:space="preserve">
-    <value>重設音訊大小(&amp;h)</value>
+    <value>重新整理內容檢視(除錯)</value>
   </data>
   <data name="mView_RefreshContentViewMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F5</value>
@@ -904,7 +721,7 @@
     <value>271, 6</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.AccessibleName" xml:space="preserve">
-    <value>重新整理內容檢視(除錯)</value>
+    <value>句內容 Alt+Enter</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Enter</value>
@@ -913,10 +730,10 @@
     <value>274, 22</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.Text" xml:space="preserve">
-    <value>句內容 Alt+Enter</value>
+    <value>句內容(&amp;e)</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.AccessibleName" xml:space="preserve">
-    <value>句內容(&amp;e)</value>
+    <value>分節內容 Alt+Enter</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Enter</value>
@@ -925,19 +742,154 @@
     <value>274, 22</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.Text" xml:space="preserve">
-    <value>分節內容 Alt+Enter</value>
+    <value>分節內容(&amp;e)</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.AccessibleName" xml:space="preserve">
-    <value>分節內容(S&amp;)</value>
+    <value>專項內容</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>274, 22</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Text" xml:space="preserve">
-    <value>專項內容</value>
+    <value>專項內容(&amp;j)</value>
+  </data>
+  <data name="mViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="mViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>檢視(&amp;V)</value>
+  </data>
+  <data name="mAddSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>新增分節 Ctrl+H</value>
+  </data>
+  <data name="mAddSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+H</value>
+  </data>
+  <data name="mAddSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mAddSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>新增分節(&amp;A)</value>
+  </data>
+  <data name="mAddSubsectionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>新增子分節 Ctrl+Shift+H</value>
+  </data>
+  <data name="mAddSubsectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+H</value>
+  </data>
+  <data name="mAddSubsectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mAddSubsectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>新增子分節(&amp;s)</value>
+  </data>
+  <data name="mInsertSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>插入分節 Ctrl+Alt+H</value>
+  </data>
+  <data name="mInsertSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+H</value>
+  </data>
+  <data name="mInsertSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mInsertSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>插入分節(&amp;I)</value>
+  </data>
+  <data name="mRenameSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>重命名分節 F2</value>
+  </data>
+  <data name="mRenameSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>F2</value>
+  </data>
+  <data name="mRenameSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mRenameSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>重命名分節(&amp;m)</value>
+  </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 6</value>
+  </data>
+  <data name="mDecreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>降低分節層級 Ctrl+Shift+Left</value>
+  </data>
+  <data name="mDecreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+Left</value>
+  </data>
+  <data name="mDecreaseSectionLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mDecreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>降低分節層級(&amp;D)</value>
+  </data>
+  <data name="mIncreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>提昇分節層 Ctrl+Shift+Right</value>
+  </data>
+  <data name="mIncreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+Right</value>
+  </data>
+  <data name="mIncreaseSectionLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mIncreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>提昇分節層級(n)</value>
+  </data>
+  <data name="mSplitSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>分割分節 Ctrl+Shift+Q</value>
+  </data>
+  <data name="mSplitSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+Q</value>
+  </data>
+  <data name="mSplitSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mSplitSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>分割分節(&amp;p)</value>
+  </data>
+  <data name="mMergeWithNextSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Merge with next</value>
+  </data>
+  <data name="mMergeWithNextSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+M</value>
+  </data>
+  <data name="mMergeWithNextSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mMergeWithNextSectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Merge with next</value>
+  </data>
+  <data name="mMultiSectionOperations.AccessibleName" xml:space="preserve">
+    <value>Multi-Section Operations</value>
+  </data>
+  <data name="mMultiSectionOperations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mMultiSectionOperations.Text" xml:space="preserve">
+    <value>Multi-Se&amp;ction Operations</value>
+  </data>
+  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 6</value>
+  </data>
+  <data name="mSectionIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>分節是使用狀態 Ctrl+K</value>
+  </data>
+  <data name="mSectionIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+K</value>
+  </data>
+  <data name="mSectionIsUsedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 22</value>
+  </data>
+  <data name="mSectionIsUsedToolStripMenuItem.Text" xml:space="preserve">
+    <value>分節是使用狀態(&amp;u)</value>
+  </data>
+  <data name="mSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 20</value>
+  </data>
+  <data name="mSectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>分節(&amp;S)</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>分節是使用狀態(&amp;u)</value>
+    <value>新增空白句 Ctrl+B</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+B</value>
@@ -946,10 +898,10 @@
     <value>240, 22</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>新增空白句 Ctrl+B</value>
+    <value>新增空白句(&amp;b)</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>新增空白句(&amp;b)</value>
+    <value>新增空白頁 Ctrl+Shift+B</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+B</value>
@@ -958,10 +910,10 @@
     <value>240, 22</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
-    <value>新增空白頁 Ctrl+Shift+B</value>
+    <value>新增空白頁(&amp;p)</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>新增空白頁(&amp;p)</value>
+    <value>匯入音訊檔 Ctrl+I</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+I</value>
@@ -970,10 +922,10 @@
     <value>240, 22</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>匯入音訊檔 Ctrl+I</value>
+    <value>匯入音訊檔(&amp;I)</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>匯入音訊檔(&amp;I)</value>
+    <value>分割句 Ctrl+Q</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Q</value>
@@ -982,16 +934,10 @@
     <value>240, 22</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>分割句 Ctrl+Q</value>
-  </data>
-  <data name="mMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
     <value>分割句(&amp;S)</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>合併(&amp;M)</value>
+    <value>與下句合併 Ctrl+M</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+M</value>
@@ -1000,40 +946,46 @@
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>與下句合併 Ctrl+M</value>
+    <value>與下句合併(&amp;M)</value>
   </data>
   <data name="splitAndMergeWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="splitAndMergeWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>與下句合併(&amp;M)</value>
+    <value>分割並與下句合併(&amp;t)</value>
   </data>
   <data name="splitAndMergeWithPreviousToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="splitAndMergeWithPreviousToolStripMenuItem.Text" xml:space="preserve">
-    <value>分割並與下句合併(&amp;t)</value>
+    <value>分割並與上句合併(&amp;u)</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>分割並與上句合併(&amp;u)</value>
+    <value>與其後的句合併</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>與其後的句合併</value>
+    <value>與其後的句合併(&amp;f)</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>與其後的句合併(&amp;f)</value>
+    <value>與之前的句合併</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>與之前的句合併</value>
+    <value>與之前的句合併(&amp;p)</value>
+  </data>
+  <data name="mMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
+    <value>合併(&amp;M)</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>與之前的句合併(&amp;p)</value>
+    <value>框選音訊 Ctrl+Alt+Q</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Q</value>
@@ -1042,7 +994,7 @@
     <value>240, 22</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
-    <value>框選音訊 Ctrl+Alt+Q</value>
+    <value>框選音訊(&amp;r)</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F9</value>
@@ -1051,10 +1003,10 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>框選音訊(&amp;r)</value>
+    <value>句是TODO狀態(&amp;T)</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>句是TODO狀態(&amp;T)</value>
+    <value>句是使用狀態  Ctrl+K</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+K</value>
@@ -1063,22 +1015,16 @@
     <value>240, 22</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.Text" xml:space="preserve">
-    <value>句是使用狀態  Ctrl+K</value>
-  </data>
-  <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>句是使用狀態(&amp;u)</value>
   </data>
-  <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>可跳過的註釋(&amp;l)</value>
+  <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>可跳過的註釋</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>可跳過的註釋(&amp;l)</value>
+    <value>註釋開始</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>註釋開始</value>
+    <value>Ctrl+Alt+[</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+OemOpenBrackets</value>
@@ -1087,13 +1033,13 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+Alt+[</value>
-  </data>
-  <data name="mSkippableEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>註釋開始(&amp;B)</value>
   </data>
+  <data name="mSkippableEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>註釋結束</value>
+  </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>中性(&amp;l)</value>
+    <value>Ctrl+Alt+]</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Oem6</value>
@@ -1102,13 +1048,13 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+Alt+]</value>
-  </data>
-  <data name="mSkippableAddReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>註釋結束(&amp;E)</value>
   </data>
+  <data name="mSkippableAddReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>新增參照</value>
+  </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>頁數 Ctrl+Shift+G</value>
+    <value>Ctrl+Alt+A</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+A</value>
@@ -1117,22 +1063,22 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableAddReferenceToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+Alt+A</value>
+    <value>新增參照(&amp;d)</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>新增參照(&amp;d)</value>
+    <value>移到所參照的註釋</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="mSkippableGotoToolStripMenuItem.Text" xml:space="preserve">
-    <value>移到所參照的註釋</value>
-  </data>
-  <data name="mSkippableRemoveReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>移到所參照的註釋(&amp;r)</value>
   </data>
+  <data name="mSkippableRemoveReferenceToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>移除參照</value>
+  </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>(新的自定角色...)(&amp;N)</value>
+    <value>Ctrl+Alt+D</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+D</value>
@@ -1141,31 +1087,31 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableRemoveReferenceToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+Alt+D</value>
+    <value>移除參照(&amp;f)</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>移除參照(&amp;f)</value>
+    <value>移到註釋開端</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>移到註釋開端</value>
+    <value>移到註釋開端(&amp;a)</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>移到註釋開端(&amp;a)</value>
+    <value>移至註釋末端</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>移至註釋末端</value>
-  </data>
-  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>移至註釋末端(&amp;v)</value>
   </data>
+  <data name="mSkippableClearRoleFromNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>從註釋清除角色</value>
+  </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>已選專項(&amp;t)</value>
+    <value>Ctrl+Alt+C</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+C</value>
@@ -1174,25 +1120,25 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+Alt+C</value>
+    <value>從註釋清除角色(&amp;C)</value>
+  </data>
+  <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
+    <value>可跳過的註釋(&amp;l)</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
-  </data>
-  <data name="mPhrases_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
-    <value>從註釋清除角色(&amp;C)</value>
   </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Text" xml:space="preserve">
-    <value>定義角色(&amp;A)</value>
+    <value>中性(&amp;l)</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.AccessibleName" xml:space="preserve">
-    <value>中性(&amp;l)</value>
+    <value>標題 Ctrl+Shift+D</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+D</value>
@@ -1201,10 +1147,10 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.Text" xml:space="preserve">
-    <value>標題 Ctrl+Shift+D</value>
+    <value>標題(&amp;H)</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.AccessibleName" xml:space="preserve">
-    <value>標題(&amp;H)</value>
+    <value>頁數 Ctrl+Shift+G</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+G</value>
@@ -1213,10 +1159,10 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.Text" xml:space="preserve">
-    <value>頁數 Ctrl+Shift+G</value>
+    <value>頁數(&amp;P)</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.AccessibleName" xml:space="preserve">
-    <value>頁數(&amp;P)</value>
+    <value>靜音 Ctrl+Shift+E</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+E</value>
@@ -1225,13 +1171,13 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.Text" xml:space="preserve">
-    <value>靜音 Ctrl+Shift+E</value>
+    <value>靜音(&amp;S)</value>
   </data>
   <data name="mPhrases_AssignRole_AnchorMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_AnchorMenuItem.Text" xml:space="preserve">
-    <value>靜音(&amp;S)</value>
+    <value>錨定(&amp;c)</value>
   </data>
   <data name="mCustomRoleToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 6</value>
@@ -1240,10 +1186,16 @@
     <value>193, 22</value>
   </data>
   <data name="mPhrases_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
-    <value>An&amp;chor</value>
+    <value>(新的自定角色...)(&amp;N)</value>
+  </data>
+  <data name="mPhrases_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
+    <value>定義角色(&amp;A)</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.AccessibleName" xml:space="preserve">
-    <value>(新的自定角色...)(&amp;N)</value>
+    <value>清除角色  Ctrl+Shift+C</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+C</value>
@@ -1252,13 +1204,13 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.Text" xml:space="preserve">
-    <value>清除角色  Ctrl+Shift+C</value>
+    <value>清除角色(&amp;C)</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
-    <value>清除角色(&amp;C)</value>
+    <value>編輯自定角色(&amp;d)</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1267,19 +1219,13 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
-    <value>編輯自定角色(&amp;d)</value>
+    <value>重新編排其後頁數(&amp;e)</value>
   </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
   </data>
-  <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>重新編排其後頁數(&amp;e)</value>
-  </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>套用句偵測(&amp;d)</value>
+    <value>已選項目 Ctrl+Shift+P</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+P</value>
@@ -1288,34 +1234,34 @@
     <value>285, 22</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>已選項目 Ctrl+Shift+P</value>
+    <value>已選項目(&amp;t)</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>已選項目(&amp;t)</value>
+    <value>多個分節</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Text" xml:space="preserve">
-    <value>多個分節</value>
+    <value>多個分節(&amp;l)</value>
   </data>
   <data name="settingsFromSilencePhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
   <data name="settingsFromSilencePhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>多個分節(&amp;l)</value>
-  </data>
-  <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
     <value>用已選句作為參數(&amp;s)</value>
   </data>
+  <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>套用句偵測(&amp;d)</value>
+  </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>音訊選取(&amp;o)</value>
+    <value>開始音頻選擇 Ctrl+[</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>刪除其後的句(&amp;f)</value>
+    <value>Ctrl+[</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+OemOpenBrackets</value>
@@ -1324,13 +1270,13 @@
     <value>225, 22</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+[</value>
-  </data>
-  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
     <value>開始音訊選取(&amp;B)</value>
   </data>
+  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
+    <value>結束音頻選擇 Ctrl+]</value>
+  </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>全部播放(&amp;a)</value>
+    <value>Ctrl+]</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Oem6</value>
@@ -1339,16 +1285,16 @@
     <value>225, 22</value>
   </data>
   <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+]</value>
-  </data>
-  <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
     <value>結束音訊選取(&amp;E)</value>
   </data>
+  <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
+    <value>音訊選取(&amp;o)</value>
+  </data>
   <data name="mNextTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>到(&amp;G)…</value>
+    <value>下一TODO句  Ctrl+F9</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F9</value>
@@ -1357,10 +1303,10 @@
     <value>271, 22</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>下一TODO句  Ctrl+F9</value>
+    <value>下一TODO句(&amp;N)</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>下一TODO句(&amp;N)</value>
+    <value>上一TODO句  Ctrl+Shift+F9</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+F9</value>
@@ -1369,10 +1315,10 @@
     <value>271, 22</value>
   </data>
   <data name="mPreviousTODOPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>上一TODO句  Ctrl+Shift+F9</value>
+    <value>上一TODO句(&amp;P)</value>
   </data>
   <data name="m_GoToPageToolStrip.AccessibleName" xml:space="preserve">
-    <value>上一TODO句(&amp;P)</value>
+    <value>頁/時間 Ctrl+G</value>
   </data>
   <data name="m_GoToPageToolStrip.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+G</value>
@@ -1381,13 +1327,13 @@
     <value>271, 22</value>
   </data>
   <data name="m_GoToPageToolStrip.Text" xml:space="preserve">
-    <value>頁/時間 Ctrl+G</value>
-  </data>
-  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>頁/句/時間(&amp;g)</value>
   </data>
-  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>收集特殊句</value>
+  </data>
+  <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+F3</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F3</value>
@@ -1396,31 +1342,37 @@
     <value>271, 22</value>
   </data>
   <data name="m_GoToCollectSpecialPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+F3</value>
+    <value>收集特殊句(&amp;S)</value>
+  </data>
+  <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
+    <value>到(&amp;G)…</value>
   </data>
   <data name="mCheckForPhrasesWithImproperAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mCheckForPhrasesWithImproperAudioMenuItem.Text" xml:space="preserve">
-    <value>收集特殊句(&amp;S)</value>
+    <value>檢查損毀的音訊(&amp;k)</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>檢查損毀的音訊(&amp;k)</value>
+    <value>刪除其後的句</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>刪除其後的句</value>
-  </data>
-  <data name="mPlayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
-  </data>
-  <data name="mPlayToolStripMenuItem.Text" xml:space="preserve">
     <value>刪除其後的句(&amp;f)</value>
   </data>
+  <data name="mPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 20</value>
+  </data>
+  <data name="mPhrasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>句(&amp;P)</value>
+  </data>
   <data name="mPlayAllToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>播放(&amp;P)</value>
+    <value>全部播放 Ctrl+Shift+Space</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Space</value>
@@ -1429,22 +1381,22 @@
     <value>208, 22</value>
   </data>
   <data name="mPlayAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>全部播放 Ctrl+Shift+Space</value>
+    <value>全部播放(&amp;a)</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Play &amp;all</value>
+    <value>播放已選 Space</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>播放已選 Space</value>
+    <value>Space</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="mPlaySelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Space</value>
+    <value>播放已選(&amp;s)</value>
   </data>
   <data name="m_PlaySectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>播放已選(&amp;s)</value>
+    <value>播放分節</value>
   </data>
   <data name="m_PlaySectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -1453,7 +1405,7 @@
     <value>播放分節</value>
   </data>
   <data name="m_PlayHeadingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>播放分節</value>
+    <value>播放分節標題</value>
   </data>
   <data name="m_PlayHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -1461,17 +1413,23 @@
   <data name="m_PlayHeadingToolStripMenuItem.Text" xml:space="preserve">
     <value>播放分節標題</value>
   </data>
+  <data name="mPlayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="mPlayToolStripMenuItem.Text" xml:space="preserve">
+    <value>播放(&amp;P)</value>
+  </data>
   <data name="mPauseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>播放分節標題</value>
+    <value>Pause Space</value>
   </data>
   <data name="mPauseToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Pause Space</value>
+    <value>Space</value>
   </data>
   <data name="mPauseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
   <data name="mPauseToolStripMenuItem.Text" xml:space="preserve">
-    <value>暫停</value>
+    <value>Pa&amp;use</value>
   </data>
   <data name="mResumeToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>恢復 Space</value>
@@ -1483,10 +1441,10 @@
     <value>176, 22</value>
   </data>
   <data name="mResumeToolStripMenuItem.Text" xml:space="preserve">
-    <value>簡歷</value>
+    <value>恢復(&amp;u)</value>
   </data>
   <data name="mStopToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>恢復(&amp;u)</value>
+    <value>停止 Ctrl+Space</value>
   </data>
   <data name="mStopToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Space</value>
@@ -1495,16 +1453,10 @@
     <value>176, 22</value>
   </data>
   <data name="mStopToolStripMenuItem.Text" xml:space="preserve">
-    <value>停止 Ctrl+Space</value>
-  </data>
-  <data name="mFastPlaytoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
-  </data>
-  <data name="mFastPlaytoolStripMenuItem.Text" xml:space="preserve">
     <value>停止(&amp;S)</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>快速播放(&amp;l)</value>
+    <value>正常速度 Ctrl+0</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+0</value>
@@ -1513,19 +1465,19 @@
     <value>238, 22</value>
   </data>
   <data name="NormalSpeedtoolStripMenuItem.Text" xml:space="preserve">
-    <value>正常速度 Ctrl+0</value>
+    <value>正常速度(&amp;N)</value>
   </data>
   <data name="mElapseBacktoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="mElapseBacktoolStripMenuItem.Text" xml:space="preserve">
-    <value>正常速度(&amp;N)</value>
+    <value>以正常速度回放剛過去的(&amp;e)</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>以正常速度回放剛過去的&amp;e</value>
+    <value>為選取的頁生成語音。</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>為選取的頁生成語音。</value>
+    <value>Ctrl++</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Oemplus</value>
@@ -1534,13 +1486,13 @@
     <value>238, 22</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.Text" xml:space="preserve">
-    <value>Ctrl++</value>
-  </data>
-  <data name="mSpeedDowntoolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>加快(&amp;u)</value>
   </data>
-  <data name="mSpeedDowntoolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+  <data name="mSpeedDowntoolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Slow down Ctrl+-</value>
+  </data>
+  <data name="mSpeedDowntoolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+-</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+OemMinus</value>
@@ -1549,16 +1501,16 @@
     <value>238, 22</value>
   </data>
   <data name="mSpeedDowntoolStripMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+-</value>
-  </data>
-  <data name="mPreviewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
-  </data>
-  <data name="mPreviewToolStripMenuItem.Text" xml:space="preserve">
     <value>減慢(&amp;d)</value>
   </data>
+  <data name="mFastPlaytoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="mFastPlaytoolStripMenuItem.Text" xml:space="preserve">
+    <value>快速播放(&amp;l)</value>
+  </data>
   <data name="mPreviewFromToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>御覽(&amp;v)</value>
+    <value>從此御覽... Ctrl+P</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+P</value>
@@ -1567,28 +1519,28 @@
     <value>194, 22</value>
   </data>
   <data name="mPreviewFromToolStripMenuItem.Text" xml:space="preserve">
-    <value>從此御覽... Ctrl+P</value>
+    <value>從此御覽(&amp;f)…</value>
   </data>
   <data name="mPreviewUpToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 22</value>
   </data>
   <data name="mPreviewUpToToolStripMenuItem.Text" xml:space="preserve">
-    <value>從此御覽(&amp;f)…</value>
+    <value>御覽直至…</value>
   </data>
   <data name="mPreviewSelectedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 22</value>
   </data>
   <data name="mPreviewSelectedToolStripMenuItem.Text" xml:space="preserve">
-    <value>御覽直至…</value>
-  </data>
-  <data name="mRecordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
-  </data>
-  <data name="mRecordToolStripMenuItem.Text" xml:space="preserve">
     <value>御覽已選(&amp;s)</value>
   </data>
+  <data name="mPreviewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="mPreviewToolStripMenuItem.Text" xml:space="preserve">
+    <value>御覽(&amp;v)</value>
+  </data>
   <data name="mStartMonitoringToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>錄音(&amp;R)</value>
+    <value>開始監聽 Ctrl+R</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
@@ -1597,10 +1549,10 @@
     <value>267, 22</value>
   </data>
   <data name="mStartMonitoringToolStripMenuItem.Text" xml:space="preserve">
-    <value>開始監聽 Ctrl+R</value>
+    <value>開始監聽(&amp;S)</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>開始監聽(&amp;S)</value>
+    <value>開始錄音 Ctrl+R</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
@@ -1609,10 +1561,10 @@
     <value>267, 22</value>
   </data>
   <data name="mStartRecordingToolStripMenuItem.Text" xml:space="preserve">
-    <value>開始錄音 Ctrl+R</value>
+    <value>開始錄音(&amp;S)</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>開始錄音(&amp;S)</value>
+    <value>直接開始錄音 ctrl+shift+r</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+R</value>
@@ -1621,16 +1573,16 @@
     <value>267, 22</value>
   </data>
   <data name="mStartRecordingDirectlyToolStripMenuItem.Text" xml:space="preserve">
-    <value>直接開始錄音 ctrl+shift+r</value>
+    <value>直接開始錄音(&amp;r)</value>
   </data>
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>直接開始錄音(&amp;r)</value>
+    <value>錄音覆蓋其後的音訊</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>錄音覆蓋其後的音訊</value>
+    <value>在錄音前御覽</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
@@ -1642,52 +1594,52 @@
     <value>267, 22</value>
   </data>
   <data name="m_MonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
-    <value>在錄音前御覽 </value>
+    <value>持續監聽</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Text" xml:space="preserve">
-    <value>持續監聽</value>
-  </data>
-  <data name="mGenerateSpeechToolStripMenuItem.AccessibleDescription" xml:space="preserve">
     <value>容許覆蓋(&amp;o)</value>
   </data>
-  <data name="mGenerateSpeechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mRecordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
-  <data name="mGenerateSpeechToolStripMenuItem.Text" xml:space="preserve">
+  <data name="mRecordToolStripMenuItem.Text" xml:space="preserve">
+    <value>錄音(&amp;R)</value>
+  </data>
+  <data name="mGenerateSpeechToolStripMenuItem.AccessibleDescription" xml:space="preserve">
     <value>生成語音</value>
   </data>
   <data name="selectedPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>生成語音(&amp;G)</value>
+    <value>為選取的頁生成語音。</value>
   </data>
   <data name="selectedPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 22</value>
   </data>
   <data name="selectedPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>為選取的頁生成語音。</value>
+    <value>已選頁(&amp;t)</value>
   </data>
   <data name="allEmptyPagesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>已選頁(&amp;t)</value>
+    <value>為所有空白頁生成語音。</value>
   </data>
   <data name="allEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 22</value>
   </data>
   <data name="allEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
-    <value>為所有空白頁生成語音。</value>
+    <value>所有空白頁(&amp;A)</value>
+  </data>
+  <data name="mGenerateSpeechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="mGenerateSpeechToolStripMenuItem.Text" xml:space="preserve">
+    <value>生成語音(&amp;G)</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 6</value>
   </data>
-  <data name="navigationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
-  </data>
-  <data name="navigationToolStripMenuItem.Text" xml:space="preserve">
-    <value>所有空白頁(&amp;A)</value>
-  </data>
   <data name="mPreviousSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>瀏覽(&amp;N)</value>
+    <value>上分節 Alt+Up</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Up</value>
@@ -1696,10 +1648,10 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>上分節 Alt+Up</value>
+    <value>上分節(&amp;s)</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>上分節(&amp;s)</value>
+    <value>上頁 Alt+PageUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+PgUp</value>
@@ -1708,10 +1660,10 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>上頁 Alt+PageUp</value>
+    <value>上頁(&amp;p)</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>上頁(&amp;p)</value>
+    <value>上句 Alt+Left</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Left</value>
@@ -1720,22 +1672,22 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>上句 Alt+Left</value>
+    <value>上句(&amp;h)</value>
   </data>
   <data name="mBackwardElapseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="mBackwardElapseToolStripMenuItem.Text" xml:space="preserve">
-    <value>上句(&amp;h)</value>
+    <value>步回(&amp;B)</value>
   </data>
   <data name="mForwardElapseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="mForwardElapseToolStripMenuItem.Text" xml:space="preserve">
-    <value>步回(&amp;B)</value>
+    <value>步前(&amp;F)</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>步前(&amp;F)</value>
+    <value>下句 Alt+Right</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Right</value>
@@ -1744,10 +1696,10 @@
     <value>207, 22</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>下句 Alt+Right</value>
+    <value>下句(&amp;r)</value>
   </data>
   <data name="mNextPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>下句(&amp;r)</value>
+    <value>下頁 Alt+PageDown</value>
   </data>
   <data name="mNextPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+PgDn</value>
@@ -1756,10 +1708,10 @@
     <value>207, 22</value>
   </data>
   <data name="mNextPageToolStripMenuItem.Text" xml:space="preserve">
-    <value>下頁 Alt+PageDown</value>
+    <value>下頁(&amp;g)</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>下頁(&amp;g)</value>
+    <value>下分節 Alt+Down</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+Down</value>
@@ -1768,7 +1720,7 @@
     <value>207, 22</value>
   </data>
   <data name="mNextSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>下分節 Alt+Down</value>
+    <value>下分節(&amp;c)</value>
   </data>
   <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 6</value>
@@ -1777,16 +1729,22 @@
     <value>207, 22</value>
   </data>
   <data name="mPlayOnNavigateToolStripMenuItem.Text" xml:space="preserve">
-    <value>下分節(&amp;c)</value>
+    <value>瀏覽時播放(&amp;n)</value>
   </data>
   <data name="mFineNavigationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="mFineNavigationToolStripMenuItem.Text" xml:space="preserve">
-    <value>瀏覽時播放(&amp;n)</value>
+    <value>晉階瀏覽(&amp;v)</value>
+  </data>
+  <data name="navigationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="navigationToolStripMenuItem.Text" xml:space="preserve">
+    <value>瀏覽(&amp;N)</value>
   </data>
   <data name="mRewindToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>晉階瀏覽(&amp;v)</value>
+    <value>Rewind Ctrl+comma</value>
   </data>
   <data name="mRewindToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+,</value>
@@ -1798,10 +1756,10 @@
     <value>176, 22</value>
   </data>
   <data name="mRewindToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+,</value>
+    <value>快退(&amp;w)</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>快退(&amp;w)</value>
+    <value>Fast forward Ctrl+period</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+.</value>
@@ -1813,7 +1771,13 @@
     <value>176, 22</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ctrl+.</value>
+    <value>快進(&amp;F)</value>
+  </data>
+  <data name="transportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="transportToolStripMenuItem.Text" xml:space="preserve">
+    <value>運輸(&amp;a)</value>
   </data>
   <data name="mTools_PreferencesMenuItem.AccessibleName" xml:space="preserve">
     <value>偏好設定 Ctrl+Alt+F</value>
@@ -1887,47 +1851,98 @@
   <data name="m_EPUB3ValidatorToolStripMenuItem.Text" xml:space="preserve">
     <value>EPUB 3 檢查器</value>
   </data>
+  <data name="mToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="mToolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>工具(&amp;T)</value>
+  </data>
   <data name="mHelp_WhatsNewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="mHelp_WhatsNewMenuItem.Text" xml:space="preserve">
-    <value>快進(&amp;F)</value>
+    <value>有什麼新的(線上)(&amp;n)</value>
   </data>
   <data name="mHelp_WhatsNewMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="mHelp_ContentsMenuItem.AccessibleName" xml:space="preserve">
-    <value>有什麼新的(線上)(&amp;n)</value>
+    <value>內容</value>
   </data>
   <data name="mHelp_ContentsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="mHelp_ContentsMenuItem.Text" xml:space="preserve">
-    <value>內容</value>
+    <value>內容(&amp;C)</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.AccessibleName" xml:space="preserve">
-    <value>內容(&amp;C)</value>
+    <value>網上資源/問題追蹤  Ctrl+Alt+R</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.Text" xml:space="preserve">
-    <value>網上資源/問題追蹤  Ctrl+Alt+R</value>
+    <value>網上資源/問題追蹤(&amp;r)</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Text" xml:space="preserve">
-    <value>網上資源/問題追蹤(&amp;r)</value>
+    <value>關於Obi(&amp;A)</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>關於Obi(&amp;A)</value>
+    <value>檢查更新</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="checkForUpdatesToolStripMenuItem.Text" xml:space="preserve">
-    <value>檢查更新</value>
+    <value>檢查更新(&amp;U)</value>
+  </data>
+  <data name="mHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="mHelpToolStripMenuItem.Text" xml:space="preserve">
+    <value>說明(&amp;H)</value>
+  </data>
+  <data name="mMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>876, 24</value>
+  </data>
+  <data name="mMenuStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="mMenuStrip.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;mMenuStrip.Name" xml:space="preserve">
+    <value>mMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;mMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMenuStrip.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mMenuStrip.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mStatusLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="mStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>861, 17</value>
+  </data>
+  <data name="mStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="mStatusProgressBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 16</value>
+  </data>
+  <data name="mStatusProgressBar.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="mStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 520</value>
@@ -1953,21 +1968,6 @@
   <data name="&gt;&gt;mStatusStrip.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="mStatusLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="mStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>861, 17</value>
-  </data>
-  <data name="mStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="mStatusProgressBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 16</value>
-  </data>
-  <data name="mStatusProgressBar.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="mProjectView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -1987,7 +1987,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.5.0.35492, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.5.0.36047, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2257,11 +2257,8 @@
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>statusStrip1</value>
+    <value>Obi</value>
   </data>
   <data name="&gt;&gt;mFileToolStripMenuItem.Name" xml:space="preserve">
     <value>mFileToolStripMenuItem</value>
@@ -2699,6 +2696,18 @@
     <value>mSplitSectionToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mSplitSectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMergeWithNextSectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMergeWithNextSectionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mMergeWithNextSectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMultiSectionOperations.Name" xml:space="preserve">
+    <value>mMultiSectionOperations</value>
+  </data>
+  <data name="&gt;&gt;mMultiSectionOperations.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator13.Name" xml:space="preserve">
@@ -3384,18 +3393,6 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mMergeWithNextSectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mMergeWithNextSectionToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mMergeWithNextSectionToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mMultiSectionOperations.Name" xml:space="preserve">
-    <value>mMultiSectionOperations</value>
-  </data>
-  <data name="&gt;&gt;mMultiSectionOperations.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>
