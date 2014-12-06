@@ -1932,6 +1932,7 @@ namespace Obi.ProjectView
             
         m_IsAfterRecordingSplitTransferEnabled = false;
         m_TempNodeForPropertiesTransfer = null;
+        bool isPhraseSplit = false;
 
             if (node is SectionNode)
             {
@@ -1942,11 +1943,12 @@ namespace Obi.ProjectView
                     ((StripIndexSelection)mView.Selection).Index : mRecordingSection.PhraseChildCount;
                 if (mView.Selection is StripIndexSelection && mView.Selection.Node != null)
                 {
-                    AddTheDeleteSubsequentPhrasesCommand(mRecordingSection, deleteFollowingPhrases, command);
+                    AddTheDeleteSubsequentPhrasesCommand(mRecordingSection, deleteFollowingPhrases, false,command);
                 }
             }
             else if (node is PhraseNode)
             {
+                
                 // Record in or after the phrase node, depending on overwrite settings.
                 mRecordingSection = node.AncestorAs<SectionNode>();
                 mRecordingInitPhraseIndex = 1 + node.Index;
@@ -1956,8 +1958,11 @@ namespace Obi.ProjectView
                     //MessageBox.Show(SplitBeginTime.ToString () + " , selection time"+ ((mView.Selection != null && mView.Selection is AudioSelection)? ((AudioSelection)mView.Selection).AudioRange.CursorTime.ToString () : ""  ));
                     // TODO: we cannot record from pause at the moment; maybe that's not so bad actually.
                 CompositeCommand SplitCommand = Commands.Node.SplitAudio.GetSplitCommand ( mView );
-                                    if ( SplitCommand != null )  command.ChildCommands.Insert(command.ChildCommands.Count, SplitCommand);
-
+                if (SplitCommand != null)
+                {
+                    command.ChildCommands.Insert(command.ChildCommands.Count, SplitCommand);
+                    isPhraseSplit = true;
+                }
                                     if (mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor && SplitCommand != null)
                                         {
                                         command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.Node.DeleteWithOffset ( mView, node, 1 ) );
@@ -1976,13 +1981,13 @@ namespace Obi.ProjectView
             if ((deleteFollowingPhrases)
                 && node is EmptyNode && ((EmptyNode)node).Index < ((EmptyNode)node).ParentAs<SectionNode>().PhraseChildCount-1)
             {
-                AddTheDeleteSubsequentPhrasesCommand(node, deleteFollowingPhrases, command);
+                AddTheDeleteSubsequentPhrasesCommand(node, deleteFollowingPhrases,isPhraseSplit,command);
             }
         if (IsPlayerActive) StopPlaylistPlayback (); // stop if split recording starts while playback is paused
 
         }
 
-        private void AddTheDeleteSubsequentPhrasesCommand(ObiNode node, bool deleteFollowingPhrases, CompositeCommand command)
+        private void AddTheDeleteSubsequentPhrasesCommand(ObiNode node, bool deleteFollowingPhrases, bool isPhraseSplit,CompositeCommand command)
         {
             if (deleteFollowingPhrases)
             {
@@ -1992,6 +1997,15 @@ namespace Obi.ProjectView
                     mView.Selection != null && mView.Selection is StripIndexSelection? (SectionNode)mView.Selection.Node: null ;
                 //MessageBox.Show(phraseIndex.ToString());
                 if (section == null || phraseIndex < 0 || phraseIndex >= section.PhraseChildCount) return;
+
+                if (mView.ObiForm.Settings.Audio_PreservePagesWhileRecordOverSubsequentAudio
+                    && isPhraseSplit && node is ObiNode && ((EmptyNode)node).Role_ == EmptyNode.Role.Page)
+                {
+                    command.ChildCommands.Insert(command.ChildCommands.Count,
+                        new Commands.Node.Delete(mView, section.PhraseChild(phraseIndex)));
+                    phraseIndex++;
+                    if (phraseIndex >= section.PhraseChildCount) return;
+                }
 
                 command.ChildCommands.Insert(command.ChildCommands.Count, 
                     mView.GetDeleteRangeOfPhrasesInSectionCommand(section, section.PhraseChild(phraseIndex), section.PhraseChild(section.PhraseChildCount - 1),
