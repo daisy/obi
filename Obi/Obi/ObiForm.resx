@@ -378,7 +378,7 @@
     <value>279, 22</value>
   </data>
   <data name="mMergeWithNextSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Merge with next</value>
+    <value>Me&amp;rge with next</value>
   </data>
   <data name="mMultiSectionOperations.AccessibleName" xml:space="preserve">
     <value>Multi-Section Operations</value>
@@ -1984,7 +1984,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.5.0.35492, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.5.0.27904, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2256,9 +2256,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//43uAHwAAgA/WAIAPIjGAByIggANjb4ABbmeAA1VUgA84IoAP
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
@@ -2699,6 +2696,18 @@
     <value>mSplitSectionToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mSplitSectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMergeWithNextSectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMergeWithNextSectionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mMergeWithNextSectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMultiSectionOperations.Name" xml:space="preserve">
+    <value>mMultiSectionOperations</value>
+  </data>
+  <data name="&gt;&gt;mMultiSectionOperations.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator13.Name" xml:space="preserve">
@@ -3384,18 +3393,6 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mMergeWithNextSectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mMergeWithNextSectionToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mMergeWithNextSectionToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mMultiSectionOperations.Name" xml:space="preserve">
-    <value>mMultiSectionOperations</value>
-  </data>
-  <data name="&gt;&gt;mMultiSectionOperations.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>

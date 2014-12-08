@@ -103,6 +103,8 @@ namespace Obi
             this.mDecreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mIncreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMergeWithNextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMultiSectionOperations = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.mSectionIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -219,8 +221,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mMergeWithNextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMultiSectionOperations = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -754,6 +754,18 @@ namespace Obi
             resources.ApplyResources(this.mSplitSectionToolStripMenuItem, "mSplitSectionToolStripMenuItem");
             this.mSplitSectionToolStripMenuItem.Name = "mSplitSectionToolStripMenuItem";
             this.mSplitSectionToolStripMenuItem.Click += new System.EventHandler(this.mSplitSectionToolStripMenuItem_Click);
+            // 
+            // mMergeWithNextSectionToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mMergeWithNextSectionToolStripMenuItem, "mMergeWithNextSectionToolStripMenuItem");
+            this.mMergeWithNextSectionToolStripMenuItem.Name = "mMergeWithNextSectionToolStripMenuItem";
+            this.mMergeWithNextSectionToolStripMenuItem.Click += new System.EventHandler(this.mMergeWithNextSectionToolStripMenuItem_Click);
+            // 
+            // mMultiSectionOperations
+            // 
+            resources.ApplyResources(this.mMultiSectionOperations, "mMultiSectionOperations");
+            this.mMultiSectionOperations.Name = "mMultiSectionOperations";
+            this.mMultiSectionOperations.Click += new System.EventHandler(this.mMultiSectionOperations_Click);
             // 
             // toolStripSeparator13
             // 
@@ -1578,18 +1590,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // mMergeWithNextSectionToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mMergeWithNextSectionToolStripMenuItem, "mMergeWithNextSectionToolStripMenuItem");
-            this.mMergeWithNextSectionToolStripMenuItem.Name = "mMergeWithNextSectionToolStripMenuItem";
-            this.mMergeWithNextSectionToolStripMenuItem.Click += new System.EventHandler(this.mMergeWithNextSectionToolStripMenuItem_Click);
-            // 
-            // mMultiSectionOperations
-            // 
-            resources.ApplyResources(this.mMultiSectionOperations, "mMultiSectionOperations");
-            this.mMultiSectionOperations.Name = "mMultiSectionOperations";
-            this.mMultiSectionOperations.Click += new System.EventHandler(this.mMultiSectionOperations_Click);
             // 
             // ObiForm
             // 
