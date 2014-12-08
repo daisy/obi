@@ -1967,7 +1967,8 @@ namespace Obi.ProjectView
                                         {
                                         command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.Node.DeleteWithOffset ( mView, node, 1 ) );
                                         m_IsAfterRecordingSplitTransferEnabled = true;
-                                                                                CopyPropertiesForTransfer ( (EmptyNode)node );
+                                        CopyPropertiesForTransfer((EmptyNode)node);
+                                        
                                         }
                 }
             }
@@ -2001,10 +2002,11 @@ namespace Obi.ProjectView
                 if (mView.ObiForm.Settings.Audio_PreservePagesWhileRecordOverSubsequentAudio
                     && isPhraseSplit && node is ObiNode && ((EmptyNode)node).Role_ == EmptyNode.Role.Page)
                 {
-                    command.ChildCommands.Insert(command.ChildCommands.Count,
-                        new Commands.Node.Delete(mView, section.PhraseChild(phraseIndex)));
-                    phraseIndex++;
-                    if (phraseIndex >= section.PhraseChildCount) return;
+                    //command.ChildCommands.Insert(command.ChildCommands.Count,
+                        //new Commands.Node.Delete(mView, section.PhraseChild(phraseIndex)));
+                    //phraseIndex++;
+                    //if (phraseIndex >= section.PhraseChildCount) return;
+                    
                 }
 
                 command.ChildCommands.Insert(command.ChildCommands.Count, 
