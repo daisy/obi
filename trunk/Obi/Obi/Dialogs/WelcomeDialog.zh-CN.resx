@@ -232,7 +232,7 @@
     <value>5</value>
   </data>
   <data name="mOpenEmptyButton.Text" xml:space="preserve">
-    <value>不fdkdflsdfkjlff 開啟專項(&amp;e)</value>
+    <value>沒有項目打開奧比(&amp;e)</value>
   </data>
   <data name="&gt;&gt;mOpenEmptyButton.Name" xml:space="preserve">
     <value>mOpenEmptyButton</value>
