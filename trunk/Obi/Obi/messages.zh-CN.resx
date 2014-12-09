@@ -2418,6 +2418,6 @@
     <value>請正確輸入以下項目：</value>
   </data>
   <data name="Audio_PreservePage" xml:space="preserve">
-    <value>Preserve pages while record over subsequent phrases</value>
+    <value>Preserve pages while recording over subsequent audio</value>
   </data>
 </root>

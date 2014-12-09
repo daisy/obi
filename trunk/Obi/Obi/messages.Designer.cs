@@ -331,7 +331,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preserve pages while record over subsequent phrases.
+        ///   Looks up a localized string similar to Preserve pages while recording over subsequent audio.
         /// </summary>
         internal static string Audio_PreservePage {
             get {

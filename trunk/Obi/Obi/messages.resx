@@ -2683,6 +2683,6 @@ Error text: {1}</value>
     <value>Please Enter the Following correctly :</value>
   </data>
   <data name="Audio_PreservePage" xml:space="preserve">
-    <value>Preserve pages while record over subsequent phrases</value>
+    <value>Preserve pages while recording over subsequent audio</value>
   </data>
 </root>
