@@ -122,19 +122,23 @@
     <value>26, 31</value>
   </data>
   <data name="richTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>364, 153</value>
+    <value>364, 165</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="richTextBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="richTextBox1.Text" xml:space="preserve">
-    <value>You need to download ffmpeg from the below link or by clicking Download button in order to encode in mp4,amr and 3gp.
+    <value>You need to download ffmpeg from the below link or by clicking "Download ffmpeg" button in order to encode in mp4,amr and 3gp.
 http://www.daisy.org/obi/download
 After download follow following steps:-
 
-1) Click "Copy ffmpeg" button. This will open a "Obi x.x" folder.
-2) Copy downloaded "ffmpeg.exe" inside "Obi x.x" folder.</value>
+1) Locate Program files folder in C drive.
+2) Locate "The Urakawa Project" folder  inside "Program files" folder.
+3)Inside  "The Urakawa Project" folder" open "Obi x.x" folder.
+4)Copy downloaded "ffmpeg.exe" inside "Obi x.x" folder
+
+You can also open "Obi x.x" folder by simply clicking "Open Obi directory" button and then copy downloaded "ffmpeg.exe" inside it.</value>
   </data>
   <data name="&gt;&gt;richTextBox1.Name" xml:space="preserve">
     <value>richTextBox1</value>
@@ -156,7 +160,7 @@ After download follow following steps:-
     <value>Flat</value>
   </data>
   <data name="m_btnClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 213</value>
+    <value>299, 218</value>
   </data>
   <data name="m_btnClose.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -186,7 +190,7 @@ After download follow following steps:-
     <value>Flat</value>
   </data>
   <data name="m_btnDownload.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 213</value>
+    <value>35, 218</value>
   </data>
   <data name="m_btnDownload.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 23</value>
@@ -210,22 +214,22 @@ After download follow following steps:-
     <value>1</value>
   </data>
   <data name="m_btnFolder.AccessibleName" xml:space="preserve">
-    <value>Copy ffmpeg</value>
+    <value>Open Obi directory</value>
   </data>
   <data name="m_btnFolder.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btnFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 213</value>
+    <value>160, 218</value>
   </data>
   <data name="m_btnFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 23</value>
+    <value>116, 23</value>
   </data>
   <data name="m_btnFolder.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="m_btnFolder.Text" xml:space="preserve">
-    <value>Copy ffmpeg</value>
+    <value>Open Obi directory</value>
   </data>
   <data name="&gt;&gt;m_btnFolder.Name" xml:space="preserve">
     <value>m_btnFolder</value>
@@ -246,7 +250,7 @@ After download follow following steps:-
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>415, 262</value>
+    <value>415, 268</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>DownloadFile</value>
