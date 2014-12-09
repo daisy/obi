@@ -862,7 +862,9 @@
     <Content Include="about_ta.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="about_zn-CN.html" />
+    <Content Include="about_zn-CN.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="FineNavigationOn.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
