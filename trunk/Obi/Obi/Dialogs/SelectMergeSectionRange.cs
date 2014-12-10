@@ -28,11 +28,13 @@ namespace Obi.Dialogs
         private List<SectionNode> m_SelectedSectionListForIncreaseLevel = new List<SectionNode>();
         private List<int> m_IndexOfSectionSelected = new List<int>();
         private List<SectionNode> m_SelectedSectionListToMerge = new List<SectionNode>();
+        private bool m_FlagMerge = false;
 
         public event SectionsManipulationDelegate LevelIncrementEvent;
         public event SectionsManipulationDelegate LevelDecrementEvent;
         public event SectionsManipulationDelegate MergeSectionEvent ;
         public event SectionsManipulationDelegate UndoChangeEvent;
+    
 
 
         public SelectMergeSectionRange()
@@ -479,8 +481,10 @@ namespace Obi.Dialogs
                     if (m_SelectedSectionListToMerge.Count <= 1)
                     {
                         MessageBox.Show(Localizer.Message("not_enough_sections_to_merge"));
+                        m_FlagMerge = false;
                         return;
                     }
+                    m_FlagMerge = true;
                     MessageBox.Show(String.Format(Localizer.Message("merged_sections"), m_SelectedSectionListToMerge[0].Label, m_SelectedSectionListToMerge[m_SelectedSectionListToMerge.Count - 1].Label));
                 }
             }
@@ -560,9 +564,12 @@ namespace Obi.Dialogs
         {
             m_Merge = true;
             SectionsSelected();
-            if (MergeSectionEvent != null) MergeSectionEvent(this, new EventArgs());
-            int count = 0;
-            populateListboxForSectionsAfterMerge();
+            if (m_FlagMerge)
+            {
+                if (MergeSectionEvent != null) MergeSectionEvent(this, new EventArgs());
+                int count = 0;
+                populateListboxForSectionsAfterMerge();
+            }
             if (m_lb_listofSectionsToMerge.SelectedIndex == -1)
             {
                 m_StatusLabelForMergeSection.Text = "";
