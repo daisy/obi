@@ -417,6 +417,10 @@ namespace Obi.Dialogs
             int totalPhraseCount = 0;
 
             m_ListOfContinuousItems.Clear();
+            if (m_ProjectView.TransportBar.IsPlayerActive)
+            {
+                m_ProjectView.TransportBar.Stop();
+            }
             for (int i = 0; i < m_lb_listofSectionsToMerge.Items.Count; i++)
             {
                 totalPhraseCount += m_SectionList[i].PhraseChildCount;
@@ -563,6 +567,10 @@ namespace Obi.Dialogs
         private void m_btn_Merge_Click(object sender, EventArgs e)
         {
             m_Merge = true;
+            if (m_ProjectView.TransportBar.IsPlayerActive)
+            {
+                m_ProjectView.TransportBar.Stop();
+            }
             SectionsSelected();
             if (m_FlagMerge)
             {
