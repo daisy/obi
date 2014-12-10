@@ -162,7 +162,7 @@
     <value>5</value>
   </data>
   <data name="m_btn_SelectAll.AccessibleName" xml:space="preserve">
-    <value>Select All</value>
+    <value>全選</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btn_SelectAll.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
@@ -181,7 +181,7 @@
     <value>6</value>
   </data>
   <data name="m_btn_SelectAll.Text" xml:space="preserve">
-    <value>全選</value>
+    <value>全選(&amp;S)</value>
   </data>
   <data name="&gt;&gt;m_btn_SelectAll.Name" xml:space="preserve">
     <value>m_btn_SelectAll</value>
@@ -220,7 +220,7 @@
     <value>Obi Help.chm</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.AccessibleName" xml:space="preserve">
-    <value>Increase Section Level</value>
+    <value>上</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -241,7 +241,7 @@
     <value>9</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.Text" xml:space="preserve">
-    <value>&amp;Up</value>
+    <value>上(&amp;U)</value>
   </data>
   <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Name" xml:space="preserve">
     <value>m_btn_IncreaseSectionLevel</value>
@@ -256,7 +256,7 @@
     <value>3</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.AccessibleName" xml:space="preserve">
-    <value>Decrease Section Level</value>
+    <value>下</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -277,7 +277,7 @@
     <value>10</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.Text" xml:space="preserve">
-    <value>&amp;Down</value>
+    <value>下 (&amp;D)</value>
   </data>
   <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Name" xml:space="preserve">
     <value>m_btn_DecreaseSectionLevel</value>
@@ -292,7 +292,7 @@
     <value>2</value>
   </data>
   <data name="m_btn_Merge.AccessibleName" xml:space="preserve">
-    <value>Merge</value>
+    <value>合併</value>
   </data>
   <data name="m_btn_Merge.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -313,7 +313,7 @@
     <value>8</value>
   </data>
   <data name="m_btn_Merge.Text" xml:space="preserve">
-    <value>&amp;Merge</value>
+    <value>合併(&amp;M)</value>
   </data>
   <data name="&gt;&gt;m_btn_Merge.Name" xml:space="preserve">
     <value>m_btn_Merge</value>
@@ -328,7 +328,7 @@
     <value>0</value>
   </data>
   <data name="m_btn_Undo.AccessibleName" xml:space="preserve">
-    <value>Undo</value>
+    <value>復原</value>
   </data>
   <data name="m_btn_Undo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -343,7 +343,7 @@
     <value>11</value>
   </data>
   <data name="m_btn_Undo.Text" xml:space="preserve">
-    <value>U&amp;ndo</value>
+    <value>復原(&amp;N)</value>
   </data>
   <data name="&gt;&gt;m_btn_Undo.Name" xml:space="preserve">
     <value>m_btn_Undo</value>
@@ -382,7 +382,7 @@
     <value>3</value>
   </data>
   <data name="m_btn_Close.AccessibleName" xml:space="preserve">
-    <value>Close</value>
+    <value>關閉</value>
   </data>
   <data name="m_btn_Close.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -406,7 +406,7 @@
     <value>13</value>
   </data>
   <data name="m_btn_Close.Text" xml:space="preserve">
-    <value>&amp;Close</value>
+    <value>關閉(&amp;C)</value>
   </data>
   <data name="&gt;&gt;m_btn_Close.Name" xml:space="preserve">
     <value>m_btn_Close</value>
@@ -421,7 +421,7 @@
     <value>6</value>
   </data>
   <data name="m_btnPause.AccessibleName" xml:space="preserve">
-    <value>Pause</value>
+    <value>暫停</value>
   </data>
   <data name="m_btnPause.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -436,7 +436,7 @@
     <value>3</value>
   </data>
   <data name="m_btnPause.Text" xml:space="preserve">
-    <value>&amp;Pause</value>
+    <value>暫停(&amp;P)</value>
   </data>
   <data name="m_btnPause.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -454,7 +454,7 @@
     <value>0</value>
   </data>
   <data name="m_btn_Stop.AccessibleName" xml:space="preserve">
-    <value>Stop</value>
+    <value>停止</value>
   </data>
   <data name="m_btn_Stop.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -469,7 +469,7 @@
     <value>4</value>
   </data>
   <data name="m_btn_Stop.Text" xml:space="preserve">
-    <value>&amp;Stop</value>
+    <value>停止(&amp;S)</value>
   </data>
   <data name="&gt;&gt;m_btn_Stop.Name" xml:space="preserve">
     <value>m_btn_Stop</value>
@@ -484,7 +484,7 @@
     <value>1</value>
   </data>
   <data name="m_btn_Play.AccessibleName" xml:space="preserve">
-    <value>Play</value>
+    <value>播放</value>
   </data>
   <data name="m_btn_Play.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -499,7 +499,7 @@
     <value>3</value>
   </data>
   <data name="m_btn_Play.Text" xml:space="preserve">
-    <value>Play</value>
+    <value>播放 (&amp;P)</value>
   </data>
   <data name="&gt;&gt;m_btn_Play.Name" xml:space="preserve">
     <value>m_btn_Play</value>

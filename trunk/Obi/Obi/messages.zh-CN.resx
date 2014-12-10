@@ -1983,7 +1983,7 @@
     <value>以下數值會用於實時句偵測; Threshold: {0} ,Gap btw Phrases: {1} ,Leading Silence: {2}。 這些設定可在偏好設定的下拉方塊修改或從一靜音句中取得。</value>
   </data>
   <data name="ProjectTab_EnableFreeDiskSpaceCheck" xml:space="preserve">
-    <value>Enable free disk space check</value>
+    <value>啟用剩餘磁碟空間檢查</value>
   </data>
   <data name="Audio_EnablePostRecordingPageRenumbering" xml:space="preserve">
     <value>在錄音結束時重新編排其後頁數</value>
@@ -2418,6 +2418,6 @@
     <value>請正確輸入以下項目：</value>
   </data>
   <data name="Audio_PreservePage" xml:space="preserve">
-    <value>Preserve pages while recording over subsequent audio</value>
+    <value>當使用錄音按鈕覆蓋其後音訊時保留頁數</value>
   </data>
 </root>

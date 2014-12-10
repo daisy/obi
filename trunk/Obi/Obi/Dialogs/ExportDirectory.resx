@@ -481,7 +481,7 @@
     <value>8</value>
   </data>
   <data name="m_btnEncodingOptions.Text" xml:space="preserve">
-    <value>More Encoding options</value>
+    <value>&amp;More Encoding options</value>
   </data>
   <data name="&gt;&gt;m_btnEncodingOptions.Name" xml:space="preserve">
     <value>m_btnEncodingOptions</value>

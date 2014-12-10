@@ -670,7 +670,7 @@
     <value>0</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.AccessibleName" xml:space="preserve">
-    <value>Audio cleanup max file size</value>
+    <value>清潔音訊檔最大檔案大小</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 186</value>
@@ -706,7 +706,7 @@
     <value>33</value>
   </data>
   <data name="mlblCleanupFileSize.Text" xml:space="preserve">
-    <value>Audio cleanup max file size(MB):</value>
+    <value>清潔音訊檔最大檔案大小(MB):</value>
   </data>
   <data name="&gt;&gt;mlblCleanupFileSize.Name" xml:space="preserve">
     <value>mlblCleanupFileSize</value>

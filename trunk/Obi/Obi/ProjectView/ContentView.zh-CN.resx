@@ -155,22 +155,22 @@
     <value>分割分節(&amp;l)</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>合併與下一章節</value>
+    <value>Merge sections with next</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.Text" xml:space="preserve">
-    <value>合併與下一章節</value>
+    <value>Me&amp;rge sections with next</value>
   </data>
   <data name="Context_MultiSectionOperations.AccessibleName" xml:space="preserve">
-    <value>多條運營</value>
+    <value>多分節操作</value>
   </data>
   <data name="Context_MultiSectionOperations.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_MultiSectionOperations.Text" xml:space="preserve">
-    <value>多條運營(&amp;c)</value>
+    <value>多分節操作(&amp;c)</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>

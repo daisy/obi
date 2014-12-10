@@ -493,7 +493,7 @@
     <value>3</value>
   </data>
   <data name="m_btn_Play.Text" xml:space="preserve">
-    <value>Play</value>
+    <value>&amp;Play</value>
   </data>
   <data name="&gt;&gt;m_btn_Play.Name" xml:space="preserve">
     <value>m_btn_Play</value>
