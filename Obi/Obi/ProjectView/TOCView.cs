@@ -107,7 +107,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool CanSetSectionUsedStatus
         {
-            get { return IsSectionSelected && mSelection.Node.Parent != null &&  mSelection.Node.ParentAs<ObiNode>().Used; }
+            get { return IsSectionSelected && mSelection.Node != null && mSelection.Node.Parent != null &&  mSelection.Node.ParentAs<ObiNode>().Used; }
         }
 
         /// <summary>
