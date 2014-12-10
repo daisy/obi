@@ -2134,8 +2134,8 @@ namespace Obi.ProjectView
         public bool CanShowProjectPropertiesDialog { get { return mPresentation != null && !mTransportBar.IsRecorderActive; } }
         public bool CanShowSectionPropertiesDialog { get { return Selection != null && Selection.Node is SectionNode && Presentation != null && Presentation.FirstSection != null && !TransportBar.IsRecorderActive; } } // quick fix of inserting first section check to avoid a crash
 
-        public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
-        public bool CanMarkStripUnused { get { return mContentView.CanSetStripUsedStatus && mSelection.Node.Used; } }
+        public bool CanMarkSectionUnused { get { return mSelection !=null && mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
+        public bool CanMarkStripUnused { get { return mSelection != null && mContentView.CanSetStripUsedStatus && mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mContentView.CanMergeBlockWithNext; } }
         public bool CanMergePhraseWithFollowingPhrasesInSection { get { return CanMergeBlockWithNext && !IsZoomWaveformActive; } }
         public bool CanSplitPhrase { get { return mTransportBar.CanSplitPhrase; } }
