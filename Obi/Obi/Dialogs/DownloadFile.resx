@@ -169,7 +169,7 @@ You can also open "Obi x.x" folder by simply clicking "Open Obi directory" butto
     <value>3</value>
   </data>
   <data name="m_btnClose.Text" xml:space="preserve">
-    <value>Close</value>
+    <value>&amp;Close</value>
   </data>
   <data name="&gt;&gt;m_btnClose.Name" xml:space="preserve">
     <value>m_btnClose</value>
@@ -199,7 +199,7 @@ You can also open "Obi x.x" folder by simply clicking "Open Obi directory" butto
     <value>1</value>
   </data>
   <data name="m_btnDownload.Text" xml:space="preserve">
-    <value>Download ffmpeg</value>
+    <value>&amp;Download ffmpeg</value>
   </data>
   <data name="&gt;&gt;m_btnDownload.Name" xml:space="preserve">
     <value>m_btnDownload</value>
@@ -229,7 +229,7 @@ You can also open "Obi x.x" folder by simply clicking "Open Obi directory" butto
     <value>2</value>
   </data>
   <data name="m_btnFolder.Text" xml:space="preserve">
-    <value>Open Obi directory</value>
+    <value>&amp;Open Obi directory</value>
   </data>
   <data name="&gt;&gt;m_btnFolder.Name" xml:space="preserve">
     <value>m_btnFolder</value>

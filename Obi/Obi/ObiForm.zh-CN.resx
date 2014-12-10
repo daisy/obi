@@ -847,7 +847,7 @@
     <value>分割分節(&amp;p)</value>
   </data>
   <data name="mMergeWithNextSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>合併與下一</value>
+    <value>Merge with next</value>
   </data>
   <data name="mMergeWithNextSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+M</value>
@@ -856,16 +856,16 @@
     <value>279, 22</value>
   </data>
   <data name="mMergeWithNextSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>合併與下一 (&amp;r)</value>
+    <value>Me&amp;rge with next</value>
   </data>
   <data name="mMultiSectionOperations.AccessibleName" xml:space="preserve">
-    <value>多條運營</value>
+    <value>多分節操作</value>
   </data>
   <data name="mMultiSectionOperations.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
   </data>
   <data name="mMultiSectionOperations.Text" xml:space="preserve">
-    <value>多條運營(&amp;c)</value>
+    <value>多分節操作(&amp;c)</value>
   </data>
   <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 6</value>

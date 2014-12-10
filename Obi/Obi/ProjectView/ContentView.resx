@@ -152,7 +152,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.Text" xml:space="preserve">
-    <value>Merge sections with next</value>
+    <value>Me&amp;rge sections with next</value>
   </data>
   <data name="Context_MultiSectionOperations.AccessibleName" xml:space="preserve">
     <value>Multi-Section Operations</value>
