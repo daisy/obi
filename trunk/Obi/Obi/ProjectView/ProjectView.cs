@@ -1278,12 +1278,20 @@ namespace Obi.ProjectView
                 List<SectionNode> selectedSections = selectionDialog.SelectedSections;
                 int mergeCount = 0;
                 selectionDialog.UndoChangeEvent += new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
-                { 
+                {
+                    if (this.TransportBar.IsPlayerActive)
+                    {
+                        this.TransportBar.Stop();
+                    }
                     mForm.Undo();                                
                 }
                 );
                 selectionDialog.MergeSectionEvent += new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
                 {
+                    if (this.TransportBar.IsPlayerActive)
+                    {
+                        this.TransportBar.Stop();
+                    }
                     if (selectionDialog.SelectedSections.Count != 0)
                     {
                         mergeCount++;
@@ -1367,6 +1375,10 @@ namespace Obi.ProjectView
                     );
                 selectionDialog.LevelIncrementEvent+= new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
                 {
+                    if (this.TransportBar.IsPlayerActive)
+                    {
+                        this.TransportBar.Stop();
+                    }
                     if (selectionDialog.SelectedSectionsForIncreaseLevel != null && selectionDialog.SelectedSectionsForIncreaseLevel.Count >= 1)
                     {
                         List<SectionNode> selectedSectionsForIncreaseLevel = selectionDialog.SelectedSectionsForIncreaseLevel;
@@ -1392,6 +1404,10 @@ namespace Obi.ProjectView
                     );
                 selectionDialog.LevelDecrementEvent+= new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
                 {
+                    if (this.TransportBar.IsPlayerActive)
+                    {
+                        this.TransportBar.Stop();
+                    }
                     if (selectionDialog.SelectedSectionsForDecreaseLevel != null && selectionDialog.SelectedSectionsForDecreaseLevel.Count >= 1)
                     {
                         List<SectionNode> selectedSectionsForDecreaseLevel = selectionDialog.SelectedSectionsForDecreaseLevel;
