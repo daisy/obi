@@ -1911,7 +1911,7 @@ namespace Obi
                 mIncreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanIncreaseLevel;
                 mSplitSectionToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
                // mMergeSectionWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-                mMergeWithNextSectionToolStripMenuItem.Enabled = mMultiSectionOperations.Enabled = mProjectView.CanMergeStripWithNext;
+                mMergeWithNextSectionToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
                 mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
                 mSectionIsUsedToolStripMenuItem.CheckedChanged -=
                     new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);

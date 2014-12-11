@@ -1268,185 +1268,197 @@ namespace Obi.ProjectView
         {
             if (GetSelectedPhraseSection != null)
             {
+                SectionNode temp_NodeSelected = GetSelectedPhraseSection;
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 List<SectionNode> listOfSections = ((Obi.ObiRootNode)mPresentation.RootNode).GetListOfAllSections(); //use this list in merge section dialog
                 //MessageBox.Show(listOfSections.Count.ToString()); 
                 int selectedSectionIndex = listOfSections.IndexOf(GetSelectedPhraseSection);
                 if (selectedSectionIndex > 0) listOfSections.RemoveRange(0, selectedSectionIndex);
                 //foreach (SectionNode s in listOfSections) MessageBox.Show(s.Label + " " + s.Level.ToString ());
-                Obi.Dialogs.SelectMergeSectionRange selectionDialog = new Obi.Dialogs.SelectMergeSectionRange(listOfSections, selectedSectionIndex, this, this.mContentView);
-                List<SectionNode> selectedSections = selectionDialog.SelectedSections;
-                int mergeCount = 0;
-                selectionDialog.UndoChangeEvent += new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
+                Obi.Dialogs.ChooseMergeOrChangeLevel chooseOperationDialog = new Obi.Dialogs.ChooseMergeOrChangeLevel(this);
+                DialogResult result = chooseOperationDialog.ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    if (this.TransportBar.IsPlayerActive)
-                    {
-                        this.TransportBar.Stop();
-                    }
-                    mForm.Undo();                                
-                }
-                );
-                selectionDialog.MergeSectionEvent += new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
-                {
-                    if (this.TransportBar.IsPlayerActive)
-                    {
-                        this.TransportBar.Stop();
-                    }
-                    if (selectionDialog.SelectedSections.Count != 0)
-                    {
-                        mergeCount++;
-                        selectedSections = selectionDialog.SelectedSections;
-                        if (selectedSections.Count <= 1) return;
-                        urakawa.command.CompositeCommand mergeSectionCommand = mPresentation.CreateCompositeCommand("MergeMultipleSections");
 
-                        SectionNode firstSection = selectedSections[0];
-                        selectedSections.Remove(firstSection);
-                        //first arrange the children whose parents will be deleted
-                        int lastSelectedSectionIndex = listOfSections.IndexOf(selectedSections[selectedSections.Count - 1]);
-
-                        if (lastSelectedSectionIndex < listOfSections.Count - 1)
+                    Obi.Dialogs.SelectMergeSectionRange selectionDialog = new Obi.Dialogs.SelectMergeSectionRange(listOfSections, selectedSectionIndex, this, this.mContentView, chooseOperationDialog.ChangeSectionLevel,chooseOperationDialog.MergeSection);
+                    List<SectionNode> selectedSections = selectionDialog.SelectedSections;
+                    int mergeCount = 0;
+                    selectionDialog.UndoChangeEvent += new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
+                    {
+                        if (this.TransportBar.IsPlayerActive)
                         {
-                            for (int i = listOfSections.Count - 1; i > lastSelectedSectionIndex; i--)
+                            this.TransportBar.Stop();
+                        }
+                        mForm.Undo();
+                    }
+                    );
+                    selectionDialog.MergeSectionEvent += new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
+                    {
+                        if (this.TransportBar.IsPlayerActive)
+                        {
+                            this.TransportBar.Stop();
+                        }
+                        if (selectionDialog.SelectedSections.Count != 0)
+                        {
+                            mergeCount++;
+                            selectedSections = selectionDialog.SelectedSections;
+                            if (selectedSections.Count <= 1) return;
+                            urakawa.command.CompositeCommand mergeSectionCommand = mPresentation.CreateCompositeCommand("MergeMultipleSections");
+
+                            SectionNode firstSection = selectedSections[0];
+                            selectedSections.Remove(firstSection);
+                            //first arrange the children whose parents will be deleted
+                            int lastSelectedSectionIndex = listOfSections.IndexOf(selectedSections[selectedSections.Count - 1]);
+
+                            if (lastSelectedSectionIndex < listOfSections.Count - 1)
                             {
-                                if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
+                                for (int i = listOfSections.Count - 1; i > lastSelectedSectionIndex; i--)
                                 {
-                                    if (listOfSections[i].IsRooted)
-                                    
+                                    if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
                                     {
-                                        mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
-                                        int insertIndex = firstSection.SectionChildCount > 0 ? firstSection.SectionChild(0).Index : 0;
-                                        mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, insertIndex, false));
+                                        if (listOfSections[i].IsRooted)
+                                        {
+                                            mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
+                                            int insertIndex = firstSection.SectionChildCount > 0 ? firstSection.SectionChild(0).Index : 0;
+                                            mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, insertIndex, false));
+                                        }
+                                    }
+                                }
+
+                                //for (int i = lastSelectedSectionIndex + 1; i < listOfSections.Count; i++)
+                                //{
+                                //if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
+                                //{
+                                //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
+                                //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, firstSection.SectionChildCount, false));
+                                //}
+                                //}
+                            }
+
+                            List<EmptyNode> phraseList = new List<EmptyNode>();
+
+                            //for (int i = 0; i < selectedSections.Count; i++)
+                            for (int i = selectedSections.Count - 1; i >= 0; i--)
+                            {
+                                for (int j = selectedSections[i].PhraseChildCount - 1; j >= 0; j--)
+                                {
+                                    if (selectedSections[i].IsRooted)
+                                    {
+                                        phraseList.Insert(0, selectedSections[i].PhraseChild(j));
+                                        mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i].PhraseChild(j)));
                                     }
                                 }
                             }
-
-                            //for (int i = lastSelectedSectionIndex + 1; i < listOfSections.Count; i++)
-                            //{
-                            //if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
-                            //{
-                            //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
-                            //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, firstSection.SectionChildCount, false));
-                            //}
-                            //}
-                        }
-
-                        List<EmptyNode> phraseList = new List<EmptyNode>();
-
-                        //for (int i = 0; i < selectedSections.Count; i++)
-                        for (int i = selectedSections.Count - 1; i >= 0; i--)
-                        {
-                            for (int j = selectedSections[i].PhraseChildCount - 1; j >= 0; j--)
+                            for (int i = selectedSections.Count - 1; i >= 0; i--)
                             {
                                 if (selectedSections[i].IsRooted)
                                 {
-                                    phraseList.Insert(0, selectedSections[i].PhraseChild(j));
-                                    mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i].PhraseChild(j)));
+                                    if (!selectedSections.Contains(selectedSections[i].ParentAs<SectionNode>()))
+                                        mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i]));
                                 }
                             }
-                        }
-                        for (int i = selectedSections.Count - 1; i >= 0; i--)
-                        {
-                            if (selectedSections[i].IsRooted)
-                            {
-                                if (!selectedSections.Contains(selectedSections[i].ParentAs<SectionNode>()))
-                                    mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i]));
-                            }
-                        }
 
-                        for (int i = 0; i < phraseList.Count; i++)
-                        {                           
+                            for (int i = 0; i < phraseList.Count; i++)
+                            {
                                 Commands.Command add = new Commands.Node.AddNode(this, phraseList[i], firstSection, firstSection.PhraseChildCount + i, false);
-                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, add);                            
-                        }
+                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, add);
+                            }
 
-                        try
-                        {
-                            mTOCView.Selection = null;
-                            if (mergeSectionCommand.ChildCommands.Count > 0) mPresentation.Do(mergeSectionCommand);
-                        }
-                        catch (System.Exception ex)
-                        {
-                            WriteToLogFile(ex.ToString());
-                            MessageBox.Show(ex.ToString());
-                        }
-                    }
-                }
-                
-                    );
-                selectionDialog.LevelIncrementEvent+= new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
-                {
-                    if (this.TransportBar.IsPlayerActive)
-                    {
-                        this.TransportBar.Stop();
-                    }
-                    if (selectionDialog.SelectedSectionsForIncreaseLevel != null && selectionDialog.SelectedSectionsForIncreaseLevel.Count >= 1)
-                    {
-                        List<SectionNode> selectedSectionsForIncreaseLevel = selectionDialog.SelectedSectionsForIncreaseLevel;
-                        if (selectedSectionsForIncreaseLevel.Count != 0)
-                        {
-                            selectedSections = selectionDialog.SelectedSections;
-                            SectionNode node = selectedSectionsForIncreaseLevel[0];
-                            mTOCView.Selection = new NodeSelection(node, mContentView);
-                            for( int i=0 ; i<selectedSectionsForIncreaseLevel.Count;i++)
+                            try
                             {
-                                node = selectedSectionsForIncreaseLevel[i];
-                                if (selectedSectionsForIncreaseLevel.Contains(node.ParentAs<SectionNode>())) continue;
-                                if (Commands.TOC.MoveSectionIn.CanMoveNode(node) )
-                                {
-                                    mPresentation.Do(new Commands.TOC.MoveSectionIn(this, node));
-                                }
+                                mTOCView.Selection = null;
+                                if (mergeSectionCommand.ChildCommands.Count > 0) mPresentation.Do(mergeSectionCommand);
+                            }
+                            catch (System.Exception ex)
+                            {
+                                WriteToLogFile(ex.ToString());
+                                MessageBox.Show(ex.ToString());
                             }
                         }
                     }
- 
-                }
-                    
-                    );
-                selectionDialog.LevelDecrementEvent+= new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
-                {
-                    if (this.TransportBar.IsPlayerActive)
+
+                        );
+                    selectionDialog.LevelIncrementEvent += new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
                     {
-                        this.TransportBar.Stop();
-                    }
-                    if (selectionDialog.SelectedSectionsForDecreaseLevel != null && selectionDialog.SelectedSectionsForDecreaseLevel.Count >= 1)
-                    {
-                        List<SectionNode> selectedSectionsForDecreaseLevel = selectionDialog.SelectedSectionsForDecreaseLevel;
-                        if (selectedSectionsForDecreaseLevel.Count != 0)
+                        if (this.TransportBar.IsPlayerActive)
                         {
-                            selectedSections = selectionDialog.SelectedSections;
-                            selectedSectionsForDecreaseLevel.Reverse();
-                            SectionNode node = selectedSectionsForDecreaseLevel[0];
-                            mTOCView.Selection = new NodeSelection(node, mContentView);
-                            for( int i=0 ; i<selectedSectionsForDecreaseLevel.Count;i++)
+                            this.TransportBar.Stop();
+                        }
+                        if (selectionDialog.SelectedSectionsForIncreaseLevel != null && selectionDialog.SelectedSectionsForIncreaseLevel.Count >= 1)
+                        {
+                            List<SectionNode> selectedSectionsForIncreaseLevel = selectionDialog.SelectedSectionsForIncreaseLevel;
+                            if (selectedSectionsForIncreaseLevel.Count != 0)
                             {
-                                node = selectedSectionsForDecreaseLevel[i];
-                                
-                                if (Commands.TOC.MoveSectionOut.CanMoveNode(node) )
+                                selectedSections = selectionDialog.SelectedSections;
+                                SectionNode node = selectedSectionsForIncreaseLevel[0];
+                                mTOCView.Selection = new NodeSelection(node, mContentView);
+                                temp_NodeSelected = node;
+                                for (int i = 0; i < selectedSectionsForIncreaseLevel.Count; i++)
                                 {
-                                    mPresentation.Do ( new Commands.TOC.MoveSectionOut ( this,node ) );
+                                    node = selectedSectionsForIncreaseLevel[i];
+                                    if (selectedSectionsForIncreaseLevel.Contains(node.ParentAs<SectionNode>())) continue;
+                                    if (Commands.TOC.MoveSectionIn.CanMoveNode(node))
+                                    {
+                                        mPresentation.Do(new Commands.TOC.MoveSectionIn(this, node));
+                                    }
                                 }
                             }
-                        
+                        }
+
+                    }
+
+                        );
+                    selectionDialog.LevelDecrementEvent += new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
+                    {
+                        if (this.TransportBar.IsPlayerActive)
+                        {
+                            this.TransportBar.Stop();
+                        }
+                        if (selectionDialog.SelectedSectionsForDecreaseLevel != null && selectionDialog.SelectedSectionsForDecreaseLevel.Count >= 1)
+                        {
+                            List<SectionNode> selectedSectionsForDecreaseLevel = selectionDialog.SelectedSectionsForDecreaseLevel;
+                            if (selectedSectionsForDecreaseLevel.Count != 0)
+                            {
+                                selectedSections = selectionDialog.SelectedSections;
+                                temp_NodeSelected = selectedSectionsForDecreaseLevel[0];
+                                selectedSectionsForDecreaseLevel.Reverse();
+                                SectionNode node = selectedSectionsForDecreaseLevel[0];
+                                mTOCView.Selection = new NodeSelection(node, mContentView);
+                                for (int i = 0; i < selectedSectionsForDecreaseLevel.Count; i++)
+                                {
+                                    node = selectedSectionsForDecreaseLevel[i];
+
+                                    if (Commands.TOC.MoveSectionOut.CanMoveNode(node))
+                                    {
+                                        mPresentation.Do(new Commands.TOC.MoveSectionOut(this, node));
+                                    }
+                                }
+
+                            }
                         }
                     }
-                }
-                    
-                );
-                selectionDialog.ShowDialog();
-                //  if (selectedSections.Count <= 1)
-                {
-                    Console.WriteLine();
-                    // SectionNode nodes = GetSelectedPhraseSection;
-                    // List<SectionNode> selectedSections = selectionDialog.SelectedSections;
-                    //foreach (SectionNode node in selectedSections)
-                    //{
-                    //    mTOCView.Selection = new NodeSelection(node, mContentView);
-                    //    DecreaseSelectedSectionLevel();
-                    //}
 
-                    //   return;
-                }
+                    );
+                    selectionDialog.ShowDialog();
+                    //  if (selectedSections.Count <= 1)
+                    {
+                        if (temp_NodeSelected != null && temp_NodeSelected.IsRooted)
+                        {
+                            this.Selection = new NodeSelection(temp_NodeSelected, mTOCView);
+                        }
+                        //Console.WriteLine();
+                        // SectionNode nodes = GetSelectedPhraseSection;
+                        // List<SectionNode> selectedSections = selectionDialog.SelectedSections;
+                        //foreach (SectionNode node in selectedSections)
+                        //{
+                        //    mTOCView.Selection = new NodeSelection(node, mContentView);
+                        //    DecreaseSelectedSectionLevel();
+                        //}
 
+                        //   return;
+                    }
+
+                }
             }
         }
 
