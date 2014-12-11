@@ -66,8 +66,10 @@ namespace Obi.Dialogs
             // 
             // ChooseMergeOrChangeLevel
             // 
+            this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btnCancel;
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOk);
             this.Controls.Add(this.m_rbChangeLevel);

@@ -1912,6 +1912,7 @@ namespace Obi
                 mSplitSectionToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
                // mMergeSectionWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
                 mMergeWithNextSectionToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+                mMultiSectionOperations.Enabled = mProjectView.EnableMultiSectionOperation;
                 mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
                 mSectionIsUsedToolStripMenuItem.CheckedChanged -=
                     new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
