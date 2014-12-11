@@ -303,7 +303,7 @@ namespace Obi.ProjectView
             Context_DeleteMenuItem.Enabled = mProjectView.CanRemoveSection;
             Context_PropertiesMenuItem.Enabled = mProjectView.CanShowSectionPropertiesDialog;
            // Context_MergeSectionMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-            Context_MergeWithNextMenuItem.Enabled = Context_MultipleOperationsMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+            Context_MergeWithNextMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
             Context_ShowContentsMenuItem.Enabled = mProjectView.Selection != null && !(mProjectView.Selection is TextSelection);
         }
 
