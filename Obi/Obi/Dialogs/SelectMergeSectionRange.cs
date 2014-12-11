@@ -446,6 +446,7 @@ namespace Obi.Dialogs
         private void m_btn_IncreaseSectionLevel_Click(object sender, EventArgs e)
         {
             m_Merge = false;
+            m_btn_Merge.Enabled = false;
             SectionsSelected();
             m_SelectedSectionListForIncreaseLevel = m_SelectedSectionList;
             if (LevelIncrementEvent != null) LevelIncrementEvent(this, new EventArgs());
@@ -499,6 +500,7 @@ namespace Obi.Dialogs
         private void m_btn_DecreaseSectionLevel_Click(object sender, EventArgs e)
         {
             m_Merge = false;
+            m_btn_Merge.Enabled = false;
             SectionsSelected();
             m_SelectedSectionListForDecreaseLevel = m_SelectedSectionList;
             if (LevelDecrementEvent != null) LevelDecrementEvent(this, new EventArgs());
@@ -566,7 +568,7 @@ namespace Obi.Dialogs
 
         private void m_btn_Merge_Click(object sender, EventArgs e)
         {
-            m_Merge = true;
+            m_Merge = true;  
             if (m_ProjectView.TransportBar.IsPlayerActive)
             {
                 m_ProjectView.TransportBar.Stop();
@@ -574,6 +576,8 @@ namespace Obi.Dialogs
             SectionsSelected();
             if (m_FlagMerge)
             {
+                m_btn_IncreaseSectionLevel.Enabled = false;
+                m_btn_DecreaseSectionLevel.Enabled = false;
                 if (MergeSectionEvent != null) MergeSectionEvent(this, new EventArgs());
                 int count = 0;
                 populateListboxForSectionsAfterMerge();
