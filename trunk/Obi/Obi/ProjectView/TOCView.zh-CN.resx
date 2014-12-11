@@ -158,13 +158,13 @@
     <value>插入分節(&amp;I)</value>
   </data>
   <data name="Context_MergeWithNextMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge With Next</value>
+    <value>與下一項合併</value>
   </data>
   <data name="Context_MergeWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="Context_MergeWithNextMenuItem.Text" xml:space="preserve">
-    <value>Me&amp;rge With Next</value>
+    <value>與下一項合併(&amp;R)</value>
   </data>
   <data name="Context_MultipleOperationsMenuItem.AccessibleName" xml:space="preserve">
     <value>多分節操作</value>

@@ -155,13 +155,13 @@
     <value>分割分節(&amp;l)</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge sections with next</value>
+    <value>與下一分節合併</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_MergeWithNextSectionMenuItem.Text" xml:space="preserve">
-    <value>Me&amp;rge sections with next</value>
+    <value>與下一分節合併(&amp;r)</value>
   </data>
   <data name="Context_MultiSectionOperations.AccessibleName" xml:space="preserve">
     <value>多分節操作</value>
