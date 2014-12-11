@@ -115,14 +115,14 @@ namespace Obi.Dialogs
             SectionNode firstSection = m_SectionList[0];
             for (int i = 0; i <= (m_SectionList.Count - 1); i++)
             {
-                if (m_SectionList[i].Level >= firstSection.Level)
+             //   if (m_SectionList[i].Level >= firstSection.Level)
                 {
                     m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
                     m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
                     m_SectionListAfterLevelChange.Add(m_SectionList[i]);
                 }
-                else
-                    return;
+                //else
+                //    return;
             }
         }
       
