@@ -2850,7 +2850,8 @@ ref string exportDirectoryEPUB3)
 
                     DAISY3ExportInstance.AddSectionNameToAudioFile = false;
                     DAISY3ExportInstance.AudioFileNameCharsLimit = 100;
-                    
+                    if (configInstance.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) DAISY3ExportInstance.EncodingFileFormat = configInstance.EncodingAudioFileFormat;
+
                     ((Obi.ImportExport.DAISY3_ObiExport)DAISY3ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                     exportDirectoryDAISY3 = configInstance.ExportDirectory;
                     exportDirectoryEPUB3 = exportDirectoryDAISY202 = null;
@@ -2864,7 +2865,8 @@ ref string exportDirectoryEPUB3)
 
                     DAISY202ExportInstance.AddSectionNameToAudioFile = false;
                     DAISY202ExportInstance.AudioFileNameCharsLimit = 100;
-                    
+                    if (configInstance.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) DAISY202ExportInstance.EncodingFileFormat = configInstance.EncodingAudioFileFormat;
+
                     ((Obi.ImportExport.DAISY202Export)DAISY202ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                     exportDirectoryDAISY202 = configInstance.ExportDirectory;
                     exportDirectoryDAISY3 = exportDirectoryEPUB3 = null;
@@ -2881,6 +2883,7 @@ ref string exportDirectoryEPUB3)
 
                     EPUB3_ExportInstance.AddSectionNameToAudioFile = false;
                     EPUB3_ExportInstance.AudioFileNameCharsLimit = 100;
+                    if (configInstance.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) EPUB3_ExportInstance.EncodingFileFormat = configInstance.EncodingAudioFileFormat;
 
                     ((Obi.ImportExport.Epub3_ObiExport)EPUB3_ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                     exportDirectoryEPUB3 = configInstance.ExportDirectory;

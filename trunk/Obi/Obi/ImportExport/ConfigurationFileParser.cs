@@ -52,6 +52,9 @@ namespace Obi.ImportExport
         private bool m_EncodeExportedAudioFiles = false;
         public bool EncodeExportedAudioFiles { get { return m_EncodeExportedAudioFiles; } }
 
+        private AudioLib.AudioFileFormats m_EncodingAudioFileFormat = AudioLib.AudioFileFormats.MP3;
+        public AudioLib.AudioFileFormats EncodingAudioFileFormat { get { return m_EncodingAudioFileFormat; } }
+
         private AudioLib.SampleRate m_ExportSampleRate;
         public AudioLib.SampleRate ExportSampleRate { get { return m_ExportSampleRate; } }
 
@@ -107,6 +110,12 @@ namespace Obi.ImportExport
                 {
                     string strEncoding = n.InnerText.Trim();
                     m_EncodeExportedAudioFiles = strEncoding.ToLower() != "wav";
+
+                    if (m_EncodeExportedAudioFiles)
+                    {
+                        m_EncodingAudioFileFormat = (strEncoding.ToLower() == "mp4" || strEncoding.ToLower() == "m4a") ? AudioLib.AudioFileFormats.MP4 :
+                            AudioLib.AudioFileFormats.MP3;
+                    }
                 }
                 else if (n.LocalName == "bitrate")
                 {
