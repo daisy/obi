@@ -2840,6 +2840,11 @@ ref string exportDirectoryEPUB3)
 
                 ImportExport.ConfigurationFileParser configInstance = mSession.Presentation.ConfigurationsImportExport;
                 
+                // Delete the export directory if it already exists
+                if (Directory.Exists(configInstance.ExportDirectory))
+                {
+                    Directory.Delete(configInstance.ExportDirectory, true);
+                }
                 if (configInstance.ExportStandards == Obi.ImportExport.ExportFormat.DAISY3_0)
                 {
                     DAISY3ExportInstance = new Obi.ImportExport.DAISY3_ObiExport(
