@@ -49,8 +49,8 @@ namespace Obi.ImportExport
         private ExportFormat m_ExportStandards;
         public ExportFormat ExportStandards { get { return m_ExportStandards ; }}
 
-        private bool m_ExportIsMp3 = false;
-        public bool Export_IsMp3 { get { return m_ExportIsMp3; } }
+        private bool m_EncodeExportedAudioFiles = false;
+        public bool EncodeExportedAudioFiles { get { return m_EncodeExportedAudioFiles; } }
 
         private AudioLib.SampleRate m_ExportSampleRate;
         public AudioLib.SampleRate ExportSampleRate { get { return m_ExportSampleRate; } }
@@ -58,8 +58,8 @@ namespace Obi.ImportExport
         private int m_ExportChannels;
         public int ExportChannels { get { return m_ExportChannels; } }
 
-        private int m_ExportMp3Bitrate;
-        public int ExportMp3Bitrate { get { return m_ExportMp3Bitrate; } }
+        private double m_ExportEncodingBitrate;
+        public double ExportEncodingBitrate { get { return m_ExportEncodingBitrate; } }
 
         public void ParseXml()
         {
@@ -106,12 +106,12 @@ namespace Obi.ImportExport
                 else if (n.LocalName == "audioencoding")
                 {
                     string strEncoding = n.InnerText.Trim();
-                    m_ExportIsMp3 = strEncoding.ToLower() == "mp3";
+                    m_EncodeExportedAudioFiles = strEncoding.ToLower() != "wav";
                 }
                 else if (n.LocalName == "bitrate")
                 {
                     string strBitrate = n.InnerText.Trim();
-                    m_ExportMp3Bitrate = int.Parse(strBitrate);
+                    m_ExportEncodingBitrate = int.Parse(strBitrate);
                 }
                 else if (n.LocalName == "audiosamplerate")
                 {

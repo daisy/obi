@@ -2843,7 +2843,7 @@ ref string exportDirectoryEPUB3)
                 if (configInstance.ExportStandards == Obi.ImportExport.ExportFormat.DAISY3_0)
                 {
                     DAISY3ExportInstance = new Obi.ImportExport.DAISY3_ObiExport(
-                            mSession.Presentation, configInstance.ExportDirectory , null, configInstance.Export_IsMp3,(ushort) configInstance.ExportMp3Bitrate,
+                            mSession.Presentation, configInstance.ExportDirectory , null, configInstance.EncodeExportedAudioFiles,configInstance.ExportEncodingBitrate,
                             configInstance.ExportSampleRate ,
                             configInstance.ExportChannels == 2,
                             false, 100);
@@ -2858,7 +2858,7 @@ ref string exportDirectoryEPUB3)
                 else if (configInstance.ExportStandards == Obi.ImportExport.ExportFormat.DAISY2_02)
                 {
                     DAISY202ExportInstance = new Obi.ImportExport.DAISY202Export(
-                        mSession.Presentation, configInstance.ExportDirectory,configInstance.Export_IsMp3 ,(ushort) configInstance.ExportMp3Bitrate,
+                        mSession.Presentation, configInstance.ExportDirectory,configInstance.EncodeExportedAudioFiles ,configInstance.ExportEncodingBitrate,
                         configInstance.ExportSampleRate , configInstance.ExportChannels == 2,
                         100);
 
@@ -2872,7 +2872,7 @@ ref string exportDirectoryEPUB3)
                 else if (configInstance.ExportStandards == Obi.ImportExport.ExportFormat.EPUB3)
                 {
                     EPUB3_ExportInstance = new Obi.ImportExport.Epub3_ObiExport(
-                            mSession.Presentation, configInstance.ExportDirectory, null, configInstance.Export_IsMp3,(ushort) configInstance.ExportMp3Bitrate,
+                            mSession.Presentation, configInstance.ExportDirectory, null, configInstance.EncodeExportedAudioFiles,configInstance.ExportEncodingBitrate,
                             configInstance.ExportSampleRate,
                             configInstance.ExportChannels == 2,
                             false, 100,
