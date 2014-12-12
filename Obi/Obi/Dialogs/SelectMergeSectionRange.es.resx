@@ -220,7 +220,7 @@
     <value>Obi Help.chm</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.AccessibleName" xml:space="preserve">
-    <value>Increase Section Level</value>
+    <value>Increment section level</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -241,7 +241,7 @@
     <value>9</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.Text" xml:space="preserve">
-    <value>&amp;Up</value>
+    <value>&amp;Increment</value>
   </data>
   <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Name" xml:space="preserve">
     <value>m_btn_IncreaseSectionLevel</value>
@@ -256,7 +256,7 @@
     <value>3</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.AccessibleName" xml:space="preserve">
-    <value>Decrease Section Level</value>
+    <value>Decrement section Level</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -277,7 +277,7 @@
     <value>10</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.Text" xml:space="preserve">
-    <value>&amp;Down</value>
+    <value>&amp;Decrement</value>
   </data>
   <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Name" xml:space="preserve">
     <value>m_btn_DecreaseSectionLevel</value>
