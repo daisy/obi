@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectMergeSectionRange));
             this.m_statusStripForMergeSection = new System.Windows.Forms.StatusStrip();
             this.m_StatusLabelForMergeSection = new System.Windows.Forms.ToolStripStatusLabel();
@@ -46,6 +47,7 @@ namespace Obi.Dialogs
             this.m_btn_Play = new System.Windows.Forms.Button();
             this.m_lb_listofSectionsToMerge = new System.Windows.Forms.ListBox();
             this.m_tb_SectionsSelected = new System.Windows.Forms.TextBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_statusStripForMergeSection.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.m_grp_SectionLevelOperation.SuspendLayout();
@@ -223,5 +225,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btn_Merge;
         private System.Windows.Forms.Button m_btn_Close;
         private System.Windows.Forms.TextBox m_tb_SectionsSelected;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

@@ -2685,4 +2685,13 @@ Error text: {1}</value>
   <data name="Audio_PreservePage" xml:space="preserve">
     <value>Preserve pages while recording over subsequent audio</value>
   </data>
+  <data name="MergeOptions_IncreaseLevel" xml:space="preserve">
+    <value>Increment section level</value>
+  </data>
+  <data name="MergeOptions_DecreaseLevel" xml:space="preserve">
+    <value>Decrement section Level</value>
+  </data>
+  <data name="MergeOptions_Merge" xml:space="preserve">
+    <value>Merge sections</value>
+  </data>
 </root>

@@ -62,6 +62,9 @@ namespace Obi.Dialogs
             } 
             m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("StatusForMergeSection"), m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);
             m_ProjectView.TransportBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
+            toolTip.SetToolTip(m_btn_IncreaseSectionLevel, Localizer.Message("MergeOptions_IncreaseLevel"));
+            toolTip.SetToolTip(m_btn_DecreaseSectionLevel, Localizer.Message("MergeOptions_DecreaseLevel"));
+            toolTip.SetToolTip(m_btn_Merge,Localizer.Message("MergeOptions_Merge"));
 
         }
         public void State_Changed_Player(object sender, AudioLib.AudioPlayer.StateChangedEventArgs e)
