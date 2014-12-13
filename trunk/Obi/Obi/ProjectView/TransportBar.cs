@@ -2681,7 +2681,8 @@ namespace Obi.ProjectView
             if (IsPlayerActive)
             {
 
-                if (IsPaused && mCurrentPlaylist.CurrentTimeInAsset <= 10 && (mView.Selection.Node.PrecedingNode is PhraseNode || mView.Selection.Node.PrecedingNode is EmptyNode) && !mView.IsZoomWaveformActive)
+                if (((IsPaused && mCurrentPlaylist.CurrentTimeInAsset <= 10) || (mView.ObiForm.Settings.PlayOnNavigate && CurrentState == State.Playing && mCurrentPlaylist.CurrentTimeInAsset <= 800))
+                    && (mView.Selection.Node.PrecedingNode is PhraseNode || mView.Selection.Node.PrecedingNode is EmptyNode) && !mView.IsZoomWaveformActive)
                 {
                     LapseBackCursor();
                     return true;
