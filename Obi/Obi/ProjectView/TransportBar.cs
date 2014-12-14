@@ -2725,8 +2725,10 @@ namespace Obi.ProjectView
             if (IsPlayerActive)
             {
 
-                if (IsPaused && (mView.Selection.Node.FollowingNode is PhraseNode || mView.Selection.Node.FollowingNode is EmptyNode) && (mView.Selection.Node.Parent == mView.Selection.Node.FollowingNode.Parent) && (mCurrentPlaylist.CurrentTimeInAsset >= (mView.Selection.Node.Duration - m_ElapseBackInterval)) && !mView.IsZoomWaveformActive)
+                if ((IsPaused || (mView.ObiForm.Settings.PlayOnNavigate && CurrentState == State.Playing ))
+                    && (mView.Selection.Node.FollowingNode is PhraseNode || mView.Selection.Node.FollowingNode is EmptyNode) && (mView.Selection.Node.Parent == mView.Selection.Node.FollowingNode.Parent) && (mCurrentPlaylist.CurrentTimeInAsset >= (mView.Selection.Node.Duration - m_ElapseBackInterval)) && !mView.IsZoomWaveformActive)
                 {
+                    if (mView.ObiForm.Settings.PlayOnNavigate && CurrentState == State.Playing) Pause();
                     StepForwardCursor();
                     return true;
                 }
