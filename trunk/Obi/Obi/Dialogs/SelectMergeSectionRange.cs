@@ -529,7 +529,9 @@ namespace Obi.Dialogs
                     m_ProjectView.TransportBar.PlayHeadingPhrase(m_SelectedSectionList[m_SelectedSectionList.Count - 1]);
                 }
             }
-            if (m_SelectedSectionList.Count != 0)
+            if (m_SelectedSectionList.Count != 0 && m_SelectedSectionList[m_SelectedSectionList.Count - 1] != null
+                && m_SelectedSectionList[m_SelectedSectionList.Count - 1].PhraseChildCount > 0
+                && m_SelectedSectionList[m_SelectedSectionList.Count - 1].PhraseChild(0) is PhraseNode)
             {
                 m_btnPause.Visible = true;
                 m_btn_Play.Visible = false;
