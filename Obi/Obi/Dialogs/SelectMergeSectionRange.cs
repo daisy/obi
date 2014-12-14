@@ -531,23 +531,10 @@ namespace Obi.Dialogs
             }
             if (m_SelectedSectionList.Count != 0 && m_SelectedSectionList[m_SelectedSectionList.Count - 1] != null
                 && m_SelectedSectionList[m_SelectedSectionList.Count - 1].PhraseChildCount > 0)
-            {
-                EmptyNode HeadingNode = m_SelectedSectionList[m_SelectedSectionList.Count - 1].PhraseChild(0);
-                for (int i = 0; i < m_SelectedSectionList[m_SelectedSectionList.Count - 1].PhraseChildCount; i++)
                 {
-                    if (((EmptyNode)m_SelectedSectionList[m_SelectedSectionList.Count - 1].PhraseChild(i)).Role_ == EmptyNode.Role.Heading)
-                    {
-                        HeadingNode = m_SelectedSectionList[m_SelectedSectionList.Count - 1].PhraseChild(i);
-                        break;
-                    }
+                m_btnPause.Visible = true;
+                m_btn_Play.Visible = false;
                 }
-
-                if (HeadingNode is PhraseNode)
-                {
-                    m_btnPause.Visible = true;
-                    m_btn_Play.Visible = false;
-                }
-            }
         }
 
         private void m_btn_Stop_Click(object sender, EventArgs e)
