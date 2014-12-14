@@ -2684,6 +2684,7 @@ namespace Obi.ProjectView
                 if (((IsPaused && mCurrentPlaylist.CurrentTimeInAsset <= 10) || (mView.ObiForm.Settings.PlayOnNavigate && CurrentState == State.Playing && mCurrentPlaylist.CurrentTimeInAsset <= 800))
                     && (mView.Selection.Node.PrecedingNode is PhraseNode || mView.Selection.Node.PrecedingNode is EmptyNode) && !mView.IsZoomWaveformActive)
                 {
+                    if (mView.ObiForm.Settings.PlayOnNavigate && CurrentState == State.Playing && mCurrentPlaylist.CurrentTimeInAsset <= 800) Pause();
                     LapseBackCursor();
                     return true;
                 }
@@ -2771,7 +2772,7 @@ namespace Obi.ProjectView
                     Stop();
                    // mView.ClearCursor();
                     mView.Selection = new NodeSelection(mView.Selection.Node.PrecedingNode, mView.Selection.Control);
-
+                    
                     AudioRange range = new AudioRange(mView.Selection.Node.Duration);
                     mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
                     if (mView.ObiForm.Settings.AudioClues)
