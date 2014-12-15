@@ -1662,7 +1662,7 @@ namespace Obi.Dialogs
                     Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") + "\n* " +
                     Localizer.Message("Audio_ShowLiveWaveformWhileRecording") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
                     Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection") + "\n* " +
-                    Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " +  "\n* " + Localizer.Message("Audio_EnforceSingleCursor");
+                    Localizer.Message("Audio_FastPlayWithoutPitchChange") +  "\n* " + Localizer.Message("Audio_EnforceSingleCursor");
 
                     if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes)
