@@ -324,6 +324,9 @@
   <data name="m_btn_Undo.AccessibleName" xml:space="preserve">
     <value>Undo</value>
   </data>
+  <data name="m_btn_Undo.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="m_btn_Undo.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
