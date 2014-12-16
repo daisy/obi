@@ -2694,4 +2694,7 @@ Error text: {1}</value>
   <data name="MergeOptions_Merge" xml:space="preserve">
     <value>Merge sections</value>
   </data>
+  <data name="ProjectViewFormMsg_SectionLevelChangeOperationFail" xml:space="preserve">
+    <value>Section level change operation failed.</value>
+  </data>
 </root>

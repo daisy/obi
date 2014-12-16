@@ -3387,6 +3387,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decrement section Level.
+        /// </summary>
+        internal static string MergeOptions_DecreaseLevel {
+            get {
+                return ResourceManager.GetString("MergeOptions_DecreaseLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increment section level.
+        /// </summary>
+        internal static string MergeOptions_IncreaseLevel {
+            get {
+                return ResourceManager.GetString("MergeOptions_IncreaseLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge sections.
+        /// </summary>
+        internal static string MergeOptions_Merge {
+            get {
+                return ResourceManager.GetString("MergeOptions_Merge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The count of phrase to merge cannot be greater than {0}. Please select lesser number of phrases to merge.
         /// </summary>
         internal static string MergePhrases_CountLimitMessage {
@@ -5295,6 +5322,15 @@ namespace Obi {
         internal static string ProjectViewFormMsg_PhraseDetectionFail {
             get {
                 return ResourceManager.GetString("ProjectViewFormMsg_PhraseDetectionFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section level change operation failed..
+        /// </summary>
+        internal static string ProjectViewFormMsg_SectionLevelChangeOperationFail {
+            get {
+                return ResourceManager.GetString("ProjectViewFormMsg_SectionLevelChangeOperationFail", resourceCulture);
             }
         }
         

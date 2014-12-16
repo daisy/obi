@@ -29,6 +29,7 @@ namespace Obi.Dialogs
         private List<int> m_IndexOfSectionSelected = new List<int>();
         private List<SectionNode> m_SelectedSectionListToMerge = new List<SectionNode>();
         private bool m_FlagMerge = false;
+        private int m_UndoCount = 0;
 
         public event SectionsManipulationDelegate LevelIncrementEvent;
         public event SectionsManipulationDelegate LevelDecrementEvent;
@@ -97,6 +98,17 @@ namespace Obi.Dialogs
         }
 
 
+        public bool CanUndo
+        {
+            set
+            {                
+                m_btn_Undo.Enabled = value;
+            }
+            get
+            {
+                return m_btn_Undo.Enabled;
+            }
+        }
 
         public List<SectionNode> SelectedSections
         {
@@ -453,7 +465,11 @@ namespace Obi.Dialogs
             m_Merge = false;
             SectionsSelected();
             m_SelectedSectionListForIncreaseLevel = m_SelectedSectionList;
-            if (LevelIncrementEvent != null) LevelIncrementEvent(this, new EventArgs());
+            if (LevelIncrementEvent != null)
+            {
+                LevelIncrementEvent(this, new EventArgs());
+                CanUndo = true;
+            }
             populateListboxForSectionsAfterLevelchange();        
         }
         private void SectionsSelected()
@@ -506,7 +522,11 @@ namespace Obi.Dialogs
             m_Merge = false;
             SectionsSelected();
             m_SelectedSectionListForDecreaseLevel = m_SelectedSectionList;
-            if (LevelDecrementEvent != null) LevelDecrementEvent(this, new EventArgs());
+            if (LevelDecrementEvent != null)
+            {
+                LevelDecrementEvent(this, new EventArgs());
+                CanUndo = true;
+            }
             populateListboxForSectionsAfterLevelchange();
         }
 
@@ -561,7 +581,18 @@ namespace Obi.Dialogs
 
         private void m_btn_Undo_Click(object sender, EventArgs e)
         {
-            if (UndoChangeEvent != null) UndoChangeEvent(this, new EventArgs());
+            m_UndoCount++;
+            if (m_ProjectView.UndoCount >= m_UndoCount)
+            {
+                if (UndoChangeEvent != null) UndoChangeEvent(this, new EventArgs());
+            }
+            else
+            {
+                CanUndo = false;
+                m_UndoCount = 0;
+                m_ProjectView.UndoCount = 0;
+            }
+
             populateListboxForSectionsOnUndo();
             if (m_lb_listofSectionsToMerge.SelectedIndex == -1)
             {
@@ -580,7 +611,11 @@ namespace Obi.Dialogs
             SectionsSelected();
             if (m_FlagMerge)
             {
-                if (MergeSectionEvent != null) MergeSectionEvent(this, new EventArgs());
+                if (MergeSectionEvent != null)
+                {
+                    MergeSectionEvent(this, new EventArgs());
+                    CanUndo = true;
+                }
                 int count = 0;
                 populateListboxForSectionsAfterMerge();
             }
