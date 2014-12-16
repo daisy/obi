@@ -30,6 +30,7 @@ namespace Obi.Dialogs
         private List<SectionNode> m_SelectedSectionListToMerge = new List<SectionNode>();
         private bool m_FlagMerge = false;
         private int m_UndoCount = 0;
+        private int m_UndoCountInProjectView = 0;
 
         public event SectionsManipulationDelegate LevelIncrementEvent;
         public event SectionsManipulationDelegate LevelDecrementEvent;
@@ -107,6 +108,21 @@ namespace Obi.Dialogs
             get
             {
                 return m_btn_Undo.Enabled;
+            }
+        }
+
+        /// <summary>
+        /// Number of times undo to be allowed in merge Operations dialog.
+        /// </summary>
+        public int UndoCount
+        {
+            set
+            {
+                m_UndoCountInProjectView = value;
+            }
+            get
+            {
+                return m_UndoCountInProjectView;
             }
         }
 
@@ -582,7 +598,7 @@ namespace Obi.Dialogs
         private void m_btn_Undo_Click(object sender, EventArgs e)
         {
             m_UndoCount++;
-            if (m_ProjectView.UndoCount >= m_UndoCount)
+            if (UndoCount >= m_UndoCount)
             {
                 if (UndoChangeEvent != null) UndoChangeEvent(this, new EventArgs());
             }
@@ -590,7 +606,7 @@ namespace Obi.Dialogs
             {
                 CanUndo = false;
                 m_UndoCount = 0;
-                m_ProjectView.UndoCount = 0;
+                UndoCount = 0;
             }
 
             populateListboxForSectionsOnUndo();
