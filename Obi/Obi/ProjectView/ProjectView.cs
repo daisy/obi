@@ -38,7 +38,6 @@ namespace Obi.ProjectView
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
         public event ProgressChangedEventHandler ProgressChanged; //Updates the toolstrip progress bar on obi form
         private KeyboardShortcuts_Settings keyboardShortcuts;
-        private int m_UndoCount = 0;
         
     
         /// <summary>
@@ -140,21 +139,6 @@ namespace Obi.ProjectView
             mPresentation.Do ( cmd );
             return cmd.Entry;
             }
-
-        /// <summary>
-        /// Number of times undo to be allowed in merge Operations dialog.
-        /// </summary>
-        public int UndoCount
-        {
-            set
-            {
-                m_UndoCount = value;
-            }
-            get
-            {
-              return  m_UndoCount;
-            }
-        }
 
         public void SaveDefaultMetadatas()
         {
@@ -1284,7 +1268,6 @@ namespace Obi.ProjectView
         {
             if (GetSelectedPhraseSection != null)
             {
-                m_UndoCount = 0;
                 SectionNode temp_NodeSelected = GetSelectedPhraseSection;
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 List<SectionNode> listOfSections = ((Obi.ObiRootNode)mPresentation.RootNode).GetListOfAllSections(); //use this list in merge section dialog
@@ -1341,8 +1324,8 @@ namespace Obi.ProjectView
                                         }
                                     }
                                 }
-
-                                m_UndoCount++;
+                                selectionDialog.UndoCount++;
+                                                             
                                 //for (int i = lastSelectedSectionIndex + 1; i < listOfSections.Count; i++)
                                 //{
                                 //if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
@@ -1420,7 +1403,7 @@ namespace Obi.ProjectView
                                         try
                                         {
                                             mPresentation.Do(new Commands.TOC.MoveSectionIn(this, node));
-                                            m_UndoCount++;
+                                            selectionDialog.UndoCount++;
                                         }
                                         catch (Exception ex)
                                         {
@@ -1459,7 +1442,7 @@ namespace Obi.ProjectView
                                         try
                                         {
                                             mPresentation.Do(new Commands.TOC.MoveSectionOut(this, node));
-                                            m_UndoCount++;
+                                            selectionDialog.UndoCount++;
                                         }
                                         catch (Exception ex)
                                         {
