@@ -1324,7 +1324,7 @@ namespace Obi.ProjectView
                                         }
                                     }
                                 }
-                                selectionDialog.UndoCount++;
+                                
                                                              
                                 //for (int i = lastSelectedSectionIndex + 1; i < listOfSections.Count; i++)
                                 //{
@@ -1368,7 +1368,11 @@ namespace Obi.ProjectView
                             try
                             {
                                 mTOCView.Selection = null;
-                                if (mergeSectionCommand.ChildCommands.Count > 0) mPresentation.Do(mergeSectionCommand);
+                                if (mergeSectionCommand.ChildCommands.Count > 0)
+                                {
+                                    mPresentation.Do(mergeSectionCommand);
+                                    selectionDialog.UndoCount++;
+                                }
                             }
                             catch (System.Exception ex)
                             {
