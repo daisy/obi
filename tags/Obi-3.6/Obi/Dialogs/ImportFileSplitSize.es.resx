@@ -1,0 +1,801 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 51</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 16</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Phrase si&amp;ze in minutes:</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>m_grpSplitPhraseOrPhraseDetection</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
+    <value>Phrase size in minutes textbox</value>
+  </data>
+  <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 51</value>
+  </data>
+  <data name="mPhraseSizeTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mPhraseSizeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 22</value>
+  </data>
+  <data name="mPhraseSizeTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;mPhraseSizeTextBox.Name" xml:space="preserve">
+    <value>mPhraseSizeTextBox</value>
+  </data>
+  <data name="&gt;&gt;mPhraseSizeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPhraseSizeTextBox.Parent" xml:space="preserve">
+    <value>m_grpSplitPhraseOrPhraseDetection</value>
+  </data>
+  <data name="&gt;&gt;mPhraseSizeTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="mOKButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>40, 465</value>
+  </data>
+  <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mOKButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 31</value>
+  </data>
+  <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="mOKButton.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
+    <value>mOKButton</value>
+  </data>
+  <data name="&gt;&gt;mOKButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mOKButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="mCancelButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>158, 465</value>
+  </data>
+  <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mCancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 31</value>
+  </data>
+  <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="mCancelButton.Text" xml:space="preserve">
+    <value>&amp;Cancelar</value>
+  </data>
+  <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
+    <value>mCancelButton</value>
+  </data>
+  <data name="&gt;&gt;mCancelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mCancelButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="mCreateAudioFilePerSectionCheckBox.AccessibleName" xml:space="preserve">
+    <value>crear sección para cada archivo de audio.</value>
+  </data>
+  <data name="mCreateAudioFilePerSectionCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mCreateAudioFilePerSectionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 15</value>
+  </data>
+  <data name="mCreateAudioFilePerSectionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 20</value>
+  </data>
+  <data name="mCreateAudioFilePerSectionCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
+    <value>&amp;Crear sección para cada archivo de audio</value>
+  </data>
+  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Name" xml:space="preserve">
+    <value>mCreateAudioFilePerSectionCheckBox</value>
+  </data>
+  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Parent" xml:space="preserve">
+    <value>m_grpCreateSectionForEachAudioFile</value>
+  </data>
+  <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lstManualArrange.AccessibleName" xml:space="preserve">
+    <value>Lista de archivos de Audio</value>
+  </data>
+  <data name="lstManualArrange.HorizontalScrollbar" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lstManualArrange.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="lstManualArrange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 11</value>
+  </data>
+  <data name="lstManualArrange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 116</value>
+  </data>
+  <data name="lstManualArrange.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lstManualArrange.Name" xml:space="preserve">
+    <value>lstManualArrange</value>
+  </data>
+  <data name="&gt;&gt;lstManualArrange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstManualArrange.Parent" xml:space="preserve">
+    <value>m_grpAddFiles</value>
+  </data>
+  <data name="&gt;&gt;lstManualArrange.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 11</value>
+  </data>
+  <data name="m_btnMoveUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 23</value>
+  </data>
+  <data name="m_btnMoveUp.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_btnMoveUp.Text" xml:space="preserve">
+    <value>Mover &amp;arriba</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
+    <value>m_btnMoveUp</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveUp.Parent" xml:space="preserve">
+    <value>m_grpAddFiles</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveUp.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 43</value>
+  </data>
+  <data name="m_btnMoveDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 23</value>
+  </data>
+  <data name="m_btnMoveDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_btnMoveDown.Text" xml:space="preserve">
+    <value>Mover a&amp;bajo</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveDown.Name" xml:space="preserve">
+    <value>m_btnMoveDown</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveDown.Parent" xml:space="preserve">
+    <value>m_grpAddFiles</value>
+  </data>
+  <data name="&gt;&gt;m_btnMoveDown.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 72</value>
+  </data>
+  <data name="m_btnAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 23</value>
+  </data>
+  <data name="m_btnAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_btnAdd.Text" xml:space="preserve">
+    <value>&amp;Añadir</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
+    <value>m_btnAdd</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.Parent" xml:space="preserve">
+    <value>m_grpAddFiles</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
+    <value>Grupo para Añadir y Organizar archivos</value>
+  </data>
+  <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>223, 101</value>
+  </data>
+  <data name="m_btnRemove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 23</value>
+  </data>
+  <data name="m_btnRemove.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_btnRemove.Text" xml:space="preserve">
+    <value>&amp;Eliminar</value>
+  </data>
+  <data name="&gt;&gt;m_btnRemove.Name" xml:space="preserve">
+    <value>m_btnRemove</value>
+  </data>
+  <data name="&gt;&gt;m_btnRemove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnRemove.Parent" xml:space="preserve">
+    <value>m_grpAddFiles</value>
+  </data>
+  <data name="&gt;&gt;m_btnRemove.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
+    <value>Organizar Grupo de Archivos de Audio</value>
+  </data>
+  <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 34</value>
+  </data>
+  <data name="mbtnDesendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 26</value>
+  </data>
+  <data name="mbtnDesendingOrder.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="mbtnDesendingOrder.Text" xml:space="preserve">
+    <value>Orden D&amp;escendente</value>
+  </data>
+  <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
+    <value>mbtnDesendingOrder</value>
+  </data>
+  <data name="&gt;&gt;mbtnDesendingOrder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mbtnDesendingOrder.Parent" xml:space="preserve">
+    <value>m_grpArrangeAudioFiles</value>
+  </data>
+  <data name="&gt;&gt;mbtnDesendingOrder.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 34</value>
+  </data>
+  <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 26</value>
+  </data>
+  <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="mbtnAscendingOrder.Text" xml:space="preserve">
+    <value>Orden &amp;A&amp;scendiente</value>
+  </data>
+  <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
+    <value>mbtnAscendingOrder</value>
+  </data>
+  <data name="&gt;&gt;mbtnAscendingOrder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mbtnAscendingOrder.Parent" xml:space="preserve">
+    <value>m_grpArrangeAudioFiles</value>
+  </data>
+  <data name="&gt;&gt;mbtnAscendingOrder.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_grpArrangeAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 138</value>
+  </data>
+  <data name="m_grpArrangeAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>315, 65</value>
+  </data>
+  <data name="m_grpArrangeAudioFiles.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
+    <value>Organizar los archivos de audio:</value>
+  </data>
+  <data name="&gt;&gt;m_grpArrangeAudioFiles.Name" xml:space="preserve">
+    <value>m_grpArrangeAudioFiles</value>
+  </data>
+  <data name="&gt;&gt;m_grpArrangeAudioFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpArrangeAudioFiles.Parent" xml:space="preserve">
+    <value>m_grpAddFiles</value>
+  </data>
+  <data name="&gt;&gt;m_grpArrangeAudioFiles.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_grpAddFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 6</value>
+  </data>
+  <data name="m_grpAddFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 209</value>
+  </data>
+  <data name="m_grpAddFiles.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;m_grpAddFiles.Name" xml:space="preserve">
+    <value>m_grpAddFiles</value>
+  </data>
+  <data name="&gt;&gt;m_grpAddFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpAddFiles.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpAddFiles.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.AccessibleName" xml:space="preserve">
+    <value>Reemplazar con espacio</value>
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 43</value>
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="m_txtCharToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.Name" xml:space="preserve">
+    <value>m_txtCharToReplaceWithSpace</value>
+  </data>
+  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.Parent" xml:space="preserve">
+    <value>m_grpCreateSectionForEachAudioFile</value>
+  </data>
+  <data name="&gt;&gt;m_txtCharToReplaceWithSpace.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_txtPageIdentificationString.AccessibleName" xml:space="preserve">
+    <value>Identificación de página</value>
+  </data>
+  <data name="m_txtPageIdentificationString.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_txtPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
+    <value>223, 99</value>
+  </data>
+  <data name="m_txtPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="m_txtPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;m_txtPageIdentificationString.Name" xml:space="preserve">
+    <value>m_txtPageIdentificationString</value>
+  </data>
+  <data name="&gt;&gt;m_txtPageIdentificationString.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtPageIdentificationString.Parent" xml:space="preserve">
+    <value>m_grpCreateSectionForEachAudioFile</value>
+  </data>
+  <data name="&gt;&gt;m_txtPageIdentificationString.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.AccessibleName" xml:space="preserve">
+    <value>Número de caracteres iniciales a eliminar</value>
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>243, 71</value>
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 22</value>
+  </data>
+  <data name="m_numCharCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.Name" xml:space="preserve">
+    <value>m_numCharCountToTruncateFromStart</value>
+  </data>
+  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.Parent" xml:space="preserve">
+    <value>m_grpCreateSectionForEachAudioFile</value>
+  </data>
+  <data name="&gt;&gt;m_numCharCountToTruncateFromStart.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_grpCreateSectionForEachAudioFile.AccessibleName" xml:space="preserve">
+    <value>Cuadro de grupo para crear una sección para cada archivo de audio</value>
+  </data>
+  <data name="mchktPageIdentificationString.AccessibleName" xml:space="preserve">
+    <value>Identificación de página</value>
+  </data>
+  <data name="mchktPageIdentificationString.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mchktPageIdentificationString.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 99</value>
+  </data>
+  <data name="mchktPageIdentificationString.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 20</value>
+  </data>
+  <data name="mchktPageIdentificationString.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="mchktPageIdentificationString.Text" xml:space="preserve">
+    <value>&amp;Identificación de página</value>
+  </data>
+  <data name="&gt;&gt;mchktPageIdentificationString.Name" xml:space="preserve">
+    <value>mchktPageIdentificationString</value>
+  </data>
+  <data name="&gt;&gt;mchktPageIdentificationString.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mchktPageIdentificationString.Parent" xml:space="preserve">
+    <value>m_grpCreateSectionForEachAudioFile</value>
+  </data>
+  <data name="&gt;&gt;mchktPageIdentificationString.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.AccessibleName" xml:space="preserve">
+    <value>Número de caracteres iniciales a eliminar</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 73</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 20</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="mchkCountToTruncateFromStart.Text" xml:space="preserve">
+    <value># de &amp;caracteres iniciales a eliminar</value>
+  </data>
+  <data name="&gt;&gt;mchkCountToTruncateFromStart.Name" xml:space="preserve">
+    <value>mchkCountToTruncateFromStart</value>
+  </data>
+  <data name="&gt;&gt;mchkCountToTruncateFromStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mchkCountToTruncateFromStart.Parent" xml:space="preserve">
+    <value>m_grpCreateSectionForEachAudioFile</value>
+  </data>
+  <data name="&gt;&gt;mchkCountToTruncateFromStart.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.AccessibleName" xml:space="preserve">
+    <value>Para reemplazar con espacio</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 45</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 20</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
+    <value>Para &amp;reemplazar con espacio</value>
+  </data>
+  <data name="&gt;&gt;mchkToReplaceWithSpace.Name" xml:space="preserve">
+    <value>mchkToReplaceWithSpace</value>
+  </data>
+  <data name="&gt;&gt;mchkToReplaceWithSpace.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mchkToReplaceWithSpace.Parent" xml:space="preserve">
+    <value>m_grpCreateSectionForEachAudioFile</value>
+  </data>
+  <data name="&gt;&gt;mchkToReplaceWithSpace.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_grpCreateSectionForEachAudioFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 215</value>
+  </data>
+  <data name="m_grpCreateSectionForEachAudioFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 127</value>
+  </data>
+  <data name="m_grpCreateSectionForEachAudioFile.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_grpCreateSectionForEachAudioFile.Name" xml:space="preserve">
+    <value>m_grpCreateSectionForEachAudioFile</value>
+  </data>
+  <data name="&gt;&gt;m_grpCreateSectionForEachAudioFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpCreateSectionForEachAudioFile.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpCreateSectionForEachAudioFile.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 77</value>
+  </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 20</value>
+  </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="m_rdbPhraseDetectionOnImportedFiles.Text" xml:space="preserve">
+    <value>Detección de &amp;frases en los archivos importados</value>
+  </data>
+  <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.Name" xml:space="preserve">
+    <value>m_rdbPhraseDetectionOnImportedFiles</value>
+  </data>
+  <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.Parent" xml:space="preserve">
+    <value>m_grpSplitPhraseOrPhraseDetection</value>
+  </data>
+  <data name="&gt;&gt;m_rdbPhraseDetectionOnImportedFiles.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 19</value>
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 20</value>
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="m_rdbSplitPhrasesOnImport.Text" xml:space="preserve">
+    <value>&amp;Dividir frases al importar</value>
+  </data>
+  <data name="&gt;&gt;m_rdbSplitPhrasesOnImport.Name" xml:space="preserve">
+    <value>m_rdbSplitPhrasesOnImport</value>
+  </data>
+  <data name="&gt;&gt;m_rdbSplitPhrasesOnImport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdbSplitPhrasesOnImport.Parent" xml:space="preserve">
+    <value>m_grpSplitPhraseOrPhraseDetection</value>
+  </data>
+  <data name="&gt;&gt;m_rdbSplitPhrasesOnImport.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_grpSplitPhraseOrPhraseDetection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 346</value>
+  </data>
+  <data name="m_grpSplitPhraseOrPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 103</value>
+  </data>
+  <data name="m_grpSplitPhraseOrPhraseDetection.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;m_grpSplitPhraseOrPhraseDetection.Name" xml:space="preserve">
+    <value>m_grpSplitPhraseOrPhraseDetection</value>
+  </data>
+  <data name="&gt;&gt;m_grpSplitPhraseOrPhraseDetection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpSplitPhraseOrPhraseDetection.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpSplitPhraseOrPhraseDetection.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>351, 502</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Configurar la importación de archivos de audio</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
+    <value>helpProvider1</value>
+  </data>
+  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ImportFileSplitSize</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>
