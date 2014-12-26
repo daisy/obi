@@ -163,7 +163,7 @@
     <value>9</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
-    <value>O&amp;K</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
     <value>m_btn_OK</value>
@@ -370,7 +370,7 @@
     <value>3</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Lista de n&amp;otas omisibles</value>
+    <value>Lista de &amp;notas opcionales</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>

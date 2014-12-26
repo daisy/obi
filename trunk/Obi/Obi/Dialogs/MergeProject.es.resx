@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="mbtnDesendingOrder.AccessibleName" xml:space="preserve">
-    <value>Descending Order</value>
+    <value>Orden Descendente</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mbtnDesendingOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -139,7 +145,7 @@
     <value>9</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>D&amp;escending Order</value>
+    <value>Orden D&amp;escendente</value>
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
     <value>mbtnDesendingOrder</value>
@@ -154,7 +160,7 @@
     <value>0</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
-    <value>Project files list box.</value>
+    <value>Lista de archivos del proyecto</value>
   </data>
   <data name="lstManualArrange.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -190,10 +196,10 @@
     <value>2</value>
   </data>
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
-    <value>Arrange files</value>
+    <value>Organizar archivos</value>
   </data>
   <data name="mbtnAscendingOrder.AccessibleName" xml:space="preserve">
-    <value>Ascending Order</value>
+    <value>Orden Ascendente</value>
   </data>
   <data name="mbtnAscendingOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -211,7 +217,7 @@
     <value>8</value>
   </data>
   <data name="mbtnAscendingOrder.Text" xml:space="preserve">
-    <value>A&amp;scending Order</value>
+    <value>Orden A&amp;scendente</value>
   </data>
   <data name="&gt;&gt;mbtnAscendingOrder.Name" xml:space="preserve">
     <value>mbtnAscendingOrder</value>
@@ -244,7 +250,7 @@
     <value>7</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
-    <value>Arrange Files:</value>
+    <value>Organizar archivos:</value>
   </data>
   <data name="&gt;&gt;m_grpArrangeAudioFiles.Name" xml:space="preserve">
     <value>m_grpArrangeAudioFiles</value>
@@ -259,10 +265,10 @@
     <value>1</value>
   </data>
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
-    <value>GroupBox to Add and arrange files.</value>
+    <value>Grupo para añadir y organizar archivos</value>
   </data>
   <data name="m_btnRemove.AccessibleName" xml:space="preserve">
-    <value>Remove</value>
+    <value>Eliminar</value>
   </data>
   <data name="m_btnRemove.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -283,7 +289,7 @@
     <value>6</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
-    <value>&amp;Remove</value>
+    <value>&amp;Eliminar</value>
   </data>
   <data name="&gt;&gt;m_btnRemove.Name" xml:space="preserve">
     <value>m_btnRemove</value>
@@ -298,7 +304,7 @@
     <value>0</value>
   </data>
   <data name="m_btnAdd.AccessibleName" xml:space="preserve">
-    <value>Add</value>
+    <value>Añadir</value>
   </data>
   <data name="m_btnAdd.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -319,7 +325,7 @@
     <value>5</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
-    <value>&amp;Add</value>
+    <value>Aña&amp;dir</value>
   </data>
   <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
     <value>m_btnAdd</value>
@@ -334,7 +340,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.AccessibleName" xml:space="preserve">
-    <value>Move Up</value>
+    <value>Mover arriba</value>
   </data>
   <data name="m_btnMoveUp.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -355,7 +361,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>Move &amp;Up</value>
+    <value>Mover arri&amp;ba</value>
   </data>
   <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
     <value>m_btnMoveUp</value>
@@ -370,7 +376,7 @@
     <value>4</value>
   </data>
   <data name="m_btnMoveDown.AccessibleName" xml:space="preserve">
-    <value>Move Down</value>
+    <value>Mover abajo</value>
   </data>
   <data name="m_btnMoveDown.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -391,7 +397,7 @@
     <value>4</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
-    <value>Move &amp;Down</value>
+    <value>Mover &amp;abajo</value>
   </data>
   <data name="&gt;&gt;m_btnMoveDown.Name" xml:space="preserve">
     <value>m_btnMoveDown</value>
@@ -433,7 +439,7 @@
     <value>2</value>
   </data>
   <data name="mCancelButton.AccessibleName" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="mCancelButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -454,7 +460,7 @@
     <value>11</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;Cancel</value>
+    <value>&amp;Cancelar</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Name" xml:space="preserve">
     <value>mCancelButton</value>
@@ -469,7 +475,7 @@
     <value>0</value>
   </data>
   <data name="mOKButton.AccessibleName" xml:space="preserve">
-    <value>Ok</value>
+    <value>Aceptar</value>
   </data>
   <data name="mOKButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -490,7 +496,7 @@
     <value>10</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -504,14 +510,8 @@
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AccessibleName" xml:space="preserve">
-    <value>Merge Project</value>
+    <value>Unir proyecto</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
@@ -526,7 +526,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Merge Project</value>
+    <value>Unir proyecto</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

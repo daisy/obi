@@ -241,7 +241,7 @@
     <value>12</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -763,7 +763,7 @@
     <value>31</value>
   </data>
   <data name="m_lblProfile.Text" xml:space="preserve">
-    <value>Profile:</value>
+    <value>Perfil:</value>
   </data>
   <data name="&gt;&gt;m_lblProfile.Name" xml:space="preserve">
     <value>m_lblProfile</value>
@@ -778,7 +778,7 @@
     <value>3</value>
   </data>
   <data name="m_ComboSelectAudioProfile.AccessibleName" xml:space="preserve">
-    <value>Profile</value>
+    <value>Perfil</value>
   </data>
   <data name="m_ComboSelectAudioProfile.Location" type="System.Drawing.Point, System.Drawing">
     <value>455, 284</value>
@@ -1696,10 +1696,10 @@
     <value>4</value>
   </data>
   <data name="m_txtShortcutKeys.Location" type="System.Drawing.Point, System.Drawing">
-    <value>204, 210</value>
+    <value>214, 210</value>
   </data>
   <data name="m_txtShortcutKeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>372, 22</value>
+    <value>362, 22</value>
   </data>
   <data name="m_txtShortcutKeys.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -2148,7 +2148,7 @@
     <value>3</value>
   </data>
   <data name="m_CheckBoxListView.AccessibleName" xml:space="preserve">
-    <value>Cuadro de lista, utilice las flechas arriba y a&amp;bajo para moverse por las casillas de verificación</value>
+    <value>Cuadro de lista, utilice las flechas arriba y a&amp;bajo para moverse por la lista</value>
   </data>
   <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>195, 307</value>
@@ -2181,7 +2181,7 @@
     <value>3</value>
   </data>
   <data name="m_grpBoxChkBoxListView.Text" xml:space="preserve">
-    <value>Lista de casillas de verificación</value>
+    <value>Check Box List</value>
   </data>
   <data name="&gt;&gt;m_grpBoxChkBoxListView.Name" xml:space="preserve">
     <value>m_grpBoxChkBoxListView</value>

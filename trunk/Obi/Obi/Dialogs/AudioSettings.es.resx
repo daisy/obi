@@ -186,7 +186,7 @@
     <value>3</value>
   </data>
   <data name="mbtnOK.AccessibleDescription" xml:space="preserve">
-    <value>botón ok</value>
+    <value>botón aceptar</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mbtnOK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
@@ -205,7 +205,7 @@
     <value>4</value>
   </data>
   <data name="mbtnOK.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;mbtnOK.Name" xml:space="preserve">
     <value>mbtnOK</value>
@@ -220,7 +220,7 @@
     <value>2</value>
   </data>
   <data name="mcbSampleRate.AccessibleName" xml:space="preserve">
-    <value>Cuadro combinado velocidad de muestreo</value>
+    <value>Cuadro combinado frecuencia de muestreo</value>
   </data>
   <data name="mcbSampleRate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -271,7 +271,7 @@
     <value>mono</value>
   </data>
   <data name="mcbAudioChannel.Items1" xml:space="preserve">
-    <value>stereo</value>
+    <value>estéreo</value>
   </data>
   <data name="mcbAudioChannel.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 46</value>

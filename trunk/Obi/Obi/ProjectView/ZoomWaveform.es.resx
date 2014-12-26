@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="mtoolTipZoomWaveform.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="toolStripZoomPanel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>206, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>42</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="panelZooomWaveform.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -195,14 +210,8 @@
   <data name="&gt;&gt;btntxtZoomSelected.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="mtoolTipZoomWaveform.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="toolStripZoomPanel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 0</value>
-  </metadata>
   <data name="toolStripZoomPanel.AccessibleName" xml:space="preserve">
-    <value>Navigation &amp; Zoom Toolbar</value>
+    <value>Barra de Ampliación &amp; Navegación</value>
   </data>
   <data name="toolStripZoomPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
@@ -368,7 +377,7 @@
     <value>56, 25</value>
   </data>
   <data name="btnClosetoolStrip.Text" xml:space="preserve">
-    <value>Close</value>
+    <value>Cerrar</value>
   </data>
   <data name="btnNextPhrasetoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -392,7 +401,7 @@
     <value>89, 25</value>
   </data>
   <data name="btnNextPhrasetoolStrip.Text" xml:space="preserve">
-    <value>Next Phrase</value>
+    <value>Frase siguiente</value>
   </data>
   <data name="btnPreviousPhrasetoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -416,7 +425,7 @@
     <value>110, 25</value>
   </data>
   <data name="btnPreviousPhrasetoolStrip.Text" xml:space="preserve">
-    <value>Previous Phrase</value>
+    <value>Frase anterior</value>
   </data>
   <data name="btnZoomIntoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -445,7 +454,7 @@
     <value>72, 25</value>
   </data>
   <data name="btnZoomIntoolStrip.Text" xml:space="preserve">
-    <value>Zoom In</value>
+    <value>Ampliar</value>
   </data>
   <data name="btnZoomOuttoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -481,7 +490,7 @@
     <value>82, 25</value>
   </data>
   <data name="btnZoomOuttoolStrip.Text" xml:space="preserve">
-    <value>Zoom Out</value>
+    <value>Reducir</value>
   </data>
   <data name="btnResettoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -521,7 +530,7 @@
     <value>55, 25</value>
   </data>
   <data name="btnResettoolStrip.Text" xml:space="preserve">
-    <value>Reset</value>
+    <value>Reiniciar</value>
   </data>
   <data name="btnZoomSelectiontoolStrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -564,7 +573,7 @@
     <value>110, 25</value>
   </data>
   <data name="btnZoomSelectiontoolStrip.Text" xml:space="preserve">
-    <value>Zoom Selection</value>
+    <value>Ampliar selección</value>
   </data>
   <data name="toolStripZoomPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -590,15 +599,6 @@
   <data name="&gt;&gt;toolStripZoomPanel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>206, 17</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>42</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>

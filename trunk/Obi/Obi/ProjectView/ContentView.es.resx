@@ -134,7 +134,7 @@
     <value>208, 22</value>
   </data>
   <data name="Context_ZoomPhrase.Text" xml:space="preserve">
-    <value>Zoom Phrase</value>
+    <value>Ampliar Frase</value>
   </data>
   <data name="Context_AddSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -312,16 +312,16 @@
     <value>208, 22</value>
   </data>
   <data name="Context_AudioProcessing.Text" xml:space="preserve">
-    <value>Audio Processing</value>
+    <value>Procesando el audio</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>Export or replace Audio </value>
+    <value>Exportar o reemplazar Audio</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="Context_ExportReplaceAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;Export or replace Audio</value>
+    <value>&amp;Exportar o reemplazar audio</value>
   </data>
   <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -366,13 +366,13 @@
     <value>233, 22</value>
   </data>
   <data name="Context_SplitMergeWithNextMenuItem.Text" xml:space="preserve">
-    <value>Split and merge with nex&amp;t</value>
+    <value>Dividir y unir con siguien&amp;te</value>
   </data>
   <data name="Context_SplitMergeWithPreviousMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
   <data name="Context_SplitMergeWithPreviousMenuItem.Text" xml:space="preserve">
-    <value>Split and merge with previo&amp;us</value>
+    <value>Dividir y unir con anteri&amp;or</value>
   </data>
   <data name="Context_Merge_MergeWithFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
@@ -384,7 +384,7 @@
     <value>233, 22</value>
   </data>
   <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>Unir con las frases an&amp;teriores</value>
+    <value>Unir con las frases ante&amp;riores</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
@@ -528,16 +528,16 @@
     <value>203, 22</value>
   </data>
   <data name="Context_Delete_deleteSelectionMenuItem.Text" xml:space="preserve">
-    <value>Delete &amp;selection</value>
+    <value>Borrar &amp;selección</value>
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 22</value>
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Text" xml:space="preserve">
-    <value>Dele&amp;te following phrases</value>
+    <value>Borrar las frases siguien&amp;tes</value>
   </data>
   <data name="Context_ExportAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>Export Audio ctrl+Alt+E</value>
+    <value>Exportar Audio Ctrl+Alt+E</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Context_ExportAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
@@ -547,13 +547,13 @@
     <value>205, 22</value>
   </data>
   <data name="Context_ExportAudioMenuItem.Text" xml:space="preserve">
-    <value>E&amp;xport Audio</value>
+    <value>E&amp;xportar Audio</value>
   </data>
   <data name="Context_ReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 22</value>
   </data>
   <data name="Context_ReplaceAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;Replace Audio</value>
+    <value>&amp;Reemplazar Audio</value>
   </data>
   <data name="mStripsPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>

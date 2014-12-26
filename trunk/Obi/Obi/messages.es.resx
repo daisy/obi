@@ -196,7 +196,7 @@
     <value>¿Crear directorio ?</value>
   </data>
   <data name="mono" xml:space="preserve">
-    <value>No se encuentra ningún dispositivo de entrada de audio</value>
+    <value>Mono</value>
   </data>
   <data name="stereo" xml:space="preserve">
     <value>Stereo</value>
@@ -265,7 +265,7 @@
     <value>No se puede eliminar el archivo</value>
   </data>
   <data name="cannot_delete_text" xml:space="preserve">
-    <value>El archivo {0} no se puede eliminar. Pulse OK para continuar o Cancelar para abortar . (Motivo: {1})</value>
+    <value>El archivo {0} no se puede eliminar. Pulse Aceptar para continuar o Cancelar para abortar . (Motivo: {1})</value>
   </data>
   <data name="empty_directory_caption" xml:space="preserve">
     <value>Está exportando a un directorio no vacío</value>
@@ -274,13 +274,13 @@
     <value>Usted está a punto de exportar el proyecto DAISY a {0} . Este directorio no está vacío (tal vez haya exportado una versión anterior de su proyecto a ese directorio). ¿Quiere vaciarlo antes de exportar?</value>
   </data>
   <data name="didnt_save_as_daisy_caption" xml:space="preserve">
-    <value>Error al exportar a DAISY</value>
+    <value>Error al exportar a DAISY/EPUB</value>
   </data>
   <data name="didnt_save_as_daisy_text" xml:space="preserve">
-    <value>No se pudo exportar el proyecto DAISY al directorio {0} . Motivo: {1}</value>
+    <value>No se pudo exportar el proyecto DAISY/EPUB al directorio {0} . Motivo: {1}</value>
   </data>
   <data name="saved_as_daisy_caption" xml:space="preserve">
-    <value>Proyecto exportado a DAISY</value>
+    <value>Proyecto exportado</value>
   </data>
   <data name="import_phrase_error_caption" xml:space="preserve">
     <value>Error al importar el audio</value>
@@ -298,7 +298,7 @@
     <value>No se encuentra la descripción de este metadato.</value>
   </data>
   <data name="help_file_name" xml:space="preserve">
-    <value>No se puede crear el elemento de metadatos</value>
+    <value>help_es.html</value>
   </data>
   <data name="error_metadata_name_caption" xml:space="preserve">
     <value>No se puede crear este metadato.</value>
@@ -352,7 +352,8 @@
     <value>Importar archivo "{0}"</value>
   </data>
   <data name="init_error_text" xml:space="preserve">
-    <value>Se produjo un error al iniciar Obi. \ r \ nPor favor, envíe un informe de error, incluyendo el contenido de {0}
+    <value>Se produjo un error al iniciar Obi. 
+Por favor, envíe un informe de error, incluyendo el contenido de {0}
 Texto de error: {1}</value>
   </data>
   <data name="init_error_caption" xml:space="preserve">
@@ -1875,13 +1876,13 @@ Texto de error: {1}</value>
     <value>Seleccione la última frase de la actual nota omisible</value>
   </data>
   <data name="KeyS_TransportBarFineNavigationOn" xml:space="preserve">
-    <value>Activado el modo de navegación detallada</value>
+    <value>Activado el modo de navegación preciso</value>
   </data>
   <data name="KeyS_TransportBarFineNavigationOff" xml:space="preserve">
-    <value>Desactivado el modo de navegación detallada</value>
+    <value>Desactivado el modo de navegación preciso</value>
   </data>
   <data name="StatusMsg_FineNavigation" xml:space="preserve">
-    <value>Navegación detallada:</value>
+    <value>Navegación precisa:</value>
   </data>
   <data name="Error_Message" xml:space="preserve">
     <value>Faltan los archivos de audio correspondientes a los siguientes id:</value>
@@ -2070,348 +2071,348 @@ Texto de error: {1}</value>
     <value>Operación correcta. Por favor, reinicie Obi para cargar la configuración predeterminada</value>
   </data>
   <data name="StatusForMergeSection" xml:space="preserve">
-    <value>Showing section {0} to {1}. Please select sections to merge or change level.</value>
+    <value>Mostrando sección  {0} a {1}. Seleccione por favor, las secciones a unir o cambiar de nivel.</value>
   </data>
   <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
-    <value>Show zoom waveform panel</value>
+    <value>Mostrar el panel de ampliar forma de onda</value>
   </data>
   <data name="KeyS_CloseZoomPanel" xml:space="preserve">
-    <value>Close Zoom Panel</value>
+    <value>Cerrar panel de ampliación</value>
   </data>
   <data name="KeyS_ResetZoomPanel" xml:space="preserve">
-    <value>Reset Zoom Panel</value>
+    <value>Reiniciar panle de ampliación</value>
   </data>
   <data name="KeyS_ZoomInWaveform" xml:space="preserve">
-    <value>Zoom In Waveform</value>
+    <value>Ampliar forma de onda</value>
   </data>
   <data name="KeyS_ZoomOutWaveform" xml:space="preserve">
-    <value>Zoom Out Waveform</value>
+    <value>Reducir forma de onda</value>
   </data>
   <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
-    <value>Zoom Selected Waveform</value>
+    <value>Ampliar forma de onda seleccionada</value>
   </data>
   <data name="KeyS_NextPhrase" xml:space="preserve">
-    <value>Show Next Phrase</value>
+    <value>Mostrar la frase siguiente</value>
   </data>
   <data name="KeyS_PreviousPhrase" xml:space="preserve">
-    <value>Show Previous Phrase</value>
+    <value>Mostrar la frase anterior</value>
   </data>
   <data name="Project_ShowWaveformsInContentView" xml:space="preserve">
-    <value>Show waveforms in content view</value>
+    <value>Mostrar la forma de onda en la vista del contenido</value>
   </data>
   <data name="Project_AlwaysIgnoreIndentationForExportFiles" xml:space="preserve">
-    <value>Always ignore indentation for DAISY export files</value>
+    <value>Ignorar siempre sangría para los achivos DAISY exportados</value>
   </data>
   <data name="ZoomAudioTT_ShowNextPhrase" xml:space="preserve">
-    <value>Show Next Phrase</value>
+    <value>Mostrar la frase siguiente</value>
   </data>
   <data name="ZoomAudioTT_ShowPreviousPhrase" xml:space="preserve">
-    <value>Show Previous Phrase</value>
+    <value>Mostrar la frase anterior</value>
   </data>
   <data name="ZoomAudioTT_ZoomIn" xml:space="preserve">
-    <value>Zoom In</value>
+    <value>Ampliar</value>
   </data>
   <data name="ZoomAudioTT_ZoomOut" xml:space="preserve">
-    <value>Zoom Out</value>
+    <value>Reducir</value>
   </data>
   <data name="ZoomAudioTT_ZoomSelection" xml:space="preserve">
-    <value>Zoom Selection</value>
+    <value>Seleccionar Ampliación</value>
   </data>
   <data name="ZoomAudioTT_Close" xml:space="preserve">
-    <value>Close</value>
+    <value>Cerrar</value>
   </data>
   <data name="ZoomAudioTT_Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>Reiniciar</value>
   </data>
   <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
-    <value>Speech is generated for the pages</value>
+    <value>Voz generada para la paginación</value>
   </data>
   <data name="EditAudioTT_Cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>Cortar</value>
   </data>
   <data name="EditAudioTT_Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Copiar</value>
   </data>
   <data name="EditAudioTT_Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Pegar</value>
   </data>
   <data name="EditAudioTT_Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Borrar</value>
   </data>
   <data name="EditAudioTT_Merge" xml:space="preserve">
-    <value>Merge With Next Phrase</value>
+    <value>Unir con la frase siguiente</value>
   </data>
   <data name="EditAudioTT_Split" xml:space="preserve">
-    <value>Split Phrase</value>
+    <value>Dividir frase</value>
   </data>
   <data name="EditAudioTT_PhraseDetect" xml:space="preserve">
-    <value>Phrase Detection</value>
+    <value>Detección de frases</value>
   </data>
   <data name="Metadata_SetDefaults" xml:space="preserve">
-    <value>Set default metadata</value>
+    <value>Configurar metadata por defecto</value>
   </data>
   <data name="Audio_UseRecordingPauseShortcutForStopping" xml:space="preserve">
-    <value>Use Space key to stop recording</value>
+    <value>Usar la barra espaciadora para detener la grabación</value>
   </data>
   <data name="MergeProjectCommand" xml:space="preserve">
-    <value>Merge project</value>
+    <value>Unir proyecto</value>
   </data>
   <data name="MergeProject_NoSectionToMerge" xml:space="preserve">
-    <value>No section found in source project</value>
+    <value>No hay secciones en el proyecto original</value>
   </data>
   <data name="MergeProject_progress_dialog_title" xml:space="preserve">
-    <value>Merging project {0} of {1}...</value>
+    <value>Uniendo proyecto {0} de {1}…</value>
   </data>
   <data name="MergeProject_SectionProgress" xml:space="preserve">
-    <value>Merging section: {0}</value>
+    <value>Uniendo sección: {0}</value>
   </data>
   <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
-    <value>Highlight empty sections in TOC view</value>
+    <value>Resaltar las secciones vacías en la vista TOC</value>
   </data>
   <data name="Obi_ProjectMerge" xml:space="preserve">
-    <value>Please select project to merge</value>
+    <value>Seleccione por favor, el proyecto a unir</value>
   </data>
   <data name="Obi_ProjectMergeFilter" xml:space="preserve">
     <value>Obi project file (*.obi)|*.obi</value>
   </data>
   <data name="MergeProject_Information" xml:space="preserve">
-    <value>Please make sure that that the projects to be merged have the same audio format.</value>
+    <value>Asegúrese por favor, que los proyectos a unir tienen el mismo formato de audio.</value>
   </data>
   <data name="UserRegistration_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Nombre</value>
   </data>
   <data name="UserRegistration_Email" xml:space="preserve">
-    <value>Email</value>
+    <value>Correo electrónico</value>
   </data>
   <data name="UserRegistration_Org_Name" xml:space="preserve">
-    <value>Organization Name</value>
+    <value>Nombre de la Organización</value>
   </data>
   <data name="UserRegistration_City" xml:space="preserve">
-    <value>City</value>
+    <value>Ciudad</value>
   </data>
   <data name="UserRegistration_Country" xml:space="preserve">
-    <value>Country</value>
+    <value>País</value>
   </data>
   <data name="UserRegistration_WrongEmail" xml:space="preserve">
-    <value>Incorrect Email Address</value>
+    <value>Dirección de Correo electrónico incorrecta</value>
   </data>
   <data name="UserRegistration_NoMatchEmail" xml:space="preserve">
-    <value>The entered emails does not match. Please retype the emails.</value>
+    <value>Los correos introducidos no son correctos. Por favor, reescríbalos.</value>
   </data>
   <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
-    <value>Please indicate us about your usage of Obi by checking any one of the radio button</value>
+    <value>Indíquenos por favor, qué uso va a dar a OBI, haciendo clic en alguno de los botones</value>
   </data>
   <data name="HardResetPermanentSettings_Question" xml:space="preserve">
-    <value>Reset user registration. Will you like to reset the user registration also? You will need to register again if you proceed.</value>
+    <value>Reiniciar registro de usuario. ¿Le gustaría reiniciar el registro de usuario?. Necesitará registrarse de nuevo si acepta.</value>
   </data>
   <data name="RenumberPages" xml:space="preserve">
-    <value>Renumber Pages</value>
+    <value>Renumerara las páginas</value>
   </data>
   <data name="Transport_PreviousPhrase" xml:space="preserve">
-    <value>Preceding phrase</value>
+    <value>Frase anterior</value>
   </data>
   <data name="Transport_PreviousSection" xml:space="preserve">
-    <value>Preceding section</value>
+    <value>Sección anterior</value>
   </data>
   <data name="Transport_PreviousPage" xml:space="preserve">
-    <value>Preceding page</value>
+    <value>Página anterior</value>
   </data>
   <data name="Transport_FastPlayBackward" xml:space="preserve">
-    <value>Play backward at faster speed.</value>
+    <value>Iniciar reproducción antes a velocidad rápida.</value>
   </data>
   <data name="Transport_StartPlayback" xml:space="preserve">
-    <value>Start or resume audio playback</value>
+    <value>Iniciar o detener la reproducción de audio</value>
   </data>
   <data name="Transport_StopPlayback" xml:space="preserve">
-    <value>Stop audio playback or recording</value>
+    <value>Detener grabación o reproducción</value>
   </data>
   <data name="Transport_StartRecording" xml:space="preserve">
-    <value>Start monitoring or recording</value>
+    <value>Iniciar monitorización o grabación</value>
   </data>
   <data name="Transport_FastPlayForward" xml:space="preserve">
-    <value>Play forward at faster speed</value>
+    <value>Reproducir a continuación, a mayor velocidad</value>
   </data>
   <data name="Transport_NextPhrase" xml:space="preserve">
-    <value>Next phrase</value>
+    <value>Frase siguiente</value>
   </data>
   <data name="Transport_NextPage" xml:space="preserve">
-    <value>Next page</value>
+    <value>Página siguiente</value>
   </data>
   <data name="Transport_NextSection" xml:space="preserve">
-    <value>Next section</value>
+    <value>Sección siguiente</value>
   </data>
   <data name="Transport_AddTodo" xml:space="preserve">
-    <value>Add a TODO mark while recording</value>
+    <value>Añadir marca PARA REVISAR durante la grabación</value>
   </data>
   <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
-    <value>Previous phrase</value>
+    <value>Frase anterior</value>
   </data>
   <data name="Transport_PreviousSectionAcc" xml:space="preserve">
-    <value>Previous section</value>
+    <value>Sección anterior</value>
   </data>
   <data name="Transport_PreviousPageAcc" xml:space="preserve">
-    <value>Previous page</value>
+    <value>Página anterior</value>
   </data>
   <data name="Transport_FastPlayBackwardAcc" xml:space="preserve">
-    <value>Rewind</value>
+    <value>Retroceder</value>
   </data>
   <data name="Transport_StartPlaybackAcc" xml:space="preserve">
-    <value>Play</value>
+    <value>Reproducir</value>
   </data>
   <data name="Transport_StartPausebackAcc" xml:space="preserve">
-    <value>Pause</value>
+    <value>Pausar</value>
   </data>
   <data name="Transport_StopPlaybackAcc" xml:space="preserve">
-    <value>Stop</value>
+    <value>Detener</value>
   </data>
   <data name="Transport_FastPlayForwardAcc" xml:space="preserve">
-    <value>Fast forward</value>
+    <value>Avance rápido</value>
   </data>
   <data name="Transport_AddTodoAcc" xml:space="preserve">
-    <value>Mark phrase</value>
+    <value>Marcar frase</value>
   </data>
   <data name="Language_Pack_WrongFile" xml:space="preserve">
-    <value>You have selected the wrong file</value>
+    <value>Ha seleccionado un archivo incorrecto</value>
   </data>
   <data name="Language_Pack_Select" xml:space="preserve">
-    <value>Please select Language Pack zip file</value>
+    <value>Seleccione, por favor, el archivo Language Pack</value>
   </data>
   <data name="Language_Pack_Complete" xml:space="preserve">
-    <value>Language Pack update is successfully. Please restart Obi for the changes to take effect</value>
+    <value>Se ha actualizado el Conjunto de idiomas. Reinicie OBI, por favor, para que los cambios tengan efecto.</value>
   </data>
   <data name="Language_Pack_Caption" xml:space="preserve">
-    <value>Wrong File</value>
+    <value>Archivo dañado</value>
   </data>
   <data name="Language_Pack_Select_Caption" xml:space="preserve">
-    <value>Select Zip File</value>
+    <value>Seleccione el archivo Zip</value>
   </data>
   <data name="Language_Pack_Complete_Caption" xml:space="preserve">
-    <value>Update Successfull</value>
+    <value>Actualización realizada</value>
   </data>
   <data name="Preferences_Advance_Mode" xml:space="preserve">
-    <value>Following checkboxes will be checked. Do you want to proceed?</value>
+    <value>Las siguientes casillas de verificación serán activadas. ¿Desea continuar?</value>
   </data>
   <data name="Preferences_Intermediate_recording_mode" xml:space="preserve">
-    <value>Intermediate recording mode</value>
+    <value>Modo intermedio de grabación</value>
   </data>
   <data name="Preferences_Level_ComboBox_Basic" xml:space="preserve">
-    <value>Basic</value>
+    <value>Básico</value>
   </data>
   <data name="Preferences_Level_ComboBox_Intermediate" xml:space="preserve">
-    <value>Intermediate</value>
+    <value>Intermedio</value>
   </data>
   <data name="Preferences_Level_ComboBox_Advance" xml:space="preserve">
-    <value>Advance</value>
+    <value>Avanzado</value>
   </data>
   <data name="Preferences_Level_ComboBox_Custom" xml:space="preserve">
-    <value>Custom</value>
+    <value>Personalizado</value>
   </data>
   <data name="Audio_RecordSubsequentPhrases" xml:space="preserve">
-    <value>Use Record Button to record over subsequent audio</value>
+    <value>Utilice el botón Grabar para sobreescribir el audio</value>
   </data>
   <data name="Audio_EnforceSingleCursor" xml:space="preserve">
-    <value>Enforce single audio cursor</value>
+    <value>Forzar un cursor de audio</value>
   </data>
   <data name="VUMeter_Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>Reiniciar</value>
   </data>
   <data name="VUMeter_Right" xml:space="preserve">
-    <value>Right</value>
+    <value>Derecha</value>
   </data>
   <data name="VUMeter_Left" xml:space="preserve">
-    <value>Left</value>
+    <value>Izquierda</value>
   </data>
   <data name="KeysS_TransportBarExpandPlayOptions" xml:space="preserve">
-    <value>Expand Play Options Button</value>
+    <value>Ampliar opciones del botón Reproducir</value>
   </data>
   <data name="KeysS_TransportBarExpandRecordOptions" xml:space="preserve">
-    <value>Expand Record Options Button</value>
+    <value>Ampliar opciones del botón Grabar</value>
   </data>
   <data name="Transport_PlayingOptions" xml:space="preserve">
-    <value>Playing Options</value>
+    <value>Opciones de Reproducción</value>
   </data>
   <data name="Transport_RecordingOptions" xml:space="preserve">
-    <value>Recording Options</value>
+    <value>Opciones de Grabación</value>
   </data>
   <data name="Audio_DeleteFollowingPhrasesOfSectionAfterRecording" xml:space="preserve">
-    <value>After recording delete subsequent phrases</value>
+    <value>Después de grabar, borrar las frases siguientes restantes</value>
   </data>
   <data name="ProfileDesc_file_name" xml:space="preserve">
-    <value>ProfileDesc_en.html</value>
+    <value>ProfileDesc_es.html</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
-    <value>Profile 1 (VA)</value>
+    <value>Perfil 1 (VA)</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_2" xml:space="preserve">
-    <value>Profile 2 (SBS)</value>
+    <value>Perfil 2 (SBS)</value>
   </data>
   <data name="Preferences_AudioProfileDesc" xml:space="preserve">
-    <value>Audio Profile Description</value>
+    <value>Descripción del perfil de audio</value>
   </data>
   <data name="Audio_DisableDeselectionOnStop" xml:space="preserve">
-    <value>Do not deselect on pressing Stop twice</value>
+    <value>No anular la selección al pulsar dos veces el botón Stop</value>
   </data>
   <data name="KeyS_FastPlayWithElapseForward" xml:space="preserve">
-    <value>Forward Elapse</value>
+    <value>Siguiente lapso</value>
   </data>
   <data name="NoAdministrativePrivilege" xml:space="preserve">
-    <value>You donot have administrative rights to copy. Please either copy manually the contents of folder "Obi_Language_Pack" located in the Temp folder(which will open once you close this message box. If you want to open it manually then start "Run" and type "%temp%" in it) or run Obi with administrative privilege by selecting "Run as administrator" from the context menu which apprears on right click over the Obi icon</value>
+    <value>No dispone de derechos de administrador para copiar. Por favor, copie manualmente el contenido de la carpeta "Obi_Language_Pack" que se encuentra en la carpeta Temp (la cual se abrirá una vez que cierre este mensaje. Si desea abrirla manualmente entonces inicie "Run" y escriba "%temp%" en el) o ejecute Obi com derechos de administrador seleccionando "Ejecutar como administrador" en el menú de contexto que aparecerá al hacer click con el botón derecho sobre el icono de OBI</value>
   </data>
   <data name="Project_MessageBoxToCheckFixContentView" xml:space="preserve">
-    <value>Do you want to check "Fix content view width" also ?(Recommended)</value>
+    <value>¿Quiere activar tambien "Fijar el ancho de la vista contenido? (Recomendado)</value>
   </data>
   <data name="default_EpubExport_dirname" xml:space="preserve">
-    <value>{0}Epub3 Export</value>
+    <value>{0}Exportar Epub3</value>
   </data>
   <data name="progress_EpubValidating" xml:space="preserve">
-    <value>Epub Check Validator is running. Please wait....</value>
+    <value>Validador Epub ejecutandose. Espere por favor…</value>
   </data>
   <data name="METADATA_EPUB3_EXPORT_PATH_HELP" xml:space="preserve">
-    <value>Obi specific data for saving EPUB 3 export path</value>
+    <value>Datos específicos de Obi para guardar la ruta de exportación EPUB 3</value>
   </data>
   <data name="obi_EPUB3ExportPath_Description" xml:space="preserve">
-    <value>EPUB 3 export path</value>
+    <value>Ruta de exportación EPUB 3</value>
   </data>
   <data name="obi_EPUB3ValidationSuccessfull" xml:space="preserve">
-    <value>Validation Successfull</value>
+    <value>Validación realizada</value>
   </data>
   <data name="obi_EPUB3ValidationFailed" xml:space="preserve">
-    <value>Validation Failed</value>
+    <value>Validación fallida</value>
   </data>
   <data name="obi_EPUB3ValidatorNotInstalled" xml:space="preserve">
-    <value>EPUB check validator not installed</value>
+    <value>El validador Epub no está instalado</value>
   </data>
   <data name="obi_EPUB3CheckNotFound" xml:space="preserve">
-    <value>ERROR: EPUB check not found</value>
+    <value>ERROR: No se encuentra el comprobador EPUB</value>
   </data>
   <data name="obi_EPUB3ValidationSuccessfullWithWarnings" xml:space="preserve">
-    <value>Validation Successfull with Warnings</value>
+    <value>Validación realizada con mensajes de advertencia</value>
   </data>
   <data name="OperationFailed" xml:space="preserve">
-    <value>Operation failed</value>
+    <value>Operación fallida</value>
   </data>
   <data name="AssociateNode_SelectedNodeGroupBox" xml:space="preserve">
-    <value>Selected node</value>
+    <value>Nodo seleccionado</value>
   </data>
   <data name="Project_SaveObiLocationAndSize" xml:space="preserve">
-    <value>Save location and size of Obi</value>
+    <value>Guardar localización y tamaño de Obi</value>
   </data>
   <data name="Project_PeakMeterChangeLocation" xml:space="preserve">
-    <value>Keep the peak meter aligned to right edge of Obi</value>
+    <value>Mantener el picómetro alineado a la derecha de Obi</value>
   </data>
   <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
-    <value>Processing audio...</value>
+    <value>Procesando el audio…</value>
   </data>
   <data name="AudioProcessing_InfoText" xml:space="preserve">
-    <value>Value 1.0 means that audio will remain unchanged.</value>
+    <value>El valor 1.0 significa que el audio permanece sin cambios</value>
   </data>
   <data name="ValidatorTimeOutMsg" xml:space="preserve">
-    <value>Validator time out</value>
+    <value>Validador fuera de tiempo</value>
   </data>
   <data name="Project_EPUBCheckTimeOutEnabled" xml:space="preserve">
-    <value>Timeout EPUB Check process after 3 mins</value>
+    <value>El proceso de validación de Epub supera los 3 minutos</value>
   </data>
   <data name="UserRegistration_EnterFollowing" xml:space="preserve">
-    <value>Please Enter the Following correctly :</value>
+    <value>Por favor, introduzca correctamente lo siguiente:</value>
   </data>
 </root>

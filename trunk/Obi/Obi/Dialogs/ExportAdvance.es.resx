@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,8 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="btnOk.AccessibleName" xml:space="preserve">
-    <value>Ok</value>
+    <value>Aceptar</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
@@ -136,7 +139,7 @@
     <value>1</value>
   </data>
   <data name="btnOk.Text" xml:space="preserve">
-    <value>Ok</value>
+    <value>Aceptar</value>
   </data>
   <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
     <value>btnOk</value>
@@ -151,7 +154,7 @@
     <value>6</value>
   </data>
   <data name="btnCancel.AccessibleName" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="btnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -166,7 +169,7 @@
     <value>2</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
     <value>btnCancel</value>
@@ -181,7 +184,7 @@
     <value>5</value>
   </data>
   <data name="m_ChkResample.AccessibleName" xml:space="preserve">
-    <value>Resample</value>
+    <value>Remuestrear</value>
   </data>
   <data name="m_ChkResample.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -196,7 +199,7 @@
     <value>3</value>
   </data>
   <data name="m_ChkResample.Text" xml:space="preserve">
-    <value>Resample</value>
+    <value>Remuestrear</value>
   </data>
   <data name="&gt;&gt;m_ChkResample.Name" xml:space="preserve">
     <value>m_ChkResample</value>
@@ -214,16 +217,16 @@
     <value>mono</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items1" xml:space="preserve">
-    <value>stereo</value>
+    <value>estéreo</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items2" xml:space="preserve">
-    <value>joint stereo</value>
+    <value>unir estéreo</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items3" xml:space="preserve">
-    <value>forced joint stereo</value>
+    <value>forzar unir estéreo</value>
   </data>
   <data name="m_ComboBoxStereoMode.Items4" xml:space="preserve">
-    <value>dual channels</value>
+    <value>canales duales</value>
   </data>
   <data name="m_ComboBoxStereoMode.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 97</value>
@@ -247,7 +250,7 @@
     <value>3</value>
   </data>
   <data name="mLblStereoMode.AccessibleName" xml:space="preserve">
-    <value>Stereo Mode</value>
+    <value>Modo Estéreo</value>
   </data>
   <data name="mLblStereoMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -262,7 +265,7 @@
     <value>6</value>
   </data>
   <data name="mLblStereoMode.Text" xml:space="preserve">
-    <value>Stereo Mode</value>
+    <value>Modo Estéreo</value>
   </data>
   <data name="&gt;&gt;mLblStereoMode.Name" xml:space="preserve">
     <value>mLblStereoMode</value>
@@ -277,7 +280,7 @@
     <value>2</value>
   </data>
   <data name="m_LblReplayGain.AccessibleName" xml:space="preserve">
-    <value>ReplayGain</value>
+    <value>Ganancia Reproducción</value>
   </data>
   <data name="m_LblReplayGain.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -310,16 +313,16 @@
     <value>ReplayGain</value>
   </data>
   <data name="m_comboBoxReplayGain.Items" xml:space="preserve">
-    <value>Default</value>
+    <value>Por defecto</value>
   </data>
   <data name="m_comboBoxReplayGain.Items1" xml:space="preserve">
-    <value>No ReplayGain</value>
+    <value>Sin ganancia en la Reproducción</value>
   </data>
   <data name="m_comboBoxReplayGain.Items2" xml:space="preserve">
-    <value>ReplayGain Accurate</value>
+    <value>Aumento exacto de la velocidad de reproducción</value>
   </data>
   <data name="m_comboBoxReplayGain.Items3" xml:space="preserve">
-    <value>ReplayGain Fast</value>
+    <value>Aumento de la velocidad de reproducción</value>
   </data>
   <data name="m_comboBoxReplayGain.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 57</value>
@@ -342,9 +345,6 @@
   <data name="&gt;&gt;m_comboBoxReplayGain.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -352,7 +352,7 @@
     <value>255, 198</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Export Advance</value>
+    <value>Avance de la exportación</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ExportAdvance</value>

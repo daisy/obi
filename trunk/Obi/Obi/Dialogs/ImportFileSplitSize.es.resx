@@ -199,7 +199,7 @@
     <value>22</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -259,7 +259,7 @@
     <value>10</value>
   </data>
   <data name="mCreateAudioFilePerSectionCheckBox.Text" xml:space="preserve">
-    <value>&amp;Crear sección para cada archivo de audio</value>
+    <value>C&amp;rear sección para cada archivo de audio</value>
   </data>
   <data name="&gt;&gt;mCreateAudioFilePerSectionCheckBox.Name" xml:space="preserve">
     <value>mCreateAudioFilePerSectionCheckBox</value>
@@ -361,7 +361,7 @@
     <value>5</value>
   </data>
   <data name="m_btnAdd.Text" xml:space="preserve">
-    <value>&amp;Añadir</value>
+    <value>Aña&amp;dir</value>
   </data>
   <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
     <value>m_btnAdd</value>
@@ -658,7 +658,7 @@
     <value>11</value>
   </data>
   <data name="mchkToReplaceWithSpace.Text" xml:space="preserve">
-    <value>Para &amp;reemplazar con espacio</value>
+    <value>Para ree&amp;mplazar con espacio</value>
   </data>
   <data name="&gt;&gt;mchkToReplaceWithSpace.Name" xml:space="preserve">
     <value>mchkToReplaceWithSpace</value>

@@ -193,7 +193,7 @@
     <value>4</value>
   </data>
   <data name="m_OKBtn.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>Aceptar</value>
   </data>
   <data name="&gt;&gt;m_OKBtn.Name" xml:space="preserve">
     <value>m_OKBtn</value>
@@ -280,7 +280,7 @@
     <value>3</value>
   </data>
   <data name="m_radBtnEpub3.Text" xml:space="preserve">
-    <value>EPUB 3 Audio Book</value>
+    <value>Audio Libro EPUB 3</value>
   </data>
   <data name="&gt;&gt;m_radBtnEpub3.Name" xml:space="preserve">
     <value>m_radBtnEpub3</value>
@@ -301,7 +301,7 @@
     <value>515, 78</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Seleccionar estándar DAISY</value>
+    <value>Seleccionar estándar del libro accesible</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>
