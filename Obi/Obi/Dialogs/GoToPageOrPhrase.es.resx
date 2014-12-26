@@ -295,7 +295,7 @@
     <value>7</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>

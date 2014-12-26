@@ -238,7 +238,7 @@
     <value>6</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -304,7 +304,7 @@
     <value>5</value>
   </data>
   <data name="mSwitchToNewCheckBox.Text" xml:space="preserve">
-    <value>&amp;Cambiar a la nueva copia</value>
+    <value>C&amp;ambiar a la nueva copia</value>
   </data>
   <data name="&gt;&gt;mSwitchToNewCheckBox.Name" xml:space="preserve">
     <value>mSwitchToNewCheckBox</value>

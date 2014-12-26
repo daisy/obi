@@ -285,7 +285,7 @@
     <value>10</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
     <value>m_btn_OK</value>
@@ -300,7 +300,7 @@
     <value>4</value>
   </data>
   <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.AccessibleDescription" xml:space="preserve">
-    <value>ListView que contiene la lista de secciones seleccionadas para aplicar la detección de frases</value>
+    <value>Cuadro que contiene la lista de secciones seleccionadas para aplicar la detección de frases</value>
   </data>
   <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.Alignment" type="System.Windows.Forms.ListViewAlignment, System.Windows.Forms">
     <value>Default</value>
@@ -384,7 +384,7 @@
     <value>0</value>
   </data>
   <data name="m_rb_loadFromRange.AccessibleDescription" xml:space="preserve">
-    <value>Botón de opción de cargar desde el rango</value>
+    <value>Cargar desde el rango</value>
   </data>
   <data name="m_rb_loadFromRange.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -579,7 +579,7 @@
     <value>475, 365</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Seleccionar secciones de detección de frases</value>
+    <value>Seleccionar detección de frases en secciones</value>
   </data>
   <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
     <value>columnHeader1</value>

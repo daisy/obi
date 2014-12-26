@@ -145,7 +145,7 @@
     <value>0</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>

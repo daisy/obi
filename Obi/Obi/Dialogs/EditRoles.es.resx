@@ -235,7 +235,7 @@
     <value>4</value>
   </data>
   <data name="mOk.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;mOk.Name" xml:space="preserve">
     <value>mOk</value>
@@ -301,7 +301,7 @@
     <value>1</value>
   </data>
   <data name="mAdd.Text" xml:space="preserve">
-    <value>&amp;Añadir</value>
+    <value>Aña&amp;dir</value>
   </data>
   <data name="&gt;&gt;mAdd.Name" xml:space="preserve">
     <value>mAdd</value>

@@ -238,7 +238,7 @@
     <value>15</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -382,7 +382,7 @@
     <value>8</value>
   </data>
   <data name="m_Bitrate.Text" xml:space="preserve">
-    <value>Bit&amp;rate:</value>
+    <value>Bit&amp;rate</value>
   </data>
   <data name="&gt;&gt;m_Bitrate.Name" xml:space="preserve">
     <value>m_Bitrate</value>
@@ -532,7 +532,7 @@
     <value>1</value>
   </data>
   <data name="m_btnAdvance.AccessibleName" xml:space="preserve">
-    <value>Advance</value>
+    <value>Avanzado</value>
   </data>
   <data name="m_btnAdvance.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -547,7 +547,7 @@
     <value>10</value>
   </data>
   <data name="m_btnAdvance.Text" xml:space="preserve">
-    <value>A&amp;dvance</value>
+    <value>A&amp;vanzado</value>
   </data>
   <data name="&gt;&gt;m_btnAdvance.Name" xml:space="preserve">
     <value>m_btnAdvance</value>
@@ -697,7 +697,7 @@
     <value>15</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Text" xml:space="preserve">
-    <value>Create dummy text in HTML files</value>
+    <value>Crear texto de relleno en archivos HTML</value>
   </data>
   <data name="&gt;&gt;m_chkBoxDummyTextHTMLfiles.Name" xml:space="preserve">
     <value>m_chkBoxDummyTextHTMLfiles</value>
@@ -712,7 +712,7 @@
     <value>0</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>Numeric Up Down EPUB File name Length Limit</value>
+    <value>Límites superior e inferior de la longitud del nombre del archivo EPUB</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -739,7 +739,7 @@
     <value>0</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>EPUB Filename Length Limit</value>
+    <value>Límite de la longitud del nombre del archivo EPUB</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -757,7 +757,7 @@
     <value>12</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Text" xml:space="preserve">
-    <value>EPUB Filename Length Limit</value>
+    <value>Límite de la longitud del nombre del archivo EPUB</value>
   </data>
   <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Name" xml:space="preserve">
     <value>m_chkBoxEpubFilenameLengthLimit</value>
@@ -787,7 +787,7 @@
     <value>14</value>
   </data>
   <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
-    <value>EPUB Filename Length :</value>
+    <value>Longitud del nombre del archivo EPUB</value>
   </data>
   <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
     <value>m_EpubFileNamegroupBox</value>
@@ -814,7 +814,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Seleccionar directorio de salida</value>
+    <value>Seleccione el directorio de exportación</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>

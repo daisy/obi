@@ -207,13 +207,13 @@
     <value>278, 6</value>
   </data>
   <data name="mFile_MergeProjectMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge Project</value>
+    <value>Unir Proyecto</value>
   </data>
   <data name="mFile_MergeProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
   </data>
   <data name="mFile_MergeProjectMenuItem.Text" xml:space="preserve">
-    <value>&amp;Merge Project</value>
+    <value>&amp;Unir Proyecto</value>
   </data>
   <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Restaurar desde copia de seguridad</value>
@@ -291,7 +291,7 @@
     <value>63, 20</value>
   </data>
   <data name="mSectionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Secciones</value>
+    <value>S&amp;ecciones</value>
   </data>
   <data name="mPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 20</value>
@@ -321,7 +321,7 @@
     <value>250, 22</value>
   </data>
   <data name="m_ToolsLangPack.Text" xml:space="preserve">
-    <value>&amp;Update Language Pack</value>
+    <value>Act&amp;ualizar paquete de idiomas</value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 6</value>
@@ -330,10 +330,10 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_AudioProcessing.Text" xml:space="preserve">
-    <value>&amp;Audio Processing</value>
+    <value>Procesando Aud&amp;io</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>Exportar audio Ctrl + Alt + E</value>
+    <value>Exportar Audio Ctrl+Alt+E</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+E</value>
@@ -342,7 +342,7 @@
     <value>250, 22</value>
   </data>
   <data name="mTools_ExportSelectedAudioMenuItem.Text" xml:space="preserve">
-    <value>Exportar a&amp;udio</value>
+    <value>Exportar Aud&amp;io</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>Eliminar audio no referenciado Ctrl+l</value>
@@ -375,7 +375,7 @@
     <value>250, 22</value>
   </data>
   <data name="m_EPUB3ValidatorToolStripMenuItem.Text" xml:space="preserve">
-    <value>EPUB 3 Validator</value>
+    <value>Validador EPUB 3</value>
   </data>
   <data name="mToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 20</value>
@@ -1087,13 +1087,13 @@
     <value>242, 22</value>
   </data>
   <data name="splitAndMergeWithNextToolStripMenuItem.Text" xml:space="preserve">
-    <value>Split and merge with nex&amp;t</value>
+    <value>Dividir y unir con la siguien&amp;te</value>
   </data>
   <data name="splitAndMergeWithPreviousToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="splitAndMergeWithPreviousToolStripMenuItem.Text" xml:space="preserve">
-    <value>Split and merge with previo&amp;us</value>
+    <value>Dividir y unir con la a&amp;nterior</value>
   </data>
   <data name="mMergePhraseWithFollowingPhrasesToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Unir con las frases siguientes</value>
@@ -1132,7 +1132,7 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>Frase &amp;pendiente</value>
+    <value>Frase &amp;PARA REVISAR</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Frase en uso Ctrl + K</value>
@@ -1147,13 +1147,13 @@
     <value>Frase en &amp;uso</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Nota omisible</value>
+    <value>Nota opcional</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nota Omis&amp;ible</value>
+    <value>Nota opc&amp;ional</value>
   </data>
   <data name="mSkippableBeginNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Inicio de nota</value>
@@ -1225,22 +1225,22 @@
     <value>Eliminar re&amp;ferencia</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Mover a la nota de inicio</value>
+    <value>Mover al inicio de la nota</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="mSkippableMoveToStartNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mover a la nota de ini&amp;cio</value>
+    <value>Mover al ini&amp;cio de la nota</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Mover a la nota final</value>
+    <value>Mover al final de la nota</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>M&amp;over a la nota final</value>
+    <value>M&amp;over al final de la nota</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Limpiar rol de nota</value>
@@ -1348,7 +1348,7 @@
     <value>240, 22</value>
   </data>
   <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
-    <value>Renumber following pag&amp;es</value>
+    <value>R&amp;enumerar las páginas siguientes</value>
   </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
@@ -1525,28 +1525,28 @@
     <value>Reproducir &amp;selección</value>
   </data>
   <data name="m_PlaySectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Play Section</value>
+    <value>Reproducir Sección</value>
   </data>
   <data name="m_PlaySectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="m_PlaySectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Play Section</value>
+    <value>Reproducir Sección</value>
   </data>
   <data name="m_PlayHeadingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Play Section Heading</value>
+    <value>Reproducir la cabecera de la sección</value>
   </data>
   <data name="m_PlayHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="m_PlayHeadingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Play Section Heading</value>
+    <value>Reproducir la cabecera de la sección</value>
   </data>
   <data name="mPauseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Pausa Espacio</value>
   </data>
   <data name="mPauseToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Pa&amp;usa</value>
+    <value>Espacio</value>
   </data>
   <data name="mPauseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
@@ -1606,7 +1606,7 @@
     <value>Acelerar Ctrl + +</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
-    <value>Inicie la grabación y</value>
+    <value>Ctrl++</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Oemplus</value>
@@ -1708,22 +1708,22 @@
     <value>267, 22</value>
   </data>
   <data name="m_DeletePhrasesWhileRecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Record over subsequent phrases</value>
+    <value>Sobreescribir frases</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Preview Before Recording</value>
+    <value>Ver antes de iniciar grabación</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="m_PreviewBeforeRecordingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview Before Recording</value>
+    <value>Ver antes de iniciar grabación</value>
   </data>
   <data name="m_MonitorContinuouslyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
   </data>
   <data name="m_MonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Monitor Continuously</value>
+    <value>Monitorizar continuamente</value>
   </data>
   <data name="mAllowOverwriteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>267, 22</value>
@@ -1807,13 +1807,13 @@
     <value>207, 22</value>
   </data>
   <data name="mBackwardElapseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Step &amp;Back</value>
+    <value>Parar &amp;Retroceder</value>
   </data>
   <data name="mForwardElapseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="mForwardElapseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Step &amp;Forward</value>
+    <value>Parar A&amp;vanzar</value>
   </data>
   <data name="mNextPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Siguiente frase Alt + Derecha</value>

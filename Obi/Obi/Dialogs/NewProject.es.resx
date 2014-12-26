@@ -298,7 +298,7 @@
     <value>9</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;mOKButton.Name" xml:space="preserve">
     <value>mOKButton</value>
@@ -409,7 +409,7 @@
     <value>2</value>
   </data>
   <data name="mIDBox.AccessibleName" xml:space="preserve">
-    <value>ID:</value>
+    <value>I D:</value>
   </data>
   <data name="mIDBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>

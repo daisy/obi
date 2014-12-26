@@ -340,7 +340,7 @@
     <value>10</value>
   </data>
   <data name="m_lblCustomClassName.Text" xml:space="preserve">
-    <value>nombre de clase &amp;personalizado:</value>
+    <value>Nombre de clase &amp;personalizado:</value>
   </data>
   <data name="&gt;&gt;m_lblCustomClassName.Name" xml:space="preserve">
     <value>m_lblCustomClassName</value>
@@ -412,7 +412,7 @@
     <value>14</value>
   </data>
   <data name="m_chkToDo.Text" xml:space="preserve">
-    <value>&amp;Pendiente</value>
+    <value>P&amp;or hacer</value>
   </data>
   <data name="&gt;&gt;m_chkToDo.Name" xml:space="preserve">
     <value>m_chkToDo</value>
@@ -445,7 +445,7 @@
     <value>15</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>&amp;Aceptar</value>
   </data>
   <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
     <value>m_btnOk</value>
@@ -583,7 +583,7 @@
     <value>5</value>
   </data>
   <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>Secciones anteriores:</value>
+    <value>Seccion (es) anteriores:</value>
   </data>
   <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -625,7 +625,7 @@
     <value>4</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Secciones &amp;anteriores:</value>
+    <value>Seccion (es) &amp;anteriores:</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>

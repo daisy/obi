@@ -342,7 +342,7 @@
     <value>13</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.ToolTip" xml:space="preserve">
-    <value>Añadir marca de pendiente a la grabación. (F9)</value>
+    <value>Añadir marca PENDIENTE a la grabación. (F9)</value>
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.Name" xml:space="preserve">
     <value>mToDo_CustomClassMarkButton</value>
@@ -1015,7 +1015,7 @@
     <value>9</value>
   </data>
   <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
-    <value>Recording Options</value>
+    <value>Opciones de grabación</value>
   </data>
   <data name="m_btnRecordingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1046,7 +1046,7 @@
     <value>8</value>
   </data>
   <data name="m_btnRecordingOptions.ToolTip" xml:space="preserve">
-    <value>Recording Options</value>
+    <value>Opciones de grabación</value>
   </data>
   <data name="&gt;&gt;m_btnRecordingOptions.Name" xml:space="preserve">
     <value>m_btnRecordingOptions</value>
@@ -1061,7 +1061,7 @@
     <value>7</value>
   </data>
   <data name="m_btnPlayingOptions.AccessibleName" xml:space="preserve">
-    <value>Playing Options</value>
+    <value>Opciones de reproducción</value>
   </data>
   <data name="m_btnPlayingOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1092,7 +1092,7 @@
     <value>6</value>
   </data>
   <data name="m_btnPlayingOptions.ToolTip" xml:space="preserve">
-    <value>Playing Options</value>
+    <value>Opciones de reproducción</value>
   </data>
   <data name="&gt;&gt;m_btnPlayingOptions.Name" xml:space="preserve">
     <value>m_btnPlayingOptions</value>
@@ -1212,31 +1212,31 @@
     <value>244, 22</value>
   </data>
   <data name="m_MonitoringtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Star&amp;t Monitoring</value>
+    <value>Iniciar Moni&amp;torización</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_RecordingtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Sta&amp;rt Recording</value>
+    <value>Inicia&amp;r Grabación</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="m_DeletePhrasestoolStripMenuItem.Text" xml:space="preserve">
-    <value>Record &amp;over subsequent phrases</value>
+    <value>Grabar s&amp;obre las frases siguientes</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="mPreviewBeforeRecToolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview &amp;Before Recording</value>
+    <value>Grabar so&amp;bre las frases anteriores</value>
   </data>
   <data name="mMonitorContinuouslyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
   <data name="mMonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Monitor &amp;Continuously</value>
+    <value>Monitorizar &amp;Continuamente</value>
   </data>
   <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 136</value>
@@ -1254,31 +1254,31 @@
     <value>186, 22</value>
   </data>
   <data name="m_PlayAlltoolStripMenuItem.Text" xml:space="preserve">
-    <value>Play &amp;All</value>
+    <value>Repro&amp;ducir todo</value>
   </data>
   <data name="m_PlaySectiontoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PlaySectiontoolStripMenuItem.Text" xml:space="preserve">
-    <value>Play &amp;Section</value>
+    <value>Reproducir &amp;sección</value>
   </data>
   <data name="m_playHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_playHeadingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Play Section &amp;Heading</value>
+    <value>Reproducir sección y c&amp;abecera</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PreviewFromtoolStripMenuItem.Text" xml:space="preserve">
-    <value>Pre&amp;view From</value>
+    <value>Vista pre&amp;via Desde </value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
   <data name="m_PreviewUptotoolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview Up&amp;to</value>
+    <value>Vis&amp;ta previa hasta</value>
   </data>
   <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 114</value>

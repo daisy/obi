@@ -178,7 +178,7 @@
     <value>1</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>Aceptar</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
     <value>m_btn_OK</value>
@@ -232,7 +232,7 @@
     <value>3</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.Text" xml:space="preserve">
-    <value>Skippable notes</value>
+    <value>Notas opcionales</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.Name" xml:space="preserve">
     <value>m_rdb_btn_SpecialPhrase</value>

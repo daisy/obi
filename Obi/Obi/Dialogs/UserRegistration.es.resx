@@ -223,7 +223,7 @@
     <value>6</value>
   </data>
   <data name="m_lblRetypeEmail.Text" xml:space="preserve">
-    <value>&amp;Retype Email :</value>
+    <value>&amp;Reescribir Email :</value>
   </data>
   <data name="&gt;&gt;m_lblRetypeEmail.Name" xml:space="preserve">
     <value>m_lblRetypeEmail</value>
@@ -458,7 +458,7 @@
   </data>
   <data name="m_lblOrgName.Text" xml:space="preserve">
     <value>Nombre de la &amp;Organización: 
- Utilice "Personal" para usuario particular</value>
+Utilice "Personal" para usuario particular</value>
   </data>
   <data name="&gt;&gt;m_lblOrgName.Name" xml:space="preserve">
     <value>m_lblOrgName</value>

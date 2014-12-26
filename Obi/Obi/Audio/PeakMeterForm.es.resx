@@ -433,7 +433,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Medidor de pico</value>
+    <value>Vúmetro</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>PeakMeterForm</value>
