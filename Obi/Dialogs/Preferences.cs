@@ -38,6 +38,7 @@ namespace Obi.Dialogs
         private bool m_FlagComboBoxIndexChange = false;
         private int m_IndexOfLevelCombox = 0;
         private bool m_UpdateBackgroundColorRequired = false;
+        private List<string> m_FontPermissible;
        //  private bool m_IsComboBoxExpanded = false;
       //  private bool m_LeaveOnEscape = false;
 
@@ -278,6 +279,23 @@ namespace Obi.Dialogs
             if (!string.IsNullOrEmpty(m_lblShortcutKeys.Text)) m_lblShortcutKeys_text = m_lblShortcutKeys.Text;
             if (mTab.SelectedTab != mKeyboardShortcutTab) m_lblShortcutKeys.Text = "";
         }
+        private void InitializeFontList()
+        {
+            if (m_FontPermissible == null)
+            {
+                m_FontPermissible = new List<string>();
+                m_FontPermissible.Add("Arial");
+                m_FontPermissible.Add("Book Antiqua");
+                m_FontPermissible.Add("Comic Sans MS");
+                m_FontPermissible.Add("Georgia");
+                m_FontPermissible.Add("Courier New");
+                m_FontPermissible.Add("Tahoma");
+                m_FontPermissible.Add("Times New Roman");
+                m_FontPermissible.Add("Trebuchet MS");
+                m_FontPermissible.Add("Verdana");
+                m_FontPermissible.Add("Microsoft Sans Serif");
+            }
+        }
 
         private void InitializeColorPreferenceTab()
         {
@@ -306,9 +324,16 @@ namespace Obi.Dialogs
              mNormalColorCombo.SelectedIndex = 0;
 
              System.Drawing.Text.InstalledFontCollection fonts = new System.Drawing.Text.InstalledFontCollection();
-             foreach (FontFamily family in fonts.Families)
+             InitializeFontList();
+             if (m_FontPermissible != null)
              {
-                mChooseFontCombo.Items.Add(family.Name);
+                 foreach (FontFamily family in fonts.Families)
+                 {
+                     if (m_FontPermissible.Contains(family.Name))
+                     {
+                         mChooseFontCombo.Items.Add(family.Name);
+                     }
+                 }
              }
              mChooseFontCombo.SelectedIndex = 0;
             //mNormalColorCombo.Items.AddRange(new object[] { Color.Orange, Color.LightSkyBlue, Color.LightGreen, Color.LightSalmon,
@@ -1857,8 +1882,16 @@ namespace Obi.Dialogs
             m_txtBox_Font.Text = "Obi";
             if (mChooseFontCombo.SelectedItem != null)
             {
-
-                m_txtBox_Font.Font = new Font(mChooseFontCombo.SelectedItem.ToString(), this.Font.Size,FontStyle.Regular | FontStyle.Bold | FontStyle.Italic );//@fontconfig
+                try
+                {
+                    m_btn_Apply.Enabled = true;
+                    m_txtBox_Font.Font = new Font(mChooseFontCombo.SelectedItem.ToString(), this.Font.Size, FontStyle.Regular);//@fontconfig
+                }
+                catch (ArgumentException exp)
+                {
+                    MessageBox.Show("Font not supported");
+                    m_btn_Apply.Enabled = false;
+                }
 
             }
         }  
