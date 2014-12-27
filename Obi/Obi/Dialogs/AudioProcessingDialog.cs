@@ -15,6 +15,7 @@ namespace Obi.Dialogs
             InitializeComponent();
             m_cb_Process.SelectedIndex = 0;
             m_txt_info.Text = Localizer.Message("AudioProcessing_InfoText");
+            m_InfoToolTip.SetToolTip(m_txt_info, m_txt_info.Text);
 
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
