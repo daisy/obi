@@ -1758,7 +1758,7 @@
     <value>204, 17</value>
   </data>
   <data name="m_cbShortcutKeys.Size" type="System.Drawing.Size, System.Drawing">
-    <value>372, 24</value>
+    <value>377, 24</value>
   </data>
   <data name="m_cbShortcutKeys.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
