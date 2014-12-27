@@ -673,10 +673,10 @@
     <value>Detalles de número de página:</value>
   </data>
   <data name="m_txtPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 299</value>
+    <value>199, 299</value>
   </data>
   <data name="m_txtPageNumberDetails.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>183, 22</value>
   </data>
   <data name="m_txtPageNumberDetails.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -766,7 +766,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>528, 420</value>
+    <value>598, 420</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
