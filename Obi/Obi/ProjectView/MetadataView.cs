@@ -436,7 +436,15 @@ namespace Obi.ProjectView
                     items.Sort(delegate(urakawa.metadata.Metadata a, urakawa.metadata.Metadata b)
                     {
                         int names = a.NameContentAttribute.Name.CompareTo(b.NameContentAttribute.Name);
-                        return names == 0 ? a.NameContentAttribute.Value.CompareTo(b.NameContentAttribute.Value) : names;
+                        if (a.NameContentAttribute.Value != null && b.NameContentAttribute.Value != null)
+                        {
+                            return names == 0 ? a.NameContentAttribute.Value.CompareTo(b.NameContentAttribute.Value) : names;
+                        }
+                        else
+                        {
+                            return names ;
+                        }
+
                     });
 
                     // a list of metadata names which already exists
