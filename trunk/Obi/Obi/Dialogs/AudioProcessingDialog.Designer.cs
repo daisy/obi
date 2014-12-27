@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AudioProcessingDialog));
             this.m_gpbox_Process = new System.Windows.Forms.GroupBox();
             this.m_txt_info = new System.Windows.Forms.TextBox();
@@ -38,6 +39,7 @@ namespace Obi.Dialogs
             this.m_btn_OK = new System.Windows.Forms.Button();
             this.m_btn_Cancel = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_InfoToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_gpbox_Process.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -149,5 +151,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btn_Cancel;
         private System.Windows.Forms.TextBox m_txt_info;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.ToolTip m_InfoToolTip;
     }
 }
