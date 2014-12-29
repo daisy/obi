@@ -235,7 +235,6 @@ namespace Obi.ProjectView
             // 
             this.mDisplayBox.AllowDrop = true;
             this.mDisplayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mDisplayBox.DropDownWidth = 175;
             resources.ApplyResources(this.mDisplayBox, "mDisplayBox");
             this.mDisplayBox.FormattingEnabled = true;
             this.mDisplayBox.Items.AddRange(new object[] {
@@ -302,7 +301,9 @@ namespace Obi.ProjectView
             // 
             // mMonitorContinuouslyToolStripMenuItem
             // 
+            this.mMonitorContinuouslyToolStripMenuItem.Checked = false;
             this.mMonitorContinuouslyToolStripMenuItem.CheckOnClick = true;
+            this.mMonitorContinuouslyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Unchecked;
             this.mMonitorContinuouslyToolStripMenuItem.Name = "mMonitorContinuouslyToolStripMenuItem";
             resources.ApplyResources(this.mMonitorContinuouslyToolStripMenuItem, "mMonitorContinuouslyToolStripMenuItem");
             this.mMonitorContinuouslyToolStripMenuItem.Click += new System.EventHandler(this.mMonitorContinuouslyToolStripMenuItem_Click);

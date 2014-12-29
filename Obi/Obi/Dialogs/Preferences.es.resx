@@ -936,6 +936,10 @@
   <data name="m_cbOperation.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
+  <!--DropDownWidth value-->
+  <data name="m_cbOperation.DropDownWidth" type="System.Int32, mscorlib">
+    <value>250</value>
+  </data>
   <data name="&gt;&gt;m_cbOperation.Name" xml:space="preserve">
     <value>m_cbOperation</value>
   </data>
@@ -2555,5 +2559,5 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
+  </data> 
 </root>

@@ -1136,6 +1136,10 @@
   <data name="mDisplayBox.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
+  <!--DropDownWidth value-->
+  <data name="mDisplayBox.DropDownWidth" type="System.Int32, mscorlib">
+    <value>175</value>
+  </data>
   <data name="&gt;&gt;mDisplayBox.Name" xml:space="preserve">
     <value>mDisplayBox</value>
   </data>
