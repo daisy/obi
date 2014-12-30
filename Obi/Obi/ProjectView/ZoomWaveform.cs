@@ -40,6 +40,7 @@ namespace Obi.ProjectView
         private bool m_NudgeAtRightFromLeft = false;
         private bool m_NudgeAtLeftFromLeft = false;
         private int m_InitialPanelHeight = 0;
+        private double m_PhraseDuration = 0;
             
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -188,6 +189,10 @@ namespace Obi.ProjectView
                 btntxtZoomSelected.Text = " ";
                 btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
                 btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
+                if (m_ProjectView.Selection.Node.Duration != m_PhraseDuration)
+                {
+                    PhraseLoad((EmptyNode) m_ProjectView.Selection.Node);
+                }
             }
         }
          private void ZoomPanelLostFocus(object sender,EventArgs e)
@@ -308,6 +313,7 @@ namespace Obi.ProjectView
                 m_AudioBlock.InitCursor(0);
                 if (m_ProjectView.TransportBar.IsPlayerActive) UpdateCursorTime(m_ProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset);
                 m_Block = m_AudioBlock;
+                m_PhraseDuration = m_AudioBlock.Node.Duration;
                 
             }
             else if (m_Node is EmptyNode)
@@ -319,6 +325,7 @@ namespace Obi.ProjectView
                 m_Block = new Block(m_Node, m_Strip) ;               
                 panelZooomWaveform.Controls.Add(m_Block);
                 m_AudioBlock = null;
+                m_PhraseDuration = 0;
 
             }
 
@@ -481,6 +488,7 @@ namespace Obi.ProjectView
                 //m_AudioBlock.Focus();
                 //this.ActiveControl = btnClosetoolStrip;
                 m_Block = m_AudioBlock;
+                m_PhraseDuration = m_AudioBlock.Node.Duration;
             }
             else if (m_Node is EmptyNode)
             {
@@ -488,6 +496,7 @@ namespace Obi.ProjectView
                 m_Block = new Block(m_Node, m_Strip);
                 panelZooomWaveform.Controls.Add(m_Block);
                 m_AudioBlock = null;
+                m_PhraseDuration = 0;
 
             }
 
