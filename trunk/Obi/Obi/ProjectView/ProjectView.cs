@@ -139,6 +139,16 @@ namespace Obi.ProjectView
             mPresentation.Do ( cmd );
             return cmd.Entry;
             }
+        /// <summary>
+        /// Get root node
+        /// </summary>
+        public urakawa.core.TreeNode RootNode
+        {
+            get
+            {
+                return mPresentation.RootNode;
+            }
+        }
 
         public void SaveDefaultMetadatas()
         {
@@ -1270,17 +1280,19 @@ namespace Obi.ProjectView
             {
                 SectionNode temp_NodeSelected = GetSelectedPhraseSection;
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
-                List<SectionNode> listOfSections = ((Obi.ObiRootNode)mPresentation.RootNode).GetListOfAllSections(); //use this list in merge section dialog
+            //    List<SectionNode> listOfSections = ((Obi.ObiRootNode)mPresentation.RootNode).GetListOfAllSections(); //use this list in merge section dialog
                 //MessageBox.Show(listOfSections.Count.ToString()); 
-                int selectedSectionIndex = listOfSections.IndexOf(GetSelectedPhraseSection);
-                if (selectedSectionIndex > 0) listOfSections.RemoveRange(0, selectedSectionIndex);
+
+               // int selectedSectionIndex = listOfSections.IndexOf(GetSelectedPhraseSection);
+                //if (selectedSectionIndex > 0) listOfSections.RemoveRange(0, selectedSectionIndex);
+
                 //foreach (SectionNode s in listOfSections) MessageBox.Show(s.Label + " " + s.Level.ToString ());
-                Obi.Dialogs.ChooseMergeOrChangeLevel chooseOperationDialog = new Obi.Dialogs.ChooseMergeOrChangeLevel(this);
-                DialogResult result = chooseOperationDialog.ShowDialog();
-                if (result == DialogResult.OK)
+           //     Obi.Dialogs.ChooseMergeOrChangeLevel chooseOperationDialog = new Obi.Dialogs.ChooseMergeOrChangeLevel(this);
+             //   DialogResult result = chooseOperationDialog.ShowDialog();
+               // if (result == DialogResult.OK)
                 {
 
-                    Obi.Dialogs.SelectMergeSectionRange selectionDialog = new Obi.Dialogs.SelectMergeSectionRange(listOfSections, selectedSectionIndex, this, this.mContentView, chooseOperationDialog.ChangeSectionLevel,chooseOperationDialog.MergeSection);
+                    Obi.Dialogs.SelectMergeSectionRange selectionDialog = new Obi.Dialogs.SelectMergeSectionRange(this, this.mContentView);
                     List<SectionNode> selectedSections = selectionDialog.SelectedSections;
                     int mergeCount = 0;
                     selectionDialog.UndoChangeEvent += new Obi.Dialogs.SectionsManipulationDelegate(delegate(object sender, EventArgs e)
@@ -1306,6 +1318,7 @@ namespace Obi.ProjectView
                             urakawa.command.CompositeCommand mergeSectionCommand = mPresentation.CreateCompositeCommand("MergeMultipleSections");
 
                             SectionNode firstSection = selectedSections[0];
+                            List<SectionNode> listOfSections = selectionDialog.ListOfSections;
                             selectedSections.Remove(firstSection);
                             //first arrange the children whose parents will be deleted
                             int lastSelectedSectionIndex = listOfSections.IndexOf(selectedSections[selectedSections.Count - 1]);
@@ -1371,7 +1384,6 @@ namespace Obi.ProjectView
                                 if (mergeSectionCommand.ChildCommands.Count > 0)
                                 {
                                     mPresentation.Do(mergeSectionCommand);
-                                    selectionDialog.UndoCount++;
                                 }
                             }
                             catch (System.Exception ex)
@@ -1407,7 +1419,6 @@ namespace Obi.ProjectView
                                         try
                                         {
                                             mPresentation.Do(new Commands.TOC.MoveSectionIn(this, node));
-                                            selectionDialog.UndoCount++;
                                         }
                                         catch (Exception ex)
                                         {
@@ -1446,7 +1457,6 @@ namespace Obi.ProjectView
                                         try
                                         {
                                             mPresentation.Do(new Commands.TOC.MoveSectionOut(this, node));
-                                            selectionDialog.UndoCount++;
                                         }
                                         catch (Exception ex)
                                         {

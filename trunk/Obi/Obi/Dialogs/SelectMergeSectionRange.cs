@@ -12,8 +12,6 @@ namespace Obi.Dialogs
     public partial class SelectMergeSectionRange : Form
     {
         List<SectionNode> m_SectionList = null;
-        List<SectionNode> m_SectionListBackup = new List<SectionNode>();
-        List<SectionNode> m_SectionListAfterLevelChange = new List<SectionNode>();
         List<SectionNode> m_SelectedSectionList = new List<SectionNode>();        
         List<List<int>> m_ListOfContinuousItems = new List<List<int>>();
         List<SectionNode> listOfLargestNumberOfSections = new List<SectionNode>();
@@ -29,8 +27,6 @@ namespace Obi.Dialogs
         private List<int> m_IndexOfSectionSelected = new List<int>();
         private List<SectionNode> m_SelectedSectionListToMerge = new List<SectionNode>();
         private bool m_FlagMerge = false;
-        private int m_UndoCount = 0;
-        private int m_UndoCountInProjectView = 0;
 
         public event SectionsManipulationDelegate LevelIncrementEvent;
         public event SectionsManipulationDelegate LevelDecrementEvent;
@@ -47,27 +43,33 @@ namespace Obi.Dialogs
             helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Sections\\Merging multiple sections.htm");
         }
 
-        public SelectMergeSectionRange(List<SectionNode> sectionsList, int selectedIndexOfSection,Obi.ProjectView.ProjectView projectView,Obi.ProjectView.ContentView contentview,bool ChangeLevel,bool Merge)
+        public SelectMergeSectionRange(Obi.ProjectView.ProjectView projectView,Obi.ProjectView.ContentView contentview)
             : this()
         {
-            m_SectionList = sectionsList;
-            //m_SectionListBackup = m_SectionList;
-            m_SelectedIndex = selectedIndexOfSection;
             m_ProjectView = projectView;
             m_ContentView = contentview;
-            m_btn_Merge.Enabled = Merge;
-            m_btn_IncreaseSectionLevel.Enabled = m_btn_DecreaseSectionLevel.Enabled = ChangeLevel;
+            InitializeList();
             populateListboxForSectionsToMerge();
-            foreach (SectionNode node in m_SectionList)
-            {
-                m_SectionListBackup.Add(node);
-            } 
             m_tb_SectionsSelected.Text = m_StatusLabelForMergeSection.Text = String.Format(Localizer.Message("StatusForMergeSection"), m_SectionList[0].Label, m_SectionList[m_SectionList.Count - 1].Label);
             m_ProjectView.TransportBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
             toolTip.SetToolTip(m_btn_IncreaseSectionLevel, Localizer.Message("MergeOptions_IncreaseLevel"));
             toolTip.SetToolTip(m_btn_DecreaseSectionLevel, Localizer.Message("MergeOptions_DecreaseLevel"));
             toolTip.SetToolTip(m_btn_Merge,Localizer.Message("MergeOptions_Merge"));
 
+        }
+        private void UpdateList()
+        {
+            List<SectionNode> listOfSections = ((Obi.ObiRootNode)(m_ProjectView.RootNode)).GetListOfAllSections();
+            if (m_SelectedIndex > 0) listOfSections.RemoveRange(0, m_SelectedIndex);
+            m_SectionList = listOfSections;
+        }
+        private void InitializeList()
+        {
+            List<SectionNode> listOfSections = ((Obi.ObiRootNode)(m_ProjectView.RootNode)).GetListOfAllSections();
+            int selectedSectionIndex = listOfSections.IndexOf(m_ProjectView.GetSelectedPhraseSection);
+            if (selectedSectionIndex > 0) listOfSections.RemoveRange(0, selectedSectionIndex);
+            m_SelectedIndex = selectedSectionIndex;
+            m_SectionList = listOfSections;
         }
         public void State_Changed_Player(object sender, AudioLib.AudioPlayer.StateChangedEventArgs e)
         {
@@ -98,39 +100,15 @@ namespace Obi.Dialogs
             }
         }
 
-
-        public bool CanUndo
-        {
-            set
-            {                
-                m_btn_Undo.Enabled = value;
-            }
-            get
-            {
-                return m_btn_Undo.Enabled;
-            }
-        }
-
-        /// <summary>
-        /// Number of times undo to be allowed in merge Operations dialog.
-        /// </summary>
-        public int UndoCount
-        {
-            set
-            {
-                m_UndoCountInProjectView = value;
-            }
-            get
-            {
-                return m_UndoCountInProjectView;
-            }
-        }
-
+        
         public List<SectionNode> SelectedSections
         {
             get { return m_SelectedSectionListToMerge; }
         }
-
+        public List<SectionNode> ListOfSections
+        {
+            get { return m_SectionList; }
+        }
         public List<SectionNode> SelectedSectionsForIncreaseLevel
         {
             get { return m_SelectedSectionListForIncreaseLevel; }
@@ -146,11 +124,11 @@ namespace Obi.Dialogs
             SectionNode firstSection = m_SectionList[0];
             for (int i = 0; i <= (m_SectionList.Count - 1); i++)
             {
-             //   if (m_SectionList[i].Level >= firstSection.Level)
+             // if (m_SectionList[i].Level >= firstSection.Level)
                 {
                     m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
                     m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
-                    m_SectionListAfterLevelChange.Add(m_SectionList[i]);
+                   // m_SectionListAfterLevelChange.Add(m_SectionList[i]);
                 }
                 //else
                 //    return;
@@ -170,7 +148,7 @@ namespace Obi.Dialogs
 
             for (int i = 0; i <= (m_SectionList.Count - 1); i++)
             {
-               if (m_SectionListAfterLevelChange.Contains(m_SectionList[i]))
+             //  if (m_SectionListAfterLevelChange.Contains(m_SectionList[i]))
                 {
                     if ((m_SectionList[i].IsRooted))
                     {
@@ -192,47 +170,18 @@ namespace Obi.Dialogs
 
 
             m_lb_listofSectionsToMerge.Items.Clear();
-            SectionNode firstSection = m_SectionListBackup[0];
+            SectionNode firstSection = m_SectionList[0];
             m_lb_listofSectionsToMerge.Refresh();
 
 
-            for (int i = 0; i <= (m_SectionListBackup.Count - 1); i++)
+            for (int i = 0; i <= (m_SectionList.Count - 1); i++)
             {
-                if (m_SectionListAfterLevelChange.Contains(m_SectionListBackup[i]))
+                if ((m_SectionList[i].IsRooted))
                 {
-                    if ((m_SectionListBackup[i].IsRooted))
-                    {
-                        if (!m_SectionList.Contains(m_SectionListBackup[i]))
-                        {
-                            if (i > 0 && m_SectionList.Contains(m_SectionListBackup[i - 1]))
-                            {
-                                int n = m_SectionList.IndexOf(m_SectionListBackup[i - 1]);
-                                m_SectionList.Insert(n + 1, m_SectionListBackup[i]);
-                                m_SectionList[n + 1].Label = m_SectionList[n + 1].Label.Replace("\n", string.Empty);
-                                m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[n + 1].Label + " Level " + m_SectionList[n + 1].Level);
-                            }
-                            else 
-                            {
-                                for (int tempIndex = i; tempIndex > 0; tempIndex--)
-                                {
-                                    if (m_SectionList.Contains(m_SectionListBackup[tempIndex]))
-                                    {
-                                        int n = m_SectionList.IndexOf(m_SectionListBackup[tempIndex]);
-                                        m_SectionList.Insert(n + 1, m_SectionListBackup[i]);
-                                        m_SectionList[n + 1].Label = m_SectionList[n + 1].Label.Replace("\n", string.Empty);
-                                        m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[n + 1].Label + " Level " + m_SectionList[n + 1].Level);
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            int n = m_SectionList.IndexOf(m_SectionListBackup[i]);
-                            m_SectionList[n].Label = m_SectionList[n].Label.Replace("\n", string.Empty);
-                            m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[n].Label + " Level " + m_SectionList[n].Level);
-                         }
-                    }
+                    int n = m_SectionList.IndexOf(m_SectionList[i]);
+                    m_SectionList[n].Label = m_SectionList[n].Label.Replace("\n", string.Empty);
+                    m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[n].Label + " Level " + m_SectionList[n].Level);
+
                 }
             }
         }
@@ -274,7 +223,6 @@ namespace Obi.Dialogs
                  }
              }
 
-            //  m_btn_Merge.Enabled = false;
             m_IndexOfSectionSelected.Clear();
 
         }
@@ -484,7 +432,6 @@ namespace Obi.Dialogs
             if (LevelIncrementEvent != null)
             {
                 LevelIncrementEvent(this, new EventArgs());
-                CanUndo = true;
             }
             populateListboxForSectionsAfterLevelchange();        
         }
@@ -541,7 +488,6 @@ namespace Obi.Dialogs
             if (LevelDecrementEvent != null)
             {
                 LevelDecrementEvent(this, new EventArgs());
-                CanUndo = true;
             }
             populateListboxForSectionsAfterLevelchange();
         }
@@ -597,18 +543,11 @@ namespace Obi.Dialogs
 
         private void m_btn_Undo_Click(object sender, EventArgs e)
         {
-            m_UndoCount++;
-            if (UndoCount >= m_UndoCount)
+           if (UndoChangeEvent != null)
             {
-                if (UndoChangeEvent != null) UndoChangeEvent(this, new EventArgs());
+                UndoChangeEvent(this, new EventArgs());
+                UpdateList();                   
             }
-            else
-            {
-                CanUndo = false;
-                m_UndoCount = 0;
-                UndoCount = 0;
-            }
-
             populateListboxForSectionsOnUndo();
             if (m_lb_listofSectionsToMerge.SelectedIndex == -1)
             {
@@ -630,7 +569,7 @@ namespace Obi.Dialogs
                 if (MergeSectionEvent != null)
                 {
                     MergeSectionEvent(this, new EventArgs());
-                    CanUndo = true;
+                    UpdateList();
                 }
                 int count = 0;
                 populateListboxForSectionsAfterMerge();
@@ -645,7 +584,6 @@ namespace Obi.Dialogs
         private void m_btn_Close_Click(object sender, EventArgs e)
         {
             if (m_ProjectView.TransportBar.CanStop) m_ProjectView.TransportBar.Stop();
-            //this.DialogResult = DialogResult.Cancel;
             Close();
         }
     }
