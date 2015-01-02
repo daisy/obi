@@ -2863,9 +2863,10 @@ ref string exportDirectoryEPUB3)
 
                     ((Obi.ImportExport.DAISY3_ObiExport)DAISY3ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                     exportDirectoryDAISY3 = configInstance.DAISY3ExportParameters.ExportDirectory;
-                    exportDirectoryEPUB3 = exportDirectoryDAISY202 = null;
+                    //exportDirectoryEPUB3 = exportDirectoryDAISY202 = null;
                 }
-                else if (configInstance.DAISY202ExportParameters != null)
+
+                if (configInstance.DAISY202ExportParameters != null)
                 {
                     // Delete the export directory if it already exists
                     if (Directory.Exists(configInstance.DAISY202ExportParameters.ExportDirectory))
@@ -2887,9 +2888,10 @@ ref string exportDirectoryEPUB3)
 
                     ((Obi.ImportExport.DAISY202Export)DAISY202ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                     exportDirectoryDAISY202 = configInstance.DAISY202ExportParameters.ExportDirectory;
-                    exportDirectoryDAISY3 = exportDirectoryEPUB3 = null;
+                    //exportDirectoryDAISY3 = exportDirectoryEPUB3 = null;
                 }
-                else if (configInstance.EPUB3ExportParameters != null)
+
+                if (configInstance.EPUB3ExportParameters != null)
                 {
                     // Delete the export directory if it already exists
                     if (Directory.Exists(configInstance.EPUB3ExportParameters.ExportDirectory))
@@ -2913,7 +2915,7 @@ ref string exportDirectoryEPUB3)
 
                     ((Obi.ImportExport.Epub3_ObiExport)EPUB3_ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
                     exportDirectoryEPUB3 = configInstance.EPUB3ExportParameters.ExportDirectory;
-                    exportDirectoryDAISY202 = exportDirectoryDAISY3 = null;
+                    //exportDirectoryDAISY202 = exportDirectoryDAISY3 = null;
                 }
 
                 return true;
