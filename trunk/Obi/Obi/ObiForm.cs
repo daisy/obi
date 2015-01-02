@@ -2623,9 +2623,16 @@ namespace Obi
 
                             string displayPath = (exportPathDAISY3 != null && exportPathDAISY202 != null) ? exportPathDAISY3 + "\n" + exportPathDAISY202 :
                                 exportPathDAISY3 != null ? exportPathDAISY3 : exportPathDAISY202;
-                            if (string.IsNullOrEmpty(displayPath) && exportPathEPUB3 != null)
+                            if (exportPathEPUB3 != null)
                             {
+                                if (string.IsNullOrEmpty(displayPath) )
+                                {
                                 displayPath = exportPathEPUB3;
+                                }
+                                else
+                                {
+                                    displayPath = displayPath+ "\n" +   exportPathEPUB3;
+                                }
                             }
                             MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), displayPath),
                                             Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK,
@@ -2917,6 +2924,10 @@ ref string exportDirectoryEPUB3)
                     exportDirectoryEPUB3 = configInstance.EPUB3ExportParameters.ExportDirectory;
                     //exportDirectoryDAISY202 = exportDirectoryDAISY3 = null;
                 }
+
+                if (exportDirectoryDAISY202 != null && !Directory.Exists(exportDirectoryDAISY202)) exportDirectoryDAISY202 = null;
+                if (exportDirectoryDAISY3 != null && !Directory.Exists(exportDirectoryDAISY3)) exportDirectoryDAISY3  = null;
+                if (exportDirectoryEPUB3 != null && !Directory.Exists(exportDirectoryEPUB3)) exportDirectoryEPUB3 = null;
 
                 return true;
             }

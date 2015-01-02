@@ -194,6 +194,9 @@ namespace Obi.ImportExport
                     m_EPUB3ExportParameters = exportObject;
                 }
 
+                Console.WriteLine("Config file export parameters: " + exportObject.ExportStandards);
+                Console.WriteLine("export channels: " + exportObject.ExportChannels + ", directory:" + exportObject.ExportDirectory);
+                Console.WriteLine("encoding: " + exportObject.EncodeExportedAudioFiles +" "+  exportObject.EncodingAudioFileFormat + ", bit rate:" + exportObject.ExportEncodingBitrate + ", sample rate:" + exportObject.ExportSampleRate);
             }
             xmlDoc = null;
         }
