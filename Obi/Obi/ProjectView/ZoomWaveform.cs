@@ -838,7 +838,10 @@ namespace Obi.ProjectView
                 m_buttonSizeinit = false;
                 m_ContentView.RemovePanel();
 
-                m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);               
+                m_ProjectView.SelectionChanged -= new EventHandler(ProjectViewSelectionChanged);
+                m_ProjectView.Presentation.UndoRedoManager.CommandDone -= new EventHandler<urakawa.events.undo.DoneEventArgs>(ProjectviewUpdated);
+                m_ProjectView.Presentation.UndoRedoManager.CommandUnDone -= new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ProjectviewUpdated);
+                m_ProjectView.Presentation.UndoRedoManager.CommandReDone -= new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ProjectviewUpdated);
                 
                 
                 
