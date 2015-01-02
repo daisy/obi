@@ -11,6 +11,48 @@ namespace Obi.ImportExport
 {
     public class ConfigurationFileParser
     {
+        public class ExportParameters
+        {
+            public ExportParameters(ExportFormat exportStandards, 
+                string exportDirectory, 
+                bool encodeExportedAudioFiles, 
+                AudioLib.AudioFileFormats encodingAudioFileFormat, 
+                AudioLib.SampleRate exportSampleRate, 
+                int exportChannels, 
+                double exportEncodingBitrate)
+            {
+                m_ExportStandards = exportStandards;
+                m_ExportDirectory = exportDirectory;
+                m_EncodeExportedAudioFiles = encodeExportedAudioFiles;
+                m_EncodingAudioFileFormat = encodingAudioFileFormat;
+                m_ExportSampleRate = exportSampleRate;
+                m_ExportChannels = exportChannels;
+                m_ExportEncodingBitrate = exportEncodingBitrate;
+            }
+
+            private string m_ExportDirectory;
+            public string ExportDirectory { get { return m_ExportDirectory; } }
+
+            private ExportFormat m_ExportStandards;
+            public ExportFormat ExportStandards { get { return m_ExportStandards; } }
+
+            private bool m_EncodeExportedAudioFiles = false;
+            public bool EncodeExportedAudioFiles { get { return m_EncodeExportedAudioFiles; } }
+
+            private AudioLib.AudioFileFormats m_EncodingAudioFileFormat = AudioLib.AudioFileFormats.MP3;
+            public AudioLib.AudioFileFormats EncodingAudioFileFormat { get { return m_EncodingAudioFileFormat; } }
+
+            private AudioLib.SampleRate m_ExportSampleRate;
+            public AudioLib.SampleRate ExportSampleRate { get { return m_ExportSampleRate; } }
+
+            private int m_ExportChannels;
+            public int ExportChannels { get { return m_ExportChannels; } }
+
+            private double m_ExportEncodingBitrate;
+            public double ExportEncodingBitrate { get { return m_ExportEncodingBitrate; } }
+
+        }
+
         private string m_ConfigurationFilePath;
 
         public ConfigurationFileParser(string filePath)
@@ -43,26 +85,14 @@ namespace Obi.ImportExport
         private int m_ImportChannels;
         public int ImportChannels { get { return m_ImportChannels; } }
 
-        private string m_ExportDirectory;
-        public string ExportDirectory { get { return m_ExportDirectory; } }
+        private ExportParameters m_DAISY3ExportParameters = null;
+        public ExportParameters DAISY3ExportParameters { get { return m_DAISY3ExportParameters; } }
 
-        private ExportFormat m_ExportStandards;
-        public ExportFormat ExportStandards { get { return m_ExportStandards ; }}
+        private ExportParameters m_DAISY202ExportParameters = null;
+        public ExportParameters DAISY202ExportParameters { get { return m_DAISY202ExportParameters; } }
 
-        private bool m_EncodeExportedAudioFiles = false;
-        public bool EncodeExportedAudioFiles { get { return m_EncodeExportedAudioFiles; } }
-
-        private AudioLib.AudioFileFormats m_EncodingAudioFileFormat = AudioLib.AudioFileFormats.MP3;
-        public AudioLib.AudioFileFormats EncodingAudioFileFormat { get { return m_EncodingAudioFileFormat; } }
-
-        private AudioLib.SampleRate m_ExportSampleRate;
-        public AudioLib.SampleRate ExportSampleRate { get { return m_ExportSampleRate; } }
-
-        private int m_ExportChannels;
-        public int ExportChannels { get { return m_ExportChannels; } }
-
-        private double m_ExportEncodingBitrate;
-        public double ExportEncodingBitrate { get { return m_ExportEncodingBitrate; } }
+        private ExportParameters m_EPUB3ExportParameters = null;
+        public ExportParameters EPUB3ExportParameters { get { return m_EPUB3ExportParameters; } }
 
         public void ParseXml()
         {
@@ -93,48 +123,77 @@ namespace Obi.ImportExport
 
             XmlNode exportNode = XmlDocumentHelper.GetFirstChildElementOrSelfWithName(xmlDoc.DocumentElement, true, "export", xmlDoc.DocumentElement.NamespaceURI);
 
+            ExportFormat exportStandards = ExportFormat.DAISY3_0; 
+                string exportDirectory = null; 
+                bool encodeExportedAudioFiles = false; 
+                AudioLib.AudioFileFormats encodingAudioFileFormat  = AudioLib.AudioFileFormats.WAV;
+                AudioLib.SampleRate exportSampleRate = AudioLib.SampleRate.Hz44100;
+                int exportChannels = 1;
+                double exportEncodingBitrate = 64;
             foreach (XmlNode n in exportNode.ChildNodes)
             {
                 if (n.LocalName == "directory")
                 {
-                    m_ExportDirectory = n.InnerText.Trim() ;
+                    exportDirectory = n.InnerText.Trim() ;
                 }
                 else if (n.LocalName == "standard")
                 {
                     string strStandard = n.InnerText.Trim ();
-                    m_ExportStandards = strStandard == "daisy2.02" ? ExportFormat.DAISY2_02 :
+                    exportStandards = strStandard == "daisy2.02" ? ExportFormat.DAISY2_02 :
                         strStandard == "daisy3" ? ExportFormat.DAISY3_0 :
                         ExportFormat.EPUB3;
                 }
                 else if (n.LocalName == "audioencoding")
                 {
                     string strEncoding = n.InnerText.Trim();
-                    m_EncodeExportedAudioFiles = strEncoding.ToLower() != "wav";
+                    encodeExportedAudioFiles = strEncoding.ToLower() != "wav";
 
-                    if (m_EncodeExportedAudioFiles)
+                    if (encodeExportedAudioFiles)
                     {
-                        m_EncodingAudioFileFormat = (strEncoding.ToLower() == "mp4" || strEncoding.ToLower() == "m4a") ? AudioLib.AudioFileFormats.MP4 :
+                        encodingAudioFileFormat = (strEncoding.ToLower() == "mp4" || strEncoding.ToLower() == "m4a") ? AudioLib.AudioFileFormats.MP4 :
                             AudioLib.AudioFileFormats.MP3;
                     }
                 }
                 else if (n.LocalName == "bitrate")
                 {
                     string strBitrate = n.InnerText.Trim();
-                    m_ExportEncodingBitrate = int.Parse(strBitrate);
+                    exportEncodingBitrate = int.Parse(strBitrate);
                 }
                 else if (n.LocalName == "audiosamplerate")
                 {
                     string strSampleRate = n.InnerText;
-                    m_ExportSampleRate = strSampleRate == "44100" ? AudioLib.SampleRate.Hz44100 :
+                    exportSampleRate = strSampleRate == "44100" ? AudioLib.SampleRate.Hz44100 :
                         strSampleRate == "22050" ? AudioLib.SampleRate.Hz22050
                         : AudioLib.SampleRate.Hz11025;
                 }
                 else if (n.LocalName == "audiochannels")
                 {
                     string strChannels= n.InnerText;
-                    m_ExportChannels = int.Parse(strChannels.Trim());
+                    exportChannels = int.Parse(strChannels.Trim());
                 }
             }
+            ExportParameters exportObject = new ExportParameters(exportStandards,
+                exportDirectory,
+                encodeExportedAudioFiles,
+                encodingAudioFileFormat,
+                exportSampleRate,
+                exportChannels,
+                exportEncodingBitrate);
+
+            // assign export parameters to respective properties
+            if (exportObject.ExportStandards == ExportFormat.DAISY3_0)
+            {
+                m_DAISY3ExportParameters = exportObject;
+            }
+            else if (exportObject.ExportStandards == ExportFormat.DAISY2_02)
+            {
+                m_DAISY202ExportParameters = exportObject;
+            }
+            else if ( exportObject.ExportStandards == ExportFormat.EPUB3 )
+            {
+                m_EPUB3ExportParameters = exportObject ;
+            }
+
             xmlDoc = null;
         }
 

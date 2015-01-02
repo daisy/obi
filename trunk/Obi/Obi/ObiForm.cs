@@ -2840,58 +2840,79 @@ ref string exportDirectoryEPUB3)
 
                 ImportExport.ConfigurationFileParser configInstance = mSession.Presentation.ConfigurationsImportExport;
                 
-                // Delete the export directory if it already exists
-                if (Directory.Exists(configInstance.ExportDirectory))
+                
+                if (configInstance.DAISY3ExportParameters != null)
                 {
-                    Directory.Delete(configInstance.ExportDirectory, true);
-                }
-                if (configInstance.ExportStandards == Obi.ImportExport.ExportFormat.DAISY3_0)
-                {
+                    // Delete the export directory if it already exists
+                    if (Directory.Exists(configInstance.DAISY3ExportParameters.ExportDirectory))
+                    {
+                        Directory.Delete(configInstance.DAISY3ExportParameters.ExportDirectory, true);
+                    }
                     DAISY3ExportInstance = new Obi.ImportExport.DAISY3_ObiExport(
-                            mSession.Presentation, configInstance.ExportDirectory , null, configInstance.EncodeExportedAudioFiles,configInstance.ExportEncodingBitrate,
-                            configInstance.ExportSampleRate ,
-                            configInstance.ExportChannels == 2,
+                            mSession.Presentation, configInstance.DAISY3ExportParameters.ExportDirectory, null,
+                            configInstance.DAISY3ExportParameters.EncodeExportedAudioFiles,
+                            configInstance.DAISY3ExportParameters.ExportEncodingBitrate,
+                            configInstance.DAISY3ExportParameters.ExportSampleRate,
+                            configInstance.DAISY3ExportParameters.ExportChannels == 2,
                             false, 100);
 
                     DAISY3ExportInstance.AddSectionNameToAudioFile = false;
                     DAISY3ExportInstance.AudioFileNameCharsLimit = 100;
-                    if (configInstance.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) DAISY3ExportInstance.EncodingFileFormat = configInstance.EncodingAudioFileFormat;
+                    if (configInstance.DAISY3ExportParameters.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) 
+                        DAISY3ExportInstance.EncodingFileFormat = configInstance.DAISY3ExportParameters.EncodingAudioFileFormat;
 
                     ((Obi.ImportExport.DAISY3_ObiExport)DAISY3ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
-                    exportDirectoryDAISY3 = configInstance.ExportDirectory;
+                    exportDirectoryDAISY3 = configInstance.DAISY3ExportParameters.ExportDirectory;
                     exportDirectoryEPUB3 = exportDirectoryDAISY202 = null;
                 }
-                else if (configInstance.ExportStandards == Obi.ImportExport.ExportFormat.DAISY2_02)
+                else if (configInstance.DAISY202ExportParameters != null)
                 {
+                    // Delete the export directory if it already exists
+                    if (Directory.Exists(configInstance.DAISY202ExportParameters.ExportDirectory))
+                    {
+                        Directory.Delete(configInstance.DAISY202ExportParameters.ExportDirectory, true);
+                    }
                     DAISY202ExportInstance = new Obi.ImportExport.DAISY202Export(
-                        mSession.Presentation, configInstance.ExportDirectory,configInstance.EncodeExportedAudioFiles ,configInstance.ExportEncodingBitrate,
-                        configInstance.ExportSampleRate , configInstance.ExportChannels == 2,
+                        mSession.Presentation, configInstance.DAISY202ExportParameters.ExportDirectory,
+                    configInstance.DAISY202ExportParameters.EncodeExportedAudioFiles ,
+                    configInstance.DAISY202ExportParameters.ExportEncodingBitrate,
+                        configInstance.DAISY202ExportParameters.ExportSampleRate , 
+                    configInstance.DAISY202ExportParameters.ExportChannels == 2,
                         100);
 
                     DAISY202ExportInstance.AddSectionNameToAudioFile = false;
                     DAISY202ExportInstance.AudioFileNameCharsLimit = 100;
-                    if (configInstance.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) DAISY202ExportInstance.EncodingFileFormat = configInstance.EncodingAudioFileFormat;
+                    if (configInstance.DAISY202ExportParameters.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) 
+                        DAISY202ExportInstance.EncodingFileFormat = configInstance.DAISY202ExportParameters.EncodingAudioFileFormat;
 
                     ((Obi.ImportExport.DAISY202Export)DAISY202ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
-                    exportDirectoryDAISY202 = configInstance.ExportDirectory;
+                    exportDirectoryDAISY202 = configInstance.DAISY202ExportParameters.ExportDirectory;
                     exportDirectoryDAISY3 = exportDirectoryEPUB3 = null;
                 }
-                else if (configInstance.ExportStandards == Obi.ImportExport.ExportFormat.EPUB3)
+                else if (configInstance.EPUB3ExportParameters != null)
                 {
+                    // Delete the export directory if it already exists
+                    if (Directory.Exists(configInstance.EPUB3ExportParameters.ExportDirectory))
+                    {
+                        Directory.Delete(configInstance.EPUB3ExportParameters.ExportDirectory, true);
+                    }
                     EPUB3_ExportInstance = new Obi.ImportExport.Epub3_ObiExport(
-                            mSession.Presentation, configInstance.ExportDirectory, null, configInstance.EncodeExportedAudioFiles,configInstance.ExportEncodingBitrate,
-                            configInstance.ExportSampleRate,
-                            configInstance.ExportChannels == 2,
+                            mSession.Presentation, configInstance.EPUB3ExportParameters.ExportDirectory, null, 
+                            configInstance.EPUB3ExportParameters.EncodeExportedAudioFiles,
+                            configInstance.EPUB3ExportParameters.ExportEncodingBitrate,
+                            configInstance.EPUB3ExportParameters.ExportSampleRate,
+                            configInstance.EPUB3ExportParameters.ExportChannels == 2,
                             false, 100,
                             0,
                             true);
 
                     EPUB3_ExportInstance.AddSectionNameToAudioFile = false;
                     EPUB3_ExportInstance.AudioFileNameCharsLimit = 100;
-                    if (configInstance.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) EPUB3_ExportInstance.EncodingFileFormat = configInstance.EncodingAudioFileFormat;
+                    if (configInstance.EPUB3ExportParameters.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) 
+                        EPUB3_ExportInstance.EncodingFileFormat = configInstance.EPUB3ExportParameters.EncodingAudioFileFormat;
 
                     ((Obi.ImportExport.Epub3_ObiExport)EPUB3_ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
-                    exportDirectoryEPUB3 = configInstance.ExportDirectory;
+                    exportDirectoryEPUB3 = configInstance.EPUB3ExportParameters.ExportDirectory;
                     exportDirectoryDAISY202 = exportDirectoryDAISY3 = null;
                 }
 
