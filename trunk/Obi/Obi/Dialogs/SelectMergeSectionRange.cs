@@ -458,6 +458,10 @@ namespace Obi.Dialogs
             else
             {
                 m_SelectedSectionList = listOfSelectedSections;
+                if (listOfSelectedSections.Count < 1)
+                {
+                    MessageBox.Show(Localizer.Message("MergeOptions_NoSelectionForLevelChange"));
+                }
             }
 
 

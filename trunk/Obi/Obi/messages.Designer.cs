@@ -3414,6 +3414,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No section is selected to perform level change operation .
+        /// </summary>
+        internal static string MergeOptions_NoSelectionForLevelChange {
+            get {
+                return ResourceManager.GetString("MergeOptions_NoSelectionForLevelChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The count of phrase to merge cannot be greater than {0}. Please select lesser number of phrases to merge.
         /// </summary>
         internal static string MergePhrases_CountLimitMessage {
