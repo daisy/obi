@@ -284,11 +284,13 @@ namespace Obi.Dialogs
             m_IsEncoderCheck = m_checkBoxEncoder.Checked;
             m_comboBoxEncodingType.Enabled = m_checkBoxEncoder.Checked;
             m_ComboBoxBitrate.Enabled = m_checkBoxEncoder.Checked;
-            m_btnAdvance.Enabled = m_checkBoxEncoder.Checked;
             if (m_comboBoxEncodingType.SelectedIndex == 0)
             {
-                m_ComboBoxBitrate.Enabled = true;
-                m_btnAdvance.Enabled = true;
+                m_btnAdvance.Enabled = m_checkBoxEncoder.Checked;
+            }
+            else
+            {
+                m_btnAdvance.Enabled = false;
             }
 
             // m_btnAdvance.Enabled = m_checkBoxEncoder.Checked;            
