@@ -149,6 +149,16 @@ namespace Obi.ProjectView
                 return mPresentation.RootNode;
             }
         }
+        /// <summary>
+        /// Get First Section of TOC View
+        /// </summary>
+        public SectionNode FirstSectionOfTOCView
+        {
+            get
+            {
+                return mPresentation.FirstSection;
+            }
+        } 
 
         public void SaveDefaultMetadatas()
         {
@@ -1374,8 +1384,11 @@ namespace Obi.ProjectView
 
                             for (int i = 0; i < phraseList.Count; i++)
                             {
-                                Commands.Command add = new Commands.Node.AddNode(this, phraseList[i], firstSection, firstSection.PhraseChildCount + i, false);
-                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, add);
+                                if (phraseList[i].IsRooted)
+                                {
+                                    Commands.Command add = new Commands.Node.AddNode(this, phraseList[i], firstSection, firstSection.PhraseChildCount + i, false);
+                                    mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, add);
+                                }
                             }
 
                             try
