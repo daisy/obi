@@ -233,8 +233,17 @@ namespace Obi.Dialogs
             {               
                 List<SectionNode> tempList = new List<SectionNode>();
                 tempList = listBoxSelectionIsContinuous();
-                //if(
+                if (tempList.Contains(m_ProjectView.FirstSectionOfTOCView))
+                {
+                    m_btn_IncreaseSectionLevel.Enabled = false;
+                    m_btn_DecreaseSectionLevel.Enabled = false;
+                }
+                else
+                {
 
+                    m_btn_IncreaseSectionLevel.Enabled = true;
+                    m_btn_DecreaseSectionLevel.Enabled = true;
+                }
                 if (m_RemainingIndexes.Count < 1)
                 { return; }
                 else
@@ -414,7 +423,19 @@ namespace Obi.Dialogs
             }
             if (totalPhraseCount > 7000)
                 MessageBox.Show(String.Format(Localizer.Message("limited_sections_merge"), m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count - 1].Label));
-            m_tb_SectionsSelected.AccessibleName = m_StatusLabelForMergeSection.AccessibleName = String.Format(Localizer.Message("merged_sections"), m_SectionList[0].Label, m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count - 1].Label);           
+            m_tb_SectionsSelected.AccessibleName = m_StatusLabelForMergeSection.AccessibleName = String.Format(Localizer.Message("merged_sections"), m_SectionList[0].Label, m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count - 1].Label);
+
+            if (m_SectionList.Contains(m_ProjectView.FirstSectionOfTOCView))
+            {
+                m_btn_IncreaseSectionLevel.Enabled = false;
+                m_btn_DecreaseSectionLevel.Enabled = false;
+            }
+            else
+            {
+
+                m_btn_IncreaseSectionLevel.Enabled = true;
+                m_btn_DecreaseSectionLevel.Enabled = true;
+            }
 
         }
 
