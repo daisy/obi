@@ -233,7 +233,19 @@ namespace Obi.Dialogs
             {               
                 List<SectionNode> tempList = new List<SectionNode>();
                 tempList = listBoxSelectionIsContinuous();
-                if (tempList.Contains(m_ProjectView.FirstSectionOfTOCView))
+                List<SectionNode> listOfSelectedSections = new List<SectionNode>();
+                for (int i = 0; i < m_lb_listofSectionsToMerge.SelectedItems.Count; i++)
+                {
+                    int k = m_lb_listofSectionsToMerge.SelectedIndices[i];
+                    for (int j = 0; j < m_SectionList.Count; j++)
+                    {
+                        if (k == j)
+                        {
+                            listOfSelectedSections.Add((SectionNode)m_SectionList[j]);
+                        }
+                    }
+                }
+                if (listOfSelectedSections.Contains(m_ProjectView.FirstSectionOfTOCView))
                 {
                     m_btn_IncreaseSectionLevel.Enabled = false;
                     m_btn_DecreaseSectionLevel.Enabled = false;
@@ -284,6 +296,7 @@ namespace Obi.Dialogs
             //    m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();
 
             m_IsDeselected = false;
+
          
         }
 
