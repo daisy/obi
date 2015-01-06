@@ -1330,6 +1330,9 @@ namespace Obi.ProjectView
                             SectionNode firstSection = selectedSections[0];
                             List<SectionNode> listOfSections = selectionDialog.ListOfSections;
                             selectedSections.Remove(firstSection);
+                            //SectionNode node = listOfSections[0];
+                            //mTOCView.Selection = new NodeSelection(node, mContentView);
+                            this.Selection = new NodeSelection(listOfSections[0], mContentView);
                             //first arrange the children whose parents will be deleted
                             int lastSelectedSectionIndex = listOfSections.IndexOf(selectedSections[selectedSections.Count - 1]);
 
@@ -1393,10 +1396,13 @@ namespace Obi.ProjectView
 
                             try
                             {
-                                mTOCView.Selection = null;
+                              //  mTOCView.Selection = null;
+                             
                                 if (mergeSectionCommand.ChildCommands.Count > 0)
                                 {
+                                    Console.WriteLine("Project view Selections before Merge {0}", this.Selection);
                                     mPresentation.Do(mergeSectionCommand);
+                                    Console.WriteLine("Project view Selections after Merge {0}", this.Selection);
                                 }
                             }
                             catch (System.Exception ex)
