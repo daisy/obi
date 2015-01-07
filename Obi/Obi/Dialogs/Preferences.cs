@@ -760,31 +760,37 @@ namespace Obi.Dialogs
             {       
                 m_OperationDurationUpDown.Value = (int)mSettings.NudgeTimeMs;
                 m_OperationDurationUpDown.Increment = 20;
+                label3.Visible = true;
             }
             if(m_cbOperation.SelectedIndex == 1)
             {
                 m_OperationDurationUpDown.Value = mSettings.PreviewDuration;
                 m_OperationDurationUpDown.Increment = 100;
+                label3.Visible = true;
             }
             if(m_cbOperation.SelectedIndex == 2)
             {
                 m_OperationDurationUpDown.Value = mSettings.ElapseBackTimeInMilliseconds;
                 m_OperationDurationUpDown.Increment = 150;
+                label3.Visible = true;
             }
             if (m_cbOperation.SelectedIndex == 3)
             {
                 m_OperationDurationUpDown.Value = mSettings.DefaultLeadingSilence;
                 m_OperationDurationUpDown.Increment = 10;
+                label3.Visible = true;
             }
             if (m_cbOperation.SelectedIndex == 4)
             {
                 m_OperationDurationUpDown.Value = mSettings.DefaultThreshold;
                 m_OperationDurationUpDown.Increment = 25;
+                label3.Visible = false;
             }
             if (m_cbOperation.SelectedIndex == 5)
             {
                 m_OperationDurationUpDown.Value = mSettings.DefaultGap;
                 m_OperationDurationUpDown.Increment = 25;
+                label3.Visible = true;
             }
         }
 

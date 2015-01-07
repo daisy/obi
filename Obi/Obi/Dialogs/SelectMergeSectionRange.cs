@@ -549,11 +549,11 @@ namespace Obi.Dialogs
                 }
             }
             if (m_SelectedSectionList.Count != 0 && m_SelectedSectionList[m_SelectedSectionList.Count - 1] != null
-                && m_SelectedSectionList[m_SelectedSectionList.Count - 1].PhraseChildCount > 0)
-                {
+                && m_SelectedSectionList[m_SelectedSectionList.Count - 1].Duration > 0)
+            {
                 m_btnPause.Visible = true;
                 m_btn_Play.Visible = false;
-                }
+            }
         }
 
         private void m_btn_Stop_Click(object sender, EventArgs e)
