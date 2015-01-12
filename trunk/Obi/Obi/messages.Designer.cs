@@ -3759,6 +3759,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empty.
+        /// </summary>
+        internal static string Metadata_Empty {
+            get {
+                return ResourceManager.GetString("Metadata_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi specific data for saving EPUB 3 export path.
         /// </summary>
         internal static string METADATA_EPUB3_EXPORT_PATH_HELP {
