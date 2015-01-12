@@ -437,11 +437,13 @@ namespace Obi.ProjectView
                     {
                         int names = a.NameContentAttribute.Name.CompareTo(b.NameContentAttribute.Name);
                         if (a.NameContentAttribute.Value != null && b.NameContentAttribute.Value != null)
-                        {
+                        {   
                             return names == 0 ? a.NameContentAttribute.Value.CompareTo(b.NameContentAttribute.Value) : names;
                         }
                         else
                         {
+                            if (a.NameContentAttribute.Value == null) a.NameContentAttribute.Value =Localizer.Message ("Metadata_Empty");
+                            if (b.NameContentAttribute.Value == null) b.NameContentAttribute.Value = Localizer.Message("Metadata_Empty");
                             return names ;
                         }
 

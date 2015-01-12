@@ -2700,4 +2700,7 @@ Error text: {1}</value>
   <data name="MergeOptions_NoSelectionForLevelChange" xml:space="preserve">
     <value>No section is selected to perform level change operation </value>
   </data>
+  <data name="Metadata_Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
 </root>
