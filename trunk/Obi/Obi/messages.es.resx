@@ -2415,4 +2415,22 @@ Texto de error: {1}</value>
   <data name="UserRegistration_EnterFollowing" xml:space="preserve">
     <value>Por favor, introduzca correctamente lo siguiente:</value>
   </data>
+  <data name="Audio_PreservePage" xml:space="preserve">
+    <value>Preserve pages while recording over subsequent audio</value>
+  </data>
+  <data name="MergeOptions_IncreaseLevel" xml:space="preserve">
+    <value>Incrementar el nivel de la sección</value>
+  </data>
+  <data name="MergeOptions_DecreaseLevel" xml:space="preserve">
+    <value>Disminuir el nivel de la sección</value>
+  </data>
+  <data name="MergeOptions_Merge" xml:space="preserve">
+    <value>Unir</value>
+  </data>
+  <data name="ProjectViewFormMsg_SectionLevelChangeOperationFail" xml:space="preserve">
+    <value>Section level change operation failed.</value>
+  </data>
+  <data name="MergeOptions_NoSelectionForLevelChange" xml:space="preserve">
+    <value>No section is selected to perform level change operation </value>
+  </data>
 </root>
