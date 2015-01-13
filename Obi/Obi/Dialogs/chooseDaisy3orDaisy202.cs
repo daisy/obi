@@ -20,6 +20,27 @@ namespace Obi.Dialogs
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");                  
         }
+        public bool ExportDaisy2
+        {
+            get
+            {
+                return m_cbDaisy202.Checked;
+            }
+        }
+        public bool ExportDaisy3
+        {
+            get
+            {
+                return  m_cbDaisy3.Checked;
+            }
+        }
+        public bool ExportEpub3
+        {
+            get
+            {
+                return m_cbEpub3.Checked;
+            }
+        }
 
 
         public Obi.ImportExport.ExportFormat chooseOption { get { return m_ExportFormat; } }       
@@ -27,41 +48,6 @@ namespace Obi.Dialogs
         private void m_OKBtn_Click(object sender, EventArgs e)
         {
              this.DialogResult = DialogResult.OK;
-             if (m_cbDaisy3.Checked && !m_cbDaisy202.Checked && !m_cbEpub3.Checked)
-             {
-                 m_ExportFormat = Obi.ImportExport.ExportFormat.DAISY3_0;
-                 Close();
-             }
-             else if (m_cbDaisy202.Checked && !m_cbDaisy3.Checked && !m_cbEpub3.Checked)
-             {
-                 m_ExportFormat = Obi.ImportExport.ExportFormat.DAISY2_02;
-                 Close();
-             }
-             else if (m_cbEpub3.Checked && !m_cbDaisy3.Checked && !m_cbDaisy202.Checked)
-             {
-                 m_ExportFormat = Obi.ImportExport.ExportFormat.EPUB3;
-                 Close();
-             }
-             else if (m_cbDaisy3.Checked && m_cbDaisy202.Checked && !m_cbEpub3.Checked)
-             {
-                 m_ExportFormat = Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202;
-                 Close();
-             }
-             //else if (m_cbDaisy3.Checked && m_cbEpub3.Checked && !m_cbDaisy202.Checked)
-             //{
-             //    m_ExportFormat = Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3;
-             //    Close();
-             //}
-             //else if (m_cbDaisy202.Checked && m_cbEpub3.Checked && !m_cbDaisy3.Checked)
-             //{
-             //    m_ExportFormat = Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3;
-             //    Close();
-             //}
-             //else if (m_cbDaisy3.Checked && m_cbDaisy202.Checked && m_cbEpub3.Checked)
-             //{
-             //    m_ExportFormat = Obi.ImportExport.ExportFormat.All;
-             //    Close();
-             //}
         }
 
         private void m_BtnCancel_Click(object sender, EventArgs e)
