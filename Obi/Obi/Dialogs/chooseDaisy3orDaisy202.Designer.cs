@@ -29,28 +29,13 @@ namespace Obi.Dialogs
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(chooseDaisy3orDaisy202));
-            this.m_radBtnDaisy3 = new System.Windows.Forms.RadioButton();
-            this.m_radBtnDaisy202 = new System.Windows.Forms.RadioButton();
             this.m_OKBtn = new System.Windows.Forms.Button();
             this.m_BtnCancel = new System.Windows.Forms.Button();
-            this.m_radBtnDaisy3_202 = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.m_radBtnEpub3 = new System.Windows.Forms.RadioButton();
+            this.m_cbDaisy3 = new System.Windows.Forms.CheckBox();
+            this.m_cbDaisy202 = new System.Windows.Forms.CheckBox();
+            this.m_cbEpub3 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
-            // m_radBtnDaisy3
-            // 
-            resources.ApplyResources(this.m_radBtnDaisy3, "m_radBtnDaisy3");
-            this.m_radBtnDaisy3.Name = "m_radBtnDaisy3";
-            this.m_radBtnDaisy3.TabStop = true;
-            this.m_radBtnDaisy3.UseVisualStyleBackColor = true;
-            // 
-            // m_radBtnDaisy202
-            // 
-            resources.ApplyResources(this.m_radBtnDaisy202, "m_radBtnDaisy202");
-            this.m_radBtnDaisy202.Name = "m_radBtnDaisy202";
-            this.m_radBtnDaisy202.TabStop = true;
-            this.m_radBtnDaisy202.UseVisualStyleBackColor = true;
             // 
             // m_OKBtn
             // 
@@ -67,23 +52,29 @@ namespace Obi.Dialogs
             this.m_BtnCancel.UseVisualStyleBackColor = true;
             this.m_BtnCancel.Click += new System.EventHandler(this.m_BtnCancel_Click);
             // 
-            // m_radBtnDaisy3_202
-            // 
-            resources.ApplyResources(this.m_radBtnDaisy3_202, "m_radBtnDaisy3_202");
-            this.m_radBtnDaisy3_202.Name = "m_radBtnDaisy3_202";
-            this.m_radBtnDaisy3_202.TabStop = true;
-            this.m_radBtnDaisy3_202.UseVisualStyleBackColor = true;
-            // 
             // helpProvider1
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
-            // m_radBtnEpub3
+            // m_cbDaisy3
             // 
-            resources.ApplyResources(this.m_radBtnEpub3, "m_radBtnEpub3");
-            this.m_radBtnEpub3.Name = "m_radBtnEpub3";
-            this.m_radBtnEpub3.TabStop = true;
-            this.m_radBtnEpub3.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.m_cbDaisy3, "m_cbDaisy3");
+            this.m_cbDaisy3.Checked = true;
+            this.m_cbDaisy3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.m_cbDaisy3.Name = "m_cbDaisy3";
+            this.m_cbDaisy3.UseVisualStyleBackColor = true;
+            // 
+            // m_cbDaisy202
+            // 
+            resources.ApplyResources(this.m_cbDaisy202, "m_cbDaisy202");
+            this.m_cbDaisy202.Name = "m_cbDaisy202";
+            this.m_cbDaisy202.UseVisualStyleBackColor = true;
+            // 
+            // m_cbEpub3
+            // 
+            resources.ApplyResources(this.m_cbEpub3, "m_cbEpub3");
+            this.m_cbEpub3.Name = "m_cbEpub3";
+            this.m_cbEpub3.UseVisualStyleBackColor = true;
             // 
             // chooseDaisy3orDaisy202
             // 
@@ -91,12 +82,11 @@ namespace Obi.Dialogs
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_BtnCancel;
-            this.Controls.Add(this.m_radBtnEpub3);
-            this.Controls.Add(this.m_radBtnDaisy3_202);
+            this.Controls.Add(this.m_cbEpub3);
+            this.Controls.Add(this.m_cbDaisy202);
+            this.Controls.Add(this.m_cbDaisy3);
             this.Controls.Add(this.m_BtnCancel);
             this.Controls.Add(this.m_OKBtn);
-            this.Controls.Add(this.m_radBtnDaisy202);
-            this.Controls.Add(this.m_radBtnDaisy3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -108,12 +98,11 @@ namespace Obi.Dialogs
 
         #endregion
 
-        private System.Windows.Forms.RadioButton m_radBtnDaisy3;
-        private System.Windows.Forms.RadioButton m_radBtnDaisy202;
         private System.Windows.Forms.Button m_OKBtn;
         private System.Windows.Forms.Button m_BtnCancel;
-        private System.Windows.Forms.RadioButton m_radBtnDaisy3_202;
         private System.Windows.Forms.HelpProvider helpProvider1;
-        private System.Windows.Forms.RadioButton m_radBtnEpub3;
+        private System.Windows.Forms.CheckBox m_cbDaisy3;
+        private System.Windows.Forms.CheckBox m_cbDaisy202;
+        private System.Windows.Forms.CheckBox m_cbEpub3;
     }
 }
