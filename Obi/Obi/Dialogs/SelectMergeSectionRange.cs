@@ -181,6 +181,10 @@ namespace Obi.Dialogs
                     int n = m_SectionList.IndexOf(m_SectionList[i]);
                     m_SectionList[n].Label = m_SectionList[n].Label.Replace("\n", string.Empty);
                     m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[n].Label + " Level " + m_SectionList[n].Level);
+                    if (m_SectionList[i] == m_ProjectView.GetSelectedPhraseSection)
+                    {
+                        m_lb_listofSectionsToMerge.SelectedIndex = i;
+                    }
 
                 }
             }
