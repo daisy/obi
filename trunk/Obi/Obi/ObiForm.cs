@@ -2672,23 +2672,21 @@ ref string exportDirectoryEPUB3)
                 Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202();
                 if (chooseDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202)
-                      //  || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+                    if (chooseDialog.ExportDaisy3)
                     {
                         exportDirectoryDAISY3 = Path.Combine(Directory.GetParent(mSession.Path).FullName,
                                                        Program.SafeName(
                                                            string.Format(Localizer.Message("default_export_dirname"), "")));
                     }
-                    if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY2_02 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202)
-                       // || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+                    if (chooseDialog.ExportDaisy2)
                     {
                         exportDirectoryDAISY202 = Path.Combine(Directory.GetParent(mSession.Path).FullName,
                                                        Program.SafeName(
                                                            string.Format(
                                                                Localizer.Message("Default_DAISY2_02export_dirname"), "")));
                     }
-                    if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.EPUB3) //|| chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3
-                  //  || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+
+                    if (chooseDialog.ExportEpub3)
                     {
                         exportDirectoryEPUB3 = Path.Combine(Directory.GetParent(mSession.Path).FullName,
                                                        Program.SafeName(
@@ -2704,13 +2702,12 @@ ref string exportDirectoryEPUB3)
                 Dialogs.ExportDirectory ExportDialogDAISY202 = null;
                 Dialogs.ExportDirectory ExportDialogEPUB3 = null;
 
-                if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202)
-                 //   || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+                if (chooseDialog.ExportDaisy3)
                 {
                     ExportDialogDAISY3 =
                         new ExportDirectory(exportDirectoryDAISY3,
                                             mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile,mSettings.EncodingFileFormat);
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY3.AdditionalTextForTitle = "DAISY 3";
                     ExportDialogDAISY3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2719,14 +2716,12 @@ ref string exportDirectoryEPUB3)
                     if (ExportDialogDAISY3.ShowDialog() != DialogResult.OK) ExportDialogDAISY3 = null;
                 }
 
-
-                if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY2_02 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202)
-                  //  || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+                if (chooseDialog.ExportDaisy2)
                 {
                     ExportDialogDAISY202 =
                         new ExportDirectory(exportDirectoryDAISY202,
-                                            mSession.Path, mSettings.Export_EncodeAudioFiles,(mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile,mSettings.EncodingFileFormat);
+                                            mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY202.AdditionalTextForTitle = "DAISY 2.02";
                     ExportDialogDAISY202.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2735,13 +2730,12 @@ ref string exportDirectoryEPUB3)
                     if (ExportDialogDAISY202.ShowDialog() != DialogResult.OK) ExportDialogDAISY202 = null;
                 }
 
-                if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.EPUB3) //|| chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3
-                    //|| chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+                if (chooseDialog.ExportEpub3)
                 {
                     ExportDialogEPUB3 =
                         new ExportDirectory(exportDirectoryEPUB3,
                                             mSession.Path, true, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile,mSettings.EncodingFileFormat);
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
                     //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogEPUB3.EpubLengthCheckboxEnabled = true;
                     ExportDialogEPUB3.CreateDummyTextCheckboxEnabled = true;
