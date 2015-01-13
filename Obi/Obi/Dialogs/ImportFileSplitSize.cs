@@ -44,9 +44,9 @@ namespace Obi.Dialogs
             }
 
             mPhraseSizeTextBox.ReadOnly = !settings.SplitPhrasesOnImport;
-            m_txtCharToReplaceWithSpace.Text = settings.Audio_ImportCharsToReplaceWithSpaces;
-            m_txtPageIdentificationString.Text = settings.Audio_ImportPageIdentificationString;
-            m_numCharCountToTruncateFromStart.Value = settings.Audio_ImportCharCountToTruncateFromStart;
+            m_txtCharToReplaceWithSpace.Text = settings.ImportCharsToReplaceWithSpaces;
+            m_txtPageIdentificationString.Text = settings.ImportPageIdentificationString;
+            m_numCharCountToTruncateFromStart.Value = settings.ImportCharCountToTruncateFromStart;
             mCanClose = true;
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
@@ -111,9 +111,9 @@ namespace Obi.Dialogs
                     uint duration = Convert.ToUInt32 ( mPhraseSizeTextBox.Text );
                     mMaxPhraseDurationMinutes = duration;
                     if (duration <= 0) throw new Exception ();
-                    m_Settings.Audio_ImportCharCountToTruncateFromStart = (uint)m_numCharCountToTruncateFromStart.Value;
-                    m_Settings.Audio_ImportCharsToReplaceWithSpaces = m_txtCharToReplaceWithSpace.Text;
-                    m_Settings.Audio_ImportPageIdentificationString = m_txtPageIdentificationString.Text;
+                    m_Settings.ImportCharCountToTruncateFromStart = (uint)m_numCharCountToTruncateFromStart.Value;
+                    m_Settings.ImportCharsToReplaceWithSpaces = m_txtCharToReplaceWithSpace.Text;
+                    m_Settings.ImportPageIdentificationString = m_txtPageIdentificationString.Text;
                     }
                 catch (System.Exception)
                     {

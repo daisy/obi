@@ -1506,7 +1506,7 @@ namespace Obi.ProjectView
                 {
                 this.Controls.Remove ( m_BackgroundBlockLayout );
                 m_BackgroundBlockLayout.Dispose ();
-                if (ContentView.Settings != null &&  ContentView.Settings.OptimizeMemory)
+                if (ContentView.Settings != null &&  ContentView.Settings.Project_OptimizeMemory)
                 {
                     Console.WriteLine("Background layout memory before collection :" + (System.GC.GetTotalMemory(false) / (1024 * 1024)).ToString());
                     //System.GC.Collect();
@@ -1633,7 +1633,7 @@ namespace Obi.ProjectView
                 
                 if (mBlockLayout != null && mBlockLayout.WrapContents && mBlockLayout.Controls.Count > 1)
                 {
-                    if (!mContentView.Settings.LeftAlignPhrasesInContentView)
+                    if (!mContentView.Settings.Project_LeftAlignPhrasesInContentView)
                     {
                         if (m_IsFlowBreakMarked)
                         {

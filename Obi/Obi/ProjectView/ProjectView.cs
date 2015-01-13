@@ -2360,9 +2360,9 @@ namespace Obi.ProjectView
 
                 if (filesPathArray != null)
                     {
-                        long threshold = (long) ObiForm.Settings.DefaultThreshold;
-                      double gap = (double) ObiForm.Settings.DefaultGap;
-                        double leadingSilence = (double) ObiForm.Settings.DefaultLeadingSilence;
+                        long threshold = (long) ObiForm.Settings.Audio_DefaultThreshold;
+                      double gap = (double) ObiForm.Settings.Audio_DefaultGap;
+                        double leadingSilence = (double) ObiForm.Settings.Audio_DefaultLeadingSilence;
 
                     Dialogs.ImportFileSplitSize dialog =
                         new Dialogs.ImportFileSplitSize ( ObiForm.Settings , filesPathArray);
@@ -3369,9 +3369,9 @@ for (int j = 0;
                 Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( node as PhraseNode );
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    ObiForm.Settings.DefaultGap=(decimal) dialog.Gap;
-                    ObiForm.Settings.DefaultLeadingSilence = (decimal)dialog.LeadingSilence;
-                    ObiForm.Settings.DefaultThreshold = dialog.Threshold;
+                    ObiForm.Settings.Audio_DefaultGap=(decimal) dialog.Gap;
+                    ObiForm.Settings.Audio_DefaultLeadingSilence = (decimal)dialog.LeadingSilence;
+                    ObiForm.Settings.Audio_DefaultThreshold = dialog.Threshold;
                     
                 }
             }
@@ -3399,7 +3399,7 @@ for (int j = 0;
                 Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( node as PhraseNode );
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
-                        Audio.PhraseDetection.RetainSilenceInBeginningOfPhrase = ObiForm.Settings.RetainInitialSilenceInPhraseDetection;
+                        Audio.PhraseDetection.RetainSilenceInBeginningOfPhrase = ObiForm.Settings.Audio_RetainInitialSilenceInPhraseDetection;
                     bool playbackOnSelectionChangedStatus = TransportBar.SelectionChangedPlaybackEnabled;
                     TransportBar.SelectionChangedPlaybackEnabled = false;
                     ObiNode phraseDetectionNode = Selection.Node ;
@@ -3487,7 +3487,7 @@ for (int j = 0;
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate ( Dialogs.ProgressDialog progress1)
                             {
-                                Audio.PhraseDetection.RetainSilenceInBeginningOfPhrase = ObiForm.Settings.RetainInitialSilenceInPhraseDetection;
+                                Audio.PhraseDetection.RetainSilenceInBeginningOfPhrase = ObiForm.Settings.Audio_RetainInitialSilenceInPhraseDetection;
                             for (i = 0; i < sectionsList.Count; i++)
                                 {
                                     if (progress1.CancelOperation)

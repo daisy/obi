@@ -122,7 +122,7 @@ namespace Obi.ProjectView
                             ColorSettings settings = mBlock.ColorSettings;
 
                             if (mBlock.Strip.ContentView.Settings != null
-                                    && mBlock.Strip.ContentView.Settings.OptimizeMemory)
+                                    && mBlock.Strip.ContentView.Settings.Project_OptimizeMemory)
                             {
                             System.Diagnostics.PerformanceCounter ramPerformanceCounter = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
                             if (ramPerformanceCounter.NextValue() < 100)

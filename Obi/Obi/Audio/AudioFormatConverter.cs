@@ -193,7 +193,7 @@ namespace Obi.Audio
 
         public static void TestVoice(string text, string voice, Settings settings)
         {
-            AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)settings.AudioChannels, (uint)settings.AudioSampleRate, (ushort)settings.AudioBitDepth);
+            AudioLib.AudioLibPCMFormat audioFormat = new AudioLibPCMFormat((ushort)settings.Audio_Channels, (uint)settings.Audio_SampleRate, (ushort)settings.Audio_BitDepth);
             m_Tts = new TextToSpeech(audioFormat);
             m_Tts.SpeakString(voice, text,null);
         }

@@ -333,7 +333,7 @@ namespace Obi.UserControls
                 }
             }
 
-            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring || (m_ProjectView.ObiForm.Settings.RecordDirectlyWithRecordButton && m_TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording))
+            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring || (m_ProjectView.ObiForm.Settings.Audio_RecordDirectlyWithRecordButton && m_TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording))
             {
                 m_recordingToolBarRecordingBtn.AccessibleName = "Recording";
             }

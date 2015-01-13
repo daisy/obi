@@ -404,9 +404,9 @@ namespace Obi
                 {//2
                     //m_PhDetectionMemoryStream.ReadByte();
                     
-                    long threshold = (long)m_Settings.DefaultThreshold;
-                    long GapLength = (long)m_Settings.DefaultGap;
-                    long before = (long)m_Settings.DefaultLeadingSilence;
+                    long threshold = (long)m_Settings.Audio_DefaultThreshold;
+                    long GapLength = (long)m_Settings.Audio_DefaultGap;
+                    long before = (long)m_Settings.Audio_DefaultLeadingSilence;
                     //Console.WriteLine("on the fly ph detection parameters " + threshold + " : " + GapLength);
                     AudioLib.AudioLibPCMFormat audioPCMFormat = new AudioLib.AudioLibPCMFormat(mRecorder.RecordingPCMFormat.NumberOfChannels, mRecorder.RecordingPCMFormat.SampleRate, mRecorder.RecordingPCMFormat.BitDepth);
                     List<long> timingList = AudioLib.PhraseDetection.Apply(new System.IO.MemoryStream(m_MemStreamArray),

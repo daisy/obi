@@ -778,7 +778,7 @@ namespace Obi.ImportExport
         protected override void clipEndAdjustedToNull(Time clipB, Time clipE, Time duration, TreeNode treeNode)
         {
             double diff = clipE.AsMilliseconds - duration.AsMilliseconds;
-            if (diff > m_Settings.ImportToleranceForAudioInMs && treeNode != null)
+            if (diff > m_Settings.Project_ImportToleranceForAudioInMs && treeNode != null)
             {
                 EmptyNode eNode = (EmptyNode)treeNode;
                 eNode.TODO = true;
