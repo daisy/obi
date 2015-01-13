@@ -214,7 +214,7 @@
     <value>கோப்பையை அழிக்கும்பொழுது பிழை ஏற்ப்பட்டது {0}. ({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>அலை கோப்பை (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|Any file|*.*</value>
+    <value>அலை கோப்பை (*.wav;*.mp3;*.mp4;*.m4a)|*.wav;*.mp3;*.mp4;*.m4a|Any file|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>ஒலி உள்ளீட்டின் கண்காணிப்பு</value>

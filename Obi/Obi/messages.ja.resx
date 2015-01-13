@@ -220,7 +220,7 @@
     <value>エラー：ファイルを削除できません {0}. ({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>WAVEファイル(*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|すべてのファイル|*.*</value>
+    <value>WAVEファイル(*.wav;*.mp3;*.mp4;*.m4a)|*.wav;*.mp3;*.mp4;*.m4a|すべてのファイル|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>音声入力をモニタリング…</value>
