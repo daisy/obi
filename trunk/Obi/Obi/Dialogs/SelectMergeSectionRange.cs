@@ -207,7 +207,11 @@ namespace Obi.Dialogs
                         m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
                         m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
 
-                    } 
+                    }
+                    if (m_IndexOfSectionSelected[0] == i)
+                    {
+                        m_lb_listofSectionsToMerge.SelectedIndex = i;
+                    }
 
                 }
                 else
