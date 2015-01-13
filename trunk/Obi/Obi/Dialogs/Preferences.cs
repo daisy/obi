@@ -78,17 +78,17 @@ namespace Obi.Dialogs
         private void InitializeProjectTab ()
             {
                 UpdateTabControl();
-            mDirectoryTextbox.Text = mSettings.DefaultPath;
+            mDirectoryTextbox.Text = mSettings.Project_DefaultPath;
          //   mLastOpenCheckBox.Checked = mSettings.OpenLastProject;
             m_ChkAutoSaveInterval.CheckStateChanged -= new System.EventHandler ( this.m_ChkAutoSaveInterval_CheckStateChanged );
-            m_ChkAutoSaveInterval.Checked = mSettings.AutoSaveTimeIntervalEnabled;
+            m_ChkAutoSaveInterval.Checked = mSettings.Project_AutoSaveTimeIntervalEnabled;
             m_ChkAutoSaveInterval.CheckStateChanged += new System.EventHandler ( this.m_ChkAutoSaveInterval_CheckStateChanged );
-            int intervalMinutes = Convert.ToInt32 ( mSettings.AutoSaveTimeInterval / 60000 );
+            int intervalMinutes = Convert.ToInt32 ( mSettings.Project_AutoSaveTimeInterval / 60000 );
             MnumAutoSaveInterval.Value = intervalMinutes;
             MnumAutoSaveInterval.Enabled = m_ChkAutoSaveInterval.Checked;
           //  mChkAutoSaveOnRecordingEnd.Checked = mSettings.AutoSave_RecordingEnd;
-            mPipelineTextbox.Text = mSettings.PipelineScriptsPath;
-            m_NumImportTolerance.Value = (decimal) mSettings.ImportToleranceForAudioInMs;
+            mPipelineTextbox.Text = mSettings.Project_PipelineScriptsPath;
+            m_NumImportTolerance.Value = (decimal) mSettings.Project_ImportToleranceForAudioInMs;
 
             }
 
@@ -110,11 +110,11 @@ namespace Obi.Dialogs
                         if (recorder.InputDevice.Name == input.Name)
                             defaultInputName = input.Name;
                     }
-                    if (mSettings.LastInputDevice == "")
+                    if (mSettings.Audio_LastInputDevice == "")
                         mInputDeviceCombo.SelectedIndex = 0;
                     //  mInputDeviceCombo.SelectedItem = defaultInputName;
                     else
-                        mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.LastInputDevice);
+                        mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.Audio_LastInputDevice);
 
 
                     AudioPlayer player = mTransportBar.AudioPlayer;
@@ -127,11 +127,11 @@ namespace Obi.Dialogs
                         if (player.OutputDevice.Name == output.Name)
                             defaultOutputName = output.Name;
                     }
-                    if (mSettings.LastOutputDevice == "")
+                    if (mSettings.Audio_LastOutputDevice == "")
                         mOutputDeviceCombo.SelectedIndex = 0;
                     //mOutputDeviceCombo.SelectedItem = defaultOutputName;
                     else
-                        mOutputDeviceCombo.SelectedIndex = mOutputDeviceCombo.Items.IndexOf(mSettings.LastOutputDevice);
+                        mOutputDeviceCombo.SelectedIndex = mOutputDeviceCombo.Items.IndexOf(mSettings.Audio_LastOutputDevice);
                     
                     int sampleRate;
                     int audioChannels;
@@ -143,8 +143,8 @@ namespace Obi.Dialogs
                     }
                     else
                     {
-                        sampleRate = mSettings.AudioSampleRate;
-                        audioChannels = mSettings.AudioChannels;
+                        sampleRate = mSettings.Audio_SampleRate;
+                        audioChannels = mSettings.Audio_Channels;
                         mCanChangeAudioSettings = true;
                     }
                     ArrayList sampleRates = new ArrayList();
@@ -178,7 +178,7 @@ namespace Obi.Dialogs
                 
                 if (installedTTSVoices == null || installedTTSVoices.Count == 0)
                 {
-                    AudioFormatConverter.InitializeTTS(mSettings, mPresentation != null ? mPresentation.MediaDataManager.DefaultPCMFormat.Data : new AudioLibPCMFormat((ushort)mSettings.AudioChannels, (uint)mSettings.AudioSampleRate, (ushort)mSettings.AudioBitDepth));
+                    AudioFormatConverter.InitializeTTS(mSettings, mPresentation != null ? mPresentation.MediaDataManager.DefaultPCMFormat.Data : new AudioLibPCMFormat((ushort)mSettings.Audio_Channels, (uint)mSettings.Audio_SampleRate, (ushort)mSettings.Audio_BitDepth));
                 }
                 installedTTSVoices = AudioFormatConverter.InstalledTTSVoices;
                 if (installedTTSVoices != null && installedTTSVoices.Count > 0)
@@ -202,32 +202,32 @@ namespace Obi.Dialogs
             }
 
             if(m_cbOperation.SelectedIndex == 0)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.NudgeTimeMs);
+                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_NudgeTimeMs);
             if(m_cbOperation.SelectedIndex == 1)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.PreviewDuration);
+                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_PreviewDuration);
             if (m_cbOperation.SelectedIndex == 2)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.ElapseBackTimeInMilliseconds);
+                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_ElapseBackTimeInMilliseconds);
             if (m_cbOperation.SelectedIndex == 3)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.DefaultLeadingSilence);
+                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_DefaultLeadingSilence);
             if (m_cbOperation.SelectedIndex == 4)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.DefaultThreshold);
+                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_DefaultThreshold);
             if (m_cbOperation.SelectedIndex == 5)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.DefaultGap);
+                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_DefaultGap);
             mNoiseLevelComboBox.SelectedIndex =
-                mSettings.NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Low ? 0 :
-                mSettings.NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
+                mSettings.Audio_NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Low ? 0 :
+                mSettings.Audio_NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
         //    mAudioCluesCheckBox.Checked = mSettings.AudioClues;
             m_cbOperation.SelectedIndex = 0;
             m_CleanUpFileSizeNumericUpDown.Value = (decimal)mSettings.Audio_CleanupMaxFileSizeInMB;
             if (this.mTab.SelectedTab == mAudioTab)
             {
                 m_IsComplete = false;
-                m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
-                m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
-                m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
+                m_CheckBoxListView.Items[0].Checked = mSettings.Audio_AudioClues;
+                m_CheckBoxListView.Items[1].Checked = mSettings.Audio_RetainInitialSilenceInPhraseDetection;
+                m_CheckBoxListView.Items[2].Checked = mSettings.Audio_Recording_PreviewBeforeStarting;
                 m_CheckBoxListView.Items[3].Checked = mSettings.Audio_UseRecordingPauseShortcutForStopping;
-                m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite;
-                m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
+                m_CheckBoxListView.Items[4].Checked = mSettings.Audio_AllowOverwrite;
+                m_CheckBoxListView.Items[5].Checked = mSettings.Audio_RecordDirectlyWithRecordButton;
                 m_CheckBoxListView.Items[6].Checked = mSettings.MaxAllowedPhraseDurationInMinutes == 50 ;
                 m_CheckBoxListView.Items[7].Checked = mSettings.Audio_ShowLiveWaveformWhileRecording;
                 m_CheckBoxListView.Items[8].Checked = mSettings.Audio_EnableLivePhraseDetection;
@@ -328,12 +328,12 @@ namespace Obi.Dialogs
         /// </summary>
         private void mBrowseButton_Click ( object sender, EventArgs e )
             {
-            SelectFolder ( mSettings.DefaultPath, "default_directory_browser", mDirectoryTextbox );
+            SelectFolder ( mSettings.Project_DefaultPath, "default_directory_browser", mDirectoryTextbox );
             }
 
         private void mPipelineBrowseButton_Click ( object sender, EventArgs e )
             {
-            SelectFolder ( mSettings.PipelineScriptsPath, "pipeline_path_browser", mPipelineTextbox );
+            SelectFolder ( mSettings.Project_PipelineScriptsPath, "pipeline_path_browser", mPipelineTextbox );
             }
 
         private void SelectFolder ( string path, string description, TextBox textBox )
@@ -397,9 +397,9 @@ namespace Obi.Dialogs
                         }
                    
                 if (ObiForm.CheckProjectDirectory_Safe ( mDirectoryTextbox.Text, false ))
-                    mSettings.DefaultPath = mDirectoryTextbox.Text;
+                    mSettings.Project_DefaultPath = mDirectoryTextbox.Text;
                 if (getFiles.Length > 0)
-                    mSettings.PipelineScriptsPath = mPipelineTextbox.Text;
+                    mSettings.Project_PipelineScriptsPath = mPipelineTextbox.Text;
                 else
                 {
                     MessageBox.Show(Localizer.Message("Preferences_PipelineScriptNotFound"));
@@ -421,16 +421,16 @@ namespace Obi.Dialogs
           //  mSettings.AutoSaveTimeIntervalEnabled = m_ChkAutoSaveInterval.Checked;
             try
                 {
-                mSettings.AutoSaveTimeInterval = Convert.ToInt32 ( MnumAutoSaveInterval.Value * 60000 );
-                mSettings.ImportToleranceForAudioInMs = (int) m_NumImportTolerance.Value;
+                mSettings.Project_AutoSaveTimeInterval = Convert.ToInt32 ( MnumAutoSaveInterval.Value * 60000 );
+                mSettings.Project_ImportToleranceForAudioInMs = (int) m_NumImportTolerance.Value;
                 }
             catch (System.Exception ex)
                 {
                 MessageBox.Show ( ex.ToString () );
                 returnVal = false;
                 }
-            mForm.SetAutoSaverInterval = mSettings.AutoSaveTimeInterval;
-            if (mSettings.AutoSaveTimeIntervalEnabled) mForm.StartAutoSaveTimeInterval ();
+            mForm.SetAutoSaverInterval = mSettings.Project_AutoSaveTimeInterval;
+            if (mSettings.Project_AutoSaveTimeIntervalEnabled) mForm.StartAutoSaveTimeInterval ();
             return returnVal;
             }
 
@@ -450,7 +450,7 @@ namespace Obi.Dialogs
                     if (mInputDeviceCombo.SelectedItem != null && mInputDeviceCombo.SelectedItem.ToString() == inputDev.Name)
                     {
                         mTransportBar.Recorder.SetInputDevice(inputDev.Name);
-                        mSettings.LastInputDevice = inputDev.Name;
+                        mSettings.Audio_LastInputDevice = inputDev.Name;
                     }
                 }
                 foreach (OutputDevice outputDev in player.OutputDevices)
@@ -458,7 +458,7 @@ namespace Obi.Dialogs
                     if (mOutputDeviceCombo.SelectedItem != null && mOutputDeviceCombo.SelectedItem.ToString() == outputDev.Name)
                     {
                         mTransportBar.AudioPlayer.SetOutputDevice(mForm, (outputDev.Name));
-                        mSettings.LastOutputDevice = outputDev.Name;
+                        mSettings.Audio_LastOutputDevice = outputDev.Name;
                     }                 
                 }
               //  mSettings.LastInputDevice = ((InputDevice)mInputDeviceCombo.SelectedItem).Name; 
@@ -473,11 +473,11 @@ namespace Obi.Dialogs
                 }*/
             if (mCanChangeAudioSettings)
                 {
-                mSettings.AudioChannels = mChannelsCombo.SelectedItem.ToString () == Localizer.Message ( "mono" ) ? 1 : 2;
-                mSettings.AudioSampleRate = Convert.ToInt32 ( mSampleRateCombo.SelectedItem );
+                mSettings.Audio_Channels = mChannelsCombo.SelectedItem.ToString () == Localizer.Message ( "mono" ) ? 1 : 2;
+                mSettings.Audio_SampleRate = Convert.ToInt32 ( mSampleRateCombo.SelectedItem );
                 if (mPresentation != null)
                     {
-                        if (!mPresentation.UpdatePresentationAudioProperties(mSettings.AudioChannels, mSettings.AudioBitDepth, mSettings.AudioSampleRate))
+                        if (!mPresentation.UpdatePresentationAudioProperties(mSettings.Audio_Channels, mSettings.Audio_BitDepth, mSettings.Audio_SampleRate))
                         {
                             MessageBox.Show (Localizer.Message("Preferences_UnableToUpdateProjectAudioFormat"), Localizer.Message("Caption_Error") ,MessageBoxButtons.OK , MessageBoxIcon.Error );
                         }
@@ -487,17 +487,17 @@ namespace Obi.Dialogs
                 string selectedTTSVoice = GetTTSVoiceNameFromTTSCombo();
             if (!string.IsNullOrEmpty(selectedTTSVoice)) mSettings.Audio_TTSVoice = selectedTTSVoice ;
             
-            mSettings.NoiseLevel = mNoiseLevelComboBox.SelectedIndex == 0 ? AudioLib.VuMeter.NoiseLevelSelection.Low :
+            mSettings.Audio_NoiseLevel = mNoiseLevelComboBox.SelectedIndex == 0 ? AudioLib.VuMeter.NoiseLevelSelection.Low :
                 mNoiseLevelComboBox.SelectedIndex == 1 ? AudioLib.VuMeter.NoiseLevelSelection.Medium : AudioLib.VuMeter.NoiseLevelSelection.High;
                      
             try
                 {
-                  mSettings.NudgeTimeMs = (int)m_Nudge;
-                  mSettings.PreviewDuration = (int)m_Preview;
-                  mSettings.ElapseBackTimeInMilliseconds = (int)m_Elapse;
-                  mSettings.DefaultLeadingSilence = (decimal)m_DefaultLeadingSilence;
-                  mSettings.DefaultThreshold = (decimal)m_DefaultThreshold;
-                  mSettings.DefaultGap = (decimal)m_DefaultGap;
+                  mSettings.Audio_NudgeTimeMs = (int)m_Nudge;
+                  mSettings.Audio_PreviewDuration = (int)m_Preview;
+                  mSettings.Audio_ElapseBackTimeInMilliseconds = (int)m_Elapse;
+                  mSettings.Audio_DefaultLeadingSilence = (decimal)m_DefaultLeadingSilence;
+                  mSettings.Audio_DefaultThreshold = (decimal)m_DefaultThreshold;
+                  mSettings.Audio_DefaultGap = (decimal)m_DefaultGap;
                   mSettings.Audio_CleanupMaxFileSizeInMB = m_Audio_CleanupMaxFileSizeInMB;
                  }
             catch (System.Exception ex)
@@ -758,37 +758,37 @@ namespace Obi.Dialogs
         {
             if(m_cbOperation.SelectedIndex == 0)
             {       
-                m_OperationDurationUpDown.Value = (int)mSettings.NudgeTimeMs;
+                m_OperationDurationUpDown.Value = (int)mSettings.Audio_NudgeTimeMs;
                 m_OperationDurationUpDown.Increment = 20;
                 label3.Visible = true;
             }
             if(m_cbOperation.SelectedIndex == 1)
             {
-                m_OperationDurationUpDown.Value = mSettings.PreviewDuration;
+                m_OperationDurationUpDown.Value = mSettings.Audio_PreviewDuration;
                 m_OperationDurationUpDown.Increment = 100;
                 label3.Visible = true;
             }
             if(m_cbOperation.SelectedIndex == 2)
             {
-                m_OperationDurationUpDown.Value = mSettings.ElapseBackTimeInMilliseconds;
+                m_OperationDurationUpDown.Value = mSettings.Audio_ElapseBackTimeInMilliseconds;
                 m_OperationDurationUpDown.Increment = 150;
                 label3.Visible = true;
             }
             if (m_cbOperation.SelectedIndex == 3)
             {
-                m_OperationDurationUpDown.Value = mSettings.DefaultLeadingSilence;
+                m_OperationDurationUpDown.Value = mSettings.Audio_DefaultLeadingSilence;
                 m_OperationDurationUpDown.Increment = 10;
                 label3.Visible = true;
             }
             if (m_cbOperation.SelectedIndex == 4)
             {
-                m_OperationDurationUpDown.Value = mSettings.DefaultThreshold;
+                m_OperationDurationUpDown.Value = mSettings.Audio_DefaultThreshold;
                 m_OperationDurationUpDown.Increment = 25;
                 label3.Visible = false;
             }
             if (m_cbOperation.SelectedIndex == 5)
             {
-                m_OperationDurationUpDown.Value = mSettings.DefaultGap;
+                m_OperationDurationUpDown.Value = mSettings.Audio_DefaultGap;
                 m_OperationDurationUpDown.Increment = 25;
                 label3.Visible = true;
             }
@@ -820,7 +820,7 @@ namespace Obi.Dialogs
             {
                 if (e.Item.Text == Localizer.Message("Audio_DetectPhrasesWhileRecording") && e.Item.Checked)
                 {
-                    MessageBox.Show(string.Format(Localizer.Message("AudioPref_LivePhraseDetectionEnable"), mSettings.DefaultThreshold, mSettings.DefaultGap,mSettings.DefaultLeadingSilence )) ;
+                    MessageBox.Show(string.Format(Localizer.Message("AudioPref_LivePhraseDetectionEnable"), mSettings.Audio_DefaultThreshold, mSettings.Audio_DefaultGap,mSettings.Audio_DefaultLeadingSilence )) ;
                 }
 
 
@@ -838,13 +838,13 @@ namespace Obi.Dialogs
 
             if (mTab.SelectedTab == mProjectTab)
             {
-                mSettings.OpenLastProject = m_CheckBoxListView.Items[0].Checked;
+                mSettings.Project_OpenLastProject = m_CheckBoxListView.Items[0].Checked;
                // mSettings.AutoSave_RecordingEnd = m_CheckBoxListView.Items[1].Checked;
-                mSettings.OpenBookmarkNodeOnReopeningProject = m_CheckBoxListView.Items[1].Checked;
-                mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[8].Checked ? m_CheckBoxListView.Items[2].Checked : false; // false if waveform is disabled
+                mSettings.Project_OpenBookmarkNodeOnReopeningProject = m_CheckBoxListView.Items[1].Checked;
+                mSettings.Project_LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[8].Checked ? m_CheckBoxListView.Items[2].Checked : false; // false if waveform is disabled
 
                 //MessageBox.Show(mSettings.Project_ShowWaveformInContentView.ToString () + " : " +  mSettings.LeftAlignPhrasesInContentView.ToString()); 
-                mSettings.OptimizeMemory = m_CheckBoxListView.Items[3].Checked;
+                mSettings.Project_OptimizeMemory = m_CheckBoxListView.Items[3].Checked;
                 mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = m_CheckBoxListView.Items[4].Checked;
                 mSettings.Project_EnableFreeDiskSpaceCheck= m_CheckBoxListView.Items[5].Checked;
                 mSettings.Project_SaveProjectWhenRecordingEnds= m_CheckBoxListView.Items[6].Checked;
@@ -857,11 +857,11 @@ namespace Obi.Dialogs
                     if (dr == DialogResult.Yes)
                     {
                         m_CheckBoxListView.Items[2].Checked = true;
-                        mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[2].Checked;
+                        mSettings.Project_LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[2].Checked;
                     }
 
                 }
-                mSettings.Export_AlwaysIgnoreIndentation= m_CheckBoxListView.Items[9].Checked;
+                mSettings.Project_Export_AlwaysIgnoreIndentation= m_CheckBoxListView.Items[9].Checked;
                 mSettings.Project_BackgroundColorForEmptySection = m_CheckBoxListView.Items[10].Checked;
                 mSettings.Project_SaveObiLocationAndSize = m_CheckBoxListView.Items[11].Checked;
                 mSettings.Project_PeakMeterChangeLocation = m_CheckBoxListView.Items[12].Checked;
@@ -869,12 +869,12 @@ namespace Obi.Dialogs
             }
             if (mTab.SelectedTab == mAudioTab)
             {
-                mSettings.AudioClues = m_CheckBoxListView.Items[0].Checked;
-                mSettings.RetainInitialSilenceInPhraseDetection = m_CheckBoxListView.Items[1].Checked;
-                mSettings.Recording_PreviewBeforeStarting = m_CheckBoxListView.Items[2].Checked;
+                mSettings.Audio_AudioClues = m_CheckBoxListView.Items[0].Checked;
+                mSettings.Audio_RetainInitialSilenceInPhraseDetection = m_CheckBoxListView.Items[1].Checked;
+                mSettings.Audio_Recording_PreviewBeforeStarting = m_CheckBoxListView.Items[2].Checked;
                 mSettings.Audio_UseRecordingPauseShortcutForStopping = m_CheckBoxListView.Items[3].Checked;
-                mSettings.AllowOverwrite = m_CheckBoxListView.Items[4].Checked;                
-                mSettings.RecordDirectlyWithRecordButton = m_CheckBoxListView.Items[5].Checked;
+                mSettings.Audio_AllowOverwrite = m_CheckBoxListView.Items[4].Checked;                
+                mSettings.Audio_RecordDirectlyWithRecordButton = m_CheckBoxListView.Items[5].Checked;
                 
                 mSettings.MaxAllowedPhraseDurationInMinutes = (uint)(m_CheckBoxListView.Items[6].Checked ? 50 : 180);
                 mSettings.Audio_ShowLiveWaveformWhileRecording = m_CheckBoxListView.Items[7].Checked;
@@ -933,17 +933,17 @@ namespace Obi.Dialogs
               //  m_grpBoxChkBoxListView.Location = new Point(85, 264);
                 m_grpBoxChkBoxListView.Location = new Point(85, 300);
 
-                m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
+                m_CheckBoxListView.Items[0].Checked = mSettings.Audio_AudioClues;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_AudioClues");                
-                m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
+                m_CheckBoxListView.Items[1].Checked = mSettings.Audio_RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[1].ToolTipText = Localizer.Message("AudioTab_RetainInitialSilence");
-                m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
+                m_CheckBoxListView.Items[2].Checked = mSettings.Audio_Recording_PreviewBeforeStarting;
                 m_CheckBoxListView.Items[2].ToolTipText = Localizer.Message("AudioTab_PreviewBeforeRecording");
                 m_CheckBoxListView.Items[3].Checked = mSettings.Audio_UseRecordingPauseShortcutForStopping;
                 m_CheckBoxListView.Items[3].ToolTipText = Localizer.Message("Audio_UseRecordingPauseShortcutForStopping");
-                m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite;
+                m_CheckBoxListView.Items[4].Checked = mSettings.Audio_AllowOverwrite;
                 m_CheckBoxListView.Items[4].ToolTipText = Localizer.Message("AudioTab_AllowOverwrite");
-                m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
+                m_CheckBoxListView.Items[5].Checked = mSettings.Audio_RecordDirectlyWithRecordButton;
                 m_CheckBoxListView.Items[5].ToolTipText = Localizer.Message("AudioTab_RecordDirectlyFromTransportBar");
                 m_CheckBoxListView.Items[6].Checked = mSettings.MaxAllowedPhraseDurationInMinutes == 50 ;
                 m_CheckBoxListView.Items[6].ToolTipText = Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes");
@@ -999,13 +999,13 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_PeakMeterChangeLocation"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_EPUBCheckTimeOutEnabled"));
                
-                m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
+                m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
-                m_CheckBoxListView.Items[1].Checked = mSettings.OpenBookmarkNodeOnReopeningProject;
+                m_CheckBoxListView.Items[1].Checked = mSettings.Project_OpenBookmarkNodeOnReopeningProject;
                 m_CheckBoxListView.Items[1].ToolTipText = Localizer.Message("ProjectTab_SelectBookmark");
-                m_CheckBoxListView.Items[2].Checked = mSettings.LeftAlignPhrasesInContentView;
+                m_CheckBoxListView.Items[2].Checked = mSettings.Project_LeftAlignPhrasesInContentView;
                 m_CheckBoxListView.Items[2].ToolTipText = Localizer.Message("ProjectTab_FixContentViewWidth");
-                m_CheckBoxListView.Items[3].Checked = mSettings.OptimizeMemory;
+                m_CheckBoxListView.Items[3].Checked = mSettings.Project_OptimizeMemory;
                 m_CheckBoxListView.Items[3].ToolTipText = Localizer.Message("ProjectTab_OptimizeMemory");
                 m_CheckBoxListView.Items[4].Checked = mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
                 m_CheckBoxListView.Items[4].ToolTipText = Localizer.Message("ProjectTab_DeleteUnusedFilesAfterCleanUp");
@@ -1017,7 +1017,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[7].ToolTipText = Localizer.Message("Project_CheckForUpdates");
                 m_CheckBoxListView.Items[8].Checked = mSettings.Project_ShowWaveformInContentView;
                 m_CheckBoxListView.Items[8].ToolTipText = Localizer.Message("Project_ShowWaveformsInContentView");
-                m_CheckBoxListView.Items[9].Checked = mSettings.Export_AlwaysIgnoreIndentation;
+                m_CheckBoxListView.Items[9].Checked = mSettings.Project_Export_AlwaysIgnoreIndentation;
                 m_CheckBoxListView.Items[9].ToolTipText = Localizer.Message("Project_AlwaysIgnoreIndentationForExportFiles");
                 m_CheckBoxListView.Items[10].Checked = mSettings.Project_BackgroundColorForEmptySection;
                 m_CheckBoxListView.Items[10].ToolTipText = Localizer.Message("Project_BackgroundColorForEmptySection");
@@ -1077,13 +1077,13 @@ namespace Obi.Dialogs
         {
             if (mTab.SelectedTab == mProjectTab)// Default settings for Project tab
             {
-                mSettings.DefaultPath = m_DefaultSettings.DefaultPath;
-                mSettings.PipelineScriptsPath = m_DefaultSettings.PipelineScriptsPath;
-                mSettings.OpenLastProject = m_DefaultSettings.OpenLastProject;
-                mSettings.AutoSave_RecordingEnd = m_DefaultSettings.AutoSave_RecordingEnd;
-                mSettings.OpenBookmarkNodeOnReopeningProject = m_DefaultSettings.OpenBookmarkNodeOnReopeningProject;
-                mSettings.LeftAlignPhrasesInContentView = m_DefaultSettings.LeftAlignPhrasesInContentView;
-                mSettings.OptimizeMemory = m_DefaultSettings.OptimizeMemory;
+                mSettings.Project_DefaultPath = m_DefaultSettings.Project_DefaultPath;
+                mSettings.Project_PipelineScriptsPath = m_DefaultSettings.Project_PipelineScriptsPath;
+                mSettings.Project_OpenLastProject = m_DefaultSettings.Project_OpenLastProject;
+                mSettings.Project_AutoSave_RecordingEnd = m_DefaultSettings.Project_AutoSave_RecordingEnd;
+                mSettings.Project_OpenBookmarkNodeOnReopeningProject = m_DefaultSettings.Project_OpenBookmarkNodeOnReopeningProject;
+                mSettings.Project_LeftAlignPhrasesInContentView = m_DefaultSettings.Project_LeftAlignPhrasesInContentView;
+                mSettings.Project_OptimizeMemory = m_DefaultSettings.Project_OptimizeMemory;
                 mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup =
                     m_DefaultSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
                 mSettings.Project_EnableFreeDiskSpaceCheck=
@@ -1092,7 +1092,7 @@ namespace Obi.Dialogs
                     m_DefaultSettings.Project_SaveProjectWhenRecordingEnds;
                 mSettings.Project_CheckForUpdates = m_DefaultSettings.Project_CheckForUpdates;
                 mSettings.Project_ShowWaveformInContentView = m_DefaultSettings.Project_ShowWaveformInContentView;
-                mSettings.Export_AlwaysIgnoreIndentation = m_DefaultSettings.Export_AlwaysIgnoreIndentation;
+                mSettings.Project_Export_AlwaysIgnoreIndentation = m_DefaultSettings.Project_Export_AlwaysIgnoreIndentation;
                 mSettings.Project_BackgroundColorForEmptySection = m_DefaultSettings.Project_BackgroundColorForEmptySection;
                 mSettings.Project_SaveObiLocationAndSize = m_DefaultSettings.Project_SaveObiLocationAndSize;
                 mSettings.Project_PeakMeterChangeLocation = m_DefaultSettings.Project_PeakMeterChangeLocation;
@@ -1101,17 +1101,17 @@ namespace Obi.Dialogs
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
             {
-                mSettings.LastInputDevice = m_DefaultSettings.LastInputDevice;
-                mSettings.LastOutputDevice = m_DefaultSettings.LastOutputDevice;
-                mSettings.AudioSampleRate = m_DefaultSettings.AudioSampleRate;
-                mSettings.AudioChannels = m_DefaultSettings.AudioChannels;
-                mSettings.NoiseLevel = m_DefaultSettings.NoiseLevel;
-                mSettings.AudioClues = m_DefaultSettings.AudioClues;                
-                mSettings.RetainInitialSilenceInPhraseDetection = m_DefaultSettings.RetainInitialSilenceInPhraseDetection;
-                mSettings.Recording_PreviewBeforeStarting = m_DefaultSettings.Recording_PreviewBeforeStarting;
-                mSettings.AllowOverwrite = m_DefaultSettings.AllowOverwrite;
+                mSettings.Audio_LastInputDevice = m_DefaultSettings.Audio_LastInputDevice;
+                mSettings.Audio_LastOutputDevice = m_DefaultSettings.Audio_LastOutputDevice;
+                mSettings.Audio_SampleRate = m_DefaultSettings.Audio_SampleRate;
+                mSettings.Audio_Channels = m_DefaultSettings.Audio_Channels;
+                mSettings.Audio_NoiseLevel = m_DefaultSettings.Audio_NoiseLevel;
+                mSettings.Audio_AudioClues = m_DefaultSettings.Audio_AudioClues;                
+                mSettings.Audio_RetainInitialSilenceInPhraseDetection = m_DefaultSettings.Audio_RetainInitialSilenceInPhraseDetection;
+                mSettings.Audio_Recording_PreviewBeforeStarting = m_DefaultSettings.Audio_Recording_PreviewBeforeStarting;
+                mSettings.Audio_AllowOverwrite = m_DefaultSettings.Audio_AllowOverwrite;
                 mSettings.Audio_UseRecordingPauseShortcutForStopping = m_DefaultSettings.Audio_UseRecordingPauseShortcutForStopping;
-                mSettings.RecordDirectlyWithRecordButton = m_DefaultSettings.RecordDirectlyWithRecordButton;
+                mSettings.Audio_RecordDirectlyWithRecordButton = m_DefaultSettings.Audio_RecordDirectlyWithRecordButton;
                 mSettings.MaxAllowedPhraseDurationInMinutes = m_DefaultSettings.MaxAllowedPhraseDurationInMinutes;
                 mSettings.Audio_ShowLiveWaveformWhileRecording = m_DefaultSettings.Audio_ShowLiveWaveformWhileRecording;
                 mSettings.Audio_EnableLivePhraseDetection = m_DefaultSettings.Audio_EnableLivePhraseDetection;
@@ -1120,13 +1120,13 @@ namespace Obi.Dialogs
                 mSettings.Audio_FastPlayWithoutPitchChange= m_DefaultSettings.Audio_FastPlayWithoutPitchChange;
 
                 //If operation is empty then nothing will b selected.
-                mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
-                mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
-                mSettings.ElapseBackTimeInMilliseconds = m_DefaultSettings.ElapseBackTimeInMilliseconds;
-                mSettings.DefaultLeadingSilence = m_DefaultSettings.DefaultLeadingSilence;
-                mSettings.DefaultThreshold = m_DefaultSettings.DefaultThreshold;
-                mSettings.DefaultGap = m_DefaultSettings.DefaultGap;
-                mSettings.ImportToleranceForAudioInMs = m_DefaultSettings.ImportToleranceForAudioInMs;
+                mSettings.Audio_NudgeTimeMs = m_DefaultSettings.Audio_NudgeTimeMs;
+                mSettings.Audio_PreviewDuration = m_DefaultSettings.Audio_PreviewDuration;
+                mSettings.Audio_ElapseBackTimeInMilliseconds = m_DefaultSettings.Audio_ElapseBackTimeInMilliseconds;
+                mSettings.Audio_DefaultLeadingSilence = m_DefaultSettings.Audio_DefaultLeadingSilence;
+                mSettings.Audio_DefaultThreshold = m_DefaultSettings.Audio_DefaultThreshold;
+                mSettings.Audio_DefaultGap = m_DefaultSettings.Audio_DefaultGap;
+                mSettings.Project_ImportToleranceForAudioInMs = m_DefaultSettings.Project_ImportToleranceForAudioInMs;
                 mSettings.Audio_LevelComboBoxIndex = m_DefaultSettings.Audio_LevelComboBoxIndex;
                 mSettings.Audio_CleanupMaxFileSizeInMB = m_DefaultSettings.Audio_CleanupMaxFileSizeInMB;
 

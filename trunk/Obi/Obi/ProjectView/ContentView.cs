@@ -364,7 +364,7 @@ namespace Obi.ProjectView
             {
                 SectionNode sectionToDisplay = mProjectView.Presentation.FirstSection;
                 if (bookMarkedNode != null) Console.WriteLine("Bookmark node is " + bookMarkedNode.ToString());
-                if (mProjectView.ObiForm.Settings.OpenBookmarkNodeOnReopeningProject && bookMarkedNode != null)
+                if (mProjectView.ObiForm.Settings.Project_OpenBookmarkNodeOnReopeningProject && bookMarkedNode != null)
                 {
                     sectionToDisplay = bookMarkedNode is SectionNode ?
                         (SectionNode)bookMarkedNode :
@@ -381,7 +381,7 @@ namespace Obi.ProjectView
                 AddStripForSection_Safe ((ObiNode)  mProjectView.Presentation.RootNode ); //this will not be called in single section//sdk2 :root node casted
                 }
                 m_DisablePhraseCreationWhileSelectionRestore = false;
-                if (mProjectView.ObiForm.Settings.OpenBookmarkNodeOnReopeningProject && bookMarkedNode != null )
+                if (mProjectView.ObiForm.Settings.Project_OpenBookmarkNodeOnReopeningProject && bookMarkedNode != null )
                 {
                     bool statusForSelectionChangedPlaybackEnabled = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
                     mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
@@ -2315,7 +2315,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         public bool NudgeIntervalIncrement(bool increment)
         {
-            double interval = mProjectView.ObiForm.Settings.NudgeTimeMs;
+            double interval = mProjectView.ObiForm.Settings.Audio_NudgeTimeMs;
             if (increment && interval < 1000)
             {
                 interval += 50;
@@ -2325,10 +2325,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 interval -= 50;
             }
 
-            if (interval != mProjectView.ObiForm.Settings.NudgeTimeMs)
+            if (interval != mProjectView.ObiForm.Settings.Audio_NudgeTimeMs)
             {
-                mProjectView.ObiForm.Settings.NudgeTimeMs = interval;
-                if (mProjectView.ObiForm.Settings.AudioClues) Audio.AudioFormatConverter.Speak(interval.ToString () , null, mProjectView.ObiForm.Settings, mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data);
+                mProjectView.ObiForm.Settings.Audio_NudgeTimeMs = interval;
+                if (mProjectView.ObiForm.Settings.Audio_AudioClues) Audio.AudioFormatConverter.Speak(interval.ToString () , null, mProjectView.ObiForm.Settings, mProjectView.Presentation.MediaDataManager.DefaultPCMFormat.Data);
                 return true;
             }
             return false;
@@ -3313,7 +3313,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         private void PlayShowBlocksCompletedSound ()
             {
                 string FilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ShowBlocksCompleted.wav");
-                if (System.IO.File.Exists(FilePath) && mProjectView.ObiForm.Settings.AudioClues)
+                if (System.IO.File.Exists(FilePath) && mProjectView.ObiForm.Settings.Audio_AudioClues)
                 {
                     System.Media.SoundPlayer showBlocksPlayer = new System.Media.SoundPlayer(FilePath);
                     showBlocksPlayer.Play();
@@ -3807,7 +3807,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         
         protected override bool ProcessCmdKey ( ref Message msg, Keys key )
             {
-                if (mProjectView.ObiForm.Settings.OptimizeMemory &&  ShouldSkipKeyDueToMemoryOverload(key)) return true;
+                if (mProjectView.ObiForm.Settings.Project_OptimizeMemory &&  ShouldSkipKeyDueToMemoryOverload(key)) return true;
             if (CanUseKeys &&
                 ((msg.Msg == ProjectView.WM_KEYDOWN) || (msg.Msg == ProjectView.WM_SYSKEYDOWN)) &&
                 mShortcutKeys.ContainsKey ( key ) && mShortcutKeys[key] ()) return true;
@@ -3820,7 +3820,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             int m_KeyRepeatCount = 0;
         private bool ShouldSkipKeyDueToMemoryOverload(Keys key)
         {
-            if (Settings == null || !Settings.OptimizeMemory) return false;
+            if (Settings == null || !Settings.Project_OptimizeMemory) return false;
             bool isArrowKeyPressed = (key == Keys.Left || key == Keys.Right || key == (Keys.Control|Keys.Left) || key == (Keys.Control|Keys.Right)) ;
 
             if (isArrowKeyPressed && m_PrevKey.ToString() == key.ToString()

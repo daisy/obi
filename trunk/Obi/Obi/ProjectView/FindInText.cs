@@ -671,7 +671,7 @@ namespace Obi.ProjectView
         private void PlayFindBarCollapse ()
             {
             string FilePath = Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, "FindBarCollapse.wav" );
-            if ( mProjectView.ObiForm.Settings.AudioClues  &&   File.Exists ( FilePath ) )
+            if ( mProjectView.ObiForm.Settings.Audio_AudioClues  &&   File.Exists ( FilePath ) )
                 {
                 System.Media.SoundPlayer voicePlayer = new System.Media.SoundPlayer ( FilePath );
                 voicePlayer.Play ();

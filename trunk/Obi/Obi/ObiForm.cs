@@ -95,7 +95,7 @@ namespace Obi
                 set
                 {
                     mAllowOverwriteToolStripMenuItem.Checked = value;
-                    mSettings.AllowOverwrite = value;
+                    mSettings.Audio_AllowOverwrite = value;
                 }
             }
 
@@ -104,12 +104,12 @@ namespace Obi
             /// </summary>
             public float AudioScale
             {
-                get { return mSettings.AudioScale; }
+                get { return mSettings.Audio_AudioScale; }
                 set
                 {
                     if (value > 0.002f && value < 0.1f)
                     {
-                        mSettings.AudioScale = value;
+                        mSettings.Audio_AudioScale = value;
                         mProjectView.AudioScale = value;
                     }
                 }
@@ -155,7 +155,7 @@ namespace Obi
             // True if the user has chosen the "open last project" option, and there is a last project to open.
             private bool ShouldOpenLastProject
             {
-                get { return mSettings != null && mSettings.OpenLastProject && mSettings.LastOpenProject != "" && mShowWelcomWindow; }
+                get { return mSettings != null && mSettings.Project_OpenLastProject && mSettings.LastOpenProject != "" && mShowWelcomWindow; }
             }
 
             /// Set view synchronization and update the menu and settings accordingly.
@@ -297,13 +297,13 @@ namespace Obi
                 if (DidCloseProject())
                 {
                     Dialogs.NewProject dialog = new Dialogs.NewProject(
-                        mSettings.DefaultPath,
+                        mSettings.Project_DefaultPath,
                         Localizer.Message("default_project_filename"),
                         Localizer.Message("obi_filter"),
                         Localizer.Message("default_project_title"),
                         mSettings.NewProjectDialogSize,
-                        mSettings.AudioChannels,
-                        mSettings.AudioSampleRate);
+                        mSettings.Audio_Channels,
+                        mSettings.Audio_SampleRate);
                     dialog.CreateTitleSection = mSettings.CreateTitleSection;
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
@@ -390,13 +390,13 @@ namespace Obi
                     if (configurationInstance == null)
                     {
                         dialog = new Dialogs.NewProject(
-                            mSettings.DefaultPath,
+                            mSettings.Project_DefaultPath,
                             Localizer.Message("default_project_filename"),
                             Localizer.Message("obi_filter"),
                             title,
                             mSettings.NewProjectDialogSize,
-                            mSettings.AudioChannels,
-                            mSettings.AudioSampleRate);
+                            mSettings.Audio_Channels,
+                            mSettings.Audio_SampleRate);
                         dialog.DisableAutoTitleCheckbox();
                         dialog.Text = Localizer.Message("create_new_project_from_import");
                         if (!string.IsNullOrEmpty(dtbUid)) dialog.ID = dtbUid;
@@ -652,7 +652,7 @@ namespace Obi
                 }
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Filter = Localizer.Message("obi_filter");
-                dialog.InitialDirectory = mSettings.DefaultPath;
+                dialog.InitialDirectory = mSettings.Project_DefaultPath;
                 if (dialog.ShowDialog() == DialogResult.OK && DidCloseProject())
                     OpenProject_Safe(dialog.FileName, null);
             }
@@ -775,7 +775,7 @@ namespace Obi
                     mStatusLabel.Text = Localizer.Message("Status_ProjectSaved");
                     // reset the  auto save timer
                     mAutoSaveTimer.Stop();
-                    if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
+                    if (mSettings.Project_AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
                     m_IsSaveActive = false;
                 }
             }
@@ -819,7 +819,7 @@ namespace Obi
                     //mStatusLabel.Text = Localizer.Message ( "Status_ProjectSaved" );
                     // reset the  auto save timer
                     mAutoSaveTimer.Stop();
-                    if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
+                    if (mSettings.Project_AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
 
                     mFile_SaveProjectMenuItem.Enabled = true;
                     mFile_SaveProjectAsMenuItem.Enabled = true;
@@ -1448,7 +1448,7 @@ namespace Obi
 
             private void CheckSystemSupportForMemoryOptimization()
             {
-                if (!mSettings.OptimizeMemory) return;
+                if (!mSettings.Project_OptimizeMemory) return;
                 //System.Diagnostics.Stopwatch stopWatch = new Stopwatch();
                 //stopWatch.Start();
                 try
@@ -1456,7 +1456,7 @@ namespace Obi
                     if (!System.Diagnostics.PerformanceCounterCategory.CounterExists("Available MBytes", "Memory"))
                     {
                         
-                        mSettings.OptimizeMemory = false;
+                        mSettings.Project_OptimizeMemory = false;
                         return;
                     }
                     System.Diagnostics.PerformanceCounter ramPerformanceCounter =
@@ -1467,7 +1467,7 @@ namespace Obi
                 }
                 catch (System.Exception)
                 {   
-                    mSettings.OptimizeMemory = false;
+                    mSettings.Project_OptimizeMemory = false;
 
                 }
                 //stopWatch.Stop();
@@ -2234,7 +2234,7 @@ namespace Obi
                 mFastPlaytoolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mRecordToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.TransportBar.CanRecord;
                 mStartRecordingDirectlyToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
-                m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening ;
+                m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.Audio_AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening ;
                 if (mProjectView.TransportBar.IsListening)
                 {
                     mStartMonitoringToolStripMenuItem.Visible = false;
@@ -2310,7 +2310,7 @@ namespace Obi
 
             private void mStartRecordingDirectlyToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                mProjectView.TransportBar.StartRecordingDirectly(this.Settings != null &&  this.Settings.Recording_PreviewBeforeStarting);
+                mProjectView.TransportBar.StartRecordingDirectly(this.Settings != null &&  this.Settings.Audio_Recording_PreviewBeforeStarting);
             }
 
 
@@ -2449,7 +2449,7 @@ namespace Obi
                 {
                     mProjectView.ZoomPanelClose();
                 }
-                bool isLeftAlignPhrasesInContentView = mSettings.LeftAlignPhrasesInContentView;
+                bool isLeftAlignPhrasesInContentView = mSettings.Project_LeftAlignPhrasesInContentView;
                 bool showWaveform = mSettings.Project_ShowWaveformInContentView;
                 bool enableEmptySectionColorInTOC = mSettings.Project_BackgroundColorForEmptySection;
                 Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation,
@@ -2465,7 +2465,7 @@ namespace Obi
                     mProjectView.UpdateTOCBackColorForEmptySection((SectionNode)mProjectView.Presentation.FirstSection);// @emptysectioncolor
                 }
                 mProjectView.TransportBar.ResetFastPlayForPreferencesChange();
-                if (isLeftAlignPhrasesInContentView != mSettings.LeftAlignPhrasesInContentView) UpdateZoomFactor();
+                if (isLeftAlignPhrasesInContentView != mSettings.Project_LeftAlignPhrasesInContentView) UpdateZoomFactor();
                 mSession.EnableFreeDiskSpaceCheck = mSettings.Project_EnableFreeDiskSpaceCheck;
                 if (showWaveform != mSettings.Project_ShowWaveformInContentView)
                 {
@@ -2707,7 +2707,7 @@ ref string exportDirectoryEPUB3)
                 {
                     ExportDialogDAISY3 =
                         new ExportDirectory(exportDirectoryDAISY3,
-                                            mSession.Path, mSettings.Export_EncodeToMP3, (mSettings.Export_BitRateMP3),
+                                            mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
                                             mSettings.Export_AppendSectionNameToAudioFile,mSettings.EncodingFileFormat);
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY3.AdditionalTextForTitle = "DAISY 3";
@@ -2722,7 +2722,7 @@ ref string exportDirectoryEPUB3)
                 {
                     ExportDialogDAISY202 =
                         new ExportDirectory(exportDirectoryDAISY202,
-                                            mSession.Path, mSettings.Export_EncodeToMP3,(mSettings.Export_BitRateMP3),
+                                            mSession.Path, mSettings.Export_EncodeAudioFiles,(mSettings.ExportEncodingBitRate),
                                             mSettings.Export_AppendSectionNameToAudioFile,mSettings.EncodingFileFormat);
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY202.AdditionalTextForTitle = "DAISY 2.02";
@@ -2736,7 +2736,7 @@ ref string exportDirectoryEPUB3)
                 {
                     ExportDialogEPUB3 =
                         new ExportDirectory(exportDirectoryEPUB3,
-                                            mSession.Path, true, (mSettings.Export_BitRateMP3),
+                                            mSession.Path, true, (mSettings.ExportEncodingBitRate),
                                             mSettings.Export_AppendSectionNameToAudioFile,mSettings.EncodingFileFormat);
                     //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogEPUB3.EpubLengthCheckboxEnabled = true;
@@ -2760,8 +2760,8 @@ ref string exportDirectoryEPUB3)
                     string exportPathEPUB3 = ExportDialogEPUB3 != null ? ExportDialogEPUB3.DirectoryPath : null;
 
                     Dialogs.ExportDirectory dialog = ExportDialogDAISY3 != null ? ExportDialogDAISY3 : ExportDialogDAISY202 != null ? ExportDialogDAISY202 : ExportDialogEPUB3;
-                    mSettings.Export_EncodeToMP3 = dialog.EncodeAudioFiles;
-                    mSettings.Export_BitRateMP3 = dialog.BitRate;
+                    mSettings.Export_EncodeAudioFiles = dialog.EncodeAudioFiles;
+                    mSettings.ExportEncodingBitRate = dialog.BitRate;
                     mSettings.EncodingFileFormat = dialog.EncodingFileFormat.ToString();
                     //mSettings.Encoding_SelectedIndex = dialog.EncodingFileFormat;
                     mSettings.Export_AppendSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName;
@@ -2791,20 +2791,20 @@ ref string exportDirectoryEPUB3)
                         DAISY3ExportInstance.AddSectionNameToAudioFile = ExportDialogDAISY3.AppendSectionNameToAudioFileName;
                         DAISY3ExportInstance.AudioFileNameCharsLimit = ExportDialogDAISY3.AudioFileNameCharsLimit;
                         if (ExportDialogDAISY3.EnabledAdvancedParameters) DAISY3ExportInstance.SetAdditionalMp3EncodingParameters(ExportDialogDAISY3.Mp3ChannelMode, ExportDialogDAISY3.Mp3ReSample, ExportDialogDAISY3.Mp3RePlayGain);
-                        ((Obi.ImportExport.DAISY3_ObiExport)DAISY3ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                        ((Obi.ImportExport.DAISY3_ObiExport)DAISY3ExportInstance).AlwaysIgnoreIndentation = mSettings.Project_Export_AlwaysIgnoreIndentation;
                         DAISY3ExportInstance.EncodingFileFormat = ExportDialogDAISY3.EncodingFileFormat;
                     }
                     if (ExportDialogDAISY202 != null)
                     {
                         DAISY202ExportInstance = new Obi.ImportExport.DAISY202Export(
                             mSession.Presentation, exportPathDAISY202, ExportDialogDAISY202.EncodeAudioFiles, ExportDialogDAISY202.BitRate,
-                            AudioLib.SampleRate.Hz44100, mSettings.AudioChannels == 2,
+                            AudioLib.SampleRate.Hz44100, mSettings.Audio_Channels == 2,
                             ExportDialogDAISY202.LevelSelection);
 
                         DAISY202ExportInstance.AddSectionNameToAudioFile = ExportDialogDAISY202.AppendSectionNameToAudioFileName;
                         DAISY202ExportInstance.AudioFileNameCharsLimit = ExportDialogDAISY202.AudioFileNameCharsLimit;
                         if (ExportDialogDAISY202.EnabledAdvancedParameters) DAISY202ExportInstance.SetAdditionalMp3EncodingParameters(ExportDialogDAISY202.Mp3ChannelMode, ExportDialogDAISY202.Mp3ReSample, ExportDialogDAISY202.Mp3RePlayGain);
-                        ((Obi.ImportExport.DAISY202Export)DAISY202ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                        ((Obi.ImportExport.DAISY202Export)DAISY202ExportInstance).AlwaysIgnoreIndentation = mSettings.Project_Export_AlwaysIgnoreIndentation;
                         DAISY202ExportInstance.EncodingFileFormat = ExportDialogDAISY202.EncodingFileFormat;
                     }
 
@@ -2822,7 +2822,7 @@ ref string exportDirectoryEPUB3)
                         EPUB3_ExportInstance.AudioFileNameCharsLimit = ExportDialogEPUB3.AudioFileNameCharsLimit;
 
                         if (ExportDialogEPUB3.EnabledAdvancedParameters) EPUB3_ExportInstance.SetAdditionalMp3EncodingParameters(ExportDialogEPUB3.Mp3ChannelMode, ExportDialogEPUB3.Mp3ReSample, ExportDialogEPUB3.Mp3RePlayGain);
-                        ((Obi.ImportExport.Epub3_ObiExport)EPUB3_ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                        ((Obi.ImportExport.Epub3_ObiExport)EPUB3_ExportInstance).AlwaysIgnoreIndentation = mSettings.Project_Export_AlwaysIgnoreIndentation;
                         EPUB3_ExportInstance.EncodingFileFormat = ExportDialogEPUB3.EncodingFileFormat;
                     }
                     exportDirectoryDAISY202 = exportPathDAISY202;
@@ -2868,7 +2868,7 @@ ref string exportDirectoryEPUB3)
                     if (configInstance.DAISY3ExportParameters.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) 
                         DAISY3ExportInstance.EncodingFileFormat = configInstance.DAISY3ExportParameters.EncodingAudioFileFormat;
 
-                    ((Obi.ImportExport.DAISY3_ObiExport)DAISY3ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                    ((Obi.ImportExport.DAISY3_ObiExport)DAISY3ExportInstance).AlwaysIgnoreIndentation = mSettings.Project_Export_AlwaysIgnoreIndentation;
                     exportDirectoryDAISY3 = configInstance.DAISY3ExportParameters.ExportDirectory;
                     //exportDirectoryEPUB3 = exportDirectoryDAISY202 = null;
                 }
@@ -2893,7 +2893,7 @@ ref string exportDirectoryEPUB3)
                     if (configInstance.DAISY202ExportParameters.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) 
                         DAISY202ExportInstance.EncodingFileFormat = configInstance.DAISY202ExportParameters.EncodingAudioFileFormat;
 
-                    ((Obi.ImportExport.DAISY202Export)DAISY202ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                    ((Obi.ImportExport.DAISY202Export)DAISY202ExportInstance).AlwaysIgnoreIndentation = mSettings.Project_Export_AlwaysIgnoreIndentation;
                     exportDirectoryDAISY202 = configInstance.DAISY202ExportParameters.ExportDirectory;
                     //exportDirectoryDAISY3 = exportDirectoryEPUB3 = null;
                 }
@@ -2920,7 +2920,7 @@ ref string exportDirectoryEPUB3)
                     if (configInstance.EPUB3ExportParameters.EncodingAudioFileFormat != AudioLib.AudioFileFormats.MP3) 
                         EPUB3_ExportInstance.EncodingFileFormat = configInstance.EPUB3ExportParameters.EncodingAudioFileFormat;
 
-                    ((Obi.ImportExport.Epub3_ObiExport)EPUB3_ExportInstance).AlwaysIgnoreIndentation = mSettings.Export_AlwaysIgnoreIndentation;
+                    ((Obi.ImportExport.Epub3_ObiExport)EPUB3_ExportInstance).AlwaysIgnoreIndentation = mSettings.Project_Export_AlwaysIgnoreIndentation;
                     exportDirectoryEPUB3 = configInstance.EPUB3ExportParameters.ExportDirectory;
                     //exportDirectoryDAISY202 = exportDirectoryDAISY3 = null;
                 }
@@ -3182,7 +3182,7 @@ ref string exportDirectoryEPUB3)
                         new EventHandler<urakawa.events.command.CommandEventArgs>(ObiForm_BeforeCommandExecuted);
                         //@singleSection
                     mProjectView.WriteToLogFile("Opened new project: " + mSession.Presentation.Title);
-                    if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
+                    if (mSettings.Project_AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
                     m_CanAutoSave = true; //@singleSection
                     Status(String.Format(Localizer.Message("created_new_project"), mSession.Presentation.Title));
                     stopWatch.Stop();
@@ -3229,16 +3229,16 @@ ref string exportDirectoryEPUB3)
                     InitializeColorSettings();
                     InitializeAutoSaveTimer();
                     if (!mSettings.Project_EnableFreeDiskSpaceCheck) mSession.EnableFreeDiskSpaceCheck = mSettings.Project_EnableFreeDiskSpaceCheck;
-                    if (Directory.Exists(mSettings.PipelineScriptsPath))
+                    if (Directory.Exists(mSettings.Project_PipelineScriptsPath))
                     {
-                        mPipelineInfo = new PipelineInterface.PipelineInfo(mSettings.PipelineScriptsPath);
+                        mPipelineInfo = new PipelineInterface.PipelineInfo(mSettings.Project_PipelineScriptsPath);
                         PopulatePipelineScriptsInToolsMenu();
                     }
                     else
                     {
                         if (!ExtractPipelineLite())
                             MessageBox.Show(string.Format(Localizer.Message("ObiForm_PipelineNotFound"),
-                                                          mSettings.PipelineScriptsPath));
+                                                          mSettings.Project_PipelineScriptsPath));
                     }
                     Ready();
 
@@ -3262,13 +3262,13 @@ ref string exportDirectoryEPUB3)
             {
                 mAutoSaveTimer = new Timer();
                 mAutoSaveTimer.Enabled = false;
-                mAutoSaveTimer.Interval = mSettings.AutoSaveTimeInterval;
+                mAutoSaveTimer.Interval = mSettings.Project_AutoSaveTimeInterval;
                 mAutoSaveTimer.Tick += new EventHandler(mAutoSaveTimer_Tick);
             }
 
             private void mAutoSaveTimer_Tick(object sender, EventArgs e)
             {
-                if (!mSettings.AutoSaveTimeIntervalEnabled) return;
+                if (!mSettings.Project_AutoSaveTimeIntervalEnabled) return;
 
                 if (!m_CanAutoSave
                     && mSession.CanSave) //@singleSection
@@ -3279,11 +3279,11 @@ ref string exportDirectoryEPUB3)
                 }
                 else
                 {
-                    mAutoSaveTimer.Interval = mSettings.AutoSaveTimeInterval;
+                    mAutoSaveTimer.Interval = mSettings.Project_AutoSaveTimeInterval;
                 }
 
                 if (mSession != null && mSession.Presentation != null
-                    && mSettings.AutoSaveTimeIntervalEnabled && m_CanAutoSave && mSession.CanSave)
+                    && mSettings.Project_AutoSaveTimeIntervalEnabled && m_CanAutoSave && mSession.CanSave)
                 {
                     //if (mProjectView.TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording)
                     //{
@@ -3317,7 +3317,7 @@ ref string exportDirectoryEPUB3)
 
             public void StartAutoSaveTimeInterval()
             {
-                if (mSettings.AutoSaveTimeIntervalEnabled)
+                if (mSettings.Project_AutoSaveTimeIntervalEnabled)
                 {
                     if (mAutoSaveTimer.Enabled) mAutoSaveTimer.Stop();
                     mAutoSaveTimer.Start();
@@ -4051,7 +4051,7 @@ ref string exportDirectoryEPUB3)
                 }
                 try
                 {
-                    mProjectView.TransportBar.AudioPlayer.SetOutputDevice(this, mSettings.LastOutputDevice);
+                    mProjectView.TransportBar.AudioPlayer.SetOutputDevice(this, mSettings.Audio_LastOutputDevice);
                 }
                 catch (Exception e)
                 {
@@ -4064,7 +4064,7 @@ ref string exportDirectoryEPUB3)
                 }
                 try
                 {
-                    mProjectView.TransportBar.Recorder.SetInputDevice(mSettings.LastInputDevice);
+                    mProjectView.TransportBar.Recorder.SetInputDevice(mSettings.Audio_LastInputDevice);
                 }
                 catch (Exception ex)
                 {
@@ -4094,7 +4094,7 @@ ref string exportDirectoryEPUB3)
                 SynchronizeViews = mSettings.SynchronizeViews;
                 WrapStripContents = mSettings.WrapStripContents;
                 // Transport bar settings
-                AllowOverwrite = mSettings.AllowOverwrite;
+                AllowOverwrite = mSettings.Audio_AllowOverwrite;
                 mPlayOnNavigateToolStripMenuItem.Checked = mSettings.PlayOnNavigate;
                 mFineNavigationToolStripMenuItem.Checked = mProjectView.TransportBar.FineNavigationModeForPhrase;
                 // Colors
@@ -4511,7 +4511,7 @@ ref string exportDirectoryEPUB3)
             /// <returns></returns>
             private bool CheckAndAlertForMemoryUsage()
             {
-                if (Settings == null || !Settings.OptimizeMemory) return true;
+                if (Settings == null || !Settings.Project_OptimizeMemory) return true;
                 System.Diagnostics.PerformanceCounter ramPerformanceCounter =
                     new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
                 if (ramPerformanceCounter.NextValue() < 100)
@@ -5252,8 +5252,8 @@ ref string exportDirectoryEPUB3)
 
             private void mRecordToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
             {
-                m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening;
-                if (mSettings.AllowOverwrite)
+                m_DeletePhrasesWhileRecordingtoolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive && mSettings.Audio_AllowOverwrite && mProjectView.TransportBar.CanRecord && !mProjectView.TransportBar.IsListening;
+                if (mSettings.Audio_AllowOverwrite)
                 {
                     
                     mAllowOverwriteToolStripMenuItem.Checked = true;
@@ -5281,7 +5281,7 @@ ref string exportDirectoryEPUB3)
                 }
                 else
                 {
-                    if (!mProjectView.TransportBar.IsPlayerActive && mSettings.RecordDirectlyWithRecordButton && !mProjectView.IsZoomWaveformActive)
+                    if (!mProjectView.TransportBar.IsPlayerActive && mSettings.Audio_RecordDirectlyWithRecordButton && !mProjectView.IsZoomWaveformActive)
                     {
                         m_MonitorContinuouslyToolStripMenuItem.Enabled = true;
                     }
@@ -5513,7 +5513,7 @@ ref string exportDirectoryEPUB3)
                 string strStatus = null;
                 try
                 {
-                    string pipelineDirectoryPath = Path.GetDirectoryName(mSettings.PipelineScriptsPath);
+                    string pipelineDirectoryPath = Path.GetDirectoryName(mSettings.Project_PipelineScriptsPath);
                     string epubCheckFullPath = Path.Combine(pipelineDirectoryPath, "epubcheck\\epubcheck.jar");
                     if (!File.Exists(epubCheckFullPath))
                     {

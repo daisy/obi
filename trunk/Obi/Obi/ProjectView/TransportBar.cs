@@ -564,9 +564,9 @@ namespace Obi.ProjectView
             UpdateButtons();
             if (mView.ObiForm.Settings != null)
             {
-                m_PlayerTimeComboIndex = mView.ObiForm.Settings.Audio_TransportBarCounterIndex;
-                m_RecorderTimeComboIndex = mView.ObiForm.Settings.Audio_TransportBarCounterIndex;
-                mDisplayBox.SelectedIndex = mView.ObiForm.Settings.Audio_TransportBarCounterIndex < mDisplayBox.Items.Count ? mView.ObiForm.Settings.Audio_TransportBarCounterIndex : 0;
+                m_PlayerTimeComboIndex = mView.ObiForm.Settings.TransportBarCounterIndex;
+                m_RecorderTimeComboIndex = mView.ObiForm.Settings.TransportBarCounterIndex;
+                mDisplayBox.SelectedIndex = mView.ObiForm.Settings.TransportBarCounterIndex < mDisplayBox.Items.Count ? mView.ObiForm.Settings.TransportBarCounterIndex : 0;
                 ResetFastPlayForPreferencesChange();
             }
         }
@@ -586,7 +586,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set preview duration.
         /// </summary>
-        public int PreviewDuration { get { return mView.ObiForm.Settings.PreviewDuration; } }
+        public int PreviewDuration { get { return mView.ObiForm.Settings.Audio_PreviewDuration; } }
 
         /// <summary>
         ///  Empty node in which recording is taking place
@@ -682,7 +682,7 @@ namespace Obi.ProjectView
         {
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             // selected index should go in settings only when presentation is not null because it is assigned only when new presentation is set
-            if (mView != null && mView.ObiForm.Settings != null && mView.Presentation != null) mView.ObiForm.Settings.Audio_TransportBarCounterIndex = mDisplayBox.SelectedIndex;
+            if (mView != null && mView.ObiForm.Settings != null && mView.Presentation != null) mView.ObiForm.Settings.TransportBarCounterIndex = mDisplayBox.SelectedIndex;
         }
 
         // Update the time display immediatly when the display mode changes.
@@ -924,7 +924,7 @@ namespace Obi.ProjectView
                 mPlayButton.Enabled = CanPlay || CanResumePlayback;
                 mFastPlayRateCombobox.Enabled = !IsRecorderActive;
                 mRecordButton.Enabled = (CanRecord || CanResumeRecording
-                    || (CurrentState == State.Playing && (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio || mView.ObiForm.Settings.Recording_PreviewBeforeStarting))) && !mView.IsZoomWaveformActive;
+                    || (CurrentState == State.Playing && (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio || mView.ObiForm.Settings.Audio_Recording_PreviewBeforeStarting))) && !mView.IsZoomWaveformActive;
                 if (IsPlaying || IsRecorderActive)
                 {
                     m_btnPlayingOptions.Enabled = false;
@@ -942,7 +942,7 @@ namespace Obi.ProjectView
                     mMonitorContinuouslyToolStripMenuItem.Enabled = true;
                 }
 
-                bool recordDirectly = (mView.ObiForm  != null && mView.ObiForm.Settings.RecordDirectlyWithRecordButton) ? true : false;
+                bool recordDirectly = (mView.ObiForm  != null && mView.ObiForm.Settings.Audio_RecordDirectlyWithRecordButton) ? true : false;
 
                 if (recordDirectly)
                 {
@@ -960,7 +960,7 @@ namespace Obi.ProjectView
                         m_RecordingtoolStripMenuItem.Visible = false;                     
 
                     }                    
-                    if (mView.ObiForm.Settings.AllowOverwrite)
+                    if (mView.ObiForm.Settings.Audio_AllowOverwrite)
                     {
                         m_DeletePhrasestoolStripMenuItem.Enabled = !this.IsListening;
                     }
@@ -1713,10 +1713,10 @@ namespace Obi.ProjectView
         public bool Record_Button()
         {
             if (MonitorContinuously) StopMonitorContinuously(); //@MonitorContinuously
-            if (mView.ObiForm.Settings.RecordDirectlyWithRecordButton && CurrentState != State.Monitoring) //if monitoring go through the traditional way
+            if (mView.ObiForm.Settings.Audio_RecordDirectlyWithRecordButton && CurrentState != State.Monitoring) //if monitoring go through the traditional way
             {
                 if (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio
-                    && !mView.ObiForm.Settings.Recording_PreviewBeforeStarting)
+                    && !mView.ObiForm.Settings.Audio_Recording_PreviewBeforeStarting)
                 {
                     if (CurrentState == State.Playing) Pause();
                     RecordOverSubsequentPhrases();
@@ -1724,7 +1724,7 @@ namespace Obi.ProjectView
                 else
                 {
                     
-                    StartRecordingDirectly(mView.ObiForm.Settings.Recording_PreviewBeforeStarting);
+                    StartRecordingDirectly(mView.ObiForm.Settings.Audio_Recording_PreviewBeforeStarting);
                 }
                 
             }
@@ -1882,7 +1882,7 @@ namespace Obi.ProjectView
                 if (mResumeRecordingPhrase == null) mRecordingPhrase = null;
 
             ObiNode node = GetRecordingNode ( command, afterSection );
-            InitRecordingSectionAndPhraseIndex ( node, mView.ObiForm.Settings.AllowOverwrite, command , deleteFollowingPhrases);
+            InitRecordingSectionAndPhraseIndex ( node, mView.ObiForm.Settings.Audio_AllowOverwrite, command , deleteFollowingPhrases);
             if (mView.Selection == null && node is SectionNode) mView.SelectFromTransportBar(node, null);// if nothing is selected, new section is created, select it in content view
             // Set events
             mRecordingSession = new RecordingSession ( mView.Presentation, mRecorder, mView.ObiForm.Settings );
@@ -1908,7 +1908,7 @@ namespace Obi.ProjectView
                 {
                                      mRecordingSession.StartMonitoring ();
                                     
-                if (mView.ObiForm.Settings.AudioClues) mVUMeterPanel.BeepEnable = true;
+                if (mView.ObiForm.Settings.Audio_AudioClues) mVUMeterPanel.BeepEnable = true;
                 }
             }
         }
@@ -2675,7 +2675,7 @@ namespace Obi.ProjectView
 
         public bool FastPlayNormaliseWithLapseBack()
         {
-            m_ElapseBackInterval = mView.ObiForm.Settings.ElapseBackTimeInMilliseconds;
+            m_ElapseBackInterval = mView.ObiForm.Settings.Audio_ElapseBackTimeInMilliseconds;
             // work around to handle special nudge condition of preview: this should be implemented universally after 2.0 release
             if (mCurrentPlaylist != null && mView.Selection is AudioSelection && mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused) Stop();
             if (IsPlayerActive)
@@ -2719,7 +2719,7 @@ namespace Obi.ProjectView
         }
         public bool StepForward()
         {
-            m_ElapseBackInterval = mView.ObiForm.Settings.ElapseBackTimeInMilliseconds;
+            m_ElapseBackInterval = mView.ObiForm.Settings.Audio_ElapseBackTimeInMilliseconds;
             // work around to handle special nudge condition of preview: this should be implemented universally after 2.0 release
             if (mCurrentPlaylist != null && mView.Selection is AudioSelection && mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused) Stop();
             if (IsPlayerActive)
@@ -2777,7 +2777,7 @@ namespace Obi.ProjectView
                     
                     AudioRange range = new AudioRange(mView.Selection.Node.Duration);
                     mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
-                    if (mView.ObiForm.Settings.AudioClues)
+                    if (mView.ObiForm.Settings.Audio_AudioClues)
                     {
                         System.Media.SystemSounds.Asterisk.Play();
                     }
@@ -2800,7 +2800,7 @@ namespace Obi.ProjectView
                     }
                     mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
                     time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
-                    if (mView.ObiForm.Settings.AudioClues)
+                    if (mView.ObiForm.Settings.Audio_AudioClues)
                     {
                         System.Media.SystemSounds.Asterisk.Play();
                     }
@@ -2835,7 +2835,7 @@ namespace Obi.ProjectView
                     AudioRange range = new AudioRange(diff);
                     mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
                     flag = true;
-                    if (mView.ObiForm.Settings.AudioClues)
+                    if (mView.ObiForm.Settings.Audio_AudioClues)
                     {
                         System.Media.SystemSounds.Asterisk.Play();
                     }
@@ -2865,7 +2865,7 @@ namespace Obi.ProjectView
                         time = mView.Selection.Node.Duration;
                     }
                     //mView.UpdateCursorPosition(time);
-                    if (mView.ObiForm.Settings.AudioClues)
+                    if (mView.ObiForm.Settings.Audio_AudioClues)
                     {
                         System.Media.SystemSounds.Asterisk.Play();
                     }
@@ -2946,7 +2946,7 @@ namespace Obi.ProjectView
         {
         bool PlaybackOnSelectionEnabledStatus = SelectionChangedPlaybackEnabled;
         SelectionChangedPlaybackEnabled = false;
-            double nudge = mView.ObiForm.Settings.NudgeTimeMs * (forward ? 1 : -1);
+            double nudge = mView.ObiForm.Settings.Audio_NudgeTimeMs * (forward ? 1 : -1);
             
             if (!IsRecorderActive && (mState == State.Paused || m_IsPreviewing))
             {
@@ -3003,7 +3003,7 @@ namespace Obi.ProjectView
             PhraseNode phrase = (PhraseNode)mView.Selection.Node ;
             if (beginTime == 0 || endTime == phrase.Duration) return false;
 
-            double nudgeDuration = mView.ObiForm.Settings.NudgeTimeMs ;
+            double nudgeDuration = mView.ObiForm.Settings.Audio_NudgeTimeMs ;
 
             if (nudgeDirection == NudgeSelection.ExpandAtLeft)
             {
@@ -3171,7 +3171,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRecordingDirectly(bool isPreviewBeforeRecording)
         {
-            if (isPreviewBeforeRecording && mView.ObiForm.Settings.AllowOverwrite
+            if (isPreviewBeforeRecording && mView.ObiForm.Settings.Audio_AllowOverwrite
                 && m_PreviewBeforeRecordingWorker != null && m_PreviewBeforeRecordingWorker.IsBusy)
             {
                 return;
@@ -3191,7 +3191,7 @@ namespace Obi.ProjectView
                 if (mView.Selection == null || !(mView.Selection.Node is EmptyNode) || mView.Selection.Node != mCurrentPlaylist.CurrentPhrase) return;
             }
 
-            if (isPreviewBeforeRecording && mView.ObiForm.Settings.AllowOverwrite
+            if (isPreviewBeforeRecording && mView.ObiForm.Settings.Audio_AllowOverwrite
                && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
             {
                 // first delete the subsequent phrases in the section
@@ -3704,7 +3704,7 @@ SelectionChangedPlaybackEnabled = false;
 
         public void PlayAudioClue(AudioCluesSelection Clue)
         {
-            if ( mView.ObiForm.Settings.AudioClues )
+            if ( mView.ObiForm.Settings.Audio_AudioClues )
             {
             if (Clue == AudioCluesSelection.SelectionBegin)
             {
@@ -3802,7 +3802,7 @@ SelectionChangedPlaybackEnabled = false;
                         m_FineNavigationPhrase = mView.Selection.EmptyNodeForSelection;
                         mView.UpdateBlockForFindNavigation(m_FineNavigationPhrase, m_FineNavigationModeForPhrase);    
                         string navigationOnClue = System.IO.Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, "FineNavigationOn.wav") ;
-                        if (mView.ObiForm.Settings.AudioClues &&  System.IO.File.Exists(navigationOnClue))
+                        if (mView.ObiForm.Settings.Audio_AudioClues &&  System.IO.File.Exists(navigationOnClue))
                         {
                             System.Media.SoundPlayer player = new System.Media.SoundPlayer(navigationOnClue);
                             player.Play();
@@ -3813,7 +3813,7 @@ SelectionChangedPlaybackEnabled = false;
                     {
                         if (m_FineNavigationPhrase != null) mView.UpdateBlockForFindNavigation(m_FineNavigationPhrase, m_FineNavigationModeForPhrase);
                         m_FineNavigationPhrase = null;
-                        if(mView.ObiForm.Settings.AudioClues)  System.Media.SystemSounds.Exclamation.Play();
+                        if(mView.ObiForm.Settings.Audio_AudioClues)  System.Media.SystemSounds.Exclamation.Play();
                         // add sound here
                     }
                     
@@ -3898,7 +3898,7 @@ SelectionChangedPlaybackEnabled = false;
                 mPreviewBeforeRecToolStripMenuItem.Enabled = false;
             }
 
-            if (mView.ObiForm.Settings.AllowOverwrite)
+            if (mView.ObiForm.Settings.Audio_AllowOverwrite)
             {
                 m_DeletePhrasestoolStripMenuItem.Enabled = !IsListening;
             }
@@ -4145,7 +4145,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
             get
             {
                 if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null && mView.Selection != null && CurrentState != State.Monitoring
-&& mView.ObiForm.Settings.AllowOverwrite && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange != null && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
+&& mView.ObiForm.Settings.Audio_AllowOverwrite && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange != null && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
                 {
                     return true;
                 }
