@@ -14,7 +14,7 @@ using urakawa.daisy.export.visitor;
 
 namespace Obi.ImportExport
     {
-    public enum ExportFormat { DAISY3_0, DAISY2_02, Both_DAISY3_DAISY202, Both_DAISY3_EPUB3, Both_DAISY202_EPUB3, All,  EPUB3 } ;
+    public enum ExportFormat { DAISY3_0, DAISY2_02, Both_DAISY3_DAISY202,EPUB3 } ;
 
     public class DAISY202Export:urakawa.daisy.export.Daisy3_Export
         {
