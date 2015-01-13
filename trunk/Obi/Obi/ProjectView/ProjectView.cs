@@ -1332,7 +1332,7 @@ namespace Obi.ProjectView
                             selectedSections.Remove(firstSection);
                             //SectionNode node = listOfSections[0];
                             //mTOCView.Selection = new NodeSelection(node, mContentView);
-                            this.Selection = new NodeSelection(listOfSections[0], mContentView);
+                            this.Selection = new NodeSelection(selectedSections[0], mContentView);
                             //first arrange the children whose parents will be deleted
                             int lastSelectedSectionIndex = listOfSections.IndexOf(selectedSections[selectedSections.Count - 1]);
 
