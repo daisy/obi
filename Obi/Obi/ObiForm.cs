@@ -2672,23 +2672,23 @@ ref string exportDirectoryEPUB3)
                 Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202();
                 if (chooseDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202
-                        || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+                    if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202)
+                      //  || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
                     {
                         exportDirectoryDAISY3 = Path.Combine(Directory.GetParent(mSession.Path).FullName,
                                                        Program.SafeName(
                                                            string.Format(Localizer.Message("default_export_dirname"), "")));
                     }
-                    if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY2_02 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202
-                        || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+                    if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY2_02 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202)
+                       // || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
                     {
                         exportDirectoryDAISY202 = Path.Combine(Directory.GetParent(mSession.Path).FullName,
                                                        Program.SafeName(
                                                            string.Format(
                                                                Localizer.Message("Default_DAISY2_02export_dirname"), "")));
                     }
-                    if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3
-                    || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+                    if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.EPUB3) //|| chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3
+                  //  || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
                     {
                         exportDirectoryEPUB3 = Path.Combine(Directory.GetParent(mSession.Path).FullName,
                                                        Program.SafeName(
@@ -2704,8 +2704,8 @@ ref string exportDirectoryEPUB3)
                 Dialogs.ExportDirectory ExportDialogDAISY202 = null;
                 Dialogs.ExportDirectory ExportDialogEPUB3 = null;
 
-                if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202
-                    || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+                if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202)
+                 //   || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
                 {
                     ExportDialogDAISY3 =
                         new ExportDirectory(exportDirectoryDAISY3,
@@ -2720,8 +2720,8 @@ ref string exportDirectoryEPUB3)
                 }
 
 
-                if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY2_02 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202
-                    || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+                if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY2_02 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202)
+                  //  || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
                 {
                     ExportDialogDAISY202 =
                         new ExportDirectory(exportDirectoryDAISY202,
@@ -2735,8 +2735,8 @@ ref string exportDirectoryEPUB3)
                     if (ExportDialogDAISY202.ShowDialog() != DialogResult.OK) ExportDialogDAISY202 = null;
                 }
 
-                if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3
-                    || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
+                if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.EPUB3) //|| chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3
+                    //|| chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3 || chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.All)
                 {
                     ExportDialogEPUB3 =
                         new ExportDirectory(exportDirectoryEPUB3,

@@ -47,21 +47,21 @@ namespace Obi.Dialogs
                  m_ExportFormat = Obi.ImportExport.ExportFormat.Both_DAISY3_DAISY202;
                  Close();
              }
-             else if (m_cbDaisy3.Checked && m_cbEpub3.Checked && !m_cbDaisy202.Checked)
-             {
-                 m_ExportFormat = Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3;
-                 Close();
-             }
-             else if (m_cbDaisy202.Checked && m_cbEpub3.Checked && !m_cbDaisy3.Checked)
-             {
-                 m_ExportFormat = Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3;
-                 Close();
-             }
-             else if (m_cbDaisy3.Checked && m_cbDaisy202.Checked && m_cbEpub3.Checked)
-             {
-                 m_ExportFormat = Obi.ImportExport.ExportFormat.All;
-                 Close();
-             }
+             //else if (m_cbDaisy3.Checked && m_cbEpub3.Checked && !m_cbDaisy202.Checked)
+             //{
+             //    m_ExportFormat = Obi.ImportExport.ExportFormat.Both_DAISY3_EPUB3;
+             //    Close();
+             //}
+             //else if (m_cbDaisy202.Checked && m_cbEpub3.Checked && !m_cbDaisy3.Checked)
+             //{
+             //    m_ExportFormat = Obi.ImportExport.ExportFormat.Both_DAISY202_EPUB3;
+             //    Close();
+             //}
+             //else if (m_cbDaisy3.Checked && m_cbDaisy202.Checked && m_cbEpub3.Checked)
+             //{
+             //    m_ExportFormat = Obi.ImportExport.ExportFormat.All;
+             //    Close();
+             //}
         }
 
         private void m_BtnCancel_Click(object sender, EventArgs e)
