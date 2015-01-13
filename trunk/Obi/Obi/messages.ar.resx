@@ -219,7 +219,7 @@
     <value>خطأ  في حذف المشروع  {0}. ({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>Audio files (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|Any file|*.*</value>
+    <value>Audio files (*.wav;*.mp3;*.mp4;*.m4a)|*.wav;*.mp3;*.mp4;*.m4a|Any file|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>مراقبة المدخل السمعي </value>

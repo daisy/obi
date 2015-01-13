@@ -219,7 +219,7 @@
     <value>未能刪除檔案 {0}. ({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>聲音檔案 (*.wav;*.mp3)|*.wav;*.mp3|所有檔案|*.*</value>
+    <value>聲音檔案 (*.wav;*.mp3;*.mp4;*.m4a)|*.wav;*.mp3;*.mp4;*.m4a|所有檔案|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>正在監聽聲音輸入</value>

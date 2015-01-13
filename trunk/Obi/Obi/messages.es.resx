@@ -217,7 +217,7 @@
     <value>Error al eliminar el archivo {0}.({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>Archivo WAVE (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4 | Todos los archivos | *.*</value>
+    <value>Archivo WAVE (*.wav;*.mp3;*.mp4;*.m4a)|*.wav;*.mp3;*.mp4;*.m4a | Todos los archivos | *.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>Monitorizando la entrada de audio...</value>

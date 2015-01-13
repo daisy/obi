@@ -221,7 +221,7 @@ Seurauksena, että nyt tehdyt asetusmuutokset eivät tallentuneet.
     <value>Virhe poistettaessa tiedostoa {0}. ({1})</value>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>Ääni tiedostot  (*.wav;*.mp3;.mp4)|*.wav;*.mp3;.mp4|Any file|*.*</value>
+    <value>Ääni tiedostot  (*.wav;*.mp3;.mp4;*.m4a)|*.wav;*.mp3;.mp4;*.m4a|Any file|*.*</value>
   </data>
   <data name="Monitoring" xml:space="preserve">
     <value>Monitoroidaan äänen sisäänmenoa...</value>

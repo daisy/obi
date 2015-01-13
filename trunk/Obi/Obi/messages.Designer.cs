@@ -304,7 +304,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio files (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|Any file|*.*.
+        ///   Looks up a localized string similar to Audio files (*.wav;*.mp3;*.mp4;*.m4a)|*.wav;*.mp3;*.mp4;*.m4a|Any file|*.*.
         /// </summary>
         internal static string audio_file_filter {
             get {
