@@ -596,6 +596,7 @@
     <Compile Include="Session.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Settings_Permanent.cs" />
+    <Compile Include="Settings_SaveProfile.cs" />
     <Compile Include="SplitMergeProject.cs" />
     <Compile Include="UserControls\GraphicalPeakMeter.cs">
       <SubType>UserControl</SubType>
