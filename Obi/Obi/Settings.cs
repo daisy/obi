@@ -116,7 +116,7 @@ namespace Obi
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
         
 
-        private static void InitializeDefaultSettings(Settings settings)
+        protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
             settings.Audio_AudioClues = false;
