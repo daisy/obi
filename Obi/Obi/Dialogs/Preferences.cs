@@ -1070,6 +1070,11 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
             }
+            if (mTab.SelectedTab == mProfilesTab)
+            {
+                m_CheckBoxListView.Visible = false;
+                m_grpBoxChkBoxListView.Visible = false;
+            }
             if (!m_txtShortcutKeys.Focused) this.AcceptButton = mOKButton;
         }
 
