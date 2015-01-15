@@ -2416,19 +2416,19 @@ Texto de error: {1}</value>
     <value>Por favor, introduzca correctamente lo siguiente:</value>
   </data>
   <data name="Audio_PreservePage" xml:space="preserve">
-    <value>Preserve pages while recording over subsequent audio</value>
+    <value>Conservar las páginas al sobre escribir el audio</value>
   </data>
   <data name="MergeOptions_IncreaseLevel" xml:space="preserve">
-    <value>Incrementar el nivel de la sección</value>
+    <value>Aumentar nivel sección</value>
   </data>
   <data name="MergeOptions_DecreaseLevel" xml:space="preserve">
-    <value>Disminuir el nivel de la sección</value>
+    <value>Disminuir nivel sección</value>
   </data>
   <data name="MergeOptions_Merge" xml:space="preserve">
-    <value>Unir</value>
+    <value>Unir secciones</value>
   </data>
   <data name="ProjectViewFormMsg_SectionLevelChangeOperationFail" xml:space="preserve">
-    <value>Section level change operation failed.</value>
+    <value>Operación de cambio de nivel de sección fallida.</value>
   </data>
   <data name="MergeOptions_NoSelectionForLevelChange" xml:space="preserve">
     <value>No section is selected to perform level change operation </value>

@@ -670,7 +670,7 @@
     <value>0</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.AccessibleName" xml:space="preserve">
-    <value>Audio cleanup max file size</value>
+    <value>Tamaño máx. limpieza Audio</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 186</value>
@@ -706,7 +706,7 @@
     <value>33</value>
   </data>
   <data name="mlblCleanupFileSize.Text" xml:space="preserve">
-    <value>Audio cleanup max file size(MB):</value>
+    <value>Tamaño maximo limpieza Audio(MB):</value>
   </data>
   <data name="&gt;&gt;mlblCleanupFileSize.Name" xml:space="preserve">
     <value>mlblCleanupFileSize</value>
@@ -721,7 +721,7 @@
     <value>1</value>
   </data>
   <data name="m_btnProfileDiscription.AccessibleName" xml:space="preserve">
-    <value>Audio Profile Description</value>
+    <value>Descripción perfil de audio</value>
   </data>
   <data name="m_btnProfileDiscription.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
@@ -936,7 +936,6 @@
   <data name="m_cbOperation.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
-  <!--DropDownWidth value-->
   <data name="m_cbOperation.DropDownWidth" type="System.Int32, mscorlib">
     <value>250</value>
   </data>
@@ -2559,5 +2558,5 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data> 
+  </data>
 </root>
