@@ -134,130 +134,121 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Context_ShowContentsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_ShowContentsMenuItem.Text" xml:space="preserve">
     <value>Mos&amp;trar contenido</value>
   </data>
   <data name="Context_AddSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_AddSectionMenuItem.Text" xml:space="preserve">
     <value>&amp;Añadir sección</value>
   </data>
   <data name="Context_AddSubsectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_AddSubsectionMenuItem.Text" xml:space="preserve">
     <value>Añadir s&amp;ubsección</value>
   </data>
   <data name="Context_InsertSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_InsertSectionMenuItem.Text" xml:space="preserve">
     <value>&amp;Insertar sección</value>
   </data>
-  <data name="Context_MergeSectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>Combinar sección</value>
+  <data name="Context_MergeWithNextMenuItem.AccessibleName" xml:space="preserve">
+    <value>Unir con la siguiente</value>
   </data>
-  <data name="Context_MergeSectionWithNextMenuItem.AccessibleName" xml:space="preserve">
-    <value>Combinar sección con la siguiente</value>
+  <data name="Context_MergeWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
   </data>
-  <data name="Context_MergeSectionWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 22</value>
+  <data name="Context_MergeWithNextMenuItem.Text" xml:space="preserve">
+    <value>Uni&amp;r con la siguiente</value>
   </data>
-  <data name="Context_MergeSectionWithNextMenuItem.Text" xml:space="preserve">
-    <value>Combina&amp;r sección con la siguiente</value>
+  <data name="Context_MultipleOperationsMenuItem.AccessibleName" xml:space="preserve">
+    <value>Operaciones Multi-Secciones</value>
   </data>
-  <data name="Context_MergeMultipleSectionsMenuItem.AccessibleName" xml:space="preserve">
-    <value>Combinar múltiples secciones</value>
+  <data name="Context_MultipleOperationsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
   </data>
-  <data name="Context_MergeMultipleSectionsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 22</value>
-  </data>
-  <data name="Context_MergeMultipleSectionsMenuItem.Text" xml:space="preserve">
-    <value>Combinar m&amp;últiples secciones</value>
-  </data>
-  <data name="Context_MergeSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
-  </data>
-  <data name="Context_MergeSectionMenuItem.Text" xml:space="preserve">
-    <value>Com&amp;binar sección</value>
+  <data name="Context_MultipleOperationsMenuItem.Text" xml:space="preserve">
+    <value>Operaciones M&amp;ulti-Secciones</value>
   </data>
   <data name="Context_RenameSectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_RenameSectionMenuItem.Text" xml:space="preserve">
     <value>&amp;Renombrar sección</value>
   </data>
   <data name="Context_DecreaseSectionLevelMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_DecreaseSectionLevelMenuItem.Text" xml:space="preserve">
     <value>Disminuir niv&amp;el de la sección</value>
   </data>
   <data name="Context_IncreaseSectionLevelMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_IncreaseSectionLevelMenuItem.Text" xml:space="preserve">
     <value>I&amp;ncrementar nivel de la sección</value>
   </data>
   <data name="Context_SectionIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_SectionIsUsedMenuItem.Text" xml:space="preserve">
     <value>Se&amp;cción en uso</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 6</value>
+    <value>204, 6</value>
   </data>
   <data name="Context_CutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_CutMenuItem.Text" xml:space="preserve">
     <value>&amp;Cortar</value>
   </data>
   <data name="Context_CopyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_CopyMenuItem.Text" xml:space="preserve">
     <value>C&amp;opiar</value>
   </data>
   <data name="Context_PasteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_PasteMenuItem.Text" xml:space="preserve">
     <value>&amp;Pegar</value>
   </data>
   <data name="Context_PasteBeforeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_PasteBeforeMenuItem.Text" xml:space="preserve">
     <value>Pegar &amp;antes de</value>
   </data>
   <data name="Context_PasteInsideMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_PasteInsideMenuItem.Text" xml:space="preserve">
     <value>Pegar &amp;dentro de</value>
   </data>
   <data name="Context_DeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_DeleteMenuItem.Text" xml:space="preserve">
     <value>&amp;Borrar</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 6</value>
+    <value>204, 6</value>
   </data>
   <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>207, 22</value>
   </data>
   <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
     <value>Prop&amp;iedades</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 368</value>
+    <value>208, 390</value>
   </data>
   <data name="&gt;&gt;mContextMenuStrip.Name" xml:space="preserve">
     <value>mContextMenuStrip</value>
@@ -292,22 +283,16 @@
   <data name="&gt;&gt;Context_InsertSectionMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Context_MergeSectionMenuItem.Name" xml:space="preserve">
-    <value>Context_MergeSectionMenuItem</value>
+  <data name="&gt;&gt;Context_MergeWithNextMenuItem.Name" xml:space="preserve">
+    <value>Context_MergeWithNextMenuItem</value>
   </data>
-  <data name="&gt;&gt;Context_MergeSectionMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;Context_MergeWithNextMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Context_MergeSectionWithNextMenuItem.Name" xml:space="preserve">
-    <value>Context_MergeSectionWithNextMenuItem</value>
+  <data name="&gt;&gt;Context_MultipleOperationsMenuItem.Name" xml:space="preserve">
+    <value>Context_MultipleOperationsMenuItem</value>
   </data>
-  <data name="&gt;&gt;Context_MergeSectionWithNextMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Context_MergeMultipleSectionsMenuItem.Name" xml:space="preserve">
-    <value>Context_MergeMultipleSectionsMenuItem</value>
-  </data>
-  <data name="&gt;&gt;Context_MergeMultipleSectionsMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;Context_MultipleOperationsMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_RenameSectionMenuItem.Name" xml:space="preserve">

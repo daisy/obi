@@ -181,7 +181,7 @@
     <value>6</value>
   </data>
   <data name="m_btn_SelectAll.Text" xml:space="preserve">
-    <value>Seleccionar todo</value>
+    <value>Selección&amp;ar todo</value>
   </data>
   <data name="&gt;&gt;m_btn_SelectAll.Name" xml:space="preserve">
     <value>m_btn_SelectAll</value>
@@ -220,7 +220,7 @@
     <value>Obi Help.chm</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.AccessibleName" xml:space="preserve">
-    <value>Incrementar el nivel de la sección</value>
+    <value>Aumentar nivel sección</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -241,7 +241,7 @@
     <value>9</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.Text" xml:space="preserve">
-    <value>&amp;Arriba</value>
+    <value>&amp;Aumentar nivel sección</value>
   </data>
   <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Name" xml:space="preserve">
     <value>m_btn_IncreaseSectionLevel</value>
@@ -256,7 +256,7 @@
     <value>3</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.AccessibleName" xml:space="preserve">
-    <value>Disminuir el nivel de la sección</value>
+    <value>Disminuir nivel sección</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -277,7 +277,7 @@
     <value>10</value>
   </data>
   <data name="m_btn_DecreaseSectionLevel.Text" xml:space="preserve">
-    <value>A&amp;bajo</value>
+    <value>&amp;Disminuir</value>
   </data>
   <data name="&gt;&gt;m_btn_DecreaseSectionLevel.Name" xml:space="preserve">
     <value>m_btn_DecreaseSectionLevel</value>
@@ -421,7 +421,7 @@
     <value>6</value>
   </data>
   <data name="m_btnPause.AccessibleName" xml:space="preserve">
-    <value>Pausa</value>
+    <value>Pausar</value>
   </data>
   <data name="m_btnPause.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -436,7 +436,7 @@
     <value>3</value>
   </data>
   <data name="m_btnPause.Text" xml:space="preserve">
-    <value>&amp;Pausa</value>
+    <value>&amp;Pausar</value>
   </data>
   <data name="m_btnPause.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -469,7 +469,7 @@
     <value>4</value>
   </data>
   <data name="m_btn_Stop.Text" xml:space="preserve">
-    <value>&amp;Detener</value>
+    <value>De&amp;tener</value>
   </data>
   <data name="&gt;&gt;m_btn_Stop.Name" xml:space="preserve">
     <value>m_btn_Stop</value>
@@ -499,7 +499,7 @@
     <value>3</value>
   </data>
   <data name="m_btn_Play.Text" xml:space="preserve">
-    <value>Reproducir</value>
+    <value>Re&amp;producir</value>
   </data>
   <data name="&gt;&gt;m_btn_Play.Name" xml:space="preserve">
     <value>m_btn_Play</value>
@@ -535,7 +535,7 @@
     <value>2</value>
   </data>
   <data name="m_lb_listofSectionsToMerge.AccessibleName" xml:space="preserve">
-    <value>Lista de las secciones</value>
+    <value>Lista de secciones</value>
   </data>
   <data name="m_lb_listofSectionsToMerge.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 12</value>
