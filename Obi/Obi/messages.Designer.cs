@@ -3405,6 +3405,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        internal static string MergeOptions_LevelString {
+            get {
+                return ResourceManager.GetString("MergeOptions_LevelString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Merge sections.
         /// </summary>
         internal static string MergeOptions_Merge {
