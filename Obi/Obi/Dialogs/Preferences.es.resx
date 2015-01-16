@@ -673,7 +673,7 @@
     <value>Tamaño máx. limpieza Audio</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>204, 186</value>
+    <value>230, 186</value>
   </data>
   <data name="m_CleanUpFileSizeNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 22</value>
