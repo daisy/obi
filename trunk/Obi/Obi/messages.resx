@@ -2703,4 +2703,7 @@ Error text: {1}</value>
   <data name="Metadata_Empty" xml:space="preserve">
     <value>Empty</value>
   </data>
+  <data name="MergeOptions_LevelString" xml:space="preserve">
+    <value>Level</value>
+  </data>
 </root>

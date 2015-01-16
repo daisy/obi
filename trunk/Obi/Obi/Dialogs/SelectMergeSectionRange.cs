@@ -127,7 +127,7 @@ namespace Obi.Dialogs
              // if (m_SectionList[i].Level >= firstSection.Level)
                 {
                     m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
-                    m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
+                    m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level);
                    // m_SectionListAfterLevelChange.Add(m_SectionList[i]);
                 }
                 //else
@@ -153,7 +153,7 @@ namespace Obi.Dialogs
                     if ((m_SectionList[i].IsRooted))
                     {
                         m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
-                        m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
+                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level);
                         if (m_IndexOfSectionSelected.Contains(i))
                         {
                             m_lb_listofSectionsToMerge.SelectedIndex = i;
@@ -180,7 +180,7 @@ namespace Obi.Dialogs
                 {
                     int n = m_SectionList.IndexOf(m_SectionList[i]);
                     m_SectionList[n].Label = m_SectionList[n].Label.Replace("\n", string.Empty);
-                    m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[n].Label + " Level " + m_SectionList[n].Level);
+                    m_lb_listofSectionsToMerge.Items.Add(m_SectionList[n].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[n].Level);
                     if (m_SectionList[i] == m_ProjectView.GetSelectedPhraseSection)
                     {
                         m_lb_listofSectionsToMerge.SelectedIndex = i;
@@ -209,7 +209,7 @@ namespace Obi.Dialogs
                     if (m_SectionList[i].IsRooted)
                     {
                         m_SectionList[i].Label = m_SectionList[i].Label.Replace("\n", string.Empty);
-                        m_lb_listofSectionsToMerge.Items.Add("Section " + m_SectionList[i].Label + " Level " + m_SectionList[i].Level);
+                        m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i].Label + " " + Localizer.Message("MergeOptions_LevelString") + m_SectionList[i].Level);
 
                     }
                     if (m_IndexOfSectionSelected[0] == i)
