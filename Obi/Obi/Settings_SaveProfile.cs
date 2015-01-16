@@ -15,7 +15,7 @@ namespace Obi
    public class Settings_SaveProfile : Settings
     {
 
-        public static Settings GetSettingsFromSavedProfile (string profileFilePath)
+        public static Settings_SaveProfile GetSettingsFromSavedProfile (string profileFilePath)
         {
             Settings_SaveProfile settingsInstance = new Settings_SaveProfile();
             Settings.InitializeDefaultSettings(settingsInstance);
@@ -24,18 +24,18 @@ namespace Obi
             settingsInstance  = (Settings_SaveProfile)soap.Deserialize(fs);
             fs.Close();
 
-            return settingsInstance.CreateSettingsAndCopyProperties();
+            return settingsInstance;
             
         }
 
-       public Settings CreateSettingsAndCopyProperties()
+       public Settings CopyPropertiesToExistingSettings(Settings newSettings)
        {
-           Settings newSettings = Settings.GetDefaultSettings();
+           
 
            newSettings.Audio_AllowOverwrite = this.Audio_AllowOverwrite;
            newSettings.Audio_AudioClues = this.Audio_AudioClues;
            newSettings.Audio_AudioScale = this.Audio_AudioScale;
-           newSettings.Audio_BitDepth = this.Audio_BitDepth;
+           //newSettings.Audio_BitDepth = this.Audio_BitDepth;
            newSettings.Audio_Channels = this.Audio_Channels;
            newSettings.Audio_CleanupMaxFileSizeInMB = this.Audio_CleanupMaxFileSizeInMB;
            newSettings.Audio_DefaultGap = this.Audio_DefaultGap;
@@ -48,7 +48,7 @@ namespace Obi
            newSettings.Audio_EnablePostRecordingPageRenumbering = this.Audio_EnablePostRecordingPageRenumbering;
            newSettings.Audio_EnforceSingleCursor = this.Audio_EnforceSingleCursor;
            newSettings.Audio_FastPlayWithoutPitchChange = this.Audio_FastPlayWithoutPitchChange;
-           newSettings.Audio_LastInputDevice = this.Audio_LastInputDevice;
+           //newSettings.Audio_LastInputDevice = this.Audio_LastInputDevice;
            newSettings.Audio_LastOutputDevice = this.Audio_LastOutputDevice;
            newSettings.Audio_LevelComboBoxIndex = this.Audio_LevelComboBoxIndex;
            newSettings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection = this.Audio_MergeFirstTwoPhrasesAfterPhraseDetection;
@@ -65,9 +65,10 @@ namespace Obi
            newSettings.Audio_TTSVoice = this.Audio_TTSVoice;
            newSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio = this.Audio_UseRecordBtnToRecordOverSubsequentAudio;
            newSettings.Audio_UseRecordingPauseShortcutForStopping = this.Audio_UseRecordingPauseShortcutForStopping;
-           newSettings.BookMarkNodeHierarchy = this.BookMarkNodeHierarchy;
-           newSettings.ColorSettings = this.ColorSettings;
-           newSettings.ColorSettingsHC = this.ColorSettingsHC;
+           
+           //newSettings.BookMarkNodeHierarchy = this.BookMarkNodeHierarchy;
+           //newSettings.ColorSettings = this.ColorSettings;
+           //newSettings.ColorSettingsHC = this.ColorSettingsHC;
            newSettings.CreateTitleSection = this.CreateTitleSection;
            newSettings.EncodingFileFormat = this.EncodingFileFormat;
            newSettings.Export_AppendSectionNameToAudioFile = this.Export_AppendSectionNameToAudioFile;
@@ -93,6 +94,7 @@ namespace Obi
            newSettings.PeakmeterSize = this.PeakmeterSize;
            newSettings.PlayIfNoSelection = this.PlayIfNoSelection;
            newSettings.PlayOnNavigate = this.PlayOnNavigate;
+           
            newSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = this.Project_AutomaticallyDeleteUnusedFilesAfterCleanup;
            newSettings.Project_AutoSave_RecordingEnd = this.Project_AutoSave_RecordingEnd;
            newSettings.Project_AutoSaveTimeInterval = this.Project_AutoSaveTimeInterval;
@@ -115,26 +117,29 @@ namespace Obi
            newSettings.Project_SaveObiLocationAndSize = this.Project_SaveObiLocationAndSize;
            newSettings.Project_SaveProjectWhenRecordingEnds = this.Project_SaveProjectWhenRecordingEnds;
            newSettings.Project_ShowWaveformInContentView = this.Project_ShowWaveformInContentView;
-           newSettings.RecentProjects = this.RecentProjects;
+           
+           //newSettings.RecentProjects = this.RecentProjects;
            newSettings.RecordingToolBarIncrementVal = this.RecordingToolBarIncrementVal;
            newSettings.ShowGraphicalPeakMeterAtStartup = this.ShowGraphicalPeakMeterAtStartup;
            newSettings.SplitPhrasesOnImport = this.SplitPhrasesOnImport;
            newSettings.SynchronizeViews = this.SynchronizeViews;
            newSettings.TransportBarCounterIndex = this.TransportBarCounterIndex;
-           newSettings.UploadAttemptsCount = this.UploadAttemptsCount;
-           newSettings.UserProfile = this.UserProfile;
-           newSettings.UsersInfoToUpload = this.UsersInfoToUpload;
+           //newSettings.UploadAttemptsCount = this.UploadAttemptsCount;
+           newSettings.UserProfile.Name = this.UserProfile.Name;
+           newSettings.UserProfile.Organization = this.UserProfile.Organization;
+           newSettings.UserProfile.Culture = this.UserProfile.Culture;
+           //newSettings.UsersInfoToUpload = this.UsersInfoToUpload;
            newSettings.WrapStripContents = this.WrapStripContents;
            newSettings.ZoomFactor = this.ZoomFactor;
            
            return newSettings;
        }
 
-        public void Save(string profileFilePath)
+        public void Save(string profileFilePath, Settings existingSettings)
         {
             try
             {
-                
+                CopyPropertiesFromSettings(existingSettings);
                 FileStream fs = new FileStream(profileFilePath, FileMode.OpenOrCreate);
                 SoapFormatter soap = new SoapFormatter();
                 soap.Serialize(fs, this);
@@ -146,6 +151,13 @@ namespace Obi
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
         }
+
+       private void CopyPropertiesFromSettings(Settings existingSettings)
+       {
+           this.Audio_AllowOverwrite = existingSettings.Audio_AllowOverwrite;
+           this.Audio_AudioClues = existingSettings.Audio_AudioClues;
+           this.Audio_AudioScale = existingSettings.Audio_AudioScale;
+       }
 
             }
 }
