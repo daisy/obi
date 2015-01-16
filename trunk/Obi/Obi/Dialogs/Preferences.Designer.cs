@@ -36,83 +36,83 @@ namespace Obi.Dialogs
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.mProfilesTab = new System.Windows.Forms.TabPage();
+            this.m_btnLoadProfile = new System.Windows.Forms.Button();
+            this.m_btnSaveProfile = new System.Windows.Forms.Button();
             this.mColorPreferencesTab = new System.Windows.Forms.TabPage();
-            this.mNormalColorCombo = new System.Windows.Forms.ComboBox();
-            this.mHighContrastCombo = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.m_btn_Apply = new System.Windows.Forms.Button();
+            this.mChooseFontCombo = new System.Windows.Forms.ComboBox();
+            this.m_lblChooseFont = new System.Windows.Forms.Label();
+            this.m_txtBox_HighContrast = new System.Windows.Forms.TextBox();
             this.m_txtBox_Color = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_lv_ColorPref = new System.Windows.Forms.ListView();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.m_txtBox_HighContrast = new System.Windows.Forms.TextBox();
-            this.m_lblChooseFont = new System.Windows.Forms.Label();
-            this.mChooseFontCombo = new System.Windows.Forms.ComboBox();
+            this.m_btn_Apply = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.mHighContrastCombo = new System.Windows.Forms.ComboBox();
+            this.mNormalColorCombo = new System.Windows.Forms.ComboBox();
             this.mKeyboardShortcutTab = new System.Windows.Forms.TabPage();
-            this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
-            this.m_lblShortcutKeys = new System.Windows.Forms.Label();
-            this.m_txtShortcutKeys = new System.Windows.Forms.TextBox();
-            this.m_btnAssign = new System.Windows.Forms.Button();
-            this.m_btnRemove = new System.Windows.Forms.Button();
-            this.m_RestoreDefaults = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
             this.m_grpKeyboardShortcutList = new System.Windows.Forms.GroupBox();
             this.m_lvShortcutKeysList = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.label12 = new System.Windows.Forms.Label();
+            this.m_RestoreDefaults = new System.Windows.Forms.Button();
+            this.m_btnRemove = new System.Windows.Forms.Button();
+            this.m_btnAssign = new System.Windows.Forms.Button();
+            this.m_txtShortcutKeys = new System.Windows.Forms.TextBox();
+            this.m_lblShortcutKeys = new System.Windows.Forms.Label();
+            this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
             this.mUserProfileTab = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.mCultureBox = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.mOrganizationTextbox = new System.Windows.Forms.TextBox();
             this.mFullNameTextbox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.mOrganizationTextbox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.mCultureBox = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.mAudioTab = new System.Windows.Forms.TabPage();
-            this.labelInputDeviceName = new System.Windows.Forms.Label();
-            this.labelOutputDeviceName = new System.Windows.Forms.Label();
-            this.mInputDeviceCombo = new System.Windows.Forms.ComboBox();
-            this.mOutputDeviceCombo = new System.Windows.Forms.ComboBox();
-            this.labelSampleRate = new System.Windows.Forms.Label();
-            this.mSampleRateCombo = new System.Windows.Forms.ComboBox();
-            this.labelChannels = new System.Windows.Forms.Label();
-            this.mChannelsCombo = new System.Windows.Forms.ComboBox();
-            this.mSampleRateTextbox = new System.Windows.Forms.TextBox();
-            this.mChannelsTextbox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.mNoiseLevelComboBox = new System.Windows.Forms.ComboBox();
-            this.mlbOperation = new System.Windows.Forms.Label();
-            this.m_cbOperation = new System.Windows.Forms.ComboBox();
-            this.m_OperationDurationUpDown = new System.Windows.Forms.NumericUpDown();
-            this.mTTSvoiceCombo = new System.Windows.Forms.ComboBox();
-            this.labelTTSvoice = new System.Windows.Forms.Label();
-            this.m_btn_speak = new System.Windows.Forms.Button();
-            this.m_ComboSelectAudioProfile = new System.Windows.Forms.ComboBox();
-            this.m_lblProfile = new System.Windows.Forms.Label();
-            this.m_btnProfileDiscription = new System.Windows.Forms.Button();
-            this.mlblCleanupFileSize = new System.Windows.Forms.Label();
             this.m_CleanUpFileSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.mlblCleanupFileSize = new System.Windows.Forms.Label();
+            this.m_btnProfileDiscription = new System.Windows.Forms.Button();
+            this.m_lblProfile = new System.Windows.Forms.Label();
+            this.m_ComboSelectAudioProfile = new System.Windows.Forms.ComboBox();
+            this.m_btn_speak = new System.Windows.Forms.Button();
+            this.labelTTSvoice = new System.Windows.Forms.Label();
+            this.mTTSvoiceCombo = new System.Windows.Forms.ComboBox();
+            this.m_OperationDurationUpDown = new System.Windows.Forms.NumericUpDown();
+            this.m_cbOperation = new System.Windows.Forms.ComboBox();
+            this.mlbOperation = new System.Windows.Forms.Label();
+            this.mNoiseLevelComboBox = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.mChannelsTextbox = new System.Windows.Forms.TextBox();
+            this.mSampleRateTextbox = new System.Windows.Forms.TextBox();
+            this.mChannelsCombo = new System.Windows.Forms.ComboBox();
+            this.labelChannels = new System.Windows.Forms.Label();
+            this.mSampleRateCombo = new System.Windows.Forms.ComboBox();
+            this.labelSampleRate = new System.Windows.Forms.Label();
+            this.mOutputDeviceCombo = new System.Windows.Forms.ComboBox();
+            this.mInputDeviceCombo = new System.Windows.Forms.ComboBox();
+            this.labelOutputDeviceName = new System.Windows.Forms.Label();
+            this.labelInputDeviceName = new System.Windows.Forms.Label();
             this.mProjectTab = new System.Windows.Forms.TabPage();
-            this.mDirectoryTextbox = new System.Windows.Forms.TextBox();
-            this.mBrowseButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.mPipelineBrowseButton = new System.Windows.Forms.Button();
-            this.mPipelineTextbox = new System.Windows.Forms.TextBox();
-            this.MnumAutoSaveInterval = new System.Windows.Forms.NumericUpDown();
-            this.m_ChkAutoSaveInterval = new System.Windows.Forms.CheckBox();
-            this.m_NumImportTolerance = new System.Windows.Forms.NumericUpDown();
-            this.m_lblImportTolerance = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.m_lblImportTolerance = new System.Windows.Forms.Label();
+            this.m_NumImportTolerance = new System.Windows.Forms.NumericUpDown();
+            this.m_ChkAutoSaveInterval = new System.Windows.Forms.CheckBox();
+            this.MnumAutoSaveInterval = new System.Windows.Forms.NumericUpDown();
+            this.mPipelineTextbox = new System.Windows.Forms.TextBox();
+            this.mDirectoryTextbox = new System.Windows.Forms.TextBox();
+            this.mPipelineBrowseButton = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.mBrowseButton = new System.Windows.Forms.Button();
             this.mTab = new System.Windows.Forms.TabControl();
-            this.m_btnSaveProfile = new System.Windows.Forms.Button();
-            this.m_btnLoadProfile = new System.Windows.Forms.Button();
+            this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.mProfilesTab.SuspendLayout();
             this.mColorPreferencesTab.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -120,11 +120,11 @@ namespace Obi.Dialogs
             this.m_grpKeyboardShortcutList.SuspendLayout();
             this.mUserProfileTab.SuspendLayout();
             this.mAudioTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.m_OperationDurationUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_CleanUpFileSizeNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_OperationDurationUpDown)).BeginInit();
             this.mProjectTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
             this.mTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -179,6 +179,20 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mProfilesTab, ((bool)(resources.GetObject("mProfilesTab.ShowHelp"))));
             this.mProfilesTab.UseVisualStyleBackColor = true;
             // 
+            // m_btnLoadProfile
+            // 
+            resources.ApplyResources(this.m_btnLoadProfile, "m_btnLoadProfile");
+            this.m_btnLoadProfile.Name = "m_btnLoadProfile";
+            this.m_btnLoadProfile.UseVisualStyleBackColor = true;
+            this.m_btnLoadProfile.Click += new System.EventHandler(this.m_btnLoadProfile_Click);
+            // 
+            // m_btnSaveProfile
+            // 
+            resources.ApplyResources(this.m_btnSaveProfile, "m_btnSaveProfile");
+            this.m_btnSaveProfile.Name = "m_btnSaveProfile";
+            this.m_btnSaveProfile.UseVisualStyleBackColor = true;
+            this.m_btnSaveProfile.Click += new System.EventHandler(this.m_btnSaveProfile_Click);
+            // 
             // mColorPreferencesTab
             // 
             this.mColorPreferencesTab.Controls.Add(this.mChooseFontCombo);
@@ -196,43 +210,26 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mColorPreferencesTab, ((bool)(resources.GetObject("mColorPreferencesTab.ShowHelp"))));
             this.mColorPreferencesTab.UseVisualStyleBackColor = true;
             // 
-            // mNormalColorCombo
+            // mChooseFontCombo
             // 
-            this.mNormalColorCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.mNormalColorCombo, "mNormalColorCombo");
-            this.mNormalColorCombo.FormattingEnabled = true;
-            this.mNormalColorCombo.Name = "mNormalColorCombo";
-            this.helpProvider1.SetShowHelp(this.mNormalColorCombo, ((bool)(resources.GetObject("mNormalColorCombo.ShowHelp"))));
-            this.mNormalColorCombo.SelectedIndexChanged += new System.EventHandler(this.mNormalColorCombo_SelectedIndexChanged);
+            resources.ApplyResources(this.mChooseFontCombo, "mChooseFontCombo");
+            this.mChooseFontCombo.FormattingEnabled = true;
+            this.mChooseFontCombo.Name = "mChooseFontCombo";
+            this.helpProvider1.SetShowHelp(this.mChooseFontCombo, ((bool)(resources.GetObject("mChooseFontCombo.ShowHelp"))));
             // 
-            // mHighContrastCombo
+            // m_lblChooseFont
             // 
-            this.mHighContrastCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.mHighContrastCombo, "mHighContrastCombo");
-            this.mHighContrastCombo.FormattingEnabled = true;
-            this.mHighContrastCombo.Name = "mHighContrastCombo";
-            this.helpProvider1.SetShowHelp(this.mHighContrastCombo, ((bool)(resources.GetObject("mHighContrastCombo.ShowHelp"))));
-            this.mHighContrastCombo.SelectedIndexChanged += new System.EventHandler(this.mHighContrastCombo_SelectedIndexChanged);
+            resources.ApplyResources(this.m_lblChooseFont, "m_lblChooseFont");
+            this.m_lblChooseFont.Name = "m_lblChooseFont";
+            this.helpProvider1.SetShowHelp(this.m_lblChooseFont, ((bool)(resources.GetObject("m_lblChooseFont.ShowHelp"))));
             // 
-            // label7
+            // m_txtBox_HighContrast
             // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            this.helpProvider1.SetShowHelp(this.label7, ((bool)(resources.GetObject("label7.ShowHelp"))));
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            this.helpProvider1.SetShowHelp(this.label11, ((bool)(resources.GetObject("label11.ShowHelp"))));
-            // 
-            // m_btn_Apply
-            // 
-            resources.ApplyResources(this.m_btn_Apply, "m_btn_Apply");
-            this.m_btn_Apply.Name = "m_btn_Apply";
-            this.helpProvider1.SetShowHelp(this.m_btn_Apply, ((bool)(resources.GetObject("m_btn_Apply.ShowHelp"))));
-            this.m_btn_Apply.UseVisualStyleBackColor = true;
-            this.m_btn_Apply.Click += new System.EventHandler(this.m_btn_Apply_Click);
+            resources.ApplyResources(this.m_txtBox_HighContrast, "m_txtBox_HighContrast");
+            this.m_txtBox_HighContrast.Name = "m_txtBox_HighContrast";
+            this.m_txtBox_HighContrast.ReadOnly = true;
+            this.helpProvider1.SetShowHelp(this.m_txtBox_HighContrast, ((bool)(resources.GetObject("m_txtBox_HighContrast.ShowHelp"))));
+            this.m_txtBox_HighContrast.TabStop = false;
             // 
             // m_txtBox_Color
             // 
@@ -276,26 +273,43 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.columnHeader5, "columnHeader5");
             // 
-            // m_txtBox_HighContrast
+            // m_btn_Apply
             // 
-            resources.ApplyResources(this.m_txtBox_HighContrast, "m_txtBox_HighContrast");
-            this.m_txtBox_HighContrast.Name = "m_txtBox_HighContrast";
-            this.m_txtBox_HighContrast.ReadOnly = true;
-            this.helpProvider1.SetShowHelp(this.m_txtBox_HighContrast, ((bool)(resources.GetObject("m_txtBox_HighContrast.ShowHelp"))));
-            this.m_txtBox_HighContrast.TabStop = false;
+            resources.ApplyResources(this.m_btn_Apply, "m_btn_Apply");
+            this.m_btn_Apply.Name = "m_btn_Apply";
+            this.helpProvider1.SetShowHelp(this.m_btn_Apply, ((bool)(resources.GetObject("m_btn_Apply.ShowHelp"))));
+            this.m_btn_Apply.UseVisualStyleBackColor = true;
+            this.m_btn_Apply.Click += new System.EventHandler(this.m_btn_Apply_Click);
             // 
-            // m_lblChooseFont
+            // label11
             // 
-            resources.ApplyResources(this.m_lblChooseFont, "m_lblChooseFont");
-            this.m_lblChooseFont.Name = "m_lblChooseFont";
-            this.helpProvider1.SetShowHelp(this.m_lblChooseFont, ((bool)(resources.GetObject("m_lblChooseFont.ShowHelp"))));
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            this.helpProvider1.SetShowHelp(this.label11, ((bool)(resources.GetObject("label11.ShowHelp"))));
             // 
-            // mChooseFontCombo
+            // label7
             // 
-            resources.ApplyResources(this.mChooseFontCombo, "mChooseFontCombo");
-            this.mChooseFontCombo.FormattingEnabled = true;
-            this.mChooseFontCombo.Name = "mChooseFontCombo";
-            this.helpProvider1.SetShowHelp(this.mChooseFontCombo, ((bool)(resources.GetObject("mChooseFontCombo.ShowHelp"))));
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            this.helpProvider1.SetShowHelp(this.label7, ((bool)(resources.GetObject("label7.ShowHelp"))));
+            // 
+            // mHighContrastCombo
+            // 
+            this.mHighContrastCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.mHighContrastCombo, "mHighContrastCombo");
+            this.mHighContrastCombo.FormattingEnabled = true;
+            this.mHighContrastCombo.Name = "mHighContrastCombo";
+            this.helpProvider1.SetShowHelp(this.mHighContrastCombo, ((bool)(resources.GetObject("mHighContrastCombo.ShowHelp"))));
+            this.mHighContrastCombo.SelectedIndexChanged += new System.EventHandler(this.mHighContrastCombo_SelectedIndexChanged);
+            // 
+            // mNormalColorCombo
+            // 
+            this.mNormalColorCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.mNormalColorCombo, "mNormalColorCombo");
+            this.mNormalColorCombo.FormattingEnabled = true;
+            this.mNormalColorCombo.Name = "mNormalColorCombo";
+            this.helpProvider1.SetShowHelp(this.mNormalColorCombo, ((bool)(resources.GetObject("mNormalColorCombo.ShowHelp"))));
+            this.mNormalColorCombo.SelectedIndexChanged += new System.EventHandler(this.mNormalColorCombo_SelectedIndexChanged);
             // 
             // mKeyboardShortcutTab
             // 
@@ -312,56 +326,11 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mKeyboardShortcutTab, ((bool)(resources.GetObject("mKeyboardShortcutTab.ShowHelp"))));
             this.mKeyboardShortcutTab.UseVisualStyleBackColor = true;
             // 
-            // m_cbShortcutKeys
+            // label12
             // 
-            resources.ApplyResources(this.m_cbShortcutKeys, "m_cbShortcutKeys");
-            this.m_cbShortcutKeys.FormattingEnabled = true;
-            this.m_cbShortcutKeys.Items.AddRange(new object[] {
-            resources.GetString("m_cbShortcutKeys.Items"),
-            resources.GetString("m_cbShortcutKeys.Items1")});
-            this.m_cbShortcutKeys.Name = "m_cbShortcutKeys";
-            this.helpProvider1.SetShowHelp(this.m_cbShortcutKeys, ((bool)(resources.GetObject("m_cbShortcutKeys.ShowHelp"))));
-            this.m_cbShortcutKeys.SelectionChangeCommitted += new System.EventHandler(this.m_cbShortcutKeys_SelectionChangeCommitted);
-            // 
-            // m_lblShortcutKeys
-            // 
-            resources.ApplyResources(this.m_lblShortcutKeys, "m_lblShortcutKeys");
-            this.m_lblShortcutKeys.Name = "m_lblShortcutKeys";
-            this.helpProvider1.SetShowHelp(this.m_lblShortcutKeys, ((bool)(resources.GetObject("m_lblShortcutKeys.ShowHelp"))));
-            // 
-            // m_txtShortcutKeys
-            // 
-            resources.ApplyResources(this.m_txtShortcutKeys, "m_txtShortcutKeys");
-            this.m_txtShortcutKeys.Name = "m_txtShortcutKeys";
-            this.helpProvider1.SetShowHelp(this.m_txtShortcutKeys, ((bool)(resources.GetObject("m_txtShortcutKeys.ShowHelp"))));
-            this.m_txtShortcutKeys.KeyDown += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyDown);
-            this.m_txtShortcutKeys.Leave += new System.EventHandler(this.m_txtShortcutKeys_Leave);
-            this.m_txtShortcutKeys.KeyUp += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyUp);
-            this.m_txtShortcutKeys.Enter += new System.EventHandler(this.m_txtShortcutKeys_Enter);
-            // 
-            // m_btnAssign
-            // 
-            resources.ApplyResources(this.m_btnAssign, "m_btnAssign");
-            this.m_btnAssign.Name = "m_btnAssign";
-            this.helpProvider1.SetShowHelp(this.m_btnAssign, ((bool)(resources.GetObject("m_btnAssign.ShowHelp"))));
-            this.m_btnAssign.UseVisualStyleBackColor = true;
-            this.m_btnAssign.Click += new System.EventHandler(this.m_btnAssign_Click);
-            // 
-            // m_btnRemove
-            // 
-            resources.ApplyResources(this.m_btnRemove, "m_btnRemove");
-            this.m_btnRemove.Name = "m_btnRemove";
-            this.helpProvider1.SetShowHelp(this.m_btnRemove, ((bool)(resources.GetObject("m_btnRemove.ShowHelp"))));
-            this.m_btnRemove.UseVisualStyleBackColor = true;
-            this.m_btnRemove.Click += new System.EventHandler(this.m_btnRemove_Click);
-            // 
-            // m_RestoreDefaults
-            // 
-            resources.ApplyResources(this.m_RestoreDefaults, "m_RestoreDefaults");
-            this.m_RestoreDefaults.Name = "m_RestoreDefaults";
-            this.helpProvider1.SetShowHelp(this.m_RestoreDefaults, ((bool)(resources.GetObject("m_RestoreDefaults.ShowHelp"))));
-            this.m_RestoreDefaults.UseVisualStyleBackColor = true;
-            this.m_RestoreDefaults.Click += new System.EventHandler(this.m_RestoreDefaults_Click);
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            this.helpProvider1.SetShowHelp(this.label12, ((bool)(resources.GetObject("label12.ShowHelp"))));
             // 
             // m_grpKeyboardShortcutList
             // 
@@ -395,11 +364,56 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.columnHeader2, "columnHeader2");
             // 
-            // label12
+            // m_RestoreDefaults
             // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
-            this.helpProvider1.SetShowHelp(this.label12, ((bool)(resources.GetObject("label12.ShowHelp"))));
+            resources.ApplyResources(this.m_RestoreDefaults, "m_RestoreDefaults");
+            this.m_RestoreDefaults.Name = "m_RestoreDefaults";
+            this.helpProvider1.SetShowHelp(this.m_RestoreDefaults, ((bool)(resources.GetObject("m_RestoreDefaults.ShowHelp"))));
+            this.m_RestoreDefaults.UseVisualStyleBackColor = true;
+            this.m_RestoreDefaults.Click += new System.EventHandler(this.m_RestoreDefaults_Click);
+            // 
+            // m_btnRemove
+            // 
+            resources.ApplyResources(this.m_btnRemove, "m_btnRemove");
+            this.m_btnRemove.Name = "m_btnRemove";
+            this.helpProvider1.SetShowHelp(this.m_btnRemove, ((bool)(resources.GetObject("m_btnRemove.ShowHelp"))));
+            this.m_btnRemove.UseVisualStyleBackColor = true;
+            this.m_btnRemove.Click += new System.EventHandler(this.m_btnRemove_Click);
+            // 
+            // m_btnAssign
+            // 
+            resources.ApplyResources(this.m_btnAssign, "m_btnAssign");
+            this.m_btnAssign.Name = "m_btnAssign";
+            this.helpProvider1.SetShowHelp(this.m_btnAssign, ((bool)(resources.GetObject("m_btnAssign.ShowHelp"))));
+            this.m_btnAssign.UseVisualStyleBackColor = true;
+            this.m_btnAssign.Click += new System.EventHandler(this.m_btnAssign_Click);
+            // 
+            // m_txtShortcutKeys
+            // 
+            resources.ApplyResources(this.m_txtShortcutKeys, "m_txtShortcutKeys");
+            this.m_txtShortcutKeys.Name = "m_txtShortcutKeys";
+            this.helpProvider1.SetShowHelp(this.m_txtShortcutKeys, ((bool)(resources.GetObject("m_txtShortcutKeys.ShowHelp"))));
+            this.m_txtShortcutKeys.KeyDown += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyDown);
+            this.m_txtShortcutKeys.Leave += new System.EventHandler(this.m_txtShortcutKeys_Leave);
+            this.m_txtShortcutKeys.KeyUp += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyUp);
+            this.m_txtShortcutKeys.Enter += new System.EventHandler(this.m_txtShortcutKeys_Enter);
+            // 
+            // m_lblShortcutKeys
+            // 
+            resources.ApplyResources(this.m_lblShortcutKeys, "m_lblShortcutKeys");
+            this.m_lblShortcutKeys.Name = "m_lblShortcutKeys";
+            this.helpProvider1.SetShowHelp(this.m_lblShortcutKeys, ((bool)(resources.GetObject("m_lblShortcutKeys.ShowHelp"))));
+            // 
+            // m_cbShortcutKeys
+            // 
+            resources.ApplyResources(this.m_cbShortcutKeys, "m_cbShortcutKeys");
+            this.m_cbShortcutKeys.FormattingEnabled = true;
+            this.m_cbShortcutKeys.Items.AddRange(new object[] {
+            resources.GetString("m_cbShortcutKeys.Items"),
+            resources.GetString("m_cbShortcutKeys.Items1")});
+            this.m_cbShortcutKeys.Name = "m_cbShortcutKeys";
+            this.helpProvider1.SetShowHelp(this.m_cbShortcutKeys, ((bool)(resources.GetObject("m_cbShortcutKeys.ShowHelp"))));
+            this.m_cbShortcutKeys.SelectionChangeCommitted += new System.EventHandler(this.m_cbShortcutKeys_SelectionChangeCommitted);
             // 
             // mUserProfileTab
             // 
@@ -415,11 +429,34 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mUserProfileTab, ((bool)(resources.GetObject("mUserProfileTab.ShowHelp"))));
             this.mUserProfileTab.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // label6
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            this.helpProvider1.SetShowHelp(this.label1, ((bool)(resources.GetObject("label1.ShowHelp"))));
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            this.helpProvider1.SetShowHelp(this.label6, ((bool)(resources.GetObject("label6.ShowHelp"))));
+            // 
+            // mCultureBox
+            // 
+            resources.ApplyResources(this.mCultureBox, "mCultureBox");
+            this.mCultureBox.AllowDrop = true;
+            this.mCultureBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mCultureBox.FormattingEnabled = true;
+            this.mCultureBox.Name = "mCultureBox";
+            this.helpProvider1.SetShowHelp(this.mCultureBox, ((bool)(resources.GetObject("mCultureBox.ShowHelp"))));
+            this.mCultureBox.Sorted = true;
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            this.helpProvider1.SetShowHelp(this.label5, ((bool)(resources.GetObject("label5.ShowHelp"))));
+            // 
+            // mOrganizationTextbox
+            // 
+            resources.ApplyResources(this.mOrganizationTextbox, "mOrganizationTextbox");
+            this.mOrganizationTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mOrganizationTextbox.Name = "mOrganizationTextbox";
+            this.helpProvider1.SetShowHelp(this.mOrganizationTextbox, ((bool)(resources.GetObject("mOrganizationTextbox.ShowHelp"))));
             // 
             // mFullNameTextbox
             // 
@@ -434,34 +471,11 @@ namespace Obi.Dialogs
             this.label4.Name = "label4";
             this.helpProvider1.SetShowHelp(this.label4, ((bool)(resources.GetObject("label4.ShowHelp"))));
             // 
-            // mOrganizationTextbox
+            // label1
             // 
-            resources.ApplyResources(this.mOrganizationTextbox, "mOrganizationTextbox");
-            this.mOrganizationTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mOrganizationTextbox.Name = "mOrganizationTextbox";
-            this.helpProvider1.SetShowHelp(this.mOrganizationTextbox, ((bool)(resources.GetObject("mOrganizationTextbox.ShowHelp"))));
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
-            this.helpProvider1.SetShowHelp(this.label5, ((bool)(resources.GetObject("label5.ShowHelp"))));
-            // 
-            // mCultureBox
-            // 
-            resources.ApplyResources(this.mCultureBox, "mCultureBox");
-            this.mCultureBox.AllowDrop = true;
-            this.mCultureBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mCultureBox.FormattingEnabled = true;
-            this.mCultureBox.Name = "mCultureBox";
-            this.helpProvider1.SetShowHelp(this.mCultureBox, ((bool)(resources.GetObject("mCultureBox.ShowHelp"))));
-            this.mCultureBox.Sorted = true;
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            this.helpProvider1.SetShowHelp(this.label6, ((bool)(resources.GetObject("label6.ShowHelp"))));
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            this.helpProvider1.SetShowHelp(this.label1, ((bool)(resources.GetObject("label1.ShowHelp"))));
             // 
             // mAudioTab
             // 
@@ -494,127 +508,80 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mAudioTab, ((bool)(resources.GetObject("mAudioTab.ShowHelp"))));
             this.mAudioTab.UseVisualStyleBackColor = true;
             // 
-            // labelInputDeviceName
+            // m_CleanUpFileSizeNumericUpDown
             // 
-            resources.ApplyResources(this.labelInputDeviceName, "labelInputDeviceName");
-            this.labelInputDeviceName.Name = "labelInputDeviceName";
-            this.helpProvider1.SetShowHelp(this.labelInputDeviceName, ((bool)(resources.GetObject("labelInputDeviceName.ShowHelp"))));
+            resources.ApplyResources(this.m_CleanUpFileSizeNumericUpDown, "m_CleanUpFileSizeNumericUpDown");
+            this.m_CleanUpFileSizeNumericUpDown.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.m_CleanUpFileSizeNumericUpDown.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.m_CleanUpFileSizeNumericUpDown.Name = "m_CleanUpFileSizeNumericUpDown";
+            this.helpProvider1.SetShowHelp(this.m_CleanUpFileSizeNumericUpDown, ((bool)(resources.GetObject("m_CleanUpFileSizeNumericUpDown.ShowHelp"))));
+            this.m_CleanUpFileSizeNumericUpDown.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.m_CleanUpFileSizeNumericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
-            // labelOutputDeviceName
+            // mlblCleanupFileSize
             // 
-            resources.ApplyResources(this.labelOutputDeviceName, "labelOutputDeviceName");
-            this.labelOutputDeviceName.Name = "labelOutputDeviceName";
-            this.helpProvider1.SetShowHelp(this.labelOutputDeviceName, ((bool)(resources.GetObject("labelOutputDeviceName.ShowHelp"))));
+            resources.ApplyResources(this.mlblCleanupFileSize, "mlblCleanupFileSize");
+            this.mlblCleanupFileSize.Name = "mlblCleanupFileSize";
+            this.helpProvider1.SetShowHelp(this.mlblCleanupFileSize, ((bool)(resources.GetObject("mlblCleanupFileSize.ShowHelp"))));
             // 
-            // mInputDeviceCombo
+            // m_btnProfileDiscription
             // 
-            resources.ApplyResources(this.mInputDeviceCombo, "mInputDeviceCombo");
-            this.mInputDeviceCombo.AllowDrop = true;
-            this.mInputDeviceCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mInputDeviceCombo.FormattingEnabled = true;
-            this.mInputDeviceCombo.Name = "mInputDeviceCombo";
-            this.helpProvider1.SetShowHelp(this.mInputDeviceCombo, ((bool)(resources.GetObject("mInputDeviceCombo.ShowHelp"))));
+            resources.ApplyResources(this.m_btnProfileDiscription, "m_btnProfileDiscription");
+            this.m_btnProfileDiscription.Name = "m_btnProfileDiscription";
+            this.helpProvider1.SetShowHelp(this.m_btnProfileDiscription, ((bool)(resources.GetObject("m_btnProfileDiscription.ShowHelp"))));
+            this.m_btnProfileDiscription.UseVisualStyleBackColor = true;
+            this.m_btnProfileDiscription.Click += new System.EventHandler(this.m_btnProfileDiscription_Click);
             // 
-            // mOutputDeviceCombo
+            // m_lblProfile
             // 
-            resources.ApplyResources(this.mOutputDeviceCombo, "mOutputDeviceCombo");
-            this.mOutputDeviceCombo.AllowDrop = true;
-            this.mOutputDeviceCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mOutputDeviceCombo.FormattingEnabled = true;
-            this.mOutputDeviceCombo.Name = "mOutputDeviceCombo";
-            this.helpProvider1.SetShowHelp(this.mOutputDeviceCombo, ((bool)(resources.GetObject("mOutputDeviceCombo.ShowHelp"))));
+            resources.ApplyResources(this.m_lblProfile, "m_lblProfile");
+            this.m_lblProfile.Name = "m_lblProfile";
+            this.helpProvider1.SetShowHelp(this.m_lblProfile, ((bool)(resources.GetObject("m_lblProfile.ShowHelp"))));
             // 
-            // labelSampleRate
+            // m_ComboSelectAudioProfile
             // 
-            resources.ApplyResources(this.labelSampleRate, "labelSampleRate");
-            this.labelSampleRate.Name = "labelSampleRate";
-            this.helpProvider1.SetShowHelp(this.labelSampleRate, ((bool)(resources.GetObject("labelSampleRate.ShowHelp"))));
+            resources.ApplyResources(this.m_ComboSelectAudioProfile, "m_ComboSelectAudioProfile");
+            this.m_ComboSelectAudioProfile.FormattingEnabled = true;
+            this.m_ComboSelectAudioProfile.Name = "m_ComboSelectAudioProfile";
+            this.helpProvider1.SetShowHelp(this.m_ComboSelectAudioProfile, ((bool)(resources.GetObject("m_ComboSelectAudioProfile.ShowHelp"))));
+            this.m_ComboSelectAudioProfile.Validating += new System.ComponentModel.CancelEventHandler(this.m_SelectLevelComboBox_Validating);
+            this.m_ComboSelectAudioProfile.SelectionChangeCommitted += new System.EventHandler(this.m_SelectLevelComboBox_SelectionChangeCommitted);
+            this.m_ComboSelectAudioProfile.DropDownClosed += new System.EventHandler(this.m_SelectLevelComboBox_DropDownClosed);
+            this.m_ComboSelectAudioProfile.DropDown += new System.EventHandler(this.m_SelectLevelComboBox_DropDown);
             // 
-            // mSampleRateCombo
+            // m_btn_speak
             // 
-            resources.ApplyResources(this.mSampleRateCombo, "mSampleRateCombo");
-            this.mSampleRateCombo.AllowDrop = true;
-            this.mSampleRateCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mSampleRateCombo.FormattingEnabled = true;
-            this.mSampleRateCombo.Name = "mSampleRateCombo";
-            this.helpProvider1.SetShowHelp(this.mSampleRateCombo, ((bool)(resources.GetObject("mSampleRateCombo.ShowHelp"))));
+            resources.ApplyResources(this.m_btn_speak, "m_btn_speak");
+            this.m_btn_speak.Name = "m_btn_speak";
+            this.helpProvider1.SetShowHelp(this.m_btn_speak, ((bool)(resources.GetObject("m_btn_speak.ShowHelp"))));
+            this.m_btn_speak.UseVisualStyleBackColor = true;
+            this.m_btn_speak.Click += new System.EventHandler(this.m_btn_speak_Click);
             // 
-            // labelChannels
+            // labelTTSvoice
             // 
-            resources.ApplyResources(this.labelChannels, "labelChannels");
-            this.labelChannels.Name = "labelChannels";
-            this.helpProvider1.SetShowHelp(this.labelChannels, ((bool)(resources.GetObject("labelChannels.ShowHelp"))));
+            resources.ApplyResources(this.labelTTSvoice, "labelTTSvoice");
+            this.labelTTSvoice.Name = "labelTTSvoice";
+            this.helpProvider1.SetShowHelp(this.labelTTSvoice, ((bool)(resources.GetObject("labelTTSvoice.ShowHelp"))));
             // 
-            // mChannelsCombo
+            // mTTSvoiceCombo
             // 
-            resources.ApplyResources(this.mChannelsCombo, "mChannelsCombo");
-            this.mChannelsCombo.AllowDrop = true;
-            this.mChannelsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mChannelsCombo.FormattingEnabled = true;
-            this.mChannelsCombo.Name = "mChannelsCombo";
-            this.helpProvider1.SetShowHelp(this.mChannelsCombo, ((bool)(resources.GetObject("mChannelsCombo.ShowHelp"))));
-            // 
-            // mSampleRateTextbox
-            // 
-            resources.ApplyResources(this.mSampleRateTextbox, "mSampleRateTextbox");
-            this.mSampleRateTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mSampleRateTextbox.Name = "mSampleRateTextbox";
-            this.mSampleRateTextbox.ReadOnly = true;
-            this.helpProvider1.SetShowHelp(this.mSampleRateTextbox, ((bool)(resources.GetObject("mSampleRateTextbox.ShowHelp"))));
-            // 
-            // mChannelsTextbox
-            // 
-            resources.ApplyResources(this.mChannelsTextbox, "mChannelsTextbox");
-            this.mChannelsTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mChannelsTextbox.Name = "mChannelsTextbox";
-            this.mChannelsTextbox.ReadOnly = true;
-            this.helpProvider1.SetShowHelp(this.mChannelsTextbox, ((bool)(resources.GetObject("mChannelsTextbox.ShowHelp"))));
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            this.helpProvider1.SetShowHelp(this.label3, ((bool)(resources.GetObject("label3.ShowHelp"))));
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            this.helpProvider1.SetShowHelp(this.label8, ((bool)(resources.GetObject("label8.ShowHelp"))));
-            // 
-            // mNoiseLevelComboBox
-            // 
-            resources.ApplyResources(this.mNoiseLevelComboBox, "mNoiseLevelComboBox");
-            this.mNoiseLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mNoiseLevelComboBox.FormattingEnabled = true;
-            this.mNoiseLevelComboBox.Items.AddRange(new object[] {
-            resources.GetString("mNoiseLevelComboBox.Items"),
-            resources.GetString("mNoiseLevelComboBox.Items1"),
-            resources.GetString("mNoiseLevelComboBox.Items2")});
-            this.mNoiseLevelComboBox.Name = "mNoiseLevelComboBox";
-            this.helpProvider1.SetShowHelp(this.mNoiseLevelComboBox, ((bool)(resources.GetObject("mNoiseLevelComboBox.ShowHelp"))));
-            // 
-            // mlbOperation
-            // 
-            resources.ApplyResources(this.mlbOperation, "mlbOperation");
-            this.mlbOperation.Name = "mlbOperation";
-            this.helpProvider1.SetShowHelp(this.mlbOperation, ((bool)(resources.GetObject("mlbOperation.ShowHelp"))));
-            // 
-            // m_cbOperation
-            // 
-            this.m_cbOperation.DropDownWidth = 215;
-            this.m_cbOperation.FormattingEnabled = true;
-            this.m_cbOperation.Items.AddRange(new object[] {
-            resources.GetString("m_cbOperation.Items"),
-            resources.GetString("m_cbOperation.Items1"),
-            resources.GetString("m_cbOperation.Items2"),
-            resources.GetString("m_cbOperation.Items3"),
-            resources.GetString("m_cbOperation.Items4"),
-            resources.GetString("m_cbOperation.Items5")});
-            resources.ApplyResources(this.m_cbOperation, "m_cbOperation");
-            this.m_cbOperation.Name = "m_cbOperation";
-            this.helpProvider1.SetShowHelp(this.m_cbOperation, ((bool)(resources.GetObject("m_cbOperation.ShowHelp"))));
-            this.m_cbOperation.SelectedIndexChanged += new System.EventHandler(this.m_cbOperation_SelectedIndexChanged);
+            this.mTTSvoiceCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.mTTSvoiceCombo, "mTTSvoiceCombo");
+            this.mTTSvoiceCombo.FormattingEnabled = true;
+            this.mTTSvoiceCombo.Name = "mTTSvoiceCombo";
+            this.helpProvider1.SetShowHelp(this.mTTSvoiceCombo, ((bool)(resources.GetObject("mTTSvoiceCombo.ShowHelp"))));
             // 
             // m_OperationDurationUpDown
             // 
@@ -643,80 +610,127 @@ namespace Obi.Dialogs
             0});
             this.m_OperationDurationUpDown.ValueChanged += new System.EventHandler(this.m_OperationDurationUpDown_ValueChanged);
             // 
-            // mTTSvoiceCombo
+            // m_cbOperation
             // 
-            this.mTTSvoiceCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.mTTSvoiceCombo, "mTTSvoiceCombo");
-            this.mTTSvoiceCombo.FormattingEnabled = true;
-            this.mTTSvoiceCombo.Name = "mTTSvoiceCombo";
-            this.helpProvider1.SetShowHelp(this.mTTSvoiceCombo, ((bool)(resources.GetObject("mTTSvoiceCombo.ShowHelp"))));
+            this.m_cbOperation.DropDownWidth = 215;
+            this.m_cbOperation.FormattingEnabled = true;
+            this.m_cbOperation.Items.AddRange(new object[] {
+            resources.GetString("m_cbOperation.Items"),
+            resources.GetString("m_cbOperation.Items1"),
+            resources.GetString("m_cbOperation.Items2"),
+            resources.GetString("m_cbOperation.Items3"),
+            resources.GetString("m_cbOperation.Items4"),
+            resources.GetString("m_cbOperation.Items5")});
+            resources.ApplyResources(this.m_cbOperation, "m_cbOperation");
+            this.m_cbOperation.Name = "m_cbOperation";
+            this.helpProvider1.SetShowHelp(this.m_cbOperation, ((bool)(resources.GetObject("m_cbOperation.ShowHelp"))));
+            this.m_cbOperation.SelectedIndexChanged += new System.EventHandler(this.m_cbOperation_SelectedIndexChanged);
             // 
-            // labelTTSvoice
+            // mlbOperation
             // 
-            resources.ApplyResources(this.labelTTSvoice, "labelTTSvoice");
-            this.labelTTSvoice.Name = "labelTTSvoice";
-            this.helpProvider1.SetShowHelp(this.labelTTSvoice, ((bool)(resources.GetObject("labelTTSvoice.ShowHelp"))));
+            resources.ApplyResources(this.mlbOperation, "mlbOperation");
+            this.mlbOperation.Name = "mlbOperation";
+            this.helpProvider1.SetShowHelp(this.mlbOperation, ((bool)(resources.GetObject("mlbOperation.ShowHelp"))));
             // 
-            // m_btn_speak
+            // mNoiseLevelComboBox
             // 
-            resources.ApplyResources(this.m_btn_speak, "m_btn_speak");
-            this.m_btn_speak.Name = "m_btn_speak";
-            this.helpProvider1.SetShowHelp(this.m_btn_speak, ((bool)(resources.GetObject("m_btn_speak.ShowHelp"))));
-            this.m_btn_speak.UseVisualStyleBackColor = true;
-            this.m_btn_speak.Click += new System.EventHandler(this.m_btn_speak_Click);
+            resources.ApplyResources(this.mNoiseLevelComboBox, "mNoiseLevelComboBox");
+            this.mNoiseLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mNoiseLevelComboBox.FormattingEnabled = true;
+            this.mNoiseLevelComboBox.Items.AddRange(new object[] {
+            resources.GetString("mNoiseLevelComboBox.Items"),
+            resources.GetString("mNoiseLevelComboBox.Items1"),
+            resources.GetString("mNoiseLevelComboBox.Items2")});
+            this.mNoiseLevelComboBox.Name = "mNoiseLevelComboBox";
+            this.helpProvider1.SetShowHelp(this.mNoiseLevelComboBox, ((bool)(resources.GetObject("mNoiseLevelComboBox.ShowHelp"))));
             // 
-            // m_ComboSelectAudioProfile
+            // label8
             // 
-            resources.ApplyResources(this.m_ComboSelectAudioProfile, "m_ComboSelectAudioProfile");
-            this.m_ComboSelectAudioProfile.FormattingEnabled = true;
-            this.m_ComboSelectAudioProfile.Name = "m_ComboSelectAudioProfile";
-            this.helpProvider1.SetShowHelp(this.m_ComboSelectAudioProfile, ((bool)(resources.GetObject("m_ComboSelectAudioProfile.ShowHelp"))));
-            this.m_ComboSelectAudioProfile.Validating += new System.ComponentModel.CancelEventHandler(this.m_SelectLevelComboBox_Validating);
-            this.m_ComboSelectAudioProfile.SelectionChangeCommitted += new System.EventHandler(this.m_SelectLevelComboBox_SelectionChangeCommitted);
-            this.m_ComboSelectAudioProfile.DropDownClosed += new System.EventHandler(this.m_SelectLevelComboBox_DropDownClosed);
-            this.m_ComboSelectAudioProfile.DropDown += new System.EventHandler(this.m_SelectLevelComboBox_DropDown);
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            this.helpProvider1.SetShowHelp(this.label8, ((bool)(resources.GetObject("label8.ShowHelp"))));
             // 
-            // m_lblProfile
+            // label3
             // 
-            resources.ApplyResources(this.m_lblProfile, "m_lblProfile");
-            this.m_lblProfile.Name = "m_lblProfile";
-            this.helpProvider1.SetShowHelp(this.m_lblProfile, ((bool)(resources.GetObject("m_lblProfile.ShowHelp"))));
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            this.helpProvider1.SetShowHelp(this.label3, ((bool)(resources.GetObject("label3.ShowHelp"))));
             // 
-            // m_btnProfileDiscription
+            // mChannelsTextbox
             // 
-            resources.ApplyResources(this.m_btnProfileDiscription, "m_btnProfileDiscription");
-            this.m_btnProfileDiscription.Name = "m_btnProfileDiscription";
-            this.helpProvider1.SetShowHelp(this.m_btnProfileDiscription, ((bool)(resources.GetObject("m_btnProfileDiscription.ShowHelp"))));
-            this.m_btnProfileDiscription.UseVisualStyleBackColor = true;
-            this.m_btnProfileDiscription.Click += new System.EventHandler(this.m_btnProfileDiscription_Click);
+            resources.ApplyResources(this.mChannelsTextbox, "mChannelsTextbox");
+            this.mChannelsTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mChannelsTextbox.Name = "mChannelsTextbox";
+            this.mChannelsTextbox.ReadOnly = true;
+            this.helpProvider1.SetShowHelp(this.mChannelsTextbox, ((bool)(resources.GetObject("mChannelsTextbox.ShowHelp"))));
             // 
-            // mlblCleanupFileSize
+            // mSampleRateTextbox
             // 
-            resources.ApplyResources(this.mlblCleanupFileSize, "mlblCleanupFileSize");
-            this.mlblCleanupFileSize.Name = "mlblCleanupFileSize";
-            this.helpProvider1.SetShowHelp(this.mlblCleanupFileSize, ((bool)(resources.GetObject("mlblCleanupFileSize.ShowHelp"))));
+            resources.ApplyResources(this.mSampleRateTextbox, "mSampleRateTextbox");
+            this.mSampleRateTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mSampleRateTextbox.Name = "mSampleRateTextbox";
+            this.mSampleRateTextbox.ReadOnly = true;
+            this.helpProvider1.SetShowHelp(this.mSampleRateTextbox, ((bool)(resources.GetObject("mSampleRateTextbox.ShowHelp"))));
             // 
-            // m_CleanUpFileSizeNumericUpDown
+            // mChannelsCombo
             // 
-            resources.ApplyResources(this.m_CleanUpFileSizeNumericUpDown, "m_CleanUpFileSizeNumericUpDown");
-            this.m_CleanUpFileSizeNumericUpDown.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.m_CleanUpFileSizeNumericUpDown.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.m_CleanUpFileSizeNumericUpDown.Name = "m_CleanUpFileSizeNumericUpDown";
-            this.helpProvider1.SetShowHelp(this.m_CleanUpFileSizeNumericUpDown, ((bool)(resources.GetObject("m_CleanUpFileSizeNumericUpDown.ShowHelp"))));
-            this.m_CleanUpFileSizeNumericUpDown.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.m_CleanUpFileSizeNumericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            resources.ApplyResources(this.mChannelsCombo, "mChannelsCombo");
+            this.mChannelsCombo.AllowDrop = true;
+            this.mChannelsCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mChannelsCombo.FormattingEnabled = true;
+            this.mChannelsCombo.Name = "mChannelsCombo";
+            this.helpProvider1.SetShowHelp(this.mChannelsCombo, ((bool)(resources.GetObject("mChannelsCombo.ShowHelp"))));
+            // 
+            // labelChannels
+            // 
+            resources.ApplyResources(this.labelChannels, "labelChannels");
+            this.labelChannels.Name = "labelChannels";
+            this.helpProvider1.SetShowHelp(this.labelChannels, ((bool)(resources.GetObject("labelChannels.ShowHelp"))));
+            // 
+            // mSampleRateCombo
+            // 
+            resources.ApplyResources(this.mSampleRateCombo, "mSampleRateCombo");
+            this.mSampleRateCombo.AllowDrop = true;
+            this.mSampleRateCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mSampleRateCombo.FormattingEnabled = true;
+            this.mSampleRateCombo.Name = "mSampleRateCombo";
+            this.helpProvider1.SetShowHelp(this.mSampleRateCombo, ((bool)(resources.GetObject("mSampleRateCombo.ShowHelp"))));
+            // 
+            // labelSampleRate
+            // 
+            resources.ApplyResources(this.labelSampleRate, "labelSampleRate");
+            this.labelSampleRate.Name = "labelSampleRate";
+            this.helpProvider1.SetShowHelp(this.labelSampleRate, ((bool)(resources.GetObject("labelSampleRate.ShowHelp"))));
+            // 
+            // mOutputDeviceCombo
+            // 
+            resources.ApplyResources(this.mOutputDeviceCombo, "mOutputDeviceCombo");
+            this.mOutputDeviceCombo.AllowDrop = true;
+            this.mOutputDeviceCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mOutputDeviceCombo.FormattingEnabled = true;
+            this.mOutputDeviceCombo.Name = "mOutputDeviceCombo";
+            this.helpProvider1.SetShowHelp(this.mOutputDeviceCombo, ((bool)(resources.GetObject("mOutputDeviceCombo.ShowHelp"))));
+            // 
+            // mInputDeviceCombo
+            // 
+            resources.ApplyResources(this.mInputDeviceCombo, "mInputDeviceCombo");
+            this.mInputDeviceCombo.AllowDrop = true;
+            this.mInputDeviceCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mInputDeviceCombo.FormattingEnabled = true;
+            this.mInputDeviceCombo.Name = "mInputDeviceCombo";
+            this.helpProvider1.SetShowHelp(this.mInputDeviceCombo, ((bool)(resources.GetObject("mInputDeviceCombo.ShowHelp"))));
+            // 
+            // labelOutputDeviceName
+            // 
+            resources.ApplyResources(this.labelOutputDeviceName, "labelOutputDeviceName");
+            this.labelOutputDeviceName.Name = "labelOutputDeviceName";
+            this.helpProvider1.SetShowHelp(this.labelOutputDeviceName, ((bool)(resources.GetObject("labelOutputDeviceName.ShowHelp"))));
+            // 
+            // labelInputDeviceName
+            // 
+            resources.ApplyResources(this.labelInputDeviceName, "labelInputDeviceName");
+            this.labelInputDeviceName.Name = "labelInputDeviceName";
+            this.helpProvider1.SetShowHelp(this.labelInputDeviceName, ((bool)(resources.GetObject("labelInputDeviceName.ShowHelp"))));
             // 
             // mProjectTab
             // 
@@ -736,47 +750,41 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mProjectTab, ((bool)(resources.GetObject("mProjectTab.ShowHelp"))));
             this.mProjectTab.UseVisualStyleBackColor = true;
             // 
-            // mDirectoryTextbox
+            // label10
             // 
-            resources.ApplyResources(this.mDirectoryTextbox, "mDirectoryTextbox");
-            this.mDirectoryTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mDirectoryTextbox.Name = "mDirectoryTextbox";
-            this.helpProvider1.SetShowHelp(this.mDirectoryTextbox, ((bool)(resources.GetObject("mDirectoryTextbox.ShowHelp"))));
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            this.helpProvider1.SetShowHelp(this.label10, ((bool)(resources.GetObject("label10.ShowHelp"))));
             // 
-            // mBrowseButton
+            // m_lblImportTolerance
             // 
-            resources.ApplyResources(this.mBrowseButton, "mBrowseButton");
-            this.mBrowseButton.Name = "mBrowseButton";
-            this.helpProvider1.SetShowHelp(this.mBrowseButton, ((bool)(resources.GetObject("mBrowseButton.ShowHelp"))));
-            this.mBrowseButton.UseVisualStyleBackColor = true;
-            this.mBrowseButton.Click += new System.EventHandler(this.mBrowseButton_Click);
+            resources.ApplyResources(this.m_lblImportTolerance, "m_lblImportTolerance");
+            this.m_lblImportTolerance.Name = "m_lblImportTolerance";
+            this.helpProvider1.SetShowHelp(this.m_lblImportTolerance, ((bool)(resources.GetObject("m_lblImportTolerance.ShowHelp"))));
             // 
-            // label2
+            // m_NumImportTolerance
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            this.helpProvider1.SetShowHelp(this.label2, ((bool)(resources.GetObject("label2.ShowHelp"))));
+            this.m_NumImportTolerance.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.m_NumImportTolerance, "m_NumImportTolerance");
+            this.m_NumImportTolerance.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.m_NumImportTolerance.Name = "m_NumImportTolerance";
+            this.helpProvider1.SetShowHelp(this.m_NumImportTolerance, ((bool)(resources.GetObject("m_NumImportTolerance.ShowHelp"))));
             // 
-            // label9
+            // m_ChkAutoSaveInterval
             // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            this.helpProvider1.SetShowHelp(this.label9, ((bool)(resources.GetObject("label9.ShowHelp"))));
-            // 
-            // mPipelineBrowseButton
-            // 
-            resources.ApplyResources(this.mPipelineBrowseButton, "mPipelineBrowseButton");
-            this.mPipelineBrowseButton.Name = "mPipelineBrowseButton";
-            this.helpProvider1.SetShowHelp(this.mPipelineBrowseButton, ((bool)(resources.GetObject("mPipelineBrowseButton.ShowHelp"))));
-            this.mPipelineBrowseButton.UseVisualStyleBackColor = true;
-            this.mPipelineBrowseButton.Click += new System.EventHandler(this.mPipelineBrowseButton_Click);
-            // 
-            // mPipelineTextbox
-            // 
-            resources.ApplyResources(this.mPipelineTextbox, "mPipelineTextbox");
-            this.mPipelineTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mPipelineTextbox.Name = "mPipelineTextbox";
-            this.helpProvider1.SetShowHelp(this.mPipelineTextbox, ((bool)(resources.GetObject("mPipelineTextbox.ShowHelp"))));
+            resources.ApplyResources(this.m_ChkAutoSaveInterval, "m_ChkAutoSaveInterval");
+            this.m_ChkAutoSaveInterval.Name = "m_ChkAutoSaveInterval";
+            this.helpProvider1.SetShowHelp(this.m_ChkAutoSaveInterval, ((bool)(resources.GetObject("m_ChkAutoSaveInterval.ShowHelp"))));
+            this.m_ChkAutoSaveInterval.UseVisualStyleBackColor = true;
+            this.m_ChkAutoSaveInterval.CheckStateChanged += new System.EventHandler(this.m_ChkAutoSaveInterval_CheckStateChanged);
             // 
             // MnumAutoSaveInterval
             // 
@@ -799,41 +807,47 @@ namespace Obi.Dialogs
             0,
             0});
             // 
-            // m_ChkAutoSaveInterval
+            // mPipelineTextbox
             // 
-            resources.ApplyResources(this.m_ChkAutoSaveInterval, "m_ChkAutoSaveInterval");
-            this.m_ChkAutoSaveInterval.Name = "m_ChkAutoSaveInterval";
-            this.helpProvider1.SetShowHelp(this.m_ChkAutoSaveInterval, ((bool)(resources.GetObject("m_ChkAutoSaveInterval.ShowHelp"))));
-            this.m_ChkAutoSaveInterval.UseVisualStyleBackColor = true;
-            this.m_ChkAutoSaveInterval.CheckStateChanged += new System.EventHandler(this.m_ChkAutoSaveInterval_CheckStateChanged);
+            resources.ApplyResources(this.mPipelineTextbox, "mPipelineTextbox");
+            this.mPipelineTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mPipelineTextbox.Name = "mPipelineTextbox";
+            this.helpProvider1.SetShowHelp(this.mPipelineTextbox, ((bool)(resources.GetObject("mPipelineTextbox.ShowHelp"))));
             // 
-            // m_NumImportTolerance
+            // mDirectoryTextbox
             // 
-            this.m_NumImportTolerance.Increment = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.m_NumImportTolerance, "m_NumImportTolerance");
-            this.m_NumImportTolerance.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.m_NumImportTolerance.Name = "m_NumImportTolerance";
-            this.helpProvider1.SetShowHelp(this.m_NumImportTolerance, ((bool)(resources.GetObject("m_NumImportTolerance.ShowHelp"))));
+            resources.ApplyResources(this.mDirectoryTextbox, "mDirectoryTextbox");
+            this.mDirectoryTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mDirectoryTextbox.Name = "mDirectoryTextbox";
+            this.helpProvider1.SetShowHelp(this.mDirectoryTextbox, ((bool)(resources.GetObject("mDirectoryTextbox.ShowHelp"))));
             // 
-            // m_lblImportTolerance
+            // mPipelineBrowseButton
             // 
-            resources.ApplyResources(this.m_lblImportTolerance, "m_lblImportTolerance");
-            this.m_lblImportTolerance.Name = "m_lblImportTolerance";
-            this.helpProvider1.SetShowHelp(this.m_lblImportTolerance, ((bool)(resources.GetObject("m_lblImportTolerance.ShowHelp"))));
+            resources.ApplyResources(this.mPipelineBrowseButton, "mPipelineBrowseButton");
+            this.mPipelineBrowseButton.Name = "mPipelineBrowseButton";
+            this.helpProvider1.SetShowHelp(this.mPipelineBrowseButton, ((bool)(resources.GetObject("mPipelineBrowseButton.ShowHelp"))));
+            this.mPipelineBrowseButton.UseVisualStyleBackColor = true;
+            this.mPipelineBrowseButton.Click += new System.EventHandler(this.mPipelineBrowseButton_Click);
             // 
-            // label10
+            // label9
             // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            this.helpProvider1.SetShowHelp(this.label10, ((bool)(resources.GetObject("label10.ShowHelp"))));
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            this.helpProvider1.SetShowHelp(this.label9, ((bool)(resources.GetObject("label9.ShowHelp"))));
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            this.helpProvider1.SetShowHelp(this.label2, ((bool)(resources.GetObject("label2.ShowHelp"))));
+            // 
+            // mBrowseButton
+            // 
+            resources.ApplyResources(this.mBrowseButton, "mBrowseButton");
+            this.mBrowseButton.Name = "mBrowseButton";
+            this.helpProvider1.SetShowHelp(this.mBrowseButton, ((bool)(resources.GetObject("mBrowseButton.ShowHelp"))));
+            this.mBrowseButton.UseVisualStyleBackColor = true;
+            this.mBrowseButton.Click += new System.EventHandler(this.mBrowseButton_Click);
             // 
             // mTab
             // 
@@ -848,18 +862,6 @@ namespace Obi.Dialogs
             this.mTab.SelectedIndex = 0;
             this.helpProvider1.SetShowHelp(this.mTab, ((bool)(resources.GetObject("mTab.ShowHelp"))));
             this.mTab.SelectedIndexChanged += new System.EventHandler(this.mTab_SelectedIndexChanged);
-            // 
-            // m_btnSaveProfile
-            // 
-            resources.ApplyResources(this.m_btnSaveProfile, "m_btnSaveProfile");
-            this.m_btnSaveProfile.Name = "m_btnSaveProfile";
-            this.m_btnSaveProfile.UseVisualStyleBackColor = true;
-            // 
-            // m_btnLoadProfile
-            // 
-            resources.ApplyResources(this.m_btnLoadProfile, "m_btnLoadProfile");
-            this.m_btnLoadProfile.Name = "m_btnLoadProfile";
-            this.m_btnLoadProfile.UseVisualStyleBackColor = true;
             // 
             // Preferences
             // 
@@ -891,12 +893,12 @@ namespace Obi.Dialogs
             this.mUserProfileTab.PerformLayout();
             this.mAudioTab.ResumeLayout(false);
             this.mAudioTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.m_OperationDurationUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_CleanUpFileSizeNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_OperationDurationUpDown)).EndInit();
             this.mProjectTab.ResumeLayout(false);
             this.mProjectTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).EndInit();
             this.mTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
