@@ -718,7 +718,7 @@
     <value>False</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 29</value>
+    <value>333, 29</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 22</value>
