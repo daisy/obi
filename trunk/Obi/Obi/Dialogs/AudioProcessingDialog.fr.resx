@@ -117,131 +117,179 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_lbl_ChooseOption.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_lbl_ChooseOption.Location" type="System.Drawing.Point, System.Drawing">
-    <value>42, 22</value>
+  <data name="m_txt_info.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 125</value>
   </data>
-  <data name="m_lbl_ChooseOption.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 13</value>
+  <data name="m_txt_info.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 21</value>
   </data>
-  <data name="m_lbl_ChooseOption.TabIndex" type="System.Int32, mscorlib">
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_txt_info.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_txt_info.Text" xml:space="preserve">
+    <value>La valeur 1,0 signifie que l'audio ne sera pas modifié.</value>
+  </data>
+  <data name="&gt;&gt;m_txt_info.Name" xml:space="preserve">
+    <value>m_txt_info</value>
+  </data>
+  <data name="&gt;&gt;m_txt_info.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txt_info.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_txt_info.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="m_lbl_ChooseOption.Text" xml:space="preserve">
-    <value>Choisir une Option</value>
+  <data name="m_numericUpDown1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
   </data>
-  <data name="&gt;&gt;m_lbl_ChooseOption.Name" xml:space="preserve">
-    <value>m_lbl_ChooseOption</value>
+  <data name="m_numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 76</value>
   </data>
-  <data name="&gt;&gt;m_lbl_ChooseOption.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 21</value>
   </data>
-  <data name="&gt;&gt;m_lbl_ChooseOption.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="m_numericUpDown1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;m_lbl_ChooseOption.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;m_numericUpDown1.Name" xml:space="preserve">
+    <value>m_numericUpDown1</value>
   </data>
-  <data name="m_rdb_SaveBookmarkAndProject.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;m_numericUpDown1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="m_rdb_SaveBookmarkAndProject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 51</value>
+  <data name="&gt;&gt;m_numericUpDown1.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
   </data>
-  <data name="m_rdb_SaveBookmarkAndProject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 17</value>
-  </data>
-  <data name="m_rdb_SaveBookmarkAndProject.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;m_numericUpDown1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_rdb_SaveBookmarkAndProject.Text" xml:space="preserve">
-    <value>Enregistrer le projet et le &amp;signet </value>
-  </data>
-  <data name="&gt;&gt;m_rdb_SaveBookmarkAndProject.Name" xml:space="preserve">
-    <value>m_rdb_SaveBookmarkAndProject</value>
-  </data>
-  <data name="&gt;&gt;m_rdb_SaveBookmarkAndProject.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_rdb_SaveBookmarkAndProject.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_rdb_SaveBookmarkAndProject.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="m_rdb_SaveProjectOnly.AutoSize" type="System.Boolean, mscorlib">
+  <data name="m_lbl_Parameters.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="m_rdb_SaveProjectOnly.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 74</value>
+  <data name="m_lbl_Parameters.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 78</value>
   </data>
-  <data name="m_rdb_SaveProjectOnly.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 17</value>
+  <data name="m_lbl_Parameters.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 15</value>
   </data>
-  <data name="m_rdb_SaveProjectOnly.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_lbl_Parameters.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="m_lbl_Parameters.Text" xml:space="preserve">
+    <value>Paramètre :</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Parameters.Name" xml:space="preserve">
+    <value>m_lbl_Parameters</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Parameters.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Parameters.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Parameters.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_cb_Process.Items" xml:space="preserve">
+    <value>Amplifier</value>
+  </data>
+  <data name="m_cb_Process.Items1" xml:space="preserve">
+    <value>Normaliser</value>
+  </data>
+  <data name="m_cb_Process.Items2" xml:space="preserve">
+    <value>Débit de la voix</value>
+  </data>
+  <data name="m_cb_Process.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 39</value>
+  </data>
+  <data name="m_cb_Process.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 23</value>
+  </data>
+  <data name="m_cb_Process.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;m_cb_Process.Name" xml:space="preserve">
+    <value>m_cb_Process</value>
+  </data>
+  <data name="&gt;&gt;m_cb_Process.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cb_Process.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_cb_Process.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="m_rdb_SaveProjectOnly.Text" xml:space="preserve">
-    <value>Enregistrer uniquement le &amp;projet</value>
-  </data>
-  <data name="&gt;&gt;m_rdb_SaveProjectOnly.Name" xml:space="preserve">
-    <value>m_rdb_SaveProjectOnly</value>
-  </data>
-  <data name="&gt;&gt;m_rdb_SaveProjectOnly.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_rdb_SaveProjectOnly.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_rdb_SaveProjectOnly.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="m_rdb_DiscardBoth.AutoSize" type="System.Boolean, mscorlib">
+  <data name="m_lbl_Process.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="m_rdb_DiscardBoth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 97</value>
+  <data name="m_lbl_Process.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 43</value>
   </data>
-  <data name="m_rdb_DiscardBoth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 17</value>
+  <data name="m_lbl_Process.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 15</value>
   </data>
-  <data name="m_rdb_DiscardBoth.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_lbl_Process.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_lbl_Process.Text" xml:space="preserve">
+    <value>Traitement :</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Process.Name" xml:space="preserve">
+    <value>m_lbl_Process</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Process.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Process.Parent" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_lbl_Process.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="m_rdb_DiscardBoth.Text" xml:space="preserve">
-    <value>&amp;Rien enregister</value>
+  <data name="m_gpbox_Process.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 9</value>
   </data>
-  <data name="&gt;&gt;m_rdb_DiscardBoth.Name" xml:space="preserve">
-    <value>m_rdb_DiscardBoth</value>
+  <data name="m_gpbox_Process.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 165</value>
   </data>
-  <data name="&gt;&gt;m_rdb_DiscardBoth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_gpbox_Process.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;m_rdb_DiscardBoth.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_gpbox_Process.Name" xml:space="preserve">
+    <value>m_gpbox_Process</value>
+  </data>
+  <data name="&gt;&gt;m_gpbox_Process.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_gpbox_Process.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_rdb_DiscardBoth.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_gpbox_Process.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btn_OK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="m_btn_OK.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 136</value>
+    <value>51, 199</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>92, 32</value>
   </data>
   <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>1</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>&amp;OK</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.Name" xml:space="preserve">
     <value>m_btn_OK</value>
@@ -258,17 +306,20 @@
   <data name="m_btn_Cancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="m_btn_Cancel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 136</value>
+    <value>196, 199</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>92, 32</value>
   </data>
   <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>2</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
-    <value>Annuler</value>
+    <value>&amp;Annuler</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.Name" xml:space="preserve">
     <value>m_btn_Cancel</value>
@@ -285,26 +336,23 @@
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.fr.chm</value>
-  </data>
+  <metadata name="m_InfoToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>303, 183</value>
+    <value>331, 244</value>
   </data>
-  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>309, 211</value>
-  </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>309, 211</value>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Slectionner l'option</value>
+    <value>Traitement audio (fonctions de base)</value>
   </data>
   <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
     <value>helpProvider1</value>
@@ -312,8 +360,14 @@
   <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
     <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;m_InfoToolTip.Name" xml:space="preserve">
+    <value>m_InfoToolTip</value>
+  </data>
+  <data name="&gt;&gt;m_InfoToolTip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MultipleOptionDialog</value>
+    <value>AudioProcessingDialog</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

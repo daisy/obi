@@ -160,7 +160,7 @@ Voulez-vous enregistrer les modifications avant la fermeture du projet?</value>
     <comment>Error dialog</comment>
   </data>
   <data name="opened_project" xml:space="preserve">
-    <value>Fichier ouvert "{0}".</value>
+    <value>fichier ouvert "{0}".</value>
     <comment>Status message</comment>
   </data>
   <data name="ready" xml:space="preserve">
@@ -178,8 +178,7 @@ Voulez-vous enregistrer les modifications avant la fermeture du projet?</value>
   <data name="save_settings_error_text" xml:space="preserve">
     <value>L'erreur suivante s'est produite pendant la tentative de sauvegarde des paramètres:
 "{0}"
-En conséquence, les modifications apportées aux réglages effectués lors de cette session n'ont pas été enregistrées.
-</value>
+En conséquence, les modifications apportées aux réglages effectués lors de cette session n'ont pas été enregistrées.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="saved_project" xml:space="preserve">
@@ -252,7 +251,7 @@ En conséquence, les modifications apportées aux réglages effectués lors de c
     <comment>Error dialog</comment>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>fichier WAVE (*.wav;*.mp3;*.mp4;*.m4a)|*.wav;*.mp3;*.mp4;*.m4a|tous les fichiers|*.*</value>
+    <value>Fichiers audio (*.wav;*.mp3;*.mp4)|*.wav;*.mp3;*.mp4|tout fichier|*.*</value>
     <comment>File dialog</comment>
   </data>
   <data name="Monitoring" xml:space="preserve">
@@ -324,19 +323,19 @@ En conséquence, les modifications apportées aux réglages effectués lors de c
     <comment>Warning dialog</comment>
   </data>
   <data name="empty_directory_text" xml:space="preserve">
-    <value>Vous êtes sur le point d'exporter votre projet DAISY vers {0}. Ce répertoire n'est pas vide (peut-être avez-vous exporté une version précédente de votre projet vers ce répertoire). Voulez-vous vider ce répertoire avant d'exporter?</value>
+    <value>Vous êtes sur le point d'exporter votre projet DAISY/EPUB vers {0}. Ce répertoire n'est pas vide (peut-être avez-vous exporté une version précédente de votre projet vers ce répertoire). Voulez-vous vider ce répertoire avant d'exporter?</value>
     <comment>Warning dialog</comment>
   </data>
   <data name="didnt_save_as_daisy_caption" xml:space="preserve">
-    <value>Erreur d'exportation vers DAISY</value>
+    <value>Erreur d'exportation vers DAISY/EPUB</value>
     <comment>Error dialog</comment>
   </data>
   <data name="didnt_save_as_daisy_text" xml:space="preserve">
-    <value>Impossible d'exporter le projet DAISY dans le répertoire {0}. Raison invoquée: {1}</value>
+    <value>Impossible d'exporter le projet DAISY/EPUB dans le répertoire {0}. Raison invoquée: {1}</value>
     <comment>Error dialog</comment>
   </data>
   <data name="saved_as_daisy_caption" xml:space="preserve">
-    <value>Projet exporté vers DAISY</value>
+    <value>Projet exporté</value>
     <comment>Information dialog</comment>
   </data>
   <data name="import_phrase_error_caption" xml:space="preserve">
@@ -384,7 +383,7 @@ En conséquence, les modifications apportées aux réglages effectués lors de c
     <comment>Error dialog</comment>
   </data>
   <data name="really_use_directory_text" xml:space="preserve">
-    <value>Le répertoire "{0}" n'est pas vide. Si vous voulez vider le répertoire avant de l'utiliser, choisir "Oui." Si vous voulez utiliser ce répertoire tel quel, choisir "Non."</value>
+    <value>Le répertoire "{0}"n'est pas vide. Si vous voulez vider le répertoire avant de l'utiliser, choisir "Oui." Si vous voulez utiliser ce répertoire tel quel, choisir "Non."</value>
     <comment>Error dialog</comment>
   </data>
   <data name="cannot_redo" xml:space="preserve">
@@ -400,11 +399,11 @@ En conséquence, les modifications apportées aux réglages effectués lors de c
     <comment>Command</comment>
   </data>
   <data name="move_section_out" xml:space="preserve">
-    <value>diminuer le niveau de la section</value>
+    <value>diminuer le niveau de section</value>
     <comment>Command (was renamed)</comment>
   </data>
   <data name="move_section_in" xml:space="preserve">
-    <value>augmenter le niveau de la section</value>
+    <value>augmenter le niveau de section</value>
     <comment>Command (was renamed)</comment>
   </data>
   <data name="delete_section" xml:space="preserve">
@@ -428,7 +427,7 @@ En conséquence, les modifications apportées aux réglages effectués lors de c
     <comment>Command</comment>
   </data>
   <data name="importing_file" xml:space="preserve">
-    <value>Importation du fichier "{0}"</value>
+    <value>Importation fichier "{0}"</value>
     <comment>Status message</comment>
   </data>
   <data name="init_error_text" xml:space="preserve">
@@ -594,7 +593,7 @@ Texte de l'erreur: {1}</value>
     <comment>Error message stub</comment>
   </data>
   <data name="filter" xml:space="preserve">
-    <value>XHTML, Opf, XML, Csv, Txt, Epub file (*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Any file|*.*</value>
+    <value>Fichier XHTML, Opf, XML, Csv, Txt, Epub (*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt)|*.htm;*.html;*.xhtml;*.opf;*.xml;*.epub;*.csv;*.txt|Tout fichier|*.*</value>
     <comment>File dialog</comment>
   </data>
   <data name="blank_phrase" xml:space="preserve">
@@ -610,7 +609,7 @@ Texte de l'erreur: {1}</value>
     <comment>Command</comment>
   </data>
   <data name="clean_failed_caption" xml:space="preserve">
-    <value>Impossible de nettoyer projet</value>
+    <value>nettoyage du projet impossible</value>
     <comment>Error dialog</comment>
   </data>
   <data name="clean_failed_text" xml:space="preserve">
@@ -650,7 +649,7 @@ Texte de l'erreur: {1}</value>
     <comment>Metadata</comment>
   </data>
   <data name="modify_metadata_name" xml:space="preserve">
-    <value>modifier le nom de saisie des métadonnées</value>
+    <value>modifier le nom d'entrée des métadonnées</value>
     <comment>Metadata</comment>
   </data>
   <data name="about_file_name" xml:space="preserve">
@@ -666,7 +665,7 @@ Texte de l'erreur: {1}</value>
     <comment>Command</comment>
   </data>
   <data name="add_metadata_entry" xml:space="preserve">
-    <value>ajouter une entrée de métadonnées</value>
+    <value>ajouter une entrée de métadonnée</value>
     <comment>Command</comment>
   </data>
   <data name="choose_import_file" xml:space="preserve">
@@ -682,7 +681,7 @@ Texte de l'erreur: {1}</value>
     <comment>Transport bar display</comment>
   </data>
   <data name="propose_directory_caption" xml:space="preserve">
-    <value>Répertoir non vide pour le nouveau projet</value>
+    <value>Répertoire non vide pour le nouveau projet</value>
     <comment>Warning dialog</comment>
   </data>
   <data name="propose_directory_text" xml:space="preserve">
@@ -744,7 +743,7 @@ Texte de l'erreur: {1}</value>
     <comment>Metadata description</comment>
   </data>
   <data name="dc_identifier_description" xml:space="preserve">
-    <value>Une chaîne ou un numéro d'identification de la DTB.</value>
+    <value>Une chaîne ou un numéro d'identification du DTB.</value>
     <comment>Metadata description</comment>
   </data>
   <data name="dc_language_description" xml:space="preserve">
@@ -760,7 +759,7 @@ Texte de l'erreur: {1}</value>
     <comment>Metadata description</comment>
   </data>
   <data name="dc_source_description" xml:space="preserve">
-    <value>Une référence vers une source (Ex. une impression originale, un ebook, etc.) à partir de laquelle le DTB est dérivé. L'usage le plus judicieux consiste à utiliser l'ISBN lorsqu'il est disponible.</value>
+    <value>Une référence vers une ressource (Ex. une impression originale, un ebook, etc.) à partir de laquelle le DTB est dérivé. L'usage le plus judicieux consiste à utiliser l'ISBN lorsqu'il est disponible.</value>
     <comment>Metadata description</comment>
   </data>
   <data name="dc_subject_description" xml:space="preserve">
@@ -844,7 +843,7 @@ Texte de l'erreur: {1}</value>
     <comment>Metadata description</comment>
   </data>
   <data name="metadata_name_error_caption" xml:space="preserve">
-    <value>Erreur dans le nom de la Métadonnées</value>
+    <value>Erreur dans le nom de la Métadonnée</value>
     <comment>Error dialog</comment>
   </data>
   <data name="metadata_name_error_text" xml:space="preserve">
@@ -860,7 +859,7 @@ Texte de l'erreur: {1}</value>
     <comment>ToString() for empty phrases</comment>
   </data>
   <data name="node_selection_to_string" xml:space="preserve">
-    <value>Sélectionné {0} , {1}</value>
+    <value>Sélectionné {0} de {1}</value>
     <comment>ToString()</comment>
   </data>
   <data name="phrase_extra_custom" xml:space="preserve">
@@ -924,7 +923,7 @@ Texte de l'erreur: {1}</value>
     <comment>ToString(); e.g. [unused] phrase 3 of 5 (2.5s), page number 2</comment>
   </data>
   <data name="section_level_to_string" xml:space="preserve">
-    <value>, depth {0}</value>
+    <value>, profondeur {0}</value>
   </data>
   <data name="section_one_phrase_to_string" xml:space="preserve">
     <value>, 1 phrase</value>
@@ -956,7 +955,7 @@ Texte de l'erreur: {1}</value>
     <comment>ToString() strip cursor selection</comment>
   </data>
   <data name="text_selection_to_string" xml:space="preserve">
-    <value>SSélection du texte à {0} sur {1}: "{2}"</value>
+    <value>Sélection du texte à {0} sur {1}: "{2}"</value>
     <comment>ToString() text selection</comment>
   </data>
   <data name="obi_url" xml:space="preserve">
@@ -1016,14 +1015,14 @@ Texte de l'erreur: {1}</value>
     <comment>Used for time formating (plural)</comment>
   </data>
   <data name="node_position" xml:space="preserve">
-    <value>{0} de {1}</value>
+    <value>{0} of {1}</value>
   </data>
   <data name="second" xml:space="preserve">
     <value>seconde</value>
     <comment>Used for time formating (singular)</comment>
   </data>
   <data name="seconds" xml:space="preserve">
-    <value>seconds</value>
+    <value>secondes</value>
     <comment>Used for time formating (plural)</comment>
   </data>
   <data name="section_level" xml:space="preserve">
@@ -1047,7 +1046,7 @@ Texte de l'erreur: {1}</value>
     <value>Échec à l'importation</value>
   </data>
   <data name="no_headings_found" xml:space="preserve">
-    <value>Aucun titres (h1, h2, etc.) trouvés dans le document XHTML.</value>
+    <value>Aucun titre (h1, h2, etc.) trouvés dans le document XHTML.</value>
   </data>
   <data name="wrong_heading_order" xml:space="preserve">
     <value>Les éléments titres ne sont pas dans le bon ordre.</value>
@@ -1059,7 +1058,7 @@ Texte de l'erreur: {1}</value>
     <value>Erreur de codage du DTB</value>
   </data>
   <data name="dtb_filter" xml:space="preserve">
-    <value>Pacakge de fichier du DTB (*.opf)|*.opf|Tous les fichiers|*.*</value>
+    <value>Pacakge fichier du DTB (*.opf)|*.opf|tout fichier|*.*</value>
   </data>
   <data name="dtb_validate_error" xml:space="preserve">
     <value>Erreur pendant la validation du DTB: {0}</value>
@@ -1147,8 +1146,7 @@ Texte de l'erreur: {1}</value>
     <value>Voulez-vous enregistrer les modifications avant de sauvegarder le projet vers un nouvel emplacement? </value>
   </data>
   <data name="no_primary_export_directory" xml:space="preserve">
-    <value>Le répertoire d’exportation DAISY n'a pas été trouvé. Veuillez sélectionner un chemin d'exportation ou exporter le projet vers Daisy.</value>
-    <comment>Pipeline interface error message</comment>
+    <value>Le répertoire d’exportation EPUB n'a pas été trouvé. Veuillez sélectionner un chemin d'exportation ou exporter le projet vers Epub.</value>
   </data>
   <data name="section_unexported" xml:space="preserve">
     <value>La section "{0}" n'a pas de contenu audio, cette dernière et ses sous-sections ne seront pas exportées. Voulez-vous continuer?</value>
@@ -1226,7 +1224,7 @@ Texte de l'erreur: {1}</value>
     <comment>Accessible name for strip cursor</comment>
   </data>
   <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
-    <value>La valeur devrait se situer entre{0} et {1}</value>
+    <value>La valeur devrait se situer entre {0} et {1}</value>
   </data>
   <data name="Pipeline_OutOfRange" xml:space="preserve">
     <value>La valeur n'est pas dans la fourchette prévue</value>
@@ -1282,7 +1280,7 @@ Texte de l'erreur: {1}</value>
     <comment>Lock error</comment>
   </data>
   <data name="project_locked" xml:space="preserve">
-    <value>Le projet est verrouillé, probablement parce que la session précédente de ce projet s'est terminée brutalement ou qu'une autre session de Obi avec le même projet est ouverte. Si vous êtes sûr qu'il n'y a pas d'autres sessions de Obi vous pouvez essayer, à vos propres risques, de supprimer le fichier verrou "{0}".</value>
+    <value>Le projet est verrouillé, probablement parce que la session précédente du projet s'est terminée brutalement ou qu'une autre session de Obi avec le même projet est ouverte. Si vous êtes sûr qu'il n'y a pas d'autres sessions de Obi vous pouvez essayer, à vos propres risques, de supprimer le fichier verrou "{0}".</value>
     <comment>Lock error</comment>
   </data>
   <data name="no_preceding_silence_phrase_caption" xml:space="preserve">
@@ -1448,7 +1446,7 @@ Texte de l'erreur: {1}</value>
     <value>Attention!</value>
   </data>
   <data name="Pipeline_DuplicateScript" xml:space="preserve">
-    <value>Dupliquer le script pipeline nommé {0}trouvé. Il ne sera pas chargé. Appuyez sur le boutton Ok pour continuer.</value>
+    <value>Dupliquer le script pipeline nommé {0} trouvé. Il ne sera pas chargé. Appuyez sur le boutton Ok pour continuer.</value>
   </data>
   <data name="GoToPageOrPhrase_MoreThanPhraseCount" xml:space="preserve">
     <value>L'index de phrase {0} est supérieur au total des phrases de la section. Si vous voulez vous déplacer au dernier index de phrase: {1} dans la section, appuyez sur Oui</value>
@@ -1513,16 +1511,16 @@ Texte de l'erreur: {1}</value>
     <comment>command</comment>
   </data>
   <data name="GotoPageOrPhrase_EnterNumeric" xml:space="preserve">
-    <value>Entrée invalide. Veuillez entrer une valeur numérique.</value>
+    <value>Invalid input. Please enter a numeric value.</value>
   </data>
   <data name="GotoPage_MissingVal" xml:space="preserve">
-    <value>La valeur est absente</value>
+    <value>Value is missing</value>
   </data>
   <data name="SelectPhraseDetection_EndOrStartValMoreThanSectionCount" xml:space="preserve">
-    <value>La valeur de départ ou de fin est supérieur au nombre total de sections</value>
+    <value>Entrée invalide. Veuillez entrer une valeur numérique.</value>
   </data>
   <data name="SelectPhraseDetection_EndValIsSmallerThanStart" xml:space="preserve">
-    <value>La valeur de fin est inférieure à la valeur de départ.</value>
+    <value>La valeur de fin est plus petite que la valeur de départ.</value>
   </data>
   <data name="SelectPhraseDetection_MissingStartOrEndVal" xml:space="preserve">
     <value>Valeur de départ ou de fin manquante</value>
@@ -1552,7 +1550,7 @@ Texte de l'erreur: {1}</value>
     <value>Écran de chargement...</value>
   </data>
   <data name="DeleteFollowing_SectionSelection" xml:space="preserve">
-    <value>Cette opération va supprimer toutes les phrases de la section sélectionnée. Désirez-vous poursuivre?</value>
+    <value>Cette opération supprimera toutes les phrases de la section sélectionnée. Désirez-vous poursuivre?</value>
   </data>
   <data name="NewProject_EmptyTitle" xml:space="preserve">
     <value>Le projet ne peut pas avoir un titre vide.</value>
@@ -1663,7 +1661,7 @@ Texte de l'erreur: {1}</value>
     <value>Le fichier nommé {0} est renommé en {1} comme le nom de fichier qui existe déjà dans le répertoire du projet</value>
   </data>
   <data name="ImportAudio_ConvertingFormat" xml:space="preserve">
-    <value>Traitement des fichiers avant l'importation</value>
+    <value>Traitement des fichiers avant importation</value>
   </data>
   <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
     <value>{0} (Limitation du nombre de phrases affichées pour améliorer la performance. Cliquez sur les dernières phrases pour en afficher d'avantage)</value>
@@ -1675,7 +1673,7 @@ Texte de l'erreur: {1}</value>
     <value>La page n'existe pas </value>
   </data>
   <data name="PerformanceCheck_RAMNearOverflowMsg" xml:space="preserve">
-    <value>Le système fonctionne à forte charge. Il est recommandé de recommencer cette opération après un certain temps. Appuyez sur Non pour abandonner l'opération</value>
+    <value>Le système fonctionne sous forte charge. Il est recommandé de recommencer cette opération après un certain temps. Appuyez sur Non pour abandonner l'opération</value>
   </data>
   <data name="SelectPhraseOrSection_ShowSection" xml:space="preserve">
     <value>La phrase requise n'est pas dans la section courante. Voulez-vous afficher la section contenant la phrase?</value>
@@ -1687,7 +1685,7 @@ Texte de l'erreur: {1}</value>
     <value>Niveau de lecture rapide normalisé</value>
   </data>
   <data name="KeyS_FastPlayStepDown" xml:space="preserve">
-    <value>Lecture rapide diminuée</value>
+    <value>Lecture rapide réduite</value>
   </data>
   <data name="KeyS_FastPlayStepUp" xml:space="preserve">
     <value>Lecture rapide accélérée</value>
@@ -1732,7 +1730,7 @@ Texte de l'erreur: {1}</value>
     <value>Un écran vers le haut</value>
   </data>
   <data name="KeyS_ScrollUp_SmallIncrementWithSelection" xml:space="preserve">
-    <value>une ligne vers le haut</value>
+    <value>Une ligne vers le haut</value>
   </data>
   <data name="KeyS_SelectCompleteWaveform" xml:space="preserve">
     <value>Sélectionner la totalité du spectre audio de la phrase</value>
@@ -1831,7 +1829,7 @@ Texte de l'erreur: {1}</value>
     <value>Le raccourci clavier existe déjà. Veuillez assigner une autre touche ou combinaison de touches</value>
   </data>
   <data name="KeyboardShortcuts_ErrorInLoadingConfiguredKeys" xml:space="preserve">
-    <value>Erreur lors du chargement des raccourcis clavier configurés. Chargement des raccourcis par défauts.</value>
+    <value>Erreur lors du chargement des raccourcis clavier modifiés. Chargement des raccourcis par défauts.</value>
   </data>
   <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
     <value>Exportation du fichier audio...</value>
@@ -1843,7 +1841,7 @@ Texte de l'erreur: {1}</value>
     <value>Lecture en cours {0} {1} </value>
   </data>
   <data name="import_output_path" xml:space="preserve">
-    <value>Le livre Daisy a été importé avec succès vers {0}</value>
+    <value>Le livre Daisy a été importé avec succès {0} à {1}</value>
   </data>
   <data name="RecToolbar_MarkedTODO" xml:space="preserve">
     <value>Marqué AFAIRE</value>
@@ -1915,7 +1913,7 @@ Texte de l'erreur: {1}</value>
     <value>Importation annulée</value>
   </data>
   <data name="Report_for_import" xml:space="preserve">
-    <value>Rapport d'importation</value>
+    <value>Rapport sur l'importation</value>
   </data>
   <data name="AudioFileImport_ProcessingFiles" xml:space="preserve">
     <value>Traitement des fichiers audio pour l'importation</value>
@@ -1924,7 +1922,7 @@ Texte de l'erreur: {1}</value>
     <value>Impossible d'enregistrer le fichier à l'emplacement: {0}. Veuillez choisir un autre emplacement.</value>
   </data>
   <data name="backup_file_missing" xml:space="preserve">
-    <value>Impossible de restaurer. Pas de fichier de sauvegarde à :</value>
+    <value>Impossible de restaurer. Pas de fichier de sauvegarde sur :</value>
   </data>
   <data name="information_caption" xml:space="preserve">
     <value>Information</value>
@@ -1933,7 +1931,7 @@ Texte de l'erreur: {1}</value>
     <value>Enregistrer l’état courant?</value>
   </data>
   <data name="restored_project_name" xml:space="preserve">
-    <value>Restorer Project.obi</value>
+    <value>Restaurer Project.obi</value>
   </data>
   <data name="save_current_state" xml:space="preserve">
     <value>Cette opération sauvegardera l'état courant du projet. Vous ne serez plus en mesure de rétablir le projet initial après cela. Voulez-vous continuer?</value>
@@ -1942,7 +1940,7 @@ Texte de l'erreur: {1}</value>
     <value>Le projet sera ouvert à partir du fichier de sauvegarde. Voulez-vous continuer?</value>
   </data>
   <data name="AudioFormatConverter_Error_FileExtentionNodSupported" xml:space="preserve">
-    <value>format audio non reconnu. Seuls les fichiers .wav et .mp3 sont supportés. Ignorer l'importation de {0}</value>
+    <value>Format audio non reconnu. Seuls les fichiers .wav et .mp3 sont supportés. Ignorer l'importation de {0}</value>
   </data>
   <data name="Load_Original_Project" xml:space="preserve">
     <value>Chargement du projet initial</value>
@@ -1987,10 +1985,10 @@ Texte de l'erreur: {1}</value>
     <value>Indices audio</value>
   </data>
   <data name="AudioTab_PreviewBeforeRecording" xml:space="preserve">
-    <value>Utiliser le bouton d'enregistrement pour l'aperçu avant l'enregistrement</value>
+    <value>Utiliser le bouton d'enregistrement pour l'aperçu avant enregistrement</value>
   </data>
   <data name="AudioTab_RecordDirectlyFromTransportBar" xml:space="preserve">
-    <value>Enregistrement direct à partir de la barre de transport</value>
+    <value>Toujours enregistrer directement à partir de la barre de transport</value>
   </data>
   <data name="AudioTab_RetainInitialSilence" xml:space="preserve">
     <value>Conserver le silence initial pendant la détection de phrase</value>
@@ -2038,10 +2036,10 @@ Texte de l'erreur: {1}</value>
     <value>Ancre</value>
   </data>
   <data name="Associate_next_phrase" xml:space="preserve">
-    <value>La phrase cible pouvant être sautée sera effacée. La phrase suivante deviendra la phrase cible. Voulez-vous continuer?</value>
+    <value>La phrase facultative de référence sera effacée. La phrase suivante deviendra la phrase cible. Voulez-vous continuer?</value>
   </data>
   <data name="Associate_node_with_anchor_node" xml:space="preserve">
-    <value>Il n'ya pas de phrase spéciale associée à ce noeud d'ancrage. Veuillez associer un noeud avec ce noeud d'ancrage.</value>
+    <value>Il n'y a pas de phrase spéciale associée à cette ancre. Veuillez associer un noeud à cet ancrage.</value>
   </data>
   <data name="Associate_show_all" xml:space="preserve">
     <value>Montrer &amp;tout</value>
@@ -2071,19 +2069,19 @@ Texte de l'erreur: {1}</value>
     <value>Les ancres suivantes se réfèrent à des éléments sautés avec des phrases vides qui ne seront pas exportées. Appuyez sur Ok pour continuer malgré tout ou Annuler pour corriger ces erreurs.</value>
   </data>
   <data name="Anchor_node_error" xml:space="preserve">
-    <value>Il y a des noeuds ancres vides ou qui se réfèrent à des noeuds vides.</value>
+    <value>Il y a des ancres vides ou qui se réfèrent à des noeuds vides.</value>
   </data>
   <data name="Anchor_node_not_associated" xml:space="preserve">
-    <value>Il n'y a pas de noeud associé à ce noeud ancre. Veuillez associer un noeud avec ce noeud ancre.</value>
+    <value>Il n'y a pas de noeud associé à cette ancre. Veuillez associer un noeud avec cette ancre.</value>
   </data>
   <data name="Associate" xml:space="preserve">
     <value>Noeud associé</value>
   </data>
   <data name="Node_already_associated" xml:space="preserve">
-    <value>Le noeud est déjà associé à un autre noeud ancre. Voulez-vous continuer l'association?</value>
+    <value>Le noeud est déjà associé à une autre ancre. Voulez-vous continuer l'association?</value>
   </data>
   <data name="Page_not_found" xml:space="preserve">
-    <value>Aucune page n'a été trouvée dans le bloc.</value>
+    <value>Aucune trouvée dans le bloc.</value>
   </data>
   <data name="Report_for_export" xml:space="preserve">
     <value>Rapport d'exportation</value>
@@ -2107,7 +2105,7 @@ Texte de l'erreur: {1}</value>
     <value>L'annulation ne peut être réalisée.</value>
   </data>
   <data name="ProjectViewFormMsg_AddingReferenceFail" xml:space="preserve">
-    <value>Echec d'ajout de référence</value>
+    <value>Echec dans l'ajout de référence</value>
   </data>
   <data name="ProjectViewFormMsg_AssigningSkippableFail" xml:space="preserve">
     <value>Echec dans l'assignation d'une référence pouvant être sautée.</value>
@@ -2116,7 +2114,7 @@ Texte de l'erreur: {1}</value>
     <value>L'opération couper à échouée.</value>
   </data>
   <data name="ProjectViewFormMsg_DeassociatingSkippableFail" xml:space="preserve">
-    <value>Echec dans le retrait de référence vers un noeud pouvant être sauté.</value>
+    <value>Echec dans le retrait d'une référence vers un noeud facultatif pouvant être sauté.</value>
   </data>
   <data name="ProjectViewFormMsg_DeleteOperationFail" xml:space="preserve">
     <value>La suppression à échouée.</value>
@@ -2197,10 +2195,10 @@ Texte de l'erreur: {1}</value>
     <value>Information sur l'espace disque</value>
   </data>
   <data name="KeyS_ContractAudioSelectionAtLeft" xml:space="preserve">
-    <value>Contracter la sélection audio sur le côté gauche</value>
+    <value>Contracter la sélection audio sur la gauche</value>
   </data>
   <data name="KeyS_ExpandAudioSelectionAtLeft" xml:space="preserve">
-    <value>Développer la sélection audio sur le côté gauche</value>
+    <value>Développer la sélection audio sur la gauche</value>
   </data>
   <data name="Recording_RecordInNextExistingEmptyPage" xml:space="preserve">
     <value>Enregistrement dans la prochaine page vide existante</value>
@@ -2212,13 +2210,13 @@ Texte de l'erreur: {1}</value>
     <value>Écoulé</value>
   </data>
   <data name="ElapsedInSection" xml:space="preserve">
-    <value>Écoulé dans la selection</value>
+    <value>Écoulé dans la Section</value>
   </data>
   <data name="ElapsedInProject" xml:space="preserve">
-    <value>Écoulé dans le projet</value>
+    <value>Écoulé dans le Projet</value>
   </data>
   <data name="ElapsedInPhrase" xml:space="preserve">
-    <value>Écoulé dans le projet</value>
+    <value>Écoulé dans la Phrase</value>
   </data>
   <data name="RemainingInPhrase" xml:space="preserve">
     <value>Restant dans la phrase</value>
@@ -2254,16 +2252,16 @@ Texte de l'erreur: {1}</value>
     <value>Renuméroter les pages après l’enregistrement</value>
   </data>
   <data name="KeyS_TransportBarRecordSingleKey" xml:space="preserve">
-    <value>Enregistrement : touche de raccourci</value>
+    <value>Enregistrement: touche de raccourci</value>
   </data>
   <data name="Audio_MonitorAlways" xml:space="preserve">
     <value>Surveiller en continu</value>
   </data>
   <data name="Audio_MergeFirstTwoPhrasesInPhraseDetection" xml:space="preserve">
-    <value>Fusionner les 2 premieres phrases détectées par la détection de phrase</value>
+    <value>Fusionner d'abord les 2 premieres phrases détectées par la détection de phrase</value>
   </data>
   <data name="KeyS_TransportBarStopSingleKey" xml:space="preserve">
-    <value>Stop : raccourci clavier</value>
+    <value>Stop: raccourci clavier</value>
   </data>
   <data name="DAISY2_ObiImport_ErrorsList_FrontPageCorrection" xml:space="preserve">
     <value>Le numéro de première page non numérique {0} est ajouté comme {1}</value>
@@ -2290,7 +2288,7 @@ Texte de l'erreur: {1}</value>
     <value>{0}. Veuillez choisir parmi les options suivantes.</value>
   </data>
   <data name="CheckUpdate_UpdateProcessActive" xml:space="preserve">
-    <value>La vérification des mises à jour est déjà active.</value>
+    <value>La vérification des mises à jour est déjà en cours.</value>
   </data>
   <data name="HardReset_Caption" xml:space="preserve">
     <value>Réinitialisation des préférences</value>
@@ -2338,10 +2336,10 @@ Texte de l'erreur: {1}</value>
     <value>Opération réussie. S'il vous plaît redémarrer Obi pour charger les paramètres par défaut</value>
   </data>
   <data name="StatusForMergeSection" xml:space="preserve">
-    <value>Affichage sections {0} à {1}. Veuillez sélectionner les sections à fusionner.</value>
+    <value>Affichage sections {0} to {1}. Veuillez sélectionner les sections à fusionner.</value>
   </data>
   <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
-    <value>Afficher le Zoom du spectre audio</value>
+    <value>Afficher le panneau Zoom du spectre audio</value>
   </data>
   <data name="KeyS_CloseZoomPanel" xml:space="preserve">
     <value>Fermer le panneau de Zoom</value>
@@ -2356,10 +2354,10 @@ Texte de l'erreur: {1}</value>
     <value>Zoom arrière du spectre audio</value>
   </data>
   <data name="KeyS_ZoomSelectedWaveform" xml:space="preserve">
-    <value>Zoom de spectre audio sélectionné</value>
+    <value>Zoom du spectre audio sélectionné</value>
   </data>
   <data name="KeyS_NextPhrase" xml:space="preserve">
-    <value>Afficher la prochaine phrase</value>
+    <value>Afficher la phrase suivante</value>
   </data>
   <data name="KeyS_PreviousPhrase" xml:space="preserve">
     <value>Afficher la phrase précédente</value>
@@ -2392,7 +2390,7 @@ Texte de l'erreur: {1}</value>
     <value>Réinitialiser</value>
   </data>
   <data name="ProjectView_GenarteSpeechForAllPages" xml:space="preserve">
-    <value>La parole est générée pour toutes les pages</value>
+    <value>La parole est générée pour les pages</value>
   </data>
   <data name="EditAudioTT_Cut" xml:space="preserve">
     <value>Couper</value>
@@ -2428,19 +2426,19 @@ Texte de l'erreur: {1}</value>
     <value>Aucune section trouvée dans le projet source</value>
   </data>
   <data name="MergeProject_progress_dialog_title" xml:space="preserve">
-    <value>Fusion projet {0} de {1}</value>
+    <value>Fusion projet {0} de {1}...</value>
   </data>
   <data name="MergeProject_SectionProgress" xml:space="preserve">
-    <value>Fusion section:{0}</value>
+    <value>Fusion section: {0}</value>
   </data>
   <data name="Project_BackgroundColorForEmptySection" xml:space="preserve">
-    <value>Sections vides de la vue TDM en surbrillance</value>
+    <value>Sections vides en surbrillance dans la vue TDM</value>
   </data>
   <data name="Obi_ProjectMerge" xml:space="preserve">
     <value>Veuillez sélectionner le projet à fusionner</value>
   </data>
   <data name="Obi_ProjectMergeFilter" xml:space="preserve">
-    <value>Fichier projet Obi  (*.obi)|*.obi</value>
+    <value>Fichier projet Obi (*.obi)|*.obi</value>
   </data>
   <data name="MergeProject_Information" xml:space="preserve">
     <value>Veuillez vous assurez que les projets à fusionner aient le même format audio et soient créés sur Obi 3.0 Beta 2 ou une version ultérieure.</value>
@@ -2464,7 +2462,7 @@ Texte de l'erreur: {1}</value>
     <value>Adresse e-mail erronée</value>
   </data>
   <data name="UserRegistration_NoMatchEmail" xml:space="preserve">
-    <value>Les e-mails saisies ne correspondent pas. Veuillez retaper les e-mails.</value>
+    <value>Les e-mails saisies ne correspondent pas. Veuillez les saisir à nouveau.</value>
   </data>
   <data name="UserRegistration_IndiacateUsage" xml:space="preserve">
     <value>Veuillez nous indiquer votre type d'utilisation d'Obi en cochant l'un des bouton radio</value>
@@ -2476,13 +2474,13 @@ Texte de l'erreur: {1}</value>
     <value>Renuméroter Pages</value>
   </data>
   <data name="Transport_PreviousPhrase" xml:space="preserve">
-    <value>Aller à la phrase précédente</value>
+    <value>Phrase précédente</value>
   </data>
   <data name="Transport_PreviousSection" xml:space="preserve">
-    <value>Allez à la section précédente</value>
+    <value>Section précédente</value>
   </data>
   <data name="Transport_PreviousPage" xml:space="preserve">
-    <value>Aller à la page précédente</value>
+    <value>Page précédente</value>
   </data>
   <data name="Transport_FastPlayBackward" xml:space="preserve">
     <value>Lecture vers l'arrière plus rapide.</value>
@@ -2500,16 +2498,16 @@ Texte de l'erreur: {1}</value>
     <value>Lecture vers l'avant plus rapide</value>
   </data>
   <data name="Transport_NextPhrase" xml:space="preserve">
-    <value>Aller à la phrase suivante.</value>
+    <value>Phrase suivante</value>
   </data>
   <data name="Transport_NextPage" xml:space="preserve">
-    <value>Aller à la page suivante</value>
+    <value>Page suivante</value>
   </data>
   <data name="Transport_NextSection" xml:space="preserve">
-    <value>Aller à la section suivante</value>
+    <value>Section suivante</value>
   </data>
   <data name="Transport_AddTodo" xml:space="preserve">
-    <value>Ajouter une marque AFAIRE lors de l'enregistrement.</value>
+    <value>Ajouter une marque AFAIRE pendant l'enregistrement</value>
   </data>
   <data name="Transport_PreviousPhraseAcc" xml:space="preserve">
     <value>Phrase précédente</value>
@@ -2542,10 +2540,10 @@ Texte de l'erreur: {1}</value>
     <value>Vous avez choisi le mauvais fichier</value>
   </data>
   <data name="Language_Pack_Select" xml:space="preserve">
-    <value>Veuillez sélectionner le fichier zip Language Pack</value>
+    <value>Veuillez sélectionner le pack de langue au format zip</value>
   </data>
   <data name="Language_Pack_Complete" xml:space="preserve">
-    <value>Mise à jour du module linguistique est réussie. Veuillez redémarrer Obi pour que les modifications prennent effet</value>
+    <value>Mise à jour du module linguistique réussie. Veuillez redémarrer Obi pour que les modifications prennent effet</value>
   </data>
   <data name="Language_Pack_Caption" xml:space="preserve">
     <value>Mauvais fichier</value>
@@ -2557,25 +2555,25 @@ Texte de l'erreur: {1}</value>
     <value>Mise à jour réussie</value>
   </data>
   <data name="Preferences_Advance_Mode" xml:space="preserve">
-    <value> Les cases suivantes seront vérifiées. Voulez-vous continuer?</value>
+    <value>Les cases à cocher suivantes seront vérifiées. Voulez-vous continuer?</value>
   </data>
   <data name="Preferences_Intermediate_recording_mode" xml:space="preserve">
     <value>Mode d'enregistrement intermédiaire</value>
   </data>
   <data name="Preferences_Level_ComboBox_Basic" xml:space="preserve">
-    <value>de base</value>
+    <value>Basic</value>
   </data>
   <data name="Preferences_Level_ComboBox_Intermediate" xml:space="preserve">
     <value>Intermédiaire</value>
   </data>
   <data name="Preferences_Level_ComboBox_Advance" xml:space="preserve">
-    <value>Adancer</value>
+    <value>Avancer</value>
   </data>
   <data name="Preferences_Level_ComboBox_Custom" xml:space="preserve">
     <value>Personnalisé</value>
   </data>
   <data name="Audio_RecordSubsequentPhrases" xml:space="preserve">
-    <value>Utilisez le bouton d'enregistrement pour enregistrer sur audio ultérieure</value>
+    <value>Utiliser le bouton d'enregistrement pour enregistrer sur audio suivant</value>
   </data>
   <data name="Audio_EnforceSingleCursor" xml:space="preserve">
     <value>Appliquer le seul curseur audio</value>
@@ -2596,7 +2594,7 @@ Texte de l'erreur: {1}</value>
     <value>Développer le bouton d'options d'enregistrement</value>
   </data>
   <data name="Transport_PlayingOptions" xml:space="preserve">
-    <value>Exécuter les options</value>
+    <value>Options de lecture</value>
   </data>
   <data name="Transport_RecordingOptions" xml:space="preserve">
     <value>Options d'enregistrement</value>
@@ -2615,15 +2613,90 @@ Texte de l'erreur: {1}</value>
     <value>Profil 2 (SBS)</value>
   </data>
   <data name="Preferences_AudioProfileDesc" xml:space="preserve">
-    <value>Profil Description audio</value>
+    <value>Description profil Audio</value>
   </data>
   <data name="Audio_DisableDeselectionOnStop" xml:space="preserve">
-    <value>Ne pas désélectionner en appuyant sur Arrêt deux fois</value>
+    <value>Ne pas désélectionner en appuyant deux fois sur Arrêt</value>
   </data>
   <data name="KeyS_FastPlayWithElapseForward" xml:space="preserve">
     <value>Ecoulement vers l'avant</value>
   </data>
   <data name="NoAdministrativePrivilege" xml:space="preserve">
-    <value>Vous n'avez pas les droits pour copier. Veuillez copier manuellement le contenu du dossier "Obi_Language_Pack" situé dans le dossier Temp (qui s'ouvrira dès que vous fermerez ce message. Si vous souhaitez l'ouvrir manuellement, lancez "Exécuter" et tapez "%temp%"), ou bien, lancer Obi avec les privilèges administrateur en sélectionnant "exécuter en tant qu'administrateur" dans le menu contextuel qui apparait après un clic droit sur ​​l'icône Obi</value>
+    <value>Vous n'avez pas les droits administrateur pour copier. Veuillez copier manuellement les contenus du dossier "Obi_Language_Pack" situé dans le dossier temporaire (qui s'ouvrira une fois que vous fermerez ce message. Si vous voulez l'ouvrir manuellement puis lancez "Exécuter" et saisissez "%temp%") ou démarrer Obi avec des privilèges admnistrateur en sélectionnant "Éxecutez en tant qu'administrateur" à partir du menu contextuel qui apparait lors d'un click droit sur l'icône Obi</value>
+  </data>
+  <data name="Project_MessageBoxToCheckFixContentView" xml:space="preserve">
+    <value>Voulez-vous également vérifier "Fixer la largeur de la vue au contenu" ?(Recommandé)</value>
+  </data>
+  <data name="default_EpubExport_dirname" xml:space="preserve">
+    <value>{0}Exportation Epub3</value>
+  </data>
+  <data name="progress_EpubValidating" xml:space="preserve">
+    <value>Le vérificateur Epub Validator est en cours d'exécution. Veuillez patienter....</value>
+  </data>
+  <data name="METADATA_EPUB3_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Données spécifiques Obi pour la sauvegarde du chemin d'exportation EPUB 3</value>
+  </data>
+  <data name="obi_EPUB3ExportPath_Description" xml:space="preserve">
+    <value>Chemin d'exportation EPUB 3</value>
+  </data>
+  <data name="obi_EPUB3ValidationSuccessfull" xml:space="preserve">
+    <value>validation réussie</value>
+  </data>
+  <data name="obi_EPUB3ValidationFailed" xml:space="preserve">
+    <value>Échec de la validation</value>
+  </data>
+  <data name="obi_EPUB3ValidatorNotInstalled" xml:space="preserve">
+    <value>Validateur EPUB validator non installé</value>
+  </data>
+  <data name="obi_EPUB3CheckNotFound" xml:space="preserve">
+    <value>ERREUR: Validateur EPUB non trouvé</value>
+  </data>
+  <data name="obi_EPUB3ValidationSuccessfullWithWarnings" xml:space="preserve">
+    <value>Validation réussie avec des avertissements</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>Echec de l'opération</value>
+  </data>
+  <data name="AssociateNode_SelectedNodeGroupBox" xml:space="preserve">
+    <value>noeud sélectionné</value>
+  </data>
+  <data name="Project_SaveObiLocationAndSize" xml:space="preserve">
+    <value>Enregistrement de l'emplacement et de la taille de Obi</value>
+  </data>
+  <data name="Project_PeakMeterChangeLocation" xml:space="preserve">
+    <value>Garder le Vue-Mètres aligné sur la droite de Obi</value>
+  </data>
+  <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
+    <value>Traitement audio...</value>
+  </data>
+  <data name="AudioProcessing_InfoText" xml:space="preserve">
+    <value>La valeur 1.0 signifie que l'audio restera inchangé.</value>
+  </data>
+  <data name="ValidatorTimeOutMsg" xml:space="preserve">
+    <value>Validateur time out</value>
+  </data>
+  <data name="Project_EPUBCheckTimeOutEnabled" xml:space="preserve">
+    <value>Temporisation du processus de vérification EPUB après 3 minutes</value>
+  </data>
+  <data name="UserRegistration_EnterFollowing" xml:space="preserve">
+    <value>Veuillez entrer ce qui suit correctement :</value>
+  </data>
+  <data name="Audio_PreservePage" xml:space="preserve">
+    <value>Conserver les pages sur l'enregistrement de l'audio suivant</value>
+  </data>
+  <data name="MergeOptions_IncreaseLevel" xml:space="preserve">
+    <value>Augmentation du niveau de section</value>
+  </data>
+  <data name="MergeOptions_DecreaseLevel" xml:space="preserve">
+    <value>Diminution du niveau de section</value>
+  </data>
+  <data name="MergeOptions_Merge" xml:space="preserve">
+    <value>Fusionner les sections</value>
+  </data>
+  <data name="ProjectViewFormMsg_SectionLevelChangeOperationFail" xml:space="preserve">
+    <value>Echec dans l'opération de modification du niveau de section.</value>
+  </data>
+  <data name="MergeOptions_NoSelectionForLevelChange" xml:space="preserve">
+    <value>Aucune section sélectionnée pour l'opération de changement de niveau </value>
   </data>
 </root>

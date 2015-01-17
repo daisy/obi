@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,148 +117,127 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_OKBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_OKBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 140</value>
-  </data>
-  <data name="m_OKBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="m_rbMerge.AccessibleName" xml:space="preserve">
+    <value>Merge</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_OKBtn.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="m_OKBtn.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="&gt;&gt;m_OKBtn.Name" xml:space="preserve">
-    <value>m_OKBtn</value>
-  </data>
-  <data name="&gt;&gt;m_OKBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_OKBtn.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_OKBtn.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="m_BtnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 140</value>
-  </data>
-  <data name="m_BtnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="m_BtnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="m_BtnCancel.Text" xml:space="preserve">
-    <value>Annuler</value>
-  </data>
-  <data name="&gt;&gt;m_BtnCancel.Name" xml:space="preserve">
-    <value>m_BtnCancel</value>
-  </data>
-  <data name="&gt;&gt;m_BtnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_BtnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_BtnCancel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.chm</value>
-  </data>
-  <data name="m_cbDaisy3.AutoSize" type="System.Boolean, mscorlib">
+  <data name="m_rbMerge.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="m_cbDaisy3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 13</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_rbMerge.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 29</value>
   </data>
-  <data name="m_cbDaisy3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 17</value>
+  <data name="m_rbMerge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 17</value>
   </data>
-  <data name="m_cbDaisy3.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_rbMerge.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="m_cbDaisy3.Text" xml:space="preserve">
-    <value>DAISY 3</value>
+  <data name="m_rbMerge.Text" xml:space="preserve">
+    <value>&amp;Fusionner</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy3.Name" xml:space="preserve">
-    <value>m_cbDaisy3</value>
+  <data name="&gt;&gt;m_rbMerge.Name" xml:space="preserve">
+    <value>m_rbMerge</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;m_rbMerge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_rbMerge.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy3.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;m_rbMerge.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="m_cbDaisy202.AutoSize" type="System.Boolean, mscorlib">
+  <data name="m_rbChangeLevel.AccessibleName" xml:space="preserve">
+    <value>Augmenter/Diminuer le niveau de section</value>
+  </data>
+  <data name="m_rbChangeLevel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="m_cbDaisy202.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 52</value>
+  <data name="m_rbChangeLevel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 29</value>
   </data>
-  <data name="m_cbDaisy202.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 17</value>
+  <data name="m_rbChangeLevel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 17</value>
   </data>
-  <data name="m_cbDaisy202.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_rbChangeLevel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="m_cbDaisy202.Text" xml:space="preserve">
-    <value>Daisy 2.02</value>
+  <data name="m_rbChangeLevel.Text" xml:space="preserve">
+    <value>&amp;Augmenter/Diminuer le niveau</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy202.Name" xml:space="preserve">
-    <value>m_cbDaisy202</value>
+  <data name="&gt;&gt;m_rbChangeLevel.Name" xml:space="preserve">
+    <value>m_rbChangeLevel</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy202.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;m_rbChangeLevel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy202.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_rbChangeLevel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy202.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_cbEpub3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_cbEpub3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 93</value>
-  </data>
-  <data name="m_cbEpub3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 17</value>
-  </data>
-  <data name="m_cbEpub3.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;m_rbChangeLevel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="m_cbEpub3.Text" xml:space="preserve">
-    <value>EPUB 3 livre Audio</value>
+  <data name="m_btnOk.AccessibleName" xml:space="preserve">
+    <value>ok</value>
   </data>
-  <data name="&gt;&gt;m_cbEpub3.Name" xml:space="preserve">
-    <value>m_cbEpub3</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_btnOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="&gt;&gt;m_cbEpub3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 80</value>
   </data>
-  <data name="&gt;&gt;m_cbEpub3.Parent" xml:space="preserve">
+  <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="m_btnOk.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="&gt;&gt;m_btnOk.Name" xml:space="preserve">
+    <value>m_btnOk</value>
+  </data>
+  <data name="&gt;&gt;m_btnOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnOk.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_cbEpub3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_btnOk.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_btnCancel.AccessibleName" xml:space="preserve">
+    <value>annuler</value>
+  </data>
+  <data name="m_btnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>189, 80</value>
+  </data>
+  <data name="m_btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_btnCancel.Text" xml:space="preserve">
+    <value>&amp;Annuler</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.Name" xml:space="preserve">
+    <value>m_btnCancel</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnCancel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -268,19 +247,13 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>268, 192</value>
+    <value>363, 128</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>sélection de la norme DAISY</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
-    <value>helpProvider1</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Choix d'une action sur la section</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>chooseDaisy3orDaisy202</value>
+    <value>ChooseMergeOrChangeLevel</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
