@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,148 +117,131 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_OKBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_OKBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 140</value>
+  <data name="richTextBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 31</value>
   </data>
-  <data name="m_OKBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="richTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>364, 198</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_OKBtn.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="m_OKBtn.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="&gt;&gt;m_OKBtn.Name" xml:space="preserve">
-    <value>m_OKBtn</value>
-  </data>
-  <data name="&gt;&gt;m_OKBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_OKBtn.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_OKBtn.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="m_BtnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 140</value>
-  </data>
-  <data name="m_BtnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="m_BtnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="m_BtnCancel.Text" xml:space="preserve">
-    <value>Annuler</value>
-  </data>
-  <data name="&gt;&gt;m_BtnCancel.Name" xml:space="preserve">
-    <value>m_BtnCancel</value>
-  </data>
-  <data name="&gt;&gt;m_BtnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_BtnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_BtnCancel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.chm</value>
-  </data>
-  <data name="m_cbDaisy3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_cbDaisy3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 13</value>
-  </data>
-  <data name="m_cbDaisy3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 17</value>
-  </data>
-  <data name="m_cbDaisy3.TabIndex" type="System.Int32, mscorlib">
+  <data name="richTextBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="m_cbDaisy3.Text" xml:space="preserve">
-    <value>DAISY 3</value>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Pour coder en mp4, 3gp et amr, télécharger ffmpeg à partir du lien ci-dessous ou en cliquant sur le bouton "Download ffmpeg".
+http://www.daisy.org/obi/download
+Après téléchargement suivre les étapes ci-après :-
+
+1) Localiser le dossier Program Files sur le disque C.
+2) Localiser le dossier "The Urakawa Project" dans "Program files".
+3) Dans le dossier "The Urakawa Project" ouvrir le dossier "Obi x.x".
+4) Copier le fichier téléchargé "ffmpeg.exe" dans le dossier "Obi x.x"
+
+Vous pouvez aussi ouvrir le dossier "Obi x.x" en cliquant sur le bouton "Ouvrir le dossier Obi" et en y copiant le fichier "ffmpeg.exe".
+Attention : Ces fonctions sont pour les utilisateurs avancés, les livres DAISY/EPUB exportés peuvent ne pas être validés avec ces nouveaux formats.</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy3.Name" xml:space="preserve">
-    <value>m_cbDaisy3</value>
+  <data name="&gt;&gt;richTextBox1.Name" xml:space="preserve">
+    <value>richTextBox1</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;richTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;richTextBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;richTextBox1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_btnClose.AccessibleName" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_btnClose.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnClose.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 252</value>
+  </data>
+  <data name="m_btnClose.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="m_btnClose.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_btnClose.Text" xml:space="preserve">
+    <value>&amp;Fermer</value>
+  </data>
+  <data name="&gt;&gt;m_btnClose.Name" xml:space="preserve">
+    <value>m_btnClose</value>
+  </data>
+  <data name="&gt;&gt;m_btnClose.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnClose.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnClose.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="m_cbDaisy202.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_btnDownload.AccessibleName" xml:space="preserve">
+    <value>Télécharger ffmpeg</value>
   </data>
-  <data name="m_cbDaisy202.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 52</value>
+  <data name="m_btnDownload.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="m_cbDaisy202.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 17</value>
+  <data name="m_btnDownload.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 252</value>
   </data>
-  <data name="m_cbDaisy202.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_btnDownload.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 23</value>
+  </data>
+  <data name="m_btnDownload.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="m_cbDaisy202.Text" xml:space="preserve">
-    <value>Daisy 2.02</value>
+  <data name="m_btnDownload.Text" xml:space="preserve">
+    <value>&amp;Télécharger ffmpeg</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy202.Name" xml:space="preserve">
-    <value>m_cbDaisy202</value>
+  <data name="&gt;&gt;m_btnDownload.Name" xml:space="preserve">
+    <value>m_btnDownload</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy202.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;m_btnDownload.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy202.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_btnDownload.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_cbDaisy202.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_btnDownload.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_cbEpub3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_btnFolder.AccessibleName" xml:space="preserve">
+    <value>Ouvrir le dossier Obi</value>
   </data>
-  <data name="m_cbEpub3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 93</value>
+  <data name="m_btnFolder.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="m_cbEpub3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 17</value>
+  <data name="m_btnFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>151, 252</value>
   </data>
-  <data name="m_cbEpub3.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_btnFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 23</value>
+  </data>
+  <data name="m_btnFolder.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="m_cbEpub3.Text" xml:space="preserve">
-    <value>EPUB 3 livre Audio</value>
+  <data name="m_btnFolder.Text" xml:space="preserve">
+    <value>&amp;Ouvrir le dossier Obi</value>
   </data>
-  <data name="&gt;&gt;m_cbEpub3.Name" xml:space="preserve">
-    <value>m_cbEpub3</value>
+  <data name="&gt;&gt;m_btnFolder.Name" xml:space="preserve">
+    <value>m_btnFolder</value>
   </data>
-  <data name="&gt;&gt;m_cbEpub3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;m_btnFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_cbEpub3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_btnFolder.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_cbEpub3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_btnFolder.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -268,19 +251,13 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>268, 192</value>
+    <value>415, 289</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>sélection de la norme DAISY</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Name" xml:space="preserve">
-    <value>helpProvider1</value>
-  </data>
-  <data name="&gt;&gt;helpProvider1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>DownloadFile</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>chooseDaisy3orDaisy202</value>
+    <value>DownloadFile</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
