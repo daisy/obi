@@ -1866,22 +1866,28 @@ namespace Obi.Dialogs
         private void m_btnLoadProfile_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "(*.xml)|(*.XML)";
+            fileDialog.Filter = "*.xml|*.XML";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings_SaveProfile saveProfile = Settings_SaveProfile.GetSettingsFromSavedProfile(fileDialog.FileName);
                 saveProfile.CopyPropertiesToExistingSettings(mForm.Settings);
-                //this.Close();
+                if (MessageBox.Show("Please restart Obi for loading the settings",
+                    Localizer.Message("Caption_Information"),
+                    MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.Close();
+                }
             }
         }
 
         private void m_btnSaveProfile_Click(object sender, EventArgs e)
         {
             SaveFileDialog fileDialog = new SaveFileDialog();
-            fileDialog.Filter = "(*.xml)|(*.XML)";
+            fileDialog.Filter = "*.xml|*.XML";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 Settings_SaveProfile saveProfile = new Settings_SaveProfile();
+                
                 saveProfile.Save(fileDialog.FileName, mSettings);
                 MessageBox.Show("Profile Saved");
             }
