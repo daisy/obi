@@ -991,7 +991,7 @@
     <value>Élévé</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>155, 215</value>
+    <value>185, 215</value>
   </data>
   <data name="mNoiseLevelComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
