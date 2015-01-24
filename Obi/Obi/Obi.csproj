@@ -571,6 +571,7 @@
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="EmptyProject.obi">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1018,6 +1019,10 @@
       <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingDialog.fr.resx">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioProcessingDialog.resx">
       <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1130,12 +1135,28 @@
       <DependentUpon>chooseDaisy3orDaisy202.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.es.resx">
+      <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.fr.resx">
+      <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.resx">
       <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.zh-CN.resx">
       <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DownloadFile.es.resx">
+      <DependentUpon>DownloadFile.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DownloadFile.fr.resx">
+      <DependentUpon>DownloadFile.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DownloadFile.resx">
@@ -1215,6 +1236,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Epub3Validator.fi.resx">
+      <DependentUpon>Epub3Validator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Epub3Validator.fr.resx">
       <DependentUpon>Epub3Validator.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -2521,6 +2546,9 @@
     </Content>
     <Content Include="ProfileDesc_fi.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ProfileDesc_fr.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ProfileDesc_zh-CN.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
