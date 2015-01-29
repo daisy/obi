@@ -1872,6 +1872,13 @@ namespace Obi.Dialogs
             {
                 Settings_SaveProfile saveProfile = Settings_SaveProfile.GetSettingsFromSavedProfile(fileDialog.FileName);
                 saveProfile.CopyPropertiesToExistingSettings(mForm.Settings);
+                // copy the profile file to custom profile directory
+                string customProfilesDirectory = GetCustomProfilesDirectory();
+                if (!System.IO.Directory.Exists(customProfilesDirectory)) System.IO.Directory.CreateDirectory(customProfilesDirectory);
+                string newCustomFilePath = System.IO.Path.Combine(customProfilesDirectory,
+                    System.IO.Path.GetFileName(fileDialog.FileName));
+                System.IO.File.Copy(fileDialog.FileName, newCustomFilePath, true);
+                m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
                 if (MessageBox.Show("Please restart Obi for loading the settings",
                     Localizer.Message("Caption_Information"),
                     MessageBoxButtons.OKCancel) == DialogResult.OK)
@@ -1899,12 +1906,39 @@ namespace Obi.Dialogs
             LoadProfilesToCombobox () ;
         }
 
+        private string GetPredefinedProfilesDirectory()
+        {
+            string appDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            string defaultProfilesDirectory = System.IO.Path.Combine(appDirectory, "profiles");
+            return defaultProfilesDirectory;
+        }
+
+        private string GetCustomProfilesDirectory()
+        {
+            string permanentSettingsDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
+            string customProfilesDirectory = System.IO.Path.Combine(permanentSettingsDirectory, "profiles");
+            return customProfilesDirectory;
+        }
+
+        int m_PredefinedProfilesCount;
         private void LoadProfilesToCombobox()
         {
             // first load the default profiles
-            string appDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
-            string defaultProfilesDirectory = System.IO.Path.Combine(appDirectory, "profiles");
-            string[] filePaths = System.IO.Directory.GetFiles(defaultProfilesDirectory, "*.xml");
+            m_PredefinedProfilesCount = 0;
+            string preDefinedProfilesDirectory = GetPredefinedProfilesDirectory();
+            string[] filePaths = System.IO.Directory.GetFiles(preDefinedProfilesDirectory, "*.xml");
+            if (filePaths != null && filePaths.Length > 0)
+            {
+                for (int i = 0; i < filePaths.Length; i++)
+                {
+                    m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
+
+                }
+            }
+            m_PredefinedProfilesCount = m_cb_SelectProfile.Items.Count;
+                // now load user defined profiles from the roming folder, the permanent settings are at same location
+            string customProfilesDirectory = GetCustomProfilesDirectory();
+            filePaths = System.IO.Directory.GetFiles(customProfilesDirectory, "*.xml");
             if (filePaths != null && filePaths.Length > 0)
             {
                 for (int i = 0; i < filePaths.Length; i++)
@@ -1913,6 +1947,7 @@ namespace Obi.Dialogs
                     
                 }
             }
+
         }
 
 
