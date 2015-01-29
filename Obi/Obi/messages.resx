@@ -2706,4 +2706,7 @@ Error text: {1}</value>
   <data name="MergeOptions_LevelString" xml:space="preserve">
     <value>Level</value>
   </data>
+  <data name="Profile_Saved" xml:space="preserve">
+    <value>Profile Saved</value>
+  </data>
 </root>

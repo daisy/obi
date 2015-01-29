@@ -5056,6 +5056,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profile Saved.
+        /// </summary>
+        internal static string Profile_Saved {
+            get {
+                return ResourceManager.GetString("Profile_Saved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ProfileDesc_en.html.
         /// </summary>
         internal static string ProfileDesc_file_name {

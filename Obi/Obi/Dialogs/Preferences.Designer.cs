@@ -41,10 +41,6 @@ namespace Obi.Dialogs
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.mProfilesTab = new System.Windows.Forms.TabPage();
             this.m_gpBox_SelectPreferences = new System.Windows.Forms.GroupBox();
-            this.m_rdBtn_All = new System.Windows.Forms.RadioButton();
-            this.m_rdBtn_Language = new System.Windows.Forms.RadioButton();
-            this.m_rdBtn_Audio = new System.Windows.Forms.RadioButton();
-            this.m_rdbtn_Project = new System.Windows.Forms.RadioButton();
             this.m_btnLoadProfile = new System.Windows.Forms.Button();
             this.m_cb_SelectProfile = new System.Windows.Forms.ComboBox();
             this.m_lblSelectProfile = new System.Windows.Forms.Label();
@@ -122,6 +118,10 @@ namespace Obi.Dialogs
             this.mBrowseButton = new System.Windows.Forms.Button();
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.m_chkProject = new System.Windows.Forms.CheckBox();
+            this.m_chkAudio = new System.Windows.Forms.CheckBox();
+            this.m_chkLanguage = new System.Windows.Forms.CheckBox();
+            this.m_chkAll = new System.Windows.Forms.CheckBox();
             this.m_gpBox_SaveAddProfile.SuspendLayout();
             this.mProfilesTab.SuspendLayout();
             this.m_gpBox_SelectPreferences.SuspendLayout();
@@ -219,43 +219,14 @@ namespace Obi.Dialogs
             // 
             // m_gpBox_SelectPreferences
             // 
-            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_All);
-            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_Language);
-            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_Audio);
-            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdbtn_Project);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkProject);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkAudio);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkLanguage);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkAll);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_btnLoadProfile);
             resources.ApplyResources(this.m_gpBox_SelectPreferences, "m_gpBox_SelectPreferences");
             this.m_gpBox_SelectPreferences.Name = "m_gpBox_SelectPreferences";
             this.m_gpBox_SelectPreferences.TabStop = false;
-            // 
-            // m_rdBtn_All
-            // 
-            resources.ApplyResources(this.m_rdBtn_All, "m_rdBtn_All");
-            this.m_rdBtn_All.Name = "m_rdBtn_All";
-            this.m_rdBtn_All.TabStop = true;
-            this.m_rdBtn_All.UseVisualStyleBackColor = true;
-            // 
-            // m_rdBtn_Language
-            // 
-            resources.ApplyResources(this.m_rdBtn_Language, "m_rdBtn_Language");
-            this.m_rdBtn_Language.Name = "m_rdBtn_Language";
-            this.m_rdBtn_Language.TabStop = true;
-            this.m_rdBtn_Language.UseVisualStyleBackColor = true;
-            // 
-            // m_rdBtn_Audio
-            // 
-            resources.ApplyResources(this.m_rdBtn_Audio, "m_rdBtn_Audio");
-            this.m_rdBtn_Audio.Name = "m_rdBtn_Audio";
-            this.m_rdBtn_Audio.TabStop = true;
-            this.m_rdBtn_Audio.UseVisualStyleBackColor = true;
-            // 
-            // m_rdbtn_Project
-            // 
-            resources.ApplyResources(this.m_rdbtn_Project, "m_rdbtn_Project");
-            this.m_rdbtn_Project.Checked = true;
-            this.m_rdbtn_Project.Name = "m_rdbtn_Project";
-            this.m_rdbtn_Project.TabStop = true;
-            this.m_rdbtn_Project.UseVisualStyleBackColor = true;
             // 
             // m_btnLoadProfile
             // 
@@ -945,6 +916,30 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mTab, ((bool)(resources.GetObject("mTab.ShowHelp"))));
             this.mTab.SelectedIndexChanged += new System.EventHandler(this.mTab_SelectedIndexChanged);
             // 
+            // m_chkProject
+            // 
+            resources.ApplyResources(this.m_chkProject, "m_chkProject");
+            this.m_chkProject.Name = "m_chkProject";
+            this.m_chkProject.UseVisualStyleBackColor = true;
+            // 
+            // m_chkAudio
+            // 
+            resources.ApplyResources(this.m_chkAudio, "m_chkAudio");
+            this.m_chkAudio.Name = "m_chkAudio";
+            this.m_chkAudio.UseVisualStyleBackColor = true;
+            // 
+            // m_chkLanguage
+            // 
+            resources.ApplyResources(this.m_chkLanguage, "m_chkLanguage");
+            this.m_chkLanguage.Name = "m_chkLanguage";
+            this.m_chkLanguage.UseVisualStyleBackColor = true;
+            // 
+            // m_chkAll
+            // 
+            resources.ApplyResources(this.m_chkAll, "m_chkAll");
+            this.m_chkAll.Name = "m_chkAll";
+            this.m_chkAll.UseVisualStyleBackColor = true;
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -1078,11 +1073,11 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox m_cb_SelectProfile;
         private System.Windows.Forms.Label m_lblSelectProfile;
         private System.Windows.Forms.GroupBox m_gpBox_SelectPreferences;
-        private System.Windows.Forms.RadioButton m_rdBtn_All;
-        private System.Windows.Forms.RadioButton m_rdBtn_Language;
-        private System.Windows.Forms.RadioButton m_rdBtn_Audio;
-        private System.Windows.Forms.RadioButton m_rdbtn_Project;
         private System.Windows.Forms.GroupBox m_gpBox_SaveAddProfile;
         private System.Windows.Forms.Button m_btnAddProfile;
+        private System.Windows.Forms.CheckBox m_chkProject;
+        private System.Windows.Forms.CheckBox m_chkAudio;
+        private System.Windows.Forms.CheckBox m_chkLanguage;
+        private System.Windows.Forms.CheckBox m_chkAll;
     }
 }
