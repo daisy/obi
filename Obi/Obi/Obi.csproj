@@ -2557,13 +2557,13 @@
     <Content Include="ProfileDesc_zh-CN.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="profiles\Advance-Profile.XML">
+    <Content Include="profiles\Advance.XML">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="profiles\Basic-Profile.xml">
+    <Content Include="profiles\Basic.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="profiles\Intermediate-Profile.XML">
+    <Content Include="profiles\Intermediate.XML">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="profiles\Profile-1-VA.XML">
