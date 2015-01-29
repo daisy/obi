@@ -1882,7 +1882,7 @@ namespace Obi.Dialogs
 
         private void LoadPreferenceProfile (string profilePath )
         {
-
+            
             if (profilePath != null && System.IO.File.Exists(profilePath))
             {
                 Settings_SaveProfile saveProfile = Settings_SaveProfile.GetSettingsFromSavedProfile(profilePath);
@@ -1933,6 +1933,7 @@ namespace Obi.Dialogs
             string[] filePaths = System.IO.Directory.GetFiles(preDefinedProfilesDirectory, "*.xml");
             if (filePaths != null && filePaths.Length > 0)
             {
+                //string[] profileFileNames = new string[filePaths.Length];
                 for (int i = 0; i < filePaths.Length; i++)
                 {
                     m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
