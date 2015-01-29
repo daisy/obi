@@ -1877,11 +1877,18 @@ namespace Obi.Dialogs
                 string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
                 profilePath = System.IO.Path.Combine(GetCustomProfilesDirectory (), profileFileName);
             }
+            if (profilePath != null) LoadPreferenceProfile(profilePath);
+        }
+
+        private void LoadPreferenceProfile (string profilePath )
+        {
 
             if (profilePath != null && System.IO.File.Exists(profilePath))
             {
                 Settings_SaveProfile saveProfile = Settings_SaveProfile.GetSettingsFromSavedProfile(profilePath);
-                saveProfile.CopyPropertiesToExistingSettings(mForm.Settings);
+                PreferenceProfiles prefProfiles = m_rdBtn_Audio.Checked ? PreferenceProfiles.Audio :
+                    m_rdbtn_Project.Checked ? PreferenceProfiles.Project : PreferenceProfiles.All;
+                saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, prefProfiles);
             }
         }
 
@@ -1963,8 +1970,7 @@ namespace Obi.Dialogs
             {
                 try
                 {
-                    Settings_SaveProfile saveProfile = Settings_SaveProfile.GetSettingsFromSavedProfile(fileDialog.FileName);
-                    saveProfile.CopyPropertiesToExistingSettings(mForm.Settings);
+                    LoadPreferenceProfile(fileDialog.FileName);
                     // copy the profile file to custom profile directory
                     string customProfilesDirectory = GetCustomProfilesDirectory();
                     if (!System.IO.Directory.Exists(customProfilesDirectory)) System.IO.Directory.CreateDirectory(customProfilesDirectory);
