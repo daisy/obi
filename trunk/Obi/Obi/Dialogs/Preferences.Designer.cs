@@ -252,6 +252,7 @@ namespace Obi.Dialogs
             // m_rdbtn_Project
             // 
             resources.ApplyResources(this.m_rdbtn_Project, "m_rdbtn_Project");
+            this.m_rdbtn_Project.Checked = true;
             this.m_rdbtn_Project.Name = "m_rdbtn_Project";
             this.m_rdbtn_Project.TabStop = true;
             this.m_rdbtn_Project.UseVisualStyleBackColor = true;
