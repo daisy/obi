@@ -1,15 +1,15 @@
-﻿<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
-<a1:Settings_SaveProfile id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.26346%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
-<Audio_AllowOverwrite>false</Audio_AllowOverwrite>
+<a1:Settings_SaveProfile id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.26594%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Audio_AllowOverwrite>true</Audio_AllowOverwrite>
 <Audio_Recording_PreviewBeforeStarting>false</Audio_Recording_PreviewBeforeStarting>
 <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
-<Audio_RecordDirectlyWithRecordButton>false</Audio_RecordDirectlyWithRecordButton>
+<Audio_RecordDirectlyWithRecordButton>true</Audio_RecordDirectlyWithRecordButton>
 <Audio_Channels>1</Audio_Channels>
 <Audio_AudioClues>false</Audio_AudioClues>
 <Audio_AudioScale>0.01</Audio_AudioScale>
 <Audio_BitDepth>16</Audio_BitDepth>
-<Audio_TTSVoice id="ref-5"></Audio_TTSVoice>
+<Audio_TTSVoice id="ref-5">Microsoft Anna</Audio_TTSVoice>
 <TransportBarCounterIndex>0</TransportBarCounterIndex>
 <Audio_FastPlayWithoutPitchChange>true</Audio_FastPlayWithoutPitchChange>
 <ColorSettings href="#ref-6"/>
@@ -18,16 +18,16 @@
 <Project_DefaultPath id="ref-8"></Project_DefaultPath>
 <Project_AutomaticallyDeleteUnusedFilesAfterCleanup>true</Project_AutomaticallyDeleteUnusedFilesAfterCleanup>
 <FontSize>10</FontSize>
-<Audio_LastInputDevice href="#ref-5"/>
-<LastOpenProject href="#ref-5"/>
-<Audio_LastOutputDevice href="#ref-5"/>
+<Audio_LastInputDevice id="ref-9">Primary Sound Capture Driver</Audio_LastInputDevice>
+<LastOpenProject id="ref-10"></LastOpenProject>
+<Audio_LastOutputDevice id="ref-11">Primary Sound Driver</Audio_LastOutputDevice>
 <MaxPhraseDurationMinutes>10</MaxPhraseDurationMinutes>
 <ImportCharCountToTruncateFromStart>4</ImportCharCountToTruncateFromStart>
-<ImportCharsToReplaceWithSpaces id="ref-9">_</ImportCharsToReplaceWithSpaces>
-<ImportPageIdentificationString id="ref-10">page</ImportPageIdentificationString>
+<ImportCharsToReplaceWithSpaces id="ref-12">_</ImportCharsToReplaceWithSpaces>
+<ImportPageIdentificationString id="ref-13">page</ImportPageIdentificationString>
 <MaxAllowedPhraseDurationInMinutes>50</MaxAllowedPhraseDurationInMinutes>
 <Audio_ShowLiveWaveformWhileRecording>false</Audio_ShowLiveWaveformWhileRecording>
-<Audio_EnableLivePhraseDetection>false</Audio_EnableLivePhraseDetection>
+<Audio_EnableLivePhraseDetection>true</Audio_EnableLivePhraseDetection>
 <NewProjectDialogSize>
 <width>0</width>
 <height>0</height>
@@ -48,25 +48,25 @@
 </GraphicalPeakMeterContolSize>
 <ShowGraphicalPeakMeterAtStartup>true</ShowGraphicalPeakMeterAtStartup>
 <Project_OpenLastProject>false</Project_OpenLastProject>
-<Project_PipelineScriptsPath id="ref-11">C:\SF\CVSDude\Obi\trunk\Obi\Obi\bin\x86\Release\Pipeline-lite\scripts</Project_PipelineScriptsPath>
+<Project_PipelineScriptsPath id="ref-14">C:\SF\CVSDude\Obi\trunk\Obi\Obi\bin\x86\Release\Pipeline-lite\scripts</Project_PipelineScriptsPath>
 <Project_CheckForUpdates>true</Project_CheckForUpdates>
-<Project_LatestVersionCheckedByUpdate id="ref-12">3.6.0.26346</Project_LatestVersionCheckedByUpdate>
+<Project_LatestVersionCheckedByUpdate id="ref-15">3.6.0.26346</Project_LatestVersionCheckedByUpdate>
 <PlayIfNoSelection>true</PlayIfNoSelection>
 <PlayOnNavigate>false</PlayOnNavigate>
 <Audio_PreviewDuration>1500</Audio_PreviewDuration>
-<Audio_ElapseBackTimeInMilliseconds>1500</Audio_ElapseBackTimeInMilliseconds>
-<RecentProjects href="#ref-13"/>
+<Audio_ElapseBackTimeInMilliseconds>2500</Audio_ElapseBackTimeInMilliseconds>
+<RecentProjects href="#ref-16"/>
 <Audio_SampleRate>44100</Audio_SampleRate>
 <SplitPhrasesOnImport>false</SplitPhrasesOnImport>
 <SynchronizeViews>true</SynchronizeViews>
-<UserProfile href="#ref-14"/>
+<UserProfile href="#ref-17"/>
 <WrapStripContents>true</WrapStripContents>
 <ZoomFactor>1</ZoomFactor>
 <Project_AutoSave_RecordingEnd>false</Project_AutoSave_RecordingEnd>
 <Project_AutoSaveTimeIntervalEnabled>true</Project_AutoSaveTimeIntervalEnabled>
 <Project_AutoSaveTimeInterval>300000</Project_AutoSaveTimeInterval>
 <Project_SaveProjectWhenRecordingEnds>true</Project_SaveProjectWhenRecordingEnds>
-<UsersInfoToUpload id="ref-15">NoInfo</UsersInfoToUpload>
+<UsersInfoToUpload id="ref-18">NoInfo</UsersInfoToUpload>
 <UploadAttemptsCount>0</UploadAttemptsCount>
 <Export_EncodeAudioFiles>false</Export_EncodeAudioFiles>
 <ExportEncodingBitRate>64</ExportEncodingBitRate>
@@ -79,12 +79,12 @@
 <Project_OpenBookmarkNodeOnReopeningProject>false</Project_OpenBookmarkNodeOnReopeningProject>
 <BookMarkNodeHierarchy xsi:null="1"/>
 <Audio_RetainInitialSilenceInPhraseDetection>true</Audio_RetainInitialSilenceInPhraseDetection>
-<Audio_MergeFirstTwoPhrasesAfterPhraseDetection>false</Audio_MergeFirstTwoPhrasesAfterPhraseDetection>
+<Audio_MergeFirstTwoPhrasesAfterPhraseDetection>true</Audio_MergeFirstTwoPhrasesAfterPhraseDetection>
 <Project_ImportToleranceForAudioInMs>100</Project_ImportToleranceForAudioInMs>
 <Project_LeftAlignPhrasesInContentView>true</Project_LeftAlignPhrasesInContentView>
 <Project_OptimizeMemory>true</Project_OptimizeMemory>
 <Project_ShowWaveformInContentView>true</Project_ShowWaveformInContentView>
-<Font id="ref-16">Times New Roman</Font>
+<Font id="ref-19">Times New Roman</Font>
 <Audio_DefaultGap>300</Audio_DefaultGap>
 <Audio_DefaultLeadingSilence>50</Audio_DefaultLeadingSilence>
 <Audio_DefaultThreshold>280</Audio_DefaultThreshold>
@@ -92,26 +92,26 @@
 <Project_EnableFreeDiskSpaceCheck>true</Project_EnableFreeDiskSpaceCheck>
 <Audio_EnablePostRecordingPageRenumbering>true</Audio_EnablePostRecordingPageRenumbering>
 <ImportAudioCreateSectionCheck>true</ImportAudioCreateSectionCheck>
-<Audio_UseRecordingPauseShortcutForStopping>false</Audio_UseRecordingPauseShortcutForStopping>
+<Audio_UseRecordingPauseShortcutForStopping>true</Audio_UseRecordingPauseShortcutForStopping>
 <Project_BackgroundColorForEmptySection>false</Project_BackgroundColorForEmptySection>
-<Audio_LevelComboBoxIndex>0</Audio_LevelComboBoxIndex>
-<Audio_UseRecordBtnToRecordOverSubsequentAudio>false</Audio_UseRecordBtnToRecordOverSubsequentAudio>
-<Audio_PreservePagesWhileRecordOverSubsequentAudio>false</Audio_PreservePagesWhileRecordOverSubsequentAudio>
+<Audio_LevelComboBoxIndex>3</Audio_LevelComboBoxIndex>
+<Audio_UseRecordBtnToRecordOverSubsequentAudio>true</Audio_UseRecordBtnToRecordOverSubsequentAudio>
+<Audio_PreservePagesWhileRecordOverSubsequentAudio>true</Audio_PreservePagesWhileRecordOverSubsequentAudio>
 <Audio_EnforceSingleCursor>false</Audio_EnforceSingleCursor>
 <Audio_DeleteFollowingPhrasesOfSectionAfterRecording>false</Audio_DeleteFollowingPhrasesOfSectionAfterRecording>
 <Audio_DisableDeselectionOnStop>false</Audio_DisableDeselectionOnStop>
 <Project_SaveObiLocationAndSize>false</Project_SaveObiLocationAndSize>
 <Project_EPUBCheckTimeOutEnabled>true</Project_EPUBCheckTimeOutEnabled>
-<Project_ObiConfigFileName id="ref-17">obiconfig.xml</Project_ObiConfigFileName>
+<Project_ObiConfigFileName id="ref-20">obiconfig.xml</Project_ObiConfigFileName>
 <ObiLastLocation>
 <x>0</x>
 <y>0</y>
 </ObiLastLocation>
 <Project_PeakMeterChangeLocation>false</Project_PeakMeterChangeLocation>
 <Audio_CleanupMaxFileSizeInMB>100</Audio_CleanupMaxFileSizeInMB>
-<EncodingFileFormat id="ref-18">MP3</EncodingFileFormat>
+<EncodingFileFormat id="ref-21">MP3</EncodingFileFormat>
 </a1:Settings_SaveProfile>
-<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.26346%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.26594%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -419,7 +419,7 @@
 <state>1</state>
 </EmptySectionBackgroundColor>
 </a1:ColorSettings>
-<a1:ColorSettings id="ref-7" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.26346%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-7" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.26594%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -727,97 +727,34 @@
 <state>1</state>
 </EmptySectionBackgroundColor>
 </a1:ColorSettings>
-<a4:ArrayList id="ref-13" xmlns:a4="http://schemas.microsoft.com/clr/ns/System.Collections">
-<_items href="#ref-19"/>
+<a4:ArrayList id="ref-16" xmlns:a4="http://schemas.microsoft.com/clr/ns/System.Collections">
+<_items href="#ref-22"/>
 <_size>0</_size>
 <_version>0</_version>
 </a4:ArrayList>
-<a1:UserProfile id="ref-14" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.26346%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
-<Name id="ref-20"></Name>
-<Organization id="ref-21">N/A</Organization>
-<Culture href="#ref-22"/>
+<a1:UserProfile id="ref-17" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.26594%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Name id="ref-23"></Name>
+<Organization id="ref-24">N/A</Organization>
+<Culture href="#ref-25"/>
 </a1:UserProfile>
-<SOAP-ENC:Array id="ref-19" SOAP-ENC:arrayType="xsd:anyType[0]">
+<SOAP-ENC:Array id="ref-22" SOAP-ENC:arrayType="xsd:anyType[0]">
 </SOAP-ENC:Array>
-<a6:CultureInfo id="ref-22" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<a6:CultureInfo id="ref-25" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
 <cultureID>16393</cultureID>
 <m_isReadOnly>false</m_isReadOnly>
-<compareInfo href="#ref-23"/>
-<textInfo href="#ref-24"/>
-<numInfo href="#ref-25"/>
+<compareInfo href="#ref-26"/>
+<textInfo xsi:null="1"/>
+<numInfo xsi:null="1"/>
 <dateTimeInfo xsi:null="1"/>
 <calendar xsi:null="1"/>
-<m_name id="ref-26">en-IN</m_name>
+<m_name id="ref-27">en-IN</m_name>
 <m_dataItem>0</m_dataItem>
 <m_useUserOverride>true</m_useUserOverride>
 </a6:CultureInfo>
-<a6:CompareInfo id="ref-23" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<a6:CompareInfo id="ref-26" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
 <win32LCID>16393</win32LCID>
 <culture>16393</culture>
-<m_name id="ref-27">en-IN</m_name>
+<m_name id="ref-28">en-IN</m_name>
 </a6:CompareInfo>
-<a6:TextInfo id="ref-24" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<m_listSeparator xsi:null="1"/>
-<m_isReadOnly>false</m_isReadOnly>
-<customCultureName xsi:null="1"/>
-<m_nDataItem>0</m_nDataItem>
-<m_useUserOverride>true</m_useUserOverride>
-<m_win32LangID>16393</m_win32LangID>
-</a6:TextInfo>
-<a6:NumberFormatInfo id="ref-25" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<numberGroupSizes href="#ref-28"/>
-<currencyGroupSizes href="#ref-29"/>
-<percentGroupSizes href="#ref-28"/>
-<positiveSign id="ref-30">+</positiveSign>
-<negativeSign id="ref-31">-</negativeSign>
-<numberDecimalSeparator id="ref-32">.</numberDecimalSeparator>
-<numberGroupSeparator id="ref-33">,</numberGroupSeparator>
-<currencyGroupSeparator id="ref-34">,</currencyGroupSeparator>
-<currencyDecimalSeparator id="ref-35">.</currencyDecimalSeparator>
-<currencySymbol id="ref-36">₹</currencySymbol>
-<ansiCurrencySymbol xsi:null="1"/>
-<nanSymbol id="ref-37">NaN</nanSymbol>
-<positiveInfinitySymbol id="ref-38">Infinity</positiveInfinitySymbol>
-<negativeInfinitySymbol id="ref-39">-Infinity</negativeInfinitySymbol>
-<percentDecimalSeparator href="#ref-32"/>
-<percentGroupSeparator href="#ref-33"/>
-<percentSymbol id="ref-40">%</percentSymbol>
-<perMilleSymbol id="ref-41">‰</perMilleSymbol>
-<nativeDigits href="#ref-42"/>
-<m_dataItem>0</m_dataItem>
-<numberDecimalDigits>2</numberDecimalDigits>
-<currencyDecimalDigits>2</currencyDecimalDigits>
-<currencyPositivePattern>2</currencyPositivePattern>
-<currencyNegativePattern>12</currencyNegativePattern>
-<numberNegativePattern>1</numberNegativePattern>
-<percentPositivePattern>0</percentPositivePattern>
-<percentNegativePattern>0</percentNegativePattern>
-<percentDecimalDigits>2</percentDecimalDigits>
-<digitSubstitution>1</digitSubstitution>
-<isReadOnly>false</isReadOnly>
-<m_useUserOverride>false</m_useUserOverride>
-<validForParseAsNumber>true</validForParseAsNumber>
-<validForParseAsCurrency>true</validForParseAsCurrency>
-</a6:NumberFormatInfo>
-<SOAP-ENC:Array id="ref-28" SOAP-ENC:arrayType="xsd:int[2]">
-<item>3</item>
-<item>2</item>
-</SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-29" SOAP-ENC:arrayType="xsd:int[2]">
-<item>3</item>
-<item>2</item>
-</SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-42" SOAP-ENC:arrayType="xsd:string[10]">
-<item id="ref-43">0</item>
-<item id="ref-44">1</item>
-<item id="ref-45">2</item>
-<item id="ref-46">3</item>
-<item id="ref-47">4</item>
-<item id="ref-48">5</item>
-<item id="ref-49">6</item>
-<item id="ref-50">7</item>
-<item id="ref-51">8</item>
-<item id="ref-52">9</item>
-</SOAP-ENC:Array>
 </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

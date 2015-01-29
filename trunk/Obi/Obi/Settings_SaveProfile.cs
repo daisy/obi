@@ -94,52 +94,57 @@ namespace Obi
                newSettings.Project_SaveProjectWhenRecordingEnds = this.Project_SaveProjectWhenRecordingEnds;
                newSettings.Project_ShowWaveformInContentView = this.Project_ShowWaveformInContentView;
            }
+           if (prefProfiles == PreferenceProfiles.UserProfile || prefProfiles == PreferenceProfiles.All)
+           {
+               if (this.UserProfile != null)
+               {
+                   //newSettings.UserProfile.Name = this.UserProfile.Name;
+                   //newSettings.UserProfile.Organization = this.UserProfile.Organization;
+                   newSettings.UserProfile.Culture = this.UserProfile.Culture;
+               }
+           }
            //newSettings.RecentProjects = this.RecentProjects;
            //newSettings.BookMarkNodeHierarchy = this.BookMarkNodeHierarchy;
            //newSettings.ColorSettings = this.ColorSettings;
            //newSettings.ColorSettingsHC = this.ColorSettingsHC;
-
-           newSettings.CreateTitleSection = this.CreateTitleSection;
-           newSettings.EncodingFileFormat = this.EncodingFileFormat;
-           newSettings.Export_AppendSectionNameToAudioFile = this.Export_AppendSectionNameToAudioFile;
-           newSettings.Export_AudioFilesNamesLengthLimit = this.Export_AudioFilesNamesLengthLimit;
-           newSettings.Export_EncodeAudioFiles = this.Export_EncodeAudioFiles;
-           newSettings.Export_EPUBCreateDummyText = this.Export_EPUBCreateDummyText;
-           newSettings.Export_EPUBFileNameLengthLimit = this.Export_EPUBFileNameLengthLimit;
-           newSettings.Export_LimitAudioFilesLength = this.Export_LimitAudioFilesLength;
-           newSettings.ExportEncodingBitRate = this.ExportEncodingBitRate;
-           newSettings.Font = this.Font;
-           newSettings.FontSize = this.FontSize;
-           newSettings.GraphicalPeakMeterContolSize = this.GraphicalPeakMeterContolSize;
-           newSettings.ImportAudioCreateSectionCheck = this.ImportAudioCreateSectionCheck;
-           newSettings.ImportCharCountToTruncateFromStart = this.ImportCharCountToTruncateFromStart;
-           newSettings.ImportCharsToReplaceWithSpaces = this.ImportCharsToReplaceWithSpaces;
-           newSettings.ImportPageIdentificationString = this.ImportPageIdentificationString;
-           newSettings.LastOpenProject = this.LastOpenProject;
-           newSettings.MaxAllowedPhraseDurationInMinutes = this.MaxAllowedPhraseDurationInMinutes;
-           newSettings.MaxPhraseDurationMinutes = this.MaxPhraseDurationMinutes;
-           newSettings.NewProjectDialogSize = this.NewProjectDialogSize;
-           newSettings.ObiFormSize = this.ObiFormSize;
-           newSettings.ObiLastLocation = this.ObiLastLocation;
-           newSettings.PeakmeterSize = this.PeakmeterSize;
-           newSettings.PlayIfNoSelection = this.PlayIfNoSelection;
-           newSettings.PlayOnNavigate = this.PlayOnNavigate;
-           newSettings.RecordingToolBarIncrementVal = this.RecordingToolBarIncrementVal;
-           newSettings.ShowGraphicalPeakMeterAtStartup = this.ShowGraphicalPeakMeterAtStartup;
-           newSettings.SplitPhrasesOnImport = this.SplitPhrasesOnImport;
-           newSettings.SynchronizeViews = this.SynchronizeViews;
-           newSettings.TransportBarCounterIndex = this.TransportBarCounterIndex;
-           //newSettings.UploadAttemptsCount = this.UploadAttemptsCount;
-           if (this.UserProfile != null)
+           if (prefProfiles == PreferenceProfiles.All)
            {
-               newSettings.UserProfile.Name = this.UserProfile.Name;
-               newSettings.UserProfile.Organization = this.UserProfile.Organization;
-               newSettings.UserProfile.Culture = this.UserProfile.Culture;
+               newSettings.CreateTitleSection = this.CreateTitleSection;
+               newSettings.EncodingFileFormat = this.EncodingFileFormat;
+               newSettings.Export_AppendSectionNameToAudioFile = this.Export_AppendSectionNameToAudioFile;
+               newSettings.Export_AudioFilesNamesLengthLimit = this.Export_AudioFilesNamesLengthLimit;
+               newSettings.Export_EncodeAudioFiles = this.Export_EncodeAudioFiles;
+               newSettings.Export_EPUBCreateDummyText = this.Export_EPUBCreateDummyText;
+               newSettings.Export_EPUBFileNameLengthLimit = this.Export_EPUBFileNameLengthLimit;
+               newSettings.Export_LimitAudioFilesLength = this.Export_LimitAudioFilesLength;
+               newSettings.ExportEncodingBitRate = this.ExportEncodingBitRate;
+               newSettings.Font = this.Font;
+               newSettings.FontSize = this.FontSize;
+               newSettings.GraphicalPeakMeterContolSize = this.GraphicalPeakMeterContolSize;
+               newSettings.ImportAudioCreateSectionCheck = this.ImportAudioCreateSectionCheck;
+               newSettings.ImportCharCountToTruncateFromStart = this.ImportCharCountToTruncateFromStart;
+               newSettings.ImportCharsToReplaceWithSpaces = this.ImportCharsToReplaceWithSpaces;
+               newSettings.ImportPageIdentificationString = this.ImportPageIdentificationString;
+               newSettings.LastOpenProject = this.LastOpenProject;
+               newSettings.MaxAllowedPhraseDurationInMinutes = this.MaxAllowedPhraseDurationInMinutes;
+               newSettings.MaxPhraseDurationMinutes = this.MaxPhraseDurationMinutes;
+               newSettings.NewProjectDialogSize = this.NewProjectDialogSize;
+               newSettings.ObiFormSize = this.ObiFormSize;
+               newSettings.ObiLastLocation = this.ObiLastLocation;
+               newSettings.PeakmeterSize = this.PeakmeterSize;
+               newSettings.PlayIfNoSelection = this.PlayIfNoSelection;
+               newSettings.PlayOnNavigate = this.PlayOnNavigate;
+               newSettings.RecordingToolBarIncrementVal = this.RecordingToolBarIncrementVal;
+               newSettings.ShowGraphicalPeakMeterAtStartup = this.ShowGraphicalPeakMeterAtStartup;
+               newSettings.SplitPhrasesOnImport = this.SplitPhrasesOnImport;
+               newSettings.SynchronizeViews = this.SynchronizeViews;
+               newSettings.TransportBarCounterIndex = this.TransportBarCounterIndex;
+               //newSettings.UploadAttemptsCount = this.UploadAttemptsCount;
+               
+               //newSettings.UsersInfoToUpload = this.UsersInfoToUpload;
+               newSettings.WrapStripContents = this.WrapStripContents;
+               newSettings.ZoomFactor = this.ZoomFactor;
            }
-           //newSettings.UsersInfoToUpload = this.UsersInfoToUpload;
-           newSettings.WrapStripContents = this.WrapStripContents;
-           newSettings.ZoomFactor = this.ZoomFactor;
-           
            return newSettings;
        }
 
