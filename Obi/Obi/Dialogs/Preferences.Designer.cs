@@ -189,6 +189,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_btnAddProfile, "m_btnAddProfile");
             this.m_btnAddProfile.Name = "m_btnAddProfile";
             this.m_btnAddProfile.UseVisualStyleBackColor = true;
+            this.m_btnAddProfile.Click += new System.EventHandler(this.m_btnAddProfile_Click);
             // 
             // m_ResetButton
             // 
