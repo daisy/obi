@@ -1866,25 +1866,22 @@ namespace Obi.Dialogs
 
         private void m_btnLoadProfile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "*.xml|*.XML";
-            if (fileDialog.ShowDialog() == DialogResult.OK)
+            string profilePath = null;
+            if (m_cb_SelectProfile.SelectedIndex >= 0 && m_cb_SelectProfile.SelectedIndex < m_PredefinedProfilesCount)
             {
-                Settings_SaveProfile saveProfile = Settings_SaveProfile.GetSettingsFromSavedProfile(fileDialog.FileName);
+                string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
+                profilePath = System.IO.Path.Combine(GetPredefinedProfilesDirectory(), profileFileName);
+            }
+            else if (m_cb_SelectProfile.SelectedIndex >= m_PredefinedProfilesCount && m_cb_SelectProfile.SelectedIndex < m_cb_SelectProfile.Items.Count)
+            {
+                string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
+                profilePath = System.IO.Path.Combine(GetCustomProfilesDirectory (), profileFileName);
+            }
+
+            if (profilePath != null && System.IO.File.Exists(profilePath))
+            {
+                Settings_SaveProfile saveProfile = Settings_SaveProfile.GetSettingsFromSavedProfile(profilePath);
                 saveProfile.CopyPropertiesToExistingSettings(mForm.Settings);
-                // copy the profile file to custom profile directory
-                string customProfilesDirectory = GetCustomProfilesDirectory();
-                if (!System.IO.Directory.Exists(customProfilesDirectory)) System.IO.Directory.CreateDirectory(customProfilesDirectory);
-                string newCustomFilePath = System.IO.Path.Combine(customProfilesDirectory,
-                    System.IO.Path.GetFileName(fileDialog.FileName));
-                System.IO.File.Copy(fileDialog.FileName, newCustomFilePath, true);
-                m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
-                if (MessageBox.Show("Please restart Obi for loading the settings",
-                    Localizer.Message("Caption_Information"),
-                    MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    this.Close();
-                }
             }
         }
 
@@ -1938,16 +1935,55 @@ namespace Obi.Dialogs
             m_PredefinedProfilesCount = m_cb_SelectProfile.Items.Count;
                 // now load user defined profiles from the roming folder, the permanent settings are at same location
             string customProfilesDirectory = GetCustomProfilesDirectory();
-            filePaths = System.IO.Directory.GetFiles(customProfilesDirectory, "*.xml");
-            if (filePaths != null && filePaths.Length > 0)
+            if (System.IO.Directory.Exists(customProfilesDirectory))
             {
-                for (int i = 0; i < filePaths.Length; i++)
+                filePaths = System.IO.Directory.GetFiles(customProfilesDirectory, "*.xml");
+                if (filePaths != null && filePaths.Length > 0)
                 {
-                    m_cb_SelectProfile.Items.Add (System.IO.Path.GetFileNameWithoutExtension(filePaths[i])) ;
-                    
-                }
-            }
+                    for (int i = 0; i < filePaths.Length; i++)
+                    {
+                        m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
 
+                    }
+                }
+            }// directory exists check
+
+        }
+
+        private void m_btnAddProfile_Click(object sender, EventArgs e)
+        {
+            BrowseForExistingProfile();
+        }
+
+        private void BrowseForExistingProfile()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "*.xml|*.XML";
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Settings_SaveProfile saveProfile = Settings_SaveProfile.GetSettingsFromSavedProfile(fileDialog.FileName);
+                    saveProfile.CopyPropertiesToExistingSettings(mForm.Settings);
+                    // copy the profile file to custom profile directory
+                    string customProfilesDirectory = GetCustomProfilesDirectory();
+                    if (!System.IO.Directory.Exists(customProfilesDirectory)) System.IO.Directory.CreateDirectory(customProfilesDirectory);
+                    string newCustomFilePath = System.IO.Path.Combine(customProfilesDirectory,
+                        System.IO.Path.GetFileName(fileDialog.FileName));
+                    System.IO.File.Copy(fileDialog.FileName, newCustomFilePath, true);
+                    m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                //if (MessageBox.Show("Please restart Obi for loading the settings",
+                    //Localizer.Message("Caption_Information"),
+                    //MessageBoxButtons.OKCancel) == DialogResult.OK)
+                //{
+                    //this.Close();
+                //}
+            }
         }
 
 
