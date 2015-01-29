@@ -55,9 +55,10 @@ namespace Obi.Dialogs
             m_KeyboardShortcuts = mForm.KeyboardShortcuts;
             InitializeProjectTab ();
             InitializeAudioTab ();
-            InitializeProfileTab ();
+            InitializeUserProfileTab ();
             InitializeKeyboardShortcutsTab();
             InitializeColorPreferenceTab();
+            InitializePreferencesProfileTab ();
             m_IsKeyboardShortcutChanged = false;
             this.m_CheckBoxListView.BringToFront();
             m_DefaultSettings = defaultSettings;
@@ -245,7 +246,7 @@ namespace Obi.Dialogs
             }
 
         // Initialize user profile preferences
-        private void InitializeProfileTab ()
+        private void InitializeUserProfileTab ()
             {
             mFullNameTextbox.Text = mSettings.UserProfile.Name;
             mOrganizationTextbox.Text = mSettings.UserProfile.Organization;
@@ -1142,7 +1143,7 @@ namespace Obi.Dialogs
             else if (mTab.SelectedTab == mUserProfileTab)  // Default settings for User Profile tab
             {
                 mSettings.UserProfile = m_DefaultSettings.UserProfile;
-                InitializeProfileTab();
+                InitializeUserProfileTab();
             }
             else if (mTab.SelectedTab == mKeyboardShortcutTab)   // Default settings for keyboard Shortcuts tab
             {
@@ -1892,6 +1893,28 @@ namespace Obi.Dialogs
                 MessageBox.Show("Profile Saved");
             }
         }
+
+        private void InitializePreferencesProfileTab ()
+        {
+            LoadProfilesToCombobox () ;
+        }
+
+        private void LoadProfilesToCombobox()
+        {
+            // first load the default profiles
+            string appDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            string defaultProfilesDirectory = System.IO.Path.Combine(appDirectory, "profiles");
+            string[] filePaths = System.IO.Directory.GetFiles(defaultProfilesDirectory, "*.xml");
+            if (filePaths != null && filePaths.Length > 0)
+            {
+                for (int i = 0; i < filePaths.Length; i++)
+                {
+                    m_cb_SelectProfile.Items.Add (System.IO.Path.GetFileNameWithoutExtension(filePaths[i])) ;
+                    
+                }
+            }
+        }
+
 
     }
     }   

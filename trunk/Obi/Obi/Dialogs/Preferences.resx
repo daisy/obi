@@ -273,17 +273,200 @@
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <data name="m_rdBtn_All.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdBtn_All.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 99</value>
+  </data>
+  <data name="m_rdBtn_All.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
+  </data>
+  <data name="m_rdBtn_All.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_rdBtn_All.Text" xml:space="preserve">
+    <value>&amp;All</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_All.Name" xml:space="preserve">
+    <value>m_rdBtn_All</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_All.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_All.Parent" xml:space="preserve">
+    <value>m_gpBox_SelectPreferences</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_All.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_rdBtn_Language.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdBtn_Language.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 73</value>
+  </data>
+  <data name="m_rdBtn_Language.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 20</value>
+  </data>
+  <data name="m_rdBtn_Language.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="m_rdBtn_Language.Text" xml:space="preserve">
+    <value>Lan&amp;guage</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_Language.Name" xml:space="preserve">
+    <value>m_rdBtn_Language</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_Language.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_Language.Parent" xml:space="preserve">
+    <value>m_gpBox_SelectPreferences</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_Language.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_rdBtn_Audio.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdBtn_Audio.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 47</value>
+  </data>
+  <data name="m_rdBtn_Audio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
+  </data>
+  <data name="m_rdBtn_Audio.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="m_rdBtn_Audio.Text" xml:space="preserve">
+    <value>Au&amp;dio</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_Audio.Name" xml:space="preserve">
+    <value>m_rdBtn_Audio</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_Audio.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_Audio.Parent" xml:space="preserve">
+    <value>m_gpBox_SelectPreferences</value>
+  </data>
+  <data name="&gt;&gt;m_rdBtn_Audio.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_rdbtn_Project.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdbtn_Project.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 21</value>
+  </data>
+  <data name="m_rdbtn_Project.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="m_rdbtn_Project.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_rdbtn_Project.Text" xml:space="preserve">
+    <value>&amp;Project</value>
+  </data>
+  <data name="&gt;&gt;m_rdbtn_Project.Name" xml:space="preserve">
+    <value>m_rdbtn_Project</value>
+  </data>
+  <data name="&gt;&gt;m_rdbtn_Project.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdbtn_Project.Parent" xml:space="preserve">
+    <value>m_gpBox_SelectPreferences</value>
+  </data>
+  <data name="&gt;&gt;m_rdbtn_Project.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_gpBox_SelectPreferences.Location" type="System.Drawing.Point, System.Drawing">
+    <value>138, 62</value>
+  </data>
+  <data name="m_gpBox_SelectPreferences.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 128</value>
+  </data>
+  <data name="m_gpBox_SelectPreferences.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_gpBox_SelectPreferences.Text" xml:space="preserve">
+    <value>Select Preferences</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_SelectPreferences.Name" xml:space="preserve">
+    <value>m_gpBox_SelectPreferences</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_SelectPreferences.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_SelectPreferences.Parent" xml:space="preserve">
+    <value>mProfilesTab</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_SelectPreferences.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_cb_SelectProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>236, 21</value>
+  </data>
+  <data name="m_cb_SelectProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 24</value>
+  </data>
+  <data name="m_cb_SelectProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;m_cb_SelectProfile.Name" xml:space="preserve">
+    <value>m_cb_SelectProfile</value>
+  </data>
+  <data name="&gt;&gt;m_cb_SelectProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cb_SelectProfile.Parent" xml:space="preserve">
+    <value>mProfilesTab</value>
+  </data>
+  <data name="&gt;&gt;m_cb_SelectProfile.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_lblSelectProfile.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblSelectProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 24</value>
+  </data>
+  <data name="m_lblSelectProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 16</value>
+  </data>
+  <data name="m_lblSelectProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="m_lblSelectProfile.Text" xml:space="preserve">
+    <value>Select Profile :</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectProfile.Name" xml:space="preserve">
+    <value>m_lblSelectProfile</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectProfile.Parent" xml:space="preserve">
+    <value>mProfilesTab</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectProfile.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_btnLoadProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="m_btnLoadProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>257, 35</value>
+    <value>257, 216</value>
   </data>
   <data name="m_btnLoadProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 23</value>
+    <value>112, 31</value>
   </data>
   <data name="m_btnLoadProfile.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="m_btnLoadProfile.Text" xml:space="preserve">
-    <value>Load Profile</value>
+    <value>&amp;Load Profile</value>
   </data>
   <data name="&gt;&gt;m_btnLoadProfile.Name" xml:space="preserve">
     <value>m_btnLoadProfile</value>
@@ -295,19 +478,22 @@
     <value>mProfilesTab</value>
   </data>
   <data name="&gt;&gt;m_btnLoadProfile.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
+  </data>
+  <data name="m_btnSaveProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="m_btnSaveProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 35</value>
+    <value>138, 216</value>
   </data>
   <data name="m_btnSaveProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 23</value>
+    <value>109, 31</value>
   </data>
   <data name="m_btnSaveProfile.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="m_btnSaveProfile.Text" xml:space="preserve">
-    <value>Save Profile</value>
+    <value>&amp;Save Profile</value>
   </data>
   <data name="&gt;&gt;m_btnSaveProfile.Name" xml:space="preserve">
     <value>m_btnSaveProfile</value>
@@ -319,7 +505,7 @@
     <value>mProfilesTab</value>
   </data>
   <data name="&gt;&gt;m_btnSaveProfile.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="mProfilesTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>

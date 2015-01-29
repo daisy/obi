@@ -113,6 +113,13 @@ namespace Obi.Dialogs
             this.mBrowseButton = new System.Windows.Forms.Button();
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.m_lblSelectProfile = new System.Windows.Forms.Label();
+            this.m_cb_SelectProfile = new System.Windows.Forms.ComboBox();
+            this.m_gpBox_SelectPreferences = new System.Windows.Forms.GroupBox();
+            this.m_rdbtn_Project = new System.Windows.Forms.RadioButton();
+            this.m_rdBtn_Audio = new System.Windows.Forms.RadioButton();
+            this.m_rdBtn_Language = new System.Windows.Forms.RadioButton();
+            this.m_rdBtn_All = new System.Windows.Forms.RadioButton();
             this.mProfilesTab.SuspendLayout();
             this.mColorPreferencesTab.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -126,6 +133,7 @@ namespace Obi.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
             this.mTab.SuspendLayout();
+            this.m_gpBox_SelectPreferences.SuspendLayout();
             this.SuspendLayout();
             // 
             // mOKButton
@@ -172,6 +180,9 @@ namespace Obi.Dialogs
             // 
             // mProfilesTab
             // 
+            this.mProfilesTab.Controls.Add(this.m_gpBox_SelectPreferences);
+            this.mProfilesTab.Controls.Add(this.m_cb_SelectProfile);
+            this.mProfilesTab.Controls.Add(this.m_lblSelectProfile);
             this.mProfilesTab.Controls.Add(this.m_btnLoadProfile);
             this.mProfilesTab.Controls.Add(this.m_btnSaveProfile);
             resources.ApplyResources(this.mProfilesTab, "mProfilesTab");
@@ -863,6 +874,55 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mTab, ((bool)(resources.GetObject("mTab.ShowHelp"))));
             this.mTab.SelectedIndexChanged += new System.EventHandler(this.mTab_SelectedIndexChanged);
             // 
+            // m_lblSelectProfile
+            // 
+            resources.ApplyResources(this.m_lblSelectProfile, "m_lblSelectProfile");
+            this.m_lblSelectProfile.Name = "m_lblSelectProfile";
+            // 
+            // m_cb_SelectProfile
+            // 
+            this.m_cb_SelectProfile.FormattingEnabled = true;
+            resources.ApplyResources(this.m_cb_SelectProfile, "m_cb_SelectProfile");
+            this.m_cb_SelectProfile.Name = "m_cb_SelectProfile";
+            // 
+            // m_gpBox_SelectPreferences
+            // 
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_All);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_Language);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_Audio);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdbtn_Project);
+            resources.ApplyResources(this.m_gpBox_SelectPreferences, "m_gpBox_SelectPreferences");
+            this.m_gpBox_SelectPreferences.Name = "m_gpBox_SelectPreferences";
+            this.m_gpBox_SelectPreferences.TabStop = false;
+            // 
+            // m_rdbtn_Project
+            // 
+            resources.ApplyResources(this.m_rdbtn_Project, "m_rdbtn_Project");
+            this.m_rdbtn_Project.Name = "m_rdbtn_Project";
+            this.m_rdbtn_Project.TabStop = true;
+            this.m_rdbtn_Project.UseVisualStyleBackColor = true;
+            // 
+            // m_rdBtn_Audio
+            // 
+            resources.ApplyResources(this.m_rdBtn_Audio, "m_rdBtn_Audio");
+            this.m_rdBtn_Audio.Name = "m_rdBtn_Audio";
+            this.m_rdBtn_Audio.TabStop = true;
+            this.m_rdBtn_Audio.UseVisualStyleBackColor = true;
+            // 
+            // m_rdBtn_Language
+            // 
+            resources.ApplyResources(this.m_rdBtn_Language, "m_rdBtn_Language");
+            this.m_rdBtn_Language.Name = "m_rdBtn_Language";
+            this.m_rdBtn_Language.TabStop = true;
+            this.m_rdBtn_Language.UseVisualStyleBackColor = true;
+            // 
+            // m_rdBtn_All
+            // 
+            resources.ApplyResources(this.m_rdBtn_All, "m_rdBtn_All");
+            this.m_rdBtn_All.Name = "m_rdBtn_All";
+            this.m_rdBtn_All.TabStop = true;
+            this.m_rdBtn_All.UseVisualStyleBackColor = true;
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -883,6 +943,7 @@ namespace Obi.Dialogs
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.mProfilesTab.ResumeLayout(false);
+            this.mProfilesTab.PerformLayout();
             this.mColorPreferencesTab.ResumeLayout(false);
             this.mColorPreferencesTab.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -900,6 +961,8 @@ namespace Obi.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).EndInit();
             this.mTab.ResumeLayout(false);
+            this.m_gpBox_SelectPreferences.ResumeLayout(false);
+            this.m_gpBox_SelectPreferences.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -989,5 +1052,12 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TabControl mTab;
         private System.Windows.Forms.Button m_btnLoadProfile;
         private System.Windows.Forms.Button m_btnSaveProfile;
+        private System.Windows.Forms.ComboBox m_cb_SelectProfile;
+        private System.Windows.Forms.Label m_lblSelectProfile;
+        private System.Windows.Forms.GroupBox m_gpBox_SelectPreferences;
+        private System.Windows.Forms.RadioButton m_rdBtn_All;
+        private System.Windows.Forms.RadioButton m_rdBtn_Language;
+        private System.Windows.Forms.RadioButton m_rdBtn_Audio;
+        private System.Windows.Forms.RadioButton m_rdbtn_Project;
     }
 }
