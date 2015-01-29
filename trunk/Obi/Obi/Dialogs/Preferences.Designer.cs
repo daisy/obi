@@ -181,6 +181,8 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_btnSaveProfile, "m_btnSaveProfile");
             this.m_btnSaveProfile.Name = "m_btnSaveProfile";
+            this.helpProvider1.SetShowHelp(this.m_btnSaveProfile, ((bool)(resources.GetObject("m_btnSaveProfile.ShowHelp"))));
+            this.m_Preference_ToolTip.SetToolTip(this.m_btnSaveProfile, resources.GetString("m_btnSaveProfile.ToolTip"));
             this.m_btnSaveProfile.UseVisualStyleBackColor = true;
             this.m_btnSaveProfile.Click += new System.EventHandler(this.m_btnSaveProfile_Click);
             // 
@@ -188,6 +190,7 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_btnAddProfile, "m_btnAddProfile");
             this.m_btnAddProfile.Name = "m_btnAddProfile";
+            this.m_Preference_ToolTip.SetToolTip(this.m_btnAddProfile, resources.GetString("m_btnAddProfile.ToolTip"));
             this.m_btnAddProfile.UseVisualStyleBackColor = true;
             this.m_btnAddProfile.Click += new System.EventHandler(this.m_btnAddProfile_Click);
             // 
