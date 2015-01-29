@@ -34,11 +34,20 @@ namespace Obi.Dialogs
             this.mCancelButton = new System.Windows.Forms.Button();
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
+            this.m_gpBox_SaveAddProfile = new System.Windows.Forms.GroupBox();
+            this.m_btnSaveProfile = new System.Windows.Forms.Button();
+            this.m_btnAddProfile = new System.Windows.Forms.Button();
             this.m_ResetButton = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.mProfilesTab = new System.Windows.Forms.TabPage();
+            this.m_gpBox_SelectPreferences = new System.Windows.Forms.GroupBox();
+            this.m_rdBtn_All = new System.Windows.Forms.RadioButton();
+            this.m_rdBtn_Language = new System.Windows.Forms.RadioButton();
+            this.m_rdBtn_Audio = new System.Windows.Forms.RadioButton();
+            this.m_rdbtn_Project = new System.Windows.Forms.RadioButton();
             this.m_btnLoadProfile = new System.Windows.Forms.Button();
-            this.m_btnSaveProfile = new System.Windows.Forms.Button();
+            this.m_cb_SelectProfile = new System.Windows.Forms.ComboBox();
+            this.m_lblSelectProfile = new System.Windows.Forms.Label();
             this.mColorPreferencesTab = new System.Windows.Forms.TabPage();
             this.mChooseFontCombo = new System.Windows.Forms.ComboBox();
             this.m_lblChooseFont = new System.Windows.Forms.Label();
@@ -113,14 +122,9 @@ namespace Obi.Dialogs
             this.mBrowseButton = new System.Windows.Forms.Button();
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.m_lblSelectProfile = new System.Windows.Forms.Label();
-            this.m_cb_SelectProfile = new System.Windows.Forms.ComboBox();
-            this.m_gpBox_SelectPreferences = new System.Windows.Forms.GroupBox();
-            this.m_rdbtn_Project = new System.Windows.Forms.RadioButton();
-            this.m_rdBtn_Audio = new System.Windows.Forms.RadioButton();
-            this.m_rdBtn_Language = new System.Windows.Forms.RadioButton();
-            this.m_rdBtn_All = new System.Windows.Forms.RadioButton();
+            this.m_gpBox_SaveAddProfile.SuspendLayout();
             this.mProfilesTab.SuspendLayout();
+            this.m_gpBox_SelectPreferences.SuspendLayout();
             this.mColorPreferencesTab.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.mKeyboardShortcutTab.SuspendLayout();
@@ -133,7 +137,6 @@ namespace Obi.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
             this.mTab.SuspendLayout();
-            this.m_gpBox_SelectPreferences.SuspendLayout();
             this.SuspendLayout();
             // 
             // mOKButton
@@ -166,6 +169,27 @@ namespace Obi.Dialogs
             this.m_grpBoxChkBoxListView.Name = "m_grpBoxChkBoxListView";
             this.m_grpBoxChkBoxListView.TabStop = false;
             // 
+            // m_gpBox_SaveAddProfile
+            // 
+            this.m_gpBox_SaveAddProfile.Controls.Add(this.m_btnSaveProfile);
+            this.m_gpBox_SaveAddProfile.Controls.Add(this.m_btnAddProfile);
+            resources.ApplyResources(this.m_gpBox_SaveAddProfile, "m_gpBox_SaveAddProfile");
+            this.m_gpBox_SaveAddProfile.Name = "m_gpBox_SaveAddProfile";
+            this.m_gpBox_SaveAddProfile.TabStop = false;
+            // 
+            // m_btnSaveProfile
+            // 
+            resources.ApplyResources(this.m_btnSaveProfile, "m_btnSaveProfile");
+            this.m_btnSaveProfile.Name = "m_btnSaveProfile";
+            this.m_btnSaveProfile.UseVisualStyleBackColor = true;
+            this.m_btnSaveProfile.Click += new System.EventHandler(this.m_btnSaveProfile_Click);
+            // 
+            // m_btnAddProfile
+            // 
+            resources.ApplyResources(this.m_btnAddProfile, "m_btnAddProfile");
+            this.m_btnAddProfile.Name = "m_btnAddProfile";
+            this.m_btnAddProfile.UseVisualStyleBackColor = true;
+            // 
             // m_ResetButton
             // 
             resources.ApplyResources(this.m_ResetButton, "m_ResetButton");
@@ -180,15 +204,53 @@ namespace Obi.Dialogs
             // 
             // mProfilesTab
             // 
+            this.mProfilesTab.Controls.Add(this.m_gpBox_SaveAddProfile);
             this.mProfilesTab.Controls.Add(this.m_gpBox_SelectPreferences);
             this.mProfilesTab.Controls.Add(this.m_cb_SelectProfile);
             this.mProfilesTab.Controls.Add(this.m_lblSelectProfile);
-            this.mProfilesTab.Controls.Add(this.m_btnLoadProfile);
-            this.mProfilesTab.Controls.Add(this.m_btnSaveProfile);
             resources.ApplyResources(this.mProfilesTab, "mProfilesTab");
             this.mProfilesTab.Name = "mProfilesTab";
             this.helpProvider1.SetShowHelp(this.mProfilesTab, ((bool)(resources.GetObject("mProfilesTab.ShowHelp"))));
             this.mProfilesTab.UseVisualStyleBackColor = true;
+            // 
+            // m_gpBox_SelectPreferences
+            // 
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_All);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_Language);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_Audio);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdbtn_Project);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_btnLoadProfile);
+            resources.ApplyResources(this.m_gpBox_SelectPreferences, "m_gpBox_SelectPreferences");
+            this.m_gpBox_SelectPreferences.Name = "m_gpBox_SelectPreferences";
+            this.m_gpBox_SelectPreferences.TabStop = false;
+            // 
+            // m_rdBtn_All
+            // 
+            resources.ApplyResources(this.m_rdBtn_All, "m_rdBtn_All");
+            this.m_rdBtn_All.Name = "m_rdBtn_All";
+            this.m_rdBtn_All.TabStop = true;
+            this.m_rdBtn_All.UseVisualStyleBackColor = true;
+            // 
+            // m_rdBtn_Language
+            // 
+            resources.ApplyResources(this.m_rdBtn_Language, "m_rdBtn_Language");
+            this.m_rdBtn_Language.Name = "m_rdBtn_Language";
+            this.m_rdBtn_Language.TabStop = true;
+            this.m_rdBtn_Language.UseVisualStyleBackColor = true;
+            // 
+            // m_rdBtn_Audio
+            // 
+            resources.ApplyResources(this.m_rdBtn_Audio, "m_rdBtn_Audio");
+            this.m_rdBtn_Audio.Name = "m_rdBtn_Audio";
+            this.m_rdBtn_Audio.TabStop = true;
+            this.m_rdBtn_Audio.UseVisualStyleBackColor = true;
+            // 
+            // m_rdbtn_Project
+            // 
+            resources.ApplyResources(this.m_rdbtn_Project, "m_rdbtn_Project");
+            this.m_rdbtn_Project.Name = "m_rdbtn_Project";
+            this.m_rdbtn_Project.TabStop = true;
+            this.m_rdbtn_Project.UseVisualStyleBackColor = true;
             // 
             // m_btnLoadProfile
             // 
@@ -197,12 +259,16 @@ namespace Obi.Dialogs
             this.m_btnLoadProfile.UseVisualStyleBackColor = true;
             this.m_btnLoadProfile.Click += new System.EventHandler(this.m_btnLoadProfile_Click);
             // 
-            // m_btnSaveProfile
+            // m_cb_SelectProfile
             // 
-            resources.ApplyResources(this.m_btnSaveProfile, "m_btnSaveProfile");
-            this.m_btnSaveProfile.Name = "m_btnSaveProfile";
-            this.m_btnSaveProfile.UseVisualStyleBackColor = true;
-            this.m_btnSaveProfile.Click += new System.EventHandler(this.m_btnSaveProfile_Click);
+            this.m_cb_SelectProfile.FormattingEnabled = true;
+            resources.ApplyResources(this.m_cb_SelectProfile, "m_cb_SelectProfile");
+            this.m_cb_SelectProfile.Name = "m_cb_SelectProfile";
+            // 
+            // m_lblSelectProfile
+            // 
+            resources.ApplyResources(this.m_lblSelectProfile, "m_lblSelectProfile");
+            this.m_lblSelectProfile.Name = "m_lblSelectProfile";
             // 
             // mColorPreferencesTab
             // 
@@ -874,55 +940,6 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mTab, ((bool)(resources.GetObject("mTab.ShowHelp"))));
             this.mTab.SelectedIndexChanged += new System.EventHandler(this.mTab_SelectedIndexChanged);
             // 
-            // m_lblSelectProfile
-            // 
-            resources.ApplyResources(this.m_lblSelectProfile, "m_lblSelectProfile");
-            this.m_lblSelectProfile.Name = "m_lblSelectProfile";
-            // 
-            // m_cb_SelectProfile
-            // 
-            this.m_cb_SelectProfile.FormattingEnabled = true;
-            resources.ApplyResources(this.m_cb_SelectProfile, "m_cb_SelectProfile");
-            this.m_cb_SelectProfile.Name = "m_cb_SelectProfile";
-            // 
-            // m_gpBox_SelectPreferences
-            // 
-            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_All);
-            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_Language);
-            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdBtn_Audio);
-            this.m_gpBox_SelectPreferences.Controls.Add(this.m_rdbtn_Project);
-            resources.ApplyResources(this.m_gpBox_SelectPreferences, "m_gpBox_SelectPreferences");
-            this.m_gpBox_SelectPreferences.Name = "m_gpBox_SelectPreferences";
-            this.m_gpBox_SelectPreferences.TabStop = false;
-            // 
-            // m_rdbtn_Project
-            // 
-            resources.ApplyResources(this.m_rdbtn_Project, "m_rdbtn_Project");
-            this.m_rdbtn_Project.Name = "m_rdbtn_Project";
-            this.m_rdbtn_Project.TabStop = true;
-            this.m_rdbtn_Project.UseVisualStyleBackColor = true;
-            // 
-            // m_rdBtn_Audio
-            // 
-            resources.ApplyResources(this.m_rdBtn_Audio, "m_rdBtn_Audio");
-            this.m_rdBtn_Audio.Name = "m_rdBtn_Audio";
-            this.m_rdBtn_Audio.TabStop = true;
-            this.m_rdBtn_Audio.UseVisualStyleBackColor = true;
-            // 
-            // m_rdBtn_Language
-            // 
-            resources.ApplyResources(this.m_rdBtn_Language, "m_rdBtn_Language");
-            this.m_rdBtn_Language.Name = "m_rdBtn_Language";
-            this.m_rdBtn_Language.TabStop = true;
-            this.m_rdBtn_Language.UseVisualStyleBackColor = true;
-            // 
-            // m_rdBtn_All
-            // 
-            resources.ApplyResources(this.m_rdBtn_All, "m_rdBtn_All");
-            this.m_rdBtn_All.Name = "m_rdBtn_All";
-            this.m_rdBtn_All.TabStop = true;
-            this.m_rdBtn_All.UseVisualStyleBackColor = true;
-            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -942,8 +959,11 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this, ((bool)(resources.GetObject("$this.ShowHelp"))));
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.m_gpBox_SaveAddProfile.ResumeLayout(false);
             this.mProfilesTab.ResumeLayout(false);
             this.mProfilesTab.PerformLayout();
+            this.m_gpBox_SelectPreferences.ResumeLayout(false);
+            this.m_gpBox_SelectPreferences.PerformLayout();
             this.mColorPreferencesTab.ResumeLayout(false);
             this.mColorPreferencesTab.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -961,8 +981,6 @@ namespace Obi.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).EndInit();
             this.mTab.ResumeLayout(false);
-            this.m_gpBox_SelectPreferences.ResumeLayout(false);
-            this.m_gpBox_SelectPreferences.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1059,5 +1077,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rdBtn_Language;
         private System.Windows.Forms.RadioButton m_rdBtn_Audio;
         private System.Windows.Forms.RadioButton m_rdbtn_Project;
+        private System.Windows.Forms.GroupBox m_gpBox_SaveAddProfile;
+        private System.Windows.Forms.Button m_btnAddProfile;
     }
 }
