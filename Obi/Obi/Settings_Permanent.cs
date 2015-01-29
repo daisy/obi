@@ -95,7 +95,7 @@ namespace Obi
             stream.Close();
         }
 
-                private static string GetSettingFilePath()
+                public static string GetSettingFilePath()
         {
             string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
             string obiSettingsDir = System.IO.Path.Combine(appDataDir, "Obi");
