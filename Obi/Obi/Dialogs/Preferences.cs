@@ -1932,14 +1932,36 @@ namespace Obi.Dialogs
             m_PredefinedProfilesCount = 0;
             string preDefinedProfilesDirectory = GetPredefinedProfilesDirectory();
             string[] filePaths = System.IO.Directory.GetFiles(preDefinedProfilesDirectory, "*.xml");
+            List<string> filePathsList = new List<string>();
             if (filePaths != null && filePaths.Length > 0)
             {
                 //string[] profileFileNames = new string[filePaths.Length];
                 for (int i = 0; i < filePaths.Length; i++)
                 {
-                    m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
-
+                    filePathsList.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
+                 //   m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
                 }
+                if(filePathsList.Contains("Basic"))
+                {
+                    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Basic"));
+                }
+                if (filePathsList.Contains("Intermediate"))
+                {
+                    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Intermediate"));
+                }
+                if (filePathsList.Contains("Advance"))
+                {
+                    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Advance"));
+                }
+                if (filePathsList.Contains("Profile-1-VA"))
+                {
+                    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_1"));
+                }
+                if (filePathsList.Contains("Profile-2-SBS"))
+                {
+                    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_2"));
+                }
+           
             }
             m_PredefinedProfilesCount = m_cb_SelectProfile.Items.Count;
                 // now load user defined profiles from the roming folder, the permanent settings are at same location
@@ -1991,6 +2013,22 @@ namespace Obi.Dialogs
                 //{
                     //this.Close();
                 //}
+            }
+        }
+
+        private void m_chkAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_chkAll.Checked)
+            {
+                m_chkProject.Checked = true;
+                m_chkAudio.Checked = true;
+                m_chkLanguage.Checked = true;
+            }
+            else
+            {
+                m_chkProject.Checked = false;
+                m_chkAudio.Checked = false;
+                m_chkLanguage.Checked = false;
             }
         }
 
