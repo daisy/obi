@@ -41,6 +41,10 @@ namespace Obi.Dialogs
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.mProfilesTab = new System.Windows.Forms.TabPage();
             this.m_gpBox_SelectPreferences = new System.Windows.Forms.GroupBox();
+            this.m_chkProject = new System.Windows.Forms.CheckBox();
+            this.m_chkAudio = new System.Windows.Forms.CheckBox();
+            this.m_chkLanguage = new System.Windows.Forms.CheckBox();
+            this.m_chkAll = new System.Windows.Forms.CheckBox();
             this.m_btnLoadProfile = new System.Windows.Forms.Button();
             this.m_cb_SelectProfile = new System.Windows.Forms.ComboBox();
             this.m_lblSelectProfile = new System.Windows.Forms.Label();
@@ -118,10 +122,6 @@ namespace Obi.Dialogs
             this.mBrowseButton = new System.Windows.Forms.Button();
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.m_chkProject = new System.Windows.Forms.CheckBox();
-            this.m_chkAudio = new System.Windows.Forms.CheckBox();
-            this.m_chkLanguage = new System.Windows.Forms.CheckBox();
-            this.m_chkAll = new System.Windows.Forms.CheckBox();
             this.m_gpBox_SaveAddProfile.SuspendLayout();
             this.mProfilesTab.SuspendLayout();
             this.m_gpBox_SelectPreferences.SuspendLayout();
@@ -227,6 +227,31 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_gpBox_SelectPreferences, "m_gpBox_SelectPreferences");
             this.m_gpBox_SelectPreferences.Name = "m_gpBox_SelectPreferences";
             this.m_gpBox_SelectPreferences.TabStop = false;
+            // 
+            // m_chkProject
+            // 
+            resources.ApplyResources(this.m_chkProject, "m_chkProject");
+            this.m_chkProject.Name = "m_chkProject";
+            this.m_chkProject.UseVisualStyleBackColor = true;
+            // 
+            // m_chkAudio
+            // 
+            resources.ApplyResources(this.m_chkAudio, "m_chkAudio");
+            this.m_chkAudio.Name = "m_chkAudio";
+            this.m_chkAudio.UseVisualStyleBackColor = true;
+            // 
+            // m_chkLanguage
+            // 
+            resources.ApplyResources(this.m_chkLanguage, "m_chkLanguage");
+            this.m_chkLanguage.Name = "m_chkLanguage";
+            this.m_chkLanguage.UseVisualStyleBackColor = true;
+            // 
+            // m_chkAll
+            // 
+            resources.ApplyResources(this.m_chkAll, "m_chkAll");
+            this.m_chkAll.Name = "m_chkAll";
+            this.m_chkAll.UseVisualStyleBackColor = true;
+            this.m_chkAll.CheckedChanged += new System.EventHandler(this.m_chkAll_CheckedChanged);
             // 
             // m_btnLoadProfile
             // 
@@ -915,30 +940,6 @@ namespace Obi.Dialogs
             this.mTab.SelectedIndex = 0;
             this.helpProvider1.SetShowHelp(this.mTab, ((bool)(resources.GetObject("mTab.ShowHelp"))));
             this.mTab.SelectedIndexChanged += new System.EventHandler(this.mTab_SelectedIndexChanged);
-            // 
-            // m_chkProject
-            // 
-            resources.ApplyResources(this.m_chkProject, "m_chkProject");
-            this.m_chkProject.Name = "m_chkProject";
-            this.m_chkProject.UseVisualStyleBackColor = true;
-            // 
-            // m_chkAudio
-            // 
-            resources.ApplyResources(this.m_chkAudio, "m_chkAudio");
-            this.m_chkAudio.Name = "m_chkAudio";
-            this.m_chkAudio.UseVisualStyleBackColor = true;
-            // 
-            // m_chkLanguage
-            // 
-            resources.ApplyResources(this.m_chkLanguage, "m_chkLanguage");
-            this.m_chkLanguage.Name = "m_chkLanguage";
-            this.m_chkLanguage.UseVisualStyleBackColor = true;
-            // 
-            // m_chkAll
-            // 
-            resources.ApplyResources(this.m_chkAll, "m_chkAll");
-            this.m_chkAll.Name = "m_chkAll";
-            this.m_chkAll.UseVisualStyleBackColor = true;
             // 
             // Preferences
             // 

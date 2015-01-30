@@ -234,6 +234,57 @@
   <data name="&gt;&gt;m_grpBoxChkBoxListView.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;m_btnSaveProfile.Name" xml:space="preserve">
+    <value>m_btnSaveProfile</value>
+  </data>
+  <data name="&gt;&gt;m_btnSaveProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnSaveProfile.Parent" xml:space="preserve">
+    <value>m_gpBox_SaveAddProfile</value>
+  </data>
+  <data name="&gt;&gt;m_btnSaveProfile.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_btnAddProfile.Name" xml:space="preserve">
+    <value>m_btnAddProfile</value>
+  </data>
+  <data name="&gt;&gt;m_btnAddProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnAddProfile.Parent" xml:space="preserve">
+    <value>m_gpBox_SaveAddProfile</value>
+  </data>
+  <data name="&gt;&gt;m_btnAddProfile.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_gpBox_SaveAddProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>180, 181</value>
+  </data>
+  <data name="m_gpBox_SaveAddProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 78</value>
+  </data>
+  <data name="m_gpBox_SaveAddProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_SaveAddProfile.Name" xml:space="preserve">
+    <value>m_gpBox_SaveAddProfile</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_SaveAddProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_SaveAddProfile.Parent" xml:space="preserve">
+    <value>mProfilesTab</value>
+  </data>
+  <data name="&gt;&gt;m_gpBox_SaveAddProfile.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="m_Preference_ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 17</value>
+  </metadata>
   <data name="m_btnSaveProfile.AccessibleName" xml:space="preserve">
     <value>Save current settings as a profile</value>
   </data>
@@ -242,12 +293,6 @@
   </data>
   <data name="m_btnSaveProfile.Location" type="System.Drawing.Point, System.Drawing">
     <value>151, 26</value>
-  </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.chm</value>
   </data>
   <data name="m_btnSaveProfile.ShowHelp" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -261,9 +306,6 @@
   <data name="m_btnSaveProfile.Text" xml:space="preserve">
     <value>&amp;Save Profile</value>
   </data>
-  <metadata name="m_Preference_ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>144, 17</value>
-  </metadata>
   <data name="m_btnSaveProfile.ToolTip" xml:space="preserve">
     <value>Save current settings as a profile</value>
   </data>
@@ -312,27 +354,6 @@
   <data name="&gt;&gt;m_btnAddProfile.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_gpBox_SaveAddProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>180, 181</value>
-  </data>
-  <data name="m_gpBox_SaveAddProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 78</value>
-  </data>
-  <data name="m_gpBox_SaveAddProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_SaveAddProfile.Name" xml:space="preserve">
-    <value>m_gpBox_SaveAddProfile</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_SaveAddProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_SaveAddProfile.Parent" xml:space="preserve">
-    <value>mProfilesTab</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_SaveAddProfile.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="m_ResetButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
   </data>
@@ -366,6 +387,12 @@
   <data name="&gt;&gt;m_ResetButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
   <data name="m_chkProject.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -379,7 +406,7 @@
     <value>4</value>
   </data>
   <data name="m_chkProject.Text" xml:space="preserve">
-    <value>Project</value>
+    <value>&amp;Project</value>
   </data>
   <data name="&gt;&gt;m_chkProject.Name" xml:space="preserve">
     <value>m_chkProject</value>
@@ -406,7 +433,7 @@
     <value>5</value>
   </data>
   <data name="m_chkAudio.Text" xml:space="preserve">
-    <value>Audio</value>
+    <value>A&amp;udio</value>
   </data>
   <data name="&gt;&gt;m_chkAudio.Name" xml:space="preserve">
     <value>m_chkAudio</value>
@@ -433,7 +460,7 @@
     <value>6</value>
   </data>
   <data name="m_chkLanguage.Text" xml:space="preserve">
-    <value>Language</value>
+    <value>La&amp;nguage</value>
   </data>
   <data name="&gt;&gt;m_chkLanguage.Name" xml:space="preserve">
     <value>m_chkLanguage</value>
@@ -460,7 +487,7 @@
     <value>7</value>
   </data>
   <data name="m_chkAll.Text" xml:space="preserve">
-    <value>All</value>
+    <value>&amp;All</value>
   </data>
   <data name="&gt;&gt;m_chkAll.Name" xml:space="preserve">
     <value>m_chkAll</value>
@@ -3596,6 +3623,9 @@
   <data name="&gt;&gt;mTab.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <metadata name="m_Preference_ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
