@@ -237,6 +237,8 @@ namespace Obi.Dialogs
             // m_chkAudio
             // 
             resources.ApplyResources(this.m_chkAudio, "m_chkAudio");
+            this.m_chkAudio.Checked = true;
+            this.m_chkAudio.CheckState = System.Windows.Forms.CheckState.Checked;
             this.m_chkAudio.Name = "m_chkAudio";
             this.m_chkAudio.UseVisualStyleBackColor = true;
             // 

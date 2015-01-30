@@ -1943,24 +1943,32 @@ namespace Obi.Dialogs
                 }
                 if(filePathsList.Contains("Basic"))
                 {
-                    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Basic"));
+                    int index = filePathsList.IndexOf("Basic");
+                    m_cb_SelectProfile.Items.Add(filePathsList[index]);
+                    filePathsList.RemoveAt(index);
                 }
                 if (filePathsList.Contains("Intermediate"))
                 {
-                    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Intermediate"));
+                    int index = filePathsList.IndexOf("Intermediate");
+                    m_cb_SelectProfile.Items.Add(filePathsList[index]);
+                    filePathsList.RemoveAt(index);
                 }
-                if (filePathsList.Contains("Advance"))
+                foreach (string file in filePathsList)
                 {
-                    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Advance"));
+                    m_cb_SelectProfile.Items.Add(file);
                 }
-                if (filePathsList.Contains("Profile-1-VA"))
-                {
-                    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_1"));
-                }
-                if (filePathsList.Contains("Profile-2-SBS"))
-                {
-                    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_2"));
-                }
+                //if (filePathsList.Contains("Advance"))
+                //{
+                //    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Advance"));
+                //}
+                //if (filePathsList.Contains("Profile-1-VA"))
+                //{
+                //    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_1"));
+                //}
+                //if (filePathsList.Contains("Profile-2-SBS"))
+                //{
+                //    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_2"));
+                //}
            
             }
             m_PredefinedProfilesCount = m_cb_SelectProfile.Items.Count;
