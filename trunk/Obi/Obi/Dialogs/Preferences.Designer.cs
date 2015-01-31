@@ -39,7 +39,8 @@ namespace Obi.Dialogs
             this.m_btnAddProfile = new System.Windows.Forms.Button();
             this.m_ResetButton = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.mProfilesTab = new System.Windows.Forms.TabPage();
+            this.mAdvanceTab = new System.Windows.Forms.TabPage();
+            this.m_btnProfileDiscription = new System.Windows.Forms.Button();
             this.m_gpBox_SelectPreferences = new System.Windows.Forms.GroupBox();
             this.m_chkProject = new System.Windows.Forms.CheckBox();
             this.m_chkAudio = new System.Windows.Forms.CheckBox();
@@ -86,7 +87,7 @@ namespace Obi.Dialogs
             this.mAudioTab = new System.Windows.Forms.TabPage();
             this.m_CleanUpFileSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.mlblCleanupFileSize = new System.Windows.Forms.Label();
-            this.m_btnProfileDiscription = new System.Windows.Forms.Button();
+            this.m_btnProfileDiscriptionOld = new System.Windows.Forms.Button();
             this.m_lblProfile = new System.Windows.Forms.Label();
             this.m_ComboSelectAudioProfile = new System.Windows.Forms.ComboBox();
             this.m_btn_speak = new System.Windows.Forms.Button();
@@ -123,7 +124,7 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_gpBox_SaveAddProfile.SuspendLayout();
-            this.mProfilesTab.SuspendLayout();
+            this.mAdvanceTab.SuspendLayout();
             this.m_gpBox_SelectPreferences.SuspendLayout();
             this.mColorPreferencesTab.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -206,16 +207,26 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
-            // mProfilesTab
+            // mAdvanceTab
             // 
-            this.mProfilesTab.Controls.Add(this.m_gpBox_SaveAddProfile);
-            this.mProfilesTab.Controls.Add(this.m_gpBox_SelectPreferences);
-            this.mProfilesTab.Controls.Add(this.m_cb_SelectProfile);
-            this.mProfilesTab.Controls.Add(this.m_lblSelectProfile);
-            resources.ApplyResources(this.mProfilesTab, "mProfilesTab");
-            this.mProfilesTab.Name = "mProfilesTab";
-            this.helpProvider1.SetShowHelp(this.mProfilesTab, ((bool)(resources.GetObject("mProfilesTab.ShowHelp"))));
-            this.mProfilesTab.UseVisualStyleBackColor = true;
+            this.mAdvanceTab.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.mAdvanceTab.Controls.Add(this.m_btnProfileDiscription);
+            this.mAdvanceTab.Controls.Add(this.m_gpBox_SaveAddProfile);
+            this.mAdvanceTab.Controls.Add(this.m_gpBox_SelectPreferences);
+            this.mAdvanceTab.Controls.Add(this.m_cb_SelectProfile);
+            this.mAdvanceTab.Controls.Add(this.m_lblSelectProfile);
+            resources.ApplyResources(this.mAdvanceTab, "mAdvanceTab");
+            this.mAdvanceTab.Name = "mAdvanceTab";
+            this.helpProvider1.SetShowHelp(this.mAdvanceTab, ((bool)(resources.GetObject("mAdvanceTab.ShowHelp"))));
+            this.mAdvanceTab.UseVisualStyleBackColor = true;
+            // 
+            // m_btnProfileDiscription
+            // 
+            resources.ApplyResources(this.m_btnProfileDiscription, "m_btnProfileDiscription");
+            this.m_btnProfileDiscription.Name = "m_btnProfileDiscription";
+            this.helpProvider1.SetShowHelp(this.m_btnProfileDiscription, ((bool)(resources.GetObject("m_btnProfileDiscription.ShowHelp"))));
+            this.m_btnProfileDiscription.UseVisualStyleBackColor = true;
+            this.m_btnProfileDiscription.Click += new System.EventHandler(this.m_btnProfileDiscription_Click);
             // 
             // m_gpBox_SelectPreferences
             // 
@@ -561,7 +572,7 @@ namespace Obi.Dialogs
             // 
             this.mAudioTab.Controls.Add(this.m_CleanUpFileSizeNumericUpDown);
             this.mAudioTab.Controls.Add(this.mlblCleanupFileSize);
-            this.mAudioTab.Controls.Add(this.m_btnProfileDiscription);
+            this.mAudioTab.Controls.Add(this.m_btnProfileDiscriptionOld);
             this.mAudioTab.Controls.Add(this.m_lblProfile);
             this.mAudioTab.Controls.Add(this.m_ComboSelectAudioProfile);
             this.mAudioTab.Controls.Add(this.m_btn_speak);
@@ -616,13 +627,13 @@ namespace Obi.Dialogs
             this.mlblCleanupFileSize.Name = "mlblCleanupFileSize";
             this.helpProvider1.SetShowHelp(this.mlblCleanupFileSize, ((bool)(resources.GetObject("mlblCleanupFileSize.ShowHelp"))));
             // 
-            // m_btnProfileDiscription
+            // m_btnProfileDiscriptionOld
             // 
-            resources.ApplyResources(this.m_btnProfileDiscription, "m_btnProfileDiscription");
-            this.m_btnProfileDiscription.Name = "m_btnProfileDiscription";
-            this.helpProvider1.SetShowHelp(this.m_btnProfileDiscription, ((bool)(resources.GetObject("m_btnProfileDiscription.ShowHelp"))));
-            this.m_btnProfileDiscription.UseVisualStyleBackColor = true;
-            this.m_btnProfileDiscription.Click += new System.EventHandler(this.m_btnProfileDiscription_Click);
+            resources.ApplyResources(this.m_btnProfileDiscriptionOld, "m_btnProfileDiscriptionOld");
+            this.m_btnProfileDiscriptionOld.Name = "m_btnProfileDiscriptionOld";
+            this.helpProvider1.SetShowHelp(this.m_btnProfileDiscriptionOld, ((bool)(resources.GetObject("m_btnProfileDiscriptionOld.ShowHelp"))));
+            this.m_btnProfileDiscriptionOld.UseVisualStyleBackColor = true;
+            this.m_btnProfileDiscriptionOld.Click += new System.EventHandler(this.m_btnProfileDiscription_Click);
             // 
             // m_lblProfile
             // 
@@ -937,7 +948,7 @@ namespace Obi.Dialogs
             this.mTab.Controls.Add(this.mUserProfileTab);
             this.mTab.Controls.Add(this.mKeyboardShortcutTab);
             this.mTab.Controls.Add(this.mColorPreferencesTab);
-            this.mTab.Controls.Add(this.mProfilesTab);
+            this.mTab.Controls.Add(this.mAdvanceTab);
             this.mTab.Name = "mTab";
             this.mTab.SelectedIndex = 0;
             this.helpProvider1.SetShowHelp(this.mTab, ((bool)(resources.GetObject("mTab.ShowHelp"))));
@@ -963,8 +974,8 @@ namespace Obi.Dialogs
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.m_gpBox_SaveAddProfile.ResumeLayout(false);
-            this.mProfilesTab.ResumeLayout(false);
-            this.mProfilesTab.PerformLayout();
+            this.mAdvanceTab.ResumeLayout(false);
+            this.mAdvanceTab.PerformLayout();
             this.m_gpBox_SelectPreferences.ResumeLayout(false);
             this.m_gpBox_SelectPreferences.PerformLayout();
             this.mColorPreferencesTab.ResumeLayout(false);
@@ -997,7 +1008,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_ResetButton;
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.ToolTip m_Preference_ToolTip;
-        private System.Windows.Forms.TabPage mProfilesTab;
+        private System.Windows.Forms.TabPage mAdvanceTab;
         private System.Windows.Forms.TabPage mColorPreferencesTab;
         private System.Windows.Forms.ComboBox mChooseFontCombo;
         private System.Windows.Forms.Label m_lblChooseFont;
@@ -1036,7 +1047,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TabPage mAudioTab;
         private System.Windows.Forms.NumericUpDown m_CleanUpFileSizeNumericUpDown;
         private System.Windows.Forms.Label mlblCleanupFileSize;
-        private System.Windows.Forms.Button m_btnProfileDiscription;
+        private System.Windows.Forms.Button m_btnProfileDiscriptionOld;
         private System.Windows.Forms.Label m_lblProfile;
         private System.Windows.Forms.ComboBox m_ComboSelectAudioProfile;
         private System.Windows.Forms.Button m_btn_speak;
@@ -1082,5 +1093,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_chkAudio;
         private System.Windows.Forms.CheckBox m_chkLanguage;
         private System.Windows.Forms.CheckBox m_chkAll;
+        private System.Windows.Forms.Button m_btnProfileDiscription;
     }
 }
