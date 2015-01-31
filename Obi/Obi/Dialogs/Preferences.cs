@@ -69,7 +69,7 @@ namespace Obi.Dialogs
             m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_1"));
             m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_2"));
             m_ComboSelectAudioProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Custom"));
-            m_Preference_ToolTip.SetToolTip(m_btnProfileDiscription, Localizer.Message("Preferences_AudioProfileDesc"));            
+            m_Preference_ToolTip.SetToolTip(m_btnProfileDiscriptionOld, Localizer.Message("Preferences_AudioProfileDesc"));            
            }
 
         public bool IsColorChanged
@@ -1071,7 +1071,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
             }
-            if (mTab.SelectedTab == mProfilesTab)
+            if (mTab.SelectedTab == mAdvanceTab)
             {
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
@@ -1854,7 +1854,7 @@ namespace Obi.Dialogs
         private void m_btnProfileDiscription_Click(object sender, EventArgs e)
         {
             ProfileDescription profileDesc = new ProfileDescription();
-            profileDesc.ProfileSelected = m_ComboSelectAudioProfile.SelectedIndex;
+            profileDesc.ProfileSelected = m_cb_SelectProfile.SelectedIndex;
             profileDesc.ShowDialog();
             profileDesc.Focus();
         }
