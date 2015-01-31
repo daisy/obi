@@ -87,9 +87,6 @@ namespace Obi.Dialogs
             this.mAudioTab = new System.Windows.Forms.TabPage();
             this.m_CleanUpFileSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.mlblCleanupFileSize = new System.Windows.Forms.Label();
-            this.m_btnProfileDiscriptionOld = new System.Windows.Forms.Button();
-            this.m_lblProfile = new System.Windows.Forms.Label();
-            this.m_ComboSelectAudioProfile = new System.Windows.Forms.ComboBox();
             this.m_btn_speak = new System.Windows.Forms.Button();
             this.labelTTSvoice = new System.Windows.Forms.Label();
             this.mTTSvoiceCombo = new System.Windows.Forms.ComboBox();
@@ -572,9 +569,6 @@ namespace Obi.Dialogs
             // 
             this.mAudioTab.Controls.Add(this.m_CleanUpFileSizeNumericUpDown);
             this.mAudioTab.Controls.Add(this.mlblCleanupFileSize);
-            this.mAudioTab.Controls.Add(this.m_btnProfileDiscriptionOld);
-            this.mAudioTab.Controls.Add(this.m_lblProfile);
-            this.mAudioTab.Controls.Add(this.m_ComboSelectAudioProfile);
             this.mAudioTab.Controls.Add(this.m_btn_speak);
             this.mAudioTab.Controls.Add(this.labelTTSvoice);
             this.mAudioTab.Controls.Add(this.mTTSvoiceCombo);
@@ -626,31 +620,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.mlblCleanupFileSize, "mlblCleanupFileSize");
             this.mlblCleanupFileSize.Name = "mlblCleanupFileSize";
             this.helpProvider1.SetShowHelp(this.mlblCleanupFileSize, ((bool)(resources.GetObject("mlblCleanupFileSize.ShowHelp"))));
-            // 
-            // m_btnProfileDiscriptionOld
-            // 
-            resources.ApplyResources(this.m_btnProfileDiscriptionOld, "m_btnProfileDiscriptionOld");
-            this.m_btnProfileDiscriptionOld.Name = "m_btnProfileDiscriptionOld";
-            this.helpProvider1.SetShowHelp(this.m_btnProfileDiscriptionOld, ((bool)(resources.GetObject("m_btnProfileDiscriptionOld.ShowHelp"))));
-            this.m_btnProfileDiscriptionOld.UseVisualStyleBackColor = true;
-            this.m_btnProfileDiscriptionOld.Click += new System.EventHandler(this.m_btnProfileDiscription_Click);
-            // 
-            // m_lblProfile
-            // 
-            resources.ApplyResources(this.m_lblProfile, "m_lblProfile");
-            this.m_lblProfile.Name = "m_lblProfile";
-            this.helpProvider1.SetShowHelp(this.m_lblProfile, ((bool)(resources.GetObject("m_lblProfile.ShowHelp"))));
-            // 
-            // m_ComboSelectAudioProfile
-            // 
-            resources.ApplyResources(this.m_ComboSelectAudioProfile, "m_ComboSelectAudioProfile");
-            this.m_ComboSelectAudioProfile.FormattingEnabled = true;
-            this.m_ComboSelectAudioProfile.Name = "m_ComboSelectAudioProfile";
-            this.helpProvider1.SetShowHelp(this.m_ComboSelectAudioProfile, ((bool)(resources.GetObject("m_ComboSelectAudioProfile.ShowHelp"))));
-            this.m_ComboSelectAudioProfile.Validating += new System.ComponentModel.CancelEventHandler(this.m_SelectLevelComboBox_Validating);
-            this.m_ComboSelectAudioProfile.SelectionChangeCommitted += new System.EventHandler(this.m_SelectLevelComboBox_SelectionChangeCommitted);
-            this.m_ComboSelectAudioProfile.DropDownClosed += new System.EventHandler(this.m_SelectLevelComboBox_DropDownClosed);
-            this.m_ComboSelectAudioProfile.DropDown += new System.EventHandler(this.m_SelectLevelComboBox_DropDown);
             // 
             // m_btn_speak
             // 
@@ -1047,9 +1016,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TabPage mAudioTab;
         private System.Windows.Forms.NumericUpDown m_CleanUpFileSizeNumericUpDown;
         private System.Windows.Forms.Label mlblCleanupFileSize;
-        private System.Windows.Forms.Button m_btnProfileDiscriptionOld;
-        private System.Windows.Forms.Label m_lblProfile;
-        private System.Windows.Forms.ComboBox m_ComboSelectAudioProfile;
         private System.Windows.Forms.Button m_btn_speak;
         private System.Windows.Forms.Label labelTTSvoice;
         private System.Windows.Forms.ComboBox mTTSvoiceCombo;

@@ -2614,7 +2614,7 @@ Error text: {1}</value>
     <value>Profile 2 (SBS)</value>
   </data>
   <data name="Preferences_AudioProfileDesc" xml:space="preserve">
-    <value>Audio Profile Description</value>
+    <value>Profile Description</value>
   </data>
   <data name="Audio_DisableDeselectionOnStop" xml:space="preserve">
     <value>Do not deselect on pressing Stop twice</value>
