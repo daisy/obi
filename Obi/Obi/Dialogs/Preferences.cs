@@ -1858,10 +1858,13 @@ namespace Obi.Dialogs
 
         private void m_btnProfileDiscription_Click(object sender, EventArgs e)
         {
-            ProfileDescription profileDesc = new ProfileDescription();
-            profileDesc.ProfileSelected = m_cb_SelectProfile.SelectedIndex;
-            profileDesc.ShowDialog();
-            profileDesc.Focus();
+            if (m_cb_SelectProfile.SelectedIndex != -1)
+            {
+                ProfileDescription profileDesc = new ProfileDescription();
+                profileDesc.ProfileSelected = m_cb_SelectProfile.SelectedIndex;
+                profileDesc.ShowDialog();
+                profileDesc.Focus();
+            }
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
