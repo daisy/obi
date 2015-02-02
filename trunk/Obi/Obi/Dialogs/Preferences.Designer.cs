@@ -120,6 +120,7 @@ namespace Obi.Dialogs
             this.mBrowseButton = new System.Windows.Forms.Button();
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.m_ApplyButton = new System.Windows.Forms.Button();
             this.m_gpBox_SaveAddProfile.SuspendLayout();
             this.mAdvanceTab.SuspendLayout();
             this.m_gpBox_SelectPreferences.SuspendLayout();
@@ -923,12 +924,20 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mTab, ((bool)(resources.GetObject("mTab.ShowHelp"))));
             this.mTab.SelectedIndexChanged += new System.EventHandler(this.mTab_SelectedIndexChanged);
             // 
+            // m_ApplyButton
+            // 
+            resources.ApplyResources(this.m_ApplyButton, "m_ApplyButton");
+            this.m_ApplyButton.Name = "m_ApplyButton";
+            this.m_ApplyButton.UseVisualStyleBackColor = true;
+            this.m_ApplyButton.Click += new System.EventHandler(this.m_ApplyButton_Click);
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_ApplyButton);
             this.Controls.Add(this.m_ResetButton);
             this.Controls.Add(this.m_grpBoxChkBoxListView);
             this.Controls.Add(this.m_CheckBoxListView);
@@ -1060,5 +1069,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_chkLanguage;
         private System.Windows.Forms.CheckBox m_chkAll;
         private System.Windows.Forms.Button m_btnProfileDiscription;
+        private System.Windows.Forms.Button m_ApplyButton;
     }
 }
