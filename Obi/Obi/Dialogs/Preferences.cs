@@ -357,6 +357,14 @@ namespace Obi.Dialogs
             //    }
             //}
             UpdateBoolSettings();
+            if (this.mTab.SelectedTab == mKeyboardShortcutTab)
+            {
+                AssignKeyboardShortcut();
+            }
+            if (this.mTab.SelectedTab == mColorPreferencesTab)
+            {
+                ApplyColorPreference();
+            }
             if (UpdateProjectSettings()
             && UpdateAudioSettings()
             && UpdateUserProfile())
@@ -1446,6 +1454,10 @@ namespace Obi.Dialogs
         }
         private void m_btn_Apply_Click(object sender, EventArgs e)
         {
+            ApplyColorPreference();
+        }
+        private void ApplyColorPreference()
+        {
             Color tempEmptyBackgroundColor = mSettings.ColorSettings.EmptySectionBackgroundColor;
             Color tempEmptyBackgroundColorHC = mSettings.ColorSettingsHC.EmptySectionBackgroundColor;
             UpdateColorSettings();
@@ -2046,6 +2058,32 @@ namespace Obi.Dialogs
                 m_chkAudio.Checked = false;
                 m_chkLanguage.Checked = false;
             }
+        }
+
+        private void m_ApplyButton_Click(object sender, EventArgs e)
+        {
+             UpdateBoolSettings();
+             if (this.mTab.SelectedTab == mProjectTab)
+             {
+                 UpdateProjectSettings();
+             }
+             if (this.mTab.SelectedTab == mAudioTab)
+             {
+                 UpdateAudioSettings();
+             }
+             if (this.mTab.SelectedTab == mUserProfileTab)
+             {
+                 UpdateUserProfile();
+             }
+             if (this.mTab.SelectedTab == mKeyboardShortcutTab)
+             {
+                 AssignKeyboardShortcut();
+             }
+             if (this.mTab.SelectedTab == mColorPreferencesTab)
+             {
+                 ApplyColorPreference();
+             }
+
         }
 
 
