@@ -126,7 +126,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 430</value>
+    <value>98, 429</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -160,7 +160,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>496, 430</value>
+    <value>454, 429</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -169,7 +169,7 @@
     <value>100, 31</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -361,7 +361,7 @@
     <value>Flat</value>
   </data>
   <data name="m_ResetButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>375, 430</value>
+    <value>333, 429</value>
   </data>
   <data name="m_ResetButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -777,6 +777,156 @@
   <data name="&gt;&gt;m_lblSelectProfile.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="&gt;&gt;mChooseFontCombo.Name" xml:space="preserve">
+    <value>mChooseFontCombo</value>
+  </data>
+  <data name="&gt;&gt;mChooseFontCombo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mChooseFontCombo.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;mChooseFontCombo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.Name" xml:space="preserve">
+    <value>m_lblChooseFont</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;m_lblChooseFont.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_HighContrast.Name" xml:space="preserve">
+    <value>m_txtBox_HighContrast</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_HighContrast.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_HighContrast.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_HighContrast.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.Name" xml:space="preserve">
+    <value>m_txtBox_Color</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;m_txtBox_Color.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.Name" xml:space="preserve">
+    <value>m_btn_Apply</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;m_btn_Apply.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
+  </data>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;mHighContrastCombo.Name" xml:space="preserve">
+    <value>mHighContrastCombo</value>
+  </data>
+  <data name="&gt;&gt;mHighContrastCombo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mHighContrastCombo.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;mHighContrastCombo.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;mNormalColorCombo.Name" xml:space="preserve">
+    <value>mNormalColorCombo</value>
+  </data>
+  <data name="&gt;&gt;mNormalColorCombo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mNormalColorCombo.Parent" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;mNormalColorCombo.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="mColorPreferencesTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="mColorPreferencesTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="mColorPreferencesTab.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mColorPreferencesTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>616, 373</value>
+  </data>
+  <data name="mColorPreferencesTab.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="mColorPreferencesTab.Text" xml:space="preserve">
+    <value>Color preferences</value>
+  </data>
+  <data name="&gt;&gt;mColorPreferencesTab.Name" xml:space="preserve">
+    <value>mColorPreferencesTab</value>
+  </data>
+  <data name="&gt;&gt;mColorPreferencesTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mColorPreferencesTab.Parent" xml:space="preserve">
+    <value>mTab</value>
+  </data>
+  <data name="&gt;&gt;mColorPreferencesTab.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="mChooseFontCombo.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -929,6 +1079,51 @@
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="m_lv_ColorPref.AccessibleName" xml:space="preserve">
+    <value>Colors List</value>
+  </data>
+  <data name="m_lv_ColorPref.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="m_lv_ColorPref.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lv_ColorPref.Size" type="System.Drawing.Size, System.Drawing">
+    <value>495, 137</value>
+  </data>
+  <data name="m_lv_ColorPref.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.Name" xml:space="preserve">
+    <value>m_lv_ColorPref</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_lv_ColorPref.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>Control name</value>
+  </data>
+  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
+    <value>190</value>
+  </data>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>Existing normal color</value>
+  </data>
+  <data name="columnHeader4.Width" type="System.Int32, mscorlib">
+    <value>136</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>Existing high contrast color</value>
+  </data>
+  <data name="columnHeader5.Width" type="System.Int32, mscorlib">
+    <value>153</value>
   </data>
   <data name="m_btn_Apply.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1085,81 +1280,6 @@
   </data>
   <data name="&gt;&gt;mNormalColorCombo.ZOrder" xml:space="preserve">
     <value>9</value>
-  </data>
-  <data name="mColorPreferencesTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
-  </data>
-  <data name="mColorPreferencesTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="mColorPreferencesTab.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mColorPreferencesTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 373</value>
-  </data>
-  <data name="mColorPreferencesTab.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="mColorPreferencesTab.Text" xml:space="preserve">
-    <value>Color preferences</value>
-  </data>
-  <data name="&gt;&gt;mColorPreferencesTab.Name" xml:space="preserve">
-    <value>mColorPreferencesTab</value>
-  </data>
-  <data name="&gt;&gt;mColorPreferencesTab.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mColorPreferencesTab.Parent" xml:space="preserve">
-    <value>mTab</value>
-  </data>
-  <data name="&gt;&gt;mColorPreferencesTab.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="m_lv_ColorPref.AccessibleName" xml:space="preserve">
-    <value>Colors List</value>
-  </data>
-  <data name="m_lv_ColorPref.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 21</value>
-  </data>
-  <data name="m_lv_ColorPref.ShowHelp" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lv_ColorPref.Size" type="System.Drawing.Size, System.Drawing">
-    <value>495, 137</value>
-  </data>
-  <data name="m_lv_ColorPref.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_lv_ColorPref.Name" xml:space="preserve">
-    <value>m_lv_ColorPref</value>
-  </data>
-  <data name="&gt;&gt;m_lv_ColorPref.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lv_ColorPref.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;m_lv_ColorPref.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="columnHeader3.Text" xml:space="preserve">
-    <value>Control name</value>
-  </data>
-  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
-    <value>190</value>
-  </data>
-  <data name="columnHeader4.Text" xml:space="preserve">
-    <value>Existing normal color</value>
-  </data>
-  <data name="columnHeader4.Width" type="System.Int32, mscorlib">
-    <value>136</value>
-  </data>
-  <data name="columnHeader5.Text" xml:space="preserve">
-    <value>Existing high contrast color</value>
-  </data>
-  <data name="columnHeader5.Width" type="System.Int32, mscorlib">
-    <value>153</value>
   </data>
   <data name="&gt;&gt;label12.Name" xml:space="preserve">
     <value>label12</value>
@@ -3527,17 +3647,20 @@
   <metadata name="m_Preference_ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>144, 17</value>
   </metadata>
+  <data name="m_ApplyButton.AccessibleName" xml:space="preserve">
+    <value />
+  </data>
   <data name="m_ApplyButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_ApplyButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>258, 430</value>
+    <value>216, 429</value>
   </data>
   <data name="m_ApplyButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 30</value>
   </data>
   <data name="m_ApplyButton.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>13</value>
   </data>
   <data name="m_ApplyButton.Text" xml:space="preserve">
     <value>Appl&amp;y</value>
