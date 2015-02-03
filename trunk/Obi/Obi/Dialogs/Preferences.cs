@@ -922,11 +922,11 @@ namespace Obi.Dialogs
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
                 //m_CheckBoxListView.Location = new Point(93, 284);
-                m_CheckBoxListView.Location = new Point(70, 255);
+                m_CheckBoxListView.Location = new Point(120, 255);
                 m_CheckBoxListView.Size = new Size(365, 135);
                 
                //m_grpBoxChkBoxListView.Location = new Point(85, 264);
-                m_grpBoxChkBoxListView.Location = new Point(58, 235);
+                m_grpBoxChkBoxListView.Location = new Point(108, 235);
                 m_grpBoxChkBoxListView.Size = new Size(385, 165);
 
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_AudioClues"));
