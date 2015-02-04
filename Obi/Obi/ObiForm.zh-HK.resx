@@ -1420,7 +1420,7 @@
     <value>播放(&amp;P)</value>
   </data>
   <data name="mPauseToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Pause Space</value>
+    <value>暫停 Space</value>
   </data>
   <data name="mPauseToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Space</value>
@@ -1429,7 +1429,7 @@
     <value>176, 22</value>
   </data>
   <data name="mPauseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pa&amp;use</value>
+    <value>暫停&amp;(u)</value>
   </data>
   <data name="mResumeToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>恢復 Space</value>
