@@ -122,7 +122,7 @@
     <EmbeddedResource Include="messages.ta.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="messages.zh-CN.resx">
+    <EmbeddedResource Include="messages.zh-HK.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ParameterControls\BaseUserControl.resx">
