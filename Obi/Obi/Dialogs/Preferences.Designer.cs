@@ -121,6 +121,7 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_ApplyButton = new System.Windows.Forms.Button();
+            this.m_chkColor = new System.Windows.Forms.CheckBox();
             this.m_gpBox_SaveAddProfile.SuspendLayout();
             this.mAdvanceTab.SuspendLayout();
             this.m_gpBox_SelectPreferences.SuspendLayout();
@@ -228,6 +229,7 @@ namespace Obi.Dialogs
             // 
             // m_gpBox_SelectPreferences
             // 
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkColor);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkProject);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkAudio);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkLanguage);
@@ -931,6 +933,12 @@ namespace Obi.Dialogs
             this.m_ApplyButton.UseVisualStyleBackColor = true;
             this.m_ApplyButton.Click += new System.EventHandler(this.m_ApplyButton_Click);
             // 
+            // m_chkColor
+            // 
+            resources.ApplyResources(this.m_chkColor, "m_chkColor");
+            this.m_chkColor.Name = "m_chkColor";
+            this.m_chkColor.UseVisualStyleBackColor = true;
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -1070,5 +1078,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_chkAll;
         private System.Windows.Forms.Button m_btnProfileDiscription;
         private System.Windows.Forms.Button m_ApplyButton;
+        private System.Windows.Forms.CheckBox m_chkColor;
     }
 }
