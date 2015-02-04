@@ -1153,7 +1153,7 @@
     <value>245, 22</value>
   </data>
   <data name="mSkippableMoveToEndNoteToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mo&amp;ve to end note</value>
+    <value>A&amp;ller en fin de note</value>
   </data>
   <data name="mSkippableClearRoleFromNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Effacer le rôle de la note</value>
@@ -1690,7 +1690,7 @@
     <value>207, 22</value>
   </data>
   <data name="mPreviousSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Previous &amp;section</value>
+    <value>&amp;Section précédente</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Page précédente Alt+PageUp</value>
