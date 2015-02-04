@@ -521,7 +521,7 @@
     <value>編輯metadata專項名</value>
   </data>
   <data name="about_file_name" xml:space="preserve">
-    <value>about_zn-CN.html</value>
+    <value>about_zn-HK.html</value>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
     <value>新增空白頁</value>
@@ -2340,7 +2340,7 @@
     <value>在錄音後刪除其後的句</value>
   </data>
   <data name="ProfileDesc_file_name" xml:space="preserve">
-    <value>ProfileDesc_zh-CN.html</value>
+    <value>ProfileDesc_zh-HK.html</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
     <value>設定檔1 (VA)</value>
