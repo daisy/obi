@@ -1909,7 +1909,8 @@ namespace Obi.Dialogs
             {
                 Settings_SaveProfile saveProfile = Settings_SaveProfile.GetSettingsFromSavedProfile(profilePath);
                 PreferenceProfiles prefProfiles = m_chkAudio.Checked ? PreferenceProfiles.Audio :
-                    m_chkProject.Checked ? PreferenceProfiles.Project : PreferenceProfiles.All;
+                    m_chkProject.Checked ? PreferenceProfiles.Project:
+                    m_chkProject.Checked ? PreferenceProfiles.Colors: PreferenceProfiles.All;
                 saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, prefProfiles);
             }
         }
