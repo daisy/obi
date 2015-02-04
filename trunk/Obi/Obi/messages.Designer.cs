@@ -4948,7 +4948,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio Profile Description.
+        ///   Looks up a localized string similar to Profile Description.
         /// </summary>
         internal static string Preferences_AudioProfileDesc {
             get {

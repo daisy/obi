@@ -2420,4 +2420,13 @@
   <data name="Audio_PreservePage" xml:space="preserve">
     <value>當使用錄音按鈕覆蓋其後音訊時保留頁數</value>
   </data>
+  <data name="MergeOptions_IncreaseLevel" xml:space="preserve">
+    <value>上</value>
+  </data>
+  <data name="MergeOptions_DecreaseLevel" xml:space="preserve">
+    <value>下</value>
+  </data>
+  <data name="MergeOptions_Merge" xml:space="preserve">
+    <value>合併</value>
+  </data>
 </root>
