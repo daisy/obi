@@ -124,7 +124,7 @@
     <value>True</value>
   </metadata>
   <data name="mbtnDesendingOrder.AccessibleName" xml:space="preserve">
-    <value>Orden Descendente</value>
+    <value>O. Desc.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mbtnDesendingOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -145,7 +145,7 @@
     <value>9</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>Orden D&amp;escendente</value>
+    <value>O. D&amp;escendente</value>
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
     <value>mbtnDesendingOrder</value>
@@ -199,7 +199,7 @@
     <value>Organizar archivos</value>
   </data>
   <data name="mbtnAscendingOrder.AccessibleName" xml:space="preserve">
-    <value>Orden Ascendente</value>
+    <value>O. Asc.</value>
   </data>
   <data name="mbtnAscendingOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -340,7 +340,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.AccessibleName" xml:space="preserve">
-    <value>Mover arriba</value>
+    <value>Mov. Arriba</value>
   </data>
   <data name="m_btnMoveUp.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -376,7 +376,7 @@
     <value>4</value>
   </data>
   <data name="m_btnMoveDown.AccessibleName" xml:space="preserve">
-    <value>Mover abajo</value>
+    <value>Mov. Abajo</value>
   </data>
   <data name="m_btnMoveDown.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>

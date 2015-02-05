@@ -583,7 +583,7 @@
     <value>271, 6</value>
   </data>
   <data name="mShowPeakMeterMenuItem.AccessibleName" xml:space="preserve">
-    <value>Mostrar picómetro Ctrl + Alt + P</value>
+    <value>Mostrar vúmetro Ctrl + Alt + P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+P</value>
@@ -592,7 +592,7 @@
     <value>274, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
-    <value>Mostrar &amp;picómetro</value>
+    <value>Mostrar &amp;vúmetro</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Ver código fuente Ctrl + Alt + O</value>
@@ -631,7 +631,7 @@
     <value>274, 22</value>
   </data>
   <data name="mView_ZoomInMenuItem.Text" xml:space="preserve">
-    <value>Amp&amp;liar</value>
+    <value>Amp&amp;liar Zoom</value>
   </data>
   <data name="mView_ZoomOutMenuItem.AccessibleName" xml:space="preserve">
     <value>Reducir Ctrl + Alt + -</value>
@@ -691,7 +691,7 @@
     <value>Reducir onda de audio(&amp;q)</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.AccessibleName" xml:space="preserve">
-    <value>Restablecer tamaño de audio Ctrl + Alt + Shift 0</value>
+    <value>Restablecer tmño. onda de audio Ctrl + Alt + Shift 0</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+Shift+0</value>
