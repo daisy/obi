@@ -1912,6 +1912,11 @@ namespace Obi.Dialogs
                     m_chkProject.Checked ? PreferenceProfiles.Project:
                     m_chkColor.Checked ? PreferenceProfiles.Colors: PreferenceProfiles.All;
                 saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, prefProfiles);
+
+                if(m_chkProject.Checked || m_chkAll.Checked)  InitializeProjectTab();
+                if (m_chkAudio.Checked || m_chkAll.Checked) InitializeAudioTab();
+                if (m_chkLanguage.Checked || m_chkAll.Checked) InitializeUserProfileTab();
+                if (m_chkColor.Checked || m_chkAll.Checked) InitializeColorPreferenceTab();
             }
         }
 
