@@ -1092,6 +1092,8 @@ namespace Obi.Dialogs
              //  m_cb_SelectProfile.SelectedIndex = mSettings.Audio_LevelComboBoxIndex;
             }
             if (!m_txtShortcutKeys.Focused) this.AcceptButton = mOKButton;
+            m_ApplyButton.Enabled = (mTab.SelectedTab != mAdvanceTab);
+            
         }
 
         private void ResetPreferences()
