@@ -43,7 +43,7 @@ namespace Obi.Dialogs
             this.m_btnShortcutSave = new System.Windows.Forms.Button();
             this.m_btnShortcutLoad = new System.Windows.Forms.Button();
             this.m_btnShortcutAdd = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.m_cb_SelectShorcutsProfile = new System.Windows.Forms.ComboBox();
             this.m_btnProfileDiscription = new System.Windows.Forms.Button();
             this.m_gpBox_SelectPreferences = new System.Windows.Forms.GroupBox();
             this.m_chkColor = new System.Windows.Forms.CheckBox();
@@ -217,7 +217,7 @@ namespace Obi.Dialogs
             this.m_gpBoxSelectShortcuts.Controls.Add(this.m_btnShortcutSave);
             this.m_gpBoxSelectShortcuts.Controls.Add(this.m_btnShortcutLoad);
             this.m_gpBoxSelectShortcuts.Controls.Add(this.m_btnShortcutAdd);
-            this.m_gpBoxSelectShortcuts.Controls.Add(this.comboBox1);
+            this.m_gpBoxSelectShortcuts.Controls.Add(this.m_cb_SelectShorcutsProfile);
             resources.ApplyResources(this.m_gpBoxSelectShortcuts, "m_gpBoxSelectShortcuts");
             this.m_gpBoxSelectShortcuts.Name = "m_gpBoxSelectShortcuts";
             this.m_gpBoxSelectShortcuts.TabStop = false;
@@ -243,11 +243,11 @@ namespace Obi.Dialogs
             this.m_btnShortcutAdd.UseVisualStyleBackColor = true;
             this.m_btnShortcutAdd.Click += new System.EventHandler(this.m_btnShortcutAdd_Click);
             // 
-            // comboBox1
+            // m_cb_SelectShorcutsProfile
             // 
-            this.comboBox1.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBox1, "comboBox1");
-            this.comboBox1.Name = "comboBox1";
+            this.m_cb_SelectShorcutsProfile.FormattingEnabled = true;
+            resources.ApplyResources(this.m_cb_SelectShorcutsProfile, "m_cb_SelectShorcutsProfile");
+            this.m_cb_SelectShorcutsProfile.Name = "m_cb_SelectShorcutsProfile";
             // 
             // m_btnProfileDiscription
             // 
@@ -1116,6 +1116,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnShortcutSave;
         private System.Windows.Forms.Button m_btnShortcutLoad;
         private System.Windows.Forms.Button m_btnShortcutAdd;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox m_cb_SelectShorcutsProfile;
     }
 }
