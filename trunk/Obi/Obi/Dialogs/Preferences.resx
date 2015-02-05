@@ -234,51 +234,6 @@
   <data name="&gt;&gt;m_grpBoxChkBoxListView.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;m_btnSaveProfile.Name" xml:space="preserve">
-    <value>m_btnSaveProfile</value>
-  </data>
-  <data name="&gt;&gt;m_btnSaveProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnSaveProfile.Parent" xml:space="preserve">
-    <value>m_gpBox_SaveAddProfile</value>
-  </data>
-  <data name="&gt;&gt;m_btnSaveProfile.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;m_btnAddProfile.Name" xml:space="preserve">
-    <value>m_btnAddProfile</value>
-  </data>
-  <data name="&gt;&gt;m_btnAddProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btnAddProfile.Parent" xml:space="preserve">
-    <value>m_gpBox_SaveAddProfile</value>
-  </data>
-  <data name="&gt;&gt;m_btnAddProfile.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="m_gpBox_SaveAddProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 197</value>
-  </data>
-  <data name="m_gpBox_SaveAddProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 78</value>
-  </data>
-  <data name="m_gpBox_SaveAddProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_SaveAddProfile.Name" xml:space="preserve">
-    <value>m_gpBox_SaveAddProfile</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_SaveAddProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_SaveAddProfile.Parent" xml:space="preserve">
-    <value>mAdvanceTab</value>
-  </data>
-  <data name="&gt;&gt;m_gpBox_SaveAddProfile.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
@@ -292,13 +247,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btnSaveProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>151, 26</value>
+    <value>219, 128</value>
   </data>
   <data name="m_btnSaveProfile.ShowHelp" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="m_btnSaveProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 31</value>
+    <value>95, 31</value>
   </data>
   <data name="m_btnSaveProfile.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -316,7 +271,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_btnSaveProfile.Parent" xml:space="preserve">
-    <value>m_gpBox_SaveAddProfile</value>
+    <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_btnSaveProfile.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -328,10 +283,10 @@
     <value>Flat</value>
   </data>
   <data name="m_btnAddProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 26</value>
+    <value>10, 128</value>
   </data>
   <data name="m_btnAddProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 31</value>
+    <value>95, 31</value>
   </data>
   <data name="m_btnAddProfile.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -349,10 +304,10 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_btnAddProfile.Parent" xml:space="preserve">
-    <value>m_gpBox_SaveAddProfile</value>
+    <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_btnAddProfile.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="m_ResetButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -393,6 +348,132 @@
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <data name="m_btnShortcutSave.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnShortcutSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 127</value>
+  </data>
+  <data name="m_btnShortcutSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 31</value>
+  </data>
+  <data name="m_btnShortcutSave.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_btnShortcutSave.Text" xml:space="preserve">
+    <value>Sa&amp;ve</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutSave.Name" xml:space="preserve">
+    <value>m_btnShortcutSave</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutSave.Parent" xml:space="preserve">
+    <value>m_gpBoxSelectShortcuts</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutSave.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_btnShortcutLoad.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnShortcutLoad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>91, 127</value>
+  </data>
+  <data name="m_btnShortcutLoad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 31</value>
+  </data>
+  <data name="m_btnShortcutLoad.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="m_btnShortcutLoad.Text" xml:space="preserve">
+    <value>L&amp;oad</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutLoad.Name" xml:space="preserve">
+    <value>m_btnShortcutLoad</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutLoad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutLoad.Parent" xml:space="preserve">
+    <value>m_gpBoxSelectShortcuts</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutLoad.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_btnShortcutAdd.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnShortcutAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 128</value>
+  </data>
+  <data name="m_btnShortcutAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 31</value>
+  </data>
+  <data name="m_btnShortcutAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="m_btnShortcutAdd.Text" xml:space="preserve">
+    <value>A&amp;dd</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutAdd.Name" xml:space="preserve">
+    <value>m_btnShortcutAdd</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutAdd.Parent" xml:space="preserve">
+    <value>m_gpBoxSelectShortcuts</value>
+  </data>
+  <data name="&gt;&gt;m_btnShortcutAdd.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 35</value>
+  </data>
+  <data name="comboBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 24</value>
+  </data>
+  <data name="comboBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;comboBox1.Name" xml:space="preserve">
+    <value>comboBox1</value>
+  </data>
+  <data name="&gt;&gt;comboBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox1.Parent" xml:space="preserve">
+    <value>m_gpBoxSelectShortcuts</value>
+  </data>
+  <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_gpBoxSelectShortcuts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>343, 8</value>
+  </data>
+  <data name="m_gpBoxSelectShortcuts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 170</value>
+  </data>
+  <data name="m_gpBoxSelectShortcuts.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="m_gpBoxSelectShortcuts.Text" xml:space="preserve">
+    <value>Select Shortcuts Profile</value>
+  </data>
+  <data name="&gt;&gt;m_gpBoxSelectShortcuts.Name" xml:space="preserve">
+    <value>m_gpBoxSelectShortcuts</value>
+  </data>
+  <data name="&gt;&gt;m_gpBoxSelectShortcuts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_gpBoxSelectShortcuts.Parent" xml:space="preserve">
+    <value>mAdvanceTab</value>
+  </data>
+  <data name="&gt;&gt;m_gpBoxSelectShortcuts.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_btnProfileDiscription.AccessibleName" xml:space="preserve">
     <value>Profile Description</value>
   </data>
@@ -406,7 +487,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnProfileDiscription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>462, 17</value>
+    <value>282, 23</value>
   </data>
   <data name="m_btnProfileDiscription.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -427,16 +508,16 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_btnProfileDiscription.Parent" xml:space="preserve">
-    <value>mAdvanceTab</value>
+    <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_btnProfileDiscription.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="m_chkColor.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_chkColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 94</value>
+    <value>114, 95</value>
   </data>
   <data name="m_chkColor.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 20</value>
@@ -445,7 +526,7 @@
     <value>7</value>
   </data>
   <data name="m_chkColor.Text" xml:space="preserve">
-    <value>C&amp;olor</value>
+    <value>&amp;Color</value>
   </data>
   <data name="&gt;&gt;m_chkColor.Name" xml:space="preserve">
     <value>m_chkColor</value>
@@ -457,13 +538,34 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_chkColor.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
+  </data>
+  <data name="m_cb_SelectProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 23</value>
+  </data>
+  <data name="m_cb_SelectProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 24</value>
+  </data>
+  <data name="m_cb_SelectProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_cb_SelectProfile.Name" xml:space="preserve">
+    <value>m_cb_SelectProfile</value>
+  </data>
+  <data name="&gt;&gt;m_cb_SelectProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cb_SelectProfile.Parent" xml:space="preserve">
+    <value>m_gpBox_SelectPreferences</value>
+  </data>
+  <data name="&gt;&gt;m_cb_SelectProfile.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="m_chkProject.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_chkProject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 22</value>
+    <value>10, 71</value>
   </data>
   <data name="m_chkProject.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 20</value>
@@ -484,13 +586,40 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_chkProject.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_lblSelectProfile.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblSelectProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 26</value>
+  </data>
+  <data name="m_lblSelectProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 16</value>
+  </data>
+  <data name="m_lblSelectProfile.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="m_lblSelectProfile.Text" xml:space="preserve">
+    <value>Select Profile :</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectProfile.Name" xml:space="preserve">
+    <value>m_lblSelectProfile</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectProfile.Parent" xml:space="preserve">
+    <value>m_gpBox_SelectPreferences</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectProfile.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="m_chkAudio.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_chkAudio.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 46</value>
+    <value>10, 95</value>
   </data>
   <data name="m_chkAudio.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 20</value>
@@ -511,13 +640,13 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_chkAudio.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>7</value>
   </data>
   <data name="m_chkLanguage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_chkLanguage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 70</value>
+    <value>114, 71</value>
   </data>
   <data name="m_chkLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 20</value>
@@ -538,13 +667,13 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_chkLanguage.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>8</value>
   </data>
   <data name="m_chkAll.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_chkAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 117</value>
+    <value>219, 71</value>
   </data>
   <data name="m_chkAll.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 20</value>
@@ -565,16 +694,16 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_chkAll.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>9</value>
   </data>
   <data name="m_btnLoadProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btnLoadProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>151, 110</value>
+    <value>114, 128</value>
   </data>
   <data name="m_btnLoadProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 31</value>
+    <value>95, 31</value>
   </data>
   <data name="m_btnLoadProfile.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -592,13 +721,13 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_btnLoadProfile.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>10</value>
   </data>
   <data name="m_gpBox_SelectPreferences.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 50</value>
+    <value>6, 7</value>
   </data>
   <data name="m_gpBox_SelectPreferences.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 147</value>
+    <value>324, 171</value>
   </data>
   <data name="m_gpBox_SelectPreferences.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -616,55 +745,7 @@
     <value>mAdvanceTab</value>
   </data>
   <data name="&gt;&gt;m_gpBox_SelectPreferences.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="m_cb_SelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>264, 17</value>
-  </data>
-  <data name="m_cb_SelectProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 24</value>
-  </data>
-  <data name="m_cb_SelectProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;m_cb_SelectProfile.Name" xml:space="preserve">
-    <value>m_cb_SelectProfile</value>
-  </data>
-  <data name="&gt;&gt;m_cb_SelectProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_cb_SelectProfile.Parent" xml:space="preserve">
-    <value>mAdvanceTab</value>
-  </data>
-  <data name="&gt;&gt;m_cb_SelectProfile.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="m_lblSelectProfile.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_lblSelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 20</value>
-  </data>
-  <data name="m_lblSelectProfile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 16</value>
-  </data>
-  <data name="m_lblSelectProfile.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
-  </data>
-  <data name="m_lblSelectProfile.Text" xml:space="preserve">
-    <value>Select Profile :</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectProfile.Name" xml:space="preserve">
-    <value>m_lblSelectProfile</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectProfile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectProfile.Parent" xml:space="preserve">
-    <value>mAdvanceTab</value>
-  </data>
-  <data name="&gt;&gt;m_lblSelectProfile.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="mAdvanceTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>
