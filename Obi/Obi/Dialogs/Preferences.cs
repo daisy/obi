@@ -2061,12 +2061,14 @@ namespace Obi.Dialogs
                 m_chkProject.Checked = true;
                 m_chkAudio.Checked = true;
                 m_chkLanguage.Checked = true;
+                m_chkColor.Checked = true;
             }
             else
             {
                 m_chkProject.Checked = false;
                 m_chkAudio.Checked = false;
                 m_chkLanguage.Checked = false;
+                m_chkColor.Checked = false;
             }
         }
 
@@ -2093,6 +2095,21 @@ namespace Obi.Dialogs
              {
                  ApplyColorPreference();
              }
+
+        }
+
+        private void m_btnShortcutSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void m_btnShortcutAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void m_btnShortcutLoad_Click(object sender, EventArgs e)
+        {
 
         }
 

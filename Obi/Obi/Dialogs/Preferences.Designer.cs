@@ -34,14 +34,19 @@ namespace Obi.Dialogs
             this.mCancelButton = new System.Windows.Forms.Button();
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
-            this.m_gpBox_SaveAddProfile = new System.Windows.Forms.GroupBox();
             this.m_btnSaveProfile = new System.Windows.Forms.Button();
             this.m_btnAddProfile = new System.Windows.Forms.Button();
             this.m_ResetButton = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.mAdvanceTab = new System.Windows.Forms.TabPage();
+            this.m_gpBoxSelectShortcuts = new System.Windows.Forms.GroupBox();
+            this.m_btnShortcutSave = new System.Windows.Forms.Button();
+            this.m_btnShortcutLoad = new System.Windows.Forms.Button();
+            this.m_btnShortcutAdd = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.m_btnProfileDiscription = new System.Windows.Forms.Button();
             this.m_gpBox_SelectPreferences = new System.Windows.Forms.GroupBox();
+            this.m_chkColor = new System.Windows.Forms.CheckBox();
             this.m_chkProject = new System.Windows.Forms.CheckBox();
             this.m_chkAudio = new System.Windows.Forms.CheckBox();
             this.m_chkLanguage = new System.Windows.Forms.CheckBox();
@@ -121,9 +126,8 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_ApplyButton = new System.Windows.Forms.Button();
-            this.m_chkColor = new System.Windows.Forms.CheckBox();
-            this.m_gpBox_SaveAddProfile.SuspendLayout();
             this.mAdvanceTab.SuspendLayout();
+            this.m_gpBoxSelectShortcuts.SuspendLayout();
             this.m_gpBox_SelectPreferences.SuspendLayout();
             this.mColorPreferencesTab.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -169,14 +173,6 @@ namespace Obi.Dialogs
             this.m_grpBoxChkBoxListView.Name = "m_grpBoxChkBoxListView";
             this.m_grpBoxChkBoxListView.TabStop = false;
             // 
-            // m_gpBox_SaveAddProfile
-            // 
-            this.m_gpBox_SaveAddProfile.Controls.Add(this.m_btnSaveProfile);
-            this.m_gpBox_SaveAddProfile.Controls.Add(this.m_btnAddProfile);
-            resources.ApplyResources(this.m_gpBox_SaveAddProfile, "m_gpBox_SaveAddProfile");
-            this.m_gpBox_SaveAddProfile.Name = "m_gpBox_SaveAddProfile";
-            this.m_gpBox_SaveAddProfile.TabStop = false;
-            // 
             // m_btnSaveProfile
             // 
             resources.ApplyResources(this.m_btnSaveProfile, "m_btnSaveProfile");
@@ -209,15 +205,49 @@ namespace Obi.Dialogs
             // mAdvanceTab
             // 
             this.mAdvanceTab.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.mAdvanceTab.Controls.Add(this.m_btnProfileDiscription);
-            this.mAdvanceTab.Controls.Add(this.m_gpBox_SaveAddProfile);
+            this.mAdvanceTab.Controls.Add(this.m_gpBoxSelectShortcuts);
             this.mAdvanceTab.Controls.Add(this.m_gpBox_SelectPreferences);
-            this.mAdvanceTab.Controls.Add(this.m_cb_SelectProfile);
-            this.mAdvanceTab.Controls.Add(this.m_lblSelectProfile);
             resources.ApplyResources(this.mAdvanceTab, "mAdvanceTab");
             this.mAdvanceTab.Name = "mAdvanceTab";
             this.helpProvider1.SetShowHelp(this.mAdvanceTab, ((bool)(resources.GetObject("mAdvanceTab.ShowHelp"))));
             this.mAdvanceTab.UseVisualStyleBackColor = true;
+            // 
+            // m_gpBoxSelectShortcuts
+            // 
+            this.m_gpBoxSelectShortcuts.Controls.Add(this.m_btnShortcutSave);
+            this.m_gpBoxSelectShortcuts.Controls.Add(this.m_btnShortcutLoad);
+            this.m_gpBoxSelectShortcuts.Controls.Add(this.m_btnShortcutAdd);
+            this.m_gpBoxSelectShortcuts.Controls.Add(this.comboBox1);
+            resources.ApplyResources(this.m_gpBoxSelectShortcuts, "m_gpBoxSelectShortcuts");
+            this.m_gpBoxSelectShortcuts.Name = "m_gpBoxSelectShortcuts";
+            this.m_gpBoxSelectShortcuts.TabStop = false;
+            // 
+            // m_btnShortcutSave
+            // 
+            resources.ApplyResources(this.m_btnShortcutSave, "m_btnShortcutSave");
+            this.m_btnShortcutSave.Name = "m_btnShortcutSave";
+            this.m_btnShortcutSave.UseVisualStyleBackColor = true;
+            this.m_btnShortcutSave.Click += new System.EventHandler(this.m_btnShortcutSave_Click);
+            // 
+            // m_btnShortcutLoad
+            // 
+            resources.ApplyResources(this.m_btnShortcutLoad, "m_btnShortcutLoad");
+            this.m_btnShortcutLoad.Name = "m_btnShortcutLoad";
+            this.m_btnShortcutLoad.UseVisualStyleBackColor = true;
+            this.m_btnShortcutLoad.Click += new System.EventHandler(this.m_btnShortcutLoad_Click);
+            // 
+            // m_btnShortcutAdd
+            // 
+            resources.ApplyResources(this.m_btnShortcutAdd, "m_btnShortcutAdd");
+            this.m_btnShortcutAdd.Name = "m_btnShortcutAdd";
+            this.m_btnShortcutAdd.UseVisualStyleBackColor = true;
+            this.m_btnShortcutAdd.Click += new System.EventHandler(this.m_btnShortcutAdd_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Name = "comboBox1";
             // 
             // m_btnProfileDiscription
             // 
@@ -229,8 +259,13 @@ namespace Obi.Dialogs
             // 
             // m_gpBox_SelectPreferences
             // 
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_btnSaveProfile);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_btnProfileDiscription);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkColor);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_btnAddProfile);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_cb_SelectProfile);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkProject);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_lblSelectProfile);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkAudio);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkLanguage);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkAll);
@@ -238,6 +273,12 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_gpBox_SelectPreferences, "m_gpBox_SelectPreferences");
             this.m_gpBox_SelectPreferences.Name = "m_gpBox_SelectPreferences";
             this.m_gpBox_SelectPreferences.TabStop = false;
+            // 
+            // m_chkColor
+            // 
+            resources.ApplyResources(this.m_chkColor, "m_chkColor");
+            this.m_chkColor.Name = "m_chkColor";
+            this.m_chkColor.UseVisualStyleBackColor = true;
             // 
             // m_chkProject
             // 
@@ -933,12 +974,6 @@ namespace Obi.Dialogs
             this.m_ApplyButton.UseVisualStyleBackColor = true;
             this.m_ApplyButton.Click += new System.EventHandler(this.m_ApplyButton_Click);
             // 
-            // m_chkColor
-            // 
-            resources.ApplyResources(this.m_chkColor, "m_chkColor");
-            this.m_chkColor.Name = "m_chkColor";
-            this.m_chkColor.UseVisualStyleBackColor = true;
-            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -959,9 +994,8 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this, ((bool)(resources.GetObject("$this.ShowHelp"))));
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.m_gpBox_SaveAddProfile.ResumeLayout(false);
             this.mAdvanceTab.ResumeLayout(false);
-            this.mAdvanceTab.PerformLayout();
+            this.m_gpBoxSelectShortcuts.ResumeLayout(false);
             this.m_gpBox_SelectPreferences.ResumeLayout(false);
             this.m_gpBox_SelectPreferences.PerformLayout();
             this.mColorPreferencesTab.ResumeLayout(false);
@@ -1070,7 +1104,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox m_cb_SelectProfile;
         private System.Windows.Forms.Label m_lblSelectProfile;
         private System.Windows.Forms.GroupBox m_gpBox_SelectPreferences;
-        private System.Windows.Forms.GroupBox m_gpBox_SaveAddProfile;
         private System.Windows.Forms.Button m_btnAddProfile;
         private System.Windows.Forms.CheckBox m_chkProject;
         private System.Windows.Forms.CheckBox m_chkAudio;
@@ -1079,5 +1112,10 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnProfileDiscription;
         private System.Windows.Forms.Button m_ApplyButton;
         private System.Windows.Forms.CheckBox m_chkColor;
+        private System.Windows.Forms.GroupBox m_gpBoxSelectShortcuts;
+        private System.Windows.Forms.Button m_btnShortcutSave;
+        private System.Windows.Forms.Button m_btnShortcutLoad;
+        private System.Windows.Forms.Button m_btnShortcutAdd;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
