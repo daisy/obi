@@ -154,7 +154,7 @@
     <value>Ancla</value>
   </data>
   <data name="m_cb_SpecialPhrases.Items9" xml:space="preserve">
-    <value>Unused Phrases</value>
+    <value>Frases sin usar</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cb_SpecialPhrases.Location" type="System.Drawing.Point, System.Drawing">

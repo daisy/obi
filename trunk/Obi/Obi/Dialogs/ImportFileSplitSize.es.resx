@@ -313,7 +313,7 @@
     <value>3</value>
   </data>
   <data name="m_btnMoveUp.Text" xml:space="preserve">
-    <value>Mover &amp;arriba</value>
+    <value>Mov. &amp;arriba</value>
   </data>
   <data name="&gt;&gt;m_btnMoveUp.Name" xml:space="preserve">
     <value>m_btnMoveUp</value>
@@ -337,7 +337,7 @@
     <value>4</value>
   </data>
   <data name="m_btnMoveDown.Text" xml:space="preserve">
-    <value>Mover a&amp;bajo</value>
+    <value>Mov. a&amp;bajo</value>
   </data>
   <data name="&gt;&gt;m_btnMoveDown.Name" xml:space="preserve">
     <value>m_btnMoveDown</value>
@@ -415,7 +415,7 @@
     <value>8</value>
   </data>
   <data name="mbtnDesendingOrder.Text" xml:space="preserve">
-    <value>Orden D&amp;escendente</value>
+    <value>O. D&amp;escendente</value>
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.Name" xml:space="preserve">
     <value>mbtnDesendingOrder</value>

@@ -241,7 +241,7 @@
     <value>9</value>
   </data>
   <data name="m_btn_IncreaseSectionLevel.Text" xml:space="preserve">
-    <value>&amp;Aumentar nivel sección</value>
+    <value>&amp;Aumentar </value>
   </data>
   <data name="&gt;&gt;m_btn_IncreaseSectionLevel.Name" xml:space="preserve">
     <value>m_btn_IncreaseSectionLevel</value>
