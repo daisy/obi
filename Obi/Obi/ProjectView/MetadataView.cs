@@ -726,7 +726,7 @@ namespace Obi.ProjectView
                 }
             }
 
-        private void MetadataView_VisibleChanged ( object sender, EventArgs e ) { if (Visible) Focus (); }
+        private void MetadataView_VisibleChanged ( object sender, EventArgs e ) { if (Visible && mView.MetadataViewVisible) Focus (); }
 
         private void mContentTextbox_KeyDown ( object sender, KeyEventArgs e )
             {
