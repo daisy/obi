@@ -162,6 +162,39 @@ namespace Obi
             return settings;
         }
 
+        public static KeyboardShortcuts_Settings GetKeyboardShortcuts_SettingsFromFile(string filePath)
+        {
+            KeyboardShortcuts_Settings settings = new KeyboardShortcuts_Settings();
+            FileStream stream = null;
+            try
+            {
+                stream = new FileStream(filePath, FileMode.OpenOrCreate);
+
+                SoapFormatter soap = new SoapFormatter();
+                settings = (KeyboardShortcuts_Settings)soap.Deserialize(stream);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Keyboard shortcut setting  file : " + ex.ToString());
+                if (ex is System.IO.FileNotFoundException) return GetDefaultKeyboardShortcuts_Settings();
+            }
+            finally
+            {
+                if(stream != null)  stream.Close();
+            }
+            settings.MenuNameDictionary = new Dictionary<string, KeyboardShortcut>();
+            for (int i = 0; i < settings.MenuKeyboardShortCutsList.Length; i++)
+            {
+                settings.MenuNameDictionary.Add(settings.MenuKeyboardShortCutsList[i].Description, settings.MenuKeyboardShortCutsList[i]);
+            }
+            settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
+
+            settings.PopulateKeyboardShortcutsDictionary();
+
+            return settings;
+        }
+
         public static KeyboardShortcuts_Settings GetDefaultKeyboardShortcuts_Settings()
         {
             KeyboardShortcuts_Settings settings = new KeyboardShortcuts_Settings();
@@ -199,6 +232,22 @@ namespace Obi
             SoapFormatter soap = new SoapFormatter();
             soap.Serialize(stream, this);
             stream.Close();
+        }
+
+        public void SaveSettingsAs(string filePath)
+        {
+            AddMenuShortcutsToArrayForSave();
+            FileStream stream = null;
+            try
+            {
+                stream = new FileStream(filePath, FileMode.OpenOrCreate);
+                SoapFormatter soap = new SoapFormatter();
+                soap.Serialize(stream, this);
+            }
+            finally
+            {
+                if(stream != null)  stream.Close();
+            }
         }
 
         private void AddMenuShortcutsToArrayForSave()
