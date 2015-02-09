@@ -12,20 +12,29 @@ namespace Obi.Dialogs
     public partial class MergeProject : Form
     {
         private List<string> m_filePaths;
+        private string m_openedProjectPath;
         public MergeProject()
         {
             InitializeComponent();
         }
-        public MergeProject(string filepath)
+        public MergeProject(string filepath,string openedProjectPath)
         {
             InitializeComponent();
+            m_openedProjectPath = openedProjectPath;
             m_filePaths = new List<string>();
-            m_filePaths.Add(filepath);
-            string[] arr = filepath.Split(Path.DirectorySeparatorChar);
-            lstManualArrange.Items.Add(arr[arr.Length-2]+"\\"+arr[arr.Length-1] );
-            helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
-            helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Merging projects.htm");
+            if (filepath != openedProjectPath)
+            {
+                m_filePaths.Add(filepath);
+                string[] arr = filepath.Split(Path.DirectorySeparatorChar);
+                lstManualArrange.Items.Add(arr[arr.Length - 2] + "\\" + arr[arr.Length - 1]);
+                helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
+                helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
+                helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Merging projects.htm");
+            }
+            else
+            {
+                MessageBox.Show(Localizer.Message("MergeProject_CannotMerge"));
+            }
         }
 
         public string[] FilesPaths
@@ -45,11 +54,17 @@ namespace Obi.Dialogs
                 mOKButton.Enabled = true;
                 string fileName = select_File.FileName;
                 string nameOfFile = System.IO.Path.GetFullPath(fileName);
-                m_filePaths.Add(fileName);
-                string[] arr = fileName.Split(Path.DirectorySeparatorChar);
-                lstManualArrange.Items.Add((arr[arr.Length - 2] + "\\" + arr[arr.Length - 1]));
-
-                lstManualArrange.SelectedIndex = -1;
+                if (nameOfFile != m_openedProjectPath)
+                {
+                    m_filePaths.Add(fileName);
+                    string[] arr = fileName.Split(Path.DirectorySeparatorChar);
+                    lstManualArrange.Items.Add((arr[arr.Length - 2] + "\\" + arr[arr.Length - 1]));
+                    lstManualArrange.SelectedIndex = -1;
+                }
+                else
+                {
+                    MessageBox.Show(Localizer.Message("MergeProject_CannotMerge"));
+                }                
 
             }
         }
