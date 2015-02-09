@@ -2709,4 +2709,7 @@ Error text: {1}</value>
   <data name="Profile_Saved" xml:space="preserve">
     <value>Profile Saved</value>
   </data>
+  <data name="MergeProject_CannotMerge" xml:space="preserve">
+    <value>Cannot select opened project</value>
+  </data>
 </root>

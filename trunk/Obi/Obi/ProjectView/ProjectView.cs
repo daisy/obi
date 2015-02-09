@@ -5506,7 +5506,7 @@ public bool ShowOnlySelectedSection
             if (projectFile != null)
             {
                 Dialogs.MergeProject dialog =
-                           new Dialogs.MergeProject(projectFile);
+                           new Dialogs.MergeProject(projectFile,ObiForm.Settings.LastOpenProject);
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {   
@@ -5670,6 +5670,10 @@ public bool ShowOnlySelectedSection
                 }
             }
 
+        }
+        public void SelectPhraseBlockOrStrip(EmptyNode node)
+        {
+            mContentView.SelectPhraseBlockOrStrip(node);
         }
 
         }
