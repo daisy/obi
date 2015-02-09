@@ -1164,10 +1164,7 @@ namespace Obi.Dialogs
             }
             else if (mTab.SelectedTab == mKeyboardShortcutTab)   // Default settings for keyboard Shortcuts tab
             {
-                 mForm.LoadDefaultKeyboardShortcuts();
-                 m_KeyboardShortcuts = mForm.KeyboardShortcuts;
-            
-                 m_lvShortcutKeysList.Items.Clear();
+                ResetKeyboardShortcuts();
                  LoadListviewAccordingToComboboxSelection();
                  //InitializeKeyboardShortcutsTab();
                 // Not required it already has reset button.
@@ -1177,6 +1174,15 @@ namespace Obi.Dialogs
                 ResetColors();
                 m_IsColorChanged = true;
             }
+        }
+
+        private void ResetKeyboardShortcuts()
+        {
+            mForm.LoadDefaultKeyboardShortcuts();
+            m_KeyboardShortcuts = mForm.KeyboardShortcuts;
+
+            m_lvShortcutKeysList.Items.Clear();
+            LoadListviewAccordingToComboboxSelection();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1905,7 +1911,7 @@ namespace Obi.Dialogs
             else if (m_cb_SelectProfile.SelectedIndex >= m_PredefinedProfilesCount && m_cb_SelectProfile.SelectedIndex < m_cb_SelectProfile.Items.Count)
             {
                 string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
-                profilePath = System.IO.Path.Combine(GetCustomProfilesDirectory (), profileFileName);
+                profilePath = System.IO.Path.Combine(GetCustomProfilesDirectory (true), profileFileName);
             }
             if (profilePath != null) LoadPreferenceProfile(profilePath);
         }
@@ -1944,25 +1950,27 @@ namespace Obi.Dialogs
 
         private void InitializePreferencesProfileTab ()
         {
-            LoadProfilesToCombobox () ;
+            LoadProfilesToComboboxes () ;
         }
 
         private string GetPredefinedProfilesDirectory()
         {
             string appDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+
             string defaultProfilesDirectory = System.IO.Path.Combine(appDirectory, "profiles");
             return defaultProfilesDirectory;
         }
 
-        private string GetCustomProfilesDirectory()
+        private string GetCustomProfilesDirectory(bool preferencesProfile)
         {
             string permanentSettingsDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
-            string customProfilesDirectory = System.IO.Path.Combine(permanentSettingsDirectory, "profiles");
+            string filesDirectory = preferencesProfile ? "profiles" : "keyboard-shortcuts";
+            string customProfilesDirectory = System.IO.Path.Combine(permanentSettingsDirectory, filesDirectory);
             return customProfilesDirectory;
         }
 
         int m_PredefinedProfilesCount;
-        private void LoadProfilesToCombobox()
+        private void LoadProfilesToComboboxes()
         {
             // first load the default profiles
             m_PredefinedProfilesCount = 0;
@@ -2009,7 +2017,7 @@ namespace Obi.Dialogs
             }
             m_PredefinedProfilesCount = m_cb_SelectProfile.Items.Count;
                 // now load user defined profiles from the roming folder, the permanent settings are at same location
-            string customProfilesDirectory = GetCustomProfilesDirectory();
+            string customProfilesDirectory = GetCustomProfilesDirectory(true);
             if (System.IO.Directory.Exists(customProfilesDirectory))
             {
                 filePaths = System.IO.Directory.GetFiles(customProfilesDirectory, "*.xml");
@@ -2018,6 +2026,22 @@ namespace Obi.Dialogs
                     for (int i = 0; i < filePaths.Length; i++)
                     {
                         m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
+
+                    }
+                }
+            }// directory exists check
+
+
+            // now add keyboard shortcuts profile to the respective combobox
+            string shortcutsProfilesDirectory = GetCustomProfilesDirectory(false);
+            if (System.IO.Directory.Exists(shortcutsProfilesDirectory))
+            {
+                filePaths = System.IO.Directory.GetFiles(shortcutsProfilesDirectory, "*.xml");
+                if (filePaths != null && filePaths.Length > 0)
+                {
+                    for (int i = 0; i < filePaths.Length; i++)
+                    {
+                        m_cb_SelectShorcutsProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
 
                     }
                 }
@@ -2040,7 +2064,7 @@ namespace Obi.Dialogs
                 {
                     LoadPreferenceProfile(fileDialog.FileName);
                     // copy the profile file to custom profile directory
-                    string customProfilesDirectory = GetCustomProfilesDirectory();
+                    string customProfilesDirectory = GetCustomProfilesDirectory(true);
                     if (!System.IO.Directory.Exists(customProfilesDirectory)) System.IO.Directory.CreateDirectory(customProfilesDirectory);
                     string newCustomFilePath = System.IO.Path.Combine(customProfilesDirectory,
                         System.IO.Path.GetFileName(fileDialog.FileName));
@@ -2106,19 +2130,68 @@ namespace Obi.Dialogs
 
         private void m_btnShortcutSave_Click(object sender, EventArgs e)
         {
-
+            SaveFileDialog fileDialog = new SaveFileDialog();
+            fileDialog.Filter = "*.xml|*.XML";
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    mForm.KeyboardShortcuts.SaveSettingsAs(fileDialog.FileName);
+                    string tempString = Localizer.Message("Profile_Saved");
+                    MessageBox.Show(tempString, tempString, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
 
         private void m_btnShortcutAdd_Click(object sender, EventArgs e)
         {
-
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "*.xml|*.XML";
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    LoadShortcutsFromFile(fileDialog.FileName);
+                    // copy the profile file to custom profile directory
+                    string customProfilesDirectory = GetCustomProfilesDirectory(false);
+                    if (!System.IO.Directory.Exists(customProfilesDirectory)) System.IO.Directory.CreateDirectory(customProfilesDirectory);
+                    string newCustomFilePath = System.IO.Path.Combine(customProfilesDirectory,
+                        System.IO.Path.GetFileName(fileDialog.FileName));
+                    System.IO.File.Copy(fileDialog.FileName, newCustomFilePath, true);
+                    m_cb_SelectShorcutsProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
 
         private void m_btnShortcutLoad_Click(object sender, EventArgs e)
         {
+            if (m_cb_SelectShorcutsProfile.SelectedIndex == 0)
+            {
+                mForm.LoadDefaultKeyboardShortcuts();
+                m_KeyboardShortcuts = mForm.KeyboardShortcuts;
 
+                m_lvShortcutKeysList.Items.Clear();
+                LoadListviewAccordingToComboboxSelection();
+            }
         }
 
+        private void LoadShortcutsFromFile(string filePath)
+        {
+
+            if (filePath != null && System.IO.File.Exists(filePath))
+            {
+                KeyboardShortcuts_Settings shortCuts = KeyboardShortcuts_Settings.GetKeyboardShortcuts_SettingsFromFile(filePath);
+        // add code for assigning the shortcuts here        
+            }
+        }
 
     }
     }   
