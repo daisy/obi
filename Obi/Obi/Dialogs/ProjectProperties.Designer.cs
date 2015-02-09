@@ -42,6 +42,8 @@ namespace Obi.Dialogs
             this.m_txtTitle = new System.Windows.Forms.TextBox();
             this.mCancelButton = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_lblMaxDepth = new System.Windows.Forms.Label();
+            this.m_txtMaxDepth = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // m_lblDuration
@@ -121,12 +123,26 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
+            // m_lblMaxDepth
+            // 
+            resources.ApplyResources(this.m_lblMaxDepth, "m_lblMaxDepth");
+            this.m_lblMaxDepth.Name = "m_lblMaxDepth";
+            // 
+            // m_txtMaxDepth
+            // 
+            this.m_txtMaxDepth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.m_txtMaxDepth, "m_txtMaxDepth");
+            this.m_txtMaxDepth.Name = "m_txtMaxDepth";
+            this.m_txtMaxDepth.ReadOnly = true;
+            // 
             // ProjectProperties
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_txtMaxDepth);
+            this.Controls.Add(this.m_lblMaxDepth);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.m_txtTitle);
             this.Controls.Add(this.m_lblTitle);
@@ -163,5 +179,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox m_txtTitle;
         private System.Windows.Forms.Button mCancelButton;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.Label m_lblMaxDepth;
+        private System.Windows.Forms.TextBox m_txtMaxDepth;
     }
 }
