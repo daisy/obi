@@ -32,7 +32,7 @@ namespace Obi.Dialogs
             foreach (SectionNode section in sectionsList)
             {
                 totalDuration += section.Duration;
-                int depth = GetSectionDepth(section);
+                int depth = section.Level;
                 if (depth > maxDepth) maxDepth = depth;
             }
             m_txtTitle.Text = mView.Presentation.Title;
