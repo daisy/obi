@@ -3450,6 +3450,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot select opened project.
+        /// </summary>
+        internal static string MergeProject_CannotMerge {
+            get {
+                return ResourceManager.GetString("MergeProject_CannotMerge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please make sure that that the projects to be merged have the same audio format..
         /// </summary>
         internal static string MergeProject_Information {
