@@ -26,11 +26,36 @@ namespace Obi.Dialogs
 
         private void ProjectStatistics_Load(object sender, EventArgs e)
         {
+            List<SectionNode> sectionsList = ((ObiRootNode)mView.Presentation.RootNode).GetListOfAllSections();
+            double totalDuration = 0;
+            int maxDepth = 0;
+            foreach (SectionNode section in sectionsList)
+            {
+                totalDuration += section.Duration;
+                int depth = GetSectionDepth(section);
+                if (depth > maxDepth) maxDepth = depth;
+            }
             m_txtTitle.Text = mView.Presentation.Title;
-            m_txtDuration.Text = Program.FormatDuration_Long(((ObiRootNode)mView.Presentation.RootNode).Duration);
-            m_txtSectionsCount.Text = ((ObiRootNode)mView.Presentation.RootNode).SectionCount.ToString();
+            m_txtDuration.Text = Program.FormatDuration_Long((totalDuration));
+            m_txtSectionsCount.Text = sectionsList.Count.ToString ();;
             m_txtPhraseCount.Text = ((ObiRootNode)mView.Presentation.RootNode).PhraseCount.ToString();
             m_txtPageCount.Text = ((ObiRootNode)mView.Presentation.RootNode).PageCount.ToString();
+            m_txtMaxDepth.Text = maxDepth.ToString ();
         }
+
+        private int GetSectionDepth(SectionNode section)
+        {
+            int depth = 1;
+            ObiNode parent = section.ParentAs<ObiNode> ();
+            while (parent != mView.Presentation.RootNode)
+            {
+                section = (SectionNode)parent;
+                parent = section.ParentAs<ObiNode>();
+                depth++; 
+            }
+            //Console.WriteLine("section depth: " + depth);
+            return depth;
+        }
+
     }
 }
