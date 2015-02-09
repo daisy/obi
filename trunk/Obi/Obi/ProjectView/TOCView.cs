@@ -194,16 +194,18 @@ namespace Obi.ProjectView
             }
 
             if (value != null && (m_HighlightedSectionNodeWithoutSelection == null || m_HighlightedSectionNodeWithoutSelection != value))
-                {
+            {
                 m_HighlightedSectionNodeWithoutSelection = value;
-                TreeNode treeNodeToHighlight = FindTreeNodeWithoutLabel ( m_HighlightedSectionNodeWithoutSelection );
-                if (treeNodeToHighlight != null) treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
+                TreeNode treeNodeToHighlight = FindTreeNodeWithoutLabel(m_HighlightedSectionNodeWithoutSelection);
+               // treeNodeToHighlight.EnsureVisible();
+                //if (treeNodeToHighlight != null) treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
+                if (treeNodeToHighlight != null) treeNodeToHighlight.BackColor = mProjectView.ColorSettings.HighlightedSectionNodeWithoutSelectionColor;
                 else m_HighlightedSectionNodeWithoutSelection = null;
-                }
+            }
             else
-                {
+            {
                 m_HighlightedSectionNodeWithoutSelection = value;
-                }
+            }
 
             }
         }
@@ -216,7 +218,7 @@ namespace Obi.ProjectView
             if (m_HighlightedSectionNodeWithoutSelection != null )
             {
                                 TreeNode treeNodeToHighlight = FindTreeNodeWithoutLabel(m_HighlightedSectionNodeWithoutSelection);
-                if (treeNodeToHighlight != null) treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
+                if (treeNodeToHighlight != null) treeNodeToHighlight.BackColor =  mProjectView.ColorSettings.HighlightedSectionNodeWithoutSelectionColor;
             }
         }
 

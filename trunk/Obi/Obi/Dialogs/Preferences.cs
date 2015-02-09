@@ -1320,6 +1320,8 @@ namespace Obi.Dialogs
                         break;
                     case 44: mSettings.ColorSettings.EmptySectionBackgroundColor = (Color)mNormalColorCombo.SelectedItem;
                         break;
+                    case 45: mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
                     default: break;
                 }
 
@@ -1418,6 +1420,8 @@ namespace Obi.Dialogs
                     case 41: mSettings.ColorSettingsHC.FineNavigationColor = (Color) mHighContrastCombo.SelectedItem;
                         break;
                     case 44: mSettings.ColorSettingsHC.EmptySectionBackgroundColor = (Color)mHighContrastCombo.SelectedItem;
+                        break;
+                    case 45: mSettings.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor = (Color)mHighContrastCombo.SelectedItem;
                         break;
                     default: break;
                 }
@@ -1519,6 +1523,7 @@ namespace Obi.Dialogs
             mSettings.ColorSettings.WaveformBackColor = settings.WaveformBackColor;
             mSettings.ColorSettings.WaveformHighlightedBackColor = settings.WaveformHighlightedBackColor;
             mSettings.ColorSettings.FineNavigationColor = settings.FineNavigationColor;
+            mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = settings.HighlightedSectionNodeWithoutSelectionColor;
 
             mSettings.ColorSettingsHC.BlockBackColor_Custom = settingsHC.BlockBackColor_Custom;
             mSettings.ColorSettingsHC.BlockBackColor_Anchor = settingsHC.BlockBackColor_Anchor;
@@ -1558,6 +1563,7 @@ namespace Obi.Dialogs
             mSettings.ColorSettingsHC.WaveformBackColor = settingsHC.WaveformBackColor;
             mSettings.ColorSettingsHC.WaveformHighlightedBackColor = settingsHC.WaveformHighlightedBackColor;
             mSettings.ColorSettings.FineNavigationColor = settingsHC.FineNavigationColor;
+            mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = settingsHC.HighlightedSectionNodeWithoutSelectionColor;
             LoadListViewWithColors();
         }
 
