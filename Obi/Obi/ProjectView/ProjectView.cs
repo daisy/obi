@@ -4983,14 +4983,23 @@ for (int j = 0;
             }
             
             if (!audioFileExportDirectory.EndsWith("\\")) audioFileExportDirectory = audioFileExportDirectory + "\\";
-            
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            if (!System.IO.Directory.Exists(audioFileExportDirectory)) System.IO.Directory.CreateDirectory(audioFileExportDirectory);
+            saveDialog.InitialDirectory= audioFileExportDirectory;
+            saveDialog.FileName = "New file.wav";
+            saveDialog.Filter = "*.wav|*.WAV";
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                audioFileExportDirectory = System.IO.Path.GetDirectoryName(saveDialog.FileName);
+                string fileName = System.IO.Path.GetFileName(saveDialog.FileName);
+                string newAudioFilePath = CreateAudioFileFromNode(nodeSelected, audioFileExportDirectory, fileName);
 
-            string newAudioFilePath = CreateAudioFileFromNode(nodeSelected, audioFileExportDirectory);
+                if (newAudioFilePath != null)
+                {
+                    MessageBox.Show(Localizer.Message("ExportAudioOfSelectedNode_Completed") + newAudioFilePath, Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
 
-            if (newAudioFilePath != null)
-    {
-            MessageBox.Show(Localizer.Message("ExportAudioOfSelectedNode_Completed") + newAudioFilePath, Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);                   
-    }
         }
 
         private double DurationOfNodeSelected(ObiNode nodeSelected)
@@ -5003,7 +5012,7 @@ for (int j = 0;
             return durationOfSelection;
         }
 
-        private string CreateAudioFileFromNode(ObiNode nodeSelected, string audioFileExportDirectory)
+        private string CreateAudioFileFromNode(ObiNode nodeSelected, string audioFileExportDirectory, string audioFileName)
         {
             string newAudioFilePath = null;
             try
@@ -5054,11 +5063,14 @@ for (int j = 0;
                 string audioFilePath = System.IO.Path.Combine(audioFileExportDirectory, "aud001.wav");
                 if (System.IO.File.Exists(audioFilePath))
                 {
-                    string newName = nodeSelected is SectionNode ? ((SectionNode)nodeSelected).ToString() + ".wav":
-                        nodeSelected is PhraseNode ? ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Label + ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Position + "-" + ((EmptyNode)nodeSelected).ToString() + ".wav":
-                        null;
-                    newName = Obi.Program.SafeName(newName);
-                        newAudioFilePath = System.IO.Path.Combine(audioFileExportDirectory, newName);
+                    if (string.IsNullOrEmpty(audioFileName))
+                    {
+                        audioFileName = nodeSelected is SectionNode ? ((SectionNode)nodeSelected).ToString() + ".wav" :
+                            nodeSelected is PhraseNode ? ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Label + ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Position + "-" + ((EmptyNode)nodeSelected).ToString() + ".wav" :
+                            null;
+                    }
+                    audioFileName = Obi.Program.SafeName(audioFileName);
+                        newAudioFilePath = System.IO.Path.Combine(audioFileExportDirectory, audioFileName);
                         if (System.IO.File.Exists(newAudioFilePath)) System.IO.File.Delete(newAudioFilePath);
                         System.IO.File.Move(audioFilePath, newAudioFilePath);
                         
@@ -5216,7 +5228,7 @@ if (CanExportSelectedNodeAudio)
             System.IO.Directory.CreateDirectory(directoryFullPath);
 
 
-            string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath);
+            string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
 
             if (audioFileFullPath != null)
             {
