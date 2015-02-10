@@ -587,10 +587,12 @@ namespace Obi.UserControls
             Point p = new Point(0, 0);
             //int x = m_statusStrip.Top - m_Enlarge.Bottom;
             p.Y = m_statusStrip.Top - 30;
-            p.X = m_Enlarge.Location.X;
+           // p.X = m_Enlarge.Location.X;
+            p.X = this.Width / 2 - 120;
             m_Enlarge.Location = p;
 
-            p.X = m_Reduce.Location.X;
+           // p.X = m_Reduce.Location.X;
+            p.X = this.Width / 2 + 20;
             m_Reduce.Location = p;
 
             m_recordingToolBarPlayBtn.Width = (int)(m_recordingToolBarPlayBtn.Width + m_minPlayBtn.Width * NetSizeIncBtn);
@@ -622,7 +624,6 @@ namespace Obi.UserControls
 
             m_recordingToolBarSectionEndBtn.Width = (int)(m_recordingToolBarSectionEndBtn.Width + m_minElapseBackSize.Width * NetSizeIncBtn);
             m_recordingToolBarSectionEndBtn.Height = (int)(m_recordingToolBarSectionEndBtn.Height + m_minSectionEndSize.Height * NetSizeIncBtn);
-
 
             if (flagBtnPressed == true)
             {
@@ -754,10 +755,12 @@ namespace Obi.UserControls
 
                 Point p = new Point(0, 0);
                 p.Y = m_statusStrip.Top - 30;
-                p.X = m_Enlarge.Location.X;
+              //  p.X = m_Enlarge.Location.X;
+                p.X = this.Width / 2 - 120;
                 m_Enlarge.Location = p;
 
-                p.X = m_Reduce.Location.X;
+                //p.X = m_Reduce.Location.X;
+                p.X = this.Width / 2 + 20;
                 m_Reduce.Location = p;
 
                 //  this.Height = (int)(this.Height - this.Height * NetSizeIncBtn);
