@@ -5505,8 +5505,9 @@ public bool ShowOnlySelectedSection
             List<string> sourceProjectPaths=null;
             if (projectFile != null)
             {
+                
                 Dialogs.MergeProject dialog =
-                           new Dialogs.MergeProject(projectFile,ObiForm.Settings.LastOpenProject);
+                           new Dialogs.MergeProject(projectFile,session.Path);
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {   
