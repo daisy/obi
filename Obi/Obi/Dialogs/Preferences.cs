@@ -348,6 +348,7 @@ namespace Obi.Dialogs
         // Update settings
         private void mOKButton_Click(object sender, EventArgs e)
         {
+            
             //if (m_IndexOfLevelCombox != m_ComboSelectAudioProfile.SelectedIndex && (this.mTab.SelectedTab == mAudioTab))
             //{
             //    bool flag = UpdateAudioProfile();
@@ -382,6 +383,7 @@ namespace Obi.Dialogs
             {
                 return;
             }
+            
         }
 
         // Update project settings
@@ -2204,12 +2206,13 @@ namespace Obi.Dialogs
                 {
                     if (shortCuts.KeyboardShortcutsDescription.ContainsKey(desc))
                     {
-                        mForm.KeyboardShortcuts.KeyboardShortcutsDescription[desc] = shortCuts.KeyboardShortcutsDescription[desc];
+                        mForm.KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value = shortCuts.KeyboardShortcutsDescription[desc].Value;
                     }
                 }
-                m_IsKeyboardShortcutChanged = true;
+                
                 mForm.KeyboardShortcuts.SaveSettings();
                 mForm.InitializeKeyboardShortcuts(false);
+                
                 m_lvShortcutKeysList.Items.Clear();
                 LoadListviewAccordingToComboboxSelection();        
             }
