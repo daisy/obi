@@ -1977,6 +1977,11 @@ namespace Obi.Dialogs
             // first load the default profiles
             m_PredefinedProfilesCount = 0;
             string preDefinedProfilesDirectory = GetPredefinedProfilesDirectory();
+            if (!System.IO.Directory.Exists(preDefinedProfilesDirectory))
+            {
+                MessageBox.Show("No predefined profile exist");
+                return;
+            }
             string[] filePaths = System.IO.Directory.GetFiles(preDefinedProfilesDirectory, "*.xml");
             List<string> filePathsList = new List<string>();
             if (filePaths != null && filePaths.Length > 0)
