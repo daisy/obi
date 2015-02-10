@@ -31,6 +31,7 @@ namespace Obi.UserControls
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecordingToolBarForm));
             this.recordingToolBarToolStrip = new System.Windows.Forms.ToolStrip();
+            this.m_recordingToolBarElapseBackBtn = new System.Windows.Forms.ToolStripButton();
             this.m_recordingToolBarPlayBtn = new System.Windows.Forms.ToolStripButton();
             this.m_recordingToolBarStopBtn = new System.Windows.Forms.ToolStripButton();
             this.m_recordingToolBarRecordingBtn = new System.Windows.Forms.ToolStripButton();
@@ -38,6 +39,7 @@ namespace Obi.UserControls
             this.m_recordingGoToNextPhraseBtn = new System.Windows.Forms.ToolStripButton();
             this.m_recordingToolBarNextPageBtn = new System.Windows.Forms.ToolStripButton();
             this.m_recordingToolBarNextSectionBtn = new System.Windows.Forms.ToolStripButton();
+            this.m_recordingToolBarSectionEndBtn = new System.Windows.Forms.ToolStripButton();
             this.m_TODOBtn = new System.Windows.Forms.ToolStripButton();
             this.m_statusStrip = new System.Windows.Forms.StatusStrip();
             this.recordingToolStripStatusBar = new System.Windows.Forms.ToolStripStatusLabel();
@@ -53,6 +55,7 @@ namespace Obi.UserControls
             // 
             resources.ApplyResources(this.recordingToolBarToolStrip, "recordingToolBarToolStrip");
             this.recordingToolBarToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_recordingToolBarElapseBackBtn,
             this.m_recordingToolBarPlayBtn,
             this.m_recordingToolBarStopBtn,
             this.m_recordingToolBarRecordingBtn,
@@ -60,9 +63,17 @@ namespace Obi.UserControls
             this.m_recordingGoToNextPhraseBtn,
             this.m_recordingToolBarNextPageBtn,
             this.m_recordingToolBarNextSectionBtn,
+            this.m_recordingToolBarSectionEndBtn,
             this.m_TODOBtn});
             this.recordingToolBarToolStrip.Name = "recordingToolBarToolStrip";
             this.recordingToolBarToolStrip.TabStop = true;
+            // 
+            // m_recordingToolBarElapseBackBtn
+            // 
+            resources.ApplyResources(this.m_recordingToolBarElapseBackBtn, "m_recordingToolBarElapseBackBtn");
+            this.m_recordingToolBarElapseBackBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.m_recordingToolBarElapseBackBtn.Name = "m_recordingToolBarElapseBackBtn";
+            this.m_recordingToolBarElapseBackBtn.Click += new System.EventHandler(this.m_recordingToolBarElapseBackBtn_Click);
             // 
             // m_recordingToolBarPlayBtn
             // 
@@ -117,6 +128,13 @@ namespace Obi.UserControls
             this.m_recordingToolBarNextSectionBtn.Margin = new System.Windows.Forms.Padding(20, 1, 6, 0);
             this.m_recordingToolBarNextSectionBtn.Name = "m_recordingToolBarNextSectionBtn";
             this.m_recordingToolBarNextSectionBtn.Click += new System.EventHandler(this.m_recordingToolBarNextSectionBtn_Click);
+            // 
+            // m_recordingToolBarSectionEndBtn
+            // 
+            resources.ApplyResources(this.m_recordingToolBarSectionEndBtn, "m_recordingToolBarSectionEndBtn");
+            this.m_recordingToolBarSectionEndBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.m_recordingToolBarSectionEndBtn.Name = "m_recordingToolBarSectionEndBtn";
+            this.m_recordingToolBarSectionEndBtn.Click += new System.EventHandler(this.m_recordingToolBarSectionEndBtn_Click);
             // 
             // m_TODOBtn
             // 
@@ -200,5 +218,7 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripButton m_TODOBtn;
         private System.Windows.Forms.Button m_Enlarge;
         private System.Windows.Forms.Button m_Reduce;
+        private System.Windows.Forms.ToolStripButton m_recordingToolBarElapseBackBtn;
+        private System.Windows.Forms.ToolStripButton m_recordingToolBarSectionEndBtn;
     }
 }
