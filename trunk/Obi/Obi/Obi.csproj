@@ -2581,6 +2581,15 @@
     <Content Include="ShowBlocksCompleted.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="UserControls\ElapseBack.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ElapseBack48.png" />
+    <EmbeddedResource Include="UserControls\ElapseBack64.png" />
+    <EmbeddedResource Include="UserControls\ElapseBack80.png" />
+    <EmbeddedResource Include="UserControls\Section End.png" />
+    <EmbeddedResource Include="UserControls\Section End48.png" />
+    <EmbeddedResource Include="UserControls\Section End64.png" />
+    <EmbeddedResource Include="UserControls\Section End80.png" />
     <EmbeddedResource Include="UserControls\nextpage48.png" />
     <EmbeddedResource Include="UserControls\media-playback-start48.png" />
     <EmbeddedResource Include="UserControls\media-playback-start64.png" />
