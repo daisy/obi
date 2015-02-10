@@ -41,6 +41,8 @@ namespace Obi.UserControls
         private Size m_minNextSectionBtn;
         private Size m_minTodoBtn;
         private Size m_minRecordingContainer;
+        private Size m_minElapseBackSize;
+        private Size m_minSectionEndSize;
         private Point m_OriginalLocationOfEnlargeBtn;
         private Point m_OriginalLocationOfReduceBtn;
 
@@ -86,6 +88,17 @@ namespace Obi.UserControls
         private Image m_RecordingNextPage48;
         private Image m_RecordingNextPage64;
         private Image m_RecordingNextPage80;
+
+        private Image m_ElapseBack;
+        private Image m_ElapseBack48;
+        private Image m_ElapseBack64;
+        private Image m_ElapseBack80;
+
+        private Image m_SectionEnd;
+        private Image m_SectionEnd48;
+        private Image m_SectionEnd64;
+        private Image m_SectionEnd80;
+
         HelpProvider helpProvider1;
         //public delegate void RecorderSettingsSet();
 
@@ -178,6 +191,25 @@ namespace Obi.UserControls
             m_RecordingNextPage64 = Image.FromStream(PlayPhrase);
             PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.nextpage80.png");
             m_RecordingNextPage80 = Image.FromStream(PlayPhrase);
+
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.ElapseBack.png");
+            m_ElapseBack = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.ElapseBack48.png");
+            m_ElapseBack48 = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.ElapseBack64.png");
+            m_ElapseBack64 = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.ElapseBack80.png");
+            m_ElapseBack80 = Image.FromStream(PlayPhrase);
+
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.Section End.png");
+            m_SectionEnd = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.Section End48.png");
+            m_SectionEnd48 = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.Section End64.png");
+            m_SectionEnd64 = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.Section End80.png");
+            m_SectionEnd80 = Image.FromStream(PlayPhrase);
+
 
             helpProvider1 = new HelpProvider();
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
@@ -293,6 +325,7 @@ namespace Obi.UserControls
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
             {
                 m_recordingToolBarPlayBtn.Image = m_PauseImg;
+                m_recordingToolBarPlayBtn.Enabled = true;
                 this.m_recordingToolBarPlayBtn.AccessibleName = "Pause";
                 if (NetSizeIncrementOfButtons == 0)
                 {
@@ -505,6 +538,9 @@ namespace Obi.UserControls
             m_minNextPageBtn = m_recordingToolBarNextPageBtn.Size;
             m_minNextSectionBtn = m_recordingToolBarNextSectionBtn.Size;
             m_minTodoBtn = m_TODOBtn.Size;
+            m_minElapseBackSize = m_recordingToolBarElapseBackBtn.Size;
+            m_minSectionEndSize = m_recordingToolBarSectionEndBtn.Size;
+
 
         }
 
@@ -580,6 +616,14 @@ namespace Obi.UserControls
 
             m_TODOBtn.Width = (int)(m_TODOBtn.Width + m_minTodoBtn.Width * NetSizeIncBtn);
             m_TODOBtn.Height = (int)(m_TODOBtn.Height + m_minTodoBtn.Height * NetSizeIncBtn);
+
+            m_recordingToolBarElapseBackBtn.Width = (int)(m_recordingToolBarElapseBackBtn.Width + m_minElapseBackSize.Width * NetSizeIncBtn);
+            m_recordingToolBarElapseBackBtn.Height = (int)(m_recordingToolBarElapseBackBtn.Height + m_minElapseBackSize.Height * NetSizeIncBtn);
+
+            m_recordingToolBarSectionEndBtn.Width = (int)(m_recordingToolBarSectionEndBtn.Width + m_minElapseBackSize.Width * NetSizeIncBtn);
+            m_recordingToolBarSectionEndBtn.Height = (int)(m_recordingToolBarSectionEndBtn.Height + m_minSectionEndSize.Height * NetSizeIncBtn);
+
+
             if (flagBtnPressed == true)
             {
 
@@ -637,6 +681,8 @@ namespace Obi.UserControls
                 m_recordingGoToNextPhraseBtn.Image = m_RecordingGoNextBtn;
                 m_recordingToolBarNextPageBtn.Image = m_RecordingNextPage;
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn;
+                m_recordingToolBarElapseBackBtn.Image = m_ElapseBack;
+                m_recordingToolBarSectionEndBtn.Image = m_SectionEnd;
 
             }
             else if (NetSizeIncrementOfButtons == 0.5)
@@ -648,6 +694,8 @@ namespace Obi.UserControls
                 m_recordingGoToNextPhraseBtn.Image = m_RecordingGoNextBtn48;
                 m_recordingToolBarNextPageBtn.Image = m_RecordingNextPage48;
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn48;
+                m_recordingToolBarElapseBackBtn.Image = m_ElapseBack48;
+                m_recordingToolBarSectionEndBtn.Image = m_SectionEnd48;
             }
             else if (NetSizeIncrementOfButtons == 1)
             {
@@ -658,6 +706,8 @@ namespace Obi.UserControls
                 m_recordingGoToNextPhraseBtn.Image = m_RecordingGoNextBtn64;
                 m_recordingToolBarNextPageBtn.Image = m_RecordingNextPage64;
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn64;
+                m_recordingToolBarElapseBackBtn.Image = m_ElapseBack64;
+                m_recordingToolBarSectionEndBtn.Image = m_SectionEnd64;
             }
             else if (NetSizeIncrementOfButtons == 1.5)
             {
@@ -668,6 +718,8 @@ namespace Obi.UserControls
                 m_recordingGoToNextPhraseBtn.Image = m_RecordingGoNextBtn80;
                 m_recordingToolBarNextPageBtn.Image = m_RecordingNextPage80;
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn80;
+                m_recordingToolBarElapseBackBtn.Image = m_ElapseBack80;
+                m_recordingToolBarSectionEndBtn.Image = m_SectionEnd80;
             }
 
         }
@@ -732,6 +784,12 @@ namespace Obi.UserControls
 
                 m_TODOBtn.Width = (int)(m_TODOBtn.Width - m_minTodoBtn.Width * NetSizeIncBtn);
                 m_TODOBtn.Height = (int)(m_TODOBtn.Height - m_minTodoBtn.Height * NetSizeIncBtn);
+
+                m_recordingToolBarElapseBackBtn.Width = (int)(m_recordingToolBarElapseBackBtn.Width - m_minElapseBackSize.Width * NetSizeIncBtn);
+                m_recordingToolBarElapseBackBtn.Height = (int)(m_recordingToolBarElapseBackBtn.Height - m_minElapseBackSize.Height * NetSizeIncBtn);
+
+                m_recordingToolBarSectionEndBtn.Width = (int)(m_recordingToolBarSectionEndBtn.Width - m_minSectionEndSize.Width * NetSizeIncBtn);
+                m_recordingToolBarSectionEndBtn.Height = (int)(m_recordingToolBarSectionEndBtn.Height - m_minSectionEndSize.Height * NetSizeIncBtn);
             }
             else
             {
@@ -756,6 +814,9 @@ namespace Obi.UserControls
 
                 m_recordingToolBarNextSectionBtn.Size = m_minNextSectionBtn;
                 m_TODOBtn.Size = m_minTodoBtn;
+
+                m_recordingToolBarElapseBackBtn.Size = m_minElapseBackSize;
+                m_recordingToolBarSectionEndBtn.Size = m_minSectionEndSize;
 
             }
 
@@ -819,6 +880,8 @@ namespace Obi.UserControls
                 m_recordingGoToNextPhraseBtn.Image = m_RecordingGoNextBtn;
                 m_recordingToolBarNextPageBtn.Image = m_RecordingNextPage;
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn;
+                m_recordingToolBarElapseBackBtn.Image = m_ElapseBack;
+                m_recordingToolBarSectionEndBtn.Image = m_SectionEnd;
 
             }
             else if (NetSizeIncrementOfButtons == 0.5)
@@ -831,6 +894,8 @@ namespace Obi.UserControls
                 m_recordingGoToNextPhraseBtn.Image = m_RecordingGoNextBtn48;
                 m_recordingToolBarNextPageBtn.Image = m_RecordingNextPage48;
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn48;
+                m_recordingToolBarElapseBackBtn.Image = m_ElapseBack48;
+                m_recordingToolBarSectionEndBtn.Image = m_SectionEnd48;
             }
             else if (NetSizeIncrementOfButtons == 1)
             {
@@ -842,6 +907,8 @@ namespace Obi.UserControls
                 m_recordingGoToNextPhraseBtn.Image = m_RecordingGoNextBtn64;
                 m_recordingToolBarNextPageBtn.Image = m_RecordingNextPage64;
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn64;
+                m_recordingToolBarElapseBackBtn.Image = m_ElapseBack64;
+                m_recordingToolBarSectionEndBtn.Image = m_SectionEnd64;
             }
             else if (NetSizeIncrementOfButtons == 1.5)
             {
@@ -852,6 +919,8 @@ namespace Obi.UserControls
                 m_recordingGoToNextPhraseBtn.Image = m_RecordingGoNextBtn80;
                 m_recordingToolBarNextPageBtn.Image = m_RecordingNextPage80;
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn80;
+                m_recordingToolBarElapseBackBtn.Image = m_ElapseBack80;
+                m_recordingToolBarSectionEndBtn.Image = m_SectionEnd80;
             }
 
         }
@@ -875,7 +944,26 @@ namespace Obi.UserControls
 
             m_recordingToolBarNextSectionBtn.Size = m_minNextSectionBtn;
             m_TODOBtn.Size = m_minTodoBtn;
+            m_recordingToolBarElapseBackBtn.Size = m_minElapseBackSize;
+            m_recordingToolBarSectionEndBtn.Size = m_minSectionEndSize;
 
+        }
+
+        private void m_recordingToolBarElapseBackBtn_Click(object sender, EventArgs e)
+        {
+            m_TransportBar.FastPlayNormaliseWithLapseBack();
+        }
+
+
+        private void m_recordingToolBarSectionEndBtn_Click(object sender, EventArgs e)
+        {
+            if (m_TransportBar.IsPlayerActive) m_TransportBar.MoveSelectionToPlaybackPhrase();
+            if (m_ProjectView.Selection != null && m_ProjectView.GetSelectedPhraseSection.PhraseChildCount > 0) //@singleSection
+            {
+                SectionNode section = m_ProjectView.GetSelectedPhraseSection;
+                m_ProjectView.SelectPhraseBlockOrStrip(section.PhraseChild(section.PhraseChildCount - 1));
+
+            }
         }
 
 
