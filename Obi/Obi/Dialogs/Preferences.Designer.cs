@@ -44,16 +44,16 @@ namespace Obi.Dialogs
             this.m_btnShortcutLoad = new System.Windows.Forms.Button();
             this.m_btnShortcutAdd = new System.Windows.Forms.Button();
             this.m_cb_SelectShorcutsProfile = new System.Windows.Forms.ComboBox();
-            this.m_btnProfileDiscription = new System.Windows.Forms.Button();
             this.m_gpBox_SelectPreferences = new System.Windows.Forms.GroupBox();
+            this.m_btnProfileDiscription = new System.Windows.Forms.Button();
             this.m_chkColor = new System.Windows.Forms.CheckBox();
+            this.m_cb_SelectProfile = new System.Windows.Forms.ComboBox();
             this.m_chkProject = new System.Windows.Forms.CheckBox();
+            this.m_lblSelectProfile = new System.Windows.Forms.Label();
             this.m_chkAudio = new System.Windows.Forms.CheckBox();
             this.m_chkLanguage = new System.Windows.Forms.CheckBox();
             this.m_chkAll = new System.Windows.Forms.CheckBox();
             this.m_btnLoadProfile = new System.Windows.Forms.Button();
-            this.m_cb_SelectProfile = new System.Windows.Forms.ComboBox();
-            this.m_lblSelectProfile = new System.Windows.Forms.Label();
             this.mColorPreferencesTab = new System.Windows.Forms.TabPage();
             this.mChooseFontCombo = new System.Windows.Forms.ComboBox();
             this.m_lblChooseFont = new System.Windows.Forms.Label();
@@ -249,14 +249,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_cb_SelectShorcutsProfile, "m_cb_SelectShorcutsProfile");
             this.m_cb_SelectShorcutsProfile.Name = "m_cb_SelectShorcutsProfile";
             // 
-            // m_btnProfileDiscription
-            // 
-            resources.ApplyResources(this.m_btnProfileDiscription, "m_btnProfileDiscription");
-            this.m_btnProfileDiscription.Name = "m_btnProfileDiscription";
-            this.helpProvider1.SetShowHelp(this.m_btnProfileDiscription, ((bool)(resources.GetObject("m_btnProfileDiscription.ShowHelp"))));
-            this.m_btnProfileDiscription.UseVisualStyleBackColor = true;
-            this.m_btnProfileDiscription.Click += new System.EventHandler(this.m_btnProfileDiscription_Click);
-            // 
             // m_gpBox_SelectPreferences
             // 
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_btnSaveProfile);
@@ -274,17 +266,36 @@ namespace Obi.Dialogs
             this.m_gpBox_SelectPreferences.Name = "m_gpBox_SelectPreferences";
             this.m_gpBox_SelectPreferences.TabStop = false;
             // 
+            // m_btnProfileDiscription
+            // 
+            resources.ApplyResources(this.m_btnProfileDiscription, "m_btnProfileDiscription");
+            this.m_btnProfileDiscription.Name = "m_btnProfileDiscription";
+            this.helpProvider1.SetShowHelp(this.m_btnProfileDiscription, ((bool)(resources.GetObject("m_btnProfileDiscription.ShowHelp"))));
+            this.m_btnProfileDiscription.UseVisualStyleBackColor = true;
+            this.m_btnProfileDiscription.Click += new System.EventHandler(this.m_btnProfileDiscription_Click);
+            // 
             // m_chkColor
             // 
             resources.ApplyResources(this.m_chkColor, "m_chkColor");
             this.m_chkColor.Name = "m_chkColor";
             this.m_chkColor.UseVisualStyleBackColor = true;
             // 
+            // m_cb_SelectProfile
+            // 
+            this.m_cb_SelectProfile.FormattingEnabled = true;
+            resources.ApplyResources(this.m_cb_SelectProfile, "m_cb_SelectProfile");
+            this.m_cb_SelectProfile.Name = "m_cb_SelectProfile";
+            // 
             // m_chkProject
             // 
             resources.ApplyResources(this.m_chkProject, "m_chkProject");
             this.m_chkProject.Name = "m_chkProject";
             this.m_chkProject.UseVisualStyleBackColor = true;
+            // 
+            // m_lblSelectProfile
+            // 
+            resources.ApplyResources(this.m_lblSelectProfile, "m_lblSelectProfile");
+            this.m_lblSelectProfile.Name = "m_lblSelectProfile";
             // 
             // m_chkAudio
             // 
@@ -313,17 +324,6 @@ namespace Obi.Dialogs
             this.m_btnLoadProfile.Name = "m_btnLoadProfile";
             this.m_btnLoadProfile.UseVisualStyleBackColor = true;
             this.m_btnLoadProfile.Click += new System.EventHandler(this.m_btnLoadProfile_Click);
-            // 
-            // m_cb_SelectProfile
-            // 
-            this.m_cb_SelectProfile.FormattingEnabled = true;
-            resources.ApplyResources(this.m_cb_SelectProfile, "m_cb_SelectProfile");
-            this.m_cb_SelectProfile.Name = "m_cb_SelectProfile";
-            // 
-            // m_lblSelectProfile
-            // 
-            resources.ApplyResources(this.m_lblSelectProfile, "m_lblSelectProfile");
-            this.m_lblSelectProfile.Name = "m_lblSelectProfile";
             // 
             // mColorPreferencesTab
             // 
