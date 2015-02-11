@@ -93,6 +93,7 @@ namespace Obi
                newSettings.Project_SaveObiLocationAndSize = this.Project_SaveObiLocationAndSize;
                newSettings.Project_SaveProjectWhenRecordingEnds = this.Project_SaveProjectWhenRecordingEnds;
                newSettings.Project_ShowWaveformInContentView = this.Project_ShowWaveformInContentView;
+               newSettings.Project_MinimizeObi = this.Project_MinimizeObi;
            }
            if (prefProfiles == PreferenceProfiles.UserProfile || prefProfiles == PreferenceProfiles.All)
            {
@@ -329,6 +330,7 @@ namespace Obi
            this.Project_SaveObiLocationAndSize = existingSettings.Project_SaveObiLocationAndSize;
            this.Project_SaveProjectWhenRecordingEnds = existingSettings.Project_SaveProjectWhenRecordingEnds;
            this.Project_ShowWaveformInContentView = existingSettings.Project_ShowWaveformInContentView;
+           this.Project_MinimizeObi = existingSettings.Project_MinimizeObi;
 
            this.RecordingToolBarIncrementVal = existingSettings.RecordingToolBarIncrementVal;
            this.ShowGraphicalPeakMeterAtStartup = existingSettings.ShowGraphicalPeakMeterAtStartup;

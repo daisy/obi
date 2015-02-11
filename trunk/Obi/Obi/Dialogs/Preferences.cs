@@ -877,6 +877,7 @@ namespace Obi.Dialogs
                 mSettings.Project_SaveObiLocationAndSize = m_CheckBoxListView.Items[11].Checked;
                 mSettings.Project_PeakMeterChangeLocation = m_CheckBoxListView.Items[12].Checked;
                 mSettings.Project_EPUBCheckTimeOutEnabled = m_CheckBoxListView.Items[13].Checked;
+                mSettings.Project_MinimizeObi = m_CheckBoxListView.Items[14].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1015,6 +1016,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_SaveObiLocationAndSize"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_PeakMeterChangeLocation"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_EPUBCheckTimeOutEnabled"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_MinimizeObi"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1044,6 +1046,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[12].ToolTipText = Localizer.Message("Project_PeakMeterChangeLocation");
                 m_CheckBoxListView.Items[13].Checked = mSettings.Project_EPUBCheckTimeOutEnabled;
                 m_CheckBoxListView.Items[13].ToolTipText = Localizer.Message("Project_EPUBCheckTimeOutEnabled");
+                m_CheckBoxListView.Items[14].Checked = mSettings.Project_MinimizeObi;
+                m_CheckBoxListView.Items[14].ToolTipText = Localizer.Message("Project_MinimizeObi");
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1122,6 +1126,7 @@ namespace Obi.Dialogs
                 mSettings.Project_SaveObiLocationAndSize = m_DefaultSettings.Project_SaveObiLocationAndSize;
                 mSettings.Project_PeakMeterChangeLocation = m_DefaultSettings.Project_PeakMeterChangeLocation;
                 mSettings.Project_EPUBCheckTimeOutEnabled= m_DefaultSettings.Project_EPUBCheckTimeOutEnabled;
+                mSettings.Project_MinimizeObi = m_DefaultSettings.Project_MinimizeObi;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
