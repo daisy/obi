@@ -580,20 +580,12 @@ namespace Obi.UserControls
             //this.Height = (int)(this.Height + (m_minimumWidth.Width * NetSizeIncBtn) / (tempRatio));
             //recordingToolBarToolStrip.Width =
             //    (int)(recordingToolBarToolStrip.Width + recordingToolBarToolStrip.Width * NetSizeIncBtn);
-            recordingToolBarToolStrip.Width = this.Width;
+             //m_minRecordingContainer.Width
+           // recordingToolBarToolStrip.Width = this.Width;
             this.Height = (int)(this.Height + m_minTodoBtn.Height * NetSizeIncBtn);
             recordingToolBarToolStrip.Height =
                 (int)(recordingToolBarToolStrip.Height + m_minTodoBtn.Height * NetSizeIncBtn);
-            Point p = new Point(0, 0);
-            //int x = m_statusStrip.Top - m_Enlarge.Bottom;
-            p.Y = m_statusStrip.Top - 30;
-           // p.X = m_Enlarge.Location.X;
-            p.X = this.Width / 2 - 120;
-            m_Enlarge.Location = p;
-
-           // p.X = m_Reduce.Location.X;
-            p.X = this.Width / 2 + 20;
-            m_Reduce.Location = p;
+  
 
             m_recordingToolBarPlayBtn.Width = (int)(m_recordingToolBarPlayBtn.Width + m_minPlayBtn.Width * NetSizeIncBtn);
             m_recordingToolBarPlayBtn.Height = (int)(m_recordingToolBarPlayBtn.Height + m_minPlayBtn.Height * NetSizeIncBtn);
@@ -624,6 +616,23 @@ namespace Obi.UserControls
 
             m_recordingToolBarSectionEndBtn.Width = (int)(m_recordingToolBarSectionEndBtn.Width + m_minElapseBackSize.Width * NetSizeIncBtn);
             m_recordingToolBarSectionEndBtn.Height = (int)(m_recordingToolBarSectionEndBtn.Height + m_minSectionEndSize.Height * NetSizeIncBtn);
+
+            int diff = m_minimumWidth.Width - m_minRecordingContainer.Width;
+            this.Width = m_recordingToolBarPlayBtn.Width + m_recordingToolBarStopBtn.Width + m_recordingToolBarRecordingBtn.Width
+                                             + m_recordingToolBarPrePhraseBtn.Width + m_recordingGoToNextPhraseBtn.Width + m_recordingToolBarNextPageBtn.Width
+                                             + m_recordingToolBarNextSectionBtn.Width + m_TODOBtn.Width + m_recordingToolBarElapseBackBtn.Width
+                                             + m_recordingToolBarSectionEndBtn.Width + diff + 50;
+            recordingToolBarToolStrip.Width = this.Width - diff;
+            Point p = new Point(0, 0);
+            //int x = m_statusStrip.Top - m_Enlarge.Bottom;
+            p.Y = m_statusStrip.Top - 30;
+            // p.X = m_Enlarge.Location.X;
+            p.X = this.Width / 2 - 120;
+            m_Enlarge.Location = p;
+
+            // p.X = m_Reduce.Location.X;
+            p.X = this.Width / 2 + 20;
+            m_Reduce.Location = p;
 
             if (flagBtnPressed == true)
             {
@@ -748,20 +757,12 @@ namespace Obi.UserControls
                  //recordingToolBarToolStrip.Width =
                 //    (int)(recordingToolBarToolStrip.Width - recordingToolBarToolStrip.Width * NetSizeIncBtn);
 
-                recordingToolBarToolStrip.Width = this.Width;
+               // recordingToolBarToolStrip.Width = this.Width;
                 this.Height = (int)(this.Height - m_minTodoBtn.Height * NetSizeIncBtn);
                 recordingToolBarToolStrip.Height =
                     (int)(recordingToolBarToolStrip.Height - m_minTodoBtn.Height * NetSizeIncBtn);
 
-                Point p = new Point(0, 0);
-                p.Y = m_statusStrip.Top - 30;
-              //  p.X = m_Enlarge.Location.X;
-                p.X = this.Width / 2 - 120;
-                m_Enlarge.Location = p;
 
-                //p.X = m_Reduce.Location.X;
-                p.X = this.Width / 2 + 20;
-                m_Reduce.Location = p;
 
                 //  this.Height = (int)(this.Height - this.Height * NetSizeIncBtn);
                 m_recordingToolBarPlayBtn.Width = (int)(m_recordingToolBarPlayBtn.Width - m_minPlayBtn.Width * NetSizeIncBtn);
@@ -793,6 +794,24 @@ namespace Obi.UserControls
 
                 m_recordingToolBarSectionEndBtn.Width = (int)(m_recordingToolBarSectionEndBtn.Width - m_minSectionEndSize.Width * NetSizeIncBtn);
                 m_recordingToolBarSectionEndBtn.Height = (int)(m_recordingToolBarSectionEndBtn.Height - m_minSectionEndSize.Height * NetSizeIncBtn);
+
+
+                int diff = m_minimumWidth.Width - m_minRecordingContainer.Width;
+                this.Width = m_recordingToolBarPlayBtn.Width + m_recordingToolBarStopBtn.Width + m_recordingToolBarRecordingBtn.Width
+                                      + m_recordingToolBarPrePhraseBtn.Width + m_recordingGoToNextPhraseBtn.Width + m_recordingToolBarNextPageBtn.Width
+                                      + m_recordingToolBarNextSectionBtn.Width + m_TODOBtn.Width + m_recordingToolBarElapseBackBtn.Width
+                                      + m_recordingToolBarSectionEndBtn.Width + diff + 50;
+                recordingToolBarToolStrip.Width = this.Width - diff;
+
+                Point p = new Point(0, 0);
+                p.Y = m_statusStrip.Top - 30;
+                //  p.X = m_Enlarge.Location.X;
+                p.X = this.Width / 2 - 120;
+                m_Enlarge.Location = p;
+
+                //p.X = m_Reduce.Location.X;
+                p.X = this.Width / 2 + 20;
+                m_Reduce.Location = p;
             }
             else
             {
