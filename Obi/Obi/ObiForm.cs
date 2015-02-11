@@ -3639,7 +3639,10 @@ ref string exportDirectoryEPUB3)
                     mRecordingToolBarForm.Location = new System.Drawing.Point(this.Location.X,
                                                                               (this.Location.Y + this.Size.Height) -
                                                                               mRecordingToolBarForm.Size.Height);
-                    this.WindowState = FormWindowState.Minimized;
+                    if (!mSettings.Project_MinimizeObi)
+                    {
+                        this.WindowState = FormWindowState.Minimized;
+                    }
                     mView_RecordingToolBarMenuItem.Checked = true;
                 }
             }

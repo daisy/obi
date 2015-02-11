@@ -5155,6 +5155,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obi should not minimize on opening of Recording Toolbar.
+        /// </summary>
+        internal static string Project_MinimizeObi {
+            get {
+                return ResourceManager.GetString("Project_MinimizeObi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keep the peak meter aligned to right edge of Obi.
         /// </summary>
         internal static string Project_PeakMeterChangeLocation {

@@ -2712,4 +2712,7 @@ Error text: {1}</value>
   <data name="MergeProject_CannotMerge" xml:space="preserve">
     <value>Cannot select opened project</value>
   </data>
+  <data name="Project_MinimizeObi" xml:space="preserve">
+    <value>Obi should not minimize on opening of Recording Toolbar</value>
+  </data>
 </root>
