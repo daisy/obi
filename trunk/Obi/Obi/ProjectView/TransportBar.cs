@@ -1358,8 +1358,15 @@ namespace Obi.ProjectView
                 
                 if (neglectSelection || m_IsPlaySectionInspiteOfPhraseSelection)
                 {
+                    if (m_IsPlaySectionInspiteOfPhraseSelection && mView.Selection != null && mView.Selection.Control is ContentView )
+                    {
+                        // play shallow, if focus is in the content view
+                        mLocalPlaylist = new Playlist(mPlayer,  node, mPlayQAPlaylist, false);
+                    }
+                    else
+                    {
                     mLocalPlaylist = new Playlist(mPlayer,  node, mPlayQAPlaylist);
-                    
+                    }
                 }
                 else
                 {

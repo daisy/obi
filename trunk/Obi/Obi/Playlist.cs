@@ -124,6 +124,19 @@ namespace Obi
         /// <param name="player"></param>
         /// <param name="node"></param>
         public Playlist(AudioPlayer player, ObiNode node, bool IsQaPlaylist)
+            :this(player, node, IsQaPlaylist, true)
+        {   
+        }
+
+        /// <summary>
+        /// sections & phrases can be played with specified depth.
+        ///  Independent of the current selection 
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="node"></param>
+        /// <param name="IsQaPlaylist"></param>
+        /// <param name="traverseDeep"></param>
+        public Playlist(AudioPlayer player, ObiNode node, bool IsQaPlaylist, bool traverseDeep)
         {
             resetEndOfAudioTimer();
 
@@ -131,7 +144,15 @@ namespace Obi
             mPlayer.PlaybackFwdRwdRate = 0;
             mIsQAPlaylist = IsQaPlaylist;
             Reset(LocalPlaylist);
-            AddPhraseNodes(node);
+            //AddPhraseNodes(node);
+            if (traverseDeep)
+            {
+                AddPhraseNodes(node);
+            }
+            else
+            {
+                AddPhraseNodesFromStripOrPhrase(node);
+            }
         }
 
 
