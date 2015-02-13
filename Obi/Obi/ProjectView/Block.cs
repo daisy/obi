@@ -307,7 +307,7 @@ namespace Obi.ProjectView
         {
             if (mToolTip != null)
             {   
-                mToolTip.ToolTipTitle = string.Format(Localizer.Message("Phrase_IndexString"), mNode.Index.ToString(), mNode.ParentAs<SectionNode>().PhraseChildCount.ToString());
+                mToolTip.ToolTipTitle = string.Format(Localizer.Message("Phrase_IndexString"), (mNode.Index+1).ToString(), mNode.ParentAs<SectionNode>().PhraseChildCount.ToString());
             }
         }
 
