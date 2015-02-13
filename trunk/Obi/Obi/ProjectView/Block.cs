@@ -37,6 +37,7 @@ namespace Obi.ProjectView
             UpdateLabel();
             mBaseHeight = Height;
             mBaseFontSize = mLabel.Font.SizeInPoints;
+            mToolTip.Popup +=new PopupEventHandler(mToolTip_Popup);
         }
         
         /// <summary>
@@ -302,5 +303,14 @@ namespace Obi.ProjectView
             }
         }
 
+        private void mToolTip_Popup(object sender, EventArgs e)
+        {
+            if (mToolTip != null)
+            {   
+                mToolTip.ToolTipTitle = string.Format(Localizer.Message("Phrase_IndexString"), mNode.Index.ToString(), mNode.ParentAs<SectionNode>().PhraseChildCount.ToString());
+            }
+        }
+
     }
+        
 }

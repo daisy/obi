@@ -2715,4 +2715,7 @@ Error text: {1}</value>
   <data name="Project_MinimizeObi" xml:space="preserve">
     <value>Obi should not minimize on opening of Recording Toolbar</value>
   </data>
+  <data name="Phrase_IndexString" xml:space="preserve">
+    <value>{0} of {1}</value>
+  </data>
 </root>

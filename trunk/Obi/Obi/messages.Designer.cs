@@ -4732,6 +4732,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} of {1}.
+        /// </summary>
+        internal static string Phrase_IndexString {
+            get {
+                return ResourceManager.GetString("Phrase_IndexString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to phrase (length: {1}).
         /// </summary>
         internal static string phrase_node_to_string {
