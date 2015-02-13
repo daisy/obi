@@ -108,6 +108,7 @@
 <y>0</y>
 </ObiLastLocation>
 <Project_PeakMeterChangeLocation>false</Project_PeakMeterChangeLocation>
+<Project_MinimizeObi>true</Project_MinimizeObi>
 <Audio_CleanupMaxFileSizeInMB>100</Audio_CleanupMaxFileSizeInMB>
 <EncodingFileFormat id="ref-21">MP3</EncodingFileFormat>
 </a1:Settings_SaveProfile>
@@ -418,6 +419,12 @@
 <knownColor>97</knownColor>
 <state>1</state>
 </EmptySectionBackgroundColor>
+<HighlightedSectionNodeWithoutSelectionColor>
+  <name xsi:null="1"/>
+  <value>0</value>
+  <knownColor>5</knownColor>
+  <state>1</state>
+</HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
 <a1:ColorSettings id="ref-7" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.26594%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
@@ -726,6 +733,12 @@
 <knownColor>79</knownColor>
 <state>1</state>
 </EmptySectionBackgroundColor>
+<HighlightedSectionNodeWithoutSelectionColor>
+  <name xsi:null="1"/>
+  <value>0</value>
+  <knownColor>5</knownColor>
+  <state>1</state>
+</HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
 <a4:ArrayList id="ref-16" xmlns:a4="http://schemas.microsoft.com/clr/ns/System.Collections">
 <_items href="#ref-22"/>
