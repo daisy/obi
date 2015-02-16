@@ -2039,6 +2039,7 @@ namespace Obi.ProjectView
             if ( updateSelectionNode != null ) 
             command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection (this, new NodeSelection (updateSelectionNode, Selection.Control )) );
 
+        List<EmptyNode> emptyNodesToPreserve = new List<EmptyNode>();
             int progressInterval = (endIndex - startIndex) > 100 ? (endIndex - startIndex) * 2 / 100 : 1*2; // multiplied by 2 to increment progress by 2
             int progressPercent = 0;
             for (int i = endIndex; i >= startIndex; i--)
@@ -2047,7 +2048,10 @@ namespace Obi.ProjectView
                     if (preservePhrasesWithSpecificRole
                         && section.PhraseChild(i).Role_ == roleToPreserve)
                     {
-                        continue;
+                        /// instead of preserving the phrase with audio, only the structure is preserved. 
+                        /// i.e. empty node with the same role. Therefore the list of the phrases to preserved is preserved.
+                        emptyNodesToPreserve.Insert(0,section.PhraseChild(i));
+                        //continue;
                     }
 
                 Commands.Node.Delete deleteCommand = new Obi.Commands.Node.Delete ( this, section.PhraseChild ( i ), false );
@@ -2055,7 +2059,18 @@ namespace Obi.ProjectView
                 if ((i - startIndex) % progressInterval == 0) deleteCommand.ProgressPercentage = progressPercent += 2;
                 command.ChildCommands.Insert(command.ChildCommands.Count, deleteCommand );
                 }
-             
+
+                if (emptyNodesToPreserve.Count > 0)
+                {
+                    // the list is in right order so iterate from start to end
+                    for (int i = 0; i < emptyNodesToPreserve.Count; i++)
+                    {
+                        EmptyNode newNode = mPresentation.TreeNodeFactory.Create<EmptyNode>();
+                        newNode.CopyAttributes(emptyNodesToPreserve[i]);
+                        Commands.Node.AddEmptyNode addCmd = new Obi.Commands.Node.AddEmptyNode(this, newNode, section, startIndex + i);
+                        command.ChildCommands.Insert(command.ChildCommands.Count, addCmd);
+                    }
+                }
             
             return command;
             }
