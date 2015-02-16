@@ -53,7 +53,7 @@
 <Project_LatestVersionCheckedByUpdate id="ref-15">3.6.0.26346</Project_LatestVersionCheckedByUpdate>
 <PlayIfNoSelection>true</PlayIfNoSelection>
 <PlayOnNavigate>false</PlayOnNavigate>
-<Audio_PreviewDuration>1500</Audio_PreviewDuration>
+<Audio_PreviewDuration>7000</Audio_PreviewDuration>
 <Audio_ElapseBackTimeInMilliseconds>2500</Audio_ElapseBackTimeInMilliseconds>
 <RecentProjects href="#ref-16"/>
 <Audio_SampleRate>44100</Audio_SampleRate>
