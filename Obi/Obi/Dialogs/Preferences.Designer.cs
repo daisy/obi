@@ -126,6 +126,8 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_ApplyButton = new System.Windows.Forms.Button();
+            this.m_lblSelectedProfile = new System.Windows.Forms.Label();
+            this.m_txtSelectedProfile = new System.Windows.Forms.TextBox();
             this.mAdvanceTab.SuspendLayout();
             this.m_gpBoxSelectShortcuts.SuspendLayout();
             this.m_gpBox_SelectPreferences.SuspendLayout();
@@ -251,6 +253,8 @@ namespace Obi.Dialogs
             // 
             // m_gpBox_SelectPreferences
             // 
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_txtSelectedProfile);
+            this.m_gpBox_SelectPreferences.Controls.Add(this.m_lblSelectedProfile);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_btnSaveProfile);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_btnProfileDiscription);
             this.m_gpBox_SelectPreferences.Controls.Add(this.m_chkColor);
@@ -974,6 +978,17 @@ namespace Obi.Dialogs
             this.m_ApplyButton.UseVisualStyleBackColor = true;
             this.m_ApplyButton.Click += new System.EventHandler(this.m_ApplyButton_Click);
             // 
+            // m_lblSelectedProfile
+            // 
+            resources.ApplyResources(this.m_lblSelectedProfile, "m_lblSelectedProfile");
+            this.m_lblSelectedProfile.Name = "m_lblSelectedProfile";
+            // 
+            // m_txtSelectedProfile
+            // 
+            resources.ApplyResources(this.m_txtSelectedProfile, "m_txtSelectedProfile");
+            this.m_txtSelectedProfile.Name = "m_txtSelectedProfile";
+            this.m_txtSelectedProfile.ReadOnly = true;
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -1117,5 +1132,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnShortcutLoad;
         private System.Windows.Forms.Button m_btnShortcutAdd;
         private System.Windows.Forms.ComboBox m_cb_SelectShorcutsProfile;
+        private System.Windows.Forms.TextBox m_txtSelectedProfile;
+        private System.Windows.Forms.Label m_lblSelectedProfile;
     }
 }

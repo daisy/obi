@@ -234,12 +234,6 @@
   <data name="&gt;&gt;m_grpBoxChkBoxListView.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="m_Preference_ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>144, 17</value>
-  </metadata>
   <data name="m_btnSaveProfile.AccessibleName" xml:space="preserve">
     <value>Save current settings as a profile</value>
   </data>
@@ -247,7 +241,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btnSaveProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 128</value>
+    <value>218, 158</value>
+  </data>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
+    <value>Obi Help.chm</value>
   </data>
   <data name="m_btnSaveProfile.ShowHelp" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -256,11 +256,14 @@
     <value>95, 31</value>
   </data>
   <data name="m_btnSaveProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="m_btnSaveProfile.Text" xml:space="preserve">
     <value>&amp;Save</value>
   </data>
+  <metadata name="m_Preference_ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>144, 17</value>
+  </metadata>
   <data name="m_btnSaveProfile.ToolTip" xml:space="preserve">
     <value>Save current settings as a profile</value>
   </data>
@@ -274,7 +277,7 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_btnSaveProfile.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="m_btnAddProfile.AccessibleName" xml:space="preserve">
     <value>Add an existing profile</value>
@@ -283,13 +286,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btnAddProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 129</value>
+    <value>113, 159</value>
   </data>
   <data name="m_btnAddProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 31</value>
   </data>
   <data name="m_btnAddProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="m_btnAddProfile.Text" xml:space="preserve">
     <value>&amp;Add</value>
@@ -307,7 +310,7 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_btnAddProfile.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="m_ResetButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -341,12 +344,6 @@
   </data>
   <data name="&gt;&gt;m_ResetButton.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.chm</value>
   </data>
   <data name="&gt;&gt;m_btnShortcutSave.Name" xml:space="preserve">
     <value>m_btnShortcutSave</value>
@@ -400,7 +397,7 @@
     <value>343, 8</value>
   </data>
   <data name="m_gpBoxSelectShortcuts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 170</value>
+    <value>261, 202</value>
   </data>
   <data name="m_gpBoxSelectShortcuts.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -420,6 +417,54 @@
   <data name="&gt;&gt;m_gpBoxSelectShortcuts.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="m_txtSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>109, 27</value>
+  </data>
+  <data name="m_txtSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 22</value>
+  </data>
+  <data name="m_txtSelectedProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectedProfile.Name" xml:space="preserve">
+    <value>m_txtSelectedProfile</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectedProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectedProfile.Parent" xml:space="preserve">
+    <value>m_gpBox_SelectPreferences</value>
+  </data>
+  <data name="&gt;&gt;m_txtSelectedProfile.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_lblSelectedProfile.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblSelectedProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 27</value>
+  </data>
+  <data name="m_lblSelectedProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 16</value>
+  </data>
+  <data name="m_lblSelectedProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="m_lblSelectedProfile.Text" xml:space="preserve">
+    <value>Selected Profile</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectedProfile.Name" xml:space="preserve">
+    <value>m_lblSelectedProfile</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectedProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectedProfile.Parent" xml:space="preserve">
+    <value>m_gpBox_SelectPreferences</value>
+  </data>
+  <data name="&gt;&gt;m_lblSelectedProfile.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="m_btnProfileDiscription.AccessibleName" xml:space="preserve">
     <value>Profile Description</value>
   </data>
@@ -433,7 +478,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_btnProfileDiscription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>282, 23</value>
+    <value>280, 55</value>
   </data>
   <data name="m_btnProfileDiscription.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -442,7 +487,7 @@
     <value>36, 24</value>
   </data>
   <data name="m_btnProfileDiscription.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="m_btnProfileDiscription.Text" xml:space="preserve">
     <value>?</value>
@@ -457,19 +502,19 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_btnProfileDiscription.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="m_chkColor.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_chkColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 95</value>
+    <value>113, 125</value>
   </data>
   <data name="m_chkColor.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 20</value>
   </data>
   <data name="m_chkColor.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="m_chkColor.Text" xml:space="preserve">
     <value>&amp;Color</value>
@@ -484,16 +529,16 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_chkColor.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="m_cb_SelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 23</value>
+    <value>94, 55</value>
   </data>
   <data name="m_cb_SelectProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 24</value>
   </data>
   <data name="m_cb_SelectProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;m_cb_SelectProfile.Name" xml:space="preserve">
     <value>m_cb_SelectProfile</value>
@@ -505,19 +550,19 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_cb_SelectProfile.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="m_chkProject.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_chkProject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 71</value>
+    <value>9, 101</value>
   </data>
   <data name="m_chkProject.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 20</value>
   </data>
   <data name="m_chkProject.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="m_chkProject.Text" xml:space="preserve">
     <value>&amp;Project</value>
@@ -532,19 +577,19 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_chkProject.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="m_lblSelectProfile.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblSelectProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 26</value>
+    <value>0, 58</value>
   </data>
   <data name="m_lblSelectProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 16</value>
   </data>
   <data name="m_lblSelectProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="m_lblSelectProfile.Text" xml:space="preserve">
     <value>Select Profile :</value>
@@ -559,19 +604,19 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_lblSelectProfile.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="m_chkAudio.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_chkAudio.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 95</value>
+    <value>9, 125</value>
   </data>
   <data name="m_chkAudio.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 20</value>
   </data>
   <data name="m_chkAudio.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="m_chkAudio.Text" xml:space="preserve">
     <value>A&amp;udio</value>
@@ -586,19 +631,19 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_chkAudio.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="m_chkLanguage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_chkLanguage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 71</value>
+    <value>113, 101</value>
   </data>
   <data name="m_chkLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 20</value>
   </data>
   <data name="m_chkLanguage.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="m_chkLanguage.Text" xml:space="preserve">
     <value>La&amp;nguage</value>
@@ -613,19 +658,19 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_chkLanguage.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_chkAll.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_chkAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 71</value>
+    <value>218, 101</value>
   </data>
   <data name="m_chkAll.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 20</value>
   </data>
   <data name="m_chkAll.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_chkAll.Text" xml:space="preserve">
     <value>Selec&amp;t All</value>
@@ -640,7 +685,7 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_chkAll.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="m_btnLoadProfile.AccessibleName" xml:space="preserve">
     <value>Load the current selected  profile</value>
@@ -649,13 +694,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btnLoadProfile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 129</value>
+    <value>9, 159</value>
   </data>
   <data name="m_btnLoadProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 31</value>
   </data>
   <data name="m_btnLoadProfile.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="m_btnLoadProfile.Text" xml:space="preserve">
     <value>&amp;Load</value>
@@ -670,13 +715,13 @@
     <value>m_gpBox_SelectPreferences</value>
   </data>
   <data name="&gt;&gt;m_btnLoadProfile.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="m_gpBox_SelectPreferences.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 7</value>
   </data>
   <data name="m_gpBox_SelectPreferences.Size" type="System.Drawing.Size, System.Drawing">
-    <value>324, 171</value>
+    <value>324, 203</value>
   </data>
   <data name="m_gpBox_SelectPreferences.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -3701,9 +3746,6 @@
   <data name="&gt;&gt;mTab.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="m_Preference_ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>144, 17</value>
-  </metadata>
   <data name="m_ApplyButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
