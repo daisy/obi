@@ -4939,6 +4939,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preferences Profile Loaded.
+        /// </summary>
+        internal static string Preference_ProfileCaption {
+            get {
+                return ResourceManager.GetString("Preference_ProfileCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Following checkboxes will be checked. Do you want to proceed?.
         /// </summary>
         internal static string Preferences_Advance_Mode {
