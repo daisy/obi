@@ -1937,21 +1937,25 @@ namespace Obi.Dialogs
             {
                 Settings_SaveProfile saveProfile = Settings_SaveProfile.GetSettingsFromSavedProfile(profilePath);
                 
-                PreferenceProfiles prefProfiles = PreferenceProfiles.None;
                 if (m_chkAll.Checked)
                 {
-                    prefProfiles = PreferenceProfiles.All;
+                    saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.All);
                 }
                 else
                 {
-                    if (m_chkProject.Checked) prefProfiles = PreferenceProfiles.Project;
-                    if (m_chkAudio.Checked ) prefProfiles = PreferenceProfiles.Audio;
-                    if (m_chkLanguage.Checked ) prefProfiles = PreferenceProfiles.UserProfile;
-                    if (m_chkColor.Checked ) prefProfiles = PreferenceProfiles.Colors;
+                    if (m_chkProject.Checked)
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Project);
+
+                    if (m_chkAudio.Checked ) 
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Audio);
+
+                    if (m_chkLanguage.Checked ) 
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.UserProfile);
+
+                    if (m_chkColor.Checked )
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Colors);
                 }
-                if (prefProfiles != PreferenceProfiles.None)
-                {
-                    saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, prefProfiles);
+                    
                     mSettings = mForm.Settings;
 
                     if (m_chkProject.Checked || m_chkAll.Checked) InitializeProjectTab();
@@ -1959,8 +1963,7 @@ namespace Obi.Dialogs
                     if (m_chkLanguage.Checked || m_chkAll.Checked) InitializeUserProfileTab();
                     if (m_chkColor.Checked || m_chkAll.Checked) InitializeColorPreferenceTab();
                     MessageBox.Show(Localizer.Message("Preferences_ProfileLoaded"));
-                }
-
+                
             }// check for path
         }
 
