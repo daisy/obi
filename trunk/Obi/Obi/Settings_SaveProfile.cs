@@ -354,5 +354,19 @@ namespace Obi
            this.ZoomFactor = existingSettings.ZoomFactor;
        }
 
+       public bool Compare(Settings settings)
+       {
+           // compare if all the relevant public members of the settings are  equal to the corresponding members of this class
+           // relevant members means the members which can be changed from preferences dialog. It also excludes path related members.
+           
+           if (this.Audio_AllowOverwrite == settings.Audio_AllowOverwrite
+               && this.Audio_AudioClues == settings.Audio_AudioClues
+               && this.Audio_AudioScale == settings.Audio_AudioScale)
+           {
+               return true;
+           }
+           return false;
+       }
+
             }
 }
