@@ -151,6 +151,7 @@ namespace Obi
                newSettings.ColorSettings.WaveformBackColor = this.ColorSettings.WaveformBackColor;
                newSettings.ColorSettings.WaveformHighlightedBackColor = this.ColorSettings.WaveformHighlightedBackColor;
                newSettings.ColorSettings.FineNavigationColor = this.ColorSettings.FineNavigationColor;
+               newSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = this.ColorSettings.HighlightedSectionNodeWithoutSelectionColor;
 
                newSettings.ColorSettingsHC.BlockBackColor_Custom = this.ColorSettingsHC.BlockBackColor_Custom;
                newSettings.ColorSettingsHC.BlockBackColor_Anchor = this.ColorSettingsHC.BlockBackColor_Anchor;
@@ -190,6 +191,7 @@ namespace Obi
                newSettings.ColorSettingsHC.WaveformBackColor = this.ColorSettingsHC.WaveformBackColor;
                newSettings.ColorSettingsHC.WaveformHighlightedBackColor = this.ColorSettingsHC.WaveformHighlightedBackColor;
                newSettings.ColorSettings.FineNavigationColor = this.ColorSettingsHC.FineNavigationColor;
+               newSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = this.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor;
                //newSettings.ColorSettings = this.ColorSettings;
                //newSettings.ColorSettingsHC = this.ColorSettingsHC;
            }
@@ -358,10 +360,141 @@ namespace Obi
        {
            // compare if all the relevant public members of the settings are  equal to the corresponding members of this class
            // relevant members means the members which can be changed from preferences dialog. It also excludes path related members.
-           
+
            if (this.Audio_AllowOverwrite == settings.Audio_AllowOverwrite
                && this.Audio_AudioClues == settings.Audio_AudioClues
-               && this.Audio_AudioScale == settings.Audio_AudioScale)
+               && this.Audio_AudioScale == settings.Audio_AudioScale
+               && this.Audio_CleanupMaxFileSizeInMB == settings.Audio_CleanupMaxFileSizeInMB
+               && this.Audio_DefaultGap == settings.Audio_DefaultGap
+               && this.Audio_DefaultLeadingSilence == settings.Audio_DefaultLeadingSilence
+               && this.Audio_DefaultThreshold == settings.Audio_DefaultThreshold
+               && this.Audio_DeleteFollowingPhrasesOfSectionAfterRecording == settings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording
+               && this.Audio_DisableDeselectionOnStop == settings.Audio_DisableDeselectionOnStop
+               && this.Audio_ElapseBackTimeInMilliseconds == settings.Audio_ElapseBackTimeInMilliseconds
+               && this.Audio_EnableLivePhraseDetection == settings.Audio_EnableLivePhraseDetection
+               && this.Audio_EnablePostRecordingPageRenumbering == settings.Audio_EnablePostRecordingPageRenumbering
+               && this.Audio_EnforceSingleCursor == settings.Audio_EnforceSingleCursor
+               && this.Audio_FastPlayWithoutPitchChange == settings.Audio_FastPlayWithoutPitchChange
+               && this.Audio_LastInputDevice == settings.Audio_LastInputDevice
+               && this.Audio_LastOutputDevice == settings.Audio_LastOutputDevice
+               && this.Audio_LevelComboBoxIndex == settings.Audio_LevelComboBoxIndex
+               && this.Audio_MergeFirstTwoPhrasesAfterPhraseDetection == settings.Audio_MergeFirstTwoPhrasesAfterPhraseDetection
+               && this.Audio_NoiseLevel == settings.Audio_NoiseLevel
+               && this.Audio_NudgeTimeMs == settings.Audio_NudgeTimeMs
+               && this.Audio_PreservePagesWhileRecordOverSubsequentAudio == settings.Audio_PreservePagesWhileRecordOverSubsequentAudio
+               && this.Audio_PreviewDuration == settings.Audio_PreviewDuration
+               && this.Audio_RecordDirectlyWithRecordButton == settings.Audio_RecordDirectlyWithRecordButton
+               && this.Audio_Recording_PreviewBeforeStarting == settings.Audio_Recording_PreviewBeforeStarting
+               && this.Audio_Recording_ReplaceAfterCursor == settings.Audio_Recording_ReplaceAfterCursor
+               && this.Audio_RetainInitialSilenceInPhraseDetection == settings.Audio_RetainInitialSilenceInPhraseDetection
+               && this.Audio_ShowLiveWaveformWhileRecording == settings.Audio_ShowLiveWaveformWhileRecording
+               && this.Audio_TTSVoice == settings.Audio_TTSVoice
+               && this.Audio_UseRecordBtnToRecordOverSubsequentAudio == settings.Audio_UseRecordBtnToRecordOverSubsequentAudio
+               && this.Audio_UseRecordingPauseShortcutForStopping == settings.Audio_UseRecordingPauseShortcutForStopping
+
+               && this.Project_AutomaticallyDeleteUnusedFilesAfterCleanup == settings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup
+               && this.Project_AutoSave_RecordingEnd == settings.Project_AutoSave_RecordingEnd
+               && this.Project_AutoSaveTimeInterval == settings.Project_AutoSaveTimeInterval
+               && this.Project_BackgroundColorForEmptySection == settings.Project_BackgroundColorForEmptySection
+               && this.Project_CheckForUpdates == settings.Project_CheckForUpdates
+               && this.Project_EnableFreeDiskSpaceCheck == settings.Project_EnableFreeDiskSpaceCheck
+               && this.Project_EPUBCheckTimeOutEnabled == settings.Project_EPUBCheckTimeOutEnabled
+               && this.Project_Export_AlwaysIgnoreIndentation == settings.Project_Export_AlwaysIgnoreIndentation
+               && this.Project_ImportToleranceForAudioInMs == settings.Project_ImportToleranceForAudioInMs
+               && this.Project_LatestVersionCheckedByUpdate == settings.Project_LatestVersionCheckedByUpdate
+               && this.Project_LeftAlignPhrasesInContentView == settings.Project_LeftAlignPhrasesInContentView
+               && this.Project_MinimizeObi == settings.Project_MinimizeObi
+               && this.Project_OpenBookmarkNodeOnReopeningProject == settings.Project_OpenBookmarkNodeOnReopeningProject
+               && this.Project_OpenLastProject == settings.Project_OpenLastProject
+               && this.Project_OptimizeMemory == settings.Project_OptimizeMemory
+               && this.Project_PeakMeterChangeLocation == settings.Project_PeakMeterChangeLocation
+               && this.Project_SaveObiLocationAndSize == settings.Project_SaveObiLocationAndSize
+               && this.Project_SaveProjectWhenRecordingEnds == settings.Project_SaveProjectWhenRecordingEnds
+               && this.Project_ShowWaveformInContentView == settings.Project_ShowWaveformInContentView
+
+               && this.ColorSettings.BlockBackColor_Anchor == settings.ColorSettings.BlockBackColor_Anchor
+               && this.ColorSettings.BlockBackColor_Custom == settings.ColorSettings.BlockBackColor_Custom
+               && this.ColorSettings.BlockBackColor_Empty == settings.ColorSettings.BlockBackColor_Empty
+               && this.ColorSettings.BlockBackColor_Heading == settings.ColorSettings.BlockBackColor_Heading
+               && this.ColorSettings.BlockBackColor_Page == settings.ColorSettings.BlockBackColor_Page
+               && this.ColorSettings.BlockBackColor_Plain == settings.ColorSettings.BlockBackColor_Plain
+               && this.ColorSettings.BlockBackColor_Selected == settings.ColorSettings.BlockBackColor_Selected
+               && this.ColorSettings.BlockBackColor_Silence == settings.ColorSettings.BlockBackColor_Silence
+               && this.ColorSettings.BlockBackColor_TODO == settings.ColorSettings.BlockBackColor_TODO
+               && this.ColorSettings.BlockBackColor_Unused == settings.ColorSettings.BlockBackColor_Unused
+               && this.ColorSettings.BlockForeColor_Anchor == settings.ColorSettings.BlockForeColor_Anchor
+               && this.ColorSettings.BlockForeColor_Custom == settings.ColorSettings.BlockForeColor_Custom
+               && this.ColorSettings.BlockForeColor_Empty == settings.ColorSettings.BlockForeColor_Empty
+               && this.ColorSettings.BlockForeColor_Heading == settings.ColorSettings.BlockForeColor_Heading
+               && this.ColorSettings.BlockForeColor_Page == settings.ColorSettings.BlockForeColor_Page
+               && this.ColorSettings.BlockForeColor_Plain == settings.ColorSettings.BlockForeColor_Plain
+               && this.ColorSettings.BlockForeColor_Selected == settings.ColorSettings.BlockForeColor_Selected
+               && this.ColorSettings.BlockForeColor_Silence == settings.ColorSettings.BlockForeColor_Silence
+               && this.ColorSettings.BlockForeColor_TODO == settings.ColorSettings.BlockForeColor_TODO
+               && this.ColorSettings.BlockForeColor_Unused == settings.ColorSettings.BlockForeColor_Unused
+               && this.ColorSettings.StripBackColor == settings.ColorSettings.StripBackColor
+               && this.ColorSettings.StripCursorSelectedBackColor == settings.ColorSettings.StripCursorSelectedBackColor
+               && this.ColorSettings.StripForeColor == settings.ColorSettings.StripForeColor
+               && this.ColorSettings.StripSelectedBackColor == settings.ColorSettings.StripSelectedBackColor
+               && this.ColorSettings.StripSelectedForeColor == settings.ColorSettings.StripSelectedForeColor
+               && this.ColorSettings.StripUnusedBackColor == settings.ColorSettings.StripUnusedBackColor
+               && this.ColorSettings.StripUnusedForeColor == settings.ColorSettings.StripUnusedForeColor
+               && this.ColorSettings.StripWithoutPhrasesBackcolor == settings.ColorSettings.StripWithoutPhrasesBackcolor
+               && this.ColorSettings.TOCViewBackColor == settings.ColorSettings.TOCViewBackColor
+               && this.ColorSettings.TOCViewForeColor == settings.ColorSettings.TOCViewForeColor
+               && this.ColorSettings.TOCViewUnusedColor == settings.ColorSettings.TOCViewUnusedColor
+               && this.ColorSettings.ToolTipForeColor == settings.ColorSettings.ToolTipForeColor
+               && this.ColorSettings.TransportBarBackColor == settings.ColorSettings.TransportBarBackColor
+               && this.ColorSettings.TransportBarLabelBackColor == settings.ColorSettings.TransportBarLabelBackColor
+               && this.ColorSettings.TransportBarLabelForeColor == settings.ColorSettings.TransportBarLabelForeColor
+               && this.ColorSettings.WaveformBackColor == settings.ColorSettings.WaveformBackColor
+               && this.ColorSettings.WaveformHighlightedBackColor == settings.ColorSettings.WaveformHighlightedBackColor
+               && this.ColorSettings.FineNavigationColor == settings.ColorSettings.FineNavigationColor
+               && this.ColorSettings.HighlightedSectionNodeWithoutSelectionColor == settings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor
+
+               && this.ColorSettingsHC.BlockBackColor_Anchor == settings.ColorSettingsHC.BlockBackColor_Anchor
+               && this.ColorSettingsHC.BlockBackColor_Custom == settings.ColorSettingsHC.BlockBackColor_Custom
+               && this.ColorSettingsHC.BlockBackColor_Empty == settings.ColorSettingsHC.BlockBackColor_Empty
+               && this.ColorSettingsHC.BlockBackColor_Heading == settings.ColorSettingsHC.BlockBackColor_Heading
+               && this.ColorSettingsHC.BlockBackColor_Page == settings.ColorSettingsHC.BlockBackColor_Page
+               && this.ColorSettingsHC.BlockBackColor_Plain == settings.ColorSettingsHC.BlockBackColor_Plain
+               && this.ColorSettingsHC.BlockBackColor_Selected == settings.ColorSettingsHC.BlockBackColor_Selected
+               && this.ColorSettingsHC.BlockBackColor_Silence == settings.ColorSettingsHC.BlockBackColor_Silence
+               && this.ColorSettingsHC.BlockBackColor_TODO == settings.ColorSettingsHC.BlockBackColor_TODO
+               && this.ColorSettingsHC.BlockBackColor_Unused == settings.ColorSettingsHC.BlockBackColor_Unused
+               && this.ColorSettingsHC.BlockForeColor_Anchor == settings.ColorSettingsHC.BlockForeColor_Anchor
+               && this.ColorSettingsHC.BlockForeColor_Custom == settings.ColorSettingsHC.BlockForeColor_Custom
+               && this.ColorSettingsHC.BlockForeColor_Empty == settings.ColorSettingsHC.BlockForeColor_Empty
+               && this.ColorSettingsHC.BlockForeColor_Heading == settings.ColorSettingsHC.BlockForeColor_Heading
+               && this.ColorSettingsHC.BlockForeColor_Page == settings.ColorSettingsHC.BlockForeColor_Page
+               && this.ColorSettingsHC.BlockForeColor_Plain == settings.ColorSettingsHC.BlockForeColor_Plain
+               && this.ColorSettingsHC.BlockForeColor_Selected == settings.ColorSettingsHC.BlockForeColor_Selected
+               && this.ColorSettingsHC.BlockForeColor_Silence == settings.ColorSettingsHC.BlockForeColor_Silence
+               && this.ColorSettingsHC.BlockForeColor_TODO == settings.ColorSettingsHC.BlockForeColor_TODO
+               && this.ColorSettingsHC.BlockForeColor_Unused == settings.ColorSettingsHC.BlockForeColor_Unused
+               && this.ColorSettingsHC.StripBackColor == settings.ColorSettingsHC.StripBackColor
+               && this.ColorSettingsHC.StripCursorSelectedBackColor == settings.ColorSettingsHC.StripCursorSelectedBackColor
+               && this.ColorSettingsHC.StripForeColor == settings.ColorSettingsHC.StripForeColor
+               && this.ColorSettingsHC.StripSelectedBackColor == settings.ColorSettingsHC.StripSelectedBackColor
+               && this.ColorSettingsHC.StripSelectedForeColor == settings.ColorSettingsHC.StripSelectedForeColor
+               && this.ColorSettingsHC.StripUnusedBackColor == settings.ColorSettingsHC.StripUnusedBackColor
+               && this.ColorSettingsHC.StripUnusedForeColor == settings.ColorSettingsHC.StripUnusedForeColor
+               && this.ColorSettingsHC.StripWithoutPhrasesBackcolor == settings.ColorSettingsHC.StripWithoutPhrasesBackcolor
+               && this.ColorSettingsHC.TOCViewBackColor == settings.ColorSettingsHC.TOCViewBackColor
+               && this.ColorSettingsHC.TOCViewForeColor == settings.ColorSettingsHC.TOCViewForeColor
+               && this.ColorSettingsHC.TOCViewUnusedColor == settings.ColorSettingsHC.TOCViewUnusedColor
+               && this.ColorSettingsHC.ToolTipForeColor == settings.ColorSettingsHC.ToolTipForeColor
+               && this.ColorSettingsHC.TransportBarBackColor == settings.ColorSettingsHC.TransportBarBackColor
+               && this.ColorSettingsHC.TransportBarLabelBackColor == settings.ColorSettingsHC.TransportBarLabelBackColor
+               && this.ColorSettingsHC.TransportBarLabelForeColor == settings.ColorSettingsHC.TransportBarLabelForeColor
+               && this.ColorSettingsHC.WaveformBackColor == settings.ColorSettingsHC.WaveformBackColor
+               && this.ColorSettingsHC.WaveformHighlightedBackColor == settings.ColorSettingsHC.WaveformHighlightedBackColor
+               && this.ColorSettingsHC.FineNavigationColor == settings.ColorSettingsHC.FineNavigationColor
+               && this.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor == settings.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor
+
+               && this.UserProfile.Culture == settings.UserProfile.Culture
+
+               )
            {
                return true;
            }
