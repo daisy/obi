@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Obi
 {
-    public enum PreferenceProfiles { Project, Audio, UserProfile, KeyboardShortcuts, Colors, All }
+    public enum PreferenceProfiles { None, Project, Audio, UserProfile, KeyboardShortcuts, Colors, All }
     /// <summary>
     /// Saves and loads the user defined profiles to the settings.
     /// </summary>
@@ -77,7 +77,6 @@ namespace Obi
                newSettings.Project_AutoSaveTimeIntervalEnabled = this.Project_AutoSaveTimeIntervalEnabled;
                newSettings.Project_BackgroundColorForEmptySection = this.Project_BackgroundColorForEmptySection;
                newSettings.Project_CheckForUpdates = this.Project_CheckForUpdates;
-               newSettings.Project_DefaultPath = this.Project_DefaultPath;
                newSettings.Project_EnableFreeDiskSpaceCheck = this.Project_EnableFreeDiskSpaceCheck;
                newSettings.Project_EPUBCheckTimeOutEnabled = this.Project_EPUBCheckTimeOutEnabled;
                newSettings.Project_Export_AlwaysIgnoreIndentation = this.Project_Export_AlwaysIgnoreIndentation;
@@ -89,11 +88,17 @@ namespace Obi
                newSettings.Project_OpenLastProject = this.Project_OpenLastProject;
                newSettings.Project_OptimizeMemory = this.Project_OptimizeMemory;
                newSettings.Project_PeakMeterChangeLocation = this.Project_PeakMeterChangeLocation;
-               newSettings.Project_PipelineScriptsPath = this.Project_PipelineScriptsPath;
                newSettings.Project_SaveObiLocationAndSize = this.Project_SaveObiLocationAndSize;
                newSettings.Project_SaveProjectWhenRecordingEnds = this.Project_SaveProjectWhenRecordingEnds;
                newSettings.Project_ShowWaveformInContentView = this.Project_ShowWaveformInContentView;
                newSettings.Project_MinimizeObi = this.Project_MinimizeObi;
+
+               // checks for paths
+               if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
+                   newSettings.Project_DefaultPath = this.Project_DefaultPath;
+
+               if (!string.IsNullOrEmpty(this.Project_PipelineScriptsPath) && Directory.Exists(this.Project_PipelineScriptsPath))
+                   newSettings.Project_PipelineScriptsPath = this.Project_PipelineScriptsPath;
            }
            if (prefProfiles == PreferenceProfiles.UserProfile || prefProfiles == PreferenceProfiles.All)
            {
