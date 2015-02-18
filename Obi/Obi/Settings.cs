@@ -115,7 +115,10 @@ namespace Obi
         public double Audio_CleanupMaxFileSizeInMB;
         public string EncodingFileFormat;
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
-        
+
+
+        [NonSerialized()]
+        public string SettingsName = null;
 
         protected static void InitializeDefaultSettings(Settings settings)
         {
@@ -217,6 +220,7 @@ namespace Obi
             settings.Project_MinimizeObi = false;
             settings.Audio_CleanupMaxFileSizeInMB = 100;
             settings.EncodingFileFormat = "MP3";
+            settings.SettingsName = null;
         }
 
         /// <summary>
