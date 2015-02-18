@@ -5047,6 +5047,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected preferences profile is loaded.
+        /// </summary>
+        internal static string Preferences_ProfileLoaded {
+            get {
+                return ResourceManager.GetString("Preferences_ProfileLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyboard shortcuts are loaded from the selected item..
+        /// </summary>
+        internal static string Preferences_ProfilesShortcutsLoaded {
+            get {
+                return ResourceManager.GetString("Preferences_ProfilesShortcutsLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi has to be restarted for language changes to take effect. Please save your work and restart Obi..
         /// </summary>
         internal static string Preferences_RestartForCultureChange {

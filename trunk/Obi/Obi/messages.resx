@@ -2718,4 +2718,10 @@ Error text: {1}</value>
   <data name="Phrase_IndexString" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
+  <data name="Preferences_ProfileLoaded" xml:space="preserve">
+    <value>The selected preferences profile is loaded</value>
+  </data>
+  <data name="Preferences_ProfilesShortcutsLoaded" xml:space="preserve">
+    <value>Keyboard shortcuts are loaded from the selected item.</value>
+  </data>
 </root>

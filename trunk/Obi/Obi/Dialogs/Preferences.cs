@@ -1920,7 +1920,14 @@ namespace Obi.Dialogs
                 string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
                 profilePath = System.IO.Path.Combine(GetCustomProfilesDirectory (true), profileFileName);
             }
-            if (profilePath != null) LoadPreferenceProfile(profilePath);
+            try
+            {
+                if (profilePath != null) LoadPreferenceProfile(profilePath);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void LoadPreferenceProfile (string profilePath )
@@ -1942,27 +1949,39 @@ namespace Obi.Dialogs
                     if (m_chkLanguage.Checked ) prefProfiles = PreferenceProfiles.UserProfile;
                     if (m_chkColor.Checked ) prefProfiles = PreferenceProfiles.Colors;
                 }
-                saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, prefProfiles);
-                mSettings = mForm.Settings;
+                if (prefProfiles != PreferenceProfiles.None)
+                {
+                    saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, prefProfiles);
+                    mSettings = mForm.Settings;
 
-                if(m_chkProject.Checked || m_chkAll.Checked)  InitializeProjectTab();
-                if (m_chkAudio.Checked || m_chkAll.Checked) InitializeAudioTab();
-                if (m_chkLanguage.Checked || m_chkAll.Checked) InitializeUserProfileTab();
-                if (m_chkColor.Checked || m_chkAll.Checked) InitializeColorPreferenceTab();
-            }
+                    if (m_chkProject.Checked || m_chkAll.Checked) InitializeProjectTab();
+                    if (m_chkAudio.Checked || m_chkAll.Checked) InitializeAudioTab();
+                    if (m_chkLanguage.Checked || m_chkAll.Checked) InitializeUserProfileTab();
+                    if (m_chkColor.Checked || m_chkAll.Checked) InitializeColorPreferenceTab();
+                    MessageBox.Show(Localizer.Message("Preferences_ProfileLoaded"));
+                }
+
+            }// check for path
         }
 
         private void m_btnSaveProfile_Click(object sender, EventArgs e)
         {
-            SaveFileDialog fileDialog = new SaveFileDialog();
-            fileDialog.Filter = "*.xml|*.XML";
-            if (fileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                Settings_SaveProfile saveProfile = new Settings_SaveProfile();
-                
-                saveProfile.Save(fileDialog.FileName, mSettings);
-                string tempString = Localizer.Message("Profile_Saved");
-                MessageBox.Show(tempString, tempString, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SaveFileDialog fileDialog = new SaveFileDialog();
+                fileDialog.Filter = "*.xml|*.XML";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Settings_SaveProfile saveProfile = new Settings_SaveProfile();
+
+                    saveProfile.Save(fileDialog.FileName, mSettings);
+                    string tempString = Localizer.Message("Profile_Saved");
+                    MessageBox.Show(tempString, tempString, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -2209,7 +2228,16 @@ namespace Obi.Dialogs
             {
                 string shortcutsFileName = m_cb_SelectShorcutsProfile.Items[m_cb_SelectShorcutsProfile.SelectedIndex].ToString() + ".xml";
                 string shortcutsPath = System.IO.Path.Combine(GetCustomProfilesDirectory(false), shortcutsFileName);
-                if (shortcutsPath != null) LoadShortcutsFromFile(shortcutsPath);
+
+                try
+                {
+                    if (shortcutsPath != null) LoadShortcutsFromFile(shortcutsPath);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+
             }
             
         }
@@ -2235,7 +2263,8 @@ namespace Obi.Dialogs
                 mForm.InitializeKeyboardShortcuts(false);
                 
                 m_lvShortcutKeysList.Items.Clear();
-                LoadListviewAccordingToComboboxSelection();        
+                LoadListviewAccordingToComboboxSelection();
+                MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"));
             }
         }
 
