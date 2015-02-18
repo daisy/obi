@@ -442,6 +442,7 @@ namespace Obi.Dialogs
                 }
             mForm.SetAutoSaverInterval = mSettings.Project_AutoSaveTimeInterval;
             if (mSettings.Project_AutoSaveTimeIntervalEnabled) mForm.StartAutoSaveTimeInterval ();
+            VerifyChangeInLoadedSettings();
             return returnVal;
             }
 
@@ -515,7 +516,8 @@ namespace Obi.Dialogs
                 {
                 MessageBox.Show ( ex.ToString () );
                 return false;
-                }                
+                }
+                VerifyChangeInLoadedSettings();
             return true;
             }
 
@@ -558,6 +560,7 @@ namespace Obi.Dialogs
                     CultureInfo temp = new CultureInfo("zh-CN");
                     mSettings.UserProfile.Culture = temp;
                 }
+                VerifyChangeInLoadedSettings();
             return true;
             }
 
@@ -1492,6 +1495,7 @@ namespace Obi.Dialogs
                 UpdateBackgroundColorRequired = false;
             }
             m_IsColorChanged = true;
+            VerifyChangeInLoadedSettings();
         }
         private void ResetColors()
         {
@@ -1930,6 +1934,7 @@ namespace Obi.Dialogs
             }
         }
 
+        private Settings_SaveProfile m_ProfileLoaded = null;
         private void LoadPreferenceProfile (string profilePath )
         {
             
@@ -1962,6 +1967,10 @@ namespace Obi.Dialogs
                     if (m_chkAudio.Checked || m_chkAll.Checked) InitializeAudioTab();
                     if (m_chkLanguage.Checked || m_chkAll.Checked) InitializeUserProfileTab();
                     if (m_chkColor.Checked || m_chkAll.Checked) InitializeColorPreferenceTab();
+
+                mSettings.SettingsName = System.IO.Path.GetFileNameWithoutExtension (profilePath);
+                m_ProfileLoaded = saveProfile;
+                m_txtSelectedProfile.Text = mSettings.SettingsName;
                     MessageBox.Show(Localizer.Message("Preferences_ProfileLoaded"),Localizer.Message("Preference_ProfileCaption"),
                         MessageBoxButtons.OK,MessageBoxIcon.Information);
                 
@@ -1992,6 +2001,7 @@ namespace Obi.Dialogs
         private void InitializePreferencesProfileTab ()
         {
             LoadProfilesToComboboxes () ;
+            if (mSettings != null && !string.IsNullOrEmpty(mSettings.SettingsName)) m_txtSelectedProfile.Text = mSettings.SettingsName;
         }
 
         private string GetPredefinedProfilesDirectory()
@@ -2173,6 +2183,16 @@ namespace Obi.Dialogs
                  ApplyColorPreference();
              }
 
+        }
+
+        private void VerifyChangeInLoadedSettings()
+        {
+            if (m_ProfileLoaded != null && mSettings != null
+                && !m_ProfileLoaded.Compare(mSettings))
+            {
+                mSettings.SettingsName = "Custom";
+                m_txtSelectedProfile.Text = mSettings.SettingsName;
+            }
         }
 
         private void m_btnShortcutSave_Click(object sender, EventArgs e)
