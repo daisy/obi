@@ -1962,7 +1962,8 @@ namespace Obi.Dialogs
                     if (m_chkAudio.Checked || m_chkAll.Checked) InitializeAudioTab();
                     if (m_chkLanguage.Checked || m_chkAll.Checked) InitializeUserProfileTab();
                     if (m_chkColor.Checked || m_chkAll.Checked) InitializeColorPreferenceTab();
-                    MessageBox.Show(Localizer.Message("Preferences_ProfileLoaded"));
+                    MessageBox.Show(Localizer.Message("Preferences_ProfileLoaded"),Localizer.Message("Preference_ProfileCaption"),
+                        MessageBoxButtons.OK,MessageBoxIcon.Information);
                 
             }// check for path
         }

@@ -2721,6 +2721,9 @@ Error text: {1}</value>
   <data name="Preferences_ProfileLoaded" xml:space="preserve">
     <value>The selected preferences profile is loaded</value>
   </data>
+  <data name="Preference_ProfileCaption" xml:space="preserve">
+    <value>Preferences Profile Loaded</value>
+  </data>
   <data name="Preferences_ProfilesShortcutsLoaded" xml:space="preserve">
     <value>Keyboard shortcuts are loaded from the selected item.</value>
   </data>
