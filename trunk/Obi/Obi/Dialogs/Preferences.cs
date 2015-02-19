@@ -1997,8 +1997,9 @@ namespace Obi.Dialogs
                     if (m_chkLanguage.Checked || m_chkAll.Checked) InitializeUserProfileTab();
                     if (m_chkColor.Checked || m_chkAll.Checked) InitializeColorPreferenceTab();
 
-                mSettings.SettingsName = System.IO.Path.GetFileNameWithoutExtension (profilePath);
-                m_ProfileLoaded = saveProfile;
+                    m_ProfileLoaded = saveProfile;
+                m_ProfileLoaded.SettingsName = System.IO.Path.GetFileNameWithoutExtension (profilePath);
+                
                 VerifyChangeInLoadedSettings();
                     MessageBox.Show(Localizer.Message("Preferences_ProfileLoaded"),Localizer.Message("Preference_ProfileCaption"),
                         MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -2264,7 +2265,7 @@ namespace Obi.Dialogs
         private void VerifyChangeInLoadedSettings()
         {
             if (m_ProfileLoaded != null && mSettings != null
-                && !string.IsNullOrEmpty(mSettings.SettingsName))
+                && !string.IsNullOrEmpty(m_ProfileLoaded.SettingsName))
             //&& !m_ProfileLoaded.Compare(mSettings,PreferenceProfiles.All))
             {
                 string strLoadedProfiles = "";
@@ -2299,7 +2300,9 @@ namespace Obi.Dialogs
                     mSettings.SettingsName = "customized";
                 }
                 m_txtSelectedProfile.Text = string.Format(Localizer.Message("Preferences_ProfilesStatus"),
-                    mSettings.SettingsName, strLoadedProfiles);
+                    m_ProfileLoaded.SettingsName, strLoadedProfiles);
+                mSettings.SettingsName = m_txtSelectedProfile.Text;
+                
             }
         }
 

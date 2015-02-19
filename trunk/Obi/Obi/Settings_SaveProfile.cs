@@ -361,7 +361,14 @@ namespace Obi
            // compare if all the relevant public members of the settings are  equal to the corresponding members of this class
            // relevant members means the members which can be changed from preferences dialog. It also excludes path related members.
 
-           if (this.Audio_AllowOverwrite == settings.Audio_AllowOverwrite
+           bool projectPreferencesMatch = false;
+           bool audioPreferencesMatch = false;
+           bool usersProfilePreferencesMatch = false;
+           bool colorPreferenceMatch = false;
+
+
+           if ((selectedProfile == PreferenceProfiles.Audio || selectedProfile == PreferenceProfiles.All)
+               && this.Audio_AllowOverwrite == settings.Audio_AllowOverwrite
                && this.Audio_AudioClues == settings.Audio_AudioClues
                && this.Audio_AudioScale == settings.Audio_AudioScale
                && this.Audio_Channels == settings.Audio_Channels
@@ -392,9 +399,13 @@ namespace Obi
                && this.Audio_ShowLiveWaveformWhileRecording == settings.Audio_ShowLiveWaveformWhileRecording
                && this.Audio_TTSVoice == settings.Audio_TTSVoice
                && this.Audio_UseRecordBtnToRecordOverSubsequentAudio == settings.Audio_UseRecordBtnToRecordOverSubsequentAudio
-               && this.Audio_UseRecordingPauseShortcutForStopping == settings.Audio_UseRecordingPauseShortcutForStopping
+               && this.Audio_UseRecordingPauseShortcutForStopping == settings.Audio_UseRecordingPauseShortcutForStopping)
+           {
+               audioPreferencesMatch = true ;
+           }
 
-               && this.Project_AutomaticallyDeleteUnusedFilesAfterCleanup == settings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup
+               if ((selectedProfile == PreferenceProfiles.Project || selectedProfile == PreferenceProfiles.All)
+                   && this.Project_AutomaticallyDeleteUnusedFilesAfterCleanup == settings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup
                && this.Project_AutoSave_RecordingEnd == settings.Project_AutoSave_RecordingEnd
                && this.Project_AutoSaveTimeInterval == settings.Project_AutoSaveTimeInterval
                && this.Project_AutoSaveTimeIntervalEnabled == settings.Project_AutoSaveTimeIntervalEnabled
@@ -413,9 +424,13 @@ namespace Obi
                && this.Project_PeakMeterChangeLocation == settings.Project_PeakMeterChangeLocation
                && this.Project_SaveObiLocationAndSize == settings.Project_SaveObiLocationAndSize
                && this.Project_SaveProjectWhenRecordingEnds == settings.Project_SaveProjectWhenRecordingEnds
-               && this.Project_ShowWaveformInContentView == settings.Project_ShowWaveformInContentView
+               && this.Project_ShowWaveformInContentView == settings.Project_ShowWaveformInContentView)
+               {
+                   projectPreferencesMatch = true ;
+               }
 
-               && this.ColorSettings.BlockBackColor_Anchor == settings.ColorSettings.BlockBackColor_Anchor
+               if ((selectedProfile == PreferenceProfiles.Colors || selectedProfile == PreferenceProfiles.All)
+                   && this.ColorSettings.BlockBackColor_Anchor == settings.ColorSettings.BlockBackColor_Anchor
                && this.ColorSettings.BlockBackColor_Custom == settings.ColorSettings.BlockBackColor_Custom
                && this.ColorSettings.BlockBackColor_Empty == settings.ColorSettings.BlockBackColor_Empty
                && this.ColorSettings.BlockBackColor_Heading == settings.ColorSettings.BlockBackColor_Heading
@@ -493,14 +508,31 @@ namespace Obi
                && this.ColorSettingsHC.WaveformBackColor == settings.ColorSettingsHC.WaveformBackColor
                && this.ColorSettingsHC.WaveformHighlightedBackColor == settings.ColorSettingsHC.WaveformHighlightedBackColor
                && this.ColorSettingsHC.FineNavigationColor == settings.ColorSettingsHC.FineNavigationColor
-               && this.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor == settings.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor
+               && this.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor == settings.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor)
+               {
+                   colorPreferenceMatch = true ;
+               }
 
-               && this.UserProfile.Culture == settings.UserProfile.Culture
+               if ((selectedProfile == PreferenceProfiles.UserProfile || selectedProfile == PreferenceProfiles.All)
+                   && this.UserProfile.Culture == settings.UserProfile.Culture)
+           {
+               colorPreferenceMatch = true;
+           }
 
-               )
+           if (selectedProfile == PreferenceProfiles.Project) return projectPreferencesMatch;
+           if (selectedProfile == PreferenceProfiles.Audio) return audioPreferencesMatch;
+           if (selectedProfile == PreferenceProfiles.UserProfile) return usersProfilePreferencesMatch;
+           if (selectedProfile == PreferenceProfiles.Colors) return colorPreferenceMatch;
+
+           if (selectedProfile == PreferenceProfiles.All
+               && projectPreferencesMatch
+               && audioPreferencesMatch
+               && usersProfilePreferencesMatch
+               && colorPreferenceMatch)
            {
                return true;
            }
+
            return false;
        }
 
