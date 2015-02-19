@@ -34,7 +34,6 @@ namespace Obi.Dialogs
             this.mCancelButton = new System.Windows.Forms.Button();
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
-            this.m_btnShortcutSave = new System.Windows.Forms.Button();
             this.m_btnSaveProfile = new System.Windows.Forms.Button();
             this.m_btnAddProfile = new System.Windows.Forms.Button();
             this.m_ResetButton = new System.Windows.Forms.Button();
@@ -50,8 +49,6 @@ namespace Obi.Dialogs
             this.m_rdb_KeyboardShortcuts = new System.Windows.Forms.RadioButton();
             this.m_btnProfileDiscription = new System.Windows.Forms.Button();
             this.m_rdb_Preferences = new System.Windows.Forms.RadioButton();
-            this.m_btnShortcutLoad = new System.Windows.Forms.Button();
-            this.m_btnShortcutAdd = new System.Windows.Forms.Button();
             this.m_cb_SelectProfile = new System.Windows.Forms.ComboBox();
             this.m_cb_SelectShorcutsProfile = new System.Windows.Forms.ComboBox();
             this.m_lblSelectProfile = new System.Windows.Forms.Label();
@@ -135,7 +132,6 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_ApplyButton = new System.Windows.Forms.Button();
-            this.m_grpBoxChkBoxListView.SuspendLayout();
             this.mAdvanceTab.SuspendLayout();
             this.m_gpBox_Buttons.SuspendLayout();
             this.m_gpBox_SelectProfile.SuspendLayout();
@@ -180,17 +176,9 @@ namespace Obi.Dialogs
             // 
             // m_grpBoxChkBoxListView
             // 
-            this.m_grpBoxChkBoxListView.Controls.Add(this.m_btnShortcutSave);
             resources.ApplyResources(this.m_grpBoxChkBoxListView, "m_grpBoxChkBoxListView");
             this.m_grpBoxChkBoxListView.Name = "m_grpBoxChkBoxListView";
             this.m_grpBoxChkBoxListView.TabStop = false;
-            // 
-            // m_btnShortcutSave
-            // 
-            resources.ApplyResources(this.m_btnShortcutSave, "m_btnShortcutSave");
-            this.m_btnShortcutSave.Name = "m_btnShortcutSave";
-            this.m_btnShortcutSave.UseVisualStyleBackColor = true;
-            this.m_btnShortcutSave.Click += new System.EventHandler(this.m_btnShortcutSave_Click);
             // 
             // m_btnSaveProfile
             // 
@@ -275,8 +263,6 @@ namespace Obi.Dialogs
             this.m_gpBox_SelectProfile.Controls.Add(this.m_rdb_KeyboardShortcuts);
             this.m_gpBox_SelectProfile.Controls.Add(this.m_btnProfileDiscription);
             this.m_gpBox_SelectProfile.Controls.Add(this.m_rdb_Preferences);
-            this.m_gpBox_SelectProfile.Controls.Add(this.m_btnShortcutLoad);
-            this.m_gpBox_SelectProfile.Controls.Add(this.m_btnShortcutAdd);
             this.m_gpBox_SelectProfile.Controls.Add(this.m_cb_SelectProfile);
             this.m_gpBox_SelectProfile.Controls.Add(this.m_cb_SelectShorcutsProfile);
             this.m_gpBox_SelectProfile.Controls.Add(this.m_lblSelectProfile);
@@ -294,6 +280,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_rdb_KeyboardShortcuts, "m_rdb_KeyboardShortcuts");
             this.m_rdb_KeyboardShortcuts.Name = "m_rdb_KeyboardShortcuts";
             this.m_rdb_KeyboardShortcuts.UseVisualStyleBackColor = true;
+            this.m_rdb_KeyboardShortcuts.CheckedChanged += new System.EventHandler(this.m_rdb_KeyboardShortcuts_CheckedChanged);
             // 
             // m_btnProfileDiscription
             // 
@@ -310,20 +297,7 @@ namespace Obi.Dialogs
             this.m_rdb_Preferences.Name = "m_rdb_Preferences";
             this.m_rdb_Preferences.TabStop = true;
             this.m_rdb_Preferences.UseVisualStyleBackColor = true;
-            // 
-            // m_btnShortcutLoad
-            // 
-            resources.ApplyResources(this.m_btnShortcutLoad, "m_btnShortcutLoad");
-            this.m_btnShortcutLoad.Name = "m_btnShortcutLoad";
-            this.m_btnShortcutLoad.UseVisualStyleBackColor = true;
-            this.m_btnShortcutLoad.Click += new System.EventHandler(this.m_btnShortcutLoad_Click);
-            // 
-            // m_btnShortcutAdd
-            // 
-            resources.ApplyResources(this.m_btnShortcutAdd, "m_btnShortcutAdd");
-            this.m_btnShortcutAdd.Name = "m_btnShortcutAdd";
-            this.m_btnShortcutAdd.UseVisualStyleBackColor = true;
-            this.m_btnShortcutAdd.Click += new System.EventHandler(this.m_btnShortcutAdd_Click);
+            this.m_rdb_Preferences.CheckedChanged += new System.EventHandler(this.m_rdb_Preferences_CheckedChanged);
             // 
             // m_cb_SelectProfile
             // 
@@ -1068,7 +1042,6 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this, ((bool)(resources.GetObject("$this.ShowHelp"))));
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.m_grpBoxChkBoxListView.ResumeLayout(false);
             this.mAdvanceTab.ResumeLayout(false);
             this.mAdvanceTab.PerformLayout();
             this.m_gpBox_Buttons.ResumeLayout(false);
@@ -1191,9 +1164,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_ApplyButton;
         private System.Windows.Forms.CheckBox m_chkColor;
         private System.Windows.Forms.GroupBox m_gpBox_SelectProfile;
-        private System.Windows.Forms.Button m_btnShortcutSave;
-        private System.Windows.Forms.Button m_btnShortcutLoad;
-        private System.Windows.Forms.Button m_btnShortcutAdd;
         private System.Windows.Forms.ComboBox m_cb_SelectShorcutsProfile;
         private System.Windows.Forms.TextBox m_txtSelectedProfile;
         private System.Windows.Forms.Label m_lblSelectedProfile;
