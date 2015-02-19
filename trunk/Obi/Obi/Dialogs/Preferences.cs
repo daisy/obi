@@ -1913,26 +1913,55 @@ namespace Obi.Dialogs
 
         private void m_btnLoadProfile_Click(object sender, EventArgs e)
         {
-            string profilePath = null;
-            if (m_cb_SelectProfile.SelectedIndex >= 0 && m_cb_SelectProfile.SelectedIndex < m_PredefinedProfilesCount)
+            if (m_rdb_Preferences.Checked)
             {
-                string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
-                profilePath = System.IO.Path.Combine(GetPredefinedProfilesDirectory(), profileFileName);
-            }
-            else if (m_cb_SelectProfile.SelectedIndex >= m_PredefinedProfilesCount && m_cb_SelectProfile.SelectedIndex < m_cb_SelectProfile.Items.Count)
+                string profilePath = null;
+                if (m_cb_SelectProfile.SelectedIndex >= 0 && m_cb_SelectProfile.SelectedIndex < m_PredefinedProfilesCount)
+                {
+                    string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
+                    profilePath = System.IO.Path.Combine(GetPredefinedProfilesDirectory(), profileFileName);
+                }
+                else if (m_cb_SelectProfile.SelectedIndex >= m_PredefinedProfilesCount && m_cb_SelectProfile.SelectedIndex < m_cb_SelectProfile.Items.Count)
+                {
+                    string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
+                    profilePath = System.IO.Path.Combine(GetCustomProfilesDirectory(true), profileFileName);
+                }
+                try
+                {
+                    if (profilePath != null) LoadPreferenceProfile(profilePath);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }//if (m_rdb_Preferences.Checked)
+            else if (m_rdb_KeyboardShortcuts.Checked)
             {
-                string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
-                profilePath = System.IO.Path.Combine(GetCustomProfilesDirectory (true), profileFileName);
-            }
-            try
-            {
-                if (profilePath != null) LoadPreferenceProfile(profilePath);
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+                if (m_cb_SelectShorcutsProfile.SelectedIndex == 0)
+                {
+                    mForm.LoadDefaultKeyboardShortcuts();
+                    m_KeyboardShortcuts = mForm.KeyboardShortcuts;
+
+                    m_lvShortcutKeysList.Items.Clear();
+                    LoadListviewAccordingToComboboxSelection();
+                }
+                else if (m_cb_SelectShorcutsProfile.SelectedIndex >= 0 && m_cb_SelectShorcutsProfile.SelectedIndex < m_cb_SelectShorcutsProfile.Items.Count)
+                {
+                    string shortcutsFileName = m_cb_SelectShorcutsProfile.Items[m_cb_SelectShorcutsProfile.SelectedIndex].ToString() + ".xml";
+                    string shortcutsPath = System.IO.Path.Combine(GetCustomProfilesDirectory(false), shortcutsFileName);
+
+                    try
+                    {
+                        if (shortcutsPath != null) LoadShortcutsFromFile(shortcutsPath);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+
+                }
+            }//else if (m_rdb_KeyboardShortcuts.Checked)
+         }
 
         private Settings_SaveProfile m_ProfileLoaded = null;
         private void LoadPreferenceProfile (string profilePath )
@@ -1979,23 +2008,44 @@ namespace Obi.Dialogs
 
         private void m_btnSaveProfile_Click(object sender, EventArgs e)
         {
-            try
+            if (m_rdb_Preferences.Checked)
+            {
+                try
+                {
+                    SaveFileDialog fileDialog = new SaveFileDialog();
+                    fileDialog.Filter = "*.xml|*.XML";
+                    if (fileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        Settings_SaveProfile saveProfile = new Settings_SaveProfile();
+
+                        saveProfile.Save(fileDialog.FileName, mSettings);
+                        string tempString = Localizer.Message("Profile_Saved");
+                        MessageBox.Show(tempString, tempString, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }//if (m_rdb_Preferences)
+            else if (m_rdb_KeyboardShortcuts.Checked)
             {
                 SaveFileDialog fileDialog = new SaveFileDialog();
                 fileDialog.Filter = "*.xml|*.XML";
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    Settings_SaveProfile saveProfile = new Settings_SaveProfile();
-
-                    saveProfile.Save(fileDialog.FileName, mSettings);
-                    string tempString = Localizer.Message("Profile_Saved");
-                    MessageBox.Show(tempString, tempString, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        mForm.KeyboardShortcuts.SaveSettingsAs(fileDialog.FileName);
+                        string tempString = Localizer.Message("Profile_Saved");
+                        MessageBox.Show(tempString, tempString, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            }//else if (m_rdb_KeyboardShortcuts)
         }
 
         private void InitializePreferencesProfileTab ()
@@ -2108,7 +2158,33 @@ namespace Obi.Dialogs
 
         private void m_btnAddProfile_Click(object sender, EventArgs e)
         {
-            BrowseForExistingProfile();
+            if (m_rdb_Preferences.Checked)
+            {
+                BrowseForExistingProfile();
+            }
+            else if (m_rdb_KeyboardShortcuts.Checked)
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.Filter = "*.xml|*.XML";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        LoadShortcutsFromFile(fileDialog.FileName);
+                        // copy the profile file to custom profile directory
+                        string shortcutsProfilesDirectory = GetCustomProfilesDirectory(false);
+                        if (!System.IO.Directory.Exists(shortcutsProfilesDirectory)) System.IO.Directory.CreateDirectory(shortcutsProfilesDirectory);
+                        string newCustomFilePath = System.IO.Path.Combine(shortcutsProfilesDirectory,
+                            System.IO.Path.GetFileName(fileDialog.FileName));
+                        System.IO.File.Copy(fileDialog.FileName, newCustomFilePath, true);
+                        m_cb_SelectShorcutsProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }//else if (m_rdb_KeyboardShortcuts)
         }
 
         private void BrowseForExistingProfile()
@@ -2197,7 +2273,7 @@ namespace Obi.Dialogs
 
         private void m_btnShortcutSave_Click(object sender, EventArgs e)
         {
-            SaveFileDialog fileDialog = new SaveFileDialog();
+          /*  SaveFileDialog fileDialog = new SaveFileDialog();
             fileDialog.Filter = "*.xml|*.XML";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -2211,12 +2287,12 @@ namespace Obi.Dialogs
                 {
                     MessageBox.Show(ex.ToString());
                 }
-            }
+            }*/
         }
 
         private void m_btnShortcutAdd_Click(object sender, EventArgs e)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog();
+           /* OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "*.xml|*.XML";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -2235,12 +2311,12 @@ namespace Obi.Dialogs
                 {
                     MessageBox.Show(ex.ToString());
                 }
-            }
+            }*/
         }
 
         private void m_btnShortcutLoad_Click(object sender, EventArgs e)
         {
-            if (m_cb_SelectShorcutsProfile.SelectedIndex == 0)
+           /* if (m_cb_SelectShorcutsProfile.SelectedIndex == 0)
             {
                 mForm.LoadDefaultKeyboardShortcuts();
                 m_KeyboardShortcuts = mForm.KeyboardShortcuts;
@@ -2263,7 +2339,7 @@ namespace Obi.Dialogs
                 }
 
             }
-            
+          */  
         }
 
         private void LoadShortcutsFromFile(string filePath)
@@ -2290,6 +2366,11 @@ namespace Obi.Dialogs
                 LoadListviewAccordingToComboboxSelection();
                 MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"));
             }
+        }
+
+        private void m_btnRemoveProfile_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
