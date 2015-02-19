@@ -356,7 +356,7 @@ namespace Obi
            this.ZoomFactor = existingSettings.ZoomFactor;
        }
 
-       public bool Compare(Settings settings)
+       public bool Compare(Settings settings,PreferenceProfiles selectedProfile)
        {
            // compare if all the relevant public members of the settings are  equal to the corresponding members of this class
            // relevant members means the members which can be changed from preferences dialog. It also excludes path related members.
@@ -364,6 +364,7 @@ namespace Obi
            if (this.Audio_AllowOverwrite == settings.Audio_AllowOverwrite
                && this.Audio_AudioClues == settings.Audio_AudioClues
                && this.Audio_AudioScale == settings.Audio_AudioScale
+               && this.Audio_Channels == settings.Audio_Channels
                && this.Audio_CleanupMaxFileSizeInMB == settings.Audio_CleanupMaxFileSizeInMB
                && this.Audio_DefaultGap == settings.Audio_DefaultGap
                && this.Audio_DefaultLeadingSilence == settings.Audio_DefaultLeadingSilence
@@ -387,6 +388,7 @@ namespace Obi
                && this.Audio_Recording_PreviewBeforeStarting == settings.Audio_Recording_PreviewBeforeStarting
                && this.Audio_Recording_ReplaceAfterCursor == settings.Audio_Recording_ReplaceAfterCursor
                && this.Audio_RetainInitialSilenceInPhraseDetection == settings.Audio_RetainInitialSilenceInPhraseDetection
+               && this.Audio_SampleRate == settings.Audio_SampleRate
                && this.Audio_ShowLiveWaveformWhileRecording == settings.Audio_ShowLiveWaveformWhileRecording
                && this.Audio_TTSVoice == settings.Audio_TTSVoice
                && this.Audio_UseRecordBtnToRecordOverSubsequentAudio == settings.Audio_UseRecordBtnToRecordOverSubsequentAudio
@@ -395,6 +397,7 @@ namespace Obi
                && this.Project_AutomaticallyDeleteUnusedFilesAfterCleanup == settings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup
                && this.Project_AutoSave_RecordingEnd == settings.Project_AutoSave_RecordingEnd
                && this.Project_AutoSaveTimeInterval == settings.Project_AutoSaveTimeInterval
+               && this.Project_AutoSaveTimeIntervalEnabled == settings.Project_AutoSaveTimeIntervalEnabled
                && this.Project_BackgroundColorForEmptySection == settings.Project_BackgroundColorForEmptySection
                && this.Project_CheckForUpdates == settings.Project_CheckForUpdates
                && this.Project_EnableFreeDiskSpaceCheck == settings.Project_EnableFreeDiskSpaceCheck
