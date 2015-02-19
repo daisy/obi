@@ -5074,6 +5074,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} profile for {1} preferences.
+        /// </summary>
+        internal static string Preferences_ProfilesStatus {
+            get {
+                return ResourceManager.GetString("Preferences_ProfilesStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi has to be restarted for language changes to take effect. Please save your work and restart Obi..
         /// </summary>
         internal static string Preferences_RestartForCultureChange {
