@@ -307,8 +307,8 @@ namespace Obi.Dialogs
             // 
             // m_cb_SelectShorcutsProfile
             // 
-            this.m_cb_SelectShorcutsProfile.FormattingEnabled = true;
             resources.ApplyResources(this.m_cb_SelectShorcutsProfile, "m_cb_SelectShorcutsProfile");
+            this.m_cb_SelectShorcutsProfile.FormattingEnabled = true;
             this.m_cb_SelectShorcutsProfile.Name = "m_cb_SelectShorcutsProfile";
             // 
             // m_lblSelectProfile
