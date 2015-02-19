@@ -2264,7 +2264,7 @@ namespace Obi.Dialogs
         private void VerifyChangeInLoadedSettings()
         {
             if (m_ProfileLoaded != null && mSettings != null
-                && !m_ProfileLoaded.Compare(mSettings))
+                && !m_ProfileLoaded.Compare(mSettings,PreferenceProfiles.All))
             {
                 mSettings.SettingsName = "Custom";
                 m_txtSelectedProfile.Text = mSettings.SettingsName;
@@ -2371,6 +2371,36 @@ namespace Obi.Dialogs
         private void m_btnRemoveProfile_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void m_rdb_Preferences_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_rdb_Preferences.Checked)
+            {
+                m_cb_SelectProfile.Enabled = true;
+                m_btnProfileDiscription.Enabled = true;
+                m_cb_SelectShorcutsProfile.Enabled = false;
+                m_chkProject.Enabled = true;
+                m_chkLanguage.Enabled = true;
+                m_chkAll.Enabled = true;
+                m_chkAudio.Enabled = true;
+                m_chkColor.Enabled = true;
+            }
+        }
+
+        private void m_rdb_KeyboardShortcuts_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_rdb_KeyboardShortcuts.Checked)
+            {
+                m_cb_SelectProfile.Enabled = false;
+                m_btnProfileDiscription.Enabled = false;
+                m_cb_SelectShorcutsProfile.Enabled = true;
+                m_chkProject.Enabled = false;
+                m_chkLanguage.Enabled = false;
+                m_chkAll.Enabled = false;
+                m_chkAudio.Enabled = false;
+                m_chkColor.Enabled = false;
+            }
         }
 
     }
