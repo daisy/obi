@@ -1999,7 +1999,7 @@ namespace Obi.Dialogs
 
                 mSettings.SettingsName = System.IO.Path.GetFileNameWithoutExtension (profilePath);
                 m_ProfileLoaded = saveProfile;
-                m_txtSelectedProfile.Text = mSettings.SettingsName;
+                VerifyChangeInLoadedSettings();
                     MessageBox.Show(Localizer.Message("Preferences_ProfileLoaded"),Localizer.Message("Preference_ProfileCaption"),
                         MessageBoxButtons.OK,MessageBoxIcon.Information);
                 
@@ -2264,10 +2264,42 @@ namespace Obi.Dialogs
         private void VerifyChangeInLoadedSettings()
         {
             if (m_ProfileLoaded != null && mSettings != null
-                && !m_ProfileLoaded.Compare(mSettings,PreferenceProfiles.All))
+                && !string.IsNullOrEmpty(mSettings.SettingsName))
+            //&& !m_ProfileLoaded.Compare(mSettings,PreferenceProfiles.All))
             {
-                mSettings.SettingsName = "Custom";
-                m_txtSelectedProfile.Text = mSettings.SettingsName;
+                string strLoadedProfiles = "";
+
+                if (m_ProfileLoaded.Compare(mSettings, PreferenceProfiles.All))
+                {
+                    strLoadedProfiles = "all";
+                }
+                else
+                {
+                    if (m_ProfileLoaded.Compare(mSettings, PreferenceProfiles.Project))
+                    {
+                        strLoadedProfiles = "project";
+                    }
+                    if (m_ProfileLoaded.Compare(mSettings, PreferenceProfiles.Audio))
+                    {
+                        strLoadedProfiles += ", audio";
+                    }
+                    if (m_ProfileLoaded.Compare(mSettings, PreferenceProfiles.UserProfile))
+                    {
+                        strLoadedProfiles += ", users profile";
+                    }
+                    if (m_ProfileLoaded.Compare(mSettings, PreferenceProfiles.Colors))
+                    {
+                        strLoadedProfiles += ", colors";
+                    }
+
+                }
+
+                if (string.IsNullOrEmpty(strLoadedProfiles))
+                {
+                    mSettings.SettingsName = "customized";
+                }
+                m_txtSelectedProfile.Text = string.Format(Localizer.Message("Preferences_ProfilesStatus"),
+                    mSettings.SettingsName, strLoadedProfiles);
             }
         }
 
