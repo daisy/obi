@@ -571,7 +571,7 @@ namespace Obi.ProjectView
                 TreeNode TreeNode = FindTreeNodeWithoutLabel((SectionNode)m_HighlightedSectionNodeWithoutSelection);
                 if (TreeNode.BackColor == mProjectView.ObiForm.Settings.ColorSettings.EmptySectionBackgroundColor)
                 {
-                    TreeNode.BackColor = Color.Empty;
+                    TreeNode.BackColor = mProjectView.ColorSettings.HighlightedSectionNodeWithoutSelectionColor;
                     TreeNode.ForeColor = SystemColors.ControlText;
                 }
             }
