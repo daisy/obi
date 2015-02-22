@@ -2730,4 +2730,10 @@ Error text: {1}</value>
   <data name="Preferences_ProfilesStatus" xml:space="preserve">
     <value>{0} profile for {1} preferences</value>
   </data>
+  <data name="Preferences_ConfirmForDeletingProfile" xml:space="preserve">
+    <value>This will delete the selected profile. Do you want to continue?</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value />
+  </data>
 </root>

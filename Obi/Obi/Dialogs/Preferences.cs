@@ -1915,17 +1915,8 @@ namespace Obi.Dialogs
         {
             if (m_rdb_Preferences.Checked)
             {
-                string profilePath = null;
-                if (m_cb_SelectProfile.SelectedIndex >= 0 && m_cb_SelectProfile.SelectedIndex < m_PredefinedProfilesCount)
-                {
-                    string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
-                    profilePath = System.IO.Path.Combine(GetPredefinedProfilesDirectory(), profileFileName);
-                }
-                else if (m_cb_SelectProfile.SelectedIndex >= m_PredefinedProfilesCount && m_cb_SelectProfile.SelectedIndex < m_cb_SelectProfile.Items.Count)
-                {
-                    string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
-                    profilePath = System.IO.Path.Combine(GetCustomProfilesDirectory(true), profileFileName);
-                }
+                string profilePath = GetFilePathOfSelectedPreferencesComboBox();
+                
                 try
                 {
                     if (profilePath != null) LoadPreferenceProfile(profilePath);
@@ -1946,9 +1937,8 @@ namespace Obi.Dialogs
                     LoadListviewAccordingToComboboxSelection();
                 }
                 else if (m_cb_SelectShorcutsProfile.SelectedIndex >= 0 && m_cb_SelectShorcutsProfile.SelectedIndex < m_cb_SelectShorcutsProfile.Items.Count)
-                {
-                    string shortcutsFileName = m_cb_SelectShorcutsProfile.Items[m_cb_SelectShorcutsProfile.SelectedIndex].ToString() + ".xml";
-                    string shortcutsPath = System.IO.Path.Combine(GetCustomProfilesDirectory(false), shortcutsFileName);
+                {   
+                    string shortcutsPath = GetPathOfSelectedShortcutsComboBox();
 
                     try
                     {
@@ -1962,6 +1952,29 @@ namespace Obi.Dialogs
                 }
             }//else if (m_rdb_KeyboardShortcuts.Checked)
          }
+
+        private string GetFilePathOfSelectedPreferencesComboBox()
+        {
+            string profilePath = null;
+            if (m_cb_SelectProfile.SelectedIndex >= 0 && m_cb_SelectProfile.SelectedIndex < m_PredefinedProfilesCount)
+            {
+                string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
+                profilePath = System.IO.Path.Combine(GetPredefinedProfilesDirectory(), profileFileName);
+            }
+            else if (m_cb_SelectProfile.SelectedIndex >= m_PredefinedProfilesCount && m_cb_SelectProfile.SelectedIndex < m_cb_SelectProfile.Items.Count)
+            {
+                string profileFileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString() + ".xml";
+                profilePath = System.IO.Path.Combine(GetCustomProfilesDirectory(true), profileFileName);
+            }
+            return profilePath;
+        }
+
+        private string GetPathOfSelectedShortcutsComboBox()
+        {
+            string shortcutsFileName = m_cb_SelectShorcutsProfile.Items[m_cb_SelectShorcutsProfile.SelectedIndex].ToString() + ".xml";
+            string shortcutsPath = System.IO.Path.Combine(GetCustomProfilesDirectory(false), shortcutsFileName);
+            return shortcutsPath;
+        }
 
         private Settings_SaveProfile m_ProfileLoaded = null;
         private void LoadPreferenceProfile (string profilePath )
@@ -2308,21 +2321,8 @@ namespace Obi.Dialogs
 
         private void m_btnShortcutSave_Click(object sender, EventArgs e)
         {
-          /*  SaveFileDialog fileDialog = new SaveFileDialog();
-            fileDialog.Filter = "*.xml|*.XML";
-            if (fileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    mForm.KeyboardShortcuts.SaveSettingsAs(fileDialog.FileName);
-                    string tempString = Localizer.Message("Profile_Saved");
-                    MessageBox.Show(tempString, tempString, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-            }*/
+          /*  
+           */
         }
 
         private void m_btnShortcutAdd_Click(object sender, EventArgs e)
@@ -2405,7 +2405,41 @@ namespace Obi.Dialogs
 
         private void m_btnRemoveProfile_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (m_rdb_Preferences.Checked)
+                {
+                    if (m_cb_SelectProfile.SelectedIndex >= m_PredefinedProfilesCount && m_cb_SelectProfile.SelectedIndex < m_cb_SelectProfile.Items.Count)
+                    {
+                        int indexOfCombobox = m_cb_SelectProfile.SelectedIndex ;
+                        string profilePath = GetFilePathOfSelectedPreferencesComboBox();
+                        if (System.IO.File.Exists(profilePath)
+                            && MessageBox.Show(Localizer.Message("Preferences_ConfirmForDeletingProfile"),Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            System.IO.File.Delete(profilePath);
+                            m_cb_SelectProfile.Items.RemoveAt(indexOfCombobox);
+                        }
+                    }
+                }
+                else if (m_rdb_KeyboardShortcuts.Checked)
+                {
+                    if (m_cb_SelectShorcutsProfile.SelectedIndex > 0 && m_cb_SelectShorcutsProfile.SelectedIndex < m_cb_SelectShorcutsProfile.Items.Count)
+                    {
+                        int indexOfCombobox = m_cb_SelectShorcutsProfile.SelectedIndex;
+                        string shortcutsFilePath = GetPathOfSelectedShortcutsComboBox();
+                        if (System.IO.File.Exists (shortcutsFilePath )
+                            && MessageBox.Show(Localizer.Message("Preferences_ConfirmForDeletingProfile"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            System.IO.File.Delete(shortcutsFilePath);
+                            m_cb_SelectShorcutsProfile.Items.RemoveAt(indexOfCombobox);
+                        }
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void m_rdb_Preferences_CheckedChanged(object sender, EventArgs e)

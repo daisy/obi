@@ -4984,6 +4984,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This will delete the selected profile. Do you want to continue?.
+        /// </summary>
+        internal static string Preferences_ConfirmForDeletingProfile {
+            get {
+                return ResourceManager.GetString("Preferences_ConfirmForDeletingProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Intermediate recording mode.
         /// </summary>
         internal static string Preferences_Intermediate_recording_mode {
@@ -6405,6 +6414,15 @@ namespace Obi {
         internal static string String2 {
             get {
                 return ResourceManager.GetString("String2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string String3 {
+            get {
+                return ResourceManager.GetString("String3", resourceCulture);
             }
         }
         
