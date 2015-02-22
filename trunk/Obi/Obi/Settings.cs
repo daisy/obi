@@ -44,12 +44,8 @@ namespace Obi
         public uint MaxAllowedPhraseDurationInMinutes ; //Max size of phrase allowed in content view
         public bool Audio_ShowLiveWaveformWhileRecording;// Show Live Waveform While Recording
         public bool Audio_EnableLivePhraseDetection; // enables phrase detection while recording
-        public Size NewProjectDialogSize;      // size of the new project dialog
         public AudioLib.VuMeter.NoiseLevelSelection Audio_NoiseLevel;  // noise level for low amplitude detection
         public double Audio_NudgeTimeMs;             // nudge time in milliseconds
-        public Size ObiFormSize;               // size of the form (for future sessions)
-        public Size PeakmeterSize;             // Size of the peak meter form(for future sessions)
-        public Size GraphicalPeakMeterContolSize; //Size of the peak meter control
         public bool ShowGraphicalPeakMeterAtStartup; // displays the graphical peak meter when Obi initializes
         public bool Project_OpenLastProject;           // open the last open project at startup
         public string Project_PipelineScriptsPath;     // path to the pipeline script for the DTB audio encoder
@@ -109,15 +105,77 @@ namespace Obi
         public bool Project_SaveObiLocationAndSize;// Saves Obi last location and Size
         public bool Project_EPUBCheckTimeOutEnabled ;
         public string Project_ObiConfigFileName;
-        public Point ObiLastLocation;
         public bool Project_PeakMeterChangeLocation; // Changes Peak meter location wrt Obi Form
         public bool Project_MinimizeObi;
         public double Audio_CleanupMaxFileSizeInMB;
         public string EncodingFileFormat;
+
+        // size and point types should be stored in arrays
+
+        private int[] m_ObiLastLocation;
+        public Point ObiLastLocation
+        {
+            get { return new Point(m_ObiLastLocation[0], m_ObiLastLocation[1]); }
+            set
+            {
+                m_ObiLastLocation = new int[2];
+                m_ObiLastLocation[0] = value.X;
+                m_ObiLastLocation[1] = value.Y;
+            }
+        }
+
+        private int[] m_NewProjectDialogSize;
+        public Size NewProjectDialogSize      // size of the new project dialog
+        {
+            get { return new Size(m_NewProjectDialogSize[0], m_NewProjectDialogSize[1]); }
+            set
+            {
+                m_NewProjectDialogSize = new int[2];
+                m_NewProjectDialogSize[0] = value.Width;
+                m_NewProjectDialogSize[1] = value.Height;
+            }
+        }
+
+        private int[] m_ObiFormSize;
+        public Size ObiFormSize               // size of the form (for future sessions)
+        {
+            get { return new Size(m_ObiFormSize[0], m_ObiFormSize[1]); }
+            set
+            {
+                m_ObiFormSize = new int[2];
+                m_ObiFormSize[0] = value.Width;
+                m_ObiFormSize[1] = value.Height;
+            }
+        }
+
+        private int[] m_PeakmeterSize;
+        public Size PeakmeterSize             // Size of the peak meter form(for future sessions)
+        {
+            get { return new Size(m_PeakmeterSize[0], m_PeakmeterSize[1]); }
+            set
+            {
+                m_PeakmeterSize = new int[2];
+                m_PeakmeterSize[0] = value.Width;
+                m_PeakmeterSize[1] = value.Height;
+            }
+        }
+
+        private int[] m_GraphicalPeakMeterContolSize;
+        public Size GraphicalPeakMeterContolSize //Size of the peak meter control
+        {
+            get { return new Size(m_GraphicalPeakMeterContolSize[0], m_GraphicalPeakMeterContolSize[1]); }
+            set
+            {
+                m_GraphicalPeakMeterContolSize = new int[2];
+                m_GraphicalPeakMeterContolSize[0] = value.Width;
+                m_GraphicalPeakMeterContolSize[1] = value.Height;
+            }
+        }
+
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
 
-        [NonSerialized()]
+        [NonSerialized]
         public string SettingsName = null;
 
         protected static void InitializeDefaultSettings(Settings settings)
