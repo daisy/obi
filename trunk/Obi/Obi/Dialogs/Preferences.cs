@@ -542,8 +542,11 @@ namespace Obi.Dialogs
                 //|| mCultureBox.SelectedItem.ToString () == "hi-IN"
                 //|| mCultureBox.SelectedItem.ToString () == "fr-FR")
                 {
-                if (mSettings.UserProfile.Culture.ToString () != mCultureBox.SelectedItem.ToString ())
-                    MessageBox.Show ( Localizer.Message ( "Preferences_RestartForCultureChange" ) );
+                    if (mSettings.UserProfile.Culture.ToString() != mCultureBox.SelectedItem.ToString()
+                        || mCultureBox.SelectedItem.ToString() != System.Globalization.CultureInfo.CurrentCulture.ToString())
+                    {
+                        MessageBox.Show(Localizer.Message("Preferences_RestartForCultureChange"));
+                    }
                 }
             else if (mSettings.UserProfile.Culture.Name != ((CultureInfo)mCultureBox.SelectedItem).Name)
                 {
