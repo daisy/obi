@@ -1,6 +1,6 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
-<a1:Settings_SaveProfile id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.24465%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.30528%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Audio_AllowOverwrite>true</Audio_AllowOverwrite>
 <Audio_Recording_PreviewBeforeStarting>true</Audio_Recording_PreviewBeforeStarting>
 <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
@@ -91,13 +91,14 @@
 <Project_MinimizeObi>true</Project_MinimizeObi>
 <Audio_CleanupMaxFileSizeInMB>100</Audio_CleanupMaxFileSizeInMB>
 <EncodingFileFormat id="ref-20">MP3</EncodingFileFormat>
-<Settings_x002B_m_ObiLastLocation href="#ref-21"/>
-<Settings_x002B_m_NewProjectDialogSize href="#ref-22"/>
-<Settings_x002B_m_ObiFormSize href="#ref-23"/>
-<Settings_x002B_m_PeakmeterSize href="#ref-24"/>
-<Settings_x002B_m_GraphicalPeakMeterContolSize href="#ref-25"/>
-</a1:Settings_SaveProfile>
-<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.24465%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<m_ObiLastLocation href="#ref-21"/>
+<m_NewProjectDialogSize href="#ref-22"/>
+<m_ObiFormSize href="#ref-23"/>
+<m_PeakmeterSize href="#ref-24"/>
+<m_GraphicalPeakMeterContolSize href="#ref-25"/>
+<SettingsName id="ref-26">basic</SettingsName>
+</a1:Settings>
+<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.30528%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -411,7 +412,7 @@
 <state>1</state>
 </HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
-<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.24465%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.30528%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -726,18 +727,18 @@
 </HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
 <a3:ArrayList id="ref-15" xmlns:a3="http://schemas.microsoft.com/clr/ns/System.Collections">
-<_items href="#ref-27"/>
+<_items href="#ref-28"/>
 <_size>0</_size>
 <_version>0</_version>
 </a3:ArrayList>
-<a1:UserProfile id="ref-16" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.24465%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
-<Name id="ref-28">Rohit</Name>
-<Organization id="ref-29">N/A</Organization>
-<Culture href="#ref-30"/>
+<a1:UserProfile id="ref-16" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.6.0.30528%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Name id="ref-29">Rohit</Name>
+<Organization id="ref-30">N/A</Organization>
+<Culture href="#ref-31"/>
 </a1:UserProfile>
 <SOAP-ENC:Array id="ref-21" SOAP-ENC:arrayType="xsd:int[2]">
-<item>0</item>
-<item>0</item>
+<item>100</item>
+<item>100</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-22" SOAP-ENC:arrayType="xsd:int[2]">
 <item>0</item>
@@ -755,24 +756,24 @@
 <item>154</item>
 <item>580</item>
 </SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-27" SOAP-ENC:arrayType="xsd:anyType[0]">
+<SOAP-ENC:Array id="ref-28" SOAP-ENC:arrayType="xsd:anyType[0]">
 </SOAP-ENC:Array>
-<a6:CultureInfo id="ref-30" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<a6:CultureInfo id="ref-31" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
 <cultureID>1033</cultureID>
 <m_isReadOnly>false</m_isReadOnly>
-<compareInfo href="#ref-31"/>
+<compareInfo href="#ref-32"/>
 <textInfo xsi:null="1"/>
 <numInfo xsi:null="1"/>
 <dateTimeInfo xsi:null="1"/>
 <calendar xsi:null="1"/>
-<m_name id="ref-32">en-US</m_name>
+<m_name id="ref-33">en-US</m_name>
 <m_dataItem>41</m_dataItem>
 <m_useUserOverride>true</m_useUserOverride>
 </a6:CultureInfo>
-<a6:CompareInfo id="ref-31" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<a6:CompareInfo id="ref-32" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
 <win32LCID>1033</win32LCID>
 <culture>1033</culture>
-<m_name id="ref-33">en-US</m_name>
+<m_name id="ref-34">en-US</m_name>
 </a6:CompareInfo>
 </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
