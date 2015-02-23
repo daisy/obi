@@ -12,17 +12,17 @@ namespace Obi
     /// <summary>
     /// Saves and loads the user defined profiles to the settings.
     /// </summary>
-    [Serializable()]
-   public class Settings_SaveProfile : Settings
+    
+   public partial class Settings
     {
 
-        public static Settings_SaveProfile GetSettingsFromSavedProfile (string profileFilePath)
+        public static Settings GetSettingsFromSavedProfile (string profileFilePath)
         {
-            Settings_SaveProfile settingsInstance = new Settings_SaveProfile();
+            Settings settingsInstance = new Settings();
             Settings.InitializeDefaultSettings(settingsInstance);
             FileStream fs = new FileStream(profileFilePath, FileMode.OpenOrCreate);
             SoapFormatter soap = new SoapFormatter();
-            settingsInstance  = (Settings_SaveProfile)soap.Deserialize(fs);
+            settingsInstance  = (Settings)soap.Deserialize(fs);
             fs.Close();
 
             return settingsInstance;

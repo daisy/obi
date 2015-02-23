@@ -112,6 +112,9 @@ namespace Obi
 
         public KeyboardShortcut[] MenuKeyboardShortCutsList;
 
+        [OptionalField]
+        public string SettingsName = "";
+
         private static readonly string SETTINGS_FILE_NAME = "obi_KeyboardShortcuts_Settings.xml";
 
         [NonSerialized()]
@@ -451,6 +454,24 @@ namespace Obi
 
             return formattedString;
         }
+
+        public bool Compare(KeyboardShortcuts_Settings shortcuts)
+        {
+            if (this.KeyboardShortcutsDescription.Count > 0
+                && shortcuts != null &&  shortcuts.KeyboardShortcutsDescription.Count > 0)
+            {
+                foreach (string desc in this.KeyboardShortcutsDescription.Keys)
+                {
+                    if (!shortcuts.KeyboardShortcutsDescription.ContainsKey(desc)) return false;
+
+                    if (shortcuts.KeyboardShortcutsDescription[desc].Value != this.KeyboardShortcutsDescription[desc].Value) return false;
+                }
+                // if it does not returns due to any of the mismatch above then both of the instances have the same value
+                return true;
+            }
+            return false;
+        }
+
     }
 
         [Serializable()]
