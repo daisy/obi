@@ -15,7 +15,7 @@ namespace Obi
     /// </summary>
     /// <remarks>It also seems that making a change in the class resets the existing settings.</remarks>
     [Serializable()]
-    public class Settings
+    public partial class Settings
     {
         public bool Audio_AllowOverwrite;            // allow/disallow overwriting audio when recording
         public bool Audio_Recording_PreviewBeforeStarting; //plays a bit of audio before starting recording.
@@ -175,8 +175,8 @@ namespace Obi
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
 
-        [NonSerialized]
-        public string SettingsName = null;
+        [OptionalField]
+        public string SettingsName;
 
         protected static void InitializeDefaultSettings(Settings settings)
         {
@@ -278,7 +278,7 @@ namespace Obi
             settings.Project_MinimizeObi = false;
             settings.Audio_CleanupMaxFileSizeInMB = 100;
             settings.EncodingFileFormat = "MP3";
-            settings.SettingsName = null;
+            settings.SettingsName = "basic";
         }
 
         /// <summary>

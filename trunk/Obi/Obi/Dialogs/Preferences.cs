@@ -2026,13 +2026,13 @@ namespace Obi.Dialogs
             return shortcutsPath;
         }
 
-        private Settings_SaveProfile m_ProfileLoaded = null;
+        private Settings m_ProfileLoaded = null;
         private void LoadPreferenceProfile (string profilePath )
         {
             
             if (profilePath != null && System.IO.File.Exists(profilePath))
             {
-                Settings_SaveProfile saveProfile = Settings_SaveProfile.GetSettingsFromSavedProfile(profilePath);
+                Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
                 
                 if (m_chkAll.Checked)
                 {
@@ -2080,7 +2080,7 @@ namespace Obi.Dialogs
                     fileDialog.Filter = "*.xml|*.XML";
                     if (fileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        Settings_SaveProfile saveProfile = new Settings_SaveProfile();
+                        Settings saveProfile = new Settings();
 
                         saveProfile.Save(fileDialog.FileName, mSettings);
                         string tempString = Localizer.Message("Profile_Saved");
