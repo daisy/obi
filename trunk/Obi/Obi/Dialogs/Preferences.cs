@@ -1633,227 +1633,267 @@ namespace Obi.Dialogs
             }
         }
 
-        private void UpdateAudioProfile(string Profile)
-        {
-            if (Profile == "Basic")
-            {
-               // m_FlagComboBoxIndexChange = true;
-                m_CheckBoxListView.Items[0].Checked = false;
-                m_CheckBoxListView.Items[2].Checked = false;
-                m_CheckBoxListView.Items[3].Checked = false;
-                m_CheckBoxListView.Items[4].Checked = false;
-                m_CheckBoxListView.Items[5].Checked = false;
-                m_CheckBoxListView.Items[7].Checked = false;
-                m_CheckBoxListView.Items[8].Checked = false;
-                m_CheckBoxListView.Items[10].Checked = false;
-                m_CheckBoxListView.Items[1].Checked = true;
-                m_CheckBoxListView.Items[6].Checked = true;
-                m_CheckBoxListView.Items[9].Checked = true;
-                m_CheckBoxListView.Items[11].Checked = true;
-                m_CheckBoxListView.Items[12].Checked = false;
-                m_CheckBoxListView.Items[13].Checked = false;
-                m_CheckBoxListView.Items[14].Checked = false;
-                m_CheckBoxListView.Items[15].Checked = false;
-                m_CheckBoxListView.Items[16].Checked = false;
-           //     m_FlagComboBoxIndexChange = false;
-                //m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
-            }
-            if (Profile == "Intermediate")
-            {
-                if (m_CheckBoxListView.Items[0].Checked || m_CheckBoxListView.Items[2].Checked || m_CheckBoxListView.Items[3].Checked ||
-                    !m_CheckBoxListView.Items[4].Checked || !m_CheckBoxListView.Items[5].Checked || m_CheckBoxListView.Items[7].Checked
-                    || !m_CheckBoxListView.Items[8].Checked || m_CheckBoxListView.Items[10].Checked || !m_CheckBoxListView.Items[1].Checked ||
-                    !m_CheckBoxListView.Items[6].Checked || !m_CheckBoxListView.Items[9].Checked || !m_CheckBoxListView.Items[11].Checked ||
-                    m_CheckBoxListView.Items[12].Checked || m_CheckBoxListView.Items[13].Checked || m_CheckBoxListView.Items[14].Checked ||
-                    m_CheckBoxListView.Items[15].Checked || m_CheckBoxListView.Items[16].Checked)
-                {
-                    string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " +
-                    Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_AllowOverwrite") + "\n* " +
-                    Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes")
-                    + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " + Localizer.Message("Audio_EnablePostRecordingPageRenumbering")
-                    + "\n* " + Localizer.Message("Audio_FastPlayWithoutPitchChange");
-                    if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Intermediate_recording_mode"), MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                       // m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
-                       // m_FlagComboBoxIndexChange = true;
-                        m_CheckBoxListView.Items[0].Checked = false;
-                        m_CheckBoxListView.Items[2].Checked = false;
-                        m_CheckBoxListView.Items[3].Checked = false;
-                        m_CheckBoxListView.Items[4].Checked = true;
-                        m_CheckBoxListView.Items[5].Checked = true;
-                        m_CheckBoxListView.Items[7].Checked = false;
-                        m_CheckBoxListView.Items[8].Checked = true;
-                        m_CheckBoxListView.Items[10].Checked = false;
-                        m_CheckBoxListView.Items[1].Checked = true;
-                        m_CheckBoxListView.Items[6].Checked = true;
-                        m_CheckBoxListView.Items[9].Checked = true;
-                        m_CheckBoxListView.Items[11].Checked = true;
-                        m_CheckBoxListView.Items[12].Checked = false;
-                        m_CheckBoxListView.Items[13].Checked = false;
-                        m_CheckBoxListView.Items[14].Checked = false;
-                        m_CheckBoxListView.Items[15].Checked = false;
-                        m_CheckBoxListView.Items[16].Checked = false;
-                       // m_FlagComboBoxIndexChange = false;
+        // For Developer uncomment to genearte XML
 
-                    }
-                    //else
-                    //{
-                    //    m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
-                    //    return false;
-                    //}
+        //private void UpdateAudioProfile(string Profile)
+        //{
+        //   mTab.SelectedTab = mAudioTab; 
+        //   if (Profile == "Basic")
+        //    {
+        //       // m_FlagComboBoxIndexChange = true;
+        //        m_CheckBoxListView.Items[0].Checked = false;
+        //        m_CheckBoxListView.Items[2].Checked = false;
+        //        m_CheckBoxListView.Items[3].Checked = false;
+        //        m_CheckBoxListView.Items[4].Checked = false;
+        //        m_CheckBoxListView.Items[5].Checked = false;
+        //        m_CheckBoxListView.Items[7].Checked = false;
+        //        m_CheckBoxListView.Items[8].Checked = false;
+        //        m_CheckBoxListView.Items[10].Checked = false;
+        //        m_CheckBoxListView.Items[1].Checked = true;
+        //        m_CheckBoxListView.Items[6].Checked = true;
+        //        m_CheckBoxListView.Items[9].Checked = true;
+        //        m_CheckBoxListView.Items[11].Checked = true;
+        //        m_CheckBoxListView.Items[12].Checked = false;
+        //        m_CheckBoxListView.Items[13].Checked = false;
+        //        m_CheckBoxListView.Items[14].Checked = false;
+        //        m_CheckBoxListView.Items[15].Checked = false;
+        //        m_CheckBoxListView.Items[16].Checked = false;
+        //   //     m_FlagComboBoxIndexChange = false;
+        //        //m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
+        //        UpdateBoolSettings();
+        //        mTab.SelectedTab = mProjectTab;
+        //        m_CheckBoxListView.Items[10].Checked = false;
+        //        m_CheckBoxListView.Items[11].Checked = false;
+        //        m_CheckBoxListView.Items[12].Checked = false;
+        //        m_CheckBoxListView.Items[13].Checked = true;
+        //        m_CheckBoxListView.Items[14].Checked = false;
+        //        UpdateBoolSettings();
+        //    }
+        //    else if (Profile == "Intermediate")
+        //    {
+        //        if (m_CheckBoxListView.Items[0].Checked || m_CheckBoxListView.Items[2].Checked || m_CheckBoxListView.Items[3].Checked ||
+        //            !m_CheckBoxListView.Items[4].Checked || !m_CheckBoxListView.Items[5].Checked || m_CheckBoxListView.Items[7].Checked
+        //            || !m_CheckBoxListView.Items[8].Checked || m_CheckBoxListView.Items[10].Checked || !m_CheckBoxListView.Items[1].Checked ||
+        //            !m_CheckBoxListView.Items[6].Checked || !m_CheckBoxListView.Items[9].Checked || !m_CheckBoxListView.Items[11].Checked ||
+        //            m_CheckBoxListView.Items[12].Checked || m_CheckBoxListView.Items[13].Checked || m_CheckBoxListView.Items[14].Checked ||
+        //            m_CheckBoxListView.Items[15].Checked || m_CheckBoxListView.Items[16].Checked)
+        //        {
+        //            string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " +
+        //            Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_AllowOverwrite") + "\n* " +
+        //            Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes")
+        //            + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " + Localizer.Message("Audio_EnablePostRecordingPageRenumbering")
+        //            + "\n* " + Localizer.Message("Audio_FastPlayWithoutPitchChange");
+        //            if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Intermediate_recording_mode"), MessageBoxButtons.YesNo,
+        //        MessageBoxIcon.Question) == DialogResult.Yes)
+        //            {
+        //                // m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
+        //                // m_FlagComboBoxIndexChange = true;
+        //                m_CheckBoxListView.Items[0].Checked = false;
+        //                m_CheckBoxListView.Items[2].Checked = false;
+        //                m_CheckBoxListView.Items[3].Checked = false;
+        //                m_CheckBoxListView.Items[4].Checked = true;
+        //                m_CheckBoxListView.Items[5].Checked = true;
+        //                m_CheckBoxListView.Items[7].Checked = false;
+        //                m_CheckBoxListView.Items[8].Checked = true;
+        //                m_CheckBoxListView.Items[10].Checked = false;
+        //                m_CheckBoxListView.Items[1].Checked = true;
+        //                m_CheckBoxListView.Items[6].Checked = true;
+        //                m_CheckBoxListView.Items[9].Checked = true;
+        //                m_CheckBoxListView.Items[11].Checked = true;
+        //                m_CheckBoxListView.Items[12].Checked = false;
+        //                m_CheckBoxListView.Items[13].Checked = false;
+        //                m_CheckBoxListView.Items[14].Checked = false;
+        //                m_CheckBoxListView.Items[15].Checked = false;
+        //                m_CheckBoxListView.Items[16].Checked = false;
+        //                // m_FlagComboBoxIndexChange = false;
 
-                }
-            }
-            else if (Profile == "Advance")
-            {
-                if (!(!m_CheckBoxListView.Items[0].Checked && !m_CheckBoxListView.Items[2].Checked && !m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked
-                     && m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[7].Checked && m_CheckBoxListView.Items[8].Checked
-                     && m_CheckBoxListView.Items[10].Checked && m_CheckBoxListView.Items[1].Checked && m_CheckBoxListView.Items[6].Checked
-                     && m_CheckBoxListView.Items[9].Checked && m_CheckBoxListView.Items[11].Checked && !m_CheckBoxListView.Items[12].Checked && m_CheckBoxListView.Items[13].Checked
-                     && !m_CheckBoxListView.Items[14].Checked && !m_CheckBoxListView.Items[15].Checked && !m_CheckBoxListView.Items[16].Checked))
-                {
-                    string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " +
-                    Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_AllowOverwrite") + "\n* " +
-                    Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") + "\n* " +
-                    Localizer.Message("Audio_ShowLiveWaveformWhileRecording") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
-                    Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection") + "\n* " +
-                    Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_EnforceSingleCursor");
+        //            }
+        //            //else
+        //            //{
+        //            //    m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
+        //            //    return false;
+        //            //}
 
-                    if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
-               MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                       // m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
-                       // m_FlagComboBoxIndexChange = true;
-                        m_CheckBoxListView.Items[0].Checked = false;
-                        m_CheckBoxListView.Items[1].Checked = true;
-                        m_CheckBoxListView.Items[2].Checked = false;
-                        m_CheckBoxListView.Items[3].Checked = false;
-                        m_CheckBoxListView.Items[4].Checked = true;
-                        m_CheckBoxListView.Items[5].Checked = true;
-                        m_CheckBoxListView.Items[6].Checked = true;
-                        m_CheckBoxListView.Items[7].Checked = true;
-                        m_CheckBoxListView.Items[8].Checked = true;
-                        m_CheckBoxListView.Items[9].Checked = true;
-                        m_CheckBoxListView.Items[10].Checked = true;
-                        m_CheckBoxListView.Items[11].Checked = true;
-                        m_CheckBoxListView.Items[12].Checked = false;
-                        m_CheckBoxListView.Items[13].Checked = true;
-                        m_CheckBoxListView.Items[14].Checked = false;
-                        m_CheckBoxListView.Items[15].Checked = false;
-                        m_CheckBoxListView.Items[16].Checked = false;
-                     //   m_FlagComboBoxIndexChange = false;
-                    }
-                    //else
-                    //{
-                    //    m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
-                    //    return false;
-                    //}
-                }
+        //        }
+        //        UpdateBoolSettings();
+        //        mTab.SelectedTab = mProjectTab;
+        //        m_CheckBoxListView.Items[10].Checked = false;
+        //        m_CheckBoxListView.Items[11].Checked = false;
+        //        m_CheckBoxListView.Items[12].Checked = false;
+        //        m_CheckBoxListView.Items[14].Checked = false;
+        //        UpdateBoolSettings();
+        //    }
+        //    else if (Profile == "Advance")
+        //    {
+        //        if (!(!m_CheckBoxListView.Items[0].Checked && !m_CheckBoxListView.Items[2].Checked && !m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked
+        //             && m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[7].Checked && m_CheckBoxListView.Items[8].Checked
+        //             && m_CheckBoxListView.Items[10].Checked && m_CheckBoxListView.Items[1].Checked && m_CheckBoxListView.Items[6].Checked
+        //             && m_CheckBoxListView.Items[9].Checked && m_CheckBoxListView.Items[11].Checked && !m_CheckBoxListView.Items[12].Checked && m_CheckBoxListView.Items[13].Checked
+        //             && !m_CheckBoxListView.Items[14].Checked && !m_CheckBoxListView.Items[15].Checked && !m_CheckBoxListView.Items[16].Checked))
+        //        {
+        //            string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " +
+        //            Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_AllowOverwrite") + "\n* " +
+        //            Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") + "\n* " +
+        //            Localizer.Message("Audio_ShowLiveWaveformWhileRecording") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
+        //            Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection") + "\n* " +
+        //            Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_EnforceSingleCursor");
 
-            }
-            else if (Profile == "Profile-2-SBS")
-            {
-                if (!(m_CheckBoxListView.Items[0].Checked && !m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && !m_CheckBoxListView.Items[4].Checked
-                     && !m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[7].Checked && !m_CheckBoxListView.Items[8].Checked
-                     && m_CheckBoxListView.Items[10].Checked && !m_CheckBoxListView.Items[1].Checked && !m_CheckBoxListView.Items[6].Checked
-                     && !m_CheckBoxListView.Items[9].Checked && !m_CheckBoxListView.Items[11].Checked && m_CheckBoxListView.Items[12].Checked && !m_CheckBoxListView.Items[13].Checked
-                     && m_CheckBoxListView.Items[14].Checked && !m_CheckBoxListView.Items[15].Checked && m_CheckBoxListView.Items[16].Checked))
-                {
-                    string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " +
-                   Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_PreviewBeforeRecording") + "\n* " +
-                   Localizer.Message("AudioTab_AllowOverwrite") + "\n* " + Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* "
-                   + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
-                   Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " +
-                   Localizer.Message("Audio_EnforceSingleCursor") + "\n* " + Localizer.Message("Audio_DisableDeselectionOnStop");
+        //            if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_advanced_recording_mode"), MessageBoxButtons.YesNo,
+        //       MessageBoxIcon.Question) == DialogResult.Yes)
+        //            {
+        //                // m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
+        //                // m_FlagComboBoxIndexChange = true;
+        //                m_CheckBoxListView.Items[0].Checked = false;
+        //                m_CheckBoxListView.Items[1].Checked = true;
+        //                m_CheckBoxListView.Items[2].Checked = false;
+        //                m_CheckBoxListView.Items[3].Checked = false;
+        //                m_CheckBoxListView.Items[4].Checked = true;
+        //                m_CheckBoxListView.Items[5].Checked = true;
+        //                m_CheckBoxListView.Items[6].Checked = true;
+        //                m_CheckBoxListView.Items[7].Checked = true;
+        //                m_CheckBoxListView.Items[8].Checked = true;
+        //                m_CheckBoxListView.Items[9].Checked = true;
+        //                m_CheckBoxListView.Items[10].Checked = true;
+        //                m_CheckBoxListView.Items[11].Checked = true;
+        //                m_CheckBoxListView.Items[12].Checked = false;
+        //                m_CheckBoxListView.Items[13].Checked = true;
+        //                m_CheckBoxListView.Items[14].Checked = false;
+        //                m_CheckBoxListView.Items[15].Checked = false;
+        //                m_CheckBoxListView.Items[16].Checked = false;
+        //                //   m_FlagComboBoxIndexChange = false;
+        //            }
+        //            //else
+        //            //{
+        //            //    m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
+        //            //    return false;
+        //            //}
+        //        }
+        //        UpdateBoolSettings();
+        //        mTab.SelectedTab = mProjectTab;
+        //        m_CheckBoxListView.Items[10].Checked = false;
+        //        m_CheckBoxListView.Items[11].Checked = false;
+        //        m_CheckBoxListView.Items[12].Checked = false;
+        //        m_CheckBoxListView.Items[14].Checked = false;
+        //        UpdateBoolSettings();
+        //    }
+        //    else if (Profile == "Profile-2-SBS")
+        //    {
+        //        if (!(m_CheckBoxListView.Items[0].Checked && !m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && !m_CheckBoxListView.Items[4].Checked
+        //             && !m_CheckBoxListView.Items[5].Checked && m_CheckBoxListView.Items[7].Checked && !m_CheckBoxListView.Items[8].Checked
+        //             && m_CheckBoxListView.Items[10].Checked && !m_CheckBoxListView.Items[1].Checked && !m_CheckBoxListView.Items[6].Checked
+        //             && !m_CheckBoxListView.Items[9].Checked && !m_CheckBoxListView.Items[11].Checked && m_CheckBoxListView.Items[12].Checked && !m_CheckBoxListView.Items[13].Checked
+        //             && m_CheckBoxListView.Items[14].Checked && !m_CheckBoxListView.Items[15].Checked && m_CheckBoxListView.Items[16].Checked))
+        //        {
+        //            string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " +
+        //           Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " + Localizer.Message("AudioTab_PreviewBeforeRecording") + "\n* " +
+        //           Localizer.Message("AudioTab_AllowOverwrite") + "\n* " + Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* "
+        //           + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") + "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
+        //           Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " +
+        //           Localizer.Message("Audio_EnforceSingleCursor") + "\n* " + Localizer.Message("Audio_DisableDeselectionOnStop");
 
-                    if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Level_ComboBox_Profile_2"), MessageBoxButtons.YesNo,
-               MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                      //  m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
-                      //  m_FlagComboBoxIndexChange = true;
-                        m_CheckBoxListView.Items[0].Checked = false;
-                        m_CheckBoxListView.Items[1].Checked = true;
-                        m_CheckBoxListView.Items[2].Checked = true;
-                        m_CheckBoxListView.Items[3].Checked = false;
-                        m_CheckBoxListView.Items[4].Checked = true;
-                        m_CheckBoxListView.Items[5].Checked = true;
-                        m_CheckBoxListView.Items[6].Checked = true;
-                        m_CheckBoxListView.Items[7].Checked = false;
-                        m_CheckBoxListView.Items[8].Checked = true;
-                        m_CheckBoxListView.Items[9].Checked = true;
-                        m_CheckBoxListView.Items[10].Checked = false;
-                        m_CheckBoxListView.Items[11].Checked = true;
-                        m_CheckBoxListView.Items[12].Checked = false;
-                        m_CheckBoxListView.Items[13].Checked = true;
-                        m_CheckBoxListView.Items[14].Checked = false;
-                        m_CheckBoxListView.Items[15].Checked = true;
-                        m_CheckBoxListView.Items[16].Checked = false;
-                      //  m_FlagComboBoxIndexChange = false;
-                    }
-                    //else
-                    //{
-                    //    m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
-                    //    return false;
-                    //}
-                }
+        //            if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Level_ComboBox_Profile_2"), MessageBoxButtons.YesNo,
+        //       MessageBoxIcon.Question) == DialogResult.Yes)
+        //            {
+        //                //  m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
+        //                //  m_FlagComboBoxIndexChange = true;
+        //                m_CheckBoxListView.Items[0].Checked = false;
+        //                m_CheckBoxListView.Items[1].Checked = true;
+        //                m_CheckBoxListView.Items[2].Checked = true;
+        //                m_CheckBoxListView.Items[3].Checked = false;
+        //                m_CheckBoxListView.Items[4].Checked = true;
+        //                m_CheckBoxListView.Items[5].Checked = true;
+        //                m_CheckBoxListView.Items[6].Checked = true;
+        //                m_CheckBoxListView.Items[7].Checked = false;
+        //                m_CheckBoxListView.Items[8].Checked = true;
+        //                m_CheckBoxListView.Items[9].Checked = true;
+        //                m_CheckBoxListView.Items[10].Checked = false;
+        //                m_CheckBoxListView.Items[11].Checked = true;
+        //                m_CheckBoxListView.Items[12].Checked = false;
+        //                m_CheckBoxListView.Items[13].Checked = true;
+        //                m_CheckBoxListView.Items[14].Checked = false;
+        //                m_CheckBoxListView.Items[15].Checked = true;
+        //                m_CheckBoxListView.Items[16].Checked = false;
+        //                //  m_FlagComboBoxIndexChange = false;
+        //            }
+        //            //else
+        //            //{
+        //            //    m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
+        //            //    return false;
+        //            //}
+        //        }
+        //        UpdateBoolSettings();
+        //        mTab.SelectedTab = mProjectTab;
+        //        m_CheckBoxListView.Items[10].Checked = true;
+        //        m_CheckBoxListView.Items[11].Checked = true;
+        //        m_CheckBoxListView.Items[12].Checked = true;
+        //        m_CheckBoxListView.Items[14].Checked = true;
+        //        UpdateBoolSettings();
 
-            }
-            else if (Profile == "Profile-1-VA")
-            {
-                if (!(m_CheckBoxListView.Items[0].Checked && !m_CheckBoxListView.Items[1].Checked && m_CheckBoxListView.Items[2].Checked && !m_CheckBoxListView.Items[3].Checked
-                     && !m_CheckBoxListView.Items[4].Checked && !m_CheckBoxListView.Items[5].Checked && !m_CheckBoxListView.Items[6].Checked
-                     && m_CheckBoxListView.Items[7].Checked && !m_CheckBoxListView.Items[8].Checked && !m_CheckBoxListView.Items[9].Checked
-                     && !m_CheckBoxListView.Items[10].Checked && !m_CheckBoxListView.Items[11].Checked && !m_CheckBoxListView.Items[12].Checked && m_CheckBoxListView.Items[13].Checked
-                     && m_CheckBoxListView.Items[14].Checked && m_CheckBoxListView.Items[15].Checked && !m_CheckBoxListView.Items[16].Checked))
-                {
-                    string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " +
-                    Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " +
-                    Localizer.Message("Audio_UseRecordingPauseShortcutForStopping") + "\n* " + Localizer.Message("AudioTab_AllowOverwrite") + "\n* " +
-                    Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") +
-                     "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
-                    Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection") + "\n* " +
-                    Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_RecordSubsequentPhrases") + "\n* " + Localizer.Message("Audio_PreservePage");
 
-                    if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Level_ComboBox_Profile_1"), MessageBoxButtons.YesNo,
-               MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                       // m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
-                       // m_FlagComboBoxIndexChange = true;
-                        m_CheckBoxListView.Items[0].Checked = false;
-                        m_CheckBoxListView.Items[1].Checked = true;
-                        m_CheckBoxListView.Items[2].Checked = false;
-                        m_CheckBoxListView.Items[3].Checked = true;
-                        m_CheckBoxListView.Items[4].Checked = true;
-                        m_CheckBoxListView.Items[5].Checked = true;
-                        m_CheckBoxListView.Items[6].Checked = true;
-                        m_CheckBoxListView.Items[7].Checked = false;
-                        m_CheckBoxListView.Items[8].Checked = true;
-                        m_CheckBoxListView.Items[9].Checked = true;
-                        m_CheckBoxListView.Items[10].Checked = true;
-                        m_CheckBoxListView.Items[11].Checked = true;
-                        m_CheckBoxListView.Items[12].Checked = true;
-                        m_CheckBoxListView.Items[13].Checked = false;
-                        m_CheckBoxListView.Items[14].Checked = false;
-                        m_CheckBoxListView.Items[15].Checked = false;
-                        m_CheckBoxListView.Items[16].Checked = true;
-                       // m_FlagComboBoxIndexChange = false;
-                    }
-                    //else
-                    //{
-                    //    m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
-                    //    return false;
-                    //}
-                }
+        //    }
+        //    else if (Profile == "Profile-1-VA")
+        //    {
+        //        if (!(m_CheckBoxListView.Items[0].Checked && !m_CheckBoxListView.Items[1].Checked && m_CheckBoxListView.Items[2].Checked && !m_CheckBoxListView.Items[3].Checked
+        //             && !m_CheckBoxListView.Items[4].Checked && !m_CheckBoxListView.Items[5].Checked && !m_CheckBoxListView.Items[6].Checked
+        //             && m_CheckBoxListView.Items[7].Checked && !m_CheckBoxListView.Items[8].Checked && !m_CheckBoxListView.Items[9].Checked
+        //             && !m_CheckBoxListView.Items[10].Checked && !m_CheckBoxListView.Items[11].Checked && !m_CheckBoxListView.Items[12].Checked && m_CheckBoxListView.Items[13].Checked
+        //             && m_CheckBoxListView.Items[14].Checked && m_CheckBoxListView.Items[15].Checked && !m_CheckBoxListView.Items[16].Checked))
+        //        {
+        //            string tempMessageStr = Localizer.Message("Preferences_Advance_Mode") + "\n" + "\n* " +
+        //            Localizer.Message("AudioTab_RetainInitialSilence") + "\n* " +
+        //            Localizer.Message("Audio_UseRecordingPauseShortcutForStopping") + "\n* " + Localizer.Message("AudioTab_AllowOverwrite") + "\n* " +
+        //            Localizer.Message("AudioTab_RecordDirectlyFromTransportBar") + "\n* " + Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes") +
+        //             "\n* " + Localizer.Message("Audio_DetectPhrasesWhileRecording") + "\n* " +
+        //            Localizer.Message("Audio_EnablePostRecordingPageRenumbering") + "\n* " + Localizer.Message("Audio_MergeFirstTwoPhrasesInPhraseDetection") + "\n* " +
+        //            Localizer.Message("Audio_FastPlayWithoutPitchChange") + "\n* " + Localizer.Message("Audio_RecordSubsequentPhrases") + "\n* " + Localizer.Message("Audio_PreservePage");
 
-            }
-            //else if (m_ComboSelectAudioProfile.SelectedIndex == 5)
-            //{
-            //    m_FlagComboBoxIndexChange = false;
-            //    m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
-            //}
-            //return true;
-        }
+        //            if (MessageBox.Show(tempMessageStr, Localizer.Message("Preferences_Level_ComboBox_Profile_1"), MessageBoxButtons.YesNo,
+        //       MessageBoxIcon.Question) == DialogResult.Yes)
+        //            {
+        //                // m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
+        //                // m_FlagComboBoxIndexChange = true;
+        //                m_CheckBoxListView.Items[0].Checked = false;
+        //                m_CheckBoxListView.Items[1].Checked = true;
+        //                m_CheckBoxListView.Items[2].Checked = false;
+        //                m_CheckBoxListView.Items[3].Checked = true;
+        //                m_CheckBoxListView.Items[4].Checked = true;
+        //                m_CheckBoxListView.Items[5].Checked = true;
+        //                m_CheckBoxListView.Items[6].Checked = true;
+        //                m_CheckBoxListView.Items[7].Checked = false;
+        //                m_CheckBoxListView.Items[8].Checked = true;
+        //                m_CheckBoxListView.Items[9].Checked = true;
+        //                m_CheckBoxListView.Items[10].Checked = true;
+        //                m_CheckBoxListView.Items[11].Checked = true;
+        //                m_CheckBoxListView.Items[12].Checked = true;
+        //                m_CheckBoxListView.Items[13].Checked = false;
+        //                m_CheckBoxListView.Items[14].Checked = false;
+        //                m_CheckBoxListView.Items[15].Checked = false;
+        //                m_CheckBoxListView.Items[16].Checked = true;
+        //                // m_FlagComboBoxIndexChange = false;
+        //            }
+        //            //else
+        //            //{
+        //            //    m_ComboSelectAudioProfile.SelectedIndex = m_IndexOfLevelCombox;
+        //            //    return false;
+        //            //}
+        //            mSettings.Audio_PreviewDuration = 7000;
+        //        }
+        //        UpdateBoolSettings();
+        //        mTab.SelectedTab = mProjectTab;
+        //        m_CheckBoxListView.Items[10].Checked = false;
+        //        m_CheckBoxListView.Items[11].Checked = false;
+        //        m_CheckBoxListView.Items[12].Checked = false;
+        //        m_CheckBoxListView.Items[14].Checked = false;
+        //        UpdateBoolSettings();
+
+        //    }
+        //    //else if (m_ComboSelectAudioProfile.SelectedIndex == 5)
+        //    //{
+        //    //    m_FlagComboBoxIndexChange = false;
+        //    //    m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
+        //    //}
+        //    //return true;
+        //}
 
         private void m_SelectLevelComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -1915,8 +1955,18 @@ namespace Obi.Dialogs
         {
             if (m_rdb_Preferences.Checked)
             {
+                //For Developer uncomment Use below lines to genarate XML
+
+                //if (m_cb_SelectProfile.SelectedIndex != -1)
+                //{
+                //    string ProfileName = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString();
+
+                //    UpdateAudioProfile(ProfileName);
+                //}
+
+                // For Developer Comment rest of the lines for generation of XML
+
                 string profilePath = GetFilePathOfSelectedPreferencesComboBox();
-                
                 try
                 {
                     if (profilePath != null) LoadPreferenceProfile(profilePath);
@@ -1991,10 +2041,10 @@ namespace Obi.Dialogs
                 else
                 {
                     if (m_chkProject.Checked)
-                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Project);
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Project);                    
 
-                    if (m_chkAudio.Checked ) 
-                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Audio);
+                    if (m_chkAudio.Checked)
+                        saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.Audio);                    
 
                     if (m_chkLanguage.Checked ) 
                         saveProfile.CopyPropertiesToExistingSettings(mForm.Settings, PreferenceProfiles.UserProfile);
