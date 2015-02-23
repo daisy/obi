@@ -2058,8 +2058,11 @@ namespace Obi.Dialogs
                     if (m_chkProject.Checked || m_chkAll.Checked) InitializeProjectTab();
                     if (m_chkAudio.Checked || m_chkAll.Checked) InitializeAudioTab();
                     if (m_chkLanguage.Checked || m_chkAll.Checked) InitializeUserProfileTab();
-                    if (m_chkColor.Checked || m_chkAll.Checked) InitializeColorPreferenceTab();
-
+                    if (m_chkColor.Checked || m_chkAll.Checked)
+                    {
+                        InitializeColorPreferenceTab();
+                        m_IsColorChanged = true;
+                    }
                     m_ProfileLoaded = saveProfile;
                 m_ProfileLoaded.SettingsName = System.IO.Path.GetFileNameWithoutExtension (profilePath);
                 
