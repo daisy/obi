@@ -2087,7 +2087,7 @@ namespace Obi.Dialogs
                     fileDialog.Filter = "*.xml|*.XML";
                     if (fileDialog.ShowDialog() == DialogResult.OK)
                     {   
-                        mSettings.Save(fileDialog.FileName, mSettings);
+                        mSettings.Save(fileDialog.FileName);
                         string tempString = Localizer.Message("Profile_Saved");
                         MessageBox.Show(tempString, tempString, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }

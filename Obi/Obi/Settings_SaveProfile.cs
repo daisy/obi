@@ -236,12 +236,12 @@ namespace Obi
            return newSettings;
        }
 
-        public void Save(string profileFilePath, Settings existingSettings)
+        public void Save(string profileFilePath)
         {
             try
             {
-                Settings.InitializeDefaultSettings(this);
-                CopyPropertiesFromSettings(existingSettings);
+                //Settings.InitializeDefaultSettings(this);
+                ///CopyPropertiesFromSettings(existingSettings);
                 FileStream fs = new FileStream(profileFilePath, FileMode.OpenOrCreate);
                 SoapFormatter soap = new SoapFormatter();
                 soap.Serialize(fs, this);
