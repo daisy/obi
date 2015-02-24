@@ -378,6 +378,7 @@ namespace Obi.Dialogs
                 //   UpdateColorSettings();
                 DialogResult = DialogResult.OK;
                 Close();
+                MessageBox.Show(mSettings.ColorSettings.BlockBackColor_Custom.ToString());
             }
             else
             {
@@ -2085,10 +2086,8 @@ namespace Obi.Dialogs
                     SaveFileDialog fileDialog = new SaveFileDialog();
                     fileDialog.Filter = "*.xml|*.XML";
                     if (fileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        Settings saveProfile = new Settings();
-
-                        saveProfile.Save(fileDialog.FileName, mSettings);
+                    {   
+                        mSettings.Save(fileDialog.FileName, mSettings);
                         string tempString = Localizer.Message("Profile_Saved");
                         MessageBox.Show(tempString, tempString, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
