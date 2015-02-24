@@ -378,7 +378,7 @@ namespace Obi.Dialogs
                 //   UpdateColorSettings();
                 DialogResult = DialogResult.OK;
                 Close();
-                MessageBox.Show(mSettings.ColorSettings.BlockBackColor_Custom.ToString());
+                
             }
             else
             {
