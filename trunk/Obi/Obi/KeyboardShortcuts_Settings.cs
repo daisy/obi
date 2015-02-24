@@ -218,7 +218,8 @@ namespace Obi
             settings.UserFriendlyNameDirectory = new Dictionary<Keys, string>();
             settings.PopulateKeyboardShortcutsDictionary();
             settings.PopulateUserFriendlyNamesForKeyboardKeys();
-            
+            settings.SettingsName = "Default";
+
             return settings;
         }
 
