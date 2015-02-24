@@ -108,6 +108,11 @@ namespace Obi.Commands.Node
         /// </summary>
         public static CompositeCommand GetSplitCommand(ProjectView.ProjectView view)
         {
+            return GetSplitCommand(view, true);
+        }
+
+            public static CompositeCommand GetSplitCommand(ProjectView.ProjectView view, bool transferProperties)
+        {
             PhraseNode phrase = view.TransportBar.PlaybackPhrase;
             if (phrase == null) phrase = view.SelectedNodeAs<PhraseNode>();
             if (phrase != null)
@@ -121,8 +126,18 @@ namespace Obi.Commands.Node
                     CompositeCommand command =
                         view.Presentation.CreateCompositeCommand(Localizer.Message("split_phrase"));
                     if (end > 0.0) AppendSplitCommandWithProperties(view, command, phrase, end, false);
-                    if (begin > 0.0) AppendSplitCommandWithProperties(view, command, phrase, begin,
-view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange != null  && !((AudioSelection)view.Selection).AudioRange.HasCursor && !(phrase.Role_ == EmptyNode.Role.Silence || phrase.Role_ == EmptyNode.Role.Custom));
+                    if (begin > 0.0)
+                    {
+                        if (transferProperties)
+                        {
+                            AppendSplitCommandWithProperties(view, command, phrase, begin,
+    view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange != null && !((AudioSelection)view.Selection).AudioRange.HasCursor && !(phrase.Role_ == EmptyNode.Role.Silence || phrase.Role_ == EmptyNode.Role.Custom));
+                        }
+                        else
+                        {
+                            AppendSplitCommandWithProperties(view, command, phrase, begin, false);
+                        }
+                    }
                     if (command.ChildCommands.Count > 0) return command;
                 }
             }
