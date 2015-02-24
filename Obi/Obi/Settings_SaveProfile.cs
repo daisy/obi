@@ -213,7 +213,7 @@ namespace Obi
                newSettings.ImportCharCountToTruncateFromStart = this.ImportCharCountToTruncateFromStart;
                newSettings.ImportCharsToReplaceWithSpaces = this.ImportCharsToReplaceWithSpaces;
                newSettings.ImportPageIdentificationString = this.ImportPageIdentificationString;
-               newSettings.LastOpenProject = this.LastOpenProject;
+               //newSettings.LastOpenProject = this.LastOpenProject; // no need to preserve last open project across settings
                newSettings.MaxAllowedPhraseDurationInMinutes = this.MaxAllowedPhraseDurationInMinutes;
                newSettings.MaxPhraseDurationMinutes = this.MaxPhraseDurationMinutes;
                newSettings.NewProjectDialogSize = this.NewProjectDialogSize;
@@ -253,7 +253,7 @@ namespace Obi
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
         }
-
+       /*
        private void CopyPropertiesFromSettings(Settings existingSettings)
        {
            this.Audio_AllowOverwrite = existingSettings.Audio_AllowOverwrite;
@@ -355,7 +355,7 @@ namespace Obi
            this.WrapStripContents = existingSettings.WrapStripContents;
            this.ZoomFactor = existingSettings.ZoomFactor;
        }
-
+       */
        public bool Compare(Settings settings,PreferenceProfiles selectedProfile)
        {
            // compare if all the relevant public members of the settings are  equal to the corresponding members of this class
