@@ -49,6 +49,11 @@ namespace Obi.Dialogs
             this.m_rdb_Preferences = new System.Windows.Forms.RadioButton();
             this.m_lblSelectedProfile = new System.Windows.Forms.Label();
             this.m_gpBox_SelectPreferences = new System.Windows.Forms.GroupBox();
+            this.m_lblShortcutsProfile = new System.Windows.Forms.Label();
+            this.m_btnProfileDiscription = new System.Windows.Forms.Button();
+            this.m_cb_SelectProfile = new System.Windows.Forms.ComboBox();
+            this.m_cb_SelectShorcutsProfile = new System.Windows.Forms.ComboBox();
+            this.m_lblSelectProfile = new System.Windows.Forms.Label();
             this.m_chkColor = new System.Windows.Forms.CheckBox();
             this.m_chkProject = new System.Windows.Forms.CheckBox();
             this.m_chkAudio = new System.Windows.Forms.CheckBox();
@@ -127,11 +132,6 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_ApplyButton = new System.Windows.Forms.Button();
-            this.m_lblShortcutsProfile = new System.Windows.Forms.Label();
-            this.m_btnProfileDiscription = new System.Windows.Forms.Button();
-            this.m_cb_SelectProfile = new System.Windows.Forms.ComboBox();
-            this.m_cb_SelectShorcutsProfile = new System.Windows.Forms.ComboBox();
-            this.m_lblSelectProfile = new System.Windows.Forms.Label();
             this.mAdvanceTab.SuspendLayout();
             this.m_gpBox_Buttons.SuspendLayout();
             this.m_gpBox_SelectProfile.SuspendLayout();
@@ -303,6 +303,39 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_gpBox_SelectPreferences, "m_gpBox_SelectPreferences");
             this.m_gpBox_SelectPreferences.Name = "m_gpBox_SelectPreferences";
             this.m_gpBox_SelectPreferences.TabStop = false;
+            // 
+            // m_lblShortcutsProfile
+            // 
+            resources.ApplyResources(this.m_lblShortcutsProfile, "m_lblShortcutsProfile");
+            this.m_lblShortcutsProfile.Name = "m_lblShortcutsProfile";
+            this.helpProvider1.SetShowHelp(this.m_lblShortcutsProfile, ((bool)(resources.GetObject("m_lblShortcutsProfile.ShowHelp"))));
+            // 
+            // m_btnProfileDiscription
+            // 
+            resources.ApplyResources(this.m_btnProfileDiscription, "m_btnProfileDiscription");
+            this.m_btnProfileDiscription.Name = "m_btnProfileDiscription";
+            this.helpProvider1.SetShowHelp(this.m_btnProfileDiscription, ((bool)(resources.GetObject("m_btnProfileDiscription.ShowHelp"))));
+            this.m_btnProfileDiscription.UseVisualStyleBackColor = true;
+            // 
+            // m_cb_SelectProfile
+            // 
+            this.m_cb_SelectProfile.FormattingEnabled = true;
+            resources.ApplyResources(this.m_cb_SelectProfile, "m_cb_SelectProfile");
+            this.m_cb_SelectProfile.Name = "m_cb_SelectProfile";
+            this.helpProvider1.SetShowHelp(this.m_cb_SelectProfile, ((bool)(resources.GetObject("m_cb_SelectProfile.ShowHelp"))));
+            // 
+            // m_cb_SelectShorcutsProfile
+            // 
+            resources.ApplyResources(this.m_cb_SelectShorcutsProfile, "m_cb_SelectShorcutsProfile");
+            this.m_cb_SelectShorcutsProfile.FormattingEnabled = true;
+            this.m_cb_SelectShorcutsProfile.Name = "m_cb_SelectShorcutsProfile";
+            this.helpProvider1.SetShowHelp(this.m_cb_SelectShorcutsProfile, ((bool)(resources.GetObject("m_cb_SelectShorcutsProfile.ShowHelp"))));
+            // 
+            // m_lblSelectProfile
+            // 
+            resources.ApplyResources(this.m_lblSelectProfile, "m_lblSelectProfile");
+            this.m_lblSelectProfile.Name = "m_lblSelectProfile";
+            this.helpProvider1.SetShowHelp(this.m_lblSelectProfile, ((bool)(resources.GetObject("m_lblSelectProfile.ShowHelp"))));
             // 
             // m_chkColor
             // 
@@ -993,39 +1026,6 @@ namespace Obi.Dialogs
             this.m_ApplyButton.Name = "m_ApplyButton";
             this.m_ApplyButton.UseVisualStyleBackColor = true;
             this.m_ApplyButton.Click += new System.EventHandler(this.m_ApplyButton_Click);
-            // 
-            // m_lblShortcutsProfile
-            // 
-            resources.ApplyResources(this.m_lblShortcutsProfile, "m_lblShortcutsProfile");
-            this.m_lblShortcutsProfile.Name = "m_lblShortcutsProfile";
-            this.helpProvider1.SetShowHelp(this.m_lblShortcutsProfile, ((bool)(resources.GetObject("m_lblShortcutsProfile.ShowHelp"))));
-            // 
-            // m_btnProfileDiscription
-            // 
-            resources.ApplyResources(this.m_btnProfileDiscription, "m_btnProfileDiscription");
-            this.m_btnProfileDiscription.Name = "m_btnProfileDiscription";
-            this.helpProvider1.SetShowHelp(this.m_btnProfileDiscription, ((bool)(resources.GetObject("m_btnProfileDiscription.ShowHelp"))));
-            this.m_btnProfileDiscription.UseVisualStyleBackColor = true;
-            // 
-            // m_cb_SelectProfile
-            // 
-            this.m_cb_SelectProfile.FormattingEnabled = true;
-            resources.ApplyResources(this.m_cb_SelectProfile, "m_cb_SelectProfile");
-            this.m_cb_SelectProfile.Name = "m_cb_SelectProfile";
-            this.helpProvider1.SetShowHelp(this.m_cb_SelectProfile, ((bool)(resources.GetObject("m_cb_SelectProfile.ShowHelp"))));
-            // 
-            // m_cb_SelectShorcutsProfile
-            // 
-            resources.ApplyResources(this.m_cb_SelectShorcutsProfile, "m_cb_SelectShorcutsProfile");
-            this.m_cb_SelectShorcutsProfile.FormattingEnabled = true;
-            this.m_cb_SelectShorcutsProfile.Name = "m_cb_SelectShorcutsProfile";
-            this.helpProvider1.SetShowHelp(this.m_cb_SelectShorcutsProfile, ((bool)(resources.GetObject("m_cb_SelectShorcutsProfile.ShowHelp"))));
-            // 
-            // m_lblSelectProfile
-            // 
-            resources.ApplyResources(this.m_lblSelectProfile, "m_lblSelectProfile");
-            this.m_lblSelectProfile.Name = "m_lblSelectProfile";
-            this.helpProvider1.SetShowHelp(this.m_lblSelectProfile, ((bool)(resources.GetObject("m_lblSelectProfile.ShowHelp"))));
             // 
             // Preferences
             // 
