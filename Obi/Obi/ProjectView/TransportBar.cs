@@ -1964,7 +1964,13 @@ namespace Obi.ProjectView
                 {
                     //MessageBox.Show(SplitBeginTime.ToString () + " , selection time"+ ((mView.Selection != null && mView.Selection is AudioSelection)? ((AudioSelection)mView.Selection).AudioRange.CursorTime.ToString () : ""  ));
                     // TODO: we cannot record from pause at the moment; maybe that's not so bad actually.
-                CompositeCommand SplitCommand = Commands.Node.SplitAudio.GetSplitCommand ( mView );
+
+                    // behaviour modified as per request of VA
+                    // Split command should not transfer properties to new phrase if the subsequent phrases are deleted. The following line is replaced by conditional split commands
+                    //Commands.Node.SplitAudio.GetSplitCommand ( mView );
+                CompositeCommand SplitCommand = deleteFollowingPhrases?
+                    Commands.Node.SplitAudio.GetSplitCommand ( mView,false ):
+                    Commands.Node.SplitAudio.GetSplitCommand ( mView );
                 if (SplitCommand != null)
                 {
                     command.ChildCommands.Insert(command.ChildCommands.Count, SplitCommand);
@@ -1973,8 +1979,13 @@ namespace Obi.ProjectView
                                     if (mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor && SplitCommand != null)
                                         {
                                         command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.Node.DeleteWithOffset ( mView, node, 1 ) );
+                                        // copy the properties to the new middle node only if the following phrases are not deleted. (VA request)
+                                        // i.e. If the following phrases are deleted then the original phrase should retain properties
+                                        if (!deleteFollowingPhrases)
+                                        {
                                         m_IsAfterRecordingSplitTransferEnabled = true;
                                         CopyPropertiesForTransfer((EmptyNode)node);
+                                    }
                                         
                                         }
                 }
