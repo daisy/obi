@@ -109,6 +109,8 @@ namespace Obi
         public bool Project_MinimizeObi;
         public double Audio_CleanupMaxFileSizeInMB;
         public string EncodingFileFormat;
+        [OptionalField]
+        public bool Project_RecordingToolbarOpenInPreviousSession;
 
         // size and point types should be stored in arrays
 
@@ -279,6 +281,7 @@ namespace Obi
             settings.Audio_CleanupMaxFileSizeInMB = 100;
             settings.EncodingFileFormat = "MP3";
             settings.SettingsName = "basic";
+            settings.Project_RecordingToolbarOpenInPreviousSession = false;
         }
 
         /// <summary>
