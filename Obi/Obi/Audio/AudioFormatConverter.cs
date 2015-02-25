@@ -73,7 +73,7 @@ namespace Obi.Audio
                     AudioLibPCMFormat originalPCMFormat = null;
                     convertedFile = audioConverter.UnCompressMp3File(filePath, directoryPath, pcmFormat, out originalPCMFormat);
                 }
-                else if (Path.GetExtension(filePath).ToLower() == ".mp4")
+                else if (Path.GetExtension(filePath).ToLower() == ".mp4" || Path.GetExtension(filePath).ToLower() == ".m4a")
                 {
                     AudioLibPCMFormat pcmFormat = new AudioLibPCMFormat((ushort)channels, (uint)samplingRate, (ushort)bitDepth);
                     AudioLibPCMFormat originalPCMFormat = null;
