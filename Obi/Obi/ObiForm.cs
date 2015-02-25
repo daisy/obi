@@ -3238,6 +3238,7 @@ ref string exportDirectoryEPUB3)
                             MessageBox.Show(string.Format(Localizer.Message("ObiForm_PipelineNotFound"),
                                                           mSettings.Project_PipelineScriptsPath));
                     }
+                    if (mSettings.Project_RecordingToolbarOpenInPreviousSession) ShowRecordingToolBar();
                     Ready();
 
                     
@@ -4007,6 +4008,7 @@ ref string exportDirectoryEPUB3)
                 if (DidCloseProject())
                 {
                     mSettings.ShowGraphicalPeakMeterAtStartup = mPeakMeter != null;
+                    mSettings.Project_RecordingToolbarOpenInPreviousSession = (mRecordingToolBarForm != null && mRecordingToolBarForm.IsHandleCreated);
                     try
                     {
                         mSettings.SaveSettings();
