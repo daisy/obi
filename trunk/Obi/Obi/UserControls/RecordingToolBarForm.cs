@@ -979,7 +979,11 @@ namespace Obi.UserControls
 
         private void m_recordingToolBarSectionEndBtn_Click(object sender, EventArgs e)
         {
-            if (m_TransportBar.IsPlayerActive) m_TransportBar.MoveSelectionToPlaybackPhrase();
+            if (m_TransportBar.IsPlayerActive)
+            {
+                m_TransportBar.Pause();
+                m_TransportBar.MoveSelectionToPlaybackPhrase();
+            }
             if (m_ProjectView.Selection != null && m_ProjectView.GetSelectedPhraseSection.PhraseChildCount > 0) //@singleSection
             {
                 SectionNode section = m_ProjectView.GetSelectedPhraseSection;
