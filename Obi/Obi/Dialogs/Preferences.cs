@@ -555,13 +555,13 @@ namespace Obi.Dialogs
                 MessageBox.Show ( string.Format ( Localizer.Message ( "Peferences_GUIDonotSupportCulture" ),
                     mCultureBox.SelectedItem.ToString () ) );
                 }
-                if (mCultureBox.SelectedItem.ToString() != "zh-CHT" && mCultureBox.SelectedItem.ToString() != "zh-CHS")
+                if (mCultureBox.SelectedItem.ToString() != "zh-CHT" && mCultureBox.SelectedItem.ToString() != "zh-TW")
                 {
                     mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
                 }
                 else
                 {
-                    CultureInfo temp = new CultureInfo("zh-CN");
+                    CultureInfo temp = new CultureInfo("zh-HK");
                     mSettings.UserProfile.Culture = temp;
                 }
                 VerifyChangeInLoadedSettings();
@@ -571,13 +571,13 @@ namespace Obi.Dialogs
         private bool IsResourceForLanguageExist(string cultureName)
         {
             string cultureDirName = "";
-            if (cultureName != "zh-CN" && cultureName != "zh-CHT" && cultureName != "zh-CHS")
+            if (cultureName != "zh-HK"  && cultureName != "zh-TW" && cultureName != "zh-CHT")
             {
                 cultureDirName = cultureName.Split('-')[0];
             }
             else
             {
-                cultureDirName = "zh-CN";
+                cultureDirName = "zh-HK";
             }
             
             string[] dirList = System.IO.Directory.GetDirectories(System.AppDomain.CurrentDomain.BaseDirectory, cultureDirName, System.IO.SearchOption.TopDirectoryOnly);
