@@ -2206,7 +2206,7 @@ namespace Obi.Dialogs
                     }
                 }
             }// directory exists check
-
+            m_cb_SelectProfile.SelectedIndex = -1;
 
             // now add keyboard shortcuts profile to the respective combobox
             m_cb_SelectShorcutsProfile.Items.Add("Default Shortcuts");
@@ -2223,7 +2223,7 @@ namespace Obi.Dialogs
                     }
                 }
             }// directory exists check
-
+            m_cb_SelectShorcutsProfile.SelectedIndex = -1;
         }
 
         private void m_btnAddProfile_Click(object sender, EventArgs e)
