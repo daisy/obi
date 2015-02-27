@@ -2121,6 +2121,7 @@ namespace Obi.Dialogs
         {
             LoadProfilesToComboboxes () ;
             if (mSettings != null && !string.IsNullOrEmpty(mSettings.SettingsName)) m_txtSelectedProfile.Text = mSettings.SettingsName;
+            if (mForm.KeyboardShortcuts != null && !string.IsNullOrEmpty(mForm.KeyboardShortcuts.SettingsName)) m_txtSelectedShortcutsProfile.Text = mForm.KeyboardShortcuts.SettingsName;
         }
 
         private string GetPredefinedProfilesDirectory()
@@ -2372,64 +2373,7 @@ namespace Obi.Dialogs
                 mSettings.SettingsName = m_txtSelectedProfile.Text;
                 
             }
-        }
-
-        private void m_btnShortcutSave_Click(object sender, EventArgs e)
-        {
-          /*  
-           */
-        }
-
-        private void m_btnShortcutAdd_Click(object sender, EventArgs e)
-        {
-           /* OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "*.xml|*.XML";
-            if (fileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    LoadShortcutsFromFile(fileDialog.FileName);
-                    // copy the profile file to custom profile directory
-                    string shortcutsProfilesDirectory = GetCustomProfilesDirectory(false);
-                    if (!System.IO.Directory.Exists(shortcutsProfilesDirectory)) System.IO.Directory.CreateDirectory(shortcutsProfilesDirectory);
-                    string newCustomFilePath = System.IO.Path.Combine(shortcutsProfilesDirectory,
-                        System.IO.Path.GetFileName(fileDialog.FileName));
-                    System.IO.File.Copy(fileDialog.FileName, newCustomFilePath, true);
-                    m_cb_SelectShorcutsProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-            }*/
-        }
-
-        private void m_btnShortcutLoad_Click(object sender, EventArgs e)
-        {
-           /* if (m_cb_SelectShorcutsProfile.SelectedIndex == 0)
-            {
-                mForm.LoadDefaultKeyboardShortcuts();
-                m_KeyboardShortcuts = mForm.KeyboardShortcuts;
-
-                m_lvShortcutKeysList.Items.Clear();
-                LoadListviewAccordingToComboboxSelection();
-            }
-            else if (m_cb_SelectShorcutsProfile.SelectedIndex >= 0 && m_cb_SelectShorcutsProfile.SelectedIndex < m_cb_SelectShorcutsProfile.Items.Count)
-            {
-                string shortcutsFileName = m_cb_SelectShorcutsProfile.Items[m_cb_SelectShorcutsProfile.SelectedIndex].ToString() + ".xml";
-                string shortcutsPath = System.IO.Path.Combine(GetCustomProfilesDirectory(false), shortcutsFileName);
-
-                try
-                {
-                    if (shortcutsPath != null) LoadShortcutsFromFile(shortcutsPath);
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-
-            }
-          */  
+            if (mForm.KeyboardShortcuts != null && !string.IsNullOrEmpty(mForm.KeyboardShortcuts.SettingsName)) m_txtSelectedShortcutsProfile.Text = mForm.KeyboardShortcuts.SettingsName;
         }
 
         private void LoadShortcutsFromFile(string filePath)
@@ -2454,6 +2398,8 @@ namespace Obi.Dialogs
                 
                 m_lvShortcutKeysList.Items.Clear();
                 LoadListviewAccordingToComboboxSelection();
+                mForm.KeyboardShortcuts.SettingsName = System.IO.Path.GetFileNameWithoutExtension(filePath);
+                if (mForm.KeyboardShortcuts != null && !string.IsNullOrEmpty(mForm.KeyboardShortcuts.SettingsName)) m_txtSelectedShortcutsProfile.Text = mForm.KeyboardShortcuts.SettingsName;
                 MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"));
             }
         }
