@@ -379,7 +379,13 @@ namespace Obi.ImportExport
                                 }
 
                                 string urlDecoded = FileDataProvider.UriDecode(textSrc.Value);
-
+                                string contentFilesDirectoryPath = Path.GetDirectoryName(fullOverlayPath);
+                                if (urlDecoded.StartsWith("./")) urlDecoded = urlDecoded.Remove(0, 2);
+                                if (urlDecoded.StartsWith("../"))
+                                {
+                                    urlDecoded = urlDecoded.Remove(0, 3);
+                                    contentFilesDirectoryPath = Path.GetDirectoryName(contentFilesDirectoryPath);
+                                }
                                 if (urlDecoded.IndexOf('#') > 0)
                                 {
                                     string[] srcParts = urlDecoded.Split('#');
@@ -388,7 +394,7 @@ namespace Obi.ImportExport
                                         continue;
                                     }
 
-                                    string fullTextRefPath = Path.Combine(Path.GetDirectoryName(fullOverlayPath),
+                                    string fullTextRefPath = Path.Combine(contentFilesDirectoryPath,
                                         srcParts[0]);
                                     fullTextRefPath =
                                         FileDataProvider.NormaliseFullFilePath(fullTextRefPath).Replace('/', '\\');
