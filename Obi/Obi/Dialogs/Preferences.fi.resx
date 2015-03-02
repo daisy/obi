@@ -2781,7 +2781,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 106</value>
+    <value>102, 106</value>
   </data>
   <data name="m_ChkAutoSaveInterval.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
