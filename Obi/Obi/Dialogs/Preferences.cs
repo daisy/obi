@@ -1669,7 +1669,6 @@ namespace Obi.Dialogs
         //        m_CheckBoxListView.Items[10].Checked = false;
         //        m_CheckBoxListView.Items[11].Checked = false;
         //        m_CheckBoxListView.Items[12].Checked = false;
-        //        m_CheckBoxListView.Items[13].Checked = true;
         //        m_CheckBoxListView.Items[14].Checked = false;
         //        UpdateBoolSettings();
         //    }
@@ -1830,7 +1829,7 @@ namespace Obi.Dialogs
         //        m_CheckBoxListView.Items[10].Checked = true;
         //        m_CheckBoxListView.Items[11].Checked = true;
         //        m_CheckBoxListView.Items[12].Checked = true;
-        //        m_CheckBoxListView.Items[14].Checked = true;
+        //        m_CheckBoxListView.Items[14].Checked = false;
         //        UpdateBoolSettings();
 
 
@@ -1887,7 +1886,7 @@ namespace Obi.Dialogs
         //        m_CheckBoxListView.Items[10].Checked = false;
         //        m_CheckBoxListView.Items[11].Checked = false;
         //        m_CheckBoxListView.Items[12].Checked = false;
-        //        m_CheckBoxListView.Items[14].Checked = false;
+        //        m_CheckBoxListView.Items[14].Checked = true;
         //        UpdateBoolSettings();
 
         //    }
