@@ -88,7 +88,7 @@
 <Project_EPUBCheckTimeOutEnabled>true</Project_EPUBCheckTimeOutEnabled>
 <Project_ObiConfigFileName id="ref-19">obiconfig.xml</Project_ObiConfigFileName>
 <Project_PeakMeterChangeLocation>false</Project_PeakMeterChangeLocation>
-<Project_MinimizeObi>false</Project_MinimizeObi>
+<Project_MinimizeObi>true</Project_MinimizeObi>
 <Audio_CleanupMaxFileSizeInMB>100</Audio_CleanupMaxFileSizeInMB>
 <EncodingFileFormat id="ref-20">MP3</EncodingFileFormat>
 <m_ObiLastLocation href="#ref-21"/>
