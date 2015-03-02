@@ -2148,7 +2148,8 @@ namespace Obi.Dialogs
             string preDefinedProfilesDirectory = GetPredefinedProfilesDirectory();
             if (!System.IO.Directory.Exists(preDefinedProfilesDirectory))
             {
-                MessageBox.Show("No predefined profile exist");
+                MessageBox.Show(Localizer.Message("PreferencesPredefined_ProfilesNotExist"), Localizer.Message("PreferencesPredefined_ProfilesNotExistCaption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             string[] filePaths = System.IO.Directory.GetFiles(preDefinedProfilesDirectory, "*.xml");
@@ -2400,7 +2401,8 @@ namespace Obi.Dialogs
                 LoadListviewAccordingToComboboxSelection();
                 mForm.KeyboardShortcuts.SettingsName = System.IO.Path.GetFileNameWithoutExtension(filePath);
                 if (mForm.KeyboardShortcuts != null && !string.IsNullOrEmpty(mForm.KeyboardShortcuts.SettingsName)) m_txtSelectedShortcutsProfile.Text = mForm.KeyboardShortcuts.SettingsName;
-                MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"));
+                MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"),Localizer.Message("Preferences_ProfilesShortcutsLoadedCaption"),MessageBoxButtons.OK,MessageBoxIcon.Information);
+                //text, caption, button,icons
             }
         }
 
@@ -2415,7 +2417,7 @@ namespace Obi.Dialogs
                         int indexOfCombobox = m_cb_SelectProfile.SelectedIndex ;
                         string profilePath = GetFilePathOfSelectedPreferencesComboBox();
                         if (System.IO.File.Exists(profilePath)
-                            && MessageBox.Show(Localizer.Message("Preferences_ConfirmForDeletingProfile"),Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            && MessageBox.Show(Localizer.Message("Preferences_ConfirmForDeletingProfile"),Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo,MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
                             System.IO.File.Delete(profilePath);
                             m_cb_SelectProfile.Items.RemoveAt(indexOfCombobox);
@@ -2429,7 +2431,7 @@ namespace Obi.Dialogs
                         int indexOfCombobox = m_cb_SelectShorcutsProfile.SelectedIndex;
                         string shortcutsFilePath = GetPathOfSelectedShortcutsComboBox();
                         if (System.IO.File.Exists (shortcutsFilePath )
-                            && MessageBox.Show(Localizer.Message("Preferences_ConfirmForDeletingProfile"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            && MessageBox.Show(Localizer.Message("Preferences_ConfirmForDeletingProfile"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo,MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
                             System.IO.File.Delete(shortcutsFilePath);
                             m_cb_SelectShorcutsProfile.Items.RemoveAt(indexOfCombobox);
