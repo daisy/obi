@@ -516,7 +516,7 @@ namespace Obi
                if ((selectedProfile == PreferenceProfiles.UserProfile || selectedProfile == PreferenceProfiles.All)
                    && this.UserProfile.Culture == settings.UserProfile.Culture)
            {
-               colorPreferenceMatch = true;
+               usersProfilePreferencesMatch= true;
            }
 
            if (selectedProfile == PreferenceProfiles.Project) return projectPreferencesMatch;

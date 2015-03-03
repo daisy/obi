@@ -2347,19 +2347,19 @@ namespace Obi.Dialogs
                 {
                     if (m_ProfileLoaded.Compare(mSettings, PreferenceProfiles.Project))
                     {
-                        strLoadedProfiles = "project";
+                        strLoadedProfiles = "project, ";
                     }
                     if (m_ProfileLoaded.Compare(mSettings, PreferenceProfiles.Audio))
                     {
-                        strLoadedProfiles += ", audio";
+                        strLoadedProfiles += "audio, ";
                     }
                     if (m_ProfileLoaded.Compare(mSettings, PreferenceProfiles.UserProfile))
                     {
-                        strLoadedProfiles += ", users profile";
+                        strLoadedProfiles += "users profile, ";
                     }
                     if (m_ProfileLoaded.Compare(mSettings, PreferenceProfiles.Colors))
                     {
-                        strLoadedProfiles += ", colors";
+                        strLoadedProfiles += "colors";
                     }
 
                 }
@@ -2367,6 +2367,10 @@ namespace Obi.Dialogs
                 if (string.IsNullOrEmpty(strLoadedProfiles))
                 {
                     mSettings.SettingsName = "customized";
+                }
+                else
+                {
+                    if (strLoadedProfiles.EndsWith(",")) strLoadedProfiles = strLoadedProfiles.Remove(strLoadedProfiles.Length - 2);
                 }
                 m_txtSelectedProfile.Text = string.Format(Localizer.Message("Preferences_ProfilesStatus"),
                     m_ProfileLoaded.SettingsName, strLoadedProfiles);
