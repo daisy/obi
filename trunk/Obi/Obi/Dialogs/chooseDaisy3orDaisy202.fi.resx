@@ -123,72 +123,18 @@
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_radBtnDaisy3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="m_radBtnDaisy3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 12</value>
-  </data>
-  <data name="m_radBtnDaisy3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 17</value>
-  </data>
-  <data name="m_radBtnDaisy3.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="m_radBtnDaisy3.Text" xml:space="preserve">
-    <value>DAISY 3</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy3.Name" xml:space="preserve">
-    <value>m_radBtnDaisy3</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy3.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="m_radBtnDaisy202.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_radBtnDaisy202.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 12</value>
-  </data>
-  <data name="m_radBtnDaisy202.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 17</value>
-  </data>
-  <data name="m_radBtnDaisy202.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="m_radBtnDaisy202.Text" xml:space="preserve">
-    <value>DAISY 2.02</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy202.Name" xml:space="preserve">
-    <value>m_radBtnDaisy202</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy202.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy202.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy202.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_OKBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_OKBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>127, 43</value>
+    <value>28, 140</value>
   </data>
   <data name="m_OKBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_OKBtn.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
@@ -205,13 +151,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_OKBtn.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_BtnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 43</value>
+    <value>150, 140</value>
   </data>
   <data name="m_BtnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -232,73 +178,97 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_BtnCancel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="m_radBtnDaisy3_202.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_radBtnDaisy3_202.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="m_radBtnDaisy3_202.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 12</value>
-  </data>
-  <data name="m_radBtnDaisy3_202.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 17</value>
-  </data>
-  <data name="m_radBtnDaisy3_202.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="m_radBtnDaisy3_202.Text" xml:space="preserve">
-    <value>Both DAISY 3 &amp;&amp; DAISY 2.02</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy3_202.Name" xml:space="preserve">
-    <value>m_radBtnDaisy3_202</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy3_202.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy3_202.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_radBtnDaisy3_202.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
-  <data name="m_radBtnEpub3.AutoSize" type="System.Boolean, mscorlib">
+  <data name="m_cbDaisy3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="m_radBtnEpub3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>386, 12</value>
+  <data name="m_cbDaisy3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 13</value>
   </data>
-  <data name="m_radBtnEpub3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 17</value>
+  <data name="m_cbDaisy3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
   </data>
-  <data name="m_radBtnEpub3.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="m_cbDaisy3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="m_radBtnEpub3.Text" xml:space="preserve">
-    <value>EPUB 3 äänikirja</value>
+  <data name="m_cbDaisy3.Text" xml:space="preserve">
+    <value>DAISY 3</value>
   </data>
-  <data name="&gt;&gt;m_radBtnEpub3.Name" xml:space="preserve">
-    <value>m_radBtnEpub3</value>
+  <data name="&gt;&gt;m_cbDaisy3.Name" xml:space="preserve">
+    <value>m_cbDaisy3</value>
   </data>
-  <data name="&gt;&gt;m_radBtnEpub3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;m_cbDaisy3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_radBtnEpub3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_cbDaisy3.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_radBtnEpub3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_cbDaisy3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_cbDaisy202.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbDaisy202.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 52</value>
+  </data>
+  <data name="m_cbDaisy202.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 17</value>
+  </data>
+  <data name="m_cbDaisy202.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="m_cbDaisy202.Text" xml:space="preserve">
+    <value>DAISY 2.02</value>
+  </data>
+  <data name="&gt;&gt;m_cbDaisy202.Name" xml:space="preserve">
+    <value>m_cbDaisy202</value>
+  </data>
+  <data name="&gt;&gt;m_cbDaisy202.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbDaisy202.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cbDaisy202.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_cbEpub3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_cbEpub3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 93</value>
+  </data>
+  <data name="m_cbEpub3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 17</value>
+  </data>
+  <data name="m_cbEpub3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="m_cbEpub3.Text" xml:space="preserve">
+    <value>EPUB 3 äänikirja</value>
+  </data>
+  <data name="&gt;&gt;m_cbEpub3.Name" xml:space="preserve">
+    <value>m_cbEpub3</value>
+  </data>
+  <data name="&gt;&gt;m_cbEpub3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbEpub3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_cbEpub3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>515, 78</value>
+    <value>268, 192</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Valitse äänikirjan standardi</value>
