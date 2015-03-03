@@ -2713,7 +2713,7 @@ Error text: {1}</value>
     <value>Cannot select opened project</value>
   </data>
   <data name="Project_MinimizeObi" xml:space="preserve">
-    <value>Do not minimize Obi with opening of recording Toolbar</value>
+    <value>Do not minimize Obi with activation of recording Toolbar</value>
   </data>
   <data name="Phrase_IndexString" xml:space="preserve">
     <value>{0} of {1}</value>
