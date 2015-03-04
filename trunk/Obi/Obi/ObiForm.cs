@@ -3608,9 +3608,8 @@ ref string exportDirectoryEPUB3)
                     mRecordingToolBarForm.FormClosed +=
                         new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e)
                         {
-                            mSettings.RecordingToolBarIncrementVal =
-                              Obi.UserControls.RecordingToolBarForm.
-                                   NetSizeIncrementOfButtons;
+                            mSettings.RecordingToolBarIncrementVal = mRecordingToolBarForm.NetSizeIncrementOfButtons;
+                            
                             if (mPeakMeter != null)
                             {
                                 mPeakMeter.TopMost = false;
@@ -3630,8 +3629,7 @@ ref string exportDirectoryEPUB3)
                         mPeakMeter.TopMost = true;
                     }
                     mRecordingToolBarForm.Show();
-                    Obi.UserControls.RecordingToolBarForm.NetSizeIncrementOfButtons =
-                            mSettings.RecordingToolBarIncrementVal;
+                    mRecordingToolBarForm.NetSizeIncrementOfButtons = mSettings.RecordingToolBarIncrementVal;
                     mRecordingToolBarForm.EnlargeButtonSize();
 
 

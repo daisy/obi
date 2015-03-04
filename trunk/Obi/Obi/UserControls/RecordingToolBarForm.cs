@@ -46,7 +46,7 @@ namespace Obi.UserControls
         private Point m_OriginalLocationOfEnlargeBtn;
         private Point m_OriginalLocationOfReduceBtn;
 
-        public static double NetSizeIncrementOfButtons = 0;
+        public double NetSizeIncrementOfButtons = 0;
         public static bool flagIncrementDecrement = true;
         public static double NetSizeIncBtn = 0;
 
