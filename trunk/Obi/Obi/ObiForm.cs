@@ -3727,10 +3727,13 @@ ref string exportDirectoryEPUB3)
                     mPeakMeter.SourceVuMeter = mProjectView.TransportBar.VuMeter;
                     mPeakMeter.FormClosed += new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e)
                                                                             {
-                                                                                mSettings.PeakmeterSize =
-                                                                                    mPeakMeter.Size;
-                                                                                mPeakMeter.GraphicalPeakMeterSaveSettings(mSettings);
-                                                                                mPeakMeter = null;
+                                                                                if (mPeakMeter != null)
+                                                                                {
+                                                                                    mSettings.PeakmeterSize =
+                                                                                        mPeakMeter.Size;
+                                                                                    mPeakMeter.GraphicalPeakMeterSaveSettings(mSettings);
+                                                                                    mPeakMeter = null;
+                                                                                }
                                                                                 mShowPeakMeterMenuItem.Checked = false;
                                                                                 if ((this.WindowState ==
                                                                                     FormWindowState.Normal ||
