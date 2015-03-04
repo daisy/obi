@@ -218,19 +218,19 @@ namespace Obi
                newSettings.MaxPhraseDurationMinutes = this.MaxPhraseDurationMinutes;
                newSettings.NewProjectDialogSize = this.NewProjectDialogSize;
                newSettings.ObiFormSize = this.ObiFormSize;
-               newSettings.ObiLastLocation = this.ObiLastLocation;
+               //newSettings.ObiLastLocation = this.ObiLastLocation;
                newSettings.PeakmeterSize = this.PeakmeterSize;
                newSettings.PlayIfNoSelection = this.PlayIfNoSelection;
                newSettings.PlayOnNavigate = this.PlayOnNavigate;
                newSettings.RecordingToolBarIncrementVal = this.RecordingToolBarIncrementVal;
-               newSettings.ShowGraphicalPeakMeterAtStartup = this.ShowGraphicalPeakMeterAtStartup;
+               //newSettings.ShowGraphicalPeakMeterAtStartup = this.ShowGraphicalPeakMeterAtStartup;
                newSettings.SplitPhrasesOnImport = this.SplitPhrasesOnImport;
-               newSettings.SynchronizeViews = this.SynchronizeViews;
+               //newSettings.SynchronizeViews = this.SynchronizeViews;
                newSettings.TransportBarCounterIndex = this.TransportBarCounterIndex;
                //newSettings.UploadAttemptsCount = this.UploadAttemptsCount;
                
                //newSettings.UsersInfoToUpload = this.UsersInfoToUpload;
-               newSettings.WrapStripContents = this.WrapStripContents;
+               //newSettings.WrapStripContents = this.WrapStripContents;
                newSettings.ZoomFactor = this.ZoomFactor;
            }
            return newSettings;
