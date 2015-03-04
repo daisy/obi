@@ -47,8 +47,8 @@ namespace Obi.UserControls
         private Point m_OriginalLocationOfReduceBtn;
 
         public double NetSizeIncrementOfButtons = 0;
-        public static bool flagIncrementDecrement = true;
-        public static double NetSizeIncBtn = 0;
+        public bool flagIncrementDecrement = true;
+        public double NetSizeIncBtn = 0;
 
         private Image play48;
         private Image play64;
