@@ -5209,7 +5209,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not minimize Obi with activation of recording Toolbar.
+        ///   Looks up a localized string similar to Do not minimize Obi with activation of Recording Toolbar.
         /// </summary>
         internal static string Project_MinimizeObi {
             get {
