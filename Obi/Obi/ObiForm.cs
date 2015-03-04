@@ -4009,6 +4009,10 @@ ref string exportDirectoryEPUB3)
                 if (DidCloseProject())
                 {
                     mSettings.ShowGraphicalPeakMeterAtStartup = mPeakMeter != null;
+                    if (mRecordingToolBarForm != null)
+                    {
+                        mSettings.RecordingToolBarIncrementVal = mRecordingToolBarForm.NetSizeIncrementOfButtons;
+                    }
                     mSettings.Project_RecordingToolbarOpenInPreviousSession = (mRecordingToolBarForm != null && mRecordingToolBarForm.IsHandleCreated);
                     try
                     {
