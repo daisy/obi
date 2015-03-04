@@ -316,6 +316,7 @@ namespace Obi.Dialogs
             this.m_btnProfileDiscription.Name = "m_btnProfileDiscription";
             this.helpProvider1.SetShowHelp(this.m_btnProfileDiscription, ((bool)(resources.GetObject("m_btnProfileDiscription.ShowHelp"))));
             this.m_btnProfileDiscription.UseVisualStyleBackColor = true;
+            this.m_btnProfileDiscription.Click += new System.EventHandler(this.m_btnProfileDiscription_Click);
             // 
             // m_cb_SelectProfile
             // 
