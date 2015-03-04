@@ -1437,10 +1437,10 @@ namespace Obi
                 UploadUsersInfo(); //can be commentted for test releases
                 if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject, null);
                 if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog();
-
+                
                 UpdateKeyboardFocusForSelection();
                 if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
-                
+                if (mSettings.Project_RecordingToolbarOpenInPreviousSession) ShowRecordingToolBar();
                 if (mSettings.Project_CheckForUpdates) CheckForNewRelease(true);
                 
             }
@@ -3238,7 +3238,7 @@ ref string exportDirectoryEPUB3)
                             MessageBox.Show(string.Format(Localizer.Message("ObiForm_PipelineNotFound"),
                                                           mSettings.Project_PipelineScriptsPath));
                     }
-                    if (mSettings.Project_RecordingToolbarOpenInPreviousSession) ShowRecordingToolBar();
+                    
                     Ready();
 
                     
