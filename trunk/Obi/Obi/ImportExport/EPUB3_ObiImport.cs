@@ -450,16 +450,15 @@ namespace Obi.ImportExport
                                 {
                                     EmptyNode pgNode =  m_XmlIdToPageNodeMap[urlDecoded];
                                     pgNumber = pgNode.PageNumber;
-                                    
-                                    // if the section does not match then the parent of page node should become the section.
-                                    // This will accomodate the orphan page nodes which do not lie in any section.
-                                    if (pgNode.IsRooted 
-                                        && textTreeNode == null 
-                                        &&  pgNode.Parent != section) 
+
+                                    // if the section does not match then the parent of the page node should become the section.
+                                    if (pgNode.IsRooted
+                                        && textTreeNode == null
+                                        && pgNode.Parent != section)
                                     {
-                                            section = pgNode.ParentAs<SectionNode>();
-                                            //Console.WriteLine("text node is null");
-                                    }
+                                        section = pgNode.ParentAs<SectionNode>();
+                                        //Console.WriteLine("text node is null");
+                                    }       
                                     if(pgNode.IsRooted)  pgNode.Detach();
                                     // the phrases following the page phrase in smil will refer to same content doc ID. so to avoid reassigning page, the page node in dictionary is assigned to null.
                                     m_XmlIdToPageNodeMap[urlDecoded] = null;
@@ -612,7 +611,11 @@ namespace Obi.ImportExport
                 foreach ( XmlNode n in xNode.ChildNodes )
                 {
                     //Console.WriteLine ("parsing child node: " + n.LocalName);
-                    if (n is XmlElement)  return ParseToFineHtmlHeadingNode(n);
+                    if (n is XmlElement)
+                    {
+                        XmlNode newNode = ParseToFineHtmlHeadingNode(n);
+                        if (newNode != null) return newNode;
+                    }
                 }
             }
                 
@@ -620,7 +623,6 @@ namespace Obi.ImportExport
                 
             
         }
-        SectionNode m_LastSectionCreated = null; // cache the previous section for orphan pages
 
         protected override TreeNode CreateAndAddTreeNodeForContentDocument(TreeNode parentNode, XmlNode node, string contentFileName)
         {
@@ -642,7 +644,6 @@ namespace Obi.ImportExport
                             if (m_XmlIdToSectionNodeMap.ContainsKey(strReference))
                             {
                                 //System.Windows.Forms.MessageBox.Show(m_XmlIdToSectionNodeMap[strReference].Label);
-                                m_LastSectionCreated = m_XmlIdToSectionNodeMap[strReference];
                                 return m_XmlIdToSectionNodeMap[strReference];
                             }
                         }
@@ -662,20 +663,14 @@ namespace Obi.ImportExport
                     }//-2
                 }//-1
             }
-            else if ((parentNode is SectionNode || parentNode is ObiRootNode )
+            else if (parentNode is SectionNode
                 && (node.LocalName == "span" && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops") != null
                 && node.Attributes.GetNamedItem("type", "http://www.idpf.org/2007/ops").Value == "pagebreak"))
             {
                 EmptyNode treeNode = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
                 createdNode = treeNode;
-                if (parentNode is SectionNode)
-                {
-                    ((SectionNode)parentNode).AppendChild(treeNode);
-                }
-                else if (m_LastSectionCreated != null)
-                {
-                    m_LastSectionCreated.AppendChild(treeNode);
-                }
+                ((SectionNode)parentNode).AppendChild(treeNode);
+
                 PageNumber number = null;
 
 
@@ -684,16 +679,15 @@ namespace Obi.ImportExport
                     node.InnerText;
                 int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
                 number = new PageNumber(pageNumber, PageKind.Normal);
-
+                
 
                 if (number != null)
                 {
                     ((EmptyNode)treeNode).PageNumber = number;
-
+                    Console.WriteLine("Page " + pageNumber.ToString() + ", Added to Section: " + ((SectionNode)parentNode).Label);
                 }
 
             }
-            if(createdNode is SectionNode)  m_LastSectionCreated = (SectionNode)createdNode;
             return createdNode;
         }
 
