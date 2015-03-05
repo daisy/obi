@@ -3068,10 +3068,6 @@ for (int j = 0;
                             return;
                         }
                     mPresentation.UndoRedoManager.Execute ( Commands.Node.MergeAudio.GetMergeCommand ( this ) );
-                    if (IsZoomWaveformActive)
-                    {
-                        ZoomPanelMergeWithNext();
-                    }
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangeStatus;
                     }
                 catch (System.Exception ex)
@@ -4240,7 +4236,6 @@ for (int j = 0;
         public void ZoomPanelReset() { if (IsZoomWaveformActive) mContentView.ZoomPanelReset(); } //@zoomWaveform
         public void ZoomPanelToolTipInit() { if (IsZoomWaveformActive)  mContentView.ZoomPanelToolTipInit(); }
         public void ZoomPanelClose() { if (IsZoomWaveformActive) mContentView.ZoomPanelClose(); }
-        public void ZoomPanelMergeWithNext() { if (IsZoomWaveformActive) mContentView.ZoomPanelMergeWithNext(); }
 
         /// <summary>
         /// Update the context menus of the view.
