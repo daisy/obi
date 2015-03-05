@@ -41,6 +41,7 @@ namespace Obi.ProjectView
         private bool m_NudgeAtLeftFromLeft = false;
         private int m_InitialPanelHeight = 0;
         private double m_PhraseDuration = 0;
+        private bool m_CreateNew = true;
             
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -62,7 +63,7 @@ namespace Obi.ProjectView
             if (m_AudioBlock == null 
                 || (selection != null && selection.Node is EmptyNode &&  m_AudioBlock.Node != selection.Node))
             {
-                PhraseLoad((EmptyNode) selection.Node);
+                PhraseLoad((EmptyNode) selection.Node, true);
             }
             if (m_AudioBlock != null) m_AudioBlock.SetSelectionFromContentView(selection);
             //btntxtZoomSelected.Focus();
@@ -128,11 +129,11 @@ namespace Obi.ProjectView
 
                     if (m_AudioBlock.Node.ToString() != temp && m_ProjectView.Selection.EmptyNodeForSelection != null)
                     {
-                        PhraseLoad(m_ProjectView.Selection.EmptyNodeForSelection);
+                        PhraseLoad(m_ProjectView.Selection.EmptyNodeForSelection, true);
                     }
                     else
                     {
-                       if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection is AudioSelection && m_NudgeAtRight)
+                        if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection is AudioSelection && m_NudgeAtRight)
                         {
                             double endTime = ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionEndTime != 0 ? ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionEndTime : ((AudioSelection)m_ProjectView.Selection).AudioRange.CursorTime;
                             int Val = m_AudioBlock.UpdateSelectionTime(endTime);
@@ -140,7 +141,7 @@ namespace Obi.ProjectView
                             {
                                 panelZooomWaveform.AutoScrollPosition = new Point(Val, panelZooomWaveform.AutoScrollPosition.Y);
                             }
-                         }
+                        }
                         if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection is AudioSelection && m_NudgeAtLeft)
                         {
                             double endTime = ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionEndTime != 0 ? ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionEndTime : ((AudioSelection)m_ProjectView.Selection).AudioRange.CursorTime;
@@ -162,14 +163,14 @@ namespace Obi.ProjectView
                         }
                         if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection is AudioSelection && m_NudgeAtLeftFromLeft)
                         {
-                         
-                                double endTime = ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionBeginTime;
-                                int Val = m_AudioBlock.UpdateSelectionTime(endTime);
-                                if ((Val >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (Val < Math.Abs(m_AudioBlock.Location.X)))
-                                {
-                                    panelZooomWaveform.AutoScrollPosition = new Point(Val, panelZooomWaveform.AutoScrollPosition.Y);
-                                }
-                            
+
+                            double endTime = ((AudioSelection)m_ProjectView.Selection).AudioRange.SelectionBeginTime;
+                            int Val = m_AudioBlock.UpdateSelectionTime(endTime);
+                            if ((Val >= m_ContentView.Width + Math.Abs(m_AudioBlock.Location.X)) || (Val < Math.Abs(m_AudioBlock.Location.X)))
+                            {
+                                panelZooomWaveform.AutoScrollPosition = new Point(Val, panelZooomWaveform.AutoScrollPosition.Y);
+                            }
+
                         }
                     }
 
@@ -189,6 +190,15 @@ namespace Obi.ProjectView
                 btntxtZoomSelected.Text = " ";
                 btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
                 btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
+                if (m_ProjectView.Selection.Node.Duration != m_PhraseDuration)
+                {
+                    m_CreateNew = false;
+                    PhraseLoad((EmptyNode)m_ProjectView.Selection.Node, false);
+                }
+                else
+                {
+                    m_CreateNew = true;
+                }
              }
         }
          private void ZoomPanelLostFocus(object sender,EventArgs e)
@@ -271,23 +281,26 @@ namespace Obi.ProjectView
         {
 
         }
-        public void PhraseLoad(EmptyNode phrase)
+        public void PhraseLoad(EmptyNode phrase,bool CreateNew)
         {
           
             m_Node = phrase;
             if (m_Node is PhraseNode)
             {
-                if (panelZooomWaveform.Controls.Contains(m_Block))
+                if (CreateNew || m_AudioBlock.Waveform == null)
                 {
-                    panelZooomWaveform.Controls.Remove(m_Block);
-                    m_Block.Dispose();
-                    m_Block = null;
-                }
-               m_Block = new AudioBlock((PhraseNode)m_Node, m_Strip,true, true);
-               m_AudioBlock = (AudioBlock)m_Block;              
+                    if (panelZooomWaveform.Controls.Contains(m_Block))
+                    {
+                        panelZooomWaveform.Controls.Remove(m_Block);
+                        m_Block.Dispose();
+                        m_Block = null;
+                    }
+                    m_Block = new AudioBlock((PhraseNode)m_Node, m_Strip, true, true);
+                    m_AudioBlock = (AudioBlock)m_Block;
 
-                panelZooomWaveform.Controls.Add(m_Block);
-                m_AudioBlock.Location = new Point(5, 5);
+                    panelZooomWaveform.Controls.Add(m_Block);
+                }
+                m_AudioBlock.Location = new Point(5, 5);                
                 float zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
                 m_AudioBlock.IsFineNavigationMode = true;
                 m_AudioBlock.UpdateColors();
@@ -887,6 +900,7 @@ namespace Obi.ProjectView
                         m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
                     }
                 }
+                m_CreateNew = true;
             }
             this.UpdateCursorTime(0);
         }
@@ -939,6 +953,7 @@ namespace Obi.ProjectView
                         m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
                     }
                 }
+                m_CreateNew = true;
             }
             this.UpdateCursorTime(0);
         }
@@ -1027,13 +1042,13 @@ namespace Obi.ProjectView
                 m_AudioBlock.ResetTimeBoundsForWaveformDisplay();
             }
         }
-        public void ZoomPanelMergeWithNext()
-        {
-            if (m_ProjectView.Selection.Node.Duration != m_PhraseDuration)
-            {
-                PhraseLoad((EmptyNode)m_ProjectView.Selection.Node);
-            }
-        }
+        //public void ZoomPanelMergeWithNext()
+        //{
+        //    //if (m_ProjectView.Selection.Node.Duration != m_PhraseDuration)
+        //    //{
+        //    //    PhraseLoad((EmptyNode)m_ProjectView.Selection.Node);
+        //    //}
+        //}
 
         private void mbtnZoomSelectiontoolStrip_Click(object sender, EventArgs e)
         {
