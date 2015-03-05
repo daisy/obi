@@ -94,11 +94,11 @@ namespace Obi
                newSettings.Project_MinimizeObi = this.Project_MinimizeObi;
 
                // checks for paths
-               if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
-                   newSettings.Project_DefaultPath = this.Project_DefaultPath;
+               //if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
+                   //newSettings.Project_DefaultPath = this.Project_DefaultPath;
 
-               if (!string.IsNullOrEmpty(this.Project_PipelineScriptsPath) && Directory.Exists(this.Project_PipelineScriptsPath))
-                   newSettings.Project_PipelineScriptsPath = this.Project_PipelineScriptsPath;
+               //if (!string.IsNullOrEmpty(this.Project_PipelineScriptsPath) && Directory.Exists(this.Project_PipelineScriptsPath))
+                   //newSettings.Project_PipelineScriptsPath = this.Project_PipelineScriptsPath;
            }
            if (prefProfiles == PreferenceProfiles.UserProfile || prefProfiles == PreferenceProfiles.All)
            {
