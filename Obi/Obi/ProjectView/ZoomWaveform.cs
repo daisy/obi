@@ -41,8 +41,7 @@ namespace Obi.ProjectView
         private bool m_NudgeAtLeftFromLeft = false;
         private int m_InitialPanelHeight = 0;
         private double m_PhraseDuration = 0;
-        private bool m_CreateNew = true;
-            
+           
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
 
@@ -192,13 +191,9 @@ namespace Obi.ProjectView
                 btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
                 if (m_ProjectView.Selection.Node.Duration != m_PhraseDuration)
                 {
-                    m_CreateNew = false;
                     PhraseLoad((EmptyNode)m_ProjectView.Selection.Node, false);
                 }
-                else
-                {
-                    m_CreateNew = true;
-                }
+
              }
         }
          private void ZoomPanelLostFocus(object sender,EventArgs e)
@@ -900,7 +895,6 @@ namespace Obi.ProjectView
                         m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
                     }
                 }
-                m_CreateNew = true;
             }
             this.UpdateCursorTime(0);
         }
@@ -953,7 +947,6 @@ namespace Obi.ProjectView
                         m_ProjectView.Selection = new NodeSelection(m_Node, m_ContentView);
                     }
                 }
-                m_CreateNew = true;
             }
             this.UpdateCursorTime(0);
         }
@@ -1042,13 +1035,6 @@ namespace Obi.ProjectView
                 m_AudioBlock.ResetTimeBoundsForWaveformDisplay();
             }
         }
-        //public void ZoomPanelMergeWithNext()
-        //{
-        //    //if (m_ProjectView.Selection.Node.Duration != m_PhraseDuration)
-        //    //{
-        //    //    PhraseLoad((EmptyNode)m_ProjectView.Selection.Node);
-        //    //}
-        //}
 
         private void mbtnZoomSelectiontoolStrip_Click(object sender, EventArgs e)
         {
