@@ -1633,8 +1633,11 @@ namespace Obi.ProjectView
             if (CanPaste)
                 {
                 // if clipboard has phrase and the phrase count per section is above the max limit, return
-                if (mClipboard != null && mClipboard.Node is EmptyNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount >= MaxVisibleBlocksCount) // @phraseLimit
-                    return;
+                    if (mClipboard != null && mClipboard.Node is EmptyNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount >= MaxVisibleBlocksCount) // @phraseLimit
+                    {
+                        Console.WriteLine("Returning without pasting: dcheck 1");
+                        return;
+                    }
 
                 if (mClipboard is AudioClipboard )
                 {
