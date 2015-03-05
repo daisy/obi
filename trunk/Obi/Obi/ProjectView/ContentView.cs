@@ -5536,6 +5536,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
         public void ZoomPanelReset() { if (IsZoomWaveformActive) m_ZoomWaveformPanel.Reset () ; } //@zoomWaveform
         public void ZoomPanelToolTipInit() { if (IsZoomWaveformActive) m_ZoomWaveformPanel.ZoomPanelToolTipInit(); } //@zoomWaveform    
         public void ZoomPanelClose() { if (IsZoomWaveformActive) m_ZoomWaveformPanel.IsNewProjectOpened(); }
+        public void ZoomPanelMergeWithNext() { if (IsZoomWaveformActive) m_ZoomWaveformPanel.ZoomPanelMergeWithNext(); }
 
         //@zoomwaveform
         public void ShowEditPanel()
