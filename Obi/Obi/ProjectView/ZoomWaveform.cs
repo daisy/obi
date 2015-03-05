@@ -189,11 +189,7 @@ namespace Obi.ProjectView
                 btntxtZoomSelected.Text = " ";
                 btntxtZoomSelected.Text += " " + m_ProjectView.Selection.ToString();
                 btntxtZoomSelected.Text += " " + (m_ProjectView.GetSelectedPhraseSection != null ? m_ProjectView.GetSelectedPhraseSection.ToString() : "");
-                if (m_ProjectView.Selection.Node.Duration != m_PhraseDuration)
-                {
-                    PhraseLoad((EmptyNode) m_ProjectView.Selection.Node);
-                }
-            }
+             }
         }
          private void ZoomPanelLostFocus(object sender,EventArgs e)
          {
@@ -1031,11 +1027,18 @@ namespace Obi.ProjectView
                 m_AudioBlock.ResetTimeBoundsForWaveformDisplay();
             }
         }
+        public void ZoomPanelMergeWithNext()
+        {
+            if (m_ProjectView.Selection.Node.Duration != m_PhraseDuration)
+            {
+                PhraseLoad((EmptyNode)m_ProjectView.Selection.Node);
+            }
+        }
 
-          private void mbtnZoomSelectiontoolStrip_Click(object sender, EventArgs e)
-          {
-              ZoomSelection();
-          }
+        private void mbtnZoomSelectiontoolStrip_Click(object sender, EventArgs e)
+        {
+            ZoomSelection();
+        }
         private void ZoomSelection()
         {
             if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection.Control != null && m_ProjectView.Selection is Obi.AudioSelection)
