@@ -282,6 +282,7 @@ namespace Obi.ProjectView
             m_Node = phrase;
             if (m_Node is PhraseNode)
             {
+                float zoomFactor = 0.0f;
                 if (CreateNew || m_AudioBlock.Waveform == null)
                 {
                     if (panelZooomWaveform.Controls.Contains(m_Block))
@@ -294,14 +295,19 @@ namespace Obi.ProjectView
                     m_AudioBlock = (AudioBlock)m_Block;
 
                     panelZooomWaveform.Controls.Add(m_Block);
+
+                    m_AudioBlock.Location = new Point(5, 5);
+                    zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
+                    m_AudioBlock.IsFineNavigationMode = true;
+                    m_AudioBlock.UpdateColors();
+                    btntxtZoomSelected.BringToFront();
+                    m_ZoomFactor = zoomFactor;
                 }
-                m_AudioBlock.Location = new Point(5, 5);                
-                float zoomFactor = panelZooomWaveform.Height / m_AudioBlock.Height;
-                m_AudioBlock.IsFineNavigationMode = true;
-                m_AudioBlock.UpdateColors();
-                btntxtZoomSelected.BringToFront();
-                m_ZoomFactor = zoomFactor;
-              
+                else
+                {
+                    zoomFactor = m_ZoomFactor;
+                }
+                          
                 m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);
                 
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
