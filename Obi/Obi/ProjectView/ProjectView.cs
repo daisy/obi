@@ -3415,7 +3415,9 @@ for (int j = 0;
                 for (node =node != null?node:  SelectedNodeAs<EmptyNode> ();
                     node != null && !(node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence);
                     node = node.PrecedingNode) { }
-                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( node as PhraseNode );
+                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( node as PhraseNode, 
+                    Convert.ToDouble( ObiForm.Settings.Audio_DefaultGap), 
+                    Convert.ToDouble( ObiForm.Settings.Audio_DefaultLeadingSilence ));
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                         Audio.PhraseDetection.RetainSilenceInBeginningOfPhrase = ObiForm.Settings.Audio_RetainInitialSilenceInPhraseDetection;
@@ -3493,7 +3495,9 @@ for (int j = 0;
                     }
                 */
                 
-                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( silencePhrase );
+                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( silencePhrase,
+                    Convert.ToDouble(ObiForm.Settings.Audio_DefaultGap),
+                Convert.ToDouble(ObiForm.Settings.Audio_DefaultLeadingSilence));
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     bool playbackOnSelectionChangedStatus = TransportBar.SelectionChangedPlaybackEnabled;
