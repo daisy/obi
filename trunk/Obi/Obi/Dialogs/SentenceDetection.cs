@@ -40,9 +40,14 @@ namespace Obi.Dialogs
         /// Instantiate the dialog.
         /// </summary>
         /// <param name="silence">The silence phrase.</param>
-        public SentenceDetection(PhraseNode silence):this    ()
+        public SentenceDetection(PhraseNode silence)
+            : this(silence, Audio.PhraseDetection.DEFAULT_GAP, Audio.PhraseDetection.DEFAULT_LEADING_SILENCE)
         {
-            
+        }
+
+        public SentenceDetection(PhraseNode silence, double gap, double leadingSilence)
+            : this()
+        {   
             if (silence != null)
             {
                 double threshold = Audio.PhraseDetection.GetSilenceAmplitude(silence.Audio);
@@ -59,8 +64,10 @@ namespace Obi.Dialogs
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 mThresholdNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_THRESHOLD);
             }
-            mGapNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_GAP);
-            mLeadingNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_LEADING_SILENCE);
+            mGapNumericBox.Value = Convert.ToDecimal(gap);
+            mLeadingNumericBox.Value = Convert.ToDecimal(leadingSilence);
+            //mGapNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_GAP);
+            //mLeadingNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_LEADING_SILENCE);
         }
 
         public SentenceDetection(long threshold, double gap, double leadingSilence ):this    ()
