@@ -5004,7 +5004,7 @@ for (int j = 0;
             SaveFileDialog saveDialog = new SaveFileDialog();
             if (!System.IO.Directory.Exists(audioFileExportDirectory)) System.IO.Directory.CreateDirectory(audioFileExportDirectory);
             saveDialog.InitialDirectory= audioFileExportDirectory;
-            saveDialog.FileName = "New file.wav";
+            saveDialog.FileName = GetFileNameForAudioExport(nodeSelected);
             saveDialog.Filter = "*.wav|*.WAV";
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
@@ -5083,9 +5083,7 @@ for (int j = 0;
                 {
                     if (string.IsNullOrEmpty(audioFileName))
                     {
-                        audioFileName = nodeSelected is SectionNode ? ((SectionNode)nodeSelected).ToString() + ".wav" :
-                            nodeSelected is PhraseNode ? ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Label + ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Position + "-" + ((EmptyNode)nodeSelected).ToString() + ".wav" :
-                            null;
+                        audioFileName = GetFileNameForAudioExport(nodeSelected);
                     }
                     audioFileName = Obi.Program.SafeName(audioFileName);
                         newAudioFilePath = System.IO.Path.Combine(audioFileExportDirectory, audioFileName);
@@ -5102,6 +5100,13 @@ for (int j = 0;
             return newAudioFilePath;
         }
 
+        private string GetFileNameForAudioExport(ObiNode nodeSelected)
+        {
+            string audioFileName = nodeSelected is SectionNode ? ((SectionNode)nodeSelected).ToString() + ".wav" :
+                            nodeSelected is PhraseNode ? ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Label + ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Position + "-" + ((EmptyNode)nodeSelected).ToString() + ".wav" :
+                            null;
+            return audioFileName;
+        }
         
         public void ReplaceAudioOfSelectedNode()
         {
