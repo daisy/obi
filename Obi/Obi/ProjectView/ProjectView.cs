@@ -3416,6 +3416,7 @@ for (int j = 0;
                     node != null && !(node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence);
                     node = node.PrecedingNode) { }
                 Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( node as PhraseNode, 
+                    Convert.ToInt64( ObiForm.Settings.Audio_DefaultThreshold),
                     Convert.ToDouble( ObiForm.Settings.Audio_DefaultGap), 
                     Convert.ToDouble( ObiForm.Settings.Audio_DefaultLeadingSilence ));
                 if (dialog.ShowDialog () == DialogResult.OK)
@@ -3496,6 +3497,7 @@ for (int j = 0;
                 */
                 
                 Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( silencePhrase,
+                    Convert.ToInt64(ObiForm.Settings.Audio_DefaultThreshold),
                     Convert.ToDouble(ObiForm.Settings.Audio_DefaultGap),
                 Convert.ToDouble(ObiForm.Settings.Audio_DefaultLeadingSilence));
                 if (dialog.ShowDialog () == DialogResult.OK)

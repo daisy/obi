@@ -41,28 +41,28 @@ namespace Obi.Dialogs
         /// </summary>
         /// <param name="silence">The silence phrase.</param>
         public SentenceDetection(PhraseNode silence)
-            : this(silence, Audio.PhraseDetection.DEFAULT_GAP, Audio.PhraseDetection.DEFAULT_LEADING_SILENCE)
+            : this(silence, Convert.ToInt64 (Audio.PhraseDetection.DEFAULT_THRESHOLD), Audio.PhraseDetection.DEFAULT_GAP, Audio.PhraseDetection.DEFAULT_LEADING_SILENCE)
         {
         }
 
-        public SentenceDetection(PhraseNode silence, double gap, double leadingSilence)
+        public SentenceDetection(PhraseNode silence, long threshold, double gap, double leadingSilence)
             : this()
         {   
             if (silence != null)
             {
-                double threshold = Audio.PhraseDetection.GetSilenceAmplitude(silence.Audio);
-                if (threshold > Convert.ToDouble(mThresholdNumericBox.Maximum))
+                double thresholdVal = Audio.PhraseDetection.GetSilenceAmplitude(silence.Audio);
+                if (thresholdVal > Convert.ToDouble(mThresholdNumericBox.Maximum))
                 {
-                    threshold = Convert.ToDouble(mThresholdNumericBox.Maximum);
+                    thresholdVal = Convert.ToDouble(mThresholdNumericBox.Maximum);
                 }
-                mThresholdNumericBox.Value = Convert.ToDecimal(threshold);
+                mThresholdNumericBox.Value = Convert.ToDecimal(thresholdVal);
             }
             else
             {
                 MessageBox.Show(Localizer.Message("no_preceding_silence_phrase"),
                     Localizer.Message("no_preceding_silence_phrase_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                mThresholdNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_THRESHOLD);
+                mThresholdNumericBox.Value = Convert.ToDecimal(threshold);
             }
             mGapNumericBox.Value = Convert.ToDecimal(gap);
             mLeadingNumericBox.Value = Convert.ToDecimal(leadingSilence);
