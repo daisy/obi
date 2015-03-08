@@ -40,7 +40,7 @@ namespace Obi.Dialogs
             InitializeComponent();
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-            helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Sections\\Merging multiple sections.htm");
+            helpProvider1.SetHelpKeyword(this, "HTML Files\\Creating a DTB\\Working with Sections\\Multi-section Operations.htm");
         }
 
         public SelectMergeSectionRange(Obi.ProjectView.ProjectView projectView,Obi.ProjectView.ContentView contentview)
