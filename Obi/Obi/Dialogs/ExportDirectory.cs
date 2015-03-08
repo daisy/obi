@@ -49,6 +49,9 @@ namespace Obi.Dialogs
             {
                 m_comboBoxEncodingType.Items.Add(m_EncodingOptions[0]);
                 m_btnEncodingOptions.Visible = true;
+                m_comboBoxEncodingType.SelectedIndex = 0;
+            //    m_ComboBoxBitrate.SelectedIndex = 4;
+                encodingType = AudioLib.AudioFileFormats.MP3.ToString();
             }
             else
             {
@@ -60,7 +63,7 @@ namespace Obi.Dialogs
             }
 
             m_encodingType = 0;//encodingType;
-            if (encodingType ==AudioLib.AudioFileFormats.MP3.ToString())
+            if (encodingType == AudioLib.AudioFileFormats.MP3.ToString())
             {
                 m_encodingType = 0;
             }
