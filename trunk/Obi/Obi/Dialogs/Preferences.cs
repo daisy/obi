@@ -2404,7 +2404,7 @@ namespace Obi.Dialogs
                 LoadListviewAccordingToComboboxSelection();
                 mForm.KeyboardShortcuts.SettingsName = System.IO.Path.GetFileNameWithoutExtension(filePath);
                 if (mForm.KeyboardShortcuts != null && !string.IsNullOrEmpty(mForm.KeyboardShortcuts.SettingsName)) m_txtSelectedShortcutsProfile.Text = mForm.KeyboardShortcuts.SettingsName;
-                MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"),Localizer.Message("Preferences_ProfilesShortcutsLoadedCaption"),MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //text, caption, button,icons
             }
         }
