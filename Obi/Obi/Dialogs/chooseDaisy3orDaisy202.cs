@@ -43,16 +43,52 @@ namespace Obi.Dialogs
         }
 
 
-        public Obi.ImportExport.ExportFormat chooseOption { get { return m_ExportFormat; } }       
+        public Obi.ImportExport.ExportFormat chooseOption 
+        { 
+            get 
+            {
+                m_ExportFormat = m_cbDaisy3.Checked ? ImportExport.ExportFormat.DAISY3_0 :
+                    m_cbDaisy202.Checked ? ImportExport.ExportFormat.DAISY2_02 :
+                    ImportExport.ExportFormat.EPUB3;
+                return m_ExportFormat; 
+            } 
+        }       
 
         private void m_OKBtn_Click(object sender, EventArgs e)
         {
              this.DialogResult = DialogResult.OK;
         }
 
+        private bool m_RestrictToSingleDAISYChoice =false;
+        public bool RestrictToSingleDAISYChoice
+        { get { return m_RestrictToSingleDAISYChoice ; }
+            set
+            {
+                m_RestrictToSingleDAISYChoice = value;
+                m_cbEpub3.Enabled = !value;
+            }
+            }
+
         private void m_BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
+
+        private void m_cbDaisy3_CheckedChanged(object sender, EventArgs e )
+        {
+            if(m_RestrictToSingleDAISYChoice && m_cbDaisy3.Checked)
+            {
+                m_cbDaisy202.Checked = false;
+            }
+        }
+
+        private void m_cbDaisy202_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_RestrictToSingleDAISYChoice && m_cbDaisy202.Checked)
+            {
+                m_cbDaisy3.Checked = false;
+            }
+        }
+
     }
 }

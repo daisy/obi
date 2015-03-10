@@ -63,12 +63,14 @@ namespace Obi.Dialogs
             this.m_cbDaisy3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.m_cbDaisy3.Name = "m_cbDaisy3";
             this.m_cbDaisy3.UseVisualStyleBackColor = true;
+            this.m_cbDaisy3.CheckedChanged += new System.EventHandler(this.m_cbDaisy3_CheckedChanged);
             // 
             // m_cbDaisy202
             // 
             resources.ApplyResources(this.m_cbDaisy202, "m_cbDaisy202");
             this.m_cbDaisy202.Name = "m_cbDaisy202";
             this.m_cbDaisy202.UseVisualStyleBackColor = true;
+            this.m_cbDaisy202.CheckedChanged += new System.EventHandler(this.m_cbDaisy202_CheckedChanged);
             // 
             // m_cbEpub3
             // 
