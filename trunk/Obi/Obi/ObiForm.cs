@@ -4546,6 +4546,7 @@ ref string exportDirectoryEPUB3)
                                                                           Path.GetDirectoryName(mSession.Path));
                 string newDirPath = null;
                 Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202();
+                rdfrm.RestrictToSingleDAISYChoice = true; 
                 if (toolStripText == "DTBAudioEncoder" || toolStripText == "FilesetRenamer")
                 {
                     if (rdfrm.ShowDialog() == DialogResult.OK)
