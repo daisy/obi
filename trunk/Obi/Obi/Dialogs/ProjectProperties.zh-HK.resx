@@ -129,14 +129,14 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblDuration.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 41</value>
+    <value>17, 46</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDuration.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lblDuration.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 16</value>
+    <value>102, 18</value>
   </data>
   <data name="m_lblDuration.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -154,7 +154,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblDuration.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="m_txtDuration.AccessibleName" xml:space="preserve">
     <value>總計長度</value>
@@ -163,13 +163,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtDuration.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 39</value>
+    <value>130, 44</value>
   </data>
   <data name="m_txtDuration.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtDuration.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>296, 24</value>
   </data>
   <data name="m_txtDuration.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -184,19 +184,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtDuration.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="m_lblSectionCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblSectionCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 72</value>
+    <value>15, 81</value>
   </data>
   <data name="m_lblSectionCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lblSectionCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 16</value>
+    <value>105, 18</value>
   </data>
   <data name="m_lblSectionCount.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -214,7 +214,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblSectionCount.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="m_txtSectionsCount.AccessibleName" xml:space="preserve">
     <value>總計分節</value>
@@ -223,13 +223,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtSectionsCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 69</value>
+    <value>130, 78</value>
   </data>
   <data name="m_txtSectionsCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtSectionsCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>296, 24</value>
   </data>
   <data name="m_txtSectionsCount.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -244,22 +244,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtSectionsCount.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_lblPhraseCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 102</value>
+    <value>16, 151</value>
   </data>
   <data name="m_lblPhraseCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lblPhraseCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 16</value>
+    <value>102, 18</value>
   </data>
   <data name="m_lblPhraseCount.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="m_lblPhraseCount.Text" xml:space="preserve">
     <value>總計句&amp;h):</value>
@@ -274,7 +274,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblPhraseCount.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="m_txtPhraseCount.AccessibleName" xml:space="preserve">
     <value>總:</value>
@@ -283,16 +283,16 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 99</value>
+    <value>130, 147</value>
   </data>
   <data name="m_txtPhraseCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtPhraseCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>296, 24</value>
   </data>
   <data name="m_txtPhraseCount.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;m_txtPhraseCount.Name" xml:space="preserve">
     <value>m_txtPhraseCount</value>
@@ -304,22 +304,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtPhraseCount.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="m_lblPageCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblPageCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 132</value>
+    <value>17, 184</value>
   </data>
   <data name="m_lblPageCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="m_lblPageCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
+    <value>89, 18</value>
   </data>
   <data name="m_lblPageCount.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="m_lblPageCount.Text" xml:space="preserve">
     <value>總計頁數(&amp;g):</value>
@@ -334,7 +334,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblPageCount.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="m_txtPageCount.AccessibleName" xml:space="preserve">
     <value>總計頁:</value>
@@ -343,16 +343,16 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtPageCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 129</value>
+    <value>130, 181</value>
   </data>
   <data name="m_txtPageCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtPageCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>296, 24</value>
   </data>
   <data name="m_txtPageCount.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;m_txtPageCount.Name" xml:space="preserve">
     <value>m_txtPageCount</value>
@@ -364,7 +364,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtPageCount.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="m_btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -373,13 +373,13 @@
     <value>Flat</value>
   </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 195</value>
+    <value>104, 219</value>
   </data>
   <data name="m_btnOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+    <value>112, 32</value>
   </data>
   <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -397,16 +397,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btnOk.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="m_lblTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
+    <value>Microsoft Sans Serif, 11pt</value>
   </data>
   <data name="m_lblTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 11</value>
+    <value>17, 12</value>
   </data>
   <data name="m_lblTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -430,7 +430,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_lblTitle.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="m_txtTitle.AccessibleName" xml:space="preserve">
     <value>專項標題:</value>
@@ -439,13 +439,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 9</value>
+    <value>130, 10</value>
   </data>
   <data name="m_txtTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 22</value>
+    <value>296, 24</value>
   </data>
   <data name="m_txtTitle.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -460,7 +460,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_txtTitle.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -469,13 +469,13 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 195</value>
+    <value>225, 219</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mCancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
+    <value>112, 32</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -493,16 +493,67 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <data name="m_lblMaxDepth.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblMaxDepth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 114</value>
+  </data>
+  <data name="m_lblMaxDepth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 18</value>
+  </data>
+  <data name="m_lblMaxDepth.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_lblMaxDepth.Text" xml:space="preserve">
+    <value>&amp;Max Depth:</value>
+  </data>
+  <data name="&gt;&gt;m_lblMaxDepth.Name" xml:space="preserve">
+    <value>m_lblMaxDepth</value>
+  </data>
+  <data name="&gt;&gt;m_lblMaxDepth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblMaxDepth.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblMaxDepth.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_txtMaxDepth.AccessibleName" xml:space="preserve">
+    <value>Max Depth:</value>
+  </data>
+  <data name="m_txtMaxDepth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>130, 114</value>
+  </data>
+  <data name="m_txtMaxDepth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 24</value>
+  </data>
+  <data name="m_txtMaxDepth.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_txtMaxDepth.Name" xml:space="preserve">
+    <value>m_txtMaxDepth</value>
+  </data>
+  <data name="&gt;&gt;m_txtMaxDepth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtMaxDepth.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_txtMaxDepth.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>9, 18</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>392, 236</value>
+    <value>441, 266</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 11pt</value>

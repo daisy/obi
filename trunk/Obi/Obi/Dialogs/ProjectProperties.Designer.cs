@@ -130,8 +130,8 @@ namespace Obi.Dialogs
             // 
             // m_txtMaxDepth
             // 
-            this.m_txtMaxDepth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.m_txtMaxDepth, "m_txtMaxDepth");
+            this.m_txtMaxDepth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.m_txtMaxDepth.Name = "m_txtMaxDepth";
             this.m_txtMaxDepth.ReadOnly = true;
             // 
