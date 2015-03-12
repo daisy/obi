@@ -1988,6 +1988,7 @@ namespace Obi.Dialogs
 
                     m_lvShortcutKeysList.Items.Clear();
                     LoadListviewAccordingToComboboxSelection();
+                    MessageBox.Show(Localizer.Message("Preferences_ProfilesShortcutsLoaded"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else if (m_cb_SelectShorcutsProfile.SelectedIndex >= 0 && m_cb_SelectShorcutsProfile.SelectedIndex < m_cb_SelectShorcutsProfile.Items.Count)
                 {   
