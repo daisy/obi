@@ -141,7 +141,27 @@
       <DependentUpon>IntControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\PathBrowserControl.ar.resx">
+      <DependentUpon>PathBrowserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\PathBrowserControl.es.resx">
+      <DependentUpon>PathBrowserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\PathBrowserControl.fi.resx">
+      <DependentUpon>PathBrowserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ParameterControls\PathBrowserControl.fr.resx">
+      <DependentUpon>PathBrowserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\PathBrowserControl.hi.resx">
+      <DependentUpon>PathBrowserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\PathBrowserControl.ja.resx">
       <DependentUpon>PathBrowserControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -149,15 +169,71 @@
       <DependentUpon>PathBrowserControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\PathBrowserControl.ta.resx">
+      <DependentUpon>PathBrowserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\PathBrowserControl.zh-HK.resx">
+      <DependentUpon>PathBrowserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\StringControl.ar.resx">
+      <DependentUpon>StringControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\StringControl.es.resx">
+      <DependentUpon>StringControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\StringControl.fi.resx">
+      <DependentUpon>StringControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\StringControl.hi.resx">
+      <DependentUpon>StringControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ParameterControls\StringControl.resx">
       <DependentUpon>StringControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParameterControls\StringControl.ta.resx">
+      <DependentUpon>StringControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PipelineInterfaceForm.ar.resx">
+      <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PipelineInterfaceForm.es.resx">
+      <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PipelineInterfaceForm.fi.resx">
+      <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PipelineInterfaceForm.fr.resx">
       <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="PipelineInterfaceForm.hi.resx">
+      <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PipelineInterfaceForm.ja.resx">
+      <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="PipelineInterfaceForm.resx">
+      <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PipelineInterfaceForm.ta.resx">
+      <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PipelineInterfaceForm.zh-HK.resx">
       <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
