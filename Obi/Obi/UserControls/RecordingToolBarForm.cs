@@ -992,6 +992,21 @@ namespace Obi.UserControls
             }
         }
 
+        private void m_chkMonitorContinuously_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.Enabled)
+            {
+                if (m_chkMonitorContinuously.Checked)
+                {
+                    m_TransportBar.MonitorContinuously = true;
+                }
+                else
+                {
+                    m_TransportBar.MonitorContinuously = false;
+                }
+            }
+        }
+
 
     }
 }
