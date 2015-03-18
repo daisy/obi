@@ -47,6 +47,7 @@ namespace Obi.UserControls
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.m_Enlarge = new System.Windows.Forms.Button();
             this.m_Reduce = new System.Windows.Forms.Button();
+            this.m_cbMonitorContinuously = new System.Windows.Forms.CheckBox();
             this.recordingToolBarToolStrip.SuspendLayout();
             this.m_statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -180,9 +181,16 @@ namespace Obi.UserControls
             this.m_Reduce.UseVisualStyleBackColor = true;
             this.m_Reduce.Click += new System.EventHandler(this.m_Reduce_Click);
             // 
+            // m_cbMonitorContinuously
+            // 
+            resources.ApplyResources(this.m_cbMonitorContinuously, "m_cbMonitorContinuously");
+            this.m_cbMonitorContinuously.Name = "m_cbMonitorContinuously";
+            this.m_cbMonitorContinuously.UseVisualStyleBackColor = true;
+            // 
             // RecordingToolBarForm
             // 
             resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.m_cbMonitorContinuously);
             this.Controls.Add(this.m_Reduce);
             this.Controls.Add(this.m_Enlarge);
             this.Controls.Add(this.m_statusStrip);
@@ -220,5 +228,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.Button m_Reduce;
         private System.Windows.Forms.ToolStripButton m_recordingToolBarElapseBackBtn;
         private System.Windows.Forms.ToolStripButton m_recordingToolBarSectionEndBtn;
+        private System.Windows.Forms.CheckBox m_cbMonitorContinuously;
     }
 }
