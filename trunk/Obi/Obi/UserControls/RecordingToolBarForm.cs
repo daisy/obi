@@ -226,6 +226,7 @@ namespace Obi.UserControls
             m_TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(State_Changed_Recorder);
             projectView.SelectionChanged += new EventHandler(projectview_Selection_Changed);
             m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);
+            m_RecordingToolBartoolTip.SetToolTip(m_chkMonitorContinuously, Localizer.Message("Audio_MonitorAlways"));
             // if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
             UpdateButtons();
         }
@@ -641,6 +642,7 @@ namespace Obi.UserControls
             // p.X = m_Reduce.Location.X;
             p.X = this.Width / 2 + 20;
             m_Reduce.Location = p;
+            m_chkMonitorContinuously.Location = new Point(9, m_statusStrip.Top - 30);
 
             if (flagBtnPressed == true)
             {
@@ -820,6 +822,7 @@ namespace Obi.UserControls
                 //p.X = m_Reduce.Location.X;
                 p.X = this.Width / 2 + 20;
                 m_Reduce.Location = p;
+                m_chkMonitorContinuously.Location = new Point(9, m_statusStrip.Top - 30);
             }
             else
             {
