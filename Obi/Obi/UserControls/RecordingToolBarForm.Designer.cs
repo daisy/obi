@@ -48,6 +48,7 @@ namespace Obi.UserControls
             this.m_Enlarge = new System.Windows.Forms.Button();
             this.m_Reduce = new System.Windows.Forms.Button();
             this.m_chkMonitorContinuously = new System.Windows.Forms.CheckBox();
+            this.m_RecordingToolBartoolTip = new System.Windows.Forms.ToolTip(this.components);
             this.recordingToolBarToolStrip.SuspendLayout();
             this.m_statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -230,5 +231,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripButton m_recordingToolBarElapseBackBtn;
         private System.Windows.Forms.ToolStripButton m_recordingToolBarSectionEndBtn;
         private System.Windows.Forms.CheckBox m_chkMonitorContinuously;
+        private System.Windows.Forms.ToolTip m_RecordingToolBartoolTip;
     }
 }
