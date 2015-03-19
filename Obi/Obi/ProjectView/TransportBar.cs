@@ -4192,6 +4192,8 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                 {
                     StopMonitorContinuously();
                     m_MonitorContinuously = value;
+                    // trigger state changed event again because the MonitorContinuesly goes false after the state changed event
+                    if (StateChanged != null) StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(mPlayer.CurrentState));
                 }
                 
             }

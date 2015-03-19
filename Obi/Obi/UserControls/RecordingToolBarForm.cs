@@ -370,6 +370,14 @@ namespace Obi.UserControls
             {
                 m_recordingToolBarRecordingBtn.AccessibleName = "Recording";
             }
+            m_chkMonitorContinuously.Enabled = !m_TransportBar.IsPlayerActive;
+            if (m_chkMonitorContinuously.Enabled && m_TransportBar.MonitorContinuously != m_chkMonitorContinuously.Checked)
+            {
+                m_chkMonitorContinuously.CheckedChanged -= new EventHandler (m_chkMonitorContinuously_CheckedChanged) ;
+                m_chkMonitorContinuously.Checked= m_TransportBar.MonitorContinuously;
+                Console.WriteLine("event change " + m_chkMonitorContinuously.Checked);
+                m_chkMonitorContinuously.CheckedChanged += new EventHandler(m_chkMonitorContinuously_CheckedChanged);
+            }
         }
 
         private void m_recordingToolBarPlayBtn_Click(object sender, EventArgs e)
@@ -996,6 +1004,8 @@ namespace Obi.UserControls
         {
             if (this.Enabled)
             {
+                m_chkMonitorContinuously.CheckedChanged -= new EventHandler(m_chkMonitorContinuously_CheckedChanged);
+                Console.WriteLine("Going for manual change " + m_chkMonitorContinuously.Checked);
                 if (m_chkMonitorContinuously.Checked)
                 {
                     m_TransportBar.MonitorContinuously = true;
@@ -1004,6 +1014,8 @@ namespace Obi.UserControls
                 {
                     m_TransportBar.MonitorContinuously = false;
                 }
+                Console.WriteLine("manual change " + m_chkMonitorContinuously.Checked);
+                m_chkMonitorContinuously.CheckedChanged += new EventHandler(m_chkMonitorContinuously_CheckedChanged);
             }
         }
 
