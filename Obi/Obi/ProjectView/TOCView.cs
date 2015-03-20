@@ -197,7 +197,10 @@ namespace Obi.ProjectView
             {
                 m_HighlightedSectionNodeWithoutSelection = value;
                 TreeNode treeNodeToHighlight = FindTreeNodeWithoutLabel(m_HighlightedSectionNodeWithoutSelection);
-                treeNodeToHighlight.EnsureVisible();
+                if (treeNodeToHighlight != null)
+                {
+                    treeNodeToHighlight.EnsureVisible();
+                }
                 //if (treeNodeToHighlight != null) treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
                 if (treeNodeToHighlight != null) treeNodeToHighlight.BackColor = mProjectView.ColorSettings.HighlightedSectionNodeWithoutSelectionColor;
                 else m_HighlightedSectionNodeWithoutSelection = null;
