@@ -2736,4 +2736,7 @@ Error text: {1}</value>
   <data name="String3" xml:space="preserve">
     <value />
   </data>
+  <data name="Audio_AlwaysMonitoringRecordingToolBar" xml:space="preserve">
+    <value>Always Monitor in Recording Toolbar</value>
+  </data>
 </root>
