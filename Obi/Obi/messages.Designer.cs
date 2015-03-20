@@ -232,6 +232,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Always Monitor in Recording Toolbar.
+        /// </summary>
+        internal static string Audio_AlwaysMonitoringRecordingToolBar {
+            get {
+                return ResourceManager.GetString("Audio_AlwaysMonitoringRecordingToolBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} {1} of {2}{3}.
         /// </summary>
         internal static string audio_block_label {
