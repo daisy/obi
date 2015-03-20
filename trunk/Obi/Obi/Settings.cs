@@ -111,6 +111,7 @@ namespace Obi
         public string EncodingFileFormat;
         [OptionalField]
         public bool Project_RecordingToolbarOpenInPreviousSession;
+        public bool Audio_AlwaysMonitorRecordingToolBar;
 
         // size and point types should be stored in arrays
 
@@ -171,6 +172,18 @@ namespace Obi
                 m_GraphicalPeakMeterContolSize = new int[2];
                 m_GraphicalPeakMeterContolSize[0] = value.Width;
                 m_GraphicalPeakMeterContolSize[1] = value.Height;
+            }
+        }
+
+        private int[] m_RecordingToolBarLastLocation;
+        public Point RecordingToolBarLastLocation
+        {
+            get { return new Point(m_RecordingToolBarLastLocation[0], m_RecordingToolBarLastLocation[1]); }
+            set
+            {
+                m_RecordingToolBarLastLocation = new int[2];
+                m_RecordingToolBarLastLocation[0] = value.X;
+                m_RecordingToolBarLastLocation[1] = value.Y;
             }
         }
 
@@ -282,6 +295,8 @@ namespace Obi
             settings.EncodingFileFormat = "MP3";
             settings.SettingsName = "basic";
             settings.Project_RecordingToolbarOpenInPreviousSession = false;
+            settings.Audio_AlwaysMonitorRecordingToolBar = false;
+            settings.RecordingToolBarLastLocation = new Point(0, 0);
         }
 
         /// <summary>

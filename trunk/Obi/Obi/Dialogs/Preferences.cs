@@ -240,6 +240,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[14].Checked = mSettings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording;
                 m_CheckBoxListView.Items[15].Checked = mSettings.Audio_DisableDeselectionOnStop;
                 m_CheckBoxListView.Items[16].Checked = mSettings.Audio_PreservePagesWhileRecordOverSubsequentAudio;
+                m_CheckBoxListView.Items[17].Checked = mSettings.Audio_AlwaysMonitorRecordingToolBar;
                 m_IsComplete = true;
 
             }
@@ -898,6 +899,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_DeleteFollowingPhrasesOfSectionAfterRecording = m_CheckBoxListView.Items[14].Checked;
                 mSettings.Audio_DisableDeselectionOnStop = m_CheckBoxListView.Items[15].Checked;
                 mSettings.Audio_PreservePagesWhileRecordOverSubsequentAudio = m_CheckBoxListView.Items[16].Checked;
+                mSettings.Audio_AlwaysMonitorRecordingToolBar = m_CheckBoxListView.Items[17].Checked;
                 
             }
             //if (mTab.SelectedTab == mAdvanceTab)
@@ -949,6 +951,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_DeleteFollowingPhrasesOfSectionAfterRecording"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_DisableDeselectionOnStop"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_PreservePage"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_AlwaysMonitoringRecordingToolBar"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Audio_AudioClues;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_AudioClues");                
@@ -984,6 +987,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[15].ToolTipText = Localizer.Message("Audio_DisableDeselectionOnStop");
                 m_CheckBoxListView.Items[16].Checked = mSettings.Audio_PreservePagesWhileRecordOverSubsequentAudio;
                 m_CheckBoxListView.Items[16].ToolTipText = Localizer.Message("Audio_PreservePage");
+                m_CheckBoxListView.Items[17].Checked = mSettings.Audio_AlwaysMonitorRecordingToolBar;
+                m_CheckBoxListView.Items[17].ToolTipText = Localizer.Message("Audio_AlwaysMonitoringRecordingToolBar");
 
               
             }
@@ -1657,6 +1662,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[14].Checked = false;
                 m_CheckBoxListView.Items[15].Checked = false;
                 m_CheckBoxListView.Items[16].Checked = false;
+                m_CheckBoxListView.Items[17].Checked = false;
                 //     m_FlagComboBoxIndexChange = false;
                 //m_IndexOfLevelCombox = m_ComboSelectAudioProfile.SelectedIndex;
                 UpdateBoolSettings();
@@ -1703,6 +1709,7 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[14].Checked = false;
                         m_CheckBoxListView.Items[15].Checked = false;
                         m_CheckBoxListView.Items[16].Checked = false;
+                        m_CheckBoxListView.Items[17].Checked = false;
                         // m_FlagComboBoxIndexChange = false;
 
                     }
@@ -1758,6 +1765,7 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[14].Checked = false;
                         m_CheckBoxListView.Items[15].Checked = false;
                         m_CheckBoxListView.Items[16].Checked = false;
+                        m_CheckBoxListView.Items[17].Checked = false;
                         //   m_FlagComboBoxIndexChange = false;
                     }
                     //else
@@ -1811,6 +1819,7 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[14].Checked = false;
                         m_CheckBoxListView.Items[15].Checked = true;
                         m_CheckBoxListView.Items[16].Checked = false;
+                        m_CheckBoxListView.Items[17].Checked = true;
                         //  m_FlagComboBoxIndexChange = false;
                     }
                     //else
@@ -1867,6 +1876,7 @@ namespace Obi.Dialogs
                         m_CheckBoxListView.Items[14].Checked = false;
                         m_CheckBoxListView.Items[15].Checked = false;
                         m_CheckBoxListView.Items[16].Checked = true;
+                        m_CheckBoxListView.Items[17].Checked = false;
                         // m_FlagComboBoxIndexChange = false;
                     }
                     //else
@@ -1903,7 +1913,7 @@ namespace Obi.Dialogs
             //return true;
         }
 
- 
+
         private void m_SelectLevelComboBox_DropDownClosed(object sender, EventArgs e)
         {
            // m_IsComboBoxExpanded = false;
@@ -1914,7 +1924,7 @@ namespace Obi.Dialogs
           //  m_IsComboBoxExpanded = true;
         }
 
- 
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             //if (keyData == Keys.Escape)
@@ -1944,13 +1954,13 @@ namespace Obi.Dialogs
         {
             if (m_rdb_Preferences.Checked)
             {
-
                 //For Developer uncomment Use below lines to genarate XML
               
                 //if (m_cb_SelectProfile.SelectedIndex != -1)
                 //{
                 //    UpdateAudioProfile();
                 //}
+
 
                 // For Developer Comment rest of the lines for generation of XML
 
