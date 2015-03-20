@@ -3609,6 +3609,7 @@ ref string exportDirectoryEPUB3)
                         new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e)
                         {
                             mSettings.RecordingToolBarIncrementVal = mRecordingToolBarForm.NetSizeIncrementOfButtons;
+                            mSettings.RecordingToolBarLastLocation = mRecordingToolBarForm.Location;
                             
                             if (mPeakMeter != null)
                             {
@@ -3631,13 +3632,14 @@ ref string exportDirectoryEPUB3)
                     mRecordingToolBarForm.Show();
                     mRecordingToolBarForm.NetSizeIncrementOfButtons = mSettings.RecordingToolBarIncrementVal;
                     mRecordingToolBarForm.EnlargeButtonSize();
+                    mRecordingToolBarForm.Location = mSettings.RecordingToolBarLastLocation;
 
 
 
 
-                    mRecordingToolBarForm.Location = new System.Drawing.Point(this.Location.X,
-                                                                              (this.Location.Y + this.Size.Height) -
-                                                                              mRecordingToolBarForm.Size.Height);
+                    //mRecordingToolBarForm.Location = new System.Drawing.Point(this.Location.X,
+                    //                                                          (this.Location.Y + this.Size.Height) -
+                    //                                                          mRecordingToolBarForm.Size.Height);
                     if (!mSettings.Project_MinimizeObi)
                     {
                         this.WindowState = FormWindowState.Minimized;
@@ -4012,6 +4014,7 @@ ref string exportDirectoryEPUB3)
                     if (mRecordingToolBarForm != null)
                     {
                         mSettings.RecordingToolBarIncrementVal = mRecordingToolBarForm.NetSizeIncrementOfButtons;
+                        mSettings.RecordingToolBarLastLocation = mRecordingToolBarForm.Location;
                     }
                     mSettings.Project_RecordingToolbarOpenInPreviousSession = (mRecordingToolBarForm != null && mRecordingToolBarForm.IsHandleCreated);
                     try
