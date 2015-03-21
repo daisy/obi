@@ -227,6 +227,10 @@ namespace Obi.UserControls
             projectView.SelectionChanged += new EventHandler(projectview_Selection_Changed);
             m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);
             m_RecordingToolBartoolTip.SetToolTip(m_chkMonitorContinuously, Localizer.Message("Audio_MonitorAlways"));
+            if (m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar)
+            {
+                m_chkMonitorContinuously.Checked = true;
+            }
             // if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
             UpdateButtons();
         }
@@ -281,7 +285,25 @@ namespace Obi.UserControls
 
         public void m_TransportBar_EnabledChanged(object sender, EventArgs e)
         {
-            this.Enabled = m_TransportBar.Enabled;
+            if (!m_TransportBar.Enabled)
+            {
+                m_recordingToolBarElapseBackBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarPlayBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarStopBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarRecordingBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarPrePhraseBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarNextPageBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarSectionEndBtn.Enabled = m_TransportBar.Enabled;
+                m_chkMonitorContinuously.Enabled = m_TransportBar.Enabled;
+                m_Enlarge.Enabled = m_TransportBar.Enabled;
+                m_Reduce.Enabled = m_TransportBar.Enabled;
+            }
+            else
+            {
+                this.Enabled = m_TransportBar.Enabled;
+            }
             if (!this.Enabled)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), "");
             m_StatusLabel.Text = "";
