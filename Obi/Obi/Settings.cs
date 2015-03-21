@@ -296,7 +296,7 @@ namespace Obi
             settings.SettingsName = "basic";
             settings.Project_RecordingToolbarOpenInPreviousSession = false;
             settings.Audio_AlwaysMonitorRecordingToolBar = false;
-            settings.RecordingToolBarLastLocation = new Point(0, 0);
+            settings.RecordingToolBarLastLocation = new Point(100, 100);
         }
 
         /// <summary>
