@@ -3633,13 +3633,14 @@ ref string exportDirectoryEPUB3)
                     mRecordingToolBarForm.NetSizeIncrementOfButtons = mSettings.RecordingToolBarIncrementVal;
                     mRecordingToolBarForm.EnlargeButtonSize();
                     mRecordingToolBarForm.Location = mSettings.RecordingToolBarLastLocation;
-
-
-
-
-                    //mRecordingToolBarForm.Location = new System.Drawing.Point(this.Location.X,
-                    //                                                          (this.Location.Y + this.Size.Height) -
-                    //                                                          mRecordingToolBarForm.Size.Height);
+                    Rectangle screenArea = SystemInformation.WorkingArea;
+                    if ((mRecordingToolBarForm.Location.X > screenArea.Width || mRecordingToolBarForm.Location.Y  > screenArea.Height) || 
+                         ((mRecordingToolBarForm.Location.X + mRecordingToolBarForm.Width)  < (mRecordingToolBarForm.Width/4) || (mRecordingToolBarForm.Location.Y + mRecordingToolBarForm.Height) <(mRecordingToolBarForm.Height/4)))
+                    {
+                        mRecordingToolBarForm.Location = new System.Drawing.Point(this.Location.X,
+                                                                                  (this.Location.Y + this.Size.Height) -
+                                                                                  mRecordingToolBarForm.Size.Height);
+                    }
                     if (!mSettings.Project_MinimizeObi)
                     {
                         this.WindowState = FormWindowState.Minimized;
