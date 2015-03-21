@@ -3366,7 +3366,7 @@ SelectionChangedPlaybackEnabled = false;
 
         private void UpdateRecordedPhrasesAlongWithPostRecordingOperations(List<PhraseNode> listOfRecordedPhrases,ref EmptyNode firstRecordedPage)
         {
-            if (mRecordingSession.RecordedAudio != null && mRecordingSession.RecordedAudio.Count > 0)
+            if (mRecordingSession!=null && mRecordingSession.RecordedAudio != null && mRecordingSession.RecordedAudio.Count > 0)
             {
                 for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
                 {
