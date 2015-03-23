@@ -67,6 +67,7 @@ namespace Obi
                newSettings.Audio_TTSVoice = this.Audio_TTSVoice;
                newSettings.Audio_UseRecordBtnToRecordOverSubsequentAudio = this.Audio_UseRecordBtnToRecordOverSubsequentAudio;
                newSettings.Audio_UseRecordingPauseShortcutForStopping = this.Audio_UseRecordingPauseShortcutForStopping;
+               newSettings.Audio_AlwaysMonitorRecordingToolBar = this.Audio_AlwaysMonitorRecordingToolBar;
            }
 
            if (prefProfiles == PreferenceProfiles.Project || prefProfiles == PreferenceProfiles.All)
@@ -399,7 +400,8 @@ namespace Obi
                && this.Audio_ShowLiveWaveformWhileRecording == settings.Audio_ShowLiveWaveformWhileRecording
                && this.Audio_TTSVoice == settings.Audio_TTSVoice
                && this.Audio_UseRecordBtnToRecordOverSubsequentAudio == settings.Audio_UseRecordBtnToRecordOverSubsequentAudio
-               && this.Audio_UseRecordingPauseShortcutForStopping == settings.Audio_UseRecordingPauseShortcutForStopping)
+               && this.Audio_UseRecordingPauseShortcutForStopping == settings.Audio_UseRecordingPauseShortcutForStopping
+               && this.Audio_AlwaysMonitorRecordingToolBar == settings.Audio_AlwaysMonitorRecordingToolBar)
            {
                audioPreferencesMatch = true ;
            }
