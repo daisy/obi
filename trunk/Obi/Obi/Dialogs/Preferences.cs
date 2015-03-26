@@ -548,14 +548,23 @@ namespace Obi.Dialogs
                 MessageBox.Show ( string.Format ( Localizer.Message ( "Peferences_GUIDonotSupportCulture" ),
                     mCultureBox.SelectedItem.ToString () ) );
                 }
-                if (mCultureBox.SelectedItem.ToString() != "zh-CHT" && mCultureBox.SelectedItem.ToString() != "zh-TW")
+                if (mCultureBox.SelectedItem.ToString() != "zh-CHT" && mCultureBox.SelectedItem.ToString() != "zh-TW"
+                    && mCultureBox.SelectedItem.ToString() != "zh-CHS")
                 {
                     mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
                 }
                 else
                 {
-                    CultureInfo temp = new CultureInfo("zh-HK");
-                    mSettings.UserProfile.Culture = temp;
+                    if (mCultureBox.SelectedItem.ToString() == "zh-CHT" && mCultureBox.SelectedItem.ToString() == "zh-TW")
+                    {
+                        CultureInfo temp = new CultureInfo("zh-HK");
+                        mSettings.UserProfile.Culture = temp;
+                    }
+                    else if (mCultureBox.SelectedItem.ToString() == "zh-CHS")
+                    {
+                        CultureInfo temp = new CultureInfo("zh-CN");
+                        mSettings.UserProfile.Culture = temp;
+                    }
                 }
                 VerifyChangeInLoadedSettings();
             return true;
@@ -564,15 +573,19 @@ namespace Obi.Dialogs
         private bool IsResourceForLanguageExist(string cultureName)
         {
             string cultureDirName = "";
-            if (cultureName != "zh-HK"  && cultureName != "zh-TW" && cultureName != "zh-CHT")
+            if (cultureName != "zh-HK"  && cultureName != "zh-TW" && cultureName != "zh-CHT" && cultureName != "zh-CN" && cultureName!="zh-CHS")
             {
                 cultureDirName = cultureName.Split('-')[0];
             }
-            else
+            else if (cultureName != "zh-CN" && cultureName != "zh-CHS")
             {
                 cultureDirName = "zh-HK";
             }
-            
+            else 
+            {
+                cultureDirName = "zh-CN";
+            }
+                  
             string[] dirList = System.IO.Directory.GetDirectories(System.AppDomain.CurrentDomain.BaseDirectory, cultureDirName, System.IO.SearchOption.TopDirectoryOnly);
             return dirList != null && dirList.Length > 0;
             
@@ -1955,7 +1968,7 @@ namespace Obi.Dialogs
             if (m_rdb_Preferences.Checked)
             {
                 //For Developer uncomment Use below lines to genarate XML
-              
+
                 //if (m_cb_SelectProfile.SelectedIndex != -1)
                 //{
                 //    UpdateAudioProfile();
