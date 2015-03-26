@@ -521,7 +521,7 @@
     <value>修改元数据条目名称</value>
   </data>
   <data name="about_file_name" xml:space="preserve">
-    <value>about_en.html</value>
+    <value>about_zh-CN.html</value>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
     <value>添加空白页</value>
@@ -2340,7 +2340,7 @@
     <value>录音后删除接下来的句</value>
   </data>
   <data name="ProfileDesc_file_name" xml:space="preserve">
-    <value>ProfileDesc_en.html</value>
+    <value>ProfileDesc_zh-CN.html</value>
   </data>
   <data name="Preferences_Level_ComboBox_Profile_1" xml:space="preserve">
     <value>简介1（VA）</value>
