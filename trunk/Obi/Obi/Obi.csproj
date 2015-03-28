@@ -870,7 +870,9 @@
     <Content Include="about_ta.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="about_zh-CN.html" />
+    <Content Include="about_zh-CN.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="about_zn-HK.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2758,7 +2760,9 @@
     <Content Include="ProfileDesc_fr.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ProfileDesc_zh-CN.html" />
+    <Content Include="ProfileDesc_zh-CN.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ProfileDesc_zh-HK.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
