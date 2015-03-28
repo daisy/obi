@@ -523,7 +523,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_Time.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 124</value>
+    <value>99, 124</value>
   </data>
   <data name="m_lbl_Time.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 16</value>
