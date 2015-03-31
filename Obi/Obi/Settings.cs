@@ -176,7 +176,10 @@ namespace Obi
         }
         
         // For Obi 3.7
+        [OptionalField]
         public bool Audio_AlwaysMonitorRecordingToolBar;
+
+        [OptionalField]
         private int[] m_RecordingToolBarLastLocation;
         public Point RecordingToolBarLastLocation
         {
