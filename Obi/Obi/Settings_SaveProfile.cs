@@ -134,6 +134,10 @@ namespace Obi
                newSettings.ColorSettings.BlockForeColor_Silence = this.ColorSettings.BlockForeColor_Silence;
                newSettings.ColorSettings.BlockForeColor_TODO = this.ColorSettings.BlockForeColor_TODO;
                newSettings.ColorSettings.BlockForeColor_Unused = this.ColorSettings.BlockForeColor_Unused;
+               newSettings.ColorSettings.BlockLayoutSelectedColor = this.ColorSettings.BlockLayoutSelectedColor;
+               newSettings.ColorSettings.ContentViewBackColor = this.ColorSettings.ContentViewBackColor;
+               newSettings.ColorSettings.EditableLabelTextBackColor = this.ColorSettings.EditableLabelTextBackColor;
+               newSettings.ColorSettings.ProjectViewBackColor = this.ColorSettings.ProjectViewBackColor;
                newSettings.ColorSettings.StripBackColor = this.ColorSettings.StripBackColor;
                newSettings.ColorSettings.StripCursorSelectedBackColor = this.ColorSettings.StripCursorSelectedBackColor;
                newSettings.ColorSettings.StripForeColor = this.ColorSettings.StripForeColor;
@@ -150,8 +154,10 @@ namespace Obi
                newSettings.ColorSettings.TransportBarLabelBackColor = this.ColorSettings.TransportBarLabelBackColor;
                newSettings.ColorSettings.TransportBarLabelForeColor = this.ColorSettings.TransportBarLabelForeColor;
                newSettings.ColorSettings.WaveformBackColor = this.ColorSettings.WaveformBackColor;
+               newSettings.ColorSettings.WaveformBaseLineColor = this.ColorSettings.WaveformBaseLineColor;
                newSettings.ColorSettings.WaveformHighlightedBackColor = this.ColorSettings.WaveformHighlightedBackColor;
                newSettings.ColorSettings.FineNavigationColor = this.ColorSettings.FineNavigationColor;
+               newSettings.ColorSettings.EmptySectionBackgroundColor = this.ColorSettings.EmptySectionBackgroundColor;
                newSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = this.ColorSettings.HighlightedSectionNodeWithoutSelectionColor;
 
                newSettings.ColorSettingsHC.BlockBackColor_Custom = this.ColorSettingsHC.BlockBackColor_Custom;
@@ -174,6 +180,10 @@ namespace Obi
                newSettings.ColorSettingsHC.BlockForeColor_Silence = this.ColorSettingsHC.BlockForeColor_Silence;
                newSettings.ColorSettingsHC.BlockForeColor_TODO = this.ColorSettingsHC.BlockForeColor_TODO;
                newSettings.ColorSettingsHC.BlockForeColor_Unused = this.ColorSettingsHC.BlockForeColor_Unused;
+               newSettings.ColorSettingsHC.BlockLayoutSelectedColor = this.ColorSettingsHC.BlockLayoutSelectedColor;
+               newSettings.ColorSettingsHC.ContentViewBackColor = this.ColorSettingsHC.ContentViewBackColor;
+               newSettings.ColorSettingsHC.EditableLabelTextBackColor = this.ColorSettingsHC.EditableLabelTextBackColor;
+               newSettings.ColorSettingsHC.ProjectViewBackColor = this.ColorSettingsHC.StripWithoutPhrasesBackcolor;
                newSettings.ColorSettingsHC.StripBackColor = this.ColorSettingsHC.StripBackColor;
                newSettings.ColorSettingsHC.StripCursorSelectedBackColor = this.ColorSettingsHC.StripCursorSelectedBackColor;
                newSettings.ColorSettingsHC.StripForeColor = this.ColorSettingsHC.StripForeColor;
@@ -190,9 +200,11 @@ namespace Obi
                newSettings.ColorSettingsHC.TransportBarLabelBackColor = this.ColorSettingsHC.TransportBarLabelBackColor;
                newSettings.ColorSettingsHC.TransportBarLabelForeColor = this.ColorSettingsHC.TransportBarLabelForeColor;
                newSettings.ColorSettingsHC.WaveformBackColor = this.ColorSettingsHC.WaveformBackColor;
+               newSettings.ColorSettingsHC.WaveformBaseLineColor = this.ColorSettingsHC.WaveformBaseLineColor;
                newSettings.ColorSettingsHC.WaveformHighlightedBackColor = this.ColorSettingsHC.WaveformHighlightedBackColor;
-               newSettings.ColorSettings.FineNavigationColor = this.ColorSettingsHC.FineNavigationColor;
-               newSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = this.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor;
+               newSettings.ColorSettingsHC.FineNavigationColor = this.ColorSettingsHC.FineNavigationColor;
+               newSettings.ColorSettingsHC.EmptySectionBackgroundColor = this.ColorSettingsHC.EmptySectionBackgroundColor;
+               newSettings.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor = this.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor;
                //newSettings.ColorSettings = this.ColorSettings;
                //newSettings.ColorSettingsHC = this.ColorSettingsHC;
            }
@@ -451,7 +463,11 @@ namespace Obi
                && this.ColorSettings.BlockForeColor_Selected == settings.ColorSettings.BlockForeColor_Selected
                && this.ColorSettings.BlockForeColor_Silence == settings.ColorSettings.BlockForeColor_Silence
                && this.ColorSettings.BlockForeColor_TODO == settings.ColorSettings.BlockForeColor_TODO
-               && this.ColorSettings.BlockForeColor_Unused == settings.ColorSettings.BlockForeColor_Unused
+               && this.ColorSettings.BlockForeColor_Unused == settings.ColorSettings.BlockForeColor_Unused             
+               && this.ColorSettings.BlockLayoutSelectedColor == settings.ColorSettings.BlockLayoutSelectedColor
+               && this.ColorSettings.ContentViewBackColor == settings.ColorSettings.ContentViewBackColor
+               && this.ColorSettings.EditableLabelTextBackColor == settings.ColorSettings.EditableLabelTextBackColor
+               && this.ColorSettings.ProjectViewBackColor == settings.ColorSettings.ProjectViewBackColor
                && this.ColorSettings.StripBackColor == settings.ColorSettings.StripBackColor
                && this.ColorSettings.StripCursorSelectedBackColor == settings.ColorSettings.StripCursorSelectedBackColor
                && this.ColorSettings.StripForeColor == settings.ColorSettings.StripForeColor
@@ -468,8 +484,10 @@ namespace Obi
                && this.ColorSettings.TransportBarLabelBackColor == settings.ColorSettings.TransportBarLabelBackColor
                && this.ColorSettings.TransportBarLabelForeColor == settings.ColorSettings.TransportBarLabelForeColor
                && this.ColorSettings.WaveformBackColor == settings.ColorSettings.WaveformBackColor
+               && this.ColorSettings.WaveformBaseLineColor == settings.ColorSettings.WaveformBaseLineColor
                && this.ColorSettings.WaveformHighlightedBackColor == settings.ColorSettings.WaveformHighlightedBackColor
                && this.ColorSettings.FineNavigationColor == settings.ColorSettings.FineNavigationColor
+               && this.ColorSettings.EmptySectionBackgroundColor == settings.ColorSettings.EmptySectionBackgroundColor
                && this.ColorSettings.HighlightedSectionNodeWithoutSelectionColor == settings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor
 
                && this.ColorSettingsHC.BlockBackColor_Anchor == settings.ColorSettingsHC.BlockBackColor_Anchor
@@ -492,6 +510,10 @@ namespace Obi
                && this.ColorSettingsHC.BlockForeColor_Silence == settings.ColorSettingsHC.BlockForeColor_Silence
                && this.ColorSettingsHC.BlockForeColor_TODO == settings.ColorSettingsHC.BlockForeColor_TODO
                && this.ColorSettingsHC.BlockForeColor_Unused == settings.ColorSettingsHC.BlockForeColor_Unused
+               && this.ColorSettingsHC.BlockLayoutSelectedColor == settings.ColorSettingsHC.BlockLayoutSelectedColor
+               && this.ColorSettingsHC.ContentViewBackColor == settings.ColorSettingsHC.ContentViewBackColor
+               && this.ColorSettingsHC.EditableLabelTextBackColor == settings.ColorSettingsHC.EditableLabelTextBackColor
+               && this.ColorSettingsHC.ProjectViewBackColor == settings.ColorSettingsHC.ProjectViewBackColor
                && this.ColorSettingsHC.StripBackColor == settings.ColorSettingsHC.StripBackColor
                && this.ColorSettingsHC.StripCursorSelectedBackColor == settings.ColorSettingsHC.StripCursorSelectedBackColor
                && this.ColorSettingsHC.StripForeColor == settings.ColorSettingsHC.StripForeColor
@@ -508,8 +530,10 @@ namespace Obi
                && this.ColorSettingsHC.TransportBarLabelBackColor == settings.ColorSettingsHC.TransportBarLabelBackColor
                && this.ColorSettingsHC.TransportBarLabelForeColor == settings.ColorSettingsHC.TransportBarLabelForeColor
                && this.ColorSettingsHC.WaveformBackColor == settings.ColorSettingsHC.WaveformBackColor
+               && this.ColorSettingsHC.WaveformBaseLineColor == settings.ColorSettingsHC.WaveformBaseLineColor
                && this.ColorSettingsHC.WaveformHighlightedBackColor == settings.ColorSettingsHC.WaveformHighlightedBackColor
                && this.ColorSettingsHC.FineNavigationColor == settings.ColorSettingsHC.FineNavigationColor
+               && this.ColorSettingsHC.EmptySectionBackgroundColor == settings.ColorSettingsHC.EmptySectionBackgroundColor
                && this.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor == settings.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor)
                {
                    colorPreferenceMatch = true ;
