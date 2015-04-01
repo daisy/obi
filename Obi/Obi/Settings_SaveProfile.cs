@@ -157,6 +157,7 @@ namespace Obi
                newSettings.ColorSettings.WaveformBaseLineColor = this.ColorSettings.WaveformBaseLineColor;
                newSettings.ColorSettings.WaveformHighlightedBackColor = this.ColorSettings.WaveformHighlightedBackColor;
                newSettings.ColorSettings.FineNavigationColor = this.ColorSettings.FineNavigationColor;
+               newSettings.ColorSettings.RecordingHighlightPhraseColor = this.ColorSettings.RecordingHighlightPhraseColor;
                newSettings.ColorSettings.EmptySectionBackgroundColor = this.ColorSettings.EmptySectionBackgroundColor;
                newSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = this.ColorSettings.HighlightedSectionNodeWithoutSelectionColor;
 
@@ -203,6 +204,7 @@ namespace Obi
                newSettings.ColorSettingsHC.WaveformBaseLineColor = this.ColorSettingsHC.WaveformBaseLineColor;
                newSettings.ColorSettingsHC.WaveformHighlightedBackColor = this.ColorSettingsHC.WaveformHighlightedBackColor;
                newSettings.ColorSettingsHC.FineNavigationColor = this.ColorSettingsHC.FineNavigationColor;
+               newSettings.ColorSettingsHC.RecordingHighlightPhraseColor = this.ColorSettingsHC.RecordingHighlightPhraseColor;
                newSettings.ColorSettingsHC.EmptySectionBackgroundColor = this.ColorSettingsHC.EmptySectionBackgroundColor;
                newSettings.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor = this.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor;
                //newSettings.ColorSettings = this.ColorSettings;
@@ -487,6 +489,7 @@ namespace Obi
                && this.ColorSettings.WaveformBaseLineColor == settings.ColorSettings.WaveformBaseLineColor
                && this.ColorSettings.WaveformHighlightedBackColor == settings.ColorSettings.WaveformHighlightedBackColor
                && this.ColorSettings.FineNavigationColor == settings.ColorSettings.FineNavigationColor
+               && this.ColorSettings.RecordingHighlightPhraseColor == settings.ColorSettings.RecordingHighlightPhraseColor
                && this.ColorSettings.EmptySectionBackgroundColor == settings.ColorSettings.EmptySectionBackgroundColor
                && this.ColorSettings.HighlightedSectionNodeWithoutSelectionColor == settings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor
 
@@ -533,6 +536,7 @@ namespace Obi
                && this.ColorSettingsHC.WaveformBaseLineColor == settings.ColorSettingsHC.WaveformBaseLineColor
                && this.ColorSettingsHC.WaveformHighlightedBackColor == settings.ColorSettingsHC.WaveformHighlightedBackColor
                && this.ColorSettingsHC.FineNavigationColor == settings.ColorSettingsHC.FineNavigationColor
+               && this.ColorSettingsHC.RecordingHighlightPhraseColor == settings.ColorSettingsHC.RecordingHighlightPhraseColor
                && this.ColorSettingsHC.EmptySectionBackgroundColor == settings.ColorSettingsHC.EmptySectionBackgroundColor
                && this.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor == settings.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor)
                {

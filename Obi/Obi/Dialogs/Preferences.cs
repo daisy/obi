@@ -1348,6 +1348,8 @@ namespace Obi.Dialogs
                         break;
                     case 42: mSettings.ColorSettings.FineNavigationColor = (Color) mNormalColorCombo.SelectedItem;
                         break;
+                    case 43: mSettings.ColorSettings.RecordingHighlightPhraseColor = (Color)mNormalColorCombo.SelectedItem;
+                        break;
                     case 44: mSettings.ColorSettings.EmptySectionBackgroundColor = (Color)mNormalColorCombo.SelectedItem;
                         break;
                     case 45: mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = (Color)mNormalColorCombo.SelectedItem;
@@ -1445,9 +1447,11 @@ namespace Obi.Dialogs
                         break;
                     case 39: mSettings.ColorSettingsHC.WaveformBackColor = (Color)mHighContrastCombo.SelectedItem;
                         break;
-                    case 40: mSettings.ColorSettingsHC.WaveformHighlightedBackColor = (Color)mHighContrastCombo.SelectedItem;
+                    case 41: mSettings.ColorSettingsHC.WaveformHighlightedBackColor = (Color)mHighContrastCombo.SelectedItem;
                         break;
-                    case 41: mSettings.ColorSettingsHC.FineNavigationColor = (Color) mHighContrastCombo.SelectedItem;
+                    case 42: mSettings.ColorSettingsHC.FineNavigationColor = (Color) mHighContrastCombo.SelectedItem;
+                        break;
+                    case 43: mSettings.ColorSettingsHC.RecordingHighlightPhraseColor = (Color)mHighContrastCombo.SelectedItem;
                         break;
                     case 44: mSettings.ColorSettingsHC.EmptySectionBackgroundColor = (Color)mHighContrastCombo.SelectedItem;
                         break;
@@ -1536,6 +1540,10 @@ namespace Obi.Dialogs
             mSettings.ColorSettings.BlockForeColor_Silence = settings.BlockForeColor_Silence;
             mSettings.ColorSettings.BlockForeColor_TODO = settings.BlockForeColor_TODO;
             mSettings.ColorSettings.BlockForeColor_Unused = settings.BlockForeColor_Unused;
+            mSettings.ColorSettings.BlockLayoutSelectedColor = settings.BlockLayoutSelectedColor;
+            mSettings.ColorSettings.ContentViewBackColor = settings.ContentViewBackColor;
+            mSettings.ColorSettings.EditableLabelTextBackColor = settings.EditableLabelTextBackColor;
+            mSettings.ColorSettings.ProjectViewBackColor = settings.ProjectViewBackColor;
             mSettings.ColorSettings.StripBackColor = settings.StripBackColor;
             mSettings.ColorSettings.StripCursorSelectedBackColor = settings.StripCursorSelectedBackColor;
             mSettings.ColorSettings.StripForeColor = settings.StripForeColor;
@@ -1552,9 +1560,12 @@ namespace Obi.Dialogs
             mSettings.ColorSettings.TransportBarLabelBackColor = settings.TransportBarLabelBackColor;
             mSettings.ColorSettings.TransportBarLabelForeColor = settings.TransportBarLabelForeColor;
             mSettings.ColorSettings.WaveformBackColor = settings.WaveformBackColor;
+            mSettings.ColorSettings.WaveformBaseLineColor = settings.WaveformBaseLineColor;
             mSettings.ColorSettings.WaveformHighlightedBackColor = settings.WaveformHighlightedBackColor;
             mSettings.ColorSettings.FineNavigationColor = settings.FineNavigationColor;
             mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = settings.HighlightedSectionNodeWithoutSelectionColor;
+            mSettings.ColorSettings.RecordingHighlightPhraseColor = settings.RecordingHighlightPhraseColor;
+            
 
             mSettings.ColorSettingsHC.BlockBackColor_Custom = settingsHC.BlockBackColor_Custom;
             mSettings.ColorSettingsHC.BlockBackColor_Anchor = settingsHC.BlockBackColor_Anchor;
@@ -1576,6 +1587,10 @@ namespace Obi.Dialogs
             mSettings.ColorSettingsHC.BlockForeColor_Silence = settingsHC.BlockForeColor_Silence;
             mSettings.ColorSettingsHC.BlockForeColor_TODO = settingsHC.BlockForeColor_TODO;
             mSettings.ColorSettingsHC.BlockForeColor_Unused = settingsHC.BlockForeColor_Unused;
+            mSettings.ColorSettingsHC.BlockLayoutSelectedColor = settingsHC.BlockLayoutSelectedColor;
+            mSettings.ColorSettingsHC.ContentViewBackColor = settingsHC.ContentViewBackColor;
+            mSettings.ColorSettingsHC.EditableLabelTextBackColor = settingsHC.EditableLabelTextBackColor;
+            mSettings.ColorSettingsHC.ProjectViewBackColor = settingsHC.ProjectViewBackColor;
             mSettings.ColorSettingsHC.StripBackColor = settingsHC.StripBackColor;
             mSettings.ColorSettingsHC.StripCursorSelectedBackColor = settingsHC.StripCursorSelectedBackColor;
             mSettings.ColorSettingsHC.StripForeColor = settingsHC.StripForeColor;
@@ -1592,9 +1607,11 @@ namespace Obi.Dialogs
             mSettings.ColorSettingsHC.TransportBarLabelBackColor = settingsHC.TransportBarLabelBackColor;
             mSettings.ColorSettingsHC.TransportBarLabelForeColor = settingsHC.TransportBarLabelForeColor;
             mSettings.ColorSettingsHC.WaveformBackColor = settingsHC.WaveformBackColor;
+            mSettings.ColorSettingsHC.WaveformBaseLineColor = settingsHC.WaveformBaseLineColor;
             mSettings.ColorSettingsHC.WaveformHighlightedBackColor = settingsHC.WaveformHighlightedBackColor;
-            mSettings.ColorSettings.FineNavigationColor = settingsHC.FineNavigationColor;
-            mSettings.ColorSettings.HighlightedSectionNodeWithoutSelectionColor = settingsHC.HighlightedSectionNodeWithoutSelectionColor;
+            mSettings.ColorSettingsHC.FineNavigationColor = settingsHC.FineNavigationColor;
+            mSettings.ColorSettingsHC.HighlightedSectionNodeWithoutSelectionColor = settingsHC.HighlightedSectionNodeWithoutSelectionColor;
+            mSettings.ColorSettingsHC.RecordingHighlightPhraseColor = settingsHC.RecordingHighlightPhraseColor;            
             LoadListViewWithColors();
         }
 
