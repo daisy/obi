@@ -1651,14 +1651,19 @@ namespace Obi.Dialogs
 
         private void UpdateAudioProfile()
         {
-            for (int index = 0; index < m_PredefinedProfilesCount; index++)
+            string preDefinedProfilesDirectory = GetPredefinedProfilesDirectory();
+            string[] filePaths = System.IO.Directory.GetFiles(preDefinedProfilesDirectory, "*.xml");
+            for (int i = 0; i < filePaths.Length; i++)
             {
-                m_cb_SelectProfile.SelectedIndex = index;
-                string profilePath = GetFilePathOfSelectedPreferencesComboBox();
-                string Profile = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString();
+               // m_cb_SelectProfile.SelectedIndex = index;
+                
+                //string profilePath = GetFilePathOfSelectedPreferencesComboBox();
+                string profilePath = filePaths[i];
+               // string Profile = m_cb_SelectProfile.Items[m_cb_SelectProfile.SelectedIndex].ToString();
+                string Profile =  System.IO.Path.GetFileName(profilePath);
 
                 mTab.SelectedTab = mAudioTab;
-                if (Profile == "Basic")
+                if (Profile == "Basic.xml" || Profile == "Basic.XML")
                 {
                     m_CheckBoxListView.Items[0].Checked = false;
                     m_CheckBoxListView.Items[2].Checked = false;
@@ -1687,7 +1692,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[14].Checked = false;
                     UpdateBoolSettings();
                 }
-                else if (Profile == "Intermediate")
+                else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
                 {
 
                     m_CheckBoxListView.Items[0].Checked = false;
@@ -1717,7 +1722,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[14].Checked = false;
                     UpdateBoolSettings();
                 }
-                else if (Profile == "Advance")
+                else if (Profile == "Advance.xml" || Profile == "Advance.XML")
                 {
                     m_CheckBoxListView.Items[0].Checked = false;
                     m_CheckBoxListView.Items[1].Checked = true;
@@ -1746,7 +1751,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[14].Checked = false;
                     UpdateBoolSettings();
                 }
-                else if (Profile == "Profile-2-SBS")
+                else if (Profile == "Profile-2-SBS.xml" || Profile == "Profile-2-SBS.XML")
                 {
                     m_CheckBoxListView.Items[0].Checked = false;
                     m_CheckBoxListView.Items[1].Checked = true;
@@ -1777,7 +1782,7 @@ namespace Obi.Dialogs
 
 
                 }
-                else if (Profile == "Profile-1-VA")
+                else if (Profile == "Profile-1-VA.xml" || Profile == "Profile-1-VA.XML")
                 {
 
                     m_CheckBoxListView.Items[0].Checked = false;
@@ -1817,7 +1822,7 @@ namespace Obi.Dialogs
                     profilePathInProject = System.IO.Directory.GetParent(profilePathInProject.ToString());
                 }
                 string defaultProfilesDirectory = System.IO.Path.Combine(profilePathInProject.ToString(), "profiles");
-                defaultProfilesDirectory = defaultProfilesDirectory + "\\" + Profile + ".xml";
+                defaultProfilesDirectory = defaultProfilesDirectory + "\\" + Profile;
 
                 mSettings.Save(defaultProfilesDirectory);
             }
