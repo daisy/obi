@@ -2458,6 +2458,7 @@ namespace Obi
                 prefs.ShowDialog();
                 if (prefs.IsColorChanged)
                     UpdateColors();
+                if (mRecordingToolBarForm != null) mRecordingToolBarForm.UpdateForPreferencesChange();
                 Ready();
                 mProjectView.TransportBar.UpdateButtons();
                 mProjectView.ZoomPanelToolTipInit();
