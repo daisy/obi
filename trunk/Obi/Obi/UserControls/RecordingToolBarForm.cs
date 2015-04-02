@@ -1045,6 +1045,10 @@ namespace Obi.UserControls
             }
         }
 
+        public void UpdateForPreferencesChange()
+        {
+            UpdateButtons();
+        }
 
     }
 }
