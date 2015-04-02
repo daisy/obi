@@ -267,6 +267,7 @@ namespace Obi
 
             private void File_SaveProjectMenuItem_Click(object sender, EventArgs e)
             {
+                if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@monitorContinuously
                 Save();
             }
 
@@ -756,7 +757,7 @@ namespace Obi
                     && !m_IsSaveActive)
                 {
                     m_IsSaveActive = true;
-                    if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
+                    
                     if (mProjectView.TransportBar.IsPlayerActive || mProjectView.TransportBar.IsRecorderActive)
                     {
                         mProjectView.TransportBar.Stop();
@@ -4983,7 +4984,7 @@ ref string exportDirectoryEPUB3)
 
             private bool? FreezeChangesFromProjectRestore()
             {
-                if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@monitorContinuously
+                
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
 
                 if (!String.IsNullOrEmpty(m_RestoreProjectFilePath)
@@ -4993,7 +4994,7 @@ ref string exportDirectoryEPUB3)
                         MessageBox.Show(Localizer.Message("save_current_state"), Localizer.Message("Save_current_state_caption"),
                                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-
+                        if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@monitorContinuously
                         mSession.Save(m_OriginalPath);
                         mSession.Close();
                         OpenProject_Safe(m_OriginalPath, Localizer.Message("Save_Restore_Project"));
