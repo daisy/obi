@@ -569,6 +569,12 @@ namespace Obi.UserControls
             m_minElapseBackSize = m_recordingToolBarElapseBackBtn.Size;
             m_minSectionEndSize = m_recordingToolBarSectionEndBtn.Size;
 
+            if (m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite
+                && m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar
+                && m_ProjectView.Presentation != null)
+            {   
+                    m_chkMonitorContinuously.Checked = true;
+                }
 
         }
 
