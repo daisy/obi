@@ -179,9 +179,7 @@ namespace Obi.Dialogs
 
         private void mbtnAscendingOrder_Click(object sender, EventArgs e)
         {
-
-
-            m_filePaths.Sort();
+            FileSort();
             lstManualArrange.Items.Clear();
             foreach (string str in m_filePaths)
             {
@@ -196,11 +194,66 @@ namespace Obi.Dialogs
             m_btnRemove.Enabled = false;
         }
 
+        private void FileSort()
+        {
+            List<string> filenames = new List<string>(); // Contains file names
+            Dictionary<String, String> fileNamesDictionary = new Dictionary<string, string>(); //used for storing filename as key and path as value
+            List<string> tempDuplicateFileName = new List<string>(); //contains duplicate file names with path
+            m_filePaths.Sort();
+            foreach (string str in m_filePaths)
+            {
+                string[] arr = str.Split(Path.DirectorySeparatorChar);
+                string tempFileName = arr[arr.Length - 2] + "\\" + arr[arr.Length - 1];
+                filenames.Add(tempFileName);
+                if (!fileNamesDictionary.ContainsKey(tempFileName))
+                {
+                    fileNamesDictionary.Add(tempFileName, str);
+                }
+                else
+                {
+                    if (!tempDuplicateFileName.Contains(fileNamesDictionary[tempFileName]))
+                    {
+                        tempDuplicateFileName.Add(fileNamesDictionary[tempFileName]);
+                    }
+                    tempDuplicateFileName.Add(str);
+                }
+            }
+            filenames.Sort();
+            tempDuplicateFileName.Sort();
+            List<string> tempList = new List<string>();
+            foreach (string str in filenames)
+            {
+                if (fileNamesDictionary.ContainsKey(str))
+                {
+                    tempList.Add(fileNamesDictionary[str]);
+                    if (tempDuplicateFileName.Contains(fileNamesDictionary[str]))
+                    {
+                        int tempIndex = tempDuplicateFileName.IndexOf(fileNamesDictionary[str]);
+                        tempDuplicateFileName.RemoveAt(tempIndex);
+                        for (int i = tempIndex; i < tempDuplicateFileName.Count; i++)
+                        {
+                            if (System.IO.Path.GetFileName(tempDuplicateFileName[i]) == str)
+                            {
+                                fileNamesDictionary[str] = tempDuplicateFileName[i];
+                                break;
+                            }
+                        }
+
+                    }
+                }
+            }
+            if (tempList.Count != 0)
+            {
+                m_filePaths.Clear();
+                m_filePaths = tempList;
+            }
+        }
+
         private void mbtnDesendingOrder_Click(object sender, EventArgs e)
         {
 
 
-            m_filePaths.Sort();
+            FileSort();
             int totLength = m_filePaths.Count;
             List<string> tempDescending = new List<string>();
 
