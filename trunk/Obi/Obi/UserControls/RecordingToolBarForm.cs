@@ -281,10 +281,26 @@ namespace Obi.UserControls
         { UpdateButtons(); }
 
         public void m_TransportBar_EnabledChanged(object sender, EventArgs e)
-        {         
-                 
-            this.Enabled = m_TransportBar.Enabled;
-            
+        {
+            if (!m_TransportBar.Enabled)
+            {
+                m_recordingToolBarElapseBackBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarPlayBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarStopBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarRecordingBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarPrePhraseBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarNextPageBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.Enabled;
+                m_recordingToolBarSectionEndBtn.Enabled = m_TransportBar.Enabled;
+                m_chkMonitorContinuously.Enabled = m_TransportBar.Enabled && m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite && m_ProjectView.Presentation != null;
+                m_Enlarge.Enabled = m_TransportBar.Enabled;
+                m_Reduce.Enabled = m_TransportBar.Enabled;
+            }
+            else
+            {
+                this.Enabled = m_TransportBar.Enabled;
+            }
             if (!this.Enabled)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), "");
             m_StatusLabel.Text = "";
@@ -317,10 +333,10 @@ namespace Obi.UserControls
             m_recordingToolBarRecordingBtn.Enabled = (m_TransportBar.CanRecord || m_TransportBar.CanResumeRecording || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped)) && m_ProjectView.Selection != null;
             m_recordingToolBarStopBtn.Enabled = m_TransportBar.CanStop || !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped);
             m_recordingGoToNextPhraseBtn.Enabled = m_recordingToolBarStopBtn.Enabled = m_TransportBar.CanStop && (m_TransportBar.IsPlayerActive || m_TransportBar.IsRecorderActive || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring));
-            m_recordingToolBarNextPageBtn.Enabled = m_TransportBar.CanNavigateNextPage;
+            m_recordingToolBarNextPageBtn.Enabled = m_TransportBar.CanNavigateNextPage && m_ProjectView.Presentation != null;
             m_recordingToolBarPrePhraseBtn.Enabled = m_TransportBar.CanNavigatePrevPhrase;
-            m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.CanNavigateNextPhrase;
-            m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.CanNavigateNextSection;
+            m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.CanNavigateNextPhrase && m_ProjectView.Presentation != null;
+            m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.CanNavigateNextSection && m_ProjectView.Presentation != null;
             m_TODOBtn.Enabled = m_ProjectView.CanSetTODOStatus;
             if ((m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) && m_TransportBar.RecordingSection != null)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), m_TransportBar.RecordingSection.Label.ToString());
