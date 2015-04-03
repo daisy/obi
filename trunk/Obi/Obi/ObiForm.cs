@@ -1626,6 +1626,7 @@ namespace Obi
                 mProjectView.Selection = null;
                 mProjectView.Presentation = null;
                 UpdateObi();
+                if (mRecordingToolBarForm != null) mRecordingToolBarForm.UpdateForChangeInObi();
                 if (mSourceView != null) mSourceView.Close();
             }
 
@@ -2458,7 +2459,7 @@ namespace Obi
                 prefs.ShowDialog();
                 if (prefs.IsColorChanged)
                     UpdateColors();
-                if (mRecordingToolBarForm != null) mRecordingToolBarForm.UpdateForPreferencesChange();
+                if (mRecordingToolBarForm != null) mRecordingToolBarForm.UpdateForChangeInObi();
                 Ready();
                 mProjectView.TransportBar.UpdateButtons();
                 mProjectView.ZoomPanelToolTipInit();
@@ -3184,6 +3185,7 @@ ref string exportDirectoryEPUB3)
                     mProjectView.WriteToLogFile("Opened new project: " + mSession.Presentation.Title);
                     if (mSettings.Project_AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
                     m_CanAutoSave = true; //@singleSection
+                    if (mRecordingToolBarForm != null) mRecordingToolBarForm.UpdateForChangeInObi();
                     Status(String.Format(Localizer.Message("created_new_project"), mSession.Presentation.Title));
                     stopWatch.Stop();
                     Console.WriteLine("Time taken to create section and phrase blocks (in milliseconds) " +
