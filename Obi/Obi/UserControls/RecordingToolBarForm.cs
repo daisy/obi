@@ -227,11 +227,7 @@ namespace Obi.UserControls
             projectView.SelectionChanged += new EventHandler(projectview_Selection_Changed);
             m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);
             m_RecordingToolBartoolTip.SetToolTip(m_chkMonitorContinuously, Localizer.Message("Audio_MonitorAlways"));
-            if (m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite 
-                && m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar)
-            {
-                m_chkMonitorContinuously.Checked = true;
-            }
+            
             // if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
             UpdateButtons();
         }
@@ -297,7 +293,7 @@ namespace Obi.UserControls
                 m_recordingToolBarNextPageBtn.Enabled = m_TransportBar.Enabled;
                 m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.Enabled;
                 m_recordingToolBarSectionEndBtn.Enabled = m_TransportBar.Enabled;
-                m_chkMonitorContinuously.Enabled = m_TransportBar.Enabled && m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite;
+                m_chkMonitorContinuously.Enabled = m_TransportBar.Enabled && m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite && m_ProjectView.Presentation != null;
                 m_Enlarge.Enabled = m_TransportBar.Enabled;
                 m_Reduce.Enabled = m_TransportBar.Enabled;
             }
@@ -394,7 +390,7 @@ namespace Obi.UserControls
             {
                 m_recordingToolBarRecordingBtn.AccessibleName = "Recording";
             }
-            m_chkMonitorContinuously.Enabled = !m_TransportBar.IsPlayerActive && m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite;
+            m_chkMonitorContinuously.Enabled = !m_TransportBar.IsPlayerActive && m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite && m_ProjectView.Presentation != null;
             if (m_chkMonitorContinuously.Enabled && m_TransportBar.MonitorContinuously != m_chkMonitorContinuously.Checked)
             {
                 m_chkMonitorContinuously.CheckedChanged -= new EventHandler (m_chkMonitorContinuously_CheckedChanged) ;
@@ -1045,9 +1041,21 @@ namespace Obi.UserControls
             }
         }
 
-        public void UpdateForPreferencesChange()
+        public void UpdateForChangeInObi()
         {
             UpdateButtons();
+            if (m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite
+                && m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar)
+            {
+                if (m_ProjectView.Presentation != null)
+                {
+                    m_chkMonitorContinuously.Checked = true;
+                }
+                else
+                {
+                    m_chkMonitorContinuously.Checked = false;
+                }
+            }
         }
 
     }
