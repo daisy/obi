@@ -281,26 +281,10 @@ namespace Obi.UserControls
         { UpdateButtons(); }
 
         public void m_TransportBar_EnabledChanged(object sender, EventArgs e)
-        {
-            if (!m_TransportBar.Enabled)
-            {
-                m_recordingToolBarElapseBackBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarPlayBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarStopBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarRecordingBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarPrePhraseBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarNextPageBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarSectionEndBtn.Enabled = m_TransportBar.Enabled;
-                m_chkMonitorContinuously.Enabled = m_TransportBar.Enabled && m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite && m_ProjectView.Presentation != null;
-                m_Enlarge.Enabled = m_TransportBar.Enabled;
-                m_Reduce.Enabled = m_TransportBar.Enabled;
-            }
-            else
-            {
-                this.Enabled = m_TransportBar.Enabled;
-            }
+        {         
+                 
+            this.Enabled = m_TransportBar.Enabled;
+            
             if (!this.Enabled)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), "");
             m_StatusLabel.Text = "";
