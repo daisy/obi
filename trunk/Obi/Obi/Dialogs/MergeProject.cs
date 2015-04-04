@@ -203,7 +203,7 @@ namespace Obi.Dialogs
             foreach (string str in m_filePaths)
             {
                 string[] arr = str.Split(Path.DirectorySeparatorChar);
-                string tempFileName = arr[arr.Length - 2] + "\\" + arr[arr.Length - 1];
+                string tempFileName = arr[arr.Length - 2];
                 filenames.Add(tempFileName);
                 if (!fileNamesDictionary.ContainsKey(tempFileName))
                 {
@@ -228,11 +228,15 @@ namespace Obi.Dialogs
                     tempList.Add(fileNamesDictionary[str]);
                     if (tempDuplicateFileName.Contains(fileNamesDictionary[str]))
                     {
+                 
                         int tempIndex = tempDuplicateFileName.IndexOf(fileNamesDictionary[str]);
                         tempDuplicateFileName.RemoveAt(tempIndex);
                         for (int i = tempIndex; i < tempDuplicateFileName.Count; i++)
                         {
-                            if (System.IO.Path.GetFileName(tempDuplicateFileName[i]) == str)
+                            string tempstr = tempDuplicateFileName[i];
+                            string[] arr = tempstr.Split(Path.DirectorySeparatorChar);
+                            string tempFileName = arr[arr.Length - 2];
+                            if (tempFileName == str)
                             {
                                 fileNamesDictionary[str] = tempDuplicateFileName[i];
                                 break;
