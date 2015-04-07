@@ -175,10 +175,10 @@
     <value>路径"{0}"非空.点击“确定”清空路径，点击“取消”继续使用.</value>
   </data>
   <data name="Z3986DTBValidator" xml:space="preserve">
-    <value>DAISY3检测</value>
+    <value>DAISY3验证</value>
   </data>
   <data name="Daisy202DTBValidator" xml:space="preserve">
-    <value>Daisy2.02快速验检测</value>
+    <value>Daisy2.02快速验证</value>
   </data>
   <data name="DTBAudioEncoder" xml:space="preserve">
     <value>将音频转换成MP3</value>
@@ -205,7 +205,7 @@
     <value>时间容差</value>
   </data>
   <data name="Set_the_time_tolerance_threshold_in_milliseconds" xml:space="preserve">
-    <value>设置时间容差初始值为毫秒</value>
+    <value>设置时间容差初始值（毫秒）</value>
   </data>
   <data name="Input_OPF" xml:space="preserve">
     <value>输入OPF</value>

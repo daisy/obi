@@ -138,7 +138,7 @@
     <value>N/A</value>
   </data>
   <data name="default_section_label" xml:space="preserve">
-    <value>章节未定义标题</value>
+    <value>无标题章节</value>
   </data>
   <data name="obi" xml:space="preserve">
     <value>Obi</value>
@@ -2052,7 +2052,7 @@
     <value>未找到有损坏音频的句</value>
   </data>
   <data name="Obi_UserInformationText" xml:space="preserve">
-    <value>请填写下表注册成Obi会员（Obi是一款免费开源的DAISY生产工具）。注册成功后您将能够通过邮件收到最新资讯和产品更新的权利。此外，您还将在产品未来发展方向上起到重要的作用，因为这将使我们更好地了解您的需求。注册时请确保电脑连好互联网络。现有用户需要重新注册，因为这次注册将被永久保存在下一版Obi中。</value>
+    <value>请填写下表注册成Obi会员（Obi是一款免费开源的DAISY制作工具）。注册成功后您将能够通过邮件收到最新资讯和产品更新的权利。此外，您还将在产品未来发展方向上起到重要的作用，因为这将使我们更好地了解您的需求。注册时请确保电脑连好互联网络。现有用户需要重新注册，因为这次注册将被永久保存在下一版Obi中。</value>
   </data>
   <data name="CleanUp_LongFilePath" xml:space="preserve">
     <value>项目路径太长，这可能导致清理时造成重要数据丢失。强烈建议清理前将项目移动到磁盘根目录附近。要忽略警告并继续吗？</value>
@@ -2073,7 +2073,7 @@
     <value>操作成功。请重新启动Obi加载默认设置。</value>
   </data>
   <data name="StatusForMergeSection" xml:space="preserve">
-    <value>显示章节{0}到{1}。请选择章节合并或改变级别。</value>
+    <value>显示章节{0}到{1}。请选择章节合并或改变层级。</value>
   </data>
   <data name="KeyS_ZoomWaveformPanel" xml:space="preserve">
     <value>显示缩放波形面板</value>
@@ -2421,10 +2421,10 @@
     <value>录制后续音频的同时保存页面</value>
   </data>
   <data name="MergeOptions_IncreaseLevel" xml:space="preserve">
-    <value>降低章节级别</value>
+    <value>提高章节层级</value>
   </data>
   <data name="MergeOptions_DecreaseLevel" xml:space="preserve">
-    <value>提高章节级别</value>
+    <value>降低章节层级</value>
   </data>
   <data name="MergeOptions_Merge" xml:space="preserve">
     <value>合并章节</value>

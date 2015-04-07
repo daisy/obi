@@ -646,7 +646,7 @@
     <value>40, 40</value>
   </data>
   <data name="m_TODOBtn.Text" xml:space="preserve">
-    <value>待办事项</value>
+    <value>TODO</value>
   </data>
   <data name="recordingToolBarToolStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>

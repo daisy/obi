@@ -185,13 +185,13 @@
     <value>207, 22</value>
   </data>
   <data name="Context_DecreaseSectionLevelMenuItem.Text" xml:space="preserve">
-    <value>提高章节级别&amp;E</value>
+    <value>降低章节层级&amp;E</value>
   </data>
   <data name="Context_IncreaseSectionLevelMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="Context_IncreaseSectionLevelMenuItem.Text" xml:space="preserve">
-    <value>降低章节级别&amp;N</value>
+    <value>提高章节层级&amp;N</value>
   </data>
   <data name="Context_SectionIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>

@@ -246,7 +246,7 @@
     <value>0</value>
   </data>
   <data name="m_lbl_Process.Text" xml:space="preserve">
-    <value>进程：</value>
+    <value>处理详情：</value>
   </data>
   <data name="&gt;&gt;m_lbl_Process.Name" xml:space="preserve">
     <value>m_lbl_Process</value>
