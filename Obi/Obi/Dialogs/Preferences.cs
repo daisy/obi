@@ -1668,7 +1668,7 @@ namespace Obi.Dialogs
 
         // For Developer uncomment to genearte XML
 
-        private void UpdateAudioProfile()
+        private void GenerateProfilesForUpdatedSettingsFile()
         {
             string preDefinedProfilesDirectory = GetPredefinedProfilesDirectory();
             string[] filePaths = System.IO.Directory.GetFiles(preDefinedProfilesDirectory, "*.xml");
@@ -1842,8 +1842,33 @@ namespace Obi.Dialogs
                 }
                 string defaultProfilesDirectory = System.IO.Path.Combine(profilePathInProject.ToString(), "profiles");
                 defaultProfilesDirectory = defaultProfilesDirectory + "\\" + Profile;
+                // remove personal information from settings
+                Settings tempSettings = Settings.GetDefaultSettings();
+                tempSettings.Project_DefaultPath = mSettings.Project_DefaultPath;
+                mSettings.Project_DefaultPath = "";
 
-                mSettings.Save(defaultProfilesDirectory);
+                tempSettings.Project_PipelineScriptsPath = mSettings.Project_PipelineScriptsPath;
+                mSettings.Project_PipelineScriptsPath = "";
+
+                tempSettings.UserProfile.Name = mSettings.UserProfile.Name;
+                mSettings.UserProfile.Name = "";
+
+                tempSettings.UserProfile.Organization = mSettings.UserProfile.Organization;
+                mSettings.UserProfile.Organization = "";
+
+                try
+                {
+                    mSettings.Save(defaultProfilesDirectory);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                // assign personal info back to msettings
+                mSettings.Project_DefaultPath = tempSettings.Project_DefaultPath;
+                mSettings.Project_PipelineScriptsPath = tempSettings.Project_PipelineScriptsPath;
+                mSettings.UserProfile.Name = tempSettings.UserProfile.Name;
+                mSettings.UserProfile.Organization = tempSettings.UserProfile.Organization;
             }
         }
 
@@ -1889,9 +1914,8 @@ namespace Obi.Dialogs
             if (m_rdb_Preferences.Checked)
             {
                 //For Developer uncomment Use below lines to genarate XML
-
-              //  UpdateAudioProfile();
-
+                //GenerateProfilesForUpdatedSettingsFile();
+                //return;
 
 
                 // For Developer Comment rest of the lines for generation of XML
