@@ -1539,7 +1539,10 @@ namespace Obi.ProjectView
                 if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording
                     || mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring)
                 {
-                    PauseRecording();                    
+                    bool isPlayOnSelectionChange = SelectionChangedPlaybackEnabled;
+                    SelectionChangedPlaybackEnabled = false;
+                    PauseRecording();
+                    SelectionChangedPlaybackEnabled = isPlayOnSelectionChange;
                 }
                 else if (mCurrentPlaylist.State == AudioLib.AudioPlayer.State.Playing)
                 {
@@ -1663,7 +1666,10 @@ namespace Obi.ProjectView
             {
                 if ((IsRecorderActive || CanResumeRecording) && !IsPlayerActive )
                 {
+                    bool isPlayOnSelectionChange = SelectionChangedPlaybackEnabled;
+                    SelectionChangedPlaybackEnabled = false;
                     StopRecording();
+                    SelectionChangedPlaybackEnabled = isPlayOnSelectionChange;
                 }
                 else
                 {
@@ -2529,7 +2535,10 @@ namespace Obi.ProjectView
                     if (mRecordingPhrase != null && mRecordingSession != null
                         && timeOfAssetMilliseconds < 250) return false;
                     m_EnablePostRecordingPageRenumbering = false;
+                    bool isPlayOnSelectionChange = SelectionChangedPlaybackEnabled;
+                    SelectionChangedPlaybackEnabled = false;
                     PauseRecording();
+                    SelectionChangedPlaybackEnabled = isPlayOnSelectionChange;
                     m_EnablePostRecordingPageRenumbering = true;
                     mResumeRecordingPhrase = null;
 
