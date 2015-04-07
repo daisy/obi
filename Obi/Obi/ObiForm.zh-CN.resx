@@ -339,7 +339,7 @@
     <value>276, 6</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>提高章节级别 Ctrl+Shift+Left</value>
+    <value>降低章节层级 Ctrl+Shift+Left</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Left</value>
@@ -348,10 +348,10 @@
     <value>279, 22</value>
   </data>
   <data name="mDecreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>提高章节级别&amp;D</value>
+    <value>降低章节层级&amp;D</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>降低章节级别 Ctrl+Shift+Right</value>
+    <value>提高章节层级 Ctrl+Shift+Right</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+Right</value>
@@ -360,7 +360,7 @@
     <value>279, 22</value>
   </data>
   <data name="mIncreaseSectionLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>降低章节级别&amp;N</value>
+    <value>提高章节层级&amp;N</value>
   </data>
   <data name="mSplitSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>分割章节 Ctrl+Shift+Q</value>
@@ -1519,7 +1519,7 @@
     <value>238, 22</value>
   </data>
   <data name="mElapseBacktoolStripMenuItem.Text" xml:space="preserve">
-    <value>正常语速回放刚过去的</value>
+    <value>正常语速回放刚播放的 &amp;E</value>
   </data>
   <data name="SpeedUptoolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>加快 Ctrl++</value>

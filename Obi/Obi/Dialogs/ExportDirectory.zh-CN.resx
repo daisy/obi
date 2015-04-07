@@ -442,7 +442,7 @@
     <value>4</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.AccessibleName" xml:space="preserve">
-    <value>将章节名称设置为音频文件名</value>
+    <value>音频文件名加上章节名称</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -457,7 +457,7 @@
     <value>9</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Text" xml:space="preserve">
-    <value>将章节名称设置为音频文件名&amp;A</value>
+    <value>音频文件名加上章节名称&amp;A</value>
   </data>
   <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.Name" xml:space="preserve">
     <value>m_checkBoxAddSectionNameToAudioFileName</value>
