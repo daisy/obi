@@ -1509,9 +1509,6 @@
   <data name="m_btnAssign.Text" xml:space="preserve">
     <value>A&amp;ssigner</value>
   </data>
-  <data name="m_btnAssign.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;m_btnAssign.Name" xml:space="preserve">
     <value>m_btnAssign</value>
   </data>
