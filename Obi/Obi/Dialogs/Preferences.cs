@@ -555,7 +555,7 @@ namespace Obi.Dialogs
                 }
                 else
                 {
-                    if (mCultureBox.SelectedItem.ToString() == "zh-CHT" && mCultureBox.SelectedItem.ToString() == "zh-TW")
+                    if (mCultureBox.SelectedItem.ToString() == "zh-CHT" || mCultureBox.SelectedItem.ToString() == "zh-TW")
                     {
                         CultureInfo temp = new CultureInfo("zh-HK");
                         mSettings.UserProfile.Culture = temp;
