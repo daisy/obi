@@ -1681,8 +1681,8 @@ namespace Obi.ProjectView
         {
             EmptyNode stripIndexNode = (EmptyNode)Selection.EmptyNodeForSelection;
             bool m_CanPasteSpecialNode = false;
-            if ((Selection is StripIndexSelection && stripIndexNode != null && stripIndexNode is EmptyNode&& ((EmptyNode)stripIndexNode.FollowingNode) != null && ((EmptyNode)stripIndexNode.FollowingNode) is EmptyNode && stripIndexNode.CustomRole == ((EmptyNode)stripIndexNode.FollowingNode).CustomRole && ((EmptyNode)stripIndexNode.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && stripIndexNode.CustomRole != ((EmptyNode)mClipboard.Node).CustomRole)
-                || (Selection.Node is PhraseNode && ((EmptyNode)this.Selection.Node.FollowingNode) != null && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole == ((EmptyNode)this.Selection.Node).CustomRole && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && ((EmptyNode)this.Selection.Node).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole))
+            if ((Selection is StripIndexSelection && stripIndexNode != null && stripIndexNode is EmptyNode&& stripIndexNode.FollowingNode != null && stripIndexNode.FollowingNode is EmptyNode && stripIndexNode.CustomRole == ((EmptyNode)stripIndexNode.FollowingNode).CustomRole && ((EmptyNode)stripIndexNode.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && stripIndexNode.CustomRole != ((EmptyNode)mClipboard.Node).CustomRole)
+                || (Selection.Node is PhraseNode && this.Selection.Node.FollowingNode != null && this.Selection.Node.FollowingNode is EmptyNode  && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole == ((EmptyNode)this.Selection.Node).CustomRole && ((EmptyNode)this.Selection.Node.FollowingNode).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole && ((EmptyNode)this.Selection.Node).CustomRole != ((EmptyNode)mClipboard.Node).CustomRole))
             {
                 if (((EmptyNode)mClipboard.Node).Role_ == EmptyNode.Role.Plain)
                     m_CanPasteSpecialNode = true;
