@@ -873,7 +873,7 @@
     <Content Include="about_zh-CN.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="about_zn-HK.html">
+    <Content Include="about_zh-HK.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="FineNavigationOn.wav">
