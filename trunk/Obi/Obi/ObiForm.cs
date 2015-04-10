@@ -3649,7 +3649,8 @@ ref string exportDirectoryEPUB3)
                     mRecordingToolBarForm.Location = mSettings.RecordingToolBarLastLocation;
                     Rectangle screenArea = SystemInformation.WorkingArea;
                     if ((mRecordingToolBarForm.Location.X > screenArea.Width || mRecordingToolBarForm.Location.Y  > screenArea.Height) || 
-                         ((mRecordingToolBarForm.Location.X + mRecordingToolBarForm.Width)  < (mRecordingToolBarForm.Width/4) || (mRecordingToolBarForm.Location.Y + mRecordingToolBarForm.Height) <(mRecordingToolBarForm.Height/4)))
+                         ((mRecordingToolBarForm.Location.X + mRecordingToolBarForm.Width)  < (mRecordingToolBarForm.Width/4) || (mRecordingToolBarForm.Location.Y + mRecordingToolBarForm.Height) <(mRecordingToolBarForm.Height/4)) ||
+                         (mRecordingToolBarForm.Location.X == 0 && mRecordingToolBarForm.Location.Y == 0))
                     {
                         mRecordingToolBarForm.Location = new System.Drawing.Point(this.Location.X,
                                                                                   (this.Location.Y + this.Size.Height) -

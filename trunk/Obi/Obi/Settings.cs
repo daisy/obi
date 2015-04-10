@@ -302,7 +302,7 @@ namespace Obi
             settings.Project_RecordingToolbarOpenInPreviousSession = false;
             // For Obi 3.7
             settings.Audio_AlwaysMonitorRecordingToolBar = false;
-            settings.RecordingToolBarLastLocation = new Point(100, 100);
+            settings.RecordingToolBarLastLocation = new Point(0, 0);
         }
 
         /// <summary>
