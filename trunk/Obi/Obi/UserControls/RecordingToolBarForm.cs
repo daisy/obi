@@ -572,7 +572,10 @@ namespace Obi.UserControls
             if (m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite
                 && m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar
                 && m_ProjectView.Presentation != null)
-            {   
+            {
+                if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) m_TransportBar.Pause();
+                if (m_TransportBar.IsPlayerActive) m_TransportBar.Stop();
+
                     m_chkMonitorContinuously.Checked = true;
                 }
 
@@ -985,6 +988,7 @@ namespace Obi.UserControls
 
         private void RecordingToolBarForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (m_chkMonitorContinuously.Checked) m_chkMonitorContinuously.Checked = false;
             this.Width = m_minimumWidth.Width;
             m_recordingToolBarPlayBtn.Size = m_minPlayBtn;
 
@@ -1004,7 +1008,7 @@ namespace Obi.UserControls
             m_TODOBtn.Size = m_minTodoBtn;
             m_recordingToolBarElapseBackBtn.Size = m_minElapseBackSize;
             m_recordingToolBarSectionEndBtn.Size = m_minSectionEndSize;
-
+            
         }
 
         private void m_recordingToolBarElapseBackBtn_Click(object sender, EventArgs e)
