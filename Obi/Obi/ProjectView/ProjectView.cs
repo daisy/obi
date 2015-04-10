@@ -3841,7 +3841,7 @@ for (int j = 0;
                         ObiForm.Settings.ResetSettingsFile();
                         ObiForm.LoadDefaultKeyboardShortcuts();
                         ObiForm.KeyboardShortcuts.SaveSettings();
-
+                        ObiForm.PreventSettingsUpdateOnClosing = true;
                         if (MessageBox.Show(Localizer.Message("HardResetPermanentSettings_Question"), Localizer.Message("HardReset_Caption"),
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {

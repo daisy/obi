@@ -68,7 +68,7 @@ namespace Obi
             {
                 mShowWelcomWindow = true;
                 InitializeObi();
-
+                m_PreventSettingsUpdateOnClosing = false;
                 m_IsSaveActive = false;
                 m_DefaultSettings = Settings.GetDefaultSettings();
             }
@@ -150,6 +150,16 @@ namespace Obi
             public Settings_Permanent Settings_Permanent
             {
                 get { return m_Settings_Permanent; }
+            }
+
+            private bool m_PreventSettingsUpdateOnClosing = false;
+            public bool PreventSettingsUpdateOnClosing
+            {
+                get { return m_PreventSettingsUpdateOnClosing; }
+                set
+                {
+                    m_PreventSettingsUpdateOnClosing = value;
+                }
             }
 
             // True if the user has chosen the "open last project" option, and there is a last project to open.
@@ -4002,12 +4012,8 @@ ref string exportDirectoryEPUB3)
             /// </summary>
             /// <remarks>Warn when closing while playing?</remarks>
             private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
-            {
-                if (mSettings.Project_SaveObiLocationAndSize)
-                {
-
-                    mSettings.ObiLastLocation = this.Location;
-                }
+            {       
+                
                 if (mProjectView != null && mProjectView.TransportBar.IsActive)
                 {   
                     mProjectView.TransportBar.Stop();
@@ -4015,13 +4021,19 @@ ref string exportDirectoryEPUB3)
                 }
                 if (DidCloseProject())
                 {
-                    mSettings.ShowGraphicalPeakMeterAtStartup = mPeakMeter != null;
-                    if (mRecordingToolBarForm != null)
+                    if (!PreventSettingsUpdateOnClosing)
                     {
-                        mSettings.RecordingToolBarIncrementVal = mRecordingToolBarForm.NetSizeIncrementOfButtons;
-                        mSettings.RecordingToolBarLastLocation = mRecordingToolBarForm.Location;
+                        if (mSettings.Project_SaveObiLocationAndSize) mSettings.ObiLastLocation = this.Location;
+                        mSettings.ShowGraphicalPeakMeterAtStartup = mPeakMeter != null;
+                        if (mRecordingToolBarForm != null)
+                        {
+                            mSettings.RecordingToolBarIncrementVal = mRecordingToolBarForm.NetSizeIncrementOfButtons;
+                            mSettings.RecordingToolBarLastLocation = mRecordingToolBarForm.Location;
+                        }
+
+                        mSettings.Project_RecordingToolbarOpenInPreviousSession = (mRecordingToolBarForm != null && mRecordingToolBarForm.IsHandleCreated);
                     }
-                    mSettings.Project_RecordingToolbarOpenInPreviousSession = (mRecordingToolBarForm != null && mRecordingToolBarForm.IsHandleCreated);
+                    
                     try
                     {
                         mSettings.SaveSettings();
