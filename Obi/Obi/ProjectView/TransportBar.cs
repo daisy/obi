@@ -4193,7 +4193,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                 Console.WriteLine("value of monitor continuously" + value);
                 if (value && mView.ObiForm != null )
                 {
-                    
+                    if (mView.IsZoomWaveformActive) mView.ZoomPanelClose(); //@zoomwaveform
                     m_MonitorContinuously = value;
                     StartMonitorContinuously();
                 }
