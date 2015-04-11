@@ -859,7 +859,7 @@ namespace Obi.ProjectView
             mState = mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ? State.Monitoring :
                 mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording ? State.Recording : State.Stopped;
             UpdateButtons();
-            
+            if (IsRecorderActive && mView.IsZoomWaveformActive) mView.ZoomPanelClose(); //@zoomwaveform
             //int selectedIndex = mDisplayBox.SelectedIndex;
             if (mDisplayBox.Items.Count == m_RecordingElapsedRemainingList.Count)
             {
@@ -4193,7 +4193,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                 Console.WriteLine("value of monitor continuously" + value);
                 if (value && mView.ObiForm != null )
                 {
-                    if (mView.IsZoomWaveformActive) mView.ZoomPanelClose(); //@zoomwaveform
+                    
                     m_MonitorContinuously = value;
                     StartMonitorContinuously();
                 }
