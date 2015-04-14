@@ -2140,7 +2140,9 @@ namespace Obi
                 ToolStripMenuItem item = new ToolStripMenuItem();
                 item.Text = name;
                 item.Click += new EventHandler(delegate(object sender, EventArgs e)
-                                                   { mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Custom, name);
+                                                   {
+                                                       if (mProjectView.Selection != null && mProjectView.CanAssignARole)
+                                                       mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Custom, name);
                                                    });
                 items.Insert(index, item);
             }
@@ -5583,7 +5585,7 @@ ref string exportDirectoryEPUB3)
                     stopWatch.Start();
                     if (mSettings.Project_EPUBCheckTimeOutEnabled)
                     {
-                        epubCheckProcess.WaitForExit(180000);
+                        epubCheckProcess.WaitForExit(18);
                         if (!epubCheckProcess.HasExited)
                         {
                             epubCheckProcess.CloseMainWindow();

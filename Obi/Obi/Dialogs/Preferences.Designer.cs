@@ -443,6 +443,7 @@ namespace Obi.Dialogs
             this.m_lv_ColorPref.FullRowSelect = true;
             this.m_lv_ColorPref.Name = "m_lv_ColorPref";
             this.helpProvider1.SetShowHelp(this.m_lv_ColorPref, ((bool)(resources.GetObject("m_lv_ColorPref.ShowHelp"))));
+            this.m_lv_ColorPref.ShowItemToolTips = true;
             this.m_lv_ColorPref.UseCompatibleStateImageBehavior = false;
             this.m_lv_ColorPref.View = System.Windows.Forms.View.Details;
             this.m_lv_ColorPref.SelectedIndexChanged += new System.EventHandler(this.m_lv_ColorPref_SelectedIndexChanged);
