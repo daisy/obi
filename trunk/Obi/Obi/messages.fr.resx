@@ -177,6 +177,7 @@ Voulez-vous enregistrer les modifications avant la fermeture du projet?</value>
   </data>
   <data name="save_settings_error_text" xml:space="preserve">
     <value>L'erreur suivante s'est produite pendant la tentative de sauvegarde des paramètres:
+
 "{0}"
 En conséquence, les modifications apportées aux réglages effectués lors de cette session n'ont pas été enregistrées.</value>
     <comment>Error dialog</comment>
@@ -202,7 +203,7 @@ En conséquence, les modifications apportées aux réglages effectués lors de c
     <comment>Command</comment>
   </data>
   <data name="no_device_found_caption" xml:space="preserve">
-    <value>Aucuns périphériques audio trouvés</value>
+    <value>Aucun périphérique audio trouvé</value>
     <comment>Error dialog</comment>
   </data>
   <data name="no_device_found_text" xml:space="preserve">
@@ -287,7 +288,7 @@ En conséquence, les modifications apportées aux réglages effectués lors de c
     <comment>Preferences</comment>
   </data>
   <data name="playback_rate" xml:space="preserve">
-    <value>Vitesse de lecture x{0} in {1}</value>
+    <value>Vitesse de lecture x{0} à {1}</value>
     <comment>Status message</comment>
   </data>
   <data name="Recording" xml:space="preserve">
@@ -433,6 +434,8 @@ En conséquence, les modifications apportées aux réglages effectués lors de c
   <data name="init_error_text" xml:space="preserve">
     <value>Une erreur est survenue pendant l'initialisation de Obi.
 Veuillez soumettre le rapport d'erreur, avec le contenu de {0}
+
+
 Texte de l'erreur: {1}</value>
     <comment>Error dialog</comment>
   </data>
@@ -609,7 +612,7 @@ Texte de l'erreur: {1}</value>
     <comment>Command</comment>
   </data>
   <data name="clean_failed_caption" xml:space="preserve">
-    <value>nettoyage du projet impossible</value>
+    <value>Impossible de nettoyer le projet</value>
     <comment>Error dialog</comment>
   </data>
   <data name="clean_failed_text" xml:space="preserve">
@@ -739,7 +742,7 @@ Texte de l'erreur: {1}</value>
     <comment>Metadata description</comment>
   </data>
   <data name="dc_format_description" xml:space="preserve">
-    <value>La norme ou une spécification dont la DTB est issue.</value>
+    <value>Le standard ou la spécificatation du DTB produit.</value>
     <comment>Metadata description</comment>
   </data>
   <data name="dc_identifier_description" xml:space="preserve">
@@ -1015,7 +1018,7 @@ Texte de l'erreur: {1}</value>
     <comment>Used for time formating (plural)</comment>
   </data>
   <data name="node_position" xml:space="preserve">
-    <value>{0} of {1}</value>
+    <value>{0} de {1}</value>
   </data>
   <data name="second" xml:space="preserve">
     <value>seconde</value>
@@ -1292,7 +1295,7 @@ Texte de l'erreur: {1}</value>
     <comment>Progress dialog title</comment>
   </data>
   <data name="MetadataView_CannotCommitEmptyContent" xml:space="preserve">
-    <value>Les métadonnées peuvent pas avoir de valeurs vides.</value>
+    <value>Les métadonnées ne peuvent avoir de valeurs vides.</value>
   </data>
   <data name="location_error" xml:space="preserve">
     <value>Erreur de localisation du fichier</value>
@@ -1326,7 +1329,7 @@ Texte de l'erreur: {1}</value>
     <value>Un ou plusieurs champs ont des entrées non valides. Veuillez saisir de nouveau les valeurs.</value>
   </data>
   <data name="Status_ProjectSaved" xml:space="preserve">
-    <value>Projet enregistrer, veuillez continuer...</value>
+    <value>Projet enregistrer, continuer...</value>
   </data>
   <data name="TransportBar_PlayerExceptionMsg" xml:space="preserve">
     <value>La lecture n'a pas pu être démarré. Appuyez sur OK pour continuer.... {0} {1}</value>
@@ -1511,13 +1514,13 @@ Texte de l'erreur: {1}</value>
     <comment>command</comment>
   </data>
   <data name="GotoPageOrPhrase_EnterNumeric" xml:space="preserve">
-    <value>Invalid input. Please enter a numeric value.</value>
+    <value>Entrée invalide. Veuillez saisir une valeur numérique.</value>
   </data>
   <data name="GotoPage_MissingVal" xml:space="preserve">
-    <value>Value is missing</value>
+    <value>Valeur absente</value>
   </data>
   <data name="SelectPhraseDetection_EndOrStartValMoreThanSectionCount" xml:space="preserve">
-    <value>Entrée invalide. Veuillez entrer une valeur numérique.</value>
+    <value>La valeur de début ou de fin est supérieure au nombre total de sections.</value>
   </data>
   <data name="SelectPhraseDetection_EndValIsSmallerThanStart" xml:space="preserve">
     <value>La valeur de fin est plus petite que la valeur de départ.</value>
@@ -1526,7 +1529,7 @@ Texte de l'erreur: {1}</value>
     <value>Valeur de départ ou de fin manquante</value>
   </data>
   <data name="Preferences_PipelineScriptNotFound" xml:space="preserve">
-    <value>Pas de scripts Pipeline trouvés à cet emplacement</value>
+    <value>Pas de scripts du Pipeline trouvés à cet emplacement</value>
   </data>
   <data name="StatusBar_NothingSelected" xml:space="preserve">
     <value>Aucune sélection</value>
@@ -1562,7 +1565,7 @@ Texte de l'erreur: {1}</value>
     <value>L'étendue ou la portée du contenu de la ressource</value>
   </data>
   <data name="METADATA_DC_CREATOR_HELP" xml:space="preserve">
-    <value>Noms des auteurs principaux ou créateurs du contenu intellectuel de la publication</value>
+    <value>Noms des auteurs ou créateurs principaux du contenu intellectuel de la publication</value>
   </data>
   <data name="METADATA_DC_DATE_HELP" xml:space="preserve">
     <value>Date de publication du DTB. La syntaxe est YYYY[-MM[-DD]]</value>
@@ -1829,7 +1832,7 @@ Texte de l'erreur: {1}</value>
     <value>Le raccourci clavier existe déjà. Veuillez assigner une autre touche ou combinaison de touches</value>
   </data>
   <data name="KeyboardShortcuts_ErrorInLoadingConfiguredKeys" xml:space="preserve">
-    <value>Erreur lors du chargement des raccourcis clavier modifiés. Chargement des raccourcis par défauts.</value>
+    <value>Erreur lors du chargement des raccourcis clavier configurés. Chargement des raccourcis par défauts.</value>
   </data>
   <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
     <value>Exportation du fichier audio...</value>
@@ -2081,7 +2084,7 @@ Texte de l'erreur: {1}</value>
     <value>Le noeud est déjà associé à une autre ancre. Voulez-vous continuer l'association?</value>
   </data>
   <data name="Page_not_found" xml:space="preserve">
-    <value>Aucune trouvée dans le bloc.</value>
+    <value>Aucune page trouvée dans le bloc.</value>
   </data>
   <data name="Report_for_export" xml:space="preserve">
     <value>Rapport d'exportation</value>
@@ -2219,7 +2222,7 @@ Texte de l'erreur: {1}</value>
     <value>Écoulé dans la Phrase</value>
   </data>
   <data name="RemainingInPhrase" xml:space="preserve">
-    <value>Restant dans la phrase</value>
+    <value>Restant dans la Phrase</value>
   </data>
   <data name="RemainingInSelection" xml:space="preserve">
     <value>Restant dans la sélection</value>
@@ -2438,7 +2441,7 @@ Texte de l'erreur: {1}</value>
     <value>Veuillez sélectionner le projet à fusionner</value>
   </data>
   <data name="Obi_ProjectMergeFilter" xml:space="preserve">
-    <value>Fichier projet Obi (*.obi)|*.obi</value>
+    <value>Obi project file (*.obi)|*.obi</value>
   </data>
   <data name="MergeProject_Information" xml:space="preserve">
     <value>Veuillez vous assurez que les projets à fusionner aient le même format audio et soient créés sur Obi 3.0 Beta 2 ou une version ultérieure.</value>
@@ -2588,10 +2591,10 @@ Texte de l'erreur: {1}</value>
     <value>Gauche</value>
   </data>
   <data name="KeysS_TransportBarExpandPlayOptions" xml:space="preserve">
-    <value>Développer le bouton d'options de lecture</value>
+    <value>Développer le bouton des options de lecture</value>
   </data>
   <data name="KeysS_TransportBarExpandRecordOptions" xml:space="preserve">
-    <value>Développer le bouton d'options d'enregistrement</value>
+    <value>Développer le bouton des options d'enregistrement</value>
   </data>
   <data name="Transport_PlayingOptions" xml:space="preserve">
     <value>Options de lecture</value>
@@ -2619,7 +2622,7 @@ Texte de l'erreur: {1}</value>
     <value>Ne pas désélectionner en appuyant deux fois sur Arrêt</value>
   </data>
   <data name="KeyS_FastPlayWithElapseForward" xml:space="preserve">
-    <value>Ecoulement vers l'avant</value>
+    <value>Écoulement vers l'avant</value>
   </data>
   <data name="NoAdministrativePrivilege" xml:space="preserve">
     <value>Vous n'avez pas les droits administrateur pour copier. Veuillez copier manuellement les contenus du dossier "Obi_Language_Pack" situé dans le dossier temporaire (qui s'ouvrira une fois que vous fermerez ce message. Si vous voulez l'ouvrir manuellement puis lancez "Exécuter" et saisissez "%temp%") ou démarrer Obi avec des privilèges admnistrateur en sélectionnant "Éxecutez en tant qu'administrateur" à partir du menu contextuel qui apparait lors d'un click droit sur l'icône Obi</value>
@@ -2640,7 +2643,7 @@ Texte de l'erreur: {1}</value>
     <value>Chemin d'exportation EPUB 3</value>
   </data>
   <data name="obi_EPUB3ValidationSuccessfull" xml:space="preserve">
-    <value>validation réussie</value>
+    <value>Validation réussie</value>
   </data>
   <data name="obi_EPUB3ValidationFailed" xml:space="preserve">
     <value>Échec de la validation</value>
@@ -2698,5 +2701,44 @@ Texte de l'erreur: {1}</value>
   </data>
   <data name="MergeOptions_NoSelectionForLevelChange" xml:space="preserve">
     <value>Aucune section sélectionnée pour l'opération de changement de niveau </value>
+  </data>
+  <data name="Metadata_Empty" xml:space="preserve">
+    <value>Vide</value>
+  </data>
+  <data name="MergeOptions_LevelString" xml:space="preserve">
+    <value>Niveau</value>
+  </data>
+  <data name="Profile_Saved" xml:space="preserve">
+    <value>Profil enregistré</value>
+  </data>
+  <data name="MergeProject_CannotMerge" xml:space="preserve">
+    <value>Impossible de sélectionner un projet ouvert</value>
+  </data>
+  <data name="Project_MinimizeObi" xml:space="preserve">
+    <value>Ne pas minimiser Obi avec la barre d'enregistrement active</value>
+  </data>
+  <data name="Phrase_IndexString" xml:space="preserve">
+    <value>{0} de {1}</value>
+  </data>
+  <data name="Preferences_ProfileLoaded" xml:space="preserve">
+    <value>Le profil de préférences sélectionné est chargé</value>
+  </data>
+  <data name="Preference_ProfileCaption" xml:space="preserve">
+    <value>Profil Préférences chargé</value>
+  </data>
+  <data name="Preferences_ProfilesShortcutsLoaded" xml:space="preserve">
+    <value>Les raccourcis clavier sont chargés à partir de l'élément sélectionné.</value>
+  </data>
+  <data name="Preferences_ProfilesStatus" xml:space="preserve">
+    <value>{0} profil pour {1} préférences</value>
+  </data>
+  <data name="Preferences_ConfirmForDeletingProfile" xml:space="preserve">
+    <value>Cette opération va supprimer le profil sélectionné. Voulez-vous continuer?</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Audio_AlwaysMonitoringRecordingToolBar" xml:space="preserve">
+    <value>Surveillance permanente dans la barre d'enregistrement</value>
   </data>
 </root>

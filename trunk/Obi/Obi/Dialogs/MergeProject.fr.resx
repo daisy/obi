@@ -121,6 +121,9 @@
     <value>Ordre décroissant</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mbtnDesendingOrder.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="mbtnDesendingOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -154,7 +157,7 @@
     <value>0</value>
   </data>
   <data name="lstManualArrange.AccessibleName" xml:space="preserve">
-    <value>Project files list box.</value>
+    <value>Fichiers de zone de liste project.</value>
   </data>
   <data name="lstManualArrange.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -190,10 +193,13 @@
     <value>2</value>
   </data>
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
-    <value>Organiser les fichier</value>
+    <value>Organiser les fichiers</value>
   </data>
   <data name="mbtnAscendingOrder.AccessibleName" xml:space="preserve">
     <value>Ordre croissant</value>
+  </data>
+  <data name="mbtnAscendingOrder.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="mbtnAscendingOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -244,7 +250,7 @@
     <value>7</value>
   </data>
   <data name="m_grpArrangeAudioFiles.Text" xml:space="preserve">
-    <value>Organiser les fichier:</value>
+    <value>Organiser les fichiers:</value>
   </data>
   <data name="&gt;&gt;m_grpArrangeAudioFiles.Name" xml:space="preserve">
     <value>m_grpArrangeAudioFiles</value>
@@ -263,6 +269,9 @@
   </data>
   <data name="m_btnRemove.AccessibleName" xml:space="preserve">
     <value>Enlever</value>
+  </data>
+  <data name="m_btnRemove.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="m_btnRemove.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -300,6 +309,9 @@
   <data name="m_btnAdd.AccessibleName" xml:space="preserve">
     <value>Ajouter</value>
   </data>
+  <data name="m_btnAdd.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="m_btnAdd.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
@@ -336,6 +348,9 @@
   <data name="m_btnMoveUp.AccessibleName" xml:space="preserve">
     <value>Vers le Haut</value>
   </data>
+  <data name="m_btnMoveUp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="m_btnMoveUp.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
@@ -371,6 +386,9 @@
   </data>
   <data name="m_btnMoveDown.AccessibleName" xml:space="preserve">
     <value>Vers le Bas</value>
+  </data>
+  <data name="m_btnMoveDown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="m_btnMoveDown.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
