@@ -62,6 +62,7 @@ namespace Obi.ProjectView
             this.m_playHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PreviewFromtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PreviewUptotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSwitchRecordingModesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.m_RecordingOptionsContextMenuStrip.SuspendLayout();
             this.m_PlayingOptionsContextMenuStrip.SuspendLayout();
@@ -270,7 +271,8 @@ namespace Obi.ProjectView
             this.m_RecordingtoolStripMenuItem,
             this.m_DeletePhrasestoolStripMenuItem,
             this.mPreviewBeforeRecToolStripMenuItem,
-            this.mMonitorContinuouslyToolStripMenuItem});
+            this.mMonitorContinuouslyToolStripMenuItem,
+            this.mSwitchRecordingModesToolStripMenuItem});
             this.m_RecordingOptionsContextMenuStrip.Name = "m_RecordingOptionsContextMenuStrip";
             resources.ApplyResources(this.m_RecordingOptionsContextMenuStrip, "m_RecordingOptionsContextMenuStrip");
             this.m_RecordingOptionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.m_RecordingOptionsContextMenuStrip_Opening);
@@ -301,9 +303,7 @@ namespace Obi.ProjectView
             // 
             // mMonitorContinuouslyToolStripMenuItem
             // 
-            this.mMonitorContinuouslyToolStripMenuItem.Checked = false;
             this.mMonitorContinuouslyToolStripMenuItem.CheckOnClick = true;
-            this.mMonitorContinuouslyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Unchecked;
             this.mMonitorContinuouslyToolStripMenuItem.Name = "mMonitorContinuouslyToolStripMenuItem";
             resources.ApplyResources(this.mMonitorContinuouslyToolStripMenuItem, "mMonitorContinuouslyToolStripMenuItem");
             this.mMonitorContinuouslyToolStripMenuItem.Click += new System.EventHandler(this.mMonitorContinuouslyToolStripMenuItem_Click);
@@ -349,6 +349,12 @@ namespace Obi.ProjectView
             this.m_PreviewUptotoolStripMenuItem.Name = "m_PreviewUptotoolStripMenuItem";
             resources.ApplyResources(this.m_PreviewUptotoolStripMenuItem, "m_PreviewUptotoolStripMenuItem");
             this.m_PreviewUptotoolStripMenuItem.Click += new System.EventHandler(this.m_PreviewUptotoolStripMenuItem_Click);
+            // 
+            // mSwitchRecordingModesToolStripMenuItem
+            // 
+            this.mSwitchRecordingModesToolStripMenuItem.CheckOnClick = true;
+            this.mSwitchRecordingModesToolStripMenuItem.Name = "mSwitchRecordingModesToolStripMenuItem";
+            resources.ApplyResources(this.mSwitchRecordingModesToolStripMenuItem, "mSwitchRecordingModesToolStripMenuItem");
             // 
             // mVUMeterPanel
             // 
@@ -429,5 +435,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem m_PreviewUptotoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_playHeadingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMonitorContinuouslyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSwitchRecordingModesToolStripMenuItem;
     }
 }

@@ -3,121 +3,441 @@
   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Description du profil</title>
+    <title>Profile Description</title>
     <link rel="stylesheet" href="help.css" type="text/css"/>
   </head>
 <body style="background-color: white; color: black">
 
 <div id="Advance">
+
 <p>En mode avancé les cases à cocher suivantes sont cochées :</p>
-<table border="3" >
+<p>Onglet Audio :</p>
+<table border="3">
 <tr>
-  <td>Conserver le silence initial pendant la détetion de phrase</td>
+
+
+  <td>Conserver le silence initial pendant la détection de phrase</td>
   <td>Conserve le silence initial pendant le processus de division automatique en utilisant la détection de phrase.</td>   
 </tr>
 <tr>
+
+
   <td>Autoriser l'écrasement pendant l'enregistrement</td>
-  <td>Obi va sectionner la phrase sélectionnée à une position déterminée en utilisant un ensemble de règles puis enregistrer dans une nouvelle phrase entre les deux éléments.</td>
+  <td>Obi va sectionner la phrase sélectionnée à partir d'une position déterminée en utilisant un ensemble de règles puis enregistrer dans une nouvelle phrase entre les deux éléments.</td>
 </tr>
 <tr>
+
+
   <td>Enregistrement direct à partir de la barre de transport</td>
   <td>Obi désactive le comportement de bascule entre la surveillance de l'audio et l'enregistrement pour toujours lancer un enregistrement direct à la place. En conséquence, chaque clic sur le bouton lancera l'enregistrement.</td>
 </tr>
 <tr>
   <td>Restreindre la durée max de la phrase à 50 minutes</td>
-  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si décoché, permet des phrases de n'importe quelle longueur.</td>
+
+  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si l'option est décochée, permet des phrases de n'importe quelle longueur.</td>
 </tr>
 <tr>
+
+
   <td>Afficher le spectre audio pendant l'enregistrement</td>
-  <td>Représente graphiquement en temps réel le signal audio pendant l'enregistrement.</td>
+  <td>Représente graphiquement et en temps réel le signal audio pendant l'enregistrement.</td>
 </tr>
 <tr>
+
+
   <td>Détection phrase pendant l'enregistrement</td>
-  <td>Obi applique une détection de phrase à l'audio en cours d'enregistrement. Dès l'arrêt de l'enregistrement, le contenu enregistré est divisé par rapport aux positions détectées.</td>
+  <td>Obi applique une détection de phrase de l'audio en cours d'enregistrement. Dès l'arrêt de l'enregistrement, le contenu enregistré est divisé par rapport aux positions détectées.</td>
 </tr>
 <tr>
+
+
   <td>Renuméroter les pages après l'enregistrement</td>
   <td>Obi renumérote les pages de l'audio enregistré dès l'arrêt de la commande d'enregistrement.</td>
 </tr>
 <tr>
+
+
   <td>Fusionner les 2 premières pages détectées par la détection de phrase</td>
   <td>Fusionne les deux premières phrases provenant du processus de division automatique en utilisant la détection de la phrase.</td>
 </tr>
 <tr>
+
+
   <td>Lecture rapide sans modification de la hauteur</td>
-  <td>Obi conserve la hauteur de la voix avec les débits de lecture augmentés ou diminués.</td>
+  <td>Obi conserve la même hauteur de voix avec des débits de lecture augmentés ou diminués.</td>
 </tr>
 <tr>
+
+
   <td>Appliquer le seul curseur audio</td>
-  <td>En cours de lecture, si un utilisateur fait une pause et sélectionne une autre partie du spectre audio de la même phrase, le curseur rouge disparaît</td>
+  <td>En cours de lecture, si un utilisateur fait une pause et sélectionne une autre partie du spectre audio sur la même phrase, le curseur rouge disparaît</td>
+</tr>
+</table>
+<p>Onglet Projet :</p>
+<table  border="3">
+<tr>
+  <td>Fixer la largeur pour l'affichage du contenu</td>
+  <td>Obi ne déréglera pas l'orientation des autres phrases visibles même si la longueur d'une phrase dépasse la largeur actuelle de la vue du contenu. Si l'option est décochée, Obi va modifier la largeur de la vue du contenu pour chaque longue phrase et déplacera les autres phrases en fonction de la largeur ainsi modifiée.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Optimise la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Effacer les fichiers inutilisés après le nettoyage</td>
+  <td>Obi va automtiquement supprimer les fichiers inutilisés après le processus de nettoyage du projet. Si l'option est décochée, présente avec une option par laquelle vous pouvez choisir d'afficher les fichiers inutilisés afin de les supprimer manuellement après vérification.</td>
+</tr>
+<tr>
+  <td>Activer le test d'espace libre</td>
+  <td>Vérifie l'espace disque disponible et alerte l'utilisateur pendant les opérations d'enregistrement, de sauvegarde et d'importation.</td>
+</tr>
+<tr>
+  <td>Enregistrer le projet à la fin de l'enregistrement</td>
+  <td>Obi enregistre les modifications apportées au fichier de projet dès que l'enregistrement est arrêté ou mis en pause.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Obi vérifie automatiquement la présence de nouvelles mises à jour de l'application et en informe l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres audio dans la vue du contenu</td>
+  <td>Obi affiche les spectres audio dans la vue du contenu sous l'étiquette des phrases. Si l'option est décochée, les spectres audio sont cachés et la durée de l'audio des phrases sont affichés à la place.</td>
+</tr>
+<tr>
+  <td>Temporisation du processus de vérification EPUB après 3 minutes</td>
+  <td>Obi termine la validation EPUB en 3 minutes, cette durée est amplement suffisante pour la validation d'un grand livre. Cette temporisation évite un blocage du processus en cas de détection d'erreur.</td>
 </tr>
 </table>
 </div>
 <div id="Intermidate">
+
 <p>En mode intermédiaire les cases à cocher suivantes sont cochées :</p>
+<p>Onglet Audio :</p>
 <table border="3" >
 
 <tr>
-  <td>Conserver le silence initial pendant la détetion de phrase</td>
+
+
+  <td>Conserver le silence initial pendant la détection de phrase</td>
   <td>Conserve le silence initial pendant le processus de division automatique en utilisant la détection de phrase.</td>   
 </tr>
 <tr>
+
+
   <td>Autoriser l'écrasement pendant l'enregistrement</td>
-  <td>Obi va sectionner la phrase sélectionnée à une position déterminée en utilisant un ensemble de règles puis enregistrer dans une nouvelle phrase entre les deux éléments.</td>
+  <td>Obi va sectionner la phrase sélectionnée à partir d'une position déterminée en utilisant un ensemble de règles puis enregistrer dans une nouvelle phrase entre les deux éléments.</td>
 </tr>
 <tr>
+
+
   <td>Enregistrement direct à partir de la barre de transport</td>
   <td>Obi désactive le comportement de bascule entre la surveillance de l'audio et l'enregistrement pour toujours lancer un enregistrement direct à la place. En conséquence, chaque clic sur le bouton lancera l'enregistrement.</td>
 </tr>
 <tr>
   <td>Restreindre la durée max de la phrase à 50 minutes</td>
-  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si décoché, permet des phrases de n'importe quelle longueur.</td>
+
+  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si l'option est décochée, permet des phrases de n'importe quelle longueur.</td>
 </tr>
 <tr>
+
+
   <td>Détection phrase pendant l'enregistrement</td>
-  <td>Obi applique une détection de phrase à l'audio en cours d'enregistrement. Dès l'arrêt de l'enregistrement, le contenu enregistré est divisé par rapport aux positions détectées.</td>
+  <td>Obi applique une détection de phrase de l'audio en cours d'enregistrement. Dès l'arrêt de l'enregistrement, le contenu enregistré est divisé par rapport aux positions détectées.</td>
 </tr>
 <tr>
+
+
   <td>Renuméroter les pages après l'enregistrement</td>
   <td>Obi renumérote les pages de l'audio enregistré dès l'arrêt de la commande d'enregistrement.</td>
 </tr>
 <tr>
+
+
   <td>Lecture rapide sans modification de la hauteur</td>
-  <td>Obi conserve la hauteur de la voix avec les débits de lecture augmentés ou diminués.</td>
+  <td>Obi conserve la même hauteur de voix avec des débits de lecture augmentés ou diminués.</td>
+</tr>
+</table>
+<p>Onglet Project :</p>
+<table  border="3">
+<tr>
+  <td>Fixer la largeur pour l'affichage du contenu</td>
+  <td>Obi ne déréglera pas l'orientation des autres phrases visibles même si la longueur d'une phrase dépasse la largeur actuelle de la vue du contenu. Si l'option est décochée, Obi va modifier la largeur de la vue du contenu pour chaque longue phrase et déplacera les autres phrases en fonction de la largeur ainsi modifiée.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Optimise la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Effacer les fichiers inutilisés après le nettoyage</td>
+  <td>Obi va automtiquement supprimer les fichiers inutilisés après le processus de nettoyage du projet. Si l'option est décochée, présente avec une option par laquelle vous pouvez choisir d'afficher les fichiers inutilisés afin de les supprimer manuellement après vérification.</td>
+</tr>
+<tr>
+  <td>Activer le test d'espace libre</td>
+  <td>Vérifie l'espace disque disponible et alerte l'utilisateur pendant les opérations d'enregistrement, de sauvegarde et d'importation.</td>
+</tr>
+<tr>
+  <td>Enregistrer le projet à la fin de l'enregistrement</td>
+  <td>Obi enregistre les modifications apportées au fichier de projet dès que l'enregistrement est arrêté ou mis en pause.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Obi vérifie automatiquement la présence de nouvelles mises à jour de l'application et en informe l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres audio dans la vue du contenu</td>
+  <td>Obi affiche les spectres audio dans la vue du contenu sous l'étiquette des phrases. Si l'option est décochée, les spectres audio sont cachés et la durée de l'audio des phrases sont affichés à la place.</td>
+</tr>
+<tr>
+  <td>Temporisation du processus de vérification EPUB après 3 minutes</td>
+  <td>Obi termine la validation EPUB en 3 minutes, cette durée est amplement suffisante pour la validation d'un grand livre. Cette temporisation évite un blocage du processus en cas de détection d'erreur.</td>
 </tr>
 </table>
 </div>
 <div id="Basic">
+
 <p>Em mode Basic les cases à cocher suivantes sont cochées :</p>
+<p>Onglet Audio :</p>
 <table border="3" >
 
 <tr>
-  <td>Conserver le silence initial pendant la détetion de phrase</td>
+
+
+  <td>Conserver le silence initial pendant la détection de phrase</td>
   <td>Conserve le silence initial pendant le processus de division automatique en utilisant la détection de phrase.</td>   
 </tr>
 <tr>
   <td>Restreindre la durée max de la phrase à 50 minutes</td>
-  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si décoché, permet des phrases de n'importe quelle longueur.</td>
+
+  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si l'option est décochée, permet des phrases de n'importe quelle longueur.</td>
 </tr>
 <tr>
+
+
   <td>Renuméroter les pages après l'enregistrement</td>
   <td>Obi renumérote les pages de l'audio enregistré dès l'arrêt de la commande d'enregistrement.</td>
 </tr>
 <tr>
+
+
   <td>Lecture rapide sans modification de la hauteur</td>
-  <td>Obi conserve la hauteur de la voix avec les débits de lecture augmentés ou diminués.</td>
+  <td>Obi conserve la même hauteur de voix avec des débits de lecture augmentés ou diminués.</td>
+</tr>
+</table>
+<p>Onglet Projet :</p>
+<table  border="3">
+<tr>
+  <td>Fixer la largeur pour l'affichage du contenu</td>
+  <td>Obi ne déréglera pas l'orientation des autres phrases visibles même si la longueur d'une phrase dépasse la largeur actuelle de la vue du contenu. Si l'option est décochée, Obi va modifier la largeur de la vue du contenu pour chaque longue phrase et déplacera les autres phrases en fonction de la largeur ainsi modifiée.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Optimise la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Effacer les fichiers inutilisés après le nettoyage</td>
+  <td>Obi va automtiquement supprimer les fichiers inutilisés après le processus de nettoyage du projet. Si l'option est décochée, présente avec une option par laquelle vous pouvez choisir d'afficher les fichiers inutilisés afin de les supprimer manuellement après vérification.</td>
+</tr>
+<tr>
+  <td>Activer le test d'espace libre</td>
+  <td>Vérifie l'espace disque disponible et alerte l'utilisateur pendant les opérations d'enregistrement, de sauvegarde et d'importation.</td>
+</tr>
+<tr>
+  <td>Enregistrer le projet à la fin de l'enregistrement</td>
+  <td>Obi enregistre les modifications apportées au fichier de projet dès que l'enregistrement est arrêté ou mis en pause.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Obi vérifie automatiquement la présence de nouvelles mises à jour de l'application et en informe l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres audio dans la vue du contenu</td>
+  <td>Obi affiche les spectres audio dans la vue du contenu sous l'étiquette des phrases. Si l'option est décochée, les spectres audio sont cachés et la durée de l'audio des phrases sont affichés à la place.</td>
+</tr>
+<tr>
+  <td>Temporisation du processus de vérification EPUB après 3 minutes</td>
+  <td>Obi termine la validation EPUB en 3 minutes, cette durée est amplement suffisante pour la validation d'un grand livre. Cette temporisation évite un blocage du processus en cas de détection d'erreur.</td>
 </tr>
 </table>
 </div>
 <div id="Custom">
-<p>En mode personnalisé, vous pouvez choisir votre sélection de cases à cocher. La description des fonctionnalités de toutes les cases à cocher est donnée ci-dessous afin de vous aider à sélectionner les fonctionnalités adaptées à vos besoins :</p>
+
+<p>Profil personnalisé. Voici les descriptions des cases à cocher qui peuvent être utilisées en fonction de votre personnalisation :</p>
+<p>Onglet Audio :</p>
 <table border="3" >
 <tr>
-  <td>Indice audio</td>
+  <td>Indices audio</td>
+
   <td>Active ou désactive les indices audio. Les indices audio fournissent des indications sonores pour les utilisateurs non-voyants.</td>   
 </tr>
 <tr>
-  <td>Conserver le silence initial pendant la détetion de phrase</td>
+
+
+  <td>Conserver le silence initial pendant la détection de phrase</td>
+  <td>Conserve le silence initial pendant le processus de division automatique en utilisant la détection de phrase.</td>   
+</tr>
+<tr>
+
+
+  <td>Utiliser le bouton d'enregistrement pour l'aperçu avant l'enregistrement</td>
+  <td>Lit une petite partie de l'audio précédant la position du curseur repéré à l'écran avant de lancer la commande d'enregistrement. Veuillez noter que cette fonction n'est valide que dans le mode d'enregistrement avancer.</td>
+</tr>
+<tr>
+
+
+  <td>Utiliser la touche espace pour arrêter l'enregistrement</td>
+  <td>Obi stoppe l'enregistrement quand l'utilisateur appui sur la touche espace du clavier.</td>
+</tr>
+<tr>
+
+
+  <td>Autoriser l'écrasement pendant l'enregistrement</td>
+  <td>Obi va sectionner la phrase sélectionnée à partir d'une position déterminée en utilisant un ensemble de règles puis enregistrer dans une nouvelle phrase entre les deux éléments.</td>
+</tr>
+<tr>
+
+
+  <td>Enregistrement direct à partir de la barre de transport</td>
+  <td>Obi désactive le comportement de bascule entre la surveillance de l'audio et l'enregistrement pour toujours lancer un enregistrement direct à la place. En conséquence, chaque clic sur le bouton lancera l'enregistrement.</td>
+</tr>
+<tr>
+  <td>Restreindre la durée max de la phrase à 50 minutes</td>
+
+  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si l'option est décochée, permet des phrases de n'importe quelle longueur.</td>
+</tr>
+<tr>
+
+
+  <td>Afficher le spectre audio pendant l'enregistrement</td>
+  <td>Représente graphiquement en temps réel le signal audio pendant l'enregistrement.</td>
+</tr>
+<tr>
+
+
+  <td>Détection phrase pendant l'enregistrement</td>
+  <td>Obi applique une détection de phrase de l'audio en cours d'enregistrement. Dès l'arrêt de l'enregistrement, le contenu enregistré est divisé par rapport aux positions détectées.</td>
+</tr>
+<tr>
+
+
+  <td>Renuméroter les pages après l'enregistrement</td>
+  <td>Obi renumérote les pages de l'audio enregistré dès l'arrêt de la commande d'enregistrement.</td>
+</tr>
+<tr>
+
+
+  <td>Fusionner d'abord les 2 premières pages détectées par la détection de phrase</td>
+  <td>Fusionne les deux premières phrases provenant du processus de division automatique en utilisant la détection de la phrase.</td>
+</tr>
+<tr>
+
+
+  <td>Lecture rapide sans modification de la hauteur</td>
+  <td>Obi conserve la même hauteur de voix avec des débits de lecture augmentés ou diminués.</td>
+</tr>
+<tr>
+
+
+  <td>Utiliser le bouton d'enregistrement pour enregistrer sur audio suivant</td>
+  <td>Obi démarre l'enregistrement sur les phrases suivantes sur appuyant sur le bouton d'enregistrement. Vous devez cocher la case "Enregistrement direct à partir de la barre de transport" en conjonction avec cette case à cocher.</td>
+</tr>
+<tr>
+
+
+  <td>Appliquer le seul curseur audio</td>
+  <td>En cours de lecture, si un utilisateur fait une pause et sélectionne une autre partie du spectre audio de la même phrase, le curseur rouge disparaît</td>
+</tr>
+<tr>
+
+
+  <td>Après l'enregistrement supprimer les phrases suivantes</td>
+  <td>Après l'arrêt de l'enregistrement, Obi efface les phrases suivantes.</td>
+</tr>
+<tr>
+
+
+  <td>Ne pas désélectionner en appuyant deux fois sur Arrêt</td>
+  <td>Obi ne désélectionne pas la sélection courante</td>
+</tr>
+<tr>
+
+
+  <td>Conserver les pages sur l'enregistrement de l'audio suivant</td>
+  <td>L'enregistrement sur les phrases suivantes ne supprime pas les pages</td>
+</tr>
+</table>
+<p>Onglet Projet :</p>
+<table  border="3">
+<tr>
+  <td>Ouvrir le dernier projet</td>
+  <td>Une nouvelle session Obi charge le dernier projet ouvert à la session précédente.</td>
+</tr>
+<tr>
+  <td>Sélectionner le signet à la réouverture du projet</td>
+  <td>Place le focus clavier sur l'élément défini comme signet (phrase ou section). Si l'option est décochée, Obi s'ouvrira dans le mode par défaut : affichage de la première section du contenu.</td>
+</tr>
+<tr>
+  <td>Fixer la largeur pour l'affichage du contenu</td>
+  <td>Obi ne déréglera pas l'orientation des autres phrases visibles même si la longueur d'une phrase dépasse la largeur actuelle de la vue du contenu. Si l'option est décochée, Obi va modifier la largeur de la vue du contenu pour chaque longue phrase et déplacera les autres phrases en fonction de la largeur ainsi modifiée.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Optimise la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Effacer les fichiers inutilisés après le nettoyage</td>
+  <td>Obi va automtiquement supprimer les fichiers inutilisés après le processus de nettoyage du projet. Si l'option est décochée, présente avec une option par laquelle vous pouvez choisir d'afficher les fichiers inutilisés afin de les supprimer manuellement après vérification.</td>
+</tr>
+<tr>
+  <td>Activer le test d'espace libre</td>
+  <td>Vérifie l'espace disque disponible et alerte l'utilisateur pendant les opérations d'enregistrement, de sauvegarde et d'importation.</td>
+</tr>
+<tr>
+  <td>Enregistrer le projet à la fin de l'enregistrement</td>
+  <td>Obi enregistre les modifications apportées au fichier de projet dès que l'enregistrement est arrêté ou mis en pause.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Obi vérifie automatiquement la présence de nouvelles mises à jour de l'application et en informe l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres audio dans la vue du contenu</td>
+  <td>Obi affiche les spectres audio dans la vue du contenu sous l'étiquette des phrases. Si l'option est décochée, les spectres audio sont cachés et la durée de l'audio des phrases sont affichés à la place.</td>
+</tr>
+<tr>
+  <td>Toujours ignorer le découpage pour les fichiers DAISY exportés</td>
+  <td>Pour une meilleurs lisibilité, les fichiers exportés (SMIL, OPF, etc.) ne seront pas indentés.</td>
+</tr>
+<tr>
+  <td>Sections vides en surbrillance dans la vue TDM</td>
+  <td>Pour les distinguer des autres, Obi affiche les sections vides sur un fond rose.</td>
+</tr>
+<tr>
+  <td>Enregistrement de l'emplacement et de la taille de Obi</td>
+  <td>Obi sauvegarde la taille de Obi et son emplacement sur l'écran. Si l'option est décochée, Obi sera ouvert avec des paramètres par défaut.</td>
+</tr>
+<tr>
+  <td>Garder le vue-mètres aligné sur la droite de Obi</td>
+  <td>Le Vue-mètres graphique est maintenu aligné sur le bord droit de la fenêtre Obi. Sa position ne sera pas modifiée même si l'utilisateur tente de le déplacer. Cette option ne fonctionnera pas si la fenêtre Obi est maximisée.</td>
+</tr>
+<tr>
+  <td>Temporisation du processus de vérification EPUB après 3 minutes</td>
+  <td>Obi termine la validation EPUB en 3 minutes, cette durée est amplement suffisante pour la validation d'un grand livre. Cette temporisation évite un blocage du processus en cas de détection d'erreur.</td>
+</tr>
+<tr>
+  <td>Ne pas minimiser Obi avec une barre d'outils d'enregistrement active</td>
+  <td>La fenêtre Obi ne sera pas minimisée à l'ouverture de la barre d'outils d'enregistrement</td>
+</tr>
+</table>
+</div>   
+<div id="Profile2">
+
+<p>In Profile 2 following checkboxes are checked:-</p>
+<p>Onglet Audio :</p>
+<table border="3" >
+<tr>
+
+
+  <td>Conserver le silence initial pendant la détection de phrase</td>
   <td>Conserve le silence initial pendant le processus de division automatique en utilisant la détection de phrase.</td>   
 </tr>
 <tr>
@@ -125,159 +445,214 @@
   <td>Lit une petite partie de l'audio précédant la position du curseur repéré à l'écran avant de lancer la commande d'enregistrement. Veuillez noter que cette fonction n'est valide que dans le mode d'enregistrement avancer.</td>
 </tr>
 <tr>
-  <td>Utiliser la touche espace pour arrêter l'enregistrement</td>
-  <td>Obi stoppe l'enregistrement quand l'utilisateur appui sur la touche espace du clavier.</td>
-</tr>
-<tr>
+
+
   <td>Autoriser l'écrasement pendant l'enregistrement</td>
-  <td>Obi va sectionner la phrase sélectionnée à une position déterminée en utilisant un ensemble de règles puis enregistrer dans une nouvelle phrase entre les deux éléments.</td>
+  <td>Obi va sectionner la phrase sélectionnée à partir d'une position déterminée en utilisant un ensemble de règles puis enregistrer dans une nouvelle phrase entre les deux éléments.</td>
 </tr>
 <tr>
+
+
   <td>Enregistrement direct à partir de la barre de transport</td>
   <td>Obi désactive le comportement de bascule entre la surveillance de l'audio et l'enregistrement pour toujours lancer un enregistrement direct à la place. En conséquence, chaque clic sur le bouton lancera l'enregistrement.</td>
 </tr>
 <tr>
   <td>Restreindre la durée max de la phrase à 50 minutes</td>
-  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si décoché, permet des phrases de n'importe quelle longueur.</td>
+
+  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si l'option est décochée, permet des phrases de n'importe quelle longueur.</td>
 </tr>
 <tr>
-  <td>Afficher le spectre audio pendant l'enregistrement</td>
-  <td>Représente graphiquement en temps réel le signal audio pendant l'enregistrement.</td>
-</tr>
-<tr>
+
+
   <td>Détection phrase pendant l'enregistrement</td>
-  <td>Obi applique une détection de phrase à l'audio en cours d'enregistrement. Dès l'arrêt de l'enregistrement, le contenu enregistré est divisé par rapport aux positions détectées.</td>
+  <td>Obi applique une détection de phrase de l'audio en cours d'enregistrement. Dès l'arrêt de l'enregistrement, le contenu enregistré est divisé par rapport aux positions détectées.</td>
 </tr>
 <tr>
+
+
   <td>Renuméroter les pages après l'enregistrement</td>
   <td>Obi renumérote les pages de l'audio enregistré dès l'arrêt de la commande d'enregistrement.</td>
 </tr>
 <tr>
-  <td>Fusionner les 2 premières pages détectées par la détection de phrase</td>
-  <td>Fusionne les deux premières phrases provenant du processus de division automatique en utilisant la détection de la phrase.</td>
-</tr>
-<tr>
+
+
   <td>Lecture rapide sans modification de la hauteur</td>
-  <td>Obi conserve la hauteur de la voix avec les débits de lecture augmentés ou diminués.</td>
+  <td>Obi conserve la même hauteur de voix avec des débits de lecture augmentés ou diminués.</td>
 </tr>
 <tr>
-  <td>Utiliser le bouton d'enregistrement pour enregistrer sur audio suivant</td>
-  <td>Obi démarre l'enregistrement sur les phrases suivantes sur appuyant sur le bouton d'enregistrement. Vous devez cocher la case "Enregistrement direct à partir de la barre de transport" en conjonction avec cette case à cocher.</td>
-</tr>
-<tr>
+
+
   <td>Appliquer le seul curseur audio</td>
   <td>En cours de lecture, si un utilisateur fait une pause et sélectionne une autre partie du spectre audio de la même phrase, le curseur rouge disparaît</td>
 </tr>
 <tr>
-  <td>Après l'enregistrement supprimer les phrases suivantes</td>
-  <td>Obi efface les phrases suivantes après l'arrêt de l'enregistrement.</td>
-</tr>
-<tr>
-  <td>Ne pas désélectionner en appuyant sur Arrêt deux fois</td>
-  <td>Obi ne désélectionne pas la sélection</td>
-</tr>
-<tr>
-  <td>Conserver les pages sur l'enregistrement de l'audio suivant</td>
-  <td>L'enregistrement sur les phrases suivantes ne supprime pas les pages</td>
+
+
+  <td>Ne pas désélectionner en appuyant deux fois sur Arrêt</td>
+  <td>Obi ne désélectionne pas la sélection courante</td>
 </tr>
 </table>
-</div>   
-<div id="Profile2">
-<p>En Profil 2 les cases à cocher suivantes sont cochées :</p>
-<table border="3" >
+<p>Onglet Projet :</p>
+<table  border="3">
 <tr>
-  <td>Conserver le silence initial pendant la détetion de phrase</td>
-  <td>Conserve le silence initial pendant le processus de division automatique en utilisant la détection de phrase.</td>   
+  <td>Fixer la largeur pour l'affichage du contenu</td>
+  <td>Obi ne déréglera pas l'orientation des autres phrases visibles même si la longueur d'une phrase dépasse la largeur actuelle de la vue du contenu. Si l'option est décochée, Obi va modifier la largeur de la vue du contenu pour chaque longue phrase et déplacera les autres phrases en fonction de la largeur ainsi modifiée.</td>
 </tr>
 <tr>
-  <td>Use record button to preview before recording</td>
-  <td>Plays a small portion of audio prior to the marked cursor position before initiating the Record command. Please note that this feature only works in the advanced recording mode.</td>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Optimise la mémoire utilisée par Obi.</td>
 </tr>
 <tr>
-  <td>Autoriser l'écrasement pendant l'enregistrement</td>
-  <td>Obi va sectionner la phrase sélectionnée à une position déterminée en utilisant un ensemble de règles puis enregistrer dans une nouvelle phrase entre les deux éléments.</td>
+  <td>Effacer les fichiers inutilisés après le nettoyage</td>
+  <td>Obi va automtiquement supprimer les fichiers inutilisés après le processus de nettoyage du projet. Si l'option est décochée, présente avec une option par laquelle vous pouvez choisir d'afficher les fichiers inutilisés afin de les supprimer manuellement après vérification.</td>
 </tr>
 <tr>
-  <td>Enregistrement direct à partir de la barre de transport</td>
-  <td>Obi désactive le comportement de bascule entre la surveillance de l'audio et l'enregistrement pour toujours lancer un enregistrement direct à la place. En conséquence, chaque clic sur le bouton lancera l'enregistrement.</td>
+  <td>Activer le test d'espace libre</td>
+  <td>Vérifie l'espace disque disponible et alerte l'utilisateur pendant les opérations d'enregistrement, de sauvegarde et d'importation.</td>
 </tr>
 <tr>
-  <td>Restreindre la durée max de la phrase à 50 minutes</td>
-  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si décoché, permet des phrases de n'importe quelle longueur.</td>
+  <td>Enregistrer le projet à la fin de l'enregistrement</td>
+  <td>Obi enregistre les modifications apportées au fichier de projet dès que l'enregistrement est arrêté ou mis en pause.</td>
 </tr>
 <tr>
-  <td>Détection phrase pendant l'enregistrement</td>
-  <td>Obi applique une détection de phrase à l'audio en cours d'enregistrement. Dès l'arrêt de l'enregistrement, le contenu enregistré est divisé par rapport aux positions détectées.</td>
+  <td>Vérifier les mises à jour</td>
+  <td>Obi vérifie automatiquement la présence de nouvelles mises à jour de l'application et en informe l'utilisateur.</td>
 </tr>
 <tr>
-  <td>Renuméroter les pages après l'enregistrement</td>
-  <td>Obi renumérote les pages de l'audio enregistré dès l'arrêt de la commande d'enregistrement.</td>
+  <td>Afficher les spectres audio dans la vue du contenu</td>
+  <td>Obi affiche les spectres audio dans la vue du contenu sous l'étiquette des phrases. Si l'option est décochée, les spectres audio sont cachés et la durée de l'audio des phrases sont affichés à la place.</td>
 </tr>
 <tr>
-  <td>Lecture rapide sans modification de la hauteur</td>
-  <td>Obi conserve la hauteur de la voix avec les débits de lecture augmentés ou diminués.</td>
+  <td>Sections vides en surbrillance dans la vue TDM</td>
+  <td>Pour les distinguer des autres, Obi affiche les sections vides sur un fond rose.</td>
 </tr>
 <tr>
-  <td>Appliquer le seul curseur audio</td>
-  <td>En cours de lecture, si un utilisateur fait une pause et sélectionne une autre partie du spectre audio de la même phrase, le curseur rouge disparaît</td>
+  <td>Enregistrement de l'emplacement et de la taille de Obi</td>
+  <td>Obi sauvegarde la taille de Obi et son emplacement sur l'écran. Si l'option est décochée, Obi sera ouvert avec des paramètres par défaut.</td>
 </tr>
 <tr>
-  <td>Ne pas désélectionner en appuyant sur Arrêt deux fois</td>
-  <td>Obi ne désélectionne pas la sélection</td>
+  <td>Garder le vue-mètres aligné sur la droite de Obi</td>
+  <td>Le Vue-mètres graphique est maintenu aligné sur le bord droit de la fenêtre Obi. Sa position ne sera pas modifiée même si l'utilisateur tente de le déplacer. Cette option ne fonctionnera pas si la fenêtre Obi est maximisée.</td>
+</tr>
+<tr>
+  <td>Temporisation du processus de vérification EPUB après 3 minutes</td>
+  <td>Obi termine la validation EPUB en 3 minutes, cette durée est amplement suffisante pour la validation d'un grand livre. Cette temporisation évite un blocage du processus en cas de détection d'erreur.</td>
 </tr>
 </table>
 </div> 
 
 <div id="Profile1">
-<p>En Profil 1 les cases à cocher suivantes sont cochées :</p>
+
+<p>Dans le Profil 1 les cases à cochées suivantes sont cochées :</p>
+<p>Onglet Audio :-</p>
 <table border="3" >
 <tr>
-  <td>Conserver le silence initial pendant la détetion de phrase</td>
+
+
+  <td>Conserver le silence initial pendant la détection de phrase</td>
   <td>Conserve le silence initial pendant le processus de division automatique en utilisant la détection de phrase.</td>   
 </tr>
 <tr>
-  <td>Utiliser la touche espace pour arrêter l'enregistremen</td>
+
+
+  <td>Utiliser la touche espace pour arrêter l'enregistrement</td>
   <td>Obi stoppe l'enregistrement quand l'utilisateur appui sur la touche espace du clavier.</td>
 </tr>
 <tr>
+
+
   <td>Autoriser l'écrasement pendant l'enregistrement</td>
-  <td>Obi va sectionner la phrase sélectionnée à une position déterminée en utilisant un ensemble de règles puis enregistrer dans une nouvelle phrase entre les deux éléments.</td>
+  <td>Obi va sectionner la phrase sélectionnée à partir d'une position déterminée en utilisant un ensemble de règles puis enregistrer dans une nouvelle phrase entre les deux éléments.</td>
 </tr>
 <tr>
+
+
   <td>Enregistrement direct à partir de la barre de transport</td>
   <td>Obi désactive le comportement de bascule entre la surveillance de l'audio et l'enregistrement pour toujours lancer un enregistrement direct à la place. En conséquence, chaque clic sur le bouton lancera l'enregistrement.</td>
 </tr>
 <tr>
   <td>Restreindre la durée max de la phrase à 50 minutes</td>
-  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si décoché, permet des phrases de n'importe quelle longueur.</td>
+
+  <td>Fixe une limite supérieure pour la longueur de la phrase à 50 minutes. Si l'option est décochée, permet des phrases de n'importe quelle longueur.</td>
 </tr>
 <tr>
+
+
   <td>Détection phrase pendant l'enregistrement</td>
-  <td>Obi applique une détection de phrase à l'audio en cours d'enregistrement. Dès l'arrêt de l'enregistrement, le contenu enregistré est divisé par rapport aux positions détectées.</td>
+  <td>Obi applique une détection de phrase de l'audio en cours d'enregistrement. Dès l'arrêt de l'enregistrement, le contenu enregistré est divisé par rapport aux positions détectées.</td>
 </tr>
 <tr>
+
+
   <td>Renuméroter les pages après l'enregistrement</td>
   <td>Obi renumérote les pages de l'audio enregistré dès l'arrêt de la commande d'enregistrement.</td>
 </tr>
 <tr>
-  <td>Fusionner les 2 premières pages détectées par la détection de phrase</td>
+
+
+  <td>Fusionner d'abord les 2 premières pages détectées par la détection de phrase</td>
   <td>Fusionne les deux premières phrases provenant du processus de division automatique en utilisant la détection de la phrase.</td>
 </tr>
 <tr>
+
+
   <td>Lecture rapide sans modification de la hauteur</td>
-  <td>Obi conserve la hauteur de la voix avec les débits de lecture augmentés ou diminués.</td>
+  <td>Obi conserve la même hauteur de voix avec des débits de lecture augmentés ou diminués.</td>
 </tr>
 <tr>
+
+
   <td>Utiliser le bouton d'enregistrement pour enregistrer sur audio suivant</td>
   <td>Obi démarre l'enregistrement sur les phrases suivantes sur appuyant sur le bouton d'enregistrement. Vous devez cocher la case "Enregistrement direct à partir de la barre de transport" en conjonction avec cette case à cocher.</td>
 </tr>
 <tr>
+
+
   <td>Conserver les pages sur l'enregistrement de l'audio suivant</td>
   <td>L'enregistrement sur les phrases suivantes ne supprime pas les pages</td>
 </tr>
 </table>
-</div>   
+<p>Onglet Projet :</p>
+<table  border="3">
+<tr>
+  <td>Fixer la largeur pour l'affichage du contenu</td>
+  <td>Obi ne déréglera pas l'orientation des autres phrases visibles même si la longueur d'une phrase dépasse la largeur actuelle de la vue du contenu. Si l'option est décochée, Obi va modifier la largeur de la vue du contenu pour chaque longue phrase et déplacera les autres phrases en fonction de la largeur ainsi modifiée.</td>
+</tr>
+<tr>
+  <td>Optimiser l'utilisation de la mémoire</td>
+  <td>Optimise la mémoire utilisée par Obi.</td>
+</tr>
+<tr>
+  <td>Effacer les fichiers inutilisés après le nettoyage</td>
+  <td>Obi va automtiquement supprimer les fichiers inutilisés après le processus de nettoyage du projet. Si l'option est décochée, présente avec une option par laquelle vous pouvez choisir d'afficher les fichiers inutilisés afin de les supprimer manuellement après vérification.</td>
+</tr>
+<tr>
+  <td>Activer le test d'espace libre</td>
+  <td>Vérifie l'espace disque disponible et alerte l'utilisateur pendant les opérations d'enregistrement, de sauvegarde et d'importation.</td>
+</tr>
+<tr>
+  <td>Enregistrer le projet à la fin de l'enregistrement</td>
+  <td>Obi enregistre les modifications apportées au fichier de projet dès que l'enregistrement est arrêté ou mis en pause.</td>
+</tr>
+<tr>
+  <td>Vérifier les mises à jour</td>
+  <td>Obi vérifie automatiquement la présence de nouvelles mises à jour de l'application et en informe l'utilisateur.</td>
+</tr>
+<tr>
+  <td>Afficher les spectres audio dans la vue du contenu</td>
+  <td>Obi affiche les spectres audio dans la vue du contenu sous l'étiquette des phrases. Si l'option est décochée, les spectres audio sont cachés et la durée de l'audio des phrases sont affichés à la place.</td>
+</tr>
+<tr>
+  <td>Temporisation du processus de vérification EPUB après 3 minutes</td>
+  <td>Obi termine la validation EPUB en 3 minutes, cette durée est amplement suffisante pour la validation d'un grand livre. Cette temporisation évite un blocage du processus en cas de détection d'erreur.</td>
+</tr>
+<tr>
+  <td>Ne pas minimiser Obi avec une barre d'outils d'enregistrement active</td>
+  <td>La fenêtre Obi ne sera pas minimisée à l'ouverture de la barre d'outils d'enregistrement</td>
+</tr>
+</table>
+</div>    
 
-   
+
   </body>
 </html>

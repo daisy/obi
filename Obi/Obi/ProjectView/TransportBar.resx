@@ -150,9 +150,9 @@
   <data name="&gt;&gt;mTimeDisplayBox.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>398, 17</value>
-  </data>
+  </metadata>
   <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
   </data>
@@ -1106,9 +1106,9 @@
   <data name="&gt;&gt;m_btnPlayingOptions.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>266, 17</value>
-  </data>
+  </metadata>
   <data name="mDisplayBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -1205,9 +1205,9 @@
   <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>569, 17</value>
-  </data>
+  </metadata>
   <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
@@ -1238,8 +1238,14 @@
   <data name="mMonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
     <value>Monitor &amp;Continuously</value>
   </data>
+  <data name="mSwitchRecordingModesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="mSwitchRecordingModesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Switch Recording Modes</value>
+  </data>
   <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 136</value>
+    <value>245, 158</value>
   </data>
   <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
     <value>m_RecordingOptionsContextMenuStrip</value>
@@ -1247,9 +1253,9 @@
   <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </data>
+  </metadata>
   <data name="m_PlayAlltoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
@@ -1308,7 +1314,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.24069, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.7.0.37530, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1316,9 +1322,9 @@
   <data name="&gt;&gt;mVUMeterPanel.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
@@ -1365,6 +1371,12 @@
     <value>mMonitorContinuouslyToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mMonitorContinuouslyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mSwitchRecordingModesToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSwitchRecordingModesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSwitchRecordingModesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_PlayAlltoolStripMenuItem.Name" xml:space="preserve">
