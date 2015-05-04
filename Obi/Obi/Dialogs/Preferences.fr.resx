@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -187,7 +187,7 @@
     <value>5</value>
   </data>
   <data name="m_CheckBoxListView.AccessibleName" xml:space="preserve">
-    <value>Boîte de liste, utilisez les flèches haut et &amp;bas pour se déplacer dans les cases à cocher</value>
+    <value>Boîte de liste, utilisez les flèches haut et &amp;bas pour se déplacer dans les cases � cocher</value>
   </data>
   <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>195, 307</value>
@@ -1956,7 +1956,7 @@
     <value>21</value>
   </data>
   <data name="mlblCleanupFileSize.Text" xml:space="preserve">
-    <value>Nettoyage de l'audio taille max. du fichier (MB):</value>
+    <value>Taille max. fichier audio (MB):</value>
   </data>
   <data name="&gt;&gt;mlblCleanupFileSize.Name" xml:space="preserve">
     <value>mlblCleanupFileSize</value>

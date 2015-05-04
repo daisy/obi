@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDirectoryPath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -337,7 +331,7 @@
     <value>4</value>
   </data>
   <data name="m_checkBoxEncoder.AccessibleDescription" xml:space="preserve">
-    <value>Encode Audio Files checkbox</value>
+    <value>Case à cocher encodage fichiers audio</value>
   </data>
   <data name="m_checkBoxEncoder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -352,7 +346,7 @@
     <value>6</value>
   </data>
   <data name="m_checkBoxEncoder.Text" xml:space="preserve">
-    <value>&amp;Encode Audio files</value>
+    <value>&amp;Encodage Audio</value>
   </data>
   <data name="&gt;&gt;m_checkBoxEncoder.Name" xml:space="preserve">
     <value>m_checkBoxEncoder</value>
@@ -457,7 +451,7 @@
     <value>9</value>
   </data>
   <data name="m_checkBoxAddSectionNameToAudioFileName.Text" xml:space="preserve">
-    <value>Ajouter le nom de la section au nom de fichier audio </value>
+    <value>&amp;Ajouter le nom de la section au nom de fichier audio </value>
   </data>
   <data name="&gt;&gt;m_checkBoxAddSectionNameToAudioFileName.Name" xml:space="preserve">
     <value>m_checkBoxAddSectionNameToAudioFileName</value>
@@ -472,7 +466,7 @@
     <value>2</value>
   </data>
   <data name="m_btnEncodingOptions.AccessibleName" xml:space="preserve">
-    <value>Plus d'options de codage</value>
+    <value>Plus d'options d'encodage</value>
   </data>
   <data name="m_btnEncodingOptions.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -487,7 +481,7 @@
     <value>8</value>
   </data>
   <data name="m_btnEncodingOptions.Text" xml:space="preserve">
-    <value>&amp;Plus d'options de codage</value>
+    <value>&amp;Plus d'options</value>
   </data>
   <data name="&gt;&gt;m_btnEncodingOptions.Name" xml:space="preserve">
     <value>m_btnEncodingOptions</value>
@@ -502,7 +496,7 @@
     <value>0</value>
   </data>
   <data name="m_comboBoxEncodingType.AccessibleDescription" xml:space="preserve">
-    <value>Encoding Type ComboBox</value>
+    <value>Zone de liste déroulante Type d'encodage</value>
   </data>
   <data name="m_comboBoxEncodingType.Items" xml:space="preserve">
     <value>MP3</value>
@@ -564,8 +558,11 @@
   <data name="m_grpBoxMP3Encoding.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 76</value>
   </data>
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
-    <value>Obi Help.chm</value>
+    <value>Obi Help.fr.chm</value>
   </data>
   <data name="m_grpBoxMP3Encoding.ShowHelp" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -622,7 +619,7 @@
     <value>0</value>
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>Réglage numérique haut / bas pour la limite de longueur du nom de fichier</value>
+    <value>Limite numérique de la longueur du nom de fichier</value>
   </data>
   <data name="m_numericUpDownFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -697,7 +694,7 @@
     <value>15</value>
   </data>
   <data name="m_chkBoxDummyTextHTMLfiles.Text" xml:space="preserve">
-    <value>Create dummy text in HTML files</value>
+    <value>Créer texte fictif dans les fichiers HTML</value>
   </data>
   <data name="&gt;&gt;m_chkBoxDummyTextHTMLfiles.Name" xml:space="preserve">
     <value>m_chkBoxDummyTextHTMLfiles</value>
@@ -712,7 +709,7 @@
     <value>0</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>EPUB Réglage numérique haut / bas pour la limite de longueur du nom de fichier</value>
+    <value>Limite numérique de la longueur du nom de fichier EPUB</value>
   </data>
   <data name="m_numericUpDownEpubFilenameLengthLimit.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -739,7 +736,7 @@
     <value>0</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AccessibleName" xml:space="preserve">
-    <value>EPUB Limite de longueur du nom de fichier</value>
+    <value>Limite de longueur du nom de fichier EPUB</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -757,7 +754,7 @@
     <value>12</value>
   </data>
   <data name="m_chkBoxEpubFilenameLengthLimit.Text" xml:space="preserve">
-    <value>EPUB limite longueur du nom de fichier:</value>
+    <value>Limite longueur du nom de fichier EPUB:</value>
   </data>
   <data name="&gt;&gt;m_chkBoxEpubFilenameLengthLimit.Name" xml:space="preserve">
     <value>m_chkBoxEpubFilenameLengthLimit</value>
@@ -787,7 +784,7 @@
     <value>14</value>
   </data>
   <data name="m_EpubFileNamegroupBox.Text" xml:space="preserve">
-    <value>EPUB Limite de longueur du nom de fichier:</value>
+    <value>Limite de longueur du nom de fichier EPUB:</value>
   </data>
   <data name="&gt;&gt;m_EpubFileNamegroupBox.Name" xml:space="preserve">
     <value>m_EpubFileNamegroupBox</value>
@@ -801,6 +798,9 @@
   <data name="&gt;&gt;m_EpubFileNamegroupBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 16</value>
   </data>
