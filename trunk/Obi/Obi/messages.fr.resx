@@ -1787,7 +1787,7 @@ Texte de l'erreur: {1}</value>
     <value>Sélectionner jusqu'à</value>
   </data>
   <data name="KeyS_ShowPropertiesOfSelectedNode" xml:space="preserve">
-    <value>Afficher les propriétés du noeud sélectionné</value>
+    <value>Afficher les propriétés de l'élément sélectionné</value>
   </data>
   <data name="KeyS_ToggleBetweenContentViewAndTOCView" xml:space="preserve">
     <value>Basculer entre la vue du contenu et la vue de la table des matières</value>
@@ -2261,7 +2261,7 @@ Texte de l'erreur: {1}</value>
     <value>Surveiller en continu</value>
   </data>
   <data name="Audio_MergeFirstTwoPhrasesInPhraseDetection" xml:space="preserve">
-    <value>Fusionner d'abord les 2 premieres phrases détectées par la détection de phrase</value>
+    <value>Fusionner les 2 premières phrases détectées par la détection de phrase</value>
   </data>
   <data name="KeyS_TransportBarStopSingleKey" xml:space="preserve">
     <value>Stop: raccourci clavier</value>
@@ -2667,7 +2667,7 @@ Texte de l'erreur: {1}</value>
     <value>Enregistrement de l'emplacement et de la taille de Obi</value>
   </data>
   <data name="Project_PeakMeterChangeLocation" xml:space="preserve">
-    <value>Garder le Vue-Mètres aligné sur la droite de Obi</value>
+    <value>Garder le Vu-Mètre aligné sur la droite de Obi</value>
   </data>
   <data name="AudioProcessing_progress_dialog_title" xml:space="preserve">
     <value>Traitement audio...</value>
