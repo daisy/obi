@@ -47,6 +47,7 @@ namespace Obi
         public KeyboardShortcut ContentView_TransportBarPreviewUptoSelection = new KeyboardShortcut(Keys.Shift | Keys.X, "KeyS_TransportBarPreviewUptoSelection");
         public KeyboardShortcut ContentView_TransportBarExpandPlayOptions = new KeyboardShortcut(Keys.Control | Keys.F7, "KeysS_TransportBarExpandPlayOptions");
         public KeyboardShortcut ContentView_TransportBarExpandRecordOptions = new KeyboardShortcut(Keys.Control | Keys.F8, "KeysS_TransportBarExpandRecordOptions");
+        public KeyboardShortcut ContentView_TransportBarExpandSwitchProfile = new KeyboardShortcut(Keys.Control | Keys.F5, "KeysS_TransportBarExpandSwitchProfile");
 
         public KeyboardShortcut ContentView_ZoomWaveformPanel = new KeyboardShortcut(Keys.Z, "KeyS_ZoomWaveformPanel");
 
@@ -352,6 +353,8 @@ namespace Obi
 
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarExpandPlayOptions.Description), ContentView_TransportBarExpandPlayOptions);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarExpandRecordOptions.Description), ContentView_TransportBarExpandRecordOptions);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarExpandSwitchProfile.Description), ContentView_TransportBarExpandSwitchProfile);
+
 
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ZoomWaveformPanel.Description), ContentView_ZoomWaveformPanel);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarRecordSingleKey.Description), ContentView_TransportBarRecordSingleKey);

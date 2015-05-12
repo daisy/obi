@@ -4015,36 +4015,34 @@ SelectionChangedPlaybackEnabled = false;
         void SwitchProfile_Click(object sender, EventArgs e)
         {
 
-            string name =   sender.ToString();
-            Console.WriteLine(name);
-
+            string ProfileName =   sender.ToString();
+           
             List<string> filePathsList = new List<string>();
             if (m_filePaths != null && m_filePaths.Length > 0)
             {
-                //string[] profileFileNames = new string[m_filePaths.Length];
                 for (int i = 0; i < m_filePaths.Length; i++)
                 {
                     filePathsList.Add(System.IO.Path.GetFileNameWithoutExtension(m_filePaths[i]));
                 }
             }
-            if (filePathsList.Contains(name))
+            if (filePathsList.Contains(ProfileName))
             {
-                int index = filePathsList.IndexOf(name);
+                int index = filePathsList.IndexOf(ProfileName);
 
                 LoadProfile(m_filePaths[index]);
                 if (sender is ToolStripMenuItem)
                 {
-                    ToolStripMenuItem temp = (ToolStripMenuItem)sender;
+                    ToolStripMenuItem tempCurrentProfile = (ToolStripMenuItem)sender;
                     if (m_CurrentCheckedProfile != null)
                     {
                         m_CurrentCheckedProfile.Checked = false;
                     }
-                    temp.Checked = true;
-                    m_CurrentCheckedProfile = temp;
+                    tempCurrentProfile.Checked = true;
+                    m_CurrentCheckedProfile = tempCurrentProfile;
                 }
             }
-
-           
+            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")" + " from " + ProfileName);
+            m_btnRecordingOptions.AccessibleName = Localizer.Message("Transport_SwitchProfile") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + " from " + ProfileName;           
         }
         public void InitializeTooltipsForTransportpar()
         {
@@ -4119,6 +4117,11 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
 
             mTransportBarTooltip.SetToolTip(m_btnRecordingOptions, Localizer.Message("Transport_RecordingOptions") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value.ToString()) + ")");
             m_btnRecordingOptions.AccessibleName = Localizer.Message("Transport_RecordingOptions") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value.ToString());
+
+            string tempSettingsName = mView.ObiForm.Settings.SettingsName;
+            string[] str = tempSettingsName.Split(' ');
+            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")" + " from " + str[0]);
+            m_btnRecordingOptions.AccessibleName = Localizer.Message("Transport_SwitchProfile") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + " from " + str[0];
 
             mTransportBarTooltip.SetToolTip(mDisplayBox, mDisplayBox.SelectedItem.ToString());
            
@@ -4267,6 +4270,21 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
                 Point pt = new Point(0, m_btnRecordingOptions.Height);
                 pt = m_btnRecordingOptions.PointToScreen(pt);
                 m_RecordingOptionsContextMenuStrip.Show(pt);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        public bool ExpandSwitchProfile()
+        {
+            if (m_btnSwitchProfile.Enabled)
+            {
+                Point pt = new Point(0, m_btnSwitchProfile.Height);
+                pt = m_btnSwitchProfile.PointToScreen(pt);
+                m_SwitchProfileContextMenuStrip.Show(pt);
                 return true;
             }
             else
