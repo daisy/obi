@@ -2739,4 +2739,10 @@ Error text: {1}</value>
   <data name="Audio_AlwaysMonitoringRecordingToolBar" xml:space="preserve">
     <value>Always Monitor in Recording Toolbar</value>
   </data>
+  <data name="KeysS_TransportBarExpandSwitchProfile" xml:space="preserve">
+    <value>Expand Switch Profile Button</value>
+  </data>
+  <data name="Transport_SwitchProfile" xml:space="preserve">
+    <value>Switch Audio Profile</value>
+  </data>
 </root>

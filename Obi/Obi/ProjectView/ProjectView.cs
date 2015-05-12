@@ -3621,7 +3621,8 @@ for (int j = 0;
             mShortcutKeys[keyboardShortcuts.ProjectView_ToggleBetweenContentViewAndTOCView.Value] = delegate() { return ToggleFocusBTWTOCViewAndContentsView(); };
             mShortcutKeys[keyboardShortcuts.ProjectView_HardResetAllSettings.Value] = delegate() { return SettingsFileHardReset(); };
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandPlayOptions.Value] = delegate() { return TransportBar.ExpandPlayOptions(); };
-            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value] = delegate() { return TransportBar.ExpandRecordOptions(); };           
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value] = delegate() { return TransportBar.ExpandRecordOptions(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value] = delegate() { return TransportBar.ExpandSwitchProfile(); };
             mTransportBar.InitializeTooltipsForTransportpar();
 
           /*  mShortcutKeys[Keys.Control | Keys.Tab] = delegate () { return SelectViewsInCycle ( true ); };

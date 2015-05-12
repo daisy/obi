@@ -3126,6 +3126,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expand Switch Profile Button.
+        /// </summary>
+        internal static string KeysS_TransportBarExpandSwitchProfile {
+            get {
+                return ResourceManager.GetString("KeysS_TransportBarExpandSwitchProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} phrase.
         /// </summary>
         internal static string kind_phrase {
@@ -6756,6 +6765,15 @@ namespace Obi {
         internal static string Transport_StopPlaybackAcc {
             get {
                 return ResourceManager.GetString("Transport_StopPlaybackAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch Audio Profile.
+        /// </summary>
+        internal static string Transport_SwitchProfile {
+            get {
+                return ResourceManager.GetString("Transport_SwitchProfile", resourceCulture);
             }
         }
         
