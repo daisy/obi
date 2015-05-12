@@ -41,7 +41,8 @@ namespace Obi.ProjectView
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null) TO BE REMOVED
         private bool m_IsPlaySectionInspiteOfPhraseSelection = false;
         private bool m_MonitorContinuously = false;
-        private string[] filePaths;
+        private string[] m_filePaths;
+        private ToolStripMenuItem m_CurrentCheckedProfile;
         //public variables
         //private bool IsPlaySection = false;
         //private bool IsPreviewBeforeRec = false;
@@ -3942,26 +3943,25 @@ SelectionChangedPlaybackEnabled = false;
 
         public void InitializeSwitchProfiles()
         {
-            string appDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
-            string defaultProfilesDirectory = System.IO.Path.Combine(appDirectory, "profiles");
-            filePaths = System.IO.Directory.GetFiles(defaultProfilesDirectory, "*.xml");
+            string ProfileDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            string defaultProfilesDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
+            m_filePaths = System.IO.Directory.GetFiles(defaultProfilesDirectory, "*.xml");
             List<string> filePathsList = new List<string>();
-            if (filePaths != null && filePaths.Length > 0)
+            if (m_filePaths != null && m_filePaths.Length > 0)
             {
-                //string[] profileFileNames = new string[filePaths.Length];
-                for (int i = 0; i < filePaths.Length; i++)
+                //string[] profileFileNames = new string[m_filePaths.Length];
+                for (int i = 0; i < m_filePaths.Length; i++)
                 {
-                    filePathsList.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
-                    //   m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
+                    filePathsList.Add(System.IO.Path.GetFileNameWithoutExtension(m_filePaths[i]));
+                    //   m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(m_filePaths[i]));
                 }
                 
                 if (filePathsList.Contains("Basic"))
                 {
                     int index = filePathsList.IndexOf("Basic");
                     ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(filePathsList[index], null, SwitchProfile_Click);
-                   // SwitchProfile.CheckOnClick = true;
-                    mSwitchRecordingModesToolStripMenuItem.DropDownItems.Add(SwitchProfile);
-                //    LoadProfile(filePathsList[index]);
+                    m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
+              
                     
                     filePathsList.RemoveAt(index);
                 }
@@ -3969,22 +3969,46 @@ SelectionChangedPlaybackEnabled = false;
                 {
                     int index = filePathsList.IndexOf("Intermediate");
                     ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(filePathsList[index], null, SwitchProfile_Click);
-                  //  SwitchProfile.CheckOnClick = true;
-                    mSwitchRecordingModesToolStripMenuItem.DropDownItems.Add(SwitchProfile);
+                    m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
                     filePathsList.RemoveAt(index);
                 }
                 foreach (string file in filePathsList)
                 {
-                    mSwitchRecordingModesToolStripMenuItem.DropDownItems.Add(file);                    
+                    ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(file, null, SwitchProfile_Click);
+                    m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
                 }
 
             }
+
+            ProfileDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
+            defaultProfilesDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
+            if (System.IO.Directory.Exists(defaultProfilesDirectory))
+            {
+                string[] temp =  System.IO.Directory.GetFiles(defaultProfilesDirectory, "*.xml");
+                string[] tempFilePaths = new string[m_filePaths.Length + temp.Length];
+                m_filePaths.CopyTo(tempFilePaths, 0);
+                temp.CopyTo(tempFilePaths, m_filePaths.Length);
+                m_filePaths = tempFilePaths;
+
+
+                if (temp != null && temp.Length > 0)
+                {
+                    for (int i = 0; i < temp.Length; i++)
+                    {
+                        string filename = System.IO.Path.GetFileNameWithoutExtension(temp[i]);
+                        ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(filename, null, SwitchProfile_Click);
+                        m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
+
+                    }
+                }
+            }// directory exists check
    
         }
         private void LoadProfile(string profilePath)
-        {
+        {                  
             Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
             saveProfile.CopyPropertiesToExistingSettings(mView.ObiForm.Settings, PreferenceProfiles.Audio);
+            UpdateButtons();
 
         }
 
@@ -3995,30 +4019,32 @@ SelectionChangedPlaybackEnabled = false;
             Console.WriteLine(name);
 
             List<string> filePathsList = new List<string>();
-            if (filePaths != null && filePaths.Length > 0)
+            if (m_filePaths != null && m_filePaths.Length > 0)
             {
-                //string[] profileFileNames = new string[filePaths.Length];
-                for (int i = 0; i < filePaths.Length; i++)
+                //string[] profileFileNames = new string[m_filePaths.Length];
+                for (int i = 0; i < m_filePaths.Length; i++)
                 {
-                    filePathsList.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
-                    //   m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
+                    filePathsList.Add(System.IO.Path.GetFileNameWithoutExtension(m_filePaths[i]));
                 }
             }
             if (filePathsList.Contains(name))
             {
                 int index = filePathsList.IndexOf(name);
 
-                LoadProfile(filePaths[index]);
+                LoadProfile(m_filePaths[index]);
+                if (sender is ToolStripMenuItem)
+                {
+                    ToolStripMenuItem temp = (ToolStripMenuItem)sender;
+                    if (m_CurrentCheckedProfile != null)
+                    {
+                        m_CurrentCheckedProfile.Checked = false;
+                    }
+                    temp.Checked = true;
+                    m_CurrentCheckedProfile = temp;
+                }
             }
 
            
-        }
-        void SwitchToIntermediateProfile_Click(object sender, EventArgs e)
-        {
-            //  mSwitchProfiles.CheckOnClick = true;
-            //MessageBox.Show("Checked");
-            //  throw new Exception("The method or operation is not implemented.");
-
         }
         public void InitializeTooltipsForTransportpar()
         {
@@ -4344,6 +4370,14 @@ m_MonitorContinuouslyWorker.RunWorkerAsync();
             {
                 MonitorContinuously = false;
             }
+        }
+
+        private void m_SwitchProfile_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            Point ptLowerLeft = new Point(0, btn.Height);
+            ptLowerLeft = btn.PointToScreen(ptLowerLeft);
+            m_SwitchProfileContextMenuStrip.Show(ptLowerLeft);  
         }
 
     }

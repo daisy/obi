@@ -56,13 +56,15 @@ namespace Obi.ProjectView
             this.m_DeletePhrasestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviewBeforeRecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMonitorContinuouslyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSwitchRecordingModesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PlayingOptionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.m_PlayAlltoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PlaySectiontoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_playHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PreviewFromtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_PreviewUptotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mSwitchRecordingModesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_SwitchProfile = new System.Windows.Forms.Button();
+            this.m_SwitchProfileContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.m_RecordingOptionsContextMenuStrip.SuspendLayout();
             this.m_PlayingOptionsContextMenuStrip.SuspendLayout();
@@ -308,6 +310,12 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.mMonitorContinuouslyToolStripMenuItem, "mMonitorContinuouslyToolStripMenuItem");
             this.mMonitorContinuouslyToolStripMenuItem.Click += new System.EventHandler(this.mMonitorContinuouslyToolStripMenuItem_Click);
             // 
+            // mSwitchRecordingModesToolStripMenuItem
+            // 
+            this.mSwitchRecordingModesToolStripMenuItem.CheckOnClick = true;
+            this.mSwitchRecordingModesToolStripMenuItem.Name = "mSwitchRecordingModesToolStripMenuItem";
+            resources.ApplyResources(this.mSwitchRecordingModesToolStripMenuItem, "mSwitchRecordingModesToolStripMenuItem");
+            // 
             // m_PlayingOptionsContextMenuStrip
             // 
             this.m_PlayingOptionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -350,11 +358,18 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.m_PreviewUptotoolStripMenuItem, "m_PreviewUptotoolStripMenuItem");
             this.m_PreviewUptotoolStripMenuItem.Click += new System.EventHandler(this.m_PreviewUptotoolStripMenuItem_Click);
             // 
-            // mSwitchRecordingModesToolStripMenuItem
+            // m_SwitchProfile
             // 
-            this.mSwitchRecordingModesToolStripMenuItem.CheckOnClick = true;
-            this.mSwitchRecordingModesToolStripMenuItem.Name = "mSwitchRecordingModesToolStripMenuItem";
-            resources.ApplyResources(this.mSwitchRecordingModesToolStripMenuItem, "mSwitchRecordingModesToolStripMenuItem");
+            resources.ApplyResources(this.m_SwitchProfile, "m_SwitchProfile");
+            this.m_SwitchProfile.Name = "m_SwitchProfile";
+            this.mTransportBarTooltip.SetToolTip(this.m_SwitchProfile, resources.GetString("m_SwitchProfile.ToolTip"));
+            this.m_SwitchProfile.UseVisualStyleBackColor = true;
+            this.m_SwitchProfile.Click += new System.EventHandler(this.m_SwitchProfile_Click);
+            // 
+            // m_SwitchProfileContextMenuStrip
+            // 
+            this.m_SwitchProfileContextMenuStrip.Name = "m_SwitchProfileContextMenuStrip";
+            resources.ApplyResources(this.m_SwitchProfileContextMenuStrip, "m_SwitchProfileContextMenuStrip");
             // 
             // mVUMeterPanel
             // 
@@ -371,23 +386,24 @@ namespace Obi.ProjectView
             this.BackColor = System.Drawing.Color.LightSalmon;
             this.Controls.Add(this.mPreviousPageButton);
             this.Controls.Add(this.mRewindButton);
-            this.Controls.Add(this.mToDo_CustomClassMarkButton);
-            this.Controls.Add(this.mNextPageButton);
-            this.Controls.Add(this.mFastPlayRateCombobox);
+            this.Controls.Add(this.m_SwitchProfile);
             this.Controls.Add(this.m_btnRecordingOptions);
             this.Controls.Add(this.m_btnPlayingOptions);
-            this.Controls.Add(this.mFastForwardButton);
+            this.Controls.Add(this.mToDo_CustomClassMarkButton);
+            this.Controls.Add(this.mNextPageButton);
             this.Controls.Add(this.mPrevSectionButton);
-            this.Controls.Add(this.mTimeDisplayBox);
             this.Controls.Add(this.mPrevPhraseButton);
-            this.Controls.Add(this.mDisplayBox);
-            this.Controls.Add(this.mNextSectionButton);
-            this.Controls.Add(this.mVUMeterPanel);
+            this.Controls.Add(this.mFastPlayRateCombobox);
+            this.Controls.Add(this.mFastForwardButton);
             this.Controls.Add(this.mPlayButton);
+            this.Controls.Add(this.mTimeDisplayBox);
             this.Controls.Add(this.mStopButton);
-            this.Controls.Add(this.mNextPhrase);
+            this.Controls.Add(this.mNextSectionButton);
             this.Controls.Add(this.mPauseButton);
+            this.Controls.Add(this.mDisplayBox);
             this.Controls.Add(this.mRecordButton);
+            this.Controls.Add(this.mVUMeterPanel);
+            this.Controls.Add(this.mNextPhrase);
             this.DoubleBuffered = true;
             resources.ApplyResources(this, "$this");
             this.Name = "TransportBar";
@@ -436,5 +452,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem m_playHeadingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMonitorContinuouslyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSwitchRecordingModesToolStripMenuItem;
+        private System.Windows.Forms.Button m_SwitchProfile;
+        private System.Windows.Forms.ContextMenuStrip m_SwitchProfileContextMenuStrip;
     }
 }
