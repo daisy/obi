@@ -4041,8 +4041,8 @@ SelectionChangedPlaybackEnabled = false;
                     m_CurrentCheckedProfile = tempCurrentProfile;
                 }
             }
-            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")" + " from " + ProfileName);
-            m_btnRecordingOptions.AccessibleName = Localizer.Message("Transport_SwitchProfile") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + " from " + ProfileName;           
+            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\nfrom " + ProfileName + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
+            m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + " from " + ProfileName + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());           
         }
         public void InitializeTooltipsForTransportpar()
         {
@@ -4120,8 +4120,8 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
 
             string tempSettingsName = mView.ObiForm.Settings.SettingsName;
             string[] str = tempSettingsName.Split(' ');
-            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")" + " from " + str[0]);
-            m_btnRecordingOptions.AccessibleName = Localizer.Message("Transport_SwitchProfile") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + " from " + str[0];
+            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\nfrom " + str[0] + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
+            m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") +  " from " + str[0] + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());
 
             mTransportBarTooltip.SetToolTip(mDisplayBox, mDisplayBox.SelectedItem.ToString());
            
