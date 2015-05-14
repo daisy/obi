@@ -132,6 +132,12 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_ApplyButton = new System.Windows.Forms.Button();
+            this.m_gpBox_SelectProfileRecordingToolbar = new System.Windows.Forms.GroupBox();
+            this.m_lblProfile1 = new System.Windows.Forms.Label();
+            this.m_cb_Profile1 = new System.Windows.Forms.ComboBox();
+            this.m_lblProfile2 = new System.Windows.Forms.Label();
+            this.m_cb_Profile2 = new System.Windows.Forms.ComboBox();
+            this.m_btnAssignProfile = new System.Windows.Forms.Button();
             this.mAdvanceTab.SuspendLayout();
             this.m_gpBox_Buttons.SuspendLayout();
             this.m_gpBox_SelectProfile.SuspendLayout();
@@ -148,6 +154,7 @@ namespace Obi.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
             this.mTab.SuspendLayout();
+            this.m_gpBox_SelectProfileRecordingToolbar.SuspendLayout();
             this.SuspendLayout();
             // 
             // mOKButton
@@ -212,6 +219,7 @@ namespace Obi.Dialogs
             // mAdvanceTab
             // 
             this.mAdvanceTab.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.mAdvanceTab.Controls.Add(this.m_gpBox_SelectProfileRecordingToolbar);
             this.mAdvanceTab.Controls.Add(this.m_gpBox_Buttons);
             this.mAdvanceTab.Controls.Add(this.m_lblSelectedShortcuts);
             this.mAdvanceTab.Controls.Add(this.m_txtSelectedShortcutsProfile);
@@ -1029,6 +1037,47 @@ namespace Obi.Dialogs
             this.m_ApplyButton.UseVisualStyleBackColor = true;
             this.m_ApplyButton.Click += new System.EventHandler(this.m_ApplyButton_Click);
             // 
+            // m_gpBox_SelectProfileRecordingToolbar
+            // 
+            this.m_gpBox_SelectProfileRecordingToolbar.Controls.Add(this.m_btnAssignProfile);
+            this.m_gpBox_SelectProfileRecordingToolbar.Controls.Add(this.m_lblProfile2);
+            this.m_gpBox_SelectProfileRecordingToolbar.Controls.Add(this.m_cb_Profile2);
+            this.m_gpBox_SelectProfileRecordingToolbar.Controls.Add(this.m_cb_Profile1);
+            this.m_gpBox_SelectProfileRecordingToolbar.Controls.Add(this.m_lblProfile1);
+            resources.ApplyResources(this.m_gpBox_SelectProfileRecordingToolbar, "m_gpBox_SelectProfileRecordingToolbar");
+            this.m_gpBox_SelectProfileRecordingToolbar.Name = "m_gpBox_SelectProfileRecordingToolbar";
+            this.m_gpBox_SelectProfileRecordingToolbar.TabStop = false;
+            // 
+            // m_lblProfile1
+            // 
+            resources.ApplyResources(this.m_lblProfile1, "m_lblProfile1");
+            this.m_lblProfile1.Name = "m_lblProfile1";
+            this.helpProvider1.SetShowHelp(this.m_lblProfile1, ((bool)(resources.GetObject("m_lblProfile1.ShowHelp"))));
+            // 
+            // m_cb_Profile1
+            // 
+            this.m_cb_Profile1.FormattingEnabled = true;
+            resources.ApplyResources(this.m_cb_Profile1, "m_cb_Profile1");
+            this.m_cb_Profile1.Name = "m_cb_Profile1";
+            // 
+            // m_lblProfile2
+            // 
+            resources.ApplyResources(this.m_lblProfile2, "m_lblProfile2");
+            this.m_lblProfile2.Name = "m_lblProfile2";
+            // 
+            // m_cb_Profile2
+            // 
+            this.m_cb_Profile2.FormattingEnabled = true;
+            resources.ApplyResources(this.m_cb_Profile2, "m_cb_Profile2");
+            this.m_cb_Profile2.Name = "m_cb_Profile2";
+            // 
+            // m_btnAssignProfile
+            // 
+            resources.ApplyResources(this.m_btnAssignProfile, "m_btnAssignProfile");
+            this.m_btnAssignProfile.Name = "m_btnAssignProfile";
+            this.m_btnAssignProfile.UseVisualStyleBackColor = true;
+            this.m_btnAssignProfile.Click += new System.EventHandler(this.m_btnAssignProfile_Click);
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -1073,6 +1122,8 @@ namespace Obi.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).EndInit();
             this.mTab.ResumeLayout(false);
+            this.m_gpBox_SelectProfileRecordingToolbar.ResumeLayout(false);
+            this.m_gpBox_SelectProfileRecordingToolbar.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1181,5 +1232,11 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox m_cb_SelectProfile;
         private System.Windows.Forms.ComboBox m_cb_SelectShorcutsProfile;
         private System.Windows.Forms.Label m_lblSelectProfile;
+        private System.Windows.Forms.GroupBox m_gpBox_SelectProfileRecordingToolbar;
+        private System.Windows.Forms.ComboBox m_cb_Profile2;
+        private System.Windows.Forms.Label m_lblProfile2;
+        private System.Windows.Forms.ComboBox m_cb_Profile1;
+        private System.Windows.Forms.Label m_lblProfile1;
+        private System.Windows.Forms.Button m_btnAssignProfile;
     }
 }
