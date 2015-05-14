@@ -2429,5 +2429,10 @@ namespace Obi.Dialogs
             }
         }
 
+        private void m_btnAssignProfile_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
     }   
