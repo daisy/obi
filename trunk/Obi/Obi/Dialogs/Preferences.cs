@@ -2110,23 +2110,29 @@ namespace Obi.Dialogs
                 for (int i = 0; i < filePaths.Length; i++)
                 {
                     filePathsList.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
-                 //   m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
+                    //   m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
                 }
-                if(filePathsList.Contains("Basic"))
+                if (filePathsList.Contains("Basic"))
                 {
                     int index = filePathsList.IndexOf("Basic");
                     m_cb_SelectProfile.Items.Add(filePathsList[index]);
+                    m_cb_Profile1.Items.Add(filePathsList[index]);
+                    m_cb_Profile2.Items.Add(filePathsList[index]);
                     filePathsList.RemoveAt(index);
                 }
                 if (filePathsList.Contains("Intermediate"))
                 {
                     int index = filePathsList.IndexOf("Intermediate");
                     m_cb_SelectProfile.Items.Add(filePathsList[index]);
+                    m_cb_Profile1.Items.Add(filePathsList[index]);
+                    m_cb_Profile2.Items.Add(filePathsList[index]);
                     filePathsList.RemoveAt(index);
                 }
                 foreach (string file in filePathsList)
                 {
                     m_cb_SelectProfile.Items.Add(file);
+                    m_cb_Profile1.Items.Add(file);
+                    m_cb_Profile2.Items.Add(file);
                 }
                 //if (filePathsList.Contains("Advance"))
                 //{
@@ -2140,10 +2146,10 @@ namespace Obi.Dialogs
                 //{
                 //    m_cb_SelectProfile.Items.Add(Localizer.Message("Preferences_Level_ComboBox_Profile_2"));
                 //}
-           
+
             }
             m_PredefinedProfilesCount = m_cb_SelectProfile.Items.Count;
-                // now load user defined profiles from the roming folder, the permanent settings are at same location
+            // now load user defined profiles from the roming folder, the permanent settings are at same location
             string customProfilesDirectory = GetCustomProfilesDirectory(true);
             if (System.IO.Directory.Exists(customProfilesDirectory))
             {
@@ -2153,11 +2159,18 @@ namespace Obi.Dialogs
                     for (int i = 0; i < filePaths.Length; i++)
                     {
                         m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
-
+                        m_cb_Profile1.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
+                        m_cb_Profile2.Items.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
                     }
                 }
             }// directory exists check
             m_cb_SelectProfile.SelectedIndex = -1;
+
+            int tempIndex = m_cb_Profile1.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile1);
+            m_cb_Profile1.SelectedIndex = tempIndex;
+            tempIndex = m_cb_Profile2.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile2);
+            m_cb_Profile2.SelectedIndex = tempIndex;
+
 
             // now add keyboard shortcuts profile to the respective combobox
             m_cb_SelectShorcutsProfile.Items.Add("Default Shortcuts");
@@ -2431,7 +2444,8 @@ namespace Obi.Dialogs
 
         private void m_btnAssignProfile_Click(object sender, EventArgs e)
         {
-
+            mSettings.Audio_RecordingToolbarProfile1 = m_cb_Profile1.SelectedItem.ToString();
+            mSettings.Audio_RecordingToolbarProfile2 = m_cb_Profile2.SelectedItem.ToString();
         }
 
     }
