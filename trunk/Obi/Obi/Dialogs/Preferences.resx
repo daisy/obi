@@ -351,11 +351,17 @@
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <data name="m_gpBox_SelectProfileRecordingToolbar.AccessibleName" xml:space="preserve">
+    <value>Assign audio profiles to Recording Toolbar groupbox</value>
+  </data>
   <data name="m_btnAssignProfile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btnAssignProfile.Location" type="System.Drawing.Point, System.Drawing">
     <value>457, 43</value>
+  </data>
+  <data name="m_btnAssignProfile.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_btnAssignProfile.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 30</value>
@@ -382,7 +388,7 @@
     <value>True</value>
   </data>
   <data name="m_lblProfile2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 25</value>
+    <value>238, 25</value>
   </data>
   <data name="m_lblProfile2.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 16</value>
@@ -405,11 +411,20 @@
   <data name="&gt;&gt;m_lblProfile2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="m_cb_Profile2.AccessibleDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="m_cb_Profile2.AccessibleName" xml:space="preserve">
+    <value>Profile 2</value>
+  </data>
   <data name="m_cb_Profile2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 46</value>
+    <value>240, 46</value>
+  </data>
+  <data name="m_cb_Profile2.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_cb_Profile2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 24</value>
+    <value>145, 24</value>
   </data>
   <data name="m_cb_Profile2.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -426,11 +441,20 @@
   <data name="&gt;&gt;m_cb_Profile2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="m_cb_Profile1.AccessibleDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="m_cb_Profile1.AccessibleName" xml:space="preserve">
+    <value>Profile 1</value>
+  </data>
   <data name="m_cb_Profile1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 46</value>
+    <value>18, 46</value>
+  </data>
+  <data name="m_cb_Profile1.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="m_cb_Profile1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 24</value>
+    <value>145, 24</value>
   </data>
   <data name="m_cb_Profile1.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -454,7 +478,7 @@
     <value>NoControl</value>
   </data>
   <data name="m_lblProfile1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 25</value>
+    <value>17, 25</value>
   </data>
   <data name="m_lblProfile1.ShowHelp" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -490,7 +514,7 @@
     <value>24</value>
   </data>
   <data name="m_gpBox_SelectProfileRecordingToolbar.Text" xml:space="preserve">
-    <value>Select the profile for Recording Toolbar :</value>
+    <value>Assign audio profiles to Recording Toolbar</value>
   </data>
   <data name="&gt;&gt;m_gpBox_SelectProfileRecordingToolbar.Name" xml:space="preserve">
     <value>m_gpBox_SelectProfileRecordingToolbar</value>
