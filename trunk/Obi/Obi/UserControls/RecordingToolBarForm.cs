@@ -658,7 +658,7 @@ namespace Obi.UserControls
             this.Width = m_recordingToolBarPlayBtn.Width + m_recordingToolBarStopBtn.Width + m_recordingToolBarRecordingBtn.Width
                                              + m_recordingToolBarPrePhraseBtn.Width + m_recordingGoToNextPhraseBtn.Width + m_recordingToolBarNextPageBtn.Width
                                              + m_recordingToolBarNextSectionBtn.Width + m_TODOBtn.Width + m_recordingToolBarElapseBackBtn.Width
-                                             + m_recordingToolBarSectionEndBtn.Width + diff + 50;
+                                             + m_recordingToolBarSectionEndBtn.Width + diff + 150;
             recordingToolBarToolStrip.Width = this.Width - diff;
             Point p = new Point(0, 0);
             //int x = m_statusStrip.Top - m_Enlarge.Bottom;
@@ -1066,6 +1066,54 @@ namespace Obi.UserControls
                     m_chkMonitorContinuously.Checked = false;
                 }
             }
+        }
+
+        private void m_ToggleProfile_Click(object sender, EventArgs e)
+        {
+            string ProfileDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            string defaultProfilesDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
+            string[] filePaths = System.IO.Directory.GetFiles(defaultProfilesDirectory, "*.xml");
+            ProfileDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
+            defaultProfilesDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
+            if (System.IO.Directory.Exists(defaultProfilesDirectory))
+            {
+                string[] temp = System.IO.Directory.GetFiles(defaultProfilesDirectory, "*.xml");
+                string[] tempFilePaths = new string[filePaths.Length + temp.Length];
+                filePaths.CopyTo(tempFilePaths, 0);
+                temp.CopyTo(tempFilePaths, filePaths.Length);
+                filePaths = tempFilePaths;
+            }
+             List<string> filePathsList = new List<string>();
+            if (filePaths != null && filePaths.Length > 0)
+            {
+                for (int i = 0; i < filePaths.Length; i++)
+                {
+                    filePathsList.Add(System.IO.Path.GetFileNameWithoutExtension(filePaths[i]));
+                }
+            }
+            string tempSettingsName = m_ProjectView.ObiForm.Settings.SettingsName;
+            string[] str = tempSettingsName.Split(' ');
+            string ProfileName = " ";
+            if (m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 == str[0])
+            {
+                ProfileName = m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2;
+            }
+            else 
+            {
+                ProfileName = m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1;
+            }
+            if (filePathsList.Contains(ProfileName))
+            {
+                int index = filePathsList.IndexOf(ProfileName);
+
+                m_ProjectView.TransportBar.LoadProfile(filePaths[index], ProfileName);
+            }
+            UpdateForChangeInObi();
+            if (!m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar && m_chkMonitorContinuously.Checked == true)
+            {
+                m_chkMonitorContinuously.Checked = false;
+            }
+         
         }
 
     }

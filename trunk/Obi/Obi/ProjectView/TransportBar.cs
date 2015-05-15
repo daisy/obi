@@ -4004,10 +4004,45 @@ SelectionChangedPlaybackEnabled = false;
             }// directory exists check
    
         }
-        private void LoadProfile(string profilePath)
+        public void LoadProfile(string profilePath,string ProfileName)
         {                  
             Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
             saveProfile.CopyPropertiesToExistingSettings(mView.ObiForm.Settings, PreferenceProfiles.Audio);
+            saveProfile.SettingsName = ProfileName;
+            string strLoadedProfiles = " ";
+            if (saveProfile.Compare(mView.ObiForm.Settings, PreferenceProfiles.All))
+            {
+                strLoadedProfiles += "all";
+            }
+            else
+            {
+                if (saveProfile.Compare(mView.ObiForm.Settings, PreferenceProfiles.Project))
+                {
+                    strLoadedProfiles += "project, ";
+                }
+                if (saveProfile.Compare(mView.ObiForm.Settings, PreferenceProfiles.Audio))
+                {
+                    strLoadedProfiles += "audio, ";
+                }
+                if (saveProfile.Compare(mView.ObiForm.Settings, PreferenceProfiles.UserProfile))
+                {
+                    strLoadedProfiles += "users profile, ";
+                }
+                if (saveProfile.Compare(mView.ObiForm.Settings, PreferenceProfiles.Colors))
+                {
+                    strLoadedProfiles += "colors";
+                }
+            }
+            if (string.IsNullOrEmpty(strLoadedProfiles))
+            {
+                mView.ObiForm.Settings.SettingsName = "customized";
+            }
+            else
+            {
+                if (strLoadedProfiles.EndsWith(",")) strLoadedProfiles = strLoadedProfiles.Remove(strLoadedProfiles.Length - 2);
+            }
+            string text = string.Format(Localizer.Message("Preferences_ProfilesStatus"), saveProfile.SettingsName, strLoadedProfiles);
+            mView.ObiForm.Settings.SettingsName = text;
             UpdateButtons();
 
         }
@@ -4029,7 +4064,7 @@ SelectionChangedPlaybackEnabled = false;
             {
                 int index = filePathsList.IndexOf(ProfileName);
 
-                LoadProfile(m_filePaths[index]);
+                LoadProfile(m_filePaths[index],ProfileName);
                 if (sender is ToolStripMenuItem)
                 {
                     ToolStripMenuItem tempCurrentProfile = (ToolStripMenuItem)sender;
@@ -4041,6 +4076,7 @@ SelectionChangedPlaybackEnabled = false;
                     m_CurrentCheckedProfile = tempCurrentProfile;
                 }
             }
+
             mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\nfrom " + ProfileName + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
             m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + " from " + ProfileName + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());           
         }

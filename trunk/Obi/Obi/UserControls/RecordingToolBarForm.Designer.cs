@@ -41,6 +41,7 @@ namespace Obi.UserControls
             this.m_recordingToolBarNextSectionBtn = new System.Windows.Forms.ToolStripButton();
             this.m_recordingToolBarSectionEndBtn = new System.Windows.Forms.ToolStripButton();
             this.m_TODOBtn = new System.Windows.Forms.ToolStripButton();
+            this.m_ToggleProfile = new System.Windows.Forms.ToolStripButton();
             this.m_statusStrip = new System.Windows.Forms.StatusStrip();
             this.recordingToolStripStatusBar = new System.Windows.Forms.ToolStripStatusLabel();
             this.m_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -66,7 +67,8 @@ namespace Obi.UserControls
             this.m_recordingToolBarNextPageBtn,
             this.m_recordingToolBarNextSectionBtn,
             this.m_recordingToolBarSectionEndBtn,
-            this.m_TODOBtn});
+            this.m_TODOBtn,
+            this.m_ToggleProfile});
             this.recordingToolBarToolStrip.Name = "recordingToolBarToolStrip";
             this.recordingToolBarToolStrip.TabStop = true;
             // 
@@ -144,6 +146,13 @@ namespace Obi.UserControls
             this.m_TODOBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_TODOBtn.Name = "m_TODOBtn";
             this.m_TODOBtn.Click += new System.EventHandler(this.m_TODOBtn_Click);
+            // 
+            // m_ToggleProfile
+            // 
+            resources.ApplyResources(this.m_ToggleProfile, "m_ToggleProfile");
+            this.m_ToggleProfile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.m_ToggleProfile.Name = "m_ToggleProfile";
+            this.m_ToggleProfile.Click += new System.EventHandler(this.m_ToggleProfile_Click);
             // 
             // m_statusStrip
             // 
@@ -232,5 +241,6 @@ namespace Obi.UserControls
         private System.Windows.Forms.ToolStripButton m_recordingToolBarSectionEndBtn;
         private System.Windows.Forms.CheckBox m_chkMonitorContinuously;
         private System.Windows.Forms.ToolTip m_RecordingToolBartoolTip;
+        private System.Windows.Forms.ToolStripButton m_ToggleProfile;
     }
 }
