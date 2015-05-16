@@ -1158,7 +1158,7 @@ namespace Obi.UserControls
             {
                 int index = filePathsList.IndexOf(ProfileName);
 
-                m_ProjectView.TransportBar.LoadProfile(filePaths[index], ProfileName);
+                m_ProjectView.TransportBar.LoadProfile(filePaths[index], ProfileName,false);
             }
             UpdateForChangeInObi();
             if (!m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar && m_chkMonitorContinuously.Checked == true)
