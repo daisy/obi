@@ -43,6 +43,7 @@ namespace Obi.ProjectView
         private bool m_MonitorContinuously = false;
         private string[] m_filePaths;
         private ToolStripMenuItem m_CurrentCheckedProfile;
+        private List<ToolStripMenuItem> m_ListOfSwitchProfiles = new List<ToolStripMenuItem>();
         //public variables
         //private bool IsPlaySection = false;
         //private bool IsPreviewBeforeRec = false;
@@ -3941,6 +3942,7 @@ SelectionChangedPlaybackEnabled = false;
 
         }
 
+        // To Initialize Switch Profile ToolStrip menu Items
         public void InitializeSwitchProfiles()
         {
             string ProfileDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
@@ -3961,8 +3963,7 @@ SelectionChangedPlaybackEnabled = false;
                     int index = filePathsList.IndexOf("Basic");
                     ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(filePathsList[index], null, SwitchProfile_Click);
                     m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
-              
-                    
+                    m_ListOfSwitchProfiles.Add(SwitchProfile);
                     filePathsList.RemoveAt(index);
                 }
                 if (filePathsList.Contains("Intermediate"))
@@ -3970,12 +3971,14 @@ SelectionChangedPlaybackEnabled = false;
                     int index = filePathsList.IndexOf("Intermediate");
                     ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(filePathsList[index], null, SwitchProfile_Click);
                     m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
+                    m_ListOfSwitchProfiles.Add(SwitchProfile);
                     filePathsList.RemoveAt(index);
                 }
                 foreach (string file in filePathsList)
                 {
                     ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(file, null, SwitchProfile_Click);
                     m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
+                    m_ListOfSwitchProfiles.Add(SwitchProfile);
                 }
 
             }
@@ -3998,13 +4001,15 @@ SelectionChangedPlaybackEnabled = false;
                         string filename = System.IO.Path.GetFileNameWithoutExtension(temp[i]);
                         ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(filename, null, SwitchProfile_Click);
                         m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
+                        m_ListOfSwitchProfiles.Add(SwitchProfile);
 
                     }
                 }
             }// directory exists check
    
         }
-        public void LoadProfile(string profilePath,string ProfileName)
+        // LoadProfile is used to Load Profile from RT toggle and Transport bar Switch profile button.
+        public void LoadProfile(string profilePath,string ProfileName,bool CalledFromTransportBar)
         {                  
             Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
             saveProfile.CopyPropertiesToExistingSettings(mView.ObiForm.Settings, PreferenceProfiles.Audio);
@@ -4045,10 +4050,27 @@ SelectionChangedPlaybackEnabled = false;
             mView.ObiForm.Settings.SettingsName = text;
             UpdateButtons();
             mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\n" + ProfileName + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
-            m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + ProfileName + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());           
-
+            m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + ProfileName + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());
+            if (!CalledFromTransportBar)  
+            {
+                if (m_CurrentCheckedProfile != null)
+                {
+                    m_CurrentCheckedProfile.Checked = false;
+                }
+                foreach (ToolStripMenuItem tempToolStrip in m_ListOfSwitchProfiles)
+                {
+                    if (tempToolStrip.ToString() == ProfileName)
+                    {
+                        tempToolStrip.Checked = true;
+                        m_CurrentCheckedProfile = tempToolStrip;
+                        break;
+                    }
+                }
+             
+            }
         }
 
+    // Event is subscribed to ToolStripMenu items.
         void SwitchProfile_Click(object sender, EventArgs e)
         {
 
@@ -4066,7 +4088,7 @@ SelectionChangedPlaybackEnabled = false;
             {
                 int index = filePathsList.IndexOf(ProfileName);
 
-                LoadProfile(m_filePaths[index],ProfileName);
+                LoadProfile(m_filePaths[index],ProfileName,true);
                 if (sender is ToolStripMenuItem)
                 {
                     ToolStripMenuItem tempCurrentProfile = (ToolStripMenuItem)sender;
@@ -4077,11 +4099,7 @@ SelectionChangedPlaybackEnabled = false;
                     tempCurrentProfile.Checked = true;
                     m_CurrentCheckedProfile = tempCurrentProfile;
                 }
-            }
-
-            //mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\nfrom " + ProfileName + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
-            //m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + " from " + ProfileName + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());           
-           
+            }          
         }
         public void InitializeTooltipsForTransportpar()
         {
@@ -4120,10 +4138,10 @@ SelectionChangedPlaybackEnabled = false;
                 mTransportBarTooltip.SetToolTip(mStopButton, Localizer.Message("Transport_StopPlayback") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStopToolStripMenuItem"].Value.ToString()) + ")");
                 mStopButton.AccessibleName = Localizer.Message("Transport_StopPlaybackAcc") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStopToolStripMenuItem"].Value.ToString());
             }
-if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripMenuItem"))
-{
-            mTransportBarTooltip.SetToolTip(mRecordButton, Localizer.Message("Transport_StartRecording") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStartMonitoringToolStripMenuItem"].Value.ToString()) + ")");
-}
+            if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripMenuItem"))
+            {
+                mTransportBarTooltip.SetToolTip(mRecordButton, Localizer.Message("Transport_StartRecording") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mStartMonitoringToolStripMenuItem"].Value.ToString()) + ")");
+            }
             if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mNextPhraseToolStripMenuItem"))
             {
                 mTransportBarTooltip.SetToolTip(mNextPhrase, Localizer.Message("Transport_NextPhrase") + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mNextPhraseToolStripMenuItem"].Value.ToString()) + ")");
@@ -4321,9 +4339,7 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
         {
             if (m_btnSwitchProfile.Enabled)
             {
-                Point pt = new Point(0, m_btnSwitchProfile.Height);
-                pt = m_btnSwitchProfile.PointToScreen(pt);
-                m_SwitchProfileContextMenuStrip.Show(pt);
+                ShowSwitchProfileContextMenu();
                 return true;
             }
             else
@@ -4431,10 +4447,29 @@ m_MonitorContinuouslyWorker.RunWorkerAsync();
 
         private void m_SwitchProfile_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            Point ptLowerLeft = new Point(0, btn.Height);
-            ptLowerLeft = btn.PointToScreen(ptLowerLeft);
-            m_SwitchProfileContextMenuStrip.Show(ptLowerLeft);  
+            //Button btn = (Button)sender;
+            //Point ptLowerLeft = new Point(0, btn.Height);
+            //ptLowerLeft = btn.PointToScreen(ptLowerLeft);
+            //m_SwitchProfileContextMenuStrip.Show(ptLowerLeft);
+            ShowSwitchProfileContextMenu();
+        }
+        private void ShowSwitchProfileContextMenu()
+        {
+            Point pt = new Point(0, m_btnSwitchProfile.Height);
+            pt = m_btnSwitchProfile.PointToScreen(pt);
+            m_SwitchProfileContextMenuStrip.Show(pt);
+            if (m_CurrentCheckedProfile == null)
+            {
+                string[] str = mView.ObiForm.Settings.SettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
+                foreach (ToolStripMenuItem temp in m_ListOfSwitchProfiles)
+                {
+                    if (temp.ToString() == str[0])
+                    {
+                        temp.Checked = true;
+                        m_CurrentCheckedProfile = temp;
+                    }
+                }
+            }
         }
 
     }
