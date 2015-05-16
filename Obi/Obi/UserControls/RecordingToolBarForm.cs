@@ -43,6 +43,7 @@ namespace Obi.UserControls
         private Size m_minRecordingContainer;
         private Size m_minElapseBackSize;
         private Size m_minSectionEndSize;
+        private Size m_minToggleProfileSize;
         private Point m_OriginalLocationOfEnlargeBtn;
         private Point m_OriginalLocationOfReduceBtn;
 
@@ -98,6 +99,11 @@ namespace Obi.UserControls
         private Image m_SectionEnd48;
         private Image m_SectionEnd64;
         private Image m_SectionEnd80;
+
+        private Image m_ToggleProfileImg;
+        private Image m_ToggleProfileImg48;
+        private Image m_ToggleProfileImg64;
+        private Image m_ToggleProfileImg80;
 
         HelpProvider helpProvider1;
         //public delegate void RecorderSettingsSet();
@@ -210,6 +216,14 @@ namespace Obi.UserControls
             PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.Section End80.png");
             m_SectionEnd80 = Image.FromStream(PlayPhrase);
 
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.ToggleProfile.png");
+            m_ToggleProfileImg = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.ToggleProfile48.png");
+            m_ToggleProfileImg48 = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.ToggleProfile64.png");
+            m_ToggleProfileImg64 = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.ToggleProfile80.png");
+            m_ToggleProfileImg80 = Image.FromStream(PlayPhrase);            
 
             helpProvider1 = new HelpProvider();
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
@@ -227,6 +241,10 @@ namespace Obi.UserControls
             projectView.SelectionChanged += new EventHandler(projectview_Selection_Changed);
             m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);
             m_RecordingToolBartoolTip.SetToolTip(m_chkMonitorContinuously, Localizer.Message("Audio_MonitorAlways"));
+
+            m_ToggleProfile.ToolTipText = "Switch from" + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2;
+            m_ToggleProfile.AccessibleName = "Switch from" + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2;
+           
             
             // if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
             UpdateButtons();
@@ -398,6 +416,25 @@ namespace Obi.UserControls
                 Console.WriteLine("event change " + m_chkMonitorContinuously.Checked);
                 m_chkMonitorContinuously.CheckedChanged += new EventHandler(m_chkMonitorContinuously_CheckedChanged);
             }
+            string tempSettingsName = m_ProjectView.ObiForm.Settings.SettingsName;
+            //string[] str = tempSettingsName.Split(new string[] { " profile" }, StringSplitOptions.None);
+            string[] str = tempSettingsName.Split(' ');
+
+            if (str[0] == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1)
+            {
+                m_ToggleProfile.ToolTipText = "Switch from " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2;
+                m_ToggleProfile.AccessibleName = "Switch from " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2;
+            }
+            else if (str[0] == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2)
+            {
+                m_ToggleProfile.ToolTipText = "Switch from " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1;
+                m_ToggleProfile.AccessibleName = "Switch from " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1;
+            }
+            else
+            {
+                m_ToggleProfile.ToolTipText = "Switch from " + str[0] + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1;
+                m_ToggleProfile.AccessibleName = "Switch from " + str[0] + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1;
+            }
         }
 
         private void m_recordingToolBarPlayBtn_Click(object sender, EventArgs e)
@@ -568,6 +605,7 @@ namespace Obi.UserControls
             m_minTodoBtn = m_TODOBtn.Size;
             m_minElapseBackSize = m_recordingToolBarElapseBackBtn.Size;
             m_minSectionEndSize = m_recordingToolBarSectionEndBtn.Size;
+            m_minToggleProfileSize = m_ToggleProfile.Size;
 
             if (m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite
                 && m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar
@@ -651,14 +689,17 @@ namespace Obi.UserControls
             m_recordingToolBarElapseBackBtn.Width = (int)(m_recordingToolBarElapseBackBtn.Width + m_minElapseBackSize.Width * NetSizeIncBtn);
             m_recordingToolBarElapseBackBtn.Height = (int)(m_recordingToolBarElapseBackBtn.Height + m_minElapseBackSize.Height * NetSizeIncBtn);
 
-            m_recordingToolBarSectionEndBtn.Width = (int)(m_recordingToolBarSectionEndBtn.Width + m_minElapseBackSize.Width * NetSizeIncBtn);
+            m_recordingToolBarSectionEndBtn.Width = (int)(m_recordingToolBarSectionEndBtn.Width + m_minSectionEndSize.Width * NetSizeIncBtn);
             m_recordingToolBarSectionEndBtn.Height = (int)(m_recordingToolBarSectionEndBtn.Height + m_minSectionEndSize.Height * NetSizeIncBtn);
+
+            m_ToggleProfile.Width = (int)(m_ToggleProfile.Width + m_minToggleProfileSize.Width * NetSizeIncBtn);
+            m_ToggleProfile.Height = (int)(m_ToggleProfile.Height + m_minToggleProfileSize.Height * NetSizeIncBtn);
 
             int diff = m_minimumWidth.Width - m_minRecordingContainer.Width;
             this.Width = m_recordingToolBarPlayBtn.Width + m_recordingToolBarStopBtn.Width + m_recordingToolBarRecordingBtn.Width
                                              + m_recordingToolBarPrePhraseBtn.Width + m_recordingGoToNextPhraseBtn.Width + m_recordingToolBarNextPageBtn.Width
                                              + m_recordingToolBarNextSectionBtn.Width + m_TODOBtn.Width + m_recordingToolBarElapseBackBtn.Width
-                                             + m_recordingToolBarSectionEndBtn.Width + diff + 150;
+                                             + m_recordingToolBarSectionEndBtn.Width + m_ToggleProfile.Width + diff + 50;
             recordingToolBarToolStrip.Width = this.Width - diff;
             Point p = new Point(0, 0);
             //int x = m_statusStrip.Top - m_Enlarge.Bottom;
@@ -731,7 +772,7 @@ namespace Obi.UserControls
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn;
                 m_recordingToolBarElapseBackBtn.Image = m_ElapseBack;
                 m_recordingToolBarSectionEndBtn.Image = m_SectionEnd;
-
+                m_ToggleProfile.Image = m_ToggleProfileImg;
             }
             else if (NetSizeIncrementOfButtons == 0.5)
             {
@@ -744,6 +785,7 @@ namespace Obi.UserControls
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn48;
                 m_recordingToolBarElapseBackBtn.Image = m_ElapseBack48;
                 m_recordingToolBarSectionEndBtn.Image = m_SectionEnd48;
+                m_ToggleProfile.Image = m_ToggleProfileImg48;
             }
             else if (NetSizeIncrementOfButtons == 1)
             {
@@ -756,6 +798,7 @@ namespace Obi.UserControls
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn64;
                 m_recordingToolBarElapseBackBtn.Image = m_ElapseBack64;
                 m_recordingToolBarSectionEndBtn.Image = m_SectionEnd64;
+                m_ToggleProfile.Image = m_ToggleProfileImg64;
             }
             else if (NetSizeIncrementOfButtons == 1.5)
             {
@@ -768,6 +811,7 @@ namespace Obi.UserControls
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn80;
                 m_recordingToolBarElapseBackBtn.Image = m_ElapseBack80;
                 m_recordingToolBarSectionEndBtn.Image = m_SectionEnd80;
+                m_ToggleProfile.Image = m_ToggleProfileImg80;
             }
 
         }
@@ -833,12 +877,15 @@ namespace Obi.UserControls
                 m_recordingToolBarSectionEndBtn.Width = (int)(m_recordingToolBarSectionEndBtn.Width - m_minSectionEndSize.Width * NetSizeIncBtn);
                 m_recordingToolBarSectionEndBtn.Height = (int)(m_recordingToolBarSectionEndBtn.Height - m_minSectionEndSize.Height * NetSizeIncBtn);
 
+                m_ToggleProfile.Width = (int)(m_ToggleProfile.Width - m_minToggleProfileSize.Width * NetSizeIncBtn);
+                m_ToggleProfile.Height = (int)(m_ToggleProfile.Height - m_minToggleProfileSize.Height * NetSizeIncBtn);
+
 
                 int diff = m_minimumWidth.Width - m_minRecordingContainer.Width;
                 this.Width = m_recordingToolBarPlayBtn.Width + m_recordingToolBarStopBtn.Width + m_recordingToolBarRecordingBtn.Width
                                       + m_recordingToolBarPrePhraseBtn.Width + m_recordingGoToNextPhraseBtn.Width + m_recordingToolBarNextPageBtn.Width
                                       + m_recordingToolBarNextSectionBtn.Width + m_TODOBtn.Width + m_recordingToolBarElapseBackBtn.Width
-                                      + m_recordingToolBarSectionEndBtn.Width + diff + 50;
+                                      + m_recordingToolBarSectionEndBtn.Width + m_ToggleProfile.Width + diff + 50;
                 recordingToolBarToolStrip.Width = this.Width - diff;
 
                 Point p = new Point(0, 0);
@@ -878,6 +925,7 @@ namespace Obi.UserControls
 
                 m_recordingToolBarElapseBackBtn.Size = m_minElapseBackSize;
                 m_recordingToolBarSectionEndBtn.Size = m_minSectionEndSize;
+                m_ToggleProfile.Size = m_minToggleProfileSize;
 
             }
 
@@ -943,6 +991,7 @@ namespace Obi.UserControls
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn;
                 m_recordingToolBarElapseBackBtn.Image = m_ElapseBack;
                 m_recordingToolBarSectionEndBtn.Image = m_SectionEnd;
+                m_ToggleProfile.Image = m_ToggleProfileImg;
 
             }
             else if (NetSizeIncrementOfButtons == 0.5)
@@ -957,6 +1006,7 @@ namespace Obi.UserControls
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn48;
                 m_recordingToolBarElapseBackBtn.Image = m_ElapseBack48;
                 m_recordingToolBarSectionEndBtn.Image = m_SectionEnd48;
+                m_ToggleProfile.Image = m_ToggleProfileImg48;
             }
             else if (NetSizeIncrementOfButtons == 1)
             {
@@ -970,6 +1020,7 @@ namespace Obi.UserControls
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn64;
                 m_recordingToolBarElapseBackBtn.Image = m_ElapseBack64;
                 m_recordingToolBarSectionEndBtn.Image = m_SectionEnd64;
+                m_ToggleProfile.Image = m_ToggleProfileImg64;
             }
             else if (NetSizeIncrementOfButtons == 1.5)
             {
@@ -982,6 +1033,7 @@ namespace Obi.UserControls
                 m_recordingToolBarNextSectionBtn.Image = m_RecordingGoDownBtn80;
                 m_recordingToolBarElapseBackBtn.Image = m_ElapseBack80;
                 m_recordingToolBarSectionEndBtn.Image = m_SectionEnd80;
+                m_ToggleProfile.Image = m_ToggleProfileImg80;
             }
 
         }
@@ -1008,7 +1060,7 @@ namespace Obi.UserControls
             m_TODOBtn.Size = m_minTodoBtn;
             m_recordingToolBarElapseBackBtn.Size = m_minElapseBackSize;
             m_recordingToolBarSectionEndBtn.Size = m_minSectionEndSize;
-            
+            m_ToggleProfile.Size = m_minToggleProfileSize;
         }
 
         private void m_recordingToolBarElapseBackBtn_Click(object sender, EventArgs e)
