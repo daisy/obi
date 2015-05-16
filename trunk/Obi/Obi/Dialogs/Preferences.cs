@@ -2237,6 +2237,8 @@ namespace Obi.Dialogs
                         System.IO.Path.GetFileName(fileDialog.FileName));
                     System.IO.File.Copy(fileDialog.FileName, newCustomFilePath, true);
                     m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                    m_cb_Profile1.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                    m_cb_Profile2.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
                 }
                 catch (System.Exception ex)
                 {

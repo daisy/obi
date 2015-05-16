@@ -4044,6 +4044,8 @@ SelectionChangedPlaybackEnabled = false;
             string text = string.Format(Localizer.Message("Preferences_ProfilesStatus"), saveProfile.SettingsName, strLoadedProfiles);
             mView.ObiForm.Settings.SettingsName = text;
             UpdateButtons();
+            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\nfrom " + ProfileName + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
+            m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + " from " + ProfileName + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());           
 
         }
 
@@ -4077,8 +4079,9 @@ SelectionChangedPlaybackEnabled = false;
                 }
             }
 
-            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\nfrom " + ProfileName + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
-            m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + " from " + ProfileName + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());           
+            //mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\nfrom " + ProfileName + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
+            //m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + " from " + ProfileName + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());           
+           
         }
         public void InitializeTooltipsForTransportpar()
         {
