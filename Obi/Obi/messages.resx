@@ -2743,6 +2743,9 @@ Error text: {1}</value>
     <value>Expand Switch Profile Button</value>
   </data>
   <data name="Transport_SwitchProfile" xml:space="preserve">
-    <value>Switch Audio Profile</value>
+    <value>Switch Audio Profile from</value>
+  </data>
+  <data name="RecordingToolbar_SwitchProfile" xml:space="preserve">
+    <value>Switch from {0} to {1}</value>
   </data>
 </root>

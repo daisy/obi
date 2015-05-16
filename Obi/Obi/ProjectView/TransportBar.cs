@@ -4044,8 +4044,8 @@ SelectionChangedPlaybackEnabled = false;
             string text = string.Format(Localizer.Message("Preferences_ProfilesStatus"), saveProfile.SettingsName, strLoadedProfiles);
             mView.ObiForm.Settings.SettingsName = text;
             UpdateButtons();
-            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\nfrom " + ProfileName + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
-            m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + " from " + ProfileName + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());           
+            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\n" + ProfileName + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
+            m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + ProfileName + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());           
 
         }
 
@@ -4158,9 +4158,9 @@ if (keyboardShortcuts.MenuNameDictionary.ContainsKey("mStartMonitoringToolStripM
             m_btnRecordingOptions.AccessibleName = Localizer.Message("Transport_RecordingOptions") + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandRecordOptions.Value.ToString());
 
             string tempSettingsName = mView.ObiForm.Settings.SettingsName;
-            string[] str = tempSettingsName.Split(' ');
-            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\nfrom " + str[0] + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
-            m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") +  " from " + str[0] + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());
+            string[] str = tempSettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
+            mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\n" + str[0] + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
+            m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + str[0] + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());
 
             mTransportBarTooltip.SetToolTip(mDisplayBox, mDisplayBox.SelectedItem.ToString());
            
