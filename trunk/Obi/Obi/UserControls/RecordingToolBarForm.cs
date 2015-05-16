@@ -242,8 +242,8 @@ namespace Obi.UserControls
             m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);
             m_RecordingToolBartoolTip.SetToolTip(m_chkMonitorContinuously, Localizer.Message("Audio_MonitorAlways"));
 
-            m_ToggleProfile.ToolTipText = "Switch from" + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2;
-            m_ToggleProfile.AccessibleName = "Switch from" + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2;
+            m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2);
+            m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2);
            
             
             // if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
@@ -417,23 +417,22 @@ namespace Obi.UserControls
                 m_chkMonitorContinuously.CheckedChanged += new EventHandler(m_chkMonitorContinuously_CheckedChanged);
             }
             string tempSettingsName = m_ProjectView.ObiForm.Settings.SettingsName;
-            //string[] str = tempSettingsName.Split(new string[] { " profile" }, StringSplitOptions.None);
-            string[] str = tempSettingsName.Split(' ');
-
+            string[] str = tempSettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
+    
             if (str[0] == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1)
             {
-                m_ToggleProfile.ToolTipText = "Switch from " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2;
-                m_ToggleProfile.AccessibleName = "Switch from " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2;
+                m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2);
+                m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2);
             }
             else if (str[0] == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2)
             {
-                m_ToggleProfile.ToolTipText = "Switch from " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1;
-                m_ToggleProfile.AccessibleName = "Switch from " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2 + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1;
+                m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
+                m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
             }
             else
             {
-                m_ToggleProfile.ToolTipText = "Switch from " + str[0] + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1;
-                m_ToggleProfile.AccessibleName = "Switch from " + str[0] + " to " + m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1;
+                m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
+                m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
             }
         }
 
@@ -1144,7 +1143,8 @@ namespace Obi.UserControls
                 }
             }
             string tempSettingsName = m_ProjectView.ObiForm.Settings.SettingsName;
-            string[] str = tempSettingsName.Split(' ');
+
+            string[] str = tempSettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
             string ProfileName = " ";
             if (m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 == str[0])
             {
