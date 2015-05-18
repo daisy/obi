@@ -2748,4 +2748,7 @@ Error text: {1}</value>
   <data name="RecordingToolbar_SwitchProfile" xml:space="preserve">
     <value>Switch from {0} to {1}</value>
   </data>
+  <data name="RecordingToolbar_SwitchProfileStatusBar" xml:space="preserve">
+    <value>Switched  to {0} Profile</value>
+  </data>
 </root>
