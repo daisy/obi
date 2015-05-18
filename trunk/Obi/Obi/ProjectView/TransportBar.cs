@@ -4012,6 +4012,7 @@ SelectionChangedPlaybackEnabled = false;
         public void LoadProfile(string profilePath,string ProfileName,bool CalledFromTransportBar)
         {
             if (this.MonitorContinuously) this.MonitorContinuously = false;
+            if (this.IsRecorderActive || this.IsPlayerActive) this.Stop();
             Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
             saveProfile.CopyPropertiesToExistingSettings(mView.ObiForm.Settings, PreferenceProfiles.Audio);
             saveProfile.SettingsName = ProfileName;
