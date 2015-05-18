@@ -5632,6 +5632,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Switched  to {0} Profile.
+        /// </summary>
+        internal static string RecordingToolbar_SwitchProfileStatusBar {
+            get {
+                return ResourceManager.GetString("RecordingToolbar_SwitchProfileStatusBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Marked TODO.
         /// </summary>
         internal static string RecToolbar_MarkedTODO {
