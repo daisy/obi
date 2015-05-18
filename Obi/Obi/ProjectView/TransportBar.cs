@@ -4010,7 +4010,8 @@ SelectionChangedPlaybackEnabled = false;
         }
         // LoadProfile is used to Load Profile from RT toggle and Transport bar Switch profile button.
         public void LoadProfile(string profilePath,string ProfileName,bool CalledFromTransportBar)
-        {                  
+        {
+            if (this.MonitorContinuously) this.MonitorContinuously = false;
             Settings saveProfile = Settings.GetSettingsFromSavedProfile(profilePath);
             saveProfile.CopyPropertiesToExistingSettings(mView.ObiForm.Settings, PreferenceProfiles.Audio);
             saveProfile.SettingsName = ProfileName;
@@ -4065,9 +4066,9 @@ SelectionChangedPlaybackEnabled = false;
                         m_CurrentCheckedProfile = tempToolStrip;
                         break;
                     }
-                }
-             
+                }                
             }
+            mView.ObiForm.UpdateRecordingToolBarButtons();
         }
 
     // Event is subscribed to ToolStripMenu items.
