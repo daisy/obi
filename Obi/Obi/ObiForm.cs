@@ -3663,6 +3663,7 @@ ref string exportDirectoryEPUB3)
                         this.WindowState = FormWindowState.Minimized;
                     }
                     mView_RecordingToolBarMenuItem.Checked = true;
+                    mRecordingToolBarForm.Focus();
                 }
             }
 
