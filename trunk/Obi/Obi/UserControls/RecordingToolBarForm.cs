@@ -1160,12 +1160,12 @@ namespace Obi.UserControls
 
                 m_ProjectView.TransportBar.LoadProfile(filePaths[index], ProfileName,false);
             }
-            UpdateForChangeInObi();
+           // UpdateForChangeInObi();
             if (!m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar && m_chkMonitorContinuously.Checked == true)
             {
                 m_chkMonitorContinuously.Checked = false;
             }
-         
+            m_StatusLabel.Text = String.Format(Localizer.Message("RecordingToolbar_SwitchProfileStatusBar"), ProfileName);
         }
 
     }

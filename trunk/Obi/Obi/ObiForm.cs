@@ -5750,6 +5750,14 @@ ref string exportDirectoryEPUB3)
                 mProjectView.MergeMultipleSections();
             }
 
+            public void UpdateRecordingToolBarButtons()
+            {
+                if (mRecordingToolBarForm != null)
+                {
+                    mRecordingToolBarForm.UpdateForChangeInObi();
+                }
+            }
+
  
         }
     }
