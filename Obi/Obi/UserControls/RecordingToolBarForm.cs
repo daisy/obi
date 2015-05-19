@@ -497,6 +497,7 @@ namespace Obi.UserControls
                 m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
                 m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
             }
+            this.Focus();
         }
 
         private void m_recordingToolBarPlayBtn_Click(object sender, EventArgs e)
