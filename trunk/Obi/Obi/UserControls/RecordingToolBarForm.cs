@@ -59,6 +59,11 @@ namespace Obi.UserControls
         private Image m_RecordingBtn80;
         private Image m_RecordingBtn;
 
+        private Image m_MonitorBtn;
+        private Image m_MonitorBtn48;
+        private Image m_MonitorBtn64;
+        private Image m_MonitorBtn80;
+
         private Image m_RecordingTodoBtn;
         private Image m_RecordingTodoBtn48;
         private Image m_RecordingTodoBtn64;
@@ -143,6 +148,15 @@ namespace Obi.UserControls
             m_RecordingBtn64 = Image.FromStream(PlayPhrase);
             PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.media-record80.png");
             m_RecordingBtn80 = Image.FromStream(PlayPhrase);
+
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.media_monitor.png");
+            m_MonitorBtn = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.media_monitor48.png");
+            m_MonitorBtn48 = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.media_monitor64.png");
+            m_MonitorBtn64 = Image.FromStream(PlayPhrase);
+            PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.media_monitor80.png");
+            m_MonitorBtn80 = Image.FromStream(PlayPhrase);
 
             PlayPhrase = myAssembly.GetManifestResourceStream("Obi.UserControls.emblem-important.png");
             m_RecordingTodoBtn = Image.FromStream(PlayPhrase);
@@ -402,6 +416,52 @@ namespace Obi.UserControls
                 {
                     m_recordingToolBarPlayBtn.Image = m_PlayImg80;
                 }
+            }
+
+            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring || m_ProjectView.ObiForm.Settings.Audio_RecordDirectlyWithRecordButton
+               || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CanResumeRecording)
+            {
+                m_recordingToolBarRecordingBtn.Image = m_RecordingBtn;
+
+                if (NetSizeIncrementOfButtons == 0)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn;
+                }
+                else if (NetSizeIncrementOfButtons == 0.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn48;
+                }
+                else if (NetSizeIncrementOfButtons == 1)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn64;
+                }
+                else if (NetSizeIncrementOfButtons == 1.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn80;
+                }
+
+            }
+            else
+            {
+                m_recordingToolBarRecordingBtn.Image = m_MonitorBtn;
+
+                if (NetSizeIncrementOfButtons == 0)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn;
+                }
+                else if (NetSizeIncrementOfButtons == 0.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn48;
+                }
+                else if (NetSizeIncrementOfButtons == 1)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn64;
+                }
+                else if (NetSizeIncrementOfButtons == 1.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn80;
+                }
+
             }
 
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring || (m_ProjectView.ObiForm.Settings.Audio_RecordDirectlyWithRecordButton && m_TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording))
@@ -760,9 +820,55 @@ namespace Obi.UserControls
                     m_recordingToolBarPlayBtn.Image = m_PlayImg80;
                 }
             }
-            if (NetSizeIncrementOfButtons == 0)
+
+            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring || m_ProjectView.ObiForm.Settings.Audio_RecordDirectlyWithRecordButton
+   || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CanResumeRecording)
             {
                 m_recordingToolBarRecordingBtn.Image = m_RecordingBtn;
+
+                if (NetSizeIncrementOfButtons == 0)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn;
+                }
+                else if (NetSizeIncrementOfButtons == 0.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn48;
+                }
+                else if (NetSizeIncrementOfButtons == 1)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn64;
+                }
+                else if (NetSizeIncrementOfButtons == 1.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn80;
+                }
+
+            }
+            else
+            {
+                m_recordingToolBarRecordingBtn.Image = m_MonitorBtn;
+
+                if (NetSizeIncrementOfButtons == 0)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn;
+                }
+                else if (NetSizeIncrementOfButtons == 0.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn48;
+                }
+                else if (NetSizeIncrementOfButtons == 1)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn64;
+                }
+                else if (NetSizeIncrementOfButtons == 1.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn80;
+                }
+
+            }
+            if (NetSizeIncrementOfButtons == 0)
+            {
+                //m_recordingToolBarRecordingBtn.Image = m_RecordingBtn;
                 m_TODOBtn.Image = m_RecordingTodoBtn;
                 m_recordingToolBarStopBtn.Image = m_RecordingPlaybackStopBtn;
                 m_recordingToolBarPrePhraseBtn.Image = m_RecordingGoPreviousBtn;
@@ -775,7 +881,7 @@ namespace Obi.UserControls
             }
             else if (NetSizeIncrementOfButtons == 0.5)
             {
-                m_recordingToolBarRecordingBtn.Image = m_RecordingBtn48;
+                //m_recordingToolBarRecordingBtn.Image = m_RecordingBtn48;
                 m_TODOBtn.Image = m_RecordingTodoBtn48;
                 m_recordingToolBarStopBtn.Image = m_RecordingPlaybackStopBtn48;
                 m_recordingToolBarPrePhraseBtn.Image = m_RecordingGoPreviousBtn48;
@@ -788,7 +894,7 @@ namespace Obi.UserControls
             }
             else if (NetSizeIncrementOfButtons == 1)
             {
-                m_recordingToolBarRecordingBtn.Image = m_RecordingBtn64;
+                //m_recordingToolBarRecordingBtn.Image = m_RecordingBtn64;
                 m_TODOBtn.Image = m_RecordingTodoBtn64;
                 m_recordingToolBarStopBtn.Image = m_RecordingPlaybackStopBtn64;
                 m_recordingToolBarPrePhraseBtn.Image = m_RecordingGoPreviousBtn64;
@@ -801,7 +907,7 @@ namespace Obi.UserControls
             }
             else if (NetSizeIncrementOfButtons == 1.5)
             {
-                m_recordingToolBarRecordingBtn.Image = m_RecordingBtn80;
+                //m_recordingToolBarRecordingBtn.Image = m_RecordingBtn80;
                 m_TODOBtn.Image = m_RecordingTodoBtn80;
                 m_recordingToolBarStopBtn.Image = m_RecordingPlaybackStopBtn80;
                 m_recordingToolBarPrePhraseBtn.Image = m_RecordingGoPreviousBtn80;
@@ -978,10 +1084,56 @@ namespace Obi.UserControls
                     m_recordingToolBarPlayBtn.Image = m_PlayImg80;
                 }
             }
+
+            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring || m_ProjectView.ObiForm.Settings.Audio_RecordDirectlyWithRecordButton
+   || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CanResumeRecording)
+            {
+                m_recordingToolBarRecordingBtn.Image = m_RecordingBtn;
+
+                if (NetSizeIncrementOfButtons == 0)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn;
+                }
+                else if (NetSizeIncrementOfButtons == 0.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn48;
+                }
+                else if (NetSizeIncrementOfButtons == 1)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn64;
+                }
+                else if (NetSizeIncrementOfButtons == 1.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_RecordingBtn80;
+                }
+
+            }
+            else
+            {
+                m_recordingToolBarRecordingBtn.Image = m_MonitorBtn;
+
+                if (NetSizeIncrementOfButtons == 0)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn;
+                }
+                else if (NetSizeIncrementOfButtons == 0.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn48;
+                }
+                else if (NetSizeIncrementOfButtons == 1)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn64;
+                }
+                else if (NetSizeIncrementOfButtons == 1.5)
+                {
+                    m_recordingToolBarRecordingBtn.Image = m_MonitorBtn80;
+                }
+
+            }
             if (NetSizeIncrementOfButtons == 0)
             {
 
-                m_recordingToolBarRecordingBtn.Image = m_RecordingBtn;
+                //m_recordingToolBarRecordingBtn.Image = m_RecordingBtn;
                 m_TODOBtn.Image = m_RecordingTodoBtn;
                 m_recordingToolBarStopBtn.Image = m_RecordingPlaybackStopBtn;
                 m_recordingToolBarPrePhraseBtn.Image = m_RecordingGoPreviousBtn;
@@ -996,7 +1148,7 @@ namespace Obi.UserControls
             else if (NetSizeIncrementOfButtons == 0.5)
             {
 
-                m_recordingToolBarRecordingBtn.Image = m_RecordingBtn48;
+                //m_recordingToolBarRecordingBtn.Image = m_RecordingBtn48;
                 m_TODOBtn.Image = m_RecordingTodoBtn48;
                 m_recordingToolBarStopBtn.Image = m_RecordingPlaybackStopBtn48;
                 m_recordingToolBarPrePhraseBtn.Image = m_RecordingGoPreviousBtn48;
@@ -1010,7 +1162,7 @@ namespace Obi.UserControls
             else if (NetSizeIncrementOfButtons == 1)
             {
 
-                m_recordingToolBarRecordingBtn.Image = m_RecordingBtn64;
+                //m_recordingToolBarRecordingBtn.Image = m_RecordingBtn64;
                 m_TODOBtn.Image = m_RecordingTodoBtn64;
                 m_recordingToolBarStopBtn.Image = m_RecordingPlaybackStopBtn64;
                 m_recordingToolBarPrePhraseBtn.Image = m_RecordingGoPreviousBtn64;
@@ -1023,7 +1175,7 @@ namespace Obi.UserControls
             }
             else if (NetSizeIncrementOfButtons == 1.5)
             {
-                m_recordingToolBarRecordingBtn.Image = m_RecordingBtn80;
+                //m_recordingToolBarRecordingBtn.Image = m_RecordingBtn80;
                 m_TODOBtn.Image = m_RecordingTodoBtn80;
                 m_recordingToolBarStopBtn.Image = m_RecordingPlaybackStopBtn80;
                 m_recordingToolBarPrePhraseBtn.Image = m_RecordingGoPreviousBtn80;
