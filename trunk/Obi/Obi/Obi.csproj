@@ -2794,6 +2794,14 @@
     <Content Include="ShowBlocksCompleted.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="UserControls\media_monitor.png" />
+    <EmbeddedResource Include="UserControls\media_monitor48.png" />
+    <EmbeddedResource Include="UserControls\media_monitor64.png" />
+    <EmbeddedResource Include="UserControls\media_monitor80.png" />
+    <EmbeddedResource Include="UserControls\ToggleProfile.png" />
+    <EmbeddedResource Include="UserControls\ToggleProfile48.png" />
+    <EmbeddedResource Include="UserControls\ToggleProfile64.png" />
+    <EmbeddedResource Include="UserControls\ToggleProfile80.png" />
     <EmbeddedResource Include="UserControls\ElapseBack.png">
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ElapseBack48.png" />
