@@ -47,6 +47,8 @@ namespace Obi.ProjectView
         private Waveform_Recording waveform_recording_control;
         private ZoomWaveform m_ZoomWaveformPanel;
         private Toolbar_EditAudio m_Edit;
+        private double m_timeElapsed = 0.0;
+        private Color m_ColorBackgroundBeforeFlicker;
 
         /// <summary>
         /// A new strips view.
@@ -1108,6 +1110,36 @@ namespace Obi.ProjectView
 
         public void UpdateCursorPosition ( double time )
             {
+                if (mProjectView.TransportBar.PreviewBeforeRecordingActive)
+                {
+                    mProjectView.Selection = new NodeSelection(mPlaybackBlock.Node, this);
+                    if (m_timeElapsed == 0)
+                    {
+                        m_timeElapsed = time;
+                        m_ColorBackgroundBeforeFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
+                    }
+
+                    if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == Color.Red)
+                    {
+                        mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                    }
+                    else
+                    {
+                        mPlaybackBlock.ColorSettings.BlockBackColor_Selected = Color.Red;
+                    }
+                  //  m_timeElapsed = time;
+
+                    if (!mProjectView.TransportBar.IsPlayerActive)
+                    {
+                        mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                        m_timeElapsed = 0;
+                        mProjectView.TransportBar.PreviewBeforeRecordingActive = false;
+                    }
+
+                }
+
+
+
                 if (m_ZoomWaveformPanel != null && mProjectView.TransportBar.IsPlayerActive)//@zoomwaveform
                 {
                     m_ZoomWaveformPanel.UpdateCursorTime(time);
