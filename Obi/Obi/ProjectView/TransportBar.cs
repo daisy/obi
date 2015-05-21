@@ -44,6 +44,7 @@ namespace Obi.ProjectView
         private string[] m_filePaths;
         private ToolStripMenuItem m_CurrentCheckedProfile;
         private Dictionary<string, ToolStripMenuItem> m_ListOfSwitchProfiles = new Dictionary<string, ToolStripMenuItem>();
+        private bool m_PreviewBeforeRecordingActive = false;
         //public variables
         //private bool IsPlaySection = false;
         //private bool IsPreviewBeforeRec = false;
@@ -1740,7 +1741,6 @@ namespace Obi.ProjectView
                 }
                 else
                 {
-                    
                     StartRecordingDirectly(mView.ObiForm.Settings.Audio_Recording_PreviewBeforeStarting);
                 }
                 
@@ -3285,6 +3285,7 @@ namespace Obi.ProjectView
             {
                 StartRecordingDirectly_Internal(false);
             }
+            PreviewBeforeRecordingActive = isPreviewBeforeRecording;
         }
 
         private void StartRecordingDirectly_Internal(bool deleteFollowingPhrases)
@@ -4281,6 +4282,20 @@ SelectionChangedPlaybackEnabled = false;
         {
             StartRecordingDirectly(true);
         }
+
+        public bool PreviewBeforeRecordingActive
+        {
+            set
+            {
+                m_PreviewBeforeRecordingActive = value;
+            }
+            get
+            {
+                return m_PreviewBeforeRecordingActive;
+
+            }
+        }
+
         private void m_playHeadingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PlayHeading();        
