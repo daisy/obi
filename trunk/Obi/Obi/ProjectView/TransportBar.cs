@@ -43,7 +43,7 @@ namespace Obi.ProjectView
         private bool m_MonitorContinuously = false;
         private string[] m_filePaths;
         private ToolStripMenuItem m_CurrentCheckedProfile;
-        private List<ToolStripMenuItem> m_ListOfSwitchProfiles = new List<ToolStripMenuItem>();
+        private Dictionary<string, ToolStripMenuItem> m_ListOfSwitchProfiles = new Dictionary<string, ToolStripMenuItem>();
         //public variables
         //private bool IsPlaySection = false;
         //private bool IsPreviewBeforeRec = false;
@@ -3942,12 +3942,33 @@ SelectionChangedPlaybackEnabled = false;
 
         }
 
+        public string GetPredefinedProfilesDirectory()
+        {
+            string appDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            string defaultProfilesDirectory = System.IO.Path.Combine(appDirectory, "profiles");
+            return defaultProfilesDirectory;
+        }
+
+        public string GetCustomProfilesDirectory()
+        {
+            string ProfileDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
+            string customProfilesDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
+            return customProfilesDirectory;
+        }
+        public string[] ProfilesPaths
+        {
+            get
+            {
+                return m_filePaths;
+            }
+        }
         // To Initialize Switch Profile ToolStrip menu Items
         public void InitializeSwitchProfiles()
         {
-            string ProfileDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
-            string defaultProfilesDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
-            m_filePaths = System.IO.Directory.GetFiles(defaultProfilesDirectory, "*.xml");
+            //string ProfileDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            //string defaultProfilesDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
+            string ProfileDirectory = GetPredefinedProfilesDirectory();
+            m_filePaths = System.IO.Directory.GetFiles(ProfileDirectory, "*.xml");
             List<string> filePathsList = new List<string>();
             if (m_filePaths != null && m_filePaths.Length > 0)
             {
@@ -3963,7 +3984,7 @@ SelectionChangedPlaybackEnabled = false;
                     int index = filePathsList.IndexOf("Basic");
                     ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(filePathsList[index], null, SwitchProfile_Click);
                     m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
-                    m_ListOfSwitchProfiles.Add(SwitchProfile);
+                    m_ListOfSwitchProfiles.Add(filePathsList[index], SwitchProfile);
                     filePathsList.RemoveAt(index);
                 }
                 if (filePathsList.Contains("Intermediate"))
@@ -3971,23 +3992,24 @@ SelectionChangedPlaybackEnabled = false;
                     int index = filePathsList.IndexOf("Intermediate");
                     ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(filePathsList[index], null, SwitchProfile_Click);
                     m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
-                    m_ListOfSwitchProfiles.Add(SwitchProfile);
+                    m_ListOfSwitchProfiles.Add(filePathsList[index], SwitchProfile);
                     filePathsList.RemoveAt(index);
                 }
                 foreach (string file in filePathsList)
                 {
                     ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(file, null, SwitchProfile_Click);
                     m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
-                    m_ListOfSwitchProfiles.Add(SwitchProfile);
+                    m_ListOfSwitchProfiles.Add(file, SwitchProfile);                  
                 }
 
             }
 
-            ProfileDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
-            defaultProfilesDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
-            if (System.IO.Directory.Exists(defaultProfilesDirectory))
+            //ProfileDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
+            //ProfileDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
+            ProfileDirectory = GetCustomProfilesDirectory();
+            if (System.IO.Directory.Exists(ProfileDirectory))
             {
-                string[] temp =  System.IO.Directory.GetFiles(defaultProfilesDirectory, "*.xml");
+                string[] temp =  System.IO.Directory.GetFiles(ProfileDirectory, "*.xml");
                 string[] tempFilePaths = new string[m_filePaths.Length + temp.Length];
                 m_filePaths.CopyTo(tempFilePaths, 0);
                 temp.CopyTo(tempFilePaths, m_filePaths.Length);
@@ -4001,7 +4023,7 @@ SelectionChangedPlaybackEnabled = false;
                         string filename = System.IO.Path.GetFileNameWithoutExtension(temp[i]);
                         ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(filename, null, SwitchProfile_Click);
                         m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
-                        m_ListOfSwitchProfiles.Add(SwitchProfile);
+                        m_ListOfSwitchProfiles.Add(filename, SwitchProfile); 
 
                     }
                 }
@@ -4009,7 +4031,7 @@ SelectionChangedPlaybackEnabled = false;
    
         }
         // LoadProfile is used to Load Profile from RT toggle and Transport bar Switch profile button.
-        public void LoadProfile(string profilePath,string ProfileName,bool CalledFromTransportBar)
+        public void LoadProfile(string profilePath, string ProfileName)
         {
             if (this.MonitorContinuously) this.MonitorContinuously = false;
             if (this.IsRecorderActive || this.IsPlayerActive) this.Stop();
@@ -4053,22 +4075,18 @@ SelectionChangedPlaybackEnabled = false;
             UpdateButtons();
             mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\n" + ProfileName + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
             m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + ProfileName + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());
-            if (!CalledFromTransportBar)  
+
+            if (m_CurrentCheckedProfile != null)
             {
-                if (m_CurrentCheckedProfile != null)
-                {
-                    m_CurrentCheckedProfile.Checked = false;
-                }
-                foreach (ToolStripMenuItem tempToolStrip in m_ListOfSwitchProfiles)
-                {
-                    if (tempToolStrip.ToString() == ProfileName)
-                    {
-                        tempToolStrip.Checked = true;
-                        m_CurrentCheckedProfile = tempToolStrip;
-                        break;
-                    }
-                }                
+                m_CurrentCheckedProfile.Checked = false;
             }
+            if (m_ListOfSwitchProfiles.ContainsKey(ProfileName))
+            {
+                ToolStripMenuItem ProfileSelected = m_ListOfSwitchProfiles[ProfileName];
+                ProfileSelected.Checked = true;
+                m_CurrentCheckedProfile = ProfileSelected;
+            }
+               
             mView.ObiForm.UpdateRecordingToolBarButtons();
         }
 
@@ -4090,17 +4108,7 @@ SelectionChangedPlaybackEnabled = false;
             {
                 int index = filePathsList.IndexOf(ProfileName);
 
-                LoadProfile(m_filePaths[index],ProfileName,true);
-                if (sender is ToolStripMenuItem)
-                {
-                    ToolStripMenuItem tempCurrentProfile = (ToolStripMenuItem)sender;
-                    if (m_CurrentCheckedProfile != null)
-                    {
-                        m_CurrentCheckedProfile.Checked = false;
-                    }
-                    tempCurrentProfile.Checked = true;
-                    m_CurrentCheckedProfile = tempCurrentProfile;
-                }
+                LoadProfile(m_filePaths[index],ProfileName);
             }          
         }
         public void InitializeTooltipsForTransportpar()
@@ -4271,10 +4279,8 @@ SelectionChangedPlaybackEnabled = false;
         }
         public void PreviewBeforeRecording()
         {
-            
             StartRecordingDirectly(true);
         }
-
         private void m_playHeadingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PlayHeading();        
@@ -4449,10 +4455,6 @@ m_MonitorContinuouslyWorker.RunWorkerAsync();
 
         private void m_SwitchProfile_Click(object sender, EventArgs e)
         {
-            //Button btn = (Button)sender;
-            //Point ptLowerLeft = new Point(0, btn.Height);
-            //ptLowerLeft = btn.PointToScreen(ptLowerLeft);
-            //m_SwitchProfileContextMenuStrip.Show(ptLowerLeft);
             ShowSwitchProfileContextMenu();
         }
         private void ShowSwitchProfileContextMenu()
@@ -4463,13 +4465,11 @@ m_MonitorContinuouslyWorker.RunWorkerAsync();
             if (m_CurrentCheckedProfile == null)
             {
                 string[] str = mView.ObiForm.Settings.SettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
-                foreach (ToolStripMenuItem temp in m_ListOfSwitchProfiles)
+                if (m_ListOfSwitchProfiles.ContainsKey(str[0]))
                 {
-                    if (temp.ToString() == str[0])
-                    {
-                        temp.Checked = true;
-                        m_CurrentCheckedProfile = temp;
-                    }
+                    ToolStripMenuItem ProfileSelected = m_ListOfSwitchProfiles[str[0]];
+                    ProfileSelected.Checked = true;
+                    m_CurrentCheckedProfile = ProfileSelected;
                 }
             }
         }
