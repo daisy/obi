@@ -411,9 +411,6 @@
   <data name="&gt;&gt;m_lblProfile2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_cb_Profile2.AccessibleDescription" xml:space="preserve">
-    <value />
-  </data>
   <data name="m_cb_Profile2.AccessibleName" xml:space="preserve">
     <value>Profile 2</value>
   </data>
@@ -441,11 +438,8 @@
   <data name="&gt;&gt;m_cb_Profile2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="m_cb_Profile1.AccessibleDescription" xml:space="preserve">
-    <value />
-  </data>
   <data name="m_cb_Profile1.AccessibleName" xml:space="preserve">
-    <value>Profile 1</value>
+    <value>Profile 1 for U</value>
   </data>
   <data name="m_cb_Profile1.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 46</value>
