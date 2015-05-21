@@ -1277,19 +1277,20 @@ namespace Obi.UserControls
 
         private void m_ToggleProfile_Click(object sender, EventArgs e)
         {
-            string ProfileDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
-            string defaultProfilesDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
-            string[] filePaths = System.IO.Directory.GetFiles(defaultProfilesDirectory, "*.xml");
-            ProfileDirectory = System.IO.Directory.GetParent(Settings_Permanent.GetSettingFilePath()).ToString();
-            defaultProfilesDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
-            if (System.IO.Directory.Exists(defaultProfilesDirectory))
-            {
-                string[] temp = System.IO.Directory.GetFiles(defaultProfilesDirectory, "*.xml");
-                string[] tempFilePaths = new string[filePaths.Length + temp.Length];
-                filePaths.CopyTo(tempFilePaths, 0);
-                temp.CopyTo(tempFilePaths, filePaths.Length);
-                filePaths = tempFilePaths;
-            }
+            //string ProfileDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            //string ProfileDirectory = m_ProjectView.TransportBar.GetPredefinedProfilesDirectory();
+            //string[] filePaths = System.IO.Directory.GetFiles(ProfileDirectory, "*.xml");
+            //ProfileDirectory = m_ProjectView.TransportBar.GetCustomProfilesDirectory();
+            //if (System.IO.Directory.Exists(ProfileDirectory))
+            //{
+            //    string[] temp = System.IO.Directory.GetFiles(ProfileDirectory, "*.xml");
+            //    string[] tempFilePaths = new string[filePaths.Length + temp.Length];
+            //    filePaths.CopyTo(tempFilePaths, 0);
+            //    temp.CopyTo(tempFilePaths, filePaths.Length);
+            //    filePaths = tempFilePaths;
+            //}
+
+            string[] filePaths = m_ProjectView.TransportBar.ProfilesPaths;
              List<string> filePathsList = new List<string>();
             if (filePaths != null && filePaths.Length > 0)
             {
@@ -1314,7 +1315,7 @@ namespace Obi.UserControls
             {
                 int index = filePathsList.IndexOf(ProfileName);
 
-                m_ProjectView.TransportBar.LoadProfile(filePaths[index], ProfileName,false);
+                m_ProjectView.TransportBar.LoadProfile(filePaths[index], ProfileName);
             }
            // UpdateForChangeInObi();
             if (!m_ProjectView.ObiForm.Settings.Audio_AlwaysMonitorRecordingToolBar && m_chkMonitorContinuously.Checked == true)
