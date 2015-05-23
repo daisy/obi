@@ -1110,6 +1110,16 @@ namespace Obi.ProjectView
 
         public void UpdateCursorPosition(double time)
         {
+            if (mProjectView.TransportBar.PreviewBeforeRecordingActive)
+            {
+                ColorFlicker(time);
+            }
+            else if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mProjectView.ColorSettings.BlockBackColor_Selected.Name)
+            {
+                mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+               // m_ColorBackgroundBeforeFlicker.Name = "0";
+            }        
+          
             if (m_ZoomWaveformPanel != null && mProjectView.TransportBar.IsPlayerActive)//@zoomwaveform
             {
                 m_ZoomWaveformPanel.UpdateCursorTime(time);
@@ -1132,6 +1142,33 @@ namespace Obi.ProjectView
              Console.WriteLine(" M - NEW - SIZE " + cursorPositionInContentView);
              if (cursorPositionInContentView < this.Size.Width) EnsureControlVisible(mPlaybackBlock);
              */
+        }
+
+        private void ColorFlicker(double time)
+        {
+            mProjectView.Selection = new NodeSelection(mPlaybackBlock.Node, this);
+            if (m_timeElapsed == 0)
+            {
+                m_timeElapsed = time;
+                m_ColorBackgroundBeforeFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
+            }
+
+            if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == Color.Red)
+            {
+                mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+            }
+            else
+            {
+                mPlaybackBlock.ColorSettings.BlockBackColor_Selected = Color.Red;
+            }
+            //  m_timeElapsed = time;
+
+            if (!mProjectView.TransportBar.IsPlayerActive)
+            {
+                //mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                //m_timeElapsed = 0;
+                //mProjectView.TransportBar.PreviewBeforeRecordingActive = false;
+            }
         }
 
         private void UpdateBlocksLabelInSelectedNodeStrip ()
