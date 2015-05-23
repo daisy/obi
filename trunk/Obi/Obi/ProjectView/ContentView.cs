@@ -1133,7 +1133,7 @@ namespace Obi.ProjectView
                     {
                         mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
                         m_timeElapsed = 0;
-                        mProjectView.TransportBar.PreviewBeforeRecordingActive = false;
+                        //mProjectView.TransportBar.PreviewBeforeRecordingActive = false;
                     }
 
                 }

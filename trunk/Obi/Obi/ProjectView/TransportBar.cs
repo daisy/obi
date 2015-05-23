@@ -3257,6 +3257,7 @@ namespace Obi.ProjectView
                 m_PreviewBeforeRecordingWorker = new System.ComponentModel.BackgroundWorker();
                 m_PreviewBeforeRecordingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
                 {
+                    m_PreviewBeforeRecordingActive = true;
                     Preview(Upto, IsPlayerActive ? UseAudioCursor : UseSelection);
                     int interval = 50;
                     for (int i = 0; i < (PreviewDuration * 2) / interval; i++)
@@ -3272,6 +3273,7 @@ namespace Obi.ProjectView
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
                 {
+                    m_PreviewBeforeRecordingActive = false;
                     if (CurrentState == State.Paused)
                     {
                         if (mResumeRecordingPhrase != null) mResumeRecordingPhrase = null;
@@ -3285,7 +3287,7 @@ namespace Obi.ProjectView
             {
                 StartRecordingDirectly_Internal(false);
             }
-            PreviewBeforeRecordingActive = isPreviewBeforeRecording;
+            
         }
 
         private void StartRecordingDirectly_Internal(bool deleteFollowingPhrases)
@@ -4285,15 +4287,7 @@ SelectionChangedPlaybackEnabled = false;
 
         public bool PreviewBeforeRecordingActive
         {
-            set
-            {
-                m_PreviewBeforeRecordingActive = value;
-            }
-            get
-            {
-                return m_PreviewBeforeRecordingActive;
-
-            }
+            get { return m_PreviewBeforeRecordingActive; }
         }
 
         private void m_playHeadingToolStripMenuItem_Click(object sender, EventArgs e)
