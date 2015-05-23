@@ -1108,61 +1108,31 @@ namespace Obi.ProjectView
         /// </summary>
         public void UnsyncViews () { foreach (Control c in mStripsPanel.Controls) c.Visible = true; }
 
-        public void UpdateCursorPosition ( double time )
+        public void UpdateCursorPosition(double time)
+        {
+            if (m_ZoomWaveformPanel != null && mProjectView.TransportBar.IsPlayerActive)//@zoomwaveform
             {
-                if (mProjectView.TransportBar.PreviewBeforeRecordingActive)
-                {
-                    mProjectView.Selection = new NodeSelection(mPlaybackBlock.Node, this);
-                    if (m_timeElapsed == 0)
-                    {
-                        m_timeElapsed = time;
-                        m_ColorBackgroundBeforeFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
-                    }
-
-                    if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == Color.Red)
-                    {
-                        mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
-                    }
-                    else
-                    {
-                        mPlaybackBlock.ColorSettings.BlockBackColor_Selected = Color.Red;
-                    }
-                  //  m_timeElapsed = time;
-
-                    if (!mProjectView.TransportBar.IsPlayerActive)
-                    {
-                        mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
-                        m_timeElapsed = 0;
-                        //mProjectView.TransportBar.PreviewBeforeRecordingActive = false;
-                    }
-
-                }
-
-
-
-                if (m_ZoomWaveformPanel != null && mProjectView.TransportBar.IsPlayerActive)//@zoomwaveform
-                {
-                    m_ZoomWaveformPanel.UpdateCursorTime(time);
-                    return;
-                }
+                m_ZoomWaveformPanel.UpdateCursorTime(time);
+                return;
+            }
 
             if (PlaybackBlock == null && m_EnableFindPlaybackBlockDuringCursorUpdate && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@singleSection
-                {
+            {
                 m_EnableFindPlaybackBlockDuringCursorUpdate = false;
-                SetPlaybackPhraseAndTime ( mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
-                }
-            if (mPlaybackBlock != null) EnsureCursorVisible ( mPlaybackBlock.UpdateCursorTime ( time ) );
-
-           /* int audioCursorPosition;
-            int beginPosition = 0;
-            int endPosition = 0;
-            int getCursorPosition = GetSelectionOrAudioCursorLocationX(mPlaybackBlock,out audioCursorPosition, out beginPosition,out endPosition);
-            int horizontalSizeLeftInStripPanel = audioCursorPosition - (mStripsPanel.Location.X - this.Location.X);
-            int cursorPositionInContentView = this.Size.Width - horizontalSizeLeftInStripPanel - mVScrollBar.Size.Width;
-            Console.WriteLine(" M - NEW - SIZE " + cursorPositionInContentView);
-            if (cursorPositionInContentView < this.Size.Width) EnsureControlVisible(mPlaybackBlock);
-            */
+                SetPlaybackPhraseAndTime(mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset);
             }
+            if (mPlaybackBlock != null) EnsureCursorVisible(mPlaybackBlock.UpdateCursorTime(time));
+
+            /* int audioCursorPosition;
+             int beginPosition = 0;
+             int endPosition = 0;
+             int getCursorPosition = GetSelectionOrAudioCursorLocationX(mPlaybackBlock,out audioCursorPosition, out beginPosition,out endPosition);
+             int horizontalSizeLeftInStripPanel = audioCursorPosition - (mStripsPanel.Location.X - this.Location.X);
+             int cursorPositionInContentView = this.Size.Width - horizontalSizeLeftInStripPanel - mVScrollBar.Size.Width;
+             Console.WriteLine(" M - NEW - SIZE " + cursorPositionInContentView);
+             if (cursorPositionInContentView < this.Size.Width) EnsureControlVisible(mPlaybackBlock);
+             */
+        }
 
         private void UpdateBlocksLabelInSelectedNodeStrip ()
             {
