@@ -2751,4 +2751,7 @@ Error text: {1}</value>
   <data name="RecordingToolbar_SwitchProfileStatusBar" xml:space="preserve">
     <value>Switched  to {0} Profile</value>
   </data>
+  <data name="Audio_ColorFlickerPreviewBeforeRecording" xml:space="preserve">
+    <value>Highlight label for preview before recording</value>
+  </data>
 </root>
