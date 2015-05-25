@@ -1110,15 +1110,17 @@ namespace Obi.ProjectView
 
         public void UpdateCursorPosition(double time)
         {
-            if (mProjectView.TransportBar.PreviewBeforeRecordingActive)
+            if (mProjectView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording)
             {
-                ColorFlicker(time);
+                if (mProjectView.TransportBar.PreviewBeforeRecordingActive)
+                {
+                    ColorFlicker(time);
+                }
+                else if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mProjectView.ColorSettings.BlockBackColor_Selected.Name)
+                {
+                    mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                }
             }
-            else if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mProjectView.ColorSettings.BlockBackColor_Selected.Name)
-            {
-                mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
-               // m_ColorBackgroundBeforeFlicker.Name = "0";
-            }        
           
             if (m_ZoomWaveformPanel != null && mProjectView.TransportBar.IsPlayerActive)//@zoomwaveform
             {
@@ -1153,13 +1155,13 @@ namespace Obi.ProjectView
                 m_ColorBackgroundBeforeFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
             }
 
-            if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == Color.Red)
+            if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == mProjectView.ObiForm.Settings.ColorSettings.RecordingHighlightPhraseColor)
             {
                 mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
             }
             else
             {
-                mPlaybackBlock.ColorSettings.BlockBackColor_Selected = Color.Red;
+                mPlaybackBlock.ColorSettings.BlockBackColor_Selected = mProjectView.ObiForm.Settings.ColorSettings.RecordingHighlightPhraseColor;
             }
             //  m_timeElapsed = time;
 

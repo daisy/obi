@@ -259,6 +259,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Highlight label for preview before recording.
+        /// </summary>
+        internal static string Audio_ColorFlickerPreviewBeforeRecording {
+            get {
+                return ResourceManager.GetString("Audio_ColorFlickerPreviewBeforeRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to After recording delete subsequent phrases.
         /// </summary>
         internal static string Audio_DeleteFollowingPhrasesOfSectionAfterRecording {

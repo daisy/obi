@@ -109,11 +109,12 @@ namespace Obi
         public bool Project_MinimizeObi;
         public double Audio_CleanupMaxFileSizeInMB;
         public string EncodingFileFormat;
-        // For post Obi 3.7
-        public string Audio_RecordingToolbarProfile1;
-        public string Audio_RecordingToolbarProfile2; 
         [OptionalField]
         public bool Project_RecordingToolbarOpenInPreviousSession;
+        // For post Obi 3.7
+        public string Audio_RecordingToolbarProfile1;
+        public string Audio_RecordingToolbarProfile2;
+        public bool Audio_ColorFlickerPreviewBeforeRecording;
         
 
         // size and point types should be stored in arrays
@@ -309,6 +310,7 @@ namespace Obi
             // For post Obi 3.7
             settings.Audio_RecordingToolbarProfile1 = "Basic";
             settings.Audio_RecordingToolbarProfile2 = "Advance";
+            settings.Audio_ColorFlickerPreviewBeforeRecording = false;
         }
 
         /// <summary>
