@@ -111,12 +111,7 @@ namespace Obi
         public string EncodingFileFormat;
         [OptionalField]
         public bool Project_RecordingToolbarOpenInPreviousSession;
-        // For post Obi 3.7
-        public string Audio_RecordingToolbarProfile1;
-        public string Audio_RecordingToolbarProfile2;
-        public bool Audio_ColorFlickerPreviewBeforeRecording;
         
-
         // size and point types should be stored in arrays
 
         private int[] m_ObiLastLocation;
@@ -195,6 +190,18 @@ namespace Obi
                 m_RecordingToolBarLastLocation[1] = value.Y;
             }
         }
+
+        // For post Obi 3.7
+        [OptionalField]
+        public string Audio_RecordingToolbarProfile1;
+
+        [OptionalField]
+        public string Audio_RecordingToolbarProfile2;
+
+        [OptionalField]
+        public bool Audio_ColorFlickerPreviewBeforeRecording;
+        
+
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
