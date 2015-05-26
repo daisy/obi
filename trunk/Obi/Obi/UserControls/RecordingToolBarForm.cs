@@ -497,7 +497,10 @@ namespace Obi.UserControls
                 m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
                 m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
             }
-            this.Focus();
+            if (m_ProjectView.TransportBar.IsRecorderActive)
+            {
+                this.Focus();
+            }
         }
 
         private void m_recordingToolBarPlayBtn_Click(object sender, EventArgs e)
@@ -513,6 +516,7 @@ namespace Obi.UserControls
                 timer1.Start();
             }
             UpdateButtons();
+            this.Focus();
         }
 
         private void m_recordingToolBarStopBtn_Click(object sender, EventArgs e)
@@ -529,6 +533,7 @@ namespace Obi.UserControls
                 timer1.Stop();
             }
             UpdateButtons();
+            this.Focus();
         }
 
         private void m_recordingToolBarRecordingBtn_Click(object sender, EventArgs e)
@@ -546,12 +551,14 @@ namespace Obi.UserControls
                 timer1.Start();
             }
             UpdateButtons();
+            this.Focus();
         }
 
         private void m_recordingToolBarPrePhraseBtn_Click(object sender, EventArgs e)
         {
             m_TransportBar.PrevPhrase();
             UpdateButtons();
+            this.Focus();
         }
 
         private void m_recordingGoToNextPhraseBtn_Click(object sender, EventArgs e)
@@ -561,6 +568,7 @@ namespace Obi.UserControls
             m_Count = 0;
             timer1.Start();
             UpdateButtons();
+            this.Focus();
         }
 
         private void m_recordingToolBarNextPageBtn_Click(object sender, EventArgs e)
@@ -568,6 +576,7 @@ namespace Obi.UserControls
             m_strStatus = Localizer.Message("RecToolbar_NewPage");
             m_TransportBar.NextPage();
             timer1.Start();
+            this.Focus();
         }
 
         private void m_recordingToolBarNextSectionBtn_Click(object sender, EventArgs e)
@@ -576,6 +585,7 @@ namespace Obi.UserControls
             m_Count = 0;
             m_TransportBar.NextSection();
             UpdateButtons();
+            this.Focus();
         }
 
         private string format(double durationMs)
@@ -650,6 +660,7 @@ namespace Obi.UserControls
             m_strStatus = Localizer.Message("RecToolbar_MarkedTODO");
             m_Count = 0;
             m_TransportBar.MarkTodo();
+            this.Focus();
         }
 
         private void RecordingToolBarForm_Load(object sender, EventArgs e)
@@ -1221,6 +1232,7 @@ namespace Obi.UserControls
         private void m_recordingToolBarElapseBackBtn_Click(object sender, EventArgs e)
         {
             m_TransportBar.FastPlayNormaliseWithLapseBack();
+            this.Focus();
         }
 
 
@@ -1237,6 +1249,7 @@ namespace Obi.UserControls
                 m_ProjectView.SelectPhraseBlockOrStrip(section.PhraseChild(section.PhraseChildCount - 1));
 
             }
+            this.Focus();
         }
 
         private void m_chkMonitorContinuously_CheckedChanged(object sender, EventArgs e)
@@ -1323,6 +1336,7 @@ namespace Obi.UserControls
                 m_chkMonitorContinuously.Checked = false;
             }
             m_StatusLabel.Text = String.Format(Localizer.Message("RecordingToolbar_SwitchProfileStatusBar"), ProfileName);
+            this.Focus();
         }
 
     }
