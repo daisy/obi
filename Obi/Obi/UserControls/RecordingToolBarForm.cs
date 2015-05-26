@@ -261,10 +261,20 @@ namespace Obi.UserControls
 
             m_recordingToolBarRecordingBtn.ToolTipText = Localizer.Message("Transport_StartRecording");
             m_recordingToolBarRecordingBtn.AccessibleName = Localizer.Message("Transport_StartRecording");
+            m_ProjectView.SelectionChanged += new EventHandler(m_ProjectView_SelectionChanged);
            
             
             // if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
             UpdateButtons();
+        }
+
+        void m_ProjectView_SelectionChanged(object sender, EventArgs e)
+        {
+
+            if (m_ProjectView != null && m_ProjectView.Selection != null)
+            {
+                m_StatusLabel.Text = m_ProjectView.Selection.ToString();
+            }
         }
 
         public Size RecordingToolBarPlayBtn
@@ -317,25 +327,20 @@ namespace Obi.UserControls
 
         public void m_TransportBar_EnabledChanged(object sender, EventArgs e)
         {
-            if (!m_TransportBar.Enabled)
-            {
-                m_recordingToolBarElapseBackBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarPlayBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarStopBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarRecordingBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarPrePhraseBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarNextPageBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.Enabled;
-                m_recordingToolBarSectionEndBtn.Enabled = m_TransportBar.Enabled;
-                m_chkMonitorContinuously.Enabled = m_TransportBar.Enabled && m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite && m_ProjectView.Presentation != null;
-                m_Enlarge.Enabled = m_TransportBar.Enabled;
-                m_Reduce.Enabled = m_TransportBar.Enabled;
-            }
-            else
-            {
-                this.Enabled = m_TransportBar.Enabled;
-            }
+
+            m_recordingToolBarElapseBackBtn.Enabled = m_TransportBar.Enabled;
+            m_recordingToolBarPlayBtn.Enabled = m_TransportBar.Enabled;
+            m_recordingToolBarStopBtn.Enabled = m_TransportBar.Enabled;
+            m_recordingToolBarRecordingBtn.Enabled = m_TransportBar.Enabled;
+            m_recordingToolBarPrePhraseBtn.Enabled = m_TransportBar.Enabled;
+            m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.Enabled;
+            m_recordingToolBarNextPageBtn.Enabled = m_TransportBar.Enabled;
+            m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.Enabled;
+            m_recordingToolBarSectionEndBtn.Enabled = m_TransportBar.Enabled;
+            m_chkMonitorContinuously.Enabled = m_TransportBar.Enabled && m_ProjectView.ObiForm.Settings.Audio_AllowOverwrite && m_ProjectView.Presentation != null;
+            m_Enlarge.Enabled = m_TransportBar.Enabled;
+            m_Reduce.Enabled = m_TransportBar.Enabled;
+
             if (!this.Enabled)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), "");
             m_StatusLabel.Text = "";
@@ -497,7 +502,7 @@ namespace Obi.UserControls
                 m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
                 m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
             }
-            if (m_ProjectView.TransportBar.IsRecorderActive)
+            if (m_ProjectView.TransportBar.IsRecorderActive && !m_ProjectView.TransportBar.IsRecorderActive)
             {
                 this.Focus();
             }
@@ -641,7 +646,7 @@ namespace Obi.UserControls
 !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) &&
 !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring))
             {
-                m_StatusLabel.Text = Localizer.Message("Stopped");
+                //m_StatusLabel.Text = Localizer.Message("Stopped");
                 timer1.Stop();
             }
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
