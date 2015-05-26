@@ -1939,6 +1939,7 @@ namespace Obi.Dialogs
                 {
                     MessageBox.Show(ex.ToString());
                 }
+                mTransportBar.ShowSwitchProfileContextMenu();
             }//if (m_rdb_Preferences.Checked)
             else if (m_rdb_KeyboardShortcuts.Checked)
             {

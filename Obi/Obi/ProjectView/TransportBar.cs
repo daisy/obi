@@ -4356,6 +4356,9 @@ SelectionChangedPlaybackEnabled = false;
         {
             if (m_btnSwitchProfile.Enabled)
             {
+                Point pt = new Point(0, m_btnSwitchProfile.Height);
+                pt = m_btnSwitchProfile.PointToScreen(pt);
+                m_SwitchProfileContextMenuStrip.Show(pt);
                 ShowSwitchProfileContextMenu();
                 return true;
             }
@@ -4464,21 +4467,29 @@ m_MonitorContinuouslyWorker.RunWorkerAsync();
 
         private void m_SwitchProfile_Click(object sender, EventArgs e)
         {
-            ShowSwitchProfileContextMenu();
-        }
-        private void ShowSwitchProfileContextMenu()
-        {
             Point pt = new Point(0, m_btnSwitchProfile.Height);
             pt = m_btnSwitchProfile.PointToScreen(pt);
             m_SwitchProfileContextMenuStrip.Show(pt);
-            if (m_CurrentCheckedProfile == null)
+            ShowSwitchProfileContextMenu();
+        }
+        public void ShowSwitchProfileContextMenu()
+        {
+
+            string[] str = mView.ObiForm.Settings.SettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
+            if (m_CurrentCheckedProfile == null || m_CurrentCheckedProfile.ToString() != str[0])
             {
-                string[] str = mView.ObiForm.Settings.SettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
                 if (m_ListOfSwitchProfiles.ContainsKey(str[0]))
                 {
+                    if (m_CurrentCheckedProfile != null)
+                    {
+                        m_CurrentCheckedProfile.Checked = false;
+                    }
                     ToolStripMenuItem ProfileSelected = m_ListOfSwitchProfiles[str[0]];
                     ProfileSelected.Checked = true;
                     m_CurrentCheckedProfile = ProfileSelected;
+                    mTransportBarTooltip.SetToolTip(m_btnSwitchProfile, Localizer.Message("Transport_SwitchProfile") + "\n" + str[0] + "(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString()) + ")");
+                    m_btnSwitchProfile.AccessibleName = Localizer.Message("Transport_SwitchProfile") + str[0] + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value.ToString());
+
                 }
             }
         }
