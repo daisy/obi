@@ -49,6 +49,7 @@ namespace Obi.ProjectView
         // Audio of the block has changed: update the label and the width to accomodate the new audio.
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
         {
+            AssignZoomFactorForLargeWaveformsToFit();
             if (m_IsAudioScaleIndependentOfStrip)//@zoomwaveform
             {
                 SetWaveformForZoom(e.Node);
@@ -244,6 +245,7 @@ public void SetWaveformForZoom(PhraseNode node)
                     {
                     w = MaxWaveformWidth;
                     }
+                    Console.WriteLine("Waveform width: " + w + " content view width: " + base.Strip.ContentView.Width) ;
                 return w;
             }
         }
@@ -412,11 +414,12 @@ public void SetWaveformForZoom(PhraseNode node)
         {
             if (mNode != null && mNode is PhraseNode)
             {
-                int defaultWidth = Convert.ToInt32(((PhraseNode)mNode).Duration * 0.01F * 1.2F);
+                int defaultWidth = Convert.ToInt32(((PhraseNode)mNode).Duration * 0.01F );
+                Console.WriteLine("Content view width : " + this.Strip.ContentView.Width + " Default width : " + defaultWidth);
                 if (base.Strip.ContentView.Width < defaultWidth)
                 {
                     m_IsAudioScaleIndependentOfStrip = true;
-                    m_AudioScaleIndependentOfStrip = (float)(base.Strip.ContentView.Width / ((PhraseNode)mNode).Duration);
+                    m_AudioScaleIndependentOfStrip = (float) ( (this.Strip.ContentView.Width / ((PhraseNode)mNode).Duration) / 1.2F);
                     Console.WriteLine("Audio scale : " + m_AudioScaleIndependentOfStrip);
                 }
             }
