@@ -30,6 +30,7 @@ namespace Obi.ProjectView
             : base(node, strip)
         {
             InitializeComponent();
+            AssignZoomFactorForLargeWaveformsToFit();
             m_ShowWaveform = showWaveform;
             SetWaveform(Node as PhraseNode);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
@@ -406,7 +407,21 @@ public void SetWaveformForZoom(PhraseNode node)
            
             }
         }
-        
+
+        private void AssignZoomFactorForLargeWaveformsToFit()
+        {
+            if (mNode != null && mNode is PhraseNode)
+            {
+                int defaultWidth = Convert.ToInt32(((PhraseNode)mNode).Duration * 0.01F * 1.2F);
+                if (base.Strip.ContentView.Width < defaultWidth)
+                {
+                    m_IsAudioScaleIndependentOfStrip = true;
+                    m_AudioScaleIndependentOfStrip = (float)(base.Strip.ContentView.Width / ((PhraseNode)mNode).Duration);
+                    Console.WriteLine("Audio scale : " + m_AudioScaleIndependentOfStrip);
+                }
+            }
+        }
+
 
     }
 }
