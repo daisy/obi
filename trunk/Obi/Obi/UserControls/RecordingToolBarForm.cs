@@ -382,6 +382,19 @@ namespace Obi.UserControls
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), m_TransportBar.RecordingSection.Label.ToString());
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing && m_TransportBar.PlaybackPhrase != null && m_TransportBar.PlaybackPhrase.IsRooted)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), m_TransportBar.PlaybackPhrase.ParentAs<SectionNode>().Label.ToString());
+            else if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection.Node != null && m_ProjectView.Selection.Node.Parent != null)
+            {
+                if (m_ProjectView.Selection.Node is SectionNode)
+                {
+                    SectionNode tempNode = (SectionNode)m_ProjectView.Selection.Node;
+                    this.Text = String.Format(Localizer.Message("RecToolbar_Title"), tempNode.Label);
+                }
+                else if (m_ProjectView.Selection.Node.Parent is SectionNode)
+                {
+                    SectionNode tempNode = (SectionNode)m_ProjectView.Selection.Node.Parent;
+                    this.Text = String.Format(Localizer.Message("RecToolbar_Title"), tempNode.Label);
+                }
+            }
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
             {
                 m_recordingToolBarPlayBtn.Image = m_PauseImg;
