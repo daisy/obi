@@ -202,18 +202,13 @@ namespace Obi.Dialogs
                 MessageBox.Show(ex.ToString());
             }
 
-            if(m_cbOperation.SelectedIndex == 0)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_NudgeTimeMs);
-            if(m_cbOperation.SelectedIndex == 1)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_PreviewDuration);
-            if (m_cbOperation.SelectedIndex == 2)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_ElapseBackTimeInMilliseconds);
-            if (m_cbOperation.SelectedIndex == 3)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_DefaultLeadingSilence);
-            if (m_cbOperation.SelectedIndex == 4)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_DefaultThreshold);
-            if (m_cbOperation.SelectedIndex == 5)
-                m_OperationDurationUpDown.Value = (decimal)(mSettings.Audio_DefaultGap);
+            m_Nudge = (int)(mSettings.Audio_NudgeTimeMs);
+            m_Preview = (int)(mSettings.Audio_PreviewDuration);
+            m_Elapse = (int)(mSettings.Audio_ElapseBackTimeInMilliseconds);
+            m_DefaultLeadingSilence = (double)(mSettings.Audio_DefaultLeadingSilence);
+            m_DefaultThreshold = (double)(mSettings.Audio_DefaultThreshold);
+            m_DefaultGap = (double)(mSettings.Audio_DefaultGap);
+
             mNoiseLevelComboBox.SelectedIndex =
                 mSettings.Audio_NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Low ? 0 :
                 mSettings.Audio_NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
@@ -442,16 +437,16 @@ namespace Obi.Dialogs
             }
 
         // Update audio settings
-        private bool UpdateAudioSettings ()
+        private bool UpdateAudioSettings()
         {
             AudioRecorder recorder = mTransportBar.Recorder;
             AudioPlayer player = mTransportBar.AudioPlayer;
-                 
-          //  try
-                {
+
+            //  try
+            {
                 //  mTransportBar.AudioPlayer.SetOutputDevice( mForm, ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name );  avn
                 //  mTransportBar.Recorder.InputDevice = (InputDevice)mInputDeviceCombo.SelectedItem;  
-           
+
                 foreach (InputDevice inputDev in recorder.InputDevices)
                 {
                     if (mInputDeviceCombo.SelectedItem != null && mInputDeviceCombo.SelectedItem.ToString() == inputDev.Name)
@@ -466,55 +461,56 @@ namespace Obi.Dialogs
                     {
                         mTransportBar.AudioPlayer.SetOutputDevice(mForm, (outputDev.Name));
                         mSettings.Audio_LastOutputDevice = outputDev.Name;
-                    }                 
-                }
-              //  mSettings.LastInputDevice = ((InputDevice)mInputDeviceCombo.SelectedItem).Name; 
-              //  mSettings.LastOutputDevice = ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name;
-               
-                }
-                
-         /*   catch (System.Exception ex)
-                {
-                MessageBox.Show ( ex.ToString () );
-                return false;
-                }*/
-            if (mCanChangeAudioSettings)
-                {
-                mSettings.Audio_Channels = mChannelsCombo.SelectedItem.ToString () == Localizer.Message ( "mono" ) ? 1 : 2;
-                mSettings.Audio_SampleRate = Convert.ToInt32 ( mSampleRateCombo.SelectedItem );
-                if (mPresentation != null)
-                    {
-                        if (!mPresentation.UpdatePresentationAudioProperties(mSettings.Audio_Channels, mSettings.Audio_BitDepth, mSettings.Audio_SampleRate))
-                        {
-                            MessageBox.Show (Localizer.Message("Preferences_UnableToUpdateProjectAudioFormat"), Localizer.Message("Caption_Error") ,MessageBoxButtons.OK , MessageBoxIcon.Error );
-                        }
                     }
                 }
+                //  mSettings.LastInputDevice = ((InputDevice)mInputDeviceCombo.SelectedItem).Name; 
+                //  mSettings.LastOutputDevice = ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name;
 
-                string selectedTTSVoice = GetTTSVoiceNameFromTTSCombo();
-            if (!string.IsNullOrEmpty(selectedTTSVoice)) mSettings.Audio_TTSVoice = selectedTTSVoice ;
-            
+            }
+
+            /*   catch (System.Exception ex)
+                   {
+                   MessageBox.Show ( ex.ToString () );
+                   return false;
+                   }*/
+            if (mCanChangeAudioSettings)
+            {
+                mSettings.Audio_Channels = mChannelsCombo.SelectedItem.ToString() == Localizer.Message("mono") ? 1 : 2;
+                mSettings.Audio_SampleRate = Convert.ToInt32(mSampleRateCombo.SelectedItem);
+                if (mPresentation != null)
+                {
+                    if (!mPresentation.UpdatePresentationAudioProperties(mSettings.Audio_Channels, mSettings.Audio_BitDepth, mSettings.Audio_SampleRate))
+                    {
+                        MessageBox.Show(Localizer.Message("Preferences_UnableToUpdateProjectAudioFormat"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+            string selectedTTSVoice = GetTTSVoiceNameFromTTSCombo();
+            if (!string.IsNullOrEmpty(selectedTTSVoice)) mSettings.Audio_TTSVoice = selectedTTSVoice;
+
             mSettings.Audio_NoiseLevel = mNoiseLevelComboBox.SelectedIndex == 0 ? AudioLib.VuMeter.NoiseLevelSelection.Low :
                 mNoiseLevelComboBox.SelectedIndex == 1 ? AudioLib.VuMeter.NoiseLevelSelection.Medium : AudioLib.VuMeter.NoiseLevelSelection.High;
-                     
+
             try
-                {
-                  mSettings.Audio_NudgeTimeMs = (int)m_Nudge;
-                  mSettings.Audio_PreviewDuration = (int)m_Preview;
-                  mSettings.Audio_ElapseBackTimeInMilliseconds = (int)m_Elapse;
-                  mSettings.Audio_DefaultLeadingSilence = (decimal)m_DefaultLeadingSilence;
-                  mSettings.Audio_DefaultThreshold = (decimal)m_DefaultThreshold;
-                  mSettings.Audio_DefaultGap = (decimal)m_DefaultGap;
-                  mSettings.Audio_CleanupMaxFileSizeInMB = m_Audio_CleanupMaxFileSizeInMB;
-                 }
-            catch (System.Exception ex)
-                {
-                MessageBox.Show ( ex.ToString () );
-                return false;
-                }
-                VerifyChangeInLoadedSettings();
-            return true;
+            {
+                mSettings.Audio_NudgeTimeMs = (int)m_Nudge;
+                mSettings.Audio_PreviewDuration = (int)m_Preview;
+                mSettings.Audio_ElapseBackTimeInMilliseconds = (int)m_Elapse;
+                mSettings.Audio_DefaultLeadingSilence = (decimal)m_DefaultLeadingSilence;
+                mSettings.Audio_DefaultThreshold = (decimal)m_DefaultThreshold;
+                mSettings.Audio_DefaultGap = (decimal)m_DefaultGap;
+                mSettings.Audio_CleanupMaxFileSizeInMB = m_Audio_CleanupMaxFileSizeInMB;
             }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return false;
+            }
+
+            VerifyChangeInLoadedSettings();
+            return true;
+        }
 
         private string GetTTSVoiceNameFromTTSCombo()
         {
@@ -782,38 +778,38 @@ namespace Obi.Dialogs
         private void m_cbOperation_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(m_cbOperation.SelectedIndex == 0)
-            {       
-                m_OperationDurationUpDown.Value = (int)mSettings.Audio_NudgeTimeMs;
+            { 
+                m_OperationDurationUpDown.Value = m_Nudge;
                 m_OperationDurationUpDown.Increment = 20;
                 label3.Visible = true;
             }
             if(m_cbOperation.SelectedIndex == 1)
             {
-                m_OperationDurationUpDown.Value = mSettings.Audio_PreviewDuration;
+                m_OperationDurationUpDown.Value = m_Preview;
                 m_OperationDurationUpDown.Increment = 100;
                 label3.Visible = true;
             }
             if(m_cbOperation.SelectedIndex == 2)
             {
-                m_OperationDurationUpDown.Value = mSettings.Audio_ElapseBackTimeInMilliseconds;
+                m_OperationDurationUpDown.Value = m_Elapse;
                 m_OperationDurationUpDown.Increment = 150;
                 label3.Visible = true;
             }
             if (m_cbOperation.SelectedIndex == 3)
             {
-                m_OperationDurationUpDown.Value = mSettings.Audio_DefaultLeadingSilence;
+                m_OperationDurationUpDown.Value = (decimal)m_DefaultLeadingSilence;
                 m_OperationDurationUpDown.Increment = 10;
                 label3.Visible = true;
             }
             if (m_cbOperation.SelectedIndex == 4)
             {
-                m_OperationDurationUpDown.Value = mSettings.Audio_DefaultThreshold;
+                m_OperationDurationUpDown.Value = (decimal)m_DefaultThreshold;
                 m_OperationDurationUpDown.Increment = 25;
                 label3.Visible = false;
             }
             if (m_cbOperation.SelectedIndex == 5)
             {
-                m_OperationDurationUpDown.Value = mSettings.Audio_DefaultGap;
+                m_OperationDurationUpDown.Value = (decimal)m_DefaultGap;
                 m_OperationDurationUpDown.Increment = 25;
                 label3.Visible = true;
             }
