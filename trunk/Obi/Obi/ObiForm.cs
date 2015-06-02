@@ -3228,7 +3228,17 @@ ref string exportDirectoryEPUB3)
                     if (mSettings.Project_SaveObiLocationAndSize)
                     {
                         this.StartPosition = FormStartPosition.Manual;
-                        this.Location = mSettings.ObiLastLocation;
+                        Rectangle screenArea = SystemInformation.WorkingArea;
+                        if ((mSettings.ObiLastLocation.X > (screenArea.Width - this.Width / 4) || mSettings.ObiLastLocation.Y > (screenArea.Height - this.Height / 4)) ||
+                             ((mSettings.ObiLastLocation.X + this.Width) < (this.Width / 4) || (mSettings.ObiLastLocation.Y + this.Height) < (this.Height / 4)))
+                        {
+
+                            mSettings.ObiLastLocation = this.Location;
+                        }
+                        else
+                        {
+                            this.Location = mSettings.ObiLastLocation;
+                        }
                     }
                     InitializeKeyboardShortcuts(true);
                     InitializeEventHandlers();
