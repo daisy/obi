@@ -51,6 +51,8 @@ namespace Obi.Dialogs
             this.m_chkChangePageNumber = new System.Windows.Forms.CheckBox();
             this.m_lbl_ReferredNote = new System.Windows.Forms.Label();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_lblCurrentCursorPosition = new System.Windows.Forms.Label();
+            this.m_txtCurrentCursorPosition = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -184,12 +186,24 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
+            // m_lblCurrentCursorPosition
+            // 
+            resources.ApplyResources(this.m_lblCurrentCursorPosition, "m_lblCurrentCursorPosition");
+            this.m_lblCurrentCursorPosition.Name = "m_lblCurrentCursorPosition";
+            // 
+            // m_txtCurrentCursorPosition
+            // 
+            resources.ApplyResources(this.m_txtCurrentCursorPosition, "m_txtCurrentCursorPosition");
+            this.m_txtCurrentCursorPosition.Name = "m_txtCurrentCursorPosition";
+            // 
             // PhraseProperties
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
+            this.Controls.Add(this.m_txtCurrentCursorPosition);
+            this.Controls.Add(this.m_lblCurrentCursorPosition);
             this.Controls.Add(this.m_lbl_ReferredNote);
             this.Controls.Add(this.m_chkChangePageNumber);
             this.Controls.Add(this.m_txtPageNumberDetails);
@@ -245,5 +259,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_chkChangePageNumber;
         private System.Windows.Forms.Label m_lbl_ReferredNote;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.Label m_lblCurrentCursorPosition;
+        private System.Windows.Forms.TextBox m_txtCurrentCursorPosition;
     }
 }

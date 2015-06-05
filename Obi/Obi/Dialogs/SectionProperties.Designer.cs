@@ -43,6 +43,8 @@ namespace Obi.Dialogs
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_lbParentsList = new System.Windows.Forms.ListBox();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_lblSectionTimePosition = new System.Windows.Forms.Label();
+            this.m_txtSectionTimePosition = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -131,12 +133,25 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
+            // m_lblSectionTimePosition
+            // 
+            resources.ApplyResources(this.m_lblSectionTimePosition, "m_lblSectionTimePosition");
+            this.m_lblSectionTimePosition.Name = "m_lblSectionTimePosition";
+            // 
+            // m_txtSectionTimePosition
+            // 
+            resources.ApplyResources(this.m_txtSectionTimePosition, "m_txtSectionTimePosition");
+            this.m_txtSectionTimePosition.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.m_txtSectionTimePosition.Name = "m_txtSectionTimePosition";
+            // 
             // SectionProperties
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
+            this.Controls.Add(this.m_txtSectionTimePosition);
+            this.Controls.Add(this.m_lblSectionTimePosition);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.m_chkUsed);
             this.Controls.Add(this.m_btnCancel);
@@ -177,5 +192,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListBox m_lbParentsList;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.Label m_lblSectionTimePosition;
+        private System.Windows.Forms.TextBox m_txtSectionTimePosition;
     }
 }
