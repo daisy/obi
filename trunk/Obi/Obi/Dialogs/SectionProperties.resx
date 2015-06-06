@@ -477,6 +477,27 @@
   <data name="&gt;&gt;m_chkUsed.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
+    <value>Ancestor sections:</value>
+  </data>
+  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 22</value>
+  </data>
+  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>359, 82</value>
+  </data>
+  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
   <data name="&gt;&gt;m_lbParentsList.Name" xml:space="preserve">
     <value>m_lbParentsList</value>
   </data>
@@ -513,39 +534,6 @@
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>Ancestor sections:</value>
-  </data>
-  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 22</value>
-  </data>
-  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>359, 82</value>
-  </data>
-  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;m_lbParentsList.Name" xml:space="preserve">
-    <value>m_lbParentsList</value>
-  </data>
-  <data name="&gt;&gt;m_lbParentsList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_lbParentsList.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;m_lbParentsList.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
@@ -581,6 +569,9 @@
   </data>
   <data name="m_txtSectionTimePosition.AccessibleName" xml:space="preserve">
     <value>Section Time Position</value>
+  </data>
+  <data name="m_txtSectionTimePosition.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="m_txtSectionTimePosition.Location" type="System.Drawing.Point, System.Drawing">
     <value>147, 76</value>
