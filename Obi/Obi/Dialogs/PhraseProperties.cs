@@ -14,6 +14,7 @@ namespace Obi.Dialogs
         private EmptyNode mNode;                // the node to show the information for.
         private ProjectView.ProjectView mView;  // the current view.
         private bool m_IsSetCustomClass;
+        private double m_TotalCursorTime;
         
 
         /// <summary>
@@ -87,28 +88,66 @@ namespace Obi.Dialogs
 
 
         // Fill out the fields when the form loads.
-        private void PhraseProperties_Load ( object sender, EventArgs e )
+        private void PhraseProperties_Load(object sender, EventArgs e)
+        {
+            m_txtParentSection.Text = mNode.AncestorAs<SectionNode>().Label;
+            m_txtLocationInsideSection.Text = string.Format(Localizer.Message("node_position"),
+                mNode.Index + 1, mNode.ParentAs<ObiNode>().PhraseChildCount);
+            for (SectionNode parent = mNode.AncestorAs<SectionNode>(); parent != null; parent = parent.ParentAs<SectionNode>())
             {
-            m_txtParentSection.Text = mNode.AncestorAs<SectionNode> ().Label;
-            m_txtLocationInsideSection.Text = string.Format ( Localizer.Message ( "node_position" ),
-                mNode.Index + 1, mNode.ParentAs<ObiNode> ().PhraseChildCount );
-            for (SectionNode parent = mNode.AncestorAs<SectionNode> (); parent != null; parent = parent.ParentAs<SectionNode> ())
+                m_lbParentsList.Items.Insert(0, string.Format(Localizer.Message("section_level"),
+                    parent.Label, parent.Level));
+            }
+            m_txtTimeLength.Text = Program.FormatDuration_Long(mNode.Duration);
+            // SectionNode section = mView.Selection.Node.ParentAs<SectionNode>();
+
+            if (mView != null && mView.Selection != null && mView.Selection.Node is PhraseNode)
+            {
+                PhraseNode phraseNode = (PhraseNode)mView.Selection.Node;
+
+                if (mView.Selection is AudioSelection)
                 {
-                m_lbParentsList.Items.Insert ( 0, string.Format ( Localizer.Message ( "section_level" ),
-                    parent.Label, parent.Level ) );
+                    if (((AudioSelection)mView.Selection).AudioRange != null && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                    {
+                        m_TotalCursorTime += ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                        if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && phraseNode.Parent == phraseNode.PrecedingNode.Parent)
+                        {
+                            CalculateCursorTime((PhraseNode) phraseNode.PrecedingNode);
+                        }
+                    }
                 }
-            m_txtTimeLength.Text = Program.FormatDuration_Long ( mNode.Duration );
-            if (mView.CanAssignHeadingRole || mNode.Role_ == EmptyNode.Role.Heading) m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_HEADING );
-            if (mView.CanAssignARole || mNode.Role_ == EmptyNode.Role.Page ) m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_PAGE );
-            if ( mView.CanAssignPlainRole || mNode.Role_ == EmptyNode.Role.Plain)  m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_PLAIN );
-            if ( mView.CanAssignSilenceRole || mNode.Role_ == EmptyNode.Role.Silence)  m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_SILENCE );
+                else
+                {
+                    CalculateCursorTime(phraseNode);
+                }
+
+                if (phraseNode.Parent is SectionNode)
+                {
+                    if (((SectionNode)phraseNode.Parent).PrecedingSection != null)
+                    {
+                        CalculateSectionTime(((SectionNode)phraseNode.Parent).PrecedingSection);
+                    }
+                }
+
+                //SectionNode secNode = (SectionNode)mView.Selection.Node;
+                //if (secNode != null)
+                //{
+                //    CalculateCursorTime((SectionNode)secNode.PrecedingNode);
+                //}
+            }
+            // m_txtCurrentCursorPosition.Text = mView.TransportBar.CalculateTimeElapsedInSectionForProperties().ToString();
+            m_txtCurrentCursorPosition.Text = Program.FormatDuration_Long(m_TotalCursorTime);
+            if (mView.CanAssignHeadingRole || mNode.Role_ == EmptyNode.Role.Heading) m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_HEADING);
+            if (mView.CanAssignARole || mNode.Role_ == EmptyNode.Role.Page) m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_PAGE);
+            if (mView.CanAssignPlainRole || mNode.Role_ == EmptyNode.Role.Plain) m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_PLAIN);
+            if (mView.CanAssignSilenceRole || mNode.Role_ == EmptyNode.Role.Silence) m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_SILENCE);
             if (mView.CanAssignAnchorRole || mNode.Role_ == EmptyNode.Role.Anchor) m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_ANCHOR);
-            if ( mView.CanAssignARole ) m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_CUSTOM );
-            
-            m_comboPhraseRole.SelectedItem = EmptyNode.LocalizedRoleFor ( mNode.Role_ );
-            
+            if (mView.CanAssignARole) m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_CUSTOM);
+
+            m_comboPhraseRole.SelectedItem = EmptyNode.LocalizedRoleFor(mNode.Role_);
+
             // load custom class combobox
-            foreach (string customType in mView.Presentation.CustomClasses) m_comboCustomClassName.Items.Add ( customType );
+            foreach (string customType in mView.Presentation.CustomClasses) m_comboCustomClassName.Items.Add(customType);
 
             m_comboCustomClassName.Text = mNode.Role_ == EmptyNode.Role.Custom ? mNode.CustomRole : "";
             m_chkUsed.Checked = mNode.Used;
@@ -117,9 +156,9 @@ namespace Obi.Dialogs
             if (mNode.Role_ == EmptyNode.Role.Page)
             {
                 m_lblPageNumberDetails.Visible = true;
-                m_txtPageNumberDetails.AccessibleName = m_lblPageNumberDetails.Text.Replace("&","");
+                m_txtPageNumberDetails.AccessibleName = m_lblPageNumberDetails.Text.Replace("&", "");
                 m_txtPageNumberDetails.Visible = true;
-                m_txtPageNumberDetails.Text = mNode.PageNumber.Kind.ToString () + ", #" + mNode.PageNumber.ToString ();
+                m_txtPageNumberDetails.Text = mNode.PageNumber.Kind.ToString() + ", #" + mNode.PageNumber.ToString();
                 m_chkChangePageNumber.Visible = true;
             }
 
@@ -128,12 +167,31 @@ namespace Obi.Dialogs
                 m_lbl_ReferredNote.Visible = true;
                 m_txtPageNumberDetails.AccessibleName = m_lbl_ReferredNote.Text.Replace("&", "");
                 m_txtPageNumberDetails.Visible = true;
-                m_txtPageNumberDetails.Text = mNode.AssociatedNode!= null? mNode.AssociatedNode.ParentAs<SectionNode>().Label + ", " + mNode.AssociatedNode.ToString(): "?";
+                m_txtPageNumberDetails.Text = mNode.AssociatedNode != null ? mNode.AssociatedNode.ParentAs<SectionNode>().Label + ", " + mNode.AssociatedNode.ToString() : "?";
             }
 
-            EnableCustomClassField ();
-            if (m_IsSetCustomClass) SetCustomClassOnLoad ();
-                        }
+            EnableCustomClassField();
+            if (m_IsSetCustomClass) SetCustomClassOnLoad();
+        }
+
+        private void CalculateCursorTime(PhraseNode phraseNode)
+        {
+            m_TotalCursorTime += phraseNode.Duration;
+            if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && (phraseNode.PrecedingNode.Parent == phraseNode.Parent))
+            {
+                CalculateCursorTime((PhraseNode) phraseNode.PrecedingNode);
+            }
+
+        }
+        private void CalculateSectionTime(SectionNode secNode)
+        {
+
+            m_TotalCursorTime += secNode.Duration;
+            if (secNode.PrecedingSection != null && secNode.PrecedingSection is SectionNode)
+            {
+                CalculateSectionTime((SectionNode)secNode.PrecedingSection);
+            }
+        }
 
         // Turn the custom class field on/off depending on the role (i.e. turned on only for custom classes.)
         private void EnableCustomClassField ()
