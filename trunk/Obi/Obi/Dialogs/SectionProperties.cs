@@ -12,6 +12,7 @@ namespace Obi.Dialogs
     {
         private SectionNode mNode;              // section node being described
         private ProjectView.ProjectView mView;  // current view
+        private double m_TotalSectionTime;
 
  
         /// <summary>
@@ -83,6 +84,25 @@ namespace Obi.Dialogs
             m_txtTimeLength.Text = Program.FormatDuration_Long(mNode.Duration);
             m_txtPhraseCount.Text = mNode.PhraseChildCount.ToString();
             m_chkUsed.Checked = mNode.Used;
+
+            if (mView != null && mView.Selection != null && mView.Selection.Node is SectionNode)
+            {
+                SectionNode secNode = (SectionNode)mView.Selection.Node;
+                if (secNode != null && secNode.PrecedingNode != null && secNode.PrecedingSection is SectionNode)
+                {
+                    CalculateSectionTime((SectionNode)secNode.PrecedingSection);
+                }
+            }
+            m_txtSectionTimePosition.Text = Program.FormatDuration_Long(m_TotalSectionTime);
+        }
+        private void CalculateSectionTime(SectionNode secNode)
+        {
+
+            m_TotalSectionTime += secNode.Duration;
+            if (secNode.PrecedingNode != null && secNode.PrecedingSection is SectionNode)
+            {
+                CalculateSectionTime((SectionNode)secNode.PrecedingSection);
+            }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
