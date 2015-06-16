@@ -3267,18 +3267,27 @@ namespace Obi.ProjectView
                 m_PreviewBeforeRecordingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
                 {
                     m_PreviewBeforeRecordingActive = true;
-                    Preview(Upto, IsPlayerActive ? UseAudioCursor : UseSelection);
-                    int interval = 50;
-                    for (int i = 0; i < (PreviewDuration * 2) / interval; i++)
+
+                    double time = IsPlayerActive ? mCurrentPlaylist.CurrentTimeInAsset :
+                            mView.Selection is AudioSelection ?
+                            (((AudioSelection)mView.Selection).AudioRange.HasCursor ? ((AudioSelection)mView.Selection).AudioRange.CursorTime : ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime) :
+                            -1;
+                    if (time > 0)
                     {
-                        if (mCurrentPlaylist is PreviewPlaylist && mCurrentPlaylist.State == AudioLib.AudioPlayer.State.Paused && ((PreviewPlaylist)mCurrentPlaylist).IsPreviewComplete)
+                        Preview(Upto, IsPlayerActive ? UseAudioCursor : UseSelection);
+                        int interval = 50;
+                        for (int i = 0; i < (PreviewDuration * 2) / interval; i++)
                         {
-                            //System.Media.SystemSounds.Asterisk.Play();
-                            Console.WriteLine(i);
-                            break;
+                            if (mCurrentPlaylist is PreviewPlaylist && mCurrentPlaylist.State == AudioLib.AudioPlayer.State.Paused && ((PreviewPlaylist)mCurrentPlaylist).IsPreviewComplete)
+                            {
+                                //System.Media.SystemSounds.Asterisk.Play();
+                                Console.WriteLine(i);
+                                break;
+                            }
+                            Thread.Sleep(interval);
                         }
-                        Thread.Sleep(interval);
                     }
+
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
                 {
