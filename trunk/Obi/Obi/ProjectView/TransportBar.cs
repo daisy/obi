@@ -1986,6 +1986,15 @@ namespace Obi.ProjectView
                     command.ChildCommands.Insert(command.ChildCommands.Count, SplitCommand);
                     isPhraseSplit = true;
                 }
+                else if (SplitCommand == null && mView.ObiForm.Settings.Audio_AllowOverwrite
+                    && CurrentState == State.Paused && mCurrentPlaylist.CurrentTimeInAsset == 0)
+                {
+                    // split does not work if the pause position is at 0.0s.
+                    // Therefore, if we are in overwrite recording mode,  we need to move index to the selected phrase position, to ensure that the effect is like splitting at 0 position
+                    mRecordingInitPhraseIndex = node.Index;
+                    Console.WriteLine("Pause position was at 0");
+                }
+
                                     if (mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor && SplitCommand != null)
                                         {
                                         command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.Node.DeleteWithOffset ( mView, node, 1 ) );
