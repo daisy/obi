@@ -5011,7 +5011,7 @@ for (int j = 0;
             SaveFileDialog saveDialog = new SaveFileDialog();
             if (!System.IO.Directory.Exists(audioFileExportDirectory)) System.IO.Directory.CreateDirectory(audioFileExportDirectory);
             saveDialog.InitialDirectory= audioFileExportDirectory;
-            saveDialog.FileName = GetFileNameForAudioExport(nodeSelected);
+            saveDialog.FileName = Program.SafeName(GetFileNameForAudioExport(nodeSelected));
             saveDialog.Filter = "*.wav|*.WAV";
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
