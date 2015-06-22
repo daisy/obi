@@ -38,7 +38,7 @@ namespace Obi.ProjectView
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
         public event ProgressChangedEventHandler ProgressChanged; //Updates the toolstrip progress bar on obi form
         private KeyboardShortcuts_Settings keyboardShortcuts;
-        
+        private bool m_IsAudioProcessingChecked = false;        
     
         /// <summary>
         /// Create a new project view with no project yet.
@@ -2768,6 +2768,7 @@ for (int j = 0;
 
         public bool CanImportPhrases { get { return GetSelectedPhraseSection!= null  && !TransportBar.IsRecorderActive; } }
         public bool CanExportSelectedNodeAudio { get { return Selection != null && (Selection.Node is PhraseNode || (Selection.Node is SectionNode && !(Selection is StripIndexSelection))) && !(Selection is AudioSelection)  && !TransportBar.IsRecorderActive; } }
+     //   public bool CanDoAudioProcessingOfMultiplePhrases{ get {return 
         public bool CanReplacePhrasesWithimproperAudioWithEmptyNodes { get { return mPresentation != null && !mTransportBar.IsRecorderActive; } }
 
         /// <summary>
@@ -4752,9 +4753,19 @@ for (int j = 0;
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
             {
                 customClass = AssignSpecialNodeDialog.SelectedSpecialNode;
+                m_IsAudioProcessingChecked = AssignSpecialNodeDialog.IsAudioProcessingChecked;
 
                 if (AssignSpecialNodeDialog.IsRenumberChecked)
                     RenumberPage();
+                else if (AssignSpecialNodeDialog.IsAudioProcessingChecked)
+                {
+                    Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog();
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        ProcessAudioForMultiplePhrases(true, mContentView.BeginSpecialNode,dialog.AudioProcessingParameter,dialog.AudioProcess);
+                    }
+
+                }
                 else
                 {
                     if (startNode.Index <= endNode.Index)
@@ -4817,10 +4828,22 @@ for (int j = 0;
                         MessageBox.Show(Localizer.Message("ProjectViewFormMsg_AssigningSkippableFail") + "\n\n" + ex.ToString());  //@Messagecorrected
                     }
                 }
+                m_IsAudioProcessingChecked = false;                  
             }
             mContentView.BeginSpecialNode = null;
         }
 
+        public void AudioProcessingOnMultiplePhrases(NodeSelection selectNode)
+        {
+            //this.Selection = selectNode;
+            ProcessAudio();
+            if (selectNode.Node.FollowingNode != mContentView.BeginSpecialNode)
+            {
+                this.Selection = new NodeSelection(selectNode.Node.FollowingNode, mContentView);
+                AudioProcessingOnMultiplePhrases(this.Selection);
+            }
+           // if(selectNode.Node.F
+        }
         public void RenumberPage()
         {
             bool pageFound = false;
@@ -5117,16 +5140,16 @@ for (int j = 0;
         
         public void ReplaceAudioOfSelectedNode()
         {
-            ReplaceAudioOfSelectedNode(null, false);
+            ReplaceAudioOfSelectedNode(null, false,Selection.Node);
         }
 
-        public void ReplaceAudioOfSelectedNode(string sourceFilePath, bool adjustAssetDuration)
+        public void ReplaceAudioOfSelectedNode(string sourceFilePath, bool adjustAssetDuration, ObiNode Node)
         {
-            if (CanExportSelectedNodeAudio)
+            if (CanExportSelectedNodeAudio || m_IsAudioProcessingChecked)
             {
                 try
                 {
-                    ObiNode node = Selection.Node;
+                    ObiNode node = Node;
                     List<EmptyNode> originalPhrases = new List<EmptyNode>();
                     List<double> originalTimings = new List<double>();
 
@@ -5278,7 +5301,7 @@ if (CanExportSelectedNodeAudio)
 
                 if (System.IO.File.Exists(audioFileFullPath))
                 {
-                    ReplaceAudioOfSelectedNode(audioFileFullPath, true);
+                    ReplaceAudioOfSelectedNode(audioFileFullPath, true, nodeToSelect);
                     if (System.IO.Directory.Exists(directoryFullPath))
                     {
                         System.IO.Directory.Delete(directoryFullPath, true);
@@ -5295,6 +5318,81 @@ if (CanExportSelectedNodeAudio)
     }// end dialog
     mTransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabled ;
 }
+        }
+
+
+        public void ProcessAudioForMultiplePhrases(bool toIterate, ObiNode Node, float AudioProcessingParameter, Audio.AudioFormatConverter.AudioProcessingKind kindOfAudioProcessing)
+        {
+            if (m_IsAudioProcessingChecked)
+            {
+                ObiNode nodeToSelect = Node;
+                double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
+                if (durationOfSelection == 0)
+                {
+                    MessageBox.Show(Localizer.Message("no_audio"));
+                    return;
+                }
+                bool SelectionChangedPlaybackEnabled = mTransportBar.SelectionChangedPlaybackEnabled;
+                mTransportBar.SelectionChangedPlaybackEnabled = false;
+                Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind = kindOfAudioProcessing;
+                float val = AudioProcessingParameter;
+                try
+                {
+                    string tempDirectoryName = "AudioProcessing";
+                    string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
+                        tempDirectoryName);
+                    if (System.IO.Directory.Exists(directoryFullPath)) System.IO.Directory.Delete(directoryFullPath, true);
+                    System.IO.Directory.CreateDirectory(directoryFullPath);
+
+
+                    string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
+
+                    if (audioFileFullPath != null)
+                    {
+                        AudioLib.DualCancellableProgressReporter audioProcess = Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, audioFileFullPath, val);
+
+                        Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioProcessing_progress_dialog_title"),
+                                                delegate(Dialogs.ProgressDialog progress1)
+                                                {
+                                                    audioProcess.DoWork();
+                                                });
+                        progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { audioProcess.RequestCancellation = true; });
+                        audioProcess.ProgressChangedEvent += new ProgressChangedEventHandler(progress.UpdateProgressBar);
+                        progress.ShowDialog();
+                        if (progress.Exception != null) throw progress.Exception;
+
+
+
+                        if (System.IO.File.Exists(audioFileFullPath))
+                        {
+                            ReplaceAudioOfSelectedNode(audioFileFullPath, true, nodeToSelect);
+                            if (System.IO.Directory.Exists(directoryFullPath))
+                            {
+                                System.IO.Directory.Delete(directoryFullPath, true);
+                            }
+                        }
+
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    WriteToLogFile(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }//end try
+
+                mTransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabled;
+                if (nodeToSelect.FollowingNode.Parent == nodeToSelect.Parent &&
+                    nodeToSelect.FollowingNode != mContentView.EndSpecialNode && toIterate)
+                {
+                    ProcessAudioForMultiplePhrases(true, nodeToSelect.FollowingNode, AudioProcessingParameter, kindOfAudioProcessing);
+                }
+                else if (nodeToSelect.FollowingNode.Parent == nodeToSelect.Parent && 
+                           nodeToSelect.FollowingNode == mContentView.EndSpecialNode)
+                {
+                    ProcessAudioForMultiplePhrases(false, mContentView.EndSpecialNode, AudioProcessingParameter, kindOfAudioProcessing);
+                }
+
+            }
         }
 
         public bool IsWaveformRendering { get { return mContentView.IsWaveformRendering; } }

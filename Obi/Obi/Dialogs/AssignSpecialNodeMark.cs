@@ -12,6 +12,7 @@ namespace Obi.Dialogs
     {
         private string m_SelectedSpecialNode = "";
         private bool m_IsRenumberChecked = false;
+        private bool m_IsAudioProcessingChecked = false;
         public AssignSpecialNodeMark()
         {
             InitializeComponent();
@@ -29,6 +30,9 @@ namespace Obi.Dialogs
         public bool IsRenumberChecked
         { get { return m_IsRenumberChecked; } }
 
+        public bool IsAudioProcessingChecked
+        { get { return m_IsAudioProcessingChecked; } }
+
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
             m_SelectedSpecialNode = m_cmbBoxSpecialNode.SelectedItem.ToString();            
@@ -38,12 +42,21 @@ namespace Obi.Dialogs
         {
             m_cmbBoxSpecialNode.Visible = true;
             m_IsRenumberChecked = false;
+            m_IsAudioProcessingChecked = false;
         }
 
         private void m_rdb_btn_RenumberPages_CheckedChanged(object sender, EventArgs e)
         {
             m_IsRenumberChecked = true;
             m_cmbBoxSpecialNode.Visible = false;
+            m_IsAudioProcessingChecked = false;
+        }
+
+        private void m_rtb_btn_AudioProcessing_CheckedChanged(object sender, EventArgs e)
+        {
+            m_IsAudioProcessingChecked = true;
+            m_cmbBoxSpecialNode.Visible = false;
+            m_IsRenumberChecked = false;
         }
 
     }
