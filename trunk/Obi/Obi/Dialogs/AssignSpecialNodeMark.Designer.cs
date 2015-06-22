@@ -35,6 +35,7 @@ namespace Obi.Dialogs
             this.m_rdb_btn_SpecialPhrase = new System.Windows.Forms.RadioButton();
             this.m_rdb_btn_RenumberPages = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_rtb_btn_AudioProcessing = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // m_cmbBoxSpecialNode
@@ -86,12 +87,21 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
+            // m_rtb_btn_AudioProcessing
+            // 
+            resources.ApplyResources(this.m_rtb_btn_AudioProcessing, "m_rtb_btn_AudioProcessing");
+            this.m_rtb_btn_AudioProcessing.Name = "m_rtb_btn_AudioProcessing";
+            this.m_rtb_btn_AudioProcessing.TabStop = true;
+            this.m_rtb_btn_AudioProcessing.UseVisualStyleBackColor = true;
+            this.m_rtb_btn_AudioProcessing.CheckedChanged += new System.EventHandler(this.m_rtb_btn_AudioProcessing_CheckedChanged);
+            // 
             // AssignSpecialNodeMark
             // 
             this.AcceptButton = this.m_btn_OK;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
+            this.Controls.Add(this.m_rtb_btn_AudioProcessing);
             this.Controls.Add(this.m_rdb_btn_RenumberPages);
             this.Controls.Add(this.m_rdb_btn_SpecialPhrase);
             this.Controls.Add(this.m_btn_Cancel);
@@ -111,5 +121,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rdb_btn_SpecialPhrase;
         private System.Windows.Forms.RadioButton m_rdb_btn_RenumberPages;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.RadioButton m_rtb_btn_AudioProcessing;
     }
 }

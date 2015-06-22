@@ -137,7 +137,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cmbBoxSpecialNode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 46</value>
+    <value>112, 46</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 21</value>
@@ -156,14 +156,14 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cmbBoxSpecialNode.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btn_OK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 89</value>
+    <value>112, 89</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -184,13 +184,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_btn_Cancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 89</value>
+    <value>218, 89</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -211,7 +211,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -238,7 +238,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -265,13 +265,40 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_RenumberPages.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>289, 12</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 17</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.Text" xml:space="preserve">
+    <value>Audio Processing</value>
+  </data>
+  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Name" xml:space="preserve">
+    <value>m_rtb_btn_AudioProcessing</value>
+  </data>
+  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -280,7 +307,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>292, 124</value>
+    <value>418, 124</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Assign note/ Renumber pages</value>
