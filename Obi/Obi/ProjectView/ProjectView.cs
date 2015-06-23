@@ -38,7 +38,8 @@ namespace Obi.ProjectView
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
         public event ProgressChangedEventHandler ProgressChanged; //Updates the toolstrip progress bar on obi form
         private KeyboardShortcuts_Settings keyboardShortcuts;
-        private bool m_IsAudioProcessingChecked = false;        
+        private bool m_IsAudioProcessingChecked = false;
+        private Dictionary<ObiNode, string> m_DictionaryOfFilePaths = new Dictionary<ObiNode, string>();
     
         /// <summary>
         /// Create a new project view with no project yet.
@@ -4759,11 +4760,11 @@ for (int j = 0;
                     RenumberPage();
                 else if (AssignSpecialNodeDialog.IsAudioProcessingChecked)
                 {
-                    Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog();
-                    if (dialog.ShowDialog() == DialogResult.OK)
-                    {
-                        ProcessAudioForMultiplePhrases(true, mContentView.BeginSpecialNode,dialog.AudioProcessingParameter,dialog.AudioProcess);
-                    }
+                    //Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog();
+                    //if (dialog.ShowDialog() == DialogResult.OK)
+                    //{
+                    ProcessAudioForMultiplePhrases();
+                    //}
 
                 }
                 else
@@ -5320,78 +5321,94 @@ if (CanExportSelectedNodeAudio)
 }
         }
 
-
-        public void ProcessAudioForMultiplePhrases(bool toIterate, ObiNode Node, float AudioProcessingParameter, Audio.AudioFormatConverter.AudioProcessingKind kindOfAudioProcessing)
+        private void DoAudioProcessing(ObiNode nodeToSelect, bool toIterate, Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind, float AudioProcessingParameter)
+        {           
+            string tempDirectoryName = "AudioProcessing";
+            string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
+                tempDirectoryName);
+            string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
+            m_DictionaryOfFilePaths.Add(nodeToSelect, audioFileFullPath);
+             AudioLib.DualCancellableProgressReporter audioProcess = Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, audioFileFullPath, AudioProcessingParameter);
+            audioProcess.DoWork();
+            if (nodeToSelect.FollowingNode.Parent == nodeToSelect.Parent &&  nodeToSelect.FollowingNode != mContentView.EndSpecialNode && toIterate)
+            {
+                DoAudioProcessing(nodeToSelect.FollowingNode, true, audioProcessingKind, AudioProcessingParameter);
+            }
+            else if (nodeToSelect.FollowingNode.Parent == nodeToSelect.Parent && nodeToSelect.FollowingNode == mContentView.EndSpecialNode && toIterate)
+            {
+                DoAudioProcessing(mContentView.EndSpecialNode, false, audioProcessingKind, AudioProcessingParameter);
+            }
+        }
+        public void ProcessAudioForMultiplePhrases()
         {
             if (m_IsAudioProcessingChecked)
             {
-                ObiNode nodeToSelect = Node;
+                ObiNode nodeToSelect = mContentView.BeginSpecialNode;
                 double durationOfSelection = DurationOfNodeSelected(nodeToSelect);
                 if (durationOfSelection == 0)
                 {
                     MessageBox.Show(Localizer.Message("no_audio"));
                     return;
                 }
+                m_DictionaryOfFilePaths.Clear();
                 bool SelectionChangedPlaybackEnabled = mTransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
-                Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind = kindOfAudioProcessing;
-                float val = AudioProcessingParameter;
-                try
+                Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    string tempDirectoryName = "AudioProcessing";
-                    string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
-                        tempDirectoryName);
-                    if (System.IO.Directory.Exists(directoryFullPath)) System.IO.Directory.Delete(directoryFullPath, true);
-                    System.IO.Directory.CreateDirectory(directoryFullPath);
-
-
-                    string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
-
-                    if (audioFileFullPath != null)
+                    Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind = dialog.AudioProcess;
+                    float val = dialog.AudioProcessingParameter;
+                    try
                     {
-                        AudioLib.DualCancellableProgressReporter audioProcess = Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, audioFileFullPath, val);
-
-                        Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioProcessing_progress_dialog_title"),
-                                                delegate(Dialogs.ProgressDialog progress1)
-                                                {
-                                                    audioProcess.DoWork();
-                                                });
-                        progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { audioProcess.RequestCancellation = true; });
-                        audioProcess.ProgressChangedEvent += new ProgressChangedEventHandler(progress.UpdateProgressBar);
-                        progress.ShowDialog();
-                        if (progress.Exception != null) throw progress.Exception;
+                        string tempDirectoryName = "AudioProcessing";
+                        string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
+                            tempDirectoryName);
+                        if (System.IO.Directory.Exists(directoryFullPath)) System.IO.Directory.Delete(directoryFullPath, true);
+                        System.IO.Directory.CreateDirectory(directoryFullPath);
 
 
+                        string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
 
-                        if (System.IO.File.Exists(audioFileFullPath))
+                        if (audioFileFullPath != null)
                         {
-                            ReplaceAudioOfSelectedNode(audioFileFullPath, true, nodeToSelect);
-                            if (System.IO.Directory.Exists(directoryFullPath))
+                          //  AudioLib.DualCancellableProgressReporter audioProcess = Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, audioFileFullPath, val);
+
+                            Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioProcessing_progress_dialog_title"),
+                                                    delegate(Dialogs.ProgressDialog progress1)
+                                                    {
+                                                        DoAudioProcessing(nodeToSelect, true, audioProcessingKind, val);
+
+                                                    });
+                            progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) {});
+                           // audioProcess.ProgressChangedEvent += new ProgressChangedEventHandler(progress.UpdateProgressBar);
+                             progress.ShowDialog();
+                            if (progress.Exception != null) throw progress.Exception;
+
+
+
+                            if (System.IO.File.Exists(audioFileFullPath))
                             {
-                                System.IO.Directory.Delete(directoryFullPath, true);
+                                foreach (ObiNode node in m_DictionaryOfFilePaths.Keys)
+                                {
+                                    ReplaceAudioOfSelectedNode(m_DictionaryOfFilePaths[node], true, node);
+                                }
+                                if (System.IO.Directory.Exists(directoryFullPath))
+                                {
+                                    System.IO.Directory.Delete(directoryFullPath, true);
+                                }
                             }
+
                         }
-
                     }
-                }
-                catch (System.Exception ex)
-                {
-                    WriteToLogFile(ex.ToString());
-                    MessageBox.Show(ex.ToString());
-                }//end try
+                    catch (System.Exception ex)
+                    {
+                        WriteToLogFile(ex.ToString());
+                        MessageBox.Show(ex.ToString());
+                    }//end try
 
-                mTransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabled;
-                if (nodeToSelect.FollowingNode.Parent == nodeToSelect.Parent &&
-                    nodeToSelect.FollowingNode != mContentView.EndSpecialNode && toIterate)
-                {
-                    ProcessAudioForMultiplePhrases(true, nodeToSelect.FollowingNode, AudioProcessingParameter, kindOfAudioProcessing);
-                }
-                else if (nodeToSelect.FollowingNode.Parent == nodeToSelect.Parent && 
-                           nodeToSelect.FollowingNode == mContentView.EndSpecialNode)
-                {
-                    ProcessAudioForMultiplePhrases(false, mContentView.EndSpecialNode, AudioProcessingParameter, kindOfAudioProcessing);
-                }
+                    mTransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabled;
 
+                }
             }
         }
 
