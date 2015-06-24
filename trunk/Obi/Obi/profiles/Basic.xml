@@ -1,6 +1,6 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
-<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.24265%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.24562%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Audio_AllowOverwrite>false</Audio_AllowOverwrite>
 <Audio_Recording_PreviewBeforeStarting>false</Audio_Recording_PreviewBeforeStarting>
 <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
@@ -10,7 +10,7 @@
 <Audio_AudioScale>0.01</Audio_AudioScale>
 <Audio_BitDepth>16</Audio_BitDepth>
 <Audio_TTSVoice id="ref-4">Microsoft Anna</Audio_TTSVoice>
-<TransportBarCounterIndex>0</TransportBarCounterIndex>
+<TransportBarCounterIndex>1</TransportBarCounterIndex>
 <Audio_FastPlayWithoutPitchChange>true</Audio_FastPlayWithoutPitchChange>
 <ColorSettings href="#ref-5"/>
 <ColorSettingsHC href="#ref-6"/>
@@ -38,7 +38,7 @@
 <PlayIfNoSelection>true</PlayIfNoSelection>
 <PlayOnNavigate>false</PlayOnNavigate>
 <Audio_PreviewDuration>1500</Audio_PreviewDuration>
-<Audio_ElapseBackTimeInMilliseconds>2500</Audio_ElapseBackTimeInMilliseconds>
+<Audio_ElapseBackTimeInMilliseconds>1500</Audio_ElapseBackTimeInMilliseconds>
 <RecentProjects href="#ref-14"/>
 <Audio_SampleRate>44100</Audio_SampleRate>
 <SplitPhrasesOnImport>false</SplitPhrasesOnImport>
@@ -92,19 +92,20 @@
 <Audio_CleanupMaxFileSizeInMB>100</Audio_CleanupMaxFileSizeInMB>
 <EncodingFileFormat id="ref-19">MP3</EncodingFileFormat>
 <Project_RecordingToolbarOpenInPreviousSession>false</Project_RecordingToolbarOpenInPreviousSession>
-<Audio_RecordingToolbarProfile1 id="ref-20">Basic</Audio_RecordingToolbarProfile1>
-<Audio_RecordingToolbarProfile2 id="ref-21">Advance</Audio_RecordingToolbarProfile2>
-<Audio_ColorFlickerPreviewBeforeRecording>false</Audio_ColorFlickerPreviewBeforeRecording>
-<m_ObiLastLocation href="#ref-22"/>
-<m_NewProjectDialogSize href="#ref-23"/>
-<m_ObiFormSize href="#ref-24"/>
-<m_PeakmeterSize href="#ref-25"/>
-<m_GraphicalPeakMeterContolSize href="#ref-26"/>
+<m_ObiLastLocation href="#ref-20"/>
+<m_NewProjectDialogSize href="#ref-21"/>
+<m_ObiFormSize href="#ref-22"/>
+<m_PeakmeterSize href="#ref-23"/>
+<m_GraphicalPeakMeterContolSize href="#ref-24"/>
 <Audio_AlwaysMonitorRecordingToolBar>false</Audio_AlwaysMonitorRecordingToolBar>
-<m_RecordingToolBarLastLocation href="#ref-27"/>
-<SettingsName id="ref-28">basic</SettingsName>
+<m_RecordingToolBarLastLocation href="#ref-25"/>
+<Audio_RecordingToolbarProfile1 id="ref-26">Basic</Audio_RecordingToolbarProfile1>
+<Audio_RecordingToolbarProfile2 id="ref-27">Advance</Audio_RecordingToolbarProfile2>
+<Audio_ColorFlickerPreviewBeforeRecording>false</Audio_ColorFlickerPreviewBeforeRecording>
+<Audio_PlayAllUsingPlayBtn>false</Audio_PlayAllUsingPlayBtn>
+<SettingsName id="ref-28">Basic profile for  audio, colors preferences</SettingsName>
 </a1:Settings>
-<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.24265%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.24562%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -418,7 +419,7 @@
 <state>1</state>
 </HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
-<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.24265%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.24562%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -734,64 +735,63 @@
 </a1:ColorSettings>
 <a3:ArrayList id="ref-14" xmlns:a3="http://schemas.microsoft.com/clr/ns/System.Collections">
 <_items href="#ref-30"/>
-<_size>1</_size>
-<_version>11</_version>
+<_size>6</_size>
+<_version>1146</_version>
 </a3:ArrayList>
-<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.24265%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.24562%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Name href="#ref-7"/>
 <Organization href="#ref-7"/>
 <Culture href="#ref-31"/>
 </a1:UserProfile>
+<SOAP-ENC:Array id="ref-20" SOAP-ENC:arrayType="xsd:int[2]">
+<item>0</item>
+<item>0</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-21" SOAP-ENC:arrayType="xsd:int[2]">
+<item>805</item>
+<item>273</item>
+</SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-22" SOAP-ENC:arrayType="xsd:int[2]">
-<item>0</item>
-<item>0</item>
-</SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-23" SOAP-ENC:arrayType="xsd:int[2]">
-<item>0</item>
-<item>0</item>
-</SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-24" SOAP-ENC:arrayType="xsd:int[2]">
 <item>892</item>
 <item>580</item>
 </SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-23" SOAP-ENC:arrayType="xsd:int[2]">
+<item>170</item>
+<item>640</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-24" SOAP-ENC:arrayType="xsd:int[2]">
+<item>154</item>
+<item>580</item>
+</SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-25" SOAP-ENC:arrayType="xsd:int[2]">
-<item>0</item>
-<item>0</item>
+<item>675</item>
+<item>357</item>
 </SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-26" SOAP-ENC:arrayType="xsd:int[2]">
-<item>0</item>
-<item>0</item>
-</SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-27" SOAP-ENC:arrayType="xsd:int[2]">
-<item>0</item>
-<item>0</item>
-</SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-30" SOAP-ENC:arrayType="xsd:anyType[4]">
+<SOAP-ENC:Array id="ref-30" SOAP-ENC:arrayType="xsd:anyType[8]">
 <item href="#ref-9"/>
+<item id="ref-32" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\Chimpanzees\project.obi</item>
+<item id="ref-33" xsi:type="SOAP-ENC:string">I:\VM BackUP\Chimp\project.obi</item>
+<item id="ref-34" xsi:type="SOAP-ENC:string">I:\VM BackUP\New folder\ARE YOU READY\project.obi</item>
+<item id="ref-35" xsi:type="SOAP-ENC:string">I:\VM BackUP\New folder\project.obi</item>
+<item id="ref-36" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\Untitled Empty Obi Project\project.obi</item>
 </SOAP-ENC:Array>
 <a6:CultureInfo id="ref-31" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
 <cultureID>1033</cultureID>
 <m_isReadOnly>false</m_isReadOnly>
-<compareInfo href="#ref-32"/>
+<compareInfo href="#ref-37"/>
 <textInfo xsi:null="1"/>
 <numInfo xsi:null="1"/>
 <dateTimeInfo xsi:null="1"/>
 <calendar xsi:null="1"/>
-<m_name id="ref-33">en-US</m_name>
+<m_name id="ref-38">en-US</m_name>
 <m_dataItem>41</m_dataItem>
 <m_useUserOverride>true</m_useUserOverride>
 </a6:CultureInfo>
-<a6:CompareInfo id="ref-32" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<a6:CompareInfo id="ref-37" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
 <win32LCID>1033</win32LCID>
 <culture>1033</culture>
-<m_name id="ref-34">en-US</m_name>
+<m_name id="ref-39">en-US</m_name>
 </a6:CompareInfo>
 </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
-.Globalization">
-<win32LCID>1033</win32LCID>
-<culture>1033</culture>
-<m_name id="ref-35">en-US</m_name>
-</a6:CompareInfo>
-</SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
+P-ENV:Envelope>

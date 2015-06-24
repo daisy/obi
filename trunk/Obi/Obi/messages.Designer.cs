@@ -349,6 +349,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use play button to play all.
+        /// </summary>
+        internal static string Audio_PlayAllUsingPlayBtn {
+            get {
+                return ResourceManager.GetString("Audio_PlayAllUsingPlayBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preserve pages while recording over subsequent audio.
         /// </summary>
         internal static string Audio_PreservePage {

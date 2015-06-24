@@ -1203,7 +1203,17 @@ namespace Obi.ProjectView
 
         // Play/Resume playback
 
-        private void mPlayButton_Click(object sender, EventArgs e) { PlayOrResume(); }
+        private void mPlayButton_Click(object sender, EventArgs e) 
+        {
+            if (mView.ObiForm.Settings.Audio_PlayAllUsingPlayBtn)
+            {
+                PlayAll();
+            }
+            else
+            {
+                PlayOrResume();
+            }
+        }
 
         /// <summary>
         /// Play all in the project. (Used when nothing is selected, or from the play all menu item.)

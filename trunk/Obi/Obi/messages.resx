@@ -2754,4 +2754,7 @@ Error text: {1}</value>
   <data name="Audio_ColorFlickerPreviewBeforeRecording" xml:space="preserve">
     <value>Highlight label for preview before recording</value>
   </data>
+  <data name="Audio_PlayAllUsingPlayBtn" xml:space="preserve">
+    <value>Use play button to play all</value>
+  </data>
 </root>

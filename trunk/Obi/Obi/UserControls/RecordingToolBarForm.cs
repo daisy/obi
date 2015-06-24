@@ -530,7 +530,14 @@ namespace Obi.UserControls
             }
             else
             {
-                m_TransportBar.PlayOrResume();
+                if (m_ProjectView.ObiForm.Settings.Audio_PlayAllUsingPlayBtn)
+                {
+                    m_TransportBar.PlayAll();
+                }
+                else
+                {
+                    m_TransportBar.PlayOrResume();
+                }
                 timer1.Start();
             }
             UpdateButtons();
