@@ -5093,15 +5093,22 @@ for (int j = 0;
                 else if (sampleRate == 11025) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz11025;
                 visitor.DisableAcmCodecs = true;
 
-                Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
-                            delegate(Dialogs.ProgressDialog progress1)
-                            {
-                nodeSelected.AcceptDepthFirst(visitor);
-            });
-                progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { visitor.RequestCancellation = true;});
-                visitor.ProgressChangedEvent += new ProgressChangedEventHandler(progress.UpdateProgressBar);
-                progress.ShowDialog();
-                if (progress.Exception != null) throw progress.Exception;
+                if (!m_IsAudioProcessingChecked)
+                {
+                    Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
+                                delegate(Dialogs.ProgressDialog progress1)
+                                {
+                                    nodeSelected.AcceptDepthFirst(visitor);
+                                });
+                    progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { visitor.RequestCancellation = true; });
+                    visitor.ProgressChangedEvent += new ProgressChangedEventHandler(progress.UpdateProgressBar);
+                    progress.ShowDialog();
+                    if (progress.Exception != null) throw progress.Exception;
+                }
+                else
+                {
+                    nodeSelected.AcceptDepthFirst(visitor);
+                }
                         
                 //sdk2 TODO check that there is an audio file to write
                 //visitor.WriteAndCloseCurrentAudioFile();
@@ -5321,23 +5328,23 @@ if (CanExportSelectedNodeAudio)
 }
         }
 
+
         private void DoAudioProcessing(ObiNode nodeToSelect, bool toIterate, Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind, float AudioProcessingParameter)
-        {           
+        {
             string tempDirectoryName = "AudioProcessing";
             string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
                 tempDirectoryName);
-            string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
-            m_DictionaryOfFilePaths.Add(nodeToSelect, audioFileFullPath);
-             AudioLib.DualCancellableProgressReporter audioProcess = Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, audioFileFullPath, AudioProcessingParameter);
-            audioProcess.DoWork();
-            if (nodeToSelect.FollowingNode.Parent == nodeToSelect.Parent &&  nodeToSelect.FollowingNode != mContentView.EndSpecialNode && toIterate)
+            while (nodeToSelect.Index <= mContentView.EndSpecialNode.Index && nodeToSelect.Parent == mContentView.EndSpecialNode.Parent)
             {
-                DoAudioProcessing(nodeToSelect.FollowingNode, true, audioProcessingKind, AudioProcessingParameter);
-            }
-            else if (nodeToSelect.FollowingNode.Parent == nodeToSelect.Parent && nodeToSelect.FollowingNode == mContentView.EndSpecialNode && toIterate)
-            {
-                DoAudioProcessing(mContentView.EndSpecialNode, false, audioProcessingKind, AudioProcessingParameter);
-            }
+                string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
+                m_DictionaryOfFilePaths.Add(nodeToSelect, audioFileFullPath);
+                AudioLib.DualCancellableProgressReporter audioProcess = Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, audioFileFullPath, AudioProcessingParameter);
+                audioProcess.DoWork();
+
+                nodeToSelect = nodeToSelect.FollowingNode;
+
+            };
+
         }
         public void ProcessAudioForMultiplePhrases()
         {
