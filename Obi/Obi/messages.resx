@@ -2757,4 +2757,10 @@ Error text: {1}</value>
   <data name="Audio_PlayAllUsingPlayBtn" xml:space="preserve">
     <value>Use play button to play all</value>
   </data>
+  <data name="TransportBar_PlaySelection" xml:space="preserve">
+    <value>Play Selection</value>
+  </data>
+  <data name="TransportBar_PlayAll" xml:space="preserve">
+    <value>Play All</value>
+  </data>
 </root>

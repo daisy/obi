@@ -1022,6 +1022,17 @@ namespace Obi.ProjectView
                 {
                     m_RecordingtoolStripMenuItem.Enabled = true;
                 }
+                if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null)
+                {
+                    if (mView.ObiForm.Settings.Audio_PlayAllUsingPlayBtn)
+                    {
+                        m_PlayAlltoolStripMenuItem.Text = Localizer.Message("TransportBar_PlaySelection");
+                    }
+                    else
+                    {
+                        m_PlayAlltoolStripMenuItem.Text = Localizer.Message("TransportBar_PlayAll");
+                    }
+                }
             }
         }
         
@@ -4268,7 +4279,14 @@ SelectionChangedPlaybackEnabled = false;
 
         private void m_PlayAlltoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PlayAllSections();
+            if (!mView.ObiForm.Settings.Audio_PlayAllUsingPlayBtn)
+            {
+                PlayAllSections();
+            }
+            else
+            {
+                PlayOrResume();
+            }
 
         }
         public void PlayAllSections()
