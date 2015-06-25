@@ -5329,7 +5329,7 @@ if (CanExportSelectedNodeAudio)
         }
 
 
-        private void DoAudioProcessing(ObiNode nodeToSelect, bool toIterate, Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind, float AudioProcessingParameter)
+        private void DoAudioProcessing(ObiNode nodeToSelect, Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind, float AudioProcessingParameter)
         {
             string tempDirectoryName = "AudioProcessing";
             string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
@@ -5383,7 +5383,7 @@ if (CanExportSelectedNodeAudio)
                             Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioProcessing_progress_dialog_title"),
                                                     delegate(Dialogs.ProgressDialog progress1)
                                                     {
-                                                        DoAudioProcessing(nodeToSelect, true, audioProcessingKind, val);
+                                                        DoAudioProcessing(nodeToSelect, audioProcessingKind, val);
 
                                                     });
                             progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) {});
