@@ -6823,11 +6823,29 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Play All.
+        /// </summary>
+        internal static string TransportBar_PlayAll {
+            get {
+                return ResourceManager.GetString("TransportBar_PlayAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Playback could not be started. Press OK to continue.... {0} {1}.
         /// </summary>
         internal static string TransportBar_PlayerExceptionMsg {
             get {
                 return ResourceManager.GetString("TransportBar_PlayerExceptionMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play Selection.
+        /// </summary>
+        internal static string TransportBar_PlaySelection {
+            get {
+                return ResourceManager.GetString("TransportBar_PlaySelection", resourceCulture);
             }
         }
         
