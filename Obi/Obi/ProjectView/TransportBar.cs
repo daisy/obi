@@ -4313,7 +4313,14 @@ SelectionChangedPlaybackEnabled = false;
 
         private void m_PlayingOptionsContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            m_PlayAlltoolStripMenuItem.Enabled = mView.CanPlay || mView.CanResume;
+            if (!mView.ObiForm.Settings.Audio_PlayAllUsingPlayBtn)
+            {
+                m_PlayAlltoolStripMenuItem.Enabled = mView.CanPlay || mView.CanResume;
+            }
+            else
+            {
+                m_PlayAlltoolStripMenuItem.Enabled = mView.CanPlaySelection || mView.CanResume;
+            }
             m_PlaySectiontoolStripMenuItem.Enabled = mView.CanPlaySelection || mView.CanResume;
             m_playHeadingToolStripMenuItem.Enabled = mView.CanPlaySelection || mView.CanResume;
 
