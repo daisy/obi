@@ -2087,7 +2087,15 @@ namespace Obi.Dialogs
 
         private void InitializePreferencesProfileTab ()
         {
-            LoadProfilesToComboboxes () ;
+            try
+            {
+                LoadProfilesToComboboxes();
+            }
+            catch (System.Exception ex)
+            {
+                ProjectView.ProjectView.WriteToLogFile_Static(ex.ToString());
+                MessageBox.Show(ex.ToString());
+            }
             if (mSettings != null && !string.IsNullOrEmpty(mSettings.SettingsName)) m_txtSelectedProfile.Text = mSettings.SettingsName;
             if (mForm.KeyboardShortcuts != null && !string.IsNullOrEmpty(mForm.KeyboardShortcuts.SettingsName)) m_txtSelectedShortcutsProfile.Text = mForm.KeyboardShortcuts.SettingsName;
         }
@@ -2182,12 +2190,13 @@ namespace Obi.Dialogs
                 }
             }// directory exists check
             m_cb_SelectProfile.SelectedIndex = -1;
-
-            int tempIndex = m_cb_Profile1.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile1);
-            m_cb_Profile1.SelectedIndex = tempIndex;
-            tempIndex = m_cb_Profile2.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile2);
-            m_cb_Profile2.SelectedIndex = tempIndex;
-
+            if (mSettings.Audio_RecordingToolbarProfile1 != null && mSettings.Audio_RecordingToolbarProfile2 != null)
+            {
+                int tempIndex = m_cb_Profile1.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile1);
+                m_cb_Profile1.SelectedIndex = tempIndex;
+                tempIndex = m_cb_Profile2.Items.IndexOf(mSettings.Audio_RecordingToolbarProfile2);
+                m_cb_Profile2.SelectedIndex = tempIndex;
+            }
 
             // now add keyboard shortcuts profile to the respective combobox
             m_cb_SelectShorcutsProfile.Items.Add("Default Shortcuts");
