@@ -312,7 +312,7 @@ namespace Obi
             settings.Project_MinimizeObi = false;
             settings.Audio_CleanupMaxFileSizeInMB = 100;
             settings.EncodingFileFormat = "MP3";
-            settings.SettingsName = "basic";
+            settings.SettingsName = "Basic";
             settings.Project_RecordingToolbarOpenInPreviousSession = false;
             // For Obi 3.7
             settings.Audio_AlwaysMonitorRecordingToolBar = false;
