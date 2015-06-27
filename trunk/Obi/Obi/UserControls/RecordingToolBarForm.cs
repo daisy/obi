@@ -256,6 +256,15 @@ namespace Obi.UserControls
             m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);
             m_RecordingToolBartoolTip.SetToolTip(m_chkMonitorContinuously, Localizer.Message("Audio_MonitorAlways"));
 
+            if (m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 == null || m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 == "")
+            {
+                m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 = "Basic";
+            }
+
+            if (m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2 == null || m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2 == "")
+            {
+                m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1 = "Advance";
+            }
             m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2);
             m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2);
 
@@ -500,12 +509,12 @@ namespace Obi.UserControls
             string tempSettingsName = m_ProjectView.ObiForm.Settings.SettingsName;
             string[] str = tempSettingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
     
-            if (str[0] == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1)
+            if (str[0].ToLower() == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1.ToLower())
             {
                 m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2);
                 m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2);
             }
-            else if (str[0] == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2)
+            else if (str[0].ToLower() == m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2.ToLower())
             {
                 m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
                 m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile2, m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
