@@ -125,7 +125,7 @@ namespace Obi.ImportExport
             //textMedia.Text = textNode.InnerText;
             //treeNode.Label = textNode.InnerText;
             string strLabel = textNode.InnerText;
-            if (strLabel.Contains("\n")) strLabel = strLabel.Replace("\n", "");
+            strLabel = strLabel.Replace(@"\n", @" ");
             treeNode.Label = strLabel;
             //ChannelsProperty cProp = parentNode.Presentation.PropertyFactory.CreateChannelsProperty();
             //cProp.SetMedia(m_textChannel, textMedia);
@@ -542,7 +542,7 @@ namespace Obi.ImportExport
                             && (xmlNode.LocalName == "h1" || xmlNode.LocalName == "h2" || xmlNode.LocalName == "h3"
                             || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" || xmlNode.LocalName == "HD"))
                         {
-                            ((SectionNode)parentTreeNode).Label = xmlNode.InnerText;
+                            ((SectionNode)parentTreeNode).Label = xmlNode.InnerText.Replace(@"\n", @" ");
                             Console.WriteLine(xmlNode.InnerText);
                             if (xmlNode.Attributes.GetNamedItem("id") != null)
                             {
@@ -556,7 +556,7 @@ namespace Obi.ImportExport
                         }
                         if (treeNode != null && treeNode is SectionNode && xmlNode.LocalName == "doctitle")
                         {
-                            ((SectionNode)treeNode).Label = xmlNode.InnerText;
+                            ((SectionNode)treeNode).Label = xmlNode.InnerText.Replace(@"\n", @" ");
                         }
 
 
