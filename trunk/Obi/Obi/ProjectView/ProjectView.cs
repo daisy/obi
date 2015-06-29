@@ -90,16 +90,23 @@ namespace Obi.ProjectView
         /// <summary>
         /// Add new empty pages.
         /// </summary>
-        public void AddEmptyPages ()
+        public void AddEmptyPages()
+        {
+            if (mContentView.Selection == null)
             {
-            if (CanAddEmptyBlock)
-                {
-                if (TransportBar.IsActive) TransportBar.Stop ();
-
-                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber ( NextPageNumber, true, true );
-                if (dialog.ShowDialog () == DialogResult.OK) AddPageRange ( dialog.Number, dialog.NumberOfPages, dialog.Renumber );
+                if (this.Selection.Node is SectionNode && (this.Selection.Node == mTOCView.HighlightNodeWithoutSelection))
+                { 
+                    this.Selection = new NodeSelection(this.Selection.Node, mContentView);
                 }
+             //   this.Selection = new NodeSelection(this.Selection.Node, mContentView);
             }
+            if (CanAddEmptyBlock)
+            {
+                if (TransportBar.IsActive) TransportBar.Stop();
+                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(NextPageNumber, true, true);
+                if (dialog.ShowDialog() == DialogResult.OK) AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber);
+            }
+        }
 
         /// <summary>
         /// Get the list of names of currently addable metadata entries.
@@ -412,7 +419,7 @@ namespace Obi.ProjectView
             );
             }
 
-        public bool CanAddEmptyBlock { get { return mContentView.Selection != null && IsPhraseCountWithinLimit; } } // @phraseLimit
+        public bool CanAddEmptyBlock { get { return mContentView.Selection != null && IsPhraseCountWithinLimit; } } // @phraseLimit                                          
         public bool CanAddMetadataEntry () { return mPresentation != null; }
         public bool CanAddMetadataEntry ( MetadataEntryDescription d ) { return mMetadataView.CanAdd ( d ); }
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip) && !(Selection is TextSelection) && !IsZoomWaveformActive ; } }
