@@ -39,7 +39,7 @@ namespace Obi.Dialogs
             this.mPageKindComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.m_cbAutoFillPages = new System.Windows.Forms.CheckBox();
+            this.m_chkAutoFillPages = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -105,11 +105,12 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
-            // m_cbAutoFillPages
+            // m_chkAutoFillPages
             // 
-            resources.ApplyResources(this.m_cbAutoFillPages, "m_cbAutoFillPages");
-            this.m_cbAutoFillPages.Name = "m_cbAutoFillPages";
-            this.m_cbAutoFillPages.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.m_chkAutoFillPages, "m_chkAutoFillPages");
+            this.m_chkAutoFillPages.Name = "m_chkAutoFillPages";
+            this.m_chkAutoFillPages.UseVisualStyleBackColor = true;
+            this.m_chkAutoFillPages.CheckedChanged += new System.EventHandler(this.m_chkAutoFillPages_CheckedChanged);
             // 
             // SetPageNumber
             // 
@@ -117,7 +118,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.Controls.Add(this.m_cbAutoFillPages);
+            this.Controls.Add(this.m_chkAutoFillPages);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.mPageKindComboBox);
             this.Controls.Add(this.label2);
@@ -150,6 +151,6 @@ namespace Obi.Dialogs
         protected System.Windows.Forms.ComboBox mPageKindComboBox;
         protected System.Windows.Forms.Label label3;
         private System.Windows.Forms.HelpProvider helpProvider1;
-        protected System.Windows.Forms.CheckBox m_cbAutoFillPages;
+        protected System.Windows.Forms.CheckBox m_chkAutoFillPages;
     }
 }

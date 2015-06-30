@@ -414,37 +414,37 @@
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
-  <data name="m_cbAutoFillPages.AutoSize" type="System.Boolean, mscorlib">
+  <data name="m_chkAutoFillPages.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="m_cbAutoFillPages.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="m_chkAutoFillPages.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="m_cbAutoFillPages.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_chkAutoFillPages.Location" type="System.Drawing.Point, System.Drawing">
     <value>189, 102</value>
   </data>
-  <data name="m_cbAutoFillPages.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="m_chkAutoFillPages.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="m_cbAutoFillPages.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_chkAutoFillPages.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 20</value>
   </data>
-  <data name="m_cbAutoFillPages.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_chkAutoFillPages.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="m_cbAutoFillPages.Text" xml:space="preserve">
+  <data name="m_chkAutoFillPages.Text" xml:space="preserve">
     <value>Auto fill pages</value>
   </data>
-  <data name="&gt;&gt;m_cbAutoFillPages.Name" xml:space="preserve">
-    <value>m_cbAutoFillPages</value>
+  <data name="&gt;&gt;m_chkAutoFillPages.Name" xml:space="preserve">
+    <value>m_chkAutoFillPages</value>
   </data>
-  <data name="&gt;&gt;m_cbAutoFillPages.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_chkAutoFillPages.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_cbAutoFillPages.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_chkAutoFillPages.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_cbAutoFillPages.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_chkAutoFillPages.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
