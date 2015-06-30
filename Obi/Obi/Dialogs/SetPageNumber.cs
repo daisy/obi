@@ -95,6 +95,14 @@ namespace Obi.Dialogs
 
         public bool Renumber { get { return mRenumber.Checked && mRenumber.Enabled; } }
 
+        public bool AutoFillPages
+        {
+            get
+            {
+                return m_cbAutoFillPages.Checked;
+            }
+        }
+
         private void mPageKindComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             mRenumber.Enabled = mPageKindComboBox.SelectedIndex != 2;
