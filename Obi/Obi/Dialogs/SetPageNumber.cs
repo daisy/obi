@@ -14,8 +14,15 @@ namespace Obi.Dialogs
         private int mNumberOfPages;
         protected bool m_GoToPage;
         private bool m_IsRenumber;
+        private ObiNode m_SelectedNode;
 
-        public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages): this()
+        public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages,ObiNode selectedNode)
+            : this(number, renumber, canSetNumberOfPages)
+        {
+            m_SelectedNode = selectedNode;
+        }
+
+            public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages): this()
         {
             mInitialNumber = number;
             mNumberOfPages = 1;
@@ -99,7 +106,7 @@ namespace Obi.Dialogs
         {
             get
             {
-                return m_cbAutoFillPages.Checked;
+                return m_chkAutoFillPages.Checked;
             }
         }
 
@@ -130,6 +137,66 @@ namespace Obi.Dialogs
             DialogResult = DialogResult.OK;
             Close ();
                         }
+
+        private void m_chkAutoFillPages_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_SelectedNode != null)
+            {
+                
+                EmptyNode startingPage = null;
+                EmptyNode lastPage = null;
+                // find previous page node
+                for (ObiNode n = m_SelectedNode;
+                    n != null ;
+                    n = n.PrecedingNode)
+                {
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                    {
+                        startingPage = (EmptyNode) n;
+                        break;
+                    }
+                }
+
+                // Find the next page node
+                for (ObiNode n = m_SelectedNode.FollowingNode;
+                    n != null;
+                    n = n.FollowingNode)
+                {
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
+                    {
+                        lastPage = (EmptyNode)n;
+                        break;
+                    }
+                }
+
+                if (startingPage == null)
+                {
+                    MessageBox.Show("No preceeding page found. Please key in the values.");
+                    return;
+                }
+                if (lastPage == null)
+                {
+                    MessageBox.Show("Unable to find next page. Please key in the values.");
+                    return;
+                }
+
+                if (startingPage.PageNumber.Number >= lastPage.PageNumber.Number
+                    || startingPage.PageNumber.Kind != lastPage.PageNumber.Kind)
+                {
+                    MessageBox.Show("Can not proceed. The preceeding page number and the next page number are out of order");
+                    return ;
+                }
+
+                if (startingPage.PageNumber.Number == lastPage.PageNumber.Number - 1)
+                {
+                    MessageBox.Show("Cannot proceed. Pages are already consecutive.");
+                        return;
+                }
+                                // fill in the page count
+                int pageCount = lastPage.PageNumber.Number - startingPage.PageNumber.Number - 1;
+                mNumberOfPagesBox.Text = pageCount.ToString();
+            }
+        }
 
 
     }
