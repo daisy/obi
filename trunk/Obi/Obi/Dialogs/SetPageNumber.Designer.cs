@@ -39,6 +39,7 @@ namespace Obi.Dialogs
             this.mPageKindComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.m_cbAutoFillPages = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -104,12 +105,19 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
             // 
+            // m_cbAutoFillPages
+            // 
+            resources.ApplyResources(this.m_cbAutoFillPages, "m_cbAutoFillPages");
+            this.m_cbAutoFillPages.Name = "m_cbAutoFillPages";
+            this.m_cbAutoFillPages.UseVisualStyleBackColor = true;
+            // 
             // SetPageNumber
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_cbAutoFillPages);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.mPageKindComboBox);
             this.Controls.Add(this.label2);
@@ -142,5 +150,6 @@ namespace Obi.Dialogs
         protected System.Windows.Forms.ComboBox mPageKindComboBox;
         protected System.Windows.Forms.Label label3;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        protected System.Windows.Forms.CheckBox m_cbAutoFillPages;
     }
 }
