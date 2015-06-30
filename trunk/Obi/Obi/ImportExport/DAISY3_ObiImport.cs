@@ -125,7 +125,7 @@ namespace Obi.ImportExport
             //textMedia.Text = textNode.InnerText;
             //treeNode.Label = textNode.InnerText;
             string strLabel = textNode.InnerText;
-            strLabel = strLabel.Replace(@"\n", @" ");
+            strLabel = strLabel.Replace("\n","").Replace("\r", "").Replace("\t","") ;
             treeNode.Label = strLabel;
             //ChannelsProperty cProp = parentNode.Presentation.PropertyFactory.CreateChannelsProperty();
             //cProp.SetMedia(m_textChannel, textMedia);
@@ -542,8 +542,9 @@ namespace Obi.ImportExport
                             && (xmlNode.LocalName == "h1" || xmlNode.LocalName == "h2" || xmlNode.LocalName == "h3"
                             || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" || xmlNode.LocalName == "HD"))
                         {
-                            ((SectionNode)parentTreeNode).Label = xmlNode.InnerText.Replace(@"\n", @" ");
-                            Console.WriteLine(xmlNode.InnerText);
+                            ((SectionNode)parentTreeNode).Label = 
+                                xmlNode.InnerText.Replace("\n", "").Replace("\r", "").Replace("\t", "") ;
+                            Console.WriteLine("DTBook: " + ((SectionNode)parentTreeNode).Label);
                             if (xmlNode.Attributes.GetNamedItem("id") != null)
                             {
                                 string strfRefID = Path.GetFileName(filePath) + "#" + xmlNode.Attributes.GetNamedItem("id").Value;
@@ -556,7 +557,7 @@ namespace Obi.ImportExport
                         }
                         if (treeNode != null && treeNode is SectionNode && xmlNode.LocalName == "doctitle")
                         {
-                            ((SectionNode)treeNode).Label = xmlNode.InnerText.Replace(@"\n", @" ");
+                            ((SectionNode)treeNode).Label = xmlNode.InnerText.Replace("\n", "").Replace("\r", "").Replace("\t", ""); ;
                         }
 
 
