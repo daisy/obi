@@ -754,6 +754,19 @@ namespace Obi.ProjectView
                 UpdateTimeDisplay();
                 UpdateButtons();
                 if (mState == State.Stopped && mView != null && mCurrentPlaylist != null && !mCurrentPlaylist.CanNavigateNextPhrase) mView.UpdateCursorPosition(0.0); // audio coursor returns to 0 position if the single phrase is being played
+                // if single cursor is enforced then the audioselection should be removed on starting playback
+                if (mView.ObiForm.Settings.Audio_EnforceSingleCursor)
+                {
+                    if (CurrentState == State.Playing && !(mLocalPlaylist is PreviewPlaylist )
+                        && mView.Selection != null && mView.Selection is AudioSelection 
+                            && ((AudioSelection)mView.Selection).AudioRange != null && ((AudioSelection)mView.Selection).AudioRange.HasCursor )
+                    {   
+                        bool playbackOnSelection = this.SelectionChangedPlaybackEnabled;
+                        this.SelectionChangedPlaybackEnabled = false;
+                        mView.Selection = new NodeSelection (mView.Selection.Node, mView.Selection.Control ) ;
+                        this.SelectionChangedPlaybackEnabled = playbackOnSelection ;
+                }
+                }
 
                 if (StateChanged != null) StateChanged(this, e);
 
