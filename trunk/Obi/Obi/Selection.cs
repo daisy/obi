@@ -103,7 +103,7 @@ namespace Obi
         /// </summary>
         public virtual bool CanPaste(Clipboard clipboard)
         {
-            return clipboard == null ? false :
+            return clipboard == null || clipboard.Node.Presentation != Node.Presentation? false :
                 clipboard.Node is SectionNode ? Node is SectionNode : Control is ProjectView.ContentView;
         }
 
