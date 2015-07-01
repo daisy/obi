@@ -6292,6 +6292,42 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to find next page. Please key in the values..
+        /// </summary>
+        internal static string SetPageNumber_NextPageNotFound {
+            get {
+                return ResourceManager.GetString("SetPageNumber_NextPageNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot proceed. Pages are already consecutive..
+        /// </summary>
+        internal static string SetPageNumber_PageInConsecutiveOrder {
+            get {
+                return ResourceManager.GetString("SetPageNumber_PageInConsecutiveOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can not proceed. The preceeding page number and the next page number are out of order..
+        /// </summary>
+        internal static string SetPageNumber_PageOutOfOrder {
+            get {
+                return ResourceManager.GetString("SetPageNumber_PageOutOfOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No preceeding page found. Please key in the values..
+        /// </summary>
+        internal static string SetPageNumber_PrecedingPageNotFound {
+            get {
+                return ResourceManager.GetString("SetPageNumber_PrecedingPageNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show details.
         /// </summary>
         internal static string Show_details {

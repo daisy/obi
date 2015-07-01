@@ -180,7 +180,7 @@ namespace Obi.Dialogs
                 {
                     if (m_chkAutoFillPages.Checked)
                     {
-                        MessageBox.Show("No preceeding page found. Please key in the values.");
+                        MessageBox.Show(Localizer.Message("SetPageNumber_PrecedingPageNotFound"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         m_chkAutoFillPages.Checked = false;
                     }
                     return;
@@ -189,7 +189,7 @@ namespace Obi.Dialogs
                 {
                     if (m_chkAutoFillPages.Checked)
                     {
-                        MessageBox.Show("Unable to find next page. Please key in the values.");
+                        MessageBox.Show(Localizer.Message("SetPageNumber_NextPageNotFound"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         m_chkAutoFillPages.Checked = false;
                     }
                     return;
@@ -200,7 +200,7 @@ namespace Obi.Dialogs
                 {
                     if (m_chkAutoFillPages.Checked)
                     {
-                        MessageBox.Show("Can not proceed. The preceeding page number and the next page number are out of order");
+                        MessageBox.Show(Localizer.Message("SetPageNumber_PageOutOfOrder"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         m_chkAutoFillPages.Checked = false;
                     }
                     return ;
@@ -210,7 +210,7 @@ namespace Obi.Dialogs
                 {
                     if (m_chkAutoFillPages.Checked)
                     {
-                        MessageBox.Show("Cannot proceed. Pages are already consecutive.");
+                        MessageBox.Show(Localizer.Message("SetPageNumber_PageInConsecutiveOrder"),Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         m_chkAutoFillPages.Checked = false;
                     }
                         return;
