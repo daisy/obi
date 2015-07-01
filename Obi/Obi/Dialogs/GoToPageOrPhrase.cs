@@ -30,6 +30,7 @@ namespace Obi.Dialogs
             base.Size = new Size ( 370, 210 );
             base.mNumberOfPagesBox.Visible = false;
             base.mRenumber.Visible = false;
+            base.m_chkAutoFillPages.Visible = false;
             base.mPageKindComboBox.SelectedIndex = 1;
            // m_btnOk.Location = new Point ( 70, 150 );
             //base.mCancelButton.Location = new Point ( 200, 150 );
