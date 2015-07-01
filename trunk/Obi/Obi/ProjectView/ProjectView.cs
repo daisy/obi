@@ -105,6 +105,7 @@ namespace Obi.ProjectView
             {
                 if (TransportBar.IsActive) TransportBar.Stop();
                 Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(NextPageNumber, true, true, Selection.Node);
+                dialog.AutoFillPagesEnable = true;
                 if (dialog.ShowDialog() == DialogResult.OK) AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber);
             }
         }
@@ -1869,6 +1870,7 @@ namespace Obi.ProjectView
                 if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause ();
                 if (mTransportBar.IsRecorderActive) mTransportBar.Stop();
                 Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber ( CurrentOrNextPageNumber, true, false );
+                dialog.AutoFillPagesEnable = false;
                 if (dialog.ShowDialog () == DialogResult.OK) SetPageNumberOnSelectedBock ( dialog.Number, dialog.Renumber );
                 }
             }
@@ -4110,6 +4112,7 @@ for (int j = 0;
                 if (dialog.Role == EmptyNode.Role.Page && dialog.PageChange)
                     {
                     Dialogs.SetPageNumber PageDialog = new Dialogs.SetPageNumber ( this.CurrentOrNextPageNumber, false, false );
+                    PageDialog.AutoFillPagesEnable = false;
                     if (PageDialog.ShowDialog () == DialogResult.OK && CanSetPageNumber)
                         {
                         urakawa.command.Command PageCmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), PageDialog.Number );
@@ -4880,6 +4883,7 @@ for (int j = 0;
                 return;
             }
             Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false);
+            dialog.AutoFillPagesEnable = false;
             dialog.IsRenumberChecked = true;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
