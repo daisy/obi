@@ -5386,6 +5386,7 @@ ref string exportDirectoryEPUB3)
                             }
                         }
                         Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false);
+                        dialog.AutoFillPagesEnable = false;
                         dialog.IsRenumberChecked = true;
                         dialog.EnableRenumberCheckBox = false;
                         dialog.Text = Localizer.Message("RenumberPages");

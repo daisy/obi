@@ -109,6 +109,13 @@ namespace Obi.Dialogs
                 return m_chkAutoFillPages.Checked;
             }
         }
+        public bool AutoFillPagesEnable
+        {
+            set
+            {
+                m_chkAutoFillPages.Enabled = value;
+            }
+        }
 
         private void mPageKindComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -171,30 +178,50 @@ namespace Obi.Dialogs
 
                 if (startingPage == null)
                 {
-                    MessageBox.Show("No preceeding page found. Please key in the values.");
+                    if (m_chkAutoFillPages.Checked)
+                    {
+                        MessageBox.Show("No preceeding page found. Please key in the values.");
+                        m_chkAutoFillPages.Checked = false;
+                    }
                     return;
                 }
                 if (lastPage == null)
                 {
-                    MessageBox.Show("Unable to find next page. Please key in the values.");
+                    if (m_chkAutoFillPages.Checked)
+                    {
+                        MessageBox.Show("Unable to find next page. Please key in the values.");
+                        m_chkAutoFillPages.Checked = false;
+                    }
                     return;
                 }
 
                 if (startingPage.PageNumber.Number >= lastPage.PageNumber.Number
                     || startingPage.PageNumber.Kind != lastPage.PageNumber.Kind)
                 {
-                    MessageBox.Show("Can not proceed. The preceeding page number and the next page number are out of order");
+                    if (m_chkAutoFillPages.Checked)
+                    {
+                        MessageBox.Show("Can not proceed. The preceeding page number and the next page number are out of order");
+                        m_chkAutoFillPages.Checked = false;
+                    }
                     return ;
                 }
 
                 if (startingPage.PageNumber.Number == lastPage.PageNumber.Number - 1)
                 {
-                    MessageBox.Show("Cannot proceed. Pages are already consecutive.");
+                    if (m_chkAutoFillPages.Checked)
+                    {
+                        MessageBox.Show("Cannot proceed. Pages are already consecutive.");
+                        m_chkAutoFillPages.Checked = false;
+                    }
                         return;
                 }
                                 // fill in the page count
                 int pageCount = lastPage.PageNumber.Number - startingPage.PageNumber.Number - 1;
                 mNumberOfPagesBox.Text = pageCount.ToString();
+                if (m_chkAutoFillPages.Checked)
+                {
+                    mRenumber.Checked = false;
+                }
             }
         }
 
