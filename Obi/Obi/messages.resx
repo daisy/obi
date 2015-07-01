@@ -2763,4 +2763,16 @@ Error text: {1}</value>
   <data name="TransportBar_PlayAll" xml:space="preserve">
     <value>Play All</value>
   </data>
+  <data name="SetPageNumber_PrecedingPageNotFound" xml:space="preserve">
+    <value>No preceeding page found. Please key in the values.</value>
+  </data>
+  <data name="SetPageNumber_NextPageNotFound" xml:space="preserve">
+    <value>Unable to find next page. Please key in the values.</value>
+  </data>
+  <data name="SetPageNumber_PageOutOfOrder" xml:space="preserve">
+    <value>Can not proceed. The preceeding page number and the next page number are out of order.</value>
+  </data>
+  <data name="SetPageNumber_PageInConsecutiveOrder" xml:space="preserve">
+    <value>Cannot proceed. Pages are already consecutive.</value>
+  </data>
 </root>
