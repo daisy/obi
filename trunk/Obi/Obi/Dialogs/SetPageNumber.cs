@@ -210,7 +210,7 @@ namespace Obi.Dialogs
                 {
                     if (m_chkAutoFillPages.Checked)
                     {
-                        MessageBox.Show(Localizer.Message("SetPageNumber_PageInConsecutiveOrder"),Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Localizer.Message("SetPageNumber_PageInConsecutiveOrder"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                         m_chkAutoFillPages.Checked = false;
                     }
                         return;
