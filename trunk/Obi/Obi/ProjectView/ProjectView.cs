@@ -104,7 +104,23 @@ namespace Obi.ProjectView
             if (CanAddEmptyBlock)
             {
                 if (TransportBar.IsActive) TransportBar.Stop();
-                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(NextPageNumber, true, true, Selection.Node);
+
+                ObiNode selectedNode = Selection.Node;
+                if (Selection is StripIndexSelection)
+                {
+                    StripIndexSelection indexSelection = (StripIndexSelection)Selection;
+                    if (indexSelection.EmptyNodeForSelection != null)
+                    {   
+                        selectedNode = indexSelection.EmptyNodeForSelection;
+                    }
+                    else
+                    {
+                        selectedNode = indexSelection.Section.PhraseChildCount > 0 ? indexSelection.Section.PhraseChild(indexSelection.Section.PhraseChildCount - 1) :
+                            Selection.Node;
+                    }
+                }
+                    
+                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(NextPageNumber, true, true, selectedNode);
                 dialog.AutoFillPagesEnable = true;
                 if (dialog.ShowDialog() == DialogResult.OK) AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber);
             }
