@@ -101,7 +101,7 @@ namespace Obi.ProjectView
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_MultiPhraseOperations = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,7 +129,7 @@ namespace Obi.ProjectView
             this.Context_AssignRoleMenuItem,
             this.Context_ClearRoleMenuItem,
             this.Context_PhraseDetectionMenuItem,
-            this.toolStripMenuItem1,
+            this.Context_MultiPhraseOperations,
             this.Context_SkippablesMenuItem,
             this.Context_AudioSelectionMenuItem,
             this.toolStripSeparator4,
@@ -384,8 +384,6 @@ namespace Obi.ProjectView
             // 
             resources.ApplyResources(this.Context_SkippablesMenuItem, "Context_SkippablesMenuItem");
             this.Context_SkippablesMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem,
-            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem,
             this.Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem,
             this.Context_Skippable_GotoAssociatedNodeToolStripMenuItem,
             this.Context_Skippable_RemoveAssociatedNodeToolStripMenuItem,
@@ -607,8 +605,11 @@ namespace Obi.ProjectView
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            this.Context_MultiPhraseOperations.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.Context_MultiPhraseOperations, "toolStripMenuItem1");
+            this.Context_MultiPhraseOperations.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem,
+            this.Context_Skippable_EndSpecialNodeMarkToolStripMenuItem});
             // 
             // ContentView
             // 
@@ -703,6 +704,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_AudioProcessing;
         private System.Windows.Forms.ToolStripMenuItem Context_MergeWithNextSectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_MultiSectionOperations;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem Context_MultiPhraseOperations;
     }
 }
