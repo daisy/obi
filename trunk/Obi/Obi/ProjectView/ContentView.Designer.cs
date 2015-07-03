@@ -36,6 +36,7 @@ namespace Obi.ProjectView
             this.Context_InsertSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SplitSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_MergeWithNextSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_MultiSectionOperations = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_AddBlankPhraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AddEmptyPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,9 +99,9 @@ namespace Obi.ProjectView
             this.mVScrollBar = new System.Windows.Forms.VScrollBar();
             this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.Context_MultiSectionOperations = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,6 +129,7 @@ namespace Obi.ProjectView
             this.Context_AssignRoleMenuItem,
             this.Context_ClearRoleMenuItem,
             this.Context_PhraseDetectionMenuItem,
+            this.toolStripMenuItem1,
             this.Context_SkippablesMenuItem,
             this.Context_AudioSelectionMenuItem,
             this.toolStripSeparator4,
@@ -174,6 +176,12 @@ namespace Obi.ProjectView
             resources.ApplyResources(this.Context_MergeWithNextSectionMenuItem, "Context_MergeWithNextSectionMenuItem");
             this.Context_MergeWithNextSectionMenuItem.Name = "Context_MergeWithNextSectionMenuItem";
             this.Context_MergeWithNextSectionMenuItem.Click += new System.EventHandler(this.Context_MergeWithNextSectionMenuItem_Click);
+            // 
+            // Context_MultiSectionOperations
+            // 
+            resources.ApplyResources(this.Context_MultiSectionOperations, "Context_MultiSectionOperations");
+            this.Context_MultiSectionOperations.Name = "Context_MultiSectionOperations";
+            this.Context_MultiSectionOperations.Click += new System.EventHandler(this.Context_MultiSectionOperations_Click);
             // 
             // toolStripSeparator1
             // 
@@ -577,12 +585,6 @@ namespace Obi.ProjectView
             // 
             this.timer1.Interval = 1000;
             // 
-            // Context_MultiSectionOperations
-            // 
-            resources.ApplyResources(this.Context_MultiSectionOperations, "Context_MultiSectionOperations");
-            this.Context_MultiSectionOperations.Name = "Context_MultiSectionOperations";
-            this.Context_MultiSectionOperations.Click += new System.EventHandler(this.Context_MultiSectionOperations_Click);
-            // 
             // verticalScrollToolStripContainer1
             // 
             resources.ApplyResources(this.verticalScrollToolStripContainer1, "verticalScrollToolStripContainer1");
@@ -602,6 +604,11 @@ namespace Obi.ProjectView
             this.contentViewLabel1.Name_SectionDisplayed = "No section selected.";
             this.contentViewLabel1.sectionSelected = false;
             this.contentViewLabel1.zoomFactor = 1F;
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
             // ContentView
             // 
@@ -696,5 +703,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_AudioProcessing;
         private System.Windows.Forms.ToolStripMenuItem Context_MergeWithNextSectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_MultiSectionOperations;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
