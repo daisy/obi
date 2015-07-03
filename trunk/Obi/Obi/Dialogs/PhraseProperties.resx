@@ -247,7 +247,7 @@
     <value>True</value>
   </data>
   <data name="m_lblPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 264</value>
+    <value>61, 274</value>
   </data>
   <data name="m_lblPhraseRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -289,7 +289,7 @@
     <value>16</value>
   </data>
   <data name="m_comboPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 266</value>
+    <value>149, 310</value>
   </data>
   <data name="m_comboPhraseRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -319,7 +319,7 @@
     <value>True</value>
   </data>
   <data name="m_lblCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 303</value>
+    <value>13, 313</value>
   </data>
   <data name="m_lblCustomClassName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -355,7 +355,7 @@
     <value>Flat</value>
   </data>
   <data name="m_chkUsed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 342</value>
+    <value>149, 375</value>
   </data>
   <data name="m_chkUsed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -391,7 +391,7 @@
     <value>Flat</value>
   </data>
   <data name="m_chkToDo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 370</value>
+    <value>149, 398</value>
   </data>
   <data name="m_chkToDo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -424,7 +424,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 393</value>
+    <value>149, 421</value>
   </data>
   <data name="m_btnOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -457,7 +457,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 393</value>
+    <value>268, 421</value>
   </data>
   <data name="m_btnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -490,7 +490,7 @@
     <value>True</value>
   </data>
   <data name="m_lblTimeLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 238</value>
+    <value>80, 243</value>
   </data>
   <data name="m_lblTimeLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -523,7 +523,7 @@
     <value>Bottom, Left, Right</value>
   </data>
   <data name="m_txtTimeLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 236</value>
+    <value>149, 241</value>
   </data>
   <data name="m_txtTimeLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -553,7 +553,7 @@
     <value>Flat</value>
   </data>
   <data name="m_comboCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 298</value>
+    <value>148, 273</value>
   </data>
   <data name="m_comboCustomClassName.Size" type="System.Drawing.Size, System.Drawing">
     <value>367, 24</value>
@@ -576,27 +576,6 @@
   <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>Ancestor sections:</value>
-  </data>
-  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 25</value>
-  </data>
-  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>361, 82</value>
-  </data>
-  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
   <data name="&gt;&gt;m_lbParentsList.Name" xml:space="preserve">
     <value>m_lbParentsList</value>
   </data>
@@ -633,11 +612,44 @@
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
+    <value>Ancestor sections:</value>
+  </data>
+  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>136, 25</value>
+  </data>
+  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 82</value>
+  </data>
+  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;m_lbParentsList.Name" xml:space="preserve">
+    <value>m_lbParentsList</value>
+  </data>
+  <data name="&gt;&gt;m_lbParentsList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbParentsList.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_lbParentsList.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_lblPageNumberDetails.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_lblPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 319</value>
+    <value>8, 351</value>
   </data>
   <data name="m_lblPageNumberDetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 16</value>
@@ -667,7 +679,7 @@
     <value>Page number details:</value>
   </data>
   <data name="m_txtPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 316</value>
+    <value>149, 348</value>
   </data>
   <data name="m_txtPageNumberDetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>243, 22</value>
@@ -697,7 +709,7 @@
     <value>True</value>
   </data>
   <data name="m_chkChangePageNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>398, 318</value>
+    <value>398, 350</value>
   </data>
   <data name="m_chkChangePageNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 20</value>
@@ -727,7 +739,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_ReferredNote.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 319</value>
+    <value>46, 351</value>
   </data>
   <data name="m_lbl_ReferredNote.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 16</value>
@@ -763,7 +775,7 @@
     <value>True</value>
   </data>
   <data name="m_lblCurrentCursorPosition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-4, 88</value>
+    <value>2, 88</value>
   </data>
   <data name="m_lblCurrentCursorPosition.Size" type="System.Drawing.Size, System.Drawing">
     <value>143, 16</value>
@@ -823,13 +835,19 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>528, 434</value>
+    <value>528, 462</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
+  </data>
+  <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Phrase properties</value>

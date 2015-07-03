@@ -2770,7 +2770,7 @@ Error text: {1}</value>
     <value>Unable to find next page. Please key in the values.</value>
   </data>
   <data name="SetPageNumber_PageOutOfOrder" xml:space="preserve">
-    <value>Can not proceed. The preceeding page number and the next page number are out of order.</value>
+    <value>Cannot proceed. The preceeding page number and the next page number are out of order.</value>
   </data>
   <data name="SetPageNumber_PageInConsecutiveOrder" xml:space="preserve">
     <value>Cannot proceed. Pages are already consecutive.</value>
