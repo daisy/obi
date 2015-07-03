@@ -6310,7 +6310,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can not proceed. The preceeding page number and the next page number are out of order..
+        ///   Looks up a localized string similar to Cannot proceed. The preceeding page number and the next page number are out of order..
         /// </summary>
         internal static string SetPageNumber_PageOutOfOrder {
             get {
