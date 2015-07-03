@@ -39,7 +39,7 @@ namespace Obi.ProjectView
         public event ProgressChangedEventHandler ProgressChanged; //Updates the toolstrip progress bar on obi form
         private KeyboardShortcuts_Settings keyboardShortcuts;
         private bool m_IsAudioProcessingChecked = false;
-        private Dictionary<ObiNode, string> m_DictionaryOfFilePaths = new Dictionary<ObiNode, string>();
+        
     
         /// <summary>
         /// Create a new project view with no project yet.
@@ -5357,7 +5357,7 @@ if (CanExportSelectedNodeAudio)
         }
 
 
-        private void DoAudioProcessing(ObiNode nodeToSelect, Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind, float AudioProcessingParameter)
+        private Dictionary<ObiNode, string> DoAudioProcessing(Dictionary<ObiNode, string> dictionaryOfFilePaths, ObiNode nodeToSelect, Audio.AudioFormatConverter.AudioProcessingKind audioProcessingKind, float AudioProcessingParameter)
         {
             string tempDirectoryName = "AudioProcessing";
             string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
@@ -5365,14 +5365,14 @@ if (CanExportSelectedNodeAudio)
             while (nodeToSelect.Index <= mContentView.EndSpecialNode.Index && nodeToSelect.Parent == mContentView.EndSpecialNode.Parent)
             {
                 string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
-                m_DictionaryOfFilePaths.Add(nodeToSelect, audioFileFullPath);
+                dictionaryOfFilePaths.Add(nodeToSelect, audioFileFullPath);
                 AudioLib.DualCancellableProgressReporter audioProcess = Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, audioFileFullPath, AudioProcessingParameter);
                 audioProcess.DoWork();
 
                 nodeToSelect = nodeToSelect.FollowingNode;
 
             };
-
+            return dictionaryOfFilePaths;
         }
         public void ProcessAudioForMultiplePhrases()
         {
@@ -5385,7 +5385,8 @@ if (CanExportSelectedNodeAudio)
                     MessageBox.Show(Localizer.Message("no_audio"));
                     return;
                 }
-                m_DictionaryOfFilePaths.Clear();
+                Dictionary<ObiNode, string> dictionaryOfFilePaths = new Dictionary<ObiNode, string>();
+
                 bool SelectionChangedPlaybackEnabled = mTransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
                 Obi.Dialogs.AudioProcessingDialog dialog = new Obi.Dialogs.AudioProcessingDialog();
@@ -5411,8 +5412,8 @@ if (CanExportSelectedNodeAudio)
                             Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioProcessing_progress_dialog_title"),
                                                     delegate(Dialogs.ProgressDialog progress1)
                                                     {
-                                                        DoAudioProcessing(nodeToSelect, audioProcessingKind, val);
-
+                                                        dictionaryOfFilePaths =  DoAudioProcessing(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val);
+                                                        if (System.IO.File.Exists(audioFileFullPath)) ReplaceAudioInMultiplePhrases(dictionaryOfFilePaths);
                                                     });
                             progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) {});
                            // audioProcess.ProgressChangedEvent += new ProgressChangedEventHandler(progress.UpdateProgressBar);
@@ -5420,13 +5421,9 @@ if (CanExportSelectedNodeAudio)
                             if (progress.Exception != null) throw progress.Exception;
 
 
-
                             if (System.IO.File.Exists(audioFileFullPath))
                             {
-                                foreach (ObiNode node in m_DictionaryOfFilePaths.Keys)
-                                {
-                                    ReplaceAudioOfSelectedNode(m_DictionaryOfFilePaths[node], true, node);
-                                }
+                                
                                 if (System.IO.Directory.Exists(directoryFullPath))
                                 {
                                     System.IO.Directory.Delete(directoryFullPath, true);
@@ -5443,6 +5440,23 @@ if (CanExportSelectedNodeAudio)
 
                     mTransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabled;
 
+                }
+            }
+        }
+
+        private delegate void ReplaceAudioForMultiplePhrasesDelegate(Dictionary<ObiNode, string> dictionaryOfFilePaths);
+        private void ReplaceAudioInMultiplePhrases(Dictionary<ObiNode,string> dictionaryOfFilePaths)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new ReplaceAudioForMultiplePhrasesDelegate(ReplaceAudioInMultiplePhrases), dictionaryOfFilePaths);
+            }
+            else
+            {
+                foreach (ObiNode node in dictionaryOfFilePaths.Keys)
+                {
+                    ReplaceAudioOfSelectedNode(dictionaryOfFilePaths[node], true, node);
+                    
                 }
             }
         }
