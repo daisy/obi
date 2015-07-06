@@ -4967,6 +4967,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_SettingsFromsilencePhraseToolStripMenuItem.Enabled = mProjectView.CanUpdatePhraseDetectionSettingsFromSilencePhrase;
             Context_ReplaceAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             Context_AudioProcessing.Enabled = mProjectView.CanExportSelectedNodeAudio;
+            ContextBeginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
+            ContextEndMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -5738,6 +5740,17 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void Context_MultiSectionOperations_Click(object sender, EventArgs e)
         {
             mProjectView.MergeMultipleSections();
+        }
+
+        private void beginMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MarkBeginNote();
+        }
+
+        private void endMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MarkEndNote();
+            mProjectView.AssignRoleToMarkedContinuousNodes();
         }
 
      
