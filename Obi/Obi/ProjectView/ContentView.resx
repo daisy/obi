@@ -202,151 +202,6 @@
   <data name="Context_SplitPhraseMenuItem.Text" xml:space="preserve">
     <value>Split p&amp;hrase</value>
   </data>
-  <data name="Context_MergeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_MergeMenuItem.Text" xml:space="preserve">
-    <value>Mer&amp;ge phrases</value>
-  </data>
-  <data name="Context_CropAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_CropAudioMenuItem.Text" xml:space="preserve">
-    <value>Crop au&amp;dio</value>
-  </data>
-  <data name="Context_PhraseIsTODOMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PhraseIsTODOMenuItem.Text" xml:space="preserve">
-    <value>Phrase is T&amp;ODO</value>
-  </data>
-  <data name="Context_PhraseIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PhraseIsUsedMenuItem.Text" xml:space="preserve">
-    <value>Phras&amp;e is used</value>
-  </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
-  </data>
-  <data name="Context_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_AssignRoleMenuItem.Text" xml:space="preserve">
-    <value>Assign ro&amp;le</value>
-  </data>
-  <data name="Context_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_ClearRoleMenuItem.Text" xml:space="preserve">
-    <value>Clear role</value>
-  </data>
-  <data name="Context_PhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>Apply p&amp;hrase Detection</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>Multi &amp;phrase operation</value>
-  </data>
-  <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
-    <value>Skippable notes</value>
-  </data>
-  <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
-    <value>Skippa&amp;ble notes</value>
-  </data>
-  <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_AudioSelectionMenuItem.Text" xml:space="preserve">
-    <value>Audi&amp;o selection</value>
-  </data>
-  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
-  </data>
-  <data name="Context_CutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_CutMenuItem.Text" xml:space="preserve">
-    <value>&amp;Cut</value>
-  </data>
-  <data name="Context_CopyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_CopyMenuItem.Text" xml:space="preserve">
-    <value>Cop&amp;y</value>
-  </data>
-  <data name="Context_PasteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PasteMenuItem.Text" xml:space="preserve">
-    <value>&amp;Paste</value>
-  </data>
-  <data name="Context_PasteBeforeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PasteBeforeMenuItem.Text" xml:space="preserve">
-    <value>Paste &amp;before</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Context_PasteBeforeMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="Context_PasteInsideMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PasteInsideMenuItem.Text" xml:space="preserve">
-    <value>Paste &amp;inside</value>
-  </data>
-  <data name="Context_PasteInsideMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="Context_DeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_DeleteMenuItem.Text" xml:space="preserve">
-    <value>&amp;Delete</value>
-  </data>
-  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
-  </data>
-  <data name="Context_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_AudioProcessing.Text" xml:space="preserve">
-    <value>Audio Processing</value>
-  </data>
-  <data name="Context_ExportReplaceAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>Export or replace Audio </value>
-  </data>
-  <data name="Context_ExportReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_ExportReplaceAudioMenuItem.Text" xml:space="preserve">
-    <value>&amp;Export or replace Audio</value>
-  </data>
-  <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
-    <value>Pr&amp;operties</value>
-  </data>
-  <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 732</value>
-  </data>
-  <data name="&gt;&gt;mContextMenuStrip.Name" xml:space="preserve">
-    <value>mContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;mContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Context_MergePhraseWithNextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 22</value>
   </data>
@@ -376,6 +231,33 @@
   </data>
   <data name="Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text" xml:space="preserve">
     <value>Merge with preceding phra&amp;ses</value>
+  </data>
+  <data name="Context_MergeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_MergeMenuItem.Text" xml:space="preserve">
+    <value>Mer&amp;ge phrases</value>
+  </data>
+  <data name="Context_CropAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_CropAudioMenuItem.Text" xml:space="preserve">
+    <value>Crop au&amp;dio</value>
+  </data>
+  <data name="Context_PhraseIsTODOMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PhraseIsTODOMenuItem.Text" xml:space="preserve">
+    <value>Phrase is T&amp;ODO</value>
+  </data>
+  <data name="Context_PhraseIsUsedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PhraseIsUsedMenuItem.Text" xml:space="preserve">
+    <value>Phras&amp;e is used</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 6</value>
   </data>
   <data name="Context_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
@@ -416,6 +298,18 @@
   <data name="Context_AssignRole_NewCustomRoleMenuItem.Text" xml:space="preserve">
     <value>(New custom role...)</value>
   </data>
+  <data name="Context_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_AssignRoleMenuItem.Text" xml:space="preserve">
+    <value>Assign ro&amp;le</value>
+  </data>
+  <data name="Context_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_ClearRoleMenuItem.Text" xml:space="preserve">
+    <value>Clear role</value>
+  </data>
   <data name="Context_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 22</value>
   </data>
@@ -433,6 +327,33 @@
   </data>
   <data name="Context_SettingsFromsilencePhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Parameters from selected &amp;silence phrase</value>
+  </data>
+  <data name="Context_PhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PhraseDetectionMenuItem.Text" xml:space="preserve">
+    <value>Apply p&amp;hrase Detection</value>
+  </data>
+  <data name="ContextBeginMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="ContextBeginMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Begin mark</value>
+  </data>
+  <data name="ContextEndMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="ContextEndMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;End mark</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>Multi &amp;phrase operation</value>
+  </data>
+  <data name="Context_SkippablesMenuItem.AccessibleName" xml:space="preserve">
+    <value>Skippable notes</value>
   </data>
   <data name="Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Begin mark</value>
@@ -503,6 +424,12 @@
   <data name="Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Clear role from note</value>
   </data>
+  <data name="Context_SkippablesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_SkippablesMenuItem.Text" xml:space="preserve">
+    <value>Skippa&amp;ble notes</value>
+  </data>
   <data name="Context_AudioSelection_BeginMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
   </data>
@@ -515,6 +442,52 @@
   <data name="Context_AudioSelection_EndMenuItem.Text" xml:space="preserve">
     <value>&amp;End audio selection</value>
   </data>
+  <data name="Context_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_AudioSelectionMenuItem.Text" xml:space="preserve">
+    <value>Audi&amp;o selection</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 6</value>
+  </data>
+  <data name="Context_CutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_CutMenuItem.Text" xml:space="preserve">
+    <value>&amp;Cut</value>
+  </data>
+  <data name="Context_CopyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_CopyMenuItem.Text" xml:space="preserve">
+    <value>Cop&amp;y</value>
+  </data>
+  <data name="Context_PasteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PasteMenuItem.Text" xml:space="preserve">
+    <value>&amp;Paste</value>
+  </data>
+  <data name="Context_PasteBeforeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PasteBeforeMenuItem.Text" xml:space="preserve">
+    <value>Paste &amp;before</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Context_PasteBeforeMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="Context_PasteInsideMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PasteInsideMenuItem.Text" xml:space="preserve">
+    <value>Paste &amp;inside</value>
+  </data>
+  <data name="Context_PasteInsideMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="Context_Delete_deleteSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 22</value>
   </data>
@@ -526,6 +499,24 @@
   </data>
   <data name="Context_Delete_deleteFollowingPhrasesMenuItem.Text" xml:space="preserve">
     <value>Dele&amp;te following phrases</value>
+  </data>
+  <data name="Context_DeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_DeleteMenuItem.Text" xml:space="preserve">
+    <value>&amp;Delete</value>
+  </data>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 6</value>
+  </data>
+  <data name="Context_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_AudioProcessing.Text" xml:space="preserve">
+    <value>Audio Processing</value>
+  </data>
+  <data name="Context_ExportReplaceAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value>Export or replace Audio </value>
   </data>
   <data name="Context_ExportAudioMenuItem.AccessibleName" xml:space="preserve">
     <value>Export Audio ctrl+Alt+E</value>
@@ -545,6 +536,27 @@
   </data>
   <data name="Context_ReplaceAudioMenuItem.Text" xml:space="preserve">
     <value>&amp;Replace Audio</value>
+  </data>
+  <data name="Context_ExportReplaceAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_ExportReplaceAudioMenuItem.Text" xml:space="preserve">
+    <value>&amp;Export or replace Audio</value>
+  </data>
+  <data name="Context_PropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="Context_PropertiesMenuItem.Text" xml:space="preserve">
+    <value>Pr&amp;operties</value>
+  </data>
+  <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 688</value>
+  </data>
+  <data name="&gt;&gt;mContextMenuStrip.Name" xml:space="preserve">
+    <value>mContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;mContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="mStripsPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -673,7 +685,7 @@
     <value>verticalScrollToolStripContainer1</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=3.7.0.33817, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.VerticalScrollToolStripContainer, Obi, Version=3.7.0.22398, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;verticalScrollToolStripContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -706,7 +718,7 @@
     <value>contentViewLabel1</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=3.7.0.33817, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentViewLabel, Obi, Version=3.7.0.22398, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;contentViewLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -939,6 +951,12 @@
   <data name="&gt;&gt;Context_SettingsFromsilencePhraseToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
+    <value>toolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;Context_SkippablesMenuItem.Name" xml:space="preserve">
     <value>Context_SkippablesMenuItem</value>
   </data>
@@ -1107,10 +1125,16 @@
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
-    <value>toolStripMenuItem1</value>
+  <data name="&gt;&gt;ContextBeginMarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>ContextBeginMarkToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+  <data name="&gt;&gt;ContextBeginMarkToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ContextEndMarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>ContextEndMarkToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;ContextEndMarkToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
