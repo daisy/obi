@@ -36,6 +36,8 @@ namespace Obi.Dialogs
             this.m_rdb_btn_RenumberPages = new System.Windows.Forms.RadioButton();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.m_rtb_btn_AudioProcessing = new System.Windows.Forms.RadioButton();
+            this.m_gp_box_operation = new System.Windows.Forms.GroupBox();
+            this.m_gp_box_operation.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_cmbBoxSpecialNode
@@ -95,21 +97,29 @@ namespace Obi.Dialogs
             this.m_rtb_btn_AudioProcessing.UseVisualStyleBackColor = true;
             this.m_rtb_btn_AudioProcessing.CheckedChanged += new System.EventHandler(this.m_rtb_btn_AudioProcessing_CheckedChanged);
             // 
+            // m_gp_box_operation
+            // 
+            this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_SpecialPhrase);
+            this.m_gp_box_operation.Controls.Add(this.m_rtb_btn_AudioProcessing);
+            this.m_gp_box_operation.Controls.Add(this.m_rdb_btn_RenumberPages);
+            resources.ApplyResources(this.m_gp_box_operation, "m_gp_box_operation");
+            this.m_gp_box_operation.Name = "m_gp_box_operation";
+            this.m_gp_box_operation.TabStop = false;
+            // 
             // AssignSpecialNodeMark
             // 
             this.AcceptButton = this.m_btn_OK;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
-            this.Controls.Add(this.m_rtb_btn_AudioProcessing);
-            this.Controls.Add(this.m_rdb_btn_RenumberPages);
-            this.Controls.Add(this.m_rdb_btn_SpecialPhrase);
+            this.Controls.Add(this.m_gp_box_operation);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_cmbBoxSpecialNode);
             this.Name = "AssignSpecialNodeMark";
+            this.m_gp_box_operation.ResumeLayout(false);
+            this.m_gp_box_operation.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -122,5 +132,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_rdb_btn_RenumberPages;
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.RadioButton m_rtb_btn_AudioProcessing;
+        private System.Windows.Forms.GroupBox m_gp_box_operation;
     }
 }
