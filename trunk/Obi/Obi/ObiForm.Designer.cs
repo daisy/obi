@@ -221,6 +221,9 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.MultiPhraseOperationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.beginMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.endMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -792,6 +795,7 @@ namespace Obi
             this.mCropAudiotoolStripMenuItem,
             this.mPhrases_PhraseIsTODOMenuItem,
             this.mPhraseIsUsedToolStripMenuItem,
+            this.MultiPhraseOperationMenuItem,
             this.mSkippableNoteToolStripMenuItem,
             this.toolStripSeparator6,
             this.mPhrases_AssignRoleMenuItem,
@@ -1591,6 +1595,26 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
+            // MultiPhraseOperationMenuItem
+            // 
+            this.MultiPhraseOperationMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.beginMarkToolStripMenuItem,
+            this.endMarkToolStripMenuItem});
+            this.MultiPhraseOperationMenuItem.Name = "MultiPhraseOperationMenuItem";
+            resources.ApplyResources(this.MultiPhraseOperationMenuItem, "MultiPhraseOperationMenuItem");
+            // 
+            // beginMarkToolStripMenuItem
+            // 
+            this.beginMarkToolStripMenuItem.Name = "beginMarkToolStripMenuItem";
+            resources.ApplyResources(this.beginMarkToolStripMenuItem, "beginMarkToolStripMenuItem");
+            this.beginMarkToolStripMenuItem.Click += new System.EventHandler(this.beginMarkToolStripMenuItem_Click);
+            // 
+            // endMarkToolStripMenuItem
+            // 
+            this.endMarkToolStripMenuItem.Name = "endMarkToolStripMenuItem";
+            resources.ApplyResources(this.endMarkToolStripMenuItem, "endMarkToolStripMenuItem");
+            this.endMarkToolStripMenuItem.Click += new System.EventHandler(this.endMarkToolStripMenuItem_Click);
+            // 
             // ObiForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1810,6 +1834,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mTools_AudioProcessing;
         private System.Windows.Forms.ToolStripMenuItem mMergeWithNextSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMultiSectionOperations;
+        private System.Windows.Forms.ToolStripMenuItem MultiPhraseOperationMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem beginMarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem endMarkToolStripMenuItem;
     }
 }
 

@@ -2057,6 +2057,8 @@ namespace Obi
                 splitAndMergeWithNextToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
                 splitAndMergeWithPreviousToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
                 mPhrases_RenumberPagesMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive;
+                beginMarkToolStripMenuItem.Enabled = mProjectView.CanBeginSpecialNote;
+                endMarkToolStripMenuItem.Enabled = mProjectView.CanEndSpecialNote;
             }
 
             private void UpdateAudioSelectionBlockMenuItems()
@@ -5768,6 +5770,17 @@ ref string exportDirectoryEPUB3)
                 {
                     mRecordingToolBarForm.UpdateForChangeInObi();
                 }
+            }
+
+            private void beginMarkToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.MarkBeginNote();
+            }
+            
+            private void endMarkToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.MarkEndNote();
+                mProjectView.AssignRoleToMarkedContinuousNodes();
             }
 
  
