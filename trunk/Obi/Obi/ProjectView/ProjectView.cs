@@ -95,7 +95,7 @@ namespace Obi.ProjectView
             if (mContentView.Selection == null)
             {
                 if (this.Selection.Node is SectionNode 
-                    && (mContentView.ActiveStrip == null ||  mContentView.ActiveStrip.Node != this.Selection.Node))
+                    && (mContentView.ActiveStrip == null ||  mContentView.ActiveStrip.Node == this.Selection.Node))
                 { 
                     this.Selection = new NodeSelection(this.Selection.Node, mContentView);
                 }
