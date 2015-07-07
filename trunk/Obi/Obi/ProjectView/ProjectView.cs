@@ -92,15 +92,12 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddEmptyPages()
         {
-            if (mContentView.Selection == null)
-            {
-                if (this.Selection.Node is SectionNode 
-                    && (mContentView.ActiveStrip == null ||  mContentView.ActiveStrip.Node == this.Selection.Node))
+            if (Selection != null && this.Selection.Node is SectionNode 
+                    && (mContentView.ActiveStrip == null || Selection.Control is TOCView))
                 { 
                     this.Selection = new NodeSelection(this.Selection.Node, mContentView);
                 }
-             //   this.Selection = new NodeSelection(this.Selection.Node, mContentView);
-            }
+             
             if (CanAddEmptyBlock)
             {
                 if (TransportBar.IsActive) TransportBar.Stop();
