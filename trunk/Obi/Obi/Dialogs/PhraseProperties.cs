@@ -15,6 +15,7 @@ namespace Obi.Dialogs
         private ProjectView.ProjectView mView;  // the current view.
         private bool m_IsSetCustomClass;
         private double m_TotalCursorTime;
+        private bool m_IsPause = false;
         
 
         /// <summary>
@@ -31,6 +32,10 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Phrase Properties.htm");
+            if (mView.TransportBar.IsPlayerActive)
+            {
+                m_IsPause = true;
+            }
         }
 
 
@@ -109,16 +114,22 @@ namespace Obi.Dialogs
                 {
                     if (((AudioSelection)mView.Selection).AudioRange != null && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
                     {
-                        m_TotalCursorTime += ((AudioSelection)mView.Selection).AudioRange.CursorTime;
-                        if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && phraseNode.Parent == phraseNode.PrecedingNode.Parent)
+                        if (!m_IsPause)
                         {
-                            CalculateCursorTime((PhraseNode) phraseNode.PrecedingNode);
+                            m_TotalCursorTime += ((AudioSelection)mView.Selection).AudioRange.CursorTime;
                         }
                     }
                 }
-                else
+
+                if (m_IsPause)
                 {
-                    CalculateCursorTime(phraseNode);
+                    m_TotalCursorTime += mView.TransportBar.CurrentPlaylist.CurrentTimeInAsset;
+                    m_IsPause = false;
+                }
+                
+                if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && phraseNode.Parent == phraseNode.PrecedingNode.Parent)
+                {
+                    CalculateCursorTime((PhraseNode)phraseNode.PrecedingNode);
                 }
 
                 if (phraseNode.Parent is SectionNode)
@@ -176,7 +187,16 @@ namespace Obi.Dialogs
 
         private void CalculateCursorTime(PhraseNode phraseNode)
         {
-            m_TotalCursorTime += phraseNode.Duration;
+            //if (m_IsPause && mView.Selection != null && mView.Selection is AudioSelection)
+            //{
+            //    AudioSelection audioSelection = (AudioSelection)mView.Selection;
+            //    m_TotalCursorTime += audioSelection.AudioRange.CursorTime;
+            //    m_IsPause = false;
+            //}
+            //else
+            {
+                m_TotalCursorTime += phraseNode.Duration;
+            }
             if (phraseNode.PrecedingNode != null && phraseNode.PrecedingNode is PhraseNode && (phraseNode.PrecedingNode.Parent == phraseNode.Parent))
             {
                 CalculateCursorTime((PhraseNode) phraseNode.PrecedingNode);
