@@ -195,6 +195,7 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_txtCurrentCursorPosition, "m_txtCurrentCursorPosition");
             this.m_txtCurrentCursorPosition.Name = "m_txtCurrentCursorPosition";
+            this.m_txtCurrentCursorPosition.ReadOnly = true;
             // 
             // PhraseProperties
             // 

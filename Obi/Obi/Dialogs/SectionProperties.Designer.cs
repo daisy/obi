@@ -143,6 +143,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_txtSectionTimePosition, "m_txtSectionTimePosition");
             this.m_txtSectionTimePosition.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.m_txtSectionTimePosition.Name = "m_txtSectionTimePosition";
+            this.m_txtSectionTimePosition.ReadOnly = true;
             // 
             // SectionProperties
             // 
