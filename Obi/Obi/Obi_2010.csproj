@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -13,7 +13,7 @@
     <ManifestCertificateThumbprint>03ED7178F8829969A9A733DAABF858F68795A179</ManifestCertificateThumbprint>
     <ManifestKeyFile>Obi_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetZone>LocalIntranet</TargetZone>
     <SignAssembly>false</SignAssembly>
@@ -31,6 +31,8 @@
     <ApplicationVersion>0.7.2.%2a</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <StartupObject>Obi.Program</StartupObject>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +45,7 @@
     <LangVersion>default</LangVersion>
     <NoWarn>1607</NoWarn>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,6 +54,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,6 +65,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <LangVersion>default</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -69,6 +74,7 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AudioEngine.PPMeter, Version=1.0.3644.25175, Culture=neutral, processorArchitecture=MSIL">
@@ -144,6 +150,12 @@
     <Compile Include="Dialogs\AssignSpecialNodeMark.Designer.cs">
       <DependentUpon>AssignSpecialNodeMark.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AudioProcessingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AudioProcessingDialog.Designer.cs">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AudioSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +167,30 @@
     </Compile>
     <Compile Include="Dialogs\CheckUpdates.Designer.cs">
       <DependentUpon>CheckUpdates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ChooseMergeOrChangeLevel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ChooseMergeOrChangeLevel.Designer.cs">
+      <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DownloadFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DownloadFile.Designer.cs">
+      <DependentUpon>DownloadFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Epub3Validator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Epub3Validator.Designer.cs">
+      <DependentUpon>Epub3Validator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExportAdvance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ExportAdvance.Designer.cs">
+      <DependentUpon>ExportAdvance.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ExtendedMessageToAssociate.cs">
       <SubType>Form</SubType>
@@ -193,11 +229,23 @@
     <Compile Include="Dialogs\GoToPageOrPhrase.designer.cs">
       <DependentUpon>GoToPageOrPhrase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\MergeProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MergeProject.Designer.cs">
+      <DependentUpon>MergeProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\MultipleOptionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\MultipleOptionDialog.Designer.cs">
       <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ProfileDescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProfileDescription.Designer.cs">
+      <DependentUpon>ProfileDescription.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ReportDialog.cs">
       <SubType>Form</SubType>
@@ -343,24 +391,21 @@
     <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
     <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
+    <Compile Include="ImportExport\ConfigurationFileParser.cs" />
     <Compile Include="ImportExport\DAISY202Export.cs" />
     <Compile Include="ImportExport\DAISY202Import.cs" />
     <Compile Include="ImportExport\DAISY3_ObiExport.cs" />
     <Compile Include="ImportExport\DAISY3_ObiImport.cs" />
-    <Compile Include="ImportExport\ImportStructure.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="ImportExport\Epub3_ObiExport.cs" />
+    <Compile Include="ImportExport\EPUB3_ObiImport.cs" />
+    <Compile Include="ImportExport\ImportStructureFromCSV.cs" />
+    <Compile Include="ImportExport\ImportStructureFromXhtml.cs" />
     <Compile Include="ImportExport\XslResolver.cs" />
     <Compile Include="ImportExport\Z.cs" />
     <Compile Include="KeyboardShortcuts_Settings.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Localizer.cs" />
-    <Compile Include="messages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>messages.resx</DependentUpon>
-    </Compile>
     <Compile Include="messages.hi.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -448,6 +493,12 @@
     <Compile Include="ProjectView\Strip.Designer.cs">
       <DependentUpon>Strip.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\Toolbar_EditAudio.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\Toolbar_EditAudio.Designer.cs">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectView\TransportBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -472,7 +523,34 @@
     <Compile Include="ProjectView\Waveform_Recording.designer.cs">
       <DependentUpon>Waveform_Recording.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\ZoomWaveform.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\ZoomWaveform.Designer.cs">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialogs\AudioProcessingDialog.ar.resx">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingDialog.es.resx">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingDialog.fi.resx">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingDialog.fr.resx">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingDialog.resx">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingDialog.zh-CN.resx">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AudioProcessingDialog.zh-HK.resx">
+      <DependentUpon>AudioProcessingDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AudioSettings.fr.resx">
       <DependentUpon>AudioSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -482,6 +560,106 @@
     <EmbeddedResource Include="Dialogs\CheckUpdates.resx">
       <DependentUpon>CheckUpdates.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.es.resx">
+      <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.fr.resx">
+      <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.resx">
+      <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.zh-CN.resx">
+      <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ChooseMergeOrChangeLevel.zh-HK.resx">
+      <DependentUpon>ChooseMergeOrChangeLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DownloadFile.es.resx">
+      <DependentUpon>DownloadFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DownloadFile.fr.resx">
+      <DependentUpon>DownloadFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DownloadFile.resx">
+      <DependentUpon>DownloadFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DownloadFile.zh-CN.resx">
+      <DependentUpon>DownloadFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DownloadFile.zh-HK.resx">
+      <DependentUpon>DownloadFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Epub3Validator.ar.resx">
+      <DependentUpon>Epub3Validator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Epub3Validator.es.resx">
+      <DependentUpon>Epub3Validator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Epub3Validator.fi.resx">
+      <DependentUpon>Epub3Validator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Epub3Validator.fr.resx">
+      <DependentUpon>Epub3Validator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Epub3Validator.resx">
+      <DependentUpon>Epub3Validator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Epub3Validator.zh-CN.resx">
+      <DependentUpon>Epub3Validator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Epub3Validator.zh-HK.resx">
+      <DependentUpon>Epub3Validator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportAdvance.ar.resx">
+      <DependentUpon>ExportAdvance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportAdvance.es.resx">
+      <DependentUpon>ExportAdvance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportAdvance.fi.resx">
+      <DependentUpon>ExportAdvance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportAdvance.fr.resx">
+      <DependentUpon>ExportAdvance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportAdvance.ja.resx">
+      <DependentUpon>ExportAdvance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportAdvance.resx">
+      <DependentUpon>ExportAdvance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportAdvance.zh-CN.resx">
+      <DependentUpon>ExportAdvance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportAdvance.zh-HK.resx">
+      <DependentUpon>ExportAdvance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ImportFileSplitSize.hi.hi.resx" />
+    <EmbeddedResource Include="Dialogs\MergeProject.ar.resx">
+      <DependentUpon>MergeProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MergeProject.es.resx">
+      <DependentUpon>MergeProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MergeProject.fi.resx">
+      <DependentUpon>MergeProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MergeProject.fr.resx">
+      <DependentUpon>MergeProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MergeProject.ja.resx">
+      <DependentUpon>MergeProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MergeProject.resx">
+      <DependentUpon>MergeProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MergeProject.zh-CN.resx">
+      <DependentUpon>MergeProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MergeProject.zh-HK.resx">
+      <DependentUpon>MergeProject.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewProject.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NewProject.cs</DependentUpon>
@@ -490,17 +668,81 @@
       <SubType>Designer</SubType>
       <DependentUpon>Preferences.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProfileDescription.ar.resx">
+      <DependentUpon>ProfileDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProfileDescription.es.resx">
+      <DependentUpon>ProfileDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProfileDescription.fi.resx">
+      <DependentUpon>ProfileDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProfileDescription.fr.resx">
+      <DependentUpon>ProfileDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProfileDescription.resx">
+      <DependentUpon>ProfileDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProfileDescription.zh-CN.resx">
+      <DependentUpon>ProfileDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProfileDescription.zh-HK.resx">
+      <DependentUpon>ProfileDescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UserRegistration.resx">
       <DependentUpon>UserRegistration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="messages.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ObiForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ObiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.ar.resx">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.es.resx">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.fi.resx">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.fr.resx">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.ja.resx">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.resx">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.zh-CN.resx">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\Toolbar_EditAudio.zh-HK.resx">
+      <DependentUpon>Toolbar_EditAudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.ar.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.es.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.fi.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.fr.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.ja.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.zh-CN.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ZoomWaveform.zh-HK.resx">
+      <DependentUpon>ZoomWaveform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -513,6 +755,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
+    <None Include="app.config" />
     <None Include="EmptyProject.obi">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -537,6 +780,9 @@
     <Compile Include="Selection.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Settings_Permanent.cs" />
+    <Compile Include="Settings_SaveProfile.cs" />
+    <Compile Include="SplitMergeProject.cs" />
     <Compile Include="UserControls\GraphicalPeakMeter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -774,31 +1020,40 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="about_ar.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="about_en.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="about_es.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="about_fi.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="about_fr.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="about_hi.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="about_ja.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="about_ta.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="about_zh-CN.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="about_zh-HK.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="FineNavigationOn.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="images\DAISY_Consortium_logo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ImportExport\filter.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ImportExport\ncx.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ImportExport\package.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ImportExport\smil.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ImportExport\Z.xslt">
@@ -960,9 +1215,6 @@
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="messages.fr.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="ObiForm.fr.resx">
       <DependentUpon>ObiForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1057,6 +1309,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="obi.ico" />
+    <Content Include="profiles\Advance.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="profiles\Basic.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="profiles\Intermediate.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="profiles\Profile-1-VA.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="profiles\Profile-2-SBS.XML">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SelectionBegin.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1087,6 +1354,9 @@
       <Project>{DDEB9FA1-8435-456F-91E8-3C23125BE427}</Project>
       <Name>PipelineInterface</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
