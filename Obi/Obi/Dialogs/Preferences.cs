@@ -779,38 +779,80 @@ namespace Obi.Dialogs
         private void m_cbOperation_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(m_cbOperation.SelectedIndex == 0)
-            { 
-                m_OperationDurationUpDown.Value = m_Nudge;
+            {
+                if (m_Nudge >= m_OperationDurationUpDown.Minimum)
+                {
+                    m_OperationDurationUpDown.Value = m_Nudge;
+                }
+                else
+                {
+                    m_OperationDurationUpDown.Value = m_OperationDurationUpDown.Minimum;
+                }
                 m_OperationDurationUpDown.Increment = 20;
                 label3.Visible = true;
             }
             if(m_cbOperation.SelectedIndex == 1)
             {
-                m_OperationDurationUpDown.Value = m_Preview;
+                if (m_Preview >= m_OperationDurationUpDown.Minimum)
+                {
+                    m_OperationDurationUpDown.Value = m_Preview;
+                }
+                else
+                {
+                    m_OperationDurationUpDown.Value = m_OperationDurationUpDown.Minimum;
+                }
                 m_OperationDurationUpDown.Increment = 100;
                 label3.Visible = true;
             }
             if(m_cbOperation.SelectedIndex == 2)
             {
-                m_OperationDurationUpDown.Value = m_Elapse;
+                if (m_Elapse >= m_OperationDurationUpDown.Minimum)
+                {
+                    m_OperationDurationUpDown.Value = m_Elapse;
+                }
+                else
+                {
+                    m_OperationDurationUpDown.Value = m_OperationDurationUpDown.Minimum;
+                }
                 m_OperationDurationUpDown.Increment = 150;
                 label3.Visible = true;
             }
             if (m_cbOperation.SelectedIndex == 3)
             {
-                m_OperationDurationUpDown.Value = (decimal)m_DefaultLeadingSilence;
+                if ((decimal)m_DefaultLeadingSilence >= m_OperationDurationUpDown.Minimum)
+                {
+                    m_OperationDurationUpDown.Value = (decimal)m_DefaultLeadingSilence;
+                }
+                else
+                {
+                    m_OperationDurationUpDown.Value = m_OperationDurationUpDown.Minimum;
+                }
                 m_OperationDurationUpDown.Increment = 10;
                 label3.Visible = true;
             }
             if (m_cbOperation.SelectedIndex == 4)
             {
-                m_OperationDurationUpDown.Value = (decimal)m_DefaultThreshold;
+                if ((decimal)m_DefaultThreshold >= m_OperationDurationUpDown.Minimum)
+                {
+                    m_OperationDurationUpDown.Value = (decimal)m_DefaultThreshold;
+                }
+                else
+                {
+                    m_OperationDurationUpDown.Value = m_OperationDurationUpDown.Minimum;
+                }
                 m_OperationDurationUpDown.Increment = 25;
                 label3.Visible = false;
             }
             if (m_cbOperation.SelectedIndex == 5)
             {
-                m_OperationDurationUpDown.Value = (decimal)m_DefaultGap;
+                if ((decimal)m_DefaultGap >= m_OperationDurationUpDown.Minimum)
+                {
+                    m_OperationDurationUpDown.Value = (decimal)m_DefaultGap;
+                }
+                else
+                {
+                    m_OperationDurationUpDown.Value = m_OperationDurationUpDown.Minimum;
+                }
                 m_OperationDurationUpDown.Increment = 25;
                 label3.Visible = true;
             }
