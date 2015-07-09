@@ -406,6 +406,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Localizer.cs" />
+    <Compile Include="messages.Designer.cs">
+      <DependentUpon>messages.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="messages.hi.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -691,6 +696,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UserRegistration.resx">
       <DependentUpon>UserRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="messages.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ObiForm.resx">
       <SubType>Designer</SubType>
