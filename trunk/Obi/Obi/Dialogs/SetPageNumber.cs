@@ -153,7 +153,12 @@ namespace Obi.Dialogs
                 EmptyNode startingPage = null;
                 EmptyNode lastPage = null;
                 // find previous page node
-                for (ObiNode n = m_SelectedNode;
+                ObiNode nodeSelected = m_SelectedNode;
+                if (m_SelectedNode is SectionNode && ((SectionNode)m_SelectedNode).PhraseChildCount > 0)
+                {
+                    nodeSelected = ((SectionNode)m_SelectedNode).PhraseChild(((SectionNode)m_SelectedNode).PhraseChildCount - 1);
+                }
+                for (ObiNode n = nodeSelected ;
                     n != null ;
                     n = n.PrecedingNode)
                 {
@@ -165,7 +170,7 @@ namespace Obi.Dialogs
                 }
 
                 // Find the next page node
-                for (ObiNode n = m_SelectedNode.FollowingNode;
+                for (ObiNode n = nodeSelected.FollowingNode;
                     n != null;
                     n = n.FollowingNode)
                 {
