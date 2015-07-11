@@ -75,9 +75,15 @@ namespace Obi
         {
             mPresentation = presentation;
             mRecorder = recorder;
-            
-            mRecorder.RecordingDirectory =
-                presentation.DataProviderManager.DataFileDirectoryFullPath;
+            if (!string.IsNullOrEmpty(settings.Audio_LocalRecordingDirectory))
+            {
+                mRecorder.RecordingDirectory = settings.Audio_LocalRecordingDirectory;
+            }
+            else
+            {
+                mRecorder.RecordingDirectory =
+                    presentation.DataProviderManager.DataFileDirectoryFullPath;
+            }
             if (!Directory.Exists(mRecorder.RecordingDirectory)) Directory.CreateDirectory(mRecorder.RecordingDirectory);
             mSessionOffset = 0;
             mPhraseMarks = null;
