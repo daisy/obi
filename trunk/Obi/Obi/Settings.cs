@@ -208,8 +208,6 @@ namespace Obi
         [OptionalField]
         public string Audio_LocalRecordingDirectory; // temporary directory to record audio files. The files are transfered to project directory as the recording is stopped.
 
-        [OptionalField]
-        public bool Project_RecordInLocalDrive;
 
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
@@ -329,7 +327,6 @@ namespace Obi
             settings.Audio_ColorFlickerPreviewBeforeRecording = false;
             settings.Audio_PlayAllUsingPlayBtn = false;
             settings.Audio_LocalRecordingDirectory = null;
-            settings.Project_RecordInLocalDrive = false;
         }
 
         /// <summary>

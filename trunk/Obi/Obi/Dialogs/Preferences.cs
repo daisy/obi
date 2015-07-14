@@ -78,24 +78,7 @@ namespace Obi.Dialogs
         // Initialize the project tab
         private void InitializeProjectTab ()
             {
-                if (mSettings.Project_RecordInLocalDrive)
-                {
-                    m_RecordInLocalDriveTextBox.Enabled = true;
-                    m_RecordInLocalDriveButton.Enabled = true;
-                    m_ChkRecordInLocalDrive.Checked = true;
-                    if (mSettings.Audio_LocalRecordingDirectory != null)
-                    {
-                        m_RecordInLocalDriveTextBox.Text = mSettings.Audio_LocalRecordingDirectory;
-                    }
-                }
-                else
-                {
-                    m_RecordInLocalDriveTextBox.Text = " ";
-                    m_RecordInLocalDriveTextBox.Enabled = false;
-                    m_RecordInLocalDriveButton.Enabled = false;
-                    
-                }
-                UpdateTabControl();
+            UpdateTabControl();
             mDirectoryTextbox.Text = mSettings.Project_DefaultPath;
 
             //else
@@ -447,11 +430,6 @@ namespace Obi.Dialogs
                     {
                         mSettings.Audio_LocalRecordingDirectory = "";
                     }
-                    mSettings.Project_RecordInLocalDrive = true;
-                }
-                else
-                {
-                    mSettings.Project_RecordInLocalDrive = false;
                 }
              }
 
