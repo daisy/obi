@@ -124,6 +124,9 @@ namespace Obi.Dialogs
             this.labelOutputDeviceName = new System.Windows.Forms.Label();
             this.labelInputDeviceName = new System.Windows.Forms.Label();
             this.mProjectTab = new System.Windows.Forms.TabPage();
+            this.m_RecordInLocalDriveButton = new System.Windows.Forms.Button();
+            this.m_RecordInLocalDriveTextBox = new System.Windows.Forms.TextBox();
+            this.m_ChkRecordInLocalDrive = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.m_lblImportTolerance = new System.Windows.Forms.Label();
             this.m_NumImportTolerance = new System.Windows.Forms.NumericUpDown();
@@ -945,6 +948,9 @@ namespace Obi.Dialogs
             // 
             // mProjectTab
             // 
+            this.mProjectTab.Controls.Add(this.m_RecordInLocalDriveButton);
+            this.mProjectTab.Controls.Add(this.m_RecordInLocalDriveTextBox);
+            this.mProjectTab.Controls.Add(this.m_ChkRecordInLocalDrive);
             this.mProjectTab.Controls.Add(this.label10);
             this.mProjectTab.Controls.Add(this.m_lblImportTolerance);
             this.mProjectTab.Controls.Add(this.m_NumImportTolerance);
@@ -960,6 +966,26 @@ namespace Obi.Dialogs
             this.mProjectTab.Name = "mProjectTab";
             this.helpProvider1.SetShowHelp(this.mProjectTab, ((bool)(resources.GetObject("mProjectTab.ShowHelp"))));
             this.mProjectTab.UseVisualStyleBackColor = true;
+            // 
+            // m_RecordInLocalDriveButton
+            // 
+            resources.ApplyResources(this.m_RecordInLocalDriveButton, "m_RecordInLocalDriveButton");
+            this.m_RecordInLocalDriveButton.Name = "m_RecordInLocalDriveButton";
+            this.m_RecordInLocalDriveButton.UseVisualStyleBackColor = true;
+            this.m_RecordInLocalDriveButton.Click += new System.EventHandler(this.m_RecordInLocalDriveButton_Click);
+            // 
+            // m_RecordInLocalDriveTextBox
+            // 
+            this.m_RecordInLocalDriveTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.m_RecordInLocalDriveTextBox, "m_RecordInLocalDriveTextBox");
+            this.m_RecordInLocalDriveTextBox.Name = "m_RecordInLocalDriveTextBox";
+            // 
+            // m_ChkRecordInLocalDrive
+            // 
+            resources.ApplyResources(this.m_ChkRecordInLocalDrive, "m_ChkRecordInLocalDrive");
+            this.m_ChkRecordInLocalDrive.Name = "m_ChkRecordInLocalDrive";
+            this.m_ChkRecordInLocalDrive.UseVisualStyleBackColor = true;
+            this.m_ChkRecordInLocalDrive.CheckedChanged += new System.EventHandler(this.m_ChkRecordInLocalDrive_CheckedChanged);
             // 
             // label10
             // 
@@ -1241,5 +1267,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox m_cb_Profile1;
         private System.Windows.Forms.Label m_lblProfile1;
         private System.Windows.Forms.Button m_btnAssignProfile;
+        private System.Windows.Forms.TextBox m_RecordInLocalDriveTextBox;
+        private System.Windows.Forms.CheckBox m_ChkRecordInLocalDrive;
+        private System.Windows.Forms.Button m_RecordInLocalDriveButton;
     }
 }

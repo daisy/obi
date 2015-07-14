@@ -2775,4 +2775,8 @@ Error text: {1}</value>
   <data name="SetPageNumber_PageInConsecutiveOrder" xml:space="preserve">
     <value>Cannot proceed. Pages are already consecutive.</value>
   </data>
+  <data name="LocalDirectoryToSaveRecording" xml:space="preserve">
+    <value>Please choose a local directory to save Recording.</value>
+    <comment>Directory dialog</comment>
+  </data>
 </root>

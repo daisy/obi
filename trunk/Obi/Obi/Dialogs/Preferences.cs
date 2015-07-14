@@ -78,8 +78,31 @@ namespace Obi.Dialogs
         // Initialize the project tab
         private void InitializeProjectTab ()
             {
+                if (mSettings.Project_RecordInLocalDrive)
+                {
+                    m_RecordInLocalDriveTextBox.Enabled = true;
+                    m_RecordInLocalDriveButton.Enabled = true;
+                    m_ChkRecordInLocalDrive.Checked = true;
+                    if (mSettings.Audio_LocalRecordingDirectory != null)
+                    {
+                        m_RecordInLocalDriveTextBox.Text = mSettings.Audio_LocalRecordingDirectory;
+                    }
+                }
+                else
+                {
+                    m_RecordInLocalDriveTextBox.Text = " ";
+                    m_RecordInLocalDriveTextBox.Enabled = false;
+                    m_RecordInLocalDriveButton.Enabled = false;
+                    
+                }
                 UpdateTabControl();
             mDirectoryTextbox.Text = mSettings.Project_DefaultPath;
+
+            //else
+            //{
+            //    m_RecordInLocalDriveTextBox.Text = " ";
+            //}
+
          //   mLastOpenCheckBox.Checked = mSettings.OpenLastProject;
             m_ChkAutoSaveInterval.CheckStateChanged -= new System.EventHandler ( this.m_ChkAutoSaveInterval_CheckStateChanged );
             m_ChkAutoSaveInterval.Checked = mSettings.Project_AutoSaveTimeIntervalEnabled;
@@ -335,6 +358,12 @@ namespace Obi.Dialogs
             SelectFolder ( mSettings.Project_PipelineScriptsPath, "pipeline_path_browser", mPipelineTextbox );
             }
 
+
+        private void m_RecordInLocalDriveButton_Click(object sender, EventArgs e)
+        {
+            SelectFolder(mSettings.Audio_LocalRecordingDirectory, "LocalDirectoryToSaveRecording", m_RecordInLocalDriveTextBox);
+        }
+
         private void SelectFolder ( string path, string description, TextBox textBox )
             {
             FolderBrowserDialog dialog = new FolderBrowserDialog ();
@@ -384,6 +413,7 @@ namespace Obi.Dialogs
             bool returnVal = true;
             string [] getFiles = null;
             string[] logicalDrives = System.IO.Directory.GetLogicalDrives();
+
             if (System.IO.Directory.Exists ( mDirectoryTextbox.Text )
                 && System.IO.Directory.Exists ( mPipelineTextbox.Text ))
                 {
@@ -406,7 +436,23 @@ namespace Obi.Dialogs
                 {
                     MessageBox.Show(Localizer.Message("Preferences_PipelineScriptNotFound"));
                     returnVal = false;
-                }                
+                }
+                if (m_ChkRecordInLocalDrive.Checked)
+                {
+                    if (m_RecordInLocalDriveTextBox.Text != string.Empty)
+                    {
+                        mSettings.Audio_LocalRecordingDirectory = m_RecordInLocalDriveTextBox.Text;
+                    }
+                    else
+                    {
+                        mSettings.Audio_LocalRecordingDirectory = "";
+                    }
+                    mSettings.Project_RecordInLocalDrive = true;
+                }
+                else
+                {
+                    mSettings.Project_RecordInLocalDrive = false;
+                }
              }
 
             else
@@ -1063,9 +1109,9 @@ namespace Obi.Dialogs
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
                 m_CheckBoxListView.Size = new Size(365, 135);
-                m_CheckBoxListView.Location = new Point(85, 240);
+                m_CheckBoxListView.Location = new Point(120, 255);
                 m_grpBoxChkBoxListView.Size = new Size(385, 165);
-                m_grpBoxChkBoxListView.Location = new Point(75, 220);
+                m_grpBoxChkBoxListView.Location = new Point(108, 235);
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_OpenLastProject"));
                // m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_AutoSaveWhenRecordingEnds"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_SelectBookmark"));
@@ -1173,6 +1219,7 @@ namespace Obi.Dialogs
             {
                 mSettings.Project_DefaultPath = m_DefaultSettings.Project_DefaultPath;
                 mSettings.Project_PipelineScriptsPath = m_DefaultSettings.Project_PipelineScriptsPath;
+                mSettings.Audio_LocalRecordingDirectory = m_DefaultSettings.Audio_LocalRecordingDirectory;
                 mSettings.Project_OpenLastProject = m_DefaultSettings.Project_OpenLastProject;
                 mSettings.Project_AutoSave_RecordingEnd = m_DefaultSettings.Project_AutoSave_RecordingEnd;
                 mSettings.Project_OpenBookmarkNodeOnReopeningProject = m_DefaultSettings.Project_OpenBookmarkNodeOnReopeningProject;
@@ -1908,6 +1955,8 @@ namespace Obi.Dialogs
                 tempSettings.Project_PipelineScriptsPath = mSettings.Project_PipelineScriptsPath;
                 mSettings.Project_PipelineScriptsPath = "";
 
+                mSettings.Audio_LocalRecordingDirectory = "";
+
                 tempSettings.UserProfile.Name = mSettings.UserProfile.Name;
                 mSettings.UserProfile.Name = "";
 
@@ -1925,6 +1974,7 @@ namespace Obi.Dialogs
                 // assign personal info back to msettings
                 mSettings.Project_DefaultPath = tempSettings.Project_DefaultPath;
                 mSettings.Project_PipelineScriptsPath = tempSettings.Project_PipelineScriptsPath;
+                mSettings.Audio_LocalRecordingDirectory = tempSettings.Audio_LocalRecordingDirectory;
                 mSettings.UserProfile.Name = tempSettings.UserProfile.Name;
                 mSettings.UserProfile.Organization = tempSettings.UserProfile.Organization;
             }
@@ -2517,6 +2567,23 @@ namespace Obi.Dialogs
             mSettings.Audio_RecordingToolbarProfile1 = m_cb_Profile1.SelectedItem.ToString();
             mSettings.Audio_RecordingToolbarProfile2 = m_cb_Profile2.SelectedItem.ToString();
         }
+
+        private void m_ChkRecordInLocalDrive_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_ChkRecordInLocalDrive.Checked)
+            {
+                m_RecordInLocalDriveTextBox.Enabled = true;
+                m_RecordInLocalDriveButton.Enabled = true;
+                m_RecordInLocalDriveTextBox.Text = mSettings.Audio_LocalRecordingDirectory;
+            }
+            else
+            {
+                m_RecordInLocalDriveTextBox.Enabled = false;
+                m_RecordInLocalDriveButton.Enabled = false;
+                m_RecordInLocalDriveTextBox.Text = "";
+            }
+        }
+
 
     }
     }   
