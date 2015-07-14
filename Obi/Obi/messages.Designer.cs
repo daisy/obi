@@ -3306,6 +3306,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please choose a local directory to save Recording..
+        /// </summary>
+        internal static string LocalDirectoryToSaveRecording {
+            get {
+                return ResourceManager.GetString("LocalDirectoryToSaveRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File location error.
         /// </summary>
         internal static string location_error {
