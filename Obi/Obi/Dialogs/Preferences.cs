@@ -441,6 +441,10 @@ namespace Obi.Dialogs
                         mSettings.Audio_LocalRecordingDirectory = "";
                     }
                 }
+                else
+                {
+                    mSettings.Audio_LocalRecordingDirectory = string.Empty;
+                }
              }
 
             else
