@@ -976,8 +976,8 @@ namespace Obi.Dialogs
             // 
             // m_RecordInLocalDriveTextBox
             // 
-            this.m_RecordInLocalDriveTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.m_RecordInLocalDriveTextBox, "m_RecordInLocalDriveTextBox");
+            this.m_RecordInLocalDriveTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.m_RecordInLocalDriveTextBox.Name = "m_RecordInLocalDriveTextBox";
             // 
             // m_ChkRecordInLocalDrive

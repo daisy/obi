@@ -3779,6 +3779,9 @@
   <data name="&gt;&gt;m_RecordInLocalDriveButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="m_RecordInLocalDriveTextBox.AccessibleName" xml:space="preserve">
+    <value>Record in local drive directory</value>
+  </data>
   <data name="m_RecordInLocalDriveTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
