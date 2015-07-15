@@ -94,15 +94,15 @@ namespace Obi.Dialogs
             if (!string.IsNullOrEmpty(mSettings.Audio_LocalRecordingDirectory)
                 && System.IO.Directory.Exists(mSettings.Audio_LocalRecordingDirectory))
             {
-                m_ChkRecordInLocalDrive.Checked = true;
-                m_RecordInLocalDriveTextBox.Enabled = true;
-                m_RecordInLocalDriveTextBox.Text = mSettings.Audio_LocalRecordingDirectory;
+                m_chkRecordInLocalDrive.Checked = true;
+                m_txtRecordInLocalDrive.Enabled = true;
+                m_txtRecordInLocalDrive.Text = mSettings.Audio_LocalRecordingDirectory;
             }
             else
             {
-                m_ChkRecordInLocalDrive.Checked = false;
-                m_RecordInLocalDriveTextBox.Enabled = false;
-                m_RecordInLocalDriveTextBox.Text = "";
+                m_chkRecordInLocalDrive.Checked = false;
+                m_txtRecordInLocalDrive.Enabled = false;
+                m_txtRecordInLocalDrive.Text = "";
             }
 
             m_NumImportTolerance.Value = (decimal) mSettings.Project_ImportToleranceForAudioInMs;
@@ -354,7 +354,7 @@ namespace Obi.Dialogs
 
         private void m_RecordInLocalDriveButton_Click(object sender, EventArgs e)
         {
-            SelectFolder(mSettings.Audio_LocalRecordingDirectory, "LocalDirectoryToSaveRecording", m_RecordInLocalDriveTextBox);
+            SelectFolder(mSettings.Audio_LocalRecordingDirectory, "LocalDirectoryToSaveRecording", m_txtRecordInLocalDrive);
         }
 
         private void SelectFolder ( string path, string description, TextBox textBox )
@@ -430,11 +430,11 @@ namespace Obi.Dialogs
                     MessageBox.Show(Localizer.Message("Preferences_PipelineScriptNotFound"));
                     returnVal = false;
                 }
-                if (m_ChkRecordInLocalDrive.Checked)
+                if (m_chkRecordInLocalDrive.Checked)
                 {
-                    if (m_RecordInLocalDriveTextBox.Text != string.Empty)
+                    if (m_txtRecordInLocalDrive.Text != string.Empty)
                     {
-                        mSettings.Audio_LocalRecordingDirectory = m_RecordInLocalDriveTextBox.Text;
+                        mSettings.Audio_LocalRecordingDirectory = m_txtRecordInLocalDrive.Text;
                     }
                     else
                     {
@@ -2562,17 +2562,17 @@ namespace Obi.Dialogs
 
         private void m_ChkRecordInLocalDrive_CheckedChanged(object sender, EventArgs e)
         {
-            if (m_ChkRecordInLocalDrive.Checked)
+            if (m_chkRecordInLocalDrive.Checked)
             {
-                m_RecordInLocalDriveTextBox.Enabled = true;
-                m_RecordInLocalDriveButton.Enabled = true;
-                m_RecordInLocalDriveTextBox.Text = mSettings.Audio_LocalRecordingDirectory;
+                m_txtRecordInLocalDrive.Enabled = true;
+                m_btnRecordInLocalDrive.Enabled = true;
+                m_txtRecordInLocalDrive.Text = mSettings.Audio_LocalRecordingDirectory;
             }
             else
             {
-                m_RecordInLocalDriveTextBox.Enabled = false;
-                m_RecordInLocalDriveButton.Enabled = false;
-                m_RecordInLocalDriveTextBox.Text = "";
+                m_txtRecordInLocalDrive.Enabled = false;
+                m_btnRecordInLocalDrive.Enabled = false;
+                m_txtRecordInLocalDrive.Text = "";
             }
         }
 
