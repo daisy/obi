@@ -81,11 +81,7 @@ namespace Obi.Dialogs
             UpdateTabControl();
             mDirectoryTextbox.Text = mSettings.Project_DefaultPath;
 
-            //else
-            //{
-            //    m_RecordInLocalDriveTextBox.Text = " ";
-            //}
-
+            
          //   mLastOpenCheckBox.Checked = mSettings.OpenLastProject;
             m_ChkAutoSaveInterval.CheckStateChanged -= new System.EventHandler ( this.m_ChkAutoSaveInterval_CheckStateChanged );
             m_ChkAutoSaveInterval.Checked = mSettings.Project_AutoSaveTimeIntervalEnabled;
@@ -95,6 +91,20 @@ namespace Obi.Dialogs
             MnumAutoSaveInterval.Enabled = m_ChkAutoSaveInterval.Checked;
           //  mChkAutoSaveOnRecordingEnd.Checked = mSettings.AutoSave_RecordingEnd;
             mPipelineTextbox.Text = mSettings.Project_PipelineScriptsPath;
+            if (!string.IsNullOrEmpty(mSettings.Audio_LocalRecordingDirectory)
+                && System.IO.Directory.Exists(mSettings.Audio_LocalRecordingDirectory))
+            {
+                m_ChkRecordInLocalDrive.Checked = true;
+                m_RecordInLocalDriveTextBox.Enabled = true;
+                m_RecordInLocalDriveTextBox.Text = mSettings.Audio_LocalRecordingDirectory;
+            }
+            else
+            {
+                m_ChkRecordInLocalDrive.Checked = false;
+                m_RecordInLocalDriveTextBox.Enabled = false;
+                m_RecordInLocalDriveTextBox.Text = "";
+            }
+
             m_NumImportTolerance.Value = (decimal) mSettings.Project_ImportToleranceForAudioInMs;
 
             }
