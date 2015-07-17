@@ -119,7 +119,7 @@ namespace Obi.ProjectView
                     
                 Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(NextPageNumber, true, true, selectedNode);
                 dialog.AutoFillPagesEnable = true;
-                if (dialog.ShowDialog() == DialogResult.OK) AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber);
+                if (dialog.ShowDialog() == DialogResult.OK) AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber, null);
             }
         }
 
@@ -3362,7 +3362,8 @@ for (int j = 0;
         /// <param name="number">The starting number for the range of pages.</param>
         /// <param name="count">The number of pages to add.</param>
         /// <param name="renumber">Renumber subsequent pages if true.</param>
-        public void AddPageRange ( PageNumber number, int count, bool renumber )
+        /// <param name="nodeSelected">if null, use current selection.</param>
+        public void AddPageRange ( PageNumber number, int count, bool renumber, ObiNode nodeSelected)
             {
             if (CanAddEmptyBlock)
                 {
@@ -3375,8 +3376,16 @@ for (int j = 0;
                         EmptyNode node = Presentation.TreeNodeFactory.Create<EmptyNode>();
                     if (parent == null)
                         {
-                        parent = mSelection.ParentForNewNode ( node );
-                        index = mSelection.IndexForNewNode ( node );
+                            if (nodeSelected != null)
+                            {
+                                parent = nodeSelected is SectionNode ? nodeSelected : nodeSelected.ParentAs<ObiNode>();
+                                index = nodeSelected is SectionNode ? nodeSelected.PhraseChildCount : (nodeSelected.Index + 1);
+                            }
+                            else
+                            {
+                                parent = mSelection.ParentForNewNode(node);
+                                index = mSelection.IndexForNewNode(node);
+                            }
                         }
                     cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.AddEmptyNode ( this, node, parent, index + i ) );
                     cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.SetPageNumber ( this, node, number ) );
@@ -3402,6 +3411,57 @@ for (int j = 0;
                 mPresentation.Do ( cmd );
                 }
             }
+
+        public void FillEmptyPagesForMissingPagesInCompleteProject()
+        {
+            List<EmptyNode> normalPagesList = new List<EmptyNode>();
+            // iterate complete project for pages
+            Presentation.RootNode.AcceptDepthFirst(
+                delegate(urakawa.core.TreeNode n)
+                {
+                    if (n is EmptyNode)
+                    {
+                        EmptyNode node = (EmptyNode)n;
+                        if (node.Role_ == EmptyNode.Role.Page && node.PageNumber.Kind == PageKind.Normal)
+                        {
+                            normalPagesList.Add(node);
+                        }
+                    }
+                    return true;
+                },
+                    delegate(urakawa.core.TreeNode n) { });
+
+            // fill in empty pages in page gaps
+            if (normalPagesList.Count > 1)
+            {
+                EmptyNode startNode = null;
+                EmptyNode endNode = null;
+                bool pagesCreated = false;
+                //MessageBox.Show(normalPagesList.Count.ToString());
+                for (int i = 0; i < normalPagesList.Count - 1; i++)
+                {
+                    startNode = normalPagesList[i];
+                    endNode = normalPagesList[i + 1];
+
+                    if (startNode.PageNumber.Number < endNode.PageNumber.Number - 1)
+                    {
+                        int gap = (endNode.PageNumber.Number - startNode.PageNumber.Number) - 1;
+                        //MessageBox.Show("page: " + startNode.PageNumber.NextPageNumber ().ToString() + " Gap: " + gap.ToString());
+                        AddPageRange(startNode.PageNumber.NextPageNumber(), gap, false, startNode);
+                        pagesCreated = true;
+                    }
+                }
+                if (pagesCreated)
+                {
+                    MessageBox.Show("Empty pages filled in the gaps");
+                }
+                else
+                {
+                    MessageBox.Show("No gaps found in pages");
+                }
+
+            }
+        }
 
         public void UpdatePhraseDetectionSettingsFromSilencePhrase()
         {
