@@ -27,7 +27,9 @@ namespace Obi.ProjectView
             mProjectView = null;
             this.Context_MergeWithNextMenuItem.Click += new System.EventHandler(this.Context_MergeWithNextMenuItem_Click);
             this.Context_MultipleOperationsMenuItem.Click +=new EventHandler(Context_MultipleOperationsMenuItem_Click);
+            this.Context_AddEmptyPagesMenuItem.Click += new EventHandler(Context_AddEmptyPagesMenuItem_Click);
         }
+
 
 
         /// <summary>
@@ -543,11 +545,17 @@ namespace Obi.ProjectView
         // Properties context menu item
         private void Context_PropertiesMenuItem_Click(object sender, EventArgs e) { mProjectView.ShowSectionPropertiesDialog(); }
 
-       private void Context_MergeSectionMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
+        private void Context_MergeSectionMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
 
-       private void Context_MergeWithNextMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
+        private void Context_MergeWithNextMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
 
-       private void Context_MultipleOperationsMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeMultipleSections(); }
+        private void Context_MultipleOperationsMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeMultipleSections(); }
+
+
+        private void Context_AddEmptyPagesMenuItem_Click(object sender, EventArgs e) 
+        {
+            mProjectView.AddEmptyPages();
+        }
         
         
 
