@@ -121,6 +121,11 @@ namespace Obi
             this.mCropAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_PhraseIsTODOMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhraseIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MultiPhraseOperationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.beginMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.endMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_RenumberPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_AutoFillMissingPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableBeginNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSkippableEndNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -141,7 +146,6 @@ namespace Obi
             this.mPhrases_AssignRole_NewCustomRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_EditRolesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mPhrases_RenumberPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.mPhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_ApplyPhraseDetectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -221,9 +225,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.MultiPhraseOperationMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.beginMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.endMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -801,7 +802,6 @@ namespace Obi
             this.mPhrases_AssignRoleMenuItem,
             this.mPhrases_ClearRoleMenuItem,
             this.mPhrases_EditRolesMenuItem,
-            this.mPhrases_RenumberPagesMenuItem,
             this.toolStripSeparator19,
             this.mPhraseDetectionToolStripMenuItem,
             this.mPhrases_AudioSelectionMenuItem,
@@ -899,6 +899,40 @@ namespace Obi
             this.mPhraseIsUsedToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mPhraseIsUsedToolStripMenuItem.Name = "mPhraseIsUsedToolStripMenuItem";
             this.mPhraseIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mPhraseIsUsedToolStripMenuItem_CheckedChanged);
+            // 
+            // MultiPhraseOperationMenuItem
+            // 
+            this.MultiPhraseOperationMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.beginMarkToolStripMenuItem,
+            this.endMarkToolStripMenuItem,
+            this.mPhrases_RenumberPagesMenuItem,
+            this.m_AutoFillMissingPagesMenuItem});
+            this.MultiPhraseOperationMenuItem.Name = "MultiPhraseOperationMenuItem";
+            resources.ApplyResources(this.MultiPhraseOperationMenuItem, "MultiPhraseOperationMenuItem");
+            // 
+            // beginMarkToolStripMenuItem
+            // 
+            this.beginMarkToolStripMenuItem.Name = "beginMarkToolStripMenuItem";
+            resources.ApplyResources(this.beginMarkToolStripMenuItem, "beginMarkToolStripMenuItem");
+            this.beginMarkToolStripMenuItem.Click += new System.EventHandler(this.beginMarkToolStripMenuItem_Click);
+            // 
+            // endMarkToolStripMenuItem
+            // 
+            this.endMarkToolStripMenuItem.Name = "endMarkToolStripMenuItem";
+            resources.ApplyResources(this.endMarkToolStripMenuItem, "endMarkToolStripMenuItem");
+            this.endMarkToolStripMenuItem.Click += new System.EventHandler(this.endMarkToolStripMenuItem_Click);
+            // 
+            // mPhrases_RenumberPagesMenuItem
+            // 
+            this.mPhrases_RenumberPagesMenuItem.Name = "mPhrases_RenumberPagesMenuItem";
+            resources.ApplyResources(this.mPhrases_RenumberPagesMenuItem, "mPhrases_RenumberPagesMenuItem");
+            this.mPhrases_RenumberPagesMenuItem.Click += new System.EventHandler(this.mPhrases_RenumberPagesMenuItem_Click);
+            // 
+            // m_AutoFillMissingPagesMenuItem
+            // 
+            resources.ApplyResources(this.m_AutoFillMissingPagesMenuItem, "m_AutoFillMissingPagesMenuItem");
+            this.m_AutoFillMissingPagesMenuItem.Name = "m_AutoFillMissingPagesMenuItem";
+            this.m_AutoFillMissingPagesMenuItem.Click += new System.EventHandler(this.m_AutoFillMissingPagesMenuItem_Click);
             // 
             // mSkippableNoteToolStripMenuItem
             // 
@@ -1032,12 +1066,6 @@ namespace Obi
             this.mPhrases_EditRolesMenuItem.Name = "mPhrases_EditRolesMenuItem";
             resources.ApplyResources(this.mPhrases_EditRolesMenuItem, "mPhrases_EditRolesMenuItem");
             this.mPhrases_EditRolesMenuItem.Click += new System.EventHandler(this.mPhrases_EditRolesMenuItem_Click);
-            // 
-            // mPhrases_RenumberPagesMenuItem
-            // 
-            this.mPhrases_RenumberPagesMenuItem.Name = "mPhrases_RenumberPagesMenuItem";
-            resources.ApplyResources(this.mPhrases_RenumberPagesMenuItem, "mPhrases_RenumberPagesMenuItem");
-            this.mPhrases_RenumberPagesMenuItem.Click += new System.EventHandler(this.mPhrases_RenumberPagesMenuItem_Click);
             // 
             // toolStripSeparator19
             // 
@@ -1595,26 +1623,6 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
-            // MultiPhraseOperationMenuItem
-            // 
-            this.MultiPhraseOperationMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.beginMarkToolStripMenuItem,
-            this.endMarkToolStripMenuItem});
-            this.MultiPhraseOperationMenuItem.Name = "MultiPhraseOperationMenuItem";
-            resources.ApplyResources(this.MultiPhraseOperationMenuItem, "MultiPhraseOperationMenuItem");
-            // 
-            // beginMarkToolStripMenuItem
-            // 
-            this.beginMarkToolStripMenuItem.Name = "beginMarkToolStripMenuItem";
-            resources.ApplyResources(this.beginMarkToolStripMenuItem, "beginMarkToolStripMenuItem");
-            this.beginMarkToolStripMenuItem.Click += new System.EventHandler(this.beginMarkToolStripMenuItem_Click);
-            // 
-            // endMarkToolStripMenuItem
-            // 
-            this.endMarkToolStripMenuItem.Name = "endMarkToolStripMenuItem";
-            resources.ApplyResources(this.endMarkToolStripMenuItem, "endMarkToolStripMenuItem");
-            this.endMarkToolStripMenuItem.Click += new System.EventHandler(this.endMarkToolStripMenuItem_Click);
-            // 
             // ObiForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1822,7 +1830,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_DeletePhrasesWhileRecordingtoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFile_MergeProjectMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.ToolStripMenuItem mPhrases_RenumberPagesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_ToolsLangPack;
         private System.Windows.Forms.ToolStripMenuItem m_PreviewBeforeRecordingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_PlaySectionToolStripMenuItem;
@@ -1837,6 +1844,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem MultiPhraseOperationMenuItem;
         private System.Windows.Forms.ToolStripMenuItem beginMarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem endMarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_RenumberPagesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_AutoFillMissingPagesMenuItem;
     }
 }
 
