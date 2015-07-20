@@ -5783,6 +5783,11 @@ ref string exportDirectoryEPUB3)
                 mProjectView.AssignRoleToMarkedContinuousNodes();
             }
 
+            private void m_AutoFillMissingPagesMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.FillEmptyPagesForMissingPagesInCompleteProject();
+            }
+
  
         }
     }

@@ -375,22 +375,37 @@
     <value>Phrase is &amp;used</value>
   </data>
   <data name="beginMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>216, 22</value>
   </data>
   <data name="beginMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Begin mark</value>
   </data>
   <data name="endMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>216, 22</value>
   </data>
   <data name="endMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;End mark</value>
+  </data>
+  <data name="mPhrases_RenumberPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
+  </data>
+  <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
+    <value>&amp;Renumber following pages</value>
+  </data>
+  <data name="m_AutoFillMissingPagesMenuItem.AccessibleName" xml:space="preserve">
+    <value>Auto fill empty pages</value>
+  </data>
+  <data name="m_AutoFillMissingPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
+  </data>
+  <data name="m_AutoFillMissingPagesMenuItem.Text" xml:space="preserve">
+    <value>&amp;Auto fill missing pages</value>
   </data>
   <data name="MultiPhraseOperationMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="MultiPhraseOperationMenuItem.Text" xml:space="preserve">
-    <value>Multi phrase &amp;operation</value>
+    <value>Multi phrase/page &amp;operation</value>
   </data>
   <data name="mSkippableNoteToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Skippable note</value>
@@ -431,12 +446,6 @@
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mPhrases_EditRolesMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="mPhrases_RenumberPagesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 22</value>
-  </data>
-  <data name="mPhrases_RenumberPagesMenuItem.Text" xml:space="preserve">
-    <value>Renumber following pag&amp;es</value>
   </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
@@ -2002,7 +2011,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.7.0.20733, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.7.0.31860, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2824,6 +2833,36 @@
   <data name="&gt;&gt;mPhraseIsUsedToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;MultiPhraseOperationMenuItem.Name" xml:space="preserve">
+    <value>MultiPhraseOperationMenuItem</value>
+  </data>
+  <data name="&gt;&gt;MultiPhraseOperationMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;beginMarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>beginMarkToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;beginMarkToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;endMarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>endMarkToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;endMarkToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_RenumberPagesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AutoFillMissingPagesMenuItem.Name" xml:space="preserve">
+    <value>m_AutoFillMissingPagesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_AutoFillMissingPagesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mSkippableNoteToolStripMenuItem.Name" xml:space="preserve">
     <value>mSkippableNoteToolStripMenuItem</value>
   </data>
@@ -2942,12 +2981,6 @@
     <value>mPhrases_EditRolesMenuItem</value>
   </data>
   <data name="&gt;&gt;mPhrases_EditRolesMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Name" xml:space="preserve">
-    <value>mPhrases_RenumberPagesMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mPhrases_RenumberPagesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator19.Name" xml:space="preserve">
@@ -3411,24 +3444,6 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;MultiPhraseOperationMenuItem.Name" xml:space="preserve">
-    <value>MultiPhraseOperationMenuItem</value>
-  </data>
-  <data name="&gt;&gt;MultiPhraseOperationMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;beginMarkToolStripMenuItem.Name" xml:space="preserve">
-    <value>beginMarkToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;beginMarkToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;endMarkToolStripMenuItem.Name" xml:space="preserve">
-    <value>endMarkToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;endMarkToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>
