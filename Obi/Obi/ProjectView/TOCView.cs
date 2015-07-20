@@ -313,6 +313,8 @@ namespace Obi.ProjectView
             Context_MergeWithNextMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
             Context_MultipleOperationsMenuItem.Enabled = mProjectView.EnableMultiSectionOperation;
             Context_ShowContentsMenuItem.Enabled = mProjectView.Selection != null && !(mProjectView.Selection is TextSelection);
+            Context_AddEmptyPagesMenuItem.Enabled = (mProjectView.CanAddEmptyBlock || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode))
+                                                          && !mProjectView.TransportBar.IsRecorderActive;
         }
 
 
