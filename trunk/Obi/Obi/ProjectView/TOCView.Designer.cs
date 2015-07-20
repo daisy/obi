@@ -41,6 +41,7 @@ namespace Obi.ProjectView
             this.Context_DecreaseSectionLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_IncreaseSectionLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SectionIsUsedMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_AddEmptyPagesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_CutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_CopyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +56,7 @@ namespace Obi.ProjectView
             // 
             // mContextMenuStrip
             // 
+            resources.ApplyResources(this.mContextMenuStrip, "mContextMenuStrip");
             this.mContextMenuStrip.AllowDrop = true;
             this.mContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Context_ShowContentsMenuItem,
@@ -67,6 +69,7 @@ namespace Obi.ProjectView
             this.Context_DecreaseSectionLevelMenuItem,
             this.Context_IncreaseSectionLevelMenuItem,
             this.Context_SectionIsUsedMenuItem,
+            this.Context_AddEmptyPagesMenuItem,
             this.toolStripSeparator1,
             this.Context_CutMenuItem,
             this.Context_CopyMenuItem,
@@ -77,7 +80,6 @@ namespace Obi.ProjectView
             this.toolStripSeparator2,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenu";
-            resources.ApplyResources(this.mContextMenuStrip, "mContextMenuStrip");
             // 
             // Context_ShowContentsMenuItem
             // 
@@ -139,6 +141,11 @@ namespace Obi.ProjectView
             this.Context_SectionIsUsedMenuItem.Name = "Context_SectionIsUsedMenuItem";
             resources.ApplyResources(this.Context_SectionIsUsedMenuItem, "Context_SectionIsUsedMenuItem");
             this.Context_SectionIsUsedMenuItem.CheckedChanged += new System.EventHandler(this.Context_SectionIsUsedMenuItem_CheckedChanged);
+            // 
+            // Context_AddEmptyPagesMenuItem
+            // 
+            resources.ApplyResources(this.Context_AddEmptyPagesMenuItem, "Context_AddEmptyPagesMenuItem");
+            this.Context_AddEmptyPagesMenuItem.Name = "Context_AddEmptyPagesMenuItem";
             // 
             // toolStripSeparator1
             // 
@@ -235,5 +242,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_PropertiesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_MultipleOperationsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_MergeWithNextMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_AddEmptyPagesMenuItem;
     }
 }
