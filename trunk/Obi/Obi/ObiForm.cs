@@ -1988,8 +1988,9 @@ namespace Obi
             {
                 mAddBlankPhraseToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock &&
                                                            !mProjectView.TransportBar.IsRecorderActive;
-                mAddEmptyPagesToolStripMenuItem.Enabled = (mProjectView.CanAddEmptyBlock || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode))
+                mAddEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanAddEmptyPage
                                                           && !mProjectView.TransportBar.IsRecorderActive;
+                m_AutoFillMissingPagesMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
                 mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase &&
                                                         !mProjectView.TransportBar.IsRecorderActive;

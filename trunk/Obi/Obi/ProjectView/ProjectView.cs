@@ -435,6 +435,7 @@ namespace Obi.ProjectView
             }
 
         public bool CanAddEmptyBlock { get { return mContentView.Selection != null && IsPhraseCountWithinLimit; } } // @phraseLimit                                          
+        public bool CanAddEmptyPage { get { return Selection != null && (Selection.Node is EmptyNode || Selection.Node is SectionNode) && IsPhraseCountWithinLimit; } } // @phraseLimit                                          
         public bool CanAddMetadataEntry () { return mPresentation != null; }
         public bool CanAddMetadataEntry ( MetadataEntryDescription d ) { return mMetadataView.CanAdd ( d ); }
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip) && !(Selection is TextSelection) && !IsZoomWaveformActive ; } }
@@ -3365,8 +3366,12 @@ for (int j = 0;
         /// <param name="nodeSelected">if null, use current selection.</param>
         public void AddPageRange ( PageNumber number, int count, bool renumber, ObiNode nodeSelected)
             {
-            if (CanAddEmptyBlock)
+            if (CanAddEmptyPage)
                 {
+                    if (Selection.Node is SectionNode && Selection.Control is TOCView)
+                    {
+                        Selection = new NodeSelection(Selection.Node, mContentView);
+                    }
                 CompositeCommand cmd = Presentation.CreateCompositeCommand ( Localizer.Message ( "add_blank_pages" ) );
                 int index = -1;
                 ObiNode parent = null;
@@ -3434,32 +3439,39 @@ for (int j = 0;
             // fill in empty pages in page gaps
             if (normalPagesList.Count > 1)
             {
-                EmptyNode startNode = null;
-                EmptyNode endNode = null;
-                bool pagesCreated = false;
-                //MessageBox.Show(normalPagesList.Count.ToString());
-                for (int i = 0; i < normalPagesList.Count - 1; i++)
+                try
                 {
-                    startNode = normalPagesList[i];
-                    endNode = normalPagesList[i + 1];
-
-                    if (startNode.PageNumber.Number < endNode.PageNumber.Number - 1)
+                    EmptyNode startNode = null;
+                    EmptyNode endNode = null;
+                    bool pagesCreated = false;
+                    //MessageBox.Show(normalPagesList.Count.ToString());
+                    for (int i = 0; i < normalPagesList.Count - 1; i++)
                     {
-                        int gap = (endNode.PageNumber.Number - startNode.PageNumber.Number) - 1;
-                        //MessageBox.Show("page: " + startNode.PageNumber.NextPageNumber ().ToString() + " Gap: " + gap.ToString());
-                        AddPageRange(startNode.PageNumber.NextPageNumber(), gap, false, startNode);
-                        pagesCreated = true;
+                        startNode = normalPagesList[i];
+                        endNode = normalPagesList[i + 1];
+
+                        if (startNode.PageNumber.Number < endNode.PageNumber.Number - 1)
+                        {
+                            int gap = (endNode.PageNumber.Number - startNode.PageNumber.Number) - 1;
+                            //MessageBox.Show("page: " + startNode.PageNumber.NextPageNumber ().ToString() + " Gap: " + gap.ToString());
+                            AddPageRange(startNode.PageNumber.NextPageNumber(), gap, false, startNode);
+                            pagesCreated = true;
+                        }
+                    }
+                    if (pagesCreated)
+                    {
+                        MessageBox.Show("Empty pages filled in the gaps");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No gaps found in pages");
                     }
                 }
-                if (pagesCreated)
+                catch (System.Exception ex)
                 {
-                    MessageBox.Show("Empty pages filled in the gaps");
+                    WriteToLogFile(ex.ToString());
+                    MessageBox.Show(ex.ToString());
                 }
-                else
-                {
-                    MessageBox.Show("No gaps found in pages");
-                }
-
             }
         }
 
