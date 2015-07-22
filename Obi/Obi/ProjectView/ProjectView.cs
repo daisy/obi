@@ -119,7 +119,7 @@ namespace Obi.ProjectView
                     
                 Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(NextPageNumber, true, true, selectedNode);
                 dialog.AutoFillPagesEnable = true;
-                if (dialog.ShowDialog() == DialogResult.OK) AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber, null);
+                if (dialog.ShowDialog() == DialogResult.OK) AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber);
             }
         }
 
@@ -3363,8 +3363,14 @@ for (int j = 0;
         /// <param name="number">The starting number for the range of pages.</param>
         /// <param name="count">The number of pages to add.</param>
         /// <param name="renumber">Renumber subsequent pages if true.</param>
-        /// <param name="nodeSelected">if null, use current selection.</param>
-        public void AddPageRange ( PageNumber number, int count, bool renumber, ObiNode nodeSelected)
+        public void AddPageRange(PageNumber number, int count, bool renumber)
+        {
+            CompositeCommand cmd = AddPageRange(number, count, renumber, null);
+                if(cmd != null)  mPresentation.Do(cmd);
+        }
+
+
+        public CompositeCommand AddPageRange ( PageNumber number, int count, bool renumber, ObiNode nodeSelected)
             {
             if (CanAddEmptyPage)
                 {
@@ -3413,8 +3419,9 @@ for (int j = 0;
                             }
                         }
                     }
-                mPresentation.Do ( cmd );
+                    return cmd;
                 }
+                return null;
             }
 
         public void FillEmptyPagesForMissingPagesInCompleteProject()
@@ -3441,6 +3448,7 @@ for (int j = 0;
             {
                 try
                 {
+                    CompositeCommand cmd = Presentation.CreateCompositeCommand(Localizer.Message("add_blank_pages"));
                     EmptyNode startNode = null;
                     EmptyNode endNode = null;
                     bool pagesCreated = false;
@@ -3454,12 +3462,17 @@ for (int j = 0;
                         {
                             int gap = (endNode.PageNumber.Number - startNode.PageNumber.Number) - 1;
                             //MessageBox.Show("page: " + startNode.PageNumber.NextPageNumber ().ToString() + " Gap: " + gap.ToString());
-                            AddPageRange(startNode.PageNumber.NextPageNumber(), gap, false, startNode);
-                            pagesCreated = true;
+                            CompositeCommand newCommand =  AddPageRange(startNode.PageNumber.NextPageNumber(), gap, false, startNode);
+                            if (newCommand != null)
+                            {
+                                foreach (Command cm in newCommand.ChildCommands.ContentsAs_ListCopy) cmd.ChildCommands.Insert(cmd.ChildCommands.Count, cm);
+                                pagesCreated = true;
+                            }
                         }
                     }
                     if (pagesCreated)
                     {
+                        mPresentation.Do(cmd);
                         MessageBox.Show("Empty pages filled in the gaps");
                     }
                     else
