@@ -1355,68 +1355,70 @@ namespace Obi.ProjectView
                             List<SectionNode> listOfSections = selectionDialog.ListOfSections;
                           //  this.Selection = new NodeSelection(selectedSections[0], mContentView);
                             selectedSections.Remove(firstSection);
-                            
+                            //SectionNode node = listOfSections[0];
+                            //mTOCView.Selection = new NodeSelection(node, mContentView);
+                           // this.Selection = new NodeSelection(selectedSections[0], mContentView);
+                            //first arrange the children whose parents will be deleted
+                            int lastSelectedSectionIndex = listOfSections.IndexOf(selectedSections[selectedSections.Count - 1]);
+
+                            if (lastSelectedSectionIndex < listOfSections.Count - 1)
+                            {
+                                for (int i = listOfSections.Count - 1; i > lastSelectedSectionIndex; i--)
+                                {
+                                    if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
+                                    {
+                                        if (listOfSections[i].IsRooted)
+                                        {
+                                            mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
+                                            int insertIndex = firstSection.SectionChildCount > 0 ? firstSection.SectionChild(0).Index : 0;
+                                            mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, insertIndex, false));
+                                        }
+                                    }
+                                }
+                                
+                                                             
+                                //for (int i = lastSelectedSectionIndex + 1; i < listOfSections.Count; i++)
+                                //{
+                                //if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
+                                //{
+                                //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
+                                //mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, firstSection.SectionChildCount, false));
+                                //}
+                                //}
+                            }
+
                             List<EmptyNode> phraseList = new List<EmptyNode>();
 
-                            // add empty nodes to a list
+                            //for (int i = 0; i < selectedSections.Count; i++)
                             for (int i = selectedSections.Count - 1; i >= 0; i--)
                             {
-                                SectionNode section = selectedSections[i];
-                                for (int j = section.PhraseChildCount - 1; j >= 0; j--)
+                                for (int j = selectedSections[i].PhraseChildCount - 1; j >= 0; j--)
                                 {
-                                    phraseList.Insert(0, section.PhraseChild(j));
-                                    Commands.Node.Delete deleteCommand = new Obi.Commands.Node.Delete(this, section.PhraseChild(j), false);
-                                    mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, deleteCommand);
+                                    if (selectedSections[i].IsRooted)
+                                    {
+                                        phraseList.Insert(0, selectedSections[i].PhraseChild(j));
+                                        mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i].PhraseChild(j)));
+                                    }
+                                }
+                            }
+                            for (int i = selectedSections.Count - 1; i >= 0; i--)
+                            {
+                                if (selectedSections[i].IsRooted)
+                                {
+                                    if (!selectedSections.Contains(selectedSections[i].ParentAs<SectionNode>()))
+                                        mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i]));
                                 }
                             }
 
-                            // add phrases to the first section
                             for (int i = 0; i < phraseList.Count; i++)
                             {
-                                Commands.Node.AddNode addCmd = new Obi.Commands.Node.AddNode(this, phraseList[i], firstSection, firstSection.PhraseChildCount + i, false);
-                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, addCmd);
+                                if (phraseList[i].IsRooted)
+                                {
+                                    Commands.Command add = new Commands.Node.AddNode(this, phraseList[i], firstSection, firstSection.PhraseChildCount + i, false);
+                                    mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, add);
+                                }
                             }
 
-                            // check if there will be some orphan sections left after deleting the sections 
-                            List<SectionNode> orphanSectionChildList = new List<SectionNode>();
-                            foreach (SectionNode sec in selectedSections)
-                            {//1
-                                //sec.AcceptDepthFirst(delegate(urakawa.core.TreeNode n)
-                                for (int i = 0; i < sec.SectionChildCount; i++)
-                                {//2
-                                    SectionNode n = sec.SectionChild(i);
-                                    if (!selectedSections.Contains(n))
-                                    {//3
-                                        orphanSectionChildList.Add(n);
-                                    }//-3
-                                    //return true;
-                                    //},
-                                    //delegate(urakawa.core.TreeNode n) { });
-                                }//-2
-                            }//-1
-
-                            // delete orphan sections list
-                            for (int i = orphanSectionChildList.Count - 1; i >= 0; i--)
-                            {
-                                Commands.Node.Delete deleteSectionCmd = new Obi.Commands.Node.Delete(this, orphanSectionChildList[i], false);
-                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, deleteSectionCmd);
-                            }
-
-                            /// delete the sections which are merged
-                            for (int i = selectedSections.Count - 1; i >= 0; i--)
-                            {
-                                Commands.Node.Delete deleteSectionCmd = new Obi.Commands.Node.Delete(this, selectedSections[i], false);
-                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, deleteSectionCmd);
-                            }
-
-                            // re attach orphan sections to first section.
-                            for (int i = 0; i < orphanSectionChildList.Count; i++)
-                            {
-                                
-                                    Commands.Node.AddNode addSectionCmd = new Obi.Commands.Node.AddNode(this, orphanSectionChildList[i], firstSection, firstSection.SectionChildCount + i);
-                                    mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, addSectionCmd);
-                                
-                            }
                             try
                             {
                               //  mTOCView.Selection = null;
