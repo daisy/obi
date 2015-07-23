@@ -1452,24 +1452,29 @@ namespace Obi.ProjectView
                             {
                                 selectedSections = selectionDialog.SelectedSections;
                                 SectionNode node = selectedSectionsForIncreaseLevel[0];
-                                mTOCView.Selection = new NodeSelection(node, mContentView);
+                                this.Selection = new NodeSelection(node, mTOCView);
                                 temp_NodeSelected = node;
+                                CompositeCommand increaseMultipleSectionsLevelCommand = mPresentation.CreateCompositeCommand ("Increase multiple sections level");
                                 for (int i = 0; i < selectedSectionsForIncreaseLevel.Count; i++)
                                 {
                                     node = selectedSectionsForIncreaseLevel[i];
                                     if (selectedSectionsForIncreaseLevel.Contains(node.ParentAs<SectionNode>())) continue;
                                     if (Commands.TOC.MoveSectionIn.CanMoveNode(node))
                                     {
+                                        Commands.TOC.MoveSectionIn moveInCmd = new Commands.TOC.MoveSectionIn(this, node);
+                                        increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, moveInCmd);
+                                    }
+                                }
                                         try
                                         {
-                                            mPresentation.Do(new Commands.TOC.MoveSectionIn(this, node));
+                                            mPresentation.Do(increaseMultipleSectionsLevelCommand);
                                         }
                                         catch (Exception ex)
                                         {
+                                            this.WriteToLogFile(ex.ToString());
                                             MessageBox.Show(Localizer.Message("ProjectViewFormMsg_SectionLevelChangeOperationFail") + "\n\n" + ex.ToString());  
                                         }
-                                    }
-                                }
+                                    
                             }
                         }
 
@@ -1491,23 +1496,28 @@ namespace Obi.ProjectView
                                 temp_NodeSelected = selectedSectionsForDecreaseLevel[0];
                                 selectedSectionsForDecreaseLevel.Reverse();
                                 SectionNode node = selectedSectionsForDecreaseLevel[0];
-                                mTOCView.Selection = new NodeSelection(node, mContentView);
+                                this.Selection = new NodeSelection(node, mTOCView);
+                                CompositeCommand decreaseMultipleSectionsLevelCommand = mPresentation.CreateCompositeCommand("Decrease multiple sections level");
                                 for (int i = 0; i < selectedSectionsForDecreaseLevel.Count; i++)
                                 {
                                     node = selectedSectionsForDecreaseLevel[i];
 
                                     if (Commands.TOC.MoveSectionOut.CanMoveNode(node))
                                     {
+                                        Commands.TOC.MoveSectionOut moveOutCmd = new Commands.TOC.MoveSectionOut(this, node);
+                                        decreaseMultipleSectionsLevelCommand.ChildCommands.Insert(decreaseMultipleSectionsLevelCommand.ChildCommands.Count, moveOutCmd);
+                                    }
+                                }
                                         try
                                         {
-                                            mPresentation.Do(new Commands.TOC.MoveSectionOut(this, node));
+                                            mPresentation.Do(decreaseMultipleSectionsLevelCommand);
                                         }
                                         catch (Exception ex)
                                         {
+                                            this.WriteToLogFile(ex.ToString());
                                             MessageBox.Show(Localizer.Message("ProjectViewFormMsg_SectionLevelChangeOperationFail") + "\n\n" + ex.ToString());  
                                         }
-                                    }
-                                }
+                                    
 
                             }
                         }
