@@ -3375,12 +3375,12 @@ for (int j = 0;
         /// <param name="renumber">Renumber subsequent pages if true.</param>
         public void AddPageRange(PageNumber number, int count, bool renumber)
         {
-            CompositeCommand cmd = AddPageRange(number, count, renumber, null);
+            CompositeCommand cmd = AddPageRange(number, count, renumber, null, 0);
                 if(cmd != null)  mPresentation.Do(cmd);
         }
 
 
-        public CompositeCommand AddPageRange ( PageNumber number, int count, bool renumber, ObiNode nodeSelected)
+        public CompositeCommand AddPageRange ( PageNumber number, int count, bool renumber, ObiNode nodeSelected, int offsetFromPhraseIndex)
             {
             if (CanAddEmptyPage)
                 {
@@ -3401,6 +3401,7 @@ for (int j = 0;
                             {
                                 parent = nodeSelected is SectionNode ? nodeSelected : nodeSelected.ParentAs<ObiNode>();
                                 index = nodeSelected is SectionNode ? nodeSelected.PhraseChildCount : (nodeSelected.Index + 1);
+                                index = index + offsetFromPhraseIndex;
                             }
                             else
                             {
@@ -3411,6 +3412,7 @@ for (int j = 0;
                     cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.AddEmptyNode ( this, node, parent, index + i ) );
                     cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.SetPageNumber ( this, node, number ) );
                     number = number.NextPageNumber ();
+                    Console.WriteLine(((SectionNode)parent).Label + " : " + (index + i).ToString() + " : " + number.ToString());
                     }
                 // Add commands to renumber the following pages; be careful that the previous blocks have not
                 // been added yet!
@@ -3461,24 +3463,37 @@ for (int j = 0;
                     CompositeCommand cmd = Presentation.CreateCompositeCommand(Localizer.Message("add_blank_pages"));
                     EmptyNode startNode = null;
                     EmptyNode endNode = null;
+                    int offsetFromPhraseIndex = 0;
                     bool pagesCreated = false;
                     //MessageBox.Show(normalPagesList.Count.ToString());
                     for (int i = 0; i < normalPagesList.Count - 1; i++)
                     {
                         startNode = normalPagesList[i];
                         endNode = normalPagesList[i + 1];
-
+                        int gap = 0;
                         if (startNode.PageNumber.Number < endNode.PageNumber.Number - 1)
                         {
-                            int gap = (endNode.PageNumber.Number - startNode.PageNumber.Number) - 1;
+                            gap = (endNode.PageNumber.Number - startNode.PageNumber.Number) - 1;
+
+                            Console.WriteLine("Offset : " + (startNode.Index + offsetFromPhraseIndex));
                             //MessageBox.Show("page: " + startNode.PageNumber.NextPageNumber ().ToString() + " Gap: " + gap.ToString());
-                            CompositeCommand newCommand =  AddPageRange(startNode.PageNumber.NextPageNumber(), gap, false, startNode);
+                            CompositeCommand newCommand = AddPageRange(startNode.PageNumber.NextPageNumber(), gap, false, startNode, offsetFromPhraseIndex);
+                            
                             if (newCommand != null)
                             {
                                 foreach (Command cm in newCommand.ChildCommands.ContentsAs_ListCopy) cmd.ChildCommands.Insert(cmd.ChildCommands.Count, cm);
                                 pagesCreated = true;
                             }
                         }
+                        if (startNode.Parent == endNode.Parent)
+                        {
+                            offsetFromPhraseIndex += gap;
+                        }
+                        else
+                        {
+                            offsetFromPhraseIndex = 0;
+                        }
+
                     }
                     if (pagesCreated)
                     {
