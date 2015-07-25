@@ -5288,10 +5288,26 @@ for (int j = 0;
 
         public void ReplaceAudioOfSelectedNode(string sourceFilePath, bool adjustAssetDuration, ObiNode Node)
         {
+            try
+            {
+                CompositeCommand replaceCommand = GetReplaceAudioOfSelectedNodeCommand(sourceFilePath, adjustAssetDuration, Node);
+                if (replaceCommand != null)
+                {
+                    mPresentation.Do(replaceCommand);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                this.WriteToLogFile(ex.ToString());
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public CompositeCommand GetReplaceAudioOfSelectedNodeCommand (string sourceFilePath, bool adjustAssetDuration, ObiNode Node)
+        {
             if (CanExportSelectedNodeAudio || m_IsAudioProcessingChecked)
             {
-                try
-                {
+                
                     ObiNode node = Node;
                     List<EmptyNode> originalPhrases = new List<EmptyNode>();
                     List<double> originalTimings = new List<double>();
@@ -5312,7 +5328,7 @@ for (int j = 0;
                         }
                     }
 
-                    if (originalPhrases.Count == 0) return;
+                    if (originalPhrases.Count == 0) return null;
                     //select audio file if it is not in the parameter
                     if (sourceFilePath == null
                         || !System.IO.File.Exists(sourceFilePath))
@@ -5340,7 +5356,7 @@ for (int j = 0;
                         {
                             MessageBox.Show(string.Format(Localizer.Message("ProjectView_ErrorReplacingAudioDueToTimingMissmatch"), originalTimings[originalTimings.Count - 1], media.Duration.AsMilliseconds));
                             media = null;
-                            return;
+                            return null;
                         }
                         float multiplicationFactor = 1.0f;
                         if (adjustAssetDuration)
@@ -5385,16 +5401,12 @@ for (int j = 0;
                                 }
                             }// update audio for loop
                         }
-                            if(updateAudioCommand.ChildCommands.Count > 0 )  mPresentation.Do(updateAudioCommand);
-                        
+                            //if(updateAudioCommand.ChildCommands.Count > 0 )  mPresentation.Do(updateAudioCommand);
+                        return updateAudioCommand ;
                     }
-                }//try
-                catch (System.Exception ex)
-                {
-                    WriteToLogFile(ex.ToString());
-                    MessageBox.Show(ex.ToString());
-                }
+                
             }//CanReplace check
+            return null;
         }
 
         public void ProcessAudio()
@@ -5519,8 +5531,15 @@ if (CanExportSelectedNodeAudio)
                             Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioProcessing_progress_dialog_title"),
                                                     delegate(Dialogs.ProgressDialog progress1)
                                                     {
-                                                        dictionaryOfFilePaths =  DoAudioProcessing(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val);
-                                                        if (System.IO.File.Exists(audioFileFullPath)) ReplaceAudioInMultiplePhrases(dictionaryOfFilePaths);
+                                                        try
+                                                        {
+                                                            dictionaryOfFilePaths = DoAudioProcessing(dictionaryOfFilePaths, nodeToSelect, audioProcessingKind, val);
+                                                            if (System.IO.File.Exists(audioFileFullPath)) ReplaceAudioInMultiplePhrases(dictionaryOfFilePaths);
+                                                        }
+                                                        catch (System.Exception ex)
+                                                        {
+                                                            MessageBox.Show(ex.ToString());
+                                                        }
                                                     });
                             progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) {});
                            // audioProcess.ProgressChangedEvent += new ProgressChangedEventHandler(progress.UpdateProgressBar);
@@ -5559,11 +5578,30 @@ if (CanExportSelectedNodeAudio)
                 Invoke(new ReplaceAudioForMultiplePhrasesDelegate(ReplaceAudioInMultiplePhrases), dictionaryOfFilePaths);
             }
             else
-            {
+            {//1
+                CompositeCommand replaceCompositeCommand = mPresentation.CreateCompositeCommand("Replace audio of multiple phrases");
                 foreach (ObiNode node in dictionaryOfFilePaths.Keys)
+                {//2
+                    CompositeCommand replaceCmd =  GetReplaceAudioOfSelectedNodeCommand (dictionaryOfFilePaths[node], true, node);
+                    if (replaceCmd != null && replaceCmd.ChildCommands.Count > 0)
+                    {//3
+                        foreach( Obi.Commands.Command cmd in replaceCmd.ChildCommands.ContentsAs_ListCopy )
+                        {//4
+                            replaceCompositeCommand.ChildCommands.Insert(replaceCompositeCommand.ChildCommands.Count, cmd);
+                        }//-4
+                    }//-3
+                }//-2
+                try
                 {
-                    ReplaceAudioOfSelectedNode(dictionaryOfFilePaths[node], true, node);
-                    
+                    if (replaceCompositeCommand != null && replaceCompositeCommand.ChildCommands.Count > 0)
+                    {
+                        mPresentation.Do(replaceCompositeCommand);
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    this.WriteToLogFile(ex.ToString());
+                    MessageBox.Show(ex.ToString());
                 }
             }
         }
