@@ -5480,7 +5480,7 @@ if (CanExportSelectedNodeAudio)
         {
             string tempDirectoryName = "AudioProcessing";
             string directoryFullPath = System.IO.Path.Combine(mPresentation.DataProviderManager.DataFileDirectoryFullPath,
-                tempDirectoryName);
+                tempDirectoryName);            
             while (nodeToSelect.Index <= mContentView.EndSpecialNode.Index && nodeToSelect.Parent == mContentView.EndSpecialNode.Parent)
             {
                 string audioFileFullPath = CreateAudioFileFromNode(nodeToSelect, directoryFullPath, null);
@@ -5488,8 +5488,14 @@ if (CanExportSelectedNodeAudio)
                 AudioLib.DualCancellableProgressReporter audioProcess = Obi.Audio.AudioFormatConverter.ProcessAudio(audioProcessingKind, audioFileFullPath, AudioProcessingParameter);
                 audioProcess.DoWork();
 
-                nodeToSelect = nodeToSelect.FollowingNode;
-
+                if (nodeToSelect.FollowingNode != null)
+                {
+                    nodeToSelect = nodeToSelect.FollowingNode;
+                }
+                else
+                {
+                    break;
+                }
             };
             return dictionaryOfFilePaths;
         }
