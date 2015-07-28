@@ -5218,6 +5218,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Mouse with scrolling.
+        /// </summary>
+        internal static string Project_EnableMouseScrolling {
+            get {
+                return ResourceManager.GetString("Project_EnableMouseScrolling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Timeout EPUB Check process after 3 mins.
         /// </summary>
         internal static string Project_EPUBCheckTimeOutEnabled {

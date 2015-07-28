@@ -2779,4 +2779,7 @@ Error text: {1}</value>
     <value>Please choose a local directory to save Recording.</value>
     <comment>Directory dialog</comment>
   </data>
+  <data name="Project_EnableMouseScrolling" xml:space="preserve">
+    <value>Enable Mouse with scrolling</value>
+  </data>
 </root>
