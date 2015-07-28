@@ -349,11 +349,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use play button to play all.
+        ///   Looks up a localized string similar to Use play button to play section.
         /// </summary>
-        internal static string Audio_PlayAllUsingPlayBtn {
+        internal static string Audio_PlaySectionUsingPlayBtn {
             get {
-                return ResourceManager.GetString("Audio_PlayAllUsingPlayBtn", resourceCulture);
+                return ResourceManager.GetString("Audio_PlaySectionUsingPlayBtn", resourceCulture);
             }
         }
         

@@ -539,9 +539,9 @@ namespace Obi.UserControls
             }
             else
             {
-                if (m_ProjectView.ObiForm.Settings.Audio_PlayAllUsingPlayBtn)
+                if (m_ProjectView.ObiForm.Settings.Audio_PlaySectionUsingPlayBtn)
                 {
-                    m_TransportBar.PlayAll();
+                    m_TransportBar.PlaySection();
                 }
                 else
                 {

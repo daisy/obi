@@ -1037,7 +1037,7 @@ namespace Obi.ProjectView
                 }
                 if (mView != null && mView.ObiForm != null && mView.ObiForm.Settings != null)
                 {
-                    if (mView.ObiForm.Settings.Audio_PlayAllUsingPlayBtn)
+                    if (mView.ObiForm.Settings.Audio_PlaySectionUsingPlayBtn)
                     {
                         m_PlayAlltoolStripMenuItem.Text = Localizer.Message("TransportBar_PlaySelection");
                     }
@@ -1229,9 +1229,9 @@ namespace Obi.ProjectView
 
         private void mPlayButton_Click(object sender, EventArgs e) 
         {
-            if (mView.ObiForm.Settings.Audio_PlayAllUsingPlayBtn)
+            if (mView.ObiForm.Settings.Audio_PlaySectionUsingPlayBtn)
             {
-                PlayAll();
+                PlaySection();
             }
             else
             {
@@ -4309,7 +4309,7 @@ SelectionChangedPlaybackEnabled = false;
 
         private void m_PlayAlltoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!mView.ObiForm.Settings.Audio_PlayAllUsingPlayBtn)
+            if (!mView.ObiForm.Settings.Audio_PlaySectionUsingPlayBtn)
             {
                 PlayAllSections();
             }
@@ -4343,7 +4343,7 @@ SelectionChangedPlaybackEnabled = false;
 
         private void m_PlayingOptionsContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!mView.ObiForm.Settings.Audio_PlayAllUsingPlayBtn)
+            if (!mView.ObiForm.Settings.Audio_PlaySectionUsingPlayBtn)
             {
                 m_PlayAlltoolStripMenuItem.Enabled = mView.CanPlay || mView.CanResume;
             }

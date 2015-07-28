@@ -202,7 +202,7 @@ namespace Obi
         public bool Audio_ColorFlickerPreviewBeforeRecording;
 
         [OptionalField]
-        public bool Audio_PlayAllUsingPlayBtn;
+        public bool Audio_PlaySectionUsingPlayBtn;
 
 
         [OptionalField]
@@ -328,7 +328,7 @@ namespace Obi
             settings.Audio_RecordingToolbarProfile1 = "Basic";
             settings.Audio_RecordingToolbarProfile2 = "Advance";
             settings.Audio_ColorFlickerPreviewBeforeRecording = false;
-            settings.Audio_PlayAllUsingPlayBtn = false;
+            settings.Audio_PlaySectionUsingPlayBtn = false;
             settings.Audio_LocalRecordingDirectory = null;
             settings.Project_EnableMouseScrolling = true;
         }
