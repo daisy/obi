@@ -969,6 +969,7 @@ namespace Obi.Dialogs
                 mSettings.Project_PeakMeterChangeLocation = m_CheckBoxListView.Items[12].Checked;
                 mSettings.Project_EPUBCheckTimeOutEnabled = m_CheckBoxListView.Items[13].Checked;
                 mSettings.Project_MinimizeObi = m_CheckBoxListView.Items[14].Checked;
+                mSettings.Project_EnableMouseScrolling = m_CheckBoxListView.Items[15].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1120,6 +1121,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_PeakMeterChangeLocation"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_EPUBCheckTimeOutEnabled"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_MinimizeObi"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_EnableMouseScrolling"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1151,6 +1153,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[13].ToolTipText = Localizer.Message("Project_EPUBCheckTimeOutEnabled");
                 m_CheckBoxListView.Items[14].Checked = mSettings.Project_MinimizeObi;
                 m_CheckBoxListView.Items[14].ToolTipText = Localizer.Message("Project_MinimizeObi");
+                m_CheckBoxListView.Items[15].Checked = mSettings.Project_EnableMouseScrolling;
+                m_CheckBoxListView.Items[15].ToolTipText = Localizer.Message("Project_EnableMouseScrolling");
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1231,6 +1235,7 @@ namespace Obi.Dialogs
                 mSettings.Project_PeakMeterChangeLocation = m_DefaultSettings.Project_PeakMeterChangeLocation;
                 mSettings.Project_EPUBCheckTimeOutEnabled= m_DefaultSettings.Project_EPUBCheckTimeOutEnabled;
                 mSettings.Project_MinimizeObi = m_DefaultSettings.Project_MinimizeObi;
+                mSettings.Project_EnableMouseScrolling = m_DefaultSettings.Project_EnableMouseScrolling;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
@@ -1798,6 +1803,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[11].Checked = false;
                     m_CheckBoxListView.Items[12].Checked = false;
                     m_CheckBoxListView.Items[14].Checked = false;
+                    m_CheckBoxListView.Items[15].Checked = true;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
@@ -1830,6 +1836,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[11].Checked = false;
                     m_CheckBoxListView.Items[12].Checked = false;
                     m_CheckBoxListView.Items[14].Checked = false;
+                    m_CheckBoxListView.Items[15].Checked = true;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -1861,6 +1868,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[11].Checked = false;
                     m_CheckBoxListView.Items[12].Checked = false;
                     m_CheckBoxListView.Items[14].Checked = false;
+                    m_CheckBoxListView.Items[15].Checked = true;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-2-SBS.xml" || Profile == "Profile-2-SBS.XML")
@@ -1892,6 +1900,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[11].Checked = true;
                     m_CheckBoxListView.Items[12].Checked = true;
                     m_CheckBoxListView.Items[14].Checked = false;
+                    m_CheckBoxListView.Items[15].Checked = false;
                     UpdateBoolSettings();
 
 
@@ -1928,6 +1937,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[11].Checked = false;
                     m_CheckBoxListView.Items[12].Checked = false;
                     m_CheckBoxListView.Items[14].Checked = true;
+                    m_CheckBoxListView.Items[15].Checked = true;
                     UpdateBoolSettings();
 
                 }

@@ -5362,6 +5362,10 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void ContentView_MouseWheel ( object sender, MouseEventArgs e )
             {
+                if (!Settings.Project_EnableMouseScrolling)
+                {
+                    return;
+                }
             
             int interval;
             int increment = Convert.ToInt32 ( mHScrollBar.Location.Y * 0.4 );
