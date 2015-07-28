@@ -69,7 +69,7 @@ namespace Obi
                newSettings.Audio_UseRecordingPauseShortcutForStopping = this.Audio_UseRecordingPauseShortcutForStopping;
                newSettings.Audio_AlwaysMonitorRecordingToolBar = this.Audio_AlwaysMonitorRecordingToolBar;
                newSettings.Audio_ColorFlickerPreviewBeforeRecording = this.Audio_ColorFlickerPreviewBeforeRecording;
-               newSettings.Audio_PlayAllUsingPlayBtn = this.Audio_PlayAllUsingPlayBtn;
+               newSettings.Audio_PlaySectionUsingPlayBtn = this.Audio_PlaySectionUsingPlayBtn;
            }
 
            if (prefProfiles == PreferenceProfiles.Project || prefProfiles == PreferenceProfiles.All)
@@ -420,7 +420,7 @@ namespace Obi
                && this.Audio_UseRecordingPauseShortcutForStopping == settings.Audio_UseRecordingPauseShortcutForStopping
                && this.Audio_AlwaysMonitorRecordingToolBar == settings.Audio_AlwaysMonitorRecordingToolBar
                && this.Audio_ColorFlickerPreviewBeforeRecording == settings.Audio_ColorFlickerPreviewBeforeRecording
-               && this.Audio_PlayAllUsingPlayBtn == settings.Audio_PlayAllUsingPlayBtn)
+               && this.Audio_PlaySectionUsingPlayBtn == settings.Audio_PlaySectionUsingPlayBtn)
            {
                audioPreferencesMatch = true ;
            }

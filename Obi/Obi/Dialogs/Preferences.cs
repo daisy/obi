@@ -253,7 +253,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[16].Checked = mSettings.Audio_PreservePagesWhileRecordOverSubsequentAudio;
                 m_CheckBoxListView.Items[17].Checked = mSettings.Audio_AlwaysMonitorRecordingToolBar;
                 m_CheckBoxListView.Items[18].Checked = mSettings.Audio_ColorFlickerPreviewBeforeRecording;
-                m_CheckBoxListView.Items[19].Checked = mSettings.Audio_PlayAllUsingPlayBtn;
+                m_CheckBoxListView.Items[19].Checked = mSettings.Audio_PlaySectionUsingPlayBtn;
                 m_IsComplete = true;
 
             }
@@ -993,7 +993,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_PreservePagesWhileRecordOverSubsequentAudio = m_CheckBoxListView.Items[16].Checked;
                 mSettings.Audio_AlwaysMonitorRecordingToolBar = m_CheckBoxListView.Items[17].Checked;
                 mSettings.Audio_ColorFlickerPreviewBeforeRecording = m_CheckBoxListView.Items[18].Checked;
-                mSettings.Audio_PlayAllUsingPlayBtn = m_CheckBoxListView.Items[19].Checked;
+                mSettings.Audio_PlaySectionUsingPlayBtn = m_CheckBoxListView.Items[19].Checked;
                 
             }
             //if (mTab.SelectedTab == mAdvanceTab)
@@ -1047,7 +1047,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_PreservePage"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_AlwaysMonitoringRecordingToolBar"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_ColorFlickerPreviewBeforeRecording"));
-                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_PlayAllUsingPlayBtn"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_PlaySectionUsingPlayBtn"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Audio_AudioClues;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_AudioClues");                
@@ -1087,8 +1087,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[17].ToolTipText = Localizer.Message("Audio_AlwaysMonitoringRecordingToolBar");
                 m_CheckBoxListView.Items[18].Checked = mSettings.Audio_ColorFlickerPreviewBeforeRecording;
                 m_CheckBoxListView.Items[18].ToolTipText = Localizer.Message("Audio_ColorFlickerPreviewBeforeRecording");
-                m_CheckBoxListView.Items[19].Checked = mSettings.Audio_PlayAllUsingPlayBtn;
-                m_CheckBoxListView.Items[19].ToolTipText = Localizer.Message("Audio_PlayAllUsingPlayBtn");
+                m_CheckBoxListView.Items[19].Checked = mSettings.Audio_PlaySectionUsingPlayBtn;
+                m_CheckBoxListView.Items[19].ToolTipText = Localizer.Message("Audio_PlaySectionUsingPlayBtn");
 
               
             }
@@ -1927,7 +1927,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[16].Checked = true;
                     m_CheckBoxListView.Items[17].Checked = false;
                     m_CheckBoxListView.Items[18].Checked = true;
-                    m_CheckBoxListView.Items[19].Checked = false;
+                    m_CheckBoxListView.Items[19].Checked = true;
 
                     mSettings.Audio_PreviewDuration = 7000;
 
