@@ -1413,7 +1413,7 @@ namespace Obi.ProjectView
                 }
                 SetPlaylistEvents(mLocalPlaylist);
                 mCurrentPlaylist = mLocalPlaylist;
-                if ( neglectSelection )
+                if (neglectSelection && !m_IsPlaySectionInspiteOfPhraseSelection)
                 {
                     mCurrentPlaylist.Play () ;
                 }
@@ -4284,7 +4284,24 @@ SelectionChangedPlaybackEnabled = false;
 
                     m_IsPlaySectionInspiteOfPhraseSelection = true;
                     //IsPlaySection = true;
+                    double time = -1;
+                    if (IsPlayerActive)
+                    {
+                        if (mCurrentPlaylist.CurrentPhrase == mView.Selection.Node) time = mCurrentPlaylist.CurrentTimeInAsset;
+                    }
+                    else if (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange != null)
+                    {
+                        AudioSelection audioSel = (AudioSelection)mView.Selection;
+                        if (audioSel.AudioRange.HasCursor) time = audioSel.AudioRange.CursorTime;
+                        else time = audioSel.AudioRange.SelectionBeginTime;
+                    }
+
                     if (IsPlayerActive) Stop();
+
+                    if (time > 0  && mView.Selection.Node is PhraseNode) 
+                    {
+                        mView.Selection = new AudioSelection((PhraseNode) mView.Selection.Node, mView.Selection.Control, new AudioRange(time));
+                        }
                     PlayOrResume(nodeSelect);
                 }
             }
