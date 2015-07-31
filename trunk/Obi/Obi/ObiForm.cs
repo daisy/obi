@@ -1111,14 +1111,9 @@ namespace Obi
                                                                                  {
                                                                                      m_CanAutoSave = false;
                                                                                      //mSession.Presentation.cleanup();
-                                                                                     try
-                                                                                     {
+                                                                                     
                                                                                          cleaner.Cleanup();
-                                                                                     }
-                                                                                     catch (Exception e)
-                                                                                     {
-                                                                                         MessageBox.Show(e.ToString());
-                                                                                     }
+                                                                                     
                                                                                      List<string>
                                                                                          listOfDataProviderFiles =
                                                                                              new List<string>();
@@ -1258,7 +1253,7 @@ namespace Obi
                             m_IsAutoSaveActive = false;
                         }
                         mSession.ForceSave();
-
+                        MessageBox.Show(Localizer.Message ("CleanUp_Complete"));
                     }
                     catch (Exception e)
                     {
