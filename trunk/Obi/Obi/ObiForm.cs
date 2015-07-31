@@ -1253,7 +1253,10 @@ namespace Obi
                             m_IsAutoSaveActive = false;
                         }
                         mSession.ForceSave();
-                        MessageBox.Show(Localizer.Message ("CleanUp_Complete"));
+                        MessageBox.Show(Localizer.Message ("CleanUp_Complete"),
+                            Localizer.Message("Caption_Information"),
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
                     }
                     catch (Exception e)
                     {
