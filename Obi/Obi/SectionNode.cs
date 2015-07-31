@@ -1,4 +1,5 @@
 using System.Xml;
+using System.Collections.Generic ;
 using urakawa.core;
 using urakawa.property.channel;
 using urakawa.exception;
@@ -354,5 +355,33 @@ namespace Obi
                 return span;
             }
         }
+
+
+        public List<SectionNode> GetAllChildSections()
+        {
+            List<SectionNode> sectionsList = new List<SectionNode>();
+            TraverseAndCollectAllSubSections(this, sectionsList);
+            System.Console.WriteLine("Count of child sections: " + sectionsList.Count);
+            return sectionsList;
+        }
+
+        private void TraverseAndCollectAllSubSections(SectionNode node, List<SectionNode> sectionsList)
+        {
+            if (node.SectionChildCount == 0)
+            {
+                return;
+            }
+            else
+            {
+                for (int i = 0; i < node.SectionChildCount; i++)
+                {
+                    SectionNode n = node.SectionChild(i);
+                    sectionsList.Add(n);
+                    TraverseAndCollectAllSubSections(n, sectionsList);
+                }
+            }
+        }
+
+
     }
 }

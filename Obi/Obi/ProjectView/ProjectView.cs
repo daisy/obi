@@ -1447,24 +1447,95 @@ namespace Obi.ProjectView
                         }
                         if (selectionDialog.SelectedSectionsForIncreaseLevel != null && selectionDialog.SelectedSectionsForIncreaseLevel.Count >= 1)
                         {
-                            List<SectionNode> selectedSectionsForIncreaseLevel = selectionDialog.SelectedSectionsForIncreaseLevel;
+                            List<SectionNode> selectedSectionsForIncreaseLevel = new List<SectionNode>();
+                                selectedSectionsForIncreaseLevel.AddRange( selectionDialog.SelectedSectionsForIncreaseLevel);
                             if (selectedSectionsForIncreaseLevel.Count != 0)
                             {
-                                selectedSections = selectionDialog.SelectedSections;
+                                selectedSections = new List<SectionNode>();
+                                foreach (SectionNode n in selectedSectionsForIncreaseLevel)
+                                {
+                                    selectedSections.Add(n);
+                                }
+                                Console.WriteLine("Selected sections count1: " + selectedSections.Count);
+
                                 SectionNode node = selectedSectionsForIncreaseLevel[0];
                                 this.Selection = new NodeSelection(node, mTOCView);
                                 temp_NodeSelected = node;
                                 CompositeCommand increaseMultipleSectionsLevelCommand = mPresentation.CreateCompositeCommand ("Increase multiple sections level");
+
                                 for (int i = 0; i < selectedSectionsForIncreaseLevel.Count; i++)
-                                {
+                                {//1
                                     node = selectedSectionsForIncreaseLevel[i];
-                                    if (selectedSectionsForIncreaseLevel.Contains(node.ParentAs<SectionNode>())) continue;
+                                    //if (selectedSectionsForIncreaseLevel.Contains(node.ParentAs<SectionNode>())) continue;
+
+                                    List<SectionNode> childSections = node.GetAllChildSections();
+                                    for (int j = 0; j < childSections.Count; j++)
+                                    {//2
+                                        SectionNode child = childSections[j];
+                                        if (selectedSectionsForIncreaseLevel.Contains(child))
+                                        {//3
+                                            selectedSectionsForIncreaseLevel.Remove(child);
+                                            continue;
+                                        }//-3
+
+                                    }//-2
+
+
+                                }//-1
+                                SectionNode sibling = selectedSectionsForIncreaseLevel[0].PrecedingSibling;
+                                int mainInsertIndex = sibling .SectionChildCount;
+                                for (int i = selectedSectionsForIncreaseLevel.Count-1 ; i >= 0; i--)
+                                {//1
+                                    node = selectedSectionsForIncreaseLevel[i];
                                     if (Commands.TOC.MoveSectionIn.CanMoveNode(node))
-                                    {
-                                        Commands.TOC.MoveSectionIn moveInCmd = new Commands.TOC.MoveSectionIn(this, node);
-                                        increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, moveInCmd);
-                                    }
-                                }
+                                    {//2
+
+                                        
+                                        Commands.Node.Delete deleteCmd = new Commands.Node.Delete(this, node, false);
+                                        increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, deleteCmd);
+                                        
+                                        Commands.Node.AddNode addCmd = new Obi.Commands.Node.AddNode(this, node, sibling, mainInsertIndex, false);
+                                        increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, addCmd);
+
+                                        List<SectionNode> childSections = node.GetAllChildSections();
+                                        int childInsertIndex = mainInsertIndex + 1;
+                                        List<SectionNode> childrenToMoveOut = new List<SectionNode>();
+                                        int referenceChildDepthIndex = -1;
+                                        Console.WriteLine("Selected sections count2: " + selectedSections.Count);
+                                        
+                                        for (int j = 0; j < childSections.Count; j++)
+                                        {//3
+                                            SectionNode child = childSections[j];
+                                            if (selectedSections.Contains(child))
+                                            {//4
+                                                Console.WriteLine("Continue: " + child.Label);
+                                                continue;
+                                            }//-4
+                                            else
+                                            {//4
+                                                Console.WriteLine("processing: " + child.Label ) ;
+                                                if (referenceChildDepthIndex == -1 || child.Level >= referenceChildDepthIndex)
+                                                {
+                                                    childrenToMoveOut.Add(child);
+                                                    referenceChildDepthIndex = child.Level;
+                                                }//4
+                                            }//-4
+                                            for ( int k = childrenToMoveOut.Count - 1 ; k >=0 ;  k--)
+                                            {//4
+                                                SectionNode n = childrenToMoveOut[k];
+                                                Commands.Node.Delete deleteChildCmd = new Commands.Node.Delete(this,n);
+                                                increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, deleteChildCmd);
+                                                
+                                                Commands.Node.AddNode addChildCmd = new Obi.Commands.Node.AddNode(this, n, sibling, childInsertIndex, false);
+                                                increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, addChildCmd);
+                                                
+                                            }//-4
+                                        }//-3
+                                        
+                                    }//-2
+                                }//-1
+                                
+                                
                                         try
                                         {
                                             mPresentation.Do(increaseMultipleSectionsLevelCommand);
