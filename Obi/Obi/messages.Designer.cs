@@ -844,6 +844,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clean up operation is complete..
+        /// </summary>
+        internal static string CleanUp_Complete {
+            get {
+                return ResourceManager.GetString("CleanUp_Complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The project directory has long file path which may lead to major problems in cleanup causing loss of important data. It is strongly recommended to move the project directory near to the partition before starting clean up. Do you want to continue inspite of the stated warning?.
         /// </summary>
         internal static string CleanUp_LongFilePath {
