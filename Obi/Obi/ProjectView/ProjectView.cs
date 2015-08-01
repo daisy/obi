@@ -1483,13 +1483,18 @@ namespace Obi.ProjectView
 
                                 }//-1
                                 SectionNode sibling = selectedSectionsForIncreaseLevel[0].PrecedingSibling;
-                                int mainInsertIndex = sibling .SectionChildCount;
+                                if (sibling == null)
+                                {
+                                    MessageBox.Show("Increment level cannot be performed on the sections at this position");
+                                    return;
+                                }
+                                int mainInsertIndex = sibling.SectionChildCount;
                                 for (int i = selectedSectionsForIncreaseLevel.Count-1 ; i >= 0; i--)
                                 {//1
                                     node = selectedSectionsForIncreaseLevel[i];
                                     if (Commands.TOC.MoveSectionIn.CanMoveNode(node))
                                     {//2
-
+                                        
                                         
                                         Commands.Node.Delete deleteCmd = new Commands.Node.Delete(this, node, false);
                                         increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, deleteCmd);
