@@ -1564,42 +1564,142 @@ namespace Obi.ProjectView
                             this.TransportBar.Stop();
                         }
                         if (selectionDialog.SelectedSectionsForDecreaseLevel != null && selectionDialog.SelectedSectionsForDecreaseLevel.Count >= 1)
-                        {
-                            List<SectionNode> selectedSectionsForDecreaseLevel = selectionDialog.SelectedSectionsForDecreaseLevel;
-                            if (selectedSectionsForDecreaseLevel.Count != 0)
+                        {//1
+                            List<SectionNode> selectedSectionsForDecreaseLevel = new List<SectionNode>();
+                            List<SectionNode> sectionsSelected = new List<SectionNode>();
+                            foreach (SectionNode s in selectionDialog.SelectedSectionsForDecreaseLevel)
                             {
+                                selectedSectionsForDecreaseLevel.Add(s);
+                                selectedSections.Add(s);
+                            }
+                            if (selectedSectionsForDecreaseLevel.Count != 0)
+                            {//2
                                 selectedSections = selectionDialog.SelectedSections;
                                 temp_NodeSelected = selectedSectionsForDecreaseLevel[0];
-                                selectedSectionsForDecreaseLevel.Reverse();
+                                
                                 SectionNode node = selectedSectionsForDecreaseLevel[0];
                                 this.Selection = new NodeSelection(node, mTOCView);
                                 CompositeCommand decreaseMultipleSectionsLevelCommand = mPresentation.CreateCompositeCommand("Decrease multiple sections level");
+
+
                                 for (int i = 0; i < selectedSectionsForDecreaseLevel.Count; i++)
-                                {
+                                {//1
                                     node = selectedSectionsForDecreaseLevel[i];
+                                    //if (selectedSectionsForIncreaseLevel.Contains(node.ParentAs<SectionNode>())) continue;
 
-                                    if (Commands.TOC.MoveSectionOut.CanMoveNode(node))
-                                    {
-                                        Commands.TOC.MoveSectionOut moveOutCmd = new Commands.TOC.MoveSectionOut(this, node);
-                                        decreaseMultipleSectionsLevelCommand.ChildCommands.Insert(decreaseMultipleSectionsLevelCommand.ChildCommands.Count, moveOutCmd);
-                                    }
+                                    List<SectionNode> childSections = node.GetAllChildSections();
+                                    for (int j = 0; j < childSections.Count; j++)
+                                    {//2
+                                        SectionNode child = childSections[j];
+                                        if (selectedSectionsForDecreaseLevel.Contains(child))
+                                        {//3
+                                            selectedSectionsForDecreaseLevel.Remove(child);
+                                            continue;
+                                        }//-3
+
+                                    }//-2
+
+                                }//-1
+                                Console.WriteLine("selected section refined count: " + selectedSectionsForDecreaseLevel.Count);
+                                SectionNode sibling = selectedSectionsForDecreaseLevel[0].ParentAs<SectionNode> ();
+                                if (sibling == null)
+                                {
+                                    MessageBox.Show("Increment level cannot be performed on the sections at this position");
+                                    return;
                                 }
-                                        try
+                                //int mainInsertIndex = sibling.SectionChildCount;
+                                Console.WriteLine("Sibling Name: " + sibling.Label);
+                                for (int i = selectedSectionsForDecreaseLevel.Count - 1; i >= 0; i--)
+                                {//1
+                                    node = selectedSectionsForDecreaseLevel[i];
+                                    //if (Commands.TOC.MoveSectionOut.CanMoveNode(node))
+                                    //{//2
+                                        // check if sibling has some child nodes below the section being iterated
+                                        if (i == selectedSectionsForDecreaseLevel.Count-1 &&  node.Index < sibling.SectionChildCount - 1)
                                         {
-                                            mPresentation.Do(decreaseMultipleSectionsLevelCommand);
+                                            for (int j = sibling.SectionChildCount - 1; j > node.Index; j--)
+                                            {
+                                                
+                                                Commands.Node.Delete deleteCmd = new Obi.Commands.Node.Delete(this, sibling.SectionChild(j), false);
+                                                decreaseMultipleSectionsLevelCommand.ChildCommands.Insert(decreaseMultipleSectionsLevelCommand.ChildCommands.Count, deleteCmd);
+                                                
+                                                Commands.Node.AddNode addCmd = new Obi.Commands.Node.AddNode(this, sibling.SectionChild(j), node, node.SectionChildCount, false);
+                                                decreaseMultipleSectionsLevelCommand.ChildCommands.Insert(decreaseMultipleSectionsLevelCommand.ChildCommands.Count, addCmd);
+                                                Console.WriteLine("moving child section: " + sibling.SectionChild(j).Label + " : " + j);
+                                            }
                                         }
-                                        catch (Exception ex)
-                                        {
-                                            this.WriteToLogFile(ex.ToString());
-                                            MessageBox.Show(Localizer.Message("ProjectViewFormMsg_SectionLevelChangeOperationFail") + "\n\n" + ex.ToString());  
-                                        }
-                                    
+                                        Commands.Node.Delete nodeDeleteCmd = new Commands.Node.Delete(this, node, false);
+                                        decreaseMultipleSectionsLevelCommand.ChildCommands.Insert(decreaseMultipleSectionsLevelCommand.ChildCommands.Count, nodeDeleteCmd);
 
-                            }
-                        }
-                    }
+                                        Commands.Node.AddNode nodeAddCmd = new Obi.Commands.Node.AddNode(this, node,(ObiNode) sibling.Parent, sibling.Index+1, false);
+                                        decreaseMultipleSectionsLevelCommand.ChildCommands.Insert(decreaseMultipleSectionsLevelCommand.ChildCommands.Count, nodeAddCmd);
+                                        Console.WriteLine("moving section out: " + node.Label);
+                                        //List<SectionNode> childSections = node.GetAllChildSections();
+                                        //int childInsertIndex = mainInsertIndex + 1;
+                                        //List<SectionNode> childrenToMoveOut = new List<SectionNode>();
+                                        //int referenceChildDepthIndex = -1;
+                                        //Console.WriteLine("Selected sections count2: " + selectedSections.Count);
 
-                    );
+                                        //for (int j = 0; j < childSections.Count; j++)
+                                        //{//3
+                                            //SectionNode child = childSections[j];
+                                            //if (selectedSections.Contains(child))
+                                            //{//4
+                                                //Console.WriteLine("Continue: " + child.Label);
+                                                //continue;
+                                            //}//-4
+                                            //else
+                                            //{//4
+                                                //Console.WriteLine("processing: " + child.Label);
+                                                //if (referenceChildDepthIndex == -1 || child.Level >= referenceChildDepthIndex)
+                                                //{
+                                                    //childrenToMoveOut.Add(child);
+                                                    //referenceChildDepthIndex = child.Level;
+                                                //}//4
+                                            //}//-4
+                                            //for (int k = childrenToMoveOut.Count - 1; k >= 0; k--)
+                                            //{//4
+                                                //SectionNode n = childrenToMoveOut[k];
+                                                //Commands.Node.Delete deleteChildCmd = new Commands.Node.Delete(this, n);
+                                                //increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, deleteChildCmd);
+
+                                                //Commands.Node.AddNode addChildCmd = new Obi.Commands.Node.AddNode(this, n, sibling, childInsertIndex, false);
+                                                //increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, addChildCmd);
+
+                                            //}//-4
+                                        //}//-3
+
+                                    //}//-2
+                                }//-1
+                                
+
+                                //for (int i = 0; i < selectedSectionsForDecreaseLevel.Count; i++)
+                                //{
+                                //node = selectedSectionsForDecreaseLevel[i];
+
+                                //if (Commands.TOC.MoveSectionOut.CanMoveNode(node))
+                                //{
+                                //Commands.TOC.MoveSectionOut moveOutCmd = new Commands.TOC.MoveSectionOut(this, node);
+                                //decreaseMultipleSectionsLevelCommand.ChildCommands.Insert(decreaseMultipleSectionsLevelCommand.ChildCommands.Count, moveOutCmd);
+                                //}
+                                //}
+                                //}
+                                try
+                                {//3
+                                    mPresentation.Do(decreaseMultipleSectionsLevelCommand);
+                                }//-3
+                                catch (Exception ex)
+                                {//3
+                                    this.WriteToLogFile(ex.ToString());
+                                    MessageBox.Show(Localizer.Message("ProjectViewFormMsg_SectionLevelChangeOperationFail") + "\n\n" + ex.ToString());
+                                }//-3
+
+
+
+                            }//-2
+                        }//-1
+
+                    });
                     selectionDialog.ShowDialog();
                     //  if (selectedSections.Count <= 1)
                     {
