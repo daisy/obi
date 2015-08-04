@@ -49,7 +49,6 @@ namespace Obi.ProjectView
         private Toolbar_EditAudio m_Edit;
         private double m_timeElapsed = 0.0;
         private Color m_ColorBackgroundBeforeFlicker;
-        private int m_CursorPosition = 0;
 
         /// <summary>
         /// A new strips view.
@@ -804,12 +803,7 @@ namespace Obi.ProjectView
         {
             int x_cursor = x;
             int MaxScrollwidth = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
-            int ratio = (x_cursor / (this.Width - 50)) + 1;
-            if (m_CursorPosition == 0 && ratio == 1)
-            {
-                m_CursorPosition = 1;
-            }
-
+      
             if ((x_cursor >= this.Width - 50 + mHScrollBar.Value) || (mHScrollBar.Value > (x_cursor + (this.Width / 14) - 50)))
             {
                 if ((x_cursor + (this.Width / 14) - 50) < MaxScrollwidth)
@@ -817,7 +811,6 @@ namespace Obi.ProjectView
 
 
                     mHScrollBar.Value = x_cursor + (this.Width / 14) - 50;
-                    m_CursorPosition = ratio;
 
                 }
                 else
