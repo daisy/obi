@@ -49,6 +49,7 @@ namespace Obi.ProjectView
         private Toolbar_EditAudio m_Edit;
         private double m_timeElapsed = 0.0;
         private Color m_ColorBackgroundBeforeFlicker;
+        private int m_CursorPosition = 0;
 
         /// <summary>
         /// A new strips view.
@@ -798,23 +799,47 @@ namespace Obi.ProjectView
         public void DisableScrolling () { mEnableScrolling = false; }
 
         // Ensure that the playback cursor is visible given its position in the waveform.
-        
- void EnsureCursorVisible ( int x )
+
+        void EnsureCursorVisible(int x)
+        {
+            int x_cursor = x;
+            int MaxScrollwidth = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
+            int ratio = (x_cursor / (this.Width - 50)) + 1;
+            if (m_CursorPosition == 0 && ratio == 1)
             {
-            /*int x_cursor = x;
-            for (Control parent = mPlaybackBlock.Parent; parent != mStripsPanel; parent = parent.Parent)
-            {
-                x_cursor += parent.Location.X;
+                m_CursorPosition = 1;
             }
-            int x_ = x_cursor + mStripsPanel.Location.X;
-            int h_max = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
-            int vw = VisibleWidth - mVScrollBar.Width - mVScrollBar.LargeChange;
-            if (x_ > vw)
+
+            if ((x_cursor >= this.Width - 50 + mHScrollBar.Value) || (mHScrollBar.Value > (x_cursor + (this.Width / 14) - 50)))
             {
-                // EnsureControlVisible(mPlaybackBlock);
-                mHScrollBar.Value = Math.Min(x_ - vw, h_max);
-            }*/
+                if ((x_cursor + (this.Width / 14) - 50) < MaxScrollwidth)
+                {
+
+
+                    mHScrollBar.Value = x_cursor + (this.Width / 14) - 50;
+                    m_CursorPosition = ratio;
+
+                }
+                else
+                {
+                    mHScrollBar.Value = mHScrollBar.Maximum - mHScrollBar.LargeChange;
+                }
             }
+
+            //for (Control parent = mPlaybackBlock.Parent; parent != mStripsPanel; parent = parent.Parent)
+            //{
+            //    Console.WriteLine("Parent is .....................................................{0}", parent.Name);
+            //    x_cursor += parent.Location.X;
+            //}
+            //int x_ = x_cursor + mStripsPanel.Location.X;
+            //int h_max = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
+            //int vw = VisibleWidth - mVScrollBar.Width - mVScrollBar.LargeChange;
+            //if (x_ > vw)
+            //{
+            //    //EnsureControlVisible(mPlaybackBlock);
+            //    mHScrollBar.Value = Math.Min(x_ - vw, h_max);
+            //}
+        }
 
         // Scroll to the control to make sure that it is shown.
         private void EnsureControlVisible ( Control c )
