@@ -120,9 +120,6 @@
   <metadata name="mContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="mContextMenuStrip.AccessibleName" xml:space="preserve">
-    <value />
-  </data>
   <data name="Context_ShowContentsMenuItem.AccessibleDescription" xml:space="preserve">
     <value>Show Contents of Section</value>
   </data>
@@ -196,6 +193,15 @@
   <data name="Context_SectionIsUsedMenuItem.Text" xml:space="preserve">
     <value>Sec&amp;tion is used</value>
   </data>
+  <data name="Context_AddEmptyPhraseMenuItem.AccessibleName" xml:space="preserve">
+    <value>Add empty phrase</value>
+  </data>
+  <data name="Context_AddEmptyPhraseMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="Context_AddEmptyPhraseMenuItem.Text" xml:space="preserve">
+    <value>Add empty p&amp;hrases</value>
+  </data>
   <data name="Context_AddEmptyPagesMenuItem.AccessibleName" xml:space="preserve">
     <value>Add empty pages</value>
   </data>
@@ -254,7 +260,7 @@
     <value>Pr&amp;operties</value>
   </data>
   <data name="mContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 412</value>
+    <value>208, 434</value>
   </data>
   <data name="&gt;&gt;mContextMenuStrip.Name" xml:space="preserve">
     <value>mContextMenuStrip</value>
@@ -329,6 +335,12 @@
     <value>Context_SectionIsUsedMenuItem</value>
   </data>
   <data name="&gt;&gt;Context_SectionIsUsedMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Context_AddEmptyPhraseMenuItem.Name" xml:space="preserve">
+    <value>Context_AddEmptyPhraseMenuItem</value>
+  </data>
+  <data name="&gt;&gt;Context_AddEmptyPhraseMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AddEmptyPagesMenuItem.Name" xml:space="preserve">

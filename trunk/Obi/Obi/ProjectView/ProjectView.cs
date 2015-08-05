@@ -78,6 +78,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddEmptyBlock ()
             {
+                if (Selection != null && this.Selection.Node is SectionNode
+                      && (mContentView.ActiveStrip == null || Selection.Control is TOCView))
+                {
+                    this.Selection = new NodeSelection(this.Selection.Node, mContentView);
+                }
             if (CanAddEmptyBlock)
                 {
                     EmptyNode node = Presentation.TreeNodeFactory.Create<EmptyNode>();
@@ -434,7 +439,7 @@ namespace Obi.ProjectView
             );
             }
 
-        public bool CanAddEmptyBlock { get { return mContentView.Selection != null && IsPhraseCountWithinLimit; } } // @phraseLimit                                          
+        public bool CanAddEmptyBlock {get { return (mContentView.Selection != null || (Selection != null && (Selection.Node is EmptyNode || Selection.Node is SectionNode)))  && IsPhraseCountWithinLimit; } } // @phraseLimit                                          
         public bool CanAddEmptyPage { get { return Selection != null && (Selection.Node is EmptyNode || Selection.Node is SectionNode) && IsPhraseCountWithinLimit; } } // @phraseLimit                                          
         public bool CanAddMetadataEntry () { return mPresentation != null; }
         public bool CanAddMetadataEntry ( MetadataEntryDescription d ) { return mMetadataView.CanAdd ( d ); }
