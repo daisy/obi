@@ -28,7 +28,7 @@ namespace Obi.ProjectView
             this.Context_MergeWithNextMenuItem.Click += new System.EventHandler(this.Context_MergeWithNextMenuItem_Click);
             this.Context_MultipleOperationsMenuItem.Click +=new EventHandler(Context_MultipleOperationsMenuItem_Click);
             this.Context_AddEmptyPagesMenuItem.Click += new EventHandler(Context_AddEmptyPagesMenuItem_Click);
-            this.Context_AddEmptyPhraseMenuItem.Click += new EventHandler(Context_AddEmptyPhraseMenuItem_Click);
+            this.Context_AddBlankPhraseMenuItem.Click += new EventHandler(Context_AddBlankPhraseMenuItem_Click);
         }
 
        
@@ -562,7 +562,7 @@ namespace Obi.ProjectView
             mProjectView.AddEmptyPages();
         }
 
-        private void Context_AddEmptyPhraseMenuItem_Click(object sender, EventArgs e)
+        private void Context_AddBlankPhraseMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.AddEmptyBlock();
         }

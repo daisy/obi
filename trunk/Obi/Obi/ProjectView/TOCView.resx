@@ -193,14 +193,14 @@
   <data name="Context_SectionIsUsedMenuItem.Text" xml:space="preserve">
     <value>Sec&amp;tion is used</value>
   </data>
-  <data name="Context_AddEmptyPhraseMenuItem.AccessibleName" xml:space="preserve">
+  <data name="Context_AddBlankPhraseMenuItem.AccessibleName" xml:space="preserve">
     <value>Add empty phrase</value>
   </data>
-  <data name="Context_AddEmptyPhraseMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="Context_AddBlankPhraseMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
-  <data name="Context_AddEmptyPhraseMenuItem.Text" xml:space="preserve">
-    <value>Add empty p&amp;hrases</value>
+  <data name="Context_AddBlankPhraseMenuItem.Text" xml:space="preserve">
+    <value>Add blank p&amp;hrase</value>
   </data>
   <data name="Context_AddEmptyPagesMenuItem.AccessibleName" xml:space="preserve">
     <value>Add empty pages</value>
@@ -337,10 +337,10 @@
   <data name="&gt;&gt;Context_SectionIsUsedMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Context_AddEmptyPhraseMenuItem.Name" xml:space="preserve">
-    <value>Context_AddEmptyPhraseMenuItem</value>
+  <data name="&gt;&gt;Context_AddBlankPhraseMenuItem.Name" xml:space="preserve">
+    <value>Context_AddBlankPhraseMenuItem</value>
   </data>
-  <data name="&gt;&gt;Context_AddEmptyPhraseMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;Context_AddBlankPhraseMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Context_AddEmptyPagesMenuItem.Name" xml:space="preserve">
