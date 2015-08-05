@@ -803,8 +803,8 @@ namespace Obi.ProjectView
         {
             int x_cursor = x;
             int MaxScrollwidth = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
-      
-            if ((x_cursor >= this.Width - 50 + mHScrollBar.Value) || (mHScrollBar.Value > (x_cursor + (this.Width / 14) - 50)))
+
+            if (((x_cursor >= this.Width - 50 + mHScrollBar.Value) || (mHScrollBar.Value > (x_cursor + (this.Width / 14) - 50))) && x_cursor > mHScrollBar.Minimum)
             {
                 if ((x_cursor + (this.Width / 14) - 50) < MaxScrollwidth)
                 {
