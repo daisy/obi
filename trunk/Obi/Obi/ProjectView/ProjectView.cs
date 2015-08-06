@@ -1649,43 +1649,48 @@ namespace Obi.ProjectView
                                 }//-1
 
                                 // manage the child sections of last selected sections
-                                // Not able to find an argument to implement it yet, thereby its commented
-                                //node = selectedSectionsForDecreaseLevel[selectedSectionsForDecreaseLevel.Count-1] ;
-                                        //List<SectionNode> childSectionsForDecrement = node.GetAllChildSections();
+                                
+                                node = selectedSectionsForDecreaseLevel[selectedSectionsForDecreaseLevel.Count-1] ;
+                                        List<SectionNode> childSectionsForDecrement = node.GetAllChildSections();
                                         
-                                        //List<SectionNode> childrenToMoveIn = new List<SectionNode>();
-                                        //int referenceChildDepthIndex = -1;
-                                        //Console.WriteLine("Selected sections count2: " + selectedSections.Count);
+                                        List<SectionNode> childrenToMoveIn = new List<SectionNode>();
+                                        int referenceChildDepthIndex = -1;
+                                        Console.WriteLine("Selected sections count2: " + selectedSections.Count);
 
-                                        //for (int j = 0; j < childSectionsForDecrement.Count; j++)
-                                        //{//1
-                                            //SectionNode child = childSectionsForDecrement[j];
-                                            //if (selectedSections.Contains(child))
-                                            //{//2
-                                                //Console.WriteLine("Continue: " + child.Label);
-                                                //continue;
-                                            //}//-2
-                                            //else
-                                            //{//2
-                                                //Console.WriteLine("processing: " + child.Label);
-                                                //if (referenceChildDepthIndex == -1 || child.Level <= referenceChildDepthIndex)
-                                                //{//3
-                                                    //childrenToMoveIn.Add(child);
-                                                    //referenceChildDepthIndex = child.Level;
-                                                //}//-3
-                                            //}//-2
-                                        //}//-1
-                                            //for (int k = childrenToMoveIn.Count - 1; k >= 0; k--)
-                                            //{//1
-                                                //SectionNode n = childrenToMoveIn[k];
-                                                //Commands.Node.Delete deleteChildCmd = new Commands.Node.Delete(this, n);
-                                                //decreaseMultipleSectionsLevelCommand.ChildCommands.Insert(decreaseMultipleSectionsLevelCommand.ChildCommands.Count, deleteChildCmd);
+                                        for (int j = 0; j < childSectionsForDecrement.Count; j++)
+                                        {//1
+                                            SectionNode child = childSectionsForDecrement[j];
+                                            if (selectedSections.Contains(child))
+                                            {//2
+                                                Console.WriteLine("Continue: " + child.Label);
+                                                continue;
+                                            }//-2
+                                            else
+                                            {//2
+                                                Console.WriteLine("processing: " + child.Label);
+                                                if (referenceChildDepthIndex == -1 || child.Level <= referenceChildDepthIndex)
+                                                {//3
+                                                    childrenToMoveIn.Add(child);
+                                                    referenceChildDepthIndex = child.Level;
+                                                }//-3
+                                            }//-2
+                                        }//-1
+                                if (childrenToMoveIn.Count > 0
+                                    && childrenToMoveIn[0].PrecedingSibling != null )
+                                {//1
+                                    SectionNode parentForChildrenList = childrenToMoveIn[0].PrecedingSibling ;
+                                    
+                                            for (int k = childrenToMoveIn.Count - 1; k >= 0; k--)
+                                            {//2
+                                                SectionNode n = childrenToMoveIn[k];
+                                                Commands.Node.Delete deleteChildCmd = new Commands.Node.Delete(this, n);
+                                                decreaseMultipleSectionsLevelCommand.ChildCommands.Insert(decreaseMultipleSectionsLevelCommand.ChildCommands.Count, deleteChildCmd);
 
-                                                //Commands.Node.AddNode addChildCmd = new Obi.Commands.Node.AddNode(this, n, sibling, mainInsertIndex , false);
-                                                //decreaseMultipleSectionsLevelCommand.ChildCommands.Insert(decreaseMultipleSectionsLevelCommand.ChildCommands.Count, addChildCmd);
-
-                                            //}//-1
-                                        
+                                                Commands.Node.AddNode addChildCmd = new Obi.Commands.Node.AddNode(this, n, parentForChildrenList, parentForChildrenList.SectionChildCount, false);
+                                                decreaseMultipleSectionsLevelCommand.ChildCommands.Insert(decreaseMultipleSectionsLevelCommand.ChildCommands.Count, addChildCmd);
+                                                Console.WriteLine("Moving in unselected child sections: " + n.Label + " , to parent : " + parentForChildrenList.Label);
+                                            }//-2
+                                    }//-1
         
                                 // end of child handling
                                 
