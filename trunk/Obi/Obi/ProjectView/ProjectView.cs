@@ -1494,9 +1494,12 @@ namespace Obi.ProjectView
                                     return;
                                 }
                                 int mainInsertIndex = sibling.SectionChildCount;
+                                int indexAdded = 0;
                                 for (int i = selectedSectionsForIncreaseLevel.Count-1 ; i >= 0; i--)
                                 {//1
                                     node = selectedSectionsForIncreaseLevel[i];
+                                    Console.WriteLine("Main section operated: " + node.Label);
+
                                     if (Commands.TOC.MoveSectionIn.CanMoveNode(node))
                                     {//2
                                         
@@ -1506,9 +1509,10 @@ namespace Obi.ProjectView
                                         
                                         Commands.Node.AddNode addCmd = new Obi.Commands.Node.AddNode(this, node, sibling, mainInsertIndex, false);
                                         increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, addCmd);
+                                        indexAdded++;
 
                                         List<SectionNode> childSections = node.GetAllChildSections();
-                                        int childInsertIndex = mainInsertIndex + 1;
+                                        int childInsertIndex = mainInsertIndex + indexAdded;
                                         List<SectionNode> childrenToMoveOut = new List<SectionNode>();
                                         int referenceChildDepthIndex = -1;
                                         Console.WriteLine("Selected sections count2: " + selectedSections.Count);
@@ -1523,27 +1527,29 @@ namespace Obi.ProjectView
                                             }//-4
                                             else
                                             {//4
-                                                Console.WriteLine("processing: " + child.Label ) ;
-                                                if (referenceChildDepthIndex == -1 || child.Level >= referenceChildDepthIndex)
-                                                {
+                                                Console.WriteLine("processing child: " + child.Label ) ;
+                                                if (referenceChildDepthIndex == -1 || child.Level <= referenceChildDepthIndex)
+                                                {//5
                                                     childrenToMoveOut.Add(child);
+                                                    Console.WriteLine("Add to move out list: " + child.Label + " : " + child.Level) ;
                                                     referenceChildDepthIndex = child.Level;
-                                                }//4
+                                                }//-5
                                             }//-4
+                                        }//-3
                                             for ( int k = childrenToMoveOut.Count - 1 ; k >=0 ;  k--)
-                                            {//4
+                                            {//3
                                                 SectionNode n = childrenToMoveOut[k];
                                                 Commands.Node.Delete deleteChildCmd = new Commands.Node.Delete(this,n);
                                                 increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, deleteChildCmd);
                                                 
                                                 Commands.Node.AddNode addChildCmd = new Obi.Commands.Node.AddNode(this, n, sibling, childInsertIndex, false);
                                                 increaseMultipleSectionsLevelCommand.ChildCommands.Insert(increaseMultipleSectionsLevelCommand.ChildCommands.Count, addChildCmd);
-                                                
-                                            }//-4
-                                        }//-3
+                                                Console.WriteLine("Moved out section: " + n.Label);
+                                            }//-3
+                                        }//-2
                                         
-                                    }//-2
-                                }//-1
+                                    }//-1
+                                
                                 
                                 
                                         try
