@@ -4211,7 +4211,14 @@ for (int j = 0;
                     {
                     // Resume from selection, not from audio cursor
                     TransportBar.Stop ();
-                    TransportBar.PlayOrResume ();
+                    if (ObiForm.Settings.Audio_PlaySectionUsingPlayBtn)
+                    {
+                        TransportBar.PlaySection();
+                    }
+                    else
+                    {
+                        TransportBar.PlayOrResume();
+                    }
                     return true;
                     }
                 else if (TransportBar.CanPause)
@@ -4230,7 +4237,14 @@ for (int j = 0;
                 else if (TransportBar.CanPlay || TransportBar.CanResumePlayback)
                     {
                     // Start playback or resume from audio cursor
-                    TransportBar.PlayOrResume ();
+                        if (ObiForm.Settings.Audio_PlaySectionUsingPlayBtn)
+                        {
+                            TransportBar.PlaySection();
+                        }
+                        else
+                        {
+                            TransportBar.PlayOrResume();
+                        }
                     return true;
                     }
                 else if (TransportBar.IsListening)
