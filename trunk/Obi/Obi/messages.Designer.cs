@@ -349,7 +349,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use play button to play section.
+        ///   Looks up a localized string similar to Use play button and space key to play section.
         /// </summary>
         internal static string Audio_PlaySectionUsingPlayBtn {
             get {

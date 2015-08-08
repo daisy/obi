@@ -2755,7 +2755,7 @@ Error text: {1}</value>
     <value>Highlight label for preview before recording</value>
   </data>
   <data name="Audio_PlaySectionUsingPlayBtn" xml:space="preserve">
-    <value>Use play button to play section</value>
+    <value>Use play button and space key to play section</value>
   </data>
   <data name="TransportBar_PlaySelection" xml:space="preserve">
     <value>Play Selection</value>
