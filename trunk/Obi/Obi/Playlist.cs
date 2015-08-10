@@ -22,9 +22,9 @@ namespace Obi
     {
         private AudioPlayer mPlayer;              // audio player for actually playing
         protected List<PhraseNode> mPhrases;        // list of phrase nodes in playback order
-        private List<double> mStartTimes;         // start time of every phrase
+        protected List<double> mStartTimes;         // start time of every phrase
         protected int mCurrentPhraseIndex;          // index of the phrase currently playing
-        private double mTotalTime;                // total time of this playlist
+        protected double mTotalTime;                // total time of this playlist
         private double mElapsedTime;              // elapsed time *before* the beginning of the current asset
         private bool mIsMaster;                   // flag for playing whole book or just a selection
         private AudioPlayer.State mPlaylistState;  // playlist state is not always the same as the player state
@@ -32,7 +32,7 @@ namespace Obi
         private int mPlaybackRate;                // current playback rate (multiplier)
 
         private double mPlaybackStartTime;        // start time in first asset
-        private double mPlaybackEndTime;          // end time in last asset; negative value if until the end.
+        protected double mPlaybackEndTime;          // end time in last asset; negative value if until the end.
         private bool mIsQAPlaylist; // flag to indicate that master playlist is QA playlist i.e. do not contain unused phrases
         private PhraseNode m_FirstPage;
         private PhraseNode m_LastPage;
@@ -360,7 +360,7 @@ namespace Obi
             Play();
         }
 
-        public void Play(double from, double to)
+        public virtual void Play(double from, double to)
         {
         if (from < 0 || from >= mPhrases[mCurrentPhraseIndex].Audio.Duration.AsMilliseconds)
             from = 0;
@@ -432,7 +432,8 @@ namespace Obi
             }
         }
 
-        private void UpdateFirstandLastSectionsAndPages(PhraseNode node)
+        
+        protected void UpdateFirstandLastSectionsAndPages(PhraseNode node)
         {
             if (node.Role_ == EmptyNode.Role.Page)
             {
@@ -466,7 +467,7 @@ namespace Obi
             if (node is PhraseNode)
             {
                 if (!mIsQAPlaylist || node.Used)
-                {
+                {   
                     mPhrases.Add((PhraseNode)node);
                     mStartTimes.Add(mTotalTime);
                     mTotalTime += ((PhraseNode)node).Audio.Duration.AsMilliseconds;
@@ -1377,6 +1378,8 @@ namespace Obi
     public class PreviewPlaylist : Playlist
     {
         private double mRevertTime;  // revert time
+        private PhraseNode m_PrimaryNode;
+        private double m_PlayTo;
 
         public PreviewPlaylist(AudioPlayer player, NodeSelection selection, double revertTime)
             : base(player, selection, false)
@@ -1385,6 +1388,12 @@ namespace Obi
             base.Audioplayer.AudioPlaybackFinished += new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             mRevertTime = revertTime;
             m_IsPreviewComplete = false;
+            m_PrimaryNode = (PhraseNode) selection.Node;
+            m_PlayTo = -1;
+            CurrentPhrase = m_PrimaryNode;
+            Console.WriteLine("Preview 1, before");
+            AddPreviousPhraseInPlaylist(m_PrimaryNode);
+                Console.WriteLine("Preview 1, after");
         }
 
         public PreviewPlaylist(AudioPlayer player, ObiNode node, double revertTime)
@@ -1394,6 +1403,22 @@ namespace Obi
             base.Audioplayer.AudioPlaybackFinished += new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             mRevertTime = revertTime;
             m_IsPreviewComplete = false;
+            m_PrimaryNode =(PhraseNode) node;
+            m_PlayTo = -1;
+            CurrentPhrase = m_PrimaryNode;
+            Console.WriteLine("Preview 2, before");
+            AddPreviousPhraseInPlaylist(m_PrimaryNode);
+                Console.WriteLine("Preview 2, after");
+        }
+    
+
+        public PhraseNode RevertPhrase
+        {
+            get { return m_PrimaryNode ;}
+        set
+        {
+        m_PrimaryNode = value;
+    }
         }
 
         public double RevertTime 
@@ -1405,6 +1430,7 @@ namespace Obi
             set
             {
                 if (mPhrases.Count == 0) return;
+                Console.WriteLine("Setting revert time: " + value);
                 if (value < 0)
                 {
                     mRevertTime = 0;
@@ -1424,7 +1450,10 @@ namespace Obi
             {
                 if (base.State == AudioPlayer.State.Playing)
                     {
+                        System.Media.SystemSounds.Asterisk.Play();
+                    Console.WriteLine("Function pause : " + mRevertTime+ " : " + base.CurrentTimeInAsset) ;
                     mRevertTime = base.CurrentTimeInAsset ;
+                    m_PrimaryNode = base.CurrentPhrase;
                     base.Pause () ;
                     }
                 }
@@ -1443,6 +1472,7 @@ namespace Obi
                 //Audioplayer.CurrentAudio.AudioDuration.AsMilliseconds
                 )
                 {
+                    Console.WriteLine("Rever time, end of playlist forced: " + mRevertTime);
                 mRevertTime = time;
                 CallEndOfPreviewPlaylist ();
                 }
@@ -1462,13 +1492,25 @@ namespace Obi
                 }
             else
                 {
-                ReachedEndOfPlaylist ();
+                    Console.WriteLine("Phrase switching, revert time: " + RevertTime);
+                    if (m_PlayTo >= 0)
+                    {
+                        base.mPlaybackEndTime = m_PlayTo;
+                        m_PlayTo = -1;
+                        PlayPhrase(mCurrentPhraseIndex );
+                        Console.WriteLine("Playing: " + this.CurrentPhrase + ", Revert time: " + mRevertTime);
+                    }
+                    else
+                    {
+                        ReachedEndOfPlaylist();
+                    }
                 }
             }
 
         protected override void ReachedEndOfPlaylist()
         {
             base.Audioplayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
+            Console.WriteLine("Pausing: " + CurrentPhrase + " : " + RevertTime);
             PauseFromStopped(mRevertTime);
             m_IsPreviewComplete = true;
         }
@@ -1476,6 +1518,46 @@ namespace Obi
         // work around to make sure that preview playlist has finished. this is used only in preview before recording.
         private bool m_IsPreviewComplete;
         public bool IsPreviewComplete { get { return m_IsPreviewComplete; } }
+
+        public override void Play(double from, double to)
+        {
+            Console.WriteLine("Parameters: from: " + from + ", to:" + to);
+            Console.WriteLine(CurrentPhrase + " : " + m_PrimaryNode);
+            Console.WriteLine("Count: " + base.mPhrases.Count);
+            if (from < 0 && this.PrevPhrase(m_PrimaryNode) != null)
+            {
+                CurrentPhrase = PrevPhrase(m_PrimaryNode);
+                double phraseDuration = CurrentPhrase.Audio.Duration.AsMilliseconds;
+                from = phraseDuration + from;
+                if (from < 0) from = 0.0;
+                m_PlayTo = to;
+                Console.WriteLine("Play: " + CurrentPhrase + " for: from: " + from + ", to:" + to);
+                base.Play(from);
+                Console.WriteLine("starting revert time: " + RevertTime);
+            }
+            else
+            {
+                base.Play(from, to);
+                Console.WriteLine("starting revert time: " + RevertTime);
+            }
+        }
+        protected void AddPreviousPhraseInPlaylist(PhraseNode node)
+        {   
+                PhraseNode previous = (node).PrecedingPhraseInProject;
+                if (previous != null)
+                {
+                    mPhrases.Insert (0,previous);
+                    mStartTimes.Clear();
+                    mTotalTime = 0;
+                    mStartTimes.Add(mTotalTime);
+                    mTotalTime += previous.Audio.Duration.AsMilliseconds;
+                    mStartTimes.Add(mTotalTime);
+                    mTotalTime += node.Audio.Duration.AsMilliseconds;
+                    UpdateFirstandLastSectionsAndPages(node);
+                }
+        }
+
+        
 
     }
 }
