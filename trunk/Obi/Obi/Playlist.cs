@@ -1450,7 +1450,7 @@ namespace Obi
             {
                 if (base.State == AudioPlayer.State.Playing)
                     {
-                        System.Media.SystemSounds.Asterisk.Play();
+                        
                     Console.WriteLine("Function pause : " + mRevertTime+ " : " + base.CurrentTimeInAsset) ;
                     mRevertTime = base.CurrentTimeInAsset ;
                     m_PrimaryNode = base.CurrentPhrase;
