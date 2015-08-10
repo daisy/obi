@@ -3188,11 +3188,11 @@ namespace Obi.ProjectView
         private void PlayPreview(PhraseNode phrase, double from, double duration, bool forward)
         {
             urakawa.media.data.audio.AudioMediaData audioData = phrase.Audio.AudioMediaData;
-            if (from < 0.0)
-            {
-                duration += from;
-                from = 0.0;
-            }
+            //if (from < 0.0)
+            //{
+                //duration += from;
+                //from = 0.0;
+            //}
             double end = from + duration;
             if (end > audioData.AudioDuration.AsMilliseconds)
                 end = audioData.AudioDuration.AsMilliseconds;
