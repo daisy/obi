@@ -1125,16 +1125,9 @@ namespace Obi.ProjectView
 
         public void UpdateCursorPosition(double time)
         {
-            if (mProjectView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording)
-            {
-                if (mProjectView.TransportBar.PreviewBeforeRecordingActive)
-                {
-                    ColorFlicker(time);
-                }
-                else if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mProjectView.ColorSettings.BlockBackColor_Selected.Name)
-                {
-                    mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
-                }
+            if (mProjectView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording && mProjectView.TransportBar.PreviewBeforeRecordingActive)
+            {           
+                    ColorFlicker(time);                
             }
           
             if (m_ZoomWaveformPanel != null && mProjectView.TransportBar.IsPlayerActive)//@zoomwaveform
@@ -3113,6 +3106,13 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         public void RecreateContentsWhileInitializingRecording(EmptyNode recordingResumePhrase)
         {
+            if (mProjectView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording)
+            {
+                if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mProjectView.ColorSettings.BlockBackColor_Selected.Name)
+                {
+                    mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                }
+            }
             if (recordingResumePhrase != null
                 || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode && !(mProjectView.Selection is StripIndexSelection)))
                 {
