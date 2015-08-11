@@ -1537,6 +1537,7 @@ namespace Obi
             }
             else
             {
+                CurrentPhrase = m_PrimaryNode;
                 base.Play(from, to);
                 Console.WriteLine("starting revert time: " + RevertTime);
             }
