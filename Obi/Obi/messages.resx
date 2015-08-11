@@ -2785,4 +2785,7 @@ Error text: {1}</value>
   <data name="CleanUp_Complete" xml:space="preserve">
     <value>Clean up operation is complete.</value>
   </data>
+  <data name="MergeOptions_CannotSelect" xml:space="preserve">
+    <value>Selection cannot be done. Levels of selected sections should never be smaller than first selected section</value>
+  </data>
 </root>

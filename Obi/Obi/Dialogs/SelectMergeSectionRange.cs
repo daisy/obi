@@ -241,6 +241,21 @@ namespace Obi.Dialogs
             {               
                 List<SectionNode> tempList = new List<SectionNode>();
                 tempList = listBoxSelectionIsContinuous();
+                if (tempList.Count != 0)
+                {
+                    int LevelOfFirstSelectedSection = tempList[0].Level;
+
+                    foreach (SectionNode secNode in tempList)
+                    {
+                        if (secNode.Level < LevelOfFirstSelectedSection)
+                        {
+                            MessageBox.Show(Localizer.Message("MergeOptions_CannotSelect"));
+                            m_lb_listofSectionsToMerge.SelectedItems.Clear();
+                            return;
+                        }
+
+                    }
+                }
               //  List<SectionNode> listOfSelectedSections = new List<SectionNode>();
                 SectionNode FirstSection = null;
                 if (m_lb_listofSectionsToMerge.SelectedItems.Count != 0)
