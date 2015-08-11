@@ -3441,6 +3441,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selection cannot be done. Levels of selected sections should never be smaller than first selected section.
+        /// </summary>
+        internal static string MergeOptions_CannotSelect {
+            get {
+                return ResourceManager.GetString("MergeOptions_CannotSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Decrement section Level.
         /// </summary>
         internal static string MergeOptions_DecreaseLevel {
