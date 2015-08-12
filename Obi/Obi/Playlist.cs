@@ -1392,7 +1392,7 @@ namespace Obi
             m_PlayTo = -1;
             CurrentPhrase = m_PrimaryNode;
             Console.WriteLine("Preview 1, before");
-            AddPreviousPhraseInPlaylist(m_PrimaryNode);
+            //AddPreviousPhraseInPlaylist(m_PrimaryNode);
                 Console.WriteLine("Preview 1, after");
         }
 
@@ -1407,7 +1407,7 @@ namespace Obi
             m_PlayTo = -1;
             CurrentPhrase = m_PrimaryNode;
             Console.WriteLine("Preview 2, before");
-            AddPreviousPhraseInPlaylist(m_PrimaryNode);
+            //AddPreviousPhraseInPlaylist(m_PrimaryNode);
                 Console.WriteLine("Preview 2, after");
         }
     
@@ -1523,21 +1523,27 @@ namespace Obi
         {
             Console.WriteLine("Parameters: from: " + from + ", to:" + to);
             Console.WriteLine(CurrentPhrase + " : " + m_PrimaryNode);
+            
+            if (from < 0) AddPreviousPhraseInPlaylist (m_PrimaryNode) ;
             Console.WriteLine("Count: " + base.mPhrases.Count);
-            if (from < 0 && this.PrevPhrase(m_PrimaryNode) != null)
-            {
-                CurrentPhrase = PrevPhrase(m_PrimaryNode);
-                double phraseDuration = CurrentPhrase.Audio.Duration.AsMilliseconds;
-                from = phraseDuration + from;
-                if (from < 0) from = 0.0;
-                m_PlayTo = to;
-                Console.WriteLine("Play: " + CurrentPhrase + " for: from: " + from + ", to:" + to);
-                base.Play(from);
-                Console.WriteLine("starting revert time: " + RevertTime);
+                if (from < 0 && this.PrevPhrase(m_PrimaryNode) != null)
+                {
+                    CurrentPhrase = PrevPhrase(m_PrimaryNode);
+                    double phraseDuration = CurrentPhrase.Audio.Duration.AsMilliseconds;
+                    from = phraseDuration + from;
+                    if (from < 0) from = 0.0;
+                    m_PlayTo = to;
+                    Console.WriteLine("Play from previous: " + CurrentPhrase + " for: from: " + from + ", to:" + to);
+                    base.Play(from);
+                    Console.WriteLine("starting revert time: " + RevertTime);
+                
             }
             else
             {
+                if (from < 0) from = 0;
+                if (to > m_PrimaryNode.Duration) to = m_PrimaryNode.Duration - 100;
                 CurrentPhrase = m_PrimaryNode;
+                Console.WriteLine("Play current: " + CurrentPhrase + " for: from: " + from + ", to:" + to);
                 base.Play(from, to);
                 Console.WriteLine("starting revert time: " + RevertTime);
             }
@@ -1547,6 +1553,7 @@ namespace Obi
                 PhraseNode previous = (node).PrecedingPhraseInProject;
                 if (previous != null)
                 {
+                    Console.WriteLine("Adding previous phrase in playlist: " + previous);
                     mPhrases.Insert (0,previous);
                     mStartTimes.Clear();
                     mTotalTime = 0;
@@ -1555,6 +1562,7 @@ namespace Obi
                     mStartTimes.Add(mTotalTime);
                     mTotalTime += node.Audio.Duration.AsMilliseconds;
                     UpdateFirstandLastSectionsAndPages(node);
+                    
                 }
         }
 
