@@ -1490,7 +1490,7 @@ namespace Obi.ProjectView
                                 SectionNode sibling = selectedSectionsForIncreaseLevel[0].PrecedingSibling;
                                 if (sibling == null)
                                 {
-                                    MessageBox.Show("Increment level cannot be performed on the sections at this position");
+                                    MessageBox.Show(Localizer.Message("SectionLevel_IncrementError"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
                                 int mainInsertIndex = sibling.SectionChildCount;
@@ -1615,7 +1615,7 @@ namespace Obi.ProjectView
                                 SectionNode sibling = selectedSectionsForDecreaseLevel[0].ParentAs<SectionNode> ();
                                 if (sibling == null)
                                 {
-                                    MessageBox.Show("Increment level cannot be performed on the sections at this position");
+                                    MessageBox.Show(Localizer.Message("SectionLevel_DecrementError"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
                                 int mainInsertIndex = sibling.SectionChildCount;

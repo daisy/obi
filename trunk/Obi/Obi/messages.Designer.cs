@@ -6229,6 +6229,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decrement level cannot be performed on the sections at this position.
+        /// </summary>
+        internal static string SectionLevel_DecrementError {
+            get {
+                return ResourceManager.GetString("SectionLevel_DecrementError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increment level cannot be performed on the sections at this position.
+        /// </summary>
+        internal static string SectionLevel_IncrementError {
+            get {
+                return ResourceManager.GetString("SectionLevel_IncrementError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected {0}. Select at least one more section if you want to merge.
         /// </summary>
         internal static string select_one_more_section {
