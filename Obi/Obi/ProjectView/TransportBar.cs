@@ -1794,7 +1794,7 @@ namespace Obi.ProjectView
             if (mView.Selection is TextSelection || IsMetadataSelected || mView.IsZoomWaveformActive)
                 return;
 
-            if (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio && CurrentState == State.Playing) Pause();
+            if (mView.ObiForm.Settings.Audio_AllowOverwrite && CurrentState == State.Playing) Pause();
 
             if (mView.Presentation != null&& mState != State.Playing
                         &&    !IsMetadataSelected && ( mView.Selection == null || !(mView.Selection is TextSelection)))
@@ -3260,7 +3260,8 @@ namespace Obi.ProjectView
             {
                 return;
             }
-            if (isPreviewBeforeRecording && CurrentState == State.Playing)
+            // August 12, 2015, all overwrite recording shuld allow record from playback state
+            if (mView.ObiForm.Settings.Audio_AllowOverwrite && CurrentState == State.Playing)
             {
                 Pause();
                 if (mView.Selection == null || !(mView.Selection.Node is EmptyNode) || mView.Selection.Node != mCurrentPlaylist.CurrentPhrase) return;
