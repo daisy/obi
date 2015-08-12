@@ -84,7 +84,7 @@ namespace Obi
             get
             {
                 ObiNode prev;
-                for (prev = PrecedingNode; prev != null && !(prev is PhraseNode); prev = PrecedingNode) ;
+                for (prev = this.PrecedingNode; prev != null && !(prev is PhraseNode); prev = prev.PrecedingNode) ;
                 return prev as PhraseNode;
             }
         }
