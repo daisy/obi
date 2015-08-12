@@ -2788,4 +2788,11 @@ Error text: {1}</value>
   <data name="MergeOptions_CannotSelect" xml:space="preserve">
     <value>Selection cannot be done. Levels of selected sections should never be smaller than first selected section</value>
   </data>
+  <data name="SectionLevel_IncrementError" xml:space="preserve">
+    <value>Increment level cannot be performed on the sections at this position</value>
+  </data>
+  <data name="SectionLevel_DecrementError" xml:space="preserve">
+    <value>Decrement level cannot be performed on the sections at this position</value>
+  </data>
+
 </root>

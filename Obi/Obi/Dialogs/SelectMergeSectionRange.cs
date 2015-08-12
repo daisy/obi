@@ -249,7 +249,7 @@ namespace Obi.Dialogs
                     {
                         if (secNode.Level < LevelOfFirstSelectedSection)
                         {
-                            MessageBox.Show(Localizer.Message("MergeOptions_CannotSelect"));
+                            MessageBox.Show(Localizer.Message("MergeOptions_CannotSelect"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             m_lb_listofSectionsToMerge.SelectedItems.Clear();
                             return;
                         }
