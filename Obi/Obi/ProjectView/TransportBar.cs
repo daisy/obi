@@ -3229,7 +3229,8 @@ namespace Obi.ProjectView
                     }
                                                                                                                                                             }
                 m_IsPreviewing = false;
-                if (mState == State.Playing) Pause();
+            // Aug 12, 2015 check added for kind of playlist. The pause here is to ensure that playback does not starts due to some event, when play on navigate is checked.
+                if (mState == State.Playing && !(mCurrentPlaylist is PreviewPlaylist )) Pause();
 
                 SelectionChangedPlaybackEnabled = playOnSelectionStatus ;
                         }
