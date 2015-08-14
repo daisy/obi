@@ -1156,28 +1156,31 @@ namespace Obi.ProjectView
 
         private void ColorFlicker(double time)
         {
-            mProjectView.Selection = new NodeSelection(mPlaybackBlock.Node, this);
-            if (m_timeElapsed == 0)
+            if (mPlaybackBlock != null && mProjectView != null && mProjectView.Selection != null && mPlaybackBlock.Node == mProjectView.Selection.Node)
             {
-                m_timeElapsed = time;
-                m_ColorBackgroundBeforeFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
-            }
+                mProjectView.Selection = new NodeSelection(mPlaybackBlock.Node, this);
+                if (m_timeElapsed == 0)
+                {
+                    m_timeElapsed = time;
+                    m_ColorBackgroundBeforeFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
+                }
 
-            if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == mProjectView.ObiForm.Settings.ColorSettings.RecordingHighlightPhraseColor)
-            {
-                mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
-            }
-            else
-            {
-                mPlaybackBlock.ColorSettings.BlockBackColor_Selected = mProjectView.ObiForm.Settings.ColorSettings.RecordingHighlightPhraseColor;
-            }
-            //  m_timeElapsed = time;
+                if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == mProjectView.ObiForm.Settings.ColorSettings.RecordingHighlightPhraseColor)
+                {
+                    mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                }
+                else
+                {
+                    mPlaybackBlock.ColorSettings.BlockBackColor_Selected = mProjectView.ObiForm.Settings.ColorSettings.RecordingHighlightPhraseColor;
+                }
+                //  m_timeElapsed = time;
 
-            if (!mProjectView.TransportBar.IsPlayerActive)
-            {
-                //mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
-                //m_timeElapsed = 0;
-                //mProjectView.TransportBar.PreviewBeforeRecordingActive = false;
+                if (!mProjectView.TransportBar.IsPlayerActive)
+                {
+                    //mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                    //m_timeElapsed = 0;
+                    //mProjectView.TransportBar.PreviewBeforeRecordingActive = false;
+                }
             }
         }
 
