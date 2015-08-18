@@ -1767,10 +1767,11 @@ namespace Obi.ProjectView
             if (MonitorContinuously) StopMonitorContinuously(); //@MonitorContinuously
             if (mView.ObiForm.Settings.Audio_RecordDirectlyWithRecordButton && CurrentState != State.Monitoring) //if monitoring go through the traditional way
             {
+                if (mView.ObiForm.Settings.Audio_AllowOverwrite && CurrentState == State.Playing) Pause(); //@RecordFromPlayback
                 if (mView.ObiForm.Settings.Audio_UseRecordBtnToRecordOverSubsequentAudio
                     && !mView.ObiForm.Settings.Audio_Recording_PreviewBeforeStarting)
                 {
-                    if (CurrentState == State.Playing) Pause();
+                    
                     RecordOverSubsequentPhrases();
                 }
                 else
@@ -1794,12 +1795,21 @@ namespace Obi.ProjectView
             if (mView.Selection is TextSelection || IsMetadataSelected || mView.IsZoomWaveformActive)
                 return;
 
-            if (mView.ObiForm.Settings.Audio_AllowOverwrite && CurrentState == State.Playing) Pause();
-
-            if (mView.Presentation != null&& mState != State.Playing
+            
+            if (mView.Presentation != null
                         &&    !IsMetadataSelected && ( mView.Selection == null || !(mView.Selection is TextSelection)))
             {
-                
+                if (CurrentState == State.Playing)//@RecordFromPlayback    
+                {
+                    if (mView.ObiForm.Settings.Audio_AllowOverwrite)
+                    {
+                        Pause(); 
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
 
             try
                 {
@@ -3260,8 +3270,7 @@ namespace Obi.ProjectView
             {
                 return;
             }
-            // August 12, 2015, all overwrite recording shuld allow record from playback state
-            if (mView.ObiForm.Settings.Audio_AllowOverwrite && CurrentState == State.Playing)
+            if (mView.ObiForm.Settings.Audio_AllowOverwrite && CurrentState == State.Playing) //@recordFromPlay
             {
                 Pause();
                 if (mView.Selection == null || !(mView.Selection.Node is EmptyNode) || mView.Selection.Node != mCurrentPlaylist.CurrentPhrase) return;
@@ -3966,6 +3975,7 @@ SelectionChangedPlaybackEnabled = false;
         {
             if (CanRecord )
             {
+                if (mView.ObiForm.Settings.Audio_AllowOverwrite && CurrentState == State.Playing) Pause(); //@recordFromPlay
                 StartRecordingDirectly_Internal(true);
             }
         }
