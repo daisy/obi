@@ -3273,7 +3273,10 @@ namespace Obi.ProjectView
             if (mView.ObiForm.Settings.Audio_AllowOverwrite && CurrentState == State.Playing) //@recordFromPlay
             {
                 Pause();
+                if (isPreviewBeforeRecording)
+                {
                 if (mView.Selection == null || !(mView.Selection.Node is EmptyNode) || mView.Selection.Node != mCurrentPlaylist.CurrentPhrase) return;
+            }
             }
 
             if (isPreviewBeforeRecording && mView.ObiForm.Settings.Audio_AllowOverwrite
