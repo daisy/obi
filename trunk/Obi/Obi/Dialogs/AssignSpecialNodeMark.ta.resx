@@ -117,14 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="helpProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="m_cmbBoxSpecialNode.Items" xml:space="preserve">
     <value>annotation</value>
   </data>
@@ -143,14 +141,16 @@
   <data name="m_cmbBoxSpecialNode.Items5" xml:space="preserve">
     <value>sidebar</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cmbBoxSpecialNode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 46</value>
+    <value>112, 71</value>
   </data>
   <data name="m_cmbBoxSpecialNode.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 21</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_cmbBoxSpecialNode.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;m_cmbBoxSpecialNode.Name" xml:space="preserve">
     <value>m_cmbBoxSpecialNode</value>
@@ -162,20 +162,23 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_cmbBoxSpecialNode.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_btn_OK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="m_btn_OK.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 89</value>
+    <value>112, 112</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>90, 31</value>
   </data>
   <data name="m_btn_OK.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="m_btn_OK.Text" xml:space="preserve">
     <value>ச&amp;ரி</value>
@@ -190,19 +193,22 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btn_OK.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="m_btn_Cancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="m_btn_Cancel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 89</value>
+    <value>218, 112</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>90, 31</value>
   </data>
   <data name="m_btn_Cancel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="m_btn_Cancel.Text" xml:space="preserve">
     <value>இரத்து</value>
@@ -217,19 +223,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btn_Cancel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>42, 12</value>
+    <value>6, 19</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 17</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="m_rdb_btn_SpecialPhrase.Text" xml:space="preserve">
     <value>தவிற்க்கபடகூடிய குறிப்புகள்</value>
@@ -241,22 +247,22 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_SpecialPhrase.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 12</value>
+    <value>141, 19</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 17</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="m_rdb_btn_RenumberPages.Text" xml:space="preserve">
     <value>பக்கங்களின் மறு எண்ணிக்கை</value>
@@ -268,19 +274,67 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_RenumberPages.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>m_gp_box_operation</value>
   </data>
   <data name="&gt;&gt;m_rdb_btn_RenumberPages.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="helpProvider1.HelpNamespace" xml:space="preserve">
     <value>Obi Help.chm</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>280, 19</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 17</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_rtb_btn_AudioProcessing.Text" xml:space="preserve">
+    <value>Audio Processing</value>
+  </data>
+  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Name" xml:space="preserve">
+    <value>m_rtb_btn_AudioProcessing</value>
+  </data>
+  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.Parent" xml:space="preserve">
+    <value>m_gp_box_operation</value>
+  </data>
+  <data name="&gt;&gt;m_rtb_btn_AudioProcessing.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_gp_box_operation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="m_gp_box_operation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>394, 43</value>
+  </data>
+  <data name="m_gp_box_operation.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_gp_box_operation.Name" xml:space="preserve">
+    <value>m_gp_box_operation</value>
+  </data>
+  <data name="&gt;&gt;m_gp_box_operation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_gp_box_operation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_gp_box_operation.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>350, 124</value>
+    <value>418, 162</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>குறிப்பை நியமி / பக்கங்களின் மறு எண்ணிக்கை</value>

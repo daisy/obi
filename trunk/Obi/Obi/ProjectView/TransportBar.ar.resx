@@ -117,19 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>398, 17</value>
+  </metadata>
+  <metadata name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>266, 17</value>
+  </metadata>
+  <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>569, 17</value>
+  </metadata>
+  <metadata name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="m_SwitchProfileContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>834, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mTimeDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 21.75pt</value>
   </data>
   <data name="mTimeDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>466, 0</value>
+    <value>509, 0</value>
   </data>
   <data name="mTimeDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 33</value>
+    <value>114, 33</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mTimeDisplayBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="mTimeDisplayBox.Text" xml:space="preserve">
     <value>00:00:00</value>
@@ -148,10 +166,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mTimeDisplayBox.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="mTransportBarTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>398, 17</value>
+    <value>16</value>
   </data>
   <data name="mPreviousPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -221,7 +236,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPreviousPageButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="mRewindButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -284,7 +299,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mRewindButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -330,13 +345,13 @@
     <value>NoControl</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>428, 0</value>
+    <value>427, 1</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 3, 0</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 32</value>
+    <value>37, 32</value>
   </data>
   <data name="mToDo_CustomClassMarkButton.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -354,7 +369,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mToDo_CustomClassMarkButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>21</value>
   </data>
   <data name="mNextPageButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -398,13 +413,13 @@
     <value>NoControl</value>
   </data>
   <data name="mNextPageButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>355, 0</value>
+    <value>358, -1</value>
   </data>
   <data name="mNextPageButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 3, 0</value>
   </data>
   <data name="mNextPageButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 32</value>
+    <value>34, 32</value>
   </data>
   <data name="mNextPageButton.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -422,7 +437,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNextPageButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>14</value>
   </data>
   <data name="mPlayButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -485,7 +500,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPlayButton.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>9</value>
   </data>
   <data name="mPauseButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -541,7 +556,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPauseButton.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>11</value>
   </data>
   <data name="mStopButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -599,7 +614,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mStopButton.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>10</value>
   </data>
   <data name="mNextPhrase.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -646,13 +661,13 @@
     <value>NoControl</value>
   </data>
   <data name="mNextPhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>320, 0</value>
+    <value>323, 0</value>
   </data>
   <data name="mNextPhrase.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 3, 0</value>
   </data>
   <data name="mNextPhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 32</value>
+    <value>29, 32</value>
   </data>
   <data name="mNextPhrase.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -670,7 +685,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNextPhrase.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>15</value>
   </data>
   <data name="mPrevPhraseButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -741,7 +756,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPrevPhraseButton.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>8</value>
   </data>
   <data name="mNextSectionButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -786,13 +801,13 @@
     <value>NoControl</value>
   </data>
   <data name="mNextSectionButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>390, 0</value>
+    <value>398, 3</value>
   </data>
   <data name="mNextSectionButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 3, 0</value>
   </data>
   <data name="mNextSectionButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 32</value>
+    <value>33, 32</value>
   </data>
   <data name="mNextSectionButton.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -810,7 +825,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mNextSectionButton.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>22</value>
   </data>
   <data name="mPrevSectionButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -879,7 +894,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mPrevSectionButton.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>7</value>
   </data>
   <data name="mRecordButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -947,7 +962,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mRecordButton.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>12</value>
   </data>
   <data name="mFastForwardButton.AccessibleDescription" xml:space="preserve">
     <value>button</value>
@@ -988,13 +1003,13 @@
     <value>NoControl</value>
   </data>
   <data name="mFastForwardButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, 0</value>
+    <value>290, 3</value>
   </data>
   <data name="mFastForwardButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 3, 0</value>
   </data>
   <data name="mFastForwardButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 32</value>
+    <value>35, 27</value>
   </data>
   <data name="mFastForwardButton.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -1012,7 +1027,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mFastForwardButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>13</value>
   </data>
   <data name="m_btnRecordingOptions.AccessibleName" xml:space="preserve">
     <value>خيارات التسجيل</value>
@@ -1058,7 +1073,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btnRecordingOptions.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="m_btnPlayingOptions.AccessibleName" xml:space="preserve">
     <value>Playing Options</value>
@@ -1104,10 +1119,53 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_btnPlayingOptions.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
-  <data name="mDisplayTimer.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>266, 17</value>
+  <data name="m_btnSwitchProfile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMLSURBVEhLxVXbL9xBFBaXKHFJiDtxDQ9IiFvEPYIXd/Eg
+        JBL/gBeJF/HgjcQf4E1F0rosdpfUrnS7tO4s61a01TRNmiaSPvQZX78Z89tq1yLSxpd8vvmdmXPOzpyZ
+        ww3/GS4TvG5txfCzZxjx9cUI9bmPD0ZITTWb4ExBgfJyhssEFiYwhoTAEhMDS1QULNHReCPGpFRlexUR
+        AWNRkfJyhssEuwMDMNXUwEyaqqsxT95Ux5jzq11dyssZT1eDzZ4e6HNyYCD1WVnQZ2fDQDpU2cQaa0eH
+        8nKG6xq0tWHO0xNLgh4ekm+VCi66u0td4LyxsFB5OePOBPNeXlgRZKAVBlolhUoqm4Xzj0qw3NmJicRE
+        TCUkQBcfj0lSqI7fmk2MJ7nG3NSkvJzxdEX+V3BOcHUlxT44CHNDAxZIc10dzPX18lscx4JgY6NjvNbd
+        LX0035v4nUBMkleXl/JTvGSDKqI1IADLyclYz8/HRmkpNsrKsC6UXMzNxWxJifSRviqOlszlEZlra2Fh
+        HzpIScFxRQVO+es/8FcLfhSqvnfKy2FgYldw+2a1Yq6qCqPsKy8jIzEeHi75IigIK+npMvhJZSVOuOaU
+        FCqpbDY2ujH2LHnLeKvGqaPsU5OZmTgaGrrewY/DQyw0N2Pczw+L7I42Xj07t35I5/dsZJLFxTjmURxT
+        5Zg2OabucQf7pC0vD8bYWOjp99Vkut6B/Kuw2duLSe7kHY9ln23gUJCt4IiUyqQOanauOaBucLfTouO2
+        t6toBOvgSKAV99PYGGYyMmBiS7anpmJfIwMcCKalXVPZxRqrOp7d/n4ZQ4slcGuRz7e3ZSvW82w34+Jg
+        p7Odx7aXlCRVkjYbORcaCj139MVoVN5/wjnBjau6xj4/wYIvMYiN/1h2eAkkOV4NC8NUcDAsLS1y7dXF
+        hfT9G7fu4CZOhoeh4xuY9/fHZmAgtkgLxxNMst3XJ9c47v8tuDeBwPflZczxUU3zhhm8vTHFWnzW6dTs
+        3XhQAoGfZ2fydc/yYZ1vbSnr/XhwgscB+AUhg0M5VbnJWAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="m_btnSwitchProfile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="m_btnSwitchProfile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>470, 0</value>
+  </data>
+  <data name="m_btnSwitchProfile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 31</value>
+  </data>
+  <data name="m_btnSwitchProfile.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="m_btnSwitchProfile.ToolTip" xml:space="preserve">
+    <value>Switch Audio Profile</value>
+  </data>
+  <data name="&gt;&gt;m_btnSwitchProfile.Name" xml:space="preserve">
+    <value>m_btnSwitchProfile</value>
+  </data>
+  <data name="&gt;&gt;m_btnSwitchProfile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnSwitchProfile.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_btnSwitchProfile.ZOrder" xml:space="preserve">
+    <value>20</value>
   </data>
   <data name="mDisplayBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -1128,13 +1186,13 @@
     <value>المتبقي (الإجمالي)</value>
   </data>
   <data name="mDisplayBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>585, 4</value>
+    <value>629, 4</value>
   </data>
   <data name="mDisplayBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 24</value>
+    <value>174, 24</value>
   </data>
   <data name="mDisplayBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="&gt;&gt;mDisplayBox.Name" xml:space="preserve">
     <value>mDisplayBox</value>
@@ -1146,7 +1204,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mDisplayBox.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>18</value>
   </data>
   <data name="mFastPlayRateCombobox.AccessibleName" xml:space="preserve">
     <value>معدل التشغيل السريع</value>
@@ -1185,13 +1243,13 @@
     <value>2.5</value>
   </data>
   <data name="mFastPlayRateCombobox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>746, 4</value>
+    <value>809, 4</value>
   </data>
   <data name="mFastPlayRateCombobox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 24</value>
+    <value>53, 24</value>
   </data>
   <data name="mFastPlayRateCombobox.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="&gt;&gt;mFastPlayRateCombobox.Name" xml:space="preserve">
     <value>mFastPlayRateCombobox</value>
@@ -1203,10 +1261,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mFastPlayRateCombobox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>17</value>
   </data>
-  <data name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>569, 17</value>
+  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 114</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_RecordingOptionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
@@ -1238,17 +1302,14 @@
   <data name="mMonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
     <value>Monitor &amp;Continuously</value>
   </data>
-  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 136</value>
+  <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 114</value>
   </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
-    <value>m_RecordingOptionsContextMenuStrip</value>
+  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_PlayingOptionsContextMenuStrip</value>
   </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>17, 17</value>
   </data>
   <data name="m_PlayAlltoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
@@ -1280,50 +1341,47 @@
   <data name="m_PreviewUptotoolStripMenuItem.Text" xml:space="preserve">
     <value>Preview Up&amp;to</value>
   </data>
-  <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 114</value>
+  <data name="m_SwitchProfileContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 4</value>
   </data>
-  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Name" xml:space="preserve">
-    <value>m_PlayingOptionsContextMenuStrip</value>
+  <data name="&gt;&gt;m_SwitchProfileContextMenuStrip.Name" xml:space="preserve">
+    <value>m_SwitchProfileContextMenuStrip</value>
   </data>
-  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_SwitchProfileContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="mVUMeterPanel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mVUMeterPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>816, 0</value>
+    <value>870, 3</value>
   </data>
   <data name="mVUMeterPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 0, 0</value>
   </data>
   <data name="mVUMeterPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 28</value>
+    <value>233, 28</value>
   </data>
   <data name="mVUMeterPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Name" xml:space="preserve">
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.0.1.24069, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.7.0.23255, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>19</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1117, 32</value>
+    <value>1140, 32</value>
   </data>
   <data name="&gt;&gt;mTransportBarTooltip.Name" xml:space="preserve">
     <value>mTransportBarTooltip</value>
