@@ -686,6 +686,7 @@ namespace Obi.ProjectView
         private void mDisplayBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
+            mTransportBarTooltip.SetToolTip(mDisplayBox, mDisplayBox.SelectedItem.ToString());
             // selected index should go in settings only when presentation is not null because it is assigned only when new presentation is set
             if (mView != null && mView.ObiForm.Settings != null && mView.Presentation != null) mView.ObiForm.Settings.TransportBarCounterIndex = mDisplayBox.SelectedIndex;
         }
