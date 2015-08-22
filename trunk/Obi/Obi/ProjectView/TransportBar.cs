@@ -1065,66 +1065,69 @@ namespace Obi.ProjectView
         private delegate void UpdateTimeDisplay_Delegate();
         private void UpdateTimeDisplay()
          {
-             if (this.InvokeRequired)
+             if (mRecordingSession != null)
              {
-                 this.Invoke(new UpdateTimeDisplay_Delegate(UpdateTimeDisplay));
-             }
-             else
-             {
-                 int selectedIndex = mDisplayBox.SelectedIndex;
-                 if (mDisplayBox.DroppedDown)
+                 if (this.InvokeRequired)
                  {
-                     if ( mDisplayBox.Tag != null ) 
-                     {
-                         int index = -1;
-                     int.TryParse ( mDisplayBox.Tag.ToString (),out index ) ;
-                         if ( index >= 0) selectedIndex = index ;
-                     }
-                 }
-                 
-                 if (mState == State.Monitoring)
-                 {
-                     mTimeDisplayBox.Text = "--:--:--";
-                     mDisplayBox.SelectedIndex = ELAPSED_INDEX;
-                 }
-                 else if (mState == State.Recording && mRecordingSession.AudioRecorder.RecordingPCMFormat != null)
-                 {
-                     //mRecordingSession.AudioRecorder.TimeOfAsset
-                     double timeOfAssetMilliseconds =
-                        (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64 (mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
-                        Time.TIME_UNIT;
-
-                     //mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(timeOfAssetMilliseconds);
-                     //mDisplayBox.SelectedIndex = ELAPSED_INDEX;
-                     mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
-                         selectedIndex == ELAPSED_INDEX ?
-                             timeOfAssetMilliseconds :
-                         selectedIndex == ELAPSED_SECTION?
-                         RecordingTimeElapsedSection:
-                         selectedIndex  == ELAPSED_TOTAL_RECORDING_INDEX ?
-                           RecordingTimeElapsedTotal  : 0.0);
-
-                 }
-                 else if (mState == State.Stopped)
-                 {
-                     mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(0.0);
+                     this.Invoke(new UpdateTimeDisplay_Delegate(UpdateTimeDisplay));
                  }
                  else
                  {
-                     mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
-                         selectedIndex  == ELAPSED_INDEX ?
-                             mCurrentPlaylist.CurrentTimeInAsset :
-                         selectedIndex  == ELAPSED_SECTION ?
-                             PlaybackTimeElapsedSection :
-                         selectedIndex  == ELAPSED_TOTAL_INDEX ?
-                           //  mCurrentPlaylist.CurrentTime :
-                           PlayingTimeElapsedTotal:
-                         selectedIndex  == REMAIN_INDEX ?
-                         mCurrentPlaylist.RemainingTimeInAsset: 
-                       //  selectedIndex == REMAINING_IN_SECTION?                         
-                       //  RemainingTimeInSection:
-                         mCurrentPlaylist.RemainingTime
-                             );
+                     int selectedIndex = mDisplayBox.SelectedIndex;
+                     if (mDisplayBox.DroppedDown)
+                     {
+                         if (mDisplayBox.Tag != null)
+                         {
+                             int index = -1;
+                             int.TryParse(mDisplayBox.Tag.ToString(), out index);
+                             if (index >= 0) selectedIndex = index;
+                         }
+                     }
+
+                     if (mState == State.Monitoring)
+                     {
+                         mTimeDisplayBox.Text = "--:--:--";
+                         mDisplayBox.SelectedIndex = ELAPSED_INDEX;
+                     }
+                     else if (mState == State.Recording && mRecordingSession.AudioRecorder.RecordingPCMFormat != null)
+                     {
+                         //mRecordingSession.AudioRecorder.TimeOfAsset
+                         double timeOfAssetMilliseconds =
+                            (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
+                            Time.TIME_UNIT;
+
+                         //mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(timeOfAssetMilliseconds);
+                         //mDisplayBox.SelectedIndex = ELAPSED_INDEX;
+                         mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
+                             selectedIndex == ELAPSED_INDEX ?
+                                 timeOfAssetMilliseconds :
+                             selectedIndex == ELAPSED_SECTION ?
+                             RecordingTimeElapsedSection :
+                             selectedIndex == ELAPSED_TOTAL_RECORDING_INDEX ?
+                               RecordingTimeElapsedTotal : 0.0);
+
+                     }
+                     else if (mState == State.Stopped)
+                     {
+                         mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(0.0);
+                     }
+                     else
+                     {
+                         mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
+                             selectedIndex == ELAPSED_INDEX ?
+                                 mCurrentPlaylist.CurrentTimeInAsset :
+                             selectedIndex == ELAPSED_SECTION ?
+                                 PlaybackTimeElapsedSection :
+                             selectedIndex == ELAPSED_TOTAL_INDEX ?
+                             //  mCurrentPlaylist.CurrentTime :
+                               PlayingTimeElapsedTotal :
+                             selectedIndex == REMAIN_INDEX ?
+                             mCurrentPlaylist.RemainingTimeInAsset :
+                             //  selectedIndex == REMAINING_IN_SECTION?                         
+                             //  RemainingTimeInSection:
+                             mCurrentPlaylist.RemainingTime
+                                 );
+                     }
                  }
              }
          }
@@ -1597,74 +1600,77 @@ namespace Obi.ProjectView
         // Pause recording
         private void PauseRecording()
         {
-            bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
-        mVUMeterPanel.BeepEnable = false;
-
-        EmptyNode firstRecordedPage = null;
-        List<PhraseNode> listOfRecordedPhrases = new List<PhraseNode>();
-        try
+            if (mRecordingSession != null)
             {
-            mRecordingSession.Stop ();
-            
-            // update recorded phrases with audio assets
-            if (mRecordingSection != null) ///@MonitorContinuously , if block inserted to bypass the procedure of assigning assets
-            {
-                UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases, ref firstRecordedPage);
+                bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
+                mVUMeterPanel.BeepEnable = false;
 
-                //Workaround to force phrases to show if they become invisible on stopping recording
-                mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
-            }
-        }
-        catch (System.Exception ex)
-        {
-            mView.WriteToLogFile(ex.ToString());
-            MessageBox.Show(ex.ToString());
-        }
-
-        if (mRecordingSection != null)//@MonitorContinuously
-        {
-            mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
-            EmptyNode phraseNextToResumePhrase = null;
-            if (mResumeRecordingPhrase.FollowingNode != null && mResumeRecordingPhrase.FollowingNode is EmptyNode) phraseNextToResumePhrase = (EmptyNode)mResumeRecordingPhrase.FollowingNode;
-
-            bool playbackEnabledOnSelectionChange = SelectionChangedPlaybackEnabled;
-            SelectionChangedPlaybackEnabled = false;
-            try
-            {
-                int phraseChildCount = mRecordingSection.PhraseChildCount;
-                AdditionalPostRecordingOperations(firstRecordedPage, listOfRecordedPhrases);
-                if (phraseChildCount != mRecordingSection.PhraseChildCount)
+                EmptyNode firstRecordedPage = null;
+                List<PhraseNode> listOfRecordedPhrases = new List<PhraseNode>();
+                try
                 {
-                    if (phraseNextToResumePhrase != null && phraseNextToResumePhrase.IsRooted  && phraseNextToResumePhrase.PrecedingNode is PhraseNode)
-                        mResumeRecordingPhrase = (PhraseNode)phraseNextToResumePhrase.PrecedingNode;
-                    else if (mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1) is PhraseNode)
-                        mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+                    mRecordingSession.Stop();
 
+                    // update recorded phrases with audio assets
+                    if (mRecordingSection != null) ///@MonitorContinuously , if block inserted to bypass the procedure of assigning assets
+                    {
+                        UpdateRecordedPhrasesAlongWithPostRecordingOperations(listOfRecordedPhrases, ref firstRecordedPage);
+
+                        //Workaround to force phrases to show if they become invisible on stopping recording
+                        mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
+                    }
                 }
-            }
-            catch (System.Exception ex)
-            {
-                mView.WriteToLogFile(ex.ToString());
-                MessageBox.Show(ex.ToString());
-            }
-        
-            if (!wasMonitoring && mResumeRecordingPhrase != null) mView.SelectFromTransportBar(mResumeRecordingPhrase, null);
-            SelectionChangedPlaybackEnabled = playbackEnabledOnSelectionChange;
-        }// recording section check    
-            mRecordingSession = null;
-            UpdateTimeDisplay();
+                catch (System.Exception ex)
+                {
+                    mView.WriteToLogFile(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
 
-            // optionally save project
-            //SaveWhenRecordingEnds ();//@singleSection
+                if (mRecordingSection != null)//@MonitorContinuously
+                {
+                    mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
+                    EmptyNode phraseNextToResumePhrase = null;
+                    if (mResumeRecordingPhrase.FollowingNode != null && mResumeRecordingPhrase.FollowingNode is EmptyNode) phraseNextToResumePhrase = (EmptyNode)mResumeRecordingPhrase.FollowingNode;
 
-            // makes phrase blocks invisible if these exceed max. visible blocks count during recording
-            //mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit :@singleSection: legagy code commented
-            //@MonitorContinuously
-            if (MonitorContinuously)
-            {
-                /// avoiding use of delay at this time to prevent possible bug. It will be restored after alpha.
-                //StartMonitorContinuouslyWithDelay();
-                StartMonitorContinuously();
+                    bool playbackEnabledOnSelectionChange = SelectionChangedPlaybackEnabled;
+                    SelectionChangedPlaybackEnabled = false;
+                    try
+                    {
+                        int phraseChildCount = mRecordingSection.PhraseChildCount;
+                        AdditionalPostRecordingOperations(firstRecordedPage, listOfRecordedPhrases);
+                        if (phraseChildCount != mRecordingSection.PhraseChildCount)
+                        {
+                            if (phraseNextToResumePhrase != null && phraseNextToResumePhrase.IsRooted && phraseNextToResumePhrase.PrecedingNode is PhraseNode)
+                                mResumeRecordingPhrase = (PhraseNode)phraseNextToResumePhrase.PrecedingNode;
+                            else if (mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1) is PhraseNode)
+                                mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        mView.WriteToLogFile(ex.ToString());
+                        MessageBox.Show(ex.ToString());
+                    }
+
+                    if (!wasMonitoring && mResumeRecordingPhrase != null) mView.SelectFromTransportBar(mResumeRecordingPhrase, null);
+                    SelectionChangedPlaybackEnabled = playbackEnabledOnSelectionChange;
+                }// recording section check    
+                mRecordingSession = null;
+                UpdateTimeDisplay();
+
+                // optionally save project
+                //SaveWhenRecordingEnds ();//@singleSection
+
+                // makes phrase blocks invisible if these exceed max. visible blocks count during recording
+                //mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit :@singleSection: legagy code commented
+                //@MonitorContinuously
+                if (MonitorContinuously)
+                {
+                    /// avoiding use of delay at this time to prevent possible bug. It will be restored after alpha.
+                    //StartMonitorContinuouslyWithDelay();
+                    StartMonitorContinuously();
+                }
             }
         }
 
@@ -3387,13 +3393,14 @@ namespace Obi.ProjectView
                 (mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ||
                 mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording))
             {
+                bool DataMissingExceptionflag = false;
                 bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
                 mVUMeterPanel.BeepEnable = false;
                 List<PhraseNode> listOfRecordedPhrases = new List<PhraseNode>();
                 EmptyNode firstRecordedPage = null;
                 try
-                    {
-                    mRecordingSession.Stop ();
+                {
+                    mRecordingSession.Stop();
 
 
                     if (mRecordingSection != null) ///@MonitorContinuously , if block inserted to bypass the procedure of assigning assets
@@ -3406,14 +3413,34 @@ namespace Obi.ProjectView
                         EmptyNode lastRecordedPhrase = mRecordingSection.PhraseChildCount > 0 ? mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1) : null;
                         if (!wasMonitoring && lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar(lastRecordedPhrase, null);
                     }
-                    
 
-                    }
+
+                }
                 catch (System.Exception ex)
+                {
+                    if (ex is urakawa.exception.DataMissingException || ex is System.IO.DirectoryNotFoundException)
                     {
-                    MessageBox.Show ( Localizer.Message ("TransportBar_ErrorInStopRecording") + "\n\n" +   ex.ToString ()  , Localizer.Message ("Caption_Error"));
+                        DataMissingExceptionflag = true;
                     }
-                
+                    MessageBox.Show(Localizer.Message("TransportBar_ErrorInStopRecording") + "\n\n" + ex.ToString(), Localizer.Message("Caption_Error"));
+                }
+
+                    if (DataMissingExceptionflag)
+                    {
+                        DataMissingExceptionflag = false;
+                        mState = State.Stopped;
+                        //if (mRecordingSession != null)
+                        //{
+                        //    if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording)
+                        //    {
+                               
+                              
+                        //    }
+                           
+                        //}
+                     
+                        mView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode)mView.Presentation.RootNode, true);
+                    }
 UpdateButtons();
 bool playbackEnabledOnSelectionChange = SelectionChangedPlaybackEnabled;
 SelectionChangedPlaybackEnabled = false;
@@ -3493,7 +3520,7 @@ SelectionChangedPlaybackEnabled = false;
             }
 
             // on the fly phrase detection
-            if (mRecordingSession.PhraseMarksOnTheFly != null && mRecordingSession.PhraseMarksOnTheFly.Count > 0)
+            if (mRecordingSession != null && mRecordingSession.PhraseMarksOnTheFly != null && mRecordingSession.PhraseMarksOnTheFly.Count > 0)
             {
                 if (IsPlaying) Pause();
 
