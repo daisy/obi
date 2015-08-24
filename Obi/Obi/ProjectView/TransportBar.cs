@@ -3428,7 +3428,7 @@ namespace Obi.ProjectView
                     if (DataMissingExceptionflag)
                     {
                         DataMissingExceptionflag = false;
-                        mState = State.Stopped;
+                        //mState = State.Stopped;
                         //if (mRecordingSession != null)
                         //{
                         //    if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording)
