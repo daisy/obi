@@ -100,6 +100,8 @@ namespace Obi
         public KeyboardShortcut ContentView_ScrollUp_LargeIncrementWithSelection = new KeyboardShortcut(Keys.PageUp, "KeyS_ScrollUp_LargeIncrementWithSelection");
         public KeyboardShortcut ContentView_ScrollDown_SmallIncrementWithSelection = new KeyboardShortcut(Keys.Down, "KeyS_ScrollDown_SmallIncrementWithSelection");
         public KeyboardShortcut ContentView_ScrollUp_SmallIncrementWithSelection = new KeyboardShortcut(Keys.Up, "KeyS_ScrollUp_SmallIncrementWithSelection");
+        public KeyboardShortcut ContentView_SelectStartOfThePhrase = new KeyboardShortcut(Keys.Home | Keys.Control, "KeyS_SelectStartOfThePhrase");
+        public KeyboardShortcut ContentView_SelectEndOfPhrase = new KeyboardShortcut(Keys.End | Keys.Control, "KeyS_SelectEndOfPhrase");
 
         //project view shortcuts
         public KeyboardShortcut ProjectView_MoveToNextViewClockwise = new KeyboardShortcut(Keys.Control | Keys.Tab, "KeyS_MoveToNextViewClockwise");
@@ -388,6 +390,8 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ScrollUp_LargeIncrementWithSelection.Description), ContentView_ScrollUp_LargeIncrementWithSelection);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ScrollUp_SmallIncrementWithSelection.Description), ContentView_ScrollUp_SmallIncrementWithSelection);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ScrollDown_SmallIncrementWithSelection.Description), ContentView_ScrollDown_SmallIncrementWithSelection);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectStartOfThePhrase.Description), ContentView_SelectStartOfThePhrase);
+            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectEndOfPhrase.Description), ContentView_SelectEndOfPhrase);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_MoveToNextViewClockwise.Description), ProjectView_MoveToNextViewClockwise);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_MoveToPreviousViewAnticlockwise.Description), ProjectView_MoveToPreviousViewAnticlockwise);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_ToggleBetweenContentViewAndTOCView.Description), ProjectView_ToggleBetweenContentViewAndTOCView);

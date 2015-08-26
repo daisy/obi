@@ -2412,6 +2412,28 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             }
         }
 
+        public bool SelectStartOfThePhrase()
+        {
+          //  mProjectView.Selection = new AudioSelection((PhraseNode)previousSelection.Node, this, ((AudioSelection)previousSelection).AudioRange);
+            if (mProjectView != null && mProjectView.Selection != null && mProjectView.Selection.Node is PhraseNode)
+            {
+                AudioRange tempAudioRange = new AudioRange(0);
+                mProjectView.Selection = new AudioSelection((PhraseNode)mProjectView.Selection.Node, this, tempAudioRange);
+                return true;
+            }
+            return false;
+        }
+
+        public bool SelectEndOfThePhrase()
+        {
+            if (mProjectView != null && mProjectView.Selection != null && mProjectView.Selection.Node is PhraseNode)
+            {
+                AudioRange tempAudioRange = new AudioRange(mProjectView.Selection.Node.Duration);
+                mProjectView.Selection = new AudioSelection((PhraseNode)mProjectView.Selection.Node, this, tempAudioRange);
+                return true;
+            }
+            return false;
+        }
 
         //@singleSection
         public bool ScrollUp_LargeIncrementWithSelection () { return ScrollUp_LargeIncrement ( true ); }
@@ -3857,6 +3879,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection.Value] = ScrollUp_LargeIncrementWithSelection;
             mShortcutKeys[keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection.Value] = ArrowKey_Down;
             mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection.Value] = ArrowKey_Up;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectStartOfThePhrase.Value] = SelectStartOfThePhrase;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectEndOfPhrase.Value] = SelectEndOfThePhrase;
 
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarRecordSingleKey.Value] = mProjectView.TransportBar.Record_Button;
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarStopSingleKey.Value] = mProjectView.TransportBar.Stop ;

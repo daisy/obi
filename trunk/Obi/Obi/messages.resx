@@ -2794,5 +2794,11 @@ Error text: {1}</value>
   <data name="SectionLevel_DecrementError" xml:space="preserve">
     <value>Decrement level cannot be performed on the sections at this position</value>
   </data>
+  <data name="KeyS_SelectStartOfThePhrase" xml:space="preserve">
+    <value>Select start of the phrase</value>
+  </data>
+  <data name="KeyS_SelectEndOfPhrase" xml:space="preserve">
+    <value>Select end of the phrase</value>
+  </data>
 
 </root>
