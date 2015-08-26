@@ -46,7 +46,7 @@ namespace Obi.ProjectView
         private Dictionary<string, ToolStripMenuItem> m_ListOfSwitchProfiles = new Dictionary<string, ToolStripMenuItem>();
         private bool m_PreviewBeforeRecordingActive = false;
         //public variables
-        //private bool IsPlaySection = false;
+        private bool m_IsPlaySection = false;
         //private bool IsPreviewBeforeRec = false;
 
         Bitmap m_monitorButtonImage;
@@ -1252,6 +1252,7 @@ namespace Obi.ProjectView
             try
                 {
                                                                 PlayAll_safe ();
+                                                                m_IsPlaySection = false;
                 }
             catch (System.Exception ex)
                 {
@@ -2785,6 +2786,35 @@ namespace Obi.ProjectView
                     mCurrentPlaylist.FastPlayNormaliseWithLapseBack(m_ElapseBackInterval);
                     mFastPlayRateCombobox.SelectedIndex = 0;
                     UpdateTimeDisplay();
+                    if (mCurrentPlaylist.CurrentTimeInAsset <= 10)
+                    {
+                        this.Pause();
+                        PhraseNode prevPhraseNode = mCurrentPlaylist.PrevPhrase(mCurrentPlaylist.CurrentPhrase);
+                        if (mView.Selection != null && mView.Selection.Node is PhraseNode)
+                        {
+                            if (prevPhraseNode != null)
+                            {
+                                LapseBackCursor();
+                                if (m_IsPlaySection)
+                                {
+
+                                    this.PlaySection();
+                                }
+                                else
+                                {
+                                    this.PlayAll();
+                                }
+                                this.PlayOrResume();
+                                return true;
+                            }
+                            else
+                            {
+                                LapseBackCursor();
+                                return true;
+                            }
+                        }
+                    }
+  
                     if (CurrentPlaylist != null) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
                     if (mView.Selection is AudioSelection)
                     {
@@ -2829,8 +2859,10 @@ namespace Obi.ProjectView
                     mCurrentPlaylist.StepForward(m_ElapseBackInterval, mCurrentPlaylist.CurrentPhrase != null ? mCurrentPlaylist.CurrentPhrase.Duration : mView.Selection.Node.Duration);
                     
                     UpdateTimeDisplay();
-                    if (CurrentPlaylist != null) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
-                    Console.WriteLine("Current time in Asset {0}", mCurrentPlaylist.CurrentTimeInAsset);
+                    if (CurrentPlaylist != null)
+                    {
+                        mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);                       
+                    }
                     if (mView.Selection is AudioSelection)
                     {
                         if (((AudioSelection)mView.Selection).AudioRange.HasCursor)
@@ -2889,6 +2921,7 @@ namespace Obi.ProjectView
                         mView.Selection = new NodeSelection(preceedingNode, mView.Selection.Control);
                         range = new AudioRange(mView.Selection.Node.Duration);
                     }
+                    Console.WriteLine("Current time in Asset {0}", mCurrentPlaylist.CurrentTimeInAsset);
                     mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control, range);
                     time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
                     if (mView.ObiForm.Settings.Audio_AudioClues)
@@ -3393,7 +3426,7 @@ namespace Obi.ProjectView
                 (mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ||
                 mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording))
             {
-                bool DataMissingExceptionflag = false;
+                bool IsDataMissingException = false;
                 bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
                 mVUMeterPanel.BeepEnable = false;
                 List<PhraseNode> listOfRecordedPhrases = new List<PhraseNode>();
@@ -3420,25 +3453,13 @@ namespace Obi.ProjectView
                 {
                     if (ex is urakawa.exception.DataMissingException || ex is System.IO.DirectoryNotFoundException)
                     {
-                        DataMissingExceptionflag = true;
+                        IsDataMissingException = true;
                     }
                     MessageBox.Show(Localizer.Message("TransportBar_ErrorInStopRecording") + "\n\n" + ex.ToString(), Localizer.Message("Caption_Error"));
                 }
 
-                    if (DataMissingExceptionflag)
+                    if (IsDataMissingException)
                     {
-                        DataMissingExceptionflag = false;
-                        //mState = State.Stopped;
-                        //if (mRecordingSession != null)
-                        //{
-                        //    if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording)
-                        //    {
-                               
-                              
-                        //    }
-                           
-                        //}
-                     
                         mView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode)mView.Presentation.RootNode, true);
                     }
 UpdateButtons();
@@ -4326,7 +4347,7 @@ SelectionChangedPlaybackEnabled = false;
                 {
 
                     m_IsPlaySectionInspiteOfPhraseSelection = true;
-                    //IsPlaySection = true;
+                    m_IsPlaySection = true;
                     double time = -1;
                     if (IsPlayerActive)
                     {
