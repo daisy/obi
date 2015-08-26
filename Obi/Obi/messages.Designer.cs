@@ -2775,6 +2775,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select end of the phrase.
+        /// </summary>
+        internal static string KeyS_SelectEndOfPhrase {
+            get {
+                return ResourceManager.GetString("KeyS_SelectEndOfPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select first phrase in section.
         /// </summary>
         internal static string KeyS_SelectFirstPhraseInStrip {
@@ -2924,6 +2933,15 @@ namespace Obi {
         internal static string KeyS_SelectPrecedingStripCursor {
             get {
                 return ResourceManager.GetString("KeyS_SelectPrecedingStripCursor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select start of the phrase.
+        /// </summary>
+        internal static string KeyS_SelectStartOfThePhrase {
+            get {
+                return ResourceManager.GetString("KeyS_SelectStartOfThePhrase", resourceCulture);
             }
         }
         
