@@ -46,7 +46,6 @@ namespace Obi.ProjectView
         private Dictionary<string, ToolStripMenuItem> m_ListOfSwitchProfiles = new Dictionary<string, ToolStripMenuItem>();
         private bool m_PreviewBeforeRecordingActive = false;
         //public variables
-        private bool m_IsPlaySection = false;
         //private bool IsPreviewBeforeRec = false;
 
         Bitmap m_monitorButtonImage;
@@ -1252,7 +1251,6 @@ namespace Obi.ProjectView
             try
                 {
                                                                 PlayAll_safe ();
-                                                                m_IsPlaySection = false;
                 }
             catch (System.Exception ex)
                 {
@@ -2794,16 +2792,7 @@ namespace Obi.ProjectView
                         {
                             if (prevPhraseNode != null)
                             {
-                                LapseBackCursor();
-                                if (m_IsPlaySection)
-                                {
-
-                                    this.PlaySection();
-                                }
-                                else
-                                {
-                                    this.PlayAll();
-                                }
+                                LapseBackCursor(); 
                                 this.PlayOrResume();
                                 return true;
                             }
@@ -4347,7 +4336,6 @@ SelectionChangedPlaybackEnabled = false;
                 {
 
                     m_IsPlaySectionInspiteOfPhraseSelection = true;
-                    m_IsPlaySection = true;
                     double time = -1;
                     if (IsPlayerActive)
                     {
