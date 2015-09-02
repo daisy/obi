@@ -768,7 +768,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void Copy ()
             {
-            if (Selection != null && Selection is TextSelection) return;
+                if (Selection != null && Selection is TextSelection)
+                {
+                    System.Windows.Forms.Clipboard.SetText(((TextSelection)Selection).Text);
+                    return;
+                }
             if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
             if (CanCopySection)
                 {
@@ -793,7 +797,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void Cut ()
             {
-            if (Selection != null && Selection is TextSelection) return;
+                if (Selection != null && Selection is TextSelection)
+                {
+                    System.Windows.Forms.Clipboard.SetText(((TextSelection)Selection).Text);
+                    return;
+                }
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop ();
 
             try
