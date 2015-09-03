@@ -311,8 +311,11 @@ namespace Obi.ProjectView
                 m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);
                 
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
-                m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height-10);
-                m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height-10);
+                m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * zoomFactor);
+                m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
+                m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
+
+
                 if (m_AudioBlock != null)
                 {
                     
