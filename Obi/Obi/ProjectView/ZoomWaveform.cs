@@ -41,6 +41,7 @@ namespace Obi.ProjectView
         private bool m_NudgeAtLeftFromLeft = false;
         private int m_InitialPanelHeight = 0;
         private double m_PhraseDuration = 0;
+        private double m_ZoomIncrementFactor = 0;
            
 
         private KeyboardShortcuts_Settings keyboardShortcuts;
@@ -301,17 +302,18 @@ namespace Obi.ProjectView
                     m_AudioBlock.IsFineNavigationMode = true;
                     m_AudioBlock.UpdateColors();
                     btntxtZoomSelected.BringToFront();
-                    m_ZoomFactor = zoomFactor;
+                    m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);
+                    initialWaveformWidth = m_AudioBlock.Waveform.Width;
+                    zoomFactor = m_ZoomFactor;
                 }
                 else
                 {
                     zoomFactor = m_ZoomFactor;
+                   
                 }
-                          
                 m_AudioBlock.SetZoomFactorAndHeight(zoomFactor, Height);
-                
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
-                m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * zoomFactor);
+                m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * m_ZoomIncrementFactor);
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
                 m_AudioBlock.Waveform.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
 
@@ -361,6 +363,7 @@ namespace Obi.ProjectView
             m_Strip = strip;
             m_Node = node;
             ZoomPanelToolTipInit();
+            m_ZoomFactor = 0;
 
             //this.btnClosetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_Close") + "(" +keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Close.Value.ToString()) + ")";
             //this.btnNextPhrasetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ShowNextPhrase")+"(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_NextPhrase.Value.ToString()) + ")";
@@ -559,6 +562,7 @@ namespace Obi.ProjectView
                int tempWidth = m_AudioBlock.Waveform.Width - (int)(initialWaveformWidth * 0.5);
                if (tempWidth > (initialWaveformWidth / 10))
                {
+                   m_ZoomIncrementFactor -= 0.5;
                    m_AudioBlock.Waveform.Width = tempWidth;
                    m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
                    m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height-10);
@@ -571,6 +575,7 @@ namespace Obi.ProjectView
                int tempWidth = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * 0.5);
                if (tempWidth < (initialWaveformWidth * 60))
                {
+                   m_ZoomIncrementFactor += 0.5;
                    m_AudioBlock.Waveform.Width = tempWidth;
                    m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
                    m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height-10);
@@ -981,6 +986,7 @@ namespace Obi.ProjectView
                 int tempWidth = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * 0.5);
                 if (tempWidth < (initialWaveformWidth * 60))
                 {
+                    m_ZoomIncrementFactor += 0.5;
                     m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width + (int)(initialWaveformWidth * 0.5);
                     m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
                     m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
@@ -1010,6 +1016,7 @@ namespace Obi.ProjectView
                 int tempWidth = m_AudioBlock.Waveform.Width - (int)(initialWaveformWidth * 0.5);
                 if (tempWidth > (initialWaveformWidth / 10))
                 {
+                    m_ZoomIncrementFactor -= 0.5;
                     m_AudioBlock.Waveform.Width = m_AudioBlock.Waveform.Width - (int)(initialWaveformWidth * 0.5);
                     m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
                     m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
@@ -1037,6 +1044,7 @@ namespace Obi.ProjectView
             }
             if (m_Node is PhraseNode)
             {
+                m_ZoomIncrementFactor = 0;
                 m_AudioBlock.Waveform.Width = initialWaveformWidth;
                 m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
