@@ -408,6 +408,7 @@
     <Compile Include="ImportExport\ImportStructureFromXhtml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ImportExport\ExportStructure.cs" />
     <Compile Include="ImportExport\XslResolver.cs">
       <SubType>Code</SubType>
     </Compile>
