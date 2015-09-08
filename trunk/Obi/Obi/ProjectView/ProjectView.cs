@@ -3966,6 +3966,8 @@ for (int j = 0;
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarExpandSwitchProfile.Value] = delegate() { return TransportBar.ExpandSwitchProfile(); };
             mTransportBar.InitializeTooltipsForTransportpar();
 
+          //  mContentView.AssignShotcutToContextMenu();
+
           /*  mShortcutKeys[Keys.Control | Keys.Tab] = delegate () { return SelectViewsInCycle ( true ); };
             mShortcutKeys[Keys.Control | Keys.Shift | Keys.Tab] = delegate () { return SelectViewsInCycle ( false ); };
             mShortcutKeys[Keys.F6] = delegate () { return ToggleFocusBTWTOCViewAndContentsView (); };
@@ -3975,6 +3977,11 @@ for (int j = 0;
             mShortcutKeys[Keys.F8] = delegate () { return mTransportBar.FocusOnTimeDisplay (); };*/
 
             }
+        public void InitializeShortcutToContentViewContextMenu()
+        {
+            mContentView.AssignShotcutToContextMenu();
+            mTOCView.AssignShotcutToContextMenu();
+        }
 
         // Process key press: if this is a key down event, lookup the shortcut tables;
         // if the key was not handled then, proceed with the default process.
