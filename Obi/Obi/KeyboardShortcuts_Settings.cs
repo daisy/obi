@@ -433,6 +433,8 @@ namespace Obi
                 UserFriendlyNameDirectory.Add(Keys.Control, "Ctrl");
                 UserFriendlyNameDirectory.Add(Keys.Next,"Page Down");
                 UserFriendlyNameDirectory.Add(Keys.PageUp, "Page Up");
+                UserFriendlyNameDirectory.Add(Keys.OemOpenBrackets, "[");
+                UserFriendlyNameDirectory.Add(Keys.Oem6, "]");
                 
             }
         }

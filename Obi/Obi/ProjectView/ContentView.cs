@@ -57,6 +57,7 @@ namespace Obi.ProjectView
             {
             InitializeComponent ();
             //InitializeShortcutKeys ();
+            //AssignShotcutToContextMenu();
             mProjectView = null;
             mSelection = null;
             mFocusing = false;
@@ -3884,6 +3885,113 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarRecordSingleKey.Value] = mProjectView.TransportBar.Record_Button;
             mShortcutKeys[keyboardShortcuts.ContentView_TransportBarStopSingleKey.Value] = mProjectView.TransportBar.Stop ;
+        }
+
+        public void AssignShotcutToContextMenu()
+        {            
+            KeyboardShortcuts_Settings keyboardShortcuts = mProjectView.ObiForm.KeyboardShortcuts;
+            Context_ZoomPhrase.ShortcutKeyDisplayString = keyboardShortcuts.ContentView_ZoomWaveformPanel.Value.ToString();
+
+            Context_AddSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mAddSectionToolStripMenuItem"].Value.ToString()));
+
+            Context_InsertSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mInsertSectionToolStripMenuItem"].Value.ToString()));
+
+            Context_SplitSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSplitSectionToolStripMenuItem"].Value.ToString()));
+
+            Context_MergeWithNextSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergeWithNextSectionToolStripMenuItem"].Value.ToString()));
+
+            Context_SplitMergeWithNextMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["splitAndMergeWithNextToolStripMenuItem"].Value.ToString()));
+
+            Context_SplitMergeWithPreviousMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["splitAndMergeWithPreviousToolStripMenuItem"].Value.ToString()));
+
+            Context_Merge_MergeWithFollowingPhrasesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergePhraseWithFollowingPhrasesToolStripMenuItem"].Value.ToString()));
+
+            Context_Merge_MergeWithPrecedingPhrasesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergePhraseWithPrecedingPhrasesToolStripMenuItem"].Value.ToString()));
+
+            Context_MultiSectionOperations.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMultiSectionOperations"].Value.ToString()));
+
+            Context_AddBlankPhraseMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mAddBlankPhraseToolStripMenuItem"].Value.ToString()));
+
+            Context_AddEmptyPagesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mAddEmptyPagesToolStripMenuItem"].Value.ToString()));
+
+            Context_GenerateSpeechForPageMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["selectedPageToolStripMenuItem"].Value.ToString()));
+
+            Context_ImportAudioFilesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mImportAudioFileToolStripMenuItem"].Value.ToString()));
+
+            Context_FineNavigationMenuItem.ShortcutKeyDisplayString = keyboardShortcuts.ContentView_TransportBarFineNavigationOn.Value.ToString();
+
+            Context_SplitPhraseMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSplitPhraseToolStripMenuItem"].Value.ToString()));
+
+            Context_MergePhraseWithNextMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergePhraseWithNextToolStripMenuItem"].Value.ToString()));
+
+            Context_CropAudioMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCropAudiotoolStripMenuItem"].Value.ToString()));
+
+            Context_PhraseIsTODOMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_PhraseIsTODOMenuItem"].Value.ToString()));
+
+            Context_PhraseIsUsedMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhraseIsUsedToolStripMenuItem"].Value.ToString()));
+
+            Context_AssignRole_PlainMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AssignRole_PlainMenuItem"].Value.ToString()));
+
+            Context_AssignRole_HeadingMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AssignRole_HeadingMenuItem"].Value.ToString()));
+
+            Context_AssignRole_PageMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AssignRole_PageMenuItem"].Value.ToString()));
+
+            Context_AssignRole_SilenceMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AssignRole_SilenceMenuItem"].Value.ToString()));
+
+            Context_AssignRole_AnchorMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AssignRole_AnchorMenuItem"].Value.ToString()));
+
+            Context_ClearRoleMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_ClearRoleMenuItem"].Value.ToString()));
+
+            Context_ApplyPhraseDetectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_ApplyPhraseDetectionMenuItem"].Value.ToString()));
+
+            Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mApplyPhraseDetectionInProjectToolStripMenuItem"].Value.ToString()));
+
+            Context_SettingsFromsilencePhraseToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["settingsFromSilencePhraseToolStripMenuItem"].Value.ToString()));
+
+            ContextBeginMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableBeginNoteToolStripMenuItem"].Value.ToString()));
+
+            ContextEndMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableEndNoteToolStripMenuItem"].Value.ToString()));
+
+            Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableBeginNoteToolStripMenuItem"].Value.ToString()));
+
+            Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableEndNoteToolStripMenuItem"].Value.ToString()));
+
+            Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableAddReferenceToolStripMenuItem"].Value.ToString()));
+
+            Context_Skippable_GotoAssociatedNodeToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableGotoToolStripMenuItem"].Value.ToString()));
+
+            Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableRemoveReferenceToolStripMenuItem"].Value.ToString()));
+
+            Context_Skippable_MoveToStartNoteToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableMoveToStartNoteToolStripMenuItem"].Value.ToString()));
+
+            Context_Skippable_MoveToEndNoteToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableMoveToEndNoteToolStripMenuItem"].Value.ToString()));
+
+            Context_Skippable_ClearRoleFromNoteToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableClearRoleFromNoteToolStripMenuItem"].Value.ToString()));
+
+            Context_AudioSelection_BeginMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AudioSelection_BeginAudioSelectionMenuItem"].Value.ToString()));
+
+            Context_AudioSelection_EndMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AudioSelection_EndAudioSelectionMenuItem"].Value.ToString()));
+
+            Context_CutMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCutToolStripMenuItem"].Value.ToString()));
+
+            Context_CopyMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCopyToolStripMenuItem"].Value.ToString()));
+
+            Context_PasteMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteToolStripMenuItem"].Value.ToString()));
+
+            Context_PasteBeforeMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteBeforeToolStripMenuItem"].Value.ToString()));
+
+            Context_PasteInsideMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteInsideToolStripMenuItem"].Value.ToString()));
+
+            Context_Delete_deleteSelectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mDeleteToolStripMenuItem"].Value.ToString()));
+
+            Context_Delete_deleteFollowingPhrasesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mDeleteFollowingPhrasesToolStripMenuItem"].Value.ToString()));
+
+            Context_AudioProcessing.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mTools_AudioProcessing"].Value.ToString()));
+
+            Context_ExportAudioMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mTools_ExportSelectedAudioMenuItem"].Value.ToString()));
+
+            Context_PropertiesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mView_PhrasePropertiesMenuItem"].Value.ToString()));
+
         }
 
         private bool CanUseKeys { get { return (mSelection == null || !(mSelection is TextSelection)) && !m_IsBlocksVisibilityProcessActive; } }

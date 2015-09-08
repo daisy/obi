@@ -4169,6 +4169,7 @@ ref string exportDirectoryEPUB3)
 
                     }
                 }
+                mProjectView.InitializeShortcutToContentViewContextMenu();
             }
 
             internal void LoadDefaultKeyboardShortcuts()
@@ -4184,6 +4185,7 @@ ref string exportDirectoryEPUB3)
                         AssignMenuShortcuts((ToolStripMenuItem) m, false);
                     }
                 }
+                mProjectView.InitializeShortcutToContentViewContextMenu();
             }
 
 

@@ -31,9 +31,49 @@ namespace Obi.ProjectView
             this.Context_AddBlankPhraseMenuItem.Click += new EventHandler(Context_AddBlankPhraseMenuItem_Click);
         }
 
-       
 
 
+        public void AssignShotcutToContextMenu()
+        {
+            KeyboardShortcuts_Settings keyboardShortcuts = mProjectView.ObiForm.KeyboardShortcuts;
+
+            Context_AddSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mAddSectionToolStripMenuItem"].Value.ToString()));
+
+            Context_AddSubsectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mAddSubsectionToolStripMenuItem"].Value.ToString()));
+
+            Context_InsertSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mInsertSectionToolStripMenuItem"].Value.ToString()));
+
+            Context_MergeWithNextMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergeWithNextSectionToolStripMenuItem"].Value.ToString()));
+
+            Context_MultipleOperationsMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMultiSectionOperations"].Value.ToString()));
+
+            Context_RenameSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mRenameSectionToolStripMenuItem"].Value.ToString()));
+
+            Context_DecreaseSectionLevelMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mDecreaseSectionLevelToolStripMenuItem"].Value.ToString()));
+
+            Context_IncreaseSectionLevelMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mIncreaseSectionLevelToolStripMenuItem"].Value.ToString()));
+
+            Context_SectionIsUsedMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSectionIsUsedToolStripMenuItem"].Value.ToString()));
+
+            Context_AddBlankPhraseMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mAddBlankPhraseToolStripMenuItem"].Value.ToString()));
+
+            Context_AddEmptyPagesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mAddEmptyPagesToolStripMenuItem"].Value.ToString()));
+
+            Context_CutMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCutToolStripMenuItem"].Value.ToString()));
+
+            Context_CopyMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCopyToolStripMenuItem"].Value.ToString()));
+
+            Context_PasteMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteToolStripMenuItem"].Value.ToString()));
+
+            Context_PasteBeforeMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteBeforeToolStripMenuItem"].Value.ToString()));
+
+            Context_PasteInsideMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteInsideToolStripMenuItem"].Value.ToString()));
+
+            Context_DeleteMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mDeleteToolStripMenuItem"].Value.ToString()));
+
+            Context_PropertiesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mView_SectionPropertiesMenuItem"].Value.ToString()));
+            
+        }
 
         /// <summary>
         /// Can add a section as long as the selection is not a text selection.
