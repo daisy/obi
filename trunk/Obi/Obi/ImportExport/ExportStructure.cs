@@ -20,6 +20,13 @@ namespace Obi.ImportExport
             m_ExportDirectory = exportDirectory;
     }
 
+        private bool m_Profile_VA= true;
+        public bool Profile_VA
+        {
+            get { return m_Profile_VA; }
+            set { m_Profile_VA = value; }
+        }
+
          public void CreateFileSet()
         {
             List<SectionNode> sectionsList = ((ObiRootNode)m_Presentation.RootNode).GetListOfAllSections();
@@ -28,14 +35,21 @@ namespace Obi.ImportExport
             m_IdCounter = 0;
             
             //m_ExportedSectionCount = 0;
-                        
 
+            XmlNode prevPageXmlNode = null;
             for (int i = 0; i < sectionsList.Count; i++)
             {
                 try
                 {
                     //if (m_MaxDepth < sectionsList[i].Level) m_MaxDepth = sectionsList[i].Level;
-                    CreateElementsForSection(nccDocument, sectionsList[i], i);
+                    if (Profile_VA)
+                    {
+                        prevPageXmlNode = CreateElementsForSection(nccDocument, sectionsList[i], i, prevPageXmlNode);
+                    }
+                    else
+                    {
+                        CreateElementsForSection(nccDocument, sectionsList[i], i, null);
+                    }
                 }
                 catch (System.Exception ex)
                 {
@@ -51,7 +65,7 @@ namespace Obi.ImportExport
         }
 
 
-    private void CreateElementsForSection ( XmlDocument nccDocument, SectionNode section, int sectionIndex )
+    private XmlNode CreateElementsForSection ( XmlDocument nccDocument, SectionNode section, int sectionIndex, XmlNode prevPageXmlNode )
             {
                         string nccFileName = "ncc.html";
             XmlNode bodyNode = nccDocument.GetElementsByTagName ( "body" )[0];
@@ -72,10 +86,18 @@ namespace Obi.ImportExport
                         bool isFirstPhrase = true;
             //EmptyNode adjustedPageNode = m_NextSectionPageAdjustmentDictionary[section];
             bool isPreviousNodeEmptyPage = false;
-            
+        
             for (int i = 0; i < section.PhraseChildCount ; i++)
                 {//1
-
+                    if (i == 0 && prevPageXmlNode != null)
+                    {
+                        XmlNode parent = prevPageXmlNode.ParentNode;
+                        parent.RemoveChild(prevPageXmlNode);
+                        
+                        bodyNode.AppendChild(prevPageXmlNode);
+                        bodyNode.AppendChild(nccDocument.CreateElement(null, "br", bodyNode.NamespaceURI));
+                        Console.WriteLine("Prev: " + prevPageXmlNode.InnerText);
+                    }
                         EmptyNode phrase = section.PhraseChild(i);
                 
                 if ((phrase is PhraseNode && phrase.Used)
@@ -107,14 +129,17 @@ namespace Obi.ImportExport
                         break;
 
                             }//-4
-
+                            
                         XmlNode pageXmlNode= pageNode = nccDocument.CreateElement ( null, "span", bodyNode.NamespaceURI );
                         XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, pageNode, "class", strClassVal);
                         pageID = "p" + IncrementID;
                         XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, pageNode, "id", pageID);
-                        pageXmlNode.AppendChild(nccDocument.CreateTextNode(phrase.PageNumber.ToString()));
+                        string pageString = Profile_VA ? "Page " + phrase.PageNumber.ToString() :
+                            phrase.PageNumber.ToString();
+                        pageXmlNode.AppendChild(nccDocument.CreateTextNode(pageString));
                         bodyNode.AppendChild ( pageNode );
-
+                        prevPageXmlNode = pageNode;
+                        bodyNode.AppendChild( nccDocument.CreateElement(null, "br", bodyNode.NamespaceURI));
                         }//-3
 
                         // add anchor and href to ncc elements
@@ -155,6 +180,8 @@ namespace Obi.ImportExport
 
             
                 }
+                Console.WriteLine("returning : " + prevPageXmlNode.InnerText);
+                return prevPageXmlNode;
             }
 
         private int m_IdCounter;
