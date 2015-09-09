@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Xml;
+using System.Collections.Generic;
+using System.IO;
 
 using urakawa.daisy;
 
@@ -8,9 +10,46 @@ namespace Obi.ImportExport
     
     public class ExportStructure 
     {
-        public ExportStructure()
+
+        private string m_ExportDirectory;
+        private ObiPresentation m_Presentation;
+
+        public ExportStructure(ObiPresentation presentation, string exportDirectory)
         {
+            m_Presentation = presentation;
+            m_ExportDirectory = exportDirectory;
     }
+
+         public void CreateFileSet()
+        {
+            List<SectionNode> sectionsList = ((ObiRootNode)m_Presentation.RootNode).GetListOfAllSections();
+            XmlDocument nccDocument = CreateNCCStubDocument();
+
+            m_IdCounter = 0;
+            
+            //m_ExportedSectionCount = 0;
+                        
+
+            for (int i = 0; i < sectionsList.Count; i++)
+            {
+                try
+                {
+                    //if (m_MaxDepth < sectionsList[i].Level) m_MaxDepth = sectionsList[i].Level;
+                    CreateElementsForSection(nccDocument, sectionsList[i], i);
+                }
+                catch (System.Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(ex.ToString());
+                }
+            }
+
+
+            // write ncc file
+            WriteXmlDocumentToFile(nccDocument,
+                Path.Combine(m_ExportDirectory, "ncc.html"));
+
+        }
+
 
     private void CreateElementsForSection ( XmlDocument nccDocument, SectionNode section, int sectionIndex )
             {
@@ -27,6 +66,7 @@ namespace Obi.ImportExport
                 }
                 string headingID = "h"+ IncrementID;
             XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, headingNode, "id", headingID);
+        headingNode.AppendChild(nccDocument.CreateTextNode(section.Label)) ; 
             bodyNode.AppendChild ( headingNode );
 
                         bool isFirstPhrase = true;
@@ -35,36 +75,16 @@ namespace Obi.ImportExport
             
             for (int i = 0; i < section.PhraseChildCount ; i++)
                 {//1
-                    EmptyNode phrase = null;
-                //first handle the first phrase of the project if it is also the page
-                // in such a case i=0 will be skipped being page, second phrase is exported and then first page is inserted to i=2 
-                    if (i == 2 )
-                    {//2
-                        //phrase = m_FirstPageNumberedPhraseOfFirstSection;
-                        //m_FirstPageNumberedPhraseOfFirstSection = null;
-                        --i;
-                    }//-2
-                    else if (i < section.PhraseChildCount  ) 
-                    {//2
-                        phrase = section.PhraseChild(i);
-                    }//-2
-                    else
-                    {   //2
-                        //phrase = adjustedPageNode;
-                        //adjustedPageNode = null;
-                    }//-2
-                    if (phrase.Role_ == EmptyNode.Role.Page && isFirstPhrase && i < section.PhraseChildCount) 
-                    {   //2
-                        continue;
-            }//-2
 
+                        EmptyNode phrase = section.PhraseChild(i);
+                
                 if ((phrase is PhraseNode && phrase.Used)
                     || ( phrase is EmptyNode && phrase.Role_ == EmptyNode.Role.Page  &&  phrase.Used))
                     {//2
                     
                     string pageID = null;
                     XmlNode pageNode = null;
-                    if (!isFirstPhrase && phrase.Role_ == EmptyNode.Role.Page)
+                    if (phrase.Role_ == EmptyNode.Role.Page)
                         {//3
                         string strClassVal = null;
                         // increment page counts and get page kind
@@ -88,10 +108,11 @@ namespace Obi.ImportExport
 
                             }//-4
 
-                        pageNode = nccDocument.CreateElement ( null, "span", bodyNode.NamespaceURI );
+                        XmlNode pageXmlNode= pageNode = nccDocument.CreateElement ( null, "span", bodyNode.NamespaceURI );
                         XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, pageNode, "class", strClassVal);
                         pageID = "p" + IncrementID;
                         XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, pageNode, "id", pageID);
+                        pageXmlNode.AppendChild(nccDocument.CreateTextNode(phrase.PageNumber.ToString()));
                         bodyNode.AppendChild ( pageNode );
 
                         }//-3
@@ -138,5 +159,57 @@ namespace Obi.ImportExport
 
         private int m_IdCounter;
         private string IncrementID { get { return (++m_IdCounter).ToString(); } }
+
+        public XmlDocument CreateNCCStubDocument()
+        {
+            XmlDocument nccDocument = new XmlDocument();
+            nccDocument.XmlResolver = null;
+
+            nccDocument.CreateXmlDeclaration("1.0", "utf-8", null);
+            nccDocument.AppendChild(nccDocument.CreateDocumentType("html",
+                "-//W3C//DTD XHTML 1.0 Transitional//EN",
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd",
+                null));
+
+            XmlNode htmlNode = nccDocument.CreateElement(null,
+                "html",
+                "http://www.w3.org/1999/xhtml");
+
+            nccDocument.AppendChild(htmlNode);
+
+
+            XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, htmlNode, "lang", "en");
+            XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, htmlNode, "xml:lang", "en");
+
+
+            XmlNode headNode = nccDocument.CreateElement(null, "head", htmlNode.NamespaceURI);
+            htmlNode.AppendChild(headNode);
+            XmlNode bodyNode = nccDocument.CreateElement(null, "body", htmlNode.NamespaceURI);
+            htmlNode.AppendChild(bodyNode);
+
+            return nccDocument;
+        }
+
+        public void WriteXmlDocumentToFile(XmlDocument xmlDoc, string path)
+        {
+            XmlTextWriter writer = null;
+            try
+            {
+                if (!File.Exists(path))
+                {
+                    File.Create(path).Close();
+                }
+
+                writer = new XmlTextWriter(path, null);
+                writer.Formatting = Formatting.Indented;
+                xmlDoc.Save(writer);
+            }
+            finally
+            {
+                writer.Close();
+                writer = null;
+            }
+        }
+
             }
 }
