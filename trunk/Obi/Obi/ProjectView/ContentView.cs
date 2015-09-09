@@ -3893,104 +3893,154 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_ZoomPhrase.ShortcutKeyDisplayString = keyboardShortcuts.ContentView_ZoomWaveformPanel.Value.ToString();
 
             Context_AddSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mAddSectionToolStripMenuItem"].Value.ToString()));
+            Context_AddSectionMenuItem.AccessibleName = Context_AddSectionMenuItem.Text.Replace("&", "") + " " + Context_AddSectionMenuItem.ShortcutKeyDisplayString;
 
             Context_InsertSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mInsertSectionToolStripMenuItem"].Value.ToString()));
+            Context_InsertSectionMenuItem.AccessibleName = Context_InsertSectionMenuItem.Text.Replace("&", "") + " " + Context_InsertSectionMenuItem.ShortcutKeyDisplayString;
 
             Context_SplitSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSplitSectionToolStripMenuItem"].Value.ToString()));
+            Context_SplitSectionMenuItem.AccessibleName = Context_SplitSectionMenuItem.Text.Replace("&", "") + " " + Context_SplitSectionMenuItem.ShortcutKeyDisplayString;
 
             Context_MergeWithNextSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergeWithNextSectionToolStripMenuItem"].Value.ToString()));
+            Context_MergeWithNextSectionMenuItem.AccessibleName = Context_MergeWithNextSectionMenuItem.Text.Replace("&", "") + " " + Context_MergeWithNextSectionMenuItem.ShortcutKeyDisplayString;
 
             Context_SplitMergeWithNextMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["splitAndMergeWithNextToolStripMenuItem"].Value.ToString()));
+            Context_SplitMergeWithNextMenuItem.AccessibleName = Context_SplitMergeWithNextMenuItem.Text.Replace("&", "") + " " + Context_SplitMergeWithNextMenuItem.ShortcutKeyDisplayString;
 
             Context_SplitMergeWithPreviousMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["splitAndMergeWithPreviousToolStripMenuItem"].Value.ToString()));
+            Context_SplitMergeWithPreviousMenuItem.AccessibleName = Context_SplitMergeWithPreviousMenuItem.Text.Replace("&", "") + " " + Context_SplitMergeWithPreviousMenuItem.ShortcutKeyDisplayString;
 
             Context_Merge_MergeWithFollowingPhrasesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergePhraseWithFollowingPhrasesToolStripMenuItem"].Value.ToString()));
+            Context_Merge_MergeWithFollowingPhrasesMenuItem.AccessibleName = Context_Merge_MergeWithFollowingPhrasesMenuItem.Text.Replace("&", "") + " " + Context_Merge_MergeWithFollowingPhrasesMenuItem.ShortcutKeyDisplayString;
 
             Context_Merge_MergeWithPrecedingPhrasesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergePhraseWithPrecedingPhrasesToolStripMenuItem"].Value.ToString()));
+            Context_Merge_MergeWithPrecedingPhrasesMenuItem.AccessibleName = Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text.Replace("&", "") + " " + Context_Merge_MergeWithPrecedingPhrasesMenuItem.ShortcutKeyDisplayString;
 
             Context_MultiSectionOperations.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMultiSectionOperations"].Value.ToString()));
+            Context_MultiSectionOperations.AccessibleName = Context_MultiSectionOperations.Text.Replace("&", "") + " " + Context_MultiSectionOperations.ShortcutKeyDisplayString;
 
             Context_AddBlankPhraseMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mAddBlankPhraseToolStripMenuItem"].Value.ToString()));
+            Context_AddBlankPhraseMenuItem.AccessibleName = Context_AddBlankPhraseMenuItem.Text.Replace("&", "") + " " + Context_AddBlankPhraseMenuItem.ShortcutKeyDisplayString;
 
             Context_AddEmptyPagesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mAddEmptyPagesToolStripMenuItem"].Value.ToString()));
+            Context_AddEmptyPagesMenuItem.AccessibleName = Context_AddEmptyPagesMenuItem.Text.Replace("&", "") + " " + Context_AddEmptyPagesMenuItem.ShortcutKeyDisplayString;
 
             Context_GenerateSpeechForPageMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["selectedPageToolStripMenuItem"].Value.ToString()));
+            Context_GenerateSpeechForPageMenuItem.AccessibleName = Context_GenerateSpeechForPageMenuItem.Text.Replace("&", "") + " " + Context_GenerateSpeechForPageMenuItem.ShortcutKeyDisplayString;
 
             Context_ImportAudioFilesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mImportAudioFileToolStripMenuItem"].Value.ToString()));
+            Context_ImportAudioFilesMenuItem.AccessibleName = Context_ImportAudioFilesMenuItem.Text.Replace("&", "") + " " + Context_ImportAudioFilesMenuItem.ShortcutKeyDisplayString;
 
             Context_FineNavigationMenuItem.ShortcutKeyDisplayString = keyboardShortcuts.ContentView_TransportBarFineNavigationOn.Value.ToString();
+            Context_FineNavigationMenuItem.AccessibleName = Context_FineNavigationMenuItem.Text.Replace("&", "") + " " + Context_FineNavigationMenuItem.ShortcutKeyDisplayString;
 
             Context_SplitPhraseMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSplitPhraseToolStripMenuItem"].Value.ToString()));
+            Context_SplitPhraseMenuItem.AccessibleName = Context_SplitPhraseMenuItem.Text.Replace("&", "") + " " + Context_SplitPhraseMenuItem.ShortcutKeyDisplayString;
 
             Context_MergePhraseWithNextMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mMergePhraseWithNextToolStripMenuItem"].Value.ToString()));
+            Context_MergePhraseWithNextMenuItem.AccessibleName = Context_MergePhraseWithNextMenuItem.Text.Replace("&", "") + " " + Context_MergePhraseWithNextMenuItem.ShortcutKeyDisplayString;
 
             Context_CropAudioMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCropAudiotoolStripMenuItem"].Value.ToString()));
+            Context_CropAudioMenuItem.AccessibleName = Context_CropAudioMenuItem.Text.Replace("&", "") + " " + Context_CropAudioMenuItem.ShortcutKeyDisplayString;
 
             Context_PhraseIsTODOMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_PhraseIsTODOMenuItem"].Value.ToString()));
+            Context_PhraseIsTODOMenuItem.AccessibleName = Context_PhraseIsTODOMenuItem.Text.Replace("&", "") + " " + Context_PhraseIsTODOMenuItem.ShortcutKeyDisplayString;
 
             Context_PhraseIsUsedMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhraseIsUsedToolStripMenuItem"].Value.ToString()));
+            Context_PhraseIsUsedMenuItem.AccessibleName = Context_PhraseIsUsedMenuItem.Text.Replace("&", "") + " " + Context_PhraseIsUsedMenuItem.ShortcutKeyDisplayString;
 
             Context_AssignRole_PlainMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AssignRole_PlainMenuItem"].Value.ToString()));
+            Context_AssignRole_PlainMenuItem.AccessibleName = Context_AssignRole_PlainMenuItem.Text.Replace("&", "") + " " + Context_AssignRole_PlainMenuItem.ShortcutKeyDisplayString;
 
             Context_AssignRole_HeadingMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AssignRole_HeadingMenuItem"].Value.ToString()));
+            Context_AssignRole_HeadingMenuItem.AccessibleName = Context_AssignRole_HeadingMenuItem.Text.Replace("&", "") + " " + Context_AssignRole_HeadingMenuItem.ShortcutKeyDisplayString;
 
             Context_AssignRole_PageMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AssignRole_PageMenuItem"].Value.ToString()));
+            Context_AssignRole_PageMenuItem.AccessibleName = Context_AssignRole_PageMenuItem.Text.Replace("&", "") + " " + Context_AssignRole_PageMenuItem.ShortcutKeyDisplayString;
 
             Context_AssignRole_SilenceMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AssignRole_SilenceMenuItem"].Value.ToString()));
+            Context_AssignRole_SilenceMenuItem.AccessibleName = Context_AssignRole_SilenceMenuItem.Text.Replace("&", "") + " " + Context_AssignRole_SilenceMenuItem.ShortcutKeyDisplayString;
 
             Context_AssignRole_AnchorMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AssignRole_AnchorMenuItem"].Value.ToString()));
+            Context_AssignRole_AnchorMenuItem.AccessibleName = Context_AssignRole_AnchorMenuItem.Text.Replace("&", "") + " " + Context_AssignRole_AnchorMenuItem.ShortcutKeyDisplayString;
 
             Context_ClearRoleMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_ClearRoleMenuItem"].Value.ToString()));
+            Context_ClearRoleMenuItem.AccessibleName = Context_ClearRoleMenuItem.Text.Replace("&", "") + " " + Context_ClearRoleMenuItem.ShortcutKeyDisplayString;
 
             Context_ApplyPhraseDetectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_ApplyPhraseDetectionMenuItem"].Value.ToString()));
+            Context_ApplyPhraseDetectionMenuItem.AccessibleName = Context_ApplyPhraseDetectionMenuItem.Text.Replace("&", "") + " " + Context_ApplyPhraseDetectionMenuItem.ShortcutKeyDisplayString;
 
             Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mApplyPhraseDetectionInProjectToolStripMenuItem"].Value.ToString()));
+            Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.AccessibleName = Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text.Replace("&", "") + " " + Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.ShortcutKeyDisplayString;
 
             Context_SettingsFromsilencePhraseToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["settingsFromSilencePhraseToolStripMenuItem"].Value.ToString()));
+            Context_SettingsFromsilencePhraseToolStripMenuItem.AccessibleName = Context_SettingsFromsilencePhraseToolStripMenuItem.Text.Replace("&", "") + " " + Context_SettingsFromsilencePhraseToolStripMenuItem.ShortcutKeyDisplayString;
 
             ContextBeginMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableBeginNoteToolStripMenuItem"].Value.ToString()));
+            ContextBeginMarkToolStripMenuItem.AccessibleName = ContextBeginMarkToolStripMenuItem.Text.Replace("&", "") + " " + ContextBeginMarkToolStripMenuItem.ShortcutKeyDisplayString;
 
             ContextEndMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableEndNoteToolStripMenuItem"].Value.ToString()));
+            ContextEndMarkToolStripMenuItem.AccessibleName = ContextEndMarkToolStripMenuItem.Text.Replace("&", "") + " " + ContextEndMarkToolStripMenuItem.ShortcutKeyDisplayString;
 
             Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableBeginNoteToolStripMenuItem"].Value.ToString()));
+            Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.AccessibleName = Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.Text.Replace("&", "") + " " + Context_Skippable_BeginSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString;
 
             Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableEndNoteToolStripMenuItem"].Value.ToString()));
+            Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.AccessibleName = Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.Text.Replace("&", "") + " " + Context_Skippable_EndSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString;
 
             Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableAddReferenceToolStripMenuItem"].Value.ToString()));
+            Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.AccessibleName = Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.Text.Replace("&", "") + " " + Context_Skippable_AssociateSpecialNodeMarkToolStripMenuItem.ShortcutKeyDisplayString;
 
             Context_Skippable_GotoAssociatedNodeToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableGotoToolStripMenuItem"].Value.ToString()));
+            Context_Skippable_GotoAssociatedNodeToolStripMenuItem.AccessibleName = Context_Skippable_GotoAssociatedNodeToolStripMenuItem.Text.Replace("&", "") + " " + Context_Skippable_GotoAssociatedNodeToolStripMenuItem.ShortcutKeyDisplayString;
 
             Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableRemoveReferenceToolStripMenuItem"].Value.ToString()));
+            Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.AccessibleName = Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.Text.Replace("&", "") + " " + Context_Skippable_RemoveAssociatedNodeToolStripMenuItem.ShortcutKeyDisplayString;
 
             Context_Skippable_MoveToStartNoteToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableMoveToStartNoteToolStripMenuItem"].Value.ToString()));
+            Context_Skippable_MoveToStartNoteToolStripMenuItem.AccessibleName = Context_Skippable_MoveToStartNoteToolStripMenuItem.Text.Replace("&", "") + " " + Context_Skippable_MoveToStartNoteToolStripMenuItem.ShortcutKeyDisplayString;
 
             Context_Skippable_MoveToEndNoteToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableMoveToEndNoteToolStripMenuItem"].Value.ToString()));
+            Context_Skippable_MoveToEndNoteToolStripMenuItem.AccessibleName = Context_Skippable_MoveToEndNoteToolStripMenuItem.Text.Replace("&", "") + " " + Context_Skippable_MoveToEndNoteToolStripMenuItem.ShortcutKeyDisplayString;
 
             Context_Skippable_ClearRoleFromNoteToolStripMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mSkippableClearRoleFromNoteToolStripMenuItem"].Value.ToString()));
+            Context_Skippable_ClearRoleFromNoteToolStripMenuItem.AccessibleName = Context_Skippable_ClearRoleFromNoteToolStripMenuItem.Text.Replace("&", "") + " " + Context_Skippable_ClearRoleFromNoteToolStripMenuItem.ShortcutKeyDisplayString;
 
             Context_AudioSelection_BeginMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AudioSelection_BeginAudioSelectionMenuItem"].Value.ToString()));
+            Context_AudioSelection_BeginMenuItem.AccessibleName = Context_AudioSelection_BeginMenuItem.Text.Replace("&", "") + " " + Context_AudioSelection_BeginMenuItem.ShortcutKeyDisplayString;
 
             Context_AudioSelection_EndMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPhrases_AudioSelection_EndAudioSelectionMenuItem"].Value.ToString()));
+            Context_AudioSelection_EndMenuItem.AccessibleName = Context_AudioSelection_EndMenuItem.Text.Replace("&", "") + " " + Context_AudioSelection_EndMenuItem.ShortcutKeyDisplayString;
 
             Context_CutMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCutToolStripMenuItem"].Value.ToString()));
+            Context_CutMenuItem.AccessibleName = Context_CutMenuItem.Text.Replace("&", "") + " " + Context_CutMenuItem.ShortcutKeyDisplayString;
 
             Context_CopyMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mCopyToolStripMenuItem"].Value.ToString()));
+            Context_CopyMenuItem.AccessibleName = Context_CopyMenuItem.Text.Replace("&", "") + " " + Context_CopyMenuItem.ShortcutKeyDisplayString;
 
             Context_PasteMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteToolStripMenuItem"].Value.ToString()));
+            Context_PasteMenuItem.AccessibleName = Context_PasteMenuItem.Text.Replace("&", "") + " " + Context_PasteMenuItem.ShortcutKeyDisplayString;
 
             Context_PasteBeforeMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteBeforeToolStripMenuItem"].Value.ToString()));
+            Context_PasteBeforeMenuItem.AccessibleName = Context_PasteBeforeMenuItem.Text.Replace("&", "") + " " + Context_PasteBeforeMenuItem.ShortcutKeyDisplayString;
 
             Context_PasteInsideMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mPasteInsideToolStripMenuItem"].Value.ToString()));
+            Context_PasteInsideMenuItem.AccessibleName = Context_PasteInsideMenuItem.Text.Replace("&", "") + " " + Context_PasteInsideMenuItem.ShortcutKeyDisplayString;
 
             Context_Delete_deleteSelectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mDeleteToolStripMenuItem"].Value.ToString()));
+            Context_Delete_deleteSelectionMenuItem.AccessibleName = Context_Delete_deleteSelectionMenuItem.Text.Replace("&", "") + " " + Context_Delete_deleteSelectionMenuItem.ShortcutKeyDisplayString;
 
             Context_Delete_deleteFollowingPhrasesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mDeleteFollowingPhrasesToolStripMenuItem"].Value.ToString()));
+            Context_Delete_deleteFollowingPhrasesMenuItem.AccessibleName = Context_Delete_deleteFollowingPhrasesMenuItem.Text.Replace("&", "") + " " + Context_Delete_deleteFollowingPhrasesMenuItem.ShortcutKeyDisplayString;
 
             Context_AudioProcessing.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mTools_AudioProcessing"].Value.ToString()));
+            Context_AudioProcessing.AccessibleName = Context_AudioProcessing.Text.Replace("&", "") + " " + Context_AudioProcessing.ShortcutKeyDisplayString;
 
             Context_ExportAudioMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mTools_ExportSelectedAudioMenuItem"].Value.ToString()));
+            Context_ExportAudioMenuItem.AccessibleName = Context_ExportAudioMenuItem.Text.Replace("&", "") + " " + Context_ExportAudioMenuItem.ShortcutKeyDisplayString;
 
             Context_PropertiesMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mView_PhrasePropertiesMenuItem"].Value.ToString()));
+            Context_PropertiesMenuItem.AccessibleName = Context_PropertiesMenuItem.Text.Replace("&", "") + " " + Context_PropertiesMenuItem.ShortcutKeyDisplayString;
 
         }
 
