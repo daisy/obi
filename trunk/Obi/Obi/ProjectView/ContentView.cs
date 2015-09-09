@@ -3891,6 +3891,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         {            
             KeyboardShortcuts_Settings keyboardShortcuts = mProjectView.ObiForm.KeyboardShortcuts;
             Context_ZoomPhrase.ShortcutKeyDisplayString = keyboardShortcuts.ContentView_ZoomWaveformPanel.Value.ToString();
+            Context_ZoomPhrase.AccessibleName = Context_ZoomPhrase.Text.Replace("&", "") + " " + Context_ZoomPhrase.ShortcutKeyDisplayString;
 
             Context_AddSectionMenuItem.ShortcutKeyDisplayString = ObiForm.RefineKeyboardShortcutStringForAccessibleName(keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.MenuNameDictionary["mAddSectionToolStripMenuItem"].Value.ToString()));
             Context_AddSectionMenuItem.AccessibleName = Context_AddSectionMenuItem.Text.Replace("&", "") + " " + Context_AddSectionMenuItem.ShortcutKeyDisplayString;
