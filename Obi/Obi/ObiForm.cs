@@ -2685,6 +2685,7 @@ ref string exportDirectoryDAISY202,
                 ref urakawa.daisy.export.Daisy3_Export EPUB3_ExportInstance,
 ref string exportDirectoryEPUB3)
             {
+                string exportDirectoryXHTML = "";
                 Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202();
                 if (chooseDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -2708,8 +2709,14 @@ ref string exportDirectoryEPUB3)
                                                        Program.SafeName(
                                                            string.Format(Localizer.Message("default_EpubExport_dirname"), "")));
                     }
+                    if (chooseDialog.ExportXhtml)
+                    {
+                        exportDirectoryXHTML = Path.Combine(Directory.GetParent(mSession.Path).FullName,
+                                                       Program.SafeName(
+                                                           string.Format(Localizer.Message("default_XHTMLExport_dirname"), "")));
+                    }
                 }
-                if (string.IsNullOrEmpty(exportDirectoryDAISY3) && string.IsNullOrEmpty(exportDirectoryDAISY202) && string.IsNullOrEmpty(exportDirectoryEPUB3))
+                if (string.IsNullOrEmpty(exportDirectoryDAISY3) && string.IsNullOrEmpty(exportDirectoryDAISY202) && string.IsNullOrEmpty(exportDirectoryEPUB3) && string.IsNullOrEmpty(exportDirectoryXHTML))
                 {
                     return false;
                 }
@@ -2717,6 +2724,7 @@ ref string exportDirectoryEPUB3)
                 Dialogs.ExportDirectory ExportDialogDAISY3 = null;
                 Dialogs.ExportDirectory ExportDialogDAISY202 = null;
                 Dialogs.ExportDirectory ExportDialogEPUB3 = null;
+                Dialogs.ExportDirectory ExportDialogXhtml = null;
 
                 if (chooseDialog.ExportDaisy3)
                 {
@@ -2762,6 +2770,19 @@ ref string exportDirectoryEPUB3)
                     ExportDialogEPUB3.EPUBFileLength = mSettings.Export_EPUBFileNameLengthLimit;
                     ExportDialogEPUB3.AudioFileNameCharsLimit = Settings.Export_AudioFilesNamesLengthLimit >= 0 ? Settings.Export_AudioFilesNamesLengthLimit : 8;
                     if (ExportDialogEPUB3.ShowDialog() != DialogResult.OK) ExportDialogEPUB3 = null;
+
+                }
+                if (chooseDialog.ExportXhtml)
+                {
+                    //ExportDialogXhtml =
+                    //    new ExportDirectory(exportDirectoryDAISY202,
+                    //                        mSession.Path, false, (mSettings.ExportEncodingBitRate),
+                    //                        mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
+                    ExportDialogXhtml = new ExportDirectory(exportDirectoryXHTML, mSession.Path, false, (mSettings.ExportEncodingBitRate),false,string.Empty);
+                        //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                    ExportDialogXhtml.AdditionalTextForTitle = "Xhtml";
+                    ExportDialogXhtml.XhtmlElmentsEnabled = false;
+                    if (ExportDialogXhtml.ShowDialog() != DialogResult.OK) ExportDialogXhtml = null;
 
                 }
                 if (ExportDialogDAISY3 != null || ExportDialogDAISY202 != null || ExportDialogEPUB3 != null)
@@ -2839,9 +2860,20 @@ ref string exportDirectoryEPUB3)
                         ((Obi.ImportExport.Epub3_ObiExport)EPUB3_ExportInstance).AlwaysIgnoreIndentation = mSettings.Project_Export_AlwaysIgnoreIndentation;
                         EPUB3_ExportInstance.EncodingFileFormat = ExportDialogEPUB3.EncodingFileFormat;
                     }
+                    if (ExportDialogXhtml != null)
+                    {
+                        ImportExport.ExportStructure stru = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportPathDAISY202);
+                        stru.CreateFileSet();
+                    }
                     exportDirectoryDAISY202 = exportPathDAISY202;
                     exportDirectoryDAISY3 = exportPathDAISY3;
                     exportDirectoryEPUB3 = exportPathEPUB3;
+                    return true;
+                }
+                else if (ExportDialogXhtml != null)
+                {
+                    ImportExport.ExportStructure stru = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportDirectoryXHTML);
+                    stru.CreateFileSet();
                     return true;
                 }
                 else

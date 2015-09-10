@@ -180,7 +180,7 @@ namespace Obi.ImportExport
 
             
                 }
-                Console.WriteLine("returning : " + prevPageXmlNode.InnerText);
+               // Console.WriteLine("returning : " + prevPageXmlNode.InnerText);
                 return prevPageXmlNode;
             }
 
