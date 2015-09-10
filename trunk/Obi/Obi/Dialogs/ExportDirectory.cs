@@ -229,6 +229,28 @@ namespace Obi.Dialogs
             }
                         
         }
+        public bool XhtmlElmentsEnabled
+        {
+            set
+            {
+                m_lblSelectLevelForAudioFiles.Enabled = value;
+                m_ComboSelectLevelForAudioFiles.Enabled = value;
+                m_btnEncodingOptions.Enabled = value;
+                m_checkBoxEncoder.Enabled = value;
+                m_comboBoxEncodingType.Enabled = value;
+                m_ComboBoxBitrate.Enabled = value;
+                m_btnAdvance.Enabled = value;
+                m_checkBoxAddSectionNameToAudioFileName.Enabled = value;
+                m_chkBoxFilenameLengthLimit.Enabled = value;
+                m_numericUpDownFilenameLengthLimit.Enabled = value;
+                m_chkBoxEpubFilenameLengthLimit.Enabled = value;
+                m_numericUpDownEpubFilenameLengthLimit.Enabled = value;
+                m_chkBoxDummyTextHTMLfiles.Enabled = value;
+                m_grpBoxSectionNameOperation.Enabled = value;
+                m_grpBoxMP3Encoding.Enabled = false;
+                m_EpubFileNamegroupBox.Enabled = false;
+            }
+        }
 
         public bool EPUB_CreateDummyTextInHtml 
         { 

@@ -35,6 +35,7 @@ namespace Obi.Dialogs
             this.m_cbDaisy3 = new System.Windows.Forms.CheckBox();
             this.m_cbDaisy202 = new System.Windows.Forms.CheckBox();
             this.m_cbEpub3 = new System.Windows.Forms.CheckBox();
+            this.m_cbXhtml = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // m_OKBtn
@@ -78,12 +79,19 @@ namespace Obi.Dialogs
             this.m_cbEpub3.Name = "m_cbEpub3";
             this.m_cbEpub3.UseVisualStyleBackColor = true;
             // 
+            // m_cbXhtml
+            // 
+            resources.ApplyResources(this.m_cbXhtml, "m_cbXhtml");
+            this.m_cbXhtml.Name = "m_cbXhtml";
+            this.m_cbXhtml.UseVisualStyleBackColor = true;
+            // 
             // chooseDaisy3orDaisy202
             // 
             this.AcceptButton = this.m_OKBtn;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_BtnCancel;
+            this.Controls.Add(this.m_cbXhtml);
             this.Controls.Add(this.m_cbEpub3);
             this.Controls.Add(this.m_cbDaisy202);
             this.Controls.Add(this.m_cbDaisy3);
@@ -93,6 +101,7 @@ namespace Obi.Dialogs
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "chooseDaisy3orDaisy202";
+            this.helpProvider1.SetShowHelp(this, ((bool)(resources.GetObject("$this.ShowHelp"))));
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,5 +115,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox m_cbDaisy3;
         private System.Windows.Forms.CheckBox m_cbDaisy202;
         private System.Windows.Forms.CheckBox m_cbEpub3;
+        private System.Windows.Forms.CheckBox m_cbXhtml;
     }
 }

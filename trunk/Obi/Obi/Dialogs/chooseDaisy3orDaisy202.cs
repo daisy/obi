@@ -41,6 +41,13 @@ namespace Obi.Dialogs
                 return m_cbEpub3.Checked;
             }
         }
+        public bool ExportXhtml
+        {
+            get
+            {
+                return m_cbXhtml.Checked;
+            }
+        }
 
 
         public Obi.ImportExport.ExportFormat chooseOption 
@@ -66,6 +73,7 @@ namespace Obi.Dialogs
             {
                 m_RestrictToSingleDAISYChoice = value;
                 m_cbEpub3.Enabled = !value;
+                m_cbXhtml.Enabled = !value;
             }
             }
 

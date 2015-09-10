@@ -2800,5 +2800,8 @@ Error text: {1}</value>
   <data name="KeyS_SelectEndOfPhrase" xml:space="preserve">
     <value>Select end of the phrase</value>
   </data>
+  <data name="default_XHTMLExport_dirname" xml:space="preserve">
+    <value>{0}Xhtml Export</value>
+  </data>
 
 </root>
