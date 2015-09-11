@@ -60,7 +60,7 @@ namespace Obi.ImportExport
 
             // write ncc file
             WriteXmlDocumentToFile(nccDocument,
-                Path.Combine(m_ExportDirectory, "ncc.html"));
+                Path.Combine(m_ExportDirectory, "Exported-Structure.html"));
 
         }
 
