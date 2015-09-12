@@ -86,18 +86,21 @@ namespace Obi.ImportExport
                         bool isFirstPhrase = true;
             //EmptyNode adjustedPageNode = m_NextSectionPageAdjustmentDictionary[section];
             bool isPreviousNodeEmptyPage = false;
-        
+
+            if (prevPageXmlNode != null)
+            {
+                XmlNode parent = prevPageXmlNode.ParentNode;
+                parent.RemoveChild(prevPageXmlNode);
+
+                bodyNode.AppendChild(prevPageXmlNode);
+                bodyNode.AppendChild(nccDocument.CreateElement(null, "br", bodyNode.NamespaceURI));
+                prevPageXmlNode = null;
+                //Console.WriteLine("Prev: " + prevPageXmlNode.InnerText);
+            }
+
             for (int i = 0; i < section.PhraseChildCount ; i++)
                 {//1
-                    if (i == 0 && prevPageXmlNode != null)
-                    {
-                        XmlNode parent = prevPageXmlNode.ParentNode;
-                        parent.RemoveChild(prevPageXmlNode);
-                        
-                        bodyNode.AppendChild(prevPageXmlNode);
-                        bodyNode.AppendChild(nccDocument.CreateElement(null, "br", bodyNode.NamespaceURI));
-                        Console.WriteLine("Prev: " + prevPageXmlNode.InnerText);
-                    }
+                    
                         EmptyNode phrase = section.PhraseChild(i);
                 
                 if ((phrase is PhraseNode && phrase.Used)
