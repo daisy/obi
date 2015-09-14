@@ -85,6 +85,7 @@ namespace Obi.ProjectView
                 {
                     if (time < m_audioSel.AudioRange.SelectionBeginTime)
                     {
+                        m_AudioBlock.UpdateCursorTime(m_audioSel.Node.Duration);
                         return;
                     }               
                 }
