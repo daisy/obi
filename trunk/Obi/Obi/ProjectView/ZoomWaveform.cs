@@ -31,7 +31,7 @@ namespace Obi.ProjectView
         private bool m_ResizeIsDone = false;
         private bool m_buttonSizeinit = false;
         private bool flag = false;
-        private AudioSelection audioSel;
+        private AudioSelection m_audioSel;
         private int m_PreviousHeight = 0;
         private bool m_ZoomfactorFlag = false;
         private int XVal = 0;
@@ -81,7 +81,14 @@ namespace Obi.ProjectView
         {
             if (m_AudioBlock != null)
             {
-                XVal = m_AudioBlock.UpdateCursorTime(time);
+                if (m_audioSel!=null && m_audioSel.AudioRange.SelectionBeginTime != m_audioSel.AudioRange.SelectionEndTime)
+                {
+                    if (time < m_audioSel.AudioRange.SelectionBeginTime)
+                    {
+                        return;
+                    }               
+                }
+                XVal = m_AudioBlock.UpdateCursorTime(time); 
 
                 if (m_ProjectView.TransportBar.CurrentPlaylist.CurrentPhrase != m_ProjectView.Selection.Node)
                 {
@@ -488,10 +495,10 @@ namespace Obi.ProjectView
                 initialWaveformWidth = m_AudioBlock.Waveform.Width;
                 if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection is AudioSelection)
                 {
-                    audioSel = (AudioSelection)m_ProjectView.Selection;
-                    if (audioSel.AudioRange.SelectionBeginTime != audioSel.AudioRange.SelectionEndTime)
+                    m_audioSel = (AudioSelection)m_ProjectView.Selection;
+                    if (m_audioSel.AudioRange.SelectionBeginTime != m_audioSel.AudioRange.SelectionEndTime)
                     {
-                        m_AudioBlock.SetTimeBoundsForWaveformDisplay(audioSel.AudioRange.SelectionBeginTime, audioSel.AudioRange.SelectionEndTime);
+                        m_AudioBlock.SetTimeBoundsForWaveformDisplay(m_audioSel.AudioRange.SelectionBeginTime, m_audioSel.AudioRange.SelectionEndTime);
                     }
                 }
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height-10);
@@ -1045,6 +1052,7 @@ namespace Obi.ProjectView
             if (m_Node is PhraseNode)
             {
                 m_ZoomIncrementFactor = 0;
+                m_audioSel = null;
                 m_AudioBlock.Waveform.Width = initialWaveformWidth;
                 m_AudioBlock.SetZoomFactorAndHeightForZoom(m_ZoomFactor, Height);
                 m_AudioBlock.Size = new Size(m_AudioBlock.Waveform.Width, panelZooomWaveform.Height - 10);
@@ -1061,10 +1069,10 @@ namespace Obi.ProjectView
         {
             if (m_ProjectView != null && m_ProjectView.Selection != null && m_ProjectView.Selection.Control != null && m_ProjectView.Selection is Obi.AudioSelection)
             {
-                audioSel = (AudioSelection)m_ProjectView.Selection;
-                if (audioSel.AudioRange.SelectionBeginTime != audioSel.AudioRange.SelectionEndTime)
+                m_audioSel = (AudioSelection)m_ProjectView.Selection;
+                if (m_audioSel.AudioRange.SelectionBeginTime != m_audioSel.AudioRange.SelectionEndTime)
                 {
-                    m_AudioBlock.SetTimeBoundsForWaveformDisplay(audioSel.AudioRange.SelectionBeginTime, audioSel.AudioRange.SelectionEndTime);
+                    m_AudioBlock.SetTimeBoundsForWaveformDisplay(m_audioSel.AudioRange.SelectionBeginTime, m_audioSel.AudioRange.SelectionEndTime);
                   
                 }
             }
