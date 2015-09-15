@@ -5155,6 +5155,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profile with the same name already exists.Do you want to overwrite it ?.
+        /// </summary>
+        internal static string Preferences_ProfileExists {
+            get {
+                return ResourceManager.GetString("Preferences_ProfileExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The selected preferences profile is loaded.
         /// </summary>
         internal static string Preferences_ProfileLoaded {

@@ -2349,6 +2349,16 @@ namespace Obi.Dialogs
             {
                 try
                 {
+                    string FileName = System.IO.Path.GetFileNameWithoutExtension(fileDialog.FileName);
+                    if (m_cb_SelectProfile.Items.Contains(FileName))
+                    {
+                        DialogResult result = MessageBox.Show(Localizer.Message("Preferences_ProfileExists"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                        if (result == DialogResult.Cancel)
+                        {
+                            return;
+                        }
+                    }
+                   
                     LoadPreferenceProfile(fileDialog.FileName);
                     // copy the profile file to custom profile directory
                     string customProfilesDirectory = GetCustomProfilesDirectory(true);
@@ -2356,9 +2366,12 @@ namespace Obi.Dialogs
                     string newCustomFilePath = System.IO.Path.Combine(customProfilesDirectory,
                         System.IO.Path.GetFileName(fileDialog.FileName));
                     System.IO.File.Copy(fileDialog.FileName, newCustomFilePath, true);
-                    m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
-                    m_cb_Profile1.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
-                    m_cb_Profile2.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                    if (!m_cb_SelectProfile.Items.Contains(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath)))
+                    {
+                        m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                        m_cb_Profile1.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                        m_cb_Profile2.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                    }
                 }
                 catch (System.Exception ex)
                 {

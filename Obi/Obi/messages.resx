@@ -2803,5 +2803,8 @@ Error text: {1}</value>
   <data name="default_XHTMLExport_dirname" xml:space="preserve">
     <value>{0}Xhtml Export</value>
   </data>
+  <data name="Preferences_ProfileExists" xml:space="preserve">
+    <value>Profile with the same name already exists.Do you want to overwrite it ?</value>
+  </data>
 
 </root>
