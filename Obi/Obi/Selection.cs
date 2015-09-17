@@ -228,6 +228,13 @@ namespace Obi
         {
             return String.Format(Localizer.Message("text_selection_to_string"), Node.ToString(), Control.ToString(), mText);
         }
+
+        public override bool CanPaste(Clipboard clipboard)
+        {
+            // allow windows paste command handle copy paste of text. To keep Obi paste deactivated, return false.
+            return false;
+        }
+
     }
 
     /// <summary>
