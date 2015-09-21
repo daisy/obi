@@ -5382,7 +5382,10 @@ for (int j = 0;
 
         public void ExportAudioOfSelectedNode()
         {
-            
+            if (this.TransportBar.IsPlayerActive)
+            {
+                this.TransportBar.Stop();
+            }
             if (!CanExportSelectedNodeAudio) return;
             string audioFileExportDirectory = ObiForm.ExportAudioDirectory;
             ObiNode nodeSelected = this.Selection.Node;
