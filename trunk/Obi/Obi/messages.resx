@@ -2780,7 +2780,7 @@ Error text: {1}</value>
     <comment>Directory dialog</comment>
   </data>
   <data name="Project_EnableMouseScrolling" xml:space="preserve">
-    <value>Enable Mouse with scrolling</value>
+    <value>Enable Mouse wheel scrolling</value>
   </data>
   <data name="CleanUp_Complete" xml:space="preserve">
     <value>Clean up operation is complete.</value>
