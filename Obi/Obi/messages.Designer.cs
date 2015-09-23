@@ -5272,7 +5272,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable Mouse with scrolling.
+        ///   Looks up a localized string similar to Enable Mouse wheel scrolling.
         /// </summary>
         internal static string Project_EnableMouseScrolling {
             get {
