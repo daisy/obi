@@ -249,6 +249,10 @@ namespace Obi.Dialogs
                     {
                         if (secNode.Level < LevelOfFirstSelectedSection)
                         {
+                            if (m_ProjectView.TransportBar.IsPlayerActive)
+                            {
+                                m_ProjectView.TransportBar.Stop();
+                            }
                             MessageBox.Show(Localizer.Message("MergeOptions_CannotSelect"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             m_lb_listofSectionsToMerge.SelectedItems.Clear();
                             return;
