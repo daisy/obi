@@ -1498,6 +1498,10 @@ namespace Obi.ProjectView
                                 SectionNode sibling = selectedSectionsForIncreaseLevel[0].PrecedingSibling;
                                 if (sibling == null)
                                 {
+                                    if (this.TransportBar.IsPlayerActive)
+                                    {
+                                        this.TransportBar.Stop();
+                                    }
                                     MessageBox.Show(Localizer.Message("SectionLevel_IncrementError"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
@@ -1623,6 +1627,10 @@ namespace Obi.ProjectView
                                 SectionNode sibling = selectedSectionsForDecreaseLevel[0].ParentAs<SectionNode> ();
                                 if (sibling == null)
                                 {
+                                    if (this.TransportBar.IsPlayerActive)
+                                    {
+                                        this.TransportBar.Stop();
+                                    }
                                     MessageBox.Show(Localizer.Message("SectionLevel_DecrementError"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
