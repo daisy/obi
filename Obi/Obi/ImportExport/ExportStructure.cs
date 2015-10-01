@@ -13,7 +13,7 @@ namespace Obi.ImportExport
 
         private string m_ExportDirectory;
         private ObiPresentation m_Presentation;
-
+        
         public ExportStructure(ObiPresentation presentation, string exportDirectory)
         {
             m_Presentation = presentation;
@@ -37,6 +37,7 @@ namespace Obi.ImportExport
             //m_ExportedSectionCount = 0;
 
             XmlNode prevPageXmlNode = null;
+            
             for (int i = 0; i < sectionsList.Count; i++)
             {
                 try
@@ -57,6 +58,38 @@ namespace Obi.ImportExport
                 }
             }
 
+            if (Profile_VA )
+            {
+                XmlNode bodyNode = nccDocument.GetElementsByTagName("body")[0];
+                int pageCounter = 0;
+                for ( int i=0 ; i<bodyNode.ChildNodes.Count; i++)
+                {//1
+                    XmlNode childNode = bodyNode.ChildNodes[i];
+                    if (childNode.Name == "h1" 
+                        || childNode.Name == "h2"
+                        || childNode.Name == "h3"
+                        || childNode.Name == "h4"
+                        || childNode.Name == "h5"
+                        || childNode.Name == "h6")
+                    {//2
+                        pageCounter = 0;
+                    }//-2
+                    if (childNode.Name == "span")
+                    {//2
+                        if (pageCounter > 0)
+                        {//3
+                            bodyNode.RemoveChild(childNode);
+                            Console.WriteLine("Removing span: " + childNode.InnerText);
+                        }//-3
+
+                        pageCounter++;
+                    }//-2
+                    if (childNode.Name == "br" && pageCounter > 2) //counter is incremented above 
+                    {//2
+                        bodyNode.RemoveChild(childNode);
+                    }//-2
+                    }//-1
+            }
 
             // write ncc file
             WriteXmlDocumentToFile(nccDocument,
@@ -82,6 +115,7 @@ namespace Obi.ImportExport
             XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, headingNode, "id", headingID);
         headingNode.AppendChild(nccDocument.CreateTextNode(section.Label)) ; 
             bodyNode.AppendChild ( headingNode );
+        
 
                         bool isFirstPhrase = true;
             //EmptyNode adjustedPageNode = m_NextSectionPageAdjustmentDictionary[section];
