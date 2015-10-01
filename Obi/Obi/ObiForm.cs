@@ -2731,7 +2731,7 @@ ref string exportDirectoryEPUB3)
                     ExportDialogDAISY3 =
                         new ExportDirectory(exportDirectoryDAISY3,
                                             mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat,string.Empty);
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY3.AdditionalTextForTitle = "DAISY 3";
                     ExportDialogDAISY3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2745,7 +2745,7 @@ ref string exportDirectoryEPUB3)
                     ExportDialogDAISY202 =
                         new ExportDirectory(exportDirectoryDAISY202,
                                             mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat,string.Empty);
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY202.AdditionalTextForTitle = "DAISY 2.02";
                     ExportDialogDAISY202.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2759,7 +2759,7 @@ ref string exportDirectoryEPUB3)
                     ExportDialogEPUB3 =
                         new ExportDirectory(exportDirectoryEPUB3,
                                             mSession.Path, true, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat,string.Empty);
                     //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogEPUB3.EpubLengthCheckboxEnabled = true;
                     ExportDialogEPUB3.CreateDummyTextCheckboxEnabled = true;
@@ -2778,7 +2778,7 @@ ref string exportDirectoryEPUB3)
                     //    new ExportDirectory(exportDirectoryDAISY202,
                     //                        mSession.Path, false, (mSettings.ExportEncodingBitRate),
                     //                        mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
-                    ExportDialogXhtml = new ExportDirectory(exportDirectoryXHTML, mSession.Path, false, (mSettings.ExportEncodingBitRate),false,string.Empty);
+                    ExportDialogXhtml = new ExportDirectory(exportDirectoryXHTML, mSession.Path, false, (mSettings.ExportEncodingBitRate), false, string.Empty, mSettings.SettingsName);
                         //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogXhtml.AdditionalTextForTitle = "Xhtml";
                     ExportDialogXhtml.XhtmlElmentsEnabled = false;
