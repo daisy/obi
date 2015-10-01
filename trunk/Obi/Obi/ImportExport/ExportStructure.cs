@@ -217,8 +217,47 @@ namespace Obi.ImportExport
             XmlNode bodyNode = nccDocument.CreateElement(null, "body", htmlNode.NamespaceURI);
             htmlNode.AppendChild(bodyNode);
 
+            // add css file
+            string cssFileName = CreateCSSFile();
+            if (cssFileName != null)
+            {
+                XmlNode linkNode = nccDocument.CreateElement("link", headNode.NamespaceURI);
+                XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, linkNode, "rel", "stylesheet");
+                XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, linkNode, "type", "text/css");
+                XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, linkNode, "href", cssFileName);
+                headNode.AppendChild(linkNode);
+            }
             return nccDocument;
         }
+
+        private string CreateCSSFile()
+        {
+            try
+            {
+                string cssFileName = "structure.css";
+                string cssPath = Path.Combine(m_ExportDirectory, cssFileName);
+                if (File.Exists(cssPath))
+                {
+                    File.Delete(cssPath);
+                }
+                StreamWriter sw = File.CreateText(cssPath);
+
+                sw.WriteLine("h1{font-family:Times New Roman;font-size:21px;}");
+                sw.WriteLine("h2{font-family:Times New Roman;font-size:19px;}");
+                sw.WriteLine("h3{font-family:Times New Roman;font-size:17px;}");
+                sw.WriteLine("h4{font-family:Times New Roman;font-size:15px;}");
+                sw.WriteLine("h5{font-family:Times New Roman;font-size:13px;}");
+                sw.WriteLine("h6{font-family:Times New Roman;font-size:11px;}");
+                sw.Close();
+                return cssFileName;
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            return null;
+        }
+
 
         public void WriteXmlDocumentToFile(XmlDocument xmlDoc, string path)
         {
