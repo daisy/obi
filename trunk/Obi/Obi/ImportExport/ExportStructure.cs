@@ -20,7 +20,7 @@ namespace Obi.ImportExport
             m_ExportDirectory = exportDirectory;
     }
 
-        private bool m_Profile_VA= true;
+        private bool m_Profile_VA= false;
         public bool Profile_VA
         {
             get { return m_Profile_VA; }
@@ -252,15 +252,16 @@ namespace Obi.ImportExport
             htmlNode.AppendChild(bodyNode);
 
             // add css file
-            string cssFileName = CreateCSSFile();
-            if (cssFileName != null)
-            {
-                XmlNode linkNode = nccDocument.CreateElement("link", headNode.NamespaceURI);
-                XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, linkNode, "rel", "stylesheet");
-                XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, linkNode, "type", "text/css");
-                XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, linkNode, "href", cssFileName);
-                headNode.AppendChild(linkNode);
-            }
+                string cssFileName = CreateCSSFile();
+                if (cssFileName != null)
+                {
+                    XmlNode linkNode = nccDocument.CreateElement("link", headNode.NamespaceURI);
+                    XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, linkNode, "rel", "stylesheet");
+                    XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, linkNode, "type", "text/css");
+                    XmlDocumentHelper.CreateAppendXmlAttribute(nccDocument, linkNode, "href", cssFileName);
+                    headNode.AppendChild(linkNode);
+                }
+            
             return nccDocument;
         }
 

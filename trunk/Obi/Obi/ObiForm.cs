@@ -2731,7 +2731,7 @@ ref string exportDirectoryEPUB3)
                     ExportDialogDAISY3 =
                         new ExportDirectory(exportDirectoryDAISY3,
                                             mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat,string.Empty);
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY3.AdditionalTextForTitle = "DAISY 3";
                     ExportDialogDAISY3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2745,7 +2745,7 @@ ref string exportDirectoryEPUB3)
                     ExportDialogDAISY202 =
                         new ExportDirectory(exportDirectoryDAISY202,
                                             mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat,string.Empty);
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY202.AdditionalTextForTitle = "DAISY 2.02";
                     ExportDialogDAISY202.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2759,7 +2759,7 @@ ref string exportDirectoryEPUB3)
                     ExportDialogEPUB3 =
                         new ExportDirectory(exportDirectoryEPUB3,
                                             mSession.Path, true, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat,string.Empty);
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
                     //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogEPUB3.EpubLengthCheckboxEnabled = true;
                     ExportDialogEPUB3.CreateDummyTextCheckboxEnabled = true;
@@ -2778,10 +2778,17 @@ ref string exportDirectoryEPUB3)
                     //    new ExportDirectory(exportDirectoryDAISY202,
                     //                        mSession.Path, false, (mSettings.ExportEncodingBitRate),
                     //                        mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
-                    ExportDialogXhtml = new ExportDirectory(exportDirectoryXHTML, mSession.Path, false, (mSettings.ExportEncodingBitRate), false, string.Empty, mSettings.SettingsName);
+                    ExportDialogXhtml = new ExportDirectory(exportDirectoryXHTML, mSession.Path, false, (mSettings.ExportEncodingBitRate),false,string.Empty);
                         //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
-                    ExportDialogXhtml.AdditionalTextForTitle = "Xhtml";
                     ExportDialogXhtml.XhtmlElmentsEnabled = false;
+                    if (mSettings.SettingsName.Contains("Profile-1-VA"))
+                    {
+                        ExportDialogXhtml.AdditionalTextForTitle = "Xhtml (VA profile)";
+                    }
+                    else
+                    {
+                        ExportDialogXhtml.AdditionalTextForTitle = "Xhtml structure";
+                    }
                     if (ExportDialogXhtml.ShowDialog() != DialogResult.OK) ExportDialogXhtml = null;
 
                 }
@@ -2873,6 +2880,7 @@ ref string exportDirectoryEPUB3)
                 else if (ExportDialogXhtml != null)
                 {
                     ImportExport.ExportStructure stru = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportDirectoryXHTML);
+                    if (mSettings.SettingsName.Contains("Profile-1-VA")) stru.Profile_VA = true;
                     stru.CreateFileSet();
                     return true;
                 }

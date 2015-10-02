@@ -23,8 +23,8 @@ namespace Obi.Dialogs
         private List<double> m_AmrBitrates; 
         private List<double> m_3gpBitrates;
         private List<string> m_EncodingOptions;
-
-        public ExportDirectory(string path, string xukPath, bool encodeToMP3, double bitRate, bool appendSectionNameToAudioFile, string encodingType, string settingsName)
+      
+        public ExportDirectory(string path, string xukPath, bool encodeToMP3, double bitRate, bool appendSectionNameToAudioFile,string encodingType)
         {
             InitializeComponent();
             mPathTextBox.Text = path;
@@ -129,15 +129,8 @@ namespace Obi.Dialogs
                         break;
                     }
                 }
-            }
-            if (settingsName != string.Empty)
-            {
-                string[] str = settingsName.Split(new string[] { " profile for" }, StringSplitOptions.None);
-                if (str[0] == "Profile-1-VA")
-                {
-                    this.Text = this.Text + "(VA)";
-                }
-            }
+            }            
+
             m_checkBoxEncoder.Checked = encodeToMP3;
             m_comboBoxEncodingType.Enabled = m_checkBoxEncoder.Checked;
             m_ComboBoxBitrate.Enabled = m_checkBoxEncoder.Checked;
