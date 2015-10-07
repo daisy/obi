@@ -2879,6 +2879,7 @@ ref string exportDirectoryEPUB3)
                 }
                 else if (ExportDialogXhtml != null)
                 {
+                    exportDirectoryXHTML = ExportDialogXhtml.DirectoryPath;
                     ImportExport.ExportStructure stru = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportDirectoryXHTML);
                     if (mSettings.SettingsName.Contains("Profile-1-VA")) stru.Profile_VA = true;
                     stru.CreateFileSet();
