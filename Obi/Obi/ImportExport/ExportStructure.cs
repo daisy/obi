@@ -62,7 +62,9 @@ namespace Obi.ImportExport
             {
                 XmlNode bodyNode = nccDocument.GetElementsByTagName("body")[0];
                 int pageCounter = 0;
-                for ( int i=0 ; i<bodyNode.ChildNodes.Count; i++)
+                List<XmlNode> nodesToRemove = new List<XmlNode>();
+                
+                                for ( int i=0 ; i<bodyNode.ChildNodes.Count; i++)
                 {//1
                     XmlNode childNode = bodyNode.ChildNodes[i];
                     if (childNode.Name == "h1" 
@@ -73,22 +75,34 @@ namespace Obi.ImportExport
                         || childNode.Name == "h6")
                     {//2
                         pageCounter = 0;
+                        Console.WriteLine("Heading has reset page counter: " + pageCounter);
                     }//-2
                     if (childNode.Name == "span")
                     {//2
                         if (pageCounter > 0)
                         {//3
-                            bodyNode.RemoveChild(childNode);
+                            //bodyNode.RemoveChild(childNode);
+                            nodesToRemove.Add(childNode);
                             Console.WriteLine("Removing span: " + childNode.InnerText);
                         }//-3
 
                         pageCounter++;
+                        Console.WriteLine("Incrementing page counter: " + pageCounter);
                     }//-2
-                    if (childNode.Name == "br" && pageCounter > 2) //counter is incremented above 
+                    if (childNode.Name == "br" && pageCounter > 1) //counter is incremented above 
                     {//2
-                        bodyNode.RemoveChild(childNode);
+                        //bodyNode.RemoveChild(childNode);
+                        nodesToRemove.Add(childNode);
                     }//-2
-                    }//-1
+                }//-1
+                // remove all XmlNodes collected for removal
+                    if (nodesToRemove.Count > 0)
+                    {
+                        for (int i = 0; i < nodesToRemove.Count; i++)
+                        {
+                            bodyNode.RemoveChild(nodesToRemove[i]);
+                        }
+                    }
             }
 
             // write ncc file
