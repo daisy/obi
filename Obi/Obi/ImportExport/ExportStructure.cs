@@ -61,8 +61,12 @@ namespace Obi.ImportExport
             if (Profile_VA )
             {
                 XmlNode bodyNode = nccDocument.GetElementsByTagName("body")[0];
-                int pageCounter = 0;
+                int pageCounter = -1;
                 List<XmlNode> nodesToRemove = new List<XmlNode>();
+
+                XmlNode lastPageNode = null;
+                XmlNode prevHeading = null;
+                Dictionary<XmlNode, XmlNode> headingToNewPageMap = new Dictionary<XmlNode, XmlNode>();
                 
                                 for ( int i=0 ; i<bodyNode.ChildNodes.Count; i++)
                 {//1
@@ -74,16 +78,26 @@ namespace Obi.ImportExport
                         || childNode.Name == "h5"
                         || childNode.Name == "h6")
                     {//2
+                        if (pageCounter == 0 && lastPageNode != null && prevHeading != null)
+                        {
+                            XmlNode newPage = lastPageNode.Clone();
+                            newPage.Attributes.GetNamedItem("id").Value = newPage.Attributes.GetNamedItem("id").Value + "_1";
+                            
+                            headingToNewPageMap.Add(prevHeading, newPage);
+                            
+                        }
                         pageCounter = 0;
-                        Console.WriteLine("Heading has reset page counter: " + pageCounter);
+                        prevHeading = childNode;
+                        //Console.WriteLine("Heading has reset page counter: " + pageCounter);
                     }//-2
                     if (childNode.Name == "span")
                     {//2
+                        lastPageNode = childNode;
                         if (pageCounter > 0)
                         {//3
                             //bodyNode.RemoveChild(childNode);
                             nodesToRemove.Add(childNode);
-                            Console.WriteLine("Removing span: " + childNode.InnerText);
+                            //Console.WriteLine("Removing span: " + childNode.InnerText);
                         }//-3
 
                         pageCounter++;
@@ -95,6 +109,15 @@ namespace Obi.ImportExport
                         nodesToRemove.Add(childNode);
                     }//-2
                 }//-1
+                // check if last heading has pages
+                if (pageCounter == 0 && lastPageNode != null && prevHeading != null)
+                {
+                    XmlNode newPage = lastPageNode.Clone();
+                    newPage.Attributes.GetNamedItem("id").Value = newPage.Attributes.GetNamedItem("id").Value + "_1";
+
+                    headingToNewPageMap.Add(prevHeading, newPage);
+                }
+
                 // remove all XmlNodes collected for removal
                     if (nodesToRemove.Count > 0)
                     {
@@ -102,6 +125,13 @@ namespace Obi.ImportExport
                         {
                             bodyNode.RemoveChild(nodesToRemove[i]);
                         }
+                    }
+                // add new pages for the headings that do not have pages
+                    foreach( XmlNode headingNode in headingToNewPageMap.Keys)
+                    {   
+                        bodyNode.InsertAfter(nccDocument.CreateElement("br"), headingNode) ;
+                        bodyNode.InsertAfter(headingToNewPageMap[headingNode], headingNode);
+                        Console.WriteLine("Adding to heading " + headingNode.InnerText );
                     }
             }
 
