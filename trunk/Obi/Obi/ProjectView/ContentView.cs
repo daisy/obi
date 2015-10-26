@@ -1166,13 +1166,13 @@ namespace Obi.ProjectView
                     m_ColorBackgroundBeforeFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
                 }
 
-                if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == mProjectView.ObiForm.Settings.ColorSettings.RecordingHighlightPhraseColor)
+                if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_TODO)
                 {
                     mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
                 }
                 else
                 {
-                    mPlaybackBlock.ColorSettings.BlockBackColor_Selected = mProjectView.ObiForm.Settings.ColorSettings.RecordingHighlightPhraseColor;
+                    mPlaybackBlock.ColorSettings.BlockBackColor_Selected = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_TODO;
                 }
                 //  m_timeElapsed = time;
 
