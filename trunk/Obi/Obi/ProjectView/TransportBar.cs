@@ -3314,6 +3314,7 @@ namespace Obi.ProjectView
                 // first delete the subsequent phrases in the section
                 try
                 {
+                    if (SelectionChangedPlaybackEnabled) SelectionChangedPlaybackEnabled = false;
                     EmptyNode selectedNode = mView.Selection != null && mView.Selection.Node is EmptyNode ? (EmptyNode)mView.Selection.Node : null;
                     NodeSelection currentSelection = mView.Selection;
                     if (selectedNode != null && selectedNode is   PhraseNode && selectedNode.Index < selectedNode.ParentAs<SectionNode>().PhraseChildCount - 1)
@@ -3374,6 +3375,8 @@ namespace Obi.ProjectView
                         if (mResumeRecordingPhrase != null) mResumeRecordingPhrase = null;
                         StartRecordingDirectly_Internal(true);
                     }
+                    if (SelectionChangedPlaybackEnabled != mView.ObiForm.Settings.PlayOnNavigate)
+                        SelectionChangedPlaybackEnabled = mView.ObiForm.Settings.PlayOnNavigate;
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerAsync();
                 
