@@ -2792,7 +2792,7 @@ ref string exportDirectoryEPUB3)
                     if (ExportDialogXhtml.ShowDialog() != DialogResult.OK) ExportDialogXhtml = null;
 
                 }
-                if (ExportDialogDAISY3 != null || ExportDialogDAISY202 != null || ExportDialogEPUB3 != null)
+                if (ExportDialogDAISY3 != null || ExportDialogDAISY202 != null || ExportDialogEPUB3 != null || ExportDialogXhtml != null)
                 {
 
                     // Need the trailing slash, otherwise exported data ends up in a folder one level
@@ -2800,16 +2800,23 @@ ref string exportDirectoryEPUB3)
                     string exportPathDAISY3 = ExportDialogDAISY3 != null ? ExportDialogDAISY3.DirectoryPath : null;
                     string exportPathDAISY202 = ExportDialogDAISY202 != null ? ExportDialogDAISY202.DirectoryPath : null;
                     string exportPathEPUB3 = ExportDialogEPUB3 != null ? ExportDialogEPUB3.DirectoryPath : null;
+                    string exportPathXhtml = ExportDialogXhtml != null ? ExportDialogXhtml.DirectoryPath : null;
 
-                    Dialogs.ExportDirectory dialog = ExportDialogDAISY3 != null ? ExportDialogDAISY3 : ExportDialogDAISY202 != null ? ExportDialogDAISY202 : ExportDialogEPUB3;
-                    mSettings.Export_EncodeAudioFiles = dialog.EncodeAudioFiles;
-                    mSettings.ExportEncodingBitRate = dialog.BitRate;
-                    mSettings.EncodingFileFormat = dialog.EncodingFileFormat.ToString();
-                    //mSettings.Encoding_SelectedIndex = dialog.EncodingFileFormat;
-                    mSettings.Export_AppendSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName;
-                    mSettings.Export_LimitAudioFilesLength = dialog.AppendSectionNameToAudioFileName &&
-                                                             dialog.LimitLengthOfAudioFileNames;
-                    mSettings.Export_AudioFilesNamesLengthLimit = dialog.AudioFileNameCharsLimit;
+                    Dialogs.ExportDirectory dialog = ExportDialogDAISY3 != null ? ExportDialogDAISY3 : 
+                        ExportDialogDAISY202 != null ? ExportDialogDAISY202 : 
+                        ExportDialogEPUB3 != null? ExportDialogEPUB3: ExportDialogXhtml;
+
+                    if (dialog != ExportDialogXhtml)
+                    {
+                        mSettings.Export_EncodeAudioFiles = dialog.EncodeAudioFiles;
+                        mSettings.ExportEncodingBitRate = dialog.BitRate;
+                        mSettings.EncodingFileFormat = dialog.EncodingFileFormat.ToString();
+                        //mSettings.Encoding_SelectedIndex = dialog.EncodingFileFormat;
+                        mSettings.Export_AppendSectionNameToAudioFile = dialog.AppendSectionNameToAudioFileName;
+                        mSettings.Export_LimitAudioFilesLength = dialog.AppendSectionNameToAudioFileName &&
+                                                                 dialog.LimitLengthOfAudioFileNames;
+                        mSettings.Export_AudioFilesNamesLengthLimit = dialog.AudioFileNameCharsLimit;
+                    }
                     if (ExportDialogEPUB3 != null && ExportDialogEPUB3.EpubLengthCheckboxEnabled) mSettings.Export_EPUBFileNameLengthLimit = ExportDialogEPUB3.EPUBFileLength;
                     if (ExportDialogEPUB3 != null) mSettings.Export_EPUBCreateDummyText = ExportDialogEPUB3.EPUB_CreateDummyTextInHtml;
                     if (!string.IsNullOrEmpty(exportPathDAISY3) && !exportPathDAISY3.EndsWith(Path.DirectorySeparatorChar.ToString()))
@@ -2822,6 +2829,10 @@ ref string exportDirectoryEPUB3)
                         exportPathDAISY202 += Path.DirectorySeparatorChar;
                     }
 
+                    if (!string.IsNullOrEmpty(exportPathXhtml) && !exportPathXhtml.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                    {
+                        exportPathXhtml  += Path.DirectorySeparatorChar;
+                    }
                     if (ExportDialogDAISY3 != null)
                     {
                         DAISY3ExportInstance = new Obi.ImportExport.DAISY3_ObiExport(
@@ -2868,23 +2879,26 @@ ref string exportDirectoryEPUB3)
                         EPUB3_ExportInstance.EncodingFileFormat = ExportDialogEPUB3.EncodingFileFormat;
                     }
                     if (ExportDialogXhtml != null)
-                    {
-                        ImportExport.ExportStructure stru = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportPathDAISY202);
+                    {   
+                        ImportExport.ExportStructure stru = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportDirectoryXHTML);
+                        if (mSettings.SettingsName.Contains("Profile-1-VA")) stru.Profile_VA = true;
                         stru.CreateFileSet();
+                        //ImportExport.ExportStructure stru = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportPathDAISY202);
+                        //stru.CreateFileSet();
                     }
                     exportDirectoryDAISY202 = exportPathDAISY202;
                     exportDirectoryDAISY3 = exportPathDAISY3;
                     exportDirectoryEPUB3 = exportPathEPUB3;
                     return true;
                 }
-                else if (ExportDialogXhtml != null)
-                {
-                    exportDirectoryXHTML = ExportDialogXhtml.DirectoryPath;
-                    ImportExport.ExportStructure stru = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportDirectoryXHTML);
-                    if (mSettings.SettingsName.Contains("Profile-1-VA")) stru.Profile_VA = true;
-                    stru.CreateFileSet();
-                    return true;
-                }
+                //else if (ExportDialogXhtml != null)
+                //{
+                    //exportDirectoryXHTML = ExportDialogXhtml.DirectoryPath;
+                    //ImportExport.ExportStructure stru = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportDirectoryXHTML);
+                    //if (mSettings.SettingsName.Contains("Profile-1-VA")) stru.Profile_VA = true;
+                    //stru.CreateFileSet();
+                    //return true;
+                //}
                 else
                 {
                     return false;
