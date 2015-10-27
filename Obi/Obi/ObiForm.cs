@@ -2889,6 +2889,7 @@ ref string exportDirectoryEPUB3)
                     exportDirectoryDAISY202 = exportPathDAISY202;
                     exportDirectoryDAISY3 = exportPathDAISY3;
                     exportDirectoryEPUB3 = exportPathEPUB3;
+                    exportDirectoryXHTML = exportPathXhtml;
                     return true;
                 }
                 //else if (ExportDialogXhtml != null)
