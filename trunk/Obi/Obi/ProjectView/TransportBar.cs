@@ -1064,8 +1064,7 @@ namespace Obi.ProjectView
         private delegate void UpdateTimeDisplay_Delegate();
         private void UpdateTimeDisplay()
          {
-             if (mRecordingSession != null)
-             {
+             
                  if (this.InvokeRequired)
                  {
                      this.Invoke(new UpdateTimeDisplay_Delegate(UpdateTimeDisplay));
@@ -1084,12 +1083,13 @@ namespace Obi.ProjectView
                      }
 
                      if (mState == State.Monitoring)
-                     {
+                     {   
                          mTimeDisplayBox.Text = "--:--:--";
                          mDisplayBox.SelectedIndex = ELAPSED_INDEX;
                      }
                      else if (mState == State.Recording && mRecordingSession.AudioRecorder.RecordingPCMFormat != null)
                      {
+                         if(mRecordingSession == null ) return;
                          //mRecordingSession.AudioRecorder.TimeOfAsset
                          double timeOfAssetMilliseconds =
                             (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64(mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
@@ -1127,7 +1127,7 @@ namespace Obi.ProjectView
                              mCurrentPlaylist.RemainingTime
                                  );
                      }
-                 }
+                 
              }
          }
 
