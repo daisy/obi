@@ -5656,7 +5656,7 @@ ref string exportDirectoryEPUB3)
                     stopWatch.Start();
                     if (mSettings.Project_EPUBCheckTimeOutEnabled)
                     {
-                        epubCheckProcess.WaitForExit(18);
+                        epubCheckProcess.WaitForExit(180000);
                         if (!epubCheckProcess.HasExited)
                         {
                             epubCheckProcess.CloseMainWindow();
