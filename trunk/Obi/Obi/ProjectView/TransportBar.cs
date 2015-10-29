@@ -3164,7 +3164,8 @@ namespace Obi.ProjectView
                 {
                     
 
-                    PhraseNode node = mCurrentPlaylist.CurrentPhrase;
+                    PhraseNode node = mCurrentPlaylist is PreviewPlaylist ? ((PreviewPlaylist)mCurrentPlaylist).RevertPhrase: 
+                        mCurrentPlaylist.CurrentPhrase;
                     double time = mCurrentPlaylist is PreviewPlaylist ?
                         ((PreviewPlaylist)mCurrentPlaylist).RevertTime : mCurrentPlaylist.CurrentTimeInAsset;
                     if (mState == State.Playing ||  mState == State.Paused) Stop ();
