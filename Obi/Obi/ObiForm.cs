@@ -2517,6 +2517,7 @@ namespace Obi
                 string exportPathDAISY3 = "";
                 string exportPathDAISY202 = "";
                 string exportPathEPUB3 = "";
+                string exportPathXHTML = "";
 
                 urakawa.daisy.export.Daisy3_Export DAISY3ExportInstance = null;
                 urakawa.daisy.export.Daisy3_Export DAISY202ExportInstance = null;
@@ -2562,7 +2563,8 @@ namespace Obi
                                     ref DAISY202ExportInstance,
                                     ref exportPathDAISY202,
                                     ref EPUB3_ExportInstance,
-                                    ref exportPathEPUB3) == false)
+ref exportPathEPUB3,
+                                    ref exportPathXHTML) == false)
                                 {
                                     return;
                                 }
@@ -2650,6 +2652,17 @@ namespace Obi
                                     displayPath = displayPath+ "\n" +   exportPathEPUB3;
                                 }
                             }
+                            if (exportPathXHTML != null)
+                            {
+                                if (string.IsNullOrEmpty(displayPath))
+                                {
+                                    displayPath = exportPathXHTML;
+                                }
+                                else
+                                {
+                                    displayPath = displayPath + "\n" + exportPathXHTML;
+                                }
+                            }
                             MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), displayPath),
                                             Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK,
                                             MessageBoxIcon.Information);
@@ -2681,11 +2694,12 @@ namespace Obi
             private bool ConfigureExportWithUserInterface(ref urakawa.daisy.export.Daisy3_Export DAISY3ExportInstance,
 ref string exportDirectoryDAISY3,
                 ref urakawa.daisy.export.Daisy3_Export DAISY202ExportInstance,
-ref string exportDirectoryDAISY202,
+                ref string exportDirectoryDAISY202,
                 ref urakawa.daisy.export.Daisy3_Export EPUB3_ExportInstance,
-ref string exportDirectoryEPUB3)
+                ref string exportDirectoryEPUB3,
+                ref  string exportDirectoryXHTML )
             {
-                string exportDirectoryXHTML = "";
+                
                 Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202();
                 if (chooseDialog.ShowDialog() == DialogResult.OK)
                 {
