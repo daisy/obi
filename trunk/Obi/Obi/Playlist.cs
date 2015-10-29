@@ -1566,7 +1566,13 @@ namespace Obi
                 }
         }
 
-        
+        public void EnsureDisAssociationEvents()
+        {
+            base.Audioplayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
+            Console.WriteLine("Pausing: " + CurrentPhrase + " : " + RevertTime);
+            PauseFromStopped(mRevertTime);
+            m_IsPreviewComplete = true;
+        }       
 
     }
 }

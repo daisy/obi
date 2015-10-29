@@ -1415,6 +1415,7 @@ namespace Obi.ProjectView
                     mLocalPlaylist = new Playlist(mPlayer, mView.Selection, mPlayQAPlaylist);
                 }
                 SetPlaylistEvents(mLocalPlaylist);
+                if (mCurrentPlaylist is PreviewPlaylist && !((PreviewPlaylist)mCurrentPlaylist).IsPreviewComplete) ((PreviewPlaylist)mCurrentPlaylist).EnsureDisAssociationEvents(); //added on Oct 29, 2015, precautionary for beta release, will be reviewed after release 
                 mCurrentPlaylist = mLocalPlaylist;
                 if (neglectSelection && !m_IsPlaySectionInspiteOfPhraseSelection)
                 {
@@ -1745,6 +1746,7 @@ namespace Obi.ProjectView
                 SelectionChangedPlaybackEnabled = false;
                 mCurrentPlaylist.Stop ();
                 mView.SetPlaybackPhraseAndTime ( null, 0.0 );
+                
                 if (!(mCurrentPlaylist is PreviewPlaylist))
                 {
                     mCurrentPlaylist = mMasterPlaylist; //@masternewbehaviour
