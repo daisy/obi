@@ -191,7 +191,7 @@ namespace Obi
             }
         }
 
-        // For post Obi 3.7
+        // For Obi 3.8 beta
         [OptionalField]
         public string Audio_RecordingToolbarProfile1;
 
