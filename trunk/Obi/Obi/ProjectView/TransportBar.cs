@@ -4358,7 +4358,10 @@ SelectionChangedPlaybackEnabled = false;
 
                     if (time > 0  && mView.Selection.Node is PhraseNode) 
                     {
+                        bool playOnNavigateStatus = SelectionChangedPlaybackEnabled;
+                        SelectionChangedPlaybackEnabled = false;
                         mView.Selection = new AudioSelection((PhraseNode) mView.Selection.Node, mView.Selection.Control, new AudioRange(time));
+                        SelectionChangedPlaybackEnabled = playOnNavigateStatus;
                         }
                     PlayOrResume(nodeSelect);
                 }
