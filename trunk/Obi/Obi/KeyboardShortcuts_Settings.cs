@@ -47,6 +47,8 @@ namespace Obi
         public KeyboardShortcut ContentView_TransportBarPreviewUptoSelection = new KeyboardShortcut(Keys.Shift | Keys.X, "KeyS_TransportBarPreviewUptoSelection");
         public KeyboardShortcut ContentView_TransportBarExpandPlayOptions = new KeyboardShortcut(Keys.Control | Keys.F7, "KeysS_TransportBarExpandPlayOptions");
         public KeyboardShortcut ContentView_TransportBarExpandRecordOptions = new KeyboardShortcut(Keys.Control | Keys.F8, "KeysS_TransportBarExpandRecordOptions");
+        // Obi 3.8 beta
+        [OptionalField]
         public KeyboardShortcut ContentView_TransportBarExpandSwitchProfile = new KeyboardShortcut(Keys.Control | Keys.F5, "KeysS_TransportBarExpandSwitchProfile");
 
         public KeyboardShortcut ContentView_ZoomWaveformPanel = new KeyboardShortcut(Keys.Z, "KeyS_ZoomWaveformPanel");
@@ -361,7 +363,7 @@ namespace Obi
 
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarExpandPlayOptions.Description), ContentView_TransportBarExpandPlayOptions);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarExpandRecordOptions.Description), ContentView_TransportBarExpandRecordOptions);
-            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarExpandSwitchProfile.Description), ContentView_TransportBarExpandSwitchProfile);
+            if(ContentView_TransportBarExpandSwitchProfile != null)  KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_TransportBarExpandSwitchProfile.Description), ContentView_TransportBarExpandSwitchProfile);
 
 
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ZoomWaveformPanel.Description), ContentView_ZoomWaveformPanel);
@@ -396,8 +398,9 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ScrollUp_LargeIncrementWithSelection.Description), ContentView_ScrollUp_LargeIncrementWithSelection);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ScrollUp_SmallIncrementWithSelection.Description), ContentView_ScrollUp_SmallIncrementWithSelection);
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_ScrollDown_SmallIncrementWithSelection.Description), ContentView_ScrollDown_SmallIncrementWithSelection);
-            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectStartOfThePhrase.Description), ContentView_SelectStartOfThePhrase);
-            KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectEndOfPhrase.Description), ContentView_SelectEndOfPhrase);
+            if(ContentView_SelectStartOfThePhrase != null)  KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectStartOfThePhrase.Description), ContentView_SelectStartOfThePhrase);
+            if(ContentView_SelectEndOfPhrase != null) KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectEndOfPhrase.Description), ContentView_SelectEndOfPhrase);
+
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_MoveToNextViewClockwise.Description), ProjectView_MoveToNextViewClockwise);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_MoveToPreviousViewAnticlockwise.Description), ProjectView_MoveToPreviousViewAnticlockwise);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_ToggleBetweenContentViewAndTOCView.Description), ProjectView_ToggleBetweenContentViewAndTOCView);
