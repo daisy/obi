@@ -2522,7 +2522,7 @@ namespace Obi
                 urakawa.daisy.export.Daisy3_Export DAISY3ExportInstance = null;
                 urakawa.daisy.export.Daisy3_Export DAISY202ExportInstance = null;
                 urakawa.daisy.export.Daisy3_Export EPUB3_ExportInstance = null;
-
+                ImportExport.ExportStructure XHTML_ExportInstance = null;
                 
 
                 
@@ -2564,6 +2564,7 @@ namespace Obi
                                     ref exportPathDAISY202,
                                     ref EPUB3_ExportInstance,
 ref exportPathEPUB3,
+ref XHTML_ExportInstance,
                                     ref exportPathXHTML) == false)
                                 {
                                     return;
@@ -2593,6 +2594,10 @@ ref exportPathEPUB3,
 
                                                            mSession.Presentation.ExportToZ(exportPathEPUB3, mSession.Path,
                                                                                            EPUB3_ExportInstance);
+                                                       }
+                                                       if (XHTML_ExportInstance != null)
+                                                       {
+                                                           XHTML_ExportInstance.CreateFileSet();
                                                        }
                                                    });
 
@@ -2697,6 +2702,7 @@ ref string exportDirectoryDAISY3,
                 ref string exportDirectoryDAISY202,
                 ref urakawa.daisy.export.Daisy3_Export EPUB3_ExportInstance,
                 ref string exportDirectoryEPUB3,
+                ref  ImportExport.ExportStructure XHTML_ExportInstance, 
                 ref  string exportDirectoryXHTML )
             {
                 
@@ -2894,11 +2900,9 @@ ref string exportDirectoryDAISY3,
                     }
                     if (ExportDialogXhtml != null)
                     {   
-                        ImportExport.ExportStructure stru = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportDirectoryXHTML);
-                        if (mSettings.SettingsName.Contains("Profile-1-VA")) stru.Profile_VA = true;
-                        stru.CreateFileSet();
-                        //ImportExport.ExportStructure stru = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportPathDAISY202);
-                        //stru.CreateFileSet();
+                        XHTML_ExportInstance = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportDirectoryXHTML);
+                        if (mSettings.SettingsName.Contains("Profile-1-VA")) XHTML_ExportInstance.Profile_VA = true;
+                        
                     }
                     exportDirectoryDAISY202 = exportPathDAISY202;
                     exportDirectoryDAISY3 = exportPathDAISY3;
