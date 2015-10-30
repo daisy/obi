@@ -100,7 +100,13 @@ namespace Obi
         public KeyboardShortcut ContentView_ScrollUp_LargeIncrementWithSelection = new KeyboardShortcut(Keys.PageUp, "KeyS_ScrollUp_LargeIncrementWithSelection");
         public KeyboardShortcut ContentView_ScrollDown_SmallIncrementWithSelection = new KeyboardShortcut(Keys.Down, "KeyS_ScrollDown_SmallIncrementWithSelection");
         public KeyboardShortcut ContentView_ScrollUp_SmallIncrementWithSelection = new KeyboardShortcut(Keys.Up, "KeyS_ScrollUp_SmallIncrementWithSelection");
+
+        // Obi 3.8 beta
+        [OptionalField]
         public KeyboardShortcut ContentView_SelectStartOfThePhrase = new KeyboardShortcut(Keys.Home | Keys.Alt | Keys.Control, "KeyS_SelectStartOfThePhrase");
+
+        // Obi 3.8 beta
+        [OptionalField]
         public KeyboardShortcut ContentView_SelectEndOfPhrase = new KeyboardShortcut(Keys.End | Keys.Alt | Keys.Control, "KeyS_SelectEndOfPhrase");
 
         //project view shortcuts
