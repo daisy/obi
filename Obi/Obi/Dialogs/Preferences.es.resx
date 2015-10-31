@@ -1956,7 +1956,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mFullNameTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>138, 7</value>
+    <value>128, 7</value>
   </data>
   <data name="mFullNameTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
