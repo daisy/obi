@@ -842,7 +842,7 @@ namespace Obi.ProjectView
                     treeNode.BackColor = mProjectView.ObiForm.Settings.ColorSettingsHC.EmptySectionBackgroundColor; ;
                 }
                 treeNode.ForeColor = SystemColors.ControlText;
-                System.Media.SystemSounds.Asterisk.Play();
+                
             }
             else if(m_HighlightedSectionNodeWithoutSelection!=(SectionNode)node)
             {
