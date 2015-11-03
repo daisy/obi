@@ -2806,5 +2806,8 @@ Error text: {1}</value>
   <data name="Preferences_ProfileExists" xml:space="preserve">
     <value>Profile with the same name already exists.Do you want to overwrite it ?</value>
   </data>
+  <data name="Audio_EnableFileDataProviderPreservation" xml:space="preserve">
+    <value>Skip already cleaned up files while clean-up</value>
+  </data>
 
 </root>
