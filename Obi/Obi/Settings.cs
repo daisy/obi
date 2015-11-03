@@ -211,7 +211,9 @@ namespace Obi
         [OptionalField]
         public bool Project_EnableMouseScrolling;
 
-
+        // for Obi 3.8
+        [OptionalField]
+        public bool Audio_EnableFileDataProviderPreservation;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -331,6 +333,7 @@ namespace Obi
             settings.Audio_PlaySectionUsingPlayBtn = false;
             settings.Audio_LocalRecordingDirectory = null;
             settings.Project_EnableMouseScrolling = true;
+            settings.Audio_EnableFileDataProviderPreservation = false;
         }
 
         /// <summary>
