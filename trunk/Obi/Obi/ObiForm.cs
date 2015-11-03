@@ -1105,7 +1105,7 @@ namespace Obi
                             Directory.CreateDirectory(deletedDataFolderPath);
                         }
 
-                        Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath, mSettings.Audio_CleanupMaxFileSizeInMB);
+                        Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath, mSettings.Audio_CleanupMaxFileSizeInMB, mSettings.Audio_EnableFileDataProviderPreservation );
                         Dialogs.ProgressDialog progress = new ProgressDialog(Localizer.Message("cleaning_up"),
                                                                              delegate()
                                                                                  {
