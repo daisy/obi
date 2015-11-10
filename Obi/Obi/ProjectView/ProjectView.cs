@@ -5118,6 +5118,10 @@ for (int j = 0;
                     MessageBox.Show(Localizer.Message( "Start_node_index_greater_than_end"));
                     return;
                 }
+                if (this.TransportBar.IsPlayerActive)
+                {
+                    this.TransportBar.Stop();
+                }
             Dialogs.AssignSpecialNodeMark AssignSpecialNodeDialog = new Obi.Dialogs.AssignSpecialNodeMark();
             AssignSpecialNodeDialog.ShowDialog();
             if (AssignSpecialNodeDialog.DialogResult == DialogResult.OK)
