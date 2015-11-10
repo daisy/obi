@@ -524,6 +524,7 @@ namespace Obi.UserControls
                 m_ToggleProfile.ToolTipText = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
                 m_ToggleProfile.AccessibleName = String.Format(Localizer.Message("RecordingToolbar_SwitchProfile"), str[0], m_ProjectView.ObiForm.Settings.Audio_RecordingToolbarProfile1);
             }
+            
             if (m_ProjectView.TransportBar.IsRecorderActive && !m_ProjectView.TransportBar.IsRecorderActive)
             {
                 this.Focus();
@@ -675,7 +676,7 @@ namespace Obi.UserControls
 !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) &&
 !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring))
             {
-                //m_StatusLabel.Text = Localizer.Message("Stopped");
+                m_StatusLabel.Text = Localizer.Message("Stopped");
                 timer1.Stop();
             }
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
