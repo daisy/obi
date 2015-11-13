@@ -819,6 +819,7 @@ namespace Obi.ProjectView
                         PhraseNode currentPhrase = FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node);
                         if (currentPhrase != null) mCurrentPlaylist.CurrentPhrase = currentPhrase;
                         UpdateButtons();
+                        mView.ObiForm.UpdateRecordingToolBarButtons();
                     //System.Media.SystemSounds.Asterisk.Play();
                     }
                 }

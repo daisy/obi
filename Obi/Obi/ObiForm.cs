@@ -5447,9 +5447,9 @@ ref string exportDirectoryEPUB3)
                 {
                     try
                     {
-                        EmptyNode startNode = mProjectView.Selection != null ? (mProjectView.Selection.Node is EmptyNode? (EmptyNode)mProjectView.Selection.Node : mProjectView.Selection.Node is SectionNode && ((SectionNode)mProjectView.Selection.Node).PhraseChildCount > 0? (EmptyNode)((SectionNode)mProjectView.Selection.Node).FirstLeaf:null):
-                                        mProjectView.Presentation.FirstSection != null ? (EmptyNode)mProjectView.Presentation.FirstSection.FirstLeaf :
-                                        null;
+                        EmptyNode startNode = mProjectView.Selection != null ? (mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : mProjectView.Selection.Node is SectionNode && ((SectionNode)mProjectView.Selection.Node).PhraseChildCount > 0 ? (EmptyNode)((SectionNode)mProjectView.Selection.Node).FirstLeaf : null) :
+                                        mProjectView.Presentation.FirstSection != null && ((mProjectView.Presentation.FirstSection).PhraseChildCount > 0) ? 
+                                        (EmptyNode)mProjectView.Presentation.FirstSection.FirstLeaf : null;
 
                         if (startNode == null) return;
 
