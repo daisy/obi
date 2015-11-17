@@ -43,14 +43,14 @@ namespace Obi.ImportExport
                 try
                 {
                     //if (m_MaxDepth < sectionsList[i].Level) m_MaxDepth = sectionsList[i].Level;
-                    if (Profile_VA)
-                    {
-                        prevPageXmlNode = CreateElementsForSection(nccDocument, sectionsList[i], i, prevPageXmlNode);
-                    }
-                    else
-                    {
+                    //if (Profile_VA)
+                    //{
+                        //prevPageXmlNode = CreateElementsForSection(nccDocument, sectionsList[i], i, prevPageXmlNode);
+                    //}
+                    //else
+                    //{
                         CreateElementsForSection(nccDocument, sectionsList[i], i, null);
-                    }
+                    //}
                 }
                 catch (System.Exception ex)
                 {
@@ -78,12 +78,12 @@ namespace Obi.ImportExport
                         || childNode.Name == "h5"
                         || childNode.Name == "h6")
                     {//2
-                        if (pageCounter == 0 && lastPageNode != null && prevHeading != null)
+                        if (lastPageNode != null )
                         {
                             XmlNode newPage = lastPageNode.Clone();
                             newPage.Attributes.GetNamedItem("id").Value = newPage.Attributes.GetNamedItem("id").Value + "_1";
                             
-                            headingToNewPageMap.Add(prevHeading, newPage);
+                            headingToNewPageMap.Add(childNode, newPage);
                             
                         }
                         pageCounter = 0;
@@ -93,30 +93,31 @@ namespace Obi.ImportExport
                     if (childNode.Name == "span")
                     {//2
                         lastPageNode = childNode;
-                        if (pageCounter > 0)
-                        {//3
+                        //if (pageCounter > 0)
+                        //{//3
                             //bodyNode.RemoveChild(childNode);
                             nodesToRemove.Add(childNode);
                             //Console.WriteLine("Removing span: " + childNode.InnerText);
-                        }//-3
+                        //}//-3
 
                         pageCounter++;
                         Console.WriteLine("Incrementing page counter: " + pageCounter);
                     }//-2
-                    if (childNode.Name == "br" && pageCounter > 1) //counter is incremented above 
+                    //if (childNode.Name == "br" && pageCounter > 1) //counter is incremented above 
+                    if (childNode.Name == "br" ) //counter is incremented above 
                     {//2
                         //bodyNode.RemoveChild(childNode);
                         nodesToRemove.Add(childNode);
                     }//-2
                 }//-1
                 // check if last heading has pages
-                if (pageCounter == 0 && lastPageNode != null && prevHeading != null)
-                {
-                    XmlNode newPage = lastPageNode.Clone();
-                    newPage.Attributes.GetNamedItem("id").Value = newPage.Attributes.GetNamedItem("id").Value + "_1";
+                //if (pageCounter == 0 && lastPageNode != null && prevHeading != null)
+                //{
+                    //XmlNode newPage = lastPageNode.Clone();
+                    //newPage.Attributes.GetNamedItem("id").Value = newPage.Attributes.GetNamedItem("id").Value + "_1";
 
-                    headingToNewPageMap.Add(prevHeading, newPage);
-                }
+                    //headingToNewPageMap.Add(prevHeading, newPage);
+                //}
 
                 // remove all XmlNodes collected for removal
                     if (nodesToRemove.Count > 0)
