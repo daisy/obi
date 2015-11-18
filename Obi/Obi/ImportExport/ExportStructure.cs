@@ -320,15 +320,25 @@ namespace Obi.ImportExport
                 {
                     File.Delete(cssPath);
                 }
-                StreamWriter sw = File.CreateText(cssPath);
+                if (Profile_VA)
+                {
+                    string sourcePath = Path.Combine(
+                        Path.GetDirectoryName ( System.Reflection.Assembly.GetExecutingAssembly().Location),
+                        "structure-VA.css");
+                    File.Copy(sourcePath, cssPath, true);
+                }
+                else
+                {
+                    StreamWriter sw = File.CreateText(cssPath);
 
-                sw.WriteLine("h1{font-family:Times New Roman;font-size:21px;}");
-                sw.WriteLine("h2{font-family:Times New Roman;font-size:19px;}");
-                sw.WriteLine("h3{font-family:Times New Roman;font-size:17px;}");
-                sw.WriteLine("h4{font-family:Times New Roman;font-size:15px;}");
-                sw.WriteLine("h5{font-family:Times New Roman;font-size:13px;}");
-                sw.WriteLine("h6{font-family:Times New Roman;font-size:11px;}");
-                sw.Close();
+                    sw.WriteLine("h1{font-family:Times New Roman;font-size:21px;}");
+                    sw.WriteLine("h2{font-family:Times New Roman;font-size:19px;}");
+                    sw.WriteLine("h3{font-family:Times New Roman;font-size:17px;}");
+                    sw.WriteLine("h4{font-family:Times New Roman;font-size:15px;}");
+                    sw.WriteLine("h5{font-family:Times New Roman;font-size:13px;}");
+                    sw.WriteLine("h6{font-family:Times New Roman;font-size:11px;}");
+                    sw.Close();
+                }
                 return cssFileName;
             }
             catch (System.Exception ex)

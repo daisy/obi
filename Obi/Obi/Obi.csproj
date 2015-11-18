@@ -2795,6 +2795,9 @@
     <Content Include="ShowBlocksCompleted.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="structure-VA.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="UserControls\media_monitor.png" />
     <EmbeddedResource Include="UserControls\media_monitor48.png" />
     <EmbeddedResource Include="UserControls\media_monitor64.png" />
