@@ -297,6 +297,9 @@
   <data name="&gt;&gt;lstManualArrange.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="m_btnMoveUp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="m_btnMoveUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 11</value>
   </data>
@@ -321,6 +324,9 @@
   <data name="&gt;&gt;m_btnMoveUp.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="m_btnMoveDown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="m_btnMoveDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 43</value>
   </data>
@@ -344,6 +350,9 @@
   </data>
   <data name="&gt;&gt;m_btnMoveDown.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="m_btnAdd.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 72</value>
@@ -372,6 +381,9 @@
   <data name="m_grpAddFiles.AccessibleName" xml:space="preserve">
     <value>GroupBox to Add and arrange files.</value>
   </data>
+  <data name="m_btnRemove.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
     <value>223, 101</value>
   </data>
@@ -399,6 +411,9 @@
   <data name="m_grpArrangeAudioFiles.AccessibleName" xml:space="preserve">
     <value>Arrange audio files group box</value>
   </data>
+  <data name="mbtnDesendingOrder.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
     <value>168, 34</value>
   </data>
@@ -422,6 +437,9 @@
   </data>
   <data name="&gt;&gt;mbtnDesendingOrder.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="mbtnAscendingOrder.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="mbtnAscendingOrder.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 34</value>
