@@ -216,8 +216,18 @@ namespace Obi
                 mRecorder.StopRecording();
                 if (wasRecording)
                 {
-                    // Split the session asset into smaller assets starting from the end
-                    // (to keep the split times correct) until the second one
+                    for (int i = m_PhraseMarksOnTheFly.Count - 2; i >= 0; --i)
+                    {
+                        if (i != 0 && (m_PhraseMarksOnTheFly[i] - m_PhraseMarksOnTheFly[i - 1]) <= 1000)
+                        {
+                            m_PhraseMarksOnTheFly.Remove(m_PhraseMarksOnTheFly[i]);
+                        }
+                        else if (i == 0 && m_PhraseMarksOnTheFly[i] <= 1000)
+                        {
+                            m_PhraseMarksOnTheFly.Remove(m_PhraseMarksOnTheFly[i]);
+                        }
+                    }
+                   
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
                         if (mPhraseMarks[i] < mSessionMedia.Duration.AsMilliseconds && mSessionMedia.Duration.AsMilliseconds > 200)
