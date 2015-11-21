@@ -218,11 +218,11 @@ namespace Obi
                 {
                     for (int i = m_PhraseMarksOnTheFly.Count - 2; i >= 0; --i)
                     {
-                        if (i != 0 && (m_PhraseMarksOnTheFly[i] - m_PhraseMarksOnTheFly[i - 1]) <= 1000)
+                        if (i != 0 && (m_PhraseMarksOnTheFly[i] - m_PhraseMarksOnTheFly[i - 1]) <= 250)
                         {
                             m_PhraseMarksOnTheFly.Remove(m_PhraseMarksOnTheFly[i]);
                         }
-                        else if (i == 0 && m_PhraseMarksOnTheFly[i] <= 1000)
+                        else if (i == 0 && m_PhraseMarksOnTheFly[i] <= 250)
                         {
                             m_PhraseMarksOnTheFly.Remove(m_PhraseMarksOnTheFly[i]);
                         }
