@@ -5092,6 +5092,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default profile exists with the same name.Please rename your profile..
+        /// </summary>
+        internal static string Preferences_DefaultProfileExists {
+            get {
+                return ResourceManager.GetString("Preferences_DefaultProfileExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Intermediate recording mode.
         /// </summary>
         internal static string Preferences_Intermediate_recording_mode {
@@ -5277,6 +5286,15 @@ namespace Obi {
         internal static string Project_CheckForUpdates {
             get {
                 return ResourceManager.GetString("Project_CheckForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable collapse of selected node in TOCview.
+        /// </summary>
+        internal static string Project_DisableTOCViewCollapse {
+            get {
+                return ResourceManager.GetString("Project_DisableTOCViewCollapse", resourceCulture);
             }
         }
         

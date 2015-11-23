@@ -684,7 +684,7 @@ namespace Obi.ProjectView
         // When a node is collapsed, hide strips corresponding to the collapsed nodes.
         private void TOCTree_AfterCollapse(object sender, TreeViewEventArgs e)
         {
-            SetStripsVisibilityForNode(e.Node, true);
+            SetStripsVisibilityForNode(e.Node, true);           
         }
 
         // When a node is expanded, make the strips reappear
@@ -749,6 +749,11 @@ namespace Obi.ProjectView
                 if (mProjectView.ShowSelectedSectionContents())
                 {
                     HighlightNodeWithoutSelection = mProjectView.GetSelectedPhraseSection;
+                    if (mProjectView.ObiForm.Settings.Project_DisableTOCViewCollapse)
+                    {
+                        TreeNode node = FindTreeNode(mProjectView.GetSelectedPhraseSection);
+                        node.Expand();
+                    }
                 }
 
             }   

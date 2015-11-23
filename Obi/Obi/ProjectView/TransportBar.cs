@@ -4077,11 +4077,28 @@ SelectionChangedPlaybackEnabled = false;
                 return m_filePaths;
             }
         }
+        public void RemoveProfileFromSwitchProfile(string profileToRemove)
+        {           
+            if (m_ListOfSwitchProfiles.ContainsKey(profileToRemove))
+            {
+                m_SwitchProfileContextMenuStrip.Items.Remove(m_ListOfSwitchProfiles[profileToRemove]);
+                m_ListOfSwitchProfiles.Remove(profileToRemove);
+            } 
+        }
+        public void AddProfileToSwitchProfile(string profileToAdd)
+        {
+            ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(profileToAdd, null, SwitchProfile_Click);
+            m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
+            m_ListOfSwitchProfiles.Add(profileToAdd, SwitchProfile);            
+        }
         // To Initialize Switch Profile ToolStrip menu Items
         public void InitializeSwitchProfiles()
         {
             //string ProfileDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
             //string defaultProfilesDirectory = System.IO.Path.Combine(ProfileDirectory, "profiles");
+            m_ListOfSwitchProfiles.Clear();
+            m_SwitchProfileContextMenuStrip.Items.Clear();
+            m_CurrentCheckedProfile = null;
             string ProfileDirectory = GetPredefinedProfilesDirectory();
             m_filePaths = System.IO.Directory.GetFiles(ProfileDirectory, "*.xml");
             List<string> filePathsList = new List<string>();

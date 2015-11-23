@@ -971,6 +971,7 @@ namespace Obi.Dialogs
                 mSettings.Project_EPUBCheckTimeOutEnabled = m_CheckBoxListView.Items[13].Checked;
                 mSettings.Project_MinimizeObi = m_CheckBoxListView.Items[14].Checked;
                 mSettings.Project_EnableMouseScrolling = m_CheckBoxListView.Items[15].Checked;
+                mSettings.Project_DisableTOCViewCollapse = m_CheckBoxListView.Items[16].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1127,6 +1128,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_EPUBCheckTimeOutEnabled"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_MinimizeObi"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_EnableMouseScrolling"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisableTOCViewCollapse"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1160,6 +1162,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[14].ToolTipText = Localizer.Message("Project_MinimizeObi");
                 m_CheckBoxListView.Items[15].Checked = mSettings.Project_EnableMouseScrolling;
                 m_CheckBoxListView.Items[15].ToolTipText = Localizer.Message("Project_EnableMouseScrolling");
+                m_CheckBoxListView.Items[16].Checked = mSettings.Project_DisableTOCViewCollapse;
+                m_CheckBoxListView.Items[16].ToolTipText = Localizer.Message("Project_DisableTOCViewCollapse");
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1241,6 +1245,7 @@ namespace Obi.Dialogs
                 mSettings.Project_EPUBCheckTimeOutEnabled= m_DefaultSettings.Project_EPUBCheckTimeOutEnabled;
                 mSettings.Project_MinimizeObi = m_DefaultSettings.Project_MinimizeObi;
                 mSettings.Project_EnableMouseScrolling = m_DefaultSettings.Project_EnableMouseScrolling;
+                mSettings.Project_DisableTOCViewCollapse = m_DefaultSettings.Project_DisableTOCViewCollapse;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
@@ -1810,6 +1815,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[12].Checked = false;
                     m_CheckBoxListView.Items[14].Checked = false;
                     m_CheckBoxListView.Items[15].Checked = true;
+                    m_CheckBoxListView.Items[16].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Intermediate.xml" || Profile == "Intermediate.XML")
@@ -1844,6 +1850,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[12].Checked = false;
                     m_CheckBoxListView.Items[14].Checked = false;
                     m_CheckBoxListView.Items[15].Checked = true;
+                    m_CheckBoxListView.Items[16].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Advance.xml" || Profile == "Advance.XML")
@@ -1877,6 +1884,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[12].Checked = false;
                     m_CheckBoxListView.Items[14].Checked = false;
                     m_CheckBoxListView.Items[15].Checked = true;
+                    m_CheckBoxListView.Items[16].Checked = false;
                     UpdateBoolSettings();
                 }
                 else if (Profile == "Profile-2-SBS.xml" || Profile == "Profile-2-SBS.XML")
@@ -1910,6 +1918,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[12].Checked = true;
                     m_CheckBoxListView.Items[14].Checked = false;
                     m_CheckBoxListView.Items[15].Checked = false;
+                    m_CheckBoxListView.Items[16].Checked = false;
                     UpdateBoolSettings();
 
 
@@ -1948,6 +1957,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[12].Checked = false;
                     m_CheckBoxListView.Items[14].Checked = true;
                     m_CheckBoxListView.Items[15].Checked = true;
+                    m_CheckBoxListView.Items[16].Checked = true;
                     UpdateBoolSettings();
 
                 }
@@ -2360,6 +2370,16 @@ namespace Obi.Dialogs
                 try
                 {
                     string FileName = System.IO.Path.GetFileNameWithoutExtension(fileDialog.FileName);
+                    string preDefinedProfilesDirectory = GetPredefinedProfilesDirectory();
+                    string[] defaultProfiles = System.IO.Directory.GetFiles(preDefinedProfilesDirectory);
+                    foreach (string profile in defaultProfiles)
+                    {
+                        if (FileName == System.IO.Path.GetFileNameWithoutExtension(profile))
+                        {
+                            MessageBox.Show(Localizer.Message("Preferences_DefaultProfileExists"));
+                            return;
+                        }
+                    }
                     if (m_cb_SelectProfile.Items.Contains(FileName))
                     {
                         DialogResult result = MessageBox.Show(Localizer.Message("Preferences_ProfileExists"), Localizer.Message("Caption_Warning"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
@@ -2381,6 +2401,8 @@ namespace Obi.Dialogs
                         m_cb_SelectProfile.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
                         m_cb_Profile1.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
                         m_cb_Profile2.Items.Add(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
+                       // mTransportBar.InitializeSwitchProfiles();
+                        mTransportBar.AddProfileToSwitchProfile(System.IO.Path.GetFileNameWithoutExtension(newCustomFilePath));
                     }
                 }
                 catch (System.Exception ex)
@@ -2533,6 +2555,8 @@ namespace Obi.Dialogs
                         {
                             System.IO.File.Delete(profilePath);
                             m_cb_SelectProfile.Items.RemoveAt(indexOfCombobox);
+                           // mTransportBar.InitializeSwitchProfiles();
+                            mTransportBar.RemoveProfileFromSwitchProfile(System.IO.Path.GetFileNameWithoutExtension(profilePath));
                         }
                     }
                 }

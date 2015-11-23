@@ -2809,5 +2809,11 @@ Error text: {1}</value>
   <data name="Audio_EnableFileDataProviderPreservation" xml:space="preserve">
     <value>Skip already cleaned up files while clean-up</value>
   </data>
+  <data name="Project_DisableTOCViewCollapse" xml:space="preserve">
+    <value>Disable collapse of selected node in TOCview</value>
+  </data>
+  <data name="Preferences_DefaultProfileExists" xml:space="preserve">
+    <value>Default profile exists with the same name.Please rename your profile.</value>
+  </data>
 
 </root>

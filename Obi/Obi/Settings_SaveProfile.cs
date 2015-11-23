@@ -97,6 +97,7 @@ namespace Obi
                newSettings.Project_ShowWaveformInContentView = this.Project_ShowWaveformInContentView;
                newSettings.Project_MinimizeObi = this.Project_MinimizeObi;
                newSettings.Project_EnableMouseScrolling = this.Project_EnableMouseScrolling;
+               newSettings.Project_DisableTOCViewCollapse = this.Project_DisableTOCViewCollapse;
 
                // checks for paths
                //if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
@@ -448,7 +449,8 @@ namespace Obi
                && this.Project_SaveObiLocationAndSize == settings.Project_SaveObiLocationAndSize
                && this.Project_SaveProjectWhenRecordingEnds == settings.Project_SaveProjectWhenRecordingEnds
                && this.Project_ShowWaveformInContentView == settings.Project_ShowWaveformInContentView
-               && this.Project_EnableMouseScrolling == settings.Project_EnableMouseScrolling)
+               && this.Project_EnableMouseScrolling == settings.Project_EnableMouseScrolling
+               && this.Project_DisableTOCViewCollapse == settings.Project_DisableTOCViewCollapse)
                {
                    projectPreferencesMatch = true ;
                }
