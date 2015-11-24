@@ -214,6 +214,8 @@ namespace Obi
         // for Obi 3.8
         [OptionalField]
         public bool Audio_EnableFileDataProviderPreservation;
+        [OptionalField]
+        public bool Project_DisableTOCViewCollapse;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -334,6 +336,8 @@ namespace Obi
             settings.Audio_LocalRecordingDirectory = null;
             settings.Project_EnableMouseScrolling = true;
             settings.Audio_EnableFileDataProviderPreservation = false;
+            //For Obi 3.8
+            settings.Project_DisableTOCViewCollapse = false;
         }
 
         /// <summary>
