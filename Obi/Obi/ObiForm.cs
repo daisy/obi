@@ -1446,12 +1446,12 @@ namespace Obi
                 UploadUsersInfo(); //can be commentted for test releases
                 if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject, null);
                 if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog();
-                
+
                 UpdateKeyboardFocusForSelection();
                 if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
                 if (mSettings.Project_RecordingToolbarOpenInPreviousSession) ShowRecordingToolBar();
                 if (mSettings.Project_CheckForUpdates) CheckForNewRelease(true);
-                
+                if (mSettings.Project_MaximizeObi) this.WindowState = FormWindowState.Maximized;
             }
 
 

@@ -2810,10 +2810,12 @@ Error text: {1}</value>
     <value>Skip already cleaned up files while clean-up</value>
   </data>
   <data name="Project_DisableTOCViewCollapse" xml:space="preserve">
-    <value>Disable collapse of selected node in TOCview</value>
+    <value>Disable collapse of selected node in TOC view</value>
   </data>
   <data name="Preferences_DefaultProfileExists" xml:space="preserve">
     <value>Default profile exists with the same name.Please rename your profile.</value>
   </data>
-
+  <data name="Project_MaximizeObi" xml:space="preserve">
+    <value>Open Obi in maximize state</value>
+  </data>
 </root>
