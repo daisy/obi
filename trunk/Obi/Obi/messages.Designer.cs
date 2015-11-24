@@ -5290,7 +5290,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable collapse of selected node in TOCview.
+        ///   Looks up a localized string similar to Disable collapse of selected node in TOC view.
         /// </summary>
         internal static string Project_DisableTOCViewCollapse {
             get {
@@ -5331,6 +5331,15 @@ namespace Obi {
         internal static string project_locked {
             get {
                 return ResourceManager.GetString("project_locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Obi in maximize state.
+        /// </summary>
+        internal static string Project_MaximizeObi {
+            get {
+                return ResourceManager.GetString("Project_MaximizeObi", resourceCulture);
             }
         }
         

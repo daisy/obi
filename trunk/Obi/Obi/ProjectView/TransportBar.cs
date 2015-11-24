@@ -4153,9 +4153,12 @@ SelectionChangedPlaybackEnabled = false;
                     for (int i = 0; i < temp.Length; i++)
                     {
                         string filename = System.IO.Path.GetFileNameWithoutExtension(temp[i]);
-                        ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(filename, null, SwitchProfile_Click);
-                        m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
-                        m_ListOfSwitchProfiles.Add(filename, SwitchProfile); 
+                        if (!m_ListOfSwitchProfiles.ContainsKey(filename))
+                        {
+                            ToolStripMenuItem SwitchProfile = new ToolStripMenuItem(filename, null, SwitchProfile_Click);
+                            m_SwitchProfileContextMenuStrip.Items.Add(SwitchProfile);
+                            m_ListOfSwitchProfiles.Add(filename, SwitchProfile);
+                        }
 
                     }
                 }
