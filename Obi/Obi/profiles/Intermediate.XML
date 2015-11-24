@@ -1,6 +1,6 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
-<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.30003%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.31587%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Audio_AllowOverwrite>true</Audio_AllowOverwrite>
 <Audio_Recording_PreviewBeforeStarting>false</Audio_Recording_PreviewBeforeStarting>
 <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
@@ -16,11 +16,11 @@
 <ColorSettingsHC href="#ref-6"/>
 <CreateTitleSection>true</CreateTitleSection>
 <Project_DefaultPath id="ref-7"></Project_DefaultPath>
-<Project_AutomaticallyDeleteUnusedFilesAfterCleanup>true</Project_AutomaticallyDeleteUnusedFilesAfterCleanup>
+<Project_AutomaticallyDeleteUnusedFilesAfterCleanup>false</Project_AutomaticallyDeleteUnusedFilesAfterCleanup>
 <FontSize>10</FontSize>
-<Audio_LastInputDevice id="ref-8">Primary Sound Capture Driver</Audio_LastInputDevice>
+<Audio_LastInputDevice id="ref-8">Primärer Soundaufnahmetreiber</Audio_LastInputDevice>
 <LastOpenProject id="ref-9">C:\Users\Rohit\Documents\ARE YOU READY\project.obi</LastOpenProject>
-<Audio_LastOutputDevice id="ref-10">Primary Sound Driver</Audio_LastOutputDevice>
+<Audio_LastOutputDevice id="ref-10">Primärer Soundtreiber</Audio_LastOutputDevice>
 <MaxPhraseDurationMinutes>10</MaxPhraseDurationMinutes>
 <ImportCharCountToTruncateFromStart>4</ImportCharCountToTruncateFromStart>
 <ImportCharsToReplaceWithSpaces id="ref-11">_</ImportCharsToReplaceWithSpaces>
@@ -30,14 +30,14 @@
 <Audio_EnableLivePhraseDetection>true</Audio_EnableLivePhraseDetection>
 <Audio_NoiseLevel>Medium</Audio_NoiseLevel>
 <Audio_NudgeTimeMs>200</Audio_NudgeTimeMs>
-<ShowGraphicalPeakMeterAtStartup>true</ShowGraphicalPeakMeterAtStartup>
+<ShowGraphicalPeakMeterAtStartup>false</ShowGraphicalPeakMeterAtStartup>
 <Project_OpenLastProject>false</Project_OpenLastProject>
 <Project_PipelineScriptsPath href="#ref-7"/>
 <Project_CheckForUpdates>true</Project_CheckForUpdates>
-<Project_LatestVersionCheckedByUpdate id="ref-13">3.7.0.24167</Project_LatestVersionCheckedByUpdate>
+<Project_LatestVersionCheckedByUpdate id="ref-13">3.7.0.28829</Project_LatestVersionCheckedByUpdate>
 <PlayIfNoSelection>true</PlayIfNoSelection>
 <PlayOnNavigate>false</PlayOnNavigate>
-<Audio_PreviewDuration>7000</Audio_PreviewDuration>
+<Audio_PreviewDuration>1500</Audio_PreviewDuration>
 <Audio_ElapseBackTimeInMilliseconds>1500</Audio_ElapseBackTimeInMilliseconds>
 <RecentProjects href="#ref-14"/>
 <Audio_SampleRate>44100</Audio_SampleRate>
@@ -56,7 +56,7 @@
 <ExportEncodingBitRate>64</ExportEncodingBitRate>
 <Export_AppendSectionNameToAudioFile>false</Export_AppendSectionNameToAudioFile>
 <Export_LimitAudioFilesLength>false</Export_LimitAudioFilesLength>
-<Export_AudioFilesNamesLengthLimit>8</Export_AudioFilesNamesLengthLimit>
+<Export_AudioFilesNamesLengthLimit>-1</Export_AudioFilesNamesLengthLimit>
 <Project_Export_AlwaysIgnoreIndentation>false</Project_Export_AlwaysIgnoreIndentation>
 <Export_EPUBFileNameLengthLimit>12</Export_EPUBFileNameLengthLimit>
 <Export_EPUBCreateDummyText>true</Export_EPUBCreateDummyText>
@@ -105,9 +105,12 @@
 <Audio_PlaySectionUsingPlayBtn>false</Audio_PlaySectionUsingPlayBtn>
 <Audio_LocalRecordingDirectory href="#ref-7"/>
 <Project_EnableMouseScrolling>true</Project_EnableMouseScrolling>
-<SettingsName id="ref-28">Profile-1-VA profile for  audio, colors preferences</SettingsName>
+<Audio_EnableFileDataProviderPreservation>false</Audio_EnableFileDataProviderPreservation>
+<Project_DisableTOCViewCollapse>false</Project_DisableTOCViewCollapse>
+<Project_MaximizeObi>false</Project_MaximizeObi>
+<SettingsName id="ref-28">Basic2 profile for  audio, colors preferences</SettingsName>
 </a1:Settings>
-<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.30003%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.31587%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -421,7 +424,7 @@
 <state>1</state>
 </HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
-<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.30003%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.31587%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -737,10 +740,10 @@
 </a1:ColorSettings>
 <a3:ArrayList id="ref-14" xmlns:a3="http://schemas.microsoft.com/clr/ns/System.Collections">
 <_items href="#ref-30"/>
-<_size>1</_size>
-<_version>29</_version>
+<_size>8</_size>
+<_version>946</_version>
 </a3:ArrayList>
-<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.0.30003%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.31587%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Name href="#ref-7"/>
 <Organization href="#ref-7"/>
 <Culture href="#ref-31"/>
@@ -750,57 +753,51 @@
 <item>0</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-21" SOAP-ENC:arrayType="xsd:int[2]">
-<item>805</item>
-<item>273</item>
+<item>797</item>
+<item>266</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-22" SOAP-ENC:arrayType="xsd:int[2]">
-<item>892</item>
-<item>580</item>
+<item>884</item>
+<item>573</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-23" SOAP-ENC:arrayType="xsd:int[2]">
-<item>0</item>
-<item>0</item>
+<item>162</item>
+<item>633</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-24" SOAP-ENC:arrayType="xsd:int[2]">
-<item>0</item>
-<item>0</item>
+<item>154</item>
+<item>580</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-25" SOAP-ENC:arrayType="xsd:int[2]">
-<item>0</item>
-<item>0</item>
+<item>701</item>
+<item>471</item>
 </SOAP-ENC:Array>
-<SOAP-ENC:Array id="ref-30" SOAP-ENC:arrayType="xsd:anyType[4]">
+<SOAP-ENC:Array id="ref-30" SOAP-ENC:arrayType="xsd:anyType[8]">
 <item href="#ref-9"/>
+<item id="ref-32" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\Xhtml Project Export\project.obi</item>
+<item id="ref-33" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\ProjectForExperment\project.obi</item>
+<item id="ref-34" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\Just To check\project.obi</item>
+<item id="ref-35" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\ProjectForExperment Daisy 2 Export\project.obi</item>
+<item id="ref-36" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\Chimpanzees\project.obi</item>
+<item id="ref-37" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\The Countries_ New Zealand\project.obi</item>
+<item id="ref-38" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\ARE YOU READY copy\project.obi</item>
 </SOAP-ENC:Array>
 <a6:CultureInfo id="ref-31" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<cultureID>1033</cultureID>
+<cultureID>16393</cultureID>
 <m_isReadOnly>false</m_isReadOnly>
-<compareInfo href="#ref-32"/>
+<compareInfo href="#ref-39"/>
 <textInfo xsi:null="1"/>
 <numInfo xsi:null="1"/>
 <dateTimeInfo xsi:null="1"/>
 <calendar xsi:null="1"/>
-<m_name id="ref-33">en-US</m_name>
-<m_dataItem>41</m_dataItem>
+<m_name id="ref-40">en-IN</m_name>
+<m_dataItem>0</m_dataItem>
 <m_useUserOverride>true</m_useUserOverride>
 </a6:CultureInfo>
-<a6:CompareInfo id="ref-32" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<win32LCID>1033</win32LCID>
-<culture>1033</culture>
-<m_name id="ref-34">en-US</m_name>
+<a6:CompareInfo id="ref-39" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<win32LCID>16393</win32LCID>
+<culture>16393</culture>
+<m_name id="ref-41">en-IN</m_name>
 </a6:CompareInfo>
 </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
->
-<m_name id="ref-38">en-US</m_name>
-<m_dataItem>41</m_dataItem>
-<m_useUserOverride>true</m_useUserOverride>
-</a6:CultureInfo>
-<a6:CompareInfo id="ref-37" xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
-<win32LCID>1033</win32LCID>
-<culture>1033</culture>
-<m_name id="ref-39">en-US</m_name>
-</a6:CompareInfo>
-</SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
-P-ENV:Envelope>
