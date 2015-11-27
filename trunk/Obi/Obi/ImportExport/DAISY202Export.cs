@@ -344,6 +344,8 @@ namespace Obi.ImportExport
 
                         if (isFirstPhrase || isPreviousNodeEmptyPage)
                             {
+                                //if(phrase.PageNumber != null)  Console.WriteLine("Page: " + phrase.PageNumber.ToString());
+                                //Console.WriteLine("first page " + isFirstPhrase + " prev empty page " + isPreviousNodeEmptyPage);
                             CreateAppendXmlAttribute ( smilDocument, txtNode, "src", nccFileName + "#" + headingID );
                             }
                         else if (pageNode != null)
@@ -417,7 +419,7 @@ namespace Obi.ImportExport
                 }//Check for audio containing phrase ends
                     isFirstPhrase = false;
 
-                    if (phrase is EmptyNode && phrase.Role_ == EmptyNode.Role.Page)
+                    if ( !(phrase  is PhraseNode) && phrase.Role_ == EmptyNode.Role.Page)
                     {
                         isPreviousNodeEmptyPage = true;
                     }
