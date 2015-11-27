@@ -4229,7 +4229,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 bool ReturnVal = nodeIndexOfStripToSelect != -1 ? SelectStripCursorFor(delegate(Strip strip1, ISelectableInContentView item1) { return nodeIndexOfStripToSelect; }):
                     false;
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
-
+            if (mSelectedItem is StripCursor)
+            {
+                Strip tempStrip = ((StripCursor)mSelectedItem).Strip;
+                tempStrip.SetSelectedIndexFromStripCursor((StripCursor)mSelectedItem);
+            }
             return ReturnVal;
             }
 
@@ -4329,6 +4333,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
             bool ReturnVal = SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexAfter ( PlaybackBlock != null ? PlaybackBlock : item ); } );
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
+            if (mSelectedItem is StripCursor)
+            {
+                Strip tempStrip = ((StripCursor)mSelectedItem).Strip;
+                tempStrip.SetSelectedIndexFromStripCursor((StripCursor)mSelectedItem);
+            }
             return ReturnVal;
             }
 
