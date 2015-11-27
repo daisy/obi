@@ -342,7 +342,8 @@ namespace Obi.ImportExport
                         string txtID = "txt" + IncrementID;
                         CreateAppendXmlAttribute ( smilDocument, txtNode, "id", txtID );
 
-                        if (isFirstPhrase || isPreviousNodeEmptyPage)
+                        if (isFirstPhrase 
+                            || (isPreviousNodeEmptyPage && phrase.Role_ != EmptyNode.Role.Page))
                             {
                                 //if(phrase.PageNumber != null)  Console.WriteLine("Page: " + phrase.PageNumber.ToString());
                                 //Console.WriteLine("first page " + isFirstPhrase + " prev empty page " + isPreviousNodeEmptyPage);
@@ -419,7 +420,7 @@ namespace Obi.ImportExport
                 }//Check for audio containing phrase ends
                     isFirstPhrase = false;
 
-                    if ( !(phrase  is PhraseNode) && phrase.Role_ == EmptyNode.Role.Page)
+                    if ( phrase  is EmptyNode && phrase.Role_ == EmptyNode.Role.Page )
                     {
                         isPreviousNodeEmptyPage = true;
                     }
