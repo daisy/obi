@@ -322,6 +322,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ensure cursor visibility in undo of split recording.
+        /// </summary>
+        internal static string Audio_EnsureCursorVisibilityInUndoOfSplitRecording {
+            get {
+                return ResourceManager.GetString("Audio_EnsureCursorVisibilityInUndoOfSplitRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fast play without pitch change.
         /// </summary>
         internal static string Audio_FastPlayWithoutPitchChange {

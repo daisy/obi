@@ -1,6 +1,6 @@
 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
-<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.31587%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.36111%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Audio_AllowOverwrite>true</Audio_AllowOverwrite>
 <Audio_Recording_PreviewBeforeStarting>false</Audio_Recording_PreviewBeforeStarting>
 <Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
@@ -19,7 +19,7 @@
 <Project_AutomaticallyDeleteUnusedFilesAfterCleanup>false</Project_AutomaticallyDeleteUnusedFilesAfterCleanup>
 <FontSize>10</FontSize>
 <Audio_LastInputDevice id="ref-8">Primärer Soundaufnahmetreiber</Audio_LastInputDevice>
-<LastOpenProject id="ref-9">C:\Users\Rohit\Documents\ARE YOU READY\project.obi</LastOpenProject>
+<LastOpenProject id="ref-9">C:\Users\Rohit\Documents\Chimpanzees\project.obi</LastOpenProject>
 <Audio_LastOutputDevice id="ref-10">Primärer Soundtreiber</Audio_LastOutputDevice>
 <MaxPhraseDurationMinutes>10</MaxPhraseDurationMinutes>
 <ImportCharCountToTruncateFromStart>4</ImportCharCountToTruncateFromStart>
@@ -108,9 +108,10 @@
 <Audio_EnableFileDataProviderPreservation>false</Audio_EnableFileDataProviderPreservation>
 <Project_DisableTOCViewCollapse>true</Project_DisableTOCViewCollapse>
 <Project_MaximizeObi>true</Project_MaximizeObi>
-<SettingsName id="ref-28">Basic2 profile for  audio, colors preferences</SettingsName>
+<Audio_EnsureCursorVisibilityInUndoOfSplitRecording>false</Audio_EnsureCursorVisibilityInUndoOfSplitRecording>
+<SettingsName id="ref-28">Profile-2-SBS profile for  audio, colors preferences</SettingsName>
 </a1:Settings>
-<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.31587%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.36111%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -424,7 +425,7 @@
 <state>1</state>
 </HighlightedSectionNodeWithoutSelectionColor>
 </a1:ColorSettings>
-<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.31587%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:ColorSettings id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.36111%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <BlockBackColor_Custom>
 <name xsi:null="1"/>
 <value>0</value>
@@ -741,16 +742,16 @@
 <a3:ArrayList id="ref-14" xmlns:a3="http://schemas.microsoft.com/clr/ns/System.Collections">
 <_items href="#ref-30"/>
 <_size>8</_size>
-<_version>946</_version>
+<_version>1150</_version>
 </a3:ArrayList>
-<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.31587%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<a1:UserProfile id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.36111%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Name href="#ref-7"/>
 <Organization href="#ref-7"/>
 <Culture href="#ref-31"/>
 </a1:UserProfile>
 <SOAP-ENC:Array id="ref-20" SOAP-ENC:arrayType="xsd:int[2]">
-<item>0</item>
-<item>0</item>
+<item>-4</item>
+<item>-4</item>
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-21" SOAP-ENC:arrayType="xsd:int[2]">
 <item>797</item>
@@ -774,11 +775,11 @@
 </SOAP-ENC:Array>
 <SOAP-ENC:Array id="ref-30" SOAP-ENC:arrayType="xsd:anyType[8]">
 <item href="#ref-9"/>
-<item id="ref-32" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\Xhtml Project Export\project.obi</item>
-<item id="ref-33" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\ProjectForExperment\project.obi</item>
-<item id="ref-34" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\Just To check\project.obi</item>
-<item id="ref-35" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\ProjectForExperment Daisy 2 Export\project.obi</item>
-<item id="ref-36" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\Chimpanzees\project.obi</item>
+<item id="ref-32" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\ARE YOU READY\project.obi</item>
+<item id="ref-33" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\Xhtml Project Export\project.obi</item>
+<item id="ref-34" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\ProjectForExperment\project.obi</item>
+<item id="ref-35" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\Just To check\project.obi</item>
+<item id="ref-36" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\ProjectForExperment Daisy 2 Export\project.obi</item>
 <item id="ref-37" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\The Countries_ New Zealand\project.obi</item>
 <item id="ref-38" xsi:type="SOAP-ENC:string">C:\Users\Rohit\Documents\ARE YOU READY copy\project.obi</item>
 </SOAP-ENC:Array>
