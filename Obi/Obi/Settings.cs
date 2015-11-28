@@ -218,6 +218,8 @@ namespace Obi
         public bool Project_DisableTOCViewCollapse;
         [OptionalField]
         public bool Project_MaximizeObi;
+        [OptionalField]
+        public bool Audio_EnsureCursorVisibilityInUndoOfSplitRecording; //temporary variable for taking precaution for implementing SBS request
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -341,6 +343,7 @@ namespace Obi
             settings.Audio_EnableFileDataProviderPreservation = false;
             settings.Project_DisableTOCViewCollapse = false;
             settings.Project_MaximizeObi = true;
+            settings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording = false;
         }
 
         /// <summary>

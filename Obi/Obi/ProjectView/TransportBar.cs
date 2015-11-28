@@ -1931,7 +1931,7 @@ namespace Obi.ProjectView
                         && ( (CurrentState == State.Paused  && mView.Selection.Node is EmptyNode)    
                         ||    (mView.Selection is AudioSelection )))
                     {
-                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(mView, new NodeSelection(selectionNode, mView.Selection.Control)));
+                        if(!mView.ObiForm.Settings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording ) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(mView, new NodeSelection(selectionNode, mView.Selection.Control)));
                         //MessageBox.Show("recording selection update");   
                         double replaceStartTime = IsPlayerActive ? CurrentPlaylist.CurrentTimeInAsset:
                             mView.Selection is AudioSelection?( ((AudioSelection)mView.Selection).AudioRange.HasCursor? ((AudioSelection)mView.Selection).AudioRange.CursorTime : ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime ): 
@@ -3328,8 +3328,9 @@ namespace Obi.ProjectView
                             mView.Selection is AudioSelection ?
                             (((AudioSelection)mView.Selection).AudioRange.HasCursor ? ((AudioSelection)mView.Selection).AudioRange.CursorTime : ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime) :
                             -1;
+                        
                         // Specific request of SBS: restore blue audio selection even if in pause state, so that blue cursor is visible after undo.
-                        if (time >= 0 && mView.ObiForm.Settings.Audio_EnforceSingleCursor && !(mView is AudioSelection))
+                        if (time >= 0 && mView.ObiForm.Settings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording&& !(mView is AudioSelection))
                         {
                             mView.Selection = new AudioSelection((PhraseNode)selectedNode, currentSelection.Control,
                                new AudioRange(time));
