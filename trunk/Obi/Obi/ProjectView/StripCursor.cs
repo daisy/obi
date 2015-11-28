@@ -144,8 +144,11 @@ namespace Obi.ProjectView
             if (m_MouseMove == false)
             return;
             m_MouseMove = false;
-            Strip.SetAnimationCursor(e.X, e.Y, true);
-            Strip.SetAnimationCursor();       
+            if (Strip != null)
+            {
+                Strip.SetAnimationCursor(e.X, e.Y, true);
+                Strip.SetAnimationCursor();
+            }
         }
     }
 }
