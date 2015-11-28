@@ -3321,23 +3321,39 @@ namespace Obi.ProjectView
                     if (SelectionChangedPlaybackEnabled) SelectionChangedPlaybackEnabled = false;
                     EmptyNode selectedNode = mView.Selection != null && mView.Selection.Node is EmptyNode ? (EmptyNode)mView.Selection.Node : null;
                     NodeSelection currentSelection = mView.Selection;
-                    if (selectedNode != null && selectedNode is   PhraseNode && selectedNode.Index < selectedNode.ParentAs<SectionNode>().PhraseChildCount - 1)
+                    double time = -1;
+                    if (selectedNode != null)
                     {
-                        double time =IsPlayerActive? mCurrentPlaylist.CurrentTimeInAsset:
-                            mView.Selection is AudioSelection?
-                            ( ((AudioSelection)mView.Selection).AudioRange.HasCursor? ((AudioSelection)mView.Selection).AudioRange.CursorTime: ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime):
+                        time = IsPlayerActive ? mCurrentPlaylist.CurrentTimeInAsset :
+                            mView.Selection is AudioSelection ?
+                            (((AudioSelection)mView.Selection).AudioRange.HasCursor ? ((AudioSelection)mView.Selection).AudioRange.CursorTime : ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime) :
                             -1;
+                        // Specific request of SBS: restore blue audio selection even if in pause state, so that blue cursor is visible after undo.
+                        if (time >= 0 && mView.ObiForm.Settings.Audio_EnforceSingleCursor && !(mView is AudioSelection))
+                        {
+                            mView.Selection = new AudioSelection((PhraseNode)selectedNode, currentSelection.Control,
+                               new AudioRange(time));
+                        }
+                    }
+
+                    if (selectedNode != null && selectedNode is PhraseNode && selectedNode.Index < selectedNode.ParentAs<SectionNode>().PhraseChildCount - 1)
+                    {
                         SectionNode section = selectedNode.ParentAs<SectionNode>();
                         Command deleteFollowingCmd = mView.GetDeleteRangeOfPhrasesInSectionCommand(
                             section, section.PhraseChild(selectedNode.Index + 1), section.PhraseChild(section.PhraseChildCount - 1),
                             mView.ObiForm.Settings.Audio_PreservePagesWhileRecordOverSubsequentAudio, PhraseNode.Role.Page);
                         mView.Presentation.Do(deleteFollowingCmd);
-
-                        if (time >= 0)
-                        {
-                            mView.Selection = new AudioSelection((PhraseNode)selectedNode, currentSelection.Control,
-                               new AudioRange(time));
-                        }
+                    }
+                    else
+                    {
+                        // selection is automatically saved if delete command is executed. But it should also be saved if delete command is bypassed.
+                        Commands.UpdateSelection selectionUpdateCmd = new Obi.Commands.UpdateSelection(mView, mView.Selection);
+                        mView.Presentation.Do(selectionUpdateCmd);
+                    }
+                    if (time >= 0)
+                    {
+                        mView.Selection = new AudioSelection((PhraseNode)selectedNode, currentSelection.Control,
+                           new AudioRange(time));
                     }
                 }
                 catch (System.Exception ex)
