@@ -2822,6 +2822,6 @@ Error text: {1}</value>
     <value>Ensure cursor visibility when preview before recording is undone</value>
   </data>
   <data name="Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording" xml:space="preserve">
-    <value>Disable Creation of new heading and pages while recording</value>
+    <value>Disable creation of new heading and pages while recording</value>
   </data>
 </root>

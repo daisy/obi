@@ -286,7 +286,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable Creation of new heading and pages while recording.
+        ///   Looks up a localized string similar to Disable creation of new heading and pages while recording.
         /// </summary>
         internal static string Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording {
             get {

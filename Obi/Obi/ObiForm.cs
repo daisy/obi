@@ -2454,6 +2454,7 @@ namespace Obi
                 PipelineMenuItemsEnabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
                 m_ToolsLangPack.Enabled = !mProjectView.TransportBar.IsRecorderActive;
                 mTools_AudioProcessing.Enabled = mProjectView.CanExportSelectedNodeAudio;
+                m_Tools_QuickCleanupToolStripMenuItem.Enabled = mSettings.Audio_EnableFileDataProviderPreservation;
             }
 
             // Open the preferences dialog
@@ -3020,18 +3021,7 @@ ref string exportDirectoryEPUB3)
                 return true;
             }
 
-            private void mTools_CleanUnreferencedAudioMenuItem_Click(object sender, EventArgs e)
-            {
-                if (mProjectView.IsZoomWaveformActive)
-                {
-                    mProjectView.ZoomPanelClose();
-                }
-                CleanProject();
-
-            }
-
-
-
+         
             // Check that page numbers are valid before exporting and return true if they are.
             // If they're not, the user is presented with the possibility to cancel export (return false)
             // or automatically renumber, in which case we also return true.
@@ -5862,6 +5852,32 @@ ref string exportDirectoryEPUB3)
             private void m_AutoFillMissingPagesMenuItem_Click(object sender, EventArgs e)
             {
                 mProjectView.FillEmptyPagesForMissingPagesInCompleteProject();
+            }
+
+            private void m_Tools_CompleteCleanupToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                if (mProjectView.IsZoomWaveformActive)
+                {
+                    mProjectView.ZoomPanelClose();
+                }
+                CleanProject();
+            }
+
+            private void m_Tools_QuickCleanupToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+
+            }
+
+            private void mTools_CleanUnreferencedAudioMenuItem_DropDownOpening(object sender, EventArgs e)
+            {
+                if (mSettings.Audio_EnableFileDataProviderPreservation)
+                {
+                    m_Tools_QuickCleanupToolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    m_Tools_QuickCleanupToolStripMenuItem.Enabled = false;
+                }
             }
 
  
