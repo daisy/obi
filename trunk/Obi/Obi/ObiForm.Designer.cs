@@ -212,6 +212,8 @@ namespace Obi
             this.mTools_AudioProcessing = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportSelectedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_Tools_CompleteCleanupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_Tools_QuickCleanupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportAsDAISYMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.m_EPUB3ValidatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1526,8 +1528,23 @@ namespace Obi
             // mTools_CleanUnreferencedAudioMenuItem
             // 
             resources.ApplyResources(this.mTools_CleanUnreferencedAudioMenuItem, "mTools_CleanUnreferencedAudioMenuItem");
+            this.mTools_CleanUnreferencedAudioMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_Tools_CompleteCleanupToolStripMenuItem,
+            this.m_Tools_QuickCleanupToolStripMenuItem});
             this.mTools_CleanUnreferencedAudioMenuItem.Name = "mTools_CleanUnreferencedAudioMenuItem";
-            this.mTools_CleanUnreferencedAudioMenuItem.Click += new System.EventHandler(this.mTools_CleanUnreferencedAudioMenuItem_Click);
+            this.mTools_CleanUnreferencedAudioMenuItem.DropDownOpening += new System.EventHandler(this.mTools_CleanUnreferencedAudioMenuItem_DropDownOpening);
+            // 
+            // m_Tools_CompleteCleanupToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_Tools_CompleteCleanupToolStripMenuItem, "m_Tools_CompleteCleanupToolStripMenuItem");
+            this.m_Tools_CompleteCleanupToolStripMenuItem.Name = "m_Tools_CompleteCleanupToolStripMenuItem";
+            this.m_Tools_CompleteCleanupToolStripMenuItem.Click += new System.EventHandler(this.m_Tools_CompleteCleanupToolStripMenuItem_Click);
+            // 
+            // m_Tools_QuickCleanupToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_Tools_QuickCleanupToolStripMenuItem, "m_Tools_QuickCleanupToolStripMenuItem");
+            this.m_Tools_QuickCleanupToolStripMenuItem.Name = "m_Tools_QuickCleanupToolStripMenuItem";
+            this.m_Tools_QuickCleanupToolStripMenuItem.Click += new System.EventHandler(this.m_Tools_QuickCleanupToolStripMenuItem_Click);
             // 
             // mTools_ExportAsDAISYMenuItem
             // 
@@ -1846,6 +1863,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem endMarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_RenumberPagesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_AutoFillMissingPagesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_Tools_CompleteCleanupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_Tools_QuickCleanupToolStripMenuItem;
     }
 }
 
