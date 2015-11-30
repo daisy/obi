@@ -1,0 +1,823 @@
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.36111%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Audio_AllowOverwrite>true</Audio_AllowOverwrite>
+<Audio_Recording_PreviewBeforeStarting>false</Audio_Recording_PreviewBeforeStarting>
+<Audio_Recording_ReplaceAfterCursor>false</Audio_Recording_ReplaceAfterCursor>
+<Audio_RecordDirectlyWithRecordButton>true</Audio_RecordDirectlyWithRecordButton>
+<Audio_Channels>1</Audio_Channels>
+<Audio_AudioClues>false</Audio_AudioClues>
+<Audio_AudioScale>0.01</Audio_AudioScale>
+<Audio_BitDepth>16</Audio_BitDepth>
+<Audio_TTSVoice id="ref-4">Microsoft David Desktop</Audio_TTSVoice>
+<TransportBarCounterIndex>0</TransportBarCounterIndex>
+<Audio_FastPlayWithoutPitchChange>true</Audio_FastPlayWithoutPitchChange>
+<ColorSettings href="#ref-5"/>
+<ColorSettingsHC href="#ref-6"/>
+<CreateTitleSection>true</CreateTitleSection>
+<Project_DefaultPath id="ref-7">C:\Users\Studio 6\Documents</Project_DefaultPath>
+<Project_AutomaticallyDeleteUnusedFilesAfterCleanup>true</Project_AutomaticallyDeleteUnusedFilesAfterCleanup>
+<FontSize>10</FontSize>
+<Audio_LastInputDevice id="ref-8">Primary Sound Capture Driver</Audio_LastInputDevice>
+<LastOpenProject id="ref-9">D:\Ed-TestProjects\Obi\Racing the Enemy\project.obi</LastOpenProject>
+<Audio_LastOutputDevice id="ref-10">Primary Sound Driver</Audio_LastOutputDevice>
+<MaxPhraseDurationMinutes>10</MaxPhraseDurationMinutes>
+<ImportCharCountToTruncateFromStart>4</ImportCharCountToTruncateFromStart>
+<ImportCharsToReplaceWithSpaces id="ref-11">_</ImportCharsToReplaceWithSpaces>
+<ImportPageIdentificationString id="ref-12">page</ImportPageIdentificationString>
+<MaxAllowedPhraseDurationInMinutes>50</MaxAllowedPhraseDurationInMinutes>
+<Audio_ShowLiveWaveformWhileRecording>true</Audio_ShowLiveWaveformWhileRecording>
+<Audio_EnableLivePhraseDetection>true</Audio_EnableLivePhraseDetection>
+<Audio_NoiseLevel>Medium</Audio_NoiseLevel>
+<Audio_NudgeTimeMs>200</Audio_NudgeTimeMs>
+<ShowGraphicalPeakMeterAtStartup>true</ShowGraphicalPeakMeterAtStartup>
+<Project_OpenLastProject>true</Project_OpenLastProject>
+<Project_PipelineScriptsPath href="#ref-7"/>
+<Project_CheckForUpdates>true</Project_CheckForUpdates>
+<Project_LatestVersionCheckedByUpdate id="ref-14">3.7.0.25396</Project_LatestVersionCheckedByUpdate>
+<PlayIfNoSelection>true</PlayIfNoSelection>
+<PlayOnNavigate>false</PlayOnNavigate>
+<Audio_PreviewDuration>1500</Audio_PreviewDuration>
+<Audio_ElapseBackTimeInMilliseconds>1500</Audio_ElapseBackTimeInMilliseconds>
+<RecentProjects href="#ref-15"/>
+<Audio_SampleRate>44100</Audio_SampleRate>
+<SplitPhrasesOnImport>false</SplitPhrasesOnImport>
+<SynchronizeViews>true</SynchronizeViews>
+<UserProfile href="#ref-16"/>
+<WrapStripContents>true</WrapStripContents>
+<ZoomFactor>1</ZoomFactor>
+<Project_AutoSave_RecordingEnd>false</Project_AutoSave_RecordingEnd>
+<Project_AutoSaveTimeIntervalEnabled>true</Project_AutoSaveTimeIntervalEnabled>
+<Project_AutoSaveTimeInterval>300000</Project_AutoSaveTimeInterval>
+<Project_SaveProjectWhenRecordingEnds>true</Project_SaveProjectWhenRecordingEnds>
+<UsersInfoToUpload id="ref-17">NoInfo</UsersInfoToUpload>
+<UploadAttemptsCount>0</UploadAttemptsCount>
+<Export_EncodeAudioFiles>false</Export_EncodeAudioFiles>
+<ExportEncodingBitRate>64</ExportEncodingBitRate>
+<Export_AppendSectionNameToAudioFile>false</Export_AppendSectionNameToAudioFile>
+<Export_LimitAudioFilesLength>false</Export_LimitAudioFilesLength>
+<Export_AudioFilesNamesLengthLimit>-1</Export_AudioFilesNamesLengthLimit>
+<Project_Export_AlwaysIgnoreIndentation>false</Project_Export_AlwaysIgnoreIndentation>
+<Export_EPUBFileNameLengthLimit>12</Export_EPUBFileNameLengthLimit>
+<Export_EPUBCreateDummyText>true</Export_EPUBCreateDummyText>
+<Project_OpenBookmarkNodeOnReopeningProject>true</Project_OpenBookmarkNodeOnReopeningProject>
+<BookMarkNodeHierarchy xsi:null="1"/>
+<Audio_RetainInitialSilenceInPhraseDetection>true</Audio_RetainInitialSilenceInPhraseDetection>
+<Audio_MergeFirstTwoPhrasesAfterPhraseDetection>true</Audio_MergeFirstTwoPhrasesAfterPhraseDetection>
+<Project_ImportToleranceForAudioInMs>100</Project_ImportToleranceForAudioInMs>
+<Project_LeftAlignPhrasesInContentView>true</Project_LeftAlignPhrasesInContentView>
+<Project_OptimizeMemory>true</Project_OptimizeMemory>
+<Project_ShowWaveformInContentView>true</Project_ShowWaveformInContentView>
+<Font id="ref-18">Times New Roman</Font>
+<Audio_DefaultGap>800</Audio_DefaultGap>
+<Audio_DefaultLeadingSilence>50</Audio_DefaultLeadingSilence>
+<Audio_DefaultThreshold>280</Audio_DefaultThreshold>
+<RecordingToolBarIncrementVal>0</RecordingToolBarIncrementVal>
+<Project_EnableFreeDiskSpaceCheck>true</Project_EnableFreeDiskSpaceCheck>
+<Audio_EnablePostRecordingPageRenumbering>true</Audio_EnablePostRecordingPageRenumbering>
+<ImportAudioCreateSectionCheck>true</ImportAudioCreateSectionCheck>
+<Audio_UseRecordingPauseShortcutForStopping>true</Audio_UseRecordingPauseShortcutForStopping>
+<Project_BackgroundColorForEmptySection>true</Project_BackgroundColorForEmptySection>
+<Audio_LevelComboBoxIndex>0</Audio_LevelComboBoxIndex>
+<Audio_UseRecordBtnToRecordOverSubsequentAudio>false</Audio_UseRecordBtnToRecordOverSubsequentAudio>
+<Audio_PreservePagesWhileRecordOverSubsequentAudio>false</Audio_PreservePagesWhileRecordOverSubsequentAudio>
+<Audio_EnforceSingleCursor>true</Audio_EnforceSingleCursor>
+<Audio_DeleteFollowingPhrasesOfSectionAfterRecording>false</Audio_DeleteFollowingPhrasesOfSectionAfterRecording>
+<Audio_DisableDeselectionOnStop>false</Audio_DisableDeselectionOnStop>
+<Project_SaveObiLocationAndSize>true</Project_SaveObiLocationAndSize>
+<Project_EPUBCheckTimeOutEnabled>true</Project_EPUBCheckTimeOutEnabled>
+<Project_ObiConfigFileName id="ref-19">obiconfig.xml</Project_ObiConfigFileName>
+<Project_PeakMeterChangeLocation>true</Project_PeakMeterChangeLocation>
+<Project_MinimizeObi>true</Project_MinimizeObi>
+<Audio_CleanupMaxFileSizeInMB>100</Audio_CleanupMaxFileSizeInMB>
+<EncodingFileFormat id="ref-20">MP3</EncodingFileFormat>
+<Project_RecordingToolbarOpenInPreviousSession>false</Project_RecordingToolbarOpenInPreviousSession>
+<m_ObiLastLocation href="#ref-21"/>
+<m_NewProjectDialogSize href="#ref-22"/>
+<m_ObiFormSize href="#ref-23"/>
+<m_PeakmeterSize href="#ref-24"/>
+<m_GraphicalPeakMeterContolSize href="#ref-25"/>
+<Audio_AlwaysMonitorRecordingToolBar>false</Audio_AlwaysMonitorRecordingToolBar>
+<m_RecordingToolBarLastLocation href="#ref-26"/>
+<Audio_RecordingToolbarProfile1 id="ref-27">Overwrite-VA1</Audio_RecordingToolbarProfile1>
+<Audio_RecordingToolbarProfile2 id="ref-28">Insert-VA1</Audio_RecordingToolbarProfile2>
+<Audio_ColorFlickerPreviewBeforeRecording>false</Audio_ColorFlickerPreviewBeforeRecording>
+<Audio_PlaySectionUsingPlayBtn>true</Audio_PlaySectionUsingPlayBtn>
+<Audio_LocalRecordingDirectory id="ref-29"></Audio_LocalRecordingDirectory>
+<Project_EnableMouseScrolling>true</Project_EnableMouseScrolling>
+<Audio_EnableFileDataProviderPreservation>false</Audio_EnableFileDataProviderPreservation>
+<Project_DisableTOCViewCollapse>true</Project_DisableTOCViewCollapse>
+<Project_MaximizeObi>true</Project_MaximizeObi>
+<Audio_EnsureCursorVisibilityInUndoOfSplitRecording>false</Audio_EnsureCursorVisibilityInUndoOfSplitRecording>
+<SettingsName id="ref-30">Insert-VA1 profile for project, colors preferences</SettingsName>
+</a1:Settings>
+<a1:ColorSettings id="ref-5"
+xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.
+7.0.31660%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<BlockBackColor_Custom>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>127</knownColor>
+<state>1</state>
+</BlockBackColor_Custom>
+<BlockBackColor_Empty>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>100</knownColor>
+<state>1</state>
+</BlockBackColor_Empty>
+<BlockBackColor_Heading>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>96</knownColor>
+<state>1</state>
+</BlockBackColor_Heading>
+<BlockBackColor_Page>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>98</knownColor>
+<state>1</state>
+</BlockBackColor_Page>
+<BlockBackColor_Plain>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</BlockBackColor_Plain>
+<BlockBackColor_Selected>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</BlockBackColor_Selected>
+<BlockBackColor_Silence>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>140</knownColor>
+<state>1</state>
+</BlockBackColor_Silence>
+<BlockBackColor_TODO>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>141</knownColor>
+<state>1</state>
+</BlockBackColor_TODO>
+<BlockBackColor_Unused>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>6</knownColor>
+<state>1</state>
+</BlockBackColor_Unused>
+<BlockBackColor_Anchor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>43</knownColor>
+<state>1</state>
+</BlockBackColor_Anchor>
+<BlockForeColor_Custom>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</BlockForeColor_Custom>
+<BlockForeColor_Empty>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</BlockForeColor_Empty>
+<BlockForeColor_Heading>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</BlockForeColor_Heading>
+<BlockForeColor_Page>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</BlockForeColor_Page>
+<BlockForeColor_Plain>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</BlockForeColor_Plain>
+<BlockForeColor_Selected>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</BlockForeColor_Selected>
+<BlockForeColor_Silence>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</BlockForeColor_Silence>
+<BlockForeColor_TODO>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>166</knownColor>
+<state>1</state>
+</BlockForeColor_TODO>
+<BlockForeColor_Anchor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</BlockForeColor_Anchor>
+<BlockForeColor_Unused>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</BlockForeColor_Unused>
+<ContentViewBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>4</knownColor>
+<state>1</state>
+</ContentViewBackColor>
+<EditableLabelTextBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</EditableLabelTextBackColor>
+<ProjectViewBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>5</knownColor>
+<state>1</state>
+</ProjectViewBackColor>
+<StripBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>5</knownColor>
+<state>1</state>
+</StripBackColor>
+<StripCursorSelectedBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</StripCursorSelectedBackColor>
+<StripForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</StripForeColor>
+<StripSelectedBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</StripSelectedBackColor>
+<StripSelectedForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</StripSelectedForeColor>
+<StripUnusedBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>6</knownColor>
+<state>1</state>
+</StripUnusedBackColor>
+<StripUnusedForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</StripUnusedForeColor>
+<StripWithoutPhrasesBackcolor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>171</knownColor>
+<state>1</state>
+</StripWithoutPhrasesBackcolor>
+<TOCViewBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</TOCViewBackColor>
+<TOCViewForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</TOCViewForeColor>
+<TOCViewUnusedColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>18</knownColor>
+<state>1</state>
+</TOCViewUnusedColor>
+<ToolTipForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</ToolTipForeColor>
+<TransportBarBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>5</knownColor>
+<state>1</state>
+</TransportBarBackColor>
+<TransportBarLabelBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>32</knownColor>
+<state>1</state>
+</TransportBarLabelBackColor>
+<TransportBarLabelForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</TransportBarLabelForeColor>
+<WaveformBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</WaveformBackColor>
+<WaveformHighlightedBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</WaveformHighlightedBackColor>
+<BlockLayoutSelectedColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</BlockLayoutSelectedColor>
+<WaveformBaseLineColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</WaveformBaseLineColor>
+<mWaveformChannel1Color>
+<name xsi:null="1"/>
+<value>2130706687</value>
+<knownColor>0</knownColor>
+<state>2</state>
+</mWaveformChannel1Color>
+<mWaveformChannel2Color>
+<name xsi:null="1"/>
+<value>2147418112</value>
+<knownColor>0</knownColor>
+<state>2</state>
+</mWaveformChannel2Color>
+<mWaveformCursorColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>141</knownColor>
+<state>1</state>
+</mWaveformCursorColor>
+<mWaveFormHighlightedForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</mWaveFormHighlightedForeColor>
+<mWaveformMonoColor>
+<name xsi:null="1"/>
+<value>2130706687</value>
+<knownColor>0</knownColor>
+<state>2</state>
+</mWaveformMonoColor>
+<mWaveformSelectionColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</mWaveformSelectionColor>
+<FineNavigationColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>30</knownColor>
+<state>1</state>
+</FineNavigationColor>
+<RecordingHighlightPhraseColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>61</knownColor>
+<state>1</state>
+</RecordingHighlightPhraseColor>
+<EmptySectionBackgroundColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>97</knownColor>
+<state>1</state>
+</EmptySectionBackgroundColor>
+<HighlightedSectionNodeWithoutSelectionColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>5</knownColor>
+<state>1</state>
+</HighlightedSectionNodeWithoutSelectionColor>
+</a1:ColorSettings>
+<a1:ColorSettings id="ref-6"
+xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.
+7.0.31660%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<BlockBackColor_Custom>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</BlockBackColor_Custom>
+<BlockBackColor_Empty>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</BlockBackColor_Empty>
+<BlockBackColor_Heading>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</BlockBackColor_Heading>
+<BlockBackColor_Page>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</BlockBackColor_Page>
+<BlockBackColor_Plain>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</BlockBackColor_Plain>
+<BlockBackColor_Selected>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</BlockBackColor_Selected>
+<BlockBackColor_Silence>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</BlockBackColor_Silence>
+<BlockBackColor_TODO>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</BlockBackColor_TODO>
+<BlockBackColor_Unused>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>6</knownColor>
+<state>1</state>
+</BlockBackColor_Unused>
+<BlockBackColor_Anchor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</BlockBackColor_Anchor>
+<BlockForeColor_Custom>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</BlockForeColor_Custom>
+<BlockForeColor_Empty>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</BlockForeColor_Empty>
+<BlockForeColor_Heading>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</BlockForeColor_Heading>
+<BlockForeColor_Page>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</BlockForeColor_Page>
+<BlockForeColor_Plain>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</BlockForeColor_Plain>
+<BlockForeColor_Selected>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</BlockForeColor_Selected>
+<BlockForeColor_Silence>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</BlockForeColor_Silence>
+<BlockForeColor_TODO>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</BlockForeColor_TODO>
+<BlockForeColor_Anchor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</BlockForeColor_Anchor>
+<BlockForeColor_Unused>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</BlockForeColor_Unused>
+<ContentViewBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>4</knownColor>
+<state>1</state>
+</ContentViewBackColor>
+<EditableLabelTextBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</EditableLabelTextBackColor>
+<ProjectViewBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>171</knownColor>
+<state>1</state>
+</ProjectViewBackColor>
+<StripBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>5</knownColor>
+<state>1</state>
+</StripBackColor>
+<StripCursorSelectedBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</StripCursorSelectedBackColor>
+<StripForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</StripForeColor>
+<StripSelectedBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</StripSelectedBackColor>
+<StripSelectedForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</StripSelectedForeColor>
+<StripUnusedBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>6</knownColor>
+<state>1</state>
+</StripUnusedBackColor>
+<StripUnusedForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</StripUnusedForeColor>
+<StripWithoutPhrasesBackcolor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>171</knownColor>
+<state>1</state>
+</StripWithoutPhrasesBackcolor>
+<TOCViewBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</TOCViewBackColor>
+<TOCViewForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</TOCViewForeColor>
+<TOCViewUnusedColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>18</knownColor>
+<state>1</state>
+</TOCViewUnusedColor>
+<ToolTipForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</ToolTipForeColor>
+<TransportBarBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>5</knownColor>
+<state>1</state>
+</TransportBarBackColor>
+<TransportBarLabelBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>63</knownColor>
+<state>1</state>
+</TransportBarLabelBackColor>
+<TransportBarLabelForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</TransportBarLabelForeColor>
+<WaveformBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>24</knownColor>
+<state>1</state>
+</WaveformBackColor>
+<WaveformHighlightedBackColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</WaveformHighlightedBackColor>
+<BlockLayoutSelectedColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</BlockLayoutSelectedColor>
+<WaveformBaseLineColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>10</knownColor>
+<state>1</state>
+</WaveformBaseLineColor>
+<mWaveformChannel1Color>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>79</knownColor>
+<state>1</state>
+</mWaveformChannel1Color>
+<mWaveformChannel2Color>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>79</knownColor>
+<state>1</state>
+</mWaveformChannel2Color>
+<mWaveformCursorColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>166</knownColor>
+<state>1</state>
+</mWaveformCursorColor>
+<mWaveFormHighlightedForeColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>14</knownColor>
+<state>1</state>
+</mWaveFormHighlightedForeColor>
+<mWaveformMonoColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>79</knownColor>
+<state>1</state>
+</mWaveformMonoColor>
+<mWaveformSelectionColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>13</knownColor>
+<state>1</state>
+</mWaveformSelectionColor>
+<FineNavigationColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>30</knownColor>
+<state>1</state>
+</FineNavigationColor>
+<RecordingHighlightPhraseColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>61</knownColor>
+<state>1</state>
+</RecordingHighlightPhraseColor>
+<EmptySectionBackgroundColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>79</knownColor>
+<state>1</state>
+</EmptySectionBackgroundColor>
+<HighlightedSectionNodeWithoutSelectionColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>5</knownColor>
+<state>1</state>
+</HighlightedSectionNodeWithoutSelectionColor>
+</a1:ColorSettings>
+<a3:ArrayList id="ref-15"
+xmlns:a3="http://schemas.microsoft.com/clr/ns/System.Collections">
+<_items href="#ref-32"/>
+<_size>2</_size>
+<_version>20</_version>
+</a3:ArrayList>
+<a1:UserProfile id="ref-16"
+xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.
+7.0.31660%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Name id="ref-33">Studio 6</Name>
+<Organization id="ref-34">N/A</Organization>
+<Culture href="#ref-35"/>
+</a1:UserProfile>
+<SOAP-ENC:Array id="ref-21" SOAP-ENC:arrayType="xsd:int[2]">
+<item>0</item>
+<item>0</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-22" SOAP-ENC:arrayType="xsd:int[2]">
+<item>805</item>
+<item>273</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-23" SOAP-ENC:arrayType="xsd:int[2]">
+<item>892</item>
+<item>580</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-24" SOAP-ENC:arrayType="xsd:int[2]">
+<item>0</item>
+<item>0</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-25" SOAP-ENC:arrayType="xsd:int[2]">
+<item>0</item>
+<item>0</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-26" SOAP-ENC:arrayType="xsd:int[2]">
+<item>0</item>
+<item>0</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-32" SOAP-ENC:arrayType="xsd:anyType[4]">
+<item href="#ref-9"/>
+<item id="ref-36" xsi:type="SOAP-ENC:string">C:\Users\Studio
+6\Desktop\Racing the Enemy\project.obi</item>
+</SOAP-ENC:Array>
+<a6:CultureInfo id="ref-35"
+xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<cultureID>3081</cultureID>
+<m_isReadOnly>false</m_isReadOnly>
+<compareInfo href="#ref-37"/>
+<textInfo xsi:null="1"/>
+<numInfo xsi:null="1"/>
+<dateTimeInfo xsi:null="1"/>
+<calendar xsi:null="1"/>
+<m_name id="ref-38">en-AU</m_name>
+<m_dataItem>43</m_dataItem>
+<m_useUserOverride>true</m_useUserOverride>
+</a6:CultureInfo>
+<a6:CompareInfo id="ref-37"
+xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<win32LCID>3081</win32LCID>
+<culture>3081</culture>
+<m_name id="ref-39">en-AU</m_name>
+</a6:CompareInfo>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+ureInfo>
+<a6:CompareInfo id="ref-38"
+xmlns:a6="http://schemas.microsoft.com/clr/ns/System.Globalization">
+<win32LCID>3081</win32LCID>
+<culture>3081</culture>
+<m_name id="ref-40">en-AU</m_name>
+</a6:CompareInfo>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+S</m_name>
+</a6:CompareInfo>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+V:Body>
+</SOAP-ENV:Envelope>
