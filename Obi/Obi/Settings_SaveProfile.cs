@@ -72,6 +72,7 @@ namespace Obi
                newSettings.Audio_PlaySectionUsingPlayBtn = this.Audio_PlaySectionUsingPlayBtn;
                newSettings.Audio_EnableFileDataProviderPreservation = this.Audio_EnableFileDataProviderPreservation;
                newSettings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording = this.Audio_EnsureCursorVisibilityInUndoOfSplitRecording;
+               newSettings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording = this.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording;
            }
 
            if (prefProfiles == PreferenceProfiles.Project || prefProfiles == PreferenceProfiles.All)
@@ -426,7 +427,8 @@ namespace Obi
                && this.Audio_ColorFlickerPreviewBeforeRecording == settings.Audio_ColorFlickerPreviewBeforeRecording
                && this.Audio_PlaySectionUsingPlayBtn == settings.Audio_PlaySectionUsingPlayBtn
                && this.Audio_EnableFileDataProviderPreservation == settings.Audio_EnableFileDataProviderPreservation
-               && this.Audio_EnsureCursorVisibilityInUndoOfSplitRecording == settings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording)
+               && this.Audio_EnsureCursorVisibilityInUndoOfSplitRecording == settings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording
+               && this.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording == settings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording)
            {
                audioPreferencesMatch = true ;
            }
