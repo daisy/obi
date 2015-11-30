@@ -2819,6 +2819,6 @@ Error text: {1}</value>
     <value>Open Obi in maximize state</value>
   </data>
   <data name="Audio_EnsureCursorVisibilityInUndoOfSplitRecording" xml:space="preserve">
-    <value>Ensure cursor visibility in undo of split recording</value>
+    <value>Ensure cursor visibility when preview before recording is undone</value>
   </data>
 </root>

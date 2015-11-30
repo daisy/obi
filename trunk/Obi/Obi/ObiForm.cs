@@ -5657,6 +5657,7 @@ ref string exportDirectoryEPUB3)
                     epubCheckProcess.StartInfo.FileName = "java.exe";
                     //
                     string strMode =Path.GetExtension(epub3Export).ToLower() == ".epub"? "" : "\" -mode exp -v 3.0";
+                    strMode += " -profile default";
                     string strArguments = "-jar \"" +
                         epubCheckFullPath + "\" \"" +
                         epub3Export + strMode;
