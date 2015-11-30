@@ -255,7 +255,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[18].Checked = mSettings.Audio_ColorFlickerPreviewBeforeRecording;
                 m_CheckBoxListView.Items[19].Checked = mSettings.Audio_PlaySectionUsingPlayBtn;
                 m_CheckBoxListView.Items[20].Checked = mSettings.Audio_EnableFileDataProviderPreservation;
-                m_CheckBoxListView.Items[20].Checked = mSettings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording;
+                m_CheckBoxListView.Items[21].Checked = mSettings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording;
+                m_CheckBoxListView.Items[22].Checked = mSettings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording;
                 m_IsComplete = true;
 
             }
@@ -1000,6 +1001,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_PlaySectionUsingPlayBtn = m_CheckBoxListView.Items[19].Checked;
                 mSettings.Audio_EnableFileDataProviderPreservation = m_CheckBoxListView.Items[20].Checked;
                 mSettings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording = m_CheckBoxListView.Items[21].Checked;
+                mSettings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording = m_CheckBoxListView.Items[22].Checked;
                 
             }
             //if (mTab.SelectedTab == mAdvanceTab)
@@ -1056,6 +1058,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_PlaySectionUsingPlayBtn"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_EnableFileDataProviderPreservation"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_EnsureCursorVisibilityInUndoOfSplitRecording"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording"));                
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Audio_AudioClues;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_AudioClues");                
@@ -1101,6 +1104,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[20].ToolTipText = Localizer.Message("Audio_EnableFileDataProviderPreservation");
                 m_CheckBoxListView.Items[21].Checked = mSettings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording;
                 m_CheckBoxListView.Items[21].ToolTipText = Localizer.Message("Audio_EnsureCursorVisibilityInUndoOfSplitRecording");
+                m_CheckBoxListView.Items[22].Checked = mSettings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording;
+                m_CheckBoxListView.Items[22].ToolTipText = Localizer.Message("Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording");               
 
               
             }
