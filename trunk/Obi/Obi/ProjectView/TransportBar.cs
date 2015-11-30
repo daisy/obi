@@ -2556,8 +2556,20 @@ namespace Obi.ProjectView
                     if (mRecordingPhrase != null && mRecordingSession != null
                         && timeOfAssetMilliseconds < 250) return false;
                     // check if phrase limit for section is not over
-                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxVisibleBlocksCount ) // @phraseLimit
-                    mRecordingSession.MarkPage();
+                    if (mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxVisibleBlocksCount) // @phraseLimit
+                    {
+                        // check if creation of pages is disabled. If yes, then should proceed only if the next phrase is empty page.
+                        if (mView.ObiForm.Settings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording 
+                            && mRecordingPhrase.FollowingNode != null
+                            && mRecordingPhrase.FollowingNode is EmptyNode)
+                        {
+                            EmptyNode nextEmptyNode = (EmptyNode) mRecordingPhrase.FollowingNode ;
+                            if (nextEmptyNode.Duration > 0) return false;
+                            if (nextEmptyNode.Role_ != EmptyNode.Role.Page) return false;
+                        }   
+
+                        mRecordingSession.MarkPage();
+                    }
                 }
                 else if (mState == State.Monitoring)
                 {
@@ -2597,6 +2609,12 @@ namespace Obi.ProjectView
             {
                 if (mState == State.Recording)
                 {
+                    // first check if creation of next heading is allowed. If not, then should proceed only if the next heading is empty
+                    if (mView.ObiForm.Settings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording
+                        && mRecordingSection.FollowingSection != null && mRecordingSection.FollowingSection.Duration > 0)
+                    {
+                        return false;
+                    }
                     //mRecordingSession.AudioRecorder.TimeOfAsset
                     double timeOfAssetMilliseconds =
                    (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(Convert.ToInt64( mRecordingSession.AudioRecorder.CurrentDurationBytePosition)) /
