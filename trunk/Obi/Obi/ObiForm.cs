@@ -1066,7 +1066,7 @@ namespace Obi
 
             // Clean unwanted audio from the project.
             // Before continuing, the user is given the choice to save or cancel.
-            private void CleanProject()
+            private void CleanProject(bool skipCleanedUpDataProvider)
             {
                 if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
@@ -1105,7 +1105,7 @@ namespace Obi
                             Directory.CreateDirectory(deletedDataFolderPath);
                         }
 
-                        Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath, mSettings.Audio_CleanupMaxFileSizeInMB, mSettings.Audio_EnableFileDataProviderPreservation );
+                        Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath, mSettings.Audio_CleanupMaxFileSizeInMB, skipCleanedUpDataProvider);
                         Dialogs.ProgressDialog progress = new ProgressDialog(Localizer.Message("cleaning_up"),
                                                                              delegate()
                                                                                  {
@@ -5860,23 +5860,20 @@ ref string exportDirectoryEPUB3)
                 {
                     mProjectView.ZoomPanelClose();
                 }
-                CleanProject();
+                CleanProject(false);
             }
 
             private void m_Tools_QuickCleanupToolStripMenuItem_Click(object sender, EventArgs e)
             {
-
+                if (mProjectView.IsZoomWaveformActive) mProjectView.ZoomPanelClose();
+                CleanProject(true);
             }
 
             private void mTools_CleanUnreferencedAudioMenuItem_DropDownOpening(object sender, EventArgs e)
             {
-                if (mSettings.Audio_EnableFileDataProviderPreservation)
+                if (Settings != null)
                 {
-                    m_Tools_QuickCleanupToolStripMenuItem.Enabled = true;
-                }
-                else
-                {
-                    m_Tools_QuickCleanupToolStripMenuItem.Enabled = false;
+                    m_Tools_QuickCleanupToolStripMenuItem.Enabled = Settings.Audio_EnableFileDataProviderPreservation;
                 }
             }
 
