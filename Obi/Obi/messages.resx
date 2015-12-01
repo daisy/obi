@@ -2807,7 +2807,7 @@ Error text: {1}</value>
     <value>Profile with the same name already exists.Do you want to overwrite it ?</value>
   </data>
   <data name="Audio_EnableFileDataProviderPreservation" xml:space="preserve">
-    <value>Skip already cleaned up files while clean-up</value>
+    <value>Enable quick cleanup (for network based deployment)</value>
   </data>
   <data name="Project_DisableTOCViewCollapse" xml:space="preserve">
     <value>Disable collapse of selected node in TOC view</value>
