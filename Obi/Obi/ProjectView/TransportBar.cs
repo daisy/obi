@@ -2564,6 +2564,7 @@ namespace Obi.ProjectView
                             && mRecordingPhrase.FollowingNode is EmptyNode)
                         {
                             EmptyNode nextEmptyNode = (EmptyNode) mRecordingPhrase.FollowingNode ;
+                            if (nextEmptyNode.Parent != mRecordingPhrase.Parent) return false;
                             if (nextEmptyNode.Duration > 0) return false;
                             if (nextEmptyNode.Role_ != EmptyNode.Role.Page) return false;
                         }   
