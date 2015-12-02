@@ -147,7 +147,10 @@ namespace Obi.ProjectView
             if (Strip != null)
             {
                 Strip.SetAnimationCursor(e.X, e.Y, true);
-                Strip.SetAnimationCursor();
+                if (Strip != null)
+                {
+                    Strip.SetAnimationCursor();
+                }
             }
         }
     }
