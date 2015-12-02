@@ -2802,7 +2802,7 @@ ref string exportDirectoryDAISY3,
                     ExportDialogXhtml = new ExportDirectory(exportDirectoryXHTML, mSession.Path, false, (mSettings.ExportEncodingBitRate),false,string.Empty);
                         //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogXhtml.XhtmlElmentsEnabled = false;
-                    if (mSettings.SettingsName.Contains("Profile-1-VA"))
+                    if (mSettings.Project_VAXhtmlExport)
                     {
                         ExportDialogXhtml.AdditionalTextForTitle = "Xhtml (VA profile)";
                     }
@@ -2902,7 +2902,7 @@ ref string exportDirectoryDAISY3,
                     if (ExportDialogXhtml != null)
                     {   
                         XHTML_ExportInstance = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportDirectoryXHTML);
-                        if (mSettings.SettingsName.Contains("Profile-1-VA")) XHTML_ExportInstance.Profile_VA = true;
+                        if (mSettings.Project_VAXhtmlExport) XHTML_ExportInstance.Profile_VA = true;
                         
                     }
                     exportDirectoryDAISY202 = exportPathDAISY202;

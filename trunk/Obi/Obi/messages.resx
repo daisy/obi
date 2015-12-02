@@ -2824,4 +2824,7 @@ Error text: {1}</value>
   <data name="Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording" xml:space="preserve">
     <value>Disable creation of new heading and pages while recording</value>
   </data>
+  <data name="Project_VAXhtmlExport" xml:space="preserve">
+    <value>Use Vision Australia rule for XHTML export</value>
+  </data>
 </root>
