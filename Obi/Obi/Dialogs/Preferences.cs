@@ -975,6 +975,7 @@ namespace Obi.Dialogs
                 mSettings.Project_EnableMouseScrolling = m_CheckBoxListView.Items[15].Checked;
                 mSettings.Project_DisableTOCViewCollapse = m_CheckBoxListView.Items[16].Checked;
                 mSettings.Project_MaximizeObi = m_CheckBoxListView.Items[17].Checked;
+                mSettings.Project_VAXhtmlExport = m_CheckBoxListView.Items[18].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -1141,6 +1142,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_EnableMouseScrolling"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_DisableTOCViewCollapse"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Project_MaximizeObi"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Project_VAXhtmlExport"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Project_OpenLastProject;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("ProjectTab_OpenLastProject");
@@ -1178,6 +1180,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[16].ToolTipText = Localizer.Message("Project_DisableTOCViewCollapse");
                 m_CheckBoxListView.Items[17].Checked = mSettings.Project_MaximizeObi;
                 m_CheckBoxListView.Items[17].ToolTipText = Localizer.Message("Project_MaximizeObi");
+                m_CheckBoxListView.Items[18].Checked = mSettings.Project_VAXhtmlExport;
+                m_CheckBoxListView.Items[18].ToolTipText = Localizer.Message("Project_VAXhtmlExport");
 
             }
             m_CheckBoxListView.View = View.Details;
@@ -1261,6 +1265,7 @@ namespace Obi.Dialogs
                 mSettings.Project_EnableMouseScrolling = m_DefaultSettings.Project_EnableMouseScrolling;
                 mSettings.Project_DisableTOCViewCollapse = m_DefaultSettings.Project_DisableTOCViewCollapse;
                 mSettings.Project_MaximizeObi = m_DefaultSettings.Project_MaximizeObi;
+                mSettings.Project_VAXhtmlExport = m_DefaultSettings.Project_VAXhtmlExport;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab

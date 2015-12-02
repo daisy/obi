@@ -224,6 +224,9 @@ namespace Obi
         [OptionalField]
         public bool Audio_EnsureCursorVisibilityInUndoOfSplitRecording; //temporary variable for taking precaution for implementing SBS request
 
+        [OptionalField]
+        public bool Project_VAXhtmlExport;
+
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
 
@@ -348,6 +351,7 @@ namespace Obi
             settings.Project_MaximizeObi = true;
             settings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording = false;
             settings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording = false;
+            settings.Project_VAXhtmlExport = false;
         }
 
         /// <summary>

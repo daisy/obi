@@ -101,6 +101,7 @@ namespace Obi
                newSettings.Project_EnableMouseScrolling = this.Project_EnableMouseScrolling;
                newSettings.Project_DisableTOCViewCollapse = this.Project_DisableTOCViewCollapse;
                newSettings.Project_MaximizeObi = this.Project_MaximizeObi;
+               newSettings.Project_VAXhtmlExport = this.Project_VAXhtmlExport;
 
                // checks for paths
                //if ( !string.IsNullOrEmpty(this.Project_DefaultPath) && Directory.Exists (this.Project_DefaultPath ))
@@ -456,7 +457,8 @@ namespace Obi
                && this.Project_ShowWaveformInContentView == settings.Project_ShowWaveformInContentView
                && this.Project_EnableMouseScrolling == settings.Project_EnableMouseScrolling
                && this.Project_DisableTOCViewCollapse == settings.Project_DisableTOCViewCollapse
-               && this.Project_MaximizeObi == settings.Project_MaximizeObi)
+               && this.Project_MaximizeObi == settings.Project_MaximizeObi
+               && this.Project_VAXhtmlExport == settings.Project_VAXhtmlExport)
                {
                    projectPreferencesMatch = true ;
                }
