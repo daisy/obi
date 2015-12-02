@@ -110,6 +110,7 @@
 <Project_MaximizeObi>true</Project_MaximizeObi>
 <Audio_EnsureCursorVisibilityInUndoOfSplitRecording>false</Audio_EnsureCursorVisibilityInUndoOfSplitRecording>
 <Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>true</Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>
+<Project_VAXhtmlExport>true</Project_VAXhtmlExport>
 <SettingsName id="ref-30">Overwrite-VA1 profile for  project, audio, colors preferences</SettingsName>
 </a1:Settings>
 <a1:ColorSettings id="ref-5"
