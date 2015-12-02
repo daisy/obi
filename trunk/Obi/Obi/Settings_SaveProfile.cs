@@ -73,6 +73,10 @@ namespace Obi
                newSettings.Audio_EnableFileDataProviderPreservation = this.Audio_EnableFileDataProviderPreservation;
                newSettings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording = this.Audio_EnsureCursorVisibilityInUndoOfSplitRecording;
                newSettings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording = this.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording;
+               if (!string.IsNullOrEmpty(this.Audio_LocalRecordingDirectory) && System.IO.Directory.Exists(this.Audio_LocalRecordingDirectory))
+               {
+                   newSettings.Audio_LocalRecordingDirectory = this.Audio_LocalRecordingDirectory;
+               }
            }
 
            if (prefProfiles == PreferenceProfiles.Project || prefProfiles == PreferenceProfiles.All)
@@ -193,7 +197,7 @@ namespace Obi
                newSettings.ColorSettingsHC.BlockLayoutSelectedColor = this.ColorSettingsHC.BlockLayoutSelectedColor;
                newSettings.ColorSettingsHC.ContentViewBackColor = this.ColorSettingsHC.ContentViewBackColor;
                newSettings.ColorSettingsHC.EditableLabelTextBackColor = this.ColorSettingsHC.EditableLabelTextBackColor;
-               newSettings.ColorSettingsHC.ProjectViewBackColor = this.ColorSettingsHC.StripWithoutPhrasesBackcolor;
+               newSettings.ColorSettingsHC.ProjectViewBackColor = this.ColorSettingsHC.ProjectViewBackColor;
                newSettings.ColorSettingsHC.StripBackColor = this.ColorSettingsHC.StripBackColor;
                newSettings.ColorSettingsHC.StripCursorSelectedBackColor = this.ColorSettingsHC.StripCursorSelectedBackColor;
                newSettings.ColorSettingsHC.StripForeColor = this.ColorSettingsHC.StripForeColor;
