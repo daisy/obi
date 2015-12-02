@@ -110,6 +110,7 @@
 <Project_MaximizeObi>false</Project_MaximizeObi>
 <Audio_EnsureCursorVisibilityInUndoOfSplitRecording>false</Audio_EnsureCursorVisibilityInUndoOfSplitRecording>
 <Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>false</Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>
+<Project_VAXhtmlExport>false</Project_VAXhtmlExport>  
 <SettingsName id="ref-28">Profile-2-SBS profile for  audio, colors preferences</SettingsName>
 </a1:Settings>
 <a1:ColorSettings id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.7.7.36111%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
