@@ -3394,7 +3394,7 @@ namespace Obi.ProjectView
                             mView.Selection is AudioSelection ?
                             (((AudioSelection)mView.Selection).AudioRange.HasCursor ? ((AudioSelection)mView.Selection).AudioRange.CursorTime : ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime) :
                             -1;
-                    if (time > 0)
+                    if (time >= 0)
                     {
                         Preview(Upto, IsPlayerActive ? UseAudioCursor : UseSelection);
                         int interval = 50;
