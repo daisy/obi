@@ -3429,7 +3429,7 @@ namespace Obi.ProjectView
                         }
                         else
                         {
-                            MessageBox.Show(Localizer.Message("PreviewBeforeRecording_SelectionChanged"));
+                            MessageBox.Show(Localizer.Message("PreviewBeforeRecording_SelectionChanged"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         }
                     }
                     if (SelectionChangedPlaybackEnabled != mView.ObiForm.Settings.PlayOnNavigate)
