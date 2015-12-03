@@ -209,13 +209,6 @@ namespace Obi.ProjectView
             set { if (value != null) UpdateColors ( value ); }
             }
 
-        public Color ColorBeforeFlicker
-        {
-            get
-            {
-                return m_ColorBackgroundBeforeFlicker;
-            }
-        }
         /// <summary>
         /// Create a command to delete the selected strip.
         /// </summary>
@@ -5962,6 +5955,16 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             mProjectView.MarkEndNote();
             mProjectView.AssignRoleToMarkedContinuousNodes();
+        }
+        public void ResetColorAfterColorFlickering()
+        {
+            if (mProjectView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording && m_ColorBackgroundBeforeFlicker != null)
+            {
+                if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mProjectView.ColorSettings.BlockBackColor_Selected.Name)
+                {
+                    mProjectView.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                }
+            }
         }
 
      

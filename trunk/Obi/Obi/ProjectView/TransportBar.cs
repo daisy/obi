@@ -3499,15 +3499,7 @@ namespace Obi.ProjectView
 
                 }
                 catch (System.Exception ex)
-                {
-
-                    if (mView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording && mView.ColorBeforeFlicker != null)
-                    {
-                        if (mView.ColorBeforeFlicker.Name != "0" && mView.ColorBeforeFlicker.Name != mView.ColorSettings.BlockBackColor_Selected.Name)
-                        {
-                            mView.ColorSettings.BlockBackColor_Selected = mView.ColorBeforeFlicker;
-                        }
-                    }
+                {                   
                     if (ex is urakawa.exception.DataMissingException || ex is System.IO.DirectoryNotFoundException)
                     {
                         IsDataMissingException = true;

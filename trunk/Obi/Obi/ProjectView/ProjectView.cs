@@ -150,13 +150,6 @@ namespace Obi.ProjectView
             set { mContentView.BeginSpecialNode = value; }
         }
 
-        public Color ColorBeforeFlicker
-        {
-            get
-            {
-               return mContentView.ColorBeforeFlicker;
-            }
-        }
 
         /// <summary>
         /// Add a new metadata entry to the project
