@@ -3226,6 +3226,13 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         //@singleSection
         public void PostRecording_RecreateInvisibleRecordingPhrases(SectionNode section, int initialIndex, int count)
         {
+            if (mProjectView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording)
+            {
+                if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mProjectView.ColorSettings.BlockBackColor_Selected.Name)
+                {
+                    mProjectView.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                }
+            }
             if (initialIndex + count == section.PhraseChildCount )
             {
                                 Strip currentlyActiveStrip = FindStrip(section);
