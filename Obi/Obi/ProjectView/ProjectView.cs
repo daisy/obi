@@ -6199,6 +6199,8 @@ public bool ShowOnlySelectedSection
                 }
         }
 
+        public void ResetColorAfterColorFlickering () { mContentView.ResetColorAfterColorFlickering(); }
+
         public void WriteToLogFile(string msg)
         {
             WriteToLogFile_Static(msg);

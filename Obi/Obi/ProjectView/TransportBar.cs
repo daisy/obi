@@ -3424,6 +3424,7 @@ namespace Obi.ProjectView
                         if (prevSelection.Node == mView.Selection.Node)
                         {
                             if (mResumeRecordingPhrase != null) mResumeRecordingPhrase = null;
+                            if (mView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording) mView.ResetColorAfterColorFlickering();
 
                             StartRecordingDirectly_Internal(true);
                         }
