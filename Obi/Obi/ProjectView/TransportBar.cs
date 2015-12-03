@@ -3395,7 +3395,7 @@ namespace Obi.ProjectView
                             mView.Selection is AudioSelection ?
                             (((AudioSelection)mView.Selection).AudioRange.HasCursor ? ((AudioSelection)mView.Selection).AudioRange.CursorTime : ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime) :
                             -1;
-                    if (time >= 0)
+                    if (time > 0)
                     {
                         Preview(Upto, IsPlayerActive ? UseAudioCursor : UseSelection);
                         int interval = 50;
@@ -3409,14 +3409,12 @@ namespace Obi.ProjectView
                             }
                             Thread.Sleep(interval);
                         }
-                        if (mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused && ((PreviewPlaylist)mCurrentPlaylist).RevertTime == 0
-                            && ((PreviewPlaylist)mCurrentPlaylist).RevertPhrase != mCurrentPlaylist.CurrentPhrase)
-                        {
-                            mCurrentPlaylist.CurrentPhrase = ((PreviewPlaylist)mCurrentPlaylist).RevertPhrase;
-                        }
-                        
                     }
-
+                    //if (CurrentState == State.Paused && mCurrentPlaylist is PreviewPlaylist && ((PreviewPlaylist)mCurrentPlaylist).RevertTime == 0
+                        //&& ((PreviewPlaylist)mCurrentPlaylist).RevertPhrase != mCurrentPlaylist.CurrentPhrase)
+                    //{
+                        //mCurrentPlaylist.CurrentPhrase = ((PreviewPlaylist)mCurrentPlaylist).RevertPhrase;
+                    //}
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
                 {
@@ -3424,7 +3422,7 @@ namespace Obi.ProjectView
                     if (CurrentState == State.Paused)
                     {
                         if (mResumeRecordingPhrase != null) mResumeRecordingPhrase = null;
-                        if (prevSelection != mView.Selection) mView.Selection = prevSelection;
+                        
                         StartRecordingDirectly_Internal(true);
                     }
                     if (SelectionChangedPlaybackEnabled != mView.ObiForm.Settings.PlayOnNavigate)
