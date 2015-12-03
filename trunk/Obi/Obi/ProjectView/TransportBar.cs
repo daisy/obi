@@ -63,6 +63,7 @@ namespace Obi.ProjectView
         private KeyboardShortcuts_Settings keyboardShortcuts=null;
         private double m_ElapseBackInterval;
         private double m_CursorTime=0.0;
+        private Color m_ColorBackgroundBeforeFlicker;
 
         //private ContextMenuStrip m_RecordingOptionsContextMenuStrip;
         //private ToolStripMenuItem m_MoniteringtoolStripMenuItem;
@@ -3338,6 +3339,10 @@ namespace Obi.ProjectView
             if (isPreviewBeforeRecording && mView.ObiForm.Settings.Audio_AllowOverwrite
                && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
             {
+                if (mView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording)
+                {
+                    m_ColorBackgroundBeforeFlicker = mView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
+                }
                 // first delete the subsequent phrases in the section
                 try
                 {
@@ -3487,6 +3492,14 @@ namespace Obi.ProjectView
                 }
                 catch (System.Exception ex)
                 {
+
+                    if (mView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording && m_ColorBackgroundBeforeFlicker != null)
+                    {
+                        if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mView.ColorSettings.BlockBackColor_Selected.Name)
+                        {
+                            mView.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                        }
+                    }
                     if (ex is urakawa.exception.DataMissingException || ex is System.IO.DirectoryNotFoundException)
                     {
                         IsDataMissingException = true;
