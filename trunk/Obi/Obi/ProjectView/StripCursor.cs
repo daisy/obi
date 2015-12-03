@@ -134,7 +134,7 @@ namespace Obi.ProjectView
             m_MouseMove = true;
             if (Strip != null)
             {
-                Strip.SetAnimationCursor(e.X, e.Y, false);
+                Strip.SetAnimationCursor(e.X, e.Y, false, this);
             }
         }
         // @zoomwaveform 
@@ -146,7 +146,7 @@ namespace Obi.ProjectView
             m_MouseMove = false;
             if (Strip != null)
             {
-                Strip.SetAnimationCursor(e.X, e.Y, true);
+                Strip.SetAnimationCursor(e.X, e.Y, true, this);
                 if (Strip != null)
                 {
                     Strip.SetAnimationCursor();

@@ -761,11 +761,14 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the Animation Cursor
         /// </summary>
-        public void SetAnimationCursor(int X, int Y, bool markOnPhrase)
+        public void SetAnimationCursor(int X, int Y, bool markOnPhrase,StripCursor cursor)
         {
-            Console.WriteLine("Contentview Selection {0}", mContentView.StripIsSelected);
             if (m_TempCursor != null && mContentView.StripIsSelected)
             {
+                if (cursor != m_TempCursor)
+                {
+                    m_TempCursor = cursor;
+                }
                 int index = mBlockLayout.Controls.IndexOf(m_TempCursor);
                 int tempTotalCount = mBlockLayout.Controls.Count;
                 
