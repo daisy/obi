@@ -763,6 +763,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void SetAnimationCursor(int X, int Y, bool markOnPhrase,StripCursor cursor)
         {
+            if (m_TempCursor == null)
+            {
+                SetSelectedIndexFromStripCursor(cursor);
+            }
             if (m_TempCursor != null && mContentView.StripIsSelected)
             {
                 if (cursor != m_TempCursor)
