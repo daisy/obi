@@ -3389,7 +3389,7 @@ namespace Obi.ProjectView
                 m_PreviewBeforeRecordingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
                 {
                     m_PreviewBeforeRecordingActive = true;
-
+                    NodeSelection currentSelection = mView.Selection;
                     double time = IsPlayerActive ? mCurrentPlaylist.CurrentTimeInAsset :
                             mView.Selection is AudioSelection ?
                             (((AudioSelection)mView.Selection).AudioRange.HasCursor ? ((AudioSelection)mView.Selection).AudioRange.CursorTime : ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime) :
@@ -3408,6 +3408,12 @@ namespace Obi.ProjectView
                             }
                             Thread.Sleep(interval);
                         }
+                        if (mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused && ((PreviewPlaylist)mCurrentPlaylist).RevertTime == 0
+                            && ((PreviewPlaylist)mCurrentPlaylist).RevertPhrase != mCurrentPlaylist.CurrentPhrase)
+                        {
+                            mCurrentPlaylist.CurrentPhrase = ((PreviewPlaylist)mCurrentPlaylist).RevertPhrase;
+                        }
+                        if (currentSelection != mView.Selection) mView.Selection = currentSelection;
                     }
 
                 });
