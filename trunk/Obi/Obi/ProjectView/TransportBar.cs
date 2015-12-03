@@ -3419,12 +3419,18 @@ namespace Obi.ProjectView
                 m_PreviewBeforeRecordingWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
                 {
                     m_PreviewBeforeRecordingActive = false;
-                    if (CurrentState == State.Paused
-                        && prevSelection.Node == mView.Selection.Node)
+                    if (CurrentState == State.Paused)
                     {
-                        if (mResumeRecordingPhrase != null) mResumeRecordingPhrase = null;
-                        
-                        StartRecordingDirectly_Internal(true);
+                        if (prevSelection.Node == mView.Selection.Node)
+                        {
+                            if (mResumeRecordingPhrase != null) mResumeRecordingPhrase = null;
+
+                            StartRecordingDirectly_Internal(true);
+                        }
+                        else
+                        {
+                            MessageBox.Show(Localizer.Message("PreviewBeforeRecording_SelectionChanged"));
+                        }
                     }
                     if (SelectionChangedPlaybackEnabled != mView.ObiForm.Settings.PlayOnNavigate)
                         SelectionChangedPlaybackEnabled = mView.ObiForm.Settings.PlayOnNavigate;

@@ -2827,4 +2827,7 @@ Error text: {1}</value>
   <data name="Project_VAXhtmlExport" xml:space="preserve">
     <value>Use Vision Australia rule for XHTML export</value>
   </data>
+  <data name="PreviewBeforeRecording_SelectionChanged" xml:space="preserve">
+    <value>Selection changed. Recording cannot be started.</value>
+  </data>
 </root>
