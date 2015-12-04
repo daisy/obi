@@ -3430,6 +3430,7 @@ namespace Obi.ProjectView
                         }
                         else
                         {
+                            //if (CurrentState == State.Paused) Stop();
                             MessageBox.Show(Localizer.Message("PreviewBeforeRecording_SelectionChanged"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         }
                     }
