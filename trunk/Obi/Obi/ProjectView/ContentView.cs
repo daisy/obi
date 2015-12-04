@@ -1163,7 +1163,6 @@ namespace Obi.ProjectView
                 if (m_timeElapsed == 0)
                 {
                     m_timeElapsed = time;
-                    m_ColorBackgroundBeforeFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
                 }
 
                 if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_TODO)
@@ -3687,6 +3686,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             contentViewLabel1.invertColor = SystemInformation.HighContrast;
             waveform_recording_control.invertColor = SystemInformation.HighContrast;   //@Onthefly
             waveform_recording_control.projectView = mProjectView;    //@Onthefly
+            m_ColorBackgroundBeforeFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
+
             }
 
         // Update all waveforms after colors have been set
