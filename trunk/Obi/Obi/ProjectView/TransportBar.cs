@@ -3335,6 +3335,38 @@ namespace Obi.ProjectView
             }
             }
 
+            // special handling if the time is at 0 s. This code should be removed by doing adequate improvements in preview playlist.
+            if (isPreviewBeforeRecording && mView.Selection != null
+                && mView.ObiForm.Settings.Audio_AllowOverwrite)
+            {
+                double time = -1;
+
+                time = IsPlayerActive ? mCurrentPlaylist.CurrentTimeInAsset :
+                    mView.Selection is AudioSelection ?
+                    (((AudioSelection)mView.Selection).AudioRange.HasCursor ? ((AudioSelection)mView.Selection).AudioRange.CursorTime : ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime) :
+                    -1;
+                // If the preceeding phrase is in the same section then place the cursor at end of preceeding phrase
+                // if preceeding phrase is not appropriate then select the strip index, start recording and  and return
+                if (time == 0)
+                {
+                    ObiNode proceedingNode = mView.Selection.Node.PrecedingNode;
+                    if (proceedingNode != null 
+                        && proceedingNode.Parent == mView.Selection.Node.Parent
+                        && proceedingNode is EmptyNode && ((EmptyNode)proceedingNode).Duration > 0)
+                    {
+                        mView.Selection = new AudioSelection((PhraseNode)proceedingNode, mView.Selection.Control,
+                           new AudioRange(proceedingNode.Duration));
+                        
+                    }
+                    else
+                    {
+                        mView.Selection = new StripIndexSelection(mView.Selection.Node.ParentAs<SectionNode>(), mView.Selection.Control, mView.Selection.Node.Index);
+                        StartRecordingDirectly_Internal(true);
+                        return;
+                    }
+                }
+            }
+
             if (isPreviewBeforeRecording && mView.ObiForm.Settings.Audio_AllowOverwrite
                && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
             {
