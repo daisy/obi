@@ -286,7 +286,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable creation of new heading and pages while recording.
+        ///   Looks up a localized string similar to Disable creation of new headings and pages while recording.
         /// </summary>
         internal static string Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording {
             get {
@@ -5317,7 +5317,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable collapse of selected node in TOC view.
+        ///   Looks up a localized string similar to Disable collapse of selected section in TOC view.
         /// </summary>
         internal static string Project_DisableTOCViewCollapse {
             get {
