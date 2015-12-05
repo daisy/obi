@@ -3367,6 +3367,7 @@ namespace Obi.ProjectView
                 }
             }
 
+            bool Status_SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabled;
             if (isPreviewBeforeRecording && mView.ObiForm.Settings.Audio_AllowOverwrite
                && ((CurrentState == State.Paused && !(mView.Selection is AudioSelection)) || (mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
             {
@@ -3467,8 +3468,9 @@ namespace Obi.ProjectView
                             MessageBox.Show(Localizer.Message("PreviewBeforeRecording_SelectionChanged"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         }
                     }
-                    if (SelectionChangedPlaybackEnabled != mView.ObiForm.Settings.PlayOnNavigate)
-                        SelectionChangedPlaybackEnabled = mView.ObiForm.Settings.PlayOnNavigate;
+                    if (SelectionChangedPlaybackEnabled != Status_SelectionChangedPlaybackEnabled)
+                        SelectionChangedPlaybackEnabled = Status_SelectionChangedPlaybackEnabled;
+                    
                 });
                 m_PreviewBeforeRecordingWorker.RunWorkerAsync();
                 
