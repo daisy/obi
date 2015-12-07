@@ -44,6 +44,14 @@ namespace Obi.Dialogs
             {
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Profile2").InnerHtml;
             }
+            else if (m_ProfileSelectedIndex == 5)
+            {
+                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Insert").InnerHtml;
+            }
+            else if (m_ProfileSelectedIndex == 6)
+            {
+                m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("VA-Overwrite").InnerHtml;
+            }
             else
             {
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Custom").InnerHtml;
