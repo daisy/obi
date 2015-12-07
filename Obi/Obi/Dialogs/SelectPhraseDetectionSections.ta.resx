@@ -135,10 +135,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_cb_StartRangeForNumberOfSections.Location" type="System.Drawing.Point, System.Drawing">
-    <value>154, 119</value>
+    <value>184, 104</value>
   </data>
   <data name="m_cb_StartRangeForNumberOfSections.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 21</value>
+    <value>57, 21</value>
   </data>
   <data name="m_cb_StartRangeForNumberOfSections.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -162,10 +162,10 @@
     <value>False</value>
   </data>
   <data name="m_cb_EndRangeForNumberOfSections.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 150</value>
+    <value>184, 136</value>
   </data>
   <data name="m_cb_EndRangeForNumberOfSections.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 21</value>
+    <value>57, 21</value>
   </data>
   <data name="m_cb_EndRangeForNumberOfSections.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -186,7 +186,7 @@
     <value>True</value>
   </data>
   <data name="startSectionRange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 122</value>
+    <value>6, 107</value>
   </data>
   <data name="startSectionRange.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 13</value>
@@ -213,7 +213,7 @@
     <value>True</value>
   </data>
   <data name="endSectionRange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 158</value>
+    <value>6, 139</value>
   </data>
   <data name="endSectionRange.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 13</value>
@@ -244,7 +244,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btn_Display.Location" type="System.Drawing.Point, System.Drawing">
-    <value>155, 191</value>
+    <value>273, 129</value>
   </data>
   <data name="m_btn_Display.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 28</value>
@@ -274,7 +274,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btn_OK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 327</value>
+    <value>294, 251</value>
   </data>
   <data name="m_btn_OK.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 28</value>
@@ -310,7 +310,7 @@
     <value>6, 19</value>
   </data>
   <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 330</value>
+    <value>239, 254</value>
   </data>
   <data name="m_lv_ListOfSelectedSectionsForPhraseDetection.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -331,7 +331,7 @@
     <value>1, 6</value>
   </data>
   <data name="m_grpListOfSections.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 355</value>
+    <value>251, 279</value>
   </data>
   <data name="m_grpListOfSections.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -358,7 +358,7 @@
     <value>True</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 81</value>
+    <value>6, 47</value>
   </data>
   <data name="m_rb_loadSelectedOnwards.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 17</value>
@@ -388,7 +388,7 @@
     <value>True</value>
   </data>
   <data name="m_rb_loadFromRange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 58</value>
+    <value>6, 78</value>
   </data>
   <data name="m_rb_loadFromRange.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 17</value>
@@ -418,7 +418,7 @@
     <value>True</value>
   </data>
   <data name="m_rb_loadAllSections.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 35</value>
+    <value>6, 20</value>
   </data>
   <data name="m_rb_loadAllSections.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 17</value>
@@ -442,10 +442,10 @@
     <value>4</value>
   </data>
   <data name="m_grpSelectRange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 12</value>
+    <value>258, 6</value>
   </data>
   <data name="m_grpSelectRange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 227</value>
+    <value>385, 167</value>
   </data>
   <data name="m_grpSelectRange.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -469,7 +469,7 @@
     <value>True</value>
   </data>
   <data name="m_lbl_SelectSilencePhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 27</value>
+    <value>6, 22</value>
   </data>
   <data name="m_lbl_SelectSilencePhrase.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 13</value>
@@ -496,10 +496,10 @@
     <value>அமைதி சொற்றொடர் தேர்ந்தெடு</value>
   </data>
   <data name="m_cb_SilencePhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 19</value>
+    <value>89, 19</value>
   </data>
   <data name="m_cb_SilencePhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 21</value>
+    <value>214, 21</value>
   </data>
   <data name="m_cb_SilencePhrase.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -523,7 +523,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="m_btn_Cancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>357, 327</value>
+    <value>461, 251</value>
   </data>
   <data name="m_btn_Cancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 28</value>
@@ -547,10 +547,10 @@
     <value>1</value>
   </data>
   <data name="m_grpSilencePhrase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 245</value>
+    <value>258, 174</value>
   </data>
   <data name="m_grpSilencePhrase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 62</value>
+    <value>385, 55</value>
   </data>
   <data name="m_grpSilencePhrase.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -574,7 +574,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>475, 365</value>
+    <value>651, 294</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>சொற்றொடர் கண்டுபிடித்தல் பகுதியை தேர்ந்தெடு</value>
