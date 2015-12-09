@@ -1840,7 +1840,7 @@
     <value>Export A&amp;udio</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
-    <value>Clean unreferenced audio ctrl+l</value>
+    <value>Clean unreferenced audio</value>
   </data>
   <data name="m_Tools_CompleteCleanupToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Complete Cleanup</value>
@@ -2032,7 +2032,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.7.7.29711, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.7.7.29878, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2304,6 +2304,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//43uAHwAAgA/WAIAPIjGAByIggANjb4ABbmeAA1VUgA84IoAP
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
