@@ -105,7 +105,7 @@
 <Audio_PlaySectionUsingPlayBtn>false</Audio_PlaySectionUsingPlayBtn>
 <Audio_LocalRecordingDirectory href="#ref-7"/>
 <Project_EnableMouseScrolling>false</Project_EnableMouseScrolling>
-<Audio_EnableFileDataProviderPreservation>false</Audio_EnableFileDataProviderPreservation>
+<Audio_EnableFileDataProviderPreservation>true</Audio_EnableFileDataProviderPreservation>
 <Project_DisableTOCViewCollapse>false</Project_DisableTOCViewCollapse>
 <Project_MaximizeObi>false</Project_MaximizeObi>
 <Audio_EnsureCursorVisibilityInUndoOfSplitRecording>true</Audio_EnsureCursorVisibilityInUndoOfSplitRecording>

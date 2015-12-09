@@ -1849,7 +1849,7 @@
     <value>Ctrl+L</value>
   </data>
   <data name="m_Tools_CompleteCleanupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 22</value>
+    <value>215, 22</value>
   </data>
   <data name="m_Tools_CompleteCleanupToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Complete Cleanup</value>
@@ -1857,8 +1857,11 @@
   <data name="m_Tools_QuickCleanupToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Quick Cleanup</value>
   </data>
+  <data name="m_Tools_QuickCleanupToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+L</value>
+  </data>
   <data name="m_Tools_QuickCleanupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 22</value>
+    <value>215, 22</value>
   </data>
   <data name="m_Tools_QuickCleanupToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Quick Cleanup</value>
@@ -2029,7 +2032,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=3.7.7.33678, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=3.7.7.29711, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
