@@ -5425,7 +5425,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use Vision Australia rule for XHTML export.
+        ///   Looks up a localized string similar to Use Vision Australia rules for XHTML export.
         /// </summary>
         internal static string Project_VAXhtmlExport {
             get {
