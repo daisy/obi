@@ -1747,7 +1747,7 @@ namespace Obi.ProjectView
                 SelectionChangedPlaybackEnabled = false;
                 mCurrentPlaylist.Stop ();
                 mView.SetPlaybackPhraseAndTime ( null, 0.0 );
-                
+
                 if (!(mCurrentPlaylist is PreviewPlaylist))
                 {
                     mCurrentPlaylist = mMasterPlaylist; //@masternewbehaviour
@@ -1756,8 +1756,13 @@ namespace Obi.ProjectView
                     {
                         mCurrentPlaylist.CurrentPhrase = currentPhrase;
                     }
-                    UpdateButtons();
                 }
+                else
+                {
+                    // if preview playlist, reset the flickering colors
+                    if (mView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording) mView.ResetColorAfterColorFlickering();
+                    }
+                UpdateButtons();
                 SelectionChangedPlaybackEnabled = PlaybackOnSelectionStatus;
                 }
             }
