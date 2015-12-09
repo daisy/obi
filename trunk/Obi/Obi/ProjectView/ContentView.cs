@@ -5961,7 +5961,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
         {
             if (mProjectView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording && m_ColorBackgroundBeforeFlicker != null)
             {
-                if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mProjectView.ColorSettings.BlockBackColor_Selected.Name)
+               // if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mProjectView.ColorSettings.BlockBackColor_Selected.Name)
+                if (m_ColorBackgroundBeforeFlicker.Name != "0")
                 {
                     mProjectView.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
                 }
