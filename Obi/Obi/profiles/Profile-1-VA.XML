@@ -109,7 +109,7 @@
 <Project_DisableTOCViewCollapse>true</Project_DisableTOCViewCollapse>
 <Project_MaximizeObi>true</Project_MaximizeObi>
 <Audio_EnsureCursorVisibilityInUndoOfSplitRecording>false</Audio_EnsureCursorVisibilityInUndoOfSplitRecording>
-<Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>false</Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>
+<Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>true</Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording>
 <Project_VAXhtmlExport>true</Project_VAXhtmlExport>
 <SettingsName id="ref-28">Profile-2-SBS profile for  audio, colors preferences</SettingsName>
 </a1:Settings>
