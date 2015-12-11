@@ -2594,6 +2594,8 @@ namespace Obi.ProjectView
                             FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
                         mView.SelectPhraseInContentView(destinationPhrase);
                         mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
+                        // assignment to current playlist should happen before selection for calling update button function through selection change event. For now update button is explicitly called, but it will be corrected in next release
+                        UpdateButtons();
                     }
                 }
 
@@ -2690,6 +2692,8 @@ namespace Obi.ProjectView
                             FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node));
                         mView.SelectPhraseInContentView(destinationPhrase);
                         mCurrentPlaylist.CurrentPhrase = destinationPhrase; //@masternewbehaviour
+                        // assignment to current playlist should happen before selection for calling update button function through selection change event. For now update button is explicitly called, but it will be corrected in next release
+                        UpdateButtons();
                     }
                 }
                 else
