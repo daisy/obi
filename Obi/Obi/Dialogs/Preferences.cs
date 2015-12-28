@@ -2584,6 +2584,18 @@ namespace Obi.Dialogs
                         {
                             System.IO.File.Delete(profilePath);
                             m_cb_SelectProfile.Items.RemoveAt(indexOfCombobox);
+                            if (m_cb_Profile1.SelectedIndex == indexOfCombobox)
+                            {
+                                m_cb_Profile1.SelectedIndex = 0;
+                                mSettings.Audio_RecordingToolbarProfile1 = m_cb_Profile1.SelectedItem.ToString();                               
+                            }
+                            if (m_cb_Profile2.SelectedIndex == indexOfCombobox)
+                            {
+                                m_cb_Profile2.SelectedIndex = 0;
+                                mSettings.Audio_RecordingToolbarProfile2 = m_cb_Profile2.SelectedItem.ToString();
+                            }
+                            m_cb_Profile1.Items.RemoveAt(indexOfCombobox);
+                            m_cb_Profile2.Items.RemoveAt(indexOfCombobox);
                            // mTransportBar.InitializeSwitchProfiles();
                             mTransportBar.RemoveProfileFromSwitchProfile(System.IO.Path.GetFileNameWithoutExtension(profilePath));
                         }
