@@ -2067,26 +2067,39 @@ namespace Obi.ProjectView
                         //bypass selecting only if selection is in same section, allow it select section if different section is selected
                         if ( value.Node is SectionNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection == value.Node )  return;
                     }
-                if (mSelection != value)
+                    if (mSelection != value)
                     {
-                    // deselect if there was a selection in a different control
-                    if (mSelection != null && (value == null || mSelection.Control != value.Control))
+                        // deselect if there was a selection in a different control
+                        if (mSelection != null && (value == null || mSelection.Control != value.Control))
                         {
-                        mSelection.Control.Selection = null;
+                            mSelection.Control.Selection = null;
                         }
-                    // select in the control
-                    mSelection = value;
-                    //UpdateShowOnlySelected ( mSelection == null ? false : mShowOnlySelected ); //@ShowSingleSection
-                    if (mSelection != null)
+                        // select in the control
+                        mSelection = value;
+                        //UpdateShowOnlySelected ( mSelection == null ? false : mShowOnlySelected ); //@ShowSingleSection
+                        if (mSelection != null)
                         {
-                        if (mSelection.Control == mTOCView) TOCViewVisible = true;
-                        else if (mSelection.Control == mMetadataView) MetadataViewVisible = true;
+                            if (mSelection.Control == mTOCView) TOCViewVisible = true;
+                            else if (mSelection.Control == mMetadataView) MetadataViewVisible = true;
 
-                        if (mSelection.Control == mContentView && !(mSelection is TextSelection)  && GetSelectedPhraseSection != null) mTOCView.HighlightNodeWithoutSelection = GetSelectedPhraseSection;
-                        mSelection.Control.Selection = value;
+                            if (mSelection.Control == mContentView && !(mSelection is TextSelection) && GetSelectedPhraseSection != null) mTOCView.HighlightNodeWithoutSelection = GetSelectedPhraseSection;
+                            mSelection.Control.Selection = value;
                         }
-                    if (SelectionChanged != null) SelectionChanged ( this, new EventArgs () );
+                        if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
                     }
+                    else
+                    {
+                        if (mSelection != null && mContentView != null)
+                        {
+                            if (mContentView.ActiveStrip != null)
+                            {
+                                Strip tempstrip = mContentView.ActiveStrip;
+                                tempstrip.UpdateColors();
+                            }
+                        }
+                
+                    }
+
                 }
             }
 
