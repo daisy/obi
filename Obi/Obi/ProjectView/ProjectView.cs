@@ -2087,19 +2087,6 @@ namespace Obi.ProjectView
                         }
                         if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
                     }
-                    else
-                    {
-                        if (mSelection != null && mContentView != null)
-                        {
-                            if (mContentView.ActiveStrip != null)
-                            {
-                                Strip tempstrip = mContentView.ActiveStrip;
-                                tempstrip.UpdateColors();
-                            }
-                        }
-                
-                    }
-
                 }
             }
 
