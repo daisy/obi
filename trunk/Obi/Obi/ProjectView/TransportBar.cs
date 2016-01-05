@@ -2564,14 +2564,16 @@ namespace Obi.ProjectView
                     if (mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxVisibleBlocksCount) // @phraseLimit
                     {
                         // check if creation of pages is disabled. If yes, then should proceed only if the next phrase is empty page.
-                        if (mView.ObiForm.Settings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording 
-                            && mRecordingPhrase.FollowingNode != null
-                            && mRecordingPhrase.FollowingNode is EmptyNode)
+                        if (mView.ObiForm.Settings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording )
                         {
-                            EmptyNode nextEmptyNode = (EmptyNode) mRecordingPhrase.FollowingNode ;
-                            if (nextEmptyNode.Parent != mRecordingPhrase.Parent) return false;
-                            if (nextEmptyNode.Duration > 0) return false;
-                            if (nextEmptyNode.Role_ != EmptyNode.Role.Page) return false;
+                            if (mRecordingPhrase.FollowingNode == null) return false;
+                            if (!(mRecordingPhrase.FollowingNode is EmptyNode)) return false;
+                            // if next node is empty node then move to following 
+                                EmptyNode nextEmptyNode = (EmptyNode)mRecordingPhrase.FollowingNode;
+                                if (nextEmptyNode.Parent != mRecordingPhrase.Parent) return false;
+                                if (nextEmptyNode.Duration > 0) return false;
+                                if (nextEmptyNode.Role_ != EmptyNode.Role.Page) return false;
+                            
                         }   
 
                         mRecordingSession.MarkPage();
