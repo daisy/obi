@@ -49,6 +49,7 @@ namespace Obi.ProjectView
         private Toolbar_EditAudio m_Edit;
         private double m_timeElapsed = 0.0;
         private Color m_ColorBackgroundBeforeFlicker;
+        private Color m_ColorBackgroundAfterFlicker;
 
         /// <summary>
         /// A new strips view.
@@ -1165,14 +1166,25 @@ namespace Obi.ProjectView
                     m_timeElapsed = time;
                 }
 
-                if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_TODO)
+                //if (mPlaybackBlock.ColorSettings.BlockBackColor_Selected == mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_TODO)
+                //{
+                //    mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                //}
+                //else
+                //{
+                //    mPlaybackBlock.ColorSettings.BlockBackColor_Selected = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_TODO;
+                //}
+
+                if (m_ColorBackgroundAfterFlicker == mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_TODO)
                 {
-                    mPlaybackBlock.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+                    mPlaybackBlock.BackColor = m_ColorBackgroundAfterFlicker = m_ColorBackgroundBeforeFlicker;
+                    
                 }
                 else
                 {
-                    mPlaybackBlock.ColorSettings.BlockBackColor_Selected = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_TODO;
+                    mPlaybackBlock.BackColor = m_ColorBackgroundAfterFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_TODO;
                 }
+                Console.WriteLine("Color of  BlockBackColor_Selected is {0}", mPlaybackBlock.ColorSettings.BlockBackColor_Selected);
                 //  m_timeElapsed = time;
 
                 if (!mProjectView.TransportBar.IsPlayerActive)
@@ -3686,7 +3698,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             contentViewLabel1.invertColor = SystemInformation.HighContrast;
             waveform_recording_control.invertColor = SystemInformation.HighContrast;   //@Onthefly
             waveform_recording_control.projectView = mProjectView;    //@Onthefly
-            m_ColorBackgroundBeforeFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
+            m_ColorBackgroundBeforeFlicker = m_ColorBackgroundAfterFlicker = mProjectView.ObiForm.Settings.ColorSettings.BlockBackColor_Selected;
 
             }
 
@@ -5959,14 +5971,14 @@ Block lastBlock = ActiveStrip.LastBlock ;
         }
         public void ResetColorAfterColorFlickering()
         {
-            if (mProjectView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording && m_ColorBackgroundBeforeFlicker != null)
-            {
-               // if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mProjectView.ColorSettings.BlockBackColor_Selected.Name)
-                if (m_ColorBackgroundBeforeFlicker.Name != "0")
-                {
-                    mProjectView.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
-                }
-            }
+            //if (mProjectView.ObiForm.Settings.Audio_ColorFlickerPreviewBeforeRecording && m_ColorBackgroundBeforeFlicker != null)
+            //{
+            //   // if (m_ColorBackgroundBeforeFlicker.Name != "0" && m_ColorBackgroundBeforeFlicker.Name != mProjectView.ColorSettings.BlockBackColor_Selected.Name)
+            //    if (m_ColorBackgroundBeforeFlicker.Name != "0")
+            //    {
+            //        mProjectView.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
+            //    }
+            //}
         }
 
      
