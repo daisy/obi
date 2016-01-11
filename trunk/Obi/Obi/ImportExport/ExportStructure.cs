@@ -31,6 +31,27 @@ namespace Obi.ImportExport
         {
             List<SectionNode> sectionsList = ((ObiRootNode)m_Presentation.RootNode).GetListOfAllSections();
             XmlDocument nccDocument = CreateNCCStubDocument();
+// add metadatas
+            XmlNode bodyNode = nccDocument.GetElementsByTagName("body")[0];
+            XmlNode paraNode = nccDocument.CreateElement("p", bodyNode.NamespaceURI);
+            bodyNode.AppendChild(paraNode);
+            paraNode.AppendChild(nccDocument.CreateTextNode("Book metadata"));
+            XmlNode ulNodeForMetadata = nccDocument.CreateElement("ul", bodyNode.NamespaceURI);
+            bodyNode.AppendChild(ulNodeForMetadata);
+            List<string> metadataStringsList = new List<string>();
+ urakawa.metadata.Metadata md =  m_Presentation.GetFirstMetadataItem(Metadata.DC_TITLE);
+ if (md != null) metadataStringsList.Add("Title: " + md.NameContentAttribute.Value);
+ md = null;
+
+ md = m_Presentation.GetFirstMetadataItem(Metadata.DC_IDENTIFIER);
+ if (md != null) metadataStringsList.Add("Identifier: " + md.NameContentAttribute.Value);
+ md = null;
+ foreach (string s in metadataStringsList)
+ {
+     XmlNode liNode = nccDocument.CreateElement("li", bodyNode.NamespaceURI);
+     ulNodeForMetadata.AppendChild(liNode);
+     liNode.AppendChild(nccDocument.CreateTextNode(s));
+ }
 
             m_IdCounter = 0;
             
@@ -60,7 +81,7 @@ namespace Obi.ImportExport
 
             if (Profile_VA )
             {
-                XmlNode bodyNode = nccDocument.GetElementsByTagName("body")[0];
+                //XmlNode bodyNode = nccDocument.GetElementsByTagName("body")[0];
                 int pageCounter = -1;
                 List<XmlNode> nodesToRemove = new List<XmlNode>();
 
