@@ -141,8 +141,8 @@ namespace Obi.ProjectView
             int v_max = mVScrollBar.Maximum - mVScrollBar.LargeChange + 1;
             if (mVScrollBar.Value > v_max) mVScrollBar.Value = v_max;
             //mHScrollBar.Maximum = w_max - VisibleWidth + mHScrollBar.LargeChange - 1 + mHScrollBar.Height; //@singleSection:commented
-            int verticalScrollStripAllowance = w_max < 3000 ? verticalScrollToolStripContainer1.Width : 0; //@singleSection: workaround
-            mHScrollBar.Maximum = w_max - (VisibleWidth - verticalScrollStripAllowance) + mHScrollBar.LargeChange - 1 + mHScrollBar.Height;
+           // int verticalScrollStripAllowance = w_max < 3000 ? verticalScrollToolStripContainer1.Width : 0; //@singleSection: workaround. 
+            mHScrollBar.Maximum = w_max - (VisibleWidth - verticalScrollToolStripContainer1.Width) + mHScrollBar.LargeChange - 1 + mHScrollBar.Height;
             int h_max = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
             if (mHScrollBar.Value > h_max) mHScrollBar.Value = h_max;
             }
@@ -812,11 +812,14 @@ namespace Obi.ProjectView
                 {
                     mHScrollBar.Value = ScrollValue;
                 }
-                else if(ScrollValue > MaxScrollwidth)
+                else if (ScrollValue > MaxScrollwidth)
                 {
                     mHScrollBar.Value = mHScrollBar.Maximum - mHScrollBar.LargeChange;
                 }
             }
+
+
+
 
             //for (Control parent = mPlaybackBlock.Parent; parent != mStripsPanel; parent = parent.Parent)
             //{
