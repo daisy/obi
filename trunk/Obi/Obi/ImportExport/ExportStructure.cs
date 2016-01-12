@@ -13,7 +13,9 @@ namespace Obi.ImportExport
 
         private string m_ExportDirectory;
         private ObiPresentation m_Presentation;
-        
+        private int m_MaxDepth;
+        private int m_PageNormalCount;
+
         public ExportStructure(ObiPresentation presentation, string exportDirectory)
         {
             m_Presentation = presentation;
@@ -39,31 +41,21 @@ namespace Obi.ImportExport
             XmlNode ulNodeForMetadata = nccDocument.CreateElement("ul", bodyNode.NamespaceURI);
             bodyNode.AppendChild(ulNodeForMetadata);
             List<string> metadataStringsList = new List<string>();
- urakawa.metadata.Metadata md =  m_Presentation.GetFirstMetadataItem(Metadata.DC_TITLE);
- if (md != null) metadataStringsList.Add("Title: " + md.NameContentAttribute.Value);
- md = null;
-
- md = m_Presentation.GetFirstMetadataItem(Metadata.DC_IDENTIFIER);
- if (md != null) metadataStringsList.Add("Identifier: " + md.NameContentAttribute.Value);
- md = null;
- foreach (string s in metadataStringsList)
- {
-     XmlNode liNode = nccDocument.CreateElement("li", bodyNode.NamespaceURI);
-     ulNodeForMetadata.AppendChild(liNode);
-     liNode.AppendChild(nccDocument.CreateTextNode(s));
- }
+ 
 
             m_IdCounter = 0;
             
             //m_ExportedSectionCount = 0;
 
             XmlNode prevPageXmlNode = null;
-            
+            m_MaxDepth = 0;
+            m_PageNormalCount = 0;
+
             for (int i = 0; i < sectionsList.Count; i++)
             {
                 try
                 {
-                    //if (m_MaxDepth < sectionsList[i].Level) m_MaxDepth = sectionsList[i].Level;
+                    if (m_MaxDepth < sectionsList[i].Level) m_MaxDepth = sectionsList[i].Level;
                     //if (Profile_VA)
                     //{
                         //prevPageXmlNode = CreateElementsForSection(nccDocument, sectionsList[i], i, prevPageXmlNode);
@@ -71,12 +63,32 @@ namespace Obi.ImportExport
                     //else
                     //{
                         CreateElementsForSection(nccDocument, sectionsList[i], i, null);
+                        
                     //}
                 }
                 catch (System.Exception ex)
                 {
                     System.Windows.Forms.MessageBox.Show(ex.ToString());
                 }
+            }
+
+             // add metadata to top of the file
+            urakawa.metadata.Metadata md = m_Presentation.GetFirstMetadataItem(Metadata.DC_TITLE);
+            if (md != null) metadataStringsList.Add("Title: " + md.NameContentAttribute.Value);
+            md = null;
+
+            md = m_Presentation.GetFirstMetadataItem(Metadata.DC_IDENTIFIER);
+            if (md != null) metadataStringsList.Add("Identifier: " + md.NameContentAttribute.Value);
+            md = null;
+
+            metadataStringsList.Add("Max. depth: " + m_MaxDepth.ToString());
+            metadataStringsList.Add("Normal page count : " + m_PageNormalCount.ToString());
+
+            foreach (string s in metadataStringsList)
+            {
+                XmlNode liNode = nccDocument.CreateElement("li", bodyNode.NamespaceURI);
+                ulNodeForMetadata.AppendChild(liNode);
+                liNode.AppendChild(nccDocument.CreateTextNode(s));
             }
 
             if (Profile_VA )
@@ -221,7 +233,7 @@ namespace Obi.ImportExport
                         break;
 
                         case PageKind.Normal:
-                        //m_PageNormalCount++;
+                        m_PageNormalCount++;
                         //if (phrase.PageNumber.Number > m_MaxPageNormal) m_MaxPageNormal = phrase.PageNumber.Number;
                         strClassVal = "page-normal";
                         break;
