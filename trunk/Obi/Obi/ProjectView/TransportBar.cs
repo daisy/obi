@@ -3651,7 +3651,7 @@ SelectionChangedPlaybackEnabled = false;
                 }
 
 
-                mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly));
+                mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly, true));
 
                 
                 if (nextToLastPhrase != null && nextToLastPhrase.Index > 0)//@advanceRecording
@@ -3705,7 +3705,7 @@ SelectionChangedPlaybackEnabled = false;
             if (mView != null && mView.ObiForm.Settings.Project_SaveProjectWhenRecordingEnds) mView.ObiForm.Save();
         }
 
-        private CompositeCommand GetSplitCommandForOnTheFlyDetectedPhrases(List<PhraseNode> phrasesList, List<double> timingList)
+        private CompositeCommand GetSplitCommandForOnTheFlyDetectedPhrases(List<PhraseNode> phrasesList, List<double> timingList, bool preventSplittingPages)
         {
             CompositeCommand multipleSplitCommand = mView.Presentation.CreateCompositeCommand("Multiple split command");
             timingList.Sort();
@@ -3717,7 +3717,7 @@ SelectionChangedPlaybackEnabled = false;
                 PhraseNode phrase = phrasesList[i];
                 double referenceTimeForPhrase = 0;
 
-                if (phrase.Role_ == EmptyNode.Role.Page || phrase.TODO || !phrase.Used) continue;
+                if ((preventSplittingPages && phrase.Role_ == EmptyNode.Role.Page) || phrase.TODO || !phrase.Used) continue;
 
                 //first calculate the reference time
                 foreach (PhraseNode p in phrasesList)
