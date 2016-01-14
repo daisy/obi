@@ -233,6 +233,10 @@ namespace Obi
         [OptionalField]
         public string SettingsName;
 
+        // for post Obi 3.8
+        [OptionalField]
+        public bool Audio_PreventSplittingPages;
+
         protected static void InitializeDefaultSettings(Settings settings)
         {
             settings.Audio_Channels = 1;
@@ -352,6 +356,8 @@ namespace Obi
             settings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording = false;
             settings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording = false;
             settings.Project_VAXhtmlExport = false;
+            //For post Obi 3.8
+            settings.Audio_PreventSplittingPages = true;
         }
 
         /// <summary>

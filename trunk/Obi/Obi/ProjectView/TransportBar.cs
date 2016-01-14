@@ -3651,7 +3651,7 @@ SelectionChangedPlaybackEnabled = false;
                 }
 
 
-                mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly, true));
+                mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly, mView.ObiForm.Settings.Audio_PreventSplittingPages));
 
                 
                 if (nextToLastPhrase != null && nextToLastPhrase.Index > 0)//@advanceRecording

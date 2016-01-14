@@ -2830,4 +2830,7 @@ Error text: {1}</value>
   <data name="PreviewBeforeRecording_SelectionChanged" xml:space="preserve">
     <value>Selection changed. Recording cannot be started.</value>
   </data>
+  <data name="Audio_PreventSplittingPages" xml:space="preserve">
+    <value>Prevent on the fly phrase detection on pages</value>
+  </data>
 </root>

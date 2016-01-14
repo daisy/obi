@@ -73,6 +73,7 @@ namespace Obi
                newSettings.Audio_EnableFileDataProviderPreservation = this.Audio_EnableFileDataProviderPreservation;
                newSettings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording = this.Audio_EnsureCursorVisibilityInUndoOfSplitRecording;
                newSettings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording = this.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording;
+               newSettings.Audio_PreventSplittingPages = this.Audio_PreventSplittingPages;
                if (!string.IsNullOrEmpty(this.Audio_LocalRecordingDirectory) && System.IO.Directory.Exists(this.Audio_LocalRecordingDirectory))
                {
                    newSettings.Audio_LocalRecordingDirectory = this.Audio_LocalRecordingDirectory;
@@ -433,7 +434,8 @@ namespace Obi
                && this.Audio_PlaySectionUsingPlayBtn == settings.Audio_PlaySectionUsingPlayBtn
                && this.Audio_EnableFileDataProviderPreservation == settings.Audio_EnableFileDataProviderPreservation
                && this.Audio_EnsureCursorVisibilityInUndoOfSplitRecording == settings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording
-               && this.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording == settings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording)
+               && this.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording == settings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording
+               && this.Audio_PreventSplittingPages == settings.Audio_PreventSplittingPages)
            {
                audioPreferencesMatch = true ;
            }
