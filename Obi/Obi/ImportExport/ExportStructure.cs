@@ -37,9 +37,11 @@ namespace Obi.ImportExport
             XmlNode bodyNode = nccDocument.GetElementsByTagName("body")[0];
             XmlNode paraNode = nccDocument.CreateElement("p", bodyNode.NamespaceURI);
             bodyNode.AppendChild(paraNode);
-            paraNode.AppendChild(nccDocument.CreateTextNode("Book metadata"));
+            XmlNode boldNode = nccDocument.CreateElement("b", bodyNode.NamespaceURI);
+            paraNode.AppendChild(boldNode);
+            boldNode.AppendChild(nccDocument.CreateTextNode("Book metadata:"));
             XmlNode ulNodeForMetadata = nccDocument.CreateElement("ul", bodyNode.NamespaceURI);
-            bodyNode.AppendChild(ulNodeForMetadata);
+            paraNode.AppendChild(ulNodeForMetadata);
             List<string> metadataStringsList = new List<string>();
  
 
