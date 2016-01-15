@@ -2822,7 +2822,7 @@ ref string exportDirectoryDAISY3,
                     string exportPathDAISY202 = ExportDialogDAISY202 != null ? ExportDialogDAISY202.DirectoryPath : null;
                     string exportPathEPUB3 = ExportDialogEPUB3 != null ? ExportDialogEPUB3.DirectoryPath : null;
                     string exportPathXhtml = ExportDialogXhtml != null ? ExportDialogXhtml.DirectoryPath : null;
-
+                    
                     Dialogs.ExportDirectory dialog = ExportDialogDAISY3 != null ? ExportDialogDAISY3 : 
                         ExportDialogDAISY202 != null ? ExportDialogDAISY202 : 
                         ExportDialogEPUB3 != null? ExportDialogEPUB3: ExportDialogXhtml;
@@ -2901,7 +2901,7 @@ ref string exportDirectoryDAISY3,
                     }
                     if (ExportDialogXhtml != null)
                     {   
-                        XHTML_ExportInstance = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportDirectoryXHTML);
+                        XHTML_ExportInstance = new Obi.ImportExport.ExportStructure(mProjectView.Presentation, exportPathXhtml);
                         if (mSettings.Project_VAXhtmlExport) XHTML_ExportInstance.Profile_VA = true;
                         
                     }
