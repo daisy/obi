@@ -3725,14 +3725,14 @@ SelectionChangedPlaybackEnabled = false;
                     if (p == phrase) break;
                     referenceTimeForPhrase += p.Duration;
                 }
-
+                
                 for (int j = newTimingList.Count-1; j >= 0; j--)
                 {
                     if (newTimingList[j] < referenceTimeForPhrase) break;
                     //Commands.Node.SplitAudio split = new Commands.Node.SplitAudio(mView, phrase, newTimingList[j]);
                     double splitTimeInPhrase = newTimingList[j] - referenceTimeForPhrase;
                     //avoid invalid time and also too small phrases, less than 200ms
-                    if ( splitTimeInPhrase <= 70 || splitTimeInPhrase>= (phrase.Duration - 200) ) continue ;
+                    if ( splitTimeInPhrase <= 200 || splitTimeInPhrase>= (phrase.Duration - 200) ) continue ;
                     CompositeCommand split = Commands.Node.SplitAudio.GetSplitCommand(mView, phrase,splitTimeInPhrase );
                     multipleSplitCommand.ChildCommands.Insert(multipleSplitCommand.ChildCommands.Count, split);
                     newTimingList.RemoveAt(j);
