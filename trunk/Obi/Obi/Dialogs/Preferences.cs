@@ -1838,9 +1838,21 @@ namespace Obi.Dialogs
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
+                    m_CheckBoxListView.Items[0].Checked = false;
+                    m_CheckBoxListView.Items[1].Checked = false;
+                    m_CheckBoxListView.Items[2].Checked = true;
+                    m_CheckBoxListView.Items[3].Checked = true;
+                    m_CheckBoxListView.Items[4].Checked = true;
+                    m_CheckBoxListView.Items[5].Checked = true;
+                    m_CheckBoxListView.Items[6].Checked = true;
+                    m_CheckBoxListView.Items[7].Checked = true;
+                    m_CheckBoxListView.Items[8].Checked = true;
+                    m_CheckBoxListView.Items[9].Checked = false;
+
                     m_CheckBoxListView.Items[10].Checked = false;
                     m_CheckBoxListView.Items[11].Checked = false;
                     m_CheckBoxListView.Items[12].Checked = false;
+                    m_CheckBoxListView.Items[13].Checked = true;
                     m_CheckBoxListView.Items[14].Checked = false;
                     m_CheckBoxListView.Items[15].Checked = true;
                     m_CheckBoxListView.Items[16].Checked = false;
@@ -1878,9 +1890,21 @@ namespace Obi.Dialogs
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
+                    m_CheckBoxListView.Items[0].Checked = false;
+                    m_CheckBoxListView.Items[1].Checked = false;
+                    m_CheckBoxListView.Items[2].Checked = true;
+                    m_CheckBoxListView.Items[3].Checked = true;
+                    m_CheckBoxListView.Items[4].Checked = true;
+                    m_CheckBoxListView.Items[5].Checked = true;
+                    m_CheckBoxListView.Items[6].Checked = true;
+                    m_CheckBoxListView.Items[7].Checked = true;
+                    m_CheckBoxListView.Items[8].Checked = true;
+                    m_CheckBoxListView.Items[9].Checked = false;
+
                     m_CheckBoxListView.Items[10].Checked = false;
                     m_CheckBoxListView.Items[11].Checked = false;
                     m_CheckBoxListView.Items[12].Checked = false;
+                    m_CheckBoxListView.Items[13].Checked = true;
                     m_CheckBoxListView.Items[14].Checked = false;
                     m_CheckBoxListView.Items[15].Checked = true;
                     m_CheckBoxListView.Items[16].Checked = false;
@@ -1917,9 +1941,21 @@ namespace Obi.Dialogs
       
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
+                    m_CheckBoxListView.Items[0].Checked = false;
+                    m_CheckBoxListView.Items[1].Checked = false;
+                    m_CheckBoxListView.Items[2].Checked = true;
+                    m_CheckBoxListView.Items[3].Checked = true;
+                    m_CheckBoxListView.Items[4].Checked = true;
+                    m_CheckBoxListView.Items[5].Checked = true;
+                    m_CheckBoxListView.Items[6].Checked = true;
+                    m_CheckBoxListView.Items[7].Checked = true;
+                    m_CheckBoxListView.Items[8].Checked = true;
+                    m_CheckBoxListView.Items[9].Checked = false;
+
                     m_CheckBoxListView.Items[10].Checked = false;
                     m_CheckBoxListView.Items[11].Checked = false;
                     m_CheckBoxListView.Items[12].Checked = false;
+                    m_CheckBoxListView.Items[13].Checked = true;
                     m_CheckBoxListView.Items[14].Checked = false;
                     m_CheckBoxListView.Items[15].Checked = true;
                     m_CheckBoxListView.Items[16].Checked = false;
@@ -1949,16 +1985,28 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[17].Checked = true;
                     m_CheckBoxListView.Items[18].Checked = true;
                     m_CheckBoxListView.Items[19].Checked = false;
-                    m_CheckBoxListView.Items[20].Checked = false;
+                    m_CheckBoxListView.Items[20].Checked = true;
                     m_CheckBoxListView.Items[21].Checked = true;
                     m_CheckBoxListView.Items[22].Checked = false;
                     m_CheckBoxListView.Items[23].Checked = true;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
+                    m_CheckBoxListView.Items[0].Checked = false;
+                    m_CheckBoxListView.Items[1].Checked = false;
+                    m_CheckBoxListView.Items[2].Checked = true;
+                    m_CheckBoxListView.Items[3].Checked = true;
+                    m_CheckBoxListView.Items[4].Checked = true;
+                    m_CheckBoxListView.Items[5].Checked = true;
+                    m_CheckBoxListView.Items[6].Checked = true;
+                    m_CheckBoxListView.Items[7].Checked = true;
+                    m_CheckBoxListView.Items[8].Checked = true;
+                    m_CheckBoxListView.Items[9].Checked = false;
+
                     m_CheckBoxListView.Items[10].Checked = true;
                     m_CheckBoxListView.Items[11].Checked = true;
                     m_CheckBoxListView.Items[12].Checked = true;
+                    m_CheckBoxListView.Items[13].Checked = true;
                     m_CheckBoxListView.Items[14].Checked = false;
                     m_CheckBoxListView.Items[15].Checked = false;
                     m_CheckBoxListView.Items[16].Checked = false;
@@ -2000,9 +2048,21 @@ namespace Obi.Dialogs
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
+                    m_CheckBoxListView.Items[0].Checked = false;
+                    m_CheckBoxListView.Items[1].Checked = false;
+                    m_CheckBoxListView.Items[2].Checked = true;
+                    m_CheckBoxListView.Items[3].Checked = true;
+                    m_CheckBoxListView.Items[4].Checked = true;
+                    m_CheckBoxListView.Items[5].Checked = true;
+                    m_CheckBoxListView.Items[6].Checked = true;
+                    m_CheckBoxListView.Items[7].Checked = true;
+                    m_CheckBoxListView.Items[8].Checked = true;
+                    m_CheckBoxListView.Items[9].Checked = false;
+
                     m_CheckBoxListView.Items[10].Checked = false;
                     m_CheckBoxListView.Items[11].Checked = false;
                     m_CheckBoxListView.Items[12].Checked = false;
+                    m_CheckBoxListView.Items[13].Checked = true;
                     m_CheckBoxListView.Items[14].Checked = true;
                     m_CheckBoxListView.Items[15].Checked = true;
                     m_CheckBoxListView.Items[16].Checked = true;
