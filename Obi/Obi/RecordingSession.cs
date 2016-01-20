@@ -216,56 +216,29 @@ namespace Obi
                 mRecorder.StopRecording();
                 if (wasRecording)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine("Phrase Marks on the fly");
-                    for (int i = m_PhraseMarksOnTheFly.Count - 1; i >= 0; --i)
-                    {
-                        Console.WriteLine(m_PhraseMarksOnTheFly[i]);
-                    }
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine("Phrases deleted:-");
                     for (int i = m_PhraseMarksOnTheFly.Count - 2; i >= 0; --i)
                     {
                         if (i != 0 && (m_PhraseMarksOnTheFly[i] - m_PhraseMarksOnTheFly[i - 1]) <= 250)
                         {
-                            Console.WriteLine("Phrase on fly {0} removed is {1}", i, m_PhraseMarksOnTheFly[i]);
                             m_PhraseMarksOnTheFly.Remove(m_PhraseMarksOnTheFly[i]);
                             i++;
                         }
                         else if (i == 0 && m_PhraseMarksOnTheFly[i] <= 250)
                         {
-                            Console.WriteLine("Phrase on fly {0} removed is {1}", i, m_PhraseMarksOnTheFly[i]);
                             m_PhraseMarksOnTheFly.Remove(m_PhraseMarksOnTheFly[i]);
                             i++;
                         }
                     }
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine("Phrase Marks are:");
-                    for (int i = mPhraseMarks.Count - 1; i >= 0; --i)
-                    {
-                        Console.WriteLine(mPhraseMarks[i]);
-                    }
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine("Phrase marks that are Split");
+                   
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
                         if (mPhraseMarks[i] < mSessionMedia.Duration.AsMilliseconds && mSessionMedia.Duration.AsMilliseconds > 200)
                         {
-                            Console.WriteLine("Phrase Mark {0} is removed {1} ",i,mPhraseMarks[i]);
                             ManagedAudioMedia split = mSessionMedia.Split(new Time(Convert.ToInt64(mPhraseMarks[i] * Time.TIME_UNIT)));
                             mAudioList.Insert(mSessionOffset, split);
                         }
                         else
                         {
-                            Console.WriteLine();
-                            Console.WriteLine();
-                            Console.WriteLine();
-                            Console.WriteLine();
-                            Console.WriteLine("Phrase Mark {0} which cannot be split is {1}", i, mPhraseMarks[i]);
                             MessageBox.Show(Localizer.Message("RecordingSession_SplitError"), Localizer.Message("Caption_Warning"));
                         }
                     }
