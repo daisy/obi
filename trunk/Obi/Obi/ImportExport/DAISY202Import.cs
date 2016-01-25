@@ -187,7 +187,12 @@ namespace Obi.ImportExport
                         else if (n.LocalName == "p" || n.LocalName == "span")
                         {
                             string classAttr = n.Attributes.GetNamedItem("class").Value;
-                            if (classAttr == "page" || classAttr == "page-normal")
+                            if (classAttr == "phrase")
+                            {
+EmptyNode empty = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
+m_CurrentSection.AppendChild(empty);
+                            }
+                            else if (classAttr == "page" || classAttr == "page-normal")
                             {
                                 addPage(n, PageKind.Normal);
                             }
