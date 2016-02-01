@@ -605,6 +605,8 @@ namespace Obi
                                                                      else
                                                                      {
                                                                          import.DoWork();
+                                                                         mSession.Presentation.CheckAndCreateDefaultMetadataItems(
+                                                                             mSettings.UserProfile);
                                                                          import.CorrectExternalAudioMedia();
                                                                          
                                                                      }
