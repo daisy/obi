@@ -412,6 +412,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Audio Zoom.
+        /// </summary>
+        internal static string Audio_SaveAudioZoom {
+            get {
+                return ResourceManager.GetString("Audio_SaveAudioZoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected audio at {0} in {1} in {2}.
         /// </summary>
         internal static string audio_selection_to_string {

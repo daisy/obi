@@ -236,6 +236,7 @@ namespace Obi
         // for post Obi 3.8
         [OptionalField]
         public bool Audio_PreventSplittingPages;
+        public bool Audio_SaveAudioZoom;
 
         protected static void InitializeDefaultSettings(Settings settings)
         {
@@ -358,6 +359,7 @@ namespace Obi
             settings.Project_VAXhtmlExport = false;
             //For post Obi 3.8
             settings.Audio_PreventSplittingPages = true;
+            settings.Audio_SaveAudioZoom = false;
         }
 
         /// <summary>

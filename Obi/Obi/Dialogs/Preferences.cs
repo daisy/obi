@@ -258,6 +258,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[21].Checked = mSettings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording;
                 m_CheckBoxListView.Items[22].Checked = mSettings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording;
                 m_CheckBoxListView.Items[23].Checked = mSettings.Audio_PreventSplittingPages;
+                m_CheckBoxListView.Items[24].Checked = mSettings.Audio_SaveAudioZoom;
                 m_IsComplete = true;
 
             }
@@ -929,6 +930,10 @@ namespace Obi.Dialogs
                     MessageBox.Show(string.Format(Localizer.Message("AudioPref_LivePhraseDetectionEnable"), mSettings.Audio_DefaultThreshold, mSettings.Audio_DefaultGap,mSettings.Audio_DefaultLeadingSilence )) ;
                 }
 
+                if (e.Item.Text == Localizer.Message("Audio_SaveAudioZoom") && !e.Item.Checked)
+                {
+                    mSettings.Audio_AudioScale = 0.01f;
+                }
 
                 //if (m_FlagComboBoxIndexChange == false)
                 //{
@@ -1005,6 +1010,7 @@ namespace Obi.Dialogs
                 mSettings.Audio_EnsureCursorVisibilityInUndoOfSplitRecording = m_CheckBoxListView.Items[21].Checked;
                 mSettings.Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording = m_CheckBoxListView.Items[22].Checked;
                 mSettings.Audio_PreventSplittingPages = m_CheckBoxListView.Items[23].Checked;
+                mSettings.Audio_SaveAudioZoom = m_CheckBoxListView.Items[24].Checked;
                 
             }
             //if (mTab.SelectedTab == mAdvanceTab)
@@ -1063,6 +1069,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_EnsureCursorVisibilityInUndoOfSplitRecording"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("Audio_PreventSplittingPages"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("Audio_SaveAudioZoom"));
                
                 m_CheckBoxListView.Items[0].Checked = mSettings.Audio_AudioClues;
                 m_CheckBoxListView.Items[0].ToolTipText = Localizer.Message("AudioTab_AudioClues");                
@@ -1112,6 +1119,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[22].ToolTipText = Localizer.Message("Audio_DisableCreationOfNewHeadingsAndPagesWhileRecording");
                 m_CheckBoxListView.Items[23].Checked = mSettings.Audio_PreventSplittingPages;
                 m_CheckBoxListView.Items[23].ToolTipText = Localizer.Message("Audio_PreventSplittingPages");
+                m_CheckBoxListView.Items[24].Checked = mSettings.Audio_SaveAudioZoom;
+                m_CheckBoxListView.Items[24].ToolTipText = Localizer.Message("Audio_SaveAudioZoom");
 
               
             }
@@ -1835,6 +1844,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[21].Checked = false;
                     m_CheckBoxListView.Items[22].Checked = false;
                     m_CheckBoxListView.Items[23].Checked = true;
+                    m_CheckBoxListView.Items[24].Checked = false;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -1887,6 +1897,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[21].Checked = false;
                     m_CheckBoxListView.Items[22].Checked = false;
                     m_CheckBoxListView.Items[23].Checked = true;
+                    m_CheckBoxListView.Items[24].Checked = false;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -1938,6 +1949,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[21].Checked = false;
                     m_CheckBoxListView.Items[22].Checked = false;
                     m_CheckBoxListView.Items[23].Checked = true;
+                    m_CheckBoxListView.Items[24].Checked = false;
       
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -1989,6 +2001,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[21].Checked = true;
                     m_CheckBoxListView.Items[22].Checked = false;
                     m_CheckBoxListView.Items[23].Checked = true;
+                    m_CheckBoxListView.Items[24].Checked = true;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;
@@ -2043,6 +2056,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[21].Checked = false;
                     m_CheckBoxListView.Items[22].Checked = true;
                     m_CheckBoxListView.Items[23].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = false;
 
                     mSettings.Audio_PreviewDuration = 7000;
 
@@ -2098,6 +2112,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[21].Checked = false;
                     m_CheckBoxListView.Items[22].Checked = true;
                     m_CheckBoxListView.Items[23].Checked = false;
+                    m_CheckBoxListView.Items[24].Checked = false;
 
 
                     UpdateBoolSettings();
@@ -2151,7 +2166,7 @@ namespace Obi.Dialogs
                     m_CheckBoxListView.Items[21].Checked = false;
                     m_CheckBoxListView.Items[22].Checked = true;
                     m_CheckBoxListView.Items[23].Checked = false;
-
+                    m_CheckBoxListView.Items[24].Checked = false;
 
                     UpdateBoolSettings();
                     mTab.SelectedTab = mProjectTab;

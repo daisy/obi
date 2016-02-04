@@ -2833,4 +2833,7 @@ Error text: {1}</value>
   <data name="Audio_PreventSplittingPages" xml:space="preserve">
     <value>Prevent on the fly phrase detection on pages</value>
   </data>
+  <data name="Audio_SaveAudioZoom" xml:space="preserve">
+    <value>Save Audio Zoom</value>
+  </data>
 </root>

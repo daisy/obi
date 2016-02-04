@@ -4580,6 +4580,14 @@ ref string exportDirectoryEPUB3)
                     else if (strip.AudioScale < 0.1f)
                     {
                         strip.AudioScale *= AUDIO_SCALE_INCREMENT;
+                        if (mSettings.Audio_SaveAudioZoom)
+                        {
+                            mSettings.Audio_AudioScale = strip.AudioScale;
+                        }
+                        else
+                        {
+                            mSettings.Audio_AudioScale = 0.01f;
+                        }
                     }
                 }
                 else
@@ -4606,6 +4614,14 @@ ref string exportDirectoryEPUB3)
                     else if (strip.AudioScale > 0.002f)
                     {
                         strip.AudioScale /= AUDIO_SCALE_INCREMENT;
+                        if (mSettings.Audio_SaveAudioZoom)
+                        {
+                            mSettings.Audio_AudioScale = strip.AudioScale;
+                        }
+                        else
+                        {
+                            mSettings.Audio_AudioScale = 0.01f;
+                        }
                     }
                 }
                 else
