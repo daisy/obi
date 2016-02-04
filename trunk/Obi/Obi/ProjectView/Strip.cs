@@ -72,6 +72,7 @@ namespace Obi.ProjectView
                     Resize_Blocks();
                     mContentView.UpdateSize ();
                     mContentView.EnsureVisibilityOfSelectedItem();
+                    mContentView.Settings.Audio_AudioScale = value;
                 }
             }
         }
