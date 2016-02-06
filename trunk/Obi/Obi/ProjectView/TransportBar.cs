@@ -3653,7 +3653,11 @@ SelectionChangedPlaybackEnabled = false;
 
                 mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly, mView.ObiForm.Settings.Audio_PreventSplittingPages));
 
-                
+                CompositeCommand multipleMergePhraseCommand = GetMultiplePhrasesMergeCommand(listOfRecordedPhrases);
+                if (multipleMergePhraseCommand.ChildCommands.Count > 0)
+                {
+                    mView.Presentation.Do(multipleMergePhraseCommand);
+                }
                 if (nextToLastPhrase != null && nextToLastPhrase.Index > 0)//@advanceRecording
                 {
                     SectionNode section = nextToLastPhrase.ParentAs<SectionNode>();
@@ -3742,6 +3746,24 @@ SelectionChangedPlaybackEnabled = false;
             return multipleSplitCommand;
         }
 
+        private CompositeCommand GetMultiplePhrasesMergeCommand(List<PhraseNode> listOfRecordedPhrases)
+        {
+            CompositeCommand multipleMergePhraseCommand = mView.Presentation.CreateCompositeCommand("Merge multiple phrases");
+            foreach (PhraseNode n in listOfRecordedPhrases)
+            {
+                ObiNode nextObiNode = n.FollowingNode;
+                if (nextObiNode != null && nextObiNode is PhraseNode && !listOfRecordedPhrases.Contains((PhraseNode)nextObiNode))
+                {
+                    PhraseNode nextPhraseNode = (PhraseNode)nextObiNode;
+                    Commands.Node.MergeAudio mergeCmd = new Obi.Commands.Node.MergeAudio(mView, n, nextPhraseNode);
+                    mergeCmd.UpdateSelection = false;
+                    multipleMergePhraseCommand.ChildCommands.Insert(multipleMergePhraseCommand.ChildCommands.Count,
+                        mergeCmd);
+                    Console.WriteLine(n.ToString());
+                }
+            }
+            return multipleMergePhraseCommand;
+        }
 
         public bool IsRecording
         {
