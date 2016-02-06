@@ -3653,11 +3653,15 @@ SelectionChangedPlaybackEnabled = false;
 
                 mView.Presentation.Do(GetSplitCommandForOnTheFlyDetectedPhrases(listOfRecordedPhrases, mRecordingSession.PhraseMarksOnTheFly, mView.ObiForm.Settings.Audio_PreventSplittingPages));
 
-                CompositeCommand multipleMergePhraseCommand = GetMultiplePhrasesMergeCommand(listOfRecordedPhrases);
-                if (multipleMergePhraseCommand.ChildCommands.Count > 0)
+                if (!mView.ObiForm.Settings.Audio_PreventSplittingPages)
                 {
-                    mView.Presentation.Do(multipleMergePhraseCommand);
+                    CompositeCommand multipleMergePhraseCommand = GetMultiplePhrasesMergeCommand(listOfRecordedPhrases);
+                    if (multipleMergePhraseCommand.ChildCommands.Count > 0)
+                    {
+                        mView.Presentation.Do(multipleMergePhraseCommand);
+                    }
                 }
+
                 if (nextToLastPhrase != null && nextToLastPhrase.Index > 0)//@advanceRecording
                 {
                     SectionNode section = nextToLastPhrase.ParentAs<SectionNode>();
