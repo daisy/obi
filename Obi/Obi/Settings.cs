@@ -236,6 +236,7 @@ namespace Obi
         // for post Obi 3.8
         [OptionalField]
         public bool Audio_PreventSplittingPages;
+        [OptionalField]
         public bool Audio_SaveAudioZoom;
 
         protected static void InitializeDefaultSettings(Settings settings)
