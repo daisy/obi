@@ -81,6 +81,8 @@ namespace Obi.ProjectView
             // 
             this.mTransportBarTooltip.IsBalloon = true;
             this.mTransportBarTooltip.ToolTipTitle = "Transport bar";
+            this.mTransportBarTooltip.Popup += new System.Windows.Forms.PopupEventHandler(this.mTransportBarTooltip_Popup);
+            this.mTransportBarTooltip.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.mTransportBarTooltip_Draw);
             // 
             // mPreviousPageButton
             // 
