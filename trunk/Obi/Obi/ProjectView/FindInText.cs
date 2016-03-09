@@ -677,5 +677,10 @@ namespace Obi.ProjectView
                 voicePlayer.Play ();
                 }
             }
+        public void SetFont() //@fontconfig
+        {
+            this.Font = new Font(mProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            label1.Font = mPreviousButton.Font = mString.Font = mNextButton.Font = mCloseButton.Font = new Font(mProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+        }
     }
 }

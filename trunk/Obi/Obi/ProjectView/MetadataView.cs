@@ -793,6 +793,12 @@ namespace Obi.ProjectView
         {
             mView.SaveDefaultMetadatas();
         }
+        public void SetFont() //@fontconfig
+        {
+            this.Font = new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            mMetadataListView.Font = mNameLabel.Font = mNameTextbox.Font = mContentLabel.Font = mContentTextbox.Font = mUpdateButton.Font = new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            mMetadataContextMenuStrip.Font = new Font(mView.ObiForm.Settings.ObiFont, mMetadataContextMenuStrip.Font.Size, FontStyle.Regular);
+        }
         }
 
     public class MetadataItemSelection

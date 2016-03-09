@@ -1146,7 +1146,12 @@ namespace Obi.ProjectView
                 m_EnableFindPlaybackBlockDuringCursorUpdate = false;
                 SetPlaybackPhraseAndTime(mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset);
             }
-            if (mPlaybackBlock != null) EnsureCursorVisible(mPlaybackBlock.UpdateCursorTime(time));
+            if (mPlaybackBlock != null)
+            {
+                //Console.WriteLine("time for update cursor ????????????????????? {0}", time);
+                //Console.WriteLine("Node of mPlayBlock .........................{0}", mPlaybackBlock.Node.ToString());
+                EnsureCursorVisible(mPlaybackBlock.UpdateCursorTime(time));
+            }
 
             /* int audioCursorPosition;
              int beginPosition = 0;
@@ -5982,6 +5987,15 @@ Block lastBlock = ActiveStrip.LastBlock ;
             //        mProjectView.ColorSettings.BlockBackColor_Selected = m_ColorBackgroundBeforeFlicker;
             //    }
             //}
+        }
+
+        public void SetFont() //@fontconfig
+        {
+            //this.Font = new Font(this.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            mContextMenuStrip.Font = new Font(this.Settings.ObiFont, mContextMenuStrip.Font.Size, FontStyle.Regular);
+
+            //contentViewLabel1.SetFont();
+
         }
 
      

@@ -141,6 +141,7 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_ApplyButton = new System.Windows.Forms.Button();
+            this.m_txtBox_Font = new System.Windows.Forms.TextBox();
             this.mAdvanceTab.SuspendLayout();
             this.m_gpBox_SelectProfileRecordingToolbar.SuspendLayout();
             this.m_gpBox_Buttons.SuspendLayout();
@@ -436,6 +437,7 @@ namespace Obi.Dialogs
             // 
             // mColorPreferencesTab
             // 
+            this.mColorPreferencesTab.Controls.Add(this.m_txtBox_Font);
             this.mColorPreferencesTab.Controls.Add(this.mChooseFontCombo);
             this.mColorPreferencesTab.Controls.Add(this.m_lblChooseFont);
             this.mColorPreferencesTab.Controls.Add(this.m_txtBox_HighContrast);
@@ -1107,6 +1109,13 @@ namespace Obi.Dialogs
             this.m_ApplyButton.UseVisualStyleBackColor = true;
             this.m_ApplyButton.Click += new System.EventHandler(this.m_ApplyButton_Click);
             // 
+            // m_txtBox_Font
+            // 
+            this.m_txtBox_Font.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.m_txtBox_Font, "m_txtBox_Font");
+            this.m_txtBox_Font.Name = "m_txtBox_Font";
+            this.helpProvider1.SetShowHelp(this.m_txtBox_Font, ((bool)(resources.GetObject("m_txtBox_Font.ShowHelp"))));
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -1270,5 +1279,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox m_txtRecordInLocalDrive;
         private System.Windows.Forms.CheckBox m_chkRecordInLocalDrive;
         private System.Windows.Forms.Button m_btnRecordInLocalDrive;
+        private System.Windows.Forms.TextBox m_txtBox_Font;
     }
 }

@@ -719,6 +719,8 @@ namespace Obi.ProjectView
             }
             else
             {
+                Console.WriteLine("Node name for cursor////////////////////////////////////{0}", e.Node.ToString());
+                //Console.WriteLine(" mCurrentPlaylist.CurrentTimeInAsset for update cursor ????????????????????? {0}", mCurrentPlaylist.CurrentTimeInAsset);
                 mView.SetPlaybackPhraseAndTime(e.Node, mCurrentPlaylist.CurrentTimeInAsset);
                 UpdateTimeDisplay();
             }
@@ -816,6 +818,7 @@ namespace Obi.ProjectView
                     if (CurrentState == State.Stopped)//@masternewbehaviour
                         {
                         mCurrentPlaylist = mMasterPlaylist;
+                        Console.WriteLine("Master Plalist is assigned aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                         PhraseNode currentPhrase = FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node);
                         if (currentPhrase != null) mCurrentPlaylist.CurrentPhrase = currentPhrase;
                         UpdateButtons();
@@ -917,6 +920,7 @@ namespace Obi.ProjectView
         // Initialize events for a new playlist.
         private void SetPlaylistEvents(Playlist playlist)
         {
+            Console.WriteLine("Events assigned :::::::::::::::::::::::::::::::::::::::::");
             playlist.MovedToPhrase += new Playlist.MovedToPhraseHandler(Playlist_MovedToPhrase);
             playlist.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(Playlist_PlayerStateChanged);
             playlist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Playlist_PlayerStopped);
@@ -1418,6 +1422,7 @@ namespace Obi.ProjectView
                 SetPlaylistEvents(mLocalPlaylist);
                 if (mCurrentPlaylist is PreviewPlaylist && !((PreviewPlaylist)mCurrentPlaylist).IsPreviewComplete) ((PreviewPlaylist)mCurrentPlaylist).EnsureDisAssociationEvents(); //added on Oct 29, 2015, precautionary for beta release, will be reviewed after release 
                 mCurrentPlaylist = mLocalPlaylist;
+                Console.WriteLine("Current Playlist is assigned local Playlist PlayYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
                 if (neglectSelection && !m_IsPlaySectionInspiteOfPhraseSelection)
                 {
                     mCurrentPlaylist.Play () ;
@@ -1530,7 +1535,9 @@ namespace Obi.ProjectView
             else if (mView.Selection is NodeSelection)
             {
                 mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(mView.Selection.Node);
+                Console.WriteLine("Current phrase in the playlist CCCCCCCCUUUUUUUUUUUUUUUUUUUUUUU{0}", mCurrentPlaylist.CurrentPhrase);
                 if (mCurrentPlaylist.State != AudioLib.AudioPlayer.State.Playing) mCurrentPlaylist.Play();
+                Console.WriteLine("Total time in the Playlist is ??????????/////////////????????????/////////////// {0}", mCurrentPlaylist.TotalTime);
             }
             else
             {
@@ -4784,6 +4791,14 @@ m_MonitorContinuouslyWorker.RunWorkerAsync();
 
                 }
             }
+        }
+
+        public void SetFont()//@fontconfig
+        {
+            //mTransportBarTooltip.OwnerDraw = true;
+            //mTransportBarTooltip.IsBalloon = false;
+            this.Font = new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            m_PlayingOptionsContextMenuStrip.Font = m_RecordingOptionsContextMenuStrip.Font = new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
         }
 
     }

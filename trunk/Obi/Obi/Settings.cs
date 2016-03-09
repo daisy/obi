@@ -238,6 +238,10 @@ namespace Obi
         public bool Audio_PreventSplittingPages;
         [OptionalField]
         public bool Audio_SaveAudioZoom;
+        [OptionalField]
+        public string ObiFont; //@fontconfig
+        [OptionalField]
+        public int ObiFontIndex; //@fontconfig
 
         protected static void InitializeDefaultSettings(Settings settings)
         {
@@ -361,6 +365,8 @@ namespace Obi
             //For post Obi 3.8
             settings.Audio_PreventSplittingPages = true;
             settings.Audio_SaveAudioZoom = false;
+            settings.ObiFont = "Microsoft Sans Serif"; //@fontconfig
+            settings.ObiFontIndex = -1; //@fontconfig
         }
 
         /// <summary>
