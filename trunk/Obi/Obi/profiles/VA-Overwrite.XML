@@ -1,4 +1,4 @@
-<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+﻿<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
 <SOAP-ENV:Body>
 <a1:Settings id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/Obi/Obi%2C%20Version%3D3.8.0.32372%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
 <Audio_AllowOverwrite>true</Audio_AllowOverwrite>
@@ -71,7 +71,7 @@
 <Font id="ref-17">Times New Roman</Font>
 <Audio_DefaultGap>300</Audio_DefaultGap>
 <Audio_DefaultLeadingSilence>50</Audio_DefaultLeadingSilence>
-<Audio_DefaultThreshold>280</Audio_DefaultThreshold>
+<Audio_DefaultThreshold>600</Audio_DefaultThreshold>
 <RecordingToolBarIncrementVal>0</RecordingToolBarIncrementVal>
 <Project_EnableFreeDiskSpaceCheck>true</Project_EnableFreeDiskSpaceCheck>
 <Audio_EnablePostRecordingPageRenumbering>true</Audio_EnablePostRecordingPageRenumbering>
