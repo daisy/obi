@@ -1172,12 +1172,18 @@ namespace Obi.ProjectView
 
         public bool SetPlaybackBlockIfRequired ()
             {
-            if (TransportBar.IsPlayerActive
-                        && (mContentView.PlaybackBlock == null || mContentView.PlaybackBlock.Node != TransportBar.PlaybackPhrase))
+                //Console.WriteLine("TransportBar.PlaybackPhrase is mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm {0}", TransportBar.PlaybackPhrase);
+                //Console.WriteLine("mContentView.PlaybackBlock.Node is ssssssssssssssssssssssssssssssssss {0}", mContentView.PlaybackBlock.Node);
+                if (TransportBar.IsPlayerActive
+                            && (mContentView.PlaybackBlock == null || mContentView.PlaybackBlock.Node != TransportBar.PlaybackPhrase))
                 {
-                this.SetPlaybackPhraseAndTime ( TransportBar.PlaybackPhrase, TransportBar.CurrentPlaylist.CurrentTimeInAsset );
-                this.UpdateCursorPosition ( TransportBar.CurrentPlaylist.CurrentTimeInAsset );
-                return true;
+                    //Console.WriteLine("TransportBar.PlaybackPhrase is mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm {0}", TransportBar.PlaybackPhrase);
+                    //Console.WriteLine("mContentView.PlaybackBlock.Node is ssssssssssssssssssssssssssssssssss {0}", mContentView.PlaybackBlock.Node);
+                    Console.WriteLine("TRansportBar Current Playlist total time is {0}", TransportBar.CurrentPlaylist.TotalTime);
+                  //  Console.WriteLine("ContentView Current Playlist total time is {0}", mContentView.);
+                    this.SetPlaybackPhraseAndTime(TransportBar.PlaybackPhrase, TransportBar.CurrentPlaylist.CurrentTimeInAsset);
+                    this.UpdateCursorPosition(TransportBar.CurrentPlaylist.CurrentTimeInAsset);
+                    return true;
                 }
             return false;
             }
@@ -6277,6 +6283,16 @@ public bool ShowOnlySelectedSection
         public void SelectPhraseBlockOrStrip(EmptyNode node)
         {
             mContentView.SelectPhraseBlockOrStrip(node);
+        }
+
+        public void SetFont() //@fontconfig
+        {
+            //     this.Font = new Font(this.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            mContentView.SetFont();
+            mTOCView.SetFont();
+            mMetadataView.SetFont();
+            mTransportBar.SetFont();
+            mFindInText.SetFont();
         }
 
         }

@@ -858,5 +858,10 @@ namespace Obi.ProjectView
 
             }
         }
+        public void SetFont() //@fontconfig
+        {
+            this.Font = new Font(mProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            mContextMenuStrip.Font = new Font(mProjectView.ObiForm.Settings.ObiFont, mContextMenuStrip.Font.Size, FontStyle.Regular);
+        }
     }
 }

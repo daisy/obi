@@ -59,6 +59,7 @@ namespace Obi
             private int m_DiffPeakMeterGraphicalPeakMeter=0; // stores the difference between the hight of the peak meter and graphical peak  
             private bool m_NormalAfterMax = false;    //Used to revert back to the window of the original size from max obi window
             private bool m_FlagLangUpdate = false;
+            private string m_ObiFont;//@fontconfig
 
 
             /// <summary>
@@ -96,6 +97,18 @@ namespace Obi
                 {
                     mAllowOverwriteToolStripMenuItem.Checked = value;
                     mSettings.Audio_AllowOverwrite = value;
+                }
+            }
+
+            public string ObiFontName //@fontconfig
+            {
+                set
+                {
+                    m_ObiFont = value;
+                }
+                get
+                {
+                    return m_ObiFont;
                 }
             }
 
@@ -3334,6 +3347,12 @@ ref string exportDirectoryEPUB3)
                     
                     Ready();
 
+                    if (mSettings.ObiFont != this.Font.Name)
+                    {
+                        mProjectView.SetFont(); //@fontconfig
+                        mMenuStrip.Font = new Font(mSettings.ObiFont, this.mMenuStrip.Font.Size, FontStyle.Regular);//@fontconfig    
+                        mStatusLabel.Font = new Font(mSettings.ObiFont, this.mStatusLabel.Font.Size, FontStyle.Regular);//@fontconfig    
+                    }
                     
                     //CheckSystemSupportForMemoryOptimization();
                  }
@@ -4093,7 +4112,11 @@ ref string exportDirectoryEPUB3)
             /// </summary>
             /// <remarks>Warn when closing while playing?</remarks>
             private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
-            {       
+            {
+                if (ObiFontName != null) //@fontconfig
+                {
+                    mSettings.ObiFont = ObiFontName; //@fontconfig
+                }
                 
                 if (mProjectView != null && mProjectView.TransportBar.IsActive)
                 {   
