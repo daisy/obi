@@ -67,6 +67,7 @@ namespace Obi.Dialogs
             this.m_chkAll = new System.Windows.Forms.CheckBox();
             this.m_btnLoadProfile = new System.Windows.Forms.Button();
             this.mColorPreferencesTab = new System.Windows.Forms.TabPage();
+            this.m_txtBox_Font = new System.Windows.Forms.TextBox();
             this.mChooseFontCombo = new System.Windows.Forms.ComboBox();
             this.m_lblChooseFont = new System.Windows.Forms.Label();
             this.m_txtBox_HighContrast = new System.Windows.Forms.TextBox();
@@ -141,7 +142,6 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.m_Preference_ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.m_ApplyButton = new System.Windows.Forms.Button();
-            this.m_txtBox_Font = new System.Windows.Forms.TextBox();
             this.mAdvanceTab.SuspendLayout();
             this.m_gpBox_SelectProfileRecordingToolbar.SuspendLayout();
             this.m_gpBox_Buttons.SuspendLayout();
@@ -453,12 +453,20 @@ namespace Obi.Dialogs
             this.helpProvider1.SetShowHelp(this.mColorPreferencesTab, ((bool)(resources.GetObject("mColorPreferencesTab.ShowHelp"))));
             this.mColorPreferencesTab.UseVisualStyleBackColor = true;
             // 
+            // m_txtBox_Font
+            // 
+            this.m_txtBox_Font.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.m_txtBox_Font, "m_txtBox_Font");
+            this.m_txtBox_Font.Name = "m_txtBox_Font";
+            this.helpProvider1.SetShowHelp(this.m_txtBox_Font, ((bool)(resources.GetObject("m_txtBox_Font.ShowHelp"))));
+            // 
             // mChooseFontCombo
             // 
             resources.ApplyResources(this.mChooseFontCombo, "mChooseFontCombo");
             this.mChooseFontCombo.FormattingEnabled = true;
             this.mChooseFontCombo.Name = "mChooseFontCombo";
             this.helpProvider1.SetShowHelp(this.mChooseFontCombo, ((bool)(resources.GetObject("mChooseFontCombo.ShowHelp"))));
+            this.mChooseFontCombo.SelectedIndexChanged += new System.EventHandler(this.mChooseFontCombo_SelectedIndexChanged);
             // 
             // m_lblChooseFont
             // 
@@ -1108,13 +1116,6 @@ namespace Obi.Dialogs
             this.m_ApplyButton.Name = "m_ApplyButton";
             this.m_ApplyButton.UseVisualStyleBackColor = true;
             this.m_ApplyButton.Click += new System.EventHandler(this.m_ApplyButton_Click);
-            // 
-            // m_txtBox_Font
-            // 
-            this.m_txtBox_Font.BackColor = System.Drawing.SystemColors.Control;
-            resources.ApplyResources(this.m_txtBox_Font, "m_txtBox_Font");
-            this.m_txtBox_Font.Name = "m_txtBox_Font";
-            this.helpProvider1.SetShowHelp(this.m_txtBox_Font, ((bool)(resources.GetObject("m_txtBox_Font.ShowHelp"))));
             // 
             // Preferences
             // 

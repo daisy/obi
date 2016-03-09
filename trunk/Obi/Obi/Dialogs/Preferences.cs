@@ -2964,6 +2964,11 @@ namespace Obi.Dialogs
             }
         }
 
+        private void mChooseFontCombo_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
     }   
