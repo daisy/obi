@@ -69,9 +69,9 @@
 <Project_OptimizeMemory>true</Project_OptimizeMemory>
 <Project_ShowWaveformInContentView>true</Project_ShowWaveformInContentView>
 <Font id="ref-17">Times New Roman</Font>
-<Audio_DefaultGap>300</Audio_DefaultGap>
+<Audio_DefaultGap>600</Audio_DefaultGap>
 <Audio_DefaultLeadingSilence>50</Audio_DefaultLeadingSilence>
-<Audio_DefaultThreshold>600</Audio_DefaultThreshold>
+<Audio_DefaultThreshold>280</Audio_DefaultThreshold>
 <RecordingToolBarIncrementVal>0</RecordingToolBarIncrementVal>
 <Project_EnableFreeDiskSpaceCheck>true</Project_EnableFreeDiskSpaceCheck>
 <Audio_EnablePostRecordingPageRenumbering>true</Audio_EnablePostRecordingPageRenumbering>
