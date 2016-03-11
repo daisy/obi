@@ -46,7 +46,12 @@ namespace Obi.ProjectView
             this.toolStrip1.MaximumSize = this.Size;
             this.toolStrip1.Size = this.Size;
 
-            EditAudioPanelToolTipInit();           
+            EditAudioPanelToolTipInit();
+
+            if (m_ProjectView.ObiForm.Settings.ObiFont != this.Font.Name) //@fontconfig
+            {
+                SetFont(); //@fontconfig
+            }
             
         }
 
@@ -215,6 +220,10 @@ namespace Obi.ProjectView
         {
             
         }
-        
+        private void SetFont() //@fontconfig
+        {
+            this.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            toolStrip1.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+        }
     }
 }

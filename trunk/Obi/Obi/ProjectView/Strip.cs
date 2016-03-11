@@ -54,6 +54,10 @@ namespace Obi.ProjectView
             AudioScale = mContentView.AudioScale;
             UpdateColors();
             SetAccessibleName();
+            if (mContentView.Settings.ObiFont != this.Font.Name) //@fontconfig
+            {
+                mLabel.SetFont(mContentView.Settings); //@fontconfig
+            }
         }
 
 

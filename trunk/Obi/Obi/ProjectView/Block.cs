@@ -310,6 +310,11 @@ namespace Obi.ProjectView
                 mToolTip.ToolTipTitle = string.Format(Localizer.Message("Phrase_IndexString"), (mNode.Index+1).ToString(), mNode.ParentAs<SectionNode>().PhraseChildCount.ToString());
             }
         }
+        public void SetFont() //@fontconfig
+        {
+            this.Font = new Font(ContentView.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            mLabel.Font = new Font(ContentView.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+        }
 
     }
         

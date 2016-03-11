@@ -372,6 +372,10 @@ namespace Obi.ProjectView
             m_Node = node;
             ZoomPanelToolTipInit();
             m_ZoomFactor = 0;
+            if (m_ProjectView.ObiForm.Settings.ObiFont != this.Font.Name) //@fontconfig
+            {
+                SetFont(); //@fontconfig
+            }
 
             //this.btnClosetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_Close") + "(" +keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_Close.Value.ToString()) + ")";
             //this.btnNextPhrasetoolStrip.ToolTipText = Localizer.Message("ZoomAudioTT_ShowNextPhrase")+"(" + keyboardShortcuts.FormatKeyboardShorcut(keyboardShortcuts.ZoomPanel_NextPhrase.Value.ToString()) + ")";
@@ -1100,6 +1104,25 @@ namespace Obi.ProjectView
             {
                 m_Edit.EditAudioPanelToolTipInit();
             }
+        }
+        private void SetFont() //@fontconfig
+        {
+            mtoolTipZoomWaveform.OwnerDraw = true;
+            this.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            toolStripZoomPanel.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+        }
+
+        private void mtoolTipZoomWaveform_Draw(object sender, DrawToolTipEventArgs e)
+        {
+             Font tooltipFont = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size);
+           // Font tooltipFont = new Font((m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size));
+            e.Graphics.Clear(Color.White);
+            e.Graphics.DrawString(e.ToolTipText, tooltipFont, Brushes.Black, new PointF(0, 0));
+        }
+
+        private void mtoolTipZoomWaveform_Popup(object sender, PopupEventArgs e)
+        {
+            e.ToolTipSize = TextRenderer.MeasureText(mtoolTipZoomWaveform.GetToolTip(e.AssociatedControl), new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size));
         }
 
       
