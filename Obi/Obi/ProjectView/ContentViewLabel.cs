@@ -178,5 +178,11 @@ namespace Obi.ProjectView
                 }*/
                 Invalidate();
         }
+        public void SetFont() //@fontconfig
+        {
+            // this.Font = new Font(contentView.Settings.ObiFont, this.Font.Size, FontStyle.Regular);
+            m_lblStaticLabel.Font = new Font(contentView.Settings.ObiFont, m_lblStaticLabel.Font.Size, FontStyle.Regular);
+            m_lblSectionName.Font = new Font(contentView.Settings.ObiFont, m_lblSectionName.Font.Size, FontStyle.Regular);
+        }
     }
 }
