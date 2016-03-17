@@ -35,7 +35,7 @@ namespace Obi.Dialogs
         /// <summary>
         /// Create a new dialog for the original project path
         /// </summary>
-        public SaveProjectAsDialog(string path)
+        public SaveProjectAsDialog(string path, Settings settings)
             : this()
         {
             mFilename = Path.GetFileName(path);
@@ -47,6 +47,10 @@ namespace Obi.Dialogs
         //    mNewDirectoryTextBox.SelectionLength = mNewDirectoryTextBox.Text.Length;
             m_ProjectNameTextBox.Text = mFilename;
             GenerateFileName();
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
 

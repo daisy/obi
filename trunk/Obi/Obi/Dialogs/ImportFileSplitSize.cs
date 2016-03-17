@@ -68,6 +68,10 @@ namespace Obi.Dialogs
                 mchkCountToTruncateFromStart.Checked = true;
                 mchktPageIdentificationString.Checked = true;
             }
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(m_Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         /// <summary>

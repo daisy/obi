@@ -40,13 +40,12 @@ namespace Obi.Dialogs
         /// Instantiate the dialog.
         /// </summary>
         /// <param name="silence">The silence phrase.</param>
-        public SentenceDetection(PhraseNode silence)
-            : this(silence, Convert.ToInt64 (Audio.PhraseDetection.DEFAULT_THRESHOLD), Audio.PhraseDetection.DEFAULT_GAP, Audio.PhraseDetection.DEFAULT_LEADING_SILENCE)
-        {
+        public SentenceDetection(PhraseNode silence,Settings settings)
+            : this(silence, Convert.ToInt64(Audio.PhraseDetection.DEFAULT_THRESHOLD), Audio.PhraseDetection.DEFAULT_GAP, Audio.PhraseDetection.DEFAULT_LEADING_SILENCE, settings) //@fontconfig
+        {         
         }
 
-        public SentenceDetection(PhraseNode silence, long threshold, double gap, double leadingSilence)
-            : this()
+        public SentenceDetection(PhraseNode silence, long threshold, double gap, double leadingSilence, Settings settings): this()
         {   
             if (silence != null)
             {
@@ -68,15 +67,23 @@ namespace Obi.Dialogs
             mLeadingNumericBox.Value = Convert.ToDecimal(leadingSilence);
             //mGapNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_GAP);
             //mLeadingNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_LEADING_SILENCE);
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new System.Drawing.Font(settings.ObiFont, this.Font.Size, System.Drawing.FontStyle.Regular);//@fontconfig
+            }
         }
 
-        public SentenceDetection(long threshold, double gap, double leadingSilence ):this    ()
+        public SentenceDetection(long threshold, double gap, double leadingSilence, Settings settings): this()
         {
             double thres = Convert.ToDouble (threshold);
             mThresholdNumericBox.Value = Convert.ToDecimal( thres);
             
             mGapNumericBox.Value = Convert.ToDecimal( gap);
             mLeadingNumericBox.Value = Convert.ToDecimal( leadingSilence);
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new System.Drawing.Font(settings.ObiFont, this.Font.Size, System.Drawing.FontStyle.Regular);//@fontconfig
+            }
         }
         private void mGapNumericBox_ValueChanged ( object sender, EventArgs e )
             {

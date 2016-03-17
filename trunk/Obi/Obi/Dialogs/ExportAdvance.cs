@@ -10,10 +10,14 @@ namespace Obi.Dialogs
 {
     public partial class ExportAdvance : Form
     {
-        public ExportAdvance()
+        public ExportAdvance(Settings settings)
         {
             InitializeComponent();
             m_comboBoxReplayGain.SelectedIndex = 0;
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         public bool OptionalReSample { get { return m_ChkResample.Checked; } }

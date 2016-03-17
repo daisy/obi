@@ -90,6 +90,11 @@ namespace Obi.Dialogs
             //    //}
             //    //this.Size = tempSize;
             //}
+
+            if (mSettings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(mSettings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
            }
 
         public bool IsColorChanged
@@ -2328,7 +2333,7 @@ namespace Obi.Dialogs
         {
             if (m_cb_SelectProfile.SelectedIndex != -1)
             {
-                ProfileDescription profileDesc = new ProfileDescription();
+                ProfileDescription profileDesc = new ProfileDescription(mSettings); //@fontconfig
                 profileDesc.ProfileSelected = m_cb_SelectProfile.SelectedIndex;
                 profileDesc.ShowDialog();
                 profileDesc.Focus();

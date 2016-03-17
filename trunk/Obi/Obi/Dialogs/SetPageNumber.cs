@@ -16,13 +16,13 @@ namespace Obi.Dialogs
         private bool m_IsRenumber;
         private ObiNode m_SelectedNode;
 
-        public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages,ObiNode selectedNode)
-            : this(number, renumber, canSetNumberOfPages)
+        public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages, ObiNode selectedNode, Settings settings)
+            : this(number, renumber, canSetNumberOfPages, settings) //@fontconfig
         {
             m_SelectedNode = selectedNode;
         }
 
-            public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages): this()
+        public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages, Settings settings) : this()
         {
             mInitialNumber = number;
             mNumberOfPages = 1;
@@ -43,7 +43,11 @@ namespace Obi.Dialogs
             m_GoToPage = false;
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Assigning a page role.htm");            
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Assigning a page role.htm");
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
 

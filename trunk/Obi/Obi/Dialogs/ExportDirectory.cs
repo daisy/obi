@@ -23,13 +23,15 @@ namespace Obi.Dialogs
         private List<double> m_AmrBitrates; 
         private List<double> m_3gpBitrates;
         private List<string> m_EncodingOptions;
-      
-        public ExportDirectory(string path, string xukPath, bool encodeToMP3, double bitRate, bool appendSectionNameToAudioFile,string encodingType)
+        private Settings mSettings; //@fontconfig
+
+        public ExportDirectory(string path, string xukPath, bool encodeToMP3, double bitRate, bool appendSectionNameToAudioFile, string encodingType, Settings settings)
         {
             InitializeComponent();
             mPathTextBox.Text = path;
             mXukPath = xukPath;
             mCanClose = true;
+            mSettings = settings; //@fontconfig
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message("EachLevel"));
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message ("Level1"));
             m_ComboSelectLevelForAudioFiles.Items.Add(Localizer.Message("Level2"));
@@ -140,6 +142,10 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Exporting and Validating DTB/Exporting as DAISY DTB.htm");
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         /// <summary>
@@ -344,7 +350,7 @@ namespace Obi.Dialogs
 
         private void mbtnAdvance_Click(object sender, EventArgs e)
         {
-            m_ExportAdvance = new ExportAdvance();
+            m_ExportAdvance = new ExportAdvance(mSettings); //@fontconfig
             // this.Controls.Add(mExportAdvance);    
             m_ExportAdvance.Show();
             
@@ -408,7 +414,7 @@ namespace Obi.Dialogs
 
         private void m_btnEncodingOptions_Click(object sender, EventArgs e)
         {          
-                DownloadFile download = new DownloadFile();
+                DownloadFile download = new DownloadFile(mSettings); //@fontconfig
                 download.ShowDialog();
         }              
     }

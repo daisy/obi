@@ -32,6 +32,10 @@ namespace Obi.Dialogs
             mView.Presentation.UndoRedoManager.CommandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ShowSource_commandDone);
             mView.Presentation.UndoRedoManager.CommandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ShowSource_commandReDone);
             mView.Presentation.UndoRedoManager.CommandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ShowSource_commandUnDone);
+            if (mView.ObiForm.Settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(mView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         private void ShowSource_commandDone(object sender, urakawa.events.undo.DoneEventArgs e) { UpdateView(); }

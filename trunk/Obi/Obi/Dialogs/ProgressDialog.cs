@@ -43,13 +43,17 @@ namespace Obi.Dialogs
         /// <summary>
         /// Create a progress dialog with a custom title and operation.
         /// </summary>
-        public ProgressDialog(string title, TimeTakingOperation operation)
+        public ProgressDialog(string title, TimeTakingOperation operation, Settings settings)
             : this()
         {
             mOperation = operation;
             Text = title;
             this.Size = new Size(this.Width, 94);
             m_BtnCancel.Visible = false;
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         //@singleSection

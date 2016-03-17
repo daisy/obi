@@ -10,7 +10,7 @@ namespace Obi.Dialogs
 {
     public partial class AudioProcessingDialog : Form
     {
-        public AudioProcessingDialog()
+        public AudioProcessingDialog(Settings settings)
         {
             InitializeComponent();
             m_cb_Process.SelectedIndex = 0;
@@ -20,6 +20,10 @@ namespace Obi.Dialogs
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Audio/Audio processing.htm");
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig            
+            }
         }
 
         public Obi.Audio.AudioFormatConverter.AudioProcessingKind AudioProcess

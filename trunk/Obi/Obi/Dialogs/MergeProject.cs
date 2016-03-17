@@ -17,7 +17,7 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
         }
-        public MergeProject(string filepath,string openedProjectPath)
+        public MergeProject(string filepath, string openedProjectPath, Settings settings)
         {
             InitializeComponent();
             m_openedProjectPath = openedProjectPath;
@@ -34,6 +34,10 @@ namespace Obi.Dialogs
             else
             {
                 MessageBox.Show(Localizer.Message("MergeProject_CannotMerge"));
+            }
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
             }
         }
 

@@ -32,6 +32,10 @@ namespace Obi.Dialogs
             m_Settings = settings;
             m_IsAutomaticUpdate = isAutomaticUpdate;
             m_IsNewVersionAvailable = false ;
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         private bool m_IsNewVersionAvailable;

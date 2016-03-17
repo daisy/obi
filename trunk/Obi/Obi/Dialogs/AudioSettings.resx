@@ -122,11 +122,12 @@
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mlbSampleRate.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
   <data name="mlbSampleRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 20</value>
+    <value>16, 25</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mlbSampleRate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="mlbSampleRate.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 16</value>
@@ -152,11 +153,11 @@
   <data name="mlbAudioChannels.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="mlbAudioChannels.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
   <data name="mlbAudioChannels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 46</value>
+    <value>16, 57</value>
+  </data>
+  <data name="mlbAudioChannels.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="mlbAudioChannels.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 16</value>
@@ -182,7 +183,6 @@
   <data name="mbtnOK.AccessibleDescription" xml:space="preserve">
     <value>ok button</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mbtnOK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -190,10 +190,13 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mbtnOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 77</value>
+    <value>227, 95</value>
+  </data>
+  <data name="mbtnOK.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="mbtnOK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
+    <value>133, 37</value>
   </data>
   <data name="mbtnOK.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -232,10 +235,13 @@
     <value>44100</value>
   </data>
   <data name="mcbSampleRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 19</value>
+    <value>168, 23</value>
+  </data>
+  <data name="mcbSampleRate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="mcbSampleRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 21</value>
+    <value>194, 24</value>
   </data>
   <data name="mcbSampleRate.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -268,10 +274,13 @@
     <value>stereo</value>
   </data>
   <data name="mcbAudioChannel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 46</value>
+    <value>168, 57</value>
+  </data>
+  <data name="mcbAudioChannel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="mcbAudioChannel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 21</value>
+    <value>194, 24</value>
   </data>
   <data name="mcbAudioChannel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -298,10 +307,16 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>289, 119</value>
+    <value>386, 147</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Audio settings for the project</value>
@@ -317,8 +332,5 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11pt</value>
   </data>
 </root>
