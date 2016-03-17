@@ -327,7 +327,7 @@ namespace Obi
                         Localizer.Message("default_project_title"),
                         mSettings.NewProjectDialogSize,
                         mSettings.Audio_Channels,
-                        mSettings.Audio_SampleRate);
+                        mSettings.Audio_SampleRate,mSettings);
                     dialog.CreateTitleSection = mSettings.CreateTitleSection;
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
@@ -420,7 +420,7 @@ namespace Obi
                             title,
                             mSettings.NewProjectDialogSize,
                             mSettings.Audio_Channels,
-                            mSettings.Audio_SampleRate);
+                            mSettings.Audio_SampleRate,mSettings);
                         dialog.DisableAutoTitleCheckbox();
                         dialog.Text = Localizer.Message("create_new_project_from_import");
                         if (!string.IsNullOrEmpty(dtbUid)) dialog.ID = dtbUid;
@@ -860,7 +860,7 @@ namespace Obi
                 if (mProjectView.TransportBar.MonitorContinuously) mProjectView.TransportBar.MonitorContinuously = false; //@MonitorContinuously
                 mProjectView.TransportBar.Stop();
                 string path_original = mSession.Path;
-                SaveProjectAsDialog dialog = new SaveProjectAsDialog(path_original);
+                SaveProjectAsDialog dialog = new SaveProjectAsDialog(path_original, mSettings); //@fontconfig
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     m_IsSaveActive = true;
@@ -958,7 +958,7 @@ namespace Obi
                                                                                      File.Delete(copiedProjectFilePath +
                                                                                                  ".lock");
                                                                              }
-                                                                         });
+                                                                         }, mSettings);  //@fontconfig
                         progress.ShowDialog();
                         if (progress.Exception != null) throw progress.Exception;
                         this.Cursor = Cursors.WaitCursor;
@@ -1054,7 +1054,7 @@ namespace Obi
                         Dialogs.MultipleOptionDialog resultBookmark =
                             new MultipleOptionDialog(
                                 !((((ObiRootNode) mProjectView.Presentation.RootNode).BookmarkNode) ==
-                                  mProjectView.Selection.Node), !mSession.CanClose);
+                                  mProjectView.Selection.Node), !mSession.CanClose, mSettings);  //@fontconfig
                         resultBookmark.ShowDialog();
                         if (resultBookmark.DialogResult == DialogResult.Cancel)
                         {
@@ -1123,135 +1123,135 @@ namespace Obi
                         Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath, mSettings.Audio_CleanupMaxFileSizeInMB, skipCleanedUpDataProvider);
                         Dialogs.ProgressDialog progress = new ProgressDialog(Localizer.Message("cleaning_up"),
                                                                              delegate()
+                                                                             {
+                                                                                 m_CanAutoSave = false;
+                                                                                 //mSession.Presentation.cleanup();
+
+                                                                                 cleaner.Cleanup();
+
+                                                                                 List<string>
+                                                                                     listOfDataProviderFiles =
+                                                                                         new List<string>();
+                                                                                 foreach (
+                                                                                     DataProvider dataProvider in
+                                                                                         mSession.Presentation.
+                                                                                             DataProviderManager.
+                                                                                             ManagedObjects.
+                                                                                             ContentsAs_Enumerable)
                                                                                  {
-                                                                                     m_CanAutoSave = false;
-                                                                                     //mSession.Presentation.cleanup();
-                                                                                     
-                                                                                         cleaner.Cleanup();
-                                                                                     
-                                                                                     List<string>
-                                                                                         listOfDataProviderFiles =
-                                                                                             new List<string>();
-                                                                                     foreach (
-                                                                                         DataProvider dataProvider in
-                                                                                             mSession.Presentation.
-                                                                                                 DataProviderManager.
-                                                                                                 ManagedObjects.
-                                                                                                 ContentsAs_Enumerable)
-                                                                                     {
-                                                                                         FileDataProvider
-                                                                                             fileDataProvider =
-                                                                                                 dataProvider as
-                                                                                                 FileDataProvider;
-                                                                                         if (fileDataProvider == null)
-                                                                                             continue;
+                                                                                     FileDataProvider
+                                                                                         fileDataProvider =
+                                                                                             dataProvider as
+                                                                                             FileDataProvider;
+                                                                                     if (fileDataProvider == null)
+                                                                                         continue;
 
-                                                                                         listOfDataProviderFiles.Add(
-                                                                                             Path.GetFileName(
-                                                                                                 fileDataProvider.
-                                                                                                     DataFileRelativePath));
-                                                                                     }
+                                                                                     listOfDataProviderFiles.Add(
+                                                                                         Path.GetFileName(
+                                                                                             fileDataProvider.
+                                                                                                 DataFileRelativePath));
+                                                                                 }
 
 
-                                                                                     //foreach (urakawa.media.data.MediaData m in mProjectView.Presentation.MediaDataManager.ManagedObjects.ContentsAs_Enumerable)
-                                                                                     //{
-                                                                                     //if ( listOfDataProviderFiles.Contains ( m.UsedDataProviders.l
+                                                                                 //foreach (urakawa.media.data.MediaData m in mProjectView.Presentation.MediaDataManager.ManagedObjects.ContentsAs_Enumerable)
+                                                                                 //{
+                                                                                 //if ( listOfDataProviderFiles.Contains ( m.UsedDataProviders.l
 
-                                                                                     //}
+                                                                                 //}
 
-                                                                                     bool folderIsShowing = false;
-                                                                                     if (
+                                                                                 bool folderIsShowing = false;
+                                                                                 if (
+                                                                                     Directory.GetFiles(
+                                                                                         deletedDataFolderPath).
+                                                                                         Length != 0)
+                                                                                 {
+                                                                                     folderIsShowing = true;
+
+                                                                                     //m_ShellView.ExecuteShellProcess(deletedDataFolderPath);
+                                                                                 }
+
+                                                                                 foreach (
+                                                                                     string filePath in
                                                                                          Directory.GetFiles(
-                                                                                             deletedDataFolderPath).
-                                                                                             Length != 0)
+                                                                                             dataFolderPath))
+                                                                                 {
+                                                                                     string fileName =
+                                                                                         Path.GetFileName(filePath);
+                                                                                     if (
+                                                                                         !listOfDataProviderFiles.
+                                                                                              Contains(fileName))
                                                                                      {
-                                                                                         folderIsShowing = true;
-
-                                                                                         //m_ShellView.ExecuteShellProcess(deletedDataFolderPath);
-                                                                                     }
-
-                                                                                     foreach (
-                                                                                         string filePath in
-                                                                                             Directory.GetFiles(
-                                                                                                 dataFolderPath))
-                                                                                     {
-                                                                                         string fileName =
-                                                                                             Path.GetFileName(filePath);
+                                                                                         string filePathDest =
+                                                                                             Path.Combine(
+                                                                                                 deletedDataFolderPath,
+                                                                                                 fileName);
+                                                                                         Debug.Assert(
+                                                                                             !File.Exists(
+                                                                                                 filePathDest));
                                                                                          if (
-                                                                                             !listOfDataProviderFiles.
-                                                                                                  Contains(fileName))
+                                                                                             !File.Exists(
+                                                                                                 filePathDest))
                                                                                          {
-                                                                                             string filePathDest =
-                                                                                                 Path.Combine(
-                                                                                                     deletedDataFolderPath,
-                                                                                                     fileName);
-                                                                                             Debug.Assert(
-                                                                                                 !File.Exists(
-                                                                                                     filePathDest));
-                                                                                             if (
-                                                                                                 !File.Exists(
-                                                                                                     filePathDest))
+                                                                                             File.Move(filePath,
+                                                                                                       filePathDest);
+                                                                                             Console.WriteLine(
+                                                                                                 filePath);
+                                                                                         }
+                                                                                     }
+                                                                                 }
+
+                                                                                 if (
+                                                                                     Directory.GetFiles(
+                                                                                         deletedDataFolderPath).
+                                                                                         Length != 0)
+                                                                                 {
+                                                                                     if (
+                                                                                         mSettings.
+                                                                                             Project_AutomaticallyDeleteUnusedFilesAfterCleanup ||
+                                                                                         MessageBox.Show(
+                                                                                             Localizer.Message(
+                                                                                                 "clean_up_ask_for_delete_project"),
+                                                                                             Localizer.Message(
+                                                                                                 "Delete_unused_data_caption"),
+                                                                                             MessageBoxButtons.YesNo,
+                                                                                             MessageBoxIcon.Question) ==
+                                                                                         DialogResult.Yes)
+                                                                                     {
+
+                                                                                         if (true)
+                                                                                         //delete definitively
+                                                                                         {
+                                                                                             ProjectView.ProjectView.WriteToLogFile_Static("Clean up operation: deleting files");
+                                                                                             foreach (
+                                                                                                 string filePath in
+                                                                                                     Directory.
+                                                                                                         GetFiles(
+                                                                                                             deletedDataFolderPath)
+                                                                                                 )
                                                                                              {
-                                                                                                 File.Move(filePath,
-                                                                                                           filePathDest);
-                                                                                                 Console.WriteLine(
+                                                                                                 File.Delete(
                                                                                                      filePath);
                                                                                              }
                                                                                          }
-                                                                                     }
 
-                                                                                     if (
-                                                                                         Directory.GetFiles(
-                                                                                             deletedDataFolderPath).
-                                                                                             Length != 0)
-                                                                                     {
                                                                                          if (
-                                                                                             mSettings.
-                                                                                                 Project_AutomaticallyDeleteUnusedFilesAfterCleanup ||
-                                                                                             MessageBox.Show(
-                                                                                                 Localizer.Message(
-                                                                                                     "clean_up_ask_for_delete_project"),
-                                                                                                 Localizer.Message(
-                                                                                                     "Delete_unused_data_caption"),
-                                                                                                 MessageBoxButtons.YesNo,
-                                                                                                 MessageBoxIcon.Question) ==
-                                                                                             DialogResult.Yes)
+                                                                                             Directory.Exists(
+                                                                                                 deletedDataFolderPath))
                                                                                          {
-
-                                                                                             if (true)
-                                                                                                 //delete definitively
-                                                                                             {
-                                                                                                 ProjectView.ProjectView.WriteToLogFile_Static ("Clean up operation: deleting files");
-                                                                                                 foreach (
-                                                                                                     string filePath in
-                                                                                                         Directory.
-                                                                                                             GetFiles(
-                                                                                                                 deletedDataFolderPath)
-                                                                                                     )
-                                                                                                 {
-                                                                                                     File.Delete(
-                                                                                                         filePath);
-                                                                                                 }
-                                                                                             }
-
-                                                                                             if (
-                                                                                                 Directory.Exists(
-                                                                                                     deletedDataFolderPath))
-                                                                                             {
-                                                                                                 Directory.Delete(
-                                                                                                     deletedDataFolderPath);
-                                                                                             }
-                                                                                         }
-                                                                                         else // show the delete folder
-                                                                                         {
-                                                                                             System.Diagnostics.Process.
-                                                                                                 Start(
-                                                                                                     deletedDataFolderPath);
+                                                                                             Directory.Delete(
+                                                                                                 deletedDataFolderPath);
                                                                                          }
                                                                                      }
+                                                                                     else // show the delete folder
+                                                                                     {
+                                                                                         System.Diagnostics.Process.
+                                                                                             Start(
+                                                                                                 deletedDataFolderPath);
+                                                                                     }
+                                                                                 }
 
 
-                                                                                 });
+                                                                             }, mSettings); //@fontconfig
                         if (cleaner != null)
                             cleaner.ProgressChangedEvent +=
                                 new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
@@ -1367,7 +1367,7 @@ namespace Obi
             {
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause();
 
-                (new Dialogs.About()).ShowDialog();
+                (new Dialogs.About(mSettings)).ShowDialog(); //@fontconfig
             }
 
             #endregion
@@ -1506,7 +1506,7 @@ namespace Obi
                     //Console.WriteLine(mSettings.UsersInfoToUpload);
                     if (string.IsNullOrEmpty(m_Settings_Permanent.UsersInfoToUpload) || m_Settings_Permanent.UsersInfoToUpload == Dialogs.UserRegistration.NoInfo)
                     {
-                        Dialogs.UserRegistration registrationDialog = new UserRegistration(m_Settings_Permanent);
+                        Dialogs.UserRegistration registrationDialog = new UserRegistration(m_Settings_Permanent, mSettings); //@fontconfig
                         registrationDialog.ShowDialog();
                     }
                     //Console.WriteLine("bypassed dialog");
@@ -1568,7 +1568,7 @@ namespace Obi
             // Show the welcome dialog
             private void ShowWelcomeDialog()
             {
-                Dialogs.WelcomeDialog ObiWelcome = new WelcomeDialog(mSettings.LastOpenProject != "");
+                Dialogs.WelcomeDialog ObiWelcome = new WelcomeDialog(mSettings.LastOpenProject != "", mSettings); //@fontconfig
                 ObiWelcome.ShowDialog();
                 switch (ObiWelcome.Result)
                 {
@@ -2721,8 +2721,8 @@ ref string exportDirectoryDAISY3,
                 ref  ImportExport.ExportStructure XHTML_ExportInstance, 
                 ref  string exportDirectoryXHTML )
             {
-                
-                Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202();
+
+                Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202(this.mSettings);
                 if (chooseDialog.ShowDialog() == DialogResult.OK)
                 {
                     if (chooseDialog.ExportDaisy3)
@@ -2767,7 +2767,7 @@ ref string exportDirectoryDAISY3,
                     ExportDialogDAISY3 =
                         new ExportDirectory(exportDirectoryDAISY3,
                                             mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat, this.mSettings); //@fontconfig
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY3.AdditionalTextForTitle = "DAISY 3";
                     ExportDialogDAISY3.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2781,7 +2781,7 @@ ref string exportDirectoryDAISY3,
                     ExportDialogDAISY202 =
                         new ExportDirectory(exportDirectoryDAISY202,
                                             mSession.Path, mSettings.Export_EncodeAudioFiles, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat, this.mSettings); //@fontconfig
                     // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogDAISY202.AdditionalTextForTitle = "DAISY 2.02";
                     ExportDialogDAISY202.LimitLengthOfAudioFileNames = mSettings.Export_LimitAudioFilesLength &&
@@ -2795,7 +2795,7 @@ ref string exportDirectoryDAISY3,
                     ExportDialogEPUB3 =
                         new ExportDirectory(exportDirectoryEPUB3,
                                             mSession.Path, true, (mSettings.ExportEncodingBitRate),
-                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
+                                            mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat, this.mSettings); //@fontconfig
                     //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogEPUB3.EpubLengthCheckboxEnabled = true;
                     ExportDialogEPUB3.CreateDummyTextCheckboxEnabled = true;
@@ -2814,7 +2814,7 @@ ref string exportDirectoryDAISY3,
                     //    new ExportDirectory(exportDirectoryDAISY202,
                     //                        mSession.Path, false, (mSettings.ExportEncodingBitRate),
                     //                        mSettings.Export_AppendSectionNameToAudioFile, mSettings.EncodingFileFormat);
-                    ExportDialogXhtml = new ExportDirectory(exportDirectoryXHTML, mSession.Path, false, (mSettings.ExportEncodingBitRate),false,string.Empty);
+                    ExportDialogXhtml = new ExportDirectory(exportDirectoryXHTML, mSession.Path, false, (mSettings.ExportEncodingBitRate), false, string.Empty, this.mSettings); //@fontconfig
                         //   null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                     ExportDialogXhtml.XhtmlElmentsEnabled = false;
                     if (mSettings.Project_VAXhtmlExport)
@@ -3122,7 +3122,7 @@ ref string exportDirectoryEPUB3)
                                 SectionNode s = n as SectionNode;
                                 if (s != null && s.Used && s.FirstUsedPhrase == null && keepWarning)
                                 {
-                                    Dialogs.EmptySection dialog = new Dialogs.EmptySection(s.Label);
+                                    Dialogs.EmptySection dialog = new Dialogs.EmptySection(s.Label, mSettings); //@fontconfig
                                     cont = cont && dialog.ShowDialog() == DialogResult.OK;
                                     keepWarning = dialog.KeepWarning;
                                     return false;
@@ -3588,8 +3588,8 @@ ref string exportDirectoryEPUB3)
                                                                                              if (mSession.ErrorsInOpeningProject) mProjectView.ReplacePhrasesWithImproperAudioWithEmptyPhrases((ObiNode) mProjectView.Presentation.RootNode,false);
                                                                                              DeleteExtraBackupFiles(false);
                                                                                              if (mSession.Presentation != null) mSession.Presentation.ConfigurationsImportExport = GetObiConfigurationFileInstance(mSession.Path);
-                                                                                             
-                                                                                         });
+
+                                                                                         }, mSettings); //@fontconfig
                 progress.ShowDialog();
                 if (progress.Exception != null)
                 {
@@ -4687,7 +4687,7 @@ ref string exportDirectoryEPUB3)
                 string exportDaisy3Path = mProjectView.GetDAISYExportPath(Obi.ImportExport.ExportFormat.DAISY3_0,
                                                                           Path.GetDirectoryName(mSession.Path));
                 string newDirPath = null;
-                Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202();
+                Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202(this.mSettings);
                 rdfrm.RestrictToSingleDAISYChoice = true; 
                 if (toolStripText == "DTBAudioEncoder" || toolStripText == "FilesetRenamer")
                 {
@@ -4781,7 +4781,7 @@ ref string exportDirectoryEPUB3)
                             exportFilePath,
                             Directory.GetParent(mSession.Path).FullName);
                     ProgressDialog progress = new ProgressDialog(((ToolStripMenuItem) sender).Text,
-                                                                 delegate() { pipeline.RunScript(); });
+                                                                 delegate() { pipeline.RunScript(); }, mSettings); //@fontconfig
 
                     if (pipeline.ShowDialog() == DialogResult.OK) progress.Show();
                     if (progress.Exception != null) throw progress.Exception;
@@ -5493,7 +5493,7 @@ ref string exportDirectoryEPUB3)
                                 break;
                             }
                         }
-                        Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false);
+                        Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(num, false, false, mSettings); //@fontconfig
                         dialog.AutoFillPagesEnable = false;
                         dialog.IsRenumberChecked = true;
                         dialog.EnableRenumberCheckBox = false;
@@ -5782,7 +5782,7 @@ ref string exportDirectoryEPUB3)
                 {
                     mProjectView.TransportBar.Stop();
                 }
-                Dialogs.Epub3Validator epubValidator = new Dialogs.Epub3Validator(Directory.GetParent(mSession.Path).FullName);
+                Dialogs.Epub3Validator epubValidator = new Dialogs.Epub3Validator(Directory.GetParent(mSession.Path).FullName, this.mSettings); //@fontconfig
                 epubValidator.ShowEpubValidatorDialog = true;
                 epubValidator.ShowResultDialog = false;
 

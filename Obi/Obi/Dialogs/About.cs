@@ -7,15 +7,23 @@ namespace Obi.Dialogs
     /// </summary>
     public partial class About : Form
     {
+        private Settings mSettings;
+     //   private bool m_flagFontChange = false;
         /// <summary>
         /// Create a new About form.
         /// </summary>
-        public About()
+        public About(Settings settings) //@fontconfig
         {
             InitializeComponent();
+            mSettings = settings; //@fontconfig
             mWebBrowser.Url = new System.Uri(System.IO.Path.Combine(
                 System.IO.Path.GetDirectoryName(GetType().Assembly.Location),
                 Localizer.Message("about_file_name")));
+            if (settings.ObiFont != this.Font.Name) //@fontconfig
+            {
+                this.Font = new System.Drawing.Font(settings.ObiFont, this.Font.Size, System.Drawing.FontStyle.Regular);//@fontconfig  
+             //   m_flagFontChange = true;
+            }
         }
 
         // Catch links going outside to open in a different browser

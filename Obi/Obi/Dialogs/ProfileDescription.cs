@@ -11,7 +11,7 @@ namespace Obi.Dialogs
     public partial class ProfileDescription : Form
     {
         private int m_ProfileSelectedIndex;
-        public ProfileDescription()
+        public ProfileDescription(Settings settings)
         {
             InitializeComponent();
             this.m_ProfileDescription_WebBrowser.Height = this.m_ProfileDescription_WebBrowser.Height - (this.m_btnClose.Height + (this.m_btnClose.Height / 2));
@@ -19,6 +19,11 @@ namespace Obi.Dialogs
             m_ProfileDescription_WebBrowser.Url = new System.Uri(System.IO.Path.Combine(
     System.IO.Path.GetDirectoryName(GetType().Assembly.Location),
     Localizer.Message("ProfileDesc_file_name")));
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+              //  m_flagFontChange = true;
+            }
 
         }
 

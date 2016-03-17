@@ -56,6 +56,13 @@ namespace Obi.Dialogs
             toolTip.SetToolTip(m_btn_DecreaseSectionLevel, Localizer.Message("MergeOptions_DecreaseLevel"));
             toolTip.SetToolTip(m_btn_Merge,Localizer.Message("MergeOptions_Merge"));
 
+            if (projectView.ObiForm.Settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(projectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+                m_btn_Close.Font = m_btn_SelectAll.Font = new Font(projectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+
+            }
+
         }
         private void UpdateList()
         {

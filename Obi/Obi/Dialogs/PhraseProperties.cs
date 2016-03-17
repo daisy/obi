@@ -36,6 +36,10 @@ namespace Obi.Dialogs
             {
                 m_IsPause = true;
             }
+            if (mView.ObiForm.Settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(view.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
 

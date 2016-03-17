@@ -30,7 +30,7 @@ namespace Obi.Dialogs
         /// <param name="filename">The actual file name for the project.</param>
         /// <param name="extension">The file extension (for a file dialog.)</param>
         /// <param name="title">The project title.</param>
-        public NewProject(string basepath, string filename, string extension, string title, Size size, int defaultAudioChannels, int defaultAudioSampleRate)
+        public NewProject(string basepath, string filename, string extension, string title, Size size, int defaultAudioChannels, int defaultAudioSampleRate, Settings settings)
         {
             InitializeComponent();
             mTitleBox.Text = title;
@@ -44,7 +44,12 @@ namespace Obi.Dialogs
             mUserSetLocation = false;
             if (size.Width >= MinimumSize.Width && size.Height >= MinimumSize.Height) Size = size;
             GenerateFileName();
-            m_AudioSettingsDialog = new AudioSettings(defaultAudioChannels, defaultAudioSampleRate);
+            m_AudioSettingsDialog = new AudioSettings(defaultAudioChannels, defaultAudioSampleRate, settings);//@fontconfig
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
+         //   m_AudioSettingsDialog = new AudioSettings(defaultAudioChannels, defaultAudioSampleRate);
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
             helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Creating and Working with Projects/Creating a new project.htm");

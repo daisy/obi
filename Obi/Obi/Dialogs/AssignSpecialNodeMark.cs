@@ -13,13 +13,17 @@ namespace Obi.Dialogs
         private string m_SelectedSpecialNode = "";
         private bool m_IsRenumberChecked = false;
         private bool m_IsAudioProcessingChecked = false;
-        public AssignSpecialNodeMark()
+        public AssignSpecialNodeMark(Settings settings) //@fontconfig
         {
             InitializeComponent();
             m_cmbBoxSpecialNode.SelectedIndex = 0;
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Creating a skippable note.htm");          
+            helpProvider1.SetHelpKeyword(this, "HTML Files/Creating a DTB/Working with Phrases/Creating a skippable note.htm");
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         public string SelectedSpecialNode

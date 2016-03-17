@@ -11,9 +11,13 @@ namespace Obi.Dialogs
 {
     public partial class DownloadFile : Form
     {
-        public DownloadFile()
+        public DownloadFile(Settings settings) //@fontconfig 
         {
             InitializeComponent();
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig  
+            }
         }
 
  

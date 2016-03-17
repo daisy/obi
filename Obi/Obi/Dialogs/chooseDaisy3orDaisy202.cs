@@ -11,14 +11,18 @@ namespace Obi.Dialogs
     public partial class chooseDaisy3orDaisy202 : Form
     {
          private Obi.ImportExport.ExportFormat m_ExportFormat = new Obi.ImportExport.ExportFormat();
-        
-        public chooseDaisy3orDaisy202()
+
+        public chooseDaisy3orDaisy202(Settings settings) //@fontconfig 
         {
             InitializeComponent();
             m_ExportFormat = Obi.ImportExport.ExportFormat.DAISY3_0;
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-            helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");                  
+            helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig  
+            }
         }
         public bool ExportDaisy2
         {

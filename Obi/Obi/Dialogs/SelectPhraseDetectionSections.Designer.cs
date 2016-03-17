@@ -113,7 +113,7 @@ namespace Obi.Dialogs
             // columnHeader1
             // 
             this.columnHeader1.Name = "columnHeader1";
-            this.columnHeader1.Text = global::Obi.messages.phrase_extra_Plain;
+            //this.columnHeader1.Text = global::Obi.messages_zh_HK.phrase_extra_Plain;
             resources.ApplyResources(this.columnHeader1, "columnHeader1");
             // 
             // m_grpSelectRange

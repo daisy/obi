@@ -20,14 +20,18 @@ namespace Obi.Dialogs
         public EmptyNode EndNode
         { get { return m_EndNode; } }
 
-        public ExtendedMessageToAssociate()
+        public ExtendedMessageToAssociate(Settings settings)
         {
            // m_ObiNode = obiNode;
            // m_SelectedNode = selectedNode;
             InitializeComponent();
             helpProvider1.HelpNamespace = Localizer.Message("CHMhelp_file_name");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.Topic);
-            helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");                  
+            helpProvider1.SetHelpKeyword(this, "HTML Files\\Introducing Obi\\Introducing Obi.htm");
+            if (settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig  
+            }      
         }
 
         public bool Is_AssignRole
