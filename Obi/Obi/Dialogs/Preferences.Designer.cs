@@ -989,6 +989,7 @@ namespace Obi.Dialogs
             this.m_txtRecordInLocalDrive.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.m_txtRecordInLocalDrive, "m_txtRecordInLocalDrive");
             this.m_txtRecordInLocalDrive.Name = "m_txtRecordInLocalDrive";
+            this.helpProvider1.SetShowHelp(this.m_txtRecordInLocalDrive, ((bool)(resources.GetObject("m_txtRecordInLocalDrive.ShowHelp"))));
             // 
             // m_chkRecordInLocalDrive
             // 

@@ -327,12 +327,12 @@ namespace Obi.Dialogs
                 m_FontPermissible = new List<string>();
                 m_FontPermissible.Add("Arial");
                 m_FontPermissible.Add("Book Antiqua");
-                m_FontPermissible.Add("Comic Sans MS");
+               // m_FontPermissible.Add("Comic Sans MS");
                 m_FontPermissible.Add("Georgia");
-                m_FontPermissible.Add("Courier New");
+              //  m_FontPermissible.Add("Courier New");
                 m_FontPermissible.Add("Tahoma");
                 m_FontPermissible.Add("Times New Roman");
-                m_FontPermissible.Add("Trebuchet MS");
+              //  m_FontPermissible.Add("Trebuchet MS");
                 m_FontPermissible.Add("Verdana");
                 m_FontPermissible.Add("Microsoft Sans Serif");
             }
