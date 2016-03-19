@@ -11,9 +11,12 @@ namespace Obi.Dialogs
     public partial class ProfileDescription : Form
     {
         private int m_ProfileSelectedIndex;
+        private bool m_flagFontChange = false; //@fontconfig
+        private Settings mSettings;  //@fontconfig
         public ProfileDescription(Settings settings)
         {
             InitializeComponent();
+            mSettings = settings; //@fontconfig
             this.m_ProfileDescription_WebBrowser.Height = this.m_ProfileDescription_WebBrowser.Height - (this.m_btnClose.Height + (this.m_btnClose.Height / 2));
 
             m_ProfileDescription_WebBrowser.Url = new System.Uri(System.IO.Path.Combine(
@@ -22,13 +25,19 @@ namespace Obi.Dialogs
             if (settings.ObiFont != this.Font.Name)
             {
                 this.Font = new Font(settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
-              //  m_flagFontChange = true;
+                m_flagFontChange = true;
             }
 
         }
 
         private void m_ProfileDescription_WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+            if (m_flagFontChange)
+            { //@fontconfig
+                m_ProfileDescription_WebBrowser.Document.ExecCommand("SelectAll", false, "null");
+                m_ProfileDescription_WebBrowser.Document.ExecCommand("FontName", false, mSettings.ObiFont);
+                m_ProfileDescription_WebBrowser.Document.ExecCommand("Unselect", false, "null");
+            }
             if (m_ProfileSelectedIndex == 0)
             {
                 m_ProfileDescription_WebBrowser.DocumentText = m_ProfileDescription_WebBrowser.Document.GetElementById("Basic").InnerHtml;

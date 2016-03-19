@@ -8,7 +8,7 @@ namespace Obi.Dialogs
     public partial class About : Form
     {
         private Settings mSettings;
-     //   private bool m_flagFontChange = false;
+        private bool m_flagFontChange = false; //@fontconfig
         /// <summary>
         /// Create a new About form.
         /// </summary>
@@ -22,7 +22,7 @@ namespace Obi.Dialogs
             if (settings.ObiFont != this.Font.Name) //@fontconfig
             {
                 this.Font = new System.Drawing.Font(settings.ObiFont, this.Font.Size, System.Drawing.FontStyle.Regular);//@fontconfig  
-             //   m_flagFontChange = true;
+                m_flagFontChange = true;
             }
         }
 
@@ -38,6 +38,12 @@ namespace Obi.Dialogs
 
         private void mWebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+            if (m_flagFontChange)
+            { //@fontconfig
+                mWebBrowser.Document.ExecCommand("SelectAll", false, "null");
+                mWebBrowser.Document.ExecCommand("FontName", false, mSettings.ObiFont); 
+                mWebBrowser.Document.ExecCommand("Unselect", false, "null");                
+            }
             mWebBrowser.Document.GetElementById("info-version").InnerText = System.String.Format("{0} v{1}",
                 Application.ProductName, Application.ProductVersion);
             mWebBrowser.Document.GetElementById("real-version").InnerText =
