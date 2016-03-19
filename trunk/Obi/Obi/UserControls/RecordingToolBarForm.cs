@@ -275,6 +275,10 @@ namespace Obi.UserControls
             
             // if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
             UpdateButtons();
+            if (m_ProjectView.ObiForm.Settings.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         void m_ProjectView_SelectionChanged(object sender, EventArgs e)

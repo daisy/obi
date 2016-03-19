@@ -76,6 +76,10 @@ namespace Obi.Audio
         {
             mGraphicalPeakMeter.Size = set.GraphicalPeakMeterContolSize;
             this.chkOnTop.Location = new Point(this.chkOnTop.Location.X, mGraphicalPeakMeter.Height);
+            if (set.ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(set.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
         public void GraphicalPeakMeterSaveSettings(Settings set)
         {
