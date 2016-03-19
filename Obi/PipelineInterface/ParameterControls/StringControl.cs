@@ -19,7 +19,7 @@ namespace PipelineInterface.ParameterControls
             InitializeComponent ();
             }
 
-        public StringControl ( ScriptParameter p )
+        public StringControl ( ScriptParameter p,string ObiFont )
             : this ()
             {
             m_Parameter = p;
@@ -48,6 +48,10 @@ namespace PipelineInterface.ParameterControls
                 }
             if (mLabel.Width + mLabel.Margin.Horizontal > Width) Width = mLabel.Width + mLabel.Margin.Horizontal;
             base.Size = this.Size;
+            if (ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
             }
 
         public override void UpdateScriptParameterValue ()
