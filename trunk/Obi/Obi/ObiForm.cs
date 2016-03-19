@@ -4779,7 +4779,7 @@ ref string exportDirectoryEPUB3)
                         new PipelineInterface.PipelineInterfaceForm(
                             mPipelineInfo.ScriptsInfo[(string) clickedItem.Tag].FullName,
                             exportFilePath,
-                            Directory.GetParent(mSession.Path).FullName);
+                            Directory.GetParent(mSession.Path).FullName,mSettings.ObiFont);
                     ProgressDialog progress = new ProgressDialog(((ToolStripMenuItem) sender).Text,
                                                                  delegate() { pipeline.RunScript(); }, mSettings); //@fontconfig
 
