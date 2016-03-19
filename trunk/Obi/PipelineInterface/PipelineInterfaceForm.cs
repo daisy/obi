@@ -17,6 +17,7 @@ namespace PipelineInterface
         private string mInputPath;
         private string mProjectDirectory;
         private ScriptParser mParser;
+        private string m_ObiFont;
 
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace PipelineInterface
         /// Create a dialog for the pipeline script given as input. The path to the exported project
         /// as well as the directory of the project are also given as initial parameters.
         /// </summary>
-        public PipelineInterfaceForm(string scriptPath, string inputPath, string ProjectDirectory)
+        public PipelineInterfaceForm(string scriptPath, string inputPath, string ProjectDirectory, string ObiFont) //@fontconfig
             : this()
         {
             if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
@@ -45,6 +46,11 @@ namespace PipelineInterface
             }
             mProjectDirectory = ProjectDirectory;
             Text = mParser.NiceName;
+            m_ObiFont = ObiFont;
+            if (ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
 
@@ -57,11 +63,11 @@ namespace PipelineInterface
             foreach (ScriptParameter p in mParser.ParameterList)
             {
                 Control c =
-                    p.ParameterDataType is DataTypes.BoolDataType ? (Control)new ParameterControls.BoolControl(p) :
-                    p.ParameterDataType is DataTypes.IntDataType ? (Control)new ParameterControls.IntControl( p ) :
-                    p.ParameterDataType is DataTypes.StringDataType ? (Control)new ParameterControls.StringControl( p ) :
-                    p.ParameterDataType is DataTypes.EnumDataType ? (Control)new ParameterControls.EnumControl(p) :
-                        (Control)new ParameterControls.PathBrowserControl(p, mInputPath, mProjectDirectory);
+                    p.ParameterDataType is DataTypes.BoolDataType ? (Control)new ParameterControls.BoolControl(p, m_ObiFont) :
+                    p.ParameterDataType is DataTypes.IntDataType ? (Control)new ParameterControls.IntControl(p, m_ObiFont) :
+                    p.ParameterDataType is DataTypes.StringDataType ? (Control)new ParameterControls.StringControl(p, m_ObiFont) :
+                    p.ParameterDataType is DataTypes.EnumDataType ? (Control)new ParameterControls.EnumControl(p, m_ObiFont) :
+                        (Control)new ParameterControls.PathBrowserControl(p, mInputPath, mProjectDirectory, m_ObiFont);
                 mLayoutPanel.Controls.Add(c);
                 mLayoutPanel.SetFlowBreak(c, true);
                 c.TabIndex = tabIndex++;

@@ -18,7 +18,7 @@ namespace PipelineInterface.ParameterControls
 
         public PathBrowserControl() { InitializeComponent(); }
 
-        public PathBrowserControl(ScriptParameter p, string SelectedPath, string ProjectDirectory)
+        public PathBrowserControl(ScriptParameter p, string SelectedPath, string ProjectDirectory,string ObiFont)
             : this()
         {
             m_SelectedPath = SelectedPath;
@@ -54,6 +54,10 @@ namespace PipelineInterface.ParameterControls
             else
             {
                 mTextBox.Text = p.ParameterValue;
+            }
+            if (ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
             }
         }
 

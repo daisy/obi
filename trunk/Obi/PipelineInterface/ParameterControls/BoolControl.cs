@@ -18,7 +18,7 @@ namespace PipelineInterface.ParameterControls
             InitializeComponent();
                     }
 
-        public BoolControl(ScriptParameter p)
+        public BoolControl(ScriptParameter p,string ObiFont)
             : this()
         {
             base.DescriptionLabel = GetLocalizedString( p.Description);
@@ -26,6 +26,10 @@ namespace PipelineInterface.ParameterControls
             m_Parameter = p;
             m_boolDataType = (DataTypes.BoolDataType)p.ParameterDataType;
             checkBox1.Checked = m_boolDataType.Value;
+            if (ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         public override void UpdateScriptParameterValue()

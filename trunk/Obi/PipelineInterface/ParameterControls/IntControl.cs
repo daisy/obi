@@ -18,7 +18,7 @@ namespace PipelineInterface.ParameterControls
             InitializeComponent();
         }
 
-        public IntControl(ScriptParameter p)
+        public IntControl(ScriptParameter p,string ObiFont )
             : this()
         {
             m_Parameter = p;
@@ -32,6 +32,10 @@ namespace PipelineInterface.ParameterControls
 
             int x_IntBox = mNiceNameLabel.Location.X + mNiceNameLabel.Width + mNiceNameLabel.Margin.Right + mIntBox.Margin.Left;
             mIntBox.Location = new Point(x_IntBox, mIntBox.Location.Y);
+            if (ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
         }
 
         private void mIntBox_TextChanged(object sender, EventArgs e)

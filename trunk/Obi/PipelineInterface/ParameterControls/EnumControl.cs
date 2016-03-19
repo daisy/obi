@@ -18,7 +18,7 @@ namespace PipelineInterface.ParameterControls
             InitializeComponent ();
             }
 
-        public EnumControl ( ScriptParameter p )
+        public EnumControl ( ScriptParameter p,string ObiFont )
             : this ()
             {
             m_Parameter = p;
@@ -37,6 +37,10 @@ namespace PipelineInterface.ParameterControls
             base.Size = this.Size;
             if (m_EnumData.SelectedIndex >= 0 && m_EnumData.SelectedIndex < m_EnumData.GetValues.Count)
                 mComboBox.SelectedIndex = m_EnumData.SelectedIndex;
+            if (ObiFont != this.Font.Name)
+            {
+                this.Font = new Font(ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+            }
             }
 
 
