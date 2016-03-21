@@ -155,7 +155,7 @@
     <value>6, 42</value>
   </data>
   <data name="m_cb_SpecialPhrases.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 24</value>
+    <value>264, 21</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_cb_SpecialPhrases.TabIndex" type="System.Int32, mscorlib">
@@ -183,9 +183,6 @@
   <data name="m_btnFind.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="m_btnFind.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
   <data name="m_btnFind.Location" type="System.Drawing.Point, System.Drawing">
     <value>288, 39</value>
   </data>
@@ -212,9 +209,6 @@
   </data>
   <data name="&gt;&gt;m_btnFind.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="m_grpSelectSpecialPhrases.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="m_grpSelectSpecialPhrases.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
@@ -270,9 +264,6 @@
   <data name="m_btnOK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="m_btnOK.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
   <data name="m_btnOK.Location" type="System.Drawing.Point, System.Drawing">
     <value>80, 453</value>
   </data>
@@ -302,9 +293,6 @@
   </data>
   <data name="m_btnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
-  </data>
-  <data name="m_btnCancel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="m_btnCancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>205, 453</value>
@@ -422,9 +410,6 @@
   </data>
   <data name="&gt;&gt;m_BtnPlay.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="mgrp_PlayPhraseInListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mgrp_PlayPhraseInListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 376</value>

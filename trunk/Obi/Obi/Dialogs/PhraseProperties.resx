@@ -157,13 +157,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtParentSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 15</value>
+    <value>160, 15</value>
   </data>
   <data name="m_txtParentSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtParentSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>366, 22</value>
+    <value>355, 22</value>
   </data>
   <data name="m_txtParentSection.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -217,13 +217,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtLocationInsideSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 54</value>
+    <value>160, 54</value>
   </data>
   <data name="m_txtLocationInsideSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtLocationInsideSection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>366, 22</value>
+    <value>355, 22</value>
   </data>
   <data name="m_txtLocationInsideSection.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -289,13 +289,13 @@
     <value>16</value>
   </data>
   <data name="m_comboPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 310</value>
+    <value>160, 310</value>
   </data>
   <data name="m_comboPhraseRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_comboPhraseRole.Size" type="System.Drawing.Size, System.Drawing">
-    <value>366, 24</value>
+    <value>355, 24</value>
   </data>
   <data name="m_comboPhraseRole.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -523,13 +523,13 @@
     <value>Bottom, Left, Right</value>
   </data>
   <data name="m_txtTimeLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 241</value>
+    <value>160, 241</value>
   </data>
   <data name="m_txtTimeLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtTimeLength.Size" type="System.Drawing.Size, System.Drawing">
-    <value>366, 22</value>
+    <value>355, 22</value>
   </data>
   <data name="m_txtTimeLength.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -553,10 +553,10 @@
     <value>Flat</value>
   </data>
   <data name="m_comboCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 273</value>
+    <value>160, 273</value>
   </data>
   <data name="m_comboCustomClassName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 24</value>
+    <value>355, 24</value>
   </data>
   <data name="m_comboCustomClassName.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -576,27 +576,6 @@
   <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
-    <value>Ancestor sections:</value>
-  </data>
-  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 25</value>
-  </data>
-  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>361, 82</value>
-  </data>
-  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
   <data name="&gt;&gt;m_lbParentsList.Name" xml:space="preserve">
     <value>m_lbParentsList</value>
   </data>
@@ -633,6 +612,39 @@
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="m_lbParentsList.AccessibleName" xml:space="preserve">
+    <value>Ancestor sections:</value>
+  </data>
+  <data name="m_lbParentsList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="m_lbParentsList.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="m_lbParentsList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>136, 25</value>
+  </data>
+  <data name="m_lbParentsList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="m_lbParentsList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 82</value>
+  </data>
+  <data name="m_lbParentsList.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;m_lbParentsList.Name" xml:space="preserve">
+    <value>m_lbParentsList</value>
+  </data>
+  <data name="&gt;&gt;m_lbParentsList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbParentsList.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;m_lbParentsList.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_lblPageNumberDetails.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -667,10 +679,10 @@
     <value>Page number details:</value>
   </data>
   <data name="m_txtPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 348</value>
+    <value>160, 348</value>
   </data>
   <data name="m_txtPageNumberDetails.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="m_txtPageNumberDetails.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -790,10 +802,10 @@
     <value>Current cursor position</value>
   </data>
   <data name="m_txtCurrentCursorPosition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 88</value>
+    <value>160, 88</value>
   </data>
   <data name="m_txtCurrentCursorPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>366, 22</value>
+    <value>355, 22</value>
   </data>
   <data name="m_txtCurrentCursorPosition.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
