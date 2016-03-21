@@ -60,10 +60,6 @@ namespace Obi.Dialogs
                 // 
                 resources.ApplyResources(this.mCancelButton, "mCancelButton");
                 // 
-                // mRenumber
-                // 
-                resources.ApplyResources(this.mRenumber, "mRenumber");
-                // 
                 // mNumberOfPagesBox
                 // 
                 resources.ApplyResources(this.mNumberOfPagesBox, "mNumberOfPagesBox");
@@ -165,28 +161,29 @@ namespace Obi.Dialogs
                 this.AcceptButton = this.m_btnOk;
                 resources.ApplyResources(this, "$this");
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                this.Controls.Add(this.label4);
                 this.Controls.Add(this.m_lbl_Seconds);
                 this.Controls.Add(this.m_txtBox_TimeInSeconds);
                 this.Controls.Add(this.m_btnOk);
                 this.Controls.Add(this.mPhraseIndexComboBox);
                 this.Controls.Add(this.m_cb_TimeInPhraseOrSection);
-                this.Controls.Add(this.m_lbl_Time);
                 this.Controls.Add(this.m_grpSearchPagePhrase);
+                this.Controls.Add(this.m_lbl_Time);
+                this.Controls.Add(this.label4);
                 this.Name = "GoToPageOrPhrase";
+                this.Controls.SetChildIndex(this.label4, 0);
+                this.Controls.SetChildIndex(this.m_lbl_Time, 0);
+                this.Controls.SetChildIndex(this.label1, 0);
+                this.Controls.SetChildIndex(this.m_chkAutoFillPages, 0);
                 this.Controls.SetChildIndex(this.mPageKindComboBox, 0);
                 this.Controls.SetChildIndex(this.m_grpSearchPagePhrase, 0);
-                this.Controls.SetChildIndex(this.m_lbl_Time, 0);
                 this.Controls.SetChildIndex(this.m_cb_TimeInPhraseOrSection, 0);
                 this.Controls.SetChildIndex(this.mPhraseIndexComboBox, 0);
                 this.Controls.SetChildIndex(this.m_btnOk, 0);
                 this.Controls.SetChildIndex(this.mRenumber, 0);
                 this.Controls.SetChildIndex(this.mNumberBox, 0);
-                this.Controls.SetChildIndex(this.label1, 0);
                 this.Controls.SetChildIndex(this.m_txtBox_TimeInSeconds, 0);
                 this.Controls.SetChildIndex(this.m_lbl_Seconds, 0);
                 this.Controls.SetChildIndex(this.label3, 0);
-                this.Controls.SetChildIndex(this.label4, 0);
                 this.Controls.SetChildIndex(this.mNumberOfPagesBox, 0);
                 this.Controls.SetChildIndex(this.mOKButton, 0);
                 this.Controls.SetChildIndex(this.mCancelButton, 0);
