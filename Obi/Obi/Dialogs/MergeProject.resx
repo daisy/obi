@@ -129,7 +129,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mbtnDesendingOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 42</value>
+    <value>168, 42</value>
   </data>
   <data name="mbtnDesendingOrder.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -211,7 +211,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mbtnAscendingOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 32</value>
+    <value>152, 32</value>
   </data>
   <data name="mbtnAscendingOrder.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>

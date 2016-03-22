@@ -160,6 +160,7 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.mbtnAscendingOrder, "mbtnAscendingOrder");
             this.mbtnAscendingOrder.Name = "mbtnAscendingOrder";
+            this.helpProvider1.SetShowHelp(this.mbtnAscendingOrder, ((bool)(resources.GetObject("mbtnAscendingOrder.ShowHelp"))));
             this.mbtnAscendingOrder.UseVisualStyleBackColor = true;
             this.mbtnAscendingOrder.Click += new System.EventHandler(this.mbtnAscendingOrder_Click);
             // 
