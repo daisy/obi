@@ -1154,9 +1154,6 @@
   <data name="mDisplayBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="mDisplayBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
   <data name="mDisplayBox.Items" xml:space="preserve">
     <value>elapsed</value>
   </data>
@@ -1195,9 +1192,6 @@
   </data>
   <data name="mFastPlayRateCombobox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
-  </data>
-  <data name="mFastPlayRateCombobox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mFastPlayRateCombobox.ItemHeight" type="System.Int32, mscorlib">
     <value>16</value>
@@ -1250,15 +1244,6 @@
   <metadata name="m_RecordingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>569, 17</value>
   </metadata>
-  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 114</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
-    <value>m_RecordingOptionsContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="m_MonitoringtoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>244, 22</value>
   </data>
@@ -1289,18 +1274,18 @@
   <data name="mMonitorContinuouslyToolStripMenuItem.Text" xml:space="preserve">
     <value>Monitor &amp;Continuously</value>
   </data>
+  <data name="m_RecordingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 114</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_RecordingOptionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_RecordingOptionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="m_PlayingOptionsContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 114</value>
-  </data>
-  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Name" xml:space="preserve">
-    <value>m_PlayingOptionsContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="m_PlayAlltoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
   </data>
@@ -1331,6 +1316,15 @@
   <data name="m_PreviewUptotoolStripMenuItem.Text" xml:space="preserve">
     <value>Preview Up&amp;to</value>
   </data>
+  <data name="m_PlayingOptionsContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 114</value>
+  </data>
+  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Name" xml:space="preserve">
+    <value>m_PlayingOptionsContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;m_PlayingOptionsContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="m_SwitchProfileContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>834, 17</value>
   </metadata>
@@ -1342,9 +1336,6 @@
   </data>
   <data name="&gt;&gt;m_SwitchProfileContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="mVUMeterPanel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mVUMeterPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>870, 3</value>
@@ -1362,7 +1353,7 @@
     <value>mVUMeterPanel</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Type" xml:space="preserve">
-    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.8.0.32856, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.UserControls.TextVUMeterPanel, Obi, Version=3.8.0.21251, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mVUMeterPanel.Parent" xml:space="preserve">
     <value>$this</value>

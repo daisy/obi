@@ -278,6 +278,7 @@ namespace Obi.UserControls
             if (m_ProjectView.ObiForm.Settings.ObiFont != this.Font.Name)
             {
                 this.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
+                m_statusStrip.Font = new Font(m_ProjectView.ObiForm.Settings.ObiFont, this.Font.Size, FontStyle.Regular);//@fontconfig
             }
         }
 
