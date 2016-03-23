@@ -1119,6 +1119,15 @@ namespace Obi
                         {
                             Directory.CreateDirectory(deletedDataFolderPath);
                         }
+                        // copy obi project file also
+                        File.Copy(mSession.Path,
+                        Path.Combine(deletedDataFolderPath, Path.GetFileName(mSession.Path)),
+                        true);
+                        // create text file for cleanup rol back
+                        string CleanupRollBackFilesMapName = "CleanupRollBackFilesMap.txt";
+                        string CleanupRollBackFilesmapPath = Path.Combine(deletedDataFolderPath, CleanupRollBackFilesMapName);
+                        if (File.Exists(CleanupRollBackFilesmapPath)) File.Delete(CleanupRollBackFilesmapPath);
+                        File.CreateText(CleanupRollBackFilesmapPath).Close();
 
                         Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath, mSettings.Audio_CleanupMaxFileSizeInMB, skipCleanedUpDataProvider);
                         Dialogs.ProgressDialog progress = new ProgressDialog(Localizer.Message("cleaning_up"),
@@ -1129,7 +1138,16 @@ namespace Obi
 
                                                                                  cleaner.Cleanup();
 
-                                                                                 List<string>
+                                                                                 // save cleanup mapping for roll back
+                                                                                 StreamWriter writer = new StreamWriter(File.OpenWrite(CleanupRollBackFilesmapPath));
+                                                                                 foreach (Cleaner.OriginalRenamedFilenameTuple tup in cleaner.GetListOfRenamedFiles())
+                                                                                 {
+                                                                                     string line = tup.m_original + "=" + tup.m_renamed;
+                                                                                     writer.WriteLine(line);
+                                                                                 }
+                                                                                 writer.Close();
+
+                                                                                List<string>
                                                                                      listOfDataProviderFiles =
                                                                                          new List<string>();
                                                                                  foreach (
