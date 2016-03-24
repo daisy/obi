@@ -18,9 +18,9 @@
 <Project_DefaultPath id="ref-7"></Project_DefaultPath>
 <Project_AutomaticallyDeleteUnusedFilesAfterCleanup>true</Project_AutomaticallyDeleteUnusedFilesAfterCleanup>
 <FontSize>10</FontSize>
-<Audio_LastInputDevice id="ref-8">Primärer Soundaufnahmetreiber</Audio_LastInputDevice>
+<Audio_LastInputDevice id="ref-8">Primary Sound Capture Driver</Audio_LastInputDevice>
 <LastOpenProject id="ref-9">C:\Users\Rohit\Documents\ARE YOU READY\project.obi</LastOpenProject>
-<Audio_LastOutputDevice id="ref-10">Primärer Soundtreiber</Audio_LastOutputDevice>
+<Audio_LastOutputDevice id="ref-10">Primary Sound Driver</Audio_LastOutputDevice>
 <MaxPhraseDurationMinutes>10</MaxPhraseDurationMinutes>
 <ImportCharCountToTruncateFromStart>4</ImportCharCountToTruncateFromStart>
 <ImportCharsToReplaceWithSpaces id="ref-11">_</ImportCharsToReplaceWithSpaces>
