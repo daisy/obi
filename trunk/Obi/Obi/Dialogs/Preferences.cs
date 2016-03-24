@@ -1725,6 +1725,10 @@ namespace Obi.Dialogs
             {
                 UpdateBackgroundColorRequired = false;
             }
+            if (mSettings.ObiFont != this.mChooseFontCombo.SelectedItem.ToString())
+            {
+                MessageBox.Show(Localizer.Message("Preferences_RestartForFontChange"));
+            }
             m_IsColorChanged = true;
             VerifyChangeInLoadedSettings();
         }
