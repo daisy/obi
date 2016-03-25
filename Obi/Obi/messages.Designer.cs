@@ -5254,6 +5254,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obi has to be restarted for Font changes to take effect. Please save your work and restart Obi..
+        /// </summary>
+        internal static string Preferences_RestartForFontChange {
+            get {
+                return ResourceManager.GetString("Preferences_RestartForFontChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to update audio format of the current project.
         /// </summary>
         internal static string Preferences_UnableToUpdateProjectAudioFormat {

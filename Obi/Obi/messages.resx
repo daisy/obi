@@ -2836,4 +2836,7 @@ Error text: {1}</value>
   <data name="Audio_SaveAudioZoom" xml:space="preserve">
     <value>Save Audio Zoom</value>
   </data>
+  <data name="Preferences_RestartForFontChange" xml:space="preserve">
+    <value>Obi has to be restarted for Font changes to take effect. Please save your work and restart Obi.</value>
+  </data>
 </root>
