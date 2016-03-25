@@ -1395,8 +1395,10 @@ namespace Obi.Dialogs
             {
                 ResetColors();
                 mForm.ObiFontName = m_DefaultSettings.ObiFont; //@fontconfig
-                mChooseFontCombo.SelectedIndex = -1; //@fontconfig
-                m_txtBox_Font.Text = " "; //@fontconfig
+                int indexOfDefaultFont = mChooseFontCombo.Items.IndexOf(m_DefaultSettings.ObiFont);
+                mChooseFontCombo.SelectedIndex = indexOfDefaultFont; //@fontconfig
+                m_txtBox_Font.Text = "Obi"; //@fontconfig
+                m_txtBox_Font.Font = new Font(mChooseFontCombo.SelectedItem.ToString(), this.Font.Size, FontStyle.Regular);//@fontconfig
                 mSettings.ObiFontIndex = -1; //@fontconfig
                 m_IsColorChanged = true;
             }
