@@ -227,6 +227,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.rollbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1530,7 +1531,8 @@ namespace Obi
             resources.ApplyResources(this.mTools_CleanUnreferencedAudioMenuItem, "mTools_CleanUnreferencedAudioMenuItem");
             this.mTools_CleanUnreferencedAudioMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_Tools_CompleteCleanupToolStripMenuItem,
-            this.m_Tools_QuickCleanupToolStripMenuItem});
+            this.m_Tools_QuickCleanupToolStripMenuItem,
+            this.rollbackToolStripMenuItem});
             this.mTools_CleanUnreferencedAudioMenuItem.Name = "mTools_CleanUnreferencedAudioMenuItem";
             this.mTools_CleanUnreferencedAudioMenuItem.DropDownOpening += new System.EventHandler(this.mTools_CleanUnreferencedAudioMenuItem_DropDownOpening);
             // 
@@ -1639,6 +1641,11 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            // 
+            // rollbackToolStripMenuItem
+            // 
+            this.rollbackToolStripMenuItem.Name = "rollbackToolStripMenuItem";
+            resources.ApplyResources(this.rollbackToolStripMenuItem, "rollbackToolStripMenuItem");
             // 
             // ObiForm
             // 
@@ -1865,6 +1872,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_AutoFillMissingPagesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_Tools_CompleteCleanupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_Tools_QuickCleanupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rollbackToolStripMenuItem;
     }
 }
 
