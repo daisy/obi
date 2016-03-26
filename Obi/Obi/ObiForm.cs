@@ -1141,12 +1141,12 @@ namespace Obi
                         Dialogs.ProgressDialog progress = new ProgressDialog(Localizer.Message("cleaning_up"),
                                                                              delegate()
                                                                              {
-                                                                                 m_CanAutoSave = false;
-                                                                                 //mSession.Presentation.cleanup();
+                                                                               m_CanAutoSave = false;
+                                                                             //mSession.Presentation.cleanup();
+                                                                                                                                                                                                                       
+                                                                              cleaner.Cleanup();
 
-                                                                                 cleaner.Cleanup();
-
-                                                                                 // save cleanup mapping for roll back
+                                                                              // save cleanup mapping for roll back
                                                                                  writer = new StreamWriter(File.OpenWrite(CleanupRollBackFilesmapPath));
                                                                                  foreach (Cleaner.OriginalRenamedFilenameTuple tup in cleaner.GetListOfRenamedFiles())
                                                                                  {
@@ -1156,9 +1156,7 @@ namespace Obi
                                                                                  writer.Close();
                                                                                  writer = null;
 
-                                                                                 List<string>
-                                                                                      listOfDataProviderFiles =
-                                                                                          new List<string>();
+                                                                                 List<string> listOfDataProviderFiles = new List<string>();
                                                                                  foreach (
                                                                                      DataProvider dataProvider in
                                                                                          mSession.Presentation.
@@ -1166,19 +1164,13 @@ namespace Obi
                                                                                              ManagedObjects.
                                                                                              ContentsAs_Enumerable)
                                                                                  {
-                                                                                     FileDataProvider
-                                                                                         fileDataProvider =
-                                                                                             dataProvider as
-                                                                                             FileDataProvider;
+                                                                                     FileDataProvider fileDataProvider =dataProvider as FileDataProvider;
                                                                                      if (fileDataProvider == null)
                                                                                          continue;
 
-                                                                                     listOfDataProviderFiles.Add(
-                                                                                         Path.GetFileName(
-                                                                                             fileDataProvider.
-                                                                                                 DataFileRelativePath));
+                                                                                     listOfDataProviderFiles.Add(Path.GetFileName(fileDataProvider.DataFileRelativePath));
                                                                                  }
-
+                                                                                                                                                                
 
                                                                                  //foreach (urakawa.media.data.MediaData m in mProjectView.Presentation.MediaDataManager.ManagedObjects.ContentsAs_Enumerable)
                                                                                  //{
@@ -1187,104 +1179,66 @@ namespace Obi
                                                                                  //}
 
                                                                                  bool folderIsShowing = false;
-                                                                                 if (
-                                                                                     Directory.GetFiles(
-                                                                                         deletedDataFolderPath).
-                                                                                         Length != 0)
+                                                                                 if (Directory.GetFiles(deletedDataFolderPath).Length != 0)
                                                                                  {
                                                                                      folderIsShowing = true;
-
                                                                                      //m_ShellView.ExecuteShellProcess(deletedDataFolderPath);
                                                                                  }
 
-                                                                                 foreach (
-                                                                                     string filePath in
-                                                                                         Directory.GetFiles(
-                                                                                             dataFolderPath))
+                                                                                 foreach (string filePath in Directory.GetFiles(dataFolderPath))
                                                                                  {
-                                                                                     string fileName =
-                                                                                         Path.GetFileName(filePath);
-                                                                                     if (
-                                                                                         !listOfDataProviderFiles.
-                                                                                              Contains(fileName))
+                                                                                     string fileName = Path.GetFileName(filePath);
+                                                                                     if (!listOfDataProviderFiles.Contains(fileName))
                                                                                      {
-                                                                                         string filePathDest =
-                                                                                             Path.Combine(
-                                                                                                 deletedDataFolderPath,
-                                                                                                 fileName);
+                                                                                         string filePathDest =Path.Combine(deletedDataFolderPath,fileName);
                                                                                          Debug.Assert(
                                                                                              !File.Exists(
                                                                                                  filePathDest));
-                                                                                         if (
-                                                                                             !File.Exists(
-                                                                                                 filePathDest))
+                                                                                         if (!File.Exists(filePathDest))
                                                                                          {
-                                                                                             File.Move(filePath,
-                                                                                                       filePathDest);
-                                                                                             Console.WriteLine(
-                                                                                                 filePath);
+                                                                                             File.Move(filePath,filePathDest);
+                                                                                             Console.WriteLine(filePath);
                                                                                          }
                                                                                      }
                                                                                  }
 
                                                                                  
                                                                                  if (
-                                                                                     Directory.GetFiles(
-                                                                                         deletedDataFolderPath).
-                                                                                         Length != 0)
+                                                                                     Directory.GetFiles(deletedDataFolderPath).Length != 0)
                                                                                  {
-                                                                                     if (
-                                                                                         mSettings.
-                                                                                             Project_AutomaticallyDeleteUnusedFilesAfterCleanup ||
-                                                                                         MessageBox.Show(
-                                                                                             Localizer.Message(
-                                                                                                 "clean_up_ask_for_delete_project"),
-                                                                                             Localizer.Message(
-                                                                                                 "Delete_unused_data_caption"),
-                                                                                             MessageBoxButtons.YesNo,
-                                                                                             MessageBoxIcon.Question,
-                                                                                             MessageBoxDefaultButton.Button2) ==
-                                                                                         DialogResult.Yes)
+                                                                                     if (mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup ||
+                                                                                         MessageBox.Show(Localizer.Message("clean_up_ask_for_delete_project"),
+                                                                                             Localizer.Message("Delete_unused_data_caption"),
+                                                                                             MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) ==DialogResult.Yes)
                                                                                      {
 
                                                                                          if (true)
                                                                                          //delete definitively
                                                                                          {
                                                                                              ProjectView.ProjectView.WriteToLogFile_Static("Clean up operation: deleting files");
-                                                                                             foreach (
-                                                                                                 string filePath in
-                                                                                                     Directory.
-                                                                                                         GetFiles(
-                                                                                                             deletedDataFolderPath)
-                                                                                                 )
+                                                                                             foreach (string filePath in Directory.GetFiles(deletedDataFolderPath))
                                                                                              {
-                                                                                                 File.Delete(
-                                                                                                     filePath);
+                                                                                                 File.Delete(filePath);
                                                                                              }
                                                                                          }
 
-                                                                                         if (
-                                                                                             Directory.Exists(
-                                                                                                 deletedDataFolderPath))
+                                                                                         if (Directory.Exists(deletedDataFolderPath))
                                                                                          {
-                                                                                             Directory.Delete(
-                                                                                                 deletedDataFolderPath);
+                                                                                             Directory.Delete(deletedDataFolderPath);
                                                                                          }
                                                                                      }
                                                                                      else // show the delete folder
                                                                                      {
                                                                                          System.Diagnostics.Process.
-                                                                                             Start(
-                                                                                                 deletedDataFolderPath);
+                                                                                             Start(deletedDataFolderPath);
                                                                                          isDeleteFolderOpenned = true;
                                                                                      }
                                                                                  }
+                                                                                                                                                               
 
-
-                                                                             }, mSettings); //@fontconfig
+                                                       }, mSettings); //@fontconfig
                         if (cleaner != null)
-                            cleaner.ProgressChangedEvent +=
-                                new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
+                            cleaner.ProgressChangedEvent +=new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                         progress.ShowDialog();
                         m_CanAutoSave = true;
                         if (progress.Exception != null) throw progress.Exception;
@@ -1325,7 +1279,7 @@ namespace Obi
             {
                 if (!Directory.Exists(mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath))
                 {
-                    MessageBox.Show("Rollback cannot continue. Project's data directory not found");
+                    MessageBox.Show(Localizer.Message("Rollback_DataDirectory_Missing"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -1334,20 +1288,23 @@ namespace Obi
                 Console.WriteLine("delete directory " + deleteDirectoryPath);
                 if (!Directory.Exists(deleteDirectoryPath))
                 {
-                    MessageBox.Show("Rollback cannot continue. No data found for roll back");
+                  MessageBox.Show(Localizer.Message("Rollback_No_DataFound"), Localizer.Message("Caption_Information"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 string MappingFilePath = Path.Combine(deleteDirectoryPath, m_CleanUpFileNamesMapFile);
                 Console.WriteLine("Mapping file path: " + MappingFilePath);
                 if (!File.Exists(MappingFilePath)) 
                 {
-                    MessageBox.Show("Rollback cannot continue. No data found for roll back. (mapping file not found)");
+                    MessageBox.Show(Localizer.Message("Rollback_MappingFile_Missing"),
+                        Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 string[] fileNames = Directory.GetFiles(deleteDirectoryPath, "*.obi");
                 if (fileNames.Length == 0) 
                 {
-                    MessageBox.Show("Rollback cannot continue. No data found for roll back. (Project file not found)");
+                    MessageBox.Show(Localizer.Message("Rollback_ProjectFile_Missing"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     return;
                 }
 
@@ -1435,19 +1392,20 @@ namespace Obi
                     progress.ShowDialog();
                     if (progress.Exception != null) throw progress.Exception;
 
-                    MessageBox.Show("Roll back of clean up is complete");
+                    MessageBox.Show(Localizer.Message("Rollback_Complete"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 catch (System.Exception ex)
                 {
                     MessageBox.Show("Roll back failed" + "\n" + ex.ToString());
+                    MessageBox.Show(String.Format(Localizer.Message("Rollback_Failed"),ex.Message), Localizer.Message("Caption_Rollback_Failed"), MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Error);
                 }
                 finally
                 {
                     if (reader != null) reader.Close();
                 }
                 OpenProject(currentProjectPath, "");
-
-                
             }
 
 

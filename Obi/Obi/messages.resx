@@ -2842,4 +2842,25 @@ Error text: {1}</value>
   <data name="CleanUp_Rollback_Progress" xml:space="preserve">
     <value>Clean up roll back in progress..</value>
   </data>
+  <data name="Rollback_DataDirectory_Missing" xml:space="preserve">
+    <value>Rollback cannot continue. Project's data directory not found</value>
+  </data>
+  <data name="Rollback_No_DataFound" xml:space="preserve">
+    <value>Rollback cannot continue. No data found for roll back</value>
+  </data>
+  <data name="Rollback_MappingFile_Missing" xml:space="preserve">
+    <value>Rollback cannot continue. No data found for roll back. (mapping file not found)</value>
+  </data>
+  <data name="Rollback_ProjectFile_Missing" xml:space="preserve">
+    <value>Rollback cannot continue. No data found for roll back. (Project file not found)</value>
+  </data>
+  <data name="Rollback_Complete" xml:space="preserve">
+    <value>Rollback of clean up is complete</value>
+  </data>
+  <data name="Rollback_Failed" xml:space="preserve">
+    <value>Rollback failed.</value>
+  </data>
+  <data name="Caption_Rollback_Failed" xml:space="preserve">
+    <value>Rollback failed</value>
+  </data>
 </root>
