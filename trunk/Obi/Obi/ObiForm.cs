@@ -1079,6 +1079,9 @@ namespace Obi
                 return true;
             }
 
+            private const string m_CleanUpDeleteDirectoryName = "__DELETED";
+            private const string m_CleanUpFileNamesMapFile = "CleanupRollBackFilesMap.txt";
+
             // Clean unwanted audio from the project.
             // Before continuing, the user is given the choice to save or cancel.
             private void CleanProject(bool skipCleanedUpDataProvider)
@@ -1114,18 +1117,20 @@ namespace Obi
                         string dataFolderPath = mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath;
 
                         string deletedDataFolderPath = Path.Combine(dataFolderPath,
-                                                                    "__DELETED" + Path.DirectorySeparatorChar);
-                        if (!Directory.Exists(deletedDataFolderPath))
+                                                                    m_CleanUpDeleteDirectoryName + Path.DirectorySeparatorChar);
+                        if (Directory.Exists(deletedDataFolderPath))
                         {
-                            Directory.CreateDirectory(deletedDataFolderPath);
+                            Directory.Delete(deletedDataFolderPath, true);
                         }
+                            Directory.CreateDirectory(deletedDataFolderPath);
+                        
                         // copy obi project file also
                         File.Copy(mSession.Path,
                         Path.Combine(deletedDataFolderPath, Path.GetFileName(mSession.Path)),
                         true);
                         // create text file for cleanup rol back
-                        string CleanupRollBackFilesMapName = "CleanupRollBackFilesMap.txt";
-                        string CleanupRollBackFilesmapPath = Path.Combine(deletedDataFolderPath, CleanupRollBackFilesMapName);
+                        
+                        string CleanupRollBackFilesmapPath = Path.Combine(deletedDataFolderPath, m_CleanUpFileNamesMapFile);
                         if (File.Exists(CleanupRollBackFilesmapPath)) File.Delete(CleanupRollBackFilesmapPath);
                         File.CreateText(CleanupRollBackFilesmapPath).Close();
 
@@ -1301,6 +1306,123 @@ namespace Obi
                     mProjectView.WaveformRendering_PauseOrResume(false);
                 }
             }
+
+            public void CleanUpRollBack()
+            {
+                if (!Directory.Exists(mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath))
+                {
+                    MessageBox.Show("Rollback cannot continue. Project's data directory not found");
+                    return;
+                }
+
+                string deleteDirectoryPath = Path.Combine(mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath,
+                    m_CleanUpDeleteDirectoryName);
+                Console.WriteLine("delete directory " + deleteDirectoryPath);
+                if (!Directory.Exists(deleteDirectoryPath))
+                {
+                    MessageBox.Show("Rollback cannot continue. No data found for roll back");
+                    return;
+                }
+                string MappingFilePath = Path.Combine(deleteDirectoryPath, m_CleanUpFileNamesMapFile);
+                Console.WriteLine("Mapping file path: " + MappingFilePath);
+                if (!File.Exists(MappingFilePath)) 
+                {
+                    MessageBox.Show("Rollback cannot continue. No data found for roll back. (mapping file not found)");
+                    return;
+                }
+                string[] fileNames = Directory.GetFiles(deleteDirectoryPath, "*.obi");
+                if (fileNames.Length == 0) 
+                {
+                    MessageBox.Show("Rollback cannot continue. No data found for roll back. (Project file not found)");
+                    return;
+                }
+                string ProjectPathInDeleteDirectory = fileNames[0];
+                Console.WriteLine("cleande up project path: " + ProjectPathInDeleteDirectory) ;
+
+                string currentProjectPath = mSession.Path;
+                string currentDataDirectoryPath = mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath;
+                DidCloseProject();
+                // start roll back
+                try
+                {
+                    // create the filenames mapping dictionary
+                    StreamReader reader = File.OpenText(MappingFilePath);
+                    Dictionary<string, string> fileMappingOriginalToRenamed = new Dictionary<string, string>();
+                    string line = "";
+                    Console.WriteLine("populating cleanup mapping dictionary");
+                    while (line != null)
+                    {
+                        line = reader.ReadLine();
+                        if (!string.IsNullOrEmpty(line))
+                        {
+                            string[] lineArray = line.Split('=');
+                            fileMappingOriginalToRenamed.Add(lineArray[0], lineArray[1]);
+                            Console.WriteLine(lineArray[0]);
+                            Console.WriteLine(lineArray[1]);
+                            Console.WriteLine("");
+                        }
+                    }
+                    reader.Close();
+
+
+                    // rename the project file name
+                    string backupProjectFilePath = currentProjectPath + "_Before_Rollback";
+                    if (File.Exists(backupProjectFilePath)) File.Delete(backupProjectFilePath);
+
+                    File.Move(currentProjectPath, backupProjectFilePath);
+                    Console.WriteLine("Project file renamed");
+                    // move the cleaned up project file from delete folder to project directory.
+                    if (File.Exists(currentProjectPath)) File.Delete(currentProjectPath);
+                    Console.WriteLine("Old project file path: " + ProjectPathInDeleteDirectory);
+                    Console.WriteLine("Destination location : " + currentProjectPath);
+                    File.Move(ProjectPathInDeleteDirectory, currentProjectPath);
+                    Console.WriteLine("Project before clean up is restored");
+
+                    // move the files from delete directory to data directory.
+                    Console.WriteLine("Moving back the deleted files");
+                    string[] deletedFileNames = Directory.GetFiles(deleteDirectoryPath, "*.*");
+                    for (int i = 0; i < deletedFileNames.Length; i++)
+                    {
+                        string sourcePath = deletedFileNames[i];
+                        string destinationPath = Path.Combine(currentDataDirectoryPath, 
+                            Path.GetFileName (deletedFileNames[i]));
+                        Console.WriteLine("Deleted file name : " + deletedFileNames[i]) ;
+                        // take precaution for the mapping text file because an old file with same name can exist..
+                        if (deletedFileNames[i] == m_CleanUpFileNamesMapFile
+                            && File.Exists(destinationPath))
+                        {
+                            File.Delete(destinationPath);
+                        }
+                        Console.WriteLine("Restored file : " + destinationPath);
+                        File.Move(sourcePath, destinationPath);
+                        
+                    }
+
+                    // now rename the files to the original names.
+                    Console.WriteLine("Renaming files in data directory to original namespace") ;
+                    foreach (string originalName in fileMappingOriginalToRenamed.Keys)
+                    {
+                        string sourcePath = Path.Combine( currentDataDirectoryPath,
+                            fileMappingOriginalToRenamed [originalName]);
+                        string destinationPath = Path.Combine(currentDataDirectoryPath,
+                            originalName);
+                        File.Move(sourcePath, destinationPath);
+                        Console.WriteLine(sourcePath);
+                        Console.WriteLine(destinationPath);
+                        Console.WriteLine("");
+                    }
+
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                
+                OpenProject(currentProjectPath, "");
+
+                MessageBox.Show("Done");
+            }
+
 
             //sdk2
             // Delete extra files in the data directory (or directories)
