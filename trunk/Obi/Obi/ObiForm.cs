@@ -1237,7 +1237,8 @@ namespace Obi
                                                                                              Localizer.Message(
                                                                                                  "Delete_unused_data_caption"),
                                                                                              MessageBoxButtons.YesNo,
-                                                                                             MessageBoxIcon.Question) ==
+                                                                                             MessageBoxIcon.Question,
+                                                                                             MessageBoxDefaultButton.Button2 ) ==
                                                                                          DialogResult.Yes)
                                                                                      {
 
@@ -1336,6 +1337,7 @@ namespace Obi
                     MessageBox.Show("Rollback cannot continue. No data found for roll back. (Project file not found)");
                     return;
                 }
+
                 string ProjectPathInDeleteDirectory = fileNames[0];
                 Console.WriteLine("cleande up project path: " + ProjectPathInDeleteDirectory) ;
 
@@ -1378,49 +1380,57 @@ namespace Obi
                     File.Move(ProjectPathInDeleteDirectory, currentProjectPath);
                     Console.WriteLine("Project before clean up is restored");
 
-                    // move the files from delete directory to data directory.
-                    Console.WriteLine("Moving back the deleted files");
-                    string[] deletedFileNames = Directory.GetFiles(deleteDirectoryPath, "*.*");
-                    for (int i = 0; i < deletedFileNames.Length; i++)
-                    {
-                        string sourcePath = deletedFileNames[i];
-                        string destinationPath = Path.Combine(currentDataDirectoryPath, 
-                            Path.GetFileName (deletedFileNames[i]));
-                        Console.WriteLine("Deleted file name : " + deletedFileNames[i]) ;
-                        // take precaution for the mapping text file because an old file with same name can exist..
-                        if (deletedFileNames[i] == m_CleanUpFileNamesMapFile
-                            && File.Exists(destinationPath))
-                        {
-                            File.Delete(destinationPath);
-                        }
-                        Console.WriteLine("Restored file : " + destinationPath);
-                        File.Move(sourcePath, destinationPath);
-                        
-                    }
+                    
+                    Dialogs.ProgressDialog progress = new ProgressDialog(Localizer.Message("CleanUp_Rollback_Progress"),
+                                                                             delegate()
+                                                                             {
+                                                                                 // move the files from delete directory to data directory.
+                                                                                 Console.WriteLine("Moving back the deleted files");
+                                                                                 string[] deletedFileNames = Directory.GetFiles(deleteDirectoryPath, "*.*");
+                                                                                 for (int i = 0; i < deletedFileNames.Length; i++)
+                                                                                 {
+                                                                                     string sourcePath = deletedFileNames[i];
+                                                                                     string destinationPath = Path.Combine(currentDataDirectoryPath,
+                                                                                         Path.GetFileName(deletedFileNames[i]));
+                                                                                     Console.WriteLine("Deleted file name : " + deletedFileNames[i]);
+                                                                                     // take precaution for the mapping text file because an old file with same name can exist..
+                                                                                     if (deletedFileNames[i] == m_CleanUpFileNamesMapFile
+                                                                                         && File.Exists(destinationPath))
+                                                                                     {
+                                                                                         File.Delete(destinationPath);
+                                                                                     }
+                                                                                     Console.WriteLine("Restored file : " + destinationPath);
+                                                                                     File.Move(sourcePath, destinationPath);
 
-                    // now rename the files to the original names.
-                    Console.WriteLine("Renaming files in data directory to original namespace") ;
-                    foreach (string originalName in fileMappingOriginalToRenamed.Keys)
-                    {
-                        string sourcePath = Path.Combine( currentDataDirectoryPath,
-                            fileMappingOriginalToRenamed [originalName]);
-                        string destinationPath = Path.Combine(currentDataDirectoryPath,
-                            originalName);
-                        File.Move(sourcePath, destinationPath);
-                        Console.WriteLine(sourcePath);
-                        Console.WriteLine(destinationPath);
-                        Console.WriteLine("");
-                    }
+                                                                                 }
 
+                                                                                 // now rename the files to the original names.
+                                                                                 Console.WriteLine("Renaming files in data directory to original namespace");
+                                                                                 foreach (string originalName in fileMappingOriginalToRenamed.Keys)
+                                                                                 {
+                                                                                     string sourcePath = Path.Combine(currentDataDirectoryPath,
+                                                                                         fileMappingOriginalToRenamed[originalName]);
+                                                                                     string destinationPath = Path.Combine(currentDataDirectoryPath,
+                                                                                         originalName);
+                                                                                     File.Move(sourcePath, destinationPath);
+                                                                                     Console.WriteLine(sourcePath);
+                                                                                     Console.WriteLine(destinationPath);
+                                                                                     Console.WriteLine("");
+                                                                                 }
+                                                                             }, mSettings);
+                    progress.ShowDialog();
+                    if (progress.Exception != null) throw progress.Exception;
+
+                    MessageBox.Show("Roll back of clean up is complete");
                 }
                 catch (System.Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show("Roll back failed" +"\n"  + ex.ToString());
                 }
                 
                 OpenProject(currentProjectPath, "");
 
-                MessageBox.Show("Done");
+                
             }
 
 

@@ -618,14 +618,14 @@ Error text: {1}</value>
     <comment>Error dialog</comment>
   </data>
   <data name="clean_up_ask_for_delete_project" xml:space="preserve">
-    <value>The unused files are moved to the delete folder. Will you like to delete these unused files?</value>
+    <value>The unused files are moved to the delete folder for the clean up roll back operation. Will you like to delete these unused files anyway? Please note that you wil not be able to perform roll back if these files are deleted.</value>
     <comment>Confirmation dialog</comment>
   </data>
   <data name="clean_save_caption" xml:space="preserve">
     <value>Save after cleaning</value>
     <comment>Confirmation dialog</comment>
   </data>
-  <data name="delete_unused_data_caption" xml:space="preserve">
+  <data name="Delete_unused_data_caption" xml:space="preserve">
     <value>Delete unused data ?</value>
     <comment>Confirmation dialog</comment>
   </data>
@@ -2838,5 +2838,8 @@ Error text: {1}</value>
   </data>
   <data name="Preferences_RestartForFontChange" xml:space="preserve">
     <value>Obi has to be restarted for Font changes to take effect. Please save your work and restart Obi.</value>
+  </data>
+  <data name="CleanUp_Rollback_Progress" xml:space="preserve">
+    <value>Clean up roll back in progress..</value>
   </data>
 </root>
