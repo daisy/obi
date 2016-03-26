@@ -6058,6 +6058,11 @@ ref string exportDirectoryEPUB3)
                 }
             }
 
+            private void rollbackToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                CleanUpRollBack();
+            }
+
  
         }
     }

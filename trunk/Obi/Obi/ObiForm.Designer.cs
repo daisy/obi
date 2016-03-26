@@ -214,6 +214,7 @@ namespace Obi
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_Tools_CompleteCleanupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_Tools_QuickCleanupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rollbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mTools_ExportAsDAISYMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.m_EPUB3ValidatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -227,7 +228,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.rollbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1548,6 +1548,12 @@ namespace Obi
             this.m_Tools_QuickCleanupToolStripMenuItem.Name = "m_Tools_QuickCleanupToolStripMenuItem";
             this.m_Tools_QuickCleanupToolStripMenuItem.Click += new System.EventHandler(this.m_Tools_QuickCleanupToolStripMenuItem_Click);
             // 
+            // rollbackToolStripMenuItem
+            // 
+            this.rollbackToolStripMenuItem.Name = "rollbackToolStripMenuItem";
+            resources.ApplyResources(this.rollbackToolStripMenuItem, "rollbackToolStripMenuItem");
+            this.rollbackToolStripMenuItem.Click += new System.EventHandler(this.rollbackToolStripMenuItem_Click);
+            // 
             // mTools_ExportAsDAISYMenuItem
             // 
             resources.ApplyResources(this.mTools_ExportAsDAISYMenuItem, "mTools_ExportAsDAISYMenuItem");
@@ -1641,11 +1647,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // rollbackToolStripMenuItem
-            // 
-            this.rollbackToolStripMenuItem.Name = "rollbackToolStripMenuItem";
-            resources.ApplyResources(this.rollbackToolStripMenuItem, "rollbackToolStripMenuItem");
             // 
             // ObiForm
             // 
