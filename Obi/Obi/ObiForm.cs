@@ -1110,6 +1110,9 @@ namespace Obi
                                                       MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
                 {
+                    StreamWriter writer = null;
+                    bool isDeleteFolderOpenned = false ;
+
                     try
                     {
 
@@ -1122,14 +1125,14 @@ namespace Obi
                         {
                             Directory.Delete(deletedDataFolderPath, true);
                         }
-                            Directory.CreateDirectory(deletedDataFolderPath);
-                        
+                        Directory.CreateDirectory(deletedDataFolderPath);
+
                         // copy obi project file also
                         File.Copy(mSession.Path,
                         Path.Combine(deletedDataFolderPath, Path.GetFileName(mSession.Path)),
                         true);
                         // create text file for cleanup rol back
-                        
+
                         string CleanupRollBackFilesmapPath = Path.Combine(deletedDataFolderPath, m_CleanUpFileNamesMapFile);
                         if (File.Exists(CleanupRollBackFilesmapPath)) File.Delete(CleanupRollBackFilesmapPath);
                         File.CreateText(CleanupRollBackFilesmapPath).Close();
@@ -1144,17 +1147,18 @@ namespace Obi
                                                                                  cleaner.Cleanup();
 
                                                                                  // save cleanup mapping for roll back
-                                                                                 StreamWriter writer = new StreamWriter(File.OpenWrite(CleanupRollBackFilesmapPath));
+                                                                                 writer = new StreamWriter(File.OpenWrite(CleanupRollBackFilesmapPath));
                                                                                  foreach (Cleaner.OriginalRenamedFilenameTuple tup in cleaner.GetListOfRenamedFiles())
                                                                                  {
                                                                                      string line = tup.m_original + "=" + tup.m_renamed;
                                                                                      writer.WriteLine(line);
                                                                                  }
                                                                                  writer.Close();
+                                                                                 writer = null;
 
-                                                                                List<string>
-                                                                                     listOfDataProviderFiles =
-                                                                                         new List<string>();
+                                                                                 List<string>
+                                                                                      listOfDataProviderFiles =
+                                                                                          new List<string>();
                                                                                  foreach (
                                                                                      DataProvider dataProvider in
                                                                                          mSession.Presentation.
@@ -1223,6 +1227,7 @@ namespace Obi
                                                                                      }
                                                                                  }
 
+                                                                                 
                                                                                  if (
                                                                                      Directory.GetFiles(
                                                                                          deletedDataFolderPath).
@@ -1238,7 +1243,7 @@ namespace Obi
                                                                                                  "Delete_unused_data_caption"),
                                                                                              MessageBoxButtons.YesNo,
                                                                                              MessageBoxIcon.Question,
-                                                                                             MessageBoxDefaultButton.Button2 ) ==
+                                                                                             MessageBoxDefaultButton.Button2) ==
                                                                                          DialogResult.Yes)
                                                                                      {
 
@@ -1271,6 +1276,7 @@ namespace Obi
                                                                                          System.Diagnostics.Process.
                                                                                              Start(
                                                                                                  deletedDataFolderPath);
+                                                                                         isDeleteFolderOpenned = true;
                                                                                      }
                                                                                  }
 
@@ -1292,10 +1298,13 @@ namespace Obi
                             m_IsAutoSaveActive = false;
                         }
                         mSession.ForceSave();
-                        MessageBox.Show(Localizer.Message ("CleanUp_Complete"),
+                        if (!isDeleteFolderOpenned)
+                        {
+                            MessageBox.Show(Localizer.Message("CleanUp_Complete"),
                             Localizer.Message("Caption_Information"),
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+                        }
                     }
                     catch (Exception e)
                     {
@@ -1303,6 +1312,10 @@ namespace Obi
                                         Localizer.Message("clean_failed_caption"), MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
                         m_CanAutoSave = true;
+                    }
+                    finally
+                    {
+                        if (writer != null) writer.Close();
                     }
                     mProjectView.WaveformRendering_PauseOrResume(false);
                 }
@@ -1345,10 +1358,11 @@ namespace Obi
                 string currentDataDirectoryPath = mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath;
                 DidCloseProject();
                 // start roll back
+                StreamReader reader = null;
                 try
                 {
                     // create the filenames mapping dictionary
-                    StreamReader reader = File.OpenText(MappingFilePath);
+                    reader = File.OpenText(MappingFilePath);
                     Dictionary<string, string> fileMappingOriginalToRenamed = new Dictionary<string, string>();
                     string line = "";
                     Console.WriteLine("populating cleanup mapping dictionary");
@@ -1365,7 +1379,7 @@ namespace Obi
                         }
                     }
                     reader.Close();
-
+                    reader = null;
 
                     // rename the project file name
                     string backupProjectFilePath = currentProjectPath + "_Before_Rollback";
@@ -1380,7 +1394,7 @@ namespace Obi
                     File.Move(ProjectPathInDeleteDirectory, currentProjectPath);
                     Console.WriteLine("Project before clean up is restored");
 
-                    
+
                     Dialogs.ProgressDialog progress = new ProgressDialog(Localizer.Message("CleanUp_Rollback_Progress"),
                                                                              delegate()
                                                                              {
@@ -1425,9 +1439,12 @@ namespace Obi
                 }
                 catch (System.Exception ex)
                 {
-                    MessageBox.Show("Roll back failed" +"\n"  + ex.ToString());
+                    MessageBox.Show("Roll back failed" + "\n" + ex.ToString());
                 }
-                
+                finally
+                {
+                    if (reader != null) reader.Close();
+                }
                 OpenProject(currentProjectPath, "");
 
                 
