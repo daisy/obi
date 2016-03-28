@@ -82,8 +82,10 @@ namespace Obi.ProjectView
                         Height - mLabel.Height - mLabel.Margin.Bottom - mWaveform.Margin.Vertical - BorderHeight);
                     if (mWaveform == null && m_IsAudioBlockDisposing)
                     {
-                        Console.WriteLine("Audio block is disposing. Returning from set waveform");
-
+                        Console.WriteLine("Audio block is disposing. bypass the rest of the code");
+                    }
+                    else
+                    {
                         mWaveform.Block = this;
                         Size = new Size(WaveformFullWidth, Height);
                     }
