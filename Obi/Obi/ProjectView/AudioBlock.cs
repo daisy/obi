@@ -20,6 +20,7 @@ namespace Obi.ProjectView
         public const int BLOCK_SELECTED_PRIORITY = 3;
         public const int WAVEFORM_SELECTED_PRIORITY = 4;
         public bool FlagMouseDown = false; //@zoomwaveform
+        public bool m_IsAudioBlockDisposing;
 
         //@singleSection: height and width is increased by 20%, height is increased from properties of designer from 128 to 154
 
@@ -30,6 +31,7 @@ namespace Obi.ProjectView
             : base(node, strip)
         {
             InitializeComponent();
+            m_IsAudioBlockDisposing = false;
             m_ShowWaveform = showWaveform;
             SetWaveform(Node as PhraseNode);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
@@ -78,8 +80,13 @@ namespace Obi.ProjectView
                     mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
                     mWaveform.Size = new Size(WaveformDefaultWidth,
                         Height - mLabel.Height - mLabel.Margin.Bottom - mWaveform.Margin.Vertical - BorderHeight);
-                    mWaveform.Block = this;
-                    Size = new Size(WaveformFullWidth, Height);
+                    if (mWaveform == null && m_IsAudioBlockDisposing)
+                    {
+                        Console.WriteLine("Audio block is disposing. Returning from set waveform");
+
+                        mWaveform.Block = this;
+                        Size = new Size(WaveformFullWidth, Height);
+                    }
                 }
                 else
                 {
@@ -373,6 +380,7 @@ public void SetWaveformForZoom(PhraseNode node)
 
         protected override void Block_Disposed(object sender, EventArgs e)
         {
+            m_IsAudioBlockDisposing = true;
             if (mNode != null  && mNode is PhraseNode)  ((PhraseNode) mNode).NodeAudioChanged -= new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
             if (mWaveform != null && !mWaveform.IsDisposed) mWaveform.Dispose();
             mWaveform = null;
