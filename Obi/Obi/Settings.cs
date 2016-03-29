@@ -32,7 +32,7 @@ namespace Obi
         public ColorSettings ColorSettingsHC;  // current color settings for high contrast
         public bool CreateTitleSection;        // defaulf for "create title section" in new project
         public string Project_DefaultPath;             // default location
-        public bool Project_AutomaticallyDeleteUnusedFilesAfterCleanup; // deletes the unused files without user permission after cleanup
+        
         public float FontSize;                 // global font size (all font sizes must be relative to this one)
         public string Audio_LastInputDevice;         // the name of the last input device selected by the user
         public string LastOpenProject;         // path to the last open project
@@ -227,6 +227,10 @@ namespace Obi
         [OptionalField]
         public bool Project_VAXhtmlExport;
 
+        // post Obi 3.8
+        [OptionalField]
+        public bool Project_DisableRollBackForCleanUp; // deletes the unused files after clean up, hence  roll back is disabled
+
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
 
@@ -259,7 +263,7 @@ namespace Obi
             settings.ColorSettings = ColorSettings.DefaultColorSettings();
             settings.ColorSettingsHC = ColorSettings.DefaultColorSettingsHC();
             settings.Project_DefaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            settings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup = true;
+            settings.Project_DisableRollBackForCleanUp = true;
             //settings.EnableTooltips = true;
             settings.FontSize = 10.0f;
             settings.Audio_LastInputDevice = "";

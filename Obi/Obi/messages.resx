@@ -2012,8 +2012,8 @@ Error text: {1}</value>
   <data name="ProjectTab_OptimizeMemory" xml:space="preserve">
     <value>Optimize memory utilization</value>
   </data>
-  <data name="ProjectTab_DeleteUnusedFilesAfterCleanUp" xml:space="preserve">
-    <value>Delete unused files after clean up</value>
+  <data name="Project_DisableRollBackForCleanUp" xml:space="preserve">
+    <value>Disable roll back for clean up</value>
   </data>
   <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
     <value>Unable to update audio format of the current project</value>
@@ -2862,5 +2862,8 @@ Error text: {1}</value>
   </data>
   <data name="Caption_Rollback_Failed" xml:space="preserve">
     <value>Rollback failed</value>
+  </data>
+  <data name="CleanUp_AreYouSure" xml:space="preserve">
+    <value>Please confirm. If these files are deleted, roll back for clean up will not work.</value>
   </data>
 </root>

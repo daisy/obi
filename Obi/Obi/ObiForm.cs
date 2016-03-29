@@ -1206,13 +1206,19 @@ namespace Obi
                                                                                  if (
                                                                                      Directory.GetFiles(deletedDataFolderPath).Length != 0)
                                                                                  {
-                                                                                     if (mSettings.Project_AutomaticallyDeleteUnusedFilesAfterCleanup ||
-                                                                                         MessageBox.Show(Localizer.Message("clean_up_ask_for_delete_project"),
+                                                                                     if (mSettings.Project_DisableRollBackForCleanUp 
+                                                                                         ||
+                                                                                         (MessageBox.Show(Localizer.Message("clean_up_ask_for_delete_project"),
                                                                                              Localizer.Message("Delete_unused_data_caption"),
-                                                                                             MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) ==DialogResult.Yes)
+                                                                                             MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) ==DialogResult.Yes
+                                                                                         &&
+                                                                                         MessageBox.Show(Localizer.Message("CleanUp_AreYouSure"),
+                                                                                             Localizer.Message("Caption_Warning"),
+                                                                                             MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes))
                                                                                      {
 
-                                                                                         if (true)
+                                                                                         
+                                                                                             if(true)
                                                                                          //delete definitively
                                                                                          {
                                                                                              ProjectView.ProjectView.WriteToLogFile_Static("Clean up operation: deleting files");
